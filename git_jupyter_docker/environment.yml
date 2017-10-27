@@ -1,0 +1,9 @@
+channels:
+- bioconda
+dependencies:
+- fastqc=0.11
+- multiqc=0.9
+- snakemake=3.13
+- bowtie2=2.3
+- samtools=1.6
+- htseq=0.9

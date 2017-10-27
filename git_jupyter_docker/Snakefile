@@ -1,0 +1,9 @@
+rule get_SRA_by_accession:
+    output:
+        expand("{{prefix}}/{{sra_id}}_{dirs}.fastq.gz",dirs=["1","2"])
+    params:
+        maxReads=1000
+    run:
+        baseDir=wildcards.sra_id[0:6]
+        shell("curl -s ftp://ftp.sra.ebi.ac.uk/vol1/fastq/" + baseDir + "/{wildcards.sra_id}/{wildcards.sra_id}_1.fastq.gz | gunzip | head -n " + str(int(params.maxReads)*4) + " | gzip > {output[0]} || true;")
+        shell("curl -s ftp://ftp.sra.ebi.ac.uk/vol1/fastq/" + baseDir + "/{wildcards.sra_id}/{wildcards.sra_id}_2.fastq.gz | gunzip | head -n " + str(int(params.maxReads)*4) + " | gzip > {output[1]} || true;")
