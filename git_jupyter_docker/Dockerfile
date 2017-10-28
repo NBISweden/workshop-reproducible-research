@@ -16,4 +16,5 @@ ENV PATH="/root/miniconda3/bin:${PATH}"
 ADD environment.yml .
 RUN conda env create -n my_conda_env -f environment.yml
 
+ADD Snakefile .
 CMD source activate my_conda_env && /bin/bash

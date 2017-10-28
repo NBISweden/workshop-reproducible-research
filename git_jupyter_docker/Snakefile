@@ -1,9 +1,64 @@
 rule get_SRA_by_accession:
     output:
-        expand("{{prefix}}/{{sra_id}}_{dirs}.fastq.gz",dirs=["1","2"])
+        "{prefix}/{sra_id}_{dir}.fastq.gz"
     params:
-        maxReads=1000
+        maxReads=10000
     run:
-        baseDir=wildcards.sra_id[0:6]
-        shell("curl -s ftp://ftp.sra.ebi.ac.uk/vol1/fastq/" + baseDir + "/{wildcards.sra_id}/{wildcards.sra_id}_1.fastq.gz | gunzip | head -n " + str(int(params.maxReads)*4) + " | gzip > {output[0]} || true;")
-        shell("curl -s ftp://ftp.sra.ebi.ac.uk/vol1/fastq/" + baseDir + "/{wildcards.sra_id}/{wildcards.sra_id}_2.fastq.gz | gunzip | head -n " + str(int(params.maxReads)*4) + " | gzip > {output[1]} || true;")
+        baseDir=wildcards.sra_id[0:6] + "/00" + wildcards.sra_id[-1]
+        shell("curl -s ftp://ftp.sra.ebi.ac.uk/vol1/fastq/" + baseDir + "/{wildcards.sra_id}/{wildcards.sra_id}_{wildcards.dir}.fastq.gz | gunzip | head -n " + str(int(params.maxReads)*4) + " | gzip > {output} || true;")
+
+rule download_genome:
+    output:
+        fasta="data/GCA_000011505.1_ASM1150v1_genomic.fna.gz",
+        annotation="data/GCA_000011505.1_ASM1150v1_genomic.gff.gz"
+    shell:
+        """
+        wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/011/505/GCA_000011505.1_ASM1150v1/GCA_000011505.1_ASM1150v1_genomic.fna.gz -P data/
+        wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/011/505/GCA_000011505.1_ASM1150v1//GCA_000011505.1_ASM1150v1_genomic.gff.gz -P data/
+        """
+
+rule index_genome:
+    input:
+        "data/GCA_000011505.1_ASM1150v1_genomic.fna.gz"
+    output:
+        expand("intermediate/GCA_000011505.1_ASM1150v1.{n}.bt2",n=["1","2","3","4"]),
+        expand("intermediate/GCA_000011505.1_ASM1150v1.rev.{n}.bt2",n=["1","2"])
+    shadow: "shallow"
+    shell:
+        """
+            gunzip -c {input} > tempfile
+            bowtie2-build tempfile intermediate/GCA_000011505.1_ASM1150v1
+        """
+
+rule align_to_genome:
+    input:
+        fastq=expand("data/{{sra_id}}_{dirs}.fastq.gz",dirs=["1","2"]),
+        index=expand("intermediate/GCA_000011505.1_ASM1150v1.{n}.bt2",n=["1","2","3","4"])
+    output:
+        "intermediate/{sra_id,\w+}.bam"
+    run:
+        indexBase = input.index[0].replace('.1.bt2','')
+        shell("bowtie2 -x " + indexBase + " -1 {input.fastq[0]} -2 {input.fastq[1]} > {output}")
+
+rule sort_bam:
+    input:
+        "{prefix}.bam"
+    output:
+        "{prefix}.sorted.bam"
+    shell:
+        """
+        samtools sort {input} > {output}
+        """
+
+rule generate_count_table:
+    input:
+        bams=expand("intermediate/{sra_ids}.sorted.bam",sra_ids=["SRR1598808","SRR1598809","SRR1598810","SRR1598811"]),
+        annotation="data/GCA_000011505.1_ASM1150v1_genomic.gff.gz"
+    output:
+        "results/counts.tsv"
+    shadow: "shallow"
+    shell:
+        """
+        gunzip -c {input.annotation} > tempfile
+        htseq-count -f bam --idattr ID {input.bams} tempfile > {output}
+        """
