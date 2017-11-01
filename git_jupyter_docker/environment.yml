@@ -7,3 +7,4 @@ dependencies:
 - bowtie2=2.3
 - samtools=1.6
 - htseq=0.9
+- sra-tools=2.8
