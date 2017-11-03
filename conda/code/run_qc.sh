@@ -8,6 +8,9 @@ fastq-dump SRR935090 -X 12000 --gzip -Z > data/raw_internal/SRR935090.fastq.gz
 fastq-dump SRR935091 -X 12000 --gzip -Z > data/raw_internal/SRR935091.fastq.gz
 fastq-dump SRR935092 -X 12000 --gzip -Z > data/raw_internal/SRR935092.fastq.gz
 
+# Clear caching by sra-tools and fastq-dump:
+cache-mgr --clear
+
 # Run fastqc, put output zip in intermediate/fastq/ and html in results/fastqc:
 fastqc  data/raw_internal/SRR935090.fastq.gz --outdir=intermediate/fastqc/
 fastqc  data/raw_internal/SRR935091.fastq.gz --outdir=intermediate/fastqc/
