@@ -1,0 +1,7 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- fastqc=0.11
+- sra-tools=2.8
+- bowtie2=2.3
