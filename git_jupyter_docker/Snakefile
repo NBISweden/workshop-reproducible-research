@@ -1,51 +1,99 @@
+rule all:
+    input:
+        "data/final/counts.tsv",
+        "results/multiqc.html"
+
 rule get_SRA_by_accession:
+    """
+    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
+
+    maxReads: Max number of reads to download.
+    """
     output:
         "data/raw_internal/{sra_id}.fastq.gz"
     params:
-        maxReads=12000
+        max_reads=config["max_reads"]
+    version: "1.0"
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X {params.maxReads} --gzip -Z > {output}
+        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
+            --dumpbase --skip-technical --gzip -Z > {output}
+        # LEIF: CLEAN UP CACHE
         """
 
 rule fastqc:
+    """
+    Run FastQC on a FASTQ file.
+    """
     input:
-        "data/raw_internal/{sra_id}.fastq.gz"
+        "data/raw_internal/{id}.fastq.gz"
     output:
-        "results/{sra_id}.fastqc.html",
-        "intermediate/{sra_id}.fastqc.tsv"
+        "results/{id}_fastqc.html",
+        "intermediate/{id}_fastqc.zip"
+    version: "1.0"
+    shadow: "shallow"
     shell:
         """
-        fastqc {input} {output}
+        fastqc {input} -o .
+        mv {wildcards.id}_fastqc.html {output[0]}
+        mv {wildcards.id}_fastqc.zip {output[1]}
         """
 
-rule download_genome:
+rule multiQC:
+    """
+    Aggregate all FastQC output into a MultiQC report.
+    """
+    input:
+        expand("intermediate/{id}_fastqc.zip", id=config["sample_ids"])
     output:
-        fasta="data/raw_external/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz",
-        annotation="data/raw_external/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz"
+        "results/multiqc.html"
+    version: "1.0"
+    shadow: "shallow"
     shell:
         """
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -P data/
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -P data/
+        mkdir temp_multiqc
+        ln -s {input} temp_multiqc
+        multiqc {input} --flat -n multiqc.html temp_multiqc
+        mv multiqc.html {output}
+        """
+
+rule get_genome_fasta:
+    output:
+        "data/raw_external/{genome_id}.fa.gz"
+    params:
+        fasta_path=lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
+    shell:
+        """
+        wget {params.fasta_path} -O {output}
+        """
+
+rule get_genome_gff3:
+    output:
+        "data/raw_external/{genome_id}.gff3.gz"
+    params:
+        gff3_path=lambda wildcards: config["genomes"][wildcards.genome_id]["gff3"]
+    shell:
+        """
+        wget {params.gff3_path} -O {output}
         """
 
 rule index_genome:
     input:
-        "data/raw_external/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz"
+        "data/raw_external/{genome_id}.fa.gz"
     output:
-        expand("intermediate/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.{n}.bt2",n=["1","2","3","4"]),
-        expand("intermediate/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.rev.{n}.bt2",n=["1","2"])
+        expand("intermediate/{{genome_id}}.{n}.bt2", n=["1","2","3","4"]),
+        expand("intermediate/{{genome_id}}.rev.{n}.bt2", n=["1","2"])
     shadow: "shallow"
     shell:
         """
             gunzip -c {input} > tempfile
-            bowtie2-build tempfile intermediate/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel
+            bowtie2-build tempfile intermediate/{wildcards.genome_id}
         """
 
 rule align_to_genome:
     input:
         fastq="data/raw_internal/{sra_id}.fastq.gz",
-        index=expand("intermediate/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.{n}.bt2",n=["1","2","3","4"])
+        index=expand("intermediate/{genome_id}.{n}.bt2", genome_id=config["genome_id"], n=["1","2","3","4"])
     output:
         temp("intermediate/{sra_id,\w+}.bam")
     run:
@@ -64,13 +112,13 @@ rule sort_bam:
 
 rule generate_count_table:
     input:
-        bams=expand("intermediate/{sra_ids}.sorted.bam",sra_ids=["SRR935090","SRR935091","SRR935092"]),
-        annotation="data/raw_external/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz"
+        bams=expand("intermediate/{sra_id}.sorted.bam", sra_id=config["sample_ids"]),
+        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id=config["genome_id"])
     output:
         "data/final/counts.tsv"
     shadow: "shallow"
     shell:
         """
         gunzip -c {input.annotation} > tempfile
-        htseq-count -f bam --idattr exon_id --additional-attr description {input.bams} tempfile > {output}
+        htseq-count -f bam --idattr exon_id {input.bams} tempfile > {output}
         """

@@ -5,7 +5,8 @@ RUN apt-get update && apt-get -y dist-upgrade
 RUN apt-get install -y --no-install-recommends bzip2
 
 WORKDIR /home
-ENV LC_ALL C
+ENV LC_ALL C.UTF-8
+ENV LC_LANG C.UTF-8
 SHELL ["/bin/bash", "-c"]
 
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \

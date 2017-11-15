@@ -3,9 +3,10 @@ channels:
 - bioconda
 dependencies:
 - fastqc=0.11
-- multiqc=0.9
+- sra-tools=2.8
 - bowtie2=2.3
-- snakemake=3.13
+- multiqc=0.9
+- snakemake=4.3.0
 - samtools=1.6
 - htseq=0.9
-- sra-tools=2.8
+- graphviz=2.38
