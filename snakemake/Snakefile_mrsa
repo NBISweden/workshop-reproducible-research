@@ -10,17 +10,12 @@ rule all:
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
-
-    max_reads: Maximal number of reads to download for each sample.
     """
     output:
         "data/raw_internal/{sra_id}.fastq.gz"
-    params:
-        max_reads=config["max_reads"]
-    version: "1.0"
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
+        fastq-dump {wildcards.sra_id} -X 50000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
 
         # This clears a cache where SRA Tools reserve a lot of space
@@ -36,8 +31,6 @@ rule fastqc:
     output:
         "results/{id}_fastqc.html",
         "intermediate/{id}_fastqc.zip"
-    version: "1.0"
-    shadow: "shallow"
     shell:
         """
         # Run fastQC and save the output to the current directory
@@ -53,18 +46,19 @@ rule multiqc:
     Aggregate all FastQC reports into a MultiQC report.
     """
     input:
-        expand("intermediate/{id}_fastqc.zip", id=config["sample_ids"])
+        "intermediate/SRR935090_fastqc.zip",
+        "intermediate/SRR935091_fastqc.zip",
+        "intermediate/SRR935092_fastqc.zip"
     output:
         "results/multiqc.html"
-    log:
-        "results/logs/multiqc/multiqc.log"
-    version: "1.0"
-    shadow: "shallow"
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2> {log}
+        multiqc --flat -n multiqc.html {input}
         mv multiqc.html {output}
+
+        # Remove the other directory that multiQC creates
+        rm -rf multiqc_data
         """
 
 rule get_genome_fasta:
@@ -72,15 +66,10 @@ rule get_genome_fasta:
     Retrieve the sequence in fasta format for a genome.
     """
     output:
-        "data/raw_external/{genome_id}.fa.gz"
-    params:
-        fasta_path=lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
-    log:
-        "results/logs/get_genome_fasta/{genome_id}.log"
-    version: "1.0"
+        "data/raw_external/NCTC8325.fa.gz"
     shell:
         """
-        wget {params.fasta_path} -O {output} -o {log}
+        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
         """
 
 rule get_genome_gff3:
@@ -88,15 +77,10 @@ rule get_genome_gff3:
     Retrieve annotation in gff3 format for a genome.
     """
     output:
-        "data/raw_external/{genome_id}.gff3.gz"
-    log:
-        "results/logs/get_genome_gff3/{genome_id}.log"
-    params:
-        gff3_path=lambda wildcards: config["genomes"][wildcards.genome_id]["gff3"]
-    version: "1.0"
+        "data/raw_external/NCTC8325.gff3.gz"
     shell:
         """
-        wget {params.gff3_path} -O {output} -o {log}
+        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O {output}
         """
 
 rule index_genome:
@@ -104,19 +88,22 @@ rule index_genome:
     Index a genome using Bowtie 2.
     """
     input:
-        "data/raw_external/{genome_id}.fa.gz"
+        "data/raw_external/NCTC8325.fa.gz"
     output:
-        expand("intermediate/{{genome_id}}.{n}.bt2", n=["1","2","3","4"]),
-        expand("intermediate/{{genome_id}}.rev.{n}.bt2", n=["1","2"])
-    log:
-        "results/logs/index_genome/{genome_id}.log"
-    version: "1.0"
-    shadow: "shallow"
+        "intermediate/NCTC8325.1.bt2",
+        "intermediate/NCTC8325.2.bt2",
+        "intermediate/NCTC8325.3.bt2",
+        "intermediate/NCTC8325.4.bt2",
+        "intermediate/NCTC8325.rev.1.bt2",
+        "intermediate/NCTC8325.rev.2.bt2"
     shell:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
         gunzip -c {input} > tempfile
-        bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+        bowtie2-build tempfile intermediate/NCTC8325
+
+        # Remove the temporary file
+        rm tempfile
         """
 
 rule align_to_genome:
@@ -124,29 +111,28 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     input:
-        fastq="data/raw_internal/{sra_id}.fastq.gz",
-        index=expand("intermediate/{genome_id}.{n}.bt2", genome_id=config["genome_id"], n=["1","2","3","4"]),
-        index_rev=expand("intermediate/{genome_id}.rev.{n}.bt2", genome_id=config["genome_id"], n=["1","2"])
+        "data/raw_internal/{sra_id}.fastq.gz",
+        "intermediate/NCTC8325.1.bt2",
+        "intermediate/NCTC8325.2.bt2",
+        "intermediate/NCTC8325.3.bt2",
+        "intermediate/NCTC8325.4.bt2",
+        "intermediate/NCTC8325.rev.1.bt2",
+        "intermediate/NCTC8325.rev.2.bt2"
     output:
-        temp("intermediate/{sra_id,\w+}.bam")
-    log:
-        expand("results/logs/align_to_genome/{{sra_id}}_{genome_id}.log", genome_id=config["genome_id"])
-    version: "1.0"
-    run:
-        # This gives the base name for the genome index, i.e. "intermediate/some_id"
-        # rather than "intermediate/some_id.*.bt2"
-        indexBase = input.index[0].replace('.1.bt2','')
-        shell("bowtie2 -x " + indexBase + " -U {input.fastq} > {output} 2> {log}")
+        "intermediate/{sra_id,\w+}.bam"
+    shell:
+        """
+        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
+        """
 
 rule sort_bam:
     """
     Sort a bam file.
     """
     input:
-        "{prefix}.bam"
+        "intermediate/{sra_id}.bam"
     output:
-        "{prefix}.sorted.bam"
-    version: "1.0"
+        "intermediate/{sra_id}.sorted.bam"
     shell:
         """
         samtools sort {input} > {output}
@@ -157,12 +143,10 @@ rule generate_count_table:
     Generate a count table using htseq-count.
     """
     input:
-        bams=expand("intermediate/{sra_id}.sorted.bam", sra_id=config["sample_ids"]),
-        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id=config["genome_id"])
+        bams=["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
+        annotation="data/raw_external/NCTC8325.gff3.gz"
     output:
         "data/final/counts.tsv"
-    version: "1.0"
-    shadow: "shallow"
     shell:
         """
         # htseq-count cannot use .gz, so unzip to a temporary file first
@@ -172,6 +156,9 @@ rule generate_count_table:
         # with the sample names
         htseq-count -f bam --idattr exon_id {input.bams} tempfile > tempfile2
         echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
+
+        # Remove the temporary files
+        rm tempfile tempfile2
         """
 
 rule generate_rulegraph:
@@ -182,5 +169,5 @@ rule generate_rulegraph:
         "results/rulegraph.png"
     shell:
         """
-        snakemake --rulegraph --keep-shadow --nolock --configfile config.yml | dot -Tpng > {output}
+        snakemake --snakefile Snakefile_mrsa --rulegraph --keep-shadow --nolock | dot -Tpng > {output}
         """
