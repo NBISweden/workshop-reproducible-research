@@ -107,6 +107,6 @@ pheatmap(d[,1:3], labels_row=paste(rownames(d)," (",d$description,")",sep=""), f
 ```
 
 ```{r rulegraph, fig.cap=paste("Title"), out.height="11cm"}
-knitr::include_graphics(normalizePath("results/rulegraph.png"))
+knitr::include_graphics(normalizePath("results/rulegraph.svg"))
 ```
 
