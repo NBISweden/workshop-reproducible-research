@@ -55,7 +55,8 @@ rule multiqc:
     input:
         expand("intermediate/{id}_fastqc.zip", id=config["sample_ids"])
     output:
-        "results/multiqc.html"
+        html="results/multiqc.html",
+        stats="intermediate/multiqc_general_stats.txt"
     log:
         "results/logs/multiqc/multiqc.log"
     version: "1.0"
@@ -64,7 +65,8 @@ rule multiqc:
         """
         # Run multiQC and keep the html report
         multiqc -n multiqc.html {input} 2> {log}
-        mv multiqc.html {output}
+        mv multiqc.html {output.html}
+        mv multiqc_data/multiqc_general_stats.txt {output.stats}
         """
 
 rule get_genome_fasta:
