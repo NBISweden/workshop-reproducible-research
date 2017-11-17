@@ -5,7 +5,7 @@ rule all:
     input:
         "data/final/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.svg"
+        "results/rulegraph.png"
 
 rule get_SRA_by_accession:
     """
