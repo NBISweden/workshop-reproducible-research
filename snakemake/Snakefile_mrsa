@@ -168,8 +168,8 @@ rule generate_rulegraph:
     Generate a rulegraph for the workflow.
     """
     output:
-        "results/rulegraph.svg"
+        "results/rulegraph.png"
     shell:
         """
-        snakemake --snakefile Snakefile_mrsa --rulegraph | dot -Tsvg > {output}
+        snakemake --snakefile Snakefile_mrsa --rulegraph | dot -Tpng > {output}
         """

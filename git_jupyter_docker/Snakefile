@@ -181,8 +181,8 @@ rule generate_rulegraph:
     Generate a rulegraph for the workflow.
     """
     output:
-        "results/rulegraph.svg"
+        "results/rulegraph.png"
     shell:
         """
-        snakemake --rulegraph --configfile config.yml | dot -Tsvg > {output}
+        snakemake --rulegraph --configfile config.yml | dot -Tpng > {output}
         """
