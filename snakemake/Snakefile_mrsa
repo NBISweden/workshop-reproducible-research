@@ -50,12 +50,14 @@ rule multiqc:
         "intermediate/SRR935091_fastqc.zip",
         "intermediate/SRR935092_fastqc.zip"
     output:
-        "results/multiqc.html"
+        html="results/multiqc.html",
+        stats="intermediate/multiqc_general_stats.txt"
     shell:
         """
         # Run multiQC and keep the html report
         multiqc -n multiqc.html {input}
-        mv multiqc.html {output}
+        mv multiqc.html {output.html}
+        mv multiqc_data/multiqc_general_stats.txt {output.stats}
 
         # Remove the other directory that multiQC creates
         rm -rf multiqc_data
@@ -154,7 +156,7 @@ rule generate_count_table:
 
         # Save the count table as a temporary file and then prepend a header line
         # with the sample names
-        htseq-count -f bam --idattr exon_id {input.bams} tempfile > tempfile2
+        htseq-count --format bam --type gene --idattr gene_id {input.bams} tempfile > tempfile2
         echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
 
         # Remove the temporary files
