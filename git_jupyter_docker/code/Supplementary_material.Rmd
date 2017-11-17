@@ -1,4 +1,6 @@
 ---
+title: "Supplementary material"
+author: John Doe, Joan Dough, Jan Doh, Dyon Do
 output:
   pdf_document:
     includes:
@@ -6,86 +8,105 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, 
-                      fig.height=7, 
+knitr::opts_knit$set(root.dir=normalizePath('../'))
+knitr::opts_chunk$set(echo = FALSE,
+                      fig.height=6, 
                       fig.width=6, 
                       fig.align='center', 
-                      fig.pos="ht",
-                      eval.after="fig.cap")
-library(ggplot2)
-library(knitr)
+                      fig.pos="h")
+```
+```{r dependencies, include=FALSE}
+library("ggplot2")
+library("knitr")
+library("reshape2")
+library("pheatmap")
+library("rtracklayer")
+library("GEOquery")
 ```
 
-```{r}
-# Multiple plot function
-#
-# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
-# - cols:   Number of columns in layout
-# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
-#
-# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
-# then plot 1 will go in the upper left, 2 will go in the upper right, and
-# 3 will go all the way across the bottom.
-#
-multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
+```{r read_data, include=FALSE}
+# Read counts:
+counts <- read.delim("data/final/counts.tsv")
+colnames(counts) <- gsub(".*(SRR[0-9]*)\\..*","\\1",colnames(counts))
+counts_other <- counts[grep("^__",rownames(counts)),]
+rownames(counts_other) <- gsub("^__","",rownames(counts_other))
+counts <- counts[grep("^__",rownames(counts), invert=T),]
 
-  # Make a list from the ... arguments and plotlist
-  plots <- c(list(...), plotlist)
+# Read meta data and FastQC info:
+gse <- as.data.frame(getGEO("GSE48896", GSEMatrix=T)[[1]])
+gsm2srr <- data.frame(geo_accession=c("GSM1186459", "GSM1186460", "GSM1186461"),
+                      SRR=c("SRR935090", "SRR935091", "SRR935092"))
+meta <- transform(merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession"), row.names=SRR)
+qc <- read.delim("intermediate/multiqc_general_stats.txt")
+columns <- gsub("gc","GC",gsub(".1","",gsub("FastQC ","",gsub("_"," ",colnames(qc)))))
+columns <- paste(toupper(substr(columns, 1, 1)),substr(columns, 2, nchar(columns)), sep="")
+colnames(qc) <- columns
+meta <- merge(meta, qc, by.x="SRR", by.y="Sample")
 
-  numPlots = length(plots)
-
-  # If layout is NULL, then use 'cols' to determine layout
-  if (is.null(layout)) {
-    # Make the panel
-    # ncol: Number of columns of plots
-    # nrow: Number of rows needed, calculated from # of cols
-    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
-                    ncol = cols, nrow = ceiling(numPlots/cols))
-  }
-
- if (numPlots==1) {
-    print(plots[[1]])
-
-  } else {
-    # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
-
-    # Make each plot, in the correct location
-    for (i in 1:numPlots) {
-      # Get the i,j matrix positions of the regions that contain this subplot
-      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
-                                      layout.pos.col = matchidx$col))
-    }
-  }
-}
+# Read GFF:
+gff <- as.data.frame(readGFF("data/raw_external/NCTC8325.gff3.gz"))
 ```
 
 # Supplementary Methods
 
-We took the sample files and analyzed them.
+## Preparing samples
+
+Living valley had silent eat merits esteem bed. In last an or went wise as left. Visited civilly am demesne so colonel he calling. So unreserved do interested increasing sentiments. Vanity day giving points within six not law. Few impression difficulty his use has comparison decisively. 
+
+Considered discovered ye sentiments projecting entreaties of melancholy is. In expression an solicitude principles in do. Hard do me sigh with west same lady. Their saved linen downs tears son add music. Expression alteration entreaties mrs can terminated estimating. Her too add narrow having wished. To things so denied admire. Am wound worth water he linen at vexed. 
+
+It allowance prevailed enjoyment in it. Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alteration him. Above be would at so going heard. Engaged at village at am equally proceed. Settle nay length almost ham direct extent. Agreement for listening remainder get attention law acuteness day. Now whatever surprise resolved elegance indulged own way outlived. 
+
+## Statistical analysis
+
+She who arrival end how fertile enabled. Brother she add yet see minuter natural smiling article painted. Themselves at dispatched interested insensible am be prosperous reasonably it. In either so spring wished. Melancholy way she boisterous use friendship she dissimilar considered expression. Sex quick arose mrs lived. Mr things do plenty others an vanity myself waited to. Always parish tastes at as mr father dining at. 
+
+Supplied directly pleasant we ignorant ecstatic of jointure so if. These spoke house of we. Ask put yet excuse person see change. Do inhabiting no stimulated unpleasing of admiration he. Enquire explain another he in brandon enjoyed be service. Given mrs she first china. Table party no or trees an while it since. On oh celebrated at be announcing dissimilar insipidity. Ham marked engage oppose cousin ask add yet. 
+
+An an valley indeed so no wonder future nature vanity. Debating all she mistaken indulged believed provided declared. He many kept on draw lain song as same. Whether at dearest certain spirits is entered in to. Rich fine bred real use too many good. She compliment unaffected expression favourable any. Unknown chiefly showing to conduct no. Hung as love evil able to post at as. 
+
+## Data processing
+
+Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exercise. My wishing an in attempt ferrars. Visited eat you why service looking engaged. At place no walls hopes rooms fully in. Roof hope shy tore leaf joy paid boy. Noisier out brought entered detract because sitting sir. Fat put occasion rendered off humanity has. 
+
+Maids table how learn drift but purse stand yet set. Music me house could among oh as their. Piqued our sister shy nature almost his wicket. Hand dear so we hour to. He we be hastily offence effects he service. Sympathize it projection ye insipidity celebrated my pianoforte indulgence. Point his truth put style. Elegance exercise as laughing proposal mistaken if. We up precaution an it solicitude acceptance invitation. 
+
+
 
 \newpage
 
-```{r}
-kable(head(iris,15), caption="Test", )
+# Supplementary Tables and Figures
+
+```{r sample_info}
+columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
+d <- meta[,columns]
+d$characteristics_ch1.1 <- gsub("treatment: ", "", d$characteristics_ch1.1)
+kable(d, caption="Sample info", 
+      col.names=c("SRR", "GEO", "Strain", "Treatment"))
 ```
 
-
-```{r, fig.cap=paste("A scatterplot with",length(tmp),"points.")}
-tmp <- data.frame(x=runif(100), y=runif(100))
-p1 <- ggplot(tmp, aes(x=x, y=y)) +
-  geom_point()
-multiplot(plotlist=list(p1,p1), layout=cbind(1,1,2))
+```{r qc_stats}
+columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length", 
+             "Percent fails", "Total sequences")
+kable(meta[,columns], caption="QC stats from FastQC")
 ```
 
-\newpage
+```{r counts_barplot, fig.cap=paste("Title")}
+d <- rbind(genes=apply(counts, 2, sum), counts_other)
+d <- melt(as.matrix(d), varnames=c("Feature","Sample"), value.name="Counts")
+ggplot(d, aes(x=Sample, y=Counts, fill=Feature)) +
+  geom_bar(stat="identity")
+```
 
-```{r, fig.cap=paste("A boxplot. The average is",round(mean(tmp2)),".")}
-tmp2 <- runif(100)*100
-boxplot(tmp2)
+```{r gene_heatmap, fig.cap=paste("Title"), fig.height=10, out.height="22cm"}
+d <- log10(counts[apply(counts, 1, function(x) sd(x)/mean(x))>1.2 & apply(counts,1,max)>5,]+1)
+d <- transform(merge(d, gff[,c("description","gene_id")], by.x=0, by.y="gene_id", all.x=T), 
+               row.names=Row.names, Row.names=NULL)
+colnames(d)[1:3] <- as.character(meta$title)
+pheatmap(d[,1:3], labels_row=paste(rownames(d)," (",d$description,")",sep=""), fontsize_row=8)
+```
+
+```{r rulegraph, fig.cap=paste("Title"), out.height="11cm"}
+knitr::include_graphics(normalizePath("results/rulegraph.png"))
 ```
 
