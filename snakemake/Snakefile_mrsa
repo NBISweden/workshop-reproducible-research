@@ -5,7 +5,7 @@ rule all:
     input:
         "data/final/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.png"
+        "results/rulegraph.svg"
 
 rule get_SRA_by_accession:
     """
@@ -54,7 +54,7 @@ rule multiqc:
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc --flat -n multiqc.html {input}
+        multiqc -n multiqc.html {input}
         mv multiqc.html {output}
 
         # Remove the other directory that multiQC creates
@@ -166,8 +166,8 @@ rule generate_rulegraph:
     Generate a rulegraph for the workflow.
     """
     output:
-        "results/rulegraph.png"
+        "results/rulegraph.svg"
     shell:
         """
-        snakemake --snakefile Snakefile_mrsa --rulegraph --keep-shadow --nolock | dot -Tpng > {output}
+        snakemake --snakefile Snakefile_mrsa --rulegraph | dot -Tsvg > {output}
         """
