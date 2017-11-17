@@ -5,7 +5,28 @@ output:
   pdf_document:
     includes:
       in_header: header.tex
+params:
+  counts_file: NA
+  multiqc_file: NA
+  gff_file: NA
+  rulegraph_file: NA
+  SRR_IDs: NA
+  GSM_IDs: NA
+  
 ---
+
+```{r, eval=F, include=F}
+# To render run this:
+rmarkdown::render("code/Supplementary_material.Rmd", 
+                  output_dir="results", 
+                  params=list(counts_file="data/final/counts.tsv",
+                              multiqc_file="intermediate/multiqc_general_stats.txt",
+                              gff_file="data/raw_external/NCTC8325.gff3.gz",
+                              rulegraph_file="results/rulegraph.png",
+                              SRR_IDs="SRR935090,SRR935091,SRR935092",
+                              GSM_IDs="GSM1186459,GSM1186460,GSM1186461"))
+```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir=normalizePath('../'))
@@ -24,27 +45,37 @@ library("rtracklayer")
 library("GEOquery")
 ```
 
+```{r read_params}
+if(any(lapply(params, function(x) x=="NA"))) stop("Missing input params")
+counts_file <- params$counts_file
+multiqc_file <- params$multiqc_file
+gff_file <- params$gff_file
+rulegraph_file <- params$rulegraph_file
+SRR_IDs <- unlist(strsplit(params$SRR_IDs,","))
+GSM_IDs <- unlist(strsplit(params$GSM_IDs,","))
+```
+
 ```{r read_data, include=FALSE}
 # Read counts:
-counts <- read.delim("data/final/counts.tsv")
+counts <- read.delim(counts_file)
 colnames(counts) <- gsub(".*(SRR[0-9]*)\\..*","\\1",colnames(counts))
 counts_other <- counts[grep("^__",rownames(counts)),]
 rownames(counts_other) <- gsub("^__","",rownames(counts_other))
 counts <- counts[grep("^__",rownames(counts), invert=T),]
 
 # Read meta data and FastQC info:
-gse <- as.data.frame(getGEO("GSE48896", GSEMatrix=T)[[1]])
-gsm2srr <- data.frame(geo_accession=c("GSM1186459", "GSM1186460", "GSM1186461"),
-                      SRR=c("SRR935090", "SRR935091", "SRR935092"))
-meta <- transform(merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession"), row.names=SRR)
-qc <- read.delim("intermediate/multiqc_general_stats.txt")
+gse <- as.data.frame(getGEO(getGEO(GSM_IDs[1])@header$series_id, GSEMatrix=T)[[1]])
+gsm2srr <- data.frame(geo_accession=GSM_IDs, SRR=SRR_IDs)
+meta <- merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession")
+qc <- read.delim(multiqc_file)
 columns <- gsub("gc","GC",gsub(".1","",gsub("FastQC ","",gsub("_"," ",colnames(qc)))))
 columns <- paste(toupper(substr(columns, 1, 1)),substr(columns, 2, nchar(columns)), sep="")
 colnames(qc) <- columns
 meta <- merge(meta, qc, by.x="SRR", by.y="Sample")
+if(colnames(counts) != meta$SRR) stop("Mismatching count and meta-data")
 
 # Read GFF:
-gff <- as.data.frame(readGFF("data/raw_external/NCTC8325.gff3.gz"))
+gff <- as.data.frame(readGFF(gff_file))
 ```
 
 # Supplementary Methods
@@ -107,6 +138,6 @@ pheatmap(d[,1:3], labels_row=paste(rownames(d)," (",d$description,")",sep=""), f
 ```
 
 ```{r rulegraph, fig.cap=paste("Title"), out.height="11cm"}
-knitr::include_graphics(normalizePath("results/rulegraph.svg"))
+knitr::include_graphics(normalizePath(rulegraph_file))
 ```
 
