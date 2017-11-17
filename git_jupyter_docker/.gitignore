@@ -1,0 +1,4 @@
+# Non git-tracked directories:
+results/
+data/
+intermediate/
