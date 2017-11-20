@@ -5,7 +5,8 @@ rule all:
     input:
         "data/final/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.png"
+        "results/rulegraph.png",
+        "results/Supplementary_material.pdf"
 
 rule get_SRA_by_accession:
     """
@@ -174,6 +175,34 @@ rule generate_count_table:
         # with the sample names
         htseq-count --format bam --type gene --idattr gene_id {input.bams} tempfile > tempfile2
         echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
+        """
+
+rule make_supplementary:
+    """
+    Generate Supplementary Material pdf
+    """
+    input:
+        counts="data/final/counts.tsv",
+        multiqc_file="intermediate/multiqc_general_stats.txt",
+        gff=expand("data/raw_external/{genome_id}.gff3.gz", genome_id=config["genome_id"]),
+        rulegraph="results/rulegraph.png"
+    output:
+        "results/Supplementary_material.pdf"
+    params:
+        SRR_IDs=config["sample_ids"],
+        GSM_IDs=config["sample_ids_geo"]
+    shell:
+        """
+        echo 'library(rmarkdown); \
+        rmarkdown::render("code/Supplementary_material.Rmd", \
+                  output_dir="results", \
+                  params=list(counts_file="{input.counts}", \
+                              multiqc_file="{input.multiqc_file}", \
+                              gff_file="{input.gff}", \
+                              rulegraph_file="{input.rulegraph}", \
+                              SRR_IDs="{params.SRR_IDs}", \
+                              GSM_IDs="{params.GSM_IDs}"))' \
+        | R --vanilla
         """
 
 rule generate_rulegraph:
