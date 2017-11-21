@@ -6,7 +6,7 @@ rule all:
         "data/final/counts.tsv",
         "results/multiqc.html",
         "results/rulegraph.png",
-        "results/Supplementary_material.pdf"
+        "results/supplementary_material.pdf"
 
 rule get_SRA_by_accession:
     """
@@ -17,14 +17,14 @@ rule get_SRA_by_accession:
     output:
         "data/raw_internal/{sra_id}.fastq.gz"
     params:
-        max_reads=config["max_reads"]
+        max_reads = config["max_reads"]
     version: "1.0"
     shell:
         """
         fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
 
-        # This clears a cache where SRA Tools reserve a lot of space
+        # This clears a cache where SRA Tools reserves a lot of space
         cache-mgr --clear >/dev/null 2>&1
         """
 
@@ -54,10 +54,10 @@ rule multiqc:
     Aggregate all FastQC reports into a MultiQC report.
     """
     input:
-        expand("intermediate/{id}_fastqc.zip", id=config["sample_ids"])
+        expand("intermediate/{id}_fastqc.zip", id = config["sample_ids"])
     output:
-        html="results/multiqc.html",
-        stats="intermediate/multiqc_general_stats.txt"
+        html = "results/multiqc.html",
+        stats = "intermediate/multiqc_general_stats.txt"
     log:
         "results/logs/multiqc/multiqc.log"
     version: "1.0"
@@ -77,7 +77,7 @@ rule get_genome_fasta:
     output:
         "data/raw_external/{genome_id}.fa.gz"
     params:
-        fasta_path=lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
+        fasta_path = lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
     version: "1.0"
@@ -95,7 +95,7 @@ rule get_genome_gff3:
     log:
         "results/logs/get_genome_gff3/{genome_id}.log"
     params:
-        gff3_path=lambda wildcards: config["genomes"][wildcards.genome_id]["gff3"]
+        gff3_path = lambda wildcards: config["genomes"][wildcards.genome_id]["gff3"]
     version: "1.0"
     shell:
         """
@@ -109,8 +109,8 @@ rule index_genome:
     input:
         "data/raw_external/{genome_id}.fa.gz"
     output:
-        expand("intermediate/{{genome_id}}.{n}.bt2", n=["1","2","3","4"]),
-        expand("intermediate/{{genome_id}}.rev.{n}.bt2", n=["1","2"])
+        expand("intermediate/{{genome_id}}.{n}.bt2", n = ["1","2","3","4"]),
+        expand("intermediate/{{genome_id}}.rev.{n}.bt2", n = ["1","2"])
     log:
         "results/logs/index_genome/{genome_id}.log"
     version: "1.0"
@@ -127,13 +127,13 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     input:
-        fastq="data/raw_internal/{sra_id}.fastq.gz",
-        index=expand("intermediate/{genome_id}.{n}.bt2", genome_id=config["genome_id"], n=["1","2","3","4"]),
-        index_rev=expand("intermediate/{genome_id}.rev.{n}.bt2", genome_id=config["genome_id"], n=["1","2"])
+        fastq = "data/raw_internal/{sra_id}.fastq.gz",
+        index = expand("intermediate/{genome_id}.{n}.bt2", genome_id = config["genome_id"], n = ["1","2","3","4"]),
+        index_rev = expand("intermediate/{genome_id}.rev.{n}.bt2", genome_id = config["genome_id"], n = ["1","2"])
     output:
         temp("intermediate/{sra_id,\w+}.bam")
     log:
-        expand("results/logs/align_to_genome/{{sra_id}}_{genome_id}.log", genome_id=config["genome_id"])
+        expand("results/logs/align_to_genome/{{sra_id}}_{genome_id}.log", genome_id = config["genome_id"])
     version: "1.0"
     run:
         # This gives the base name for the genome index, i.e. "intermediate/some_id"
@@ -160,8 +160,8 @@ rule generate_count_table:
     Generate a count table using htseq-count.
     """
     input:
-        bams=expand("intermediate/{sra_id}.sorted.bam", sra_id=config["sample_ids"]),
-        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id=config["genome_id"])
+        bams=expand("intermediate/{sra_id}.sorted.bam", sra_id = config["sample_ids"]),
+        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     output:
         "data/final/counts.tsv"
     version: "1.0"
@@ -182,19 +182,19 @@ rule make_supplementary:
     Generate Supplementary Material pdf
     """
     input:
-        counts="data/final/counts.tsv",
-        multiqc_file="intermediate/multiqc_general_stats.txt",
-        gff=expand("data/raw_external/{genome_id}.gff3.gz", genome_id=config["genome_id"]),
-        rulegraph="results/rulegraph.png"
+        counts = "data/final/counts.tsv",
+        multiqc_file = "intermediate/multiqc_general_stats.txt",
+        gff = expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"]),
+        rulegraph = "results/rulegraph.png"
     output:
-        "results/Supplementary_material.pdf"
+        "results/supplementary_material.pdf"
     params:
-        SRR_IDs=config["sample_ids"],
-        GSM_IDs=config["sample_ids_geo"]
+        SRR_IDs = config["sample_ids"],
+        GSM_IDs = config["sample_ids_geo"]
     shell:
         """
         echo 'library(rmarkdown); \
-        rmarkdown::render("code/Supplementary_material.Rmd", \
+        rmarkdown::render("code/supplementary_material.Rmd", \
                   output_dir="results", \
                   params=list(counts_file="{input.counts}", \
                               multiqc_file="{input.multiqc_file}", \

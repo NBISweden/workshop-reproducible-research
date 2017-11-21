@@ -2,3 +2,4 @@
 results/
 data/
 intermediate/
+.snakemake/

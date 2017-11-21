@@ -12,13 +12,13 @@ params:
   rulegraph_file: NA
   SRR_IDs: NA
   GSM_IDs: NA
-  
+
 ---
 
 ```{r, eval=F, include=F}
 # To render run this:
-rmarkdown::render("code/Supplementary_material.Rmd", 
-                  output_dir="results", 
+rmarkdown::render("code/supplementary_material.Rmd", 
+                  output_dir="results",
                   params=list(counts_file="data/final/counts.tsv",
                               multiqc_file="intermediate/multiqc_general_stats.txt",
                               gff_file="data/raw_external/NCTC8325.gff3.gz",
@@ -31,9 +31,9 @@ rmarkdown::render("code/Supplementary_material.Rmd",
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir=normalizePath('../'))
 knitr::opts_chunk$set(echo = FALSE,
-                      fig.height=6, 
-                      fig.width=6, 
-                      fig.align='center', 
+                      fig.height=6,
+                      fig.width=6,
+                      fig.align='center',
                       fig.pos="h")
 ```
 ```{r dependencies, include=FALSE}
@@ -82,25 +82,25 @@ gff <- as.data.frame(readGFF(gff_file))
 
 ## Preparing samples
 
-Living valley had silent eat merits esteem bed. In last an or went wise as left. Visited civilly am demesne so colonel he calling. So unreserved do interested increasing sentiments. Vanity day giving points within six not law. Few impression difficulty his use has comparison decisively. 
+Living valley had silent eat merits esteem bed. In last an or went wise as left. Visited civilly am demesne so colonel he calling. So unreserved do interested increasing sentiments. Vanity day giving points within six not law. Few impression difficulty his use has comparison decisively.
 
-Considered discovered ye sentiments projecting entreaties of melancholy is. In expression an solicitude principles in do. Hard do me sigh with west same lady. Their saved linen downs tears son add music. Expression alteration entreaties mrs can terminated estimating. Her too add narrow having wished. To things so denied admire. Am wound worth water he linen at vexed. 
+Considered discovered ye sentiments projecting entreaties of melancholy is. In expression an solicitude principles in do. Hard do me sigh with west same lady. Their saved linen downs tears son add music. Expression alteration entreaties mrs can terminated estimating. Her too add narrow having wished. To things so denied admire. Am wound worth water he linen at vexed.
 
-It allowance prevailed enjoyment in it. Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alteration him. Above be would at so going heard. Engaged at village at am equally proceed. Settle nay length almost ham direct extent. Agreement for listening remainder get attention law acuteness day. Now whatever surprise resolved elegance indulged own way outlived. 
+It allowance prevailed enjoyment in it. Calling observe for who pressed raising his. Can connection instrument astonished unaffected his motionless preference. Announcing say boy precaution unaffected difficulty alteration him. Above be would at so going heard. Engaged at village at am equally proceed. Settle nay length almost ham direct extent. Agreement for listening remainder get attention law acuteness day. Now whatever surprise resolved elegance indulged own way outlived.
 
 ## Statistical analysis
 
-She who arrival end how fertile enabled. Brother she add yet see minuter natural smiling article painted. Themselves at dispatched interested insensible am be prosperous reasonably it. In either so spring wished. Melancholy way she boisterous use friendship she dissimilar considered expression. Sex quick arose mrs lived. Mr things do plenty others an vanity myself waited to. Always parish tastes at as mr father dining at. 
+She who arrival end how fertile enabled. Brother she add yet see minuter natural smiling article painted. Themselves at dispatched interested insensible am be prosperous reasonably it. In either so spring wished. Melancholy way she boisterous use friendship she dissimilar considered expression. Sex quick arose mrs lived. Mr things do plenty others an vanity myself waited to. Always parish tastes at as mr father dining at.
 
-Supplied directly pleasant we ignorant ecstatic of jointure so if. These spoke house of we. Ask put yet excuse person see change. Do inhabiting no stimulated unpleasing of admiration he. Enquire explain another he in brandon enjoyed be service. Given mrs she first china. Table party no or trees an while it since. On oh celebrated at be announcing dissimilar insipidity. Ham marked engage oppose cousin ask add yet. 
+Supplied directly pleasant we ignorant ecstatic of jointure so if. These spoke house of we. Ask put yet excuse person see change. Do inhabiting no stimulated unpleasing of admiration he. Enquire explain another he in brandon enjoyed be service. Given mrs she first china. Table party no or trees an while it since. On oh celebrated at be announcing dissimilar insipidity. Ham marked engage oppose cousin ask add yet.
 
-An an valley indeed so no wonder future nature vanity. Debating all she mistaken indulged believed provided declared. He many kept on draw lain song as same. Whether at dearest certain spirits is entered in to. Rich fine bred real use too many good. She compliment unaffected expression favourable any. Unknown chiefly showing to conduct no. Hung as love evil able to post at as. 
+An an valley indeed so no wonder future nature vanity. Debating all she mistaken indulged believed provided declared. He many kept on draw lain song as same. Whether at dearest certain spirits is entered in to. Rich fine bred real use too many good. She compliment unaffected expression favourable any. Unknown chiefly showing to conduct no. Hung as love evil able to post at as.
 
 ## Data processing
 
-Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exercise. My wishing an in attempt ferrars. Visited eat you why service looking engaged. At place no walls hopes rooms fully in. Roof hope shy tore leaf joy paid boy. Noisier out brought entered detract because sitting sir. Fat put occasion rendered off humanity has. 
+Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exercise. My wishing an in attempt ferrars. Visited eat you why service looking engaged. At place no walls hopes rooms fully in. Roof hope shy tore leaf joy paid boy. Noisier out brought entered detract because sitting sir. Fat put occasion rendered off humanity has.
 
-Maids table how learn drift but purse stand yet set. Music me house could among oh as their. Piqued our sister shy nature almost his wicket. Hand dear so we hour to. He we be hastily offence effects he service. Sympathize it projection ye insipidity celebrated my pianoforte indulgence. Point his truth put style. Elegance exercise as laughing proposal mistaken if. We up precaution an it solicitude acceptance invitation. 
+Maids table how learn drift but purse stand yet set. Music me house could among oh as their. Piqued our sister shy nature almost his wicket. Hand dear so we hour to. He we be hastily offence effects he service. Sympathize it projection ye insipidity celebrated my pianoforte indulgence. Point his truth put style. Elegance exercise as laughing proposal mistaken if. We up precaution an it solicitude acceptance invitation.
 
 \newpage
 
@@ -121,12 +121,12 @@ sessionInfo()
 columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
 d <- meta[,columns]
 d$characteristics_ch1.1 <- gsub("treatment: ", "", d$characteristics_ch1.1)
-kable(d, caption="Sample info", 
+kable(d, caption="Sample info",
       col.names=c("SRR", "GEO", "Strain", "Treatment"))
 ```
 
 ```{r qc_stats}
-columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length", 
+columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
              "Percent fails", "Total sequences")
 kable(meta[,columns], caption="QC stats from FastQC")
 ```
@@ -140,7 +140,7 @@ ggplot(d, aes(x=Sample, y=Counts, fill=Feature)) +
 
 ```{r gene_heatmap, fig.cap=paste("Title"), fig.height=10, out.height="22cm"}
 d <- log10(counts[apply(counts, 1, function(x) sd(x)/mean(x))>1.2 & apply(counts,1,max)>5,]+1)
-d <- transform(merge(d, gff[,c("description","gene_id")], by.x=0, by.y="gene_id", all.x=T), 
+d <- transform(merge(d, gff[,c("description","gene_id")], by.x=0, by.y="gene_id", all.x=T),
                row.names=Row.names, Row.names=NULL)
 colnames(d)[1:3] <- as.character(meta$title)
 pheatmap(d[,1:3], labels_row=paste(rownames(d)," (",d$description,")",sep=""), fontsize_row=8)
@@ -149,4 +149,3 @@ pheatmap(d[,1:3], labels_row=paste(rownames(d)," (",d$description,")",sep=""), f
 ```{r rulegraph, fig.cap=paste("Title"), out.height="11cm"}
 knitr::include_graphics(normalizePath(rulegraph_file))
 ```
-

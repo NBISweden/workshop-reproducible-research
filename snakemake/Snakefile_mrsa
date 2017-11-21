@@ -18,7 +18,7 @@ rule get_SRA_by_accession:
         fastq-dump {wildcards.sra_id} -X 50000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
 
-        # This clears a cache where SRA Tools reserve a lot of space
+        # This clears a cache where SRA Tools reserves a lot of space
         cache-mgr --clear >/dev/null 2>&1
         """
 
@@ -50,8 +50,8 @@ rule multiqc:
         "intermediate/SRR935091_fastqc.zip",
         "intermediate/SRR935092_fastqc.zip"
     output:
-        html="results/multiqc.html",
-        stats="intermediate/multiqc_general_stats.txt"
+        html = "results/multiqc.html",
+        stats = "intermediate/multiqc_general_stats.txt"
     shell:
         """
         # Run multiQC and keep the html report
@@ -145,8 +145,8 @@ rule generate_count_table:
     Generate a count table using htseq-count.
     """
     input:
-        bams=["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
-        annotation="data/raw_external/NCTC8325.gff3.gz"
+        bams = ["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
+        annotation = "data/raw_external/NCTC8325.gff3.gz"
     output:
         "data/final/counts.tsv"
     shell:
