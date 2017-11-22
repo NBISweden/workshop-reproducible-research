@@ -15,7 +15,7 @@ rule get_SRA_by_accession:
         "data/raw_internal/{sra_id}.fastq.gz"
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X 50000 --readids \
+        fastq-dump {wildcards.sra_id} -X 25000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
 
         # This clears a cache where SRA Tools reserves a lot of space

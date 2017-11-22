@@ -5,7 +5,7 @@ sample_ids_geo: ["GSM1186459", "GSM1186460", "GSM1186461"]
 # Maximal number of reads to retrieve for each run. This is to reduce the time
 # and space needed for this exercise. Use a very large number, such as 100000000,
 # if you want to use the full files.
-max_reads: 50000
+max_reads: 25000
 
 # Genome id to align to. Should match with an entry in "genomes" below.
 genome_id: NCTC8325

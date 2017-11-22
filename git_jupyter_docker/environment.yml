@@ -9,4 +9,6 @@ dependencies:
 - snakemake=4.3.0
 - samtools=1.6
 - htseq=0.9
-- graphviz=2.38
+- graphviz=2.38.0
+- xorg-libxrender
+- xorg-libxpm
