@@ -193,8 +193,7 @@ rule make_supplementary:
         GSM_IDs = config["sample_ids_geo"]
     shell:
         """
-        echo 'library(rmarkdown); \
-        rmarkdown::render("code/supplementary_material.Rmd", \
+        echo 'rmarkdown::render("code/supplementary_material.Rmd", \
                   output_dir="results", \
                   params=list(counts_file="{input.counts}", \
                               multiqc_file="{input.multiqc_file}", \
