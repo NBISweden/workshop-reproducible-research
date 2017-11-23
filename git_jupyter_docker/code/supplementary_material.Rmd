@@ -142,7 +142,7 @@ max_cutoff <- 5
 d <- counts[apply(counts[,-1], 1, function(x) sd(x)/mean(x))>cv_cutoff &
             apply(counts[,-1],1,max)>max_cutoff,]
 colnames(d)[2:4] <- as.character(meta$title)
-pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",d$description,")",sep=""), fontsize_row=8)
+pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",substr(gsub("%2C","",d$description),1,50),")",sep=""), fontsize_row=8)
 ```
 
 ```{r rulegraph, fig.cap=paste("A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow."), out.height="11cm"}
