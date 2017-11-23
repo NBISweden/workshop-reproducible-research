@@ -1,6 +1,7 @@
 ---
 title: "Supplementary material"
 author: John Doe, Joan Dough, Jan Doh, Dyon Do
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document:
     includes:
@@ -8,7 +9,6 @@ output:
 params:
   counts_file: NA
   multiqc_file: NA
-  gff_file: NA
   rulegraph_file: NA
   SRR_IDs: NA
   GSM_IDs: NA
@@ -21,7 +21,6 @@ rmarkdown::render("code/supplementary_material.Rmd",
                   output_dir="results",
                   params=list(counts_file="data/final/counts.tsv",
                               multiqc_file="intermediate/multiqc_general_stats.txt",
-                              gff_file="data/raw_external/NCTC8325.gff3.gz",
                               rulegraph_file="results/rulegraph.png",
                               SRR_IDs="SRR935090 SRR935091 SRR935092",
                               GSM_IDs="GSM1186459 GSM1186460 GSM1186461"))
@@ -38,7 +37,6 @@ knitr::opts_chunk$set(echo = FALSE,
 ```
 ```{r dependencies, include=FALSE}
 library("ggplot2")
-library("knitr")
 library("reshape2")
 library("pheatmap")
 library("rtracklayer")
@@ -46,10 +44,9 @@ library("GEOquery")
 ```
 
 ```{r read_params}
-if(any(lapply(params, function(x) x=="NA"))) stop("Missing input params")
+if(any(unlist(lapply(params, function(x) x=="NA")))) stop("Missing input params")
 counts_file <- params$counts_file
 multiqc_file <- params$multiqc_file
-gff_file <- params$gff_file
 rulegraph_file <- params$rulegraph_file
 SRR_IDs <- unlist(strsplit(params$SRR_IDs," "))
 GSM_IDs <- unlist(strsplit(params$GSM_IDs," "))
@@ -57,14 +54,17 @@ GSM_IDs <- unlist(strsplit(params$GSM_IDs," "))
 
 ```{r read_data, include=FALSE}
 # Read counts:
-counts <- read.delim(counts_file)
-colnames(counts) <- gsub(".*(SRR[0-9]*)\\..*","\\1",colnames(counts))
+counts <- read.delim(counts_file, skip=1, header=F, row.names=1)
+sample_names <- t(read.delim(counts_file, nrow=1, header=F))
+colnames(counts) <- c("description",gsub(".*(SRR[0-9]*)\\..*","\\1", sample_names))
 counts_other <- counts[grep("^__",rownames(counts)),]
 rownames(counts_other) <- gsub("^__","",rownames(counts_other))
 counts <- counts[grep("^__",rownames(counts), invert=T),]
 
 # Read meta data and FastQC info:
-gse <- as.data.frame(getGEO(getGEO(GSM_IDs[1])@header$series_id, GSEMatrix=T)[[1]])
+gse <- Meta(getGEO(GSM_IDs[1]))$series_id
+gse <- getGEO(gse, GSEMatrix=T)
+gse <- as.data.frame(gse[[1]])
 gsm2srr <- data.frame(geo_accession=GSM_IDs, SRR=SRR_IDs)
 meta <- merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession")
 qc <- read.delim(multiqc_file)
@@ -72,10 +72,7 @@ columns <- gsub("gc","GC",gsub(".1","",gsub("FastQC ","",gsub("_"," ",colnames(q
 columns <- paste(toupper(substr(columns, 1, 1)),substr(columns, 2, nchar(columns)), sep="")
 colnames(qc) <- columns
 meta <- merge(meta, qc, by.x="SRR", by.y="Sample")
-if(colnames(counts) != meta$SRR) stop("Mismatching count and meta-data")
-
-# Read GFF:
-gff <- as.data.frame(readGFF(gff_file))
+if(any(colnames(counts)[-1] != meta$SRR)) stop("Mismatching count and meta-data")
 ```
 
 # Supplementary Methods
@@ -106,46 +103,48 @@ Maids table how learn drift but purse stand yet set. Music me house could among 
 
 ## Reproducibility
 
-There is a Snakemake workflow and a Docker image that can be used to reproduce the bioinformatics analysis performed here. The figures in this Supplementary were generated in the following R environment:
+All files needed to reproduce this analysis are available in a Bitbucket repository. There is a Snakemake workflow that can be used to rerun the full analysis from downloading data to producing this Supplementary Material. A Conda environment can be used to install all needed dependencies. Furthermore, a Docker image is available that contains a prepared environment for directly running the analysis in an isolated system. The figures in this Supplementary were generated in the following R environment:
 
+\footnotesize
 ```{r}
 sessionInfo()
 ```
-
+\normalsize
 
 \newpage
 
 # Supplementary Tables and Figures
 
-```{r sample_info}
+```{r sample-info}
 columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
 d <- meta[,columns]
 d$characteristics_ch1.1 <- gsub("treatment: ", "", d$characteristics_ch1.1)
-kable(d, caption="Sample info",
+knitr::kable(d, caption="Sample info",
       col.names=c("SRR", "GEO", "Strain", "Treatment"))
 ```
 
-```{r qc_stats}
+```{r qc-stats}
 columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
              "Percent fails", "Total sequences")
-kable(meta[,columns], caption="QC stats from FastQC")
+knitr::kable(meta[,columns], caption="QC stats from FastQC")
 ```
 
-```{r counts_barplot, fig.cap=paste("Title")}
-d <- rbind(genes=apply(counts, 2, sum), counts_other)
-d <- melt(as.matrix(d), varnames=c("Feature","Sample"), value.name="Counts")
-ggplot(d, aes(x=Sample, y=Counts, fill=Feature)) +
+```{r counts-barplot, fig.cap=paste("Counting statistics per sample, in terms of read counts for genes and reads not counted for various reasons. ")}
+d <- rbind(genes=apply(counts[,-1], 2, sum), counts_other[,-1])
+d <- melt(as.matrix(d), varnames=c("Feature","Sample"), value.name="Reads")
+ggplot(d, aes(x=Sample, y=Reads, fill=Feature)) +
   geom_bar(stat="identity")
 ```
 
-```{r gene_heatmap, fig.cap=paste("Title"), fig.height=10, out.height="22cm"}
-d <- log10(counts[apply(counts, 1, function(x) sd(x)/mean(x))>1.2 & apply(counts,1,max)>5,]+1)
-d <- transform(merge(d, gff[,c("description","gene_id")], by.x=0, by.y="gene_id", all.x=T),
-               row.names=Row.names, Row.names=NULL)
-colnames(d)[1:3] <- as.character(meta$title)
-pheatmap(d[,1:3], labels_row=paste(rownames(d)," (",d$description,")",sep=""), fontsize_row=8)
+```{r gene-heatmap, fig.cap=paste("Expression (log-10 counts) of genes with at least ",max_cutoff," counts in one sample and a CV>",cv_cutoff,".",sep=""), fig.height=10, out.height="22cm"}
+cv_cutoff <- 1.2
+max_cutoff <- 5
+d <- counts[apply(counts[,-1], 1, function(x) sd(x)/mean(x))>cv_cutoff &
+            apply(counts[,-1],1,max)>max_cutoff,]
+colnames(d)[2:4] <- as.character(meta$title)
+pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",d$description,")",sep=""), fontsize_row=8)
 ```
 
-```{r rulegraph, fig.cap=paste("Title"), out.height="11cm"}
+```{r rulegraph, fig.cap=paste("A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow."), out.height="11cm"}
 knitr::include_graphics(normalizePath(rulegraph_file))
 ```
