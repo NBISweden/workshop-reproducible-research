@@ -156,7 +156,7 @@ rule generate_count_table:
 
         # Save the count table as a temporary file and then prepend a header line
         # with the sample names
-        htseq-count --format bam --type gene --idattr gene_id {input.bams} tempfile > tempfile2
+        htseq-count --format bam --type gene --additional-attr description --idattr gene_id {input.bams} tempfile > tempfile2
         echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
 
         # Remove the temporary files
