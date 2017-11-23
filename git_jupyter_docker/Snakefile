@@ -173,7 +173,7 @@ rule generate_count_table:
 
         # Save the count table as a temporary file and then prepend a header line
         # with the sample names
-        htseq-count --format bam --type gene --idattr gene_id {input.bams} tempfile > tempfile2
+        htseq-count --format bam --type gene --additional-attr description --idattr gene_id {input.bams} tempfile > tempfile2
         echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
         """
 
@@ -184,7 +184,6 @@ rule make_supplementary:
     input:
         counts = "data/final/counts.tsv",
         multiqc_file = "intermediate/multiqc_general_stats.txt",
-        gff = expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"]),
         rulegraph = "results/rulegraph.png"
     output:
         "results/supplementary_material.pdf"
@@ -197,7 +196,6 @@ rule make_supplementary:
                   output_dir="results", \
                   params=list(counts_file="{input.counts}", \
                               multiqc_file="{input.multiqc_file}", \
-                              gff_file="{input.gff}", \
                               rulegraph_file="{input.rulegraph}", \
                               SRR_IDs="{params.SRR_IDs}", \
                               GSM_IDs="{params.GSM_IDs}"))' \
