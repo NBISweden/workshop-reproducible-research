@@ -12,23 +12,9 @@ params:
   rulegraph_file: NA
   SRR_IDs: NA
   GSM_IDs: NA
-
 ---
 
-```{r, eval=F, include=F}
-# To render run this:
-rmarkdown::render("code/supplementary_material.Rmd", 
-                  output_dir="results",
-                  params=list(counts_file="data/final/counts.tsv",
-                              multiqc_file="intermediate/multiqc_general_stats.txt",
-                              rulegraph_file="results/rulegraph.png",
-                              SRR_IDs="SRR935090 SRR935091 SRR935092",
-                              GSM_IDs="GSM1186459 GSM1186460 GSM1186461"))
-```
-
-
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir=normalizePath('../'))
 knitr::opts_chunk$set(echo = FALSE,
                       fig.height=6,
                       fig.width=6,
@@ -43,7 +29,7 @@ library("rtracklayer")
 library("GEOquery")
 ```
 
-```{r read_params}
+```{r read_params, include=FALSE}
 if(any(unlist(lapply(params, function(x) x=="NA")))) stop("Missing input params")
 counts_file <- params$counts_file
 multiqc_file <- params$multiqc_file
@@ -99,8 +85,6 @@ Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exerci
 
 Maids table how learn drift but purse stand yet set. Music me house could among oh as their. Piqued our sister shy nature almost his wicket. Hand dear so we hour to. He we be hastily offence effects he service. Sympathize it projection ye insipidity celebrated my pianoforte indulgence. Point his truth put style. Elegance exercise as laughing proposal mistaken if. We up precaution an it solicitude acceptance invitation.
 
-\newpage
-
 ## Reproducibility
 
 All files needed to reproduce this analysis are available in a Bitbucket repository. There is a Snakemake workflow that can be used to rerun the full analysis from downloading data to producing this Supplementary Material. A Conda environment can be used to install all needed dependencies. Furthermore, a Docker image is available that contains a prepared environment for directly running the analysis in an isolated system. The figures in this Supplementary were generated in the following R environment:
@@ -111,7 +95,7 @@ sessionInfo()
 ```
 \normalsize
 
-\newpage
+
 
 # Supplementary Tables and Figures
 
@@ -126,10 +110,11 @@ knitr::kable(d, caption="Sample info",
 ```{r qc-stats}
 columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
              "Percent fails", "Total sequences")
-knitr::kable(meta[,columns], caption="QC stats from FastQC")
+d <- meta[,columns]
+knitr::kable(d, caption="QC stats from FastQC")
 ```
 
-```{r counts-barplot, fig.cap=paste("Counting statistics per sample, in terms of read counts for genes and reads not counted for various reasons. ")}
+```{r counts-barplot, fig.cap="Counting statistics per sample, in terms of read counts for genes and reads not counted for various reasons."}
 d <- rbind(genes=apply(counts[,-1], 2, sum), counts_other[,-1])
 d <- melt(as.matrix(d), varnames=c("Feature","Sample"), value.name="Reads")
 ggplot(d, aes(x=Sample, y=Reads, fill=Feature)) +
@@ -145,6 +130,6 @@ colnames(d)[2:4] <- as.character(meta$title)
 pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",substr(gsub("%2C","",d$description),1,50),")",sep=""), fontsize_row=8)
 ```
 
-```{r rulegraph, fig.cap=paste("A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow."), out.height="11cm"}
+```{r rulegraph, fig.cap="A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow.", out.height="11cm"}
 knitr::include_graphics(normalizePath(rulegraph_file))
 ```
