@@ -15,7 +15,8 @@ params:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,
+knitr::opts_knit$set(root.dir=normalizePath('../'),
+                      echo = FALSE,
                       fig.height=6,
                       fig.width=6,
                       fig.align='center',
