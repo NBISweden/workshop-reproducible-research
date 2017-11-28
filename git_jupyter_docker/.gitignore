@@ -3,3 +3,4 @@ results/
 data/
 intermediate/
 .snakemake/
+.DS_Store
