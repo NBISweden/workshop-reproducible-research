@@ -16,6 +16,7 @@ There are several benefits with using git in your research project:
 * If there is more than one person involved in the project, git makes it easy to collaborate on the coding, tracking all edits made by each person, and handle potential conflicting edits.
 * Using a cloud based repository hosting service (the one you push your commits to), like e.g. [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/), adds additional features, like being able to comment and discuss the project, code, and edits.
 * At some point your project will be published. Github or Bitbucket (or similar) are excellent places to publicly distribute your code. Other researchers can then use git to access your code needed for reproducing your results, in the state it was when used for the publication.
+* If needed, you can host private repositories on GitHub and BitBucket as well, which may be convenient during an ongoing research project, before it is publicly published.
 
 The best way to get an idea about what git is simply to start using it. The tutorial below will guide you through the essential steps, with a focus on what is needed for making a project reproducible. There are additional features of both git and the web based repository hosting services (like Github and Bitbucket) that are intentionally not included here. If you are interested of learning more, the web is filled with information (see some examples below)!
 
@@ -48,7 +49,7 @@ You will now be redirected to the repository page. It is an empty repository, so
   ```
   What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
 * A new directory, `git_tutorial` (or a different name if you chose so), has now been created, `cd` into that.  
-This is a git version tracked directory. How can you know? Run `git status`! It will probably return somethihng like *On branch master. Initial commit. nothing to commit (create/copy files and use "git add" to track)*. (If you try to run `git status` in a non-git directory, it will say that it is *not a git repository*.)
+This is a git version tracked directory. How can you know? Run `git status`! It will probably return something like *On branch master. Initial commit. nothing to commit (create/copy files and use "git add" to track)*. (If you try to run `git status` in a non-git directory, it will say that it is *not a git repository*.) The way this works is that git adds a hidden directory `.git/` in the root of a git tracked directory (run `ls -a` to see it). This hidden directory contains all information and settings git needs in order to run and version track your files. This also means that your git-tracked directory is self-contained, i.e. you can simply delete it and everything that has to do with git in connection to that directory will be gone.
 * Notice that git told you: *nothing to commit (create/copy files and use "git add" to track*? Lets do that!  
 Copy the following files and directories from the `reproducible_research_course/git_jupyter_docker` directory, into your `git_tutorial` directory:
   * `Dockerfile`
