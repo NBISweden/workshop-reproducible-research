@@ -1,8 +1,3 @@
----
-layout: default
-title:  'Intro to exercises'
----
-
 # Intro
 
 ## The biological problem
@@ -17,7 +12,7 @@ Then run
 docker run --rm -it -v c:/my_dir:/home/ scilifelablts/reproducible_research_course_slim
 ```
 
-Note that the idea is that you should edit files in the mounted  c:/my_dir using an editor in your normal OS, say notepad in windows. The terminal in the container is for running stuff, not editing. (nano is installed as an editor if you really want to, we should probable add vi instead). 
+Note that the idea is that you should edit files in the mounted  c:/my_dir using an editor in your normal OS, say notepad in windows. The terminal in the container is for running stuff, not editing. (nano is installed as an editor if you really want to, we should probable add vi instead).
 
 ### Set up
 ```bash

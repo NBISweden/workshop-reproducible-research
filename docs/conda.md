@@ -1,8 +1,3 @@
----
-layout: default
-title:  'Conda tutorial'
----
-
 # Conda tutorial
 
 ## Introduction

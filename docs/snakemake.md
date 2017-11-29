@@ -1,8 +1,3 @@
----
-layout: default
-title:  'Snakemake tutorial'
----
-
 # Snakemake tutorial
 
 ## Introduction

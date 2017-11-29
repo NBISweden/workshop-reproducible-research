@@ -1,8 +1,3 @@
----
-layout: default
-title:  'Intro to exercises'
----
-
 # Making bioinformatics research reproducible 
 ## - from raw data to publication
 

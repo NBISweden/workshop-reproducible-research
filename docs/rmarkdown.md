@@ -1,8 +1,3 @@
----
-layout: default
-title:  'Rmarkdown tutorial'
----
-
 # R Markdown tutorial
 
 ## Introduction
