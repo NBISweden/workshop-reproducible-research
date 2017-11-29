@@ -1,0 +1,23 @@
+# The purpose of this image is to allow Windows users to run the exercises
+# in the reproducible research course. It contains Ubuntu with some small utility
+# programs and miniconda. This image is available as scilifelablts/reproducible_research_course_slim.
+# 2017-11-24
+
+FROM ubuntu:latest
+MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
+WORKDIR /home
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends bzip2 wget vim language-pack-en fontconfig
+
+RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -bf && \
+    rm Miniconda3-latest-Linux-x86_64.sh
+ENV PATH="/root/miniconda3/bin:${PATH}"
+
+RUN conda install -c conda-forge git nano ca-certificates && \
+    conda clean --all
+
+ENV LC_ALL en_US.UTF-8
+ENV LC_LANG en_US.UTF-8
+SHELL ["/bin/bash", "-c"]

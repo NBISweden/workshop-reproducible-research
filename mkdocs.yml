@@ -5,7 +5,7 @@ pages:
   - Tutorials:
     - 'Conda': 'conda.md'
     - 'Snakemake': 'snakemake.md'
+    - 'Git': 'git.md'
     - 'Rmarkdown': 'rmarkdown.md'
     - 'Jupyter': 'jupyter.md'
-    - 'Git': 'git.md'
     - 'Docker': 'docker.md'

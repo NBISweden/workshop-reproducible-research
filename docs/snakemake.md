@@ -23,9 +23,9 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 
 ## Practical exercise
 ### Set up
-This exercise depends on files from the course BitBucket repo. Take a look at the [intro](intro) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
 
-If you have done the [Conda exercise](conda) you should know how to define an environment and install packages using Conda and an `environment.yml` file. Here we will use Snakemake as well as some other programs, all of which are available in the Bioconda channel. If you look in the current directory you will see an `environment.yml` file which specifies an environment containing FastQC, Bowtie2 and SRA Tools (identical to the output from the Conda exercise). Add the following programs to the file and save it.
+If you have done the [Conda tutorial](conda) you should know how to define an environment and install packages using Conda and an `environment.yml` file. Here we will use Snakemake as well as some other programs, all of which are available in the Bioconda channel. If you look in the current directory you will see an `environment.yml` file which specifies an environment containing FastQC, Bowtie2 and SRA Tools (identical to the output from the Conda tutorial). Add the following programs to the file and save it.
 
 ```yaml
 # The workflow manager
@@ -56,7 +56,7 @@ Check that Snakemake is installed correctly, for example by executing `bash snak
 (If you don't want to use Conda for some reason you can also install Snakemake with `pip3 install snakemake`.)
 
 ### Toy example
-In this part of the exercise we will create a very simple workflow from scratch in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
+In this part of the tutorial we will create a very simple workflow from scratch in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
 
 First make an empty file named `Snakefile` which will contain the workflow, and the two input files containing some arbitary text.
 
@@ -311,10 +311,10 @@ Clever, right? There are a bunch of these flags that you can see with `--help`. 
 
 You might wonder where Snakemake keeps track of all these things? It stores all information in a hidden subdirectory called `.snakemake`. This is convenient since it's easy to delete if you don't need it anymore and everything is contained in the project directory. Just be sure to add it to `.gitignore` so that you don't end up tracking it.
 
-By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more flexible and reusable. In the following section we will start with a workflow that is functional but not very flexible. We will then gradually improve on it and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you can move on to one of the other exercises instead.
+By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more flexible and reusable. In the following section we will start with a workflow that is functional but not very flexible. We will then gradually improve on it and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you can move on to one of the other tutorials instead.
 
 ### RNA-seq analysis of MRSA
-As you might remember from the [intro](intro), we are attempting to understand how the phage XXX can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three samples, X treated and Y untreated. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
+As you might remember from the [intro](index), we are attempting to understand how the phage XXX can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three samples, X treated and Y untreated. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
 
 This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
 
@@ -328,7 +328,7 @@ There are two differences in this command compared to the one we've used before.
 
 ![alt text](rulegraph_mrsa.svg)
 
-Now take some time and look through the workflow file and try to understand how the rules fit together. Use the rule graph as aid. The rules represent a quite standard, although somewhat simplified, workflow for RNA-seq analysis. If you are unfamiliar with the purpose of the different operations (index genome, FastQC and so on), then take a look at the [intro](intro).
+Now take some time and look through the workflow file and try to understand how the rules fit together. Use the rule graph as aid. The rules represent a quite standard, although somewhat simplified, workflow for RNA-seq analysis. If you are unfamiliar with the purpose of the different operations (index genome, FastQC and so on), then take a look at the [intro](index).
 
 Also generate the job graph in the same manner. Here you can see that three samples will be downloaded from SRA (Sequence Read Archive); SRR935090, SRR935091, and SRR935092. Those will then be quality controlled with FastQC and aligned to a genome. The QC output will be aggregated with MultiQC and the alignments will be used to generate a count table, i.e a table that show how many reads map to each gene for each sample. This count table is then what the downstream analysis will be based on (in the [Rmarkdown exercise](rmarkdown)).
 
