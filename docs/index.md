@@ -30,8 +30,8 @@ cd reproducible_research_course
 ```
 
 ## The tutorials
-![alt text](tutorials_overview.png)
-![alt text](tutorials_alternative_order.png)
+![alt text](tutorials_overview.svg)
+![alt text](tutorials_alternative_order.svg)
 
 * [Conda](conda)
 * [Snakemake](snakemake)
