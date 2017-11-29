@@ -16,6 +16,7 @@ There are several benefits with using git in your research project:
 * If there is more than one person involved in the project, git makes it easy to collaborate on the coding, tracking all edits made by each person, and handle potential conflicting edits.
 * Using a cloud based repository hosting service (the one you push your commits to), like e.g. [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/), adds additional features, like being able to comment and discuss the project, code, and edits.
 * At some point your project will be published. Github or Bitbucket (or similar) are excellent places to publicly distribute your code. Other researchers can then use git to access your code needed for reproducing your results, in the state it was when used for the publication.
+* If needed, you can host private repositories on GitHub and BitBucket as well, which may be convenient during an ongoing research project, before it is publicly published.
 
 The best way to get an idea about what git is simply to start using it. The tutorial below will guide you through the essential steps, with a focus on what is needed for making a project reproducible. There are additional features of both git and the web based repository hosting services (like Github and Bitbucket) that are intentionally not included here. If you are interested of learning more, the web is filled with information (see some examples below)!
 
