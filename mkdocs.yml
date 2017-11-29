@@ -1,0 +1,9 @@
+site_name: NBIS Reproducible research course
+theme: mkdocs
+pages:
+  - 'index.md'
+  - Tutorials:
+    - 'Git': 'git.md'
+    - 'Docker': 'docker.md'
+    - 'Snakemake': 'snakemake.md'
+    - 'Rmarkdown': 'rmarkdown.md'
