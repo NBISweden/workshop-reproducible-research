@@ -49,7 +49,7 @@ You will now be redirected to the repository page. It is an empty repository, so
   ```
   What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
 * A new directory, `git_tutorial` (or a different name if you chose so), has now been created, `cd` into that.  
-This is a git version tracked directory. How can you know? Run `git status`! It will probably return somethihng like *On branch master. Initial commit. nothing to commit (create/copy files and use "git add" to track)*. (If you try to run `git status` in a non-git directory, it will say that it is *not a git repository*.)
+This is a git version tracked directory. How can you know? Run `git status`! It will probably return something like *On branch master. Initial commit. nothing to commit (create/copy files and use "git add" to track)*. (If you try to run `git status` in a non-git directory, it will say that it is *not a git repository*.) The way this works is that git adds a hidden directory `.git/` in the root of a git tracked directory (run `ls -a` to see it). This hidden directory contains all information and settings git needs in order to run and version track your files. This also means that your git-tracked directory is self-contained, i.e. you can simply delete it and everything that has to do with git in connection to that directory will be gone.
 * Notice that git told you: *nothing to commit (create/copy files and use "git add" to track*? Lets do that!  
 Copy the following files and directories from the `reproducible_research_course/git_jupyter_docker` directory, into your `git_tutorial` directory:
   * `Dockerfile`
