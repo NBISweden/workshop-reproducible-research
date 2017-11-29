@@ -3,7 +3,9 @@ theme: mkdocs
 pages:
   - 'index.md'
   - Tutorials:
-    - 'Git': 'git.md'
-    - 'Docker': 'docker.md'
+    - 'Conda': 'conda.md'
     - 'Snakemake': 'snakemake.md'
     - 'Rmarkdown': 'rmarkdown.md'
+    - 'Jupyter': 'jupyter.md'
+    - 'Git': 'git.md'
+    - 'Docker': 'docker.md'
