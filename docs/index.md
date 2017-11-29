@@ -35,14 +35,15 @@ cd reproducible_research_course
 
 ## The exercises
 
-
-
 * [Conda](tutorials/conda)
 * [Git](tutorials/git)
 * [Snakemake](tutorials/snakemake)
 * [RMarkdown](tutorials/rmarkdown)
 * [Jupyter](tutorials/jupyter)
 * [Docker](tutorials/docker)
+
+![alt text](tutorials_overview.png)
+![alt text](tutorials_alternative_order.png)
 
 ## Take down
 How to remove stuff
