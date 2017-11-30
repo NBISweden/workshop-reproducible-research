@@ -30,8 +30,8 @@ cd reproducible_research_course
 ```
 
 ## The tutorials
-![alt text](tutorials_overview.png)
-![alt text](tutorials_alternative_order.png)
+![alt text](tutorials_overview.svg)
+![alt text](tutorials_alternative_order.svg)
 
 * [Conda](conda)
 * [Snakemake](snakemake)
@@ -96,6 +96,7 @@ Click the Docker icon in the menu bar (upper right part of the screen) and selec
 #### Linux
 
 #### Windows
+Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7) via Control Panel > Programs > Programs and Features. Docker Toolbox will also have installed Oracle VM VirtualBox, so uninstall that as well if you're not using it for other purposes.
 
 How to remove stuff
 
