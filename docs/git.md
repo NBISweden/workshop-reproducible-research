@@ -378,6 +378,7 @@ intermediate/
 ---
 
 **Quick recap:** we now learnt how to use a `.gitignore` file to control what directories, and files git should ignore.
+
 ---
 
 ### Tagging
