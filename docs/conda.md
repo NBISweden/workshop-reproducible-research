@@ -164,11 +164,7 @@ conda env create -n Project_MRSA -f environment.yml
 ```
 
 * Activate the environment!
-* Now we can run the MRSA project analysis code found in `code/run_qc.sh`, either by
-```bash
-bash code/run_qc.sh
-```
-or by opening the `run_qc.sh` file and executing each line in the terminal one by one. Do this!
+* Now we can run the MRSA project analysis code found in `code/run_qc.sh`, either by running `bash code/run_qc.sh` or by opening the `run_qc.sh` file and executing each line in the terminal one by one. Do this!
 
 This should download the project fastq files and run FastQC on them (as mentioned above).
 
