@@ -275,13 +275,13 @@ We have up until now mainly been using `html_document` as an output format. Ther
 Below are a few practical things regarding working with R Markdown documents:
 
 * You can knit/render reports in several different ways:
-  - By pressing the Knit button in RStudio (as we have done this far)
-  - By running the R command `render`, e.g. to Knit the file `my_file.Rmd` run: `render("my_file.Rmd")` in the R console.
-  - By running on the terminal command line: `R -e 'rmarkdown::render'("my_file.Rmd")`
+    - By pressing the Knit button in RStudio (as we have done this far)
+    - By running the R command `render`, e.g. to Knit the file `my_file.Rmd` run: `render("my_file.Rmd")` in the R console.
+    - By running on the terminal command line: `R -e 'rmarkdown::render'("my_file.Rmd")`
 * Using the `render` command, we can also set YAML header options and change defaults (i.e. override those specified in the R Markdown document itself). Here are a few useful arguments (see `?rmarkdown::render` for a full list):
-  - `output_format` - change output format, e.g. `html_document` or `pdf_document`.
-  - `output_file` and `output_dir` - change directory and file name of the generated report file (defaults to the same name and directory as the .Rmd file).
-  - `params` - change parameter defaults. Note that only parameters already listed in the YAML header can be set, no new parameters can be defined.
+    - `output_format` - change output format, e.g. `html_document` or `pdf_document`.
+    - `output_file` and `output_dir` - change directory and file name of the generated report file (defaults to the same name and directory as the .Rmd file).
+    - `params` - change parameter defaults. Note that only parameters already listed in the YAML header can be set, no new parameters can be defined.
 
 Try to use the `render` command to knit your template R Markdown document and set the two parameters `data` and `color`. Hint: the `params` argument should be a list, so e.g.:
 
@@ -290,10 +290,10 @@ rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
 ```
 
 * You might already have noticed that you can run code chunks directly in RStudio:
-  - Place the cursor on an R command and press `CTRL + Enter` (Windows) or `Cmd + Enter` (Mac) to run that line in R.
-  - Select several R command lines and use the same keyboard shortcut as above to run those lines.
-  - To the right in each chunk there are two buttons, one for running the code in all chunks above the current chunk, or to run the code in the current chunk.
-  - Depending on your settings, the output of the chunk code will be displayed inline in the .Rmd document, or in RStudios Console and Plot panels. To customize this setting, press the cog-wheel next to the Knit button and select either "Chunk Output Inline" or "Chunk Output in Console".
+    - Place the cursor on an R command and press `CTRL + Enter` (Windows) or `Cmd + Enter` (Mac) to run that line in R.
+    - Select several R command lines and use the same keyboard shortcut as above to run those lines.
+    - To the right in each chunk there are two buttons, one for running the code in all chunks above the current chunk, or to run the code in the current chunk.
+    - Depending on your settings, the output of the chunk code will be displayed inline in the .Rmd document, or in RStudios Console and Plot panels. To customize this setting, press the cog-wheel next to the Knit button and select either "Chunk Output Inline" or "Chunk Output in Console".
 * You can easily insert an empty chunk in your Rmd document in RStudio by pressing Insert > R.
 * In the top right in the editor panel in RStudio there is a button to toggle the document outline. By making that visible you can click and jump between sections (headers and named code chunks) in your R Markdown document.
 * Go to File > Help > Cheatsheets > R Markdown Cheat Sheet to open the main R Markdown cheatsheet.
@@ -346,6 +346,7 @@ params:
   SRR_IDs: "SRR935090 SRR935091 SRR935092"
   GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
 ```
+
 In particular, make it a practice to keep track of all input files and add them as parameters rather than hard-coding them later in the R code.
 
 * Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks. They load the required packages, reads the parameters and stores them in R objects to be used later in the code, and reads the data in the counts file, the multiqc file, as well as fetches meta data from GEO. These chunks are provided as is, and you do not need to edit them.
