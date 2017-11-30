@@ -259,6 +259,44 @@ git push
 * `git fetch` - downloads information from the remote repository.
 * `git pull` - both fetches and integrates changes from the remote repository.
 
+
+### Ignoring files
+
+Git is aware of all files within the repository. However, it is not uncommon to have files that we don't want git to track. For instance, our analysis might produce several intermediate files and results. Normally, we will not version track those using git. Rather, we want to version track the actual code and other related files (e.g. like configuration files) that produce the intermediate and result files, given the raw input data.
+
+1. Let's make some intermediate and result files:
+
+```
+mkdir intermediate
+mkdir results
+touch intermediate/multiqc_general_stats.txt
+touch results/supplementary_material.pdf
+touch log.tmp
+```
+
+2. Run `git status`. You will see that git tells you that you have untracked files. However, we don't want git to track these files anyway. To tell git what files to ignore we use a file called `.gitignore`. Let's create it:
+
+```
+touch .gitignore
+```
+
+3. Open the `.gitignore` file in an editor and add the following lines to it:
+
+```
+# Ignore these directories:
+results/
+intermediate/
+
+# Ignore temporary files:
+*.tmp
+```
+
+4. Run `git status` again. Now there is no mention of the results and intermediate directories or the log.tmp file. Notice that we can use wildcards (\*) to ignore files with a given pattern, e.g. a specific extension, like .tmp.
+
+5. Go ahead and add, commit, and push the `.gitignore` file. 
+
+
+
 ### Tagging
 
 The last topic we will cover in this tutorial is tagging. Git allows us to tag commits. This is of particular convenience when thinking about reproducible research. We can tag commits that represent important points in history, like e.g. the version of the repository that was used for the submission, the version used during resubmission, and, most importantly, the version used for the final publication. The first two examples are mainly useful internally, but the latter is essential for other researchers being able to rerun your published analysis (assuming that you may continue to work on your code and push updates to the repository). Let's try this out!
