@@ -64,10 +64,14 @@ This is a git version tracked directory. How can you know? Run `git status`! It 
     * `code/`  
 * Once you have done that, run `git status` again. It will tell you that there are files in the directory that are not version tracked by git.
 
+---
+
 **Quick recap:** we have used two `git` commands this far:
 
 * `git clone` - to clone a remote (e.g. online Bitbucket) repository locally. This is only run the first time one wants to download the repository locally.
 * `git status` - this is a command you should use *a lot*. It will tell you, amongst other things, the status of your git clone in relation to the online remote repository.
+
+---
 
 ### Committing
 
@@ -157,6 +161,8 @@ git status
 git log
 ```
 
+---
+
 **Quick recap:** we now added four important git commands to our repertoire:
 
 * `git add` - add a file so that changes in that file can be committed.
@@ -164,6 +170,7 @@ git log
 * `git commit` - commits the changes we have staged (by using `git add` or `git rm`).
 * `git log` - shows us the commit history.
 
+---
 
 ### Pushing
 
@@ -188,10 +195,13 @@ git push -u origin master
 * Click Commits, to the left in the main menu. You will see an overview of all commits made. Click on a specific commit to see the changes introduced by that commit.
 * Click on the commit that was the initial commit, where we added all the files. You can now click on View source in the top right corner. You will now see the files as they were when we first added them. Specifically you can see that the `Dockerfile` is back, even though we deleted it! Click on Source to the left again to return to the latest version.
 
+---
+
 **Quick recap:** we now learnt yet another important git command:
 
 * `git push` -  to push local commits to the remote repository
 
+---
 
 ### Conflicts
 
@@ -321,11 +331,14 @@ git push
 
 * Go to Bitbucket in the browser and click Commits. You should be able to see a graph showing that the paths diverged (where one commit set the version to 1.4 and the other to 1.2) and that they are later merged, and the conflict fixed!
 
+---
+
 **Quick recap:** we now learnt how to sync or local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
 
 * `git fetch` - downloads information from the remote repository.
 * `git pull` - both fetches and integrates changes from the remote repository.
 
+---
 
 ### Ignoring files
 
