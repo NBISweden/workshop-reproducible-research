@@ -381,6 +381,8 @@ Finished job 0.
 
 After everything is done the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `data/final`.
 
+**As noted above, the rest of this tutorial will go over many more nice features of Snakemake. If you got a taste for Snakemake, just continue along. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.**
+
 #### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
 
