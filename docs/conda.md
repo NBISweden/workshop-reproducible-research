@@ -31,10 +31,10 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 * Go ahead and install Conda as described above, but be sure to modify the `wget` command to download the correct file for your system (see link above).
 * The installer will ask you questions during the installation:
-  - do you accept the license terms?
-  - do you accept the installation path or do you want to chose a different one?
-  - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file?  
-   *If you select yes, the system will find Conda and you can run the `conda` command directly. If you select no, you will either have to run Conda by specifying the full path, e.g. `/root/miniconda3/bin/conda`, or by adding it manually to your PATH each time you restart your system, e.g. `export PATH="/root/miniconda3/bin:$PATH"`.*
+    - do you accept the license terms?
+    - do you accept the installation path or do you want to chose a different one?
+    - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file?  
+    *If you select yes, the system will find Conda and you can run the `conda` command directly. If you select no, you will either have to run Conda by specifying the full path, e.g. `/root/miniconda3/bin/conda`, or by adding it manually to your PATH each time you restart your system, e.g. `export PATH="/root/miniconda3/bin:$PATH"`.*
 * You can verify the version you installed by running:
 
 ```bash
@@ -42,29 +42,37 @@ conda --version
 ```
 
 ### Get going with environments
+
 * Let's make our first Conda environment:
 
-```bash
+```
 conda create -n Project_A -c bioconda fastqc
 ```
+
 This will create an environment called Project_A containing FastQC from the Bioconda channel. Conda will list the packages that will be installed and ask for your confirmation.
+
 * Once it is done, you can activate the environment:
 
 ```
 source activate Project_A
 ```
+
 By default, Conda will add information to your prompt telling you which environment that is active.
+
 * To see all your environments you can run:
 
 ```
 conda info --envs
 ```
+
 The active environment will be marked with an asterisk.
+
 * To see the installed packages in the active environment, run:
 
 ```
 conda list
 ```
+
 * Now, deactivate the environment by running `source deactivate`.
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
@@ -72,14 +80,17 @@ conda list
 ```
 fastqc --version
 ```
+
 * Did it work? Activate your Project_A environment and run the `fastqc --version` command again. Does it work now?
 
 Hopefully the FastQC software was not found in your root environment (unless you had installed it previously) but worked once your environment was activated!
+
 * Now, let's add another package (sra-tools) to our environment using `conda install`. Make sure that Project_A is the active environment first.
 
 ```
 conda install -c bioconda sra-tools
 ```
+
 * If we don't specify the package version, the latest available version will be installed. What version of sra-tools got installed?
 * Run the following to see what versions are available:
 
@@ -96,7 +107,9 @@ conda install -c bioconda sra-tools=2.7.0
 Read the information that Conda displays in the terminal. It probably asks if you want to downgrade the initial sra-tools installation to the one specified here (2.7.0 in the example). You can only have one version of a given package in a given environment.
 
 Let's assume that you are just about to start a new exciting research project called Project A. You will have sequencing data and want to use the latest bowtie2 software to align your reads.
-* Find out what versions of bowtie2 are available at Bioconda using `conda search`. Now install the *latest* available version of bowtie2 in your Project_A environment.
+
+* Find out what versions of bowtie2 are available at Bioconda using `conda search`.
+* Now install the *latest* available version of bowtie2 in your Project_A environment.
 
 Let's further assume that you have an old project (called Project Old) where you know you used bowtie2 v2.2.6. You just got back reviewer comments and they want you to include some alignment statistics. Unfortunately you haven't saved that information so you will have to rerun the alignment. Now, it is essential that you use the same version of bowtie that your results are based on, otherwise the alignment statistics will be misleading. Using Conda environments this becomes simple. You can just have a separate environment for your old project where you have an old version of bowtie2 without interfering with your new Project A where you want the latest version.
 
@@ -105,6 +118,7 @@ Let's further assume that you have an old project (called Project Old) where you
 ```
 conda create -n Project_Old -c bioconda bowtie2=2.2.6
 ```
+
 * Activate `Project_Old` and check the bowtie2 version (`bowtie2 --version`).
 * Activate `Project_A` again and check the bowtie2 version.
 * Run `source deactivate` to exit your active environment.
@@ -114,6 +128,7 @@ conda create -n Project_Old -c bioconda bowtie2=2.2.6
 ```
 conda env remove -n Project_Old
 ```
+
 After making a few different environments and installing a bunch of packages, Conda can take up some disk space. In order to remove unnecessary files one can use the command:
 
 ```
@@ -127,8 +142,8 @@ We have up until now specified which Conda packages to install directly on the c
 
 * You will now start to make a Conda yml-file for the MRSA project that we will use in this course!
 * To start with, the analysis code is contained in one file, `code/run_qc.sh`, and will:
-  - download the raw fastq-files
-  - run quality control on these using FastQC
+    - download the raw fastq-files
+    - run quality control on these using FastQC
 * We will start by making a Conda yml-file that contains the required packages to perform these steps.
 * Later in the course, you will update the Conda yml-file with more packages, as the analysis workflow is expanded.
 * Make a yaml file called `environment.yml` for our tutorial project looking like this:
@@ -147,15 +162,16 @@ dependencies:
 ```bash
 conda env create -n Project_MRSA -f environment.yml
 ```
+
 * Activate the environment!
 * Now we can run the MRSA project analysis code found in `code/run_qc.sh`, either by
-
 ```bash
 bash code/run_qc.sh
 ```
 or by opening the `run_qc.sh` file and executing each line in the terminal one by one. Do this!
 
 This should download the project fastq files and run FastQC on them (as mentioned above).
+
 * Check your directory content (`ls -Rlh`, or in your file browser). It should now look something like this:
 
 ```
@@ -184,6 +200,7 @@ This should download the project fastq files and run FastQC on them (as mentione
     |
     |- environment.yml
 ```
+
 Note that all that was needed to carry out the analysis and generate these files and results was the `environment.yml` file (that we used to create a Conda environment with the required packages) and the analysis code in `code/run_qc.sh`.
 
 ## Where to go next?
