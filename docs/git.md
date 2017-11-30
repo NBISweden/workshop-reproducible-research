@@ -375,7 +375,10 @@ intermediate/
 
 * Go ahead and add, commit, and push the `.gitignore` file.
 
+---
 
+**Quick recap:** we now learnt how to use a `.gitignore` file to control what directories, and files git should ignore.
+---
 
 ### Tagging
 
@@ -432,6 +435,15 @@ git checkout master
 ```
 
 * Again, open `environment.yml` and see that it now has version 2.0!
+
+---
+
+**Quick recap:** we now learnt how to tag important commits:
+
+* `git tag` - add a tag to a commit
+* `git checkout` - update files to match the versions in the given branch or tag name
+
+---
 
 ## Where to go next?
 
