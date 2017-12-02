@@ -1,0 +1,27 @@
+FROM ubuntu:16.04
+
+LABEL description = "Minimal image for the NBIS reproducible research course."
+MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
+
+# Install Miniconda3 prerequisites, English language pack and fonts. Also include
+# vim for convenience
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
+RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -bf && \
+    rm Miniconda3-latest-Linux-x86_64.sh
+ENV PATH="/root/miniconda3/bin:${PATH}"
+
+# Install git, nano and ca-certificates from conda-forge
+RUN conda install -c conda-forge git ca-certificates nano && \
+    conda clean --all
+
+# Set locale
+ENV LC_ALL en_US.UTF-8
+ENV LC_LANG en_US.UTF-8
+
+# Use bash as shell
+SHELL ["/bin/bash", "-c"]
+
+# Start Bash shell by default
+CMD "/bin/bash"

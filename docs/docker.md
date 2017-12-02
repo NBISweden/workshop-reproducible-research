@@ -132,7 +132,48 @@ Here you can do whatever; install, run, remove stuff; it will still be within th
 Ok, so Docker let's us work in any OS in a quite convenient way. That would probably be useful on its own, but it's much more powerful than that.
 
 ## Building a Docker image
+In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be `base_image + 10*(project_specific)` rather than `10*(base_image + project_specific)`. For example, Bioconda (see the [Conda tutorial](conda)) has one base image and then one layer for each of the >3000 packages available in Bioconda.
 
+Docker provides a convenient way to describe how to go from a base image to the image we want by using a "Dockerfile". This is a simple text file containing the instructions for how to generate each layer. Docker images are typically quite large, often several GBs, while Dockerfiles are small and serve as blueprints for the images. It is therefore good practice to have a Dockerfile in your project Git repository, since it allows other users to exactly replicate your project environment.
+
+If you've been doing these tutorials on Windows you've been using the Docker image `scilifelablts/reproducible_research_course_slim`. The Dockerfile for generating that image is called `Dockerfile_slim` and is located in your `git_jupyter_docker` directory. We will now go though that file and discuss the different steps and what they do. After that we'll build the image and test it out. Lastly, we'll start from that image and make a new one to reproduce the results from the [Conda tutorial](conda).
+
+Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile will typically result in one layer in the resulting image. The format for Dockerfiles is `INSTRUCTION arguments`. A full specification of the format, together with best practices, can be found [here](https://docs.docker.com/engine/reference/builder/).
+
+```
+FROM ubuntu:16.04
+
+LABEL description = "Minimal image for the NBIS reproducible research course."
+MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
+```
+
+Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one is `FROM`, which specifies which layer our image should start from. In this case we want it to be Ubuntu 16.04, which is one of the [official repositories](https://hub.docker.com/explore/). There are many roads to Rome when it comes to choosing the best image to start from. Say you want to run RStudio in a Conda environment through a Jupyter notebook. You could then start from one of the [rocker images](https://github.com/rocker-org/rocker) for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one of the low-level official images and set up everything from scratch. `LABEL` and `MAINTAINER` is just meta-data that can be used for organising your various Docker components.
+
+```
+# Install Miniconda3 prerequisites, English language pack and fonts. Also include
+# vim for convenience
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
+RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -bf && \
+    rm Miniconda3-latest-Linux-x86_64.sh
+ENV PATH="/root/miniconda3/bin:${PATH}"
+```
+
+The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrive the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what need's to be rerun between builds. The first command uses Ubuntu's package manager apt to install some packages (similar to how we've used Conda). Say that the first command was split into two instead:
+
+```
+# Update apt-get
+RUN apt-get update
+
+#Install packages
+RUN apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
+```
+
+
+
+
+Start from base depo rocker/biocontainers/jupyter
 
 ## Running containers
 
