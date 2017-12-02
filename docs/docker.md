@@ -4,7 +4,7 @@ Docker is a tool designed to make it easier to create, deploy, and run applicati
 
 Just as with Git, Docker was designed for software development but is rapidly becoming used also in scientific research. If you're doing web development you would for example run the webserver in one container and the database in another, thereby reducing the risk of one system affecting the other in unpredictable ways. Docker containers have also proven to be a very good solution to packaging, running and distributing scientific data analyses. Some applications relevant for reproducible research can be:
 
-* When publishing, package your whole analysis pipeline together with your data in a Docker container and let it accompany the article. This way anyone can reproduce your analysis at the push of a button.
+* When publishing, package your whole analysis pipeline together with your data in a Docker image and let it accompany the article. This way anyone can reproduce your analysis at the push of a button.
 * Packaging your analysis in a Docker container enables you to develop on e.g. your laptop and then seamlessly move to cluster or cloud to run the actual analysis.
 * Say that you are collaborating on a project and you are using Mac and they are using Windows. Then you can set up a Docker container specific for your project to ensure that you're working in an identical environment.
 
@@ -46,7 +46,7 @@ TODO: FIX VOLUME SHARING. TALK ABOUT /C/
 ### Linux
 How to install Docker differs a bit depending on your Linux distro, but the steps are the same. For details on how to do it on your distro see [https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/installation/#server).
 
-Here we show how to do it for Ubuntu, which is the most common desktop distribution. The same instructions apply to distributions based on Ubuntu, such as Elementary OS or Linux Mint. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your OS is from 2015 or earlier you can double check this with `lsb_release -a`, if it's newer you're probably fine.
+Here we show how to do it for Ubuntu, which is the most common desktop distribution. The same instructions apply to distributions based on Ubuntu, such as Elementary OS or Linux Mint. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your OS is from 2015 or earlier you can double check this with `lsb_release -a`. If it's newer you're probably fine.
 
 1. Add the GPG key for the official Docker repository to the system:
 ```bash
@@ -84,7 +84,7 @@ We're almost ready to start, just one last note on nomenclature. You might have 
 
 Docker containers typically run Linux, so let's start by downloading an image containing Ubuntu (a popular Linux distribution that is based on only open-source tools).
 
-```
+```text
 $ docker pull ubuntu:latest
 Using default tag: latest
 latest: Pulling from library/ubuntu
