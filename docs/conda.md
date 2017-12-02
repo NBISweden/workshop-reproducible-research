@@ -43,7 +43,7 @@ conda --version
 
 * Let's make our first Conda environment:
 
-```
+```bash
 conda create -n Project_A -c bioconda fastqc
 ```
 
@@ -51,7 +51,7 @@ This will create an environment called Project_A containing FastQC from the Bioc
 
 * Once it is done, you can activate the environment:
 
-```
+```bash
 source activate Project_A
 ```
 
@@ -59,7 +59,7 @@ By default, Conda will add information to your prompt telling you which environm
 
 * To see all your environments you can run:
 
-```
+```bash
 conda info --envs
 ```
 
@@ -67,7 +67,7 @@ The active environment will be marked with an asterisk.
 
 * To see the installed packages in the active environment, run:
 
-```
+```bash
 conda list
 ```
 
@@ -75,7 +75,7 @@ conda list
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
 
-```
+```bash
 fastqc --version
 ```
 
@@ -85,20 +85,20 @@ Hopefully the FastQC software was not found in your root environment (unless you
 
 * Now, let's add another package (sra-tools) to our environment using `conda install`. Make sure that Project_A is the active environment first.
 
-```
+```bash
 conda install -c bioconda sra-tools
 ```
 
 * If we don't specify the package version, the latest available version will be installed. What version of sra-tools got installed?
 * Run the following to see what versions are available:
 
-```
+```bash
 conda search -c bioconda sra-tools
 ```
 
 * Now try to install a different version of sra-tools, e.g.:
 
-```
+```bash
 conda install -c bioconda sra-tools=2.7.0
 ```
 
@@ -113,7 +113,7 @@ Let's further assume that you have an old project (called Project Old) where you
 
 * Make a new environment for your old project:
 
-```
+```bash
 conda create -n Project_Old -c bioconda bowtie2=2.2.6
 ```
 
@@ -123,13 +123,13 @@ conda create -n Project_Old -c bioconda bowtie2=2.2.6
 * List your environments (do you remember the command?).
 * Now, let's remove an environment:
 
-```
+```bash
 conda env remove -n Project_Old
 ```
 
 After making a few different environments and installing a bunch of packages, Conda can take up some disk space. In order to remove unnecessary files one can use the command:
 
-```
+```bash
 conda clean -a
 ```
 This will remove package tar-balls that are left from package installations, unused packages (i.e. not present in any environments), and cached data.
@@ -168,7 +168,7 @@ This should download the project fastq files and run FastQC on them (as mentione
 
 * Check your directory content (`ls -Rlh`, or in your file browser). It should now look something like this:
 
-```
+```no-highlight
    conda/
     |
     |- code/

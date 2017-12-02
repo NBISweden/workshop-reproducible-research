@@ -99,7 +99,7 @@ Status: Downloaded newer image for ubuntu:latest
 
 You might have noticed that it downloaded five different layers with weird hashes as names ("660c48dd555d" and so on). This represents a very fundamental property of Docker images that we'll get back to in just a little while. For now let's just look at our new collection of Docker images:
 
-```
+```no-highlight
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              20c44cd7596f        2 weeks ago         123MB
@@ -107,7 +107,7 @@ ubuntu              latest              20c44cd7596f        2 weeks ago         
 
 We can now start a container running our image. We can refer to the image either by "REPOSITORY" or "IMAGE ID". The syntax for `docker run` is `docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`. Let's run the command `uname -a` to get some info about the operating system. First run on your own system (skip this if you're using Windows, or use `ver` which is the Windows equivalent).
 
-```
+```no-highlight
 $ uname -a
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
@@ -122,7 +122,7 @@ And now I'm running on Linux! Try the same thing with `whoami`.
 
 So, seems we can execute arbitary commands on Linux. Seems useful, but maybe a bit limited. We can also get an interactive terminal with the flags `-it`.
 
-```
+```no-highlight
 $ docker run -it ubuntu
 root@1f339e929fa9:/#
 ```
@@ -140,7 +140,7 @@ If you've been doing these tutorials on Windows you've been using the Docker ima
 
 Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile will typically result in one layer in the resulting image. The format for Dockerfiles is `INSTRUCTION arguments`. A full specification of the format, together with best practices, can be found [here](https://docs.docker.com/engine/reference/builder/).
 
-```
+```no-highlight
 FROM ubuntu:16.04
 
 LABEL description = "Minimal image for the NBIS reproducible research course."
@@ -149,7 +149,7 @@ MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
 Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one is `FROM`, which specifies which layer our image should start from. In this case we want it to be Ubuntu 16.04, which is one of the [official repositories](https://hub.docker.com/explore/). There are many roads to Rome when it comes to choosing the best image to start from. Say you want to run RStudio in a Conda environment through a Jupyter notebook. You could then start from one of the [rocker images](https://github.com/rocker-org/rocker) for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one of the low-level official images and set up everything from scratch. `LABEL` and `MAINTAINER` is just meta-data that can be used for organising your various Docker components.
 
-```
+```no-highlight
 # Install Miniconda3 prerequisites, English language pack and fonts. Also include
 # vim for convenience
 RUN apt-get update && \
@@ -162,7 +162,7 @@ ENV PATH="/root/miniconda3/bin:${PATH}"
 
 The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrive the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what need's to be rerun between builds. The first command uses Ubuntu's package manager apt to install some packages (similar to how we've used Conda). Say that the first command was split into two instead:
 
-```
+```no-highlight
 # Update apt-get
 RUN apt-get update
 

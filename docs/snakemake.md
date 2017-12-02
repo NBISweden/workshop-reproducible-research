@@ -84,7 +84,7 @@ The `shell` section contains the shell commands that will convert the text in th
 
 Now let's run our first Snakemake workflow. When a workflow is executed Snakemake tries to generate given target files. Target files can be specified via the command line (or, as you will see later, in several other ways). Here we ask Snakemake to make the file `a.upper.txt`. It's good practice to first run with the flag `-n`(or `--dry-run`), which will show what Snakemake plans to do without actually running anything. You can also use the flag `-p` for showing the shell commands that it will execute and the flag `-r` for showing the reason for running a specific rule. `snakemake --help` will show you all available flags.
 
-```
+```no-highlight
 $ snakemake -n -r -p a.upper.txt
 
 rule convert_to_upper_case:
@@ -106,7 +106,7 @@ You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case` 
 
 What if we ask Snakemake to generate the file b.upper.txt?
 
-```
+```no-highlight
 $ snakemake -n -r -p b.upper.txt
 MissingRuleException:
 No rule to produce b.upper.txt (if you use input functions make sure that they do not raise unexpected exceptions)
@@ -118,7 +118,7 @@ Tada! What happens here is that Snakemake looks at all the rules it has availabl
 
 It seems we have the first part of our workflow working, now it's time to make the second rule for concatenating the outputs from `convert_to_upper_case`. The rule structure will be similar, the only difference is that here we have two inputs instead of one. This can be expressed in two ways, either with named inputs like this:
 
-```Python
+```python
 input:
     firstFile="...",
     secondFile="..."
@@ -130,7 +130,7 @@ shell:
 
 Or with indexes like this:
 
-```Python
+```python
 input:
     "...",
     "..."
@@ -163,7 +163,7 @@ rule concatenate_files:
 
 We can now control which input files to use by the name of the file we ask Snakemake to generate.
 
-```
+```no-highlight
 $ snakemake a_b.txt
 Provided cores: 1
 Rules claiming more threads will be scaled down.
@@ -262,7 +262,7 @@ Were you correct? Also generate the job graph and compare to the one generated a
 
 We've seen that Snakemake keeps track of if files in the workflow have changed, and automatically makes sure that any results depending on such files are regenerated. What about if the rules themselves are changed? It turns out that there are multiple ways to do this, but the most straight forward is to manually specify that you want to rerun a rule (and thereby also all the steps between that rule and your target). Let's say that we want to modify the rule `concatenate_files` to also include which files were concatenated.
 
-```Python
+```python
 rule concatenate_files:
     input:
         "{first}.upper.txt",
@@ -334,7 +334,7 @@ Also generate the job graph in the same manner. Here you can see that three samp
 
 Now try to run the whole workflow. Hopefully you see something like this.
 
-```
+```no-highlight
 Building DAG of jobs...
 Provided cores: 1
 Rules claiming more threads will be scaled down.
@@ -384,7 +384,7 @@ After everything is done the workflow will have resulted in a bunch of files in 
 ### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
 
-```Python
+```python
 rule some_rule:
     input:
         "..."
@@ -436,7 +436,7 @@ output: temp("...")
 
 The file will then be deleted as soon as all jobs where it's an input have finished. Now do this for the output of `align_to_genome`. We have to rerun the rule for it to trigger, so use `-R align_to_genome`. It should look something like this:
 
-```
+```no-highlight
 .
 .
 rule sort_bam:
@@ -520,7 +520,7 @@ Some people use the shadow option for almost every rule and some never use it at
 ### Rule targets
 So far we have only defined the inputs/outputs of a rule as strings or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
 
-```Python
+```python
 rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
@@ -543,7 +543,7 @@ rule align_to_genome:
 
 Here we have seven inputs; the fastq file with the reads and six files with similar file names from the Bowtie 2 genome indexing. We can try to tidy this up by using a Python expression to generate a list of these files instead. If you're familiar with Python you could do this with list comprehensions like this:
 
-```Python
+```python
 input:
     "data/raw_internal/{sra_id}.fastq.gz",
     ["intermediate/NCTC8325.{my_substr}.bt2".format(my_substr=substr) for substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
@@ -551,7 +551,7 @@ input:
 
 This will take the elements of the list of substrings one by one, and insert that element in the place of `{my_substring}`. Since this type of aggregating rules are quite common, Snakemake also has a more compact way of achieving the same thing.
 
-```Python
+```python
 input:
     "data/raw_internal/{sra_id}.fastq.gz",
     expand("intermediate/NCTC8325.{my_substr}.bt2", my_substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
@@ -561,7 +561,7 @@ Now change in the rules `index_genome` and `align_to_genome` to use the `expand(
 
 In the workflow we decide which samples to run by including the SRR ids in the names of the inputs to the rules `multiqc` and `generate_count_table`. This is a potential source of errors since it's easy to change in one place and forget to change in the other. As we've mentioned before, but not really used so far, Snakemake allows us to use Python code "everywhere". Let's therefore define a list of sample ids and put at the very top of the Snakefile, just before the rule `all`.
 
-```Python
+```python
 SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 ```
 
@@ -570,7 +570,7 @@ Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for 
 ### Parameters
 In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves everytime you wanted to run with a new setting. Luckily, there is a better option for this; the `params` keyword.
 
-```Python
+```python
 rule some_rule:
     input:
         "..."
@@ -586,7 +586,7 @@ rule some_rule:
 
 In our workflow we run most of the programs with default settings. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each read (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
 
-```Python
+```python
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
@@ -613,7 +613,7 @@ max_reads: 25000
 
 If we now supply `--configfile config.yml` Snakemake will parse this into a global dictionary called `config` that is available from all rules. We can therefore modify `get_SRA_by_accession` to look something like this. Now try this out yourself.
 
-```Python
+```python
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
@@ -663,7 +663,7 @@ genomes:
 
 Let's now look at how to do the mapping from genome id to fasta path in the rule `get_genome_fasta`. This is how the rule currently looks (if you have added the log section as previously described).
 
-```Python
+```python
 rule get_genome_fasta:
     """
     Retrieve the sequence in fasta format for a genome.
@@ -682,7 +682,7 @@ We don't want the hardcoded genome id, so replace that with a wildcard, say `{ge
 
 We're almost done, but there is one more tricky thing left. Take a look below at the `params` section. Here we have defined a function to generate the parameter `fasta_path`. This is what's called an anonymous function, or lambda expression, but any normal function would work as well. What happens is that the function takes the `wildcards` object as its only argument. This object allows access to the wildcards values via attributes (here `wildcards.genome_id`). The function will then look in the nested `config` dictionary and return the value of the fasta path for the key `wildcards.genome_id`. Neat!
 
-```Python
+```python
 rule get_genome_fasta:
     """
     Retrieve the sequence in fasta format for a genome.
@@ -701,7 +701,7 @@ rule get_genome_fasta:
 
 Now change in `get_genome_gff3` in the same way. Also change in `index_genome` to use a wildcard rather than a hardcoded genome id. Here you will run into a complication if you have followed the previous instructions and use the `expand()` expression. We want the list to expand to `["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`, but for it to do so we must use double curly brackets around the wildcard, i.e. `{{genome_id}}`. Lastly, we need to define somewhere which genome id we actually want to use. This needs to be done both in `align_to_genome` and `generate_count_table`. Do this by introducing a parameter in `config.yml` called "genome_id". See below for an example for `align_to_genome`.
 
-```Python
+```python
 output:
     expand("intermediate/{genome_id}.{substr}.bt2", genome_id = config["genome_id"], substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
