@@ -84,7 +84,7 @@ We're almost ready to start, just one last note on nomenclature. You might have 
 
 Docker containers typically run Linux, so let's start by downloading an image containing Ubuntu (a popular Linux distribution that is based on only open-source tools).
 
-```text
+```no-highlight
 $ docker pull ubuntu:latest
 Using default tag: latest
 latest: Pulling from library/ubuntu
