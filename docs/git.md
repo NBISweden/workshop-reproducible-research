@@ -48,7 +48,7 @@ You will now be redirected to the repository page. It is an empty repository, so
 
 * Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course). **Important: it should *not* be within the `reproducible_research_course` directory.**
 * Once you are in your directory of choice, run the following command (just make sure to change `user` to your bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
-```
+```bash
 git clone git@bitbucket.org:user/git_tutorial.git
 ```
 
@@ -78,21 +78,21 @@ This is a git version tracked directory. How can you know? Run `git status`! It 
 
 * We will now commit the untracked files. A commit is essentially a set of changes to a set of files. Preferably, the changes making out a commit should be related to something, e.g. a specific bug fix or a new feature. Our first commit will be to add the copied files to the repository. Run (as suggested by `git status`):
 
-```
+```bash
 git add Dockerfile Snakefile
 ```
 
 * Run `git status` again! See that we have added Dockerfile and Snakefile to our upcoming commit (listed under *Changes to be committed*). This is called the staging area, and the files there are staged to be committed.
 * We might as well commit all files in one go! So use `git add` on the remaining files as well:
 
-```
+```bash
 git add config.yml environment.yml code/
 ```
 
 * Run `git status` and see that all files are in the staging area, and that no files are listed as untracked.
 * We are now ready to commit! Run:
 
-```
+```bash
 git commit -m "add initial files"
 ```
 
@@ -105,7 +105,7 @@ The `-m` option adds a commit message. This should be a short description of wha
 * Let's edit another file! Open `config.yml`and change the line `genome_id: NCTC8325` to `genome_id: ST398`. Run `git status`. Run `git diff`. If we don't specify a file, it will show all changes made in any file, compared to the previous commit. Do you see your changes?
 * Ok, we made our changes. Let's commit them! Run:
 
-```
+```bash
 git add -A
 ```
 
@@ -115,20 +115,20 @@ But wait a minute! Shouldn't each commit optimally be a specified set of changes
 
 * Let's remove `environment.yml` from the staging area. `git status` tells us how to do this: *(use "git reset HEAD <file>..." to unstage)*. So run:
 
-```
+```bash
 git reset HEAD environment.yml
 ```
 
 * Run `git status` again. See that now only `config.yml` is staged for being committed, whereas the changes in `environment.yml` are tracked by git, but not ready to be commited.
 * Commit the changes in `config.yml`:
 
-```
+```bash
 git commit -m "change genome to align to"
 ```
 
 * Add and commit the changes in `environment.yml`:
 
-```
+```bash
 git status
 git add environment.yml
 git status
@@ -140,7 +140,7 @@ You don't have to run `git status` between each command, but it can be useful in
 
 * To see a history of our changes so far, run:
 
-```
+```bash
 git log
 ```
 
@@ -148,13 +148,13 @@ As you can see, each commit is a point in history. The more often you commit, an
 
 * We can also try to delete a file:
 
-```
+```bash
 rm Dockerfile
 ```
 
 * Run `git status`. As you can see, git tells us that the file is deleted, but the deletion is not committed. In the same way as we commit or edits to files, we need to commit a deletion of a file:
 
-```
+```bash
 git rm Dockerfile
 git status
 git commit -m "remove Dockerfile"
@@ -184,7 +184,7 @@ So far we have just worked locally. The strength with git is that we can add a r
 
 * Now we will push the latest commits to the master branch to our remote origin:
 
-```
+```bash
 git push -u origin master
 ```
 
@@ -211,7 +211,7 @@ We will now learn how to manage conflicts. This is important to know, since it w
 * On the Bitbucket webpage, click on `environment.yml` and click Edit. We can now edit this file directly on the web. This is not mainly recommended, but we will do it to demonstrate a point.
 * Let's pretend that using multiqc version 1.3 did not work. Change the multiqc version to 1.4:  
 
-```
+```yaml
 multiqc=1.4
 ```
 
@@ -223,13 +223,13 @@ Now we have a change in the remote repository that is not yet in our local clone
 * Go back to your local terminal. Run `git status`. Notice that git says: *Your branch is up-to-date with 'origin/master'.* This is of course not true, but our local git clone is not yet aware of the remote changes. We will get those changes soon.
 * But first, we will edit `environment.yml` locally as well! (It may be the case that your collaborator thought it was good to use multiqc version 1.4, whereas you thought it would be better to use multiqc version 1.2, but neither of you communicated that to the other.) Use a text editor and change the multiqc line to:
 
-```
+```yaml
 multiqc=1.2
 ```
 
 * Commit your change (use `git status` along the way if you want to check what is happening in the different steps):
 
-```
+```bash
 git status
 git add environment.yml
 git status
@@ -239,7 +239,7 @@ git status
 
 * Now let's try to push this commit!
 
-```
+```bash
 git push
 ```
 
@@ -247,7 +247,7 @@ Note that after the initial push you probably don't have to specify `-u origin m
 
 * We will now download the changes made to the remote:
 
-```
+```bash
 git fetch
 ```
 
@@ -255,13 +255,13 @@ git fetch
 and have 1 and 1 different commit each, respectively.*
 * Now, since we ran `git fetch` our local git has up-to-date information about the status of the remote repository. We can therefore run the following to see what the difference is between the current state of our local clone and the master branch on the remote origin, i.e. Bitbucket:
 
-```
+```bash
 git diff origin/master
 ```
 
 * Now let's try to integrate the remote changes with our local changes and get up to sync with the remote:
 
-```
+```bash
 git pull
 ```
 
@@ -314,19 +314,19 @@ The part between `<<<<<<< HEAD` and `=======` is your local version, and the par
 
 * Run `git status`, notice that it says *use "git add <file>..." to mark resolution*? Let's do that!
 
-```
+```bash
 git add environment.yml
 ```
 
 * Run `git status` again! It will now tell us: *All conflicts fixed but you are still merging. (use "git commit" to conclude merge)*. So, you probably guessed it, run:
 
-```
+```bash
 git commit -m "merge and set multiqc to v1.2"
 ```
 
 * Finally, push these changes to Bitbucket:
 
-```
+```bash
 git push
 ```
 
@@ -347,7 +347,7 @@ Git is aware of all files within the repository. However, it is not uncommon to 
 
 * Let's make some intermediate and result files:
 
-```
+```bash
 mkdir intermediate
 mkdir results
 touch intermediate/multiqc_general_stats.txt
@@ -357,7 +357,7 @@ touch log.tmp
 
 * Run `git status`. You will see that git tells you that you have untracked files. However, we don't want git to track these files anyway. To tell git what files to ignore we use a file called `.gitignore`. Let's create it:
 
-```
+```bash
 touch .gitignore
 ```
 
@@ -388,20 +388,20 @@ The last topic we will cover in this tutorial is tagging. Git allows us to tag c
 
 * Let's assume that the status of the repository as it is now is ready for a submission to a journal, e.g. it contains scripts that are used to generate the manuscript figures. Let's add a tag:
 
-```
+```bash
 git tag "submission1"
 ```
 
 * To push this tag to Bitbucket we use:
 
-```
+```bash
 git push --tags
 ```
 
 * Go to Bitbucket and check Commits. Can you see that the tag has been added?
 * Let's assume we now got review comments and by fixing those had to update our code. Open `config.yml` and change the line `max_reads: 25000` to `max_reads: 50000`. Commit and push that change:
 
-```
+```bash
 git add config.yml
 git commit -m "increased number of reads"
 git push
@@ -409,13 +409,14 @@ git push
 
 * Now let's say that the reviewers were happy and the manuscript was accepted for publication. Let's immediately add a tag:
 
-```
+```bash
 git tag "publication"
 git push --tags
 ```
 
 * After the study was published you realized that you get nicer QC information if you upgrade multiqc. Open `environment.yml` and change `multiqc=1.2` to `multiqc=2.0`. Add, commit, and push this change:
-```
+
+```bash
 git add environment.yml
 git commit -m "upgrade to newer multiqc version"
 git push
@@ -426,13 +427,13 @@ Alternatively, git users who want to reproduce your analysis with the code used 
 
 * You can try this in your local clone, run:
 
-```
+```bash
 git checkout publication
 ```
 
 * Open `environment.yml` and note that the multiqc version now is back to 1.2! To go back to the latest version, run:
 
-```
+```bash
 git checkout master
 ```
 

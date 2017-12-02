@@ -84,7 +84,7 @@ The `shell` section contains the shell commands that will convert the text in th
 
 Now let's run our first Snakemake workflow. When a workflow is executed Snakemake tries to generate given target files. Target files can be specified via the command line (or, as you will see later, in several other ways). Here we ask Snakemake to make the file `a.upper.txt`. It's good practice to first run with the flag `-n`(or `--dry-run`), which will show what Snakemake plans to do without actually running anything. You can also use the flag `-p` for showing the shell commands that it will execute and the flag `-r` for showing the reason for running a specific rule. `snakemake --help` will show you all available flags.
 
-```bash
+```
 $ snakemake -n -r -p a.upper.txt
 
 rule convert_to_upper_case:
@@ -106,7 +106,7 @@ You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case` 
 
 What if we ask Snakemake to generate the file b.upper.txt?
 
-```bash
+```
 $ snakemake -n -r -p b.upper.txt
 MissingRuleException:
 No rule to produce b.upper.txt (if you use input functions make sure that they do not raise unexpected exceptions)
@@ -163,7 +163,7 @@ rule concatenate_files:
 
 We can now control which input files to use by the name of the file we ask Snakemake to generate.
 
-```bash
+```
 $ snakemake a_b.txt
 Provided cores: 1
 Rules claiming more threads will be scaled down.
@@ -334,7 +334,7 @@ Also generate the job graph in the same manner. Here you can see that three samp
 
 Now try to run the whole workflow. Hopefully you see something like this.
 
-```bash
+```
 Building DAG of jobs...
 Provided cores: 1
 Rules claiming more threads will be scaled down.
@@ -436,7 +436,7 @@ output: temp("...")
 
 The file will then be deleted as soon as all jobs where it's an input have finished. Now do this for the output of `align_to_genome`. We have to rerun the rule for it to trigger, so use `-R align_to_genome`. It should look something like this:
 
-```bash
+```
 .
 .
 rule sort_bam:
