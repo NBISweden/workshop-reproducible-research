@@ -1,6 +1,4 @@
-# git tutorial
-
-## Introduction
+# Introduction to Git
 
 Git is a widely used system (both in academia and industry) for version controlling files and
 collaborating on code. It is used to track changes in (text) files, thereby establishing a history of all edits made to each file, together with short messages about each change and information about who made it. Git is mainly run from the command line, but there exists several software that have implemented a graphical user interface to run git commands.
@@ -23,7 +21,7 @@ There are several benefits with using git in your research project:
 The best way to get an idea about what git is simply to start using it. The tutorial below will guide you through the essential steps, with a focus on what is needed for making a project reproducible. There are additional features of both git and the web based repository hosting services (like Github and Bitbucket) that are intentionally not included here. If you are interested of learning more, the web is filled with information (see some examples below)!
 
 
-#### Tell me more
+## Tell me more
 
 * For a more complete introduction to git, check e.g.:
 https://en.wikipedia.org/wiki/Git
@@ -31,9 +29,12 @@ https://en.wikipedia.org/wiki/Git
 * ["Got 15 minutes and want to learn Git?"](https://try.github.io/levels/1/challenges/1)
 * [Git reference manual](https://book.git-scm.com/docs)
 
-## Practical exercise
+# Set up
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already.
 
-### Setup a new git repository
+# Practical exercise
+
+## Setup a new git repository
 
 * If you have not done so already, go to [bitbucket.org](https://bitbucket.org/account/signup/) and create an account.
 * Login and press the plus button to the left and select *Create a new repository*:
@@ -73,7 +74,7 @@ This is a git version tracked directory. How can you know? Run `git status`! It 
 
 ---
 
-### Committing
+## Committing
 
 * We will now commit the untracked files. A commit is essentially a set of changes to a set of files. Preferably, the changes making out a commit should be related to something, e.g. a specific bug fix or a new feature. Our first commit will be to add the copied files to the repository. Run (as suggested by `git status`):
 
@@ -172,7 +173,7 @@ git log
 
 ---
 
-### Pushing
+## Pushing
 
 So far we have just worked locally. The strength with git is that we can add a remote location to push our commits. In fact, we already have setup such a remote, since we created the repository at Bitbucket and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote, in this case Bitbucket. Your local copy and the remote copy are then in sync. In principle you can now safely delete your local copy and now that it is all backed up in the cloud, with the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
 
@@ -203,7 +204,7 @@ git push -u origin master
 
 ---
 
-### Conflicts
+## Conflicts
 
 We will now learn how to manage conflicts. This is important to know, since it will probably happen sooner or later. The important thing is to not panic! :)
 
@@ -340,7 +341,7 @@ git push
 
 ---
 
-### Ignoring files
+## Ignoring files
 
 Git is aware of all files within the repository. However, it is not uncommon to have files that we don't want git to track. For instance, our analysis might produce several intermediate files and results. Normally, we will not version track those using git. Rather, we want to version track the actual code and other related files (e.g. like configuration files) that produce the intermediate and result files, given the raw input data.
 
@@ -381,7 +382,7 @@ intermediate/
 
 ---
 
-### Tagging
+## Tagging
 
 The last topic we will cover in this tutorial is tagging. Git allows us to tag commits. This is of particular convenience when thinking about reproducible research. We can tag commits that represent important points in history, like e.g. the version of the repository that was used for the submission, the version used during resubmission, and, most importantly, the version used for the final publication. The first two examples are mainly useful internally, but the latter is essential for other researchers being able to rerun your published analysis (assuming that you may continue to work on your code and push updates to the repository). Let's try this out!
 
@@ -446,6 +447,6 @@ git checkout master
 
 ---
 
-## Where to go next?
+# Where to go next?
 
 Now that you have learnt how to version track your code, you can continue to any other tutorial that will help you making your research even more reproducible.

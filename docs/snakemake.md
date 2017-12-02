@@ -1,8 +1,5 @@
-# Snakemake tutorial
+# Introduction to Snakemake
 
-## Introduction
-
-### Quick intro to Snakemake
 A workflow management system (WMS) is a piece of software that sets up, performs and monitors a defined sequence of computational tasks (i.e. "a workflow"). Snakemake is a WMS that was developed in the bioinformatics community, and as such it has some features that make it particularly well suited for creating reproducible and scalable data analyses.
 
 * The language you use to formulate your workflows is based on Python; a language with a strong standing in academia. Users are not required to know how to code in Python to work efficently with Snakemake, they can still take advantage of Python's clean syntax and large number of libraries.
@@ -15,16 +12,16 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 
 * Lastly, a WFM is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features which allow you to package and distribute the workflow, and any files it involves, once it's done.
 
-#### Tell me more
+## Tell me more
 * The Snakemake documentation is available on [readthedocs](https://snakemake.readthedocs.io/en/stable/#).
 * Here is a great [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
 * If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
 * To discuss with other users, there is a [Google group](https://groups.google.com/forum/#!forum/snakemake).
 
-## Practical exercise
-### Set up
+# Set up
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
 
+## Set up the environment for the workflow
 If you have done the [Conda tutorial](conda) you should know how to define an environment and install packages using Conda and an `environment.yml` file. Here we will use Snakemake as well as some other programs, all of which are available in the Bioconda channel. If you look in the current directory you will see an `environment.yml` file which specifies an environment containing FastQC, Bowtie2 and SRA Tools (identical to the output from the Conda tutorial). Add the following programs to the file and save it.
 
 ```yaml
@@ -55,7 +52,8 @@ Check that Snakemake is installed correctly, for example by executing `bash snak
 
 (If you don't want to use Conda for some reason you can also install Snakemake with `pip3 install snakemake`.)
 
-### Toy example
+# Practical exercise
+## Toy example
 In this part of the tutorial we will create a very simple workflow from scratch in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
 
 First make an empty file named `Snakefile` which will contain the workflow, and the two input files containing some arbitary text.
@@ -313,7 +311,7 @@ You might wonder where Snakemake keeps track of all these things? It stores all 
 
 By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more flexible and reusable. In the following section we will start with a workflow that is functional but not very flexible. We will then gradually improve on it and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you can move on to one of the other tutorials instead.
 
-### RNA-seq analysis of MRSA
+## RNA-seq analysis of MRSA
 As you might remember from the [intro](index), we are attempting to understand how the phage XXX can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three samples, X treated and Y untreated. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
 
 This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
@@ -383,7 +381,7 @@ After everything is done the workflow will have resulted in a bunch of files in 
 
 **As noted above, the rest of this tutorial will go over many more nice features of Snakemake. If you got a taste for Snakemake, just continue along. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.**
 
-#### Logs
+### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
 
 ```Python
@@ -427,7 +425,7 @@ bowtie2 -x index_dir -U input_file > output_file 2> {log}
 
 Now rerun the whole workflow by using the `-F` flag. Do the logs contain what they should? Note how much easier it it to follow the progression of the workflow when the rules write to logs instead of to the terminal. If you run with `-D` (or `-S` for a simpler version) you will see that the summary table now also contains the log file for each of the files in the workflow.
 
-#### Marking files as temporary
+### Marking files as temporary
 It's not uncommon that workflows in bioinformatics contain temporary files that should be kept for some time and then deleted once they are no longer needed. A typical case could be that some operation generates a file, which is then compressed to save space or indexed to make searching faster. There is then no need to save the original output file. Take a look at the job graph for our workflow again. The output from `align_to_genome` is a bam file, which contains information about all the reads for a sample and where they map in the genome. For downstream processing we need this file to be sorted by genome coordinates. This is what the rule `sort_bam` is for. We therefore end up with both `intermediate/{sra_id}.bam` and `intermediate/{sra_id}.sorted.bam`.
 
 In Snakemake we can mark an output file as temporary like this:
@@ -463,7 +461,7 @@ Snakemake has a number of options for marking files:
 * `touch("...")`: The output file should be "touched", i.e. created or updated, when the rule has finished. Typically used as "flag files" to enforce some rule execution order without real file dependencies.
 * `dynamic("{some_wildcard}...")`: This one is a bit tricky. It's used when the number of output files from a rule cannot be determined beforehand. A typical use case could be if you run some clustering analysis and end up with one file per cluster.
 
-#### Shadow rules
+### Shadow rules
 Take a look at the rule `generate_count_table` below. Since `input.annotation` is compressed it is first unzipped to a temporary file. `htseq-count` then generates a temporary count table, which is finally prepended with a header containing the sample names. Lastly, the two temporary files are deleted.
 
 ```python
@@ -519,7 +517,7 @@ Some people use the shadow option for almost every rule and some never use it at
 
 *ADD OUTPUT EXAMPLE WHEN ISSUE DEALT WITH*
 
-#### Rule targets
+### Rule targets
 So far we have only defined the inputs/outputs of a rule as strings or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
 
 ```Python
@@ -569,7 +567,7 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for the sample ids. Much better!
 
-#### Parameters
+### Parameters
 In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves everytime you wanted to run with a new setting. Luckily, there is a better option for this; the `params` keyword.
 
 ```Python
@@ -708,7 +706,7 @@ output:
     expand("intermediate/{genome_id}.{substr}.bt2", genome_id = config["genome_id"], substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
-#### Summary
+### Summary
 Well done!
 
 * You have a general RNA-seq pipeline which can easily be reused between projects, thanks to clear separation between code and settings.
@@ -718,7 +716,7 @@ Well done!
 * You have a logical directory structure which makes it easy to separate raw data, intermediate files, and results.
 * You have set up you project in a way that makes it very easy to distribute and reproduce, either via git, via Snakemake's `--archive` option, or via a Docker image.
 
-## Where to go next?
+# Where to go next?
 
 # TODO
 run/script

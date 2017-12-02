@@ -1,8 +1,6 @@
-# R Markdown tutorial
+# Introduction to R Markdown
 
-## Introduction
-
-### Markup
+## Markup
 A *markup language* is a system for annotating text documents in order to e.g. define formatting. HTML, if you are familiar with that, is an example of a markup language. HTML uses tags, such as
 ```html
 <h1>Heading<\h1>
@@ -35,20 +33,24 @@ Bullet list:
 ```
 A markdown document can be converted to other formats, such as `.html` or `.pdf`, for viewing in a browser or a PDF reader (the page you are reading just now is written in markdown). Markdown is somewhat ill-defined, and as a consequence of that there exists many implementations and extensions (although they share most of the syntax). *R Markdown* is one such implementation/extension.
 
-### R Markdown
+## R Markdown
 
 R Markdown documents can be used both to save and execute code (with a focus on `R`) and to generate reports in various formats. This is done by mixing markdown (as in the example above), and so-called code chunks, in the same document. The code itself, as well as the output it generates, can be included in the final report. The best way to understand R Markdown is by using it, so head down to the practical exercise below to learn more!
 
-#### Tell me more
+## Tell me more
 * A nice "Get Started" section, as a complement to this tutorial, is available at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
 * [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 * [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
-## Practical exercise
-
+# Set up
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
 
-### Getting started with R Markdown
+## Install RStudio and R
+TODO: Fill this in.
+
+# Practical exercise
+
+## Getting started with R Markdown
 
 * Start RStudio
 * Select: File > New File > R Markdown
@@ -78,7 +80,7 @@ As you can see, there are essentially three types of components in an R Markdown
 
 Let's dig deeper into each of these in the following sections! But first, just to get a flavor for things: press the little Knit-button located at the top of the text editor panel in RStudio. This will prompt you to save the Rmd file (do that), and generate the output file (an HTML file in this case), plus open up a preview of this file for you.
 
-#### Markdown text
+### Markdown text
 
 Some commonly used formatting written in markdown is shown below:
 ```
@@ -109,7 +111,7 @@ Instead of reiterating information here, take a look on the first page (only the
 
 * Try out some of the markdown mentioned above (and in the links) in your template R Markdown document! Press Knit, to see the effect of your edits. (Don't worry about the code chunks just yet, we'll come to that...)
 
-#### Code chunks
+### Code chunks
 
 Enough about markdown, let's get to the cool part and include some code!
 Look at the last code chunk in the template R Markdown document that you just created, as an example:
@@ -214,7 +216,7 @@ forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
 ````
 Note that this is just one of many available examples of interactive plots that you can achieve using R Markdown.
 
-#### YAML header
+### YAML header
 
 Last but not least, we have the YAML header. Here is where you configure general settings for the final output file, and a few other things.
 
@@ -270,7 +272,7 @@ We have up until now mainly been using `html_document` as an output format. Ther
 * Take a look at this [gallary](http://rmarkdown.rstudio.com/gallery.html) of R Markdown documents to see what different kinds of output formats are possible to generate.
 * Take a look at the last page of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for a list of YAML header options, and what output formats they are available for.
 
-#### Managing and working with R Markdown documents
+### Managing and working with R Markdown documents
 
 Below are a few practical things regarding working with R Markdown documents:
 
@@ -299,7 +301,7 @@ rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
 * Go to File > Help > Cheatsheets > R Markdown Cheat Sheet to open the main R Markdown cheatsheet.
 * Go to File > Help > Markdown Quick Reference to open the Markdown Quick Reference in your help pane.
 
-### R Markdown in a reproducible research setting
+## R Markdown in a reproducible research setting
 
 R Markdown makes your analysis more reproducible by connecting your code, figures and descriptive text. You can use it to make reproducible reports, rather than e.g. copy-pasting figures into a Word document. You can also use it as a notebook, in the same way as lab notebooks are used in a wetlab setting.
 
@@ -447,13 +449,13 @@ output:
 Congrats! You made it to the end and are now an R Markdown expert!
 
 
-## Where to go next?
+# Where to go next?
 
-### Notebooking with Jupyter
+## Notebooking with Jupyter
 Check out the Jupyter, which is an alternative to R Markdown. [Go to the Jupyter tutorial](jupyter).
 
-### Version tracking with git
+## Version tracking with git
 It is obvious that the Rmd files are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The content of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git).
 
-### Containerizing the analysis using Docker
+## Containerizing the analysis using Docker
 Check out Docker which can be used to run the full analysis in an isolated system containing all required dependencies. The example in the tutorial also demonstrates how you can integrate rendering of R Markdown reports using Snakemake. [Go to the Docker tutorial](docker).

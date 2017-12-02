@@ -1,24 +1,20 @@
-# Conda tutorial
-
-## Introduction
-### What is Conda?
+# Introduction to Conda
+## What is Conda?
 Conda is a package and environment manager. As a package manager it enables you to install a wide range of software and tools using one simple command (`conda install`). As an environment manager it allows you to create and manage multiple different environments, each with their own set of packages. Why would you want to do that? For instance, you may want to be able to easily run different versions of the same package or have different cross-package dependencies that are incompatible with each other.
 
 Environments are of particular relevance when making bioinformatics projects reproducible. Full reproducibility requires the possibility to recreate the system that was originally used to generate the results. This can (to a large extent) be accomplished by using Conda to make a project environment with specific versions of a set of packages that are needed to execute and run all code needed in the project. You can read more about Conda [here](https://conda.io/docs/user-guide/concepts.html).
 
-### Conda packages
+## Conda packages
 A Conda package is a compressed tarball (system-level libraries, Python or other modules, executable programs, or other components). Conda keeps track of the dependencies between packages and platforms - this means that when installing a given package, all necessary dependencies will also be installed. Conda packages are hosted and downloaded from remote channels. Some widely used channels for general-purpose and bioinformatics packages are [Condaforge](https://conda-forge.org/) and [Bioconda](https://bioconda.github.io/). When installing a Conda package you specify the package name, version (optional), and channel to download from.
 
-### Conda environments
+## Conda environments
 A Conda environment is essentially a directory that contains a specific collection of conda packages that you have installed. Packages are symlinked between environments to avoid unnecessary duplication.
 
-## Practical exercise
-
+# Set up
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
 
-### Install Conda (not for Windows)
-If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can jump down to the next section (Get going with environments).
-
+## Install Conda (not for Windows)
+If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 
 The easiest way to get going is to install Conda by downloading the correct binary from [here](https://conda.io/miniconda.html) and running the installer. This can be done on the command line as shown below:
 ```bash
@@ -41,7 +37,9 @@ rm Miniconda3-latest-Linux-x86_64.sh
 conda --version
 ```
 
-### Get going with environments
+# Practical exercise
+
+## Get going with environments
 
 * Let's make our first Conda environment:
 
@@ -136,7 +134,7 @@ conda clean -a
 ```
 This will remove package tar-balls that are left from package installations, unused packages (i.e. not present in any environments), and cached data.
 
-### How to use in a reproducible project setting
+## How to use in a reproducible project setting
 
 We have up until now specified which Conda packages to install directly on the command line using the `conda create` and `conda install` commands. For working in projects this is not the recommended way. Instead, for increased control and reproducibility, it is better to use a file (in [yaml format](https://en.wikipedia.org/wiki/YAML)) specifying packages, versions and channels needed to create the environment for a project.
 
@@ -199,10 +197,10 @@ This should download the project fastq files and run FastQC on them (as mentione
 
 Note that all that was needed to carry out the analysis and generate these files and results was the `environment.yml` file (that we used to create a Conda environment with the required packages) and the analysis code in `code/run_qc.sh`.
 
-## Where to go next?
+# Where to go next?
 
-### Version tracking with git
+## Version tracking with git
 It is obvious that these two files (`environment.yml` and `run_qc.sh`) are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The content of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git).
 
-### Workflow management
+## Workflow management
 We now performed several analysis steps through the code in `run_qc.sh`. That is ok, but it can quickly get complicated when the analysis workflow gets more complex and is split into several code files. Suddenly it is not obvious which code to run and in what order it should be executed, in order to rerun the full project analysis from scratch. A good solution to this is to use a workflow manager. [Go to the Snakemake tutorial](snakemake).
