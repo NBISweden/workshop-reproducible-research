@@ -100,7 +100,7 @@ Status: Downloaded newer image for ubuntu:latest
 You might have noticed that it downloaded five different layers with weird hashes as names ("660c48dd555d" and so on). This represents a very fundamental property of Docker images that we'll get back to in just a little while. For now let's just look at our new collection of Docker images:
 
 ```no-highlight
-$ docker images
+$ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              20c44cd7596f        2 weeks ago         123MB
 ```
@@ -157,10 +157,9 @@ RUN apt-get update && \
 RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -bf && \
     rm Miniconda3-latest-Linux-x86_64.sh
-ENV PATH="/root/miniconda3/bin:${PATH}"
 ```
 
-The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrive the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what need's to be rerun between builds. The first command uses Ubuntu's package manager apt to install some packages (similar to how we've used Conda). Say that the first command was split into two instead:
+The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrive the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what need's to be rerun between builds. The first command uses Ubuntu's package manager apt to install some packages (similar to how we've previously used Conda). Say that the first command was split into two instead:
 
 ```no-highlight
 # Update apt-get
@@ -170,15 +169,128 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
 ```
 
+The first command will update the apt-get package lists and the seconds will install the packages bzip2, wget, language-pack-en, fontconfig, and vim. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and re-runs the second `RUN` command. *However, there is no way for Docker to know that it should also update the apt-get package lists*. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
+
+The next `RUN` command retrieves and installs Miniconda3. Let's see what would happen if we had that as three separate commands instead.
+
+```no-highlight
+# Download Miniconda3
+RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+# Install it
+RUN bash Miniconda3-latest-Linux-x86_64.sh -bf
+
+# Remove the downloaded installation file
+RUN rm Miniconda3-latest-Linux-x86_64.sh
+```
+
+Remember that each layer contains the difference compared to the previous layer? What will happen here is that the first command adds the installation file and the second will unpack the file and install the software. The third layer will say "the installation file should no longer exist". However, the file will still remain in the image since the image is constructed layer-by-layer bottom-up. This results in unnecessarily many layers and bloated images.
+
+```no-highlight
+# Add conda to PATH and set locale
+ENV PATH="/root/miniconda3/bin:${PATH}"
+ENV LC_ALL en_US.UTF-8
+ENV LC_LANG en_US.UTF-8
+```
+
+Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/root/miniconda3/bin/conda install`. The other two set an UTF-8  character encoding so that we can use weird characters (and a bunch of other things).
+
+```no-highlight
+# Install git, nano and ca-certificates from conda-forge
+RUN conda install -c conda-forge git ca-certificates nano && \
+    conda clean --all
+```
+
+Here we install some packages with Conda. Note that we run `conda clean --all` to remove any downloaded packages afterwards.
+
+```no-highlight
+# Use bash as shell
+SHELL ["/bin/bash", "-c"]
+
+# Start Bash shell by default
+CMD /bin/bash
+```
+
+`SHELL` simply sets which shell to use. `CMD` is an interesting instruction. It sets what a container should run when nothing else is specified. It can be used for example for printing some information on how to use the image or, as here, start a shell for the user. If the purpose of your image is to accompany a publication then `CMD` could be to run the workflow that generates the paper figures from raw data.
+
+Ok, so now we understand how a Dockerfile works. Constructing the image from the Dockerfile is really simple. Try it out now.
+
+```no-highlight
+$ docker build -f Dockerfile_slim -t my_docker_image .
+Step 1/11 : FROM ubuntu:16.04
+ ---> 20c44cd7596f
+Step 2/11 : LABEL description = "Minimal image for the NBIS reproducible research course."
+.
+.
+[lots of stuff]
+.
+.
+Step 11/11 : CMD "/bin/bash"
+ ---> Running in f34c2dbbbecf
+ ---> aaa39bdeb78a
+Removing intermediate container f34c2dbbbecf
+Successfully built aaa39bdeb78a
+Successfully tagged my_docker_image:latest
+```
+
+`-f` sets which Dockerfile to use and `-t` tags the image with a name. This name is how you will refer to the image later. Lastly, the `.` is the path where the image should be build (`.` means the current directory). This had no real impact in this case, but matters if you want to import files. Validate with `docker image ls` that you can see your new image.
+
+Now it's time to make our own Dockerfile to reproduce the results from the [Conda tutorial](conda). If you haven't done the tutorial, it boils down to creating a Conda environment file, setting up that environment, downloading three RNA-seq data files, and running FastQC on those files. We will later package and run the whole RNA-seq workflow in a Docker container, but for now we keep it simple to reduce the size and time required.
+
+The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running the analysis. If we want to use the same script we need to include it in the image. To do that we first copy it to our current directory.
+
+```bash
+cp ../conda/code/run_qc.sh .
+```
+
+So, this is what we need to do:
+
+0. Create the file `Dockerfile_conda`.
+1. Set `FROM` to the image we just built.
+2. Install the required packages with Conda. We could do this by adding `environment.yml` from the Conda tutorial, but here we do it directly as `RUN` commands. We need the add the conda-forge and bioconda channels with `conda config --add channels channel_name` and install `fastqc=0.11` and `sra-tools=2.8` with `conda install`. There is little point in defining and activating a Conda environment since the container is self-contained, but do so if you want.
+3. Add `run_qc.sh` to the image by using the `COPY` instruction. The syntax is `COPY source target`, so in our case simply `COPY run_qc.sh .` to copy to the home directory in the image.
+4. Set the default command for the image to `bash run_qc.sh`, which will execute the shell script.
+5. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
+
+## Managing containers
+When you start a container with `docker run` it is given an unique id that you can use for interacting with the container. Let's try to run the image we just created:
+
+```bash
+docker run my_docker_conda
+```
+
+If everything worked `run_qc.sh` is executed and will first download and then analyse the three samples. Once it's finished you can list all containers, including those that have exited.
+
+```no-highlight
+$ docker container ls --all
+CONTAINER ID        IMAGE               COMMAND                   CREATED             STATUS                           PORTS               NA
+MES
+39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
+```
 
 
 
-Start from base depo rocker/biocontainers/jupyter
 
-## Running containers
+docker build -t friendlyname .  # Create image using this directory's Dockerfile
+docker run -p 4000:80 friendlyname  # Run "friendlyname" mapping port 4000 to 80
+docker run -d -p 4000:80 friendlyname         # Same thing, but in detached mode
+docker container ls                                # List all running containers
+docker container ls -a             # List all containers, even those not running
+docker container stop <hash>           # Gracefully stop the specified container
+docker container kill <hash>         # Force shutdown of the specified container
+docker container rm <hash>        # Remove specified container from this machine
+docker container rm $(docker container ls -a -q)         # Remove all containers
+docker image ls -a                             # List all images on this machine
+docker image rm <image id>            # Remove specified image from this machine
+docker image rm $(docker image ls -a -q)   # Remove all images from this machine
+docker login             # Log in this CLI session using your Docker credentials
+docker tag <image> username/repository:tag  # Tag <image> for upload to registry
+docker push username/repository:tag            # Upload tagged image to registry
+docker run username/repository:tag                   # Run image from a registry
+
 
 ### Mounting volumes
 
-## Distributing your Docker image
+## Distributing your image
 
 ## Running the whole thing

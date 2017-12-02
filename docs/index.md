@@ -86,7 +86,7 @@ rm -rf reproducible_research_course/snakemake/.snakemake
 ```
 
 ## Docker
-If you've done the Docker tutorial **or if you've been running Docker for Windows** you have some cleaning up to do. Docker is infamous for quickly taking up huge amounts of space, and some maintenance is necessary every now and then. Here is how to uninstall Docker completely. For instructions for how to remove individual images or containers, see the [docker tutorial](docker)
+If you've done the Docker tutorial **or if you've been running Docker for Windows** you have some cleaning up to do. Docker is infamous for quickly taking up huge amounts of space, and some maintenance is necessary every now and then. Here is how to uninstall Docker completely. For instructions for how to remove individual images or containers, see the [Docker tutorial](docker)
 
 ### macOS
 Click the Docker icon in the menu bar (upper right part of the screen) and select "Preferences". This will open up the window below. First select "Reset" and fill in your password. Then select "Uninstall". Once it's done uninstalling, drag the Docker app from Applications to Trash.
@@ -94,6 +94,7 @@ Click the Docker icon in the menu bar (upper right part of the screen) and selec
 ![alt text](docker_uninstall_osx.png)
 
 ### Linux
+TODO
 
 ### Windows
 Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7) via Control Panel > Programs > Programs and Features. Docker Toolbox will also have installed Oracle VM VirtualBox, so uninstall that as well if you're not using it for other purposes.

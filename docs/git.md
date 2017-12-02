@@ -23,8 +23,7 @@ The best way to get an idea about what git is simply to start using it. The tuto
 
 ## Tell me more
 
-* For a more complete introduction to git, check e.g.:
-https://en.wikipedia.org/wiki/Git
+* For a more complete introduction to git, check e.g. [Wikipedia](https://en.wikipedia.org/wiki/Git)
 * [A simple git guide](http://rogerdudler.github.io/git-guide/)
 * ["Got 15 minutes and want to learn Git?"](https://try.github.io/levels/1/challenges/1)
 * [Git reference manual](https://book.git-scm.com/docs)
