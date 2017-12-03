@@ -10,6 +10,8 @@ pages:
     - 'Jupyter': 'jupyter.md'
     - 'Docker': 'docker.md'
 markdown_extensions:
+  - toc:
+      permalink: 
   - admonition
   - pymdownx.details
   - pymdownx.superfences
