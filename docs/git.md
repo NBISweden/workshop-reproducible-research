@@ -164,16 +164,13 @@ git status
 git log
 ```
 
----
+!!! note "Quick recap"
+    We now added four important git commands to our repertoire:
 
-**Quick recap:** we now added four important git commands to our repertoire:
-
-* `git add` - add a file so that changes in that file can be committed.
-* `git rm` - same as `git add` but sets a file to be deleted in the next commit.
-* `git commit` - commits the changes we have staged (by using `git add` or `git rm`).
-* `git log` - shows us the commit history.
-
----
+    * `git add` - add a file so that changes in that file can be committed.
+    * `git rm` - same as `git add` but sets a file to be deleted in the next commit.
+    * `git commit` - commits the changes we have staged (by using `git add` or `git rm`).
+    * `git log` - shows us the commit history.
 
 ## Pushing
 
@@ -198,13 +195,10 @@ git push -u origin master
 * Click Commits, to the left in the main menu. You will see an overview of all commits made. Click on a specific commit to see the changes introduced by that commit.
 * Click on the commit that was the initial commit, where we added all the files. You can now click on View source in the top right corner. You will now see the files as they were when we first added them. Specifically you can see that the `Dockerfile` is back, even though we deleted it! Click on Source to the left again to return to the latest version.
 
----
+!!! note "Quick recap"
+    We now learnt yet another important git command:
 
-**Quick recap:** we now learnt yet another important git command:
-
-* `git push` -  to push local commits to the remote repository
-
----
+    * `git push` -  to push local commits to the remote repository
 
 ## Conflicts
 
@@ -334,14 +328,11 @@ git push
 
 * Go to Bitbucket in the browser and click Commits. You should be able to see a graph showing that the paths diverged (where one commit set the version to 1.4 and the other to 1.2) and that they are later merged, and the conflict fixed!
 
----
+!!! note "Quick recap"
+    We now learnt how to sync or local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
 
-**Quick recap:** we now learnt how to sync or local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
-
-* `git fetch` - downloads information from the remote repository.
-* `git pull` - both fetches and integrates changes from the remote repository.
-
----
+    * `git fetch` - downloads information from the remote repository.
+    * `git pull` - both fetches and integrates changes from the remote repository.
 
 ## Ignoring files
 
@@ -378,11 +369,9 @@ intermediate/
 
 * Go ahead and add, commit, and push the `.gitignore` file.
 
----
+!!! note "Quick recap"
+    We now learnt how to use a `.gitignore` file to control what directories, and files git should ignore.
 
-**Quick recap:** we now learnt how to use a `.gitignore` file to control what directories, and files git should ignore.
-
----
 
 ## Tagging
 
@@ -441,14 +430,11 @@ git checkout master
 
 * Again, open `environment.yml` and see that it now has version 2.0!
 
----
+!!! note "Quick recap"
+    We now learnt how to tag important commits:
 
-**Quick recap:** we now learnt how to tag important commits:
-
-* `git tag` - add a tag to a commit
-* `git checkout` - update files to match the versions in the given branch or tag name
-
----
+    * `git tag` - add a tag to a commit
+    * `git checkout` - update files to match the versions in the given branch or tag name
 
 # Where to go next?
 
