@@ -29,7 +29,7 @@ The best way to get an idea about what git is simply to start using it. The tuto
 * [Git reference manual](https://book.git-scm.com/docs)
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already.
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already.
 
 # Practical exercise
 
@@ -70,7 +70,7 @@ It will probably return something like *On branch master. Initial commit. nothin
     * `code/`  
 * Once you have done that, run `git status` again. It will tell you that there are files in the directory that are not version tracked by git.
 
-!!! check "Quick recap"
+!!! tip "Quick recap"
     We have used two `git` commands this far:
 
     * `git clone` - to clone a remote (e.g. online Bitbucket) repository locally. This is only run the first time one wants to download the repository locally.
