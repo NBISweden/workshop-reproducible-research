@@ -446,7 +446,7 @@ Finished job 2.
 ```
 
 !!! tip
-  Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run though the workflow and update the timestamps on all output files without actually executing the code in `shell`.
+    Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run though the workflow and update the timestamps on all output files without actually executing the code in `shell`.
 
 Snakemake has a number of options for marking files:
 
@@ -628,7 +628,7 @@ rule get_SRA_by_accession:
 ```
 
 !!! tip
-  Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
+    Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
 
 If we want to move all project-specific information to `config.yml` and let the Snakefile be a more general RNA-seq analysis workflow we need to:
 
