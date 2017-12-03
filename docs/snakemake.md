@@ -144,22 +144,19 @@ Now try to construct this rule yourself and name it `concatenate_files`. The syn
 
 Wouldn't it be nice if our workflow could be used for _any_ files, not just `a.txt` and `b.txt`? We can achieve this by using named wildcards (or in other ways as we will discuss later). As we've discussed, Snakemake looks at all the rules it has available and tries to assign values to all wildcards so that the targeted files can be generated. We therefore have to name the output file in a way so that it also contains information about which input files it should be based on. Try to figure out how to do this yourself. If you're stuck you can look at the spoiler below, but spend some time on it before you look.
 
-<details>
-<summary>Click to see how to implement concatenate_files</summary>
-{% highlight python %}
-rule concatenate_files:
-    input:
-        "{first}.upper.txt",
-        "{second}.upper.txt"
-    output:
-        "{first}_{second}.txt"
-    shell:
-        """
-        cat {input[0]} {input[1]} > {output}
-        """
-{% endhighlight %}
-</details>  
-<br>
+??? note "Click to see how to implement `concatenate_files`"
+    ```python
+    rule concatenate_files:
+        input:
+            "{first}.upper.txt",
+            "{second}.upper.txt"
+        output:
+            "{first}_{second}.txt"
+        shell:
+            """
+            cat {input[0]} {input[1]} > {output}
+            """
+    ```
 
 We can now control which input files to use by the name of the file we ask Snakemake to generate.
 
@@ -451,7 +448,8 @@ Finished job 2.
 .
 ```
 
-> Tip: Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run though the workflow and update the timestamps on all output files without actually executing the code in `shell`.
+!!! tip
+  Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run though the workflow and update the timestamps on all output files without actually executing the code in `shell`.
 
 Snakemake has a number of options for marking files:
 
@@ -632,7 +630,8 @@ rule get_SRA_by_accession:
         """
 ```
 
-> Tip: Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
+!!! tip
+  Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
 
 If we want to move all project-specific information to `config.yml` and let the Snakefile be a more general RNA-seq analysis workflow we need to:
 
@@ -724,4 +723,3 @@ list-x-changes (mention version)
 cluster
 conda/docker
 Archive
-why does chunk formatting change halfway through?
