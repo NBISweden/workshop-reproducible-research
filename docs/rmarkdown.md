@@ -47,7 +47,7 @@ R Markdown documents can be used both to save and execute code (with a focus on 
 * [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
 
 ## Install RStudio and R
 
@@ -492,10 +492,10 @@ Congrats! You made it to the end and are now an R Markdown expert!
 # Where to go next?
 
 ## Notebooking with Jupyter
-Check out the Jupyter, which is an alternative to R Markdown. [Go to the Jupyter tutorial](jupyter).
+Check out the Jupyter, which is an alternative to R Markdown. [Go to the Jupyter tutorial](jupyter.md).
 
 ## Version tracking with git
-It is obvious that the Rmd files are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The content of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git).
+It is obvious that the Rmd files are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The content of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git.md).
 
 ## Containerizing the analysis using Docker
-Check out Docker which can be used to run the full analysis in an isolated system containing all required dependencies. The example in the tutorial also demonstrates how you can integrate rendering of R Markdown reports using Snakemake. [Go to the Docker tutorial](docker).
+Check out Docker which can be used to run the full analysis in an isolated system containing all required dependencies. The example in the tutorial also demonstrates how you can integrate rendering of R Markdown reports using Snakemake. [Go to the Docker tutorial](docker.md).

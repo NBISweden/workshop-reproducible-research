@@ -75,7 +75,6 @@ sudo systemctl status docker
 ```
 The output should say something about "Active: active (running) since..".
 
-<a name="docker-group"></a>
 !!! tip
     As mentioned before, Docker needs to run as root. You can archive this by prepending all Docker commands with `sudo`. This is the approch that we will take in this tutorial, since the set up becomes a little simpler. If you plan on continuing using Docker you can get rid of this by adding your user to the group `docker`. Here are instructions for how to do this: [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
@@ -84,7 +83,7 @@ The output should say something about "Active: active (running) since..".
 We're almost ready to start, just one last note on nomenclature. You might have noticed that we sometimes refer to "Docker images" and sometimes to "Docker containers". A container is simply an instance of an image. You can have an image containing, say, a certain Linux distribution, and then start multiple containers running that same OS.
 
 !!! attention
-    If you don't have root privileges you have to prepend all Docker commands with `sudo ` (see [Linux set up instructions](#docker-group))
+    If you don't have root privileges you have to prepend all Docker commands with `sudo ` (see the tip above)
 
 Docker containers typically run Linux, so let's start by downloading an image containing Ubuntu (a popular Linux distribution that is based on only open-source tools).
 
@@ -136,11 +135,11 @@ Here you can do whatever; install, run, remove stuff; it will still be within th
 Ok, so Docker let's us work in any OS in a quite convenient way. That would probably be useful on its own, but it's much more powerful than that.
 
 ## Building a Docker image
-In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be `base_image + 10*(project_specific)` rather than `10*(base_image + project_specific)`. For example, Bioconda (see the [Conda tutorial](conda)) has one base image and then one layer for each of the >3000 packages available in Bioconda.
+In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git.md) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be `base_image + 10*(project_specific)` rather than `10*(base_image + project_specific)`. For example, Bioconda (see the [Conda tutorial](conda.md)) has one base image and then one layer for each of the >3000 packages available in Bioconda.
 
 Docker provides a convenient way to describe how to go from a base image to the image we want by using a "Dockerfile". This is a simple text file containing the instructions for how to generate each layer. Docker images are typically quite large, often several GBs, while Dockerfiles are small and serve as blueprints for the images. It is therefore good practice to have a Dockerfile in your project Git repository, since it allows other users to exactly replicate your project environment.
 
-If you've been doing these tutorials on Windows you've been using the Docker image `scilifelablts/reproducible_research_course_slim`. The Dockerfile for generating that image is called `Dockerfile_slim` and is located in your `git_jupyter_docker` directory. We will now go though that file and discuss the different steps and what they do. After that we'll build the image and test it out. Lastly, we'll start from that image and make a new one to reproduce the results from the [Conda tutorial](conda).
+If you've been doing these tutorials on Windows you've been using the Docker image `scilifelablts/reproducible_research_course_slim`. The Dockerfile for generating that image is called `Dockerfile_slim` and is located in your `git_jupyter_docker` directory. We will now go though that file and discuss the different steps and what they do. After that we'll build the image and test it out. Lastly, we'll start from that image and make a new one to reproduce the results from the [Conda tutorial](conda.md).
 
 Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile will typically result in one layer in the resulting image. The format for Dockerfiles is `INSTRUCTION arguments`. A full specification of the format, together with best practices, can be found [here](https://docs.docker.com/engine/reference/builder/).
 
@@ -326,10 +325,10 @@ If you want to refer to a Docker image in for example a publication, it's very i
 ## Packaging and running the MRSA workflow
 During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.4 GB image.
 
-* We've [set up a Bitbucket repository](git) for version control and for hosting our project.
-* We've defined a [Conda environment](conda) that specifies the packages we're depending on in the project.
-* We've constructed a [Snakemake workflow](snakemake) that performs the data analysis and keeps track of files and parameters.
-* We've written a [R Markdown document](rmarkdown) that takes the results from the Snakemake workflow and summarizes them in a report.
+* We've [set up a Bitbucket repository](git.md) for version control and for hosting our project.
+* We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.
+* We've constructed a [Snakemake workflow](snakemake.md) that performs the data analysis and keeps track of files and parameters.
+* We've written a [R Markdown document](rmarkdown.md) that takes the results from the Snakemake workflow and summarizes them in a report.
 
 The `git_jupyter_docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the supplementary material pdf into the Snakemake workflow as the rule `make_supplementary`.
 
