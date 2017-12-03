@@ -283,7 +283,7 @@ Note that the reason for the job is now "Forced execution". You can target files
 snakemake a_b.txt -D > summary.tsv
 ```
 
-The contents of `summary.tsv`is shown in the table below. You may want to open it in a spreadsheet like Microsoft Excel or Numbers to make it easier to read.
+The contents of `summary.tsv` is shown in the table below. You may want to open it in a spreadsheet like Microsoft Excel or Numbers to make it easier to read.
 
 
 | output_file   | date   | rule   | version   | log-file(s)   |  input-file(s)   | shellcmd   | status   | plan   |
@@ -306,7 +306,7 @@ You might wonder where Snakemake keeps track of all these things? It stores all 
 By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more flexible and reusable. In the following section we will start with a workflow that is functional but not very flexible. We will then gradually improve on it and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you can move on to one of the other tutorials instead.
 
 ## RNA-seq analysis of MRSA
-As you might remember from the [intro](index), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three samples, X treated and Y untreated. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
+As you might remember from the [intro](index), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
 
 This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
 

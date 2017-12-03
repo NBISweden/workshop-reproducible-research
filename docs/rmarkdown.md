@@ -3,8 +3,8 @@
 ## Markup
 A *markup language* is a system for annotating text documents in order to e.g. define formatting. HTML, if you are familiar with that, is an example of a markup language. HTML uses tags, such as
 ```html
-<h1>Heading<\h1>
-<h2>Sub-heading<\h2>
+<h1>Heading</h1>
+<h2>Sub-heading</h2>
 <a href="www.webpage.com">Link</a>
 <ul>
   <li>List-item1</li>
