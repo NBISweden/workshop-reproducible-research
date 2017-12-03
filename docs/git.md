@@ -240,7 +240,10 @@ git status
 git push
 ```
 
-Note that after the initial push you probably don't have to specify `-u origin master`, git will figure that out by itself. Read the error message. It should be fairly informative of what is going on. In essence it will not allow you to push since there are conflicting changes made to the remote repository.
+!!! note
+    Note that after the initial push you probably don't have to specify `-u origin master`, git will figure that out by itself.
+
+* Read the error message. It should be fairly informative of what is going on. In essence it will not allow you to push since there are conflicting changes made to the remote repository.
 
 * We will now download the changes made to the remote:
 
