@@ -2,6 +2,7 @@
 
 ## Markup
 A *markup language* is a system for annotating text documents in order to e.g. define formatting. HTML, if you are familiar with that, is an example of a markup language. HTML uses tags, such as
+
 ```html
 <h1>Heading</h1>
 <h2>Sub-heading</h2>
@@ -12,6 +13,7 @@ A *markup language* is a system for annotating text documents in order to e.g. d
   <li>List-item3</li>
 </ul>
 ```
+
 *Markdown* is a lightweight markup language which uses plain-text syntax in order to be as unobtrusive as possible, so that a human can easily read it. Some examples:
 
 ```
@@ -31,6 +33,7 @@ Bullet list:
   * oranges
   * pears
 ```
+
 A markdown document can be converted to other formats, such as `.html` or `.pdf`, for viewing in a browser or a PDF reader (the page you are reading just now is written in markdown). Markdown is somewhat ill-defined, and as a consequence of that there exists many implementations and extensions (although they share most of the syntax). *R Markdown* is one such implementation/extension.
 
 ## R Markdown
@@ -38,6 +41,7 @@ A markdown document can be converted to other formats, such as `.html` or `.pdf`
 R Markdown documents can be used both to save and execute code (with a focus on `R`) and to generate reports in various formats. This is done by mixing markdown (as in the example above), and so-called code chunks, in the same document. The code itself, as well as the output it generates, can be included in the final report. The best way to understand R Markdown is by using it, so head down to the practical exercise below to learn more!
 
 ## Tell me more
+
 * A nice "Get Started" section, as a complement to this tutorial, is available at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
 * [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 * [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
@@ -46,7 +50,9 @@ R Markdown documents can be used both to save and execute code (with a focus on 
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
 
 ## Install RStudio and R
-TODO: Fill this in.
+
+* Download and install R following the instructions [here](https://cran.rstudio.com/).
+* Download and install RStudio Desktop (free) following the instructions [here](https://www.rstudio.com/products/rstudio/download/#download).
 
 # Practical exercise
 
@@ -59,6 +65,7 @@ TODO: Fill this in.
 * This will open a template R Markdown document for you
 
 On the top is a so called YAML header:
+
 ```yaml
 ---
 title: "Untitled"
@@ -67,6 +74,7 @@ output:
     toc: true
 ---
 ```
+
 Here we can specify settings for the document, like the title and the output format.
 
 * Change the title to "My first R Markdown document".
@@ -83,6 +91,7 @@ Let's dig deeper into each of these in the following sections! But first, just t
 ### Markdown text
 
 Some commonly used formatting written in markdown is shown below:
+
 ```
 # This is a heading
 
@@ -103,6 +112,7 @@ As an example: 112/67 is equal to `r round(112/67, 2)`.
 You can also use multiple commands like this:
 I like `r fruits <- c("apples","bananas"); paste(fruits, collapse=" and ")`!
 ```
+
 The above markdown would generate something like this:
 
 > ![alt text](markdown_example.png)
@@ -121,6 +131,7 @@ Look at the last code chunk in the template R Markdown document that you just cr
 plot(pressure)
 ```
 ````
+
 The R code is surrounded by: ` ```{r}` and ` ``` `. The `r` indicates that the code chunk contains R code (it is possible to add code chunks using other languages, e.g. python). After that comes an optional chunk name, `pressure` in this case (this can be used to reference the code chunk as well as alleviate debugging). Last comes chunk options, separated by commas (in this case there is only one option: `echo=FALSE`).
 
 Below are listed some useful chunk options related to evaluating and displaying code chunks in the final file:
@@ -214,6 +225,7 @@ forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
              Group = "group", opacity = 0.4)
 ```
 ````
+
 Note that this is just one of many available examples of interactive plots that you can achieve using R Markdown.
 
 ### YAML header
@@ -253,6 +265,7 @@ params:
 plot(get(params$data), col=params$color)
 ```
 ````
+
 This will plot the dataset `cars` using the color `blue`.
 
 * Knit and see what happens!
@@ -316,6 +329,7 @@ Before you start:
 * Open the file `rmarkdown/code/supplementary_material.Rmd`
 
 To complete this part you will need to have installed the following R-packages:
+
 ```
 source("https://bioconductor.org/biocLite.R")
 biocLite("ggplot2")
@@ -448,13 +462,11 @@ When knitting to a PDF the rendering process will make use of LaTeX. In the last
 
 * See the section on Reproducibility in the PDF. Notice that the R code output giving information about the R session is a bit big? We can fix this by adding the LaTeX commands `\footnotesize` and `\normalsize` before and after this part, i.e.:
 
-````
     \footnotesize
     ```{r}
     sessionInfo()
     ```
     \normalsize
-````
 
 This will make the `sessionInfo()` text smaller and then set it back to normal.
 
@@ -468,6 +480,7 @@ output:
     includes:
       in_header: header.tex
 ```
+
 * Knit and view the results.
 
 Congrats! You made it to the end and are now an R Markdown expert!
