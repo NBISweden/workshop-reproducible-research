@@ -9,3 +9,5 @@ pages:
     - 'Rmarkdown': 'rmarkdown.md'
     - 'Jupyter': 'jupyter.md'
     - 'Docker': 'docker.md'
+markdown_extensions:
+  - admonition
