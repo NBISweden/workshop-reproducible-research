@@ -80,7 +80,7 @@ As mentioned before, Docker needs to run as root. You can archive this by prepen
 ## The very basics
 We're almost ready to start, just one last note on nomenclature. You might have noticed that we sometimes refer to "Docker images" and sometimes to "Docker containers". A container is simply an instance of an image. You can have an image containing, say, a certain Linux distribution, and then start multiple containers running that same OS.
 
-!!! note
+!!! attention
     If you don't have root privileges you have to prepend all Docker commands with `sudo ` (see Linux set up instructions)
 
 Docker containers typically run Linux, so let's start by downloading an image containing Ubuntu (a popular Linux distribution that is based on only open-source tools).
