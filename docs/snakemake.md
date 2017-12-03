@@ -75,7 +75,7 @@ rule convert_to_upper_case:
 ```
 
 !!! attention
-    Intendation is important in the Snakemake language, so make sure that you have the correct number of spaces before `input`/`output`/`shell` and their respective subsections. Don't use tabs (unless your editor automatically converts them to spaces).
+    Intendation is important in Snakefiles, so make sure that you have the correct number of spaces before `input`/`output`/`shell` and their respective subsections. Don't use tabs (unless your editor automatically converts them to spaces).
 
 A rule has a name, here it's `convert_to_upper_case`. Make an effort to name your rules in way that makes it easy to understand the purpose of the rule, as rule names are one of the main ways to interact with the workflow. The `shell` section contains the shell commands that will convert the text in the input file to upper case and send it to the output file. In the shell command string, we can refer to elements of the rule via curly brackets. Here, we refer to the output file by specifying `{output}` and to the input file by specifying `{input}`. If you're not very familiar with Bash, this particular command can be read like "send the contents of `a.txt` to the program `tr`, which will convert all characters in the set [a-z] to the corresponding character in the set [A-Z], and then send the output to `a.upper.txt`".
 
@@ -279,7 +279,7 @@ rule concatenate_files:
         """
 ```
 
-!!! note
+!!! info
     It's not really important for the exercise, but the shell command used here first outputs "Concatenating " followed by a space delimited list of the files in `input`. This string is then sent to the program `cat` where it's concatenated with `input[0]` and `input[1]` (the parameter `-` means that it should read from standard input). Lastly, the output from `cat` is sent to `{output}`.
 
 If you now run the workflow as before you should get "Nothing to be done", because no files involved in the workflow have been changed. Instead we have to force Snakemake to rerun the rule by using the `-R`flag. Let's try a dry-run.
