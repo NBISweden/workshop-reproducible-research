@@ -269,7 +269,7 @@ Note that you can skip the `git fetch`command if you want to and run `git pull` 
 * As you have probably noticed, the `git pull` command resulted in a conflict. Git tells us about this and suggests that we should fix the conflicts and commit that.
 As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks like this:
 
-```yaml
+```
   channels:
   - conda-forge
   - bioconda
