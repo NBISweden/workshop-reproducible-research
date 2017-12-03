@@ -1,7 +1,5 @@
 site_name: NBIS Reproducible research course
-theme:
-  name: mkdocs
-  word-wrap: normal
+theme: mkdocs
 pages:
   - 'index.md'
   - Tutorials:
@@ -15,3 +13,4 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+extra_css: [extra.css]
