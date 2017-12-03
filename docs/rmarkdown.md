@@ -405,7 +405,12 @@ knitr::kable(d, caption="Sample info",
 
 Let's move on to the figures!
 
-* Go to the `counts-barplot` chunk. To add a figure legend we have to use a chunk option (so not in the same way as for tables). Add the chunk option, `fig.cap="Counting statistics per sample, in terms of read counts for genes and reads not counted for various reasons."`
+* Go to the `counts-barplot` chunk. To add a figure legend we have to use a chunk option (so not in the same way as for tables). Add the chunk option:
+
+```
+fig.cap="Counting statistics per sample, in terms of read counts for genes and reads not counted for various reasons."
+```
+
 * Knit and check the outcome!
 * Next, add a figure legend to the figure in the `gene-heatmap` chunk. Here we can try out the possibility to add R code to generate the legend:
 
@@ -425,7 +430,18 @@ The heatmap still looks a bit odd. Let's play with the `fig.height` and `out.hei
 knitr::include_graphics(normalizePath(rulegraph_file))
 ```
 
-* Also, add the chunk options `fig.cap="A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow."` and `out.height="11cm"`.
+* Also, add the chunk options:
+
+```
+fig.cap="A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow."
+```
+
+and:
+
+```
+out.height="11cm"
+```
+
 * Knit and checkt the results.
 
 When knitting to a PDF the rendering process will make use of LaTeX. In the last part we will see how we can add LaTeX commands directly in the R Markdown document to further customize the look.
