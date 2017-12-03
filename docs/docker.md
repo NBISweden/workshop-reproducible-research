@@ -297,6 +297,8 @@ docker run --rm -v $(pwd)/fastqc_results:/home/results/fastqc my_docker_conda
 
 We can also use bind mounts for getting files into the container rather than out. We've mainly been discussing Docker in the context of  packaging an analysis pipeline to allow anyone to reproduce its outcome. Another application is as a kind of very powerful environment manager, similarly to how we've used Conda before. If you've organised your work into projects, then you can mount the whole project directory in a container and use the container as the terminal for running stuff while still using your normal OS for editing files and so on. Let's try this out by mounting our current directory and start an interactive terminal. Note that this will override the `CMD` command, so we won't start the analysis automatically when we start the container.
 
+TODO: Validate this on Windows
+
 ```bash
 docker run -it --rm -v $(pwd):/home/ my_docker_conda /bin/bash
 ```
@@ -315,6 +317,20 @@ There would be little point in going through all the trouble of making your anal
 That was easy!
 
 If you want to refer to a Docker image in for example a publication, it's very important that it's the correct version of the image. You can do this by adding a tag to the name like this `docker build -t your_dockerhub_id/image_name:tag_name`.
+
+## Packaging and running the MRSA workflow
+During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.4 GB image.
+
+* We've [set up a Bitbucket repository](git) for version control and for hosting our project.
+* We've defined a [Conda environment](conda) that specifies the packages we're depending on in the project.
+* We've constructed a [Snakemake workflow](snakemake) that performs the data analysis and keeps track of files and parameters.
+* We've written a [R Markdown document](rmarkdown) that takes the results from the Snakemake workflow and summarizes them in a report.
+
+The `git_jupyter_docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the supplementary material pdf into the Snakemake workflow as the rule `make_supplementary`.
+
+Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.3.1` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary material report to PDF, but it also takes up quite a lot of space (2.17 GB). The other main difference is that we install a number of R packages with `install2.r`. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will activate the Conda environment and run the whole Snakemake workflow by default.
+
+Now run `docker build` as before and go get a coffe while the image builds. Validate with `docker image ls`. Now all that remains is to run the whole thing with `docker run`. We just want to get the results, so mount the directory `/home/results/` to, say, `mrsa_results` in your current directory. Well done! You now have an image that allows anyone to exactly reproduce your analysis workflow (if you first `docker push` to Dockerhub that is).
 
 ## Cleaning up
 As mentioned before, Docker tends to consume a lot of disk space. In general, `docker image rm` is used for removing images and `docker container rm` for removing containers. Here are some convenient commands for cleaning up.
@@ -335,5 +351,3 @@ docker container rm $(docker container ls -a -q)
 # Remove ALL images
 docker image rm $(docker image ls -a -q)
 ```
-
-## Running the whole thing
