@@ -1,8 +1,8 @@
 # Introduction to Docker
 ## What is Docker?
-Docker is a tool designed to make it easier to create, deploy, and run applications by isolating them in "containers". The idea is to package your program together with everything it needs (other packages it depends on, various environment settings, data..) into one unit, i.e. a container. This way we can ensure that the code generates exactly the same results regardless of where it's executed. Containers are in many ways similar to virtual machines but more lightweight. Rather than starting up a whole new OS, Docker containers can use the same Linux kernel as the system that they're running on. This makes them much faster and smaller compared to virtual machines. While this might sound a bit technical, actually using Docker is quite easy, fun and very powerful.
+Docker is a tool designed to make it easier to create, deploy, and run applications by isolating them in "containers". The idea is to package your code together with everything it needs (other packages it depends on, various environment settings, data..) into one unit, i.e. a container. This way we can ensure that the code results in exactly the same output regardless of where it's executed. Containers are in many ways similar to virtual machines but more lightweight. Rather than starting up a whole new OS, Docker containers can use the same Linux kernel as the system that they're running on. This makes them much faster and smaller compared to virtual machines. While this might sound a bit technical, actually using Docker is quite easy, fun and very powerful.
 
-Just as with Git, Docker was designed for software development but is rapidly becoming widly used in scientific research. Say that you are building a web application. You could then run the web server in one container and the database in another, thereby reducing the risk of one system affecting the other in unpredictable ways. Docker containers have also proven to be a very good solution for packaging, running and distributing scientific data analyses. Some applications relevant for reproducible research can be:
+Just as with Git, Docker was designed for software development but is rapidly becoming widely used in scientific research. Say that you are building a web application. You could then run the web server in one container and the database in another, thereby reducing the risk of one system affecting the other in unpredictable ways. Docker containers have also proven to be a very good solution for packaging, running and distributing scientific data analyses. Some applications relevant for reproducible research can be:
 
 * When publishing, package your whole analysis pipeline together with your data in a Docker image and let it accompany the article. This way interested readers can reproduce your analysis at the push of a button.
 * Packaging your analysis in a Docker container enables you to develop on e.g. your laptop and then seamlessly move to cluster or cloud to run the actual analysis.
@@ -21,7 +21,7 @@ This exercise depends on files from the course BitBucket repo. Take a look at th
 First we need to install Docker. This is quite straightforward on macOS or Windows and a little more cumbersome on Linux. Note that Docker runs as root, which means that you have to have sudo privileges on your computer in order to install or run Docker.
 
 ### macOS
-Go to  [https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac) and select "Get Docker for Mac (Stable)". This will download a dmg file. Click on it once it's done to start the installation. This will open up a window where you can drag the Docker.app to Applications. Close the window and click the Docker app from the Applications menu. Now it's basically just to click "next" a couple of times and we should be good to go. You can find the Docker icon in the menu bar in the upper right part of the screen.
+Go to  [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac) and select "Get Docker for Mac (Stable)". This will download a dmg file. Click on it once it's done to start the installation. This will open up a window where you can drag the Docker.app to Applications. Close the window and click the Docker app from the Applications menu. Now it's basically just to click "next" a couple of times and we should be good to go. You can find the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Windows
 The instructions are different depending on if you have Windows 10 or Windows 7 (earlier versions aren't supported). In order to run Docker on Windows your computer must support Hardware Virtualization Technology and virtualization must be enabled. This is typically done in BIOS. Setting this is outside the scope of this tutorial, so we'll simply go ahead as if though it's enabled and hope that it works.
@@ -100,7 +100,7 @@ Digest: sha256:7c67a2206d3c04703e5c23518707bdd4916c057562dd51c74b99b2ba26af0f79
 Status: Downloaded newer image for ubuntu:latest
 ```
 
-You might have noticed that it downloaded five different layers with weird hashes as names ("660c48dd555d" and so on). This represents a very fundamental property of Docker images that we'll get back to in just a little while. For now let's just look at our new collection of Docker images:
+You might have noticed that it downloaded five different layers with weird hashes as names ("660c48dd555d" and so on). This represents a very fundamental property of Docker images that we'll get back to in just a little while. For now let's just look at our new and growing collection of Docker images:
 
 ```no-highlight
 $ docker image ls
@@ -108,7 +108,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 ubuntu              latest              20c44cd7596f        2 weeks ago         123MB
 ```
 
-We can now start a container running our image. We can refer to the image either by "REPOSITORY" or "IMAGE ID". The syntax for `docker run` is `docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`. Let's run the command `uname -a` to get some info about the operating system. First run on your own system (skip this if you're using Windows, or use `ver` which is the Windows equivalent).
+We can now start a container running our image. We can refer to the image either by "REPOSITORY:TAG" ("latest" is the default to we can omit it) or "IMAGE ID". The syntax for `docker run` is `docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`. Let's run the command `uname -a` to get some info about the operating system. First run on your own system (skip this if you're using Windows, or use `ver` which is the Windows equivalent).
 
 ```no-highlight
 $ uname -a
@@ -130,12 +130,13 @@ $ docker run -it ubuntu
 root@1f339e929fa9:/#
 ```
 
-Here you can do whatever; install, run, remove stuff; it will still be within the container and never affect your host system. Now exit the container with `exit`.
+Here you can do whatever; install, run, remove stuff. It will still be within the container and never affect your host system. Now exit the container with `exit`.
 
-Ok, so Docker let's us work in any OS in a quite convenient way. That would probably be useful on its own, but it's much more powerful than that.
+Ok, so Docker let's us work in any OS in a quite convenient way. That would probably be useful on its own, but Docker is much more powerful than that.
 
 ## Building a Docker image
-In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git.md) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be `base_image + 10*(project_specific)` rather than `10*(base_image + project_specific)`. For example, Bioconda (see the [Conda tutorial](conda.md)) has one base image and then one layer for each of the >3000 packages available in Bioconda.
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git.md) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be $$base_image + 10*(project_specific)$$ rather than $$10*(base_image + project_specific)$$. For example, Bioconda (see the [Conda tutorial](conda.md)) has one base image and then one individual layer for each of the >3000 packages available in Bioconda.
 
 Docker provides a convenient way to describe how to go from a base image to the image we want by using a "Dockerfile". This is a simple text file containing the instructions for how to generate each layer. Docker images are typically quite large, often several GBs, while Dockerfiles are small and serve as blueprints for the images. It is therefore good practice to have a Dockerfile in your project Git repository, since it allows other users to exactly replicate your project environment.
 
