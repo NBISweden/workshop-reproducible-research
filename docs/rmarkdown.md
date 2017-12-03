@@ -359,11 +359,19 @@ In particular, make it a practice to keep track of all input files and add them 
 
 ```r
 rmarkdown::render("code/supplementary_material.Rmd",
-                  output_dir="results",
-                  knit_root_dir="../")
+                  output_dir="results")
 ```
 
-The reason for this is that we can then redirect the output PDF file to be saved in the `results/` directory. The `knit_root_dir` argument is needed in order to use the `rmarkdown` directory as the working directory for running the R code in the Rmd file, rather than `rmarkdown/code` which would be the default (same directory as the Rmd file itself). It is good practice to write all code as if it would be executed from the project root directory (`rmarkdown/` in this case). You can see that we have specified the files in `params` with relative paths from the project root directory.
+The reason for this is that we can then redirect the output PDF file to be saved in the `results/` directory.
+
+Normally, while rendering, R code in the Rmd file will be executed using the directory of the Rmd file as working directory (`rmarkdown/code` in this case).
+However, it is good practice to write all code as if it would be executed from the project root directory (`rmarkdown/` in this case). For instance, you can see that we have specified the files in `params` with relative paths from the project root directory. To set a different directory as working directory for all chunks one modifies the knit options like this:
+
+```
+knitr::opts_knit$set(root.dir=normalizePath('../'))
+```
+
+Here we set the working directory to the parent directory of the Rmd file (`../`), in other words, the project root. Use this rather than `setwd()` while working with Rmd files.
 
 * Take a look at the output. You should find the PDF file in the `results` directory.
 
