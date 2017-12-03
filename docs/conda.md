@@ -37,6 +37,14 @@ rm Miniconda3-latest-Linux-x86_64.sh
 conda --version
 ```
 
+* Next, we will configure the default channels (from where packages will be searched for and downloaded):
+
+```
+conda config --add channels defaults
+conda config --add channels conda-forge
+conda config --add channels bioconda
+```
+
 # Practical exercise
 
 ## Get going with environments
