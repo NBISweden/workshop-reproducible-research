@@ -70,7 +70,7 @@ It will probably return something like *On branch master. Initial commit. nothin
     * `code/`  
 * Once you have done that, run `git status` again. It will tell you that there are files in the directory that are not version tracked by git.
 
-!!! tip "Quick recap"
+!!! summary "Quick recap"
     We have used two `git` commands this far:
 
     * `git clone` - to clone a remote (e.g. online Bitbucket) repository locally. This is only run the first time one wants to download the repository locally.
