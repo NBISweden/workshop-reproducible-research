@@ -462,11 +462,13 @@ When knitting to a PDF the rendering process will make use of LaTeX. In the last
 
 * See the section on Reproducibility in the PDF. Notice that the R code output giving information about the R session is a bit big? We can fix this by adding the LaTeX commands `\footnotesize` and `\normalsize` before and after this part, i.e.:
 
-    \footnotesize
-    ```{r}
-    sessionInfo()
-    ```
-    \normalsize
+````
+\footnotesize
+```{r}
+sessionInfo()
+```
+\normalsize
+````
 
 This will make the `sessionInfo()` text smaller and then set it back to normal.
 
