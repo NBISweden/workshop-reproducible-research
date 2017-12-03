@@ -240,7 +240,7 @@ git status
 git push
 ```
 
-!!! note
+!!! tip
     Note that after the initial push you probably don't have to specify `-u origin master`, git will figure that out by itself.
 
 * Read the error message. It should be fairly informative of what is going on. In essence it will not allow you to push since there are conflicting changes made to the remote repository.
@@ -265,7 +265,8 @@ git diff origin/master
 git pull
 ```
 
-Note that you can skip the `git fetch`command if you want to and run `git pull` directly. The difference is that `fetch` will just update git with the latest information of the remote status, whereas `pull` will try to integrate and sync those changes to your local clone directly.
+!!! tip
+    Note that you can skip the `git fetch`command if you want to and run `git pull` directly. The difference is that `fetch` will just update git with the latest information of the remote status, whereas `pull` will try to integrate and sync those changes to your local clone directly.
 
 * As you have probably noticed, the `git pull` command resulted in a conflict. Git tells us about this and suggests that we should fix the conflicts and commit that.
 As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks like this:
