@@ -456,7 +456,7 @@ and:
 out.height="11cm"
 ```
 
-* Knit and checkt the results.
+* Knit and check the results.
 
 When knitting to a PDF the rendering process will make use of LaTeX. In the last part we will see how we can add LaTeX commands directly in the R Markdown document to further customize the look.
 
