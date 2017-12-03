@@ -33,12 +33,12 @@ cd reproducible_research_course
 ![alt text](tutorials_overview.svg)
 ![alt text](tutorials_alternative_order.svg)
 
-* [Conda](conda)
-* [Snakemake](snakemake)
-* [Git](git)
-* [R Markdown](rmarkdown)
-* [Jupyter](jupyter)
-* [Docker](docker)
+* [Conda](conda.md)
+* [Snakemake](snakemake.md)
+* [Git](git.md)
+* [R Markdown](rmarkdown).md
+* [Jupyter](jupyter.md)
+* [Docker](docker.md)
 
 # Take down
 Depending on which of the tutorials you have taken, there might be quite a lot of files stored on your computer. Here are instructions for how to remove them.
@@ -86,7 +86,7 @@ rm -rf reproducible_research_course/snakemake/.snakemake
 ```
 
 ## Docker
-If you've done the Docker tutorial **or if you've been running Docker for Windows** you have some cleaning up to do. Docker is infamous for quickly taking up huge amounts of space, and some maintenance is necessary every now and then. Here is how to uninstall Docker completely. For instructions for how to remove individual images or containers, see the [Docker tutorial](docker)
+If you've done the Docker tutorial **or if you've been running Docker for Windows** you have some cleaning up to do. Docker is infamous for quickly taking up huge amounts of space, and some maintenance is necessary every now and then. Here is how to uninstall Docker completely. For instructions for how to remove individual images or containers, see the [Docker tutorial](docker.md)
 
 ### macOS
 Click the Docker icon in the menu bar (upper right part of the screen) and select "Preferences". This will open up the window below. First select "Reset" and fill in your password. Then select "Uninstall". Once it's done uninstalling, drag the Docker app from Applications to Trash.

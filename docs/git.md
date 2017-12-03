@@ -29,7 +29,7 @@ The best way to get an idea about what git is simply to start using it. The tuto
 * [Git reference manual](https://book.git-scm.com/docs)
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already.
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already.
 
 # Practical exercise
 

@@ -11,7 +11,7 @@ A Conda package is a compressed tarball (system-level libraries, Python or other
 A Conda environment is essentially a directory that contains a specific collection of conda packages that you have installed. Packages are symlinked between environments to avoid unnecessary duplication.
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
 
 ## Install Conda (not for Windows)
 If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
@@ -200,7 +200,7 @@ Note that all that was needed to carry out the analysis and generate these files
 # Where to go next?
 
 ## Version tracking with git
-It is obvious that these two files (`environment.yml` and `run_qc.sh`) are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The content of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git).
+It is obvious that these two files (`environment.yml` and `run_qc.sh`) are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The content of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git.md).
 
 ## Workflow management
-We now performed several analysis steps through the code in `run_qc.sh`. That is ok, but it can quickly get complicated when the analysis workflow gets more complex and is split into several code files. Suddenly it is not obvious which code to run and in what order it should be executed, in order to rerun the full project analysis from scratch. A good solution to this is to use a workflow manager. [Go to the Snakemake tutorial](snakemake).
+We now performed several analysis steps through the code in `run_qc.sh`. That is ok, but it can quickly get complicated when the analysis workflow gets more complex and is split into several code files. Suddenly it is not obvious which code to run and in what order it should be executed, in order to rerun the full project analysis from scratch. A good solution to this is to use a workflow manager. [Go to the Snakemake tutorial](snakemake.md).
