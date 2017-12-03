@@ -1,5 +1,6 @@
 site_name: NBIS Reproducible research course
-theme: mkdocs
+theme:
+  name: mkdocs
   word-wrap: normal
 pages:
   - 'index.md'
