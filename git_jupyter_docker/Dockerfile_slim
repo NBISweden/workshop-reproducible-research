@@ -23,5 +23,8 @@ RUN conda install -c conda-forge git ca-certificates nano && \
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
 
+# Set workdir
+WORKDIR /home
+
 # Start Bash shell by default
 CMD /bin/bash

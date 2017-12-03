@@ -207,25 +207,28 @@ Here we install some packages with Conda. Note that we run `conda clean --all` t
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
 
+# Set workdir
+WORKDIR /home
+
 # Start Bash shell by default
 CMD /bin/bash
 ```
 
-`SHELL` simply sets which shell to use. `CMD` is an interesting instruction. It sets what a container should run when nothing else is specified. It can be used for example for printing some information on how to use the image or, as here, start a shell for the user. If the purpose of your image is to accompany a publication then `CMD` could be to run the workflow that generates the paper figures from raw data.
+`SHELL` simply sets which shell to use and `WORKDIR` which directory the container should start in. `CMD` is an interesting instruction. It sets what a container should run when nothing else is specified. It can be used for example for printing some information on how to use the image or, as here, start a shell for the user. If the purpose of your image is to accompany a publication then `CMD` could be to run the workflow that generates the paper figures from raw data.
 
 Ok, so now we understand how a Dockerfile works. Constructing the image from the Dockerfile is really simple. Try it out now.
 
 ```no-highlight
 $ docker build -f Dockerfile_slim -t my_docker_image .
-Step 1/11 : FROM ubuntu:16.04
+Step 1/12 : FROM ubuntu:16.04
  ---> 20c44cd7596f
-Step 2/11 : LABEL description = "Minimal image for the NBIS reproducible research course."
+Step 2/12 : LABEL description = "Minimal image for the NBIS reproducible research course."
 .
 .
 [lots of stuff]
 .
 .
-Step 11/11 : CMD "/bin/bash"
+Step 12/12 : CMD "/bin/bash"
  ---> Running in f34c2dbbbecf
  ---> aaa39bdeb78a
 Removing intermediate container f34c2dbbbecf
@@ -268,29 +271,69 @@ MES
 39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
 ```
 
+If we run `docker run` without any flags, your local terminal is attached to the container. This enables you to see the output of `run_qc.sh`, but also disables you from doing anything else in the meantime. We can start a container in detached mode with the `-d` flag. Try this out and run `docker container ls` to validate that the container is running.
 
+By default Docker keeps containers after they have exited. This can be convenient for debugging or if you want to look at logs, but it also consumes huge amounts of disk space. It's therefore a good idea to always run with `--rm`, which will remove the container once it has exited.
 
+If we want to enter a running container, there are two related commands we can use, `docker attach` and `docker exec`. `docker attach` will attach local standard input, output, and error streams to a running container. This can be useful if your terminal closed down for some reason or if you started a terminal in detached mode and changed your mind. `docker exec` can be used to execute any command in a running container. It's typically used to peak in at what is happening by opening up a new shell. Here we start the container in detached mode and then start a new interactive shell so that we can see what happens. If you use `ls` inside the container you can see how the script generates file in the `data`, `intermediate` and `results` directories. Note that you will be thrown out when the container exits though.
 
-docker build -t friendlyname .  # Create image using this directory's Dockerfile
-docker run -p 4000:80 friendlyname  # Run "friendlyname" mapping port 4000 to 80
-docker run -d -p 4000:80 friendlyname         # Same thing, but in detached mode
-docker container ls                                # List all running containers
-docker container ls -a             # List all containers, even those not running
-docker container stop <hash>           # Gracefully stop the specified container
-docker container kill <hash>         # Force shutdown of the specified container
-docker container rm <hash>        # Remove specified container from this machine
-docker container rm $(docker container ls -a -q)         # Remove all containers
-docker image ls -a                             # List all images on this machine
-docker image rm <image id>            # Remove specified image from this machine
-docker image rm $(docker image ls -a -q)   # Remove all images from this machine
-docker login             # Log in this CLI session using your Docker credentials
-docker tag <image> username/repository:tag  # Tag <image> for upload to registry
-docker push username/repository:tag            # Upload tagged image to registry
-docker run username/repository:tag                   # Run image from a registry
+```bash
+docker run -d --rm --name my_container my_docker_conda
+docker exec -it my_container /bin/bash
+```
 
+Sometimes you would like to enter a stopped container. It's not a common use case, but it's included here for those of you who are doing these tutorials on Windows using Docker. If you for some reason happen to shut down your container it can result in loss of a lot of work if you're not able to restart it. If you were to use `docker start` it would rerun the command set by `CMD`, which may not be what you want. Instead we use `docker commit container_name new_image_name` to convert the container `container_name` to the image `new_image_name`. We can the start a new container in that image as we normally would with `docker run -it --rm new_image_name`. Weird, right? In theory this would allow you to bypass using Dockerfiles and instead generate your image by entering an empty container in interactive mode, install everything there, and then commit as a new image. However, by doing this you would lose many of the advantages that Dockerfiles provide, such as easy distribution and efficient space usage via layers.
 
-### Mounting volumes
+### Bind mounts
+There are obviously some advantages to isolating and running a data analysis in containers, but at some point you need to be able to interact with the host system to actually deliver the results. This is done via bind mounts. When you use a bind mount, a file or directory on the *host machine* is mounted into a container. That way, when the container generates a file in such a directory it will appear in the mounted directory on your host system.
 
-## Distributing your image
+> Tip: Docker also has a more advanced way of data storage called [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide added flexibility and are independent of the host machine's filesystem having a specific directory structure available. They are particularly useful when you want to share data *between* containers.
+
+Say that we are interested in getting the resulting html reports from FastQC in our container. We can do this by mounting a directory called, say, `fastqc_results` in your current directory to the `/home/results/fastqc` directory in the container. Validate that it worked by opening one of the html reports.
+
+```bash
+docker run --rm -v $(pwd)/fastqc_results:/home/results/fastqc my_docker_conda
+```
+
+We can also use bind mounts for getting files into the container rather than out. We've mainly been discussing Docker in the context of  packaging an analysis pipeline to allow anyone to reproduce its outcome. Another application is as a kind of very powerful environment manager, similarly to how we've used Conda before. If you've organised your work into projects, then you can mount the whole project directory in a container and use the container as the terminal for running stuff while still using your normal OS for editing files and so on. Let's try this out by mounting our current directory and start an interactive terminal. Note that this will override the `CMD` command, so we won't start the analysis automatically when we start the container.
+
+```bash
+docker run -it --rm -v $(pwd):/home/ my_docker_conda /bin/bash
+```
+
+If you run `ls` you will see that all the files in the `git_jupyter_docker` directory are there. Now edit `run_qc.sh` *on your host system* to download, say, 15000 reads instead of 12000. Then rerun the analysis with `bash run_qc.sh`. Tada! Validate that the resulting html reports look fine and then exit the container with `exit`.
+
+## Distributing your images
+There would be little point in going through all the trouble of making your analyses reproducible if you can't distribute them to others. Luckily, sharing Docker containers is extremely easy. The most common way is to use [Dockerhub](https://hub.docker.com). Dockerhub lets you host unlimited public images and one private image for free, after that they charge a small fee. If you want to try it out here is how to do it:
+
+1. Register for an account on [Dockerhub](https://hub.docker.com).
+2. Use `docker login -u your_dockerhub_id` to login to the Dockerhub registry.
+3. When you build an image, tag it with `-t your_dockerhub_id/image_name`, rather than just `image_name`.
+4. Once the image has been built, upload it to Dockerhub with `docker push your_dockerhub_id/image_name`.
+5. If another user runs `docker run your_dockerhub_id/image_name` the image will automatically be retrieved from Dockerhub. You can use `docker pull` for downloading without running.
+
+That was easy!
+
+If you want to refer to a Docker image in for example a publication, it's very important that it's the correct version of the image. You can do this by adding a tag to the name like this `docker build -t your_dockerhub_id/image_name:tag_name`.
+
+## Cleaning up
+As mentioned before, Docker tends to consume a lot of disk space. In general, `docker image rm` is used for removing images and `docker container rm` for removing containers. Here are some convenient commands for cleaning up.
+
+```bash
+# Remove unused images
+docker image prune
+
+# Remove stopped containers
+docker container prune
+
+# Remove unused volumes (not used here, but included for reference)
+docker volume prune
+
+# Stop and remove ALL containers
+docker container rm $(docker container ls -a -q)
+
+# Remove ALL images
+docker image rm $(docker image ls -a -q)
+```
 
 ## Running the whole thing
