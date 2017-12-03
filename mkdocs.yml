@@ -11,3 +11,4 @@ pages:
     - 'Docker': 'docker.md'
 markdown_extensions:
   - admonition
+  - pymdownx.details
