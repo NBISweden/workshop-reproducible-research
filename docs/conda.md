@@ -17,6 +17,7 @@ This tutorial depends on files from the course BitBucket repo. Take a look at th
 If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 
 The easiest way to get going is to install Conda by downloading the correct binary from [here](https://conda.io/miniconda.html) and running the installer. This can be done on the command line as shown below:
+
 ```bash
 # --- Example (don't run) ---
 # Install Miniconda on 64-bit Linux for python3:
@@ -140,6 +141,7 @@ After making a few different environments and installing a bunch of packages, Co
 ```bash
 conda clean -a
 ```
+
 This will remove package tar-balls that are left from package installations, unused packages (i.e. not present in any environments), and cached data.
 
 ## How to use in a reproducible project setting
