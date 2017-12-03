@@ -287,7 +287,8 @@ Sometimes you would like to enter a stopped container. It's not a common use cas
 ### Bind mounts
 There are obviously some advantages to isolating and running a data analysis in containers, but at some point you need to be able to interact with the host system to actually deliver the results. This is done via bind mounts. When you use a bind mount, a file or directory on the *host machine* is mounted into a container. That way, when the container generates a file in such a directory it will appear in the mounted directory on your host system.
 
-> Tip: Docker also has a more advanced way of data storage called [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide added flexibility and are independent of the host machine's filesystem having a specific directory structure available. They are particularly useful when you want to share data *between* containers.
+!!! tip
+    Docker also has a more advanced way of data storage called [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide added flexibility and are independent of the host machine's filesystem having a specific directory structure available. They are particularly useful when you want to share data *between* containers.
 
 Say that we are interested in getting the resulting html reports from FastQC in our container. We can do this by mounting a directory called, say, `fastqc_results` in your current directory to the `/home/results/fastqc` directory in the container. Validate that it worked by opening one of the html reports.
 
