@@ -15,7 +15,7 @@ This tutorial depends on files from the course BitBucket repo. Take a look at th
 ## Install Jupyter Notebook
 If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda. Create an environment containing the packages `jupyter` and `nb_conda` (for managing Conda environments from Jupyter) from the `conda-forge` channel. Don't forget to activate the environment.
 
-If you don't want to use Conda you can also install Jupyter with `pip3 install jupyter`.
+(If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
 
 # Practical exercise
 ## The Jupyter Notebook dashboard

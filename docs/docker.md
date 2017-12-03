@@ -26,7 +26,7 @@ Go to  [docker.com](https://docs.docker.com/docker-for-mac/install/#download-doc
 ### Windows
 The instructions are different depending on if you have Windows 10 or Windows 7 (earlier versions aren't supported). In order to run Docker on Windows your computer must support Hardware Virtualization Technology and virtualization must be enabled. This is typically done in BIOS. Setting this is outside the scope of this tutorial, so we'll simply go ahead as if though it's enabled and hope that it works.
 
-On Windows 10 we will install Docker for Windows, which is available at [https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows). Select "Get Docker for Windows (Stable)".
+On Windows 10 we will install Docker for Windows, which is available at [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows). Select "Get Docker for Windows (Stable)".
 
 1. Once it's downloaded, double-click `Docker for Windows Installer.exe` to run the installer.
 
@@ -36,7 +36,7 @@ On Windows 10 we will install Docker for Windows, which is available at [https:/
 
 4. Now we want to share your local drive(s), so that they are available for Docker. Right-click on the Docker whale icon in the task bar and select "Settings". Go to "Shared drives" and enable the drives you want Docker to have access to. Note that the drive where you'll be running the tutorials from has to be enabled (most likely `C:\`).
 
-On Windows 7 we will instead use Docker Toolbox, which is available at [https://docs.docker.com/toolbox/toolbox_install_windows/](https://docs.docker.com/toolbox/toolbox_install_windows/). Select "Get Docker Toolbox for Windows".
+On Windows 7 we will instead use Docker Toolbox, which is available at [docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select "Get Docker Toolbox for Windows".
 
 1. Install Docker Toolbox by double-clicking the installer. Step through the installation and accept all the defaults. If Windows security dialog prompts you to allow the program to make a change, choose Yes. If you get a prompt asking "Would you like to install this device software?" select Install.
 
@@ -138,8 +138,8 @@ Ok, so Docker lets us work in any OS in a quite convenient way. That would proba
     In this section we've learnt:
 
     * How to use `docker pull` for downloading images from a central registry.
-    * How to use `docker image ls` getting information about the images we have on our system.
-    * How to use `docker run` to start a container from an image.
+    * How to use `docker image ls` for getting information about the images we have on our system.
+    * How to use `docker run` for starting a container from an image.
 
 ## Building a Docker image
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
@@ -180,7 +180,7 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
 ```
 
-The first command will update the apt-get package lists and the seconds will install the packages `bzip2`, `wget`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and re-runs the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
+The first command will update the apt-get package lists and the seconds will install the packages `bzip2`, `wget`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
 
 The next `RUN` command retrieves and installs Miniconda3. Let's see what would happen if we had that as three separate commands instead.
 
