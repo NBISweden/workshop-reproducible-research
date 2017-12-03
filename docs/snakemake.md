@@ -225,35 +225,32 @@ The main difference here is that now each node is a job instead of a rule. You c
 
 We've discussed before that one of the main purposes of using a WFM is that it automatically makes sure that everything is up to date. This is done by recursively checking that outputs are always newer than inputs for all the rules involved in the generation of you target files. Now try to change the content of `a.txt` to some other text and save it. What do you think will happen if you run `snakemake -n -r a_b.txt` again?
 
-<details>
-<summary>Click to see output</summary>
-{% highlight bash %}
-$ snakemake -n -r a_b.txt
+??? note "Click to see output"
+    ```no-highlight
+    $ snakemake -n -r a_b.txt
 
-rule convert_to_upper_case:
-    input: a.txt
-    output: a.upper.txt
-    jobid: 2
-    reason: Updated input files: a.txt
-    wildcards: some_name=a
-
+    rule convert_to_upper_case:
+        input: a.txt
+        output: a.upper.txt
+        jobid: 2
+        reason: Updated input files: a.txt
+        wildcards: some_name=a
 
 
-rule concatenate_files:
-    input: a.upper.txt, b.upper.txt
-    output: a_b.txt
-    jobid: 0
-    reason: Input files updated by another job: a.upper.txt
-    wildcards: first=a, second=b
 
-Job counts:
-        count   jobs
-        1       concatenate_files
-        1       convert_to_upper_case
-        2
-{% endhighlight %}
-</details>  
-<br>
+    rule concatenate_files:
+        input: a.upper.txt, b.upper.txt
+        output: a_b.txt
+        jobid: 0
+        reason: Input files updated by another job: a.upper.txt
+        wildcards: first=a, second=b
+
+    Job counts:
+            count   jobs
+            1       concatenate_files
+            1       convert_to_upper_case
+            2
+    ```
 
 Were you correct? Also generate the job graph and compare to the one generated above. What's the difference? Now rerun without `-n` and validate that `a_b.txt` contains the new text. Note that Snakemake doesn't look at the contents of files when trying to determine what has changed, only at the timestamp for when they were last modified.
 
