@@ -1,5 +1,5 @@
 # Introduction to Jupyter Notebook
-The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and text. The functionality is partly overlapping with [R Markdown](rmarkdown), in that they both use markdown and code chunks to generate reports that integrate results of computations with the code that generated them. Jupyter Notebook comes from the Python community while R Markdown was developed by RStudio, but you could use almost any programming language in either alternative. In practice though, it's quite common that R developers use Jupyter but probably not very common that Python developers use RStudio.
+The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and text. The functionality is partly overlapping with R Markdown (see the [tutorial](rmarkdown)), in that they both use markdown and code chunks to generate reports that integrate results of computations with the code that generated them. Jupyter Notebook comes from the Python community while R Markdown was developed by RStudio, but you could use most common programming languages in either alternative. In practice though, it's quite common that R developers use Jupyter but probably not very common that Python developers use RStudio.
 
 TODO: Some more text here. Sharing and server and git and gist and nbviever.
 
@@ -19,7 +19,7 @@ If you don't want to use Conda you can also install Jupyter with `pip3 install j
 
 # Practical exercise
 ## The Jupyter Notebook dashboard
-One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you do everything from your browser. Ok, not quite everything, you first have to start the Jupyter Notebook server.
+One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. Ok, not quite everything, you first have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook
@@ -36,6 +36,10 @@ $ jupyter notebook
 [I 18:02:27.209 NotebookApp] Accepting one-time-token-authenticated connection from ::1
 ```
 
-Jupyter Notebook probably opened up a web browser for you automatically, otherwise go to the adress specified in the message in the terminal.
+Jupyter Notebook probably opened up a web browser for you automatically, otherwise go to the adress specified in the message in the terminal. Note that the server is running locally (as http://localhost:8888) so this does not require that you have an internet connection.
 
 ![alt text](jupyter_dashboard.png)
+
+What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The "Files" tab is where all your files are kept, the "Running" tab keeps track of all your processes and the third tab, "Clusters", is provided by IPython parallel, IPython's parallel computing framework. It allows you to control many individual engines, which are an extended version of the IPython kernel.
+
+![alt text](jupyter_conda.png)

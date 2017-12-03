@@ -1,20 +1,21 @@
 # Introduction to Docker
 ## What is Docker?
-Docker is a tool designed to make it easier to create, deploy, and run applications by isolating them in "containers". The idea is to package your program together with everything it needs (other packages it depends on, various environment settings, data..) into one unit, i.e. a "container". This way we can ensure that the code generates exactly the same results regardless of where it's executed. Containers are in many ways similar to virtual machines, but more lightweight. Rather than creating a whole new OS they can use the same Linux kernel as the system that they're running on. While this might sound a bit technical, actually using Docker is quite easy, fun and very powerful.
+Docker is a tool designed to make it easier to create, deploy, and run applications by isolating them in "containers". The idea is to package your program together with everything it needs (other packages it depends on, various environment settings, data..) into one unit, i.e. a container. This way we can ensure that the code generates exactly the same results regardless of where it's executed. Containers are in many ways similar to virtual machines but more lightweight. Rather than starting up a whole new OS, Docker containers can use the same Linux kernel as the system that they're running on. This makes them much faster and smaller compared to virtual machines. While this might sound a bit technical, actually using Docker is quite easy, fun and very powerful.
 
-Just as with Git, Docker was designed for software development but is rapidly becoming used also in scientific research. If you're doing web development you would for example run the webserver in one container and the database in another, thereby reducing the risk of one system affecting the other in unpredictable ways. Docker containers have also proven to be a very good solution to packaging, running and distributing scientific data analyses. Some applications relevant for reproducible research can be:
+Just as with Git, Docker was designed for software development but is rapidly becoming widly used in scientific research. Say that you are building a web application. You could then run the web server in one container and the database in another, thereby reducing the risk of one system affecting the other in unpredictable ways. Docker containers have also proven to be a very good solution for packaging, running and distributing scientific data analyses. Some applications relevant for reproducible research can be:
 
-* When publishing, package your whole analysis pipeline together with your data in a Docker image and let it accompany the article. This way anyone can reproduce your analysis at the push of a button.
+* When publishing, package your whole analysis pipeline together with your data in a Docker image and let it accompany the article. This way interested readers can reproduce your analysis at the push of a button.
 * Packaging your analysis in a Docker container enables you to develop on e.g. your laptop and then seamlessly move to cluster or cloud to run the actual analysis.
-* Say that you are collaborating on a project and you are using Mac and they are using Windows. Then you can set up a Docker container specific for your project to ensure that you're working in an identical environment.
+* Say that you are collaborating on a project and you are using Mac while your collaborator is using Windows. You can then set up a Docker image specific for your project to ensure that you are working in an identical environment.
 
 All of this might sound a bit abstract so far, so let's get going.
 
 ## Tell me more
 * A "Get started with Docker" at [docker.com](https://docs.docker.com/get-started/).
+* An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using Docker for reproducible research.
 
 # Set up
-This exercise depends on files from the course BitBucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/git_jupyter_docker`.
+This exercise depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/git_jupyter_docker`.
 
 ## Install Docker
 First we need to install Docker. This is quite straightforward on macOS or Windows and a little more cumbersome on Linux. Note that Docker runs as root, which means that you have to have sudo privileges on your computer in order to install or run Docker.
@@ -23,11 +24,11 @@ First we need to install Docker. This is quite straightforward on macOS or Windo
 Go to  [https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac) and select "Get Docker for Mac (Stable)". This will download a dmg file. Click on it once it's done to start the installation. This will open up a window where you can drag the Docker.app to Applications. Close the window and click the Docker app from the Applications menu. Now it's basically just to click "next" a couple of times and we should be good to go. You can find the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Windows
-The instructions are different depending on if you have Windows 10 or Windows 7 (earlier versions aren't supported). In order to run Docker on Windows your computer must support Hardware Virtualization Technology and virtualization must be enabled. This is typically done in BIOS. This is outside the scope of this tutorial, so we'll simply go ahead as if though it's enabled and hope that it works.
+The instructions are different depending on if you have Windows 10 or Windows 7 (earlier versions aren't supported). In order to run Docker on Windows your computer must support Hardware Virtualization Technology and virtualization must be enabled. This is typically done in BIOS. Setting this is outside the scope of this tutorial, so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at [https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows). Select "Get Docker for Windows (Stable)".
 
-1. Once it's downloaded, double-click Docker for Windows Installer.exe to run the installer.
+1. Once it's downloaded, double-click `Docker for Windows Installer.exe` to run the installer.
 
 2. Follow the install wizard and accept the license, authorize the installer, and proceed with the install. You will be asked to authorize Docker.app with your system password during the install process. Click Finish to exit the installer.
 
@@ -74,14 +75,16 @@ sudo systemctl status docker
 ```
 The output should say something about "Active: active (running) since..".
 
-As mentioned before, Docker needs to run as root. You can archive this by prepending all Docker commands with `sudo`. This is the approch that we will take in this tutorial, since the set up becomes a little simpler. If you plan on continuing using Docker you can get rid of this by adding your user to the group `docker`. Here are instructions for how to do this: [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
+<a name="docker-group"></a>
+!!! tip
+    As mentioned before, Docker needs to run as root. You can archive this by prepending all Docker commands with `sudo`. This is the approch that we will take in this tutorial, since the set up becomes a little simpler. If you plan on continuing using Docker you can get rid of this by adding your user to the group `docker`. Here are instructions for how to do this: [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
 # Practical exercise
 ## The very basics
 We're almost ready to start, just one last note on nomenclature. You might have noticed that we sometimes refer to "Docker images" and sometimes to "Docker containers". A container is simply an instance of an image. You can have an image containing, say, a certain Linux distribution, and then start multiple containers running that same OS.
 
 !!! attention
-    If you don't have root privileges you have to prepend all Docker commands with `sudo ` (see Linux set up instructions)
+    If you don't have root privileges you have to prepend all Docker commands with `sudo ` (see [Linux set up instructions](#docker-group))
 
 Docker containers typically run Linux, so let's start by downloading an image containing Ubuntu (a popular Linux distribution that is based on only open-source tools).
 
