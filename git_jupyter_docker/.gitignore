@@ -1,6 +1,0 @@
-# Non git-tracked directories:
-results/
-data/
-intermediate/
-.snakemake/
-.DS_Store

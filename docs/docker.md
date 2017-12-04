@@ -15,7 +15,7 @@ All of this might sound a bit abstract so far, so let's get going.
 * An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using Docker for reproducible research.
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/git_jupyter_docker`.
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/docker`.
 
 ## Install Docker
 First we need to install Docker. This is quite straightforward on macOS or Windows and a little more cumbersome on Linux. Note that Docker runs as root, which means that you have to have sudo privileges on your computer in order to install or run Docker.
@@ -143,11 +143,11 @@ Ok, so Docker lets us work in any OS in a quite convenient way. That would proba
 
 ## Building a Docker image
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
-In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git.md) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be `$base+\sum_{i=1}^{10}(specific_{i})$` rather than `$\sum_{i=1}^{10}(base+specific_{i})$`. For example, Bioconda (see the [Conda tutorial](conda.md)) has one base image and then one individual layer for each of the >3000 packages available in Bioconda.
+In the previous section we downloaded a Docker image of Ubuntu and noticed that it was based on layers, each with a unique hash as id. An image in Docker is based on a number of read-only layers, where each layer contains the differences to the previous layers. If you've done the [Git tutorial](git.md) this might remind you of how a Git commit contains the difference to the previous commit. The great thing about this is that we can start from one base layer, say containing an operating system and some utility programs, and then generate many new images based on this, say 10 different project-specific images. The total space requirements would then only be $base+\sum_{i=1}^{10}(specific_{i})$ rather than $\sum_{i=1}^{10}(base+specific_{i})$. For example, Bioconda (see the [Conda tutorial](conda.md)) has one base image and then one individual layer for each of the >3000 packages available in Bioconda.
 
 Docker provides a convenient way to describe how to go from a base image to the image we want by using a "Dockerfile". This is a simple text file containing the instructions for how to generate each layer. Docker images are typically quite large, often several GBs, while Dockerfiles are small and serve as blueprints for the images. It is therefore good practice to have your Dockerfile in your project Git repository, since it allows other users to exactly replicate your project environment.
 
-If you've been doing these tutorials on Windows you've been using the Docker image `scilifelablts/reproducible_research_course_slim`. The Dockerfile for generating that image is called `Dockerfile_slim` and is located in your `git_jupyter_docker` directory. We will now go through that file and discuss the different steps and what they do. After that we'll build the image and test it out. Lastly, we'll start from that image and make a new one to reproduce the results from the [Conda tutorial](conda.md).
+If you've been doing these tutorials on Windows you've been using the Docker image `scilifelablts/reproducible_research_course_slim`. The Dockerfile for generating that image is called `Dockerfile_slim` and is located in your `docker` directory (where you should hopefully be standing already). We will now go through that file and discuss the different steps and what they do. After that we'll build the image and test it out. Lastly, we'll start from that image and make a new one to reproduce the results from the [Conda tutorial](conda.md).
 
 Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile will typically result in one layer in the resulting image. The format for Dockerfiles is `INSTRUCTION arguments`. A full specification of the format, together with best practices, can be found [here](https://docs.docker.com/engine/reference/builder/).
 
@@ -251,13 +251,7 @@ Successfully tagged my_docker_image:latest
 
 Now it's time to make our own Dockerfile to reproduce the results from the [Conda tutorial](conda). If you haven't done the tutorial, it boils down to creating a Conda environment file, setting up that environment, downloading three RNA-seq data files, and running FastQC on those files. We will later package and run the whole RNA-seq workflow in a Docker container, but for now we keep it simple to reduce the size and time required.
 
-The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running the analysis. If we want to use the same script we need to include it in the image. To do that we first copy it to our current directory.
-
-```bash
-cp ../conda/code/run_qc.sh .
-```
-
-So, this is what we need to do:
+The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running the analysis. A copy of this file should also be available in your current directory. If we want to use the same script we need to include it in the image. So, this is what we need to do:
 
 1. Create the file `Dockerfile_conda`.
 2. Set `FROM` to the image we just built.
@@ -330,7 +324,7 @@ TODO: Validate this on Windows
 docker run -it --rm -v $(pwd):/home/ my_docker_conda /bin/bash
 ```
 
-If you run `ls` you will see that all the files in the `git_jupyter_docker` directory are there. Now edit `run_qc.sh` **on your host system** to download, say, 15000 reads instead of 12000. Then rerun the analysis with `bash run_qc.sh`. Tada! Validate that the resulting html reports look fine and then exit the container with `exit`.
+If you run `ls` you will see that all the files in the `docker` directory are there. Now edit `run_qc.sh` **on your host system** to download, say, 15000 reads instead of 12000. Then rerun the analysis with `bash run_qc.sh`. Tada! Validate that the resulting html reports look fine and then exit the container with `exit`.
 
 ## Distributing your images
 There would be little point in going through all the trouble of making your analyses reproducible if you can't distribute them to others. Luckily, sharing Docker containers is extremely easy. The most common way is to use [Dockerhub](https://hub.docker.com). Dockerhub lets you host unlimited public images and one private image for free, after that they charge a small fee. If you want to try it out here is how to do it:
@@ -353,7 +347,7 @@ During these tutorials we have been working on a case study about the multiresis
 * We've constructed a [Snakemake workflow](snakemake.md) that performs the data analysis and keeps track of files and parameters.
 * We've written a [R Markdown document](rmarkdown.md) that takes the results from the Snakemake workflow and summarizes them in a report.
 
-The `git_jupyter_docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the supplementary material pdf into the Snakemake workflow as the rule `make_supplementary`.
+The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the supplementary material pdf into the Snakemake workflow as the rule `make_supplementary`.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.3.1` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary material report to PDF, but unfortunately it also takes up quite a lot of space (2.2 GB). The other main difference is that we install a number of R packages with `install2.r`. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will activate the Conda environment and run the whole Snakemake workflow by default.
 

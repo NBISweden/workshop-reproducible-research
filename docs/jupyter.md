@@ -10,7 +10,7 @@ As always, the best way to understand how something works is to try it out.
 * The [Jupyter Notebook documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/git_jupyter_docker`.
+This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/jupyter`.
 
 ## Install Jupyter Notebook
 If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda. Create an environment containing the packages `jupyter` and `nb_conda` (for managing Conda environments from Jupyter) from the `conda-forge` channel. Don't forget to activate the environment.
@@ -36,10 +36,12 @@ $ jupyter notebook
 [I 18:02:27.209 NotebookApp] Accepting one-time-token-authenticated connection from ::1
 ```
 
-Jupyter Notebook probably opened up a web browser for you automatically, otherwise go to the adress specified in the message in the terminal. Note that the server is running locally (as [http://localhost:8888](http://localhost:8888)) so this does not require that you have an active internet connection.
+Jupyter Notebook probably opened up a web browser for you automatically, otherwise go to the adress specified in the message in the terminal. Note that the server is running locally (as [http://localhost:8888](http://localhost:8888)) so this does not require that you have an active internet connection. Also note that it says "Serving notebooks from local directory: /Users/arasmus/Documents/projects/reproducible_research_course/jupyter". Everything you do using Notebook will be stored in this directory, so you don't lose any work if you shut down the server.
 
 ![alt text](jupyter_dashboard.png)
 
-What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The "Files" tab is where all your files are kept, the "Running" tab keeps track of all your processes and the third tab, "Clusters", is provided by IPython parallel, IPython's parallel computing framework. It allows you to control many individual engines, which are an extended version of the IPython kernel.
+What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The "Files" tab is where all your files are kept and the "Running" tab keeps track of all your processes. The third tab, "Clusters", is used for parallel computing and won't be discussed further in this tutorial. The "Conda" tab lets us control our Conda environments. Let's take a look at that. You can see that I'm currently in the `jupyter_env` environment.
 
 ![alt text](jupyter_conda.png)
+
+Let's start by creating

@@ -1,0 +1,14 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- fastqc=0.11
+- sra-tools=2.8
+- snakemake=4.3.0
+- multiqc=1.3
+- bowtie2=2.3
+- samtools=1.6
+- htseq=0.9
+- graphviz=2.38.0
+- xorg-libxrender
+- xorg-libxpm
