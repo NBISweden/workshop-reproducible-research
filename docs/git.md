@@ -1,25 +1,24 @@
 # Introduction to Git
 
 Git is a widely used system (both in academia and industry) for version controlling files and
-collaborating on code. It is used to track changes in (text) files, thereby establishing a history of all edits made to each file, together with short messages about each change and information about who made it. Git is mainly run from the command line, but there exists several software that have implemented a graphical user interface to run git commands.
+collaborating on code. It is used to track changes in (text) files, thereby establishing a history of all edits made to each file, together with short messages about each change and information about who made it. Git is mainly run from the command line, but there are several tools that have implemented a graphical user interface to run git commands.
 
-Using git to version control and track your files, and edits to those, is an essential step of making your computational research reproducible. A typical git workflow consists of:
+Using version control for tracking your files, and edits to those, is an essential step in making your computational research reproducible. A typical git workflow consists of:
 
 * making distinct and related edits to one or several files
 * committing those changes (i.e. telling git to add those edits to the history, together with a message about what those changes involve)
 * and pushing the commit to a remote repository (i.e. syncing your local project directory with one in the cloud)
 
-There are several benefits with using git in your research project:
+There are many benefits of using git in your research project:
 
 * You are automatically forced into a more organized way of working, which is usually a first step towards reproducibility.
-* If you have made some changes to e.g. a script and suddenly realize that those were probably not a good idea after all, it is simple to view exactly what changes you have made and revert them.
-* If there is more than one person involved in the project, git makes it easy to collaborate on the coding, tracking all edits made by each person, and handle potential conflicting edits.
-* Using a cloud based repository hosting service (the one you push your commits to), like e.g. [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/), adds additional features, like being able to comment and discuss the project, code, and edits.
-* At some point your project will be published. Github or Bitbucket (or similar) are excellent places to publicly distribute your code. Other researchers can then use git to access your code needed for reproducing your results, in the state it was when used for the publication.
-* If needed, you can host private repositories on GitHub and BitBucket as well, which may be convenient during an ongoing research project, before it is publicly published.
+* If you have made some changes to a file and realize that those were probably not a good idea after all, it is simple to view exactly what the changes were and revert them.
+* If there is more than one person involved in the project, git makes it easy to collaborate by tracking all edits made by each person. It will also handle any potential conflicting edits.
+* Using a cloud-based repository hosting service (the one you push your commits to), like e.g. [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/), adds additional features, such as being able to discuss the project, comment on edits, or report issues.
+* At some point your project will be published. Github or Bitbucket (or similar) are excellent places to publicly distribute your code. Other researchers can then use git to access the code needed for reproducing your results, in exactly the state it was when used for the publication.
+* If needed, you can host private repositories on GitHub and BitBucket as well. This may be convenient during an ongoing research project, before it is publicly published.
 
-The best way to get an idea about what git is simply to start using it. The tutorial below will guide you through the essential steps, with a focus on what is needed for making a project reproducible. There are additional features of both git and the web based repository hosting services (like Github and Bitbucket) that are intentionally not included here. If you are interested of learning more, the web is filled with information (see some examples below)!
-
+The best way to get an idea about git is simply to start using it. The tutorial below will guide you through the essential steps, with a focus on what is needed for making a project reproducible. There are many additional features of both git and the web-based repository hosting services (like Github and Bitbucket) that are not included here. If you are interested in learning more, the web is filled with information (see some examples below)!
 
 ## Tell me more
 
@@ -45,7 +44,7 @@ This tutorial depends on files from the course BitBucket repo. Take a look at th
 
 You will now be redirected to the repository page. It is an empty repository, so there is not much to see yet. We want to add some contents (files) to the repository. To do that we will first *clone* the repository locally:
 
-* Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course). **Important: it should *not* be within the `reproducible_research_course` directory.**
+* Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course if you haven't done so already). **Important: it should *not* be within the `reproducible_research_course` directory.**
 * Once you are in your directory of choice, run the following command (just make sure to change `user` to your bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
 ```bash
 git clone git@bitbucket.org:user/git_tutorial.git
@@ -53,15 +52,19 @@ git clone git@bitbucket.org:user/git_tutorial.git
 
 What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
 
-* A new directory, `git_tutorial` (or a different name if you chose so), has now been created, `cd` into that.  
-* This is a git version tracked directory. How can you know? Run `git status`!
+* A new directory, `git_tutorial` (or a different name if you choose so), has now been created, `cd` into that directory.  
+* This is a git version-tracked directory. How can you know? Run `git status`!
 
-It will probably return something like *On branch master. Initial commit. nothing to commit (create/copy files and use "git add" to track)*.
+It will probably return something like:
+
+```no-highlight
+On branch master. Initial commit. nothing to commit (create/copy files and use "git add" to track).
+```
 
 !!! tip
     If you try to run `git status` in a non-git directory, it will say that it is *not a git repository*. The way this works is that git adds a hidden directory `.git/` in the root of a git tracked directory (run `ls -a` to see it). This hidden directory contains all information and settings git needs in order to run and version track your files. This also means that your git-tracked directory is self-contained, i.e. you can simply delete it and everything that has to do with git in connection to that directory will be gone.
 
-* Notice that git told you: *nothing to commit (create/copy files and use "git add" to track*? Lets do that!  
+* Remember that git told you "*nothing to commit (create/copy files and use "git add" to track*"? Lets do that!  
 * Copy the following files and directories from the `reproducible_research_course/git_jupyter_docker` directory, into your `git_tutorial` directory:
     * `Dockerfile`
     * `Snakefile`
@@ -73,7 +76,7 @@ It will probably return something like *On branch master. Initial commit. nothin
 !!! note "Quick recap"
     We have used two `git` commands this far:
 
-    * `git clone` - to clone a remote (e.g. online Bitbucket) repository locally. This is only run the first time one wants to download the repository locally.
+    * `git clone` - to clone a remote repository locally (e.g. from Bitbucket). This is only done the first time you want to download the repository locally.
     * `git status` - this is a command you should use *a lot*. It will tell you, amongst other things, the status of your git clone in relation to the online remote repository.
 
 ## Committing
@@ -84,8 +87,8 @@ It will probably return something like *On branch master. Initial commit. nothin
 git add Dockerfile Snakefile
 ```
 
-* Run `git status` again! See that we have added Dockerfile and Snakefile to our upcoming commit (listed under *Changes to be committed*). This is called the staging area, and the files there are staged to be committed.
-* We might as well commit all files in one go! So use `git add` on the remaining files as well:
+* Run `git status` again! See that we have added Dockerfile and Snakefile to our upcoming commit (listed under "*Changes to be committed*"). This is called the staging area, and the files there are staged to be committed.
+* We might as well commit all files in one go! Use `git add` on the remaining files as well:
 
 ```bash
 git add config.yml environment.yml code/
@@ -98,10 +101,10 @@ git add config.yml environment.yml code/
 git commit -m "add initial files"
 ```
 
-The `-m` option adds a commit message. This should be a short description of what the commit contains. If you forget to add `-m` and just run `git commit`, a terminal editor will open and prompt you to write a commit message. This can be confusing if you are note used to use a terminal editor, so try to remember the `-m` flag.
+The `-m` option adds a commit message. This should be a short description of what the commit contains. If you forget to add `-m` and just run `git commit`, a terminal editor will open and prompt you to write a commit message. This can be confusing if you are not used to using a terminal editor, so try to remember the `-m` flag.
 
-* Run `git status` (yep, again!). It should tell you *nothing to commit, working directory clean*.
-* Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different number, e.g. `bowtie2=2.1`.
+* Run `git status` (yep, again!). It should tell you "*nothing to commit, working directory clean*".
+* Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different value, e.g. `bowtie2=2.1`.
 * Run `git status`. It will tell you that there are modifications in one file (`environment.yml`) compared to the previous commit. This is nice! We don't have to keep track of what files we have edited, git will do that for us.
 * Run `git diff environment.yml`. This will show you the changes made to the file. A `-` means a deleted line, a `+` means an added line. There are also shown a few lines before and after the changes, to put them in context.
 * Let's edit another file! Open `config.yml`and change the line `genome_id: NCTC8325` to `genome_id: ST398`. Run `git status`. Run `git diff`. If we don't specify a file, it will show all changes made in any file, compared to the previous commit. Do you see your changes?
@@ -115,7 +118,7 @@ This will add both our files to the staging area at the same time. Run `git stat
 
 But wait a minute! Shouldn't each commit optimally be a specified set of changes? Yes! So we want to make two commits, one for each change.
 
-* Let's remove `environment.yml` from the staging area. `git status` tells us how to do this: *(use "git reset HEAD <file>..." to unstage)*. So run:
+* Let's remove `environment.yml` from the staging area. `git status` tells us how to do this: "*(use "git reset HEAD <file>..." to unstage)*". So run:
 
 ```bash
 git reset HEAD environment.yml
@@ -154,7 +157,7 @@ As you can see, each commit is a point in history. The more often you commit, an
 rm Dockerfile
 ```
 
-* Run `git status`. As you can see, git tells us that the file is deleted, but the deletion is not committed. In the same way as we commit or edits to files, we need to commit a deletion of a file:
+* Run `git status`. As you can see, git tells us that the file is deleted, but that the deletion is not committed. In the same way as we commit edits to files, we need to commit a deletion of a file:
 
 ```bash
 git rm Dockerfile
@@ -167,20 +170,20 @@ git log
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
 
-    * `git add` - add a file so that changes in that file can be committed.
-    * `git rm` - same as `git add` but sets a file to be deleted in the next commit.
+    * `git add` - adds a file so that changes in that file can be committed.
+    * `git rm` - the opposite of `git add`, i.e. sets a file to be deleted in the next commit.
     * `git commit` - commits the changes we have staged (by using `git add` or `git rm`).
     * `git log` - shows us the commit history.
 
 ## Pushing
 
-So far we have just worked locally. The strength with git is that we can add a remote location to push our commits. In fact, we already have setup such a remote, since we created the repository at Bitbucket and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote, in this case Bitbucket. Your local copy and the remote copy are then in sync. In principle you can now safely delete your local copy and now that it is all backed up in the cloud, with the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
+So far we have just worked locally. The strength with git is that we can add a remote location to push our commits to. In fact, we already have setup such a remote, since we created the repository at Bitbucket and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote. Your local copy and the remote copy are then in sync. In principle, you can now safely delete your local copy since everything is backed up in the cloud, including the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
 
-* Run `git remote -v`. This will show you what remote location is connected to your local git clone. The short name of the default remote is usually origin.
-* Run `git branch`. This will show you the name of the current branch, by default this will be master.  
+* Run `git remote -v`. This will show you what remote location is connected to your local git clone. The short name of the default remote is usually "*origin*".
+* Run `git branch`. This will show you the name of the current branch. By default this will be "*master*".
 
 !!! attention
-    We have not mentioned branches, and will not go into details about branches here, but they are a major feature of git. They allow you to have different "versions" of a repository. As an example, during software development it is common to have a release branch containing code that is working correctly, and a development branch containing code with new features and fixes but also potential bugs that have not been fixed yet. Once the development branch is fixed and working, it can be merged into the release branch. End-users will typically use the code in the release branch only. In the reproducible research setting, it is often enough to only use the master branch, but keep in mind that you have the possibility to use more branches if you see the needed.
+    We have not mentioned branches, and will not go into details about branches here, but they are a major feature of git. They allow you to have different "versions" of a repository. As an example, during software development it is common to have a release branch containing code that is working correctly, and a development branch containing code with new features and fixes but also potential bugs that have not been fixed yet. Once the development branch is fixed and working, it can be merged into the release branch. End-users will typically use the code in the release branch only.
 
 * Now we will push the latest commits to the master branch to our remote origin:
 
@@ -188,9 +191,9 @@ So far we have just worked locally. The strength with git is that we can add a r
 git push -u origin master
 ```
 
-* Run `git status`. This should tell you that *Your branch is up-to-date with 'origin/master'.*.
+* Run `git status`. This should tell you that "*Your branch is up-to-date with 'origin/master'.*".
 * Go to your Bitbucket repository in your browser again and click on Source to the left. You should now see that the files you have locally appear here as well!
-* Click on config.yml. You will see the contents of the file. Notice that it is the latest version, where we changed the genome_id.
+* Click on `config.yml`. You will see the contents of the file. Notice that it is the latest version, where we changed "genome_id".
 * Click on Diff, in the upper left corner. You will see the changes made to this file compared to the previous commit.
 * Click History. You will see an overview of the commits involving changes made to this file.
 * Click Commits, to the left in the main menu. You will see an overview of all commits made. Click on a specific commit to see the changes introduced by that commit.
