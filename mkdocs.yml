@@ -14,6 +14,7 @@ markdown_extensions:
       permalink: 
   - admonition
   - pymdownx.arithmatex
+  - pymdownx.keys
   - pymdownx.details
   - pymdownx.superfences
 extra_css: [extra.css]
