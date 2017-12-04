@@ -327,7 +327,7 @@ By now you should be familiar with the basic functionality of Snakemake, and you
 As you might remember from the [intro](index.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
 
 !!! tip
-    This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
+    This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications is available as `git_jupyter_docker/Snakefile`.
 
 Let's start by generating the rule graph so that we get an overview of the workflow.
 
@@ -393,7 +393,7 @@ Finished job 0.
 After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `data/final`.
 
 !!! attention
-    You have now run a real bioinformatics workflow, and you have learnt enough to start creating your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
+    You have now run a real bioinformatics workflow, and you have learnt enough to start writing your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
 
 ### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
@@ -529,7 +529,7 @@ rule some_rule:
 Try this out for the rules where we have to "manually" deal with files that aren't tracked by Snakemake (`multiqc`, `index_genome`, `generate_count_table`). Also remove the shell commands that remove temporary files from those rules, as they are no longer needed. Now rerun the workflow and validate that the temporary files don't show up in your working directory.
 
 !!! tip
-    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the `.snakemake` directory is on the same disk as the output directory, but if you're running on a distributed file system and generate many very large files it might be worth considering other options.
+    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the `.snakemake` directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options.
 
 ### Rule targets
 So far we have only defined the inputs/outputs of a rule as strings, or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
