@@ -68,17 +68,17 @@ Let's use our first cell to create a header. Change the format from Code to Mark
 
 Before we continue, here are some shortcuts that can be useful. Note that they are only applicable when in command mode (blue frames). Most of them are also available from the menus.
 
-  * <kbd>ENTER</kbd>: enter Edit mode
-  * <kbd>ESCAPE</kbd>: enter Command mode
-  * <kbd>CTRL</kbd>+<kbd>ENTER</kbd>: run the cell
-  * <kbd>SHIFT</kbd>+<kbd>ENTER</kbd>: run the cell and select the cell below
-  * <kbd>ALT</kbd>+<kbd>ENTER</kbd>: run the cell and insert a new cell below
-  * <kbd>CTRL</kbd>+<kbd>S</kbd>: save the notebook
-  * <kbd>TAB</kbd> for code completion or indentation
-  * <kbd>m</kbd> and <kbd>y</kbd>: toggle between Markdown and Code cells
-  * <kbd>d</kbd>-<kbd>d</kbd>: delete a cell
-  * <kbd>a</kbd>/<kbd>b</kbd>: insert cells above/below current cell
-  * <kbd>x</kbd>/<kbd>c</kbd>/<kbd>v</kbd>: cut/copy/paste cells
+  * ++enter++: enter Edit mode
+  * ++escape++: enter Command mode
+  * ++ctrl+enter++: run the cell
+  * ++shift+enter++: run the cell and select the cell below
+  * ++alt+enter++: run the cell and insert a new cell below
+  * ++ctrl+s++: save the notebook
+  * ++tab++: for code completion or indentation
+  * ++m++/++y++: toggle between Markdown and Code cells
+  * ++d++-++d++: delete a cell
+  * ++a++/++b++: insert cells above/below current cell
+  * ++x++/++c++/++v++: cut/copy/paste cells
 
 Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter `print("Hello world!")` in the second cell and run it. Note how the output is displayed below the cell. This interactive way of working is one of the things that sets Jupyter Notebook apart from RStudio and R Markdown. R Markdown is typically rendered top to bottom in one run, while you work *in* a Jupyter notebook in a different way. This has partly changed with newer versions of RStudio, but it's probably still how most people use the two tools. Another indication of this is that there is no (good) way to hide the code cells if you want to render your Jupyter notebook to a cleaner looking report (for a publication for example).
 
@@ -108,7 +108,7 @@ We will not dwell on either using Markdown or Python; you can make really pretty
 
     * That a Jupyter notebook consists of a series of cells, and that they can be either markdown or code cells.
     * That we execute the code in a code cell with the kernel that we chose when opening the notebook.
-    * We can run shell commands by prepending them with "!".
+    * We can run shell commands by prepending them with `!`.
     * A Jupyter notebook is simply a text file in JSON format.
 
 ## Magics
