@@ -40,8 +40,34 @@ Jupyter Notebook probably opened up a web browser for you automatically, otherwi
 
 ![alt text](jupyter_dashboard.png)
 
-What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The "Files" tab is where all your files are kept and the "Running" tab keeps track of all your processes. The third tab, "Clusters", is used for parallel computing and won't be discussed further in this tutorial. The "Conda" tab lets us control our Conda environments. Let's take a look at that. You can see that I'm currently in the `jupyter_env` environment.
+What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The Files tab shows the files in your directory. If you've done the other tutorials the file names should look familiar; they are the files needed for running the RNA-seq workflow in Snakemake. The Running tab keeps track of all your processes. The third tab, Clusters, is used for parallel computing and won't be discussed further in this tutorial. The Conda tab lets us control our Conda environments. Let's take a quick look at that. You can see that I'm currently in the `jupyter_exercise` environment.
 
 ![alt text](jupyter_conda.png)
 
-Let's start by creating
+Let's start by creating an empty notebook by selecting the Files tab and clicking New > Notebook > Python [conda env:jupyter_exercise]. This will open up a new tab or window looking like this:
+
+![alt text](jupyter_empty_nb.png)
+
+Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "editing mode" so you can write stuff. Cells in Jypyter notebooks can be of two types: markdown or code.
+
+* Markdown: These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called GitHub Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
+* Code: These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or images, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
+
+Let's use our first cell to create a header. Change the format from Code to Markdown in the drop-down list above the cell. Double click on the cell to enter editing mode (green frame) and input "# My notebook" ("#" is used in Markdown for header 1). Run the cell with Shift-Enter. Tada (hopefully)!
+
+Before we continue, here are some shortcuts that can be useful. Note that they are only applicable when in command mode (blue frames). Most of them are also available from the menus.
+
+  * Enter key to enter Edit mode (Escape to enter Command mode)
+  * Ctrl-Enter: run the cell
+  * Shift-Enter: run the cell and select the cell below
+  * Alt-Enter: run the cell and insert a new cell below
+  * Ctrl-s: save the notebook
+  * Tab key for code completion or indentation
+  * m and y to toggle between Markdown and Code cells
+  * d-d to delete a cell
+  * z to undo deleting
+  * a/b to insert cells above/below current cell
+  * x/c/v to cut/copy/paste cells
+  * Up/Down or k/j to select previous/next cells
+  * h for help menu for keyboard shortcuts
+  * Append ? for help on commands/methods, ?? to show source
