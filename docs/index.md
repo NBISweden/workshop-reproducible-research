@@ -84,7 +84,6 @@ cd reproducible_research_course
 
 The figure below gives an overview of the six available tutorials, a very brief description of their main purpose, and the suggested order to do them. However, each tutorial is made so that it can be completed independently of the other tutorials. It is therefore perfectly possible to choose a different order, or a subset of tutorials that suits your interests. Under the main figure there is a list of a few suggested alternative tutorial orders. You find the tutorials in the menu to the left!
 
-![alt text](tutorials_overview.svg)
-![alt text](tutorials_alternative_order.svg)
+![alt text](tutorials_overview2.svg)
 
 Note that running through the tutorials will involve installing several tools which in turn will create various files on your computer. In order to remove any traces of these, after completing the tutorials, please refer to the [Take down section](take_down.md).
