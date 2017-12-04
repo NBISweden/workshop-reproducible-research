@@ -70,10 +70,10 @@ Let's start by creating an empty notebook by selecting the Files tab and clickin
 ![alt text](jupyter_empty_nb.png)
 
 ## The very basics
-Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "editing mode", so you can write stuff in it. Cells in Jypyter notebooks can be of two types: markdown or code.
+Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "edit mode", so you can write stuff in it. Cells in Jypyter notebooks can be of two types: markdown or code.
 
-* Markdown: These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called GitHub Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
-* Code: These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or images, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
+* Markdown - These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called GitHub Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
+* Code - These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or figures, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
 
 Let's use our first cell to create a header. Change the format from Code to Markdown in the drop-down list above the cell. Double click on the cell to enter editing mode (green frame) and input "# My notebook" ("#" is used in Markdown for header 1). Run the cell with Shift-Enter. Tada (hopefully)!
 
@@ -91,11 +91,13 @@ Before we continue, here are some shortcuts that can be useful. Note that they a
 * ++a++/++b++: insert cells above/below current cell
 * ++x++/++c++/++v++: cut/copy/paste cells
 
-Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter `print("Hello world!")` in the second cell and run it. Note how the output is displayed below the cell. This interactive way of working is one of the things that sets Jupyter Notebook apart from RStudio and R Markdown. R Markdown is typically rendered top to bottom in one run, while you work *in* a Jupyter notebook in a different way. This has partly changed with newer versions of RStudio, but it's probably still how most people use the two tools. Another indication of this is that there is no (good) way to hide the code cells if you want to render your Jupyter notebook to a cleaner looking report (for a publication for example).
+Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter `print("Hello world!")` in the second cell and run it. Note how the output is displayed below the cell. This interactive way of working is one of the things that sets Jupyter Notebook apart from RStudio and R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you work *in* a Jupyter notebook in a different way. This has partly changed with newer versions of RStudio, but it's probably still how most people use the two tools. Another indication of this is that there is no (good) way to hide the code cells if you want to render your Jupyter notebook to a cleaner looking report (for a publication for example).
 
-What **is** a Jupyter notebook? Let's look a little at the notebook we're currently working in. Jupyter Notebook saves it every minute or so, so you will already have it available. We can be a little meta and do this from within the notebook itself. We do it by running some shell commands in the third code cell instead of Python code. This very handy functionality is possible by prepending the command with `!`. Try `!ls` to list the files in the current directory. Aha, we have a new file called `Untitled.ipynb`! Look at the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's just a plain old JSON file. Since it's a text file it's suitable for version control with for example Git. It turn out that GitHub and Jupyter notebooks are the best of friends, as we will see more of later. This switching between languages and whatever-works mentality is very prominent within the Jupyter notebook community.
+What **is** a Jupyter notebook? Let's look a little at the notebook we're currently working in. Jupyter Notebook saves it every minute or so, so you will already have it available. We can be a little meta and do this from within the notebook itself. We do it by running some shell commands in the third code cell instead of Python code. This very handy functionality is possible by prepending the command with `!`. Try `!ls` to list the files in the current directory.
 
-Variables defined in cells become variables in the global namespace. You can therefore share information between cells. Try to define a function in one cell and call on it in the next. For example:
+Aha, we have a new file called `Untitled.ipynb`! Look at the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's just a plain old JSON file. Since it's a text file it's suitable for version control with for example Git. It turn out that GitHub and Jupyter notebooks are the best of friends, as we will see more of later. This switching between languages and whatever-works mentality is very prominent within the Jupyter notebook community.
+
+Variables defined in cells become variables in the global namespace. You can therefore share information between cells. Try to define a function or variable in one cell and use it in the next. For example:
 
 ```python
 def print_me(str):
@@ -125,12 +127,24 @@ We will not dwell on either using Markdown or Python; you can make really pretty
 ## Magics
 Magics constitute a simple command language that significantly extends the power of Jupyter notebooks. There are two types of magics:
 
-* Line magics: commands are prepended by "%", and whose arguments only extend to the end of the line.
-* Cell magics: `%%` is used at the first line and then applies to the whole cell.
+* Line magics - Commands are prepended by "%", and whose arguments only extend to the end of the line.
+* Cell magics - Starts with `%%` and then applies to the whole cell. Must be written on the first line.
 
 Now list all available magics with `%lsmagic` (which itself is a magic). You add a question mark to a magic to show the help (e.g. `%lsmagic?`). Some of them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`, ..). Others are useful for debugging and optimizing your code (`%timeit`, `%debug`, `%prun`, ..).
 
 A very useful magic, in particular when using shell commands a lot in your work is `%%capture`. This will capture the stdout/stderr of any code cell and store them in a Python object. Run `%%capture?` to display the help and try to understand how it works. Try it out with either some Python code, other magics or shell commands.
+
+The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) with which to run the code through. For some languages it's possible to use these shortcuts:
+
+* `%%ruby`
+* `%%perl`
+* `%%bash`
+* `%%html`
+* `%%latex`
+* `%%R` (here you have to load the r2py extension with `%load_ext rpy2.ipython` first). Try this out if you know any of the languages above. Otherwise you can always try to print the quadratic formula with LaTeX!
+  ```no-highlight
+  \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
+  ```
 
 ??? note "Click to see one example"
     ```python
@@ -147,14 +161,14 @@ A very useful magic, in particular when using shell commands a lot in your work 
     ```
 
 !!! tip
-    You can capture the output of a magic directly:
+    You can capture the output of a magic directly like this:
     ```python
     files_in_dir = %ls
     print(files_in_dir)
     ```
 
 ## Widgets and interactive plotting
-
+Since we're typically running our notebooks in a web browser, they are quite well suited for also including more interactive elements. A typical use case would be that you want to communicate some results to a collaborator or to a wider audience and that you would like them to be able to affect how the results are displayed. It could be for example to select which gene to plot for, or to see how some parameter value affects a clustering. Jupyter notebooks has great support for this in the form of widgets.
 
 ## Sharing your notebooks
 NBviewer and nbconvert
