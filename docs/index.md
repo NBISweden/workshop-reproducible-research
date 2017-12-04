@@ -62,12 +62,16 @@ cd reproducible_research_course
 
 ## For Windows users
 Install Docker from [here](https://docs.docker.com/docker-for-windows/install/). Note that for older versions of Windows you should use Docker Toolbox. Then run:
+
 ```bash
-docker run -it -v c:/my_dir:/home/ scilifelablts/reproducible_research_course_slim
+docker run -it -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
 ```
 
-This will start an isolated container running Linux, where the directory c:/my_dir is mounted (i.e. you can access the files in this Windows directory within the Linux container, and files edited or created within the Linux container will appear in this Windows directory).
-Note that the idea is that you should edit files in the mounted c:/my_dir using an editor in your normal OS, say notepad in windows. The terminal in the container is for running stuff, not editing.
+!!! attention
+    Note that we use `/c/my_dir` and not `c:/my_dir` as we normally do on Windows. This is required for Docker to parse the command correctly.
+
+This will start an isolated container running Linux, where the directory `c:/my_dir` is mounted (i.e. you can access the files in this Windows directory within the Linux container, and files edited or created within the Linux container will appear in this Windows directory).
+Note that the idea is that you should edit files in the mounted `c:/my_dir` using an editor in your normal OS, say notepad in windows. The terminal in the container is for running stuff, not editing.
 
 Clone the git/bitbucket repository containing all files you will need for completing the tutorials.
 ```bash
