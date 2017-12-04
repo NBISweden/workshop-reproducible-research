@@ -68,20 +68,17 @@ Let's use our first cell to create a header. Change the format from Code to Mark
 
 Before we continue, here are some shortcuts that can be useful. Note that they are only applicable when in command mode (blue frames). Most of them are also available from the menus.
 
-  * Enter key to enter Edit mode (Escape to enter Command mode)
-  * Ctrl-Enter: run the cell
-  * Shift-Enter: run the cell and select the cell below
-  * Alt-Enter: run the cell and insert a new cell below
-  * Ctrl-s: save the notebook
-  * Tab key for code completion or indentation
-  * m and y to toggle between Markdown and Code cells
-  * d-d to delete a cell
-  * z to undo deleting
-  * a/b to insert cells above/below current cell
-  * x/c/v to cut/copy/paste cells
-  * Up/Down or k/j to select previous/next cells
-  * h for help menu for keyboard shortcuts
-  * Append ? for help on commands/methods, ?? to show source
+  * <kbd>ENTER</kbd>: enter Edit mode
+  * <kbd>ESCAPE</kbd>: enter Command mode
+  * <kbd>CTRL</kbd>+<kbd>ENTER</kbd>: run the cell
+  * <kbd>SHIFT</kbd>+<kbd>ENTER</kbd>: run the cell and select the cell below
+  * <kbd>ALT</kbd>+<kbd>ENTER</kbd>: run the cell and insert a new cell below
+  * <kbd>CTRL</kbd>+<kbd>S</kbd>: save the notebook
+  * <kbd>TAB</kbd> for code completion or indentation
+  * <kbd>m</kbd> and <kbd>y</kbd>: toggle between Markdown and Code cells
+  * <kbd>d</kbd>-<kbd>d</kbd>: delete a cell
+  * <kbd>a</kbd>/<kbd>b</kbd>: insert cells above/below current cell
+  * <kbd>x</kbd>/<kbd>c</kbd>/<kbd>v</kbd>: cut/copy/paste cells
 
 Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter `print("Hello world!")` in the second cell and run it. Note how the output is displayed below the cell. This interactive way of working is one of the things that sets Jupyter Notebook apart from RStudio and R Markdown. R Markdown is typically rendered top to bottom in one run, while you work *in* a Jupyter notebook in a different way. This has partly changed with newer versions of RStudio, but it's probably still how most people use the two tools. Another indication of this is that there is no (good) way to hide the code cells if you want to render your Jupyter notebook to a cleaner looking report (for a publication for example).
 
@@ -115,6 +112,9 @@ We will not dwell on either using Markdown or Python; you can make really pretty
     * A Jupyter notebook is simply a text file in JSON format.
 
 ## Magics
+Magics constitute a simple command language that significantly extends the power of Jupyter notebooks. There are two types of magics:
 
+* Line magics: commands are prepended by "%", and whose arguments only extend to the end of the line.
+* Cell magics: use two percent characters as a marker (%%), receive as argument the whole cell (must be used as the first line in a cell)
 
 TODO: Some more text here. Sharing and server and git and gist and nbviever.
