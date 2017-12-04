@@ -146,7 +146,7 @@ This will remove package tar-balls that are left from package installations, unu
 !!! note "Quick recap"
     In this section we've learnt:
 
-    * How to use `docker install` for installing packages.
+    * How to use `conda install` for installing packages.
     * How to create and activate environments and how to change between them.
     * How to remove packages or environments and clean up.
 
