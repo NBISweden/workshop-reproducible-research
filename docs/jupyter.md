@@ -2,7 +2,14 @@
 The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and text. The functionality is partly overlapping with R Markdown (see the [tutorial](rmarkdown)), in that they both use markdown and code chunks to generate reports that integrate results of computations with the code that generated them. Jupyter Notebook comes from the Python community while R Markdown was developed by RStudio, but you could use most common programming languages in either alternative. In practice though, it's quite common that R developers use Jupyter but probably not very common that Python developers use RStudio.
 
 ## What are Jupyter notebooks for?
-As always, the best way is to try it out and decide what to use it for yourself!
+An excellent question if I may say so! Some applications could be:
+
+* Python is lacking a really good IDE for doing exploratory scientific data analysis, like RStudio or Matlab. Some people use it simply as an alternative for that.
+* The community around Jupyter notebooks is large and dynamic, and there are tons of tools for sharing, displaying or interacting with notebooks.
+* An early ambition with Jupyter notebooks, and its predecessor IPython notebooks, was to be analogous to the lab notebook used in a wet lab. It would allow the data scientist to document her day-to-day work and interweave results, ideas, and hypotheses with the code. From a reproducibility perspective this is one of the main advantages.
+* Jupyter notebooks can be used, just as R Markdown, to provide a tighter connection between your data and your results by integrating results of computations with the code that generated them. It can also do this in an interactive way that makes it very appealing for sharing with others.
+
+As always, the best way is to try it out yourself and decide what to use it for!
 
 ## Tell me more
 * The [Jupyter project site](http://jupyter.org) contains a lot of information and inspiration.
@@ -12,7 +19,11 @@ As always, the best way is to try it out and decide what to use it for yourself!
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/jupyter`.
 
 ## Install Jupyter Notebook
-If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda. Create an environment containing the packages `jupyter` and `nb_conda` (for managing Conda environments from Jupyter) from the `conda-forge` channel. Don't forget to activate the environment.
+If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda. Create an environment containing the following packages from the `conda-forge` channel. Don't forget to activate the environment.
+
+* `jupyter`: for running everything
+* `nb_conda`: for integrating Conda with Jupyter Notebook
+* `plotly` and `numpy`: for generating plots
 
 (If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
 
@@ -115,6 +126,40 @@ We will not dwell on either using Markdown or Python; you can make really pretty
 Magics constitute a simple command language that significantly extends the power of Jupyter notebooks. There are two types of magics:
 
 * Line magics: commands are prepended by "%", and whose arguments only extend to the end of the line.
-* Cell magics: use two percent characters as a marker (%%), receive as argument the whole cell (must be used as the first line in a cell)
+* Cell magics: `%%` is used at the first line and then applies to the whole cell.
 
+Now list all available magics with `%lsmagic` (which itself is a magic). You add a question mark to a magic to show the help (e.g. `%lsmagic?`). Some of them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`, ..). Others are useful for debugging and optimizing your code (`%timeit`, `%debug`, `%prun`, ..).
+
+A very useful magic, in particular when using shell commands a lot in your work is `%%capture`. This will capture the stdout/stderr of any code cell and store them in a Python object. Run `%%capture?` to display the help and try to understand how it works. Try it out with either some Python code, other magics or shell commands.
+
+??? note "Click to see one example"
+    ```python
+    %%capture output
+    !echo "Print to stdout"
+    !echo "Print to stderr" >&2
+    ```
+
+    and in another cell
+
+    ```python
+    print("stdout:" + output.stdout)
+    print("stderr:" + output.stderr)
+    ```
+
+!!! tip
+    You can capture the output of a magic directly:
+    ```python
+    files_in_dir = %ls
+    print(files_in_dir)
+    ```
+
+## Widgets and interactive plotting
+
+
+## Sharing your notebooks
+NBviewer and nbconvert
+
+## Running the MRSA workflow in a Jupyter notebook
+
+## Mention docker and interactive widgets
 TODO: Some more text here. Sharing and server and git and gist and nbviever.
