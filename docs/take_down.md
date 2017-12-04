@@ -71,4 +71,3 @@ TODO: Fix all links
 TODO: Keep "Where to next"?
 TODO: Check volume mounts on Windows
 TODO: Add jupyter to main docker?
-TODO: Recreate tutorial figure with new fonts (and on one row)
