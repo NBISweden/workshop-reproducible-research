@@ -5,7 +5,7 @@ pages:
   - 'Conda': 'conda.md'
   - 'Snakemake': 'snakemake.md'
   - 'Git': 'git.md'
-  - 'Rmarkdown': 'rmarkdown.md'
+  - 'R Markdown': 'rmarkdown.md'
   - 'Jupyter': 'jupyter.md'
   - 'Docker': 'docker.md'
   - 'Take down': take_down.md
