@@ -36,7 +36,7 @@ cd reproducible_research_course
 * [Conda](conda.md)
 * [Snakemake](snakemake.md)
 * [Git](git.md)
-* [R Markdown](rmarkdown).md
+* [R Markdown](rmarkdown.md)
 * [Jupyter](jupyter.md)
 * [Docker](docker.md)
 
