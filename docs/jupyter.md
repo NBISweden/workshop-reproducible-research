@@ -14,6 +14,7 @@ As always, the best way is to try it out yourself and decide what to use it for!
 ## Tell me more
 * The [Jupyter project site](http://jupyter.org) contains a lot of information and inspiration.
 * The [Jupyter Notebook documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
+* A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using widgets for creating interactive notebooks.
 
 # Set up
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/jupyter`.
@@ -23,7 +24,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `plotly` and `numpy`: for generating plots
+* `numpy`, `matplotlib` and `plotly`: for generating plots
 
 (If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
 
@@ -134,18 +135,6 @@ Now list all available magics with `%lsmagic` (which itself is a magic). You add
 
 A very useful magic, in particular when using shell commands a lot in your work is `%%capture`. This will capture the stdout/stderr of any code cell and store them in a Python object. Run `%%capture?` to display the help and try to understand how it works. Try it out with either some Python code, other magics or shell commands.
 
-The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) with which to run the code through. For some languages it's possible to use these shortcuts:
-
-* `%%ruby`
-* `%%perl`
-* `%%bash`
-* `%%html`
-* `%%latex`
-* `%%R` (here you have to load the r2py extension with `%load_ext rpy2.ipython` first). Try this out if you know any of the languages above. Otherwise you can always try to print the quadratic formula with LaTeX!
-  ```no-highlight
-  \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
-  ```
-
 ??? note "Click to see one example"
     ```python
     %%capture output
@@ -160,6 +149,36 @@ The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) wit
     print("stderr:" + output.stderr)
     ```
 
+
+The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) with which to run the code through (similar to a shebang). For some languages it's possible to use these shortcuts:
+
+* `%%ruby`
+* `%%perl`
+* `%%bash`
+* `%%html`
+* `%%latex`
+* `%%R` (here you have to load the r2py extension with `%load_ext rpy2.ipython` first)
+
+Try this out if you know any of the languages above. Otherwise you can always try to print the quadratic formula with LaTeX!
+```no-highlight
+\begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
+```
+
+Python's favorite library for plotting, matplotlib, has it's own magic as well: `%matplotlib`. Try out the code below, and you should hopefully get a pretty sine curve.
+
+```python
+%matplotlib inline
+#Plot default curve
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0,3*np.pi,100)
+y = np.sin(x)
+fig = plt.figure()
+ax = fig.add_subplot(111)
+line, = plt.plot(x, y, 'r-')
+fig.canvas.draw()
+```
+
 !!! tip
     You can capture the output of a magic directly like this:
     ```python
@@ -168,7 +187,40 @@ The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) wit
     ```
 
 ## Widgets and interactive plotting
-Since we're typically running our notebooks in a web browser, they are quite well suited for also including more interactive elements. A typical use case would be that you want to communicate some results to a collaborator or to a wider audience and that you would like them to be able to affect how the results are displayed. It could be for example to select which gene to plot for, or to see how some parameter value affects a clustering. Jupyter notebooks has great support for this in the form of widgets.
+Since we're typically running our notebooks in a web browser, they are quite well suited for also including more interactive elements. A typical use case would be that you want to communicate some results to a collaborator or to a wider audience, and that you would like them to be able to affect how the results are displayed. It could for example be to select which gene to plot for, or to see how some parameter value affects a clustering. Jupyter notebooks has great support for this in the form of widgets.
+
+Widgets are eventful python objects that have a representation in the browser, often as a control like a slider, textbox, etc. Let's try to add a slider that allows us to change the frequency of the sine curve we plotted previously. If you have problems getting this to run, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
+
+```python
+%matplotlib notebook
+# To use the widget framework, we need to import ipywidgets
+import ipywidgets as widgets
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Plot default curve
+x = np.linspace(0,3*np.pi,100)
+y = np.sin(x)
+fig = plt.figure()
+ax = fig.add_subplot(111)
+line, = plt.plot(x, y, 'r-')
+fig.canvas.draw()
+
+# Create and show the slider
+slider = widgets.IntSlider(1, min = 0, max = 5)
+display(slider)
+
+# Define a function for modifying the line when the slider's value changes
+def on_value_change(val):
+    y = np.sin(x*val['new'])
+    line.set_ydata(y)
+    fig.canvas.draw_idle()
+
+# Monitor for change, and send the new value to the function above on changes.
+slider.observe(on_value_change, names='value')
+```
+
+There are lots of widgets and the all work pretty much in the same way; you listen for some event to happen and if it does you pass the new state to some function. Here is a [list of all available widgets](http://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html) together with documentation and examples.
 
 ## Sharing your notebooks
 NBviewer and nbconvert
