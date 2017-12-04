@@ -206,9 +206,9 @@ git push -u origin master
 
 ## Conflicts
 
-We will now learn how to manage conflicts. This is important to know, since it will probably happen sooner or later. The important thing is to not panic! :)
+We will now learn how to manage conflicts. This is important to know, since it will probably happen sooner or later. It can get a bit tricky, but the important thing is not to panic! :)
 
-* On the Bitbucket webpage, click on `environment.yml` and click Edit. We can now edit this file directly on the web. This is not mainly recommended, but we will do it to demonstrate a point.
+* On the Bitbucket web page, click on `environment.yml` and click Edit. We can now edit this file directly on the web. This is generally not recommended, but we will do it here to demonstrate a point.
 * Let's pretend that using multiqc version 1.3 did not work. Change the multiqc version to 1.4:  
 
 ```yaml
@@ -220,7 +220,7 @@ multiqc=1.4
 
 Now we have a change in the remote repository that is not yet in our local clone. This could happen for instance if a collaborator of yours committed a change and pushed it to Bitbucket.
 
-* Go back to your local terminal. Run `git status`. Notice that git says: *Your branch is up-to-date with 'origin/master'.* This is of course not true, but our local git clone is not yet aware of the remote changes. We will get those changes soon.
+* Go back to your local terminal. Run `git status`. Notice that git says: "*Your branch is up-to-date with 'origin/master'.*". This is of course not true, but our local git clone is not yet aware of the remote changes. We will get those changes soon.
 * But first, we will edit `environment.yml` locally as well! (It may be the case that your collaborator thought it was good to use multiqc version 1.4, whereas you thought it would be better to use multiqc version 1.2, but neither of you communicated that to the other.) Use a text editor and change the multiqc line to:
 
 ```yaml
@@ -254,9 +254,9 @@ git push
 git fetch
 ```
 
-* Now run `git status`. Unlike before, our local git clone now is aware of the latest changes pushed to the remote. It will tell you something along the lines: *Your branch and 'origin/master' have diverged,
-and have 1 and 1 different commit each, respectively.*
-* Now, since we ran `git fetch` our local git has up-to-date information about the status of the remote repository. We can therefore run the following to see what the difference is between the current state of our local clone and the master branch on the remote origin, i.e. Bitbucket:
+* Now run `git status`. Unlike before, our local git clone now is aware of the latest changes pushed to the remote. It will tell you something along the lines: "*Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commit each, respectively.*".
+* Now, since we ran `git fetch` our local git has up-to-date information about the status of the remote repository. We can therefore run the following to see what the difference is between the current state of our local clone and the master branch on the remote origin:
 
 ```bash
 git diff origin/master
@@ -297,7 +297,7 @@ As always, run `git status` to get an overview! You will see that you have, so c
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of numbers is the commit id (the first 7 are e.g. displayed on Bitbucket under Commits).
 
-* It is now up to you to decide which version to keep, or to change it to a third alternative. Let's say that you are confident that it is better to run multiqc v1.2 rather than v1.4. Edit the file so that it looks like you want it to, i.e. remove the files added by git and delete the line with `multiqc=1.4`, the final file should look like this:
+* It is now up to you to decide which version to keep, or to change it to a third alternative. Let's say that you are confident that it is better to run multiqc v1.2 rather than v1.4. Edit the file so that it looks like you want it to, i.e. remove the lines added by git and delete the line with `multiqc=1.4`. The final file should look like this:
 
 ```yaml
   channels:
@@ -322,7 +322,7 @@ The part between `<<<<<<< HEAD` and `=======` is your local version, and the par
 git add environment.yml
 ```
 
-* Run `git status` again! It will now tell us: *All conflicts fixed but you are still merging. (use "git commit" to conclude merge)*. So, you probably guessed it, run:
+* Run `git status` again! It will now tell us: "*All conflicts fixed but you are still merging. (use "git commit" to conclude merge)*.". So, you probably guessed it, run:
 
 ```bash
 git commit -m "merge and set multiqc to v1.2"
@@ -337,14 +337,14 @@ git push
 * Go to Bitbucket in the browser and click Commits. You should be able to see a graph showing that the paths diverged (where one commit set the version to 1.4 and the other to 1.2) and that they are later merged, and the conflict fixed!
 
 !!! note "Quick recap"
-    We now learnt how to sync or local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
+    We now learnt how to sync our local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
 
     * `git fetch` - downloads information from the remote repository.
     * `git pull` - both fetches and integrates changes from the remote repository.
 
 ## Ignoring files
 
-Git is aware of all files within the repository. However, it is not uncommon to have files that we don't want git to track. For instance, our analysis might produce several intermediate files and results. Normally, we will not version track those using git. Rather, we want to version track the actual code and other related files (e.g. like configuration files) that produce the intermediate and result files, given the raw input data.
+Git is aware of all files within the repository. However, it is not uncommon to have files that we don't want git to track. For instance, our analysis might produce several intermediate files and results. We typically don't track such files. Rather, we want to track the actual code and other related files (e.g. configuration files) that produce the intermediate and result files, given the raw input data.
 
 * Let's make some intermediate and result files:
 
@@ -373,19 +373,19 @@ intermediate/
 *.tmp
 ```
 
-* Run `git status` again. Now there is no mention of the results and intermediate directories or the log.tmp file. Notice that we can use wildcards (\*) to ignore files with a given pattern, e.g. a specific extension, like .tmp.
+* Run `git status` again. Now there is no mention of the `results` and `intermediate` directories or the `log.tmp` file. Notice that we can use wildcards (\*) to ignore files with a given pattern, e.g. a specific extension.
 
 * Go ahead and add, commit, and push the `.gitignore` file.
 
 !!! note "Quick recap"
-    We now learnt how to use a `.gitignore` file to control what directories, and files git should ignore.
+    We now learnt how to use a `.gitignore` file to control what directories and files git should ignore.
 
 
 ## Tagging
 
-The last topic we will cover in this tutorial is tagging. Git allows us to tag commits. This is of particular convenience when thinking about reproducible research. We can tag commits that represent important points in history, like e.g. the version of the repository that was used for the submission, the version used during resubmission, and, most importantly, the version used for the final publication. The first two examples are mainly useful internally, but the latter is essential for other researchers being able to rerun your published analysis (assuming that you may continue to work on your code and push updates to the repository). Let's try this out!
+The last topic we will cover in this tutorial is tagging. Git allows us to tag commits. This is of particular importance when it comes to reproducible research. We can tag commits that represent important points in the history of our project. This can be, for example, the version of the repository that was used for the manuscript submission, the version used during resubmission, and, most importantly, the version used for the final publication. The first two examples are mainly useful internally, but the latter is essential for other researchers to be able to rerun your published analysis. Let's try this out!
 
-* Let's assume that the status of the repository as it is now is ready for a submission to a journal, e.g. it contains scripts that are used to generate the manuscript figures. Let's add a tag:
+* Let's assume that the status of the repository as it is now is ready for a submission to a journal. It may for example contain the scripts that were used to generate the manuscript figures. Let's add a tag:
 
 ```bash
 git tag "submission1"
@@ -398,7 +398,7 @@ git push --tags
 ```
 
 * Go to Bitbucket and check Commits. Can you see that the tag has been added?
-* Let's assume we now got review comments and by fixing those had to update our code. Open `config.yml` and change the line `max_reads: 25000` to `max_reads: 50000`. Commit and push that change:
+* Let's assume we now got comments from the reviewers, and by fixing those we had to update our code. Open `config.yml` and change the line `max_reads: 25000` to `max_reads: 50000`. Commit and push that change:
 
 ```bash
 git add config.yml
@@ -421,7 +421,7 @@ git commit -m "upgrade to newer multiqc version"
 git push
 ```
 
-* Go to Bitbucket and click Downloads, and the Tags. Here users can download a compressed file containing the repository at the versions specified by the tags.
+* Go to Bitbucket and click Downloads, and then Tags. Here users can download a compressed file containing the repository at the versions specified by the tags.
 Alternatively, git users who want to reproduce your analysis with the code used for the publication can clone the Bitbucket repository and then run `git checkout publication`.
 
 * You can try this in your local clone, run:
