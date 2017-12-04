@@ -23,14 +23,6 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 ```yaml
 # The workflow manager
 - snakemake=4.3.0
-# For aggregating output from FastQC
-- multiqc=1.3
-# For mapping reads to a genome
-- bowtie2=2.3
-# For sorting the output from Bowtie2
-- samtools=1.6
-# For generating a count table for further analysis
-- htseq=0.9
 # For visualizing workflows
 - graphviz=2.38.0
 - xorg-libxrender
@@ -329,7 +321,26 @@ As you might remember from the [intro](index.md), we are attempting to understan
 !!! tip
     This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications is available as `git_jupyter_docker/Snakefile`.
 
-Let's start by generating the rule graph so that we get an overview of the workflow.
+This will require some more packages, so add the following lines to `environment.yml`.
+
+```yaml
+# For aggregating output from FastQC
+- multiqc=1.3
+# For mapping reads to a genome
+- bowtie2=2.3
+# For sorting the output from Bowtie2
+- samtools=1.6
+# For generating a count table for further analysis
+- htseq=0.9
+```
+
+You are probably already in your `snakemake_exercise` environment, otherwise activate it (use `conda env list` if you are unsure). You can update the current environment to contain the new packages like this:
+
+```bash
+conda env update -f environment.yml
+```
+
+Done! Let's start by generating the rule graph so that we get an overview of the workflow.
 
 ```bash
 snakemake -s Snakefile_mrsa --rulegraph | dot -Tpng > rulegraph_mrsa.png
