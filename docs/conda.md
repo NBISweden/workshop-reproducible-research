@@ -49,6 +49,8 @@ conda config --add channels conda-forge
 
 ## Get going with environments
 
+Let's assume that you are just about to start a new exciting research project called Project A.
+
 * Let's make our first Conda environment:
 
 ```bash
@@ -112,10 +114,10 @@ conda install -c bioconda sra-tools=2.7.0
 
 Read the information that Conda displays in the terminal. It probably asks if you want to downgrade the initial sra-tools installation to the one specified here (2.7.0 in the example). You can only have one version of a given package in a given environment.
 
-Let's assume that you are just about to start a new exciting research project called Project New. You will have sequencing data and want to use the latest bowtie2 software to align your reads.
+Let's assume that you will have sequencing data in your Project A, and want to use the latest bowtie2 software to align your reads.
 
 * Find out what versions of bowtie2 are available at Bioconda using `conda search`.
-* Now install the *latest* available version of bowtie2 in your project_new environment.
+* Now install the *latest* available version of bowtie2 in your project_a environment.
 
 Let's further assume that you have an old project (called Project Old) where you know you used bowtie2 v2.2.6. You just got back reviewer comments and they want you to include some alignment statistics. Unfortunately, you haven't saved that information so you will have to rerun the alignment. Now, it is essential that you use the same version of bowtie that your results are based on, otherwise the alignment statistics will be misleading. Using Conda environments this becomes simple. You can just have a separate environment for your old project where you have an old version of bowtie2 without interfering with your new Project A where you want the latest version.
 
@@ -126,7 +128,7 @@ conda create -n project_old -c bioconda bowtie2=2.2.6
 ```
 
 * Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
-* Activate `project_new` again and check the bowtie2 version.
+* Activate `project_a` again and check the bowtie2 version.
 * Run `source deactivate` to exit your active environment.
 * List your environments (do you remember the command?).
 * Now, let's remove an environment:
