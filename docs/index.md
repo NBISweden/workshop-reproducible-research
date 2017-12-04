@@ -1,5 +1,13 @@
 # Making bioinformatics research reproducible - from raw data to publication
-Welcome to the tutorials!
+
+Welcome to the tutorials! Here we will learn how to make a computational research project reproducible using the tools:
+
+* Conda
+* Snakemake
+* Git
+* R Markdown
+* Jupyter
+* Docker
 
 ## The case study
 To make the tutorials feel as close to reality as possible, we have selected a real bioinformatics research project and use that to exemplify the different steps of setting up a reproducible research project. To give you some context, the study background and analysis steps are very briefly described below.

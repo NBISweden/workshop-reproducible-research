@@ -1,7 +1,9 @@
 site_name: NBIS Reproducible research course
 theme: mkdocs
 pages:
-  - 'index.md'
+  - Information:
+    - 'Introduction': 'index.md'
+    - 'Take down': take_down.md
   - Tutorials:
     - 'Conda': 'conda.md'
     - 'Snakemake': 'snakemake.md'
