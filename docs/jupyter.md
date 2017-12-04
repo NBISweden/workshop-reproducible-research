@@ -17,6 +17,11 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 (If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
 
+!!! note "A note on nomenclature"
+    * Jupyter: a project to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages. Available at [jupyter.org](jupyter.org).
+    * Jupyter Notebook: A web application that you use for creating and managing notebooks. One of the outputs of the Jupyter project.
+    * Jupyter notebook: The actual `.ipynb` file that constitutes your notebook.
+
 # Practical exercise
 ## The Jupyter Notebook dashboard
 One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. Ok, not quite everything, you first have to start the Jupyter Notebook server.
