@@ -279,8 +279,8 @@ rule concatenate_files:
         """
 ```
 
-!!! info
-    It's not really important for the exercise, but the shell command used here first outputs "Concatenating " followed by a space delimited list of the files in `input`. This string is then sent to the program `cat` where it's concatenated with `input[0]` and `input[1]` (the parameter `-` means that it should read from standard input). Lastly, the output from `cat` is sent to `{output}`.
+!!! note
+    It's not really important for the tutorial, but the shell command used here first outputs "Concatenating " followed by a space delimited list of the files in `input`. This string is then sent to the program `cat` where it's concatenated with `input[0]` and `input[1]` (the parameter `-` means that it should read from standard input). Lastly, the output from `cat` is sent to `{output}`.
 
 If you now run the workflow as before you should get "Nothing to be done", because no files involved in the workflow have been changed. Instead we have to force Snakemake to rerun the rule by using the `-R`flag. Let's try a dry-run.
 
@@ -326,7 +326,8 @@ By now you should be familiar with the basic functionality of Snakemake, and you
 ## RNA-seq analysis of MRSA
 As you might remember from the [intro](index.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
 
-This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
+!!! attention
+    This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
 
 Let's start by generating the rule graph so that we get an overview of the workflow.
 
@@ -340,7 +341,7 @@ There are two differences in this command compared to the one we've used before.
 
 Now take some time and look through the workflow file and try to understand how the rules fit together. Use the rule graph as aid. The rules represent a quite standard, although somewhat simplified, workflow for RNA-seq analysis. If you are unfamiliar with the purpose of the different operations (index genome, FastQC and so on), then take a look at the [intro](index.md).
 
-Also generate the job graph in the same manner. Here you can see that three samples will be downloaded from SRA (Sequence Read Archive); SRR935090, SRR935091, and SRR935092. Those will then be quality controlled with FastQC and aligned to a genome. The QC output will be aggregated with MultiQC and the alignments will be used to generate a count table, i.e a table that show how many reads map to each gene for each sample. This count table is then what the downstream analysis will be based on (in the [Rmarkdown exercise](rmarkdown.md)).
+Also generate the job graph in the same manner. Here you can see that three samples will be downloaded from SRA (Sequence Read Archive); SRR935090, SRR935091, and SRR935092. Those will then be quality controlled with FastQC and aligned to a genome. The QC output will be aggregated with MultiQC and the alignments will be used to generate a count table, i.e. a table that shows how many reads map to each gene for each sample. This count table is then what the downstream analysis will be based on (in the [Rmarkdown tutorial](rmarkdown.md) and in the [Docker tutorial](docker.md)).
 
 ![alt text](dag_mrsa.svg)
 
@@ -389,9 +390,10 @@ Finished job 0.
 19 of 19 steps (100%) done
 ```
 
-After everything is done the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `data/final`.
+After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `data/final`.
 
-**As noted above, the rest of this tutorial will go over many more nice features of Snakemake. If you got a taste for Snakemake, just continue along. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.**
+!!! attention
+  You have now run a real bioinformatics workflow, and you have learnt enough to start creating your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
 
 ### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
@@ -410,14 +412,14 @@ rule some_rule:
         """
 ```
 
-A log file is not different from any other output file, but it's dealt with a little differently by Snakemake. For example it's shown in the file summary when using `-D`. It's also a good way to clarify the purpose of the file. We probably don't need to save logs for all the rules, only the ones with interesting output.
+A log file is not different from any other output file, but it's dealt with a little differently by Snakemake. For example, it's shown in the file summary when using `-D`. It's also a good way to clarify the purpose of the file. We probably don't need to save logs for all the rules, only the ones with interesting output.
 
 * `get_genome_fasta` and `get_genome_gff3` would be good to log since they are dependent on downloading files from an external server.
 * `multiqc` aggregates quality control data for all the samples into one html report, and the log contains information about which samples were aggregated.
 * `index_genome` outputs some statistics about the genome indexing.
 * `align_to_genome` outputs important statistics about the alignments. This is probably the most important log to save.
 
-Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/job_name.log`. Be sure to include any wildcards used in the rule in the job name as well, so that you don't end up with identical names for different samples for example.
+Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, so that you don't end up with identical names for different samples, e.g. `{some_wildcard}.log`.
 
 You also have to specify in the `shell` section of each rule what you want the log to contain. Some of the programs we use send their log information to standard out, some to standard error and some let us specify a log file via a flag. To save some time you can use the info below.
 
@@ -438,7 +440,7 @@ bowtie2 -x index_dir -U input_file > output_file 2> {log}
 Now rerun the whole workflow by using the `-F` flag. Do the logs contain what they should? Note how much easier it it to follow the progression of the workflow when the rules write to logs instead of to the terminal. If you run with `-D` (or `-S` for a simpler version) you will see that the summary table now also contains the log file for each of the files in the workflow.
 
 ### Marking files as temporary
-It's not uncommon that workflows in bioinformatics contain temporary files that should be kept for some time and then deleted once they are no longer needed. A typical case could be that some operation generates a file, which is then compressed to save space or indexed to make searching faster. There is then no need to save the original output file. Take a look at the job graph for our workflow again. The output from `align_to_genome` is a bam file, which contains information about all the reads for a sample and where they map in the genome. For downstream processing we need this file to be sorted by genome coordinates. This is what the rule `sort_bam` is for. We therefore end up with both `intermediate/{sra_id}.bam` and `intermediate/{sra_id}.sorted.bam`.
+It's not uncommon that workflows contain temporary files that should be kept for some time and then deleted once they are no longer needed. A typical case could be that some operation generates a file, which is then compressed to save space or indexed to make searching faster. There is then no need to save the original output file. Take a look at the job graph for our workflow again. The output from `align_to_genome` is a bam file, which contains information about all the reads for a sample and where they map in the genome. For downstream processing we need this file to be sorted by genome coordinates. This is what the rule `sort_bam` is for. We therefore end up with both `intermediate/{sra_id}.bam` and `intermediate/{sra_id}.sorted.bam`.
 
 In Snakemake we can mark an output file as temporary like this:
 
@@ -464,18 +466,18 @@ Finished job 2.
 ```
 
 !!! tip
-    Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run though the workflow and update the timestamps on all output files without actually executing the code in `shell`.
+    Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run through the workflow and update the timestamps on all output files without actually executing the code in `shell`.
 
 Snakemake has a number of options for marking files:
 
 * `temp("...")`: The output file should be deleted once it's no longer needed by any rules.
-* `protected("...")`: The output file should be write-protected. Typically used to protect files which require a huge amount of computation time from being accidentally deleted.
+* `protected("...")`: The output file should be write-protected. Typically used to protect files that require a huge amount of computational resources from being accidentally deleted.
 * `ancient("...")`: The timestamp of the input file is ignored and it's always assumed to be older than any of the output files.
 * `touch("...")`: The output file should be "touched", i.e. created or updated, when the rule has finished. Typically used as "flag files" to enforce some rule execution order without real file dependencies.
 * `dynamic("{some_wildcard}...")`: This one is a bit tricky. It's used when the number of output files from a rule cannot be determined beforehand. A typical use case could be if you run some clustering analysis and end up with one file per cluster.
 
 ### Shadow rules
-Take a look at the rule `generate_count_table` below. Since `input.annotation` is compressed it is first unzipped to a temporary file. `htseq-count` then generates a temporary count table, which is finally prepended with a header containing the sample names. Lastly, the two temporary files are deleted.
+Take a look at the rule `generate_count_table` below. Since `input.annotation` is compressed, it is first unzipped to a temporary file. `htseq-count` then generates a temporary count table, which is finally prepended with a header containing the sample names. Lastly, the two temporary files are deleted.
 
 ```python
 rule generate_count_table:
@@ -504,9 +506,9 @@ rule generate_count_table:
 
 There are a number of drawbacks with having files that aren't explicitly part of the workflow as input/output files to rules (as the two temporary files here).
 
-* Snakemake cannot clean up these files if the job fails, as it would do for the normal output files.
+* Snakemake cannot clean up these files if the job fails, as it would do for normal output files.
 * If several jobs are run in parallel there is a risk that they write to `tempfile` at the same time. This can lead to very scary results.
-* Sometimes we don't know the names of all the files that a program can generate. It is, for example, not unusual that programs leave some kind of error log if something goes wrong.
+* Sometimes we don't know the names of all the files that a program can generate. It is, for example, not unusual that programs leave some kind of error log behind if something goes wrong.
 
 All of these issues can be dealt with by using the `shadow` option for a rule. Shadow rules result in that each execution of the rule is run in an isolated temporary directory (located in `.snakemake/shadow/`). There are a few option for `shadow`. The most simple is `shadow: "minimal"` (*NOTE: USE SHADOW: "SHALLOW" UNTIL PR ACCEPTED*), which means that the rule is executed in an empty directory where the input files have been symlinked. For the rule below that means that the only file available would be `input.txt`. The shell commands would generate the files `some_other_junk_file` and `output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its "real" location and remove the whole shadow directory. We therefore never have to think about manually removing `some_other_junk_file`.
 
@@ -526,12 +528,11 @@ rule some_rule:
 
 Try this out for the rules where we have to "manually" deal with files that aren't tracked by Snakemake (`multiqc`, `index_genome`, `generate_count_table`). Also remove the shell commands that remove temporary files from those rules, as they are no longer needed. Now rerun the workflow and validate that the temporary files don't show up in your working directory.
 
-Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the `.snakemake` directory is on the same disk as the output directory, but if you're running on a distributed file system and generate many very large files it might be worth considering other options.
-
-*ADD OUTPUT EXAMPLE WHEN ISSUE DEALT WITH*
+!!! tip
+    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the `.snakemake` directory is on the same disk as the output directory, but if you're running on a distributed file system and generate many very large files it might be worth considering other options.
 
 ### Rule targets
-So far we have only defined the inputs/outputs of a rule as strings or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
+So far we have only defined the inputs/outputs of a rule as strings, or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
 
 ```python
 rule align_to_genome:
@@ -581,7 +582,7 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for the sample ids. Much better!
 
 ### Parameters
-In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves everytime you wanted to run with a new setting. Luckily, there is a better option for this; the `params` keyword.
+In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves everytime you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.
 
 ```python
 rule some_rule:
@@ -597,7 +598,7 @@ rule some_rule:
         """
 ```
 
-In our workflow we run most of the programs with default settings. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each read (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
+In our workflow we run most of the programs with default settings. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
 
 ```python
 rule get_SRA_by_accession:
@@ -616,7 +617,7 @@ rule get_SRA_by_accession:
         """
 ```
 
-Now when we have declare `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself.
+Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself.
 
 From a reproducibility perspective it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
 
@@ -648,7 +649,7 @@ rule get_SRA_by_accession:
 !!! tip
     Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
 
-If we want to move all project-specific information to `config.yml` and let the Snakefile be a more general RNA-seq analysis workflow we need to:
+If we want to move all project-specific information to `config.yml` and let the Snakefile be a more general RNA-seq analysis workflow we need the config file to:
 
 * Specify which samples to run.
 * Specify which genome to align to and where to download its sequence and annotation files.
