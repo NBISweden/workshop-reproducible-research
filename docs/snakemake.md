@@ -138,7 +138,7 @@ shell:
 ```
 
 !!! attention
-    If you have multiple inputs or outputs they need to be delimited with a comma (as seen above). This is a very common mistake when writing Snakemake workflows. The compiler will complain but sometimes the error message can be difficult to interpret.
+    If you have multiple inputs or outputs they need to be delimited with a comma (as seen above). This is a very common mistake when writing Snakemake workflows. The parser will complain, but sometimes the error message can be difficult to interpret.
 
 Now try to construct this rule yourself and name it `concatenate_files`. The syntax for concatenating two files in Bash is `cat first_file second_file > output_file`. Call the output `c.txt`. Run the workflow in Snakemake and validate that the output looks as expected.
 
@@ -326,7 +326,7 @@ By now you should be familiar with the basic functionality of Snakemake, and you
 ## RNA-seq analysis of MRSA
 As you might remember from the [intro](index.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
 
-!!! attention
+!!! tip
     This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications can be found in the `git_jupyter_docker` directory.
 
 Let's start by generating the rule graph so that we get an overview of the workflow.
@@ -393,7 +393,7 @@ Finished job 0.
 After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `data/final`.
 
 !!! attention
-  You have now run a real bioinformatics workflow, and you have learnt enough to start creating your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
+    You have now run a real bioinformatics workflow, and you have learnt enough to start creating your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
 
 ### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
