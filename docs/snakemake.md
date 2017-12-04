@@ -2,7 +2,7 @@
 
 A workflow management system (WMS) is a piece of software that sets up, performs and monitors a defined sequence of computational tasks (i.e. "a workflow"). Snakemake is a WMS that was developed in the bioinformatics community, and as such it has some features that make it particularly well suited for creating reproducible and scalable data analyses.
 
-* The language you use to formulate your workflows is based on Python, which is a language with strong standing in academia. However, users are not required to know how to code in Python to work efficently with Snakemake.
+* The language you use to formulate your workflows is based on Python, which is a language with strong standing in academia. However, users are not required to know how to code in Python to work efficiently with Snakemake.
 * Workflows can easily be scaled from your desktop to server, cluster, grid or cloud environments. This makes it possible to develop a workflow on your laptop, maybe using only a small subset of your data, and then run the real analysis on a cluster.
 * Snakemake has several features for defining the environment which each task is carried out in. This is important in bioinformatics, where workflows often involve running a large number of small third-party tools.
 * Snakemake is primarily intended to work on _files_ (rather than for example streams, reading/writing from databases or passing variables in memory). This fits well with many fields of bioinformatics, notably next-generation sequencing, that often involve computationally expensive operations on large files. It's also a good fit for a scientific research setting, where the exact specifications of the final workflow aren't always known at the beginning of a project.
@@ -52,7 +52,7 @@ Check that Snakemake is installed correctly, for example by executing `bash snak
 ## The basics
 In this part of the tutorial we will create a very simple workflow from scratch, in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
 
-First make an empty file named `Snakefile`, which will contain the workflow, and the two input files containing some arbitary text.
+First make an empty file named `Snakefile`, which will contain the workflow, and the two input files containing some arbitrary text.
 
 ```bash
 touch Snakefile
@@ -75,7 +75,7 @@ rule convert_to_upper_case:
 ```
 
 !!! attention
-    Intendation is important in Snakefiles, so make sure that you have the correct number of spaces before `input`/`output`/`shell` and their respective subsections. Don't use tabs (unless your editor automatically converts them to spaces).
+    Indentation is important in Snakefiles, so make sure that you have the correct number of spaces before `input`/`output`/`shell` and their respective subsections. Don't use tabs (unless your editor automatically converts them to spaces).
 
 A rule has a name, here it's `convert_to_upper_case`. Make an effort to name your rules in way that makes it easy to understand the purpose of the rule, as rule names are one of the main ways to interact with the workflow. The `shell` section contains the shell commands that will convert the text in the input file to upper case and send it to the output file. In the shell command string, we can refer to elements of the rule via curly brackets. Here, we refer to the output file by specifying `{output}` and to the input file by specifying `{input}`. If you're not very familiar with Bash, this particular command can be read like "send the contents of `a.txt` to the program `tr`, which will convert all characters in the set [a-z] to the corresponding character in the set [A-Z], and then send the output to `a.upper.txt`".
 
@@ -99,7 +99,7 @@ Job counts:
         1
 ```
 
-You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case` with `a.txt` as input and `a.upper.txt` as output. The reason for doing this is that it's missing the file `a.upper.txt`. Now execute the workflow without the `-n` flag and check that the contentsof `a.upper.txt` is as expected. Then try running the same command again. What do you see? It turns out that Snakemake only reruns jobs if **one of the input files is newer than one of the output files, or if one of the input files will be updated by another job**. This is how Snakemake ensures that everything in the workflow is up to date. We will get back to this shortly.
+You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case` with `a.txt` as input and `a.upper.txt` as output. The reason for doing this is that it's missing the file `a.upper.txt`. Now execute the workflow without the `-n` flag and check that the contents of `a.upper.txt` is as expected. Then try running the same command again. What do you see? It turns out that Snakemake only reruns jobs if **one of the input files is newer than one of the output files, or if one of the input files will be updated by another job**. This is how Snakemake ensures that everything in the workflow is up to date. We will get back to this shortly.
 
 What if we ask Snakemake to generate the file b.upper.txt?
 
@@ -209,7 +209,7 @@ Neat!
     * How to use named wildcards for writing generic and flexible rules.
 
 ## Visualization, logging and workflow management
-All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WFM like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (i.e. an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualisation of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
+All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WFM like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (i.e. an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualization of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
 
 ```bash
 snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
@@ -233,7 +233,7 @@ snakemake --dag a_b.txt | dot -Tpng > jobgraph.png
 
 The main difference here is that now each node is a job instead of a rule. You can see that the wildcards used in each job are also displayed. Another difference is the dotted lines around the nodes. A dotted line is Snakemake's way of indicating that this rule doesn't need to be rerun in order to generate `a_b.txt`. Validate this by running `snakemake -n -r a_b.txt` and it should say that there is nothing to be done.
 
-We've discussed before that one of the main purposes of using a WFM is that it automatically makes sure that everything is up to date. This is done by recursively checking that outputs are always newer than inputs for all the rules involved in the generation of your target files. Now try to change the contentsof `a.txt` to some other text and save it. What do you think will happen if you run `snakemake -n -r a_b.txt` again?
+We've discussed before that one of the main purposes of using a WFM is that it automatically makes sure that everything is up to date. This is done by recursively checking that outputs are always newer than inputs for all the rules involved in the generation of your target files. Now try to change the contents of `a.txt` to some other text and save it. What do you think will happen if you run `snakemake -n -r a_b.txt` again?
 
 ??? note "Click to see output"
     ```no-highlight
@@ -304,7 +304,7 @@ The contents of `summary.tsv` is shown in the table below. You may want to open 
 | b.upper.txt | Thu Nov 16 12:03:11 2017 | convert_to_upper_case | - |  | b.txt | tr [a-z] [A-Z] < b.txt > b.upper.txt | ok | no update |
 
 
-You can see in the second last column that the rule implementation for a_b.txt has changed. The last column shows if Snakemake plans to regenerate the files when it's next executed. None of the files will be regenerated because Snakemake doesn't regenerate files by default if the rule implementation changes. From a reproducibilty viewpoint maybe it would be better if this was done automatically, but it would be very computationally expensive and cumbersome if you had to rerun your whole workflow every time you fix a spelling mistake in a comment somewhere. So, it's up to us to look at the summary table and rerun things as needed. You can get a list of the files for which the rule implementation has changed, and then force Snakemake to regenerate these files with the `-R` flag.
+You can see in the second last column that the rule implementation for a_b.txt has changed. The last column shows if Snakemake plans to regenerate the files when it's next executed. None of the files will be regenerated because Snakemake doesn't regenerate files by default if the rule implementation changes. From a reproducibility perspective maybe it would be better if this was done automatically, but it would be very computationally expensive and cumbersome if you had to rerun your whole workflow every time you fix a spelling mistake in a comment somewhere. So, it's up to us to look at the summary table and rerun things as needed. You can get a list of the files for which the rule implementation has changed, and then force Snakemake to regenerate these files with the `-R` flag.
 
 ```bash
 snakemake a_b.txt -R `snakemake a_b.txt --list-code-changes`
@@ -510,7 +510,7 @@ There are a number of drawbacks with having files that aren't explicitly part of
 * If several jobs are run in parallel there is a risk that they write to `tempfile` at the same time. This can lead to very scary results.
 * Sometimes we don't know the names of all the files that a program can generate. It is, for example, not unusual that programs leave some kind of error log behind if something goes wrong.
 
-All of these issues can be dealt with by using the `shadow` option for a rule. Shadow rules result in that each execution of the rule is run in an isolated temporary directory (located in `.snakemake/shadow/`). There are a few option for `shadow`. The most simple is `shadow: "minimal"` (*NOTE: USE SHADOW: "SHALLOW" UNTIL PR ACCEPTED*), which means that the rule is executed in an empty directory where the input files have been symlinked. For the rule below that means that the only file available would be `input.txt`. The shell commands would generate the files `some_other_junk_file` and `output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its "real" location and remove the whole shadow directory. We therefore never have to think about manually removing `some_other_junk_file`.
+All of these issues can be dealt with by using the `shadow` option for a rule. Shadow rules result in that each execution of the rule is run in an isolated temporary directory (located in `.snakemake/shadow/`). There are a few options for `shadow`. The most simple is `shadow: "minimal"` (*NOTE: USE SHADOW: "SHALLOW" UNTIL PR ACCEPTED*), which means that the rule is executed in an empty directory where the input files have been symlinked. For the rule below that means that the only file available would be `input.txt`. The shell commands would generate the files `some_other_junk_file` and `output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its "real" location and remove the whole shadow directory. We therefore never have to think about manually removing `some_other_junk_file`.
 
 ```python
 rule some_rule:
@@ -582,7 +582,7 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for the sample ids. Much better!
 
 ### Parameters
-In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves everytime you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.
+In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves every time you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.
 
 ```python
 rule some_rule:
@@ -598,7 +598,7 @@ rule some_rule:
         """
 ```
 
-In our workflow we run most of the programs with default settings. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
+We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
 
 ```python
 rule get_SRA_by_accession:
@@ -619,7 +619,7 @@ rule get_SRA_by_accession:
 
 Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself.
 
-From a reproducibility perspective it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
+From a reproducibility perspective, it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
 
 ```yaml
 max_reads: 25000
@@ -664,7 +664,7 @@ sample_ids:
 - SRR935092
 ```
 
-The second point is trickier. Writing workflows in Snakemake is quite straightforward when the logic of the workflow is reflected in the file names, i.e. `my_sample.trimmed.deduplicated.sorted.fastq`, but that isn't always the case. In our case we have the FTP paths to the genome sequence and annotation where the naming doesn't quite fit with the rest of the workflow. The easiest solution is probably to make three parameters to hold these values, say `genome_id`, `genome_fasta_path` and `genome_gff_path`, but we will go for a somewhat more complex but very useful alternative. We want to construct a dictionary where something that will be a wildcard in the workflow is the key and the troublesome name is the value. An example might make this clearer (this is also in `config.yml`). This is a nested dictionary where "genomes" is a key with with another dictionary as value, which in turn has genome ids as keys and so on. The idea is that we have a wildcard in the workflow that takes the id of a genome as value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can then be retrieved based on the value of the wildcard.
+The second point is trickier. Writing workflows in Snakemake is quite straightforward when the logic of the workflow is reflected in the file names, i.e. `my_sample.trimmed.deduplicated.sorted.fastq`, but that isn't always the case. In our case we have the FTP paths to the genome sequence and annotation where the naming doesn't quite fit with the rest of the workflow. The easiest solution is probably to make three parameters to hold these values, say `genome_id`, `genome_fasta_path` and `genome_gff_path`, but we will go for a somewhat more complex but very useful alternative. We want to construct a dictionary where something that will be a wildcard in the workflow is the key and the troublesome name is the value. An example might make this clearer (this is also in `config.yml`). This is a nested dictionary where "genomes" is a key with another dictionary as value, which in turn has genome ids as keys and so on. The idea is that we have a wildcard in the workflow that takes the id of a genome as value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can then be retrieved based on the value of the wildcard.
 
 ```yaml
 genomes:

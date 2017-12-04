@@ -495,7 +495,7 @@ Congrats! You made it to the end and are now an R Markdown expert!
 Check out the Jupyter, which is an alternative to R Markdown. [Go to the Jupyter tutorial](jupyter.md).
 
 ## Version tracking with git
-It is obvious that the Rmd files are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The contentsof these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git.md).
+It is obvious that the Rmd files are important to not lose as they are essential to reproduce the analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The contents of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git.md).
 
 ## Containerizing the analysis using Docker
 Check out Docker which can be used to run the full analysis in an isolated system containing all required dependencies. The example in the tutorial also demonstrates how you can integrate rendering of R Markdown reports using Snakemake. [Go to the Docker tutorial](docker.md).
