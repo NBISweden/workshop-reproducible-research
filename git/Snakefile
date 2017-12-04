@@ -3,7 +3,7 @@ rule all:
     Collect the main outputs of the workflow.
     """
     input:
-        "data/final/counts.tsv",
+        "results/tables/counts.tsv",
         "results/multiqc.html",
         "results/rulegraph.png",
         "results/supplementary_material.pdf"
@@ -163,7 +163,7 @@ rule generate_count_table:
         bams=expand("intermediate/{sra_id}.sorted.bam", sra_id = config["sample_ids"]),
         annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     output:
-        "data/final/counts.tsv"
+        "results/tables/counts.tsv"
     version: "1.0"
     shadow: "shallow"
     shell:
@@ -182,7 +182,7 @@ rule make_supplementary:
     Generate Supplementary Material pdf
     """
     input:
-        counts = "data/final/counts.tsv",
+        counts = "results/tables/counts.tsv",
         multiqc_file = "intermediate/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     output:

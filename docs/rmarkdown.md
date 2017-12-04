@@ -357,7 +357,7 @@ You can change the author list if you want to. Here, we have added some r code t
 
 ```yaml
 params:
-  counts_file: "data/final/counts.tsv"
+  counts_file: "results/tables/counts.tsv"
   multiqc_file: "intermediate/multiqc_general_stats.txt"
   rulegraph_file: "results/rulegraph.png"
   SRR_IDs: "SRR935090 SRR935091 SRR935092"

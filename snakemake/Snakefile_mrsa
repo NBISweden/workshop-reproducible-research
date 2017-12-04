@@ -3,7 +3,7 @@ rule all:
     Collect the main outputs of the workflow.
     """
     input:
-        "data/final/counts.tsv",
+        "results/tables/counts.tsv",
         "results/multiqc.html",
         "results/rulegraph.png"
 
@@ -148,7 +148,7 @@ rule generate_count_table:
         bams = ["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
         annotation = "data/raw_external/NCTC8325.gff3.gz"
     output:
-        "data/final/counts.tsv"
+        "results/tables/counts.tsv"
     shell:
         """
         # htseq-count cannot use .gz, so unzip to a temporary file first

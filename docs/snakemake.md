@@ -393,7 +393,7 @@ Logging in as anonymous ... Logged in!
 .
 .
 localrule all:
-    input: data/final/counts.tsv, results/multiqc.html, results/rulegraph.png
+    input: results/tables/counts.tsv, results/multiqc.html, results/rulegraph.png
     jobid: 0
 
 
@@ -401,7 +401,7 @@ Finished job 0.
 19 of 19 steps (100%) done
 ```
 
-After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `data/final`.
+After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `results/tables`.
 
 !!! attention
     You have now run a real bioinformatics workflow, and you have learnt enough to start writing your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
@@ -499,7 +499,7 @@ rule generate_count_table:
         bams=["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
         annotation="data/raw_external/NCTC8325.gff3.gz"
     output:
-        "data/final/counts.tsv"
+        "results/tables/counts.tsv"
     shell:
         """
         # htseq-count cannot use .gz, so unzip to a temporary file first
