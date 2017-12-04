@@ -43,7 +43,7 @@ This tutorial depends on files from the course BitBucket repo. Take a look at th
     * Skip including a README
     * Make sure Git is selected for version control  
 
-You will now be redirected to the repository page. It is an empty repository, so there is not much to see yet. We want to add some contents(files) to the repository. To do that we will first *clone* the repository locally:
+You will now be redirected to the repository page. It is an empty repository, so there is not much to see yet. We want to add some contents (files) to the repository. To do that we will first *clone* the repository locally:
 
 * Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course). **Important: it should *not* be within the `reproducible_research_course` directory.**
 * Once you are in your directory of choice, run the following command (just make sure to change `user` to your bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
