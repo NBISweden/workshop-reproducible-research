@@ -1,8 +1,46 @@
 # Making bioinformatics research reproducible - from raw data to publication
 Welcome to the tutorials!
 
-## The biological problem
-For many examples in the tutorials we will use a real bioinformatics research project.
+## The case study
+To make the tutorials feel as close to reality as possible, we have selected a real bioinformatics research project and use that to exemplify the different steps of setting up a reproducible research project. To give you some context, the study background and analysis steps are very briefly described below.
+
+### Background
+
+The data is taken from [Osmundson, Dewell, and Darst (2013)](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0076572), who have studied Methicillin-Resistant *Staphylococcus aureus* (MRSA).
+MRSA are resistant to broad spectrum beta-lactam antibiotics and
+lead to difficult-to-treat infections in humans.
+Lytic bacteriophages have been suggested as potential therapeutic agents or as the source of novel antibiotic proteins or peptides.
+One such protein, gp67, was identified as a transcription-inhibiting transcription factor with an antimicrobial effect.
+To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in *S. aureus* cells.
+RNA-seq was then performed on three S. aureus strains:
+
+* RN4220 with pRMC2 with gp67
+* RN4220 with empty pRMC2
+* NCTC8325-4
+
+### Analysis
+
+The graph below shows the different steps of the analysis that are included in this project.
+
+* The input files are:
+    * RNA-seq raw data (fastq files) for the 3 strains
+    * *S. aureus* genome fasta file
+    * *S. aureus* gene model gff file
+
+![](rulegraph_mrsa_intro.svg)
+
+
+* `get_genome_fasta` - Downloads the genome file
+* `index_genome` - Indexes the genome, required for the alignment step, using the software Bowtie2
+* `get_SRA_by_accession` - Downloads the RNA-seq raw data for the 3 strains from the Sequence Read Archive (SRA)
+* `fastqc` - Runs quality control on each of the RNA-seq fastq files, using the software FastQC.
+* `multiqc` - Summarizes the QC
+* `align_to_genome` - Aligns the RNA-seq data from the 3 strains to the indexed genome, using the software Bowtie2
+* `sort_bam` - sorts the alignment files by genome coordinate, using the software Samtools
+* `get_genome_gff3` - Downloads the gene model file
+* `generate_count_table` - Calculates gene expression by counting aligned reads per gene, using the software HTSeq-count
+* `generate_rulegraph` - Makes the analysis overview figure shown above
+* `make_supplementary` - Using R Markdown, produces the Supplementary Materials section using data from the QC, gene counting and the graph figure
 
 # Setup
 ## For Mac / Linux users
