@@ -214,11 +214,3 @@ This should download the project fastq files and run FastQC on them (as mentione
 ```
 
 Note that all that was needed to carry out the analysis and generate these files and results was `environment.yml` (that we used to create a Conda environment with the required packages) and the analysis code in `code/run_qc.sh`.
-
-# Where to go next?
-
-## Version tracking with git
-It is obvious that these two files (`environment.yml` and `run_qc.sh`) are essential for reproducing the data analysis. A very convenient way to keep track of these files (and others) is to set up git version control. The contents of these files, and their history, can then be safely tracked and stored in the cloud (e.g. at GitHub or Bitbucket). [Go to the git tutorial](git.md).
-
-## Workflow management
-We now performed several analysis steps with the code in `run_qc.sh`. That is ok, but it can quickly get complicated when the analysis workflow gets more complex and is split over several code files. Suddenly it is not obvious what code to run and in what order after you have made some change to the analysis. Always rerunning everything can be a solution for small projects, but is not feasible in for example next-generation sequencing. A good solution to this is to use a workflow manager. [Go to the Snakemake tutorial](snakemake.md).

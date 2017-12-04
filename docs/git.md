@@ -443,7 +443,3 @@ git checkout master
 
     * `git tag` - add a tag to a commit
     * `git checkout` - update files to match the versions in the given branch or tag name
-
-# Where to go next?
-
-Now that you have learnt how to version track your code, you can continue to any other tutorial that will help you making your research even more reproducible.

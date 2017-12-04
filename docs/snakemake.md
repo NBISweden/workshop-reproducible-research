@@ -742,8 +742,6 @@ Well done!
 * You have a logical directory structure which makes it easy to separate raw data, intermediate files, and results.
 * You have set up you project in a way that makes it very easy to distribute and reproduce, either via git, via Snakemake's `--archive` option, or via a Docker image.
 
-# Where to go next?
-
 # TODO
 run/script
 list-x-changes (mention version)
