@@ -27,12 +27,15 @@ RUN install2.r --error \
 
 # Set up the Conda environment
 COPY environment.yml .
-RUN conda env create -n my_conda_env -f environment.yml && \
+RUN conda env update -n root -f environment.yml && \
     conda clean --all
 
 # Add the workflow files
 COPY Snakefile config.yml ./
 COPY code ./code/
+
+# Install jupyter and nb_conda
+RUN conda install jupyter nb_conda
 
 # Open port for running Jupyter Notebook
 EXPOSE 8888
@@ -41,4 +44,4 @@ EXPOSE 8888
 RUN mkdir -p -m 700 /root/.jupyter/ && \
     echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
 
-CMD source activate my_conda_env && snakemake --configfile config.yml
+CMD snakemake --configfile config.yml

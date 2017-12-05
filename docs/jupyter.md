@@ -263,9 +263,6 @@ for axi in ax.flat:
     axi.grid(color='lightgray', alpha=0.7)
 ```
 
-!!! tip
-    Since you interact with Jupyter Notebook as a web server, it's very well suited for running in a Docker container (see the [tutorial](docker.md)). You could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them.
-
 ## Running the MRSA workflow in a Jupyter notebook
 If you look in your current directory there should be a notebook called `mrsa.ipynb`. It's supposed to show how you can use a Jupyter notebook to document your day-to-day work as a dry lab scientist. Now open the notebook with File > Open.
 
