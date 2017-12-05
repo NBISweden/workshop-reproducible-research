@@ -34,4 +34,11 @@ RUN conda env create -n my_conda_env -f environment.yml && \
 COPY Snakefile config.yml ./
 COPY code ./code/
 
+# Open port for running Jupyter Notebook
+EXPOSE 8888
+
+# Add a Jupyter Notebook profile
+RUN mkdir -p -m 700 /root/.jupyter/ && \
+    echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
+
 CMD source activate my_conda_env && snakemake --configfile config.yml

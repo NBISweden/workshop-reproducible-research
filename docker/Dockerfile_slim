@@ -26,5 +26,8 @@ SHELL ["/bin/bash", "-c"]
 # Set workdir
 WORKDIR /home
 
+# Open port for running Jupyter Notebook
+EXPOSE 8888
+
 # Start Bash shell by default
 CMD /bin/bash

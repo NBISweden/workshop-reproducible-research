@@ -221,11 +221,14 @@ SHELL ["/bin/bash", "-c"]
 # Set workdir
 WORKDIR /home
 
+# Open port for running Jupyter Notebook
+EXPOSE 8888
+
 # Start Bash shell by default
 CMD /bin/bash
 ```
 
-`SHELL` simply sets which shell to use and `WORKDIR` which directory the container should start in. `CMD` is an interesting instruction. It sets what a container should run when nothing else is specified. It can be used for example for printing some information on how to use the image or, as here, start a shell for the user. If the purpose of your image is to accompany a publication then `CMD` could be to run the workflow that generates the paper figures from raw data.
+`SHELL` simply sets which shell to use. `EXPOSE` opens up the port 8888, so that we can later run a Jupyter Notebook server on that port. `WORKDIR` determines the directory the container should start in. `CMD` is an interesting instruction. It sets what a container should run when nothing else is specified. It can be used for example for printing some information on how to use the image or, as here, start a shell for the user. If the purpose of your image is to accompany a publication then `CMD` could be to run the workflow that generates the paper figures from raw data.
 
 Ok, so now we understand how a Dockerfile works. Constructing the image from the Dockerfile is really simple. Try it out now.
 

@@ -26,7 +26,12 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 * `nb_conda`: for integrating Conda with Jupyter Notebook
 * `numpy`, `matplotlib`, and `mpld3`: for generating plots
 
-(If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
+!!! attention
+    If you are doing these exercises on Windows through a Docker image you also need the run the following:
+    ```bash
+    mkdir -p -m 700 /root/.jupyter/ && \
+    echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
+    ```
 
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages. Lives at [jupyter.org](jupyter.org).
@@ -38,7 +43,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. Ok, not quite everything, you first have to start the Jupyter Notebook server.
 
 ```no-highlight
-$ jupyter notebook
+$ jupyter notebook --allow-root
 [I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/arasmus/Documents/projects/reproducible_research_course/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
@@ -281,7 +286,7 @@ Say your notebook isn't on Github/Bitbucket (or you haven't activated the extens
 https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/33c8ff2bcd1785eab2f69d0f5f8149fae676895a/jupyter/mrsa.ipynb
 ```
 
-If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.
+If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people, this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.
 
 !!! note "A note on transparency"
-    Resources like Github/Bitbucket and Jupyter Notebooks have changed the way we do scientific research by encouraging visibility, social interaction and transparency. It was not long ago that the analysis scripts and workflows in a lab were well-guarded secrets that we only most reluctantly shared with others. That assuming that it was even possible. In most cases, the only postdoc who knew how to get it to work had left for a new position in industry, or no-one could remember the password to the file server. If you're a PhD student we encourage you to embrace this new development wholeheartedly, for it will make your research better and make you into a better scientist. And you will have more fun.
+    Resources like Github/Bitbucket and Jupyter Notebooks have changed the way we do scientific research by encouraging visibility, social interaction and transparency. It was not long ago that the analysis scripts and workflows in a lab were well-guarded secrets that we only most reluctantly shared with others. That assuming that it was even possible. In most cases, the only postdoc who knew how to get it to work had left for a new position in industry, or no one could remember the password to the file server. If you're a PhD student, we encourage you to embrace this new development wholeheartedly, for it will make your research better and make you into a better scientist. And you will have more fun.

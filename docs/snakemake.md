@@ -38,8 +38,6 @@ source activate snakemake_exercise
 
 Check that Snakemake is installed correctly, for example by executing `bash snakemake --help`. This should output a list of available Snakemake settings. If you get `bash: snakemake: command not found` then you need to go back and ensure that the Conda steps were successful.
 
-(If you don't want to use Conda for some reason you can also install Snakemake with `pip3 install snakemake`.)
-
 # Practical exercise
 ## The basics
 In this part of the tutorial we will create a very simple workflow from scratch, in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
