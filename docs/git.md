@@ -30,12 +30,37 @@ The best way to get an idea about git is simply to start using it. The tutorial 
 # Set up
 This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already.
 
+## Install git
+
+Chances are that you already have git installed on your computer. You can check by running e.g. `git --version`. If you don't have git, install it following the instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+## Configure git
+
+If it is the first time you use git on your computer, you may want to configure it so that it is aware of your username. This username should match the username you have registered on Bitbucket. This will make it easier when you want to sync local changes with your remote Bitbucket repository.
+
+```
+git config --global user.name "Mona Lisa"
+```
+
+!!! tip
+    If you have several accounts (e.g. both a GitHub and Bitbucket account), and thereby several different usernames, you can configure git on a per-repository level. Change directory into the relevant local git repository and run:
+
+    ```
+    git config user.name "Mona Lisa"
+    ```
+
+    This will set the default username for that repository only.
+    
+
+## Create an account at BitBucket
+
+If you have not done so already, go to [bitbucket.org](https://bitbucket.org/account/signup/) and create an account.
+
 # Practical exercise
 
-## Setup a new git repository
+## Create a new git repository
 
-* If you have not done so already, go to [bitbucket.org](https://bitbucket.org/account/signup/) and create an account.
-* Login and press the plus button to the left and select *Create a new repository*:
+* Login to [Bitbucket](https://bitbucket.org/) and press the plus button to the left and select *Create a new repository*:
     * Make sure you are listed as the owner
     * Add a repository name, e.g. *git_tutorial*
     * You can keep the repo private or make it public, as you wish
