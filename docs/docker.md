@@ -234,15 +234,15 @@ Ok, so now we understand how a Dockerfile works. Constructing the image from the
 
 ```no-highlight
 $ docker build -f Dockerfile_slim -t my_docker_image .
-Step 1/12 : FROM ubuntu:16.04
+Step 1/13 : FROM ubuntu:16.04
  ---> 20c44cd7596f
-Step 2/12 : LABEL description = "Minimal image for the NBIS reproducible research course."
+Step 2/13 : LABEL description = "Minimal image for the NBIS reproducible research course."
 .
 .
 [lots of stuff]
 .
 .
-Step 12/12 : CMD "/bin/bash"
+Step 13/13 : CMD "/bin/bash"
  ---> Running in f34c2dbbbecf
  ---> aaa39bdeb78a
 Removing intermediate container f34c2dbbbecf

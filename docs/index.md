@@ -10,16 +10,12 @@ Welcome to the tutorials! Here we will learn how to make a computational researc
 * Docker
 
 ## The case study
-To make the tutorials feel as close to reality as possible, we have selected a real bioinformatics research project and use that to exemplify the different steps of setting up a reproducible research project. To give you some context, the study background and analysis steps are very briefly described below.
+We will be running a small bioinformatics project as a case study, and use that to exemplify the different steps of setting up a reproducible research project. To give you some context, the study background and analysis steps are very briefly described below.
 
 ### Background
 
-The data is taken from [Osmundson, Dewell, and Darst (2013)](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0076572), who have studied Methicillin-Resistant *Staphylococcus aureus* (MRSA).
-MRSA are resistant to broad spectrum beta-lactam antibiotics and
-lead to difficult-to-treat infections in humans.
-Lytic bacteriophages have been suggested as potential therapeutic agents or as the source of novel antibiotic proteins or peptides.
-One such protein, gp67, was identified as a transcription-inhibiting transcription factor with an antimicrobial effect.
-To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in *S. aureus* cells.
+The data is taken from [Osmundson, Dewell, and Darst (2013)](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0076572), who have studied methicillin-resistant *Staphylococcus aureus* (MRSA).
+MRSA is resistant to broad spectrum beta-lactam antibiotics and lead to difficult-to-treat infections in humans. Lytic bacteriophages have been suggested as potential therapeutic agents, or as the source of novel antibiotic proteins or peptides. One such protein, gp67, was identified as a transcription-inhibiting transcription factor with an antimicrobial effect. To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in *S. aureus* cells.
 RNA-seq was then performed on three S. aureus strains:
 
 * RN4220 with pRMC2 with gp67
@@ -31,24 +27,24 @@ RNA-seq was then performed on three S. aureus strains:
 The graph below shows the different steps of the analysis that are included in this project.
 
 * The input files are:
-    * RNA-seq raw data (fastq files) for the 3 strains
-    * *S. aureus* genome fasta file
-    * *S. aureus* gene model gff file
+    * RNA-seq raw data (fastq files) for the three strains
+    * *S. aureus* genome sequence (fasta file)
+    * *S. aureus* genome annotation (gff file)
 
 ![](rulegraph_mrsa_intro.svg)
 
 
-* `get_genome_fasta` - Downloads the genome file
-* `index_genome` - Indexes the genome, required for the alignment step, using the software Bowtie2
-* `get_SRA_by_accession` - Downloads the RNA-seq raw data for the 3 strains from the Sequence Read Archive (SRA)
+* `get_genome_fasta` - Downloads the genome file.
+* `index_genome` - Indexes the genome, required for the alignment step, using the software Bowtie2.
+* `get_SRA_by_accession` - Downloads the RNA-seq raw data for the three strains from the Sequence Read Archive (SRA).
 * `fastqc` - Runs quality control on each of the RNA-seq fastq files, using the software FastQC.
-* `multiqc` - Summarizes the QC
-* `align_to_genome` - Aligns the RNA-seq data from the 3 strains to the indexed genome, using the software Bowtie2
-* `sort_bam` - sorts the alignment files by genome coordinate, using the software Samtools
-* `get_genome_gff3` - Downloads the gene model file
-* `generate_count_table` - Calculates gene expression by counting aligned reads per gene, using the software HTSeq-count
-* `generate_rulegraph` - Makes the analysis overview figure shown above
-* `make_supplementary` - Using R Markdown, produces the Supplementary Materials section using data from the QC, gene counting and the graph figure
+* `multiqc` - Summarizes the QC.
+* `align_to_genome` - Aligns the RNA-seq data from the three strains to the indexed genome, using the software Bowtie2.
+* `sort_bam` - Sorts the alignment files by genome coordinate, using the software Samtools.
+* `get_genome_gff3` - Downloads the genome annotation file.
+* `generate_count_table` - Calculates gene expression by counting aligned reads per gene, using the software HTSeq-count.
+* `generate_rulegraph` - Generates the workflow overview figure shown above.
+* `make_supplementary` - Produces the Supplementary Materials section using data from the QC, gene counting and the graph figure.
 
 # Setup
 ## For Mac / Linux users
@@ -64,7 +60,7 @@ cd reproducible_research_course
 Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
 
 ```bash
-docker run -it -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
+docker run -it -p 8888:8888 -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
 ```
 
 !!! attention
@@ -73,12 +69,14 @@ docker run -it -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_sl
 This will start an isolated container running Linux, where the directory `c:/my_dir` is mounted (i.e. you can access the files in this Windows directory within the Linux container, and files edited or created within the Linux container will appear in this Windows directory).
 Note that the idea is that you should edit files in the mounted `c:/my_dir` using an editor in your normal OS, say Notepad in Windows. The terminal in the container is for running stuff, not editing.
 
-Clone the git/bitbucket repository containing all the files you will need for the tutorials.
+You should now be at a terminal in the Docker container. Now clone the git/bitbucket repository containing all the files you will need for the tutorials.
 
 ```bash
 git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
+
+Don't worry if you feel that this Docker stuff is a little confusing, it will become clearer in the [Docker tutorial](docker.md). However, the priority right now is just to get it running so that you can start working.
 
 # The tutorials
 
