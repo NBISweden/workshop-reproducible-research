@@ -1,4 +1,4 @@
-# Introduction to Jupyter Notebook
+# Introduction to Jupyter notebooks
 The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and text. The functionality is partly overlapping with R Markdown (see the [tutorial](rmarkdown)), in that they both use markdown and code chunks to generate reports that integrate results of computations with the code that generated them. Jupyter Notebook comes from the Python community while R Markdown was developed by RStudio, but you could use most common programming languages in either alternative. In practice though, it's quite common that R developers use Jupyter but probably not very common that Python developers use RStudio.
 
 ## What are Jupyter notebooks for?
@@ -24,7 +24,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `numpy`, `matplotlib` and `plotly`: for generating plots
+* `numpy`, `matplotlib`: for generating plots
 
 (If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
 
@@ -136,7 +136,7 @@ Now list all available magics with `%lsmagic` (which itself is a magic). You add
 A very useful magic, in particular when using shell commands a lot in your work is `%%capture`. This will capture the stdout/stderr of any code cell and store them in a Python object. Run `%%capture?` to display the help and try to understand how it works. Try it out with either some Python code, other magics or shell commands.
 
 ??? note "Click to see one example"
-    ```python
+    ```no-highlight
     %%capture output
     !echo "Print to stdout"
     !echo "Print to stderr" >&2
@@ -150,7 +150,7 @@ A very useful magic, in particular when using shell commands a lot in your work 
     ```
 
 
-The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) with which to run the code through (similar to a shebang). For some languages it's possible to use these shortcuts:
+The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) with which to run the code (similar to a shebang). For some languages it's possible to use these shortcuts:
 
 * `%%ruby`
 * `%%perl`
@@ -189,7 +189,7 @@ fig.canvas.draw()
 ## Widgets and interactive plotting
 Since we're typically running our notebooks in a web browser, they are quite well suited for also including more interactive elements. A typical use case would be that you want to communicate some results to a collaborator or to a wider audience, and that you would like them to be able to affect how the results are displayed. It could for example be to select which gene to plot for, or to see how some parameter value affects a clustering. Jupyter notebooks has great support for this in the form of widgets.
 
-Widgets are eventful python objects that have a representation in the browser, often as a control like a slider, textbox, etc. Let's try to add a slider that allows us to change the frequency of the sine curve we plotted previously. If you have problems getting this to run, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
+Widgets are eventful python objects that have a representation in the browser, often as a control like a slider, textbox, etc. Let's try to add a slider that allows us to change the frequency of the sine curve we plotted previously.
 
 ```python
 %matplotlib notebook
@@ -220,12 +220,25 @@ def on_value_change(val):
 slider.observe(on_value_change, names='value')
 ```
 
+!!! attention
+    If you have problems getting this to run, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
+
+This is how it should look if everything works. You can set the frequency of the sine curve by moving the slider.
+![alt text](jupyter_widget.png)
+
 There are lots of widgets and the all work pretty much in the same way; you listen for some event to happen and if it does you pass the new state to some function. Here is a [list of all available widgets](http://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html) together with documentation and examples.
 
+IPython widgets, like we used here, is the most vanilla way of getting interactive graphs in Jupyter notebooks. Some other popular alternatives are:
+
+* [plotly](https://plot.ly/python/ipython-notebook-tutorial) is actually an API to a web service that renders your graph and returns it for display in your Jupyter notebook. Generates very visually appealing graphs, but from a reproducibility perspective it's not a good idea to be so reliant on a third party.
+* [bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) is another popular tool for interactive graphs.
+
+!!! tip
+    Since you interact with Jupyter Notebook as a web server, it's very well suited for running in a Docker container (see the [tutorial](docker.md)). You could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them.
+
 ## Sharing your notebooks
+Ok, so you have your a
+
 NBviewer and nbconvert
 
 ## Running the MRSA workflow in a Jupyter notebook
-
-## Mention docker and interactive widgets
-TODO: Some more text here. Sharing and server and git and gist and nbviever.
