@@ -9,6 +9,8 @@ Welcome to the tutorials! Here we will learn how to make a computational researc
 * Jupyter
 * Docker
 
+The slides from the introductory lecture are available as [pptx](nbis_reproducible_research.pptx) or [pdf](nbis_reproducible_research.pdf).
+
 ## The case study
 We will be running a small bioinformatics project as a case study, and use that to exemplify the different steps of setting up a reproducible research project. To give you some context, the study background and analysis steps are very briefly described below.
 
