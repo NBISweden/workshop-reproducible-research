@@ -23,3 +23,4 @@ TODO: Refer to markdown reference "shorter" in RStudio
 TODO: **** Rename plot(pressure) (Leif)
 TODO: Move first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: **** Remove all TODOs (Rasmus)
+TODO: Render and att pdf
