@@ -20,7 +20,7 @@ TODO: Add ipynb to screenshots
 TODO: print("Hello world!") as chunk
 TODO: **** RStudio and Windows (Leif) - Done! Ok?
 TODO: Refer to markdown reference "shorter" in RStudio
-TODO: **** Rename plot(pressure) (Leif)
+TODO: **** Rename plot(pressure) (Leif) - Done! Could not change since default file from RStudio. Added explanation instead.
 TODO: Move first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: **** Remove all TODOs (Rasmus)
 TODO: add authors info to readthedocs
