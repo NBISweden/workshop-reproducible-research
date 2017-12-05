@@ -228,10 +228,10 @@ This is how it should look if everything works. You can set the frequency of the
 
 There are lots of widgets and the all work pretty much in the same way; you listen for some event to happen and if it does you pass the new state to some function. Here is a [list of all available widgets](http://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html) together with documentation and examples.
 
-IPython widgets, like we used here, is the most vanilla way of getting interactive graphs in Jupyter notebooks. Some other popular alternatives are:
+IPython widgets, like we used here, is the most vanilla way of getting interactive graphs in Jupyter notebooks. Some other alternatives are:
 
-* [plotly](https://plot.ly/python/ipython-notebook-tutorial) is actually an API to a web service that renders your graph and returns it for display in your Jupyter notebook. Generates very visually appealing graphs, but from a reproducibility perspective it's not a good idea to be so reliant on a third party.
-* [bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) is another popular tool for interactive graphs.
+* [plotly](https://plot.ly/python/ipython-notebook-tutorial) - actually an API to a web service that renders your graph and returns it for display in your Jupyter notebook. Generates very visually appealing graphs, but from a reproducibility perspective it's maybe not a good idea to be so reliant on a third party.
+* [bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) - another popular tool for interactive graphs.
 
 !!! tip
     Since you interact with Jupyter Notebook as a web server, it's very well suited for running in a Docker container (see the [tutorial](docker.md)). You could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them.
