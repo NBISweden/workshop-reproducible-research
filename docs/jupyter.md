@@ -236,9 +236,5 @@ IPython widgets, like we used here, is the most vanilla way of getting interacti
 !!! tip
     Since you interact with Jupyter Notebook as a web server, it's very well suited for running in a Docker container (see the [tutorial](docker.md)). You could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them.
 
-## Sharing your notebooks
-Ok, so you have your a
-
-NBviewer and nbconvert
-
 ## Running the MRSA workflow in a Jupyter notebook
+https://nbviewer.jupyter.org/urls/bitbucket.org/scilifelab-lts/reproducible_research_course/raw/2a9c9fd304ee963915e0a63bbf49abfad07d3edd/jupyter/mrsa.ipynb
