@@ -24,7 +24,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `numpy`, `matplotlib`: for generating plots
+* `numpy`, `matplotlib`, and `mpld3`: for generating plots
 
 (If you don't want to use Conda for some reason you can also install Jupyter with `pip3 install jupyter`.)
 
@@ -220,7 +220,7 @@ slider.observe(on_value_change, names='value')
 ```
 
 !!! attention
-    If you have problems getting this to run, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
+    If you have problems getting these plots to display properly, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
 
 This is how it should look if everything works. You can set the frequency of the sine curve by moving the slider.
 ![alt text](jupyter_widget.png)
@@ -229,101 +229,34 @@ There are lots of widgets and they all work pretty much in the same way; you lis
 
 IPython widgets, like we used here, is the most vanilla way of getting interactive graphs in Jupyter notebooks. Some other alternatives are:
 
-* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) - actually an API to a web service that renders your graph and returns it for display in your Jupyter notebook. Generates very visually appealing graphs, but from a reproducibility perspective it's maybe not a good idea to be so reliant on a third party.
-* [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) - another popular tool for interactive graphs. Most plotting packages for Python are built on top of matplotlib, but Bokeh has its own library. This can give a steeper learning curve if used to the standard packages.
-* [mpld3](http://mpld3.github.io) -
+* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) - is actually an API to a web service that renders your graph and returns it for display in your Jupyter notebook. Generates very visually appealing graphs, but from a reproducibility perspective it's maybe not a good idea to be so reliant on a third party.
+* [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) - is another popular tool for interactive graphs. Most plotting packages for Python are built on top of matplotlib, but Bokeh has its own library. This can give a steeper learning curve if you're used to the standard packages.
+* [mpld3](http://mpld3.github.io) - tries to integrate matplotlib with Javascript and the D3js package. It doesn't scale well for very large datasets, but it's easy to use and works quite seamlessly.
 
-<style>
+Everyone likes pretty plots, so let's try one more example before we move on! This is with mpld3 and shows four subplots with shared axes. Hover over the figure and click the magnifying glass in the lower left corner. If you zoom in one plot the others will adjust automatically. Note how seamlessly mpld3 integrates with normal matplotlib code.
 
-.links line {
-  stroke: #999;
-  stroke-opacity: 0.6;
-}
+```python
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import mpld3
 
-.nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
+# Plot using mpld3
+mpld3.enable_notebook()
 
-</style>
-<svg width="960" height="600"></svg>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
+# Normal matplotlib stuff
+fig, ax = plt.subplots(2, 2, figsize=(8, 6),sharex='col', sharey='row')
+fig.subplots_adjust(hspace=0.3)
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+np.random.seed(0)
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2));
-
-d3.json("miserables.json", function(error, graph) {
-  if (error) throw error;
-
-  var link = svg.append("g")
-      .attr("class", "links")
-    .selectAll("line")
-    .data(graph.links)
-    .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-  var node = svg.append("g")
-      .attr("class", "nodes")
-    .selectAll("circle")
-    .data(graph.nodes)
-    .enter().append("circle")
-      .attr("r", 5)
-      .attr("fill", function(d) { return color(d.group); })
-      .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
-
-  node.append("title")
-      .text(function(d) { return d.id; });
-
-  simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
-
-  simulation.force("link")
-      .links(graph.links);
-
-  function ticked() {
-    link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-  }
-});
-
-function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-  d.fx = d.x;
-  d.fy = d.y;
-}
-
-function dragged(d) {
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
-}
-
-function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
-  d.fx = null;
-  d.fy = null;
-}
-
-</script>
+for axi in ax.flat:
+    color = np.random.random(3)
+    axi.plot(np.random.random(30), lw=2, c=color)
+    axi.set_title("RGB = ({0:.2f}, {1:.2f}, {2:.2f})".format(*color),
+                  size=14)
+    axi.grid(color='lightgray', alpha=0.7)
+```
 
 !!! tip
     Since you interact with Jupyter Notebook as a web server, it's very well suited for running in a Docker container (see the [tutorial](docker.md)). You could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them.
