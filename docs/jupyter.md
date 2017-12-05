@@ -262,4 +262,19 @@ for axi in ax.flat:
     Since you interact with Jupyter Notebook as a web server, it's very well suited for running in a Docker container (see the [tutorial](docker.md)). You could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them.
 
 ## Running the MRSA workflow in a Jupyter notebook
+If you look in your current directory there should be a notebook called `mrsa.ipynb`. It's supposed to show how you can use a Jupyter notebook to document your day-to-day work as a dry lab scientist. Now open the notebook with File > Open.
+
+As you can see, the purpose of the notebook is to try out different settings for the `max_reads` parameter in our Snakemake workflow. Go through each of the cells and try to understand how they work. Now test to rerun the analysis cell by cell.
+
+!!! attention
+    If you do something that takes a long time, such as installing the Conda environment, you have to wait for the cell to finish before trying to run the next. Running cells have asterisks to the left of them, i.e. `In [*]`.
+
+As you know, the files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate the `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
+
+![alt text](jupyter_mrsa.png)
+
+
+
+https://bitbucket.org/scilifelab-lts/reproducible_research_course/src/684e23ce04fca8b6cb8e4c41de5d47d3cdd08b38/jupyter/mrsa.ipynb?at=master&fileviewer=notebook-viewer%3Anbviewer
+
 https://nbviewer.jupyter.org/urls/bitbucket.org/scilifelab-lts/reproducible_research_course/raw/2a9c9fd304ee963915e0a63bbf49abfad07d3edd/jupyter/mrsa.ipynb
