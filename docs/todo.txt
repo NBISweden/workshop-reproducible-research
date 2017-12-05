@@ -1,0 +1,25 @@
+TODO: *Check volume mounts on Windows
+TODO: Rerun all exercises
+TODO: Language and spelling in rmarkdown
+TODO: In SM: run/script
+TODO: In SM: list-x-changes (mention version)
+TODO: In SM: cluster
+TODO: In SM: conda/docker
+TODO: **** Rewrite shadow: minimal
+TODO: Add quick recap on jupyter
+TODO: Fix line breaks on Windows
+TODO: *Add script for installing conda
+TODO: *Mention MRSA in Git and conda and rmarkdown
+TODO: Add quick recap to end of conda
+TODO: Explain touch in SM
+TODO: File name in SM should give path to it
+TODO: Move SM params part to the top
+TODO: Screenshot from Bitbucket in Git
+TODO: **** Test git in Docker (Rasmus)
+TODO: Add ipynb to screenshots
+TODO: print("Hello world!") as chunk
+TODO: **** RStudio and Windows (Leif)
+TODO: Refer to markdown reference "shorter" in RStudio
+TODO: **** Rename plot(pressure) (Leif)
+TODO: Move first paragraph of "R Markdown in a reproducible research setting" to intro
+TODO: **** Remove all TODOs (Rasmus)

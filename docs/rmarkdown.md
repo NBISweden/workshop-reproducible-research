@@ -283,7 +283,7 @@ Later, we will learn how to set parameters using an external command.
 !!! tip
     We have up until now mainly been using `html_document` as an output format. There are however a range of different available formats to choose between. What is important to know, is that not all chunk settings work for all output formats (this mainly regards settings related to rendering plots and figures), and some YAML settings are specific for the given output format chosen.
 
-* Take a look at this [gallary](http://rmarkdown.rstudio.com/gallery.html) of R Markdown documents to see what different kinds of output formats are possible to generate.
+* Take a look at this [gallery](http://rmarkdown.rstudio.com/gallery.html) of R Markdown documents to see what different kinds of output formats are possible to generate.
 * Take a look at the last page of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for a list of YAML header options, and what output formats they are available for.
 
 ### Managing and working with R Markdown documents
@@ -351,7 +351,7 @@ output: pdf_document
 ---
 ```
 
-You can change the author list if you want to. Here, we have added some r code that will print the date to the front page, so that we know what day the report was generated. Also note that the output format is now set to `pdf_document`.
+You can change the author list if you want to. Here, we have added some R code that will print the date to the front page, so that we know what day the report was generated. Also note that the output format is now set to `pdf_document`.
 
 * Add the following parameters:
 
@@ -364,7 +364,8 @@ params:
   GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
 ```
 
-In particular, make it a practice to keep track of all input files and add them as parameters rather than hard-coding them later in the R code.
+!!! tip
+    Make it a practice to keep track of all input files and add them as parameters rather than hard-coding them later in the R code.
 
 * Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks. They load the required packages, reads the parameters and stores them in R objects to be used later in the code, and reads the data in the counts file, the multiqc file, as well as fetches meta data from GEO. These chunks are provided as is, and you do not need to edit them.
 * Below these chunks there is some markdown text that contains the Supplementary Methods section. Note the use of section headers using `#` and `##`.

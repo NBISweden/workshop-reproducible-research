@@ -343,7 +343,7 @@ That was easy!
 If you want to refer to a Docker image in for example a publication, it's very important that it's the correct version of the image. You can do this by adding a tag to the name like this `docker build -t your_dockerhub_id/image_name:tag_name`.
 
 ## Packaging and running the MRSA workflow
-During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.4 GB image.
+During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.5 GB image.
 
 * We've [set up a Bitbucket repository](git.md) for version control and for hosting our project.
 * We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.

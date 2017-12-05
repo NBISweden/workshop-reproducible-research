@@ -32,7 +32,7 @@ rm Miniconda3-latest-Linux-x86_64.sh
     - do you accept the license terms?
     - do you accept the installation path or do you want to chose a different one?
     - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file? If you select yes, the system will find Conda and you can run the `conda` command directly. If you select no, you will either have to run Conda by specifying the full path, e.g. `/root/miniconda3/bin/conda`, or by adding it manually to your PATH each time you restart your system, e.g. `export PATH="/root/miniconda3/bin:$PATH"`.
-    - Either restart your shell so the settings in `.bashrc` can take effect, or add Conda your PATH with `export PATH="/root/miniconda3/bin:$PATH"`.
+    - Either restart your shell so the settings in `.bashrc` can take effect, or add Conda to your PATH with `export PATH="/root/miniconda3/bin:$PATH"`.
 * You can verify that the installation worked by running:
 
 ```bash
