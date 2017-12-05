@@ -47,7 +47,7 @@ R Markdown documents can be used both to save and execute code (with a focus on 
 * [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 # Set up
-This tutorial depends on files from the course BitBucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
+This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
 
 ## Install RStudio and R
 
