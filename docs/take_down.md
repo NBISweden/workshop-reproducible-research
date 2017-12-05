@@ -43,6 +43,9 @@ Snakemake is installed via Conda and will be removed if you follow the instructi
 rm -rf reproducible_research_course/snakemake/.snakemake
 ```
 
+## Jupyter
+Jupyter is installed via Conda and will be removed if you follow the instructions in the Conda section above.
+
 ## Docker
 If you've done the Docker tutorial **or if you've been running Docker for Windows** you have some cleaning up to do. Docker is infamous for quickly taking up huge amounts of space, and some maintenance is necessary every now and then. Here is how to uninstall Docker completely. For instructions for how to remove individual images or containers, see the [Docker tutorial](docker.md)
 
@@ -52,17 +55,17 @@ Click the Docker icon in the menu bar (upper right part of the screen) and selec
 ![alt text](docker_uninstall_osx.png)
 
 ### Linux
-TODO
+If you've installed Docker with `apt-get`, uninstall it like this:
+
+```bash
+apt-get purge docker-ce
+```
+
+Images, containers, and volumes are not automatically removed. To delete all of them:
+
+```bash
+rm -rf /var/lib/docker
+```
 
 ### Windows
 Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7) via Control Panel > Programs > Programs and Features. Docker Toolbox will also have installed Oracle VM VirtualBox, so uninstall that as well if you're not using it for other purposes.
-
-How to remove stuff
-
-* ~/.ncbi/ # contains settings file, exists only if vdb-config is run
-* ~/ncbi/ # created if caching is not disabled by vdb-config
-* ~/.bash_profile # conda line
-* ~/.conda/
-* ~/.condarc
-* ~/.continuum/ ?
-* ~/.docker/

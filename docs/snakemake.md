@@ -739,10 +739,3 @@ Well done!
 * You have kept the workflow neat and free from temporary files by using `temp()` and `shadow`.
 * You have a logical directory structure which makes it easy to separate raw data, intermediate files, and results.
 * You have set up you project in a way that makes it very easy to distribute and reproduce, either via git, via Snakemake's `--archive` option, or via a Docker image.
-
-# TODO
-run/script
-list-x-changes (mention version)
-cluster
-conda/docker
-Archive
