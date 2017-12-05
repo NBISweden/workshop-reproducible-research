@@ -18,9 +18,9 @@ TODO: Screenshot from Bitbucket in Git
 TODO: **** Test git in Docker (Rasmus)
 TODO: Add ipynb to screenshots
 TODO: print("Hello world!") as chunk
-TODO: **** RStudio and Windows (Leif)
+TODO: **** RStudio and Windows (Leif) - Done! Ok?
 TODO: Refer to markdown reference "shorter" in RStudio
-TODO: **** Rename plot(pressure) (Leif)
 TODO: Move first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: **** Remove all TODOs (Rasmus)
-TODO: Render and att pdf
+TODO: add authors info to readthedocs
+TODO: add about section to readthedocs (for those finding it without knowing it is a course)

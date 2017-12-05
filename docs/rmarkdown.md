@@ -51,8 +51,13 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 
 ## Install RStudio and R
 
+If you don't already have R or RStudio, you will need to install them:
+
 * Download and install R following the instructions [here](https://cran.rstudio.com/).
 * Download and install RStudio Desktop (free) following the instructions [here](https://www.rstudio.com/products/rstudio/download/#download).
+
+!!! attention "Windows users"
+    Although most of the tutorials are best to run in a Docker container if you are a Windows user (see information in the [intro](index.md)), both R and RStudio run well directly on Windows. It is therefore suggested that you install Windows versions of these software (if you haven't done so already) when doing this tutorial.
 
 # Practical exercise
 
@@ -133,6 +138,9 @@ plot(pressure)
 ````
 
 The R code is surrounded by: ` ```{r}` and ` ``` `. The `r` indicates that the code chunk contains R code (it is possible to add code chunks using other languages, e.g. python). After that comes an optional chunk name, `pressure` in this case (this can be used to reference the code chunk as well as alleviate debugging). Last comes chunk options, separated by commas (in this case there is only one option: `echo=FALSE`).
+
+!!! note
+    Note that the code chunk name `pressure` has nothing to do with the code `plot(pressure)`. In the latter case, `pressure` is a default R dataframe that is used in examples. The chunk name happened to be set to the string `pressure` as well, but could just as well have been called something else, e.g. `plot_pressure_data`.
 
 Below are listed some useful chunk options related to evaluating and displaying code chunks in the final file:
 
