@@ -71,7 +71,7 @@ Let's start by creating an empty notebook by selecting the Files tab and clickin
 ![alt text](jupyter_empty_nb.png)
 
 ## The very basics
-Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "edit mode", so you can write stuff in it. Cells in Jypyter notebooks can be of two types: markdown or code.
+Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "edit mode", so you can write stuff in it. Cells in Jupyter notebooks can be of two types: markdown or code.
 
 * Markdown - These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called GitHub Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
 * Code - These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or figures, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
@@ -233,7 +233,7 @@ IPython widgets, like we used here, is the most vanilla way of getting interacti
 * [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) - is another popular tool for interactive graphs. Most plotting packages for Python are built on top of matplotlib, but Bokeh has its own library. This can give a steeper learning curve if you're used to the standard packages.
 * [mpld3](http://mpld3.github.io) - tries to integrate matplotlib with Javascript and the D3js package. It doesn't scale well for very large datasets, but it's easy to use and works quite seamlessly.
 
-Everyone likes pretty plots, so let's try one more example before we move on! This is with mpld3 and shows four subplots with shared axes. Hover over the figure and click the magnifying glass in the lower left corner. If you zoom in one plot the others will adjust automatically. Note how seamlessly mpld3 integrates with normal matplotlib code.
+Everyone likes pretty plots, so let's try one more example before we move on! This is with mpld3 and shows four subplots with shared axes. Hover over the figure and click the magnifying glass in the lower left corner. If you zoom in on a region in one plot, the others will adjust automatically. Note how seamlessly mpld3 integrates with normal matplotlib code.
 
 ```python
 %matplotlib inline
@@ -269,12 +269,19 @@ As you can see, the purpose of the notebook is to try out different settings for
 !!! attention
     If you do something that takes a long time, such as installing the Conda environment, you have to wait for the cell to finish before trying to run the next. Running cells have asterisks to the left of them, i.e. `In [*]`.
 
-As you know, the files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate the `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
+As you know, the files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
 
 ![alt text](jupyter_mrsa.png)
 
+As you can imagine, having this very effortless way of sharing results can greatly increase the visibility of your work. You work as normal on your project, and push regularly to the repository as you would anyways, and the output is automatically available for anyone to see. Or for a select few if you're not ready to share your findings with the world quite yet.
 
+Say your notebook isn't on GitHub/Bitbucket (or you haven't activated the extension to view notebooks). All hope isn't lost there. Jupyter.org provides a neat functionality called nbviewer, where you can past an URL to any notebook and they will render it for you. Go to [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try this out with our notebook.
 
-https://bitbucket.org/scilifelab-lts/reproducible_research_course/src/684e23ce04fca8b6cb8e4c41de5d47d3cdd08b38/jupyter/mrsa.ipynb?at=master&fileviewer=notebook-viewer%3Anbviewer
+```no-highlight
+https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/33c8ff2bcd1785eab2f69d0f5f8149fae676895a/jupyter/mrsa.ipynb
+```
 
-https://nbviewer.jupyter.org/urls/bitbucket.org/scilifelab-lts/reproducible_research_course/raw/2a9c9fd304ee963915e0a63bbf49abfad07d3edd/jupyter/mrsa.ipynb
+If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.
+
+!!! note "A note on transparency"
+    Resources like Github/Bitbucket and Jupyter Notebooks have changed the way we do scientific research by encouraging visibility, social interaction and transparency. It was not long ago that the analysis scripts and workflows in a lab were well-guarded secrets that we only most reluctantly shared with others. That assuming that it was even possible. In most cases, the only postdoc who knew how to get it to work had left for a new position in industry, or no-one could remember the password to the file server. If you're a PhD student we encourage you to embrace this new development wholeheartedly, for it will make your research better and make you into a better scientist. And you will have more fun.
