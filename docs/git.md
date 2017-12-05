@@ -1,4 +1,4 @@
-# Introduction to Git
+Bitbucket# Introduction to Git
 
 Git is a widely used system (both in academia and industry) for version controlling files and
 collaborating on code. It is used to track changes in (text) files, thereby establishing a history of all edits made to each file, together with short messages about each change and information about who made it. Git is mainly run from the command line, but there are several tools that have implemented a graphical user interface to run git commands.
@@ -43,16 +43,16 @@ git config --global user.name "Mona Lisa"
 ```
 
 !!! tip
-    If you have several accounts (e.g. both a GitHub and Bitbucket account), and thereby several different usernames, you can configure git on a per-repository level. Change directory into the relevant local git repository and run:
+    If you have several accounts (e.g. both a Github and Bitbucket account), and thereby several different usernames, you can configure git on a per-repository level. Change directory into the relevant local git repository and run:
 
     ```
     git config user.name "Mona Lisa"
     ```
 
     This will set the default username for that repository only.
-    
 
-## Create an account at BitBucket
+
+## Create an account at Bitbucket
 
 If you have not done so already, go to [bitbucket.org](https://bitbucket.org/account/signup/) and create an account.
 
@@ -70,7 +70,7 @@ If you have not done so already, go to [bitbucket.org](https://bitbucket.org/acc
 You will now be redirected to the repository page. It is an empty repository, so there is not much to see yet. We want to add some contents (files) to the repository. To do that we will first *clone* the repository locally:
 
 * Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course if you haven't done so already). **Important: it should *not* be within the `reproducible_research_course` directory.**
-* Once you are in your directory of choice, run the following command (just make sure to change `user` to your bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
+* Once you are in your directory of choice, run the following command (just make sure to change `user` to your Bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
 ```bash
 git clone git@bitbucket.org:user/git_tutorial.git
 ```
