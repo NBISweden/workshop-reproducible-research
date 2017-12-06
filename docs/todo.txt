@@ -1,5 +1,4 @@
 TODO: Check volume mounts on Windows
-TODO: Rerun all exercises
 TODO: Language and spelling in rmarkdown
 TODO: In SM: run/script
 TODO: In SM: list-x-changes (mention version)
@@ -7,7 +6,6 @@ TODO: In SM: cluster
 TODO: In SM: conda/docker
 TODO: Add quick recap on jupyter
 TODO: Fix line breaks on Windows
-TODO: Add script for installing conda for Mac and Linux
 TODO: Mention MRSA in Git and conda and rmarkdown
 TODO: Add quick recap to end of conda
 TODO: Screenshot from Bitbucket in Git
@@ -22,4 +20,3 @@ TODO: add attention to docker install about /c/ (same as on intro)
 TODO: Validate that you can use $(pwd) on Windows
 TODO: describe the yaml format in conda tutorial
 TODO: make better Docker ppt slide
-TODO: remove slides from bitbucket history
