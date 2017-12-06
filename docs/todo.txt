@@ -19,3 +19,5 @@ TODO: add authors info to readthedocs
 TODO: add about section to readthedocs (for those finding it without knowing it is a course)
 TODO: finish installation section on win7 (volume sharing)
 TODO: fix symlinking in shadow on Windows
+TODO: add attention to docker install about /c/ (same as on intro)
+TODO: Validate that you can use $(pwd) on Windows

@@ -199,7 +199,7 @@ Neat!
     * How to use named wildcards for writing generic and flexible rules.
 
 !!! tip
-    You can name a file whatever you want in a Snakemake workflow, but you will find that everything falls into place much nicer if the filename reflect the file's path through the workflow, e.g. `sample_a.trimmed.deduplicated.sorted.bam`.
+    You can name a file whatever you want in a Snakemake workflow, but you will find that everything falls into place much nicer if the filename reflects the file's path through the workflow, e.g. `sample_a.trimmed.deduplicated.sorted.bam`.
 
 ## Visualization, logging and workflow management
 All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WFM like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (i.e. an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualization of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
