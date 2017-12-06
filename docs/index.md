@@ -54,7 +54,7 @@ The graph below shows the different steps of the analysis that are included in t
 Clone the git/bitbucket repository containing all files you will need for completing the tutorials. First, `cd` into a directory on your computer (or create one) where it makes sense to download the course directory.
 ```bash
 cd /path/to/your/directory/
-git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
+git clone --branch kalmar https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 
@@ -62,7 +62,7 @@ cd reproducible_research_course
 Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
 
 ```bash
-docker run -it -p 8888:8888 -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
+docker run -it -p 8888:8888 -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim:kalmar
 ```
 
 !!! attention
@@ -74,7 +74,7 @@ Note that the idea is that you should edit files in the mounted `c:/my_dir` usin
 You should now be at a terminal in the Docker container. Now clone the git/bitbucket repository containing all the files you will need for the tutorials.
 
 ```bash
-git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
+git clone --branch kalmar https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 

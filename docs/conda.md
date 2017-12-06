@@ -17,7 +17,7 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 !!! attention
     If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 
-* Go ahead and install Conda as described below. *Be sure to to download the correct file for your OS*.
+* Go ahead and install Conda as described below. **Be sure to to download the correct file for your OS**.
 
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
