@@ -11,7 +11,6 @@ TODO: *Add script for installing conda
 TODO: *Mention MRSA in Git and conda and rmarkdown
 TODO: Add quick recap to end of conda
 TODO: Explain touch in SM
-TODO: **File name in SM should give path to it
 TODO: Screenshot from Bitbucket in Git
 TODO: Add ipynb to screenshots
 TODO: Refer to markdown reference "shorter" in RStudio
