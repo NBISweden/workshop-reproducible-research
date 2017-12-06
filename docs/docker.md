@@ -42,8 +42,6 @@ On Windows 7 we will instead use Docker Toolbox, which is available at [docker.c
 
 2. You should now have a Docker Quickstart icon on the desktop.
 
-TODO: FIX VOLUME SHARING. TALK ABOUT /C/
-
 ### Linux
 How to install Docker differs a bit depending on your Linux distro, but the steps are the same. For details on how to do it on your distro see [https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/installation/#server).
 
@@ -320,8 +318,6 @@ docker run --rm -v $(pwd)/fastqc_results:/home/results/fastqc my_docker_conda
 ```
 
 We can also use bind mounts for getting files into the container rather than out. We've mainly been discussing Docker in the context of packaging an analysis pipeline to allow someone else to reproduce its outcome. Another application is as a kind of very powerful environment manager, similarly to how we've used Conda before. If you've organized your work into projects, then you can mount the whole project directory in a container and use the container as the terminal for running stuff while still using your normal OS for editing files and so on. Let's try this out by mounting our current directory and start an interactive terminal. Note that this will override the `CMD` command, so we won't start the analysis automatically when we start the container.
-
-TODO: Validate this on Windows
 
 ```bash
 docker run -it --rm -v $(pwd):/home/ my_docker_conda /bin/bash
