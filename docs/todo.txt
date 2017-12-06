@@ -24,3 +24,4 @@ TODO: Validate that you can use $(pwd) on Windows
 TODO: add instructions to get wget? alt curl
 TODO: describe the yaml format in conda tutorial
 TODO: make better Docker ppt slide
+TODO: remove slides from bitbucket history
