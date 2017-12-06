@@ -36,7 +36,7 @@ conda env create -n snakemake_exercise -f environment.yml
 source activate snakemake_exercise
 ```
 
-Check that Snakemake is installed correctly, for example by executing `bash snakemake --help`. This should output a list of available Snakemake settings. If you get `bash: snakemake: command not found` then you need to go back and ensure that the Conda steps were successful.
+Check that Snakemake is installed correctly, for example by executing `snakemake --help`. This should output a list of available Snakemake settings. If you get `bash: snakemake: command not found` then you need to go back and ensure that the Conda steps were successful.
 
 # Practical exercise
 ## The basics

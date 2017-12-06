@@ -119,12 +119,12 @@ Let's assume that you will have sequencing data in your Project A, and want to u
 * Find out what versions of bowtie2 are available at Bioconda using `conda search`.
 * Now install the *latest* available version of bowtie2 in your project_a environment.
 
-Let's further assume that you have an old project (called Project Old) where you know you used bowtie2 v2.2.6. You just got back reviewer comments and they want you to include some alignment statistics. Unfortunately, you haven't saved that information so you will have to rerun the alignment. Now, it is essential that you use the same version of bowtie that your results are based on, otherwise the alignment statistics will be misleading. Using Conda environments this becomes simple. You can just have a separate environment for your old project where you have an old version of bowtie2 without interfering with your new Project A where you want the latest version.
+Let's further assume that you have an old project (called Project Old) where you know you used bowtie2 v2.2.5. You just got back reviewer comments and they want you to include some alignment statistics. Unfortunately, you haven't saved that information so you will have to rerun the alignment. Now, it is essential that you use the same version of bowtie that your results are based on, otherwise the alignment statistics will be misleading. Using Conda environments this becomes simple. You can just have a separate environment for your old project where you have an old version of bowtie2 without interfering with your new Project A where you want the latest version.
 
 * Make a new environment for your old project:
 
 ```bash
-conda create -n project_old -c bioconda bowtie2=2.2.6
+conda create -n project_old -c bioconda bowtie2=2.2.5
 ```
 
 * Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
