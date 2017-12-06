@@ -26,3 +26,4 @@ TODO: add instructions to get wget? alt curl
 TODO: describe the yaml format in conda tutorial
 TODO: make better Docker ppt slide
 TODO: remove slides from bitbucket history
+TODO: clarify touch Snakefile part in snakemake.md that it should run in terminal, not add to file
