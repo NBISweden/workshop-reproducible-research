@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-c"]
 # Install Miniconda3
 RUN apt-get update && apt-get -y dist-upgrade
 RUN apt-get install -y --no-install-recommends bzip2 curl
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
     bash Miniconda3-latest-Linux-x86_64.sh -bf && \
     rm Miniconda3-latest-Linux-x86_64.sh
 ENV PATH="/root/miniconda3/bin:${PATH}"

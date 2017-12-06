@@ -1,4 +1,4 @@
-TODO: *Check volume mounts on Windows
+TODO: Check volume mounts on Windows
 TODO: Rerun all exercises
 TODO: Language and spelling in rmarkdown
 TODO: In SM: run/script
@@ -7,10 +7,9 @@ TODO: In SM: cluster
 TODO: In SM: conda/docker
 TODO: Add quick recap on jupyter
 TODO: Fix line breaks on Windows
-TODO: *Add script for installing conda for Mac and Linux
-TODO: *Mention MRSA in Git and conda and rmarkdown
+TODO: Add script for installing conda for Mac and Linux
+TODO: Mention MRSA in Git and conda and rmarkdown
 TODO: Add quick recap to end of conda
-TODO: Explain touch in SM
 TODO: Screenshot from Bitbucket in Git
 TODO: Add ipynb to screenshots
 TODO: Refer to markdown reference "shorter" in RStudio
@@ -21,9 +20,7 @@ TODO: finish installation section on win7 (volume sharing)
 TODO: fix symlinking in shadow on Windows
 TODO: add attention to docker install about /c/ (same as on intro)
 TODO: Validate that you can use $(pwd) on Windows
-TODO: Install text editor
-TODO: add instructions to get wget? alt curl
 TODO: describe the yaml format in conda tutorial
 TODO: make better Docker ppt slide
 TODO: remove slides from bitbucket history
-TODO: clarify touch Snakefile part in snakemake.md that it should run in terminal, not add to file
+TODO: Add Kalmar tags

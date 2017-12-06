@@ -318,6 +318,7 @@ As always, run `git status` to get an overview! You will see that you have, so c
   - graphviz=2.38.0
   - xorg-libxrender
   - xorg-libxpm
+  - wget
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of numbers is the commit id (the first 7 are e.g. displayed on Bitbucket under Commits).
@@ -339,6 +340,7 @@ The part between `<<<<<<< HEAD` and `=======` is your local version, and the par
   - graphviz=2.38.0
   - xorg-libxrender
   - xorg-libxpm
+  - wget
 ```
 
 * Run `git status`, notice that it says *use "git add <file>..." to mark resolution*? Let's do that!

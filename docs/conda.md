@@ -17,17 +17,30 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 !!! attention
     If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 
-The easiest way to install Conda is to download and run the correct binary from [here](https://conda.io/miniconda.html). This can be done on the command line as shown below:
+* Go ahead and install Conda as described below. *Be sure to to download the correct file for your OS*.
 
 ```bash
-# --- Example (don't run) ---
-# Install Miniconda3 on 64-bit Linux:
-wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+# *** Install Miniconda3 for 64-bit macOS ***
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOS-x86_64.sh --insecure -O
+bash Miniconda3-latest-MacOS-x86_64.sh
+rm Miniconda3-latest-MacOS-x86_64.sh
+
+# *** Install Miniconda3 for 32-bit macOS ***
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOS-x86_32.sh --insecure -O
+bash Miniconda3-latest-MacOS-x86_32.sh
+rm Miniconda3-latest-MacOS-x86_32.sh
+
+# *** Install Miniconda3 for 64-bit Linux ***
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O
 bash Miniconda3-latest-Linux-x86_64.sh
 rm Miniconda3-latest-Linux-x86_64.sh
+
+# *** Install Miniconda3 for 32-bit Linux ***
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_32.sh --insecure -O
+bash Miniconda3-latest-Linux-x86_32.sh
+rm Miniconda3-latest-Linux-x86_32.sh
 ```
 
-* Go ahead and install Conda as described above, but be sure to modify the `wget` command to download the correct file for your system (see link above).
 * The installer will ask you questions during the installation:
     - do you accept the license terms?
     - do you accept the installation path or do you want to chose a different one?

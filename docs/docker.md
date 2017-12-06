@@ -162,8 +162,8 @@ Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one
 # Install Miniconda3 prerequisites, English language pack and fonts. Also
 # include vim for convenience
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
-RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    apt-get install -y --no-install-recommends bzip2 curl language-pack-en fontconfig vim
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
     bash Miniconda3-latest-Linux-x86_64.sh -bf && \
     rm Miniconda3-latest-Linux-x86_64.sh
 ```
@@ -175,16 +175,16 @@ The next few lines introduce the important `RUN` instruction, which is used for 
 RUN apt-get update
 
 #Install packages
-RUN apt-get install -y --no-install-recommends bzip2 wget language-pack-en fontconfig vim
+RUN apt-get install -y --no-install-recommends bzip2 curl language-pack-en fontconfig vim
 ```
 
-The first command will update the apt-get package lists and the seconds will install the packages `bzip2`, `wget`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
+The first command will update the apt-get package lists and the second will install the packages `bzip2`, `curl`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
 
 The next `RUN` command retrieves and installs Miniconda3. Let's see what would happen if we had that as three separate commands instead.
 
 ```no-highlight
 # Download Miniconda3
-RUN wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O
 
 # Install it
 RUN bash Miniconda3-latest-Linux-x86_64.sh -bf

@@ -12,3 +12,4 @@ dependencies:
 - graphviz=2.38.0
 - xorg-libxrender
 - xorg-libxpm
+- wget

@@ -27,6 +27,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 - graphviz=2.38.0
 - xorg-libxrender
 - xorg-libxpm
+- wget
 ```
 
 Now install the new environment and activate it.
@@ -42,7 +43,7 @@ Check that Snakemake is installed correctly, for example by executing `snakemake
 ## The basics
 In this part of the tutorial we will create a very simple workflow from scratch, in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
 
-First make an empty file named `Snakefile`, which will contain the workflow, and the two input files containing some arbitrary text.
+Run the following shell commands. The first one will make an empty file named `Snakefile`, which will later contain the workflow. The second and third commands generate two files containing some arbitrary text.
 
 ```bash
 touch Snakefile
