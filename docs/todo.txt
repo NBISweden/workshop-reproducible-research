@@ -8,7 +8,7 @@ TODO: In SM: conda/docker
 TODO: **** Rewrite shadow: minimal
 TODO: Add quick recap on jupyter
 TODO: Fix line breaks on Windows
-TODO: *Add script for installing conda
+TODO: *Add script for installing conda for Mac and Linux
 TODO: *Mention MRSA in Git and conda and rmarkdown
 TODO: Add quick recap to end of conda
 TODO: Explain touch in SM
@@ -25,3 +25,4 @@ TODO: Move first paragraph of "R Markdown in a reproducible research setting" to
 TODO: **** Remove all TODOs (Rasmus)
 TODO: add authors info to readthedocs
 TODO: add about section to readthedocs (for those finding it without knowing it is a course)
+TODO: add instructions to get wget?
