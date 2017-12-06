@@ -21,3 +21,4 @@ TODO: finish installation section on win7 (volume sharing)
 TODO: fix symlinking in shadow on Windows
 TODO: add attention to docker install about /c/ (same as on intro)
 TODO: Validate that you can use $(pwd) on Windows
+TODO: Install text editor
