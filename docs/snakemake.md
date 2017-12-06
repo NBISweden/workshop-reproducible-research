@@ -404,6 +404,74 @@ After everything is done, the workflow will have resulted in a bunch of files in
 !!! attention
     You have now run a real bioinformatics workflow, and you have learnt enough to start writing your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
 
+### Parameters
+In a typical bioinformatics project, considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves every time you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.
+
+```python
+rule some_rule:
+    input:
+        "..."
+    output:
+        "..."
+    params:
+        cutoff=2.5
+    shell:
+        """
+        some_program --cutoff {params.cutoff} {input} {output}
+        """
+```
+
+We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
+
+```python
+rule get_SRA_by_accession:
+    """
+    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
+    """
+    output:
+        "data/raw_internal/{sra_id}.fastq.gz"
+    shell:
+        """
+        fastq-dump {wildcards.sra_id} -X 25000 --readids \
+            --dumpbase --skip-technical --gzip -Z > {output}
+
+        # This clears a cache where SRA Tools reserve a lot of space
+        cache-mgr --clear >/dev/null 2>&1
+        """
+```
+
+Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself.
+
+From a reproducibility perspective, it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
+
+```yaml
+max_reads: 25000
+```
+
+If we now supply `--configfile config.yml` Snakemake will parse this into a global dictionary called `config` that is available from all rules. We can therefore modify `get_SRA_by_accession` to look something like this. Now try this out yourself.
+
+```python
+rule get_SRA_by_accession:
+    """
+    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
+    """
+    output:
+        "data/raw_internal/{sra_id}.fastq.gz"
+    params:
+        max_reads = config["max_reads"]
+    shell:
+        """
+        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
+            --dumpbase --skip-technical --gzip -Z > {output}
+
+        # This clears a cache where SRA Tools reserve a lot of space
+        cache-mgr --clear >/dev/null 2>&1
+        """
+```
+
+!!! tip
+    Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
+
 ### Logs
 As you probably noticed it was difficult to follow how the workflow progressed since some rules printed a lot of output to the terminal. In some cases this also contained important information, such as statistics on the sequence alignments or genome indexing. This could be valuable for example if you later in the project get weird results and want to debug. It's also important from a reproducibility perspective that the "paper trail" describing how the outputs were generated is saved. Luckily, Snakemake has a feature that can help with this. Just as we define `input` and `output` in a rule we can also define `log`.
 
@@ -590,75 +658,8 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for the sample ids. Much better!
 
-### Parameters
-In a typical bioinformatics project considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves every time you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.
-
-```python
-rule some_rule:
-    input:
-        "..."
-    output:
-        "..."
-    params:
-        cutoff=2.5
-    shell:
-        """
-        some_program --cutoff {params.cutoff} {input} {output}
-        """
-```
-
-We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
-
-```python
-rule get_SRA_by_accession:
-    """
-    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
-    """
-    output:
-        "data/raw_internal/{sra_id}.fastq.gz"
-    shell:
-        """
-        fastq-dump {wildcards.sra_id} -X 25000 --readids \
-            --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserve a lot of space
-        cache-mgr --clear >/dev/null 2>&1
-        """
-```
-
-Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself.
-
-From a reproducibility perspective, it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
-
-```yaml
-max_reads: 25000
-```
-
-If we now supply `--configfile config.yml` Snakemake will parse this into a global dictionary called `config` that is available from all rules. We can therefore modify `get_SRA_by_accession` to look something like this. Now try this out yourself.
-
-```python
-rule get_SRA_by_accession:
-    """
-    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
-    """
-    output:
-        "data/raw_internal/{sra_id}.fastq.gz"
-    params:
-        max_reads = config["max_reads"]
-    shell:
-        """
-        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
-            --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserve a lot of space
-        cache-mgr --clear >/dev/null 2>&1
-        """
-```
-
-!!! tip
-    Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
-
-If we want to move all project-specific information to `config.yml` and let the Snakefile be a more general RNA-seq analysis workflow we need the config file to:
+### Generalizing the workflow
+It's generally a good idea to separate project-specific parameters from the actual implementation of the workflow. If we want to move all project-specific information to `config.yml`, and let the Snakefile be a more general RNA-seq analysis workflow, we need the config file to:
 
 * Specify which samples to run.
 * Specify which genome to align to and where to download its sequence and annotation files.
