@@ -22,3 +22,4 @@ TODO: fix symlinking in shadow on Windows
 TODO: add attention to docker install about /c/ (same as on intro)
 TODO: Validate that you can use $(pwd) on Windows
 TODO: add instructions to get wget? alt curl
+TODO: describe the yaml format in conda tutorial
