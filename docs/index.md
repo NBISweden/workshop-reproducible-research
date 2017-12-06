@@ -53,15 +53,16 @@ The graph below shows the different steps of the analysis that are included in t
 
 Clone the git/bitbucket repository containing all files you will need for completing the tutorials. First, `cd` into a directory on your computer (or create one) where it makes sense to download the course directory.
 ```bash
-cd /path/to/your/directory/
+cd /path/to/your/directory
 git https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 
 ## For Windows users
-Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
+First, cd into a directory on your computer (or create one) where it makes sense to download the course directory. Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
 
 ```bash
+cd c:/my_dir
 docker run -it -p 8888:8888 -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
 ```
 
@@ -86,4 +87,4 @@ The figure below gives an overview of the six available tutorials, a very brief 
 
 ![alt text](tutorials_overview2.svg)
 
-Note that running through the tutorials will involve installing several tools which in turn will create various files on your computer. In order to remove any traces of these, after completing the tutorials, please refer to the [Take down section](take_down.md).
+Note that running through the tutorials will involve installing several tools, which in turn will create quite a lot of files on your computer. In order to remove any traces of these, after completing the tutorials, please refer to the [Take down section](take_down.md).
