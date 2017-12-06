@@ -42,8 +42,6 @@ On Windows 7 we will instead use Docker Toolbox, which is available at [docker.c
 
 2. You should now have a Docker Quickstart icon on the desktop.
 
-TODO: FIX VOLUME SHARING. TALK ABOUT /C/
-
 ### Linux
 How to install Docker differs a bit depending on your Linux distro, but the steps are the same. For details on how to do it on your distro see [https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/installation/#server).
 

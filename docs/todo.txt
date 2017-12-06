@@ -5,7 +5,6 @@ TODO: In SM: run/script
 TODO: In SM: list-x-changes (mention version)
 TODO: In SM: cluster
 TODO: In SM: conda/docker
-TODO: **** Rewrite shadow: minimal
 TODO: Add quick recap on jupyter
 TODO: Fix line breaks on Windows
 TODO: *Add script for installing conda
@@ -15,12 +14,10 @@ TODO: Explain touch in SM
 TODO: File name in SM should give path to it
 TODO: Move SM params part to the top
 TODO: Screenshot from Bitbucket in Git
-TODO: **** Test git in Docker (Rasmus)
 TODO: Add ipynb to screenshots
-TODO: print("Hello world!") as chunk
-TODO: **** RStudio and Windows (Leif) - Done! Ok?
 TODO: Refer to markdown reference "shorter" in RStudio
 TODO: Move first paragraph of "R Markdown in a reproducible research setting" to intro
-TODO: **** Remove all TODOs (Rasmus)
 TODO: add authors info to readthedocs
 TODO: add about section to readthedocs (for those finding it without knowing it is a course)
+TODO: finish installation section on win7 (volume sharing)
+TODO: fix symlinking in shadow on Windows

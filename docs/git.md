@@ -72,7 +72,7 @@ You will now be redirected to the repository page. It is an empty repository, so
 * Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course if you haven't done so already). **Important: it should *not* be within the `reproducible_research_course` directory.**
 * Once you are in your directory of choice, run the following command (just make sure to change `user` to your Bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
 ```bash
-git clone git@bitbucket.org:user/git_tutorial.git
+git clone https://user@bitbucket.org:user/git_tutorial.git
 ```
 
 What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
