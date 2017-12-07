@@ -8,7 +8,7 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 * Snakemake is primarily intended to work on _files_ (rather than for example streams, reading/writing from databases or passing variables in memory). This fits well with many fields of bioinformatics, notably next-generation sequencing, that often involve computationally expensive operations on large files. It's also a good fit for a scientific research setting, where the exact specifications of the final workflow aren't always known at the beginning of a project.
 * Lastly, a WFM is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features which allow you to package and distribute the workflow, and any files it involves, once it's done.
 
-### Tell me more
+## Tell me more
 * The Snakemake documentation is available on [readthedocs](https://snakemake.readthedocs.io/en/stable/#).
 * Here is a great [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
 * If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
@@ -17,7 +17,7 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
 
-### Construct the environment for the workflow
+## Construct the environment for the workflow
 If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda and an `environment.yml` file. Here we will use Snakemake as well as some other programs, all of which are available in the Bioconda channel. If you look in the current directory you will see an `environment.yml` file that specifies an environment containing FastQC and SRA Tools (identical to the output from the Conda tutorial). Add the following programs to the file and save it.
 
 ```yaml

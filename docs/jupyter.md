@@ -11,7 +11,7 @@ An excellent question if I may say so! Some applications could be:
 
 As always, the best way is to try it out yourself and decide what to use it for!
 
-### Tell me more
+## Tell me more
 * The [Jupyter project site](http://jupyter.org) contains a lot of information and inspiration.
 * The [Jupyter Notebook documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
 * A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using widgets for creating interactive notebooks.
@@ -19,7 +19,7 @@ As always, the best way is to try it out yourself and decide what to use it for!
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/jupyter`.
 
-### Install Jupyter Notebook
+## Install Jupyter Notebook
 If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda. Create an environment containing the following packages from the `conda-forge` channel. Don't forget to activate the environment.
 
 * `jupyter`: for running everything
