@@ -52,7 +52,7 @@ If you've done the Docker tutorial **or if you've been running Docker for Window
 ### macOS
 Click the Docker icon in the menu bar (upper right part of the screen) and select "Preferences". This will open up the window below. First select "Reset" and fill in your password. Then select "Uninstall". Once it's done uninstalling, drag the Docker app from Applications to Trash.
 
-![alt text](docker_uninstall_osx.png)
+![](images/docker_uninstall_osx.png)
 
 ### Linux
 If you've installed Docker with `apt-get`, uninstall it like this:

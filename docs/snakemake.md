@@ -209,11 +209,11 @@ All that we've done so far could quite easily be done in a simple shell script t
 snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
 ```
 
-![alt text](rulegraph.svg)
+![](images/rulegraph.svg)
 
 That looks simple enough, the output from the rule `convert_to_upper_case` will be used as input to the rule `concatenate_files`. For a more typical bioinformatics project it can look something like this when you include all the rules from processing of the raw data to generating figures for the paper.
 
-![alt text](rulegraph_complex.svg)
+![](images/rulegraph_complex.svg)
 
 While saying that it's easy to read might be a bit of a stretch, it definitely gives you a better overview of the project than you would have without a WFM.
 
@@ -223,7 +223,7 @@ The second type of graph is based on the jobs, and looks like this for our littl
 snakemake --dag a_b.txt | dot -Tpng > jobgraph.png
 ```
 
-![alt text](jobgraph.svg)
+![](images/jobgraph.svg)
 
 The main difference here is that now each node is a job instead of a rule. You can see that the wildcards used in each job are also displayed. Another difference is the dotted lines around the nodes. A dotted line is Snakemake's way of indicating that this rule doesn't need to be rerun in order to generate `a_b.txt`. Validate this by running `snakemake -n -r a_b.txt` and it should say that there is nothing to be done.
 
@@ -350,13 +350,13 @@ snakemake -s Snakefile_mrsa --rulegraph | dot -Tpng > rulegraph_mrsa.png
 
 There are two differences in this command compared to the one we've used before. The first is that we're using the `-s` flag to specify which Snakemake workflow to run. We didn't need to do that before since `Snakefile` is the default name. The second is that we don't define a target. In the toy example we used `a_b.txt` as a target, and the wildcards were resolved based on that. How come that we don't need to do that here? It turns out that by default Snakemake targets the first rule in a workflow. By convention we call this rule `all` and let it serve as a rule for aggregating the main outputs of the workflow.
 
-![alt text](rulegraph_mrsa.svg)
+![](images/rulegraph_mrsa.svg)
 
 Now take some time and look through the workflow file and try to understand how the rules fit together. Use the rule graph as aid. The rules represent a quite standard, although somewhat simplified, workflow for RNA-seq analysis. If you are unfamiliar with the purpose of the different operations (index genome, FastQC and so on), then take a look at the [intro](index.md).
 
 Also generate the job graph in the same manner. Here you can see that three samples will be downloaded from SRA (Sequence Read Archive); SRR935090, SRR935091, and SRR935092. Those will then be quality controlled with FastQC and aligned to a genome. The QC output will be aggregated with MultiQC and the alignments will be used to generate a count table, i.e. a table that shows how many reads map to each gene for each sample. This count table is then what the downstream analysis will be based on (in the [R Markdown tutorial](rmarkdown.md) and in the [Docker tutorial](docker.md)).
 
-![alt text](dag_mrsa.svg)
+![](images/dag_mrsa.svg)
 
 Now try to run the whole workflow. Hopefully you see something like this.
 

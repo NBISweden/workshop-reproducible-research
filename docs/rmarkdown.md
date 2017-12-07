@@ -120,7 +120,7 @@ I like `r fruits <- c("apples","bananas"); paste(fruits, collapse=" and ")`!
 
 The above markdown would generate something like this:
 
-> ![alt text](markdown_example.png)
+> ![](images/markdown_example.png)
 
 Instead of reiterating information here, take a look on the first page (only the first page!) of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf). This will show you how to write more stuff in markdown and how it will be displayed once the markdown document is converted to an output file (e.g. HTML or PDF). An even more complete guide is available [here](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html).
 

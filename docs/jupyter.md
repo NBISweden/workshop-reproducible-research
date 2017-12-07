@@ -65,15 +65,15 @@ Serving notebooks from local directory: /Users/arasmus/Documents/projects/reprod
 
 Everything you do in your Notebook session will be stored in this directory, so you won't lose any work if you shut down the server.
 
-![alt text](jupyter_dashboard.png)
+![](images/jupyter_dashboard.png)
 
 What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The Files tab shows the files in your directory. If you've done the other tutorials the file names should look familiar; they are the files needed for running the RNA-seq workflow in Snakemake. The Running tab keeps track of all your processes. The third tab, Clusters, is used for parallel computing and won't be discussed further in this tutorial. The Conda tab lets us control our Conda environments. Let's take a quick look at that. You can see that I'm currently in the `jupyter_exercise` environment.
 
-![alt text](jupyter_conda.png)
+![](images/jupyter_conda.png)
 
 Let's start by creating an empty notebook by selecting the Files tab and clicking New > Notebook > Python [conda env:jupyter_exercise]. This will open up a new tab or window looking like this:
 
-![alt text](jupyter_empty_nb.png)
+![](images/jupyter_empty_nb.png)
 
 ## The very basics
 Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "edit mode", so you can write stuff in it. Cells in Jupyter notebooks can be of two types: markdown or code.
@@ -124,7 +124,7 @@ print_me("Hi!")
 
 Your notebook should now look something like this.
 
-![alt text](jupyter_basic.png)
+![](images/jupyter_basic.png)
 
 We will not dwell on either using Markdown or Python; you can make really pretty notebooks with Markdown and you can code whatever you want with Python. Rather, we will focus on the Jupyter Notebook features that allow you to do a little more than that.
 
@@ -234,7 +234,7 @@ slider.observe(on_value_change, names='value')
     If you have problems getting these plots to display properly, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
 
 This is how it should look if everything works. You can set the frequency of the sine curve by moving the slider.
-![alt text](jupyter_widget.png)
+![](images/jupyter_widget.png)
 
 There are lots of widgets and they all work pretty much in the same way; you listen for some event to happen and if it does you pass the new state to some function. Here is a [list of all available widgets](http://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html) together with documentation and examples.
 
@@ -279,7 +279,7 @@ As you can see, the purpose of the notebook is to try out different settings for
 
 As you know, the files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
 
-![alt text](jupyter_mrsa.png)
+![](images/jupyter_mrsa.png)
 
 As you can imagine, having this very effortless way of sharing results can greatly increase the visibility of your work. You work as normal on your project, and push regularly to the repository as you would anyways, and the output is automatically available for anyone to see. Or for a select few if you're not ready to share your findings with the world quite yet.
 
