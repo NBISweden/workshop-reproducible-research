@@ -1,5 +1,4 @@
 TODO: Check volume mounts on Windows
-TODO: Language and spelling in rmarkdown
 TODO: In SM: run/script
 TODO: In SM: list-x-changes (mention version)
 TODO: In SM: cluster
@@ -20,3 +19,4 @@ TODO: Validate that you can use $(pwd) ong Windows. What about /c/
 TODO: describe the yaml format in conda tutorial
 TODO: Update when shadow: minimal exists
 TODO: Add recaps to rmarkdown
+TODO: Highlighting in rmarkdown
