@@ -13,7 +13,7 @@ A Conda environment is essentially a directory that is added to your PATH and th
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
 
-## Install Conda
+### Install Conda
 !!! attention
     If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 

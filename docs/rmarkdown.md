@@ -40,7 +40,7 @@ A markdown document can be converted to other formats, such as HTML or PDF, for 
 
 R Markdown documents can be used both to save and execute code (with a focus on R) and to generate reports in various formats. This is done by mixing markdown (as in the example above), and so-called code chunks in the same document. The code itself, as well as the output it generates, can be included in the final report. The best way to understand R Markdown is by using it, so head down to the practical exercise below to learn more!
 
-## Tell me more
+### Tell me more
 
 * A nice "Get Started" section, as a complement to this tutorial, is available at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
 * [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
@@ -49,7 +49,7 @@ R Markdown documents can be used both to save and execute code (with a focus on 
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
 
-## Install RStudio and R
+### Install RStudio and R
 
 If you don't already have R or RStudio, you will need to install them:
 
@@ -376,7 +376,7 @@ rmarkdown::render("code/supplementary_material.Rmd",
 The reason for this is that we can then redirect the output PDF file to be saved in the `results/` directory.
 
 Normally, while rendering, R code in the Rmd file will be executed using the directory of the Rmd file as working directory (`rmarkdown/code` in this case).
-However, it is good practice to write all code as if it would be executed from the project root directory (`rmarkdown/` in this case). For instance, you can see that we have specified the files in `params` with relative paths from the project root directory. To set a different directory as working directory for all chunks one modifies the knit options like this:
+However, it is good practice to write all code as if it would be executed from the project root directory (`rmarkdown` in this case). For instance, you can see that we have specified the files in `params` with relative paths from the project root directory. To set a different directory as working directory for all chunks one modifies the knit options like this:
 
 ```
 knitr::opts_knit$set(root.dir = normalizePath('../'))

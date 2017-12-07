@@ -10,20 +10,20 @@ Just as with Git, Docker was designed for software development but is rapidly be
 
 All of this might sound a bit abstract so far, so let's get going.
 
-## Tell me more
+### Tell me more
 * A "Get started with Docker" at [docker.com](https://docs.docker.com/get-started/).
 * An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using Docker for reproducible research.
 
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/docker`.
 
-## Install Docker
+### Install Docker
 First we need to install Docker. This is quite straightforward on macOS or Windows and a little more cumbersome on Linux. Note that Docker runs as root, which means that you have to have sudo privileges on your computer in order to install or run Docker.
 
-### macOS
+#### macOS
 Go to  [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac) and select "Get Docker for Mac (Stable)". This will download a dmg file. Click on it once it's done to start the installation. This will open up a window where you can drag the Docker.app to Applications. Close the window and click the Docker app from the Applications menu. Now it's basically just to click "next" a couple of times and we should be good to go. You can find the Docker icon in the menu bar in the upper right part of the screen.
 
-### Windows
+#### Windows
 The instructions are different depending on if you have Windows 10 or Windows 7 (earlier versions aren't supported). In order to run Docker on Windows your computer must support Hardware Virtualization Technology and virtualization must be enabled. This is typically done in BIOS. Setting this is outside the scope of this tutorial, so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows). Select "Get Docker for Windows (Stable)".
@@ -42,7 +42,7 @@ On Windows 7 we will instead use Docker Toolbox, which is available at [docker.c
 
 2. You should now have a Docker Quickstart icon on the desktop.
 
-### Linux
+#### Linux
 How to install Docker differs a bit depending on your Linux distro, but the steps are the same. For details on how to do it on your distro see [https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/installation/#server).
 
 Here we show how to do it for Ubuntu, which is the most common desktop distribution. The same instructions apply to distributions based on Ubuntu, such as Elementary OS or Linux Mint. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your OS is from 2015 or earlier you can double check this with `lsb_release -a`. If it's newer you're probably fine.
