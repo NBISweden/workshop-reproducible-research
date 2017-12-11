@@ -49,7 +49,7 @@ The graph below shows the different steps of the analysis that are included in t
 * `make_supplementary` - Produces the Supplementary Materials section using data from the QC, gene counting and the graph figure.
 
 # Setup
-### For Mac / Linux users
+## For Mac / Linux users
 
 Clone the git/bitbucket repository containing all files you will need for completing the tutorials. First, `cd` into a directory on your computer (or create one) where it makes sense to download the course directory.
 ```bash
@@ -58,7 +58,7 @@ git https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 
-### For Windows users
+## For Windows users
 First, cd into a directory on your computer (or create one) where it makes sense to download the course directory. Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
 
 ```bash
