@@ -1,14 +1,19 @@
 site_name: NBIS Reproducible research course
 theme: mkdocs
 pages:
-  - 'Introduction': 'index.md'
-  - 'Conda': 'conda.md'
-  - 'Snakemake': 'snakemake.md'
-  - 'Git': 'git.md'
-  - 'R Markdown': 'rmarkdown.md'
-  - 'Jupyter': 'jupyter.md'
-  - 'Docker': 'docker.md'
-  - 'Take down': take_down.md
+  - 'The course':
+    - Welcome: welcome.md
+    - Schedule: schedule.md
+  - Tutorials:
+    - Introduction: 'index.md'
+    - Conda: 'conda.md'
+    - Snakemake: 'snakemake.md'
+    - Git: 'git.md'
+    - R Markdown: 'rmarkdown.md'
+    - Jupyter: 'jupyter.md'
+    - Docker: 'docker.md'
+    - 'Take down': take_down.md
+  - About: 'about.md'
 markdown_extensions:
   - toc:
       permalink: 
