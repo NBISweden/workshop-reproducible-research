@@ -1,4 +1,4 @@
-# Making bioinformatics research reproducible - from raw data to publication
+# Introduction to the tutorials
 
 Welcome to the tutorials! Here we will learn how to make a computational research project reproducible using the tools:
 
@@ -8,8 +8,6 @@ Welcome to the tutorials! Here we will learn how to make a computational researc
 * R Markdown
 * Jupyter
 * Docker
-
-The slides from the introductory lecture are available on Figshare as [pptx](https://doi.org/10.6084/m9.figshare.5674450) or [pdf](https://doi.org/10.6084/m9.figshare.5674453.v1).
 
 ## The case study
 We will be running a small bioinformatics project as a case study, and use that to exemplify the different steps of setting up a reproducible research project. To give you some context, the study background and analysis steps are very briefly described below.
