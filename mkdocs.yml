@@ -1,13 +1,13 @@
 site_name: NBIS Reproducible research course
 theme: mkdocs
 pages:
-  - Welcome: welcome.md
+  - Welcome: index.md
   - About: 'about.md'
   - 'The course':
     - Schedule: schedule.md
     - 'Travel info': travel.md
   - Tutorials:
-    - 'Introduction to the tutorials': 'index.md'
+    - 'Introduction to the tutorials': 'tutorial_intro.md'
     - Conda: 'conda.md'
     - Snakemake: 'snakemake.md'
     - Git: 'git.md'
