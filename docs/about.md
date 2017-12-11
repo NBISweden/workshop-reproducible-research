@@ -1,6 +1,6 @@
 # About
 
-The material available on these pages are produced and maintained for a course on how to make your data analyses reproducible. In particular covering the tools:
+The material available on these pages is produced and maintained for a course on how to make your data analyses reproducible. In particular, it covers the tools:
 
 * Conda
 * Git
