@@ -3,8 +3,8 @@
 The material available on these pages are produced and maintained for a course on how to make your data analyses reproducible. In particular covering the tools:
 
 * Conda
-* Snakemake
 * Git
+* Snakemake
 * R Markdown
 * Jupyter
 * Docker

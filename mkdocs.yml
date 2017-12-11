@@ -9,8 +9,8 @@ pages:
   - Tutorials:
     - 'Introduction to the tutorials': 'tutorial_intro.md'
     - Conda: 'conda.md'
-    - Snakemake: 'snakemake.md'
     - Git: 'git.md'
+    - Snakemake: 'snakemake.md'
     - R Markdown: 'rmarkdown.md'
     - Jupyter: 'jupyter.md'
     - Docker: 'docker.md'
