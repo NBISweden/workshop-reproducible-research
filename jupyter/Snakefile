@@ -1,3 +1,6 @@
+from snakemake.utils import min_version
+min_version("4.4.0")
+
 rule all:
     """
     Collect the main outputs of the workflow.
@@ -38,7 +41,7 @@ rule fastqc:
         "results/{id}_fastqc.html",
         "intermediate/{id}_fastqc.zip"
     version: "1.0"
-    shadow: "shallow"
+    shadow: "minimal"
     shell:
         """
         # Run fastQC and save the output to the current directory
@@ -61,7 +64,7 @@ rule multiqc:
     log:
         "results/logs/multiqc/multiqc.log"
     version: "1.0"
-    shadow: "shallow"
+    shadow: "minimal"
     shell:
         """
         # Run multiQC and keep the html report
@@ -114,7 +117,7 @@ rule index_genome:
     log:
         "results/logs/index_genome/{genome_id}.log"
     version: "1.0"
-    shadow: "shallow"
+    shadow: "minimal"
     shell:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
@@ -165,7 +168,7 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv"
     version: "1.0"
-    shadow: "shallow"
+    shadow: "minimal"
     shell:
         """
         # htseq-count cannot use .gz, so unzip to a temporary file first

@@ -1,3 +1,6 @@
+from snakemake.utils import min_version
+min_version("4.4.0")
+
 rule all:
     """
     Collect the main outputs of the workflow.
