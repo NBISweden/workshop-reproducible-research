@@ -11,7 +11,7 @@ A Conda package is a compressed tarball (system-level libraries, Python or other
 A Conda environment is essentially a directory that is added to your PATH and that contains a specific collection of Conda packages that you have installed. Packages are symlinked between environments to avoid unnecessary duplication.
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
+This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
 
 ## Install Conda
 !!! attention
@@ -169,7 +169,7 @@ This will remove package tar-balls that are left from package installations, unu
 
 We have up until now specified which Conda packages to install directly on the command line using the `conda create` and `conda install` commands. For working in projects this is not the recommended way. Instead, for increased control and reproducibility, it is better to use a file (in [yaml format](https://en.wikipedia.org/wiki/YAML)) specifying packages, versions and channels needed to create the environment for a project.
 
-* Throughout these tutorials we use a case study where we analyse a RNA-seq experiment with the multiresistant bacteria MRSA (see [intro](index.md)). You will now start to make a Conda yml file for the MRSA project.
+* Throughout these tutorials we use a case study where we analyse a RNA-seq experiment with the multiresistant bacteria MRSA (see [intro](tutorial_intro.md)). You will now start to make a Conda yml file for the MRSA project.
 * To start with, the code for the analysis is available in `code/run_qc.sh`. It will:
     - download the raw fastq-files
     - run quality control on these using FastQC

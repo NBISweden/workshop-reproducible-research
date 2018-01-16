@@ -28,7 +28,7 @@ The best way to get an idea about git is simply to start using it. The tutorial 
 * [Git reference manual](https://book.git-scm.com/docs)
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index.md) for instructions on how to set it up if you haven't done so already.
+This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already.
 
 ## Install git
 
