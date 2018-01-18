@@ -10,9 +10,9 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && apt-get -y dist-upgrade
 RUN apt-get install -y --no-install-recommends bzip2 curl
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
-    bash Miniconda3-latest-Linux-x86_64.sh -bf && \
+    bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-latest-Linux-x86_64.sh
-ENV PATH="/root/miniconda3/bin:${PATH}"
+ENV PATH="/opt/miniconda3/bin:${PATH}"
 
 #Install R packages
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); \
