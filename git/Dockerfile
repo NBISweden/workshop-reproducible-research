@@ -1,4 +1,4 @@
-FROM rocker/verse:3.3.1
+FROM rocker/verse:3.4.0
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
 WORKDIR /home
@@ -15,15 +15,9 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 ENV PATH="/root/miniconda3/bin:${PATH}"
 
 #Install R packages
-RUN install2.r --error \
-    -r 'http://cran.rstudio.com' \
-    -r 'http://bioconductor.org/packages/3.4/bioc' \
-    ggplot2 \
-    reshape2 \
-    pheatmap \
-    rtracklayer \
-    GEOquery \
-    && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); \
+    biocLite(suppressUpdates = T, pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'GEOquery'))" \
+    && rm -rf /tmp/Rtmp* /tmp/*.rds
 
 # Set up the Conda environment
 COPY environment.yml .
