@@ -164,7 +164,7 @@ Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one
 RUN apt-get update && \
     apt-get install -y --no-install-recommends bzip2 curl language-pack-en fontconfig vim
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
-    bash Miniconda3-latest-Linux-x86_64.sh -bf && \
+    bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-latest-Linux-x86_64.sh
 ```
 
@@ -187,7 +187,7 @@ The next `RUN` command retrieves and installs Miniconda3. Let's see what would h
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O
 
 # Install it
-RUN bash Miniconda3-latest-Linux-x86_64.sh -bf
+RUN bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/
 
 # Remove the downloaded installation file
 RUN rm Miniconda3-latest-Linux-x86_64.sh
@@ -197,12 +197,12 @@ Remember that each layer contains the difference compared to the previous layer?
 
 ```no-highlight
 # Add conda to PATH and set locale
-ENV PATH="/root/miniconda3/bin:${PATH}"
+ENV PATH="/opt/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 ```
 
-Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/root/miniconda3/bin/conda install`. The other two set an UTF-8 character encoding so that we can use weird characters (and a bunch of other things).
+Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/opt/miniconda3/bin/conda install`. The other two set an UTF-8 character encoding so that we can use weird characters (and a bunch of other things).
 
 ```no-highlight
 # Install git, nano and ca-certificates from conda-forge
@@ -342,7 +342,7 @@ If you want to refer to a Docker image in for example a publication, it's very i
     On Dockerhub it is also possible to link to your Bitbucket or GitHub account and select repositories from which you want to automatically build and distribute Docker images. The Dockerhub servers will then build an image from the Dockerfile in your repository and make it available for download using `docker pull`. That way, you don't have to bother manually building and pushing using `docker push`. 
 
 ## Packaging and running the MRSA workflow
-During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.5 GB image.
+During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.9 GB image.
 
 * We've [set up a Bitbucket repository](git.md) for version control and for hosting our project.
 * We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.
@@ -351,14 +351,14 @@ During these tutorials we have been working on a case study about the multiresis
 
 The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the supplementary material pdf into the Snakemake workflow as the rule `make_supplementary`.
 
-Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.3.1` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary material report to PDF, but unfortunately it also takes up quite a lot of space (2.2 GB). The other main difference is that we install a number of R packages with `install2.r`. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
+Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.4.0` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary material report to PDF, but unfortunately it also takes up quite a lot of space (2.2 GB). The other main difference is that we install a number of R packages using Bioconductor. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
 
 Now run `docker build` as before and go get a coffee while the image builds (or you could use `docker pull scilifelablts/reproducible_research_course` which will download the same image). Validate with `docker image ls`. Now all that remains is to run the whole thing with `docker run`. We just want to get the results, so mount the directory `/home/results/` to, say, `mrsa_results` in your current directory. Well done! You now have an image that allows anyone to exactly reproduce your analysis workflow (if you first `docker push` to Dockerhub that is).
 
 !!! tip
     If you've done the [Jupyter Notebook tutorial](jupyter.md), you know that Jupyter Notebook runs as a web server. This makes it very well suited for running in a Docker container, since we can just expose the port Jupyter Notebook uses and redirect it to one of our own. You can then work with the notebooks in your browser just as you've done before, while it's actually running in the container. This means you could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them. We haven't made any fancy notebooks for you, but we *have* set up a Jupyter Notebook server. Try it out if you want to (replace the image name with your version if you've build it yourself):
     ```bash
-    docker run -it -p 8888:8888 scilifelablts/reproducible_research_course_slim jupyter notebook --allow-root
+    docker run -it -p 8888:8888 scilifelablts/reproducible_research_course jupyter notebook --allow-root
     ```
 
 ## Cleaning up
