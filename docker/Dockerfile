@@ -15,8 +15,8 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 ENV PATH="/opt/miniconda3/bin:${PATH}"
 
 #Install R packages
-RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); \
-    biocLite(suppressUpdates = T, pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'GEOquery'))" \
+RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
+    pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'GEOquery'))" \
     && rm -rf /tmp/Rtmp* /tmp/*.rds
 
 # Set up the Conda environment
