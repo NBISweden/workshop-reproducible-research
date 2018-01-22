@@ -52,7 +52,7 @@ The graph below shows the different steps of the analysis that are included in t
 Clone the git/bitbucket repository containing all files you will need for completing the tutorials. First, `cd` into a directory on your computer (or create one) where it makes sense to download the course directory.
 ```bash
 cd /path/to/your/directory
-git https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
+git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 

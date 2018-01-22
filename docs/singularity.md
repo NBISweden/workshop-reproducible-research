@@ -4,7 +4,8 @@
     This is a beta version.
 
 ## Tell me more
-* [Singularity](http://singularity.lbl.gov/)
+* [Singularity homepage](http://singularity.lbl.gov/)
+* [Singularity publication in PLoS ONE](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177459)
 
 # Set up
 
@@ -21,6 +22,8 @@
 
 # Practical exercise
 
+cache env var
+mount home
 
 ## Running the MRSA workflow
 
