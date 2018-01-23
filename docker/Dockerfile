@@ -1,7 +1,7 @@
 FROM rocker/verse:3.4.0
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
-WORKDIR /home
+WORKDIR /files
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 SHELL ["/bin/bash", "-c"]
