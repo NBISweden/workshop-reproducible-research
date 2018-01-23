@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-LABEL description = "Minimal image for the NBIS reproducible research course."
+LABEL description = "Minimal image for the NBIS Reproducible Research course."
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
 # Install Miniconda3 prerequisites, English language pack and fonts. Also
