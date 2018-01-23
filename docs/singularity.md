@@ -52,7 +52,9 @@ touch hello
 
 This does not behave as Docker as you can see. It appears as if you are still on the host system. This is because, by default, singularity bind mounts `/home/$USER`, `/tmp`, and `$PWD` into your container at runtime. Additionally, the system administrator may have setup other bind mounts to be used by default (try e.g. `ls /` and see if you recognize any directories).
 
-Nevertheless, you are in the container, run `cat /etc/os-release` and compare the output to that on your host system. Exit the container using `exit`. Notice that the file `hello` exists outside the container (since the working directory was mounted).
+Nevertheless, you are in the container, run `cat /etc/os-release` and compare the output to that on your host system.
+
+Exit the container using `exit`. Notice that the file `hello` exists outside the container (since the working directory was mounted).
 
 In order to actual contain our analysis as much as possible we can use the following:
 
@@ -94,6 +96,8 @@ Get the same image from Dockerhub that we used in the Docker tutorial (you proba
 singularity pull -n mrsa_workflow.img docker://scilifelablts/reproducible_research_course
 ```
 
+(Here we also demonstrate the use of the `-n` flag.)
+
 Next, shell into the container:
 
 ```
@@ -111,6 +115,9 @@ cp -r /files/* .
 ls
 ```
 
+!!! warning
+    This is probably not the best way to run this. But the only working solution I could find at the moment. Be aware that this workflow probably will change. Optimally one would want to be able to run analysis in the container without having to worry about denied permission to write files and disk quota issues. The solution to those problems is yet to be find though.
+
 !!! tip
     We could also have e.g. git cloned the code on the host and bind mounted that directory into the container, instead of copying files within the container as we do here. The choice is yours!
 
@@ -120,6 +127,7 @@ Now that the files are in place, we can execute the workflow:
 snakemake --configfile config.yml
 ls
 ```
+
 Notice that a few directories have been created (as you will recognize from the Snakemake tutorial), and most important, the `results/` directory is now filled with result files! Good thing we mounted that directory.
 
 Before we exit, just a side-note. Run `ls $HOME`. See that a directory `ncbi` is created by the workflow. This is a side-effect of the `fastq-dump` program. Now that we ran with `--containall` it is no big deal. However, without that option, the `ncbi` directory would have appeared in you `$HOME` on the host system. Another good reason to always attempt to contain the container as much as possible! Ok, go ahead and exit the container. Check the host `results` directory, where you will find the result files (like `supplementary_material.pdf`) safely stored!
