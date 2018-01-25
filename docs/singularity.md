@@ -116,7 +116,7 @@ ls
 ```
 
 !!! warning
-    This is probably not the best way to run this. But the only working solution I could find at the moment. Be aware that this workflow probably will change. Optimally one would want to be able to run analysis in the container without having to worry about denied permission to write files and disk quota issues. The solution to those problems is yet to be find though.
+    This is probably not the best way to run this. But the only working solution I could find at the moment. Be aware that this workflow probably will change. Optimally one would want to be able to run analysis in the container without having to worry about denied permission to write files and disk quota issues. The solution to those problems is yet to be find though. It may be so that one first needs to `singularity build` the image on a local system where one can be root.
 
 !!! tip
     We could also have e.g. git cloned the code on the host and bind mounted that directory into the container, instead of copying files within the container as we do here. The choice is yours!
@@ -130,10 +130,12 @@ ls
 
 Notice that a few directories have been created (as you will recognize from the Snakemake tutorial), and most important, the `results/` directory is now filled with result files! Good thing we mounted that directory.
 
+!!! tip
+    Here we run the Snakemake workflow in one container. Snakemake also supports running each single rule in its own singularity container on different compute nodes.
+
 Before we exit, just a side-note. Run `ls $HOME`. See that a directory `ncbi` is created by the workflow. This is a side-effect of the `fastq-dump` program. Now that we ran with `--containall` it is no big deal. However, without that option, the `ncbi` directory would have appeared in you `$HOME` on the host system. Another good reason to always attempt to contain the container as much as possible! Ok, go ahead and exit the container. Check the host `results` directory, where you will find the result files (like `supplementary_material.pdf`) safely stored!
 
 That's all folks.
-
 
 ## Cleaning up
 
