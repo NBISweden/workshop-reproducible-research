@@ -15,7 +15,7 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 * To discuss with other users, there is a [Google group](https://groups.google.com/forum/#!forum/snakemake).
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](index) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
+This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
 
 ## Construct the environment for the workflow
 If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda and an `environment.yml` file. Here we will use Snakemake as well as some other programs, all of which are available in the Bioconda channel. If you look in the current directory you will see an `environment.yml` file that specifies an environment containing FastQC and SRA Tools (identical to the output from the Conda tutorial). Add the following programs to the file and save it.

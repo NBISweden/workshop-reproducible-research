@@ -16,7 +16,7 @@
 Refer to [this documentation](http://singularity.lbl.gov/docs-installation).
 
 !!! note
-    Singularity is already installed on Uppmax. For this tutorial, you do not need to install it on your local system.
+    Singularity is already installed on Uppmax. For this tutorial, you do not need to install it on your local system. Also note, this tutorial is intended to be run on a cluster with internet access. Alternatively, an image can be created on a host with connection and then transferred to a cluster without connection. (However, this tutorial runs the MRSA Snakemake workflow and that itself dowloads stuff from the internet.)
 
 # Practical exercise
 
@@ -55,6 +55,9 @@ This does not behave as Docker as you can see. It appears as if you are still on
 Nevertheless, you are in the container, run `cat /etc/os-release` and compare the output to that on your host system.
 
 Exit the container using `exit`. Notice that the file `hello` exists outside the container (since the working directory was mounted).
+
+!!! tip
+    You can also use `singularity exec` to execute commands in a container. This can be useful e.g. when writing sbatch files for the slurm system. 
 
 In order to actual contain our analysis as much as possible we can use the following:
 
