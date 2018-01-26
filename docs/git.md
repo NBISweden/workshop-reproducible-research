@@ -219,7 +219,7 @@ git push -u origin master
 * Run `git status`. This should tell you that "*Your branch is up-to-date with 'origin/master'.*".
 * Go to your Bitbucket repository in your browser again and click on Source to the left. You should now see that the files you have locally appear here as well!
 * Click on `config.yml`. You will see the contents of the file. Notice that it is the latest version, where we changed "genome_id".
-* Click on Diff, in the upper left corner. You will see the changes made to this file compared to the previous commit.
+* Click on Diff, in the upper right corner. You will see the changes made to this file compared to the previous commit.
 * Click History. You will see an overview of the commits involving changes made to this file.
 * Click Commits, to the left in the main menu. You will see an overview of all commits made. Click on a specific commit to see the changes introduced by that commit.
 * Click on the commit that was the initial commit, where we added all the files. You can now click on View source in the top right corner. You will now see the files as they were when we first added them. Specifically you can see that the `Dockerfile` is back, even though we deleted it! Click on Source to the left again to return to the latest version.
