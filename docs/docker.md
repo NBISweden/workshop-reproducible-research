@@ -17,6 +17,9 @@ All of this might sound a bit abstract so far, so let's get going.
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/docker`.
 
+!!! attention
+    Docker images tend to take up quite a lot of space. In order to do all the exercises in this tutorial you need to have ~10 GB available.
+
 ## Install Docker
 First we need to install Docker. This is quite straightforward on macOS or Windows and a little more cumbersome on Linux. Note that Docker runs as root, which means that you have to have sudo privileges on your computer in order to install or run Docker.
 
@@ -78,7 +81,7 @@ The output should say something about "Active: active (running) since..".
 
 # Practical exercise
 ## The very basics
-We're almost ready to start, just one last note on nomenclature. You might have noticed that we sometimes refer to "Docker images" and sometimes to "Docker containers". A container is simply an instance of an image. You can have an image containing, say, a certain Linux distribution, and then start multiple containers running that same OS.
+We're almost ready to start, just one last note on nomenclature. You might have noticed that we sometimes refer to "Docker images" and sometimes to "Docker containers". A container is simply an instance of an image. To use a programming metaphor, if an image is a class, then a container is an instance of that class — a runtime object. You can have an image containing, say, a certain Linux distribution, and then start multiple containers running that same OS.
 
 !!! attention
     If you don't have root privileges you have to prepend all Docker commands with `sudo ` (see the tip above)

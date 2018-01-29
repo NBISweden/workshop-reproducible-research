@@ -66,7 +66,7 @@ rule convert_to_upper_case:
 ```
 
 !!! attention
-    Indentation is important in Snakefiles, so make sure that you have the correct number of spaces before `input`/`output`/`shell` and their respective subsections. Don't use tabs (unless your editor automatically converts them to spaces).
+    Indentation is important in Snakefiles, so make sure that you have the correct number of spaces before `input`/`output`/`shell` and their respective subsections. The number of spaces per level doesn't matter as long as you're consistent. Here we use four, but you could just as well use two for a more compact look. Don't use tabs (unless your editor automatically converts them to spaces).
 
 A rule has a name, here it's `convert_to_upper_case`. Make an effort to name your rules in way that makes it easy to understand the purpose of the rule, as rule names are one of the main ways to interact with the workflow. The `shell` section contains the shell commands that will convert the text in the input file to upper case and send it to the output file. In the shell command string, we can refer to elements of the rule via curly brackets. Here, we refer to the output file by specifying `{output}` and to the input file by specifying `{input}`. If you're not very familiar with Bash, this particular command can be read like "send the contents of `a.txt` to the program `tr`, which will convert all characters in the set [a-z] to the corresponding character in the set [A-Z], and then send the output to `a.upper.txt`".
 

@@ -36,6 +36,8 @@ This should say something like `/Users/myuser/miniconda3/bin/conda`. Then remove
 rm -rf /Users/myuser/miniconda3
 ```
 
+Lastly, open your `~/.bashrc` file (or `~/.bash_profile` if on Mac) in a text editor and remove the path to Conda from PATH.
+
 ## Snakemake
 Snakemake is installed via Conda and will be removed if you follow the instructions in the Conda section above. Note that Snakemake also generates a hidden `.snakemake` directory in the directory where it's run. You can remove this with
 
