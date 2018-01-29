@@ -57,7 +57,7 @@ Nevertheless, you are in the container, run `cat /etc/os-release` and compare th
 Exit the container using `exit`. Notice that the file `hello` exists outside the container (since the working directory was mounted).
 
 !!! tip
-    You can also use `singularity exec` to execute commands in a container. This can be useful e.g. when writing sbatch files for the slurm system. 
+    You can also use `singularity exec` to execute commands in a container. This can be useful e.g. when writing sbatch files for the slurm system.
 
 In order to actual contain our analysis as much as possible we can use the following:
 
@@ -138,7 +138,7 @@ Notice that a few directories have been created (as you will recognize from the 
 
 Before we exit, just a side-note. Run `ls $HOME`. See that a directory `ncbi` is created by the workflow. This is a side-effect of the `fastq-dump` program. Now that we ran with `--containall` it is no big deal. However, without that option, the `ncbi` directory would have appeared in you `$HOME` on the host system. Another good reason to always attempt to contain the container as much as possible! Ok, go ahead and exit the container. Check the host `results` directory, where you will find the result files (like `supplementary_material.pdf`) safely stored!
 
-That's all folks.
+That's all folks!
 
 ## Cleaning up
 
