@@ -197,7 +197,7 @@ conda env create -n project_mrsa -f environment.yml
 
 This should download the project fastq files and run FastQC on them (as mentioned above).
 
-* Check your directory contents (`ls -Rlh`, or in your file browser). It should now look something like this:
+* Check your directory contents (`ls -Rlh`, or in your file browser). It should now have the following structure:
 
 ```no-highlight
    conda/
