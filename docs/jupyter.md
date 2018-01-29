@@ -129,7 +129,7 @@ Your notebook should now look something like this.
 We will not dwell on either using Markdown or Python; you can make really pretty notebooks with Markdown and you can code whatever you want with Python. Rather, we will focus on the Jupyter Notebook features that allow you to do a little more than that.
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * That a Jupyter notebook consists of a series of cells, and that they can be either markdown or code cells.
     * That we execute the code in a code cell with the kernel that we chose when opening the notebook.

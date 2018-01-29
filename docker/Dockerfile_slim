@@ -6,8 +6,8 @@ MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 # Install Miniconda3 prerequisites, English language pack and fonts. Also
 # include vim for convenience
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends bzip2 curl language-pack-en fontconfig vim
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
+    apt-get install -y --no-install-recommends bzip2 curl ca-certificates language-pack-en fontconfig vim
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O && \
     bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-latest-Linux-x86_64.sh
 
@@ -16,8 +16,8 @@ ENV PATH="/opt/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 
-# Install git, nano and ca-certificates from conda-forge
-RUN conda install -c conda-forge git ca-certificates nano && \
+# Install git and nano from conda-forge
+RUN conda install -c conda-forge git nano && \
     conda clean --all
 
 # Use bash as shell

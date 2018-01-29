@@ -133,7 +133,7 @@ Here you can do whatever; install, run, remove stuff. It will still be within th
 Ok, so Docker lets us work in any OS in a quite convenient way. That would probably be useful on its own, but Docker is much more powerful than that.
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * How to use `docker pull` for downloading images from a central registry.
     * How to use `docker image ls` for getting information about the images we have on our system.
@@ -156,14 +156,14 @@ LABEL description = "Minimal image for the NBIS reproducible research course."
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 ```
 
-Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one is `FROM`, which specifies the layer our image should start from. In this case we want it to be Ubuntu 16.04, which is one of the [official repositories](https://hub.docker.com/explore/). There are many roads to Rome when it comes to choosing the best image to start from. Say you want to run RStudio in a Conda environment through a Jupyter notebook. You could then start from one of the [rocker images](https://github.com/rocker-org/rocker) for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one of the low-level official images and set up everything from scratch. `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing your various Docker components.
+Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one is `FROM`, which specifies the base image our image should start from. In this case we want it to be Ubuntu 16.04, which is one of the [official repositories](https://hub.docker.com/explore/). There are many roads to Rome when it comes to choosing the best image to start from. Say you want to run RStudio in a Conda environment through a Jupyter notebook. You could then start from one of the [rocker images](https://github.com/rocker-org/rocker) for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one of the low-level official images and set up everything from scratch. `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing your various Docker components.
 
 ```no-highlight
 # Install Miniconda3 prerequisites, English language pack and fonts. Also
 # include vim for convenience
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends bzip2 curl language-pack-en fontconfig vim
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
+    apt-get install -y --no-install-recommends bzip2 curl ca-certificates language-pack-en fontconfig vim
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O && \
     bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-latest-Linux-x86_64.sh
 ```
@@ -175,16 +175,16 @@ The next few lines introduce the important `RUN` instruction, which is used for 
 RUN apt-get update
 
 #Install packages
-RUN apt-get install -y --no-install-recommends bzip2 curl language-pack-en fontconfig vim
+RUN apt-get install -y --no-install-recommends bzip2 curl ca-certificates language-pack-en fontconfig vim
 ```
 
-The first command will update the apt-get package lists and the second will install the packages `bzip2`, `curl`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
+The first command will update the apt-get package lists and the second will install the packages `bzip2`, `curl`, `ca-certificates`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
 
 The next `RUN` command retrieves and installs Miniconda3. Let's see what would happen if we had that as three separate commands instead.
 
 ```no-highlight
 # Download Miniconda3
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O
 
 # Install it
 RUN bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/
@@ -206,11 +206,11 @@ Here we use the new instruction `ENV`. The first command adds `conda` to the pat
 
 ```no-highlight
 # Install git, nano and ca-certificates from conda-forge
-RUN conda install -c conda-forge git ca-certificates nano && \
+RUN conda install -c conda-forge git nano && \
     conda clean --all
 ```
 
-Here we install some packages with Conda. Note that we run `conda clean --all` to remove any downloaded packages afterwards.
+Here we install a couple of packages with Conda. Note that we run `conda clean --all` to remove any downloaded packages afterwards.
 
 ```no-highlight
 # Use bash as shell
@@ -262,7 +262,7 @@ The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running
 6. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`, `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
     * The importance of letting each layer in the Dockerfile be a "logical unit".
@@ -299,7 +299,7 @@ docker exec -it my_container /bin/bash
     Sometimes you would like to enter a stopped container. It's not a common use case, but it's included here for those of you who are doing these tutorials on Windows using Docker. Inadvertedly shutting down your container can result in loss of a lot of work if you're not able to restart it. If you were to use `docker start` it would rerun the command set by `CMD`, which may not be what you want. Instead we use `docker commit container_name new_image_name` to convert the container `container_name` to the image `new_image_name`. We can then start a new container in that image as we normally would with `docker run -it --rm new_image_name`. Confusing, right? In theory, this would allow you to bypass using Dockerfiles and instead generate your image by entering an empty container in interactive mode, install everything there, and then commit as a new image. However, by doing this you would lose many of the advantages that Dockerfiles provide, such as easy distribution and efficient space usage via layers.
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * How to use `docker run` for starting a container and how the flags `-d`, `-it` and `--rm` work.
     * How to use `docker container ls` for displaying information about the containers.
@@ -339,7 +339,7 @@ That was easy!
 If you want to refer to a Docker image in for example a publication, it's very important that it's the correct version of the image. You can do this by adding a tag to the name like this `docker build -t your_dockerhub_id/image_name:tag_name`.
 
 !!! tip
-    On Dockerhub it is also possible to link to your Bitbucket or GitHub account and select repositories from which you want to automatically build and distribute Docker images. The Dockerhub servers will then build an image from the Dockerfile in your repository and make it available for download using `docker pull`. That way, you don't have to bother manually building and pushing using `docker push`. 
+    On Dockerhub it is also possible to link to your Bitbucket or GitHub account and select repositories from which you want to automatically build and distribute Docker images. The Dockerhub servers will then build an image from the Dockerfile in your repository and make it available for download using `docker pull`. That way, you don't have to bother manually building and pushing using `docker push`.
 
 ## Packaging and running the MRSA workflow
 During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.9 GB image.

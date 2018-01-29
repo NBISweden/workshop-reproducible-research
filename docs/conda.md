@@ -21,22 +21,22 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh --insecure -O
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O
 bash Miniconda3-latest-MacOSX-x86_64.sh
 rm Miniconda3-latest-MacOSX-x86_64.sh
 
 # *** Install Miniconda3 for 32-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_32.sh --insecure -O
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_32.sh -O
 bash Miniconda3-latest-MacOSX-x86_32.sh
 rm Miniconda3-latest-MacOSX-x86_32.sh
 
 # *** Install Miniconda3 for 64-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O
 bash Miniconda3-latest-Linux-x86_64.sh
 rm Miniconda3-latest-Linux-x86_64.sh
 
 # *** Install Miniconda3 for 32-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_32.sh --insecure -O
+curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_32.sh -O
 bash Miniconda3-latest-Linux-x86_32.sh
 rm Miniconda3-latest-Linux-x86_32.sh
 ```
@@ -159,7 +159,7 @@ conda clean -a
 This will remove package tar-balls that are left from package installations, unused packages (i.e. not present in any environments), and cached data.
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * How to use `conda install` for installing packages.
     * How to create and activate environments and how to change between them.
@@ -175,7 +175,7 @@ We have up until now specified which Conda packages to install directly on the c
     - run quality control on these using FastQC
 * We will start by making a Conda yml-file that contains the required packages to perform these steps.
 * Later in the course, you will update the Conda yml-file with more packages, as the analysis workflow is expanded.
-* Make a yaml file called `environment.yml` for our tutorial project looking like this:
+* Make a yaml file called `environment.yml` for our tutorial project looking like this, and save it in the current directory (should be `reproducible_research_course/conda`):
 
 ```yaml
 channels:

@@ -185,12 +185,14 @@ rm Dockerfile
 * Run `git status`. As you can see, git tells us that the file is deleted, but that the deletion is not committed. In the same way as we commit edits to files, we need to commit a deletion of a file:
 
 ```bash
-git rm Dockerfile
+git add Dockerfile
 git status
 git commit -m "remove Dockerfile"
 git status
 git log
 ```
+
+Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to stage the deletion. You can also use `git rm Dockerfile` to do both these operations in one step.
 
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
@@ -225,7 +227,7 @@ git push -u origin master
 * Click on the commit that was the initial commit, where we added all the files. You can now click on View source in the top right corner. You will now see the files as they were when we first added them. Specifically you can see that the `Dockerfile` is back, even though we deleted it! Click on Source to the left again to return to the latest version.
 
 !!! note "Quick recap"
-    We now learnt yet another important git command:
+    We now learned yet another important git command:
 
     * `git push` -  to push local commits to the remote repository
 
@@ -364,7 +366,7 @@ git push
 * Go to Bitbucket in the browser and click Commits. You should be able to see a graph showing that the paths diverged (where one commit set the version to 1.4 and the other to 1.2) and that they are later merged, and the conflict fixed!
 
 !!! note "Quick recap"
-    We now learnt how to sync our local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
+    We now learned how to sync our local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
 
     * `git fetch` - downloads information from the remote repository.
     * `git pull` - both fetches and integrates changes from the remote repository.
@@ -405,7 +407,7 @@ intermediate/
 * Go ahead and add, commit, and push the `.gitignore` file.
 
 !!! note "Quick recap"
-    We now learnt how to use a `.gitignore` file to control what directories and files git should ignore.
+    We now learned how to use a `.gitignore` file to control what directories and files git should ignore.
 
 
 ## Tagging
@@ -466,7 +468,7 @@ git checkout master
 * Again, open `environment.yml` and see that it now has version 2.0!
 
 !!! note "Quick recap"
-    We now learnt how to tag important commits:
+    We now learned how to tag important commits:
 
     * `git tag` - add a tag to a commit
     * `git checkout` - update files to match the versions in the given branch or tag name

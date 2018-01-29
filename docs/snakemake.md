@@ -6,7 +6,7 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 * Workflows can easily be scaled from your desktop to server, cluster, grid or cloud environments. This makes it possible to develop a workflow on your laptop, maybe using only a small subset of your data, and then run the real analysis on a cluster.
 * Snakemake has several features for defining the environment which each task is carried out in. This is important in bioinformatics, where workflows often involve running a large number of small third-party tools.
 * Snakemake is primarily intended to work on _files_ (rather than for example streams, reading/writing from databases or passing variables in memory). This fits well with many fields of bioinformatics, notably next-generation sequencing, that often involve computationally expensive operations on large files. It's also a good fit for a scientific research setting, where the exact specifications of the final workflow aren't always known at the beginning of a project.
-* Lastly, a WFM is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features which allow you to package and distribute the workflow, and any files it involves, once it's done.
+* Lastly, a WMS is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features which allow you to package and distribute the workflow, and any files it involves, once it's done.
 
 ## Tell me more
 * The Snakemake documentation is available on [readthedocs](https://snakemake.readthedocs.io/en/stable/#).
@@ -193,7 +193,7 @@ Finished job 0.
 Neat!
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * How a simple Snakemake rule looks.
     * How to define target files when executing a workflow.
@@ -203,7 +203,7 @@ Neat!
     You can name a file whatever you want in a Snakemake workflow, but you will find that everything falls into place much nicer if the filename reflects the file's path through the workflow, e.g. `sample_a.trimmed.deduplicated.sorted.bam`.
 
 ## Visualization, logging and workflow management
-All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WFM like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (i.e. an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualization of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
+All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WMS like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (i.e. an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualization of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
 
 ```bash
 snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
@@ -215,7 +215,7 @@ That looks simple enough, the output from the rule `convert_to_upper_case` will 
 
 ![](images/rulegraph_complex.svg)
 
-While saying that it's easy to read might be a bit of a stretch, it definitely gives you a better overview of the project than you would have without a WFM.
+While saying that it's easy to read might be a bit of a stretch, it definitely gives you a better overview of the project than you would have without a WMS.
 
 The second type of graph is based on the jobs, and looks like this for our little workflow (use `--dag` instead of `--rulegraph`).
 
@@ -227,7 +227,7 @@ snakemake --dag a_b.txt | dot -Tpng > jobgraph.png
 
 The main difference here is that now each node is a job instead of a rule. You can see that the wildcards used in each job are also displayed. Another difference is the dotted lines around the nodes. A dotted line is Snakemake's way of indicating that this rule doesn't need to be rerun in order to generate `a_b.txt`. Validate this by running `snakemake -n -r a_b.txt` and it should say that there is nothing to be done.
 
-We've discussed before that one of the main purposes of using a WFM is that it automatically makes sure that everything is up to date. This is done by recursively checking that outputs are always newer than inputs for all the rules involved in the generation of your target files. Now try to change the contents of `a.txt` to some other text and save it. What do you think will happen if you run `snakemake -n -r a_b.txt` again?
+We've discussed before that one of the main purposes of using a WMS is that it automatically makes sure that everything is up to date. This is done by recursively checking that outputs are always newer than inputs for all the rules involved in the generation of your target files. Now try to change the contents of `a.txt` to some other text and save it. What do you think will happen if you run `snakemake -n -r a_b.txt` again?
 
 ??? note "Click to see output"
     ```no-highlight
@@ -301,7 +301,7 @@ The contents of `summary.tsv` is shown in the table below. You may want to open 
 You can see in the second last column that the rule implementation for a_b.txt has changed. The last column shows if Snakemake plans to regenerate the files when it's next executed. None of the files will be regenerated because Snakemake doesn't regenerate files by default if the rule implementation changes. From a reproducibility perspective maybe it would be better if this was done automatically, but it would be very computationally expensive and cumbersome if you had to rerun your whole workflow every time you fix a spelling mistake in a comment somewhere. So, it's up to us to look at the summary table and rerun things as needed. You can get a list of the files for which the rule implementation has changed, and then force Snakemake to regenerate these files with the `-R` flag.
 
 ```bash
-snakemake a_b.txt -R `snakemake a_b.txt --list-code-changes`
+snakemake a_b.txt -R $(snakemake a_b.txt --list-code-changes)
 ```
 
 Clever, right? There are a bunch of these flags that you can see with `--help`. Run with the `-D` flag again to make sure that the summary table now looks like expected.
@@ -311,7 +311,7 @@ You might wonder where Snakemake keeps track of all these things? It stores all 
 By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more reusable. In the following section we will start with a workflow that is fully functional but not very flexible. We will then gradually improve on it, and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you should move on to one of the other tutorials instead.
 
 !!! note "Quick recap"
-    In this section we've learnt:
+    In this section we've learned:
 
     * How to use `--dag` and `--rulegraph` for visualizing the job and rule graphs, respectively.
     * How to force Snakemake to rerun relevant parts of the workflow after there have been changes.
@@ -406,7 +406,7 @@ Finished job 0.
 After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `results/tables`.
 
 !!! attention
-    You have now run a real bioinformatics workflow, and you have learnt enough to start writing your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
+    You have now run a real bioinformatics workflow, and you have learned enough to start writing your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
 
 ### Parameters
 In a typical bioinformatics project, considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves every time you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.

@@ -1,20 +1,19 @@
 FROM rocker/verse:3.4.0
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
-WORKDIR /home
+WORKDIR /files
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 SHELL ["/bin/bash", "-c"]
 
 # Install Miniconda3
 RUN apt-get update && apt-get -y dist-upgrade
-RUN apt-get install -y --no-install-recommends bzip2 curl
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh --insecure -O && \
+RUN apt-get install -y --no-install-recommends bzip2 curl ca-certificates
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O && \
     bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-latest-Linux-x86_64.sh
 ENV PATH="/opt/miniconda3/bin:${PATH}"
 
-#Install R packages
 #Install R packages
 RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
     pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'GEOquery'))" \
