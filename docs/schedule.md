@@ -12,24 +12,24 @@
     <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
-    <td> 09:00
-    <td> LW, RÅ </td>
-    <td> Introduction to Reproducible Research </td>
+    <td> <font size="3"> 09:00
+    <td> <font size="3"> LW, RÅ </td>
+    <td> <font size="3"> Introduction to Reproducible Research </td>
   </tr>
   <tr>
-    <td> 09:45 </td>
-    <td> NJ </td>
-    <td> Code and data management </td>
+    <td> <font size="3"> 09:45 </td>
+    <td> <font size="3"> NJ </td>
+    <td> <font size="3"> Code and data management </td>
   </tr>
   <tr>
-    <td> 10:15 </td>
+    <td> <font size="3"> 10:15 </td>
     <td> </td>
-    <td> Fika break + social activity </td>
+    <td> <font size="3"> Fika break + social activity </td>
   </tr>
   <tr>
-    <td rowspan="2"> 10:45 </td>
-    <td rowspan="2"> LW, RÅ, JS, PU </td>
-    <td> Master your dependencies - environments and reproducibility </td>
+    <td rowspan="2"> <font size="3"> 10:45 </td>
+    <td rowspan="2"> <font size="3"> LW, RÅ, JS, PU </td>
+    <td> <font size="3"> Master your dependencies - environments and reproducibility </td>
   </tr>
   <tr>
     <td>
@@ -39,14 +39,14 @@
     </td>
   </tr>
   <tr>
-    <td> 12:00  </td>
+    <td> <font size="3"> 12:00  </td>
     <td> </td>
-    <td> Lunch </td>
+    <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td rowspan="2"> 13:00 </td>
-    <td rowspan="2"> LW, RÅ, JS, PU </td>
-    <td> Organize your analysis using workflow managers </td>
+    <td rowspan="2"> <font size="3"> 13:00 </td>
+    <td rowspan="2"> <font size="3"> LW, RÅ, JS, PU </td>
+    <td> <font size="3"> Organize your analysis using workflow managers </td>
   </tr>
   <tr>
     <td>
@@ -56,14 +56,14 @@
     </td>
   </tr>
   <tr>
-    <td> 16:30 </td>
+    <td> <font size="3"> 16:30 </td>
     <td> </td>
-    <td> Free time!</td>
+    <td> <font size="3"> Free time!</td>
   </tr>
   <tr>
-    <td> 17:00 </td>
+    <td> <font size="3"> 17:00 </td>
     <td> </td>
-    <td> Joint departure for dinner</td>
+    <td> <font size="3"> Joint departure for dinner</td>
   </tr>
   <tr>
     <td colspan="3">
