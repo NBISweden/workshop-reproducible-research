@@ -4,7 +4,7 @@
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 1 </center>
+      <center> Day 1 - 2018-03-22 </center>
     </td>
   </tr>
   <tr>
@@ -69,7 +69,7 @@
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 2 </center>
+      <center> Day 2  - 2018-03-23 </center>
     </td>
   </tr>
   <tr>
