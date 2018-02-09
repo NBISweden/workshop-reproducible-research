@@ -1,17 +1,16 @@
 # Schedule
 
-## Day 1
-
 <table>
   <tr>
     <td colspan="3">
       <font size="4">
-      Day 1
+      <center> Day 1 </center>
     </td>
   </tr>
-    <td> Time </td>
-    <td> Teacher(s) </td>
-    <td> Topic </td>
+    <font size="3">
+    <td> <b>Time</b> </td>
+    <td> <b>Teacher(s)</b> </td>
+    <td> <b>Topic</b> </td>
   </tr>
   <tr>
     <td> 09:00
@@ -68,12 +67,15 @@
     <td> Joint departure for dinner</td>
   </tr>
   <tr>
-    <td colspan="3"> Day 1 </td>
+    <td colspan="3">
+      <font size="4">
+      <center> Day 2 </center>
+    </td>
   </tr>
   <tr>
-    <td> **Time** </td>
-    <td> **Teacher(s)** </td>
-    <td> **Topic** </td>
+    <td> Time </td>
+    <td> Teacher(s) </td>
+    <td> Topic </td>
   </tr>
   <tr>
     <td rowspan="4"> 08:30 </td>
