@@ -7,10 +7,9 @@
       <center> Day 1 </center>
     </td>
   </tr>
-    <font size="3">
-    <td> <b>Time</b> </td>
-    <td> <b>Teacher(s)</b> </td>
-    <td> <b>Topic</b> </td>
+    <td> <font size="3"><b>Time</b> </td>
+    <td> <font size="3"><b>Teacher(s)</b> </td>
+    <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
     <td> 09:00
