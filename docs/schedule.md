@@ -4,9 +4,14 @@
 
 <table>
   <tr>
-    <td> **Time** </td>
-    <td> **Teacher(s)** </td>
-    <td> **Topic** </td>
+    <td colspan="3">
+      <font size="4">
+      Day 1
+    </td>
+  </tr>
+    <td> Time </td>
+    <td> Teacher(s) </td>
+    <td> Topic </td>
   </tr>
   <tr>
     <td> 09:00
@@ -62,11 +67,9 @@
     <td> </td>
     <td> Joint departure for dinner</td>
   </tr>
-</table>
-
-## Day 2
-
-<table>
+  <tr>
+    <td colspan="3"> Day 1 </td>
+  </tr>
   <tr>
     <td> **Time** </td>
     <td> **Teacher(s)** </td>
