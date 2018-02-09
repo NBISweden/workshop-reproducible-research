@@ -1,4 +1,3 @@
-TODO: Tag everything after Stockholm workshop
 TODO: Check volume mounts on Windows
 TODO: In SM: run/script
 TODO: In SM: list-x-changes (mention version)

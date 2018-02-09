@@ -126,7 +126,7 @@ Your notebook should now look something like this.
 
 ![](images/jupyter_basic.png)
 
-We will not dwell on either using Markdown or Python; you can make really pretty notebooks with Markdown and you can code whatever you want with Python. Rather, we will focus on the Jupyter Notebook features that allow you to do a little more than that.
+The focus here is not on how to write Markdown or Python; you can make really pretty notebooks with Markdown and you can code whatever you want with Python. Rather, we will focus on the Jupyter Notebook features that allow you to do a little more than that.
 
 !!! note "Quick recap"
     In this section we've learned:

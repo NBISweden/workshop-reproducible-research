@@ -289,7 +289,7 @@ Below are a few practical things regarding working with R Markdown documents:
 * You can knit/render reports in several different ways:
     - By pressing the Knit button in RStudio (as we have done this far)
     - By running the R command `render`, e.g. to Knit the file `my_file.Rmd` run `render("my_file.Rmd")` in the R console.
-    - By running on the terminal command line: `R -e 'rmarkdown::render'("my_file.Rmd")`
+    - By running on the terminal command line: `R -e 'rmarkdown::render("my_file.Rmd")'`
 * Using the `render` command, we can also set YAML header options and change defaults (i.e. override those specified in the R Markdown document itself). Here are a few useful arguments (see `?rmarkdown::render` for a full list):
     - `output_format` - change output format, e.g. `html_document` or `pdf_document`.
     - `output_file` and `output_dir` - change directory and file name of the generated report file (defaults to the same name and directory as the .Rmd file).
