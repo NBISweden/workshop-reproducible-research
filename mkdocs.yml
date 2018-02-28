@@ -14,7 +14,6 @@ pages:
     - R Markdown: 'rmarkdown.md'
     - Jupyter: 'jupyter.md'
     - Docker: 'docker.md'
-    - Singularity: 'singularity.md'
     - 'Take down': take_down.md
 
 markdown_extensions:
