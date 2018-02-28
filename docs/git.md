@@ -306,7 +306,7 @@ As always, run `git status` to get an overview! You will see that you have, so c
   - conda-forge
   - bioconda
   dependencies:
-  - fastqc=0.11
+  - fastqc=0.11.6
   - sra-tools=2.8
   - bowtie2=2.1
   <<<<<<< HEAD
@@ -332,7 +332,7 @@ The part between `<<<<<<< HEAD` and `=======` is your local version, and the par
   - conda-forge
   - bioconda
   dependencies:
-  - fastqc=0.11
+  - fastqc=0.11.6
   - sra-tools=2.8
   - bowtie2=2.1
   - multiqc=1.2
