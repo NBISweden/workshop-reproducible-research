@@ -11,7 +11,6 @@ TODO: Screenshot from Bitbucket in Git
 TODO: Avoid git add -A (could be .* files that should not be added)
 TODO: Add ipynb to screenshots
 TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
-TODO: complete about section in readthedocs - license
 TODO: Syntax highlighting in rmarkdown
 TODO: Handle UTF8 multiQC
 
