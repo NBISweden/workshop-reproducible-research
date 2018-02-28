@@ -1,6 +1,6 @@
 # Schedule
 
-<table bgcolor="#ffffff">
+<table>
   <tr>
     <td colspan="3">
       <font size="4">
