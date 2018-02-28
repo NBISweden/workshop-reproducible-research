@@ -1,20 +1,24 @@
-TODO: Check volume mounts on Windows
-TODO: In SM: run/script
-TODO: In SM: list-x-changes (mention version)
+TODO: In SM: run
 TODO: In SM: cluster
-TODO: In SM: conda/docker
+TODO: In SM: conda/singularity (docker)
 TODO: Add quick recap on jupyter
-TODO: Fix line breaks on Windows
-TODO: Mention MRSA in Git and conda and rmarkdown
-TODO: Add quick recap to end of conda
+TODO: Add quick recaps to rmarkdown
+TODO: Add quick recaps to end of conda
+TODO: Mention MRSA in rmarkdown
+TODO: Mention MRSA in Conda
+TODO: Mention MRSA in Git
 TODO: Screenshot from Bitbucket in Git
+TODO: Avoid git add -A (could be .* files that should not be added)
 TODO: Add ipynb to screenshots
-TODO: Refer to markdown reference "shorter" in RStudio
-TODO: Move first paragraph of "R Markdown in a reproducible research setting" to intro
-TODO: add about section to readthedocs (for those finding it without knowing it is a course)
+TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
+TODO: complete about section in readthedocs - license
+TODO: Syntax highlighting in rmarkdown
+TODO: Handle sudo apt-get install fontconfig?
+TODO: Handle UTF8 multiQC
+
+TODO: In SM: list-x-changes (mention version)
+TODO: Check volume mounts on Windows
+TODO: Fix line breaks on Windows
 TODO: finish installation section on win7 (volume sharing)
 TODO: fix symlinking in shadow on Windows
 TODO: Validate that you can use $(pwd) ong Windows. What about /c/
-TODO: describe the yaml format in conda tutorial
-TODO: Add recaps to rmarkdown
-TODO: Highlighting in rmarkdown
