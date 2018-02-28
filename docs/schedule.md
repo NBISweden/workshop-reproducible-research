@@ -57,6 +57,11 @@
     </td>
   </tr>
   <tr>
+    <td> <font size="3"> 16:15 </td>
+    <td> </td>
+    <td> <font size="3"> Wrap-up </td>
+  </tr>
+  <tr>
     <td> <font size="3"> 16:30 </td>
     <td> </td>
     <td> <font size="3"> Free time!</td>
