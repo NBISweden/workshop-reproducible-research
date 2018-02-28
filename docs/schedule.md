@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <td colspan="3" style="background-color:white">
+    <td colspan="3">
       <font size="4">
       <center> Day 1 - 2018-03-22 </center>
     </td>
