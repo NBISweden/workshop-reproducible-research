@@ -13,7 +13,6 @@ TODO: Add ipynb to screenshots
 TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: complete about section in readthedocs - license
 TODO: Syntax highlighting in rmarkdown
-TODO: Handle sudo apt-get install fontconfig?
 TODO: Handle UTF8 multiQC
 
 TODO: In SM: list-x-changes (mention version)

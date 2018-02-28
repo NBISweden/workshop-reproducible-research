@@ -182,7 +182,7 @@ channels:
 - conda-forge
 - bioconda
 dependencies:
-- fastqc=0.11
+- fastqc=0.11.6
 - sra-tools=2.8
 ```
 
