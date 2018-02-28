@@ -72,7 +72,7 @@
     <td> <font size="3"> Joint departure for dinner</td>
   </tr>
   <tr>
-    <td rowspan="3"> </td>
+    <td colspan="3"> </td>
   </tr>
   <tr>
     <td colspan="3">
