@@ -21,24 +21,24 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O
-bash Miniconda3-latest-MacOSX-x86_64.sh
-rm Miniconda3-latest-MacOSX-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-MacOSX-x86_64.sh -O
+bash Miniconda3-4.3.31-MacOSX-x86_64.sh
+rm Miniconda3-4.3.31-MacOSX-x86_64.sh
 
 # *** Install Miniconda3 for 32-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_32.sh -O
-bash Miniconda3-latest-MacOSX-x86_32.sh
-rm Miniconda3-latest-MacOSX-x86_32.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-MacOSX-x86_32.sh -O
+bash Miniconda3-4.3.31-MacOSX-x86_32.sh
+rm Miniconda3-4.3.31-MacOSX-x86_32.sh
 
 # *** Install Miniconda3 for 64-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O
-bash Miniconda3-latest-Linux-x86_64.sh
-rm Miniconda3-latest-Linux-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh -O
+bash Miniconda3-4.3.31-Linux-x86_64.sh
+rm Miniconda3-4.3.31-Linux-x86_64.sh
 
 # *** Install Miniconda3 for 32-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_32.sh -O
-bash Miniconda3-latest-Linux-x86_32.sh
-rm Miniconda3-latest-Linux-x86_32.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_32.sh -O
+bash Miniconda3-4.3.31-Linux-x86_32.sh
+rm Miniconda3-4.3.31-Linux-x86_32.sh
 ```
 
 * The installer will ask you questions during the installation:

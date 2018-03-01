@@ -166,9 +166,9 @@ Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one
 # include vim for convenience
 RUN apt-get update && \
     apt-get install -y --no-install-recommends bzip2 curl ca-certificates language-pack-en fontconfig vim
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O && \
-    bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
-    rm Miniconda3-latest-Linux-x86_64.sh
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh -O && \
+    bash Miniconda3-4.3.31-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
+    rm Miniconda3-4.3.31-Linux-x86_64.sh
 ```
 
 The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule, you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrieve the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what needs to be rerun between builds. The first command uses Ubuntu's package manager APT to install some packages (similar to how we've previously used Conda). Say that the first command was split into two instead:
@@ -187,13 +187,13 @@ The next `RUN` command retrieves and installs Miniconda3. Let's see what would h
 
 ```no-highlight
 # Download Miniconda3
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh -O
 
 # Install it
-RUN bash Miniconda3-latest-Linux-x86_64.sh -bf -p /opt/miniconda3/
+RUN bash Miniconda3-4.3.31-Linux-x86_64.sh -bf -p /opt/miniconda3/
 
 # Remove the downloaded installation file
-RUN rm Miniconda3-latest-Linux-x86_64.sh
+RUN rm Miniconda3-4.3.31-Linux-x86_64.sh
 ```
 
 Remember that each layer contains the difference compared to the previous layer? What will happen here is that the first command adds the installation file and the second will unpack the file and install the software. The third layer will say "the installation file should no longer exist on the file system". However, the file will still remain in the image since the image is constructed layer-by-layer bottom-up. This results in unnecessarily many layers and bloated images.
