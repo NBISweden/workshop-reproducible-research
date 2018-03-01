@@ -36,7 +36,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
       - Introduction to the package and environment manager Conda <br>
-      - Practical tutorial: Conda
+      - Practical tutorial: [Conda](conda.md)
     </td>
   </tr>
   <tr>
@@ -51,7 +51,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
       - Introduction to Snakemake <br>
-      - Practical tutorial: Snakemake
+      - Practical tutorial: [Snakemake](snakemake.md)
     </td>
   </tr>
   <tr>
@@ -68,6 +68,11 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td> <font size="3"> 17:00 </td>
     <td> </td>
     <td> <font size="3"> Joint departure for dinner</td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 17:30 </td>
+    <td> </td>
+    <td> <font size="3"> Dinner at [Grappa Bar och Matsal](http://www.grappabar.nu/kontakt.aspx), Sankt Eriksgatan 86</td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -90,12 +95,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
       - Introduction to version control and git <br>
-      - Practical tutorial: Version control with git and Bitbucket
+      - Practical tutorial: [Git](git.md)
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
       - What is Jupyter? <br>
-      - Practical tutorial: Jupyter
+      - Practical tutorial: [Jupyter](jupyter.md)
     </td>
   </tr>
   <tr>
@@ -109,12 +114,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
       - What is R Markdown? <br>
-      - Practical tutorial: R Markdown
+      - Practical tutorial: [R Markdown](rmarkdown.md)
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
       - Introduction to containers <br>
-      - Practical tutorial: Docker
+      - Practical tutorial: [Docker](docker.md)
     </td>
   </tr>
   <tr>
