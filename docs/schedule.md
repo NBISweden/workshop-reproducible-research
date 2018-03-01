@@ -32,9 +32,9 @@
     <td rowspan="2"> <font size="3"> LW, RÅ, JS, PU </td>
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
-      <font size="2"><i>
-      <li> Introduction to the package and environment manager Conda </li>
-      <li> Practical tutorial: Conda </li>
+      <font size="2"><i><br>
+      - Introduction to the package and environment manager Conda
+      - Practical tutorial: Conda
     </td>
   </tr>
   <tr>
