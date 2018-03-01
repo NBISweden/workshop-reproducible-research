@@ -28,20 +28,13 @@
     <td> <font size="3"> Fika break + social activity </td>
   </tr>
   <tr>
-    <td rowspan="2"> <font size="3"> 10:45 </td>
-    <td rowspan="2"> <font size="3"> LW, RÅ, JS, PU </td>
+    <td> <font size="3"> 10:45 </td>
+    <td> <font size="3"> LW, RÅ, JS, PU </td>
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
-      <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda
+      <font size="2"><i><br><br>
+      - Introduction to the package and environment manager Conda <br>
       - Practical tutorial: Conda
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <font size="2"><i>
-      <li> Introduction to the package and environment manager Conda </li>
-      <li> Practical tutorial: Conda </li>
     </td>
   </tr>
   <tr>
