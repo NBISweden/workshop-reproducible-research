@@ -1,5 +1,7 @@
 # Schedule
 
+The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info](travel.md)).
+
 <table>
   <tr>
     <td colspan="3">
@@ -128,10 +130,10 @@
 </table>
 
 **Teachers:**
-JS - John Sundh
-JW - Jakub Westholm
-LW - Leif Wigge
-NJ - Niclas Jareborg
-OD - Olga Dethlefsen
-PU - Per Unneberg
-RÅ - Rasmus Ågren
+JS - John Sundh  
+JW - Jakub Westholm  
+LW - Leif Wigge  
+NJ - Niclas Jareborg  
+OD - Olga Dethlefsen  
+PU - Per Unneberg  
+RÅ - Rasmus Ågren  
