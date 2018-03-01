@@ -32,7 +32,7 @@
     <td> <font size="3"> LW, RÅ, JS, PU </td>
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
-      <font size="2"><i><br><br>
+      <font size="2"><i><br>
       - Introduction to the package and environment manager Conda <br>
       - Practical tutorial: Conda
     </td>
@@ -43,15 +43,13 @@
     <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td rowspan="2"> <font size="3"> 13:00 </td>
-    <td rowspan="2"> <font size="3"> LW, RÅ, JS, PU </td>
-    <td> <font size="3"> Organize your analysis using workflow managers </td>
-  </tr>
-  <tr>
+    <td> <font size="3"> 13:00 </td>
+    <td> <font size="3"> LW, RÅ, JS, PU </td>
     <td>
-      <font size="2"><i>
-      <li> Introduction to Snakemake
-      <li> Practical tutorial: Snakemake
+      <font size="3"> Organize your analysis using workflow managers
+      <font size="2"><i><br>
+      - Introduction to Snakemake <br>
+      - Practical tutorial: Snakemake
     </td>
   </tr>
   <tr>
@@ -84,25 +82,18 @@
     <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
-    <td rowspan="4"> <font size="3"> 08:30 </td>
-    <td rowspan="4"> <font size="3"> LW, RÅ, JW </td>
-    <td> <font size="3"> Distributing and version tracking your code </td>
-  </tr>
-  <tr>
+    <td> <font size="3"> 08:30 </td>
+    <td> <font size="3"> LW, RÅ, JW </td>
     <td>
-      <font size="2"><i>
-      <li> Introduction to version control and git
-      <li> Practical tutorial: Version control with git and Bitbucket
-    </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> Computational notebooks </td>
-  </tr>
-  <tr>
-    <td>
-      <font size="2"><i>
-      <li> What is Jupyter?
-      <li> Practical tutorial: Jupyter
+      <font size="3"> Distributing and version tracking your code
+      <font size="2"><i><br>
+      - Introduction to version control and git <br>
+      - Practical tutorial: Version control with git and Bitbucket
+      <br><br>
+      <font size="3"> Computational notebooks
+      <font size="2"><i><br>
+      - What is Jupyter? <br>
+      - Practical tutorial: Jupyter
     </td>
   </tr>
   <tr>
@@ -110,25 +101,18 @@
     <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td rowspan="4"> <font size="3"> 13:00 </td>
-    <td rowspan="4"> <font size="3"> LW, RÅ, OD </td>
-    <td> <font size="3"> Reproducible reports </td>
-  </tr>
-  <tr>
+    <td> <font size="3"> 13:00 </td>
+    <td> <font size="3"> LW, RÅ, OD </td>
     <td>
-      <font size="2"><i>
-      <li> What is R Markdown?
-      <li> Practical tutorial: R Markdown
-    </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> Containerization </td>
-  </tr>
-  <tr>
-    <td>
-      <font size="2"><i>
-      <li> Introduction to containers
-      <li> Practical tutorial: Docker
+      <font size="3"> Reproducible reports
+      <font size="2"><i><br>
+      - What is R Markdown? <br>
+      - Practical tutorial: R Markdown
+      <br><br>
+      <font size="3"> Containerization
+      <font size="2"><i><br>
+      - Introduction to containers <br>
+      - Practical tutorial: Docker
     </td>
   </tr>
   <tr>
@@ -143,11 +127,11 @@
   </tr>
 </table>
 
-**Teachers:**  
-JS - John Sundh  
-JW - Jakub Westholm  
-LW - Leif Wigge  
-NJ - Niclas Jareborg  
-OD - Olga Dethlefsen  
-PU - Per Unneberg  
-RÅ - Rasmus Ågren  
+**Teachers:**
+JS - John Sundh
+JW - Jakub Westholm
+LW - Leif Wigge
+NJ - Niclas Jareborg
+OD - Olga Dethlefsen
+PU - Per Unneberg
+RÅ - Rasmus Ågren
