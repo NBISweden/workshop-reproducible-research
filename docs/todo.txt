@@ -4,7 +4,6 @@ TODO: In SM: conda/singularity (docker)
 TODO: Add quick recap on jupyter
 TODO: Add quick recaps to rmarkdown
 TODO: Mention MRSA in rmarkdown
-TODO: Mention MRSA in Conda
 TODO: Mention MRSA in Git
 TODO: Screenshot from Bitbucket in Git
 TODO: Add ipynb to screenshots

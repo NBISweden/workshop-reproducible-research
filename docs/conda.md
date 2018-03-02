@@ -169,13 +169,13 @@ This will remove package tar-balls that are left from package installations, unu
 
 We have up until now specified which Conda packages to install directly on the command line using the `conda create` and `conda install` commands. For working in projects this is not the recommended way. Instead, for increased control and reproducibility, it is better to use a file (in [yaml format](https://en.wikipedia.org/wiki/YAML)) specifying packages, versions and channels needed to create the environment for a project.
 
-* Throughout these tutorials we use a case study where we analyse a RNA-seq experiment with the multiresistant bacteria MRSA (see [intro](tutorial_intro.md)). You will now start to make a Conda yml file for the MRSA project.
-* To start with, the code for the analysis is available in `code/run_qc.sh`. It will:
+* Throughout these tutorials we will use a case study where we analyze an RNA-seq experiment with the multiresistant bacteria MRSA (see [intro](tutorial_intro.md)). You will now start to make a Conda yml file for this MRSA project. The file will contain a list of the software and versions needed to execute the analysis code.
+* In this conda tutorial, all code for the analysis is available in the script `code/run_qc.sh`. This code will:
     - download the raw fastq-files
     - run quality control on these using FastQC
-* We will start by making a Conda yml-file that contains the required packages to perform these steps.
+* We will start by making a Conda yml-file that contains the required packages to perform these two steps.
 * Later in the course, you will update the Conda yml-file with more packages, as the analysis workflow is expanded.
-* Make a yaml file called `environment.yml` for our tutorial project looking like this, and save it in the current directory (should be `reproducible_research_course/conda`):
+* So let's get going! Make a yaml file called `environment.yml` looking like this, and save it in the current directory (should be `reproducible_research_course/conda`):
 
 ```yaml
 channels:
