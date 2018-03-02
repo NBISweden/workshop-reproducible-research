@@ -8,7 +8,6 @@ TODO: Add quick recaps to rmarkdown
 TODO: Mention MRSA in rmarkdown
 TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: Syntax highlighting in rmarkdown
-TODO: Mention MRSA in Git
 TODO: Screenshot from Bitbucket in Git
 TODO: Handle UTF8 multiQC
 
