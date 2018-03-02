@@ -136,7 +136,7 @@ The `-m` option adds a commit message. This should be a short description of wha
 * Ok, we made our changes. Let's commit them! Run:
 
 ```bash
-git add -A
+git add config.yml environment.yml
 ```
 
 This will add both our files to the staging area at the same time. Run `git status` and see that the changes in both `config.yml` and `environment.yml` are ready to be committed.
