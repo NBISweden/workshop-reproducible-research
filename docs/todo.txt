@@ -3,7 +3,6 @@ TODO: In SM: cluster
 TODO: In SM: conda/singularity (docker)
 TODO: Add quick recap on jupyter
 TODO: Add quick recaps to rmarkdown
-TODO: Add quick recaps to end of conda
 TODO: Mention MRSA in rmarkdown
 TODO: Mention MRSA in Conda
 TODO: Mention MRSA in Git

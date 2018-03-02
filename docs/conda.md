@@ -227,3 +227,9 @@ This should download the project fastq files and run FastQC on them (as mentione
 ```
 
 Note that all that was needed to carry out the analysis and generate these files and results was `environment.yml` (that we used to create a Conda environment with the required packages) and the analysis code in `code/run_qc.sh`.
+
+!!! note "Quick recap"
+    In this section we've learned:
+
+    * How to define our Conda environment using a yaml-file.
+    * How to use `conda env create` to make a new environment from a yaml-file.
