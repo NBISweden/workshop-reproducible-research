@@ -51,7 +51,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
       - Introduction to Snakemake <br>
-      - Practical tutorial: [Snakemake](snakemake.md)
+      - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
   </tr>
   <tr>
@@ -72,7 +72,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   <tr>
     <td> <font size="3"> 17:30 </td>
     <td> </td>
-    <td> <font size="3"> Dinner at [Grappa Bar och Matsal](http://www.grappabar.nu/kontakt.aspx), Sankt Eriksgatan 86</td>
+    <td> <font size="3"> Dinner at <a href="http://www.grappabar.nu/kontakt.aspx">Grappa Bar och Matsal</a>, Sankt Eriksgatan 86</td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -95,12 +95,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
       - Introduction to version control and git <br>
-      - Practical tutorial: [Git](git.md)
+      - Practical tutorial: <a href="../git/">Git</a>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
       - What is Jupyter? <br>
-      - Practical tutorial: [Jupyter](jupyter.md)
+      - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
   <tr>
@@ -114,12 +114,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
       - What is R Markdown? <br>
-      - Practical tutorial: [R Markdown](rmarkdown.md)
+      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
       - Introduction to containers <br>
-      - Practical tutorial: [Docker](docker.md)
+      - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
   </tr>
   <tr>
