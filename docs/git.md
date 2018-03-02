@@ -81,6 +81,9 @@ You will now be redirected to the repository page. It is an empty repository, so
 ```bash
 git clone https://user@bitbucket.org/user/git_tutorial.git
 ```
+You can also copy the full url of your repository from the Overview  page on Bitbucket (select HTTPS instead of SSH):
+
+![](images/git_https.png)
 
 What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
 
