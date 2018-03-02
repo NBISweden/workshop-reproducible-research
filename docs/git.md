@@ -67,6 +67,9 @@ If you have not done so already, go to [bitbucket.org](https://bitbucket.org/acc
     * Skip including a README
     * Make sure Git is selected for version control  
 
+
+![](images/new_repo_bitbucket.png)
+
 You will now be redirected to the repository page. It is an empty repository, so there is not much to see yet. We want to add some contents (files) to the repository. To do that we will first *clone* the repository locally:
 
 * Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course if you haven't done so already). **Important: it should *not* be within the `reproducible_research_course` directory.**
