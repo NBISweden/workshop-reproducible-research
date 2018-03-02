@@ -134,7 +134,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   </tr>
 </table>
 
-**Teachers:**
+**Teachers:**  
 JS - John Sundh  
 JW - Jakub Westholm  
 LW - Leif Wigge  
