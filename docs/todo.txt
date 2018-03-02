@@ -1,14 +1,15 @@
 TODO: In SM: run
 TODO: In SM: cluster
 TODO: In SM: conda/singularity (docker)
+TODO: In SM: is the section Marking files as temporary still working?
 TODO: Add quick recap on jupyter
+TODO: Add ipynb to screenshots
 TODO: Add quick recaps to rmarkdown
 TODO: Mention MRSA in rmarkdown
-TODO: Mention MRSA in Git
-TODO: Screenshot from Bitbucket in Git
-TODO: Add ipynb to screenshots
 TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: Syntax highlighting in rmarkdown
+TODO: Mention MRSA in Git
+TODO: Screenshot from Bitbucket in Git
 TODO: Handle UTF8 multiQC
 
 TODO: In SM: list-x-changes (mention version)
