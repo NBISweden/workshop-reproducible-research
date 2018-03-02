@@ -318,7 +318,7 @@ By now you should be familiar with the basic functionality of Snakemake, and you
     * How logging in Snakemake works.
 
 ## RNA-seq analysis of MRSA
-As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. We've set up a Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible.
+As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. The course leaders have already set up a draft Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible!
 
 !!! tip
     This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications is available as `git/Snakefile`.
