@@ -56,6 +56,9 @@ git config --global user.name "Mona Lisa"
 
 If you have not done so already, go to [bitbucket.org](https://bitbucket.org/account/signup/) and create an account.
 
+!!! note
+    You can also create an account on another online hosting service for version control, e.g. [GitHub](https://www.github.com) or [GitLab](https://about.gitlab.com/). The exercises below are written with examples from Bitbucket, but the same thing can be done on alternative services, although the exact menu structure and link placements differ a bit.
+
 # Practical exercise
 
 ## Create a new git repository
