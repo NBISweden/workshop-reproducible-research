@@ -130,7 +130,7 @@ Instead of reiterating information here, take a look on the first page (only the
 
 Enough about markdown, let's get to the fun part and include some code! Look at the last code chunk in the template R Markdown document that you just created, as an example:
 
-````
+````r
 ```{r pressure, echo = FALSE}
 plot(pressure)
 ```
