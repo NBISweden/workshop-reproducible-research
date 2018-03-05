@@ -9,6 +9,7 @@ TODO: Mention MRSA in rmarkdown
 TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
 TODO: Syntax highlighting in rmarkdown
 TODO: Screenshot from Bitbucket in Git
+TODO: Git change multiqc 2.0 to e.g. 1.5a check this!
 TODO: Handle UTF8 multiQC
 
 TODO: In SM: list-x-changes (mention version)
