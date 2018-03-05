@@ -7,10 +7,6 @@ TODO: Add ipynb to screenshots
 TODO: Add quick recaps to rmarkdown
 TODO: Mention MRSA in rmarkdown
 TODO: Move/copy first paragraph of "R Markdown in a reproducible research setting" to intro
-<<<<<<< HEAD
-=======
-TODO: Syntax highlighting in rmarkdown - will not do, cannot find solution
->>>>>>> 8b18d5be10a3c502051ca32f09e3f33a24e7d216
 TODO: Handle UTF8 multiQC
 
 TODO: Syntax highlighting in rmarkdown - will not do, cannot find solution
