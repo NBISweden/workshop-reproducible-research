@@ -472,7 +472,7 @@ git tag "publication"
 git push --tags
 ```
 
-* After the study was published you realized that you get nicer QC information if you upgrade multiqc. Open `environment.yml` and change `multiqc=1.2` to `multiqc=2.0`. Add, commit, and push this change:
+* After the study was published you realized that you get nicer QC information if you upgrade multiqc. Open `environment.yml` and change `multiqc=1.2` to `multiqc=1.5a`. Add, commit, and push this change:
 
 ```bash
 git add environment.yml
@@ -495,7 +495,7 @@ git checkout publication
 git checkout master
 ```
 
-* Again, open `environment.yml` and see that it now has version 2.0!
+* Again, open `environment.yml` and see that it now has version 1.5a!
 
 !!! note "Quick recap"
     We now learned how to tag important commits:
