@@ -481,6 +481,9 @@ git push
 ```
 
 * Go to Bitbucket and click Downloads, and then Tags. Here users can download a compressed file containing the repository at the versions specified by the tags.
+
+![](images/bitbucket_downloads.png)
+
 Alternatively, git users who want to reproduce your analysis with the code used for the publication can clone the Bitbucket repository and then run `git checkout publication`.
 
 * You can try this in your local clone, run:
