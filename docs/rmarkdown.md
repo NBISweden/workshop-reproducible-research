@@ -130,6 +130,9 @@ Instead of reiterating information here, take a look on the first page (only the
 
 * Try out some of the markdown described above (and in the links) in your template R Markdown document! Press Knit to see the effect of your edits. Don't worry about the code chunks just yet, we'll come to that in a second.
 
+!!! note "Quick recap"
+    In this section you learned and tried out some of the basic markdown syntax.
+
 ### Code chunks
 
 Enough about markdown, let's get to the fun part and include some code! Look at the last code chunk in the template R Markdown document that you just created, as an example:
@@ -237,6 +240,9 @@ forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
 ```
 ````
 
+!!! note "Quick recap"
+    In this section you learned how to include code chunks and how to use chunk options to control how the output (code, results and figures) is displayed.
+
 ### YAML header
 
 Last but not least, we have the YAML header. Here is where you configure general settings for the final output file, and a few other things.
@@ -285,6 +291,9 @@ We have up until now mainly been using `html_document` as an output format. Ther
 
 * Take a look at this [gallery](http://rmarkdown.rstudio.com/gallery.html) of R Markdown documents to see what different kinds of output formats are possible to generate.
 * Take a look at the last page of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for a list of YAML header options, and what output formats they are available for.
+
+!!! note "Quick recap"
+    In this section you learned how to set document-wide settings in the YAML header, including document output type and user defined parameters.
 
 ### Managing and working with R Markdown documents
 
@@ -483,5 +492,8 @@ output:
 ```
 
 * Knit and view the results.
+
+!!! note "Quick recap"
+    In this section you learned some additional details for making nice R Markdown reports in a reproducible research project setting, including setting the root directory, adding tables, setting figure and table captions, and using LaTeX commands for formatting details.
 
 Congrats! You made it to the end and are now an R Markdown expert!
