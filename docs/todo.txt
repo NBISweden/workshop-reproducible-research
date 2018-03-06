@@ -6,6 +6,7 @@ TODO: Add quick recap on jupyter
 TODO: Add ipynb to screenshots
 TODO: Add quick intro to MRSA in jupyter
 TODO: Handle UTF8 multiQC
+TODO: Make new repo for initiating repres project dir structure (+ template files?)
 
 TODO: Syntax highlighting in rmarkdown - will not do, cannot find solution
 TODO: In SM: list-x-changes (mention version)
