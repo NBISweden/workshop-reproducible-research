@@ -38,7 +38,11 @@ A markdown document can be converted to other formats, such as HTML or PDF, for 
 
 ## R Markdown
 
-R Markdown documents can be used both to save and execute code (with a focus on R) and to generate reports in various formats. This is done by mixing markdown (as in the example above), and so-called code chunks in the same document. The code itself, as well as the output it generates, can be included in the final report. The best way to understand R Markdown is by using it, so head down to the practical exercise below to learn more!
+R Markdown documents can be used both to save and execute code (with a focus on R) and to generate reports in various formats. This is done by mixing markdown (as in the example above), and so-called code chunks in the same document. The code itself, as well as the output it generates, can be included in the final report.
+
+R Markdown makes your analysis more reproducible by connecting your code, figures and descriptive text. You can use it to make reproducible reports, rather than e.g. copy-pasting figures into a Word document. You can also use it as a notebook, in the same way as lab notebooks are used in a wet lab setting (or as we us a Jupyter notebook in the [tutorial](jupyter.md)).
+
+The best way to understand R Markdown is by using it, so head down to the practical exercise below to learn more!
 
 ## Tell me more
 
@@ -311,11 +315,9 @@ rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
 * Go to File > Help > Cheatsheets > R Markdown Cheat Sheet to open the main R Markdown cheatsheet.
 * Go to File > Help > Markdown Quick Reference to open the Markdown Quick Reference in your help pane.
 
-## R Markdown in a reproducible research setting
+## Using R Markdown in the MRSA project
 
-R Markdown makes your analysis more reproducible by connecting your code, figures and descriptive text. You can use it to make reproducible reports, rather than e.g. copy-pasting figures into a Word document. You can also use it as a notebook, in the same way as lab notebooks are used in a wet lab setting (or as we us a Jupyter notebook in the [tutorial](jupyter.md)).
-
-In this exercise we will use R Markdown to make a reproducible report in form of a Supplementary Material PDF for the MRSA project. The benefits of having a reproducible Supplementary Material includes:
+In this exercise we will use R Markdown to make a reproducible report in form of a Supplementary Material PDF for the MRSA project. As you might know by now, the MRSA project is used throughout the tutorials as a case study example of a reproducible research project (see the [intro section](tutorial_intro.md)). The benefits of having a reproducible Supplementary Material includes:
 
 * It is transparent how the text, tables and figures were produced
 * If you get reviewer comments you can easily update your code and regenerate the Supplementary Material with the run of a command.
