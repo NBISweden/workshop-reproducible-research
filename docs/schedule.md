@@ -27,7 +27,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   <tr>
     <td> <font size="3"> 10:15 </td>
     <td> </td>
-    <td> <font size="3"> Fika break + social activity </td>
+    <td> <font size="3"> Fika break </td>
   </tr>
   <tr>
     <td> <font size="3"> 10:45 </td>
