@@ -99,7 +99,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - What is Jupyter? <br>
+      - Introduction to Jupyter <br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
@@ -113,7 +113,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - What is R Markdown? <br>
+      - Introduction to R Markdown <br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
