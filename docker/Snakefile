@@ -9,7 +9,7 @@ rule all:
         "results/tables/counts.tsv",
         "results/multiqc.html",
         "results/rulegraph.png",
-        "results/supplementary_material.pdf"
+        "results/supplementary.pdf"
 
 rule get_SRA_by_accession:
     """
@@ -189,7 +189,7 @@ rule make_supplementary:
         multiqc_file = "intermediate/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     output:
-        "results/supplementary_material.pdf"
+        "results/supplementary.pdf"
     params:
         SRR_IDs = config["sample_ids"],
         GSM_IDs = config["sample_ids_geo"]
