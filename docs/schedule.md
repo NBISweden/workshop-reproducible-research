@@ -56,7 +56,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   </tr>
   <tr>
     <td> <font size="3"> 16:15 </td>
-    <td> LW, RÅ </td>
+    <td> <font size="3"> LW, RÅ </td>
     <td> <font size="3"> Wrap-up </td>
   </tr>
   <tr>
