@@ -411,7 +411,7 @@ Git is aware of all files within the repository. However, it is not uncommon to 
 mkdir intermediate
 mkdir results
 touch intermediate/multiqc_general_stats.txt
-touch results/supplementary_material.pdf
+touch results/supplementary.pdf
 touch log.tmp
 ```
 
