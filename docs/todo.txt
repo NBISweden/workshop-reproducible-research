@@ -7,6 +7,7 @@ TODO: Add quick intro to MRSA in jupyter
 TODO: Handle UTF8 multiQC
 TODO: Make new repo for initiating repres project dir structure (+ template files?)
 TODO: Add detailed installation instructions for R and RStudio
+TODO: Don't manually make intermediate files in git tutorial
 
 TODO: Syntax highlighting in rmarkdown - will not do, cannot find solution
 TODO: Check volume mounts on Windows
