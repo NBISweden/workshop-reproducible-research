@@ -61,7 +61,7 @@ First, cd into a directory on your computer (or create one) where it makes sense
 
 ```bash
 cd c:/my_dir
-docker run -it -p 8888:8888 -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
+docker run -it -p 8888:8888 -v /c/my_dir:/course/ scilifelablts/reproducible_research_course_slim
 ```
 
 !!! attention
