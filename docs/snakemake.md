@@ -27,6 +27,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 - graphviz=2.38.0
 - xorg-libxrender
 - xorg-libxpm
+# For downloading files
 - wget
 ```
 
@@ -304,7 +305,7 @@ You can see in the second last column that the rule implementation for a_b.txt h
 snakemake a_b.txt -R $(snakemake a_b.txt --list-code-changes)
 ```
 
-Clever, right? There are a bunch of these flags that you can see with `--help`. Run with the `-D` flag again to make sure that the summary table now looks like expected.
+Clever, right? There are a bunch of these `--list-xxx-changes` flags that can help you keep track of your workflow. You can list all options with `snakemake --help`. Run with the `-D` flag again to make sure that the summary table now looks like expected.
 
 You might wonder where Snakemake keeps track of all these things? It stores all information in a hidden subdirectory called `.snakemake`. This is convenient since it's easy to delete if you don't need it anymore and everything is contained in the project directory. Just be sure to add it to `.gitignore` so that you don't end up tracking it.
 
@@ -318,7 +319,7 @@ By now you should be familiar with the basic functionality of Snakemake, and you
     * How logging in Snakemake works.
 
 ## RNA-seq analysis of MRSA
-As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. The course leaders have already set up a draft Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. We'd now like to modify this workflow to make it more flexible and reproducible!
+As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In order to do this we have performed RNA-seq of three strains, one test and two controls. We have already set up a draft Snakemake workflow for the RNA-seq analysis and it seems to be running nicely. It's now up to you to modify this workflow to make it more flexible and reproducible!
 
 !!! tip
     This section will leave a little more up to you compared to the previous one. If you get stuck at some point the final workflow after all the modifications is available as `git/Snakefile`.
@@ -444,7 +445,7 @@ rule get_SRA_by_accession:
         """
 ```
 
-Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself.
+Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself. Remember that Snakemake doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
 
 From a reproducibility perspective, it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
 
