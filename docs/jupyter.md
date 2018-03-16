@@ -294,7 +294,7 @@ As you can imagine, having this very effortless way of sharing results can great
 Say your notebook isn't on Github/Bitbucket (or you haven't activated the extension to view notebooks). All hope isn't lost there. Jupyter.org provides a neat functionality called nbviewer, where you can past an URL to any notebook and they will render it for you. Go to [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try this out with our notebook.
 
 ```no-highlight
-https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/33c8ff2bcd1785eab2f69d0f5f8149fae676895a/jupyter/mrsa.ipynb
+https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/0f6014218b65a2bb1fdf77481995083f19bc18fa/jupyter/mrsa.ipynb
 ```
 
 If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people, this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.
