@@ -1,8 +1,6 @@
 TODO: In SM: run
 TODO: In SM: cluster
 TODO: In SM: conda/singularity (docker)
-TODO: Add quick recap on jupyter
-TODO: Add quick intro to MRSA in jupyter
 TODO: Handle UTF8 multiQC
 TODO: Make new repo for initiating repres project dir structure (+ template files?)
 TODO: Add detailed installation instructions for R and RStudio
