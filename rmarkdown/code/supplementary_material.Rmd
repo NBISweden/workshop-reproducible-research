@@ -1,7 +1,5 @@
 ---
 title: "Supplementary material"
-author: John Doe, Joan Dough, Jan Doh, Dyon Do
-date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: pdf_document
 params:
   counts_file: "results/tables/counts.tsv"
@@ -13,7 +11,7 @@ params:
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir=normalizePath('../'))
-knitr::opts_chunk$set(echo = FALSE, fig.height=6, fig.width=6, fig.align='center', fig.pos="h")
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r dependencies, include=FALSE}

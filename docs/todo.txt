@@ -6,12 +6,13 @@ TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       OSX. I followed these instructions to solve it. We can see if this turns out to
       be a problem.
       http://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/
+TODO: There is still a problem with GEOquery that comes from which server it happens to retrieve from.
+      Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
 
 TODO: Handle UTF8 multiQC
 TODO: In SM: run
 TODO: In SM: cluster
 TODO: In SM: conda/singularity (docker)
-TODO: Syntax highlighting in rmarkdown - will not do, cannot find solution
 TODO: Check volume mounts on Windows
 TODO: Fix line breaks on Windows
 TODO: finish installation section on win7 (volume sharing)
