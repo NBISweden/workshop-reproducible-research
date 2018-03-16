@@ -1,11 +1,11 @@
-TODO: In SM: run
-TODO: In SM: cluster
-TODO: In SM: conda/singularity (docker)
-TODO: Handle UTF8 multiQC
 TODO: Make new repo for initiating repres project dir structure (+ template files?)
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Don't manually make intermediate files in git tutorial
 
+TODO: Handle UTF8 multiQC
+TODO: In SM: run
+TODO: In SM: cluster
+TODO: In SM: conda/singularity (docker)
 TODO: Syntax highlighting in rmarkdown - will not do, cannot find solution
 TODO: Check volume mounts on Windows
 TODO: Fix line breaks on Windows

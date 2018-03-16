@@ -197,6 +197,7 @@ rule make_supplementary:
         """
         echo 'rmarkdown::render("code/supplementary_material.Rmd", \
                   output_dir="results", \
+                  output_file="{output}", \
                   params=list(counts_file="{input.counts}", \
                               multiqc_file="{input.multiqc_file}", \
                               rulegraph_file="{input.rulegraph}", \

@@ -1,7 +1,7 @@
 FROM rocker/verse:3.4.0
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
-WORKDIR /files
+WORKDIR /course
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 SHELL ["/bin/bash", "-c"]
@@ -29,7 +29,8 @@ COPY Snakefile config.yml ./
 COPY code ./code/
 
 # Install jupyter and nb_conda
-RUN conda install jupyter nb_conda
+RUN conda install -c conda-forge jupyter nb_conda && \
+    conda clean --all
 
 # Open port for running Jupyter Notebook
 EXPOSE 8888
