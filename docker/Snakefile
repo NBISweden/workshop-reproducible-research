@@ -182,7 +182,7 @@ rule generate_count_table:
 
 rule make_supplementary:
     """
-    Generate Supplementary Material pdf
+    Generate Supplementary Material PDF
     """
     input:
         counts = "results/tables/counts.tsv",
