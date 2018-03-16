@@ -330,11 +330,11 @@ rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
 
 ## Using R Markdown in the MRSA project
 
-In this exercise we will use R Markdown to make a reproducible report in form of a Supplementary Material PDF for the MRSA project. As you might know by now, the MRSA project is used throughout the tutorials as a case study example of a reproducible research project (see the [intro section](tutorial_intro.md)). The benefits of having a reproducible Supplementary Material include:
+As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). In this exercise we will use R Markdown to make a report in form of a Supplementary Material PDF based on the outputs from the [Snakemake tutorial](snakemake.md). Among the benefits of having a Supplementary Material (or even the full manuscript!) in R Markdown format are:
 
 * It is fully transparent how the text, tables and figures were produced.
-* If you get reviewer comments, or realize you've made a mistake somewhere, you can easily update your code and regenerate the Supplementary Material with the press of a button.
-* By making report generation part of your workflow early on in a project, much of the eventual manuscript "writes itself". You no longer first have to finish the research part and _then_ start creating the tables and figures for the manuscript.
+* If you get reviewer comments, or realize you've made a mistake somewhere, you can easily update your code and regenerate the document with the push of a button.
+* By making report generation part of your workflow early on in a project, much of the eventual manuscript "writes itself". You no longer first have to finish the research part and _then_ start creating the tables and figures for the paper.
 
 Before you start:
 
