@@ -340,8 +340,8 @@ Before you start:
 
 * Make sure that your working directory in R is `rmarkdown` in the course directory (Session > Set Working Directory).
 * Open the file `rmarkdown/code/supplementary_material.Rmd`.
-
 * To complete this part you first need to install the following R-packages:
+
 ```
 source("https://bioconductor.org/biocLite.R")
 biocLite("ggplot2")
@@ -366,7 +366,7 @@ params:
 ---
 ```
 
-* From a reproducibility perspective it definitely makes sense to include information about who authored the document and the time it was generated. Add the two lines below to the YAML header. Note that we can include inline R code by using ``r some_code``.
+* From a reproducibility perspective it definitely makes sense to include information about who authored the document and the date it was generated. Add the two lines below to the YAML header. Note that we can include inline R code by using \`r some_code\`.
 
 ```
 author: John Doe, Joan Dough, Jan Doh, Dyon Do
