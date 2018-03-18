@@ -253,8 +253,7 @@ git push -u origin master
 
 ![](images/bitbucket_initial_commit.png)
 
-You can now click on View source in the top right corner
-You will now see the files as they were when we first added them. Specifically you can see that the `Dockerfile` is back, even though we deleted it! Click on Source to the left again to return to the latest version.
+You can now click on View source in the top right corner. You will now see the files as they were when we first added them. Specifically you can see that the `Dockerfile` is back, even though we deleted it! Click on Source to the left again to return to the latest version.
 
 !!! note "Quick recap"
     We now learned yet another important git command:

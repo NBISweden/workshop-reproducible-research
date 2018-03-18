@@ -149,8 +149,9 @@ A very useful magic, in particular when using shell commands a lot in your work,
 ??? note "Click to see one example"
     ```no-highlight
     %%capture output
-    !echo "Print to stdout"
-    !echo "Print to stderr" >&2
+    %%bash
+    echo "Print to stdout"
+    echo "Print to stderr" >&2
     ```
 
     and in another cell
@@ -269,15 +270,22 @@ for axi in ax.flat:
     axi.grid(color='lightgray', alpha=0.7)
 ```
 
-## Running the MRSA workflow in a Jupyter notebook
-If you look in your current directory there should be a notebook called `mrsa.ipynb`. It's supposed to show how you can use a Jupyter notebook to document your day-to-day work as a dry lab scientist. Now open the notebook with File > Open.
+!!! note "Quick recap"
+    In the two previous sections we've learned:
 
-As you can see, the purpose of the notebook is to try out different settings for the `max_reads` parameter in our Snakemake workflow. Go through each of the cells and try to understand how they work. Now test to rerun the analysis cell by cell.
+    * How magics can be used to extend the power of Jupyter notebooks, and the difference between line magics and cell magics.
+    * How to switch between different languages by using magics.
+    * How to use widgets and the mpld3 library for interactive plotting.
+
+## Running the MRSA workflow in a Jupyter notebook
+As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). We have already defined the project environment in the [Conda tutorial](conda.md) and set up the workflow in the [Snakemake tutorial](snakemake.md). Here we will run the workflow in a Jupyter notebook as an example of how you can document your day-to-day work as a dry lab scientist. If you look in your current directory there should be a notebook called `mrsa.ipynb`. Now open the notebook with File > Open.
+
+The purpose of the notebook is to try out different settings for the `max_reads` parameter in our Snakemake workflow. Go through each of the cells and try to understand how they work. Now test to rerun the analysis cell by cell.
 
 !!! attention
     If you do something that takes a long time, such as installing the Conda environment, you have to wait for the cell to finish before trying to run the next. Running cells have asterisks to the left of them, i.e. `In [*]`.
 
-As you know, the files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
+The files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
 
 ![](images/jupyter_mrsa.png)
 
@@ -286,7 +294,7 @@ As you can imagine, having this very effortless way of sharing results can great
 Say your notebook isn't on Github/Bitbucket (or you haven't activated the extension to view notebooks). All hope isn't lost there. Jupyter.org provides a neat functionality called nbviewer, where you can past an URL to any notebook and they will render it for you. Go to [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try this out with our notebook.
 
 ```no-highlight
-https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/33c8ff2bcd1785eab2f69d0f5f8149fae676895a/jupyter/mrsa.ipynb
+https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/0f6014218b65a2bb1fdf77481995083f19bc18fa/jupyter/mrsa.ipynb
 ```
 
 If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people, this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.

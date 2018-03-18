@@ -220,7 +220,7 @@ Here we install a couple of packages with Conda. Note that we run `conda clean -
 SHELL ["/bin/bash", "-c"]
 
 # Set workdir
-WORKDIR /home
+WORKDIR /course
 
 # Open port for running Jupyter Notebook
 EXPOSE 8888
@@ -260,7 +260,7 @@ The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running
 1. Create the file `Dockerfile_conda`.
 2. Set `FROM` to the image we just built.
 3. Install the required packages with Conda. We could do this by adding `environment.yml` from the Conda tutorial, but here we do it directly as `RUN` commands. We need the add the conda-forge and bioconda channels with `conda config --add channels channel_name` and install `fastqc=0.11.6` and `sra-tools=2.8` with `conda install`. There is little point in defining and activating a Conda environment since the container is self-contained, but do so if you want.
-4. Add `run_qc.sh` to the image by using the `COPY` instruction. The syntax is `COPY source target`, so in our case simply `COPY run_qc.sh .` to copy to the home directory in the image.
+4. Add `run_qc.sh` to the image by using the `COPY` instruction. The syntax is `COPY source target`, so in our case simply `COPY run_qc.sh .` to copy to the work directory in the image.
 5. Set the default command for the image to `bash run_qc.sh`, which will execute the shell script.
 6. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
 
@@ -314,16 +314,16 @@ There are obviously some advantages to isolating and running your data analysis 
 !!! tip
     Docker also has a more advanced way of data storage called [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide added flexibility and are independent of the host machine's filesystem having a specific directory structure available. They are particularly useful when you want to share data *between* containers.
 
-Say that we are interested in getting the resulting html reports from FastQC in our container. We can do this by mounting a directory called, say, `fastqc_results` in your current directory to the `/home/results/fastqc` directory in the container. Try this out and validate that it worked by opening one of the html reports.
+Say that we are interested in getting the resulting html reports from FastQC in our container. We can do this by mounting a directory called, say, `fastqc_results` in your current directory to the `/course/results/fastqc` directory in the container. Try this out and validate that it worked by opening one of the html reports.
 
 ```bash
-docker run --rm -v $(pwd)/fastqc_results:/home/results/fastqc my_docker_conda
+docker run --rm -v $(pwd)/fastqc_results:/course/results/fastqc my_docker_conda
 ```
 
 We can also use bind mounts for getting files into the container rather than out. We've mainly been discussing Docker in the context of packaging an analysis pipeline to allow someone else to reproduce its outcome. Another application is as a kind of very powerful environment manager, similarly to how we've used Conda before. If you've organized your work into projects, then you can mount the whole project directory in a container and use the container as the terminal for running stuff while still using your normal OS for editing files and so on. Let's try this out by mounting our current directory and start an interactive terminal. Note that this will override the `CMD` command, so we won't start the analysis automatically when we start the container.
 
 ```bash
-docker run -it --rm -v $(pwd):/home/ my_docker_conda /bin/bash
+docker run -it --rm -v $(pwd):/course/ my_docker_conda /bin/bash
 ```
 
 If you run `ls` you will see that all the files in the `docker` directory are there. Now edit `run_qc.sh` **on your host system** to download, say, 15000 reads instead of 12000. Then rerun the analysis with `bash run_qc.sh`. Tada! Validate that the resulting html reports look fine and then exit the container with `exit`.
@@ -352,11 +352,11 @@ During these tutorials we have been working on a case study about the multiresis
 * We've constructed a [Snakemake workflow](snakemake.md) that performs the data analysis and keeps track of files and parameters.
 * We've written a [R Markdown document](rmarkdown.md) that takes the results from the Snakemake workflow and summarizes them in a report.
 
-The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the supplementary material pdf into the Snakemake workflow as the rule `make_supplementary`.
+The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the Supplementary Material PDF into the Snakemake workflow as the rule `make_supplementary`.
 
-Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.4.0` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary material report to PDF, but unfortunately it also takes up quite a lot of space (2.2 GB). The other main difference is that we install a number of R packages using Bioconductor. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
+Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.4.0` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary Material report to PDF, but unfortunately it also takes up quite a lot of space (2.2 GB). The other main difference is that we install a number of R packages using Bioconductor. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
 
-Now run `docker build` as before and go get a coffee while the image builds (or you could use `docker pull scilifelablts/reproducible_research_course` which will download the same image). Validate with `docker image ls`. Now all that remains is to run the whole thing with `docker run`. We just want to get the results, so mount the directory `/home/results/` to, say, `mrsa_results` in your current directory. Well done! You now have an image that allows anyone to exactly reproduce your analysis workflow (if you first `docker push` to Dockerhub that is).
+Now run `docker build` as before and go get a coffee while the image builds (or you could use `docker pull scilifelablts/reproducible_research_course` which will download the same image). Validate with `docker image ls`. Now all that remains is to run the whole thing with `docker run`. We just want to get the results, so mount the directory `/course/results/` to, say, `mrsa_results` in your current directory. Well done! You now have an image that allows anyone to exactly reproduce your analysis workflow (if you first `docker push` to Dockerhub that is).
 
 !!! tip
     If you've done the [Jupyter Notebook tutorial](jupyter.md), you know that Jupyter Notebook runs as a web server. This makes it very well suited for running in a Docker container, since we can just expose the port Jupyter Notebook uses and redirect it to one of our own. You can then work with the notebooks in your browser just as you've done before, while it's actually running in the container. This means you could package your data, scripts and environment in a Docker image that also runs a Jupyter Notebook server. If you make this image available, say on Dockerhub, other researchers could then download it and interact with your data/code via the fancy interactive Jupyter notebooks that you have prepared for them. We haven't made any fancy notebooks for you, but we *have* set up a Jupyter Notebook server. Try it out if you want to (replace the image name with your version if you've built it yourself):

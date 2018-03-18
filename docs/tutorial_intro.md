@@ -44,7 +44,7 @@ The graph below shows the different steps of the analysis that are included in t
 * `get_genome_gff3` - Downloads the genome annotation file.
 * `generate_count_table` - Calculates gene expression by counting aligned reads per gene, using the software HTSeq-count.
 * `generate_rulegraph` - Generates the workflow overview figure shown above.
-* `make_supplementary` - Produces the Supplementary Materials section using data from the QC, gene counting and the graph figure.
+* `make_supplementary` - Produces the supplementary materials section using data from the QC, gene counting and the graph figure.
 
 # Setup
 ## For Mac / Linux users
@@ -61,7 +61,7 @@ First, cd into a directory on your computer (or create one) where it makes sense
 
 ```bash
 cd c:/my_dir
-docker run -it -p 8888:8888 -v /c/my_dir:/home/ scilifelablts/reproducible_research_course_slim
+docker run -it -p 8888:8888 -v /c/my_dir:/course/ scilifelablts/reproducible_research_course_slim
 ```
 
 !!! attention

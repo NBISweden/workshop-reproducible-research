@@ -1,7 +1,5 @@
 ---
-title: "Supplementary material"
-author: John Doe, Joan Dough, Jan Doh, Dyon Do
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+title: "Supplementary Material"
 output: pdf_document
 params:
   counts_file: "results/tables/counts.tsv"
@@ -13,7 +11,7 @@ params:
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir=normalizePath('../'))
-knitr::opts_chunk$set(echo = FALSE, fig.height=6, fig.width=6, fig.align='center', fig.pos="h")
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r dependencies, include=FALSE}
@@ -81,7 +79,7 @@ Maids table how learn drift but purse stand yet set. Music me house could among 
 
 ## Reproducibility
 
-All files needed to reproduce this analysis are available in a Bitbucket repository. There is a Snakemake workflow that can be used to rerun the full analysis from downloading data to producing this Supplementary Material. A Conda environment can be used to install all needed dependencies. Furthermore, a Docker image is available that contains a prepared environment for directly running the analysis in an isolated system. The figures in this Supplementary were generated in the following R environment:
+All files needed to reproduce this analysis are available in a Bitbucket repository. There is a Snakemake workflow that can be used to rerun the full analysis from downloading data to producing this supplementary material. A Conda environment can be used to install all needed dependencies. Furthermore, a Docker image is available that contains a prepared environment for directly running the analysis in an isolated system. The figures in this supplementary were generated in the following R environment:
 
 ```{r session_info}
 sessionInfo()
