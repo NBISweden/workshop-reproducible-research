@@ -1,6 +1,7 @@
 TODO: Make new repo for initiating repres project dir structure (+ template files?)
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Don't manually make intermediate files in git tutorial
+TODO: Check that relevant files are identical between git/ and docker/ dirs
 TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       can't install gglot2. Seems to have to do with the fortran compiler on latest
       OSX. I followed these instructions to solve it. We can see if this turns out to
