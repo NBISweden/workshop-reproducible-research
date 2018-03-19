@@ -9,6 +9,8 @@ TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       http://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/
 TODO: There is still a problem with GEOquery that comes from which server it happens to retrieve from.
       Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
+TODO: RMarkdown - add slidy or similar exercise
+TODO: add note on vim in git
 
 TODO: Handle UTF8 multiQC
 TODO: In SM: run
