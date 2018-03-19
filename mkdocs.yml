@@ -15,6 +15,7 @@ pages:
     - R Markdown: 'rmarkdown.md'
     - Docker: 'docker.md'
     - 'Take down': take_down.md
+  - Feedback: 'feedback.html'
 
 markdown_extensions:
   - toc:
