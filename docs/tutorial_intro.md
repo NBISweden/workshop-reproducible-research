@@ -34,17 +34,17 @@ The graph below shows the different steps of the analysis that are included in t
 ![](images/rulegraph_mrsa_intro.svg)
 
 
-* `get_genome_fasta` - Downloads the genome file.
-* `index_genome` - Indexes the genome, required for the alignment step, using the software Bowtie2.
-* `get_SRA_by_accession` - Downloads the RNA-seq raw data for the three strains from the Sequence Read Archive (SRA).
-* `fastqc` - Runs quality control on each of the RNA-seq fastq files, using the software FastQC.
-* `multiqc` - Summarizes the QC.
-* `align_to_genome` - Aligns the RNA-seq data from the three strains to the indexed genome, using the software Bowtie2.
-* `sort_bam` - Sorts the alignment files by genome coordinate, using the software Samtools.
-* `get_genome_gff3` - Downloads the genome annotation file.
-* `generate_count_table` - Calculates gene expression by counting aligned reads per gene, using the software HTSeq-count.
-* `generate_rulegraph` - Generates the workflow overview figure shown above.
-* `make_supplementary` - Produces the supplementary materials section using data from the QC, gene counting and the graph figure.
+* `get_genome_fasta` - Download the genome file.
+* `index_genome` - Index the genome, required for the alignment step, using the software Bowtie2.
+* `get_SRA_by_accession` - Download the RNA-seq raw data for the three strains from the Sequence Read Archive (SRA).
+* `fastqc` - Run quality control on each of the RNA-seq fastq files, using the software FastQC.
+* `multiqc` - Summarize the QC.
+* `align_to_genome` - Align the RNA-seq data from the three strains to the indexed genome, using the software Bowtie2.
+* `sort_bam` - Sort the alignment files by genome coordinate, using the software Samtools.
+* `get_genome_gff3` - Download the genome annotation file.
+* `generate_count_table` - Calculate gene expression by counting aligned reads per gene, using the software HTSeq-count.
+* `generate_rulegraph` - Generate the workflow overview figure shown above.
+* `make_supplementary` - Produce the supplementary materials section using data from the QC, gene counting and the graph figure.
 
 # Setup
 ## For Mac / Linux users
