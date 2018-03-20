@@ -142,7 +142,10 @@ git add config.yml environment.yml code/
 git commit -m "add initial files"
 ```
 
-The `-m` option adds a commit message. This should be a short description of what the commit contains. If you forget to add `-m` and just run `git commit`, a terminal editor will open and prompt you to write a commit message. This can be confusing if you are not used to using a terminal editor, so try to remember the `-m` flag.
+The `-m` option adds a commit message. This should be a short description of what the commit contains.
+
+!!! note
+    If you forget to add `-m` and just run `git commit`, a terminal editor will open and prompt you to write a commit message. This can be confusing if you are not used to using a terminal editor, so try to remember the `-m` flag.
 
 * Run `git status` (yep, again!). It should tell you "*nothing to commit, working directory clean*".
 * Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different value, e.g. `bowtie2=2.1`.
