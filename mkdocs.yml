@@ -6,6 +6,7 @@ pages:
   - 'The course':
     - Schedule: schedule.md
     - 'Travel info': travel.md
+    - Feedback: 'feedback.html'
   - Tutorials:
     - 'Introduction to the tutorials': 'tutorial_intro.md'
     - Conda: 'conda.md'
@@ -15,7 +16,6 @@ pages:
     - R Markdown: 'rmarkdown.md'
     - Docker: 'docker.md'
     - 'Take down': take_down.md
-  - Feedback: 'feedback.html'
 
 markdown_extensions:
   - toc:
