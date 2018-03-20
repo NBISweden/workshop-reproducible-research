@@ -8,6 +8,7 @@ TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
 TODO: There is still a problem with GEOquery that comes from which server it happens to retrieve from.
       Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
 TODO: Add if-you-have-time exercise to Jupyter
+TODO: Add if-you-have-time exercise to RMarkdown
 
 TODO: Handle UTF8 multiQC
 TODO: In SM: run
