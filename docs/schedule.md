@@ -22,7 +22,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   <tr>
     <td> <font size="3"> 09:45 </td>
     <td> <font size="3"> NJ </td>
-    <td> <font size="3"> Code and data management </td>
+    <td> <font size="3"> Data management </td>
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
