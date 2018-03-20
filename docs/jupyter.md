@@ -310,11 +310,11 @@ Starting the notebook is really easy, just go to [https://mybinder.org](https://
 
 What will happen now it that:
 
-* Binder detects that you have a file called `Dockerfile` in the root of the repo. This file contains instructions for how to build the environment your notebook should run in (again, all of this is explained in the [Docker tutorial](docker.md)). Binder then builds a _Docker image_ based on the file. This might take a minute or two. The progress is displayed in the log.
-* Binder then launches `jupyter notebook` in the Docker image.
+* Binder detects that you have a file called `Dockerfile` in the root of the repo. This file contains instructions for how to build the environment your notebook should run in (again, all of this is explained in the [Docker tutorial](docker.md)). Binder then builds a _Docker image_ based on the file. This might take a minute or two. You can follow the progress in the build log.
+* Binder then launches the Jupyter Notebook server in the Docker image..
+* ..and opens a browser tab with it for you.
 
-The repo contains a notebook template in the `notebooks` directory. Open it and execute the first code cell.
-
+The repo contains a notebook template in the `notebooks` directory. Open it and execute the first code cell. Tada! While a little underwhelming to the untrained eye, this is actually kind of cool. We now have a way to run our analyses in the cloud and in an environment that we define ourselves. All that's needed for someone to replicate your analyses is that you share a link with them. Note that notebooks on Binder are read-only; its purpose is for trying out and showing existing notebooks rather than making new ones. 
 
 !!! note "A note on transparency"
     Resources like Github/Bitbucket and Jupyter Notebooks have changed the way we do scientific research by encouraging visibility, social interaction and transparency. It was not long ago that the analysis scripts and workflows in a lab were well-guarded secrets that we only most reluctantly shared with others. That assuming that it was even possible. In most cases, the only postdoc who knew how to get it to work had left for a new position in industry, or no one could remember the password to the file server. If you're a PhD student, we encourage you to embrace this new development wholeheartedly, for it will make your research better and make you into a better scientist. And you will have more fun.
