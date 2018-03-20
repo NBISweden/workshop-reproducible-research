@@ -499,4 +499,9 @@ output:
 !!! note "Quick recap"
     In this section you learned some additional details for making nice R Markdown reports in a reproducible research project setting, including setting the root directory, adding tables, setting figure and table captions, and using LaTeX commands for formatting details.
 
+
+## Using R Markdown for making slides
+
+> ![](images/ioslides.png)
+
 Congrats! You made it to the end and are now an R Markdown expert!
