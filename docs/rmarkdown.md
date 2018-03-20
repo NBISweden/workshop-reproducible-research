@@ -502,6 +502,10 @@ output:
 
 ## Using R Markdown for making slides
 
+Lastly, if you have time, you can try out using R Markdown for making presentations.
+
+The exercise task is short and simple: recreate the slides shown below using R Markdown (hint: use ioslides).
+
 > ![](images/ioslides.png)
 
 Congrats! You made it to the end and are now an R Markdown expert!
