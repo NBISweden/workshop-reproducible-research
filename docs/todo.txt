@@ -1,4 +1,3 @@
-TODO: Make new repo for initiating repres project dir structure (+ template files?)
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Don't manually make intermediate files in git tutorial
 TODO: Check that relevant files are identical between git/ and docker/ dirs
@@ -11,6 +10,7 @@ TODO: There is still a problem with GEOquery that comes from which server it hap
       Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
 TODO: RMarkdown - add slidy or similar exercise
 TODO: add note on vim in git
+TODO: Add if-you-have-time exercise to Jupyter
 
 TODO: Handle UTF8 multiQC
 TODO: In SM: run

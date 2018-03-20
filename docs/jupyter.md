@@ -285,6 +285,7 @@ The purpose of the notebook is to try out different settings for the `max_reads`
 !!! attention
     If you do something that takes a long time, such as installing the Conda environment, you have to wait for the cell to finish before trying to run the next. Running cells have asterisks to the left of them, i.e. `In [*]`.
 
+## Sharing your work
 The files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
 
 ![](images/jupyter_mrsa.png)
@@ -298,6 +299,8 @@ https://bitbucket.org/scilifelab-lts/reproducible_research_course/raw/0f6014218b
 ```
 
 If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people, this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.
+
+So far we've only shared static representations of notebooks. A clear trend at the moment is to run your notebooks in the cloud, so that the person you want to share with could actually execute and modify your code. This is a great way of increasing visibility and letting collaborators or readers get a more hands-on experience of your data and analyses. From a reproducibility perspective, there are both advantages and drawbacks. On the plus side is that running your work remotely forces you to be strict when it comes to defining the environment it needs (probably in the form of a Conda environment or Docker image). 
 
 !!! note "A note on transparency"
     Resources like Github/Bitbucket and Jupyter Notebooks have changed the way we do scientific research by encouraging visibility, social interaction and transparency. It was not long ago that the analysis scripts and workflows in a lab were well-guarded secrets that we only most reluctantly shared with others. That assuming that it was even possible. In most cases, the only postdoc who knew how to get it to work had left for a new position in industry, or no one could remember the password to the file server. If you're a PhD student, we encourage you to embrace this new development wholeheartedly, for it will make your research better and make you into a better scientist. And you will have more fun.
