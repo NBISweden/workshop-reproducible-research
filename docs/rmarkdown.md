@@ -504,7 +504,7 @@ output:
 
 Lastly, if you have time, you can try out using R Markdown for making presentations.
 
-The exercise task is short and simple: recreate the slides shown below using R Markdown (hint: use ioslides).
+The exercise task is short and simple: recreate the slides shown below using R Markdown (hint: use output format "ioslides").
 
 > ![](images/ioslides.png)
 
