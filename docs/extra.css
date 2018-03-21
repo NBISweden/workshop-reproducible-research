@@ -5,6 +5,6 @@ code {
 
 table {
     display: block;
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
 }
