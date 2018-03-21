@@ -289,7 +289,7 @@ Note that the reason for the job is now "Forced execution". You can target files
 snakemake a_b.txt -D > summary.tsv
 ```
 
-The contents of `summary.tsv` is shown in the table below. You may want to open it in a spreadsheet like Microsoft Excel or Numbers to make it easier to read.
+The contents of `summary.tsv` is shown in the table below (scroll to see the full table).
 
 
 | output_file   | date   | rule   | version   | log-file(s)   |  input-file(s)   | shellcmd   | status   | plan   |
