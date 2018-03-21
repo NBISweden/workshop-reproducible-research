@@ -17,12 +17,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   <tr>
     <td> <font size="3"> 09:00
     <td> <font size="3"> LW, RÅ </td>
-    <td> <font size="3"> Introduction to Reproducible Research</td>
+    <td> <font size="3"> Introduction to Reproducible Research [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 09:45 </td>
     <td> <font size="3"> NJ </td>
-    <td> <font size="3"> Data management </td>
+    <td> <font size="3"> Data management [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
@@ -35,7 +35,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda <br>
+      - Introduction to the package and environment manager Conda [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
@@ -50,7 +50,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake <br>
+      - Introduction to Snakemake [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
   </tr>
@@ -94,12 +94,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git <br>
+      - Introduction to version control and git [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../git/">Git</a>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter <br>
+      - Introduction to Jupyter [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
@@ -113,12 +113,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown <br>
+      - Introduction to R Markdown [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers <br>
+      - Introduction to containers [<a href="https://github.com/rasmusagren/repres_slides/raw/master/introduction.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
   </tr>
