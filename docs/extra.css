@@ -2,3 +2,9 @@ code {
     white-space: nowrap;
     word-wrap: normal;
 }
+
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
