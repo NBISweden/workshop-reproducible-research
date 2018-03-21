@@ -14,9 +14,12 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh -
     rm Miniconda3-4.3.31-Linux-x86_64.sh
 ENV PATH="/opt/miniconda3/bin:${PATH}"
 
-#Install R packages
+# Install R packages
 RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
-    pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'GEOquery'))" \
+    pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'devtools'))" \
+    && rm -rf /tmp/Rtmp* /tmp/*.rds
+# Install devel version due to https://github.com/seandavi/GEOquery/issues/39
+RUN Rscript -e "devtools::install_github('seandavi/GEOquery')" \
     && rm -rf /tmp/Rtmp* /tmp/*.rds
 
 # Set up the Conda environment
