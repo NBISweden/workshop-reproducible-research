@@ -406,9 +406,6 @@ Finished job 0.
 
 After everything is done, the workflow will have resulted in a bunch of files in the directories `data`, `intermediate` and `results`. Take some time to look through the structure, in particular the quality control reports in `results` and the count table in `results/tables`.
 
-!!! attention
-    You have now run a real bioinformatics workflow, and you have learned enough to start writing your own. If you got a taste for Snakemake, just continue along and learn about some of the more complex features. Note that it will probably take an hour or two to finish the remaining parts. If you want to save this for another day and rather have time to focus on the remaining tutorials, this would be a good point to exit.
-
 ### Parameters
 In a typical bioinformatics project, considerable efforts are spent on tweaking parameters for the various programs involved. It would be inconvenient if you had to change in the shell scripts themselves every time you wanted to run with a new setting. Luckily, there is a better option for this: the `params` keyword.
 
