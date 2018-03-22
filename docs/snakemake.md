@@ -423,7 +423,7 @@ rule some_rule:
         """
 ```
 
-We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead.
+We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead, set the value to 20000 and run through the workflow. Remember that Snakemake doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
 
 ```python
 rule get_SRA_by_accession:
@@ -442,15 +442,7 @@ rule get_SRA_by_accession:
         """
 ```
 
-Now when we have declared `max_reads` as a parameter we can change the value from the command line by using the `snakemake --config [KEY=VALUE [KEY=VALUE ...]]` syntax. Try this out for yourself. Remember that Snakemake doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
-
-From a reproducibility perspective, it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
-
-```yaml
-max_reads: 25000
-```
-
-If we now supply `--configfile config.yml` Snakemake will parse this into a global dictionary called `config` that is available from all rules. We can therefore modify `get_SRA_by_accession` to look something like this. Now try this out yourself.
+The parameters we set in the `params` section don't have to be static, they can be any Python expression. In particular, Snakemake provides a global dictionary of configuration parameters called `config`. Let's modify `get_SRA_by_accession` to look something like this in order to access the elements of this dictionary:
 
 ```python
 rule get_SRA_by_accession:
@@ -470,6 +462,16 @@ rule get_SRA_by_accession:
         cache-mgr --clear >/dev/null 2>&1
         """
 ```
+
+The `config` variable is just a normal Python dictionary, but it has the special feature that we can change the parameter values from the command line by using the `snakemake --config KEY=VALUE` syntax. Try this out for yourself.
+
+From a reproducibility perspective, it's not optimal to set parameters from the command line, since it's difficult to keep track of which parameter values that were used. A much better alternative is to use the `--configfile FILE` option. Here we can collect all the project-specific settings, sample ids, and so on in one file. This also enables us to write the Snakefile in a more general manner so that it can be better reused between projects. Like several other files used in these tutorials, this file should be in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it as `config.yml`.
+
+```yaml
+max_reads: 25000
+```
+
+If we now run Snakemake with `--configfile config.yml`, it will parse this file and form the `config` dictionary.
 
 !!! tip
     Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.

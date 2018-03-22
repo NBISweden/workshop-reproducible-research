@@ -7,6 +7,9 @@ TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
 TODO: There is still a problem with GEOquery that comes from which server it happens to retrieve from.
       Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
 TODO: RMarkdown remove Lorem Ipsum text
+TODO: Describe what code/run_qc.sh does in Conda
+TODO: Change in snakemake to first be called concatenate_a_and_b
+TODO: Fix error with generate_rulegraph max_reads set in config
 
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Handle UTF8 multiQC
