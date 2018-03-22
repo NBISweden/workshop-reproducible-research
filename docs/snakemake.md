@@ -423,7 +423,7 @@ rule some_rule:
         """
 ```
 
-We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead, set the value to 20000 and run through the workflow. Remember that Snakemake doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
+We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead, set the value to 20000, and run through the workflow. Remember that Snakemake doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
 
 ```python
 rule get_SRA_by_accession:
@@ -442,7 +442,7 @@ rule get_SRA_by_accession:
         """
 ```
 
-The parameters we set in the `params` section don't have to be static, they can be any Python expression. In particular, Snakemake provides a global dictionary of configuration parameters called `config`. Let's modify `get_SRA_by_accession` to look something like this in order to access the elements of this dictionary:
+The parameter values we set in the `params` section don't have to be static, they can be any Python expression. In particular, Snakemake provides a global dictionary of configuration parameters called `config`. Let's modify `get_SRA_by_accession` to look something like this in order to access the elements of this dictionary:
 
 ```python
 rule get_SRA_by_accession:
@@ -471,7 +471,7 @@ From a reproducibility perspective, it's not optimal to set parameters from the 
 max_reads: 25000
 ```
 
-If we now run Snakemake with `--configfile config.yml`, it will parse this file and form the `config` dictionary.
+If we now run Snakemake with `--configfile config.yml`, it will parse this file to form the `config` dictionary. If you want to overwrite a parameter value, e.g. for testing, you can still use the `--config` flag.
 
 !!! tip
     Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
