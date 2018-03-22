@@ -94,7 +94,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git <br>
+      - Introduction to version control and git [<a href="https://github.com/rasmusagren/repres_slides/raw/master/git.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../git/">Git</a>
       <br><br>
       <font size="3"> Computational notebooks
