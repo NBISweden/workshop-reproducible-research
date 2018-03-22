@@ -35,7 +35,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda <br>
+      - Introduction to the package and environment manager Conda [<a href="https://github.com/rasmusagren/repres_slides/raw/master/conda.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
