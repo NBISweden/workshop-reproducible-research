@@ -50,7 +50,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake <br>
+      - Introduction to Snakemake [<a href="https://github.com/rasmusagren/repres_slides/raw/master/snakemake.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
   </tr>
