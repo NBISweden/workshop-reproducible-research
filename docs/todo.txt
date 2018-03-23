@@ -9,6 +9,7 @@ TODO: There is still a problem with GEOquery that comes from which server it hap
 TODO: RMarkdown remove Lorem Ipsum text
 TODO: Describe what code/run_qc.sh does in Conda
 TODO: Fix error with generate_rulegraph max_reads set in config
+TODO: Fix view jupyter on bitbucket
 
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Handle UTF8 multiQC

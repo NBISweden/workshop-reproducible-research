@@ -77,7 +77,7 @@ sudo systemctl status docker
 The output should say something about "Active: active (running) since..".
 
 !!! tip
-    As mentioned before, Docker needs to run as root. You can archive this by prepending all Docker commands with `sudo`. This is the approach that we will take in this tutorial, since the set up becomes a little simpler. If you plan on continuing using Docker you can get rid of this by adding your user to the group `docker`. Here are instructions for how to do this: [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
+    As mentioned before, Docker needs to run as root. You can achieve this by prepending all Docker commands with `sudo`. This is the approach that we will take in this tutorial, since the set up becomes a little simpler. If you plan on continuing using Docker you can get rid of this by adding your user to the group `docker`. Here are instructions for how to do this: [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
 # Practical exercise
 ## The very basics
