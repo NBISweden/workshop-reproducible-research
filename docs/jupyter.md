@@ -191,10 +191,10 @@ fig.canvas.draw()
 ```
 
 !!! tip
-    You can capture the output of a magic directly like this:
+    You can capture the output of some magics directly like this:
     ```python
-    files_in_dir = %ls
-    print(files_in_dir)
+    my_dir = %pwd
+    print(my_dir)
     ```
 
 ## Widgets and interactive plotting
