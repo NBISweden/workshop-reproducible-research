@@ -24,7 +24,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `numpy`, `matplotlib`, and `mpld3`: for generating plots
+* `numpy`, `matplotlib`, `ipywidgets`, and `mpld3`: for generating plots
 
 !!! attention
     If you are doing these exercises on Windows through a Docker image you also need the run the following:
@@ -169,7 +169,7 @@ The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) wit
 * `%%bash`
 * `%%html`
 * `%%latex`
-* `%%R` (here you have to load the r2py extension with `%load_ext rpy2.ipython` first)
+* `%%R` (here you have to first install the rpy2 extension, for example with Conda, and then load with `%load_ext rpy2.ipython`)
 
 Try this out if you know any of the languages above. Otherwise you can always try to print the quadratic formula with LaTeX!
 ```no-highlight
