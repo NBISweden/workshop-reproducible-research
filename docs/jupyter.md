@@ -75,6 +75,13 @@ Let's start by creating an empty notebook by selecting the Files tab and clickin
 
 ![](images/jupyter_empty_nb.png)
 
+!!! tip
+    If you want to start Jupyter Notebooks on a cluster which you SSH to you have to do some port forwarding, e.g.:
+    ```bash
+    ssh me@rackham.uppmax.uu.se -L8888:localhost:8888
+    jupyter notebook --ip 0.0.0.0
+    ```
+
 ## The very basics
 Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "edit mode", so you can write stuff in it. Cells in Jupyter notebooks can be of two types: markdown or code.
 
