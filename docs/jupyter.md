@@ -297,6 +297,9 @@ The files you're working with come from a Bitbucket repo. Both Bitbucket and Git
 
 ![](images/jupyter_mrsa.png)
 
+!!! attention
+    If your Bitbucket view looks very different from the image above and you can't change the viewer, it could be that you have activated Bitbucket's "New source browser experience". It's in beta and lacks a lot of features, so you may want to disable it. If so, first click your avatar in the lower left corner, then Bitbucket Settings > Labs > New source browser experience.
+
 As you can imagine, having this very effortless way of sharing results can greatly increase the visibility of your work. You work as normal on your project, and push regularly to the repository as you would anyways, and the output is automatically available for anyone to see. Or for a select few if you're not ready to share your findings with the world quite yet.
 
 Say your notebook isn't on Github/Bitbucket (or you haven't activated the extension to view notebooks). All hope isn't lost there. Jupyter.org provides a neat functionality called nbviewer, where you can past an URL to any notebook and they will render it for you. Go to [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try this out with our notebook.
