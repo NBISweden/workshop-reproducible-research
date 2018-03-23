@@ -99,7 +99,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter <br>
+      - Introduction to Jupyter [<a href="https://github.com/rasmusagren/repres_slides/raw/master/jupyter.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
@@ -113,12 +113,12 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown <br>
+      - Introduction to R Markdown [<a href="https://github.com/rasmusagren/repres_slides/raw/master/rmarkdown.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers <br>
+      - Introduction to containers [<a href="https://github.com/rasmusagren/repres_slides/raw/master/docker.pdf" target="_blank">slides</a>]<br>
       - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
   </tr>
