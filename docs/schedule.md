@@ -57,7 +57,7 @@ The course will be in rooms Air/Fire at SciLifeLab, Stockholm (see [travel info]
   <tr>
     <td> <font size="3"> 16:15 </td>
     <td> <font size="3"> LW, RÅ </td>
-    <td> <font size="3"> Wrap-up </td>
+    <td> <font size="3"> Wrap-up [<a href="https://github.com/rasmusagren/repres_slides/raw/master/wrapup.pdf" target="_blank">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
