@@ -10,7 +10,7 @@ The material available on these pages is produced and maintained for a course on
 
 # Material
 
-Slides from an introductory lecture covering the topics mentioned above are available on Figshare as [pptx](https://doi.org/10.6084/m9.figshare.5674450) or [pdf](https://doi.org/10.6084/m9.figshare.5674453.v1).
+Slides from lectures covering the topics mentioned above are available on Figshare as [pptx](https://ndownloader.figshare.com/files/10853063) or [pdf](https://ndownloader.figshare.com/files/10853060).
 
 This documentation and all the resources used in the course are available as a [Bitbucket repo](https://bitbucket.org/scilifelab-lts/reproducible_research_course.git).
 
