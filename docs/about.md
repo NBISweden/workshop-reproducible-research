@@ -15,8 +15,8 @@ Slides from an introductory lecture covering the topics mentioned above are avai
 This documentation and all the resources used in the course are available as a [Bitbucket repo](https://bitbucket.org/scilifelab-lts/reproducible_research_course.git).
 
 ## The authors
-Leif Wigge and Rasmus Ågren
-SciLifeLab, NBIS, Bioinformatics Long-term support
+Leif Wigge and Rasmus Ågren  
+[SciLifeLab](https://www.scilifelab.se), [National Bioinformatics Infrastructure Sweden (NBIS)](https://www.nbis.se), Bioinformatics Long-term Support
 
 ## License
 MIT (see `LICENCE.txt` in the [Bitbucket repo](https://bitbucket.org/scilifelab-lts/reproducible_research_course.git)).
