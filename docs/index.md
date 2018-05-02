@@ -2,11 +2,10 @@
 
 ## Tools for reproducible research (1 ECTS)
 
-**Date and time:**  
-March 22-23, 2018 ([full schedule](schedule.md))
+The course will be held next time during late fall 2018 at Chalmers in Gothenburg.  
+The course will run twice in 2019, probably in Stockholm both times...
 
-**Location:**  
-SciLifeLab Stockholm, Sweden ([travel info](travel.md))
+Submit your email [here](https://docs.google.com/forms/d/e/1FAIpQLScah4hJVAmw5g_ny_j-Aikpd0SmqRk4FoK9zteu2PN3J69V-w/viewform?usp=sf_link) to be sure to not miss the course announcements.
 
 ### Course description
 
