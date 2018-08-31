@@ -2,14 +2,14 @@
 
 ## Tools for reproducible research (1 ECTS)
 
-**Date and time:**
--November 28-29, 2018
+**Date and time:**  
+- November 28-29, 2018
 
-**Location:**
--Chalmers University of Technology, Gothenburg, Sweden ([travel info](travel.md))
+**Location:**  
+- Chalmers University of Technology, Gothenburg, Sweden ([travel info](travel.md))
 
 **Apply here:**  
--Please visit [this link](https://www.scilifelab.se/events/reproducible-research-ht18/) for complete course description, entry requirements and application form.
+- Please visit [this link](https://www.scilifelab.se/events/reproducible-research-ht18/) for complete course description, entry requirements and application form.
 
 ### Course description
 
