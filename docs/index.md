@@ -9,7 +9,7 @@
 - Chalmers University of Technology, Gothenburg, Sweden ([travel info](travel.md))
 
 **Apply here:**  
-- Please visit [this link](https://www.scilifelab.se/events/reproducible-research-ht18/) for complete course description, entry requirements and application form.
+- Please visit [this link](https://www.scilifelab.se/events/tools-for-reproducible-research/) for complete course description, entry requirements and application form.
 
 ### Course description
 
