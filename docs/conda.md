@@ -45,8 +45,13 @@ rm Miniconda3-4.5.11-Linux-x86_32.sh
     - do you accept the license terms?
     - do you accept the installation path or do you want to chose a different one?
     - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file? **Choose "No" here.**
-* Add the Conda start script to your `.bashrc` file: `echo ". /Users/<user>/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc`. This ensures that the system will find the Conda executable. Change `<user>` to fit where you installed Miniconda.
-* Restart your shell so the settings in `.bashrc` can take effect (e.g. by writing `bash`).
+* Add the Conda start script to your `.bashrc` file. This ensures that the system will find the Conda executable. Adjust the path to where you installed Miniconda.
+
+```bash
+echo ". /Users/<user>/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+```
+
+* Restart your shell so the settings in `.bashrc` can take effect (e.g. by `bash`).
 * You can verify that the installation worked by running:
 
 ```bash

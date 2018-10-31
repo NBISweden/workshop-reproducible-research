@@ -22,7 +22,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 ```yaml
 # The workflow manager
-- snakemake=4.4.0
+- snakemake-minimal=5.3.0
 # For visualizing workflows
 - graphviz=2.38.0
 - xorg-libxrender
@@ -40,6 +40,9 @@ conda activate snakemake_exercise
 
 Check that Snakemake is installed correctly, for example by executing `snakemake --help`. This should output a list of available Snakemake settings. If you get `bash: snakemake: command not found` then you need to go back and ensure that the Conda steps were successful.
 
+!!! attention
+    Here we used the package `snakemake-minimal`. This is a slimmed down version that lack some features, in particular relating to cloud computing and interacting with remote providers such as Google Drive or Dropbox. This was done to speed up the installation process. Use the normal `snakemake` package if you need those features.
+
 # Practical exercise
 ## The basics
 In this part of the tutorial we will create a very simple workflow from scratch, in order to show the fundamentals of how Snakemake works. The workflow will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to convert the text in the files to upper case and then to concatenate them.
@@ -52,7 +55,7 @@ echo "This is a.txt" > a.txt
 echo "This is b.txt" > b.txt
 ```
 
-Then open `Snakefile` in your favorite text editor. A Snakemake workflow is based on rules which take some file(s) as input, performs some type of operation on them, and generate some file(s) as outputs. Here is a very simple rule that takes `a.txt` as an input and produces `a.upper.txt` as an output. Copy this rule to your `Snakefile` and save it.
+Then open `Snakefile` in your favorite text editor (Vim is available if you're running this in the course Docker image). A Snakemake workflow is based on rules which take some file(s) as input, performs some type of operation on them, and generate some file(s) as outputs. Here is a very simple rule that takes `a.txt` as an input and produces `a.upper.txt` as an output. Copy this rule to your `Snakefile` and save it.
 
 ```python
 rule convert_to_upper_case:
@@ -337,7 +340,7 @@ This will require some more packages, so add the following lines to `environment
 - htseq=0.9
 ```
 
-You are probably already in your `snakemake_exercise` environment, otherwise activate it (use `conda env list` if you are unsure). You can update the current environment to contain the new packages like this:
+You are probably already in your `snakemake_exercise` environment, otherwise activate it (use `conda info --envs` if you are unsure). You can update the current environment to contain the new packages like this:
 
 ```bash
 conda env update -f environment.yml
@@ -547,7 +550,7 @@ Finished job 2.
 ```
 
 !!! tip
-    Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--touch` flag, which will run through the workflow and update the timestamps on all output files without actually executing the code in `shell`.
+    Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--delete-temp-output` flag.
 
 Snakemake has a number of options for marking files:
 
@@ -555,6 +558,7 @@ Snakemake has a number of options for marking files:
 * `protected("...")`: The output file should be write-protected. Typically used to protect files that require a huge amount of computational resources from being accidentally deleted.
 * `ancient("...")`: The timestamp of the input file is ignored and it's always assumed to be older than any of the output files.
 * `touch("...")`: The output file should be "touched", i.e. created or updated, when the rule has finished. Typically used as "flag files" to enforce some rule execution order without real file dependencies.
+* `directory("...")`: The output is a directory rather than a file.
 * `dynamic("{some_wildcard}...")`: This one is a bit tricky. It's used when the number of output files from a rule cannot be determined beforehand. A typical use case could be if you run some clustering analysis and end up with one file per cluster.
 
 ### Shadow rules
@@ -591,7 +595,7 @@ There are a number of drawbacks with having files that aren't explicitly part of
 * If several jobs are run in parallel there is a risk that they write to `tempfile` at the same time. This can lead to very scary results.
 * Sometimes we don't know the names of all the files that a program can generate. It is, for example, not unusual that programs leave some kind of error log behind if something goes wrong.
 
-All of these issues can be dealt with by using the `shadow` option for a rule. The shadow option results in that each execution of the rule is run in an isolated temporary directory (located in `.snakemake/shadow/`). There are a few options for `shadow`. The most simple is `shadow: "minimal"`, which means that the rule is executed in an empty directory that the input files to the rule have been symlinked into. For the rule below, that means that the only file available would be `input.txt`. The shell commands would generate the files `some_other_junk_file` and `output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its "real" location and remove the whole shadow directory. We therefore never have to think about manually removing `some_other_junk_file`.
+All of these issues can be dealt with by using the `shadow` option for a rule. The shadow option results in that each execution of the rule is run in an isolated temporary directory (located in `.snakemake/shadow/` by default). There are a few options for `shadow`. The most simple is `shadow: "minimal"`, which means that the rule is executed in an empty directory that the input files to the rule have been symlinked into. For the rule below, that means that the only file available would be `input.txt`. The shell commands would generate the files `some_other_junk_file` and `output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its "real" location and remove the whole shadow directory. We therefore never have to think about manually removing `some_other_junk_file`.
 
 ```python
 rule some_rule:
@@ -610,7 +614,7 @@ rule some_rule:
 Try this out for the rules where we have to "manually" deal with files that aren't tracked by Snakemake (`multiqc`, `index_genome`, `generate_count_table`). Also remove the shell commands that remove temporary files from those rules, as they are no longer needed. Now rerun the workflow and validate that the temporary files don't show up in your working directory.
 
 !!! tip
-    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the `.snakemake` directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options.
+    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the shadow directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options (use to use the `--shadow-prefix` flag).
 
 ### Rule targets
 So far we have only defined the inputs/outputs of a rule as strings, or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.

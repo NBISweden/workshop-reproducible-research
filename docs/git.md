@@ -346,7 +346,7 @@ As always, run `git status` to get an overview! You will see that you have, so c
   =======
   - multiqc=1.4
   >>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf
-  - snakemake=4.4.0
+  - snakemake-minimal=5.3.0
   - samtools=1.6
   - htseq=0.9
   - graphviz=2.38.0
@@ -368,7 +368,7 @@ The part between `<<<<<<< HEAD` and `=======` is your local version, and the par
   - sra-tools=2.8
   - bowtie2=2.1
   - multiqc=1.2
-  - snakemake=4.4.0
+  - snakemake-minimal=5.3.0
   - samtools=1.6
   - htseq=0.9
   - graphviz=2.38.0

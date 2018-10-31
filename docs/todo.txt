@@ -1,4 +1,3 @@
-TODO: Check conda tutorial on Linux
 TODO: Check snakemake tutorial on Linux
 TODO: Check git tutorial on Linux
 TODO: Check jupyter tutorial on Linux
