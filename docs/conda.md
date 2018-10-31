@@ -21,31 +21,32 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-MacOSX-x86_64.sh -O
-bash Miniconda3-4.3.31-MacOSX-x86_64.sh
-rm Miniconda3-4.3.31-MacOSX-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-MacOSX-x86_64.sh -O
+bash Miniconda3-4.5.11-MacOSX-x86_64.sh
+rm Miniconda3-4.5.11-MacOSX-x86_64.sh
 
 # *** Install Miniconda3 for 32-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-MacOSX-x86_32.sh -O
-bash Miniconda3-4.3.31-MacOSX-x86_32.sh
-rm Miniconda3-4.3.31-MacOSX-x86_32.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-MacOSX-x86_32.sh -O
+bash Miniconda3-4.5.11-MacOSX-x86_32.sh
+rm Miniconda3-4.5.11-MacOSX-x86_32.sh
 
 # *** Install Miniconda3 for 64-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh -O
-bash Miniconda3-4.3.31-Linux-x86_64.sh
-rm Miniconda3-4.3.31-Linux-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O
+bash Miniconda3-4.5.11-Linux-x86_64.sh
+rm Miniconda3-4.5.11-Linux-x86_64.sh
 
 # *** Install Miniconda3 for 32-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_32.sh -O
-bash Miniconda3-4.3.31-Linux-x86_32.sh
-rm Miniconda3-4.3.31-Linux-x86_32.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_32.sh -O
+bash Miniconda3-4.5.11-Linux-x86_32.sh
+rm Miniconda3-4.5.11-Linux-x86_32.sh
 ```
 
 * The installer will ask you questions during the installation:
     - do you accept the license terms?
     - do you accept the installation path or do you want to chose a different one?
-    - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file? If you select yes, the system will find Conda and you can run the `conda` command directly. If you select no, you will either have to run Conda by specifying the full path, e.g. `/Users/myuser/miniconda3/bin/conda`, or by adding it manually to your PATH each time you restart your system, e.g. `export PATH="/Users/myuser/miniconda3/bin:$PATH"`.
-    - Either restart your shell so the settings in `.bashrc` can take effect, or add Conda to your PATH with `export PATH="/Users/myuser/miniconda3/bin:$PATH"`.
+    - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file? **Choose "No" here.**
+* Add the Conda start script to your `.bashrc` file: `echo ". /Users/<user>/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc`. This ensures that the system will find the Conda executable. Change `<user>` to fit where you installed Miniconda.
+* Restart your shell so the settings in `.bashrc` can take effect (e.g. by writing `bash`).
 * You can verify that the installation worked by running:
 
 ```bash
@@ -57,6 +58,9 @@ conda --version
 ```
 conda config --add channels conda-forge
 ```
+
+!!! note
+    You might wonder why we didn't just add `conda` to PATH? It's because doing so can cause some issues if your already using another tool called Virtualenv for managing Python environments.
 
 # Practical exercise
 
@@ -75,7 +79,7 @@ This will create an environment called project_a, containing FastQC from the Bio
 * Once it is done, you can activate the environment:
 
 ```bash
-source activate project_a
+conda activate project_a
 ```
 
 By default, Conda will add information to your prompt telling you which environment that is active.
@@ -94,7 +98,7 @@ The active environment will be marked with an asterisk.
 conda list
 ```
 
-* Now, deactivate the environment by running `source deactivate`.
+* Now, deactivate the environment by running `conda deactivate`.
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
 
@@ -129,7 +133,7 @@ Read the information that Conda displays in the terminal. It probably asks if yo
 
 Let's assume that you will have sequencing data in your Project A, and want to use the latest bowtie2 software to align your reads.
 
-* Find out what versions of bowtie2 are available at Bioconda using `conda search`.
+* Find out what versions of bowtie2 are available in the bioconda channel using `conda search -c bioconda`.
 * Now install the *latest* available version of bowtie2 in your project_a environment.
 
 Let's further assume that you have an old project (called Project Old) where you know you used bowtie2 v2.2.5. You just got back reviewer comments and they want you to include some alignment statistics. Unfortunately, you haven't saved that information so you will have to rerun the alignment. Now, it is essential that you use the same version of bowtie that your results are based on, otherwise the alignment statistics will be misleading. Using Conda environments this becomes simple. You can just have a separate environment for your old project where you have an old version of bowtie2 without interfering with your new Project A where you want the latest version.
@@ -142,7 +146,7 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 
 * Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the bowtie2 version.
-* Run `source deactivate` to exit your active environment.
+* Run `conda deactivate` to exit your active environment.
 * List your environments (do you remember the command?).
 * Now, let's remove an environment:
 
@@ -156,7 +160,7 @@ After making a few different environments and installing a bunch of packages, Co
 conda clean -a
 ```
 
-This will remove package tar-balls that are left from package installations, unused packages (i.e. not present in any environments), and cached data.
+This will remove package tar-balls that are left from package installations, unused packages (i.e. those not present in any environments), and cached data.
 
 !!! note "Quick recap"
     In this section we've learned:

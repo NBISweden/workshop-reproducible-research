@@ -9,10 +9,12 @@ SHELL ["/bin/bash", "-c"]
 # Install Miniconda3
 RUN apt-get update && apt-get -y dist-upgrade
 RUN apt-get install -y --no-install-recommends bzip2 curl ca-certificates
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.3.31-Linux-x86_64.sh -O && \
-    bash Miniconda3-4.3.31-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
-    rm Miniconda3-4.3.31-Linux-x86_64.sh
-ENV PATH="/opt/miniconda3/bin:${PATH}"
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O && \
+    bash Miniconda3-4.5.11-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
+    rm Miniconda3-4.5.11-Linux-x86_64.sh
+
+# Add Conda base environment to PATH
+RUN . /opt/miniconda3/etc/profile.d/conda.sh && conda activate
 
 # Install R packages
 RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
