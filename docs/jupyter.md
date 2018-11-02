@@ -2,7 +2,7 @@
 The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and text. The functionality is partly overlapping with R Markdown (see the [tutorial](rmarkdown.md)), in that they both use markdown and code chunks to generate reports that integrate results of computations with the code that generated them. Jupyter Notebook comes from the Python community while R Markdown was developed by RStudio, but you could use most common programming languages in either alternative. In practice though, it's quite common that R developers use Jupyter but probably not very common that Python developers use RStudio.
 
 ## What are Jupyter notebooks for?
-An excellent question if I may say so! Some applications could be:
+An excellent question! Some applications could be:
 
 * Python is lacking a really good IDE for doing exploratory scientific data analysis, like RStudio or Matlab. Some people use it simply as an alternative for that.
 * The community around Jupyter notebooks is large and dynamic, and there are tons of tools for sharing, displaying or interacting with notebooks.
@@ -24,7 +24,8 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `numpy`, `matplotlib`, `ipywidgets`, and `mpld3`: for generating plots
+* `matplotlib`, `ipywidgets`, and `mpld3`: for generating plots
+* `pandas`: for working with data frames and generating tables
 
 !!! attention
     If you are doing these exercises on Windows through a Docker container you also need the run the following:
