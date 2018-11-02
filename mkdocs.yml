@@ -1,5 +1,5 @@
 site_name: NBIS Reproducible research course
-theme: mkdocs
+theme: windmill
 pages:
   - Welcome: index.md
   - About: 'about.md'
