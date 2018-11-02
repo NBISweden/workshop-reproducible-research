@@ -1,2 +1,1 @@
 pymdown-extensions
-mkdocs-windmill
