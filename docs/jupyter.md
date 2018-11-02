@@ -27,10 +27,10 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 * `numpy`, `matplotlib`, `ipywidgets`, and `mpld3`: for generating plots
 
 !!! attention
-    If you are doing these exercises on Windows through a Docker image you also need the run the following:
+    If you are doing these exercises on Windows through a Docker container you also need the run the following:
     ```bash
     mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py
     ```
 
 !!! note "A note on nomenclature"
@@ -321,7 +321,7 @@ Starting the notebook is really easy, just go to [https://mybinder.org](https://
 What will happen now it that:
 
 * Binder detects that you have a file called `Dockerfile` in the root of the repo. This file contains instructions for how to build the environment your notebook should run in (again, all of this is explained in the [Docker tutorial](docker.md)). Binder then builds a _Docker image_ based on the file. This might take a minute or two. You can follow the progress in the build log.
-* Binder then launches the Jupyter Notebook server in the Docker image..
+* Binder then launches the Jupyter Notebook server in the Docker container..
 * ..and opens a browser tab with it for you.
 
 The repo contains a notebook template in the `notebooks` directory. Open it and execute the first code cell. Tada! While a little underwhelming to the untrained eye, this is actually kind of cool. We now have a way to run our analyses in the cloud and in an environment that we define ourselves. All that's needed for someone to replicate your analyses is that you share a link with them. Note that notebooks on Binder are read-only; its purpose is for trying out and showing existing notebooks rather than making new ones.

@@ -3,9 +3,6 @@ FROM ubuntu:16.04
 LABEL description = "Minimal image for the NBIS reproducible research course."
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
-# Use bash as shell
-SHELL ["/bin/bash", "-c"]
-
 # Install Miniconda3 prerequisites, English language pack and fonts. Also
 # include vim for convenience
 RUN apt-get update && \
@@ -14,18 +11,17 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -
     bash Miniconda3-4.5.11-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-4.5.11-Linux-x86_64.sh
 
-# Set locale
+# Add conda to PATH and set locale
+ENV PATH="/opt/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 
-# Install some prerequisites.
-RUN . /opt/miniconda3/etc/profile.d/conda.sh && \
-    conda activate && \
-    conda install -c conda-forge git nano && \
+# Install git and nano from conda-forge
+RUN conda install -c conda-forge git nano && \
     conda clean --all
 
-# Load the base Conda environment by default.
-RUN echo ". /opt/miniconda3/etc/profile.d/conda.sh && conda activate" >> ~/.bashrc
+# Use bash as shell
+SHELL ["/bin/bash", "-c"]
 
 # Set workdir
 WORKDIR /course

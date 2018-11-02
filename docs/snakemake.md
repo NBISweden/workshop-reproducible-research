@@ -55,7 +55,7 @@ echo "This is a.txt" > a.txt
 echo "This is b.txt" > b.txt
 ```
 
-Then open `Snakefile` in your favorite text editor (Vim is available if you're running this in the course Docker image). A Snakemake workflow is based on rules which take some file(s) as input, performs some type of operation on them, and generate some file(s) as outputs. Here is a very simple rule that takes `a.txt` as an input and produces `a.upper.txt` as an output. Copy this rule to your `Snakefile` and save it.
+Then open `Snakefile` in your favorite text editor (Vim is available if you're running this in the course Docker container). A Snakemake workflow is based on rules which take some file(s) as input, performs some type of operation on them, and generate some file(s) as outputs. Here is a very simple rule that takes `a.txt` as an input and produces `a.upper.txt` as an output. Copy this rule to your `Snakefile` and save it.
 
 ```python
 rule convert_to_upper_case:

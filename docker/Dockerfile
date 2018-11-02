@@ -13,8 +13,8 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -
     bash Miniconda3-4.5.11-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
     rm Miniconda3-4.5.11-Linux-x86_64.sh
 
-# Add Conda base environment to PATH
-RUN . /opt/miniconda3/etc/profile.d/conda.sh && conda activate
+# Add Conda to PATH
+ENV PATH="/opt/miniconda3/bin:${PATH}"
 
 # Install R packages
 RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
@@ -26,7 +26,7 @@ RUN Rscript -e "devtools::install_github('seandavi/GEOquery')" \
 
 # Set up the Conda environment
 COPY environment.yml .
-RUN conda env update -n root -f environment.yml && \
+RUN conda env update -n base -f environment.yml && \
     conda clean --all
 
 # Add the workflow files
@@ -42,6 +42,6 @@ EXPOSE 8888
 
 # Add a Jupyter Notebook profile
 RUN mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py
 
 CMD snakemake --configfile config.yml

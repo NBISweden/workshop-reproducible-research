@@ -63,7 +63,7 @@ If you have not done so already, go to [bitbucket.org](https://bitbucket.org/acc
 
 ## Create a new git repository
 
-* Login to [Bitbucket](https://bitbucket.org/) and press the plus button to the left and select *Create a new repository*:
+* Login to [Bitbucket](https://bitbucket.org/) and press the plus button to the left and select *Create repository*:
     * Make sure you are listed as the owner
     * Add a repository name, e.g. *git_tutorial*
     * You can keep the repo private or make it public, as you wish
@@ -81,12 +81,10 @@ You will now be redirected to the repository page. It is an empty repository, so
     **Important:** the directory should *not* be within the `reproducible_research_course` directory.
 
 * Once you are in your directory of choice, run the following command (just make sure to change `user` to your Bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
+
 ```bash
 git clone https://user@bitbucket.org/user/git_tutorial.git
 ```
-You can also copy the full url of your repository from the Overview  page on Bitbucket (select HTTPS instead of SSH):
-
-![](images/git_https.png)
 
 What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
 
@@ -112,7 +110,7 @@ On branch master. Initial commit. nothing to commit (create/copy files and use "
 * Once you have done that, run `git status` again. It will tell you that there are files in the directory that are not version tracked by git.
 
 !!! note
-    For the purpose of this tutorial, the exact contents of the files you just copied are not important. But you will probably recognize many of them, as they are all files used in the [MRSA case study](tutorial_intro.md). The `environment.yml` file contains the conda environment with all the software used in the analysis (see the [conda tutorial](conda.md)). The `Snakefile` and `config.yml` are both used to define the Snakemake workflow, that you should recognize from the [Snakemake tutorial](snakemake.md). The `Dockerfile` contains the recipe for making a Docker container for the analysis, this will be convered in detail in the [Docker tutorial](docker.md). The `code/` directory contains an R Markdown report that is used in the final step of the analysis (more on this in the [R Markdown tutorial](rmarkdown.md)).
+    For the purpose of this tutorial, the exact contents of the files you just copied are not important. But you will probably recognize many of them, as they are all files used in the [MRSA case study](tutorial_intro.md). The `environment.yml` file contains the Conda environment with all the software used in the analysis (see the [Conda tutorial](conda.md)). The `Snakefile` and `config.yml` are both used to define the Snakemake workflow, that you should recognize from the [Snakemake tutorial](snakemake.md). The `Dockerfile` contains the recipe for making a Docker container for the analysis, this will be convered in detail in the [Docker tutorial](docker.md). The `code/` directory contains an R Markdown report that is used in the final step of the analysis (more on this in the [R Markdown tutorial](rmarkdown.md)).
 
 !!! note "Quick recap"
     We have used two `git` commands this far:
@@ -223,7 +221,7 @@ Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to stag
 
 ## Pushing
 
-So far we have just worked locally. The strength with git is that we can add a remote location to push our commits to. In fact, we already have setup such a remote, since we created the repository at Bitbucket and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote. Your local copy and the remote copy are then in sync. In principle, you can now safely delete your local copy since everything is backed up in the cloud, including the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
+So far we have just worked locally. A strength with git is that we can add a remote location to push our commits to. In fact, we already have setup such a remote, since we created the repository at Bitbucket and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote. Your local copy and the remote copy are then in sync. In principle, you can now safely delete your local copy since everything is backed up in the cloud, including the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
 
 * Run `git remote -v`. This will show you what remote location is connected to your local git clone. The short name of the default remote is usually "*origin*".
 * Run `git branch`. This will show you the name of the current branch. By default this will be "*master*".
@@ -407,7 +405,7 @@ git push
 
 Git is aware of all files within the repository. However, it is not uncommon to have files that we don't want git to track. For instance, our analysis might produce several intermediate files and results. We typically don't track such files. Rather, we want to track the actual code and other related files (e.g. configuration files) that produce the intermediate and result files, given the raw input data.
 
-* Let's make some intermediate and result files:
+* Let's make some mock-up intermediate and result files. These are some of the files that would have been generated by the Snakemake workflow if it was run.
 
 ```bash
 mkdir intermediate

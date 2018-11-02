@@ -116,7 +116,7 @@ $ uname -a
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
-Seems like I'm running the Darwin version of macOS. Then run it in the Ubuntu Docker image.
+Seems like I'm running the Darwin version of macOS. Then run it in the Ubuntu Docker container.
 
 ```bash
 docker run ubuntu uname -a
@@ -259,7 +259,7 @@ The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running
 
 1. Create the file `Dockerfile_conda`.
 2. Set `FROM` to the image we just built.
-3. Install the required packages with Conda. We could do this by adding `environment.yml` from the Conda tutorial, but here we do it directly as `RUN` commands. We need the add the conda-forge and bioconda channels with `conda config --add channels channel_name` and install `fastqc=0.11.6` and `sra-tools=2.8` with `conda install`. There is little point in defining and activating a Conda environment since the container is self-contained, but do so if you want.
+3. Install the required packages with Conda. We could do this by adding `environment.yml` from the Conda tutorial, but here we do it directly as `RUN` commands. We need the add the conda-forge and bioconda channels with `conda config --add channels channel_name` and install `fastqc=0.11.6` and `sra-tools=2.8` with `conda install`. There is little point in defining and activating a Conda environment since the container is self-contained, but do so if you want (otherwise the packages will be installed to a default environment named `base`).
 4. Add `run_qc.sh` to the image by using the `COPY` instruction. The syntax is `COPY source target`, so in our case simply `COPY run_qc.sh .` to copy to the work directory in the image.
 5. Set the default command for the image to `bash run_qc.sh`, which will execute the shell script.
 6. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
@@ -272,7 +272,7 @@ The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running
     * How to use `docker build` to contruct and tag an image from a Dockerfile.
 
 ## Managing containers
-When you start a container with `docker run` it is given an unique id that you can use for interacting with the container. Let's try to run the image we just created:
+When you start a container with `docker run` it is given an unique id that you can use for interacting with the container. Let's try to run a container from the image we just created:
 
 ```bash
 docker run my_docker_conda

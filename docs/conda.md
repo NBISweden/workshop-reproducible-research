@@ -89,6 +89,9 @@ conda activate project_a
 
 By default, Conda will add information to your prompt telling you which environment that is active.
 
+!!! attention
+    If you're doing this exercise in the course Docker container you have to use `source activate` instead of `conda activate`.
+
 * To see all your environments you can run:
 
 ```bash

@@ -1,15 +1,13 @@
-TODO: Check snakemake tutorial on Linux
-TODO: Check git tutorial on Linux
 TODO: Check jupyter tutorial on Linux
 TODO: Check docker tutorial on Linux
 TODO: Check rmarkdown tutorial on Linux
 TODO: Check conda tutorial on Mac
 TODO: Check snakemake tutorial on Mac
-TODO: Check git tutorial on Mac
 TODO: Check jupyter tutorial on Mac
-TODO: Check docker tutorial on Mac
+TODO: Check takedown on Mac
+TODO: Check takedown on Linux
+TODO: Check docker tutorial on Mac (done, but not the installation part)
 TODO: Check rmarkdown tutorial on Mac
-TODO: Don't manually make intermediate files in git tutorial
 TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       can't install gglot2. Seems to have to do with the fortran compiler on latest
       OSX. I followed these instructions to solve it. We can see if this turns out to
