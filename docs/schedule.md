@@ -119,6 +119,6 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
 </table>
 
 **Teachers:**  
-Rasmus Ågren
-Leif Wigge
-Viktor Jonsson
+Rasmus Ågren  
+Leif Wigge  
+Viktor Jonsson  
