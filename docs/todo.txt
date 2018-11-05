@@ -1,11 +1,11 @@
 TODO: Add restaurant to schedule
 TODO: Make data presentation
+TODO: Make new Docker slides
 TODO: Fix pdf render issue when running Jupyter server through Docker (possibly also in other cases)
 TODO: Check jupyter tutorial on Linux
 TODO: Check docker tutorial on Linux (done, but not the installation part)
 TODO: Check rmarkdown tutorial on Linux
 TODO: Check takedown on Linux
-TODO: Check docker tutorial on Mac (done, but not the installation part)
 TODO: Check rmarkdown tutorial on Mac
 TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       can't install gglot2. Seems to have to do with the fortran compiler on latest
@@ -14,7 +14,6 @@ TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       http://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/
 TODO: There is still a problem with GEOquery that comes from which server it happens to retrieve from.
       Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
-TODO: RMarkdown remove Lorem Ipsum text
 
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Handle UTF8 multiQC

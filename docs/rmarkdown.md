@@ -47,8 +47,8 @@ The best way to understand R Markdown is by using it, so head down to the practi
 ## Tell me more
 
 * A nice "Get Started" section, as a complement to this tutorial, is available at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
-* [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
-* [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+* [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) (also available from Help > Cheatsheets in RStudio)
+* [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) (also available from Help > Cheatsheets in RStudio)
 
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up RStudio and set your working directory to `reproducible_research_course/rmarkdown`.
@@ -83,6 +83,9 @@ output:
     toc: true
 ---
 ```
+
+!!! attention
+    The header might look slightly different depending on your version of RStudio. If so, replace the default with the header above.
 
 Here we can specify settings for the document, like the title and the output format.
 
@@ -321,12 +324,10 @@ rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
 * You might already have noticed that you can run code chunks directly in RStudio:
     - Place the cursor on an R command and press `CTRL + Enter` (Windows) or `Cmd + Enter` (Mac) to run that line in R.
     - Select several R command lines and use the same keyboard shortcut as above to run those lines.
-    - To the right in each chunk there are two buttons, one for running the code in all chunks above the current chunk, or to run the code in the current chunk.
+    - To the right in each chunk there are two buttons; one for running the code in all chunks above the current chunk and one for running the code in the current chunk (depending on your layout, otherwise you can find the options in the Run drop-down).
     - Depending on your settings, the output of the chunk code will be displayed inline in the Rmd document, or in RStudios Console and Plot panels. To customize this setting, press the cog-wheel next to the Knit button and select either "Chunk Output Inline" or "Chunk Output in Console".
 * You can easily insert an empty chunk in your Rmd document in RStudio by pressing Insert > R.
 * In the top right in the editor panel in RStudio there is a button to toggle the document outline. By making that visible you can click and jump between sections (headers and named code chunks) in your R Markdown document.
-* Go to File > Help > Cheatsheets > R Markdown Cheat Sheet to open the main R Markdown cheatsheet.
-* Go to File > Help > Markdown Quick Reference to open the Markdown Quick Reference in your help pane.
 
 ## Using R Markdown in the MRSA project
 
@@ -376,10 +377,10 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 !!! tip
     Make it a practice to keep track of all input files and add them as parameters rather than hard-coding them later in the R code.
 
-* Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks. They load the required packages, reads the parameters and stores them in R objects to be used later in the code, and reads the data in the counts file, the multiqc file, as well as fetches meta data from GEO. These chunks are provided as is, and you do not need to edit them.
+* Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks. They 1) load the required packages, 2) reads the parameters and stores them in R objects to be used later in the code, and 3) reads the data in the counts file, the multiqc file, as well as fetches meta data from GEO. These chunks are provided as is, and you do not need to edit them.
 * Below these chunks there is some markdown text that contains the Supplementary Methods section. Note the use of section headers using `#` and `##`.
-* The `session_info` chunk prints information regarding R version and which packages and versions that are used.
-* Finally, there is a Supplementary Tables and Figures section. This contains four code chunks, each for a specific table or figure. Have a quick look at the code and see if you can figure out what it does. Don't worry if you can't understand everything.
+* Then there is a Supplementary Tables and Figures section. This contains four code chunks, each for a specific table or figure. Have a quick look at the code and see if you can figure out what it does. Don't worry if you can't understand everything.
+* Finally, there is a Reproducibility section which describes how the results in the report can be reproduced. The `session_info` chunk prints information regarding R version and which packages and versions that are used. We highly encourage you to include this chunk in all your R Markdown reports. It's an effortless way to increase reproducibility.
 * Now that you have had a look at the R Markdown document, it is time to Knit! We will do this from the R terminal (rather than pressing Knit).
 
 ```r
