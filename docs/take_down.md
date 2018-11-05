@@ -24,16 +24,16 @@ conda clean --all
 ```
 
 ### Remove every trace of Conda
-First check where Conda is installed:
+First check where Conda is installed. Look for the row "base environment".
 
 ```bash
-which conda
+conda info
 ```
 
-This should say something like `/Users/myuser/miniconda3/bin/conda`. Then remove the entire Conda directory:
+This should say something like `/Users/<user>/miniconda3`. Then remove the entire Conda directory:
 
 ```
-rm -rf /Users/myuser/miniconda3
+rm -rf /Users/<user>/miniconda3
 ```
 
 Lastly, open your `~/.bashrc` file (or `~/.bash_profile` if on Mac) in a text editor and remove the path to Conda from PATH.

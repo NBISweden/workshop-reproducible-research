@@ -4,7 +4,6 @@ TODO: Fix pdf render issue when running Jupyter server through Docker (possibly 
 TODO: Check jupyter tutorial on Linux
 TODO: Check docker tutorial on Linux (done, but not the installation part)
 TODO: Check rmarkdown tutorial on Linux
-TODO: Check takedown on Mac
 TODO: Check takedown on Linux
 TODO: Check docker tutorial on Mac (done, but not the installation part)
 TODO: Check rmarkdown tutorial on Mac
