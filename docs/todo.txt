@@ -1,5 +1,5 @@
 TODO: Add restaurant to schedule
-TODO: Fix RTD formatting
+TODO: Make data presentation
 TODO: Fix pdf render issue when running Jupyter server through Docker (possibly also in other cases)
 TODO: Check jupyter tutorial on Linux
 TODO: Check docker tutorial on Linux (done, but not the installation part)
