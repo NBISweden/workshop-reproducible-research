@@ -404,9 +404,9 @@ Here we set the working directory to the parent directory of the Rmd file (`../`
 You will probably get a good idea of the contents of the file, but the tables look weird and the figures could be better formatted.
 Let's start by adjusting the figures!
 
-* Locate the `setup` chunk. Here, we have already set `echo = FALSE`. Let's add some default figure options: `fig.height = 6, fig.width = 6, fig.align = 'center', fig.pos = "h"`.
+* Locate the `setup` chunk. Here, we have already set `echo = FALSE`. Let's add some default figure options: `fig.height = 6, fig.width = 6, fig.align = 'center'`.
 
-This will make the figures slightly smaller than default, center them, and position them in the order and context they appear in the text (otherwise, they may be placed automatically were there is a natural space in the document).
+This will make the figures slightly smaller than default and center them.
 
 * Knit again, using the same R command as above. Do you notice any difference? Better, but still not perfect!
 
@@ -446,13 +446,24 @@ fig.cap = paste("Expression (log-10 counts) of genes with at least ", max_cutoff
 
 This will use the `cv_cutoff` and `max_cutoff` variables to ensure that the figure legend gives the same information as was used to generate the plot. Note that figure legends are generated *after* the corresponding code chunk is evaluated. This means we can use objects defined in the code chunk in the legend.
 
+* Knit and have a look at the results.
+
+You may have noticed that the figures (probably) aren't positioned relative to the text exactly where you put the code chunks? This is a feature of the LaTeX rendering to PDF, where it tries to align tables and figures in an aestetically pleasing and efficient way. These are called "floats" in LaTeX, and can be a source of frustration. If you want to force the floats to be positioned in the order and context they appear in the text, you can use the following tweak. Note that this is only an issue with rendering to PDF, not with e.g. HTML.
+
+* Add the option `fig.pos = 'H'` to `opts_chunk` in the `setup` chunk (note the capital "H"). This will force figures to appear "here". Add the following lines to the header:
+
+```
+header-includes:
+  \usepackage{float}
+```
+
 * Knit and admire the results!
 
 The heatmap still looks a bit odd. Let's play with the `fig.height` and `out.height` options, like we did above, to scale the figure in a more appropriate way. Add this to the chunk options: `fig.height=10, out.height="22cm"`. Knit and check the results. Does it look better now?
 
-* Now let's add a third figure! This time we will not plot a figure in R, but use an available image file showing the structure of the Snakemake workflow used to generate the inputs for this report. Add a new chunk at the end containing this code:
+* Now let's add a third figure! This time we will not plot a figure in R, but use an available image file showing the structure of the Snakemake workflow used to generate the inputs for this report. Add a new chunk at the end of the Supplementary Tables and Figures section containing this code:
 
-```
+```{r}
 knitr::include_graphics(normalizePath(rulegraph_file))
 ```
 
@@ -470,13 +481,13 @@ out.height = "11cm"
 
 * Knit and check the results.
 
-When knitting to a PDF, the rendering process will make use of LaTeX. In the last part we will see how we can add LaTeX commands directly in the R Markdown document to further customize the look.
+As previously mentioned, the rendering process to PDF will make use of LaTeX. In the last part we will see how we can add LaTeX commands directly in the R Markdown document to further customize the look.
 
 * See the section on Reproducibility in the PDF. Notice that the R code output giving information about the R session is a bit big? We can fix this by adding the LaTeX commands `\footnotesize` and `\normalsize` before and after this part, i.e.:
 
 ````
 \footnotesize
-```{r}
+```{r session_info}
 sessionInfo()
 ```
 \normalsize
@@ -485,14 +496,25 @@ sessionInfo()
 This will make the `sessionInfo()` text smaller and then set it back to normal.
 
 * Knit and check the outcome.
-* You may also notice that the heading "Supplementary Tables and Figures" would be better place on a new page. To achieve this, insert `\newpage` before the heading (make sure to have a blank line before and after `\newpage`). Knit and see if it worked.
-* The last things that we will fix are the figure and table labels. Now they are automatically called e.g. Figure 1 and Table 1, but perhaps we would like to name them Figure S1 and Table S1, being Supplementary. We can customize this using the separate LaTeX file, `code/header.tex`. To include this in the Rmd, update the `output` part of the YAML header so that it looks like this:
+* You may also notice that the heading "Reproducibility" would be better to place on a new page. To achieve this, insert `\newpage` before the heading (make sure to have a blank line before and after `\newpage`). Knit and see if it worked.
+* The last things that we will fix are the figure and table labels. Now they are automatically called e.g. Figure 1 and Table 1, but perhaps we would like to name them Figure S1 and Table S1, being Supplementary. We can customize this using the separate LaTeX file, `code/header.tex`. To include this in the Rmd, update the YAML header so that it looks like this. Note that we have now included `\usepackage{float}` in the `code/header.tex` file insted of having it in the header. Keeping all your configuration settings in one file is a good way of achieving a consistant look for your report.
 
 ```yaml
+---
+title: "Supplementary Material"
+author: John Doe, Joan Dough, Jan Doh, Dyon Do
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document:
     includes:
       in_header: header.tex
+params:
+  counts_file: "results/tables/counts.tsv"
+  multiqc_file: "intermediate/multiqc_general_stats.txt"
+  rulegraph_file: "results/rulegraph.png"
+  SRR_IDs: "SRR935090 SRR935091 SRR935092"
+  GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
+---
 ```
 
 * Knit and view the results.

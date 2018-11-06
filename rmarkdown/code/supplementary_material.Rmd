@@ -103,7 +103,7 @@ pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",substr(gsub("%2C",""
 
 The code for reproducing this analysis is available in this [Bitbucket repo](https://bitbucket.org/scilifelab-lts/reproducible_research_course/src/master/docker/). The repo contains:
 
-* A Snakemake workflow that can be used to rerun the full analysis, from downloading data to producing this supplementary material.
+* A Snakemake workflow for running all analysis steps.
 * A Conda environment file for installing all needed dependencies.
 * A Docker file for running the analysis in a well-defined and isolated system.
 
