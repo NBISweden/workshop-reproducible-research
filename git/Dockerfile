@@ -1,4 +1,4 @@
-FROM rocker/verse:3.4.0
+FROM rocker/verse:3.4.3
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
 WORKDIR /course

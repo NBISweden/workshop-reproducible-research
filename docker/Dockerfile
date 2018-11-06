@@ -1,4 +1,4 @@
-FROM rocker/verse:3.4.0
+FROM rocker/verse:3.4.3
 MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
 
 WORKDIR /course
@@ -16,18 +16,18 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -
 # Add Conda to PATH
 ENV PATH="/opt/miniconda3/bin:${PATH}"
 
-# Install R packages
-RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
-    pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'devtools'))" \
-    && rm -rf /tmp/Rtmp* /tmp/*.rds
-# Install devel version due to https://github.com/seandavi/GEOquery/issues/39
-RUN Rscript -e "devtools::install_github('seandavi/GEOquery')" \
-    && rm -rf /tmp/Rtmp* /tmp/*.rds
-
 # Set up the Conda environment
 COPY environment.yml .
 RUN conda env update -n base -f environment.yml && \
     conda clean --all
+
+# Install R packages
+RUN Rscript -e "BiocInstaller::biocLite(suppressUpdates = T, \
+    pkgs = c('ggplot2', 'reshape2', 'pheatmap', 'rtracklayer', 'devtools', 'dplyr'))" \
+    && rm -rf /tmp/Rtmp* /tmp/*.rds
+# Install devel version due to https://github.com/seandavi/GEOquery/issues/39
+RUN Rscript -e "devtools::install_github('seandavi/GEOquery')" \
+    && rm -rf /tmp/Rtmp* /tmp/*.rds
 
 # Add the workflow files
 COPY Snakefile config.yml ./
