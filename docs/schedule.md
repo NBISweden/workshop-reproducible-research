@@ -61,7 +61,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   </tr>
   <tr>
     <td> <font size="3"> 17:30 </td>
-    <td> <font size="3"> Dinner</td>
+    <td> <font size="3"> Dinner at <a href="http://marketrosenlund.se">Market</a></td>
   </tr>
   <tr>
     <td colspan="3"> </td>

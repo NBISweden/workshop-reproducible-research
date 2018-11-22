@@ -1,10 +1,18 @@
-TODO: Add restaurant to schedule
 TODO: See if the tutorials can be quickly outlined in the lectures
 TODO: Make data presentation
 TODO: Make new Docker slides
 TODO: Check jupyter tutorial on Linux
 TODO: Check docker tutorial on Linux (done, but not the installation part)
 TODO: Check takedown on Linux
+TODO: Print game
+TODO: Print wifi
+TODO: Print certificates
+TODO: Attendance sheet
+TODO: Evaluation form
+TODO: Food doodle
+TODO: Extension cords
+TODO: Test wifi
+TODO: Install ethernet
 TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       can't install gglot2. Seems to have to do with the fortran compiler on latest
       OSX. I followed these instructions to solve it. We can see if this turns out to
