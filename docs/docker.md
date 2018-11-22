@@ -48,7 +48,7 @@ On Windows 7 we will instead use Docker Toolbox, which is available at [docker.c
 ### Linux
 How to install Docker differs a bit depending on your Linux distro, but the steps are the same. For details on how to do it on your distro see [https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/installation/#server).
 
-Here we show how to do it for Ubuntu, which is the most common desktop distribution. The same instructions apply to distributions based on Ubuntu, such as Elementary OS or Linux Mint. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your OS is from 2015 or earlier you can double check this with `lsb_release -a`. If it's newer you're probably fine.
+Here we show how to do it for Ubuntu, which is the most common desktop distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your OS is from 2015 or earlier you can double check this with `lsb_release -a`. If it's newer you're probably fine. The same instructions apply to distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you would have to map to the corresponding Ubuntu version and use that instead of `$(lsb_release -cs)` below (see [here](https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history) for Mint).
 
 1. Add the GPG key for the official Docker repository to the system:
 ```bash

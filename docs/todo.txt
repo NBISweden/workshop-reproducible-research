@@ -2,14 +2,12 @@ TODO: See if the tutorials can be quickly outlined in the lectures
 TODO: Make data presentation
 TODO: Make new Docker slides
 TODO: Check jupyter tutorial on Linux
-TODO: Check docker tutorial on Linux (done, but not the installation part)
 TODO: Check takedown on Linux
 TODO: Print game
 TODO: Print wifi
 TODO: Print certificates
-TODO: Attendance sheet
+TODO: Print attendance sheet
 TODO: Evaluation form
-TODO: Food doodle
 TODO: Extension cords
 TODO: Test wifi
 TODO: Install ethernet
