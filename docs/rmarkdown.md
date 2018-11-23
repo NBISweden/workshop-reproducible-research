@@ -527,7 +527,10 @@ params:
 
 Lastly, if you have time, you can try out using R Markdown for making presentations.
 
-The exercise task is short and simple: recreate the slides shown below using R Markdown (hint: use output format "ioslides"). It is now also possible to render PowerPoint presentations (see e.g. https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html), but note that this requires rmarkdown >= v1.9 and Pandoc >= v2.0.5.
+The exercise task is short and simple: recreate the slides shown below using R Markdown (hint: use output format "ioslides").
+
+!!! tip
+    It is now also possible to [render PowerPoint presentations](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html), but note that this requires rmarkdown >= v1.9 and Pandoc >= v2.0.5.
 
 > ![](images/ioslides.png)
 
