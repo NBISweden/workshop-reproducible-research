@@ -44,14 +44,8 @@ rm Miniconda3-4.5.11-Linux-x86_32.sh
 * The installer will ask you questions during the installation:
     - do you accept the license terms?
     - do you accept the installation path or do you want to chose a different one?
-    - do you want to add the Conda installation to your PATH by adding a line to your `.bashrc` file? **Choose "No" here.**
-* Add the Conda start script to your `.bashrc` file. This ensures that the system will find the Conda executable. Adjust the path to where you installed Miniconda.
-
-```bash
-echo ". /Users/<user>/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc
-```
-
-* Restart your shell so the settings in `.bashrc` can take effect (e.g. by `bash`).
+    - do you want to add the Conda installation to your PATH by adding a line to your `~/.bashrc` file (or `~/.bash_profile` if on Mac)? If you select "yes", the system will find Conda and you can run the `conda` command directly. If you select "no", you will have to manually add it to your PATH each time you restart your shell, i.e. `export PATH="~/miniconda3/bin:$PATH"`.
+* Either restart your shell so the settings in `.bashrc` can take effect, or add Conda to your PATH with `export PATH="~/miniconda3/bin:$PATH"`.
 * You can verify that the installation worked by running:
 
 ```bash
@@ -63,9 +57,6 @@ conda --version
 ```
 conda config --add channels conda-forge
 ```
-
-!!! note
-    You might wonder why we didn't just add `conda` to PATH? It's because doing so can cause some issues if your already using another tool called Virtualenv for managing Python environments.
 
 # Practical exercise
 
@@ -84,13 +75,10 @@ This will create an environment called project_a, containing FastQC from the Bio
 * Once it is done, you can activate the environment:
 
 ```bash
-conda activate project_a
+source activate project_a
 ```
 
 By default, Conda will add information to your prompt telling you which environment that is active.
-
-!!! attention
-    If you're doing this exercise in the course Docker container you have to use `source activate` instead of `conda activate`.
 
 * To see all your environments you can run:
 
@@ -106,7 +94,7 @@ The active environment will be marked with an asterisk.
 conda list
 ```
 
-* Now, deactivate the environment by running `conda deactivate`.
+* Now, deactivate the environment by running `source deactivate`.
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
 
@@ -116,7 +104,7 @@ fastqc --version
 
 * Did it work? Activate your project_a environment and run the `fastqc --version` command again. Does it work now?
 
-Hopefully the FastQC software was not found in your root environment (unless you had installed it previously), but worked once your environment was activated.
+Hopefully the FastQC software was not found in your base environment (unless you had installed it previously), but worked once your environment was activated.
 
 * Now, let's add another package (sra-tools) to our environment using `conda install`. Make sure that project_a is the active environment first.
 
@@ -154,7 +142,7 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 
 * Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the bowtie2 version.
-* Run `conda deactivate` to exit your active environment.
+* Run `source deactivate` to exit your active environment.
 * List your environments (do you remember the command?).
 * Now, let's remove an environment:
 

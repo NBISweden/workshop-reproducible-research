@@ -35,7 +35,7 @@ Now install the new environment and activate it.
 
 ```bash
 conda env create -n snakemake_exercise -f environment.yml
-conda activate snakemake_exercise
+source activate snakemake_exercise
 ```
 
 Check that Snakemake is installed correctly, for example by executing `snakemake --help`. This should output a list of available Snakemake settings. If you get `bash: snakemake: command not found` then you need to go back and ensure that the Conda steps were successful.

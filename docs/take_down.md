@@ -13,7 +13,7 @@ First list all Conda environments
 conda env list
 ```
 
-For each of the environments except "root" run
+For each of the environments except "base" run
 ```bash
 conda remove -n envname --all
 ```

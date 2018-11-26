@@ -1,10 +1,13 @@
 TODO: See if the tutorials can be quickly outlined in the lectures
 TODO: Make data presentation
+TODO: Confirm booking at Market
+TODO: Add link to SRA data files
 TODO: Make new Docker slides
 TODO: Check jupyter tutorial on Linux
 TODO: Check takedown on Linux
 TODO: Print game
 TODO: Print wifi
+TODO: Print food stuff
 TODO: Print certificates
 TODO: Print attendance sheet
 TODO: Evaluation form
@@ -21,9 +24,6 @@ TODO: There is still a problem with GEOquery that comes from which server it hap
 
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Handle UTF8 multiQC
-TODO: In SM: run
-TODO: In SM: cluster
-TODO: In SM: conda/singularity (docker)
 TODO: Check volume mounts on Windows
 TODO: Fix line breaks on Windows
 TODO: finish installation section on win7 (volume sharing)
