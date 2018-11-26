@@ -1,7 +1,6 @@
 TODO: See if the tutorials can be quickly outlined in the lectures
 TODO: Make data presentation
 TODO: Confirm booking at Market
-TODO: Add link to SRA data files
 TODO: Make new Docker slides
 TODO: Check jupyter tutorial on Linux
 TODO: Check takedown on Linux

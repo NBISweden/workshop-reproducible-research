@@ -1,0 +1,16 @@
+ruleorder: get_SRA_backup > get_SRA_by_accession
+rule get_SRA_backup:
+    """
+    To be used if SRA Tools doesn't work. The FastQ files contain 25000 reads each.
+    """
+    output:
+        "data/raw_internal/{sra_id}.fastq.gz"
+    run:
+        if wildcards.sra_id == "SRR935090":
+            shell("wget https://ndownloader.figshare.com/files/13649699 -O {output}")
+        elif wildcards.sra_id == "SRR935091":
+            shell("wget https://ndownloader.figshare.com/files/13649702 -O {output}")
+        elif wildcards.sra_id == "SRR935092":
+            shell("wget https://ndownloader.figshare.com/files/13649705 -O {output}")
+        else:
+            raise("Incorrect SRA ID")
