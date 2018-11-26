@@ -1,14 +1,5 @@
 TODO: See if the tutorials can be quickly outlined in the lectures
-TODO: Make data presentation
-TODO: Confirm booking at Market
-TODO: Make new Docker slides
 TODO: Check jupyter tutorial on Linux
-TODO: Check takedown on Linux
-TODO: Print game
-TODO: Print wifi
-TODO: Print food stuff
-TODO: Print certificates
-TODO: Print attendance sheet
 TODO: Evaluation form
 TODO: Extension cords
 TODO: Test wifi
