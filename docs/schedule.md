@@ -15,7 +15,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   </tr>
   <tr>
     <td> <font size="3"> 09:00
-    <td> <font size="3"> Introduction to Reproducible Research [[https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/introduction.pdf](slides)]
+    <td> <font size="3"> Introduction to Reproducible Research ([slides](https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/introduction.pdf))
 </td>
   </tr>
   <tr>
