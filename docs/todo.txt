@@ -4,7 +4,6 @@ TODO: Put slides on Figshare and link from RTD
 TODO: Check jupyter tutorial on Linux
 TODO: Evaluation form
 TODO: Extension cords
-TODO: Install ethernet
 TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
       can't install gglot2. Seems to have to do with the fortran compiler on latest
       OSX. I followed these instructions to solve it. We can see if this turns out to
