@@ -20,7 +20,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   </tr>
   <tr>
     <td> <font size="3"> 09:45 </td>
-    <td> <font size="3"> Data management and project organization</td>
+    <td> <font size="3"> Data management and project organization [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/data_management.pdf">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
