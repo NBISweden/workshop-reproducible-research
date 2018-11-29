@@ -100,18 +100,18 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown<br>
+      - Introduction to R Markdown [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/rmarkdown.pdf">slides</a>]<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers<br>
+      - Introduction to containers [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/docker.pdf">slides</a>]<br>
       - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:00 </td>
-    <td> <font size="3"> Wrap-up</td>
+    <td> <font size="3"> Wrap-up [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/wrapup.pdf">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
