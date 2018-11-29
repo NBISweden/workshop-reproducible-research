@@ -31,7 +31,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda<br>
+      - Introduction to the package and environment manager Conda [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/conda.pdf">slides</a>]<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
@@ -44,7 +44,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake<br>
+      - Introduction to Snakemake [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/slides.pdf">slides</a>]<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
   </tr>
@@ -82,12 +82,12 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git<br>
+      - Introduction to version control and git [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/git.pdf">slides</a>]<br>
       - Practical tutorial: <a href="../git/">Git</a>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter<br>
+      - Introduction to Jupyter [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/jupyter.pdf">slides</a>]<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
