@@ -1,18 +1,8 @@
 TODO: Push tagged Docker images
 TODO: Tag RTD
-TODO: Put slides on Figshare and link from RTD
-TODO: Check jupyter tutorial on Linux
-TODO: Evaluation form
-TODO: Extension cords
-TODO: After reinstalling R 3.3.3 and RStudio according to our instructions I
-      can't install gglot2. Seems to have to do with the fortran compiler on latest
-      OSX. I followed these instructions to solve it. We can see if this turns out to
-      be a problem.
-      http://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/
 TODO: There is still a problem with GEOquery that comes from which server it happens to retrieve from.
       Should maybe install from `library(devtools); install_github('GEOquery','seandavi')``
 
-TODO: See if the tutorials can be quickly outlined in the lectures
 TODO: Add detailed installation instructions for R and RStudio
 TODO: Handle UTF8 multiQC
 TODO: Check volume mounts on Windows

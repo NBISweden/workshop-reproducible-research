@@ -15,12 +15,12 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   </tr>
   <tr>
     <td> <font size="3"> 09:00
-    <td> <font size="3"> Introduction to Reproducible Research [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/introduction.pdf">slides</a>]
+    <td> <font size="3"> Introduction to Reproducible Research [<a href="https://ndownloader.figshare.com/files/13687415">slides</a>]
 </td>
   </tr>
   <tr>
     <td> <font size="3"> 09:45 </td>
-    <td> <font size="3"> Data management and project organization [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/data_management.pdf">slides</a>]</td>
+    <td> <font size="3"> Data management and project organization [<a href="https://ndownloader.figshare.com/files/13687406">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
@@ -31,7 +31,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/conda_and_case_study_intro.pdf">slides</a>]<br>
+      - Introduction to the package and environment manager Conda [<a href="https://ndownloader.figshare.com/files/13687403">slides</a>]<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
@@ -44,7 +44,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/snakemake.pdf">slides</a>]<br>
+      - Introduction to Snakemake [<a href="https://ndownloader.figshare.com/files/13687430">slides</a>]<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
   </tr>
@@ -82,12 +82,12 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/git.pdf">slides</a>]<br>
+      - Introduction to version control and git [<a href="https://ndownloader.figshare.com/files/13687412">slides</a>]<br>
       - Practical tutorial: <a href="../git/">Git</a>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/jupyter.pdf">slides</a>]<br>
+      - Introduction to Jupyter [<a href="https://ndownloader.figshare.com/files/13687418">slides</a>]<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
@@ -100,18 +100,18 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/rmarkdown.pdf">slides</a>]<br>
+      - Introduction to R Markdown [<a href="https://ndownloader.figshare.com/files/13687427">slides</a>]<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/docker.pdf">slides</a>]<br>
+      - Introduction to containers [<a href="https://ndownloader.figshare.com/files/13687409">slides</a>]<br>
       - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:00 </td>
-    <td> <font size="3"> Wrap-up [<a href="https://bitbucket.org/scilifelab-lts/rep_res_slides_1811/raw/master/wrapup.pdf">slides</a>]</td>
+    <td> <font size="3"> Wrap-up [<a href="https://ndownloader.figshare.com/files/13687433">slides</a>]</td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
