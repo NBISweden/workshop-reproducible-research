@@ -1,9 +1,8 @@
 # Finding the course venue
 
-1. Transport yourself to Gothenburg (see e.g. [SJ](https://www.sj.se) or [MTR Express](https://www.mtrexpress.se)).
-2. Go to Chalmers University of Technology ([Kemigården 4, 412 58 Göteborg](https://goo.gl/maps/WB1LcgKK9CN2)). The closest tram stops are Kapellplatsen or Chalmers (search for public transport options [here](https://www.vasttrafik.se/en/)).
-3. Enter the Chemistry building through the main entrance. From there on, there will be signs pointing you in the right direction. We will be in a seminar room called 10:an.
+1. Transport yourself to Stockholm (see e.g. [SJ](https://www.sj.se) or [MTR Express](https://www.mtrexpress.se)).
+2. Go to SciLifeLab in Solna ([TomtebodavÃ¤gen 23A, 171 65 Solna](https://goo.gl/maps/NsTFHxfAYcr)). The closest bus stop is called Karolinska institutet Biomedicum (search for public transport options [here](https://sl.se/en/)).
+3. Enter the SciLifeLab/Karolinska Institutet Science Park building. After entering, turn immediately left and pass through the glass door to find the rooms Air and Fire, where to course will take place. (There is a reception where you can ask for help if you cannot find the rooms.)
 
 # Finding the restaurant for the course dinner
-
-We will have the course dinner at Market. It is located on Rosenlundsgatan 8. The closest tram stops are Hagakyrkan, Järntorget or Grönsakstorget.
+More info will come.
