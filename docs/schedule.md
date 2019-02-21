@@ -1,12 +1,12 @@
 # Schedule
 
-The course will be in "10:an", Chemistry building, Chalmers University of Technology, Gothenburg (see [travel info](travel.md)).
+More information about the course venue will added later (see [travel info](travel.md)). The Schedule below is a preliminary draft.
 
 <table>
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 1 - 2018-11-28 </center>
+      <center> Day 1 - 2019-05-14 </center>
     </td>
   </tr>
   <tr>
@@ -15,12 +15,12 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   </tr>
   <tr>
     <td> <font size="3"> 09:00
-    <td> <font size="3"> Introduction to Reproducible Research [<a href="https://ndownloader.figshare.com/files/13687415">slides</a>]
+    <td> <font size="3"> Introduction to Reproducible Research
 </td>
   </tr>
   <tr>
     <td> <font size="3"> 09:45 </td>
-    <td> <font size="3"> Data management and project organization [<a href="https://ndownloader.figshare.com/files/13687406">slides</a>]</td>
+    <td> <font size="3"> Data management and project organization</td>
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
@@ -31,7 +31,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda [<a href="https://ndownloader.figshare.com/files/13687403">slides</a>]<br>
+      - Introduction to the package and environment manager Conda<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
@@ -44,7 +44,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake [<a href="https://ndownloader.figshare.com/files/13687430">slides</a>]<br>
+      - Introduction to Snakemake<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
   </tr>
@@ -62,7 +62,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   </tr>
   <tr>
     <td> <font size="3"> 17:30 </td>
-    <td> <font size="3"> Dinner at <a href="http://marketrosenlund.se">Market</a></td>
+    <td> <font size="3"> Course dinner</td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -70,7 +70,7 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 2  - 2018-11-29 </center>
+      <center> Day 2  - 2019-05-15 </center>
     </td>
   </tr>
   <tr>
@@ -82,12 +82,12 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git [<a href="https://ndownloader.figshare.com/files/13687412">slides</a>]<br>
+      - Introduction to version control and git<br>
       - Practical tutorial: <a href="../git/">Git</a>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter [<a href="https://ndownloader.figshare.com/files/13687418">slides</a>]<br>
+      - Introduction to Jupyter <br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a>
     </td>
   </tr>
@@ -100,18 +100,18 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown [<a href="https://ndownloader.figshare.com/files/13687427">slides</a>]<br>
+      - Introduction to R Markdown <br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers [<a href="https://ndownloader.figshare.com/files/13687409">slides</a>]<br>
+      - Introduction to containers <br>
       - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:00 </td>
-    <td> <font size="3"> Wrap-up [<a href="https://ndownloader.figshare.com/files/13687433">slides</a>]</td>
+    <td> <font size="3"> Wrap-up </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
@@ -120,6 +120,5 @@ The course will be in "10:an", Chemistry building, Chalmers University of Techno
 </table>
 
 **Teachers:**  
-Rasmus Ågren  
 Leif Wigge  
-Viktor Jonsson  
+John Sundh
