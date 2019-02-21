@@ -1,6 +1,8 @@
 # Schedule
 
-More information about the course venue will added later (see [travel info](travel.md)). The Schedule below is a preliminary draft.
+More information about the course venue will added later (see [travel info](travel.md)).
+
+Please note: The Schedule below is a preliminary draft!
 
 <table>
   <tr>
