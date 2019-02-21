@@ -1,6 +1,6 @@
 # Schedule
 
-More information about the course venue will added later (see [travel info](travel.md)).
+The course will take place in the room Air (see [travel info](travel.md)).
 
 Please note: The Schedule below is a preliminary draft!
 
