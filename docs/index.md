@@ -9,7 +9,7 @@
 - SciLifeLab, Stockholm, Sweden ([travel info](travel.md))
 
 **Apply here:**  
-- Please visit this link (available soon) for complete course description, entry requirements and application form.
+- Please visit [this link](https://www.scilifelab.se/events/tools-for-reproducible-research-2/) for complete course description, entry requirements and application form.
 
 ### Course description
 
