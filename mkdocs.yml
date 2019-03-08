@@ -1,5 +1,7 @@
 site_name: NBIS Reproducible research course
-theme: readthedocs
+theme:
+    name: readthedocs
+    custom_dir: docs_custom/
 pages:
   - Welcome: index.md
   - About: 'about.md'
