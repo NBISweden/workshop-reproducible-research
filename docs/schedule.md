@@ -124,3 +124,8 @@ Please note: The Schedule below is a preliminary draft!
 **Teachers:**  
 Leif Wigge  
 John Sundh
+Erik Fasterius
+Nanjiang Shu
+Per Unneberg
+Verena Kutschera
+Jakub Westholm
