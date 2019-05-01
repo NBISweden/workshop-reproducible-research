@@ -38,11 +38,11 @@ Please note: The Schedule below is a preliminary draft!
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:00  </td>
+    <td> <font size="3"> 11:30  </td>
     <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td> <font size="3"> 13:00 </td>
+    <td> <font size="3"> 12:30 </td>
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
@@ -94,11 +94,11 @@ Please note: The Schedule below is a preliminary draft!
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:00
+    <td> <font size="3"> 11:30
     <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td> <font size="3"> 13:00 </td>
+    <td> <font size="3"> 12:30 </td>
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
