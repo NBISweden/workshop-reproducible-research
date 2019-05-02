@@ -75,7 +75,7 @@ This will create an environment called project_a, containing FastQC from the Bio
 * Once it is done, you can activate the environment:
 
 ```bash
-source activate project_a
+conda activate project_a
 ```
 
 By default, Conda will add information to your prompt telling you which environment that is active.
@@ -94,7 +94,7 @@ The active environment will be marked with an asterisk.
 conda list
 ```
 
-* Now, deactivate the environment by running `source deactivate`.
+* Now, deactivate the environment by running `conda deactivate`.
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
 
@@ -142,7 +142,7 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 
 * Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the bowtie2 version.
-* Run `source deactivate` to exit your active environment.
+* Run `conda deactivate` to exit your active environment.
 * List your environments (do you remember the command?).
 * Now, let's remove an environment:
 
