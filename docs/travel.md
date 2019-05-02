@@ -5,4 +5,4 @@
 3. Enter the SciLifeLab/Karolinska Institutet Science Park building. After entering, turn immediately left and pass through the glass door to find the room Air, where to course will take place. (There is a reception where you can ask for help if you cannot find the rooms.)
 
 # Finding the restaurant for the course dinner
-More info will come.
+We will have the course dinner at [Grappa Bar och Matsal](http://www.grappabar.nu/kontakt.aspx). It is located on Sankt Eriksgatan 86, close to Sankt Eriksplan.
