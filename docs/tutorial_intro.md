@@ -57,6 +57,34 @@ cd reproducible_research_course
 ```
 
 ## For Windows users
+
+There are several different ways to run the course material on a Windows computer. Neither is perhaps optimal, and the material itself has not been adapted specifically for Windows. Nevertheless, in principle everything *should* be possible to run. A few ways you could setup:
+
+- Run as Linux through a virtual machine (and see the Linux setup above)
+- Use the Windows 10 PowerShell, install git and clone the course repository (see the Mac/Linux setup above)
+- Use the Linux Bash Shell on Windows 10 (see below) *Recommended for the course*
+- Run the course in a Docker container (see below)
+
+### Running in the Linux Bash Shell on Windows 10
+
+For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see e.g.:
+https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting
+
+Install Bash on Windows 10, follow the instructions at e.g. one of these resources:
+
+- https://docs.microsoft.com/en-us/windows/wsl/install-win10
+- https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
+- https://itsfoss.com/install-bash-on-windows/
+
+Open the Bash Shell Linux terminal and clone the git/bitbucket repository containing all files you will need for completing the tutorials, as follows. First, `cd` into a directory on your computer (or create one) where it makes sense to download the course directory.
+```bash
+cd /path/to/your/directory
+git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
+cd reproducible_research_course
+```
+
+### Using Docker to run the course
+
 First, cd into a directory on your computer (or create one) where it makes sense to download the course directory. Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
 
 ```bash
