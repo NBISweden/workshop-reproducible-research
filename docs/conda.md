@@ -17,28 +17,21 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 !!! attention
     If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 
+!!! attention
+    If you already have installed conda but want to update, you should be able to simply run `conda update conda` and skip the installation instructions below.
+
 * Go ahead and install Conda as described below. **Be sure to download the correct file for your OS**.
 
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-MacOSX-x86_64.sh -O
-bash Miniconda3-4.5.11-MacOSX-x86_64.sh
-rm Miniconda3-4.5.11-MacOSX-x86_64.sh
-
-# *** Install Miniconda3 for 32-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-MacOSX-x86_32.sh -O
-bash Miniconda3-4.5.11-MacOSX-x86_32.sh
-rm Miniconda3-4.5.11-MacOSX-x86_32.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-MacOSX-x86_64.sh -O
+bash Miniconda3-4.6.14-MacOSX-x86_64.sh
+rm Miniconda3-4.6.14-MacOSX-x86_64.sh
 
 # *** Install Miniconda3 for 64-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O
-bash Miniconda3-4.5.11-Linux-x86_64.sh
-rm Miniconda3-4.5.11-Linux-x86_64.sh
-
-# *** Install Miniconda3 for 32-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_32.sh -O
-bash Miniconda3-4.5.11-Linux-x86_32.sh
-rm Miniconda3-4.5.11-Linux-x86_32.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
+bash Miniconda3-4.6.14-Linux-x86_64.sh
+rm Miniconda3-4.6.14-Linux-x86_64.sh
 ```
 
 * The installer will ask you questions during the installation:
