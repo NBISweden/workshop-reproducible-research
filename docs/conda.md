@@ -18,7 +18,7 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
     If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
 
 !!! attention
-    If you already have installed conda but want to update, you should be able to simply run `conda update conda` and skip the installation instructions below.
+    If you already have installed conda but want to update, you should be able to simply run `conda update conda` and subsequently `conda init`, and skip the installation instructions below.
 
 * Go ahead and install Conda as described below. **Be sure to download the correct file for your OS**.
 
@@ -35,10 +35,10 @@ rm Miniconda3-4.6.14-Linux-x86_64.sh
 ```
 
 * The installer will ask you questions during the installation:
-    - do you accept the license terms?
-    - do you accept the installation path or do you want to chose a different one?
-    - do you want to add the Conda installation to your PATH by adding a line to your `~/.bashrc` file (or `~/.bash_profile` if on Mac)? If you select "yes", the system will find Conda and you can run the `conda` command directly. If you select "no", you will have to manually add it to your PATH each time you restart your shell, i.e. `export PATH="~/miniconda3/bin:$PATH"`.
-* Either restart your shell so the settings in `.bashrc` can take effect, or add Conda to your PATH with `export PATH="~/miniconda3/bin:$PATH"`.
+    - do you accept the license terms? (Yes)
+    - do you accept the installation path or do you want to chose a different one? (Probably yes)
+    - do you want to run conda init to setup conda on your system? (Yes)
+* Either restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take effect, or source `~/.bashrc`/`~/.bash_profile`.
 * You can verify that the installation worked by running:
 
 ```bash
