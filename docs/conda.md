@@ -45,9 +45,11 @@ rm Miniconda3-4.6.14-Linux-x86_64.sh
 conda --version
 ```
 
-* Next, we will add conda-forge to the default channels (from where packages will be searched for and downloaded if no channel is specified). This is because conda-forge has largely replaced the default channel that comes with Conda.
+* Next, we will setup the the default channels (from where packages will be searched for and downloaded if no channel is specified).
 
 ```
+conda config --add channels defaults
+conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
