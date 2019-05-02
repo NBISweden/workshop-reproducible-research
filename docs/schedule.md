@@ -2,8 +2,6 @@
 
 The course will take place in the room Air (see [travel info](travel.md)).
 
-Please note: The Schedule below is a preliminary draft!
-
 <table>
   <tr>
     <td colspan="3">
