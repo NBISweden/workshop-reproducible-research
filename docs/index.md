@@ -1,6 +1,6 @@
 
 
-## Tools for reproducible research (1 ECTS)
+<h2> Tools for reproducible research (1 ECTS) </h2>
 
 **Date and time:**  
 - May 14-15, 2019
@@ -11,13 +11,13 @@
 **Apply here:**  
 - Please visit [this link](https://www.scilifelab.se/events/tools-for-reproducible-research-2/) for complete course description, entry requirements and application form.
 
-### Course description
+<h3> Course description </h3>
 
 One of the key principles of proper scientific procedure is the act of repeating an experiment or analysis and being able to reach similar conclusions. Published research based on computational analysis, e.g. bioinformatics or computational biology, have often suffered from incomplete method descriptions (e.g. list of used software versions); unavailable raw data; and incomplete, undocumented and/or unavailable code. This essentially prevents any possibility of reproducing the results of such studies. The term “reproducible research” has been used to describe the idea that a scientific publication should be distributed along with all the raw data and metadata used in the study, all the code and/or computational notebooks needed to produce results from the raw data, and the computational environment or a complete description thereof.
 
 Reproducible research not only leads to proper scientific conduct, but also enables other researchers to build upon previous work. Most importantly, the person who organizes their work with reproducibility in mind will quickly realize the immediate personal benefits: an organized and structured way of working. The person that most often has to reproduce your own analysis is your future self!
 
-### Course content
+<h3> Course content </h3>
 
 In this course you will learn how to make your data analyses reproducible.
 

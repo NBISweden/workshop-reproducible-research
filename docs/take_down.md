@@ -1,4 +1,4 @@
-# Take down
+<h1> Take down </h1>
 Depending on which of the tutorials you have taken, there might be quite a lot of files stored on your computer. Here are instructions for how to remove them.
 
 ## All tutorials
