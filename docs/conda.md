@@ -135,10 +135,16 @@ Let's further assume that you have an old project (called Project Old) where you
 conda create -n project_old -c bioconda bowtie2=2.2.5
 ```
 
+* List your environments (do you remember the command?).
 * Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the bowtie2 version.
+* Let's try to remove an installed package from the active environment:
+
+```
+conda remove sra-tools
+```
+
 * Run `conda deactivate` to exit your active environment.
-* List your environments (do you remember the command?).
 * Now, let's remove an environment:
 
 ```bash
@@ -156,7 +162,7 @@ This will remove package tar-balls that are left from package installations, unu
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How to use `conda install` for installing packages.
+    * How to use `conda install` for installing packages on the fly.
     * How to create and activate environments and how to change between them.
     * How to remove packages or environments and clean up.
 
@@ -181,11 +187,18 @@ dependencies:
 - sra-tools=2.8
 ```
 
-* Now, make a new Conda environment from the yaml file:
+* Now, make a new Conda environment from the yaml file (note that here the command is `conda env create` as opposed to `conda create` that we used above):
 
 ```bash
 conda env create -n project_mrsa -f environment.yml
 ```
+
+!!! tip
+    Instead of the `n` flag you can use the `-p` flag to set the full path to where the conda environment
+    should be installed. In that way you can contain the conda environment inside the project directory, which
+    does make sense from a reproducibility perspective, and makes it easier to keep track of what environment
+    belongs to what project. If you don't specify `-p` the environment will be installed in the default
+    `miniconda3/envs/` directory.
 
 * Activate the environment!
 * Now we can run the code for the MRSA project found in `code/run_qc.sh`, either by running `bash code/run_qc.sh` or by opening the `run_qc.sh` file and executing each line in the terminal one by one. Do this!
