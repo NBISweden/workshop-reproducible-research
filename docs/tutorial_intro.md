@@ -71,7 +71,7 @@ There are several different ways to run the course material on a Windows compute
 
 ### Running in the Linux Bash Shell on Windows 10
 
-For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see e.g. [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting)
+For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see e.g. [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
 
 Install Bash on Windows 10, follow the instructions at e.g. one of these resources:
 
