@@ -88,7 +88,7 @@ cd reproducible_research_course
 
 ### Using Docker to run the course
 
-First, cd into a directory on your computer (or create one) where it makes sense to download the course directory. Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
+Alternatively, you could use Docker to run the course in a Docker container. First, cd into a directory on your computer (or create one) where it makes sense to download the course directory. Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). Then run:
 
 ```bash
 cd c:/my_dir
