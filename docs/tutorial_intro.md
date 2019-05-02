@@ -56,6 +56,10 @@ git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 
+!!! attention
+    Check your git version by `git --version`. If you have a very old version of git you might want to update to a
+    later version.
+
 ## For Windows users
 
 There are several different ways to run the course material on a Windows computer. Neither is perhaps optimal, and the material itself has not been adapted specifically for Windows. Nevertheless, in principle everything *should* be possible to run. A few ways you could setup:
@@ -67,14 +71,13 @@ There are several different ways to run the course material on a Windows compute
 
 ### Running in the Linux Bash Shell on Windows 10
 
-For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see e.g.:
-https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting
+For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see e.g. [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting)
 
 Install Bash on Windows 10, follow the instructions at e.g. one of these resources:
 
-- https://docs.microsoft.com/en-us/windows/wsl/install-win10
-- https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
-- https://itsfoss.com/install-bash-on-windows/
+- [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+- [https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
+- [https://itsfoss.com/install-bash-on-windows/](https://itsfoss.com/install-bash-on-windows/)
 
 Open the Bash Shell Linux terminal and clone the git/bitbucket repository containing all files you will need for completing the tutorials, as follows. First, `cd` into a directory on your computer (or create one) where it makes sense to download the course directory.
 ```bash
