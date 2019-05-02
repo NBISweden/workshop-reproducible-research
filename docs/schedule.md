@@ -1,4 +1,4 @@
-# Schedule
+<h1> Schedule </h1>
 
 The course will take place in the room Air (see [travel info](travel.md)).
 
