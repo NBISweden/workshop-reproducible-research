@@ -194,7 +194,7 @@ conda env create -n project_mrsa -f environment.yml
 ```
 
 !!! tip
-    Instead of the `n` flag you can use the `-p` flag to set the full path to where the conda environment
+    Instead of the `-n` flag you can use the `-p` flag to set the full path to where the conda environment
     should be installed. In that way you can contain the conda environment inside the project directory, which
     does make sense from a reproducibility perspective, and makes it easier to keep track of what environment
     belongs to what project. If you don't specify `-p` the environment will be installed in the default
