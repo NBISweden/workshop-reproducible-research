@@ -345,6 +345,13 @@ You are probably already in your `snakemake_exercise` environment, otherwise act
 conda env update -f environment.yml
 ```
 
+!!! tip
+    Here we have one conda environment for  executing the whole Snakemake workflow. Snakemake
+    also supports using explicit conda environments on a per-rule basis, by specifying something
+    like `conda: rule-specific-env.yml` in the rule definition and running Snakemake with the
+    `--use-conda` flag. The given rule will then be run in the conda environment specified in
+    `rule-specific-env.yml` that will be created and activated on the fly by Snakemake.
+
 Done! Let's start by generating the rule graph so that we get an overview of the workflow.
 
 ```bash
