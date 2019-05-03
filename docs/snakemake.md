@@ -12,7 +12,6 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 * The Snakemake documentation is available on [readthedocs](https://snakemake.readthedocs.io/en/stable/#).
 * Here is a great [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
 * If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
-* To discuss with other users, there is a [Google group](https://groups.google.com/forum/#!forum/snakemake).
 
 # Set up
 This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
@@ -35,7 +34,7 @@ Now install the new environment and activate it.
 
 ```bash
 conda env create -n snakemake_exercise -f environment.yml
-source activate snakemake_exercise
+conda activate snakemake_exercise
 ```
 
 Check that Snakemake is installed correctly, for example by executing `snakemake --help`. This should output a list of available Snakemake settings. If you get `bash: snakemake: command not found` then you need to go back and ensure that the Conda steps were successful.
@@ -312,7 +311,7 @@ Clever, right? There are a bunch of these `--list-xxx-changes` flags that can he
 
 You might wonder where Snakemake keeps track of all these things? It stores all information in a hidden subdirectory called `.snakemake`. This is convenient since it's easy to delete if you don't need it anymore and everything is contained in the project directory. Just be sure to add it to `.gitignore` so that you don't end up tracking it.
 
-By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more reusable. In the following section we will start with a workflow that is fully functional but not very flexible. We will then gradually improve on it, and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you should move on to one of the other tutorials instead.
+By now you should be familiar with the basic functionality of Snakemake, and you can build advanced workflows with only the features we have discussed here. There's a lot we haven't covered though, in particular when it comes to making your workflow more reusable. In the following section we will start with a workflow that is fully functional but not very flexible. We will then gradually improve on it, and at the same time showcase some Snakemake features we haven't discussed yet. Note that this can get a little complex at times, so if you felt that this section was a struggle then you could move on to one of the other tutorials instead.
 
 !!! note "Quick recap"
     In this section we've learned:
@@ -614,7 +613,7 @@ rule some_rule:
 Try this out for the rules where we have to "manually" deal with files that aren't tracked by Snakemake (`multiqc`, `index_genome`, `generate_count_table`). Also remove the shell commands that remove temporary files from those rules, as they are no longer needed. Now rerun the workflow and validate that the temporary files don't show up in your working directory.
 
 !!! tip
-    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the shadow directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options (use to use the `--shadow-prefix` flag).
+    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the shadow directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options (see e.g. the `--shadow-prefix` flag).
 
 ### Rule targets
 So far we have only defined the inputs/outputs of a rule as strings, or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
