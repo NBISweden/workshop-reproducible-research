@@ -78,7 +78,8 @@ You will now be redirected to the repository page. It is an empty repository, so
 * Open a terminal and `cd` to a directory where you want to clone your newly created git repository (perhaps make a new directory for this course if you haven't done so already).
 
 !!! attention
-    **Important:** the directory should *not* be within the `reproducible_research_course` directory.
+    **Important:** the directory should *not* be within the `reproducible_research_course` directory, since
+    this is itself a git-tracked directory.
 
 * Once you are in your directory of choice, run the following command (just make sure to change `user` to your Bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
 
@@ -137,13 +138,28 @@ git add config.yml environment.yml code/
 * We are now ready to commit! Run:
 
 ```bash
-git commit -m "add initial files"
+git commit -m "Add initial files"
 ```
 
 The `-m` option adds a commit message. This should be a short description of what the commit contains.
 
-!!! note
-    If you forget to add `-m` and just run `git commit`, a terminal editor will open and prompt you to write a commit message. This can be confusing if you are not used to using a terminal editor, so try to remember the `-m` flag.
+!!! tip
+    There are some general guidelines on how to write good commit messages. The following points are
+    often mentioned:
+
+    - Separate subject from body with a blank line
+    - Limit the subject line to 50 characters
+    - Capitalize the subject line
+    - Do not end the subject line with a period
+    - Use the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line
+    - Wrap the body at 72 characters
+    - Use the body to explain what and why vs. how
+
+    In the command above we just added a short subject line ("Add initial files"). It is capitalized, less
+    than 50 characters, does not end with a period, and uses imperative mood (Add!). It is possible to add a
+    descriptive body text as well, as hinted by the points above. This is easiest done in a text editor. If
+    you run `git commit` without the `-m` flag, git will open the default terminal text editor (can be configured)
+    where you can write a longer commit message and body.
 
 * Run `git status` (yep, again!). It should tell you "*nothing to commit, working directory clean*".
 * Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different value, e.g. `bowtie2=2.1`.
