@@ -512,7 +512,7 @@ A log file is not different from any other output file, but it's dealt with a li
 * `index_genome` outputs some statistics about the genome indexing.
 * `align_to_genome` outputs important statistics about the alignments. This is probably the most important log to save.
 
-Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, so that you don't end up with identical names for different samples, e.g. `{some_wildcard}.log`.
+Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, e.g. `{some_wildcard}.log`, so that you don't end up with identical names for different samples.
 
 You also have to specify in the `shell` section of each rule what you want the log to contain. Some of the programs we use send their log information to standard out, some to standard error and some let us specify a log file via a flag. To save some time you can use the info below.
 
@@ -530,7 +530,7 @@ bowtie2-build input_file index_dir > {log}
 bowtie2 -x index_dir -U input_file > output_file 2> {log}
 ```
 
-Now rerun the whole workflow by using the `-F` flag. Do the logs contain what they should? Note how much easier it it to follow the progression of the workflow when the rules write to logs instead of to the terminal. If you run with `-D` (or `-S` for a simpler version) you will see that the summary table now also contains the log file for each of the files in the workflow.
+Now rerun the whole workflow by using the `-F` flag. Do the logs contain what they should? Note how much easier it is to follow the progression of the workflow when the rules write to logs instead of to the terminal. If you run with `-D` (or `-S` for a simpler version) you will see that the summary table now also contains the log file for each of the files in the workflow.
 
 ### Marking files as temporary
 It's not uncommon that workflows contain temporary files that should be kept for some time and then deleted once they are no longer needed. A typical case could be that some operation generates a file, which is then compressed to save space or indexed to make searching faster. There is then no need to save the original output file. Take a look at the job graph for our workflow again. The output from `align_to_genome` is a bam file, which contains information about all the reads for a sample and where they map in the genome. For downstream processing we need this file to be sorted by genome coordinates. This is what the rule `sort_bam` is for. We therefore end up with both `intermediate/{sra_id}.bam` and `intermediate/{sra_id}.sorted.bam`.
@@ -560,6 +560,8 @@ Finished job 2.
 
 !!! tip
     Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--delete-temp-output` flag.
+    In some cases you may instead want to run only parts of a workflow and therefore want to prevent files marked as temporary from being deleted (because the files
+    are needed for other parts of the workflow). In such cases you can use the `--notemp` flag.
 
 Snakemake has a number of options for marking files:
 
