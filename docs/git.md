@@ -288,7 +288,7 @@ We will now learn how to manage conflicts. This is important to know, since it w
 multiqc=1.4
 ```
 
-* Click Commit. Add the commit message: "update multiqc version to 1.4". Click Commit.
+* Click Commit. Add the commit message: "Update multiqc version to 1.4". Click Commit.
 * Click Commits to the left to see the commit history, and your latest change at the top.
 
 Now we have a change in the remote repository that is not yet in our local clone. This could happen for instance if a collaborator of yours committed a change and pushed it to Bitbucket.
@@ -306,7 +306,7 @@ multiqc=1.2
 git status
 git add environment.yml
 git status
-git commit -m "downgraded multiqc to v1.2"
+git commit -m "Downgraded multiqc to v1.2"
 git status
 ```
 
@@ -400,7 +400,7 @@ git add environment.yml
 * Run `git status` again! It will now tell us: "*All conflicts fixed but you are still merging. (use "git commit" to conclude merge)*.". So, you probably guessed it, run:
 
 ```bash
-git commit -m "merge and set multiqc to v1.2"
+git commit -m "Merge and set multiqc to v1.2"
 ```
 
 * Finally, push these changes to Bitbucket:
@@ -477,7 +477,7 @@ git push --tags
 
 ```bash
 git add config.yml
-git commit -m "increased number of reads"
+git commit -m "Increase number of reads"
 git push
 ```
 
@@ -492,7 +492,7 @@ git push --tags
 
 ```bash
 git add environment.yml
-git commit -m "upgrade to newer multiqc version"
+git commit -m "Upgrade to newer multiqc version"
 git push
 ```
 
