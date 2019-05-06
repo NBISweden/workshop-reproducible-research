@@ -345,7 +345,7 @@ git pull
     Note that you can skip the `git fetch`command if you want to and run `git pull` directly. The difference is that `fetch` will just update git with the latest information of the remote status, whereas `pull` will try to integrate and sync those changes to your local clone directly.
 
 * As you have probably noticed, the `git pull` command resulted in a conflict. Git tells us about this and suggests that we should fix the conflicts and commit that.
-As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks something like this:
+As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified the same line in this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks something like this:
 
 ```
   channels:
