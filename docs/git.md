@@ -345,7 +345,7 @@ git pull
     Note that you can skip the `git fetch`command if you want to and run `git pull` directly. The difference is that `fetch` will just update git with the latest information of the remote status, whereas `pull` will try to integrate and sync those changes to your local clone directly.
 
 * As you have probably noticed, the `git pull` command resulted in a conflict. Git tells us about this and suggests that we should fix the conflicts and commit that.
-As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks like this:
+As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks something like this:
 
 ```
   channels:
@@ -369,7 +369,7 @@ As always, run `git status` to get an overview! You will see that you have, so c
   - wget
 ```
 
-The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of numbers is the commit id (the first 7 are e.g. displayed on Bitbucket under Commits).
+The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of characters is the commit id (the first 7 are e.g. displayed on Bitbucket under Commits) which will be different for your repository.
 
 * It is now up to you to decide which version to keep, or to change it to a third alternative. Let's say that you are confident that it is better to run multiqc v1.2 rather than v1.4. Edit the file so that it looks like you want it to, i.e. remove the lines added by git and delete the line with `multiqc=1.4`. The final file should look like this:
 

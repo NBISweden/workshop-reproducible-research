@@ -4,9 +4,9 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 
 * The language you use to formulate your workflows is based on Python, which is a language with strong standing in academia. However, users are not required to know how to code in Python to work efficiently with Snakemake.
 * Workflows can easily be scaled from your desktop to server, cluster, grid or cloud environments. This makes it possible to develop a workflow on your laptop, maybe using only a small subset of your data, and then run the real analysis on a cluster.
-* Snakemake has several features for defining the environment which each task is carried out in. This is important in bioinformatics, where workflows often involve running a large number of small third-party tools.
+* Snakemake has several features for defining the environment with which each task is carried out. This is important in bioinformatics, where workflows often involve running a large number of small third-party tools.
 * Snakemake is primarily intended to work on _files_ (rather than for example streams, reading/writing from databases or passing variables in memory). This fits well with many fields of bioinformatics, notably next-generation sequencing, that often involve computationally expensive operations on large files. It's also a good fit for a scientific research setting, where the exact specifications of the final workflow aren't always known at the beginning of a project.
-* Lastly, a WMS is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features which allow you to package and distribute the workflow, and any files it involves, once it's done.
+* Lastly, a WMS is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features that allow you to package and distribute the workflow, and any files it involves, once it's done.
 
 ## Tell me more
 * The Snakemake documentation is available on [readthedocs](https://snakemake.readthedocs.io/en/stable/#).
@@ -301,11 +301,14 @@ The contents of `summary.tsv` is shown in the table below (scroll to see the ful
 | b.upper.txt | Thu Nov 16 12:03:11 2017 | convert_to_upper_case | - |  | b.txt | tr [a-z] [A-Z] < b.txt > b.upper.txt | ok | no update |
 
 
-You can see in the second last column that the rule implementation for a_b.txt has changed. The last column shows if Snakemake plans to regenerate the files when it's next executed. None of the files will be regenerated because Snakemake doesn't regenerate files by default if the rule implementation changes. From a reproducibility perspective maybe it would be better if this was done automatically, but it would be very computationally expensive and cumbersome if you had to rerun your whole workflow every time you fix a spelling mistake in a comment somewhere. So, it's up to us to look at the summary table and rerun things as needed. You can get a list of the files for which the rule implementation has changed, and then force Snakemake to regenerate these files with the `-R` flag.
+You can see in the second last column that the rule implementation for a_b.txt has changed. The last column shows if Snakemake plans to regenerate the files when it's next executed. None of the files will be regenerated because Snakemake doesn't regenerate files by default if the rule implementation changes. From a reproducibility perspective maybe it would be better if this was done automatically, but it would be very computationally expensive and cumbersome if you had to rerun your whole workflow every time you fix a spelling mistake in a comment somewhere. So, it's up to us to look at the summary table and rerun things as needed.
+You can get a list of the files for which the rule implementation has changed, and then force Snakemake to regenerate these files with the `-R` flag.
 
 ```bash
 snakemake a_b.txt -R $(snakemake a_b.txt --list-code-changes)
 ```
+
+Here the `$(snakemake a_b.txt --list-code-changes)` part outputs the files that are then used as targets for the `snakemake a_b.txt -R` part.
 
 Clever, right? There are a bunch of these `--list-xxx-changes` flags that can help you keep track of your workflow. You can list all options with `snakemake --help`. Run with the `-D` flag again to make sure that the summary table now looks like expected.
 
@@ -509,7 +512,7 @@ A log file is not different from any other output file, but it's dealt with a li
 * `index_genome` outputs some statistics about the genome indexing.
 * `align_to_genome` outputs important statistics about the alignments. This is probably the most important log to save.
 
-Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, so that you don't end up with identical names for different samples, e.g. `{some_wildcard}.log`.
+Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, e.g. `{some_wildcard}.log`, so that you don't end up with identical names for different samples.
 
 You also have to specify in the `shell` section of each rule what you want the log to contain. Some of the programs we use send their log information to standard out, some to standard error and some let us specify a log file via a flag. To save some time you can use the info below.
 
@@ -527,7 +530,7 @@ bowtie2-build input_file index_dir > {log}
 bowtie2 -x index_dir -U input_file > output_file 2> {log}
 ```
 
-Now rerun the whole workflow by using the `-F` flag. Do the logs contain what they should? Note how much easier it it to follow the progression of the workflow when the rules write to logs instead of to the terminal. If you run with `-D` (or `-S` for a simpler version) you will see that the summary table now also contains the log file for each of the files in the workflow.
+Now rerun the whole workflow by using the `-F` flag. Do the logs contain what they should? Note how much easier it is to follow the progression of the workflow when the rules write to logs instead of to the terminal. If you run with `-D` (or `-S` for a simpler version) you will see that the summary table now also contains the log file for each of the files in the workflow.
 
 ### Marking files as temporary
 It's not uncommon that workflows contain temporary files that should be kept for some time and then deleted once they are no longer needed. A typical case could be that some operation generates a file, which is then compressed to save space or indexed to make searching faster. There is then no need to save the original output file. Take a look at the job graph for our workflow again. The output from `align_to_genome` is a bam file, which contains information about all the reads for a sample and where they map in the genome. For downstream processing we need this file to be sorted by genome coordinates. This is what the rule `sort_bam` is for. We therefore end up with both `intermediate/{sra_id}.bam` and `intermediate/{sra_id}.sorted.bam`.
@@ -557,6 +560,8 @@ Finished job 2.
 
 !!! tip
     Sometimes you may want to trigger removal of temporary files without actually rerunning the jobs. You can then use the `--delete-temp-output` flag.
+    In some cases you may instead want to run only parts of a workflow and therefore want to prevent files marked as temporary from being deleted (because the files
+    are needed for other parts of the workflow). In such cases you can use the `--notemp` flag.
 
 Snakemake has a number of options for marking files:
 
