@@ -516,6 +516,9 @@ git checkout master
 
 * Again, open `environment.yml` and see that it now has version 1.5a!
 
+* Finally, you could run `git log --oneline --decorate` to get a condensed commit history, where you should
+also be able to see the tagged commits.
+
 !!! note "Quick recap"
     We now learned how to tag important commits:
 
