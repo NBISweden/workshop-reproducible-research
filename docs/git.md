@@ -186,7 +186,7 @@ git reset HEAD environment.yml
 * Commit the changes in `config.yml`:
 
 ```bash
-git commit -m "change genome to align to"
+git commit -m "Change to ST398 for alignment"
 ```
 
 * Add and commit the changes in `environment.yml`:
@@ -195,7 +195,7 @@ git commit -m "change genome to align to"
 git status
 git add environment.yml
 git status
-git commit -m "change bowtie2 version"
+git commit -m "Change bowtie2 version"
 git status
 ```
 
