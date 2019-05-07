@@ -47,6 +47,10 @@ The course will take place in the room Air (see [travel info](travel.md)).
       - Introduction to Snakemake<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a>
     </td>
+  <tr>
+    <td> <font size="3"> 14:15 </td>
+    <td> <font size="3"> Fika break </td>
+  </tr>
   </tr>
   <tr>
     <td> <font size="3"> 16:15 </td>
@@ -92,6 +96,10 @@ The course will take place in the room Air (see [travel info](travel.md)).
     </td>
   </tr>
   <tr>
+    <td> <font size="3"> 10:15 </td>
+    <td> <font size="3"> Fika break </td>
+  </tr>
+  <tr>
     <td> <font size="3"> 11:30
     <td> <font size="3"> Lunch </td>
   </tr>
@@ -108,6 +116,10 @@ The course will take place in the room Air (see [travel info](travel.md)).
       - Introduction to containers <br>
       - Practical tutorial: <a href="../docker/">Docker</a>
     </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 14:15 </td>
+    <td> <font size="3"> Fika break </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:00 </td>

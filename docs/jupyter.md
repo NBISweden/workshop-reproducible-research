@@ -41,7 +41,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 # Practical exercise
 ## The Jupyter Notebook dashboard
-One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. Ok, not quite everything, you first have to start the Jupyter Notebook server.
+One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
@@ -92,6 +92,7 @@ Jupyter notebooks are made up out of cells, and you are currently standing in th
 Let's use our first cell to create a header. Change the format from Code to Markdown in the drop-down list above the cell. Double click on the cell to enter editing mode (green frame) and input "# My notebook" ("#" is used in Markdown for header 1). Run the cell with Shift-Enter. Tada!
 
 Before we continue, here are some shortcuts that can be useful. Note that they are only applicable when in command mode (blue frames). Most of them are also available from the menus.
+These shortcuts are also available from the **Help** menu in your notebook (there's even an option there to edit shortcuts).
 
 * ++enter++: enter Edit mode
 * ++escape++: enter Command mode
