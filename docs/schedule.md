@@ -45,7 +45,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
       - Introduction to Snakemake<br>
-      - Practical tutorial: <a href="../snakemake/">Snakemake</a><br><br>
+      - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
       <font size="3">Fika break ~14:15
     </td>
   </tr>
@@ -89,7 +89,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
       - Introduction to Jupyter <br>
-      - Practical tutorial: <a href="../jupyter/">Jupyter</a><br><br>
+      - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
       <font size="3">Fika break ~10:15
     </td>
   </tr>
@@ -108,7 +108,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Containerization
       <font size="2"><i><br>
       - Introduction to containers <br>
-      - Practical tutorial: <a href="../docker/">Docker</a><br><br>
+      - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
       <font size="3">Fika break ~14:15
     </td>
   </tr>
