@@ -684,6 +684,14 @@ It's generally a good idea to separate project-specific parameters from the actu
 * Specify which genome to align to and where to download its sequence and annotation files.
 * (Any other parameters we might need to make it into a general workflow, e.g. to support both paired-end and single-read sequencing)
 
+!!! note
+    Putting all configuration in `config.yml` will break the
+    `generate_rulegraph` rule. You can fix it either by replacing
+    `--config max_reads=0` with `--configfile=config.yml` in the shell
+    command of that rule in the Snakefile, or by adding
+    `configfile: "config.yml"` to the top of the Snakefile (as mentioned
+    in a tip above).
+
 The first point is straightforward; rather than using `SAMPLES = ["..."]` in the Snakefile we define it as a parameter in `config.yml`. Do a dry-run afterwards to make sure that everything works as expected. You can either add it as a list as it was expressed before, or you can use this yaml notation:
 
 ```yaml
