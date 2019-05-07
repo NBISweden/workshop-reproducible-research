@@ -84,7 +84,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
       - Introduction to version control and git<br>
-      - Practical tutorial: <a href="../git/">Git</a>
+      - Practical tutorial: <a href="../git/">Git</a></i>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
@@ -103,7 +103,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
       - Introduction to R Markdown <br>
-      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a>
+      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
