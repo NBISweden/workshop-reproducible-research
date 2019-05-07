@@ -24,7 +24,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
-    <td> <font size="3"> Fika break </td>
+    <td> <font size="3"> Fika break + surprise</td>
   </tr>
   <tr>
     <td> <font size="3"> 10:45 </td>
@@ -45,12 +45,9 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
       - Introduction to Snakemake<br>
-      - Practical tutorial: <a href="../snakemake/">Snakemake</a>
+      - Practical tutorial: <a href="../snakemake/">Snakemake</a><br><br>
+      <font size="3">Fika break ~14:15
     </td>
-  <tr>
-    <td> <font size="3"> 14:15 </td>
-    <td> <font size="3"> Fika break </td>
-  </tr>
   </tr>
   <tr>
     <td> <font size="3"> 16:15 </td>
@@ -66,7 +63,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 17:30 </td>
-    <td> <font size="3"> Course dinner</td>
+    <td> <font size="3"> <a href="../travel/">Course dinner</a></td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -92,12 +89,9 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
       - Introduction to Jupyter <br>
-      - Practical tutorial: <a href="../jupyter/">Jupyter</a>
+      - Practical tutorial: <a href="../jupyter/">Jupyter</a><br><br>
+      <font size="3">Fika break ~10:15
     </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 10:15 </td>
-    <td> <font size="3"> Fika break </td>
   </tr>
   <tr>
     <td> <font size="3"> 11:30
@@ -114,12 +108,9 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <font size="3"> Containerization
       <font size="2"><i><br>
       - Introduction to containers <br>
-      - Practical tutorial: <a href="../docker/">Docker</a>
+      - Practical tutorial: <a href="../docker/">Docker</a><br><br>
+      <font size="3">Fika break ~14:15
     </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 14:15 </td>
-    <td> <font size="3"> Fika break </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:00 </td>
