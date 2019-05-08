@@ -28,7 +28,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 * `pandas`: for working with data frames and generating tables
 
 !!! attention
-    If you are doing these exercises on Windows through a Docker container you also need the run the following:
+    If you are doing these exercises through a Docker container you also need the run the following:
     ```bash
     mkdir -p -m 700 /root/.jupyter/ && \
     echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py
