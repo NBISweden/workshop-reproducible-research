@@ -15,7 +15,7 @@ This tutorial depends on files from the course Bitbucket repo. Take a look at th
 
 ## Install Conda
 !!! attention
-    If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then skip this section and go directly to the practical exercise.
+    If you are doing the tutorials by running a Docker container on your Windows machine, Conda will already be installed for you. You can then jump ahead to the last point about setting up the default channels (`conda config`) and then go ahead with the practical exercise.
 
 !!! attention
     If you already have installed conda but want to update, you should be able to simply run `conda update conda` and subsequently `conda init`, and skip the installation instructions below.
