@@ -348,25 +348,30 @@ git pull
 As always, run `git status` to get an overview! You will see that you have, so called, unmerged paths and that the conflicting file is `environment.yml`, since both modified the same line in this file. To fix a conflict, open the affected file in a text editor. You will see that it now looks something like this:
 
 ```
-  channels:
-  - conda-forge
-  - bioconda
-  dependencies:
-  - fastqc=0.11.6
-  - sra-tools=2.8
-  - bowtie2=2.1
-  <<<<<<< HEAD
-  - multiqc=1.2
-  =======
-  - multiqc=1.4
-  >>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf
-  - snakemake-minimal=5.3.0
-  - samtools=1.6
-  - htseq=0.9
-  - graphviz=2.38.0
-  - xorg-libxrender
-  - xorg-libxpm
-  - wget
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- fastqc=0.11.6
+- sra-tools=2.8
+- snakemake-minimal=5.3.0
+<<<<<<< HEAD
+- multiqc=1.2
+=======
+- multiqc=1.4
+>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf
+- bowtie2=2.3
+- samtools=1.6
+- htseq=0.9
+- graphviz=2.38.0
+- xorg-libxrender
+- xorg-libxpm
+- r-ggplot2=3.1.1
+- r-reshape2=1.4.3
+- r-pheatmap=1.0.12
+- bioconductor-rtracklayer=1.42.1
+- bioconductor-geoquery=2.50.5
+- r-rmarkdown=1.12
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of characters is the commit id (the first 7 are e.g. displayed on Bitbucket under Commits) which will be different for your repository.
@@ -374,21 +379,26 @@ The part between `<<<<<<< HEAD` and `=======` is your local version, and the par
 * It is now up to you to decide which version to keep, or to change it to a third alternative. Let's say that you are confident that it is better to run multiqc v1.2 rather than v1.4. Edit the file so that it looks like you want it to, i.e. remove the lines added by git and delete the line with `multiqc=1.4`. The final file should look like this:
 
 ```yaml
-  channels:
-  - conda-forge
-  - bioconda
-  dependencies:
-  - fastqc=0.11.6
-  - sra-tools=2.8
-  - bowtie2=2.1
-  - multiqc=1.2
-  - snakemake-minimal=5.3.0
-  - samtools=1.6
-  - htseq=0.9
-  - graphviz=2.38.0
-  - xorg-libxrender
-  - xorg-libxpm
-  - wget
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- fastqc=0.11.6
+- sra-tools=2.8
+- snakemake-minimal=5.3.0
+- multiqc=1.2
+- bowtie2=2.3
+- samtools=1.6
+- htseq=0.9
+- graphviz=2.38.0
+- xorg-libxrender
+- xorg-libxpm
+- r-ggplot2=3.1.1
+- r-reshape2=1.4.3
+- r-pheatmap=1.0.12
+- bioconductor-rtracklayer=1.42.1
+- bioconductor-geoquery=2.50.5
+- r-rmarkdown=1.12
 ```
 
 * Run `git status`, notice that it says *use "git add <file>..." to mark resolution*? Let's do that!

@@ -12,4 +12,9 @@ dependencies:
 - graphviz=2.38.0
 - xorg-libxrender
 - xorg-libxpm
-- wget
+- r-ggplot2=3.1.1
+- r-reshape2=1.4.3
+- r-pheatmap=1.0.12
+- bioconductor-rtracklayer=1.42.1
+- bioconductor-geoquery=2.50.5
+- r-rmarkdown=1.12

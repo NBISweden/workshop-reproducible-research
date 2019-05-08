@@ -156,19 +156,28 @@ Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile w
 FROM ubuntu:16.04
 
 LABEL description = "Minimal image for the NBIS reproducible research course."
-MAINTAINER "Rasmus Agren" rasmus.agren@scilifelab.se
+MAINTAINER "Leif Wigge" leif.wigge@scilifelab.se
 ```
 
 Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one is `FROM`, which specifies the base image our image should start from. In this case we want it to be Ubuntu 16.04, which is one of the [official repositories](https://hub.docker.com/explore/). There are many roads to Rome when it comes to choosing the best image to start from. Say you want to run RStudio in a Conda environment through a Jupyter notebook. You could then start from one of the [rocker images](https://github.com/rocker-org/rocker) for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one of the low-level official images and set up everything from scratch. `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing your various Docker components.
 
 ```no-highlight
-# Install Miniconda3 prerequisites, English language pack and fonts. Also
-# include vim for convenience
+# Install necessary tools
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends bzip2 curl ca-certificates language-pack-en fontconfig vim
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O && \
-    bash Miniconda3-4.5.11-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
-    rm Miniconda3-4.5.11-Linux-x86_64.sh
+    apt-get install -y --no-install-recommends bzip2 \
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim
+    && apt-get clean
+
+# Install Miniconda and add to PATH
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O && \
+    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
+    rm Miniconda3-4.6.14-Linux-x86_64.sh
 ```
 
 The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule, you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrieve the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what needs to be rerun between builds. The first command uses Ubuntu's package manager APT to install some packages (similar to how we've previously used Conda). Say that the first command was split into two instead:
@@ -178,22 +187,29 @@ The next few lines introduce the important `RUN` instruction, which is used for 
 RUN apt-get update
 
 #Install packages
-RUN apt-get install -y --no-install-recommends bzip2 curl ca-certificates language-pack-en fontconfig vim
+RUN apt-get install -y --no-install-recommends bzip2 \
+                                           ca-certificates \
+                                           curl \
+                                           fontconfig \
+                                           git \
+                                           language-pack-en \
+                                           tzdata \
+                                           vim
 ```
 
-The first command will update the apt-get package lists and the second will install the packages `bzip2`, `curl`, `ca-certificates`, `language-pack-en`, `fontconfig`, and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
+The first command will update the apt-get package lists and the second will install the packages `bzip2`, `ca-certificates`, `curl`, `fontconfig`, `git`, `language-pack-en`, `tzdata` and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
 
 The next `RUN` command retrieves and installs Miniconda3. Let's see what would happen if we had that as three separate commands instead.
 
 ```no-highlight
 # Download Miniconda3
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
 
 # Install it
-RUN bash Miniconda3-4.5.11-Linux-x86_64.sh -bf -p /opt/miniconda3/
+RUN bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /opt/miniconda3/
 
 # Remove the downloaded installation file
-RUN rm Miniconda3-4.5.11-Linux-x86_64.sh
+RUN rm Miniconda3-4.6.14-Linux-x86_64.sh
 ```
 
 Remember that each layer contains the difference compared to the previous layer? What will happen here is that the first command adds the installation file and the second will unpack the file and install the software. The third layer will say "the installation file should no longer exist on the file system". However, the file will still remain in the image since the image is constructed layer-by-layer bottom-up. This results in unnecessarily many layers and bloated images.
@@ -206,14 +222,6 @@ ENV LC_LANG en_US.UTF-8
 ```
 
 Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/opt/miniconda3/bin/conda install`. The other two set an UTF-8 character encoding so that we can use weird characters (and a bunch of other things).
-
-```no-highlight
-# Install git, nano and ca-certificates from conda-forge
-RUN conda install -c conda-forge git nano && \
-    conda clean --all
-```
-
-Here we install a couple of packages with Conda. Note that we run `conda clean --all` to remove any downloaded packages afterwards.
 
 ```no-highlight
 # Use bash as shell
@@ -345,16 +353,16 @@ If you want to refer to a Docker image in for example a publication, it's very i
     On Dockerhub it is also possible to link to your Bitbucket or GitHub account and select repositories from which you want to automatically build and distribute Docker images. The Dockerhub servers will then build an image from the Dockerfile in your repository and make it available for download using `docker pull`. That way, you don't have to bother manually building and pushing using `docker push`.
 
 ## Packaging and running the MRSA workflow
-During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 5.9 GB image.
+During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 3.75 GB image.
 
 * We've [set up a Bitbucket repository](git.md) for version control and for hosting our project.
 * We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.
 * We've constructed a [Snakemake workflow](snakemake.md) that performs the data analysis and keeps track of files and parameters.
 * We've written a [R Markdown document](rmarkdown.md) that takes the results from the Snakemake workflow and summarizes them in a report.
 
-The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the tutorials is that we have also included the rendering of the Supplementary Material PDF into the Snakemake workflow as the rule `make_supplementary`.
+The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the other tutorials is that we have also included the rendering of the Supplementary Material PDF into the Snakemake workflow as the rule `make_supplementary`.
 
-Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section. The main difference is that here we start from `rocker/verse:3.4.3` rather than from `ubuntu:16.04`. This image contains RStudio and a number of publishing-related packages, most notably LaTeX for generating PDF reports. We need this in order to be able to render the Supplementary Material report to PDF, but unfortunately it also takes up quite a lot of space (2.2 GB). The other main difference is that we install a number of R packages using Bioconductor. We could have included these in the Conda environment as well, but R's package management is quite good so we might as well use that. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
+Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section, although some sections have been moved around. The main difference is that we now also install TinyTeX. We need this in order to be able to render the Supplementary Material report to PDF. Here, we also add the project files needed for executing the workflow (mentioned in the previous paragraph), and install the conda packages listed in `environment.yml`. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
 
 Now run `docker build` as before and go get a coffee while the image builds (or you could use `docker pull scilifelablts/reproducible_research_course` which will download the same image). Validate with `docker image ls`. Now all that remains is to run the whole thing with `docker run`. We just want to get the results, so mount the directory `/course/results/` to, say, `mrsa_results` in your current directory. Well done! You now have an image that allows anyone to exactly reproduce your analysis workflow (if you first `docker push` to Dockerhub that is).
 
