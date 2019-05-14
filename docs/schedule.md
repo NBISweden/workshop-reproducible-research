@@ -30,7 +30,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda<br>
+      - Introduction to the package and environment manager Conda (<a href="https://drive.google.com/file/d/1UyWoNJz9rsUaWn5lJmaucgn4nLhZVN0y/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
