@@ -82,7 +82,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git<br>
+      - Introduction to version control and git (<a href="https://drive.google.com/file/d/1PqTDPsdJcdDSIdSN5cWOvOxNi04fzmFo/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../git/">Git</a></i>
       <br><br>
       <font size="3"> Computational notebooks
