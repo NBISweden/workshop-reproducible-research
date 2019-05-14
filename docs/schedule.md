@@ -50,7 +50,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 16:15 </td>
-    <td> <font size="3"> Wrap-up </td>
+    <td> <font size="3"> Wrap-up (<a href="https://docs.google.com/presentation/d/1ZXcyU4MndwdzrfpKQS_XNsr2_fKnhRRofSo2uu2C10M/edit?usp=sharing">slides</a>)</td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
