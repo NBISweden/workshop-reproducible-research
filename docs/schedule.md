@@ -101,7 +101,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown <br>
+      - Introduction to R Markdown (<a href="https://drive.google.com/file/d/146JeZM8Sq_DmrX1pzS-LmWquR6vSdoNq/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
       <font size="3"> Containerization
