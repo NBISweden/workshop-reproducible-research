@@ -43,7 +43,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake<br>
+      - Introduction to Snakemake (<a href="https://docs.google.com/presentation/d/1KvtbHse38WIgJWuccWir2P6LwmhzupaCAFZ4HYGLp-Y/edit?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
       <font size="3">Fika break ~14:15
     </td>
