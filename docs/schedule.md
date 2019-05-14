@@ -15,12 +15,11 @@ The course will take place in the room Air (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 09:00
-    <td> <font size="3"> Introduction to Reproducible Research
-</td>
+    <td> <font size="3"> Introduction to Reproducible Research (<a href="https://docs.google.com/presentation/d/1ocMn6-loFqa9HSDCsFz9wAvpanfIALbSxie04F15wl0/edit?usp=sharing">slides</a>)</td>
   </tr>
   <tr>
     <td> <font size="3"> 09:45 </td>
-    <td> <font size="3"> Data management and project organization</td>
+    <td> <font size="3"> Data management and project organization (<a href="https://docs.google.com/presentation/d/19Hqck9JsqPckRqwVpYaT6Tndh7E2zOQ4r_DQWOj9W-I/edit?usp=sharing">slides</a>)</td>
   </tr>
   <tr>
     <td> <font size="3"> 10:15 </td>
