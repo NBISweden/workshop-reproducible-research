@@ -101,10 +101,10 @@ These shortcuts are also available from the **Help** menu in your notebook (ther
 * ++alt+enter++: run the cell and insert a new cell below
 * ++ctrl+s++: save the notebook
 * ++tab++: for code completion or indentation
-* ++m++/++y++: toggle between Markdown and Code cells
-* ++d++-++d++: delete a cell
-* ++a++/++b++: insert cells above/below current cell
-* ++x++/++c++/++v++: cut/copy/paste cells
+* m/y: toggle between Markdown and Code cells
+* d-d: delete a cell
+* a/b: insert cells above/below current cell
+* x/c/v: cut/copy/paste cells
 
 Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter this code in the second cell and run it:
 
