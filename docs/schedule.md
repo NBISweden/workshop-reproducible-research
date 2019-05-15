@@ -87,7 +87,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter <br>
+      - Introduction to Jupyter (<a href="https://docs.google.com/presentation/d/1xrs-L8msQLWI_LfbksHL2kn1QKskbtQGjn7Vm5F9RSU/edit?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
       <font size="3">Fika break ~10:15
     </td>
