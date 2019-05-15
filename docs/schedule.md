@@ -106,7 +106,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
       <br><br>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers <br>
+      - Introduction to containers (<a href="https://docs.google.com/presentation/d/1Pd4zAkOjGkgerqvjyG_tkx6HgoAkSc_2dzj2FOpx_0g/edit?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
       <font size="3">Fika break ~14:15
     </td>
