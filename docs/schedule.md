@@ -30,7 +30,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda (<a href="https://drive.google.com/file/d/1UyWoNJz9rsUaWn5lJmaucgn4nLhZVN0y/view?usp=sharing">slides</a>)<br>
+      - Introduction to the package and environment manager Conda (<a href="https://drive.google.com/file/d/1P-1bVbFx5o3memE4AMHpybaMFUsAkn7G/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
@@ -50,7 +50,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 16:15 </td>
-    <td> <font size="3"> Wrap-up </td>
+    <td> <font size="3"> Wrap-up (<a href="https://docs.google.com/presentation/d/1UdLmnHI4IDn9gANjFGQidaotGXOoGBjXBH6MECjCiP8/edit?usp=sharing">slides</a>)</td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
@@ -82,7 +82,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git<br>
+      - Introduction to version control and git (<a href="https://drive.google.com/file/d/1PqTDPsdJcdDSIdSN5cWOvOxNi04fzmFo/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../git/">Git</a></i>
       <br><br>
       <font size="3"> Computational notebooks
@@ -101,7 +101,7 @@ The course will take place in the room Air (see [travel info](travel.md)).
     <td>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown <br>
+      - Introduction to R Markdown (<a href="https://drive.google.com/file/d/146JeZM8Sq_DmrX1pzS-LmWquR6vSdoNq/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
       <font size="3"> Containerization
