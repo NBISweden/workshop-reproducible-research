@@ -60,6 +60,9 @@ cd reproducible_research_course
     Check your git version by `git --version`. If you have a very old version of git you might want to update to a
     later version.
 
+!!! tip
+    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+
 ## For Windows users
 
 There are several different ways to run the course material on a Windows computer. Neither is perhaps optimal, and the material itself has not been adapted specifically for Windows. Nevertheless, in principle everything *should* be possible to run. A few ways you could setup:
@@ -85,6 +88,8 @@ cd /path/to/your/directory
 git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
+!!! tip
+    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`.
 
 ### Using Docker to run the course
 
