@@ -13,6 +13,7 @@ RUN apt-get update && \
                                                language-pack-en \
                                                tzdata \
                                                vim \
+                                               wget \
     && apt-get clean
 
 # Install Miniconda and add to PATH
