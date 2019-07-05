@@ -61,7 +61,7 @@ cd reproducible_research_course
     later version.
 
 !!! tip
-    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`. Run this command after you have `cd` into `reproducible_research_course` as described above. If you do that, you probably also want to view the same older version of this website. Locate the version box in the bottom right corner of the browser and select the corresponding version.
 
 ## For Windows users
 
@@ -89,7 +89,7 @@ git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 !!! tip
-    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`. Run this command after you have `cd` into `reproducible_research_course` as described above. If you do that, you probably also want to view the same older version of this website. Locate the version box in the bottom right corner of the browser and select the corresponding version.
 
 ### Using Docker to run the course
 
