@@ -3,13 +3,13 @@
 <h2> Tools for reproducible research (1 ECTS) </h2>
 
 **Date and time:**  
-- May 14-15, 2019
+- November 18-20, 2019 (3 days)
 
 **Location:**  
-- SciLifeLab, Stockholm, Sweden ([travel info](travel.md))
+- Chalmers University of Technology, Gothenburg, Sweden ([travel info](travel.md))
 
 **Apply here:**  
-- Please visit [this link](https://www.scilifelab.se/events/tools-for-reproducible-research-2/) for complete course description, entry requirements and application form.
+- Application link will be posted here when available.
 
 <h3> Course description </h3>
 
