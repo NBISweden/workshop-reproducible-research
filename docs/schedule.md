@@ -18,11 +18,11 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 10:30
-    <td> <font size="3"> Introduction to Reproducible Research (<a href="https://docs.google.com/presentation/d/1ocMn6-loFqa9HSDCsFz9wAvpanfIALbSxie04F15wl0/edit?usp=sharing">slides</a>)</td>
+    <td> <font size="3"> Introduction to Reproducible Research</td>
   </tr>
   <tr>
     <td> <font size="3"> 11:15 </td>
-    <td> <font size="3"> Data management and project organization (<a href="https://docs.google.com/presentation/d/19Hqck9JsqPckRqwVpYaT6Tndh7E2zOQ4r_DQWOj9W-I/edit?usp=sharing">slides</a>)</td>
+    <td> <font size="3"> Data management and project organization</td>
   </tr>
   <tr>
     <td> <font size="3"> 11:45  </td>
@@ -33,7 +33,7 @@ Times and content will be changed.
     <td>
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
-      - Introduction to the package and environment manager Conda (<a href="https://drive.google.com/file/d/1P-1bVbFx5o3memE4AMHpybaMFUsAkn7G/view?usp=sharing">slides</a>)<br>
+      - Introduction to the package and environment manager Conda<br>
       - Practical tutorial: <a href="../conda/">Conda</a>
     </td>
   </tr>
@@ -42,14 +42,14 @@ Times and content will be changed.
     <td>
       <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to Snakemake (<a href="https://docs.google.com/presentation/d/1KvtbHse38WIgJWuccWir2P6LwmhzupaCAFZ4HYGLp-Y/edit?usp=sharing">slides</a>)<br>
+      - Introduction to Snakemake<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
       <font size="3">Fika break ~14:30
     </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up (<a href="https://docs.google.com/presentation/d/1UdLmnHI4IDn9gANjFGQidaotGXOoGBjXBH6MECjCiP8/edit?usp=sharing">slides</a>)</td>
+    <td> <font size="3"> Wrap-up</td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
@@ -81,16 +81,16 @@ Times and content will be changed.
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to version control and git (<a href="https://drive.google.com/file/d/1PqTDPsdJcdDSIdSN5cWOvOxNi04fzmFo/view?usp=sharing">slides</a>)<br>
+      - Introduction to version control and git<br>
       - Practical tutorial: <a href="../git/">Git</a></i>
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
-      - Introduction to Jupyter (<a href="https://docs.google.com/presentation/d/1xrs-L8msQLWI_LfbksHL2kn1QKskbtQGjn7Vm5F9RSU/edit?usp=sharing">slides</a>)<br>
+      - Introduction to Jupyter<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
       <font size="3"> Reproducible reports
       <font size="2"><i><br>
-      - Introduction to R Markdown (<a href="https://drive.google.com/file/d/146JeZM8Sq_DmrX1pzS-LmWquR6vSdoNq/view?usp=sharing">slides</a>)<br>
+      - Introduction to R Markdown<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
       <font size="3">Fika break ~10:15 <br>
@@ -100,7 +100,7 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
-    <td> <font size="3"> Wrap-up (<a href="https://docs.google.com/presentation/d/1ZXcyU4MndwdzrfpKQS_XNsr2_fKnhRRofSo2uu2C10M/edit?usp=sharing">slides</a>)</td>
+    <td> <font size="3"> Wrap-up</td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
@@ -116,7 +116,7 @@ Times and content will be changed.
     <td> <font size="3"> 09:00
     <font size="3"> Containerization
     <font size="2"><i><br>
-    - Introduction to containers (<a href="https://docs.google.com/presentation/d/1Pd4zAkOjGkgerqvjyG_tkx6HgoAkSc_2dzj2FOpx_0g/edit?usp=sharing">slides</a>)<br>
+    - Introduction to containers<br>
     - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
     <font size="3">More will be added... <br>
   </tr>
