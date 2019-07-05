@@ -97,7 +97,7 @@ Alternatively, you could use Docker to run the course in a Docker container. Fir
 
 ```bash
 cd c:/my_dir
-docker run -it -p 8888:8888 -v /c/my_dir:/course/ scilifelablts/reproducible_research_course_slim:course_1905
+docker run -it -p 8888:8888 -v /c/my_dir:/course/ scilifelablts/reproducible_research_course_slim
 ```
 
 !!! attention
