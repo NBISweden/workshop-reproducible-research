@@ -107,6 +107,9 @@ Times and content will be changed.
     <td> <font size="3"> Done for the day! </td>
   </tr>
   <tr>
+    <td colspan="3"> </td>
+  </tr>
+  <tr>
     <td colspan="3">
       <font size="4">
       <center> Day 3  - 2019-11-20 </center>
