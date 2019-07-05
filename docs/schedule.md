@@ -114,11 +114,14 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 09:00
-    <font size="3"> Containerization
-    <font size="2"><i><br>
-    - Introduction to containers<br>
-    - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
-    <font size="3">More will be added... <br>
+    </td>
+    <td>
+      <font size="3"> Containerization
+      <font size="2"><i><br>
+      - Introduction to containers<br>
+      - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
+      <font size="3">More will be added... <br>
+    </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
