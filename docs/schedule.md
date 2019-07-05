@@ -93,12 +93,8 @@ Times and content will be changed.
       - Introduction to R Markdown (<a href="https://drive.google.com/file/d/146JeZM8Sq_DmrX1pzS-LmWquR6vSdoNq/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
-      <font size="3"> Containerization
-      <font size="2"><i><br>
-      - Introduction to containers (<a href="https://docs.google.com/presentation/d/1Pd4zAkOjGkgerqvjyG_tkx6HgoAkSc_2dzj2FOpx_0g/edit?usp=sharing">slides</a>)<br>
-      - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
-      <font size="3">Lunch ~11:45
-      <font size="3">Fika break ~10:15
+      <font size="3">Fika break ~10:15 <br>
+      <font size="3">Lunch ~11:45 <br>
       <font size="3">Fika break ~14:15
     </td>
   </tr>
@@ -118,7 +114,11 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 09:00
-    <td> <font size="3"> TBD
+    <font size="3"> Containerization
+    <font size="2"><i><br>
+    - Introduction to containers (<a href="https://docs.google.com/presentation/d/1Pd4zAkOjGkgerqvjyG_tkx6HgoAkSc_2dzj2FOpx_0g/edit?usp=sharing">slides</a>)<br>
+    - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
+    <font size="3">More will be added... <br>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
