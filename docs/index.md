@@ -29,4 +29,4 @@ In particular, you will learn:
 * how to use the workflow manager Snakemake
 * how to use R Markdown to generate automated reports
 * how to use Jupyter notebooks to document your ongoing analysis
-* how to use Docker to distribute containerized computational environments
+* how to use Docker and Singularity to distribute containerized computational environments
