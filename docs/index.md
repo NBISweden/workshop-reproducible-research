@@ -1,6 +1,6 @@
 
 
-<h2> Tools for reproducible research (1 ECTS) </h2>
+<h2> Tools for reproducible research </h2>
 
 **Date and time:**  
 - November 18-20, 2019 (3 days)
