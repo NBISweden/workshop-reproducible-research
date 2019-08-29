@@ -9,7 +9,7 @@
 - Chalmers University of Technology, Gothenburg, Sweden ([travel info](travel.md))
 
 **Apply here:**  
-- Application link will be posted here when available.
+- Go to [SciLifeLab's webpage](https://www.scilifelab.se/events/tools-for-reproducible-research-3/) for details and application.
 
 <h3> Course description </h3>
 
