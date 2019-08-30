@@ -146,7 +146,7 @@ Times and content will be changed.
     <td>
       <font size="3"> Reproducing a project
       <font size="2"><i><br>
-      - Overview - Putting the tools together
+      - Overview - Putting the tools together<br>
       - Practical tutorial: <a href="#">Reproducing a project</a></i>
     </td>
   </tr>
