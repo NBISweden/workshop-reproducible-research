@@ -99,7 +99,7 @@ Times and content will be changed.
       <font size="3"> Computational notebooks and reproducible reports
       <font size="2"><i><br>
       - Introduction to Jupyter and R Markdown<br>
-      - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br>
+      - Practical tutorial: <a href="../jupyter/">Jupyter</a><br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
       <font size="3">Fika break ~14:30
@@ -133,7 +133,7 @@ Times and content will be changed.
       <font size="3"> Containerization
       <font size="2"><i><br>
       - Introduction to containers<br>
-      - Practical tutorial: <a href="../docker/">Docker</a></i><br>
+      - Practical tutorial: <a href="../docker/">Docker</a><br>
       - Practical tutorial: <a href="#">Singularity</a></i><br>
     </td>
   </tr>
