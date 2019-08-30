@@ -38,7 +38,11 @@ Times and content will be changed.
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 13:45 </td>
+    <td> <font size="3"> 14:30  </td>
+    <td> <font size="3"> Fika </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 15:00 </td>
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
@@ -82,17 +86,6 @@ Times and content will be changed.
       <font size="2"><i><br>
       - Introduction to Snakemake<br>
       - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
-      <font size="3">Fika break ~14:30
-      <br><br>
-      <font size="3"> Computational notebooks
-      <font size="2"><i><br>
-      - Introduction to Jupyter<br>
-      - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
-      <font size="3"> Reproducible reports
-      <font size="2"><i><br>
-      - Introduction to R Markdown<br>
-      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
-      <br><br>
       <font size="3">Fika break ~10:15 <br>
     </td>
   </tr>
@@ -103,12 +96,10 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 12:45 </td>
     <td>
-      <font size="3"> Computational notebooks
+      <font size="3"> Computational notebooks and reproducible reports
       <font size="2"><i><br>
       - Introduction to Jupyter<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
-      <font size="3"> Reproducible reports
-      <font size="2"><i><br>
       - Introduction to R Markdown<br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
@@ -121,7 +112,11 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
-    <td> <font size="3"> Done for the day! </td>
+    <td> <font size="3"> Free time! </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 17:30 </td>
+    <td> <font size="3"> Social event! </td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -139,9 +134,13 @@ Times and content will be changed.
       <font size="3"> Containerization
       <font size="2"><i><br>
       - Introduction to containers<br>
-      - Practical tutorial: <a href="../docker/">Docker</a></i><br><br>
-      <font size="3">More will be added... <br>
+      - Practical tutorial: <a href="../docker/">Docker</a></i><br>
+      - Practical tutorial: <a href="#">Singularity</a></i><br>
     </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:45  </td>
+    <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
@@ -152,4 +151,4 @@ Times and content will be changed.
 **Teachers:**  
 Leif Wigge  
 John Sundh  
-TBD
+Tomas Larsson
