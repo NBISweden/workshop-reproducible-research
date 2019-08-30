@@ -96,9 +96,8 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 12:45 </td>
     <td>
-      <font size="3"> Organize your analysis using workflow managers (cont.)
       <font size="2"><i><br>
-      - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
+      - ...continued: Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
     </td>
   </tr>
   <tr>
@@ -175,5 +174,5 @@ Times and content will be changed.
 **Teachers:**  
 Leif Wigge  
 John Sundh  
-Verena Kutschera
+Verena Kutschera  
 Tomas Larsson
