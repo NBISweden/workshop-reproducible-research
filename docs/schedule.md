@@ -40,11 +40,10 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 13:45 </td>
     <td>
-      <font size="3"> Organize your analysis using workflow managers
+      <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
-      - Introduction to Snakemake<br>
-      - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
-      <font size="3">Fika break ~14:30
+      - Introduction to version control and git<br>
+      - Practical tutorial: <a href="../git/">Git</a></i>
     </td>
   </tr>
   <tr>
@@ -79,10 +78,11 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 09:00 </td>
     <td>
-      <font size="3"> Distributing and version tracking your code
+      <font size="3"> Organize your analysis using workflow managers
       <font size="2"><i><br>
-      - Introduction to version control and git<br>
-      - Practical tutorial: <a href="../git/">Git</a></i>
+      - Introduction to Snakemake<br>
+      - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
+      <font size="3">Fika break ~14:30
       <br><br>
       <font size="3"> Computational notebooks
       <font size="2"><i><br>
@@ -94,7 +94,24 @@ Times and content will be changed.
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
       <font size="3">Fika break ~10:15 <br>
-      <font size="3">Lunch ~11:45 <br>
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:45  </td>
+    <td> <font size="3"> Lunch </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 12:45 </td>
+    <td>
+      <font size="3"> Computational notebooks
+      <font size="2"><i><br>
+      - Introduction to Jupyter<br>
+      - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
+      <font size="3"> Reproducible reports
+      <font size="2"><i><br>
+      - Introduction to R Markdown<br>
+      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
+      <br><br>
       <font size="3">Fika break ~14:15
     </td>
   </tr>
