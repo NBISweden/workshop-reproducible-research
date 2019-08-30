@@ -90,11 +90,19 @@ Times and content will be changed.
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:00  </td>
+    <td> <font size="3"> 11:45  </td>
     <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td> <font size="3"> 13:00 </td>
+    <td> <font size="3"> 12:45 </td>
+    <td>
+      <font size="3"> Organize your analysis using workflow managers (cont.)
+      <font size="2"><i><br>
+      - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 13:45 </td>
     <td>
       <font size="3"> Computational notebooks and reproducible reports
       <font size="2"><i><br>
