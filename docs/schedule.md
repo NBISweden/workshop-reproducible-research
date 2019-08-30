@@ -134,6 +134,10 @@ Times and content will be changed.
     </td>
   </tr>
   <tr>
+    <td> <font size="3"><b>Time</b> </td>
+    <td> <font size="3"><b>Topic</b> </td>
+  </tr>
+  <tr>
     <td> <font size="3"> 09:00
     </td>
     <td>
