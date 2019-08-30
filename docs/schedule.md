@@ -175,4 +175,5 @@ Times and content will be changed.
 **Teachers:**  
 Leif Wigge  
 John Sundh  
+Verena Kutschera
 Tomas Larsson
