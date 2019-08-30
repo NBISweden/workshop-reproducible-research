@@ -42,7 +42,7 @@ Times and content will be changed.
     <td> <font size="3"> Fika </td>
   </tr>
   <tr>
-    <td> <font size="3"> 15:00 </td>
+    <td> <font size="3"> 14:45 </td>
     <td>
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
@@ -90,24 +90,23 @@ Times and content will be changed.
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:45  </td>
+    <td> <font size="3"> 12:00  </td>
     <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:45 </td>
+    <td> <font size="3"> 13:00 </td>
     <td>
       <font size="3"> Computational notebooks and reproducible reports
       <font size="2"><i><br>
-      - Introduction to Jupyter<br>
-      - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br><br>
-      - Introduction to R Markdown<br>
+      - Introduction to Jupyter and R Markdown<br>
+      - Practical tutorial: <a href="../jupyter/">Jupyter</a></i><br>
       - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
       <br><br>
-      <font size="3">Fika break ~14:15
+      <font size="3">Fika break ~14:30
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 16:30 </td>
+    <td> <font size="3"> 16:45 </td>
     <td> <font size="3"> Wrap-up</td>
   </tr>
   <tr>
@@ -141,6 +140,23 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 11:45  </td>
     <td> <font size="3"> Lunch </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 12:45 </td>
+    <td>
+      <font size="3"> Reproducing a project
+      <font size="2"><i><br>
+      - Overview - Putting the tools together
+      - Practical tutorial: <a href="#">Reproducing a project</a></i>
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 14:30  </td>
+    <td> <font size="3"> Fika </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 15:00  </td>
+    <td> <font size="3"> TBD </td>
   </tr>
   <tr>
     <td> <font size="3"> 16:30 </td>
