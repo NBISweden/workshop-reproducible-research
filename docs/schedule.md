@@ -97,7 +97,7 @@ Times and content will be changed.
     <td> <font size="3"> 12:45 </td>
     <td>
       <font size="2"><i><br>
-      - ...continued: Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
+      ...continued: Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
     </td>
   </tr>
   <tr>
@@ -141,7 +141,8 @@ Times and content will be changed.
       <font size="2"><i><br>
       - Introduction to containers<br>
       - Practical tutorial: <a href="../docker/">Docker</a><br>
-      - Practical tutorial: <a href="#">Singularity</a></i><br>
+      - Practical tutorial: <a href="#">Singularity</a></i><br><br>
+      <font size="3">Fika break ~10:15 <br>
     </td>
   </tr>
   <tr>
