@@ -17,6 +17,10 @@ Times and content will be changed.
     <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
+    <td> <font size="3"> 10:00
+    <td> <font size="3"> Coffee and fika available from 10.00. Welcome!</td>
+  </tr>
+  <tr>
     <td> <font size="3"> 10:30
     <td> <font size="3"> Introduction to Reproducible Research</td>
   </tr>
