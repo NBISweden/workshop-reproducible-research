@@ -17,6 +17,8 @@ pages:
     - Jupyter: 'jupyter.md'
     - R Markdown: 'rmarkdown.md'
     - Docker: 'docker.md'
+    - Singularity: 'singularity.md'
+    - 'Making a project reproducible': 'repres_project.md'
     - 'Take down': take_down.md
 
 markdown_extensions:
