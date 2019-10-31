@@ -173,7 +173,7 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 15:00  </td>
     <td>
-      <font size="3"> Open discussion - Reproducible research in practice
+      <font size="3"> Open discussion - Reproducible research in practice<br>
       <font size="2"><i>Tips and tricks on how to implement these procedures on a day-to-day basis<br>
     </td>
   </tr>
