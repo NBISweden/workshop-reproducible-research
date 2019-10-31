@@ -56,7 +56,7 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up</td>
+    <td> <font size="3"> Wrap-up day 1</td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
@@ -118,7 +118,7 @@ Times and content will be changed.
   </tr>
   <tr>
     <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up</td>
+    <td> <font size="3"> Wrap-up day 2</td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
@@ -149,7 +149,7 @@ Times and content will be changed.
       <font size="2"><i><br>
       - Introduction to containers<br>
       - Practical tutorial: <a href="../docker/">Docker</a><br>
-      - Practical tutorial: <a href="#">Singularity</a></i><br><br>
+      - Practical tutorial: <a href="../singularity">Singularity</a></i><br><br>
       <font size="3">Fika break ~10:15 <br>
     </td>
   </tr>
@@ -160,10 +160,10 @@ Times and content will be changed.
   <tr>
     <td> <font size="3"> 12:45 </td>
     <td>
-      <font size="3"> Reproducing a project
+      <font size="3"> Wrap-up - putting the pieces together
       <font size="2"><i><br>
-      - Overview - Putting the tools together<br>
-      - Practical tutorial: <a href="#">Reproducing a project</a></i>
+      - Overview - Using the tools in concert<br>
+      - Practical tutorial: <a href="../repres_project">Making a project reproducible</a></i>
     </td>
   </tr>
   <tr>
