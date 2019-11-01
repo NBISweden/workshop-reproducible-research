@@ -2,9 +2,6 @@
 
 The course will take place in the room 10:an (see [travel info](travel.md)).
 
-Please note that the schedule is under development and below is just a preliminary draft.
-Times and content will be changed.
-
 <table>
   <tr>
     <td colspan="3">
