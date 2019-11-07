@@ -468,7 +468,7 @@ intermediate/
 
 ## Tagging
 
-The last topic we will cover in this tutorial is tagging. Git allows us to tag commits. This is of particular importance when it comes to reproducible research. We can tag commits that represent important points in the history of our project. This can be, for example, the version of the repository that was used for the manuscript submission, the version used during resubmission, and, most importantly, the version used for the final publication. The first two examples are mainly useful internally, but the latter is essential for other researchers to be able to rerun your published analysis. Let's try this out!
+Git allows us to tag commits. This is of particular importance when it comes to reproducible research. We can tag commits that represent important points in the history of our project. This can be, for example, the version of the repository that was used for the manuscript submission, the version used during resubmission, and, most importantly, the version used for the final publication. The first two examples are mainly useful internally, but the latter is essential for other researchers to be able to rerun your published analysis. Let's try this out!
 
 * Let's assume that the status of the repository as it is now is ready for a submission to a journal. It may for example contain the scripts that were used to generate the manuscript figures. Let's add a tag:
 
@@ -534,3 +534,5 @@ also be able to see the tagged commits.
 
     * `git tag` - add a tag to a commit
     * `git checkout` - update files to match the versions in the given branch or tag name
+
+## Branching and merging
