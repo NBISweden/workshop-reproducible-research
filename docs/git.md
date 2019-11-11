@@ -577,3 +577,68 @@ shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} > {o
 ```bash
 git log --graph --all --oneline
 ```
+
+We can push the commits in this branch to our remote repository if we want, but one could also choose to just have it locally and then merge it into the master branch when needed.
+
+* Anyway, let's push it!
+
+```bash
+git push -u origin test_alignment
+```
+
+!!! note
+    The `-u` in the command above sets the remote (upstream) tracking to origin for our `test_alignment` branch. If you would have just typed `git push test_alignment` git would not know where to push it. However, the next time you push commits to this branch you can use simply `git push` without the `-u` since we only need to specify the remote once. Again, you can see your remote locations using `git remote -v`. You will see it's name (e.g. origin) and URL.
+
+* Go the the repository at Bitbucket in your browser and see if the new branch has appeared. Under "Source" you can select which branch to view. Can you see the difference in the `Snakefile` depending on which branch you choose? Under "Commits" you should be able to see the commit history of all branches together with a graph.
+
+* Make an additional edit to the `Snakefile`. To the same line as above, add the `--trim5 5` flag:
+
+```bash
+shell("bowtie2 --very-sensitive-local --trim5 5 -x " + indexBase + " -U {input.fastq} > {output} 2> {log}")
+```
+
+* Add, commit and push this change. Remember, you should be able to just use `git push` now.
+
+It is often useful to see what the differences exists between branches. You can use the `diff` command for this:
+
+```bash
+git diff master --color-words
+```
+
+Here we add the argument `--color-words` which should display the difference on a word- rather than line-basis. Do you see that git reports `--very-sensitive-local --trim5 5` to be the differences between the test_alignment and master branches?
+
+Now, assume that we have tested our code and the alignment analysis is run successfully with our new parameters. We want to merge our work into the master branch. It is good to start with checking the differences between branches (as we just did) so that we know what we will merge.
+
+* Next, checkout the branch you want to merge into, i.e. master:
+
+```bash
+git checkout master
+```
+
+* To merge, run:
+
+```bash
+git merge test_alignment
+```
+
+A default merge commit message appears. Close the terminal editor (e.g. ctrl + X if Nano or :wq, Enter if Vim). Run `git log --graph --all --oneline` again to see how the merge commit brings back the changes made in test_alignment to master.
+
+!!! note
+    When merging it is not uncommon to encounter merge conflicts. This can happen e.g. if work has continued on the master branch that is in conflict with the test_alignment branch (in this example). Handle these conflicts in the same manner as was described above.
+
+!!! tip
+    If working on different features or parts of an analysis on different branches, and at the same time maintaining a working master branch for the stable code, it is convenient to periodically merge the changes made to master into relevant branches (i.e. the opposite to what we did above). That way, you keep your experimental branches up-to-date with master and make them more easy to merge into master when time comes.
+
+* If we do not want to do more work in test_alignment we can delete that branch:
+
+```bash
+git branch -d test_alignment
+```
+
+* Run `git log --graph --all --oneline` again. Note that the commits and the graph history are still there? A branch is simply a pointer to a specific commit, and that pointer has been removed.
+
+The above command only deleted the local branch. If you want to remove the branch from the remote repository as well, run:
+
+```bash
+git push origin --delete test_alignment
+```
