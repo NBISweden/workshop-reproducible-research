@@ -642,3 +642,10 @@ The above command only deleted the local branch. If you want to remove the branc
 ```bash
 git push origin --delete test_alignment
 ```
+
+!!! note "Quick recap"
+    We now learned how to divide our work into branches and manage those:
+
+    * `git branch branch_name` - create a new branch
+    * `git checkout` - update files to match the versions in the given branch or tag name
+    * `git merge` - to merge one branch into another
