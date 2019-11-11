@@ -560,7 +560,7 @@ git checkout test_alignment
 ```
 
 !!! tip
-    You can create and checkout a new branch in one line with `git checkout -b branch_name`.
+    You can create and checkout a new branch in one line with `git checkout -b branch_name`
 
 Let's add some changes to our new branch! We'll use this to try out a different set of parameters on the sequence alignment step of the case study project.
 
@@ -587,7 +587,7 @@ git push -u origin test_alignment
 ```
 
 !!! note
-    The `-u` in the command above sets the remote (upstream) tracking to origin for our `test_alignment` branch. If you would have just typed `git push test_alignment` git would not know where to push it. However, the next time you push commits to this branch you can use simply `git push` without the `-u` since we only need to specify the remote once. Again, you can see your remote locations using `git remote -v`. You will see it's name (e.g. origin) and URL.
+    The `-u` in the command above sets the remote (upstream) tracking to origin for our `test_alignment` branch. If you would have just typed `git push test_alignment` git would not know where to push it. However, the next time you push commits to this branch you can simply use `git push` without the `-u` since we only need to specify the remote once. Again, you can see your remote locations using `git remote -v`. You will see it's name (e.g. origin) and URL.
 
 * Go the the repository at Bitbucket in your browser and see if the new branch has appeared. Under "Source" you can select which branch to view. Can you see the difference in the `Snakefile` depending on which branch you choose? Under "Commits" you should be able to see the commit history of all branches together with a graph.
 
@@ -605,7 +605,7 @@ It is often useful to see what the differences exists between branches. You can 
 git diff master --color-words
 ```
 
-Here we add the argument `--color-words` which should display the difference on a word- rather than line-basis. Do you see that git reports `--very-sensitive-local --trim5 5` to be the differences between the test_alignment and master branches?
+This shows the difference between the active branch (test_alignment) and master. Here we add the argument `--color-words` which should display the difference on a word- rather than line-basis. Do you see that git reports `--very-sensitive-local --trim5 5` to be the difference between the test_alignment and master branches?
 
 Now, assume that we have tested our code and the alignment analysis is run successfully with our new parameters. We want to merge our work into the master branch. It is good to start with checking the differences between branches (as we just did) so that we know what we will merge.
 
