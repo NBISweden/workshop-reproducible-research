@@ -243,7 +243,7 @@ So far we have just worked locally. A strength with git is that we can add a rem
 * Run `git branch`. This will show you the name of the current branch. By default this will be "*master*".
 
 !!! attention
-    We have not mentioned branches, and will not go into details about branches here, but they are a major feature of git. They allow you to have different "versions" of a repository. As an example, during software development it is common to have a release branch containing code that is working correctly, and a development branch containing code with new features and fixes but also potential bugs that have not been fixed yet. Once the development branch is fixed and working, it can be merged into the release branch. End-users will typically use the code in the release branch only.
+    We have not mentioned branches yet (it is touched on at the end) but they are a major feature of git. They allow you to have different "versions" of a repository. As an example, during software development it is common to have a release branch containing code that is working correctly, and a development branch containing code with new features and fixes but also potential bugs that have not been fixed yet. Once the development branch is fixed and working, it can be merged into the release branch. End-users will typically use the code in the release branch only.
 
 * Now we will push the latest commits to the master branch to our remote origin:
 
@@ -536,3 +536,44 @@ also be able to see the tagged commits.
     * `git checkout` - update files to match the versions in the given branch or tag name
 
 ## Branching and merging
+
+A more advanced, but commonly used, feature of Git is called branching. Branching allows you to diverge from the main line of work and edit or update your code and files, e.g. to test out a new analysis or some experimental feature, without affecting your main work. If the work you did in the branch turns out to be useful you can merge that back into your main branch. On the other hand, if the work didn't turn out as planned, you can simply delete the branch and continue where you left off in your main line of work. Another use case for branching is when you are working in a project with multiple people. Branching can be a way of compartmentalizing your teams work on different parts of the project and enables merging back into the main branch in a controlled fashion.
+
+* Let's start trying out branching! Recall that we can see the current branch by running:
+
+```bash
+git branch
+```
+
+This tells us that there is only the master branch at the moment.
+
+* Let's make a new branch:
+
+```bash
+git branch test_alignment
+```
+
+* Run `git branch` again to see the available branches. Do you note which one is selected as the active branch? Let's move to our newly created branch:
+
+```bash
+git checkout test_alignment
+```
+
+!!! tip
+    You can create and checkout a new branch in one line with `git checkout -b branch_name`.
+
+Let's add some changes to our new branch! We'll use this to try out a different set of parameters on the sequence alignment step of the case study project.
+
+* Edit the `Snakefile` so that the shell command of the `align_to_genome` rule looks like this (add the `--very-sensitive-local` option):
+
+```bash
+shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} > {output} 2> {log}")
+```
+
+* Add and commit the change!
+
+* To get a visual view of your branches and commits you can use the command:
+
+```bash
+git log --graph --all --oneline
+```
