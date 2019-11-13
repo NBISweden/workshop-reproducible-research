@@ -1,0 +1,129 @@
+---
+title: "Supplementary Material"
+author: John Doe, Joan Dough, Jan Doh, Dyon Do
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+params:
+  counts_file: NA
+  multiqc_file: NA
+  rulegraph_file: NA
+  SRR_IDs: NA
+  GSM_IDs: NA
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=normalizePath('../'))
+knitr::opts_chunk$set(echo = FALSE, fig.height = 6, fig.width = 6, fig.align = 'center', fig.pos = 'H')
+```
+
+```{r dependencies, include=FALSE}
+library("ggplot2")
+library("reshape2")
+library("pheatmap")
+library("rtracklayer")
+library("GEOquery")
+```
+
+```{r read_params, include=FALSE}
+if(any(unlist(lapply(params, function(x) x=="NA")))) stop("Missing input params")
+counts_file <- params$counts_file
+multiqc_file <- params$multiqc_file
+rulegraph_file <- params$rulegraph_file
+SRR_IDs <- unlist(strsplit(params$SRR_IDs," "))
+GSM_IDs <- unlist(strsplit(params$GSM_IDs," "))
+```
+
+```{r read_data, include=FALSE}
+# Read counts:
+counts <- read.delim(counts_file, skip=1, header=F, row.names=1)
+sample_names <- t(read.delim(counts_file, nrow=1, header=F))
+colnames(counts) <- c("description",gsub(".*(SRR[0-9]*)\\..*","\\1", sample_names))
+counts_other <- counts[grep("^__",rownames(counts)),]
+rownames(counts_other) <- gsub("^__","",rownames(counts_other))
+counts <- counts[grep("^__",rownames(counts), invert=T),]
+
+# Read meta data and FastQC info:
+gse <- Meta(getGEO(GSM_IDs[1]))$series_id
+gse <- getGEO(gse, GSEMatrix=T)
+gse <- as.data.frame(gse[[1]])
+gsm2srr <- data.frame(geo_accession=GSM_IDs, SRR=SRR_IDs)
+meta <- merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession")
+qc <- read.delim(multiqc_file)
+columns <- gsub("gc","GC",gsub(".1","",gsub("FastQC ","",gsub("_"," ",colnames(qc)))))
+columns <- paste(toupper(substr(columns, 1, 1)),substr(columns, 2, nchar(columns)), sep="")
+colnames(qc) <- columns
+meta <- merge(meta, qc, by.x="SRR", by.y="Sample")
+if(any(colnames(counts)[-1] != meta$SRR)) stop("Mismatching count and meta-data")
+```
+
+# Supplementary Methods
+
+## Preparing samples
+
+Living valley had silent eat merits esteem bed. In last an or went wise as left. Visited civilly am demesne so colonel he calling. So unreserved do interested increasing sentiments. Vanity day giving points within six not law. Few impression difficulty his use has comparison decisively.
+
+## Statistical analysis
+
+She who arrival end how fertile enabled. Brother she add yet see minuter natural smiling article painted. Themselves at dispatched interested insensible am be prosperous reasonably it. In either so spring wished. Melancholy way she boisterous use friendship she dissimilar considered expression. Sex quick arose mrs lived. Mr things do plenty others an vanity myself waited to. Always parish tastes at as mr father dining at.
+
+## Data processing
+
+Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exercise. My wishing an in attempt ferrars. Visited eat you why service looking engaged. At place no walls hopes rooms fully in. Roof hope shy tore leaf joy paid boy. Noisier out brought entered detract because sitting sir. Fat put occasion rendered off humanity has.
+
+# Supplementary Tables and Figures
+
+```{r sample-info}
+columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
+d <- meta[,columns]
+d$characteristics_ch1.1 <- gsub("treatment: ", "", d$characteristics_ch1.1)
+knitr::kable(d, caption="Sample info",
+      col.names=c("SRR", "GEO", "Strain", "Treatment"))
+```
+
+```{r qc-stats}
+columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
+             "Percent fails", "Total sequences")
+d <- meta[,columns]
+knitr::kable(d, caption="QC stats from FastQC")
+```
+
+```{r counts-barplot, fig.cap = "Counting statistics per sample, in terms of read counts for genes and reads not counted for various reasons."}
+d <- rbind(genes=apply(counts[,-1], 2, sum), counts_other[,-1])
+d <- melt(as.matrix(d), varnames=c("Feature","Sample"), value.name="Reads")
+ggplot(d, aes(x=Sample, y=Reads, fill=Feature)) +
+  geom_bar(stat="identity")
+```
+
+```{r gene-heatmap, fig.cap = paste("Expression (log-10 counts) of genes with at least ", max_cutoff, " counts in one sample and a CV>", cv_cutoff, ".", sep = ""), fig.height=10, out.height="22cm"}
+cv_cutoff <- 1.2
+max_cutoff <- 5
+d <- counts[apply(counts[,-1], 1, function(x) sd(x)/mean(x))>cv_cutoff &
+            apply(counts[,-1],1,max)>max_cutoff,]
+colnames(d)[2:4] <- as.character(meta$title)
+pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",substr(gsub("%2C","",d$description),1,50),")",sep=""), fontsize_row=8)
+```
+
+```{r, fig.cap = "A rule graph showing the different steps of the bioinformatic analysis that is included in the Snakemake workflow.", out.height = "11cm"}
+knitr::include_graphics(normalizePath(rulegraph_file))
+```
+
+\newpage
+
+## Reproducibility
+
+The code for reproducing this analysis is available in this [Bitbucket repo](https://bitbucket.org/scilifelab-lts/reproducible_research_course/src/master/docker/). The repo contains:
+
+* A Snakemake workflow for running all analysis steps.
+* A Conda environment file for installing all needed dependencies.
+* A Docker file for running the analysis in a well-defined and isolated system.
+
+The results in this supplementary were generated in the following R environment:
+
+\footnotesize
+```{r session_info}
+sessionInfo()
+```
+\normalsize

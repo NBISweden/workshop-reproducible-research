@@ -1,0 +1,22 @@
+# List of SRA run ids to analyse, and corresponding GSM ids.
+sample_ids: ["SRR935090","SRR935091","SRR935092"]
+sample_ids_geo: ["GSM1186459", "GSM1186460", "GSM1186461"]
+
+# Maximal number of reads to retrieve for each run. This is to reduce the time
+# and space needed for this tutorial. Use a very large number, such as 100000000,
+# if you want to use the full files.
+max_reads: 25000
+
+# Genome id to align to. Should match with an entry in "genomes" below.
+genome_id: NCTC8325
+
+# Dictionary with genomes that can be aligned against. Here we have added
+# NCTC8325, which is the strain used in the study, and ST398, which is primarily
+# associated with cattle but that can infect humans.
+genomes:
+  NCTC8325:
+    fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
+    gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz
+  ST398:
+    fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection//staphylococcus_aureus_subsp_aureus_st398/dna/Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.dna.toplevel.fa.gz
+    gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_st398//Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.37.gff3.gz
