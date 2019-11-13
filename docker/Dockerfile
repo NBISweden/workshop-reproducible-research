@@ -6,6 +6,7 @@ MAINTAINER "Leif Wigge" leif.wigge@scilifelab.se
 WORKDIR /course
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
+ENV HOME /usr
 SHELL ["/bin/bash", "-c"]
 
 # Install necessary tools
