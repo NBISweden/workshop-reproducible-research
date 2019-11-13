@@ -176,7 +176,7 @@ RUN apt-get update && \
 
 # Install Miniconda and add to PATH
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O && \
-    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
+    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
     rm Miniconda3-4.6.14-Linux-x86_64.sh
 ```
 
@@ -206,7 +206,7 @@ The next `RUN` command retrieves and installs Miniconda3. Let's see what would h
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
 
 # Install it
-RUN bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /opt/miniconda3/
+RUN bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/
 
 # Remove the downloaded installation file
 RUN rm Miniconda3-4.6.14-Linux-x86_64.sh
@@ -216,12 +216,12 @@ Remember that each layer contains the difference compared to the previous layer?
 
 ```no-highlight
 # Add conda to PATH and set locale
-ENV PATH="/opt/miniconda3/bin:${PATH}"
+ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 ```
 
-Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/opt/miniconda3/bin/conda install`. The other two set an UTF-8 character encoding so that we can use weird characters (and a bunch of other things).
+Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda install`. The other two set an UTF-8 character encoding so that we can use weird characters (and a bunch of other things).
 
 ```no-highlight
 # Use bash as shell

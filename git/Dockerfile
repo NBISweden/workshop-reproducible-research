@@ -26,9 +26,9 @@ RUN wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
 
 # Install Miniconda and add to PATH
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O && \
-    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /opt/miniconda3/ && \
+    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
     rm Miniconda3-4.6.14-Linux-x86_64.sh
-ENV PATH="/opt/miniconda3/bin:${PATH}"
+ENV PATH="/usr/miniconda3/bin:${PATH}"
 
 # Add project files
 COPY environment.yml Snakefile config.yml ./
