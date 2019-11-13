@@ -39,7 +39,9 @@ This pulls an ubuntu image from the [Singularity library](https://cloud.sylabs.i
 To run a command in a Singularity container (equivalent of e.g. `docker run ubuntu uname -a`) we can execute:
 
 ```bash
-singularity exec ubuntu_latest.sif uname -a
+$ singularity exec ubuntu_latest.sif uname -a
+Linux (none) 4.19.10 #1 SMP Mon Apr 8 00:07:40 CDT 2019 x86_64 x86_64 x86_64 GNU/Linux
+[    4.994162] reboot: Power down
 ```
 
 Now, try to also run the commands `whoami` and `ls -lh` in the ubuntu container in the same manner as above. Notice anything unexpected or different from what you learnt from the Docker tutorial?
