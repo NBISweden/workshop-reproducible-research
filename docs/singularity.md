@@ -44,7 +44,12 @@ Linux (none) 4.19.10 #1 SMP Mon Apr 8 00:07:40 CDT 2019 x86_64 x86_64 x86_64 GNU
 [    4.994162] reboot: Power down
 ```
 
-Now, try to also run the commands `whoami` and `ls -lh` in the ubuntu container in the same manner as above. Notice anything unexpected or different from what you learnt from the Docker tutorial?
+Now, try to also run the following commands in the ubuntu container in the same manner as above:
+
+* `whoami`
+* `ls -lh`
+
+Notice anything unexpected or different from what you learnt from the Docker tutorial?
 
 Unlike Docker, Singularity attempts to map parts of your local file system to the image. User. Default mapped dirs. Env vars.
 
