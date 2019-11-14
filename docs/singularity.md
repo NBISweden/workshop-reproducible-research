@@ -63,6 +63,7 @@ While running a shell in the container, try executing `pwd` (showing the full pa
 
 !!! note "Quick recap"
     In this section we covered:
+    
     * how to download a Singularity image using `singularity pull`
     * how to run a command in a Singularity container using `singularity exec`
     * how to start an interactive terminal in a Singularity container using `singularity shell`
