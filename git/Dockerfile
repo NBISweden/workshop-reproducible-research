@@ -23,7 +23,10 @@ RUN apt-get update && \
     && apt-get clean
 
 # Install TinyTeX
-RUN wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh
+RUN wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh  && \
+    tlmgr update --self && \
+    tlmgr install float && \
+    tlmgr install grffile
 
 # Install Miniconda and add to PATH
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O && \
