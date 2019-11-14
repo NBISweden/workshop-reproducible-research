@@ -93,6 +93,11 @@ ls /mnt/code
 
 Now, this was not really necessary since `conda/` would have been available to us anyway since it most likely has you home directory as a parent, but it illustrates the capabilities to get files from the host system into the container when needed. Note also that if you run Singularity on say an HPC cluster, the system admins may have enabled additional default directories that are bind mounted automatically.
 
+!!! note "Quick recap"
+    In this section we covered:
+
+    * how to bind mount specific directories using `-B`
+
 ### Pulling Docker images
 
 Singularity has the ability to convert Docker images to the Singularity Image Format (SIF). We can try this out by running:
@@ -111,7 +116,7 @@ singularity shell lolcow_latest.sif
 
 Instead of `pull` one can use `build` to build Singularity images with access to more options, e.g. like building a writable sandbox image. We will use `singularity build` to convert the Docker image of the MRSA project, that we use as a case study in this course, to a Singularity image. Now depending on the system you are running on and the version of Singularity you may not have the option to build locally. However, Singularity has the option to build images remotely. To do this, you need to:
 
-* Go to https://cloud.sylabs.io/library and create an account
+* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and create an account
 * Log in and find "Access Tokens" in the menu and create a new token
 * Copy the token and paste it in the file `~/.singularity/sylabs-token`
 
@@ -127,8 +132,17 @@ This should result in a file called `mrsa_proj.sif`. In the Docker image we incl
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is `snakemake -rp --configfile config.yml`. Note here that we have also increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), needed to fully run through the workflow. Once completed you should see a bunch of directories and files generated in your current working directory, including the `results/` directory containing the final PDF report.
+This executes the default run command, which is `snakemake -rp --configfile config.yml` (as defined in the original `Dockerfile`). Note here that we have also increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), needed to fully run through the workflow. Once completed you should see a bunch of directories and files generated in your current working directory, including the `results/` directory containing the final PDF report.
 
-### Building a Singularity image
+!!! note "Quick recap"
+    In this section we covered:
 
-definition file
+    * how to use `singularity pull` and `singularity build` to run Docker images as Singularity containers
+
+### Building a Singularity image from scratch
+
+As we have seen, it is possible to convert Docker images to the Singularity format when needed and run them using Singularity. In terms of making a research project reproducible using containers, it may be enough to e.g. define a Dockerfile (recipe for a Docker image) as well as supply a Docker image for others to download and use, either directly through Docker, or by Singularity. Even better, from a reproducibility aspect, would be to also generate the Singularity image from the Docker image and provide that for potential future users (since the image is a static file, whereas running `singularity pull` or `singularity build` would rebuild the image at the time of issuing the command).
+
+A third option, would be to define a Singularity recipe, either on its own or in addition to the Dockerfile. The equivalent of a Dockerfile for Singularity is called a Singularity Definition file.
+
+
