@@ -161,6 +161,9 @@ In the lol_cow def file three sections are used (`%post`, `%environment`, and `r
 * `%environment` is similar to the `ENV` instruction in Dockerfiles. It is used to set environmental variables that will be available when running the container. The variables set in this section will not however be available during the build and should in the cases they are needed then also be set in the `%post` section.
 * `%runscript` is similar to the `CMD` instruction in Dockerfiles and contains the default command to be executed when running the container.
 
+!!! note "Quick recap"
+    In this section we covered the basic parts of a Singularity definition file.
+
 ### Singularity def file for the MRSA project
 
 Let's use the MRSA case study project to define our own Singularity def file! We will not make an image for the whole workflow but rather focus on the `run_qc.sh` script that we used in the end of the [conda tutorial](conda.md). This script is included in the `code` directory of your current working directory (`singularity`) and, when executed, downloads a few fastq-files and runs FastQC on them. To run the script we need the software SRA-Tools and FastQC.
@@ -170,9 +173,13 @@ Let's use the MRSA case study project to define our own Singularity def file! We
 ```
 Bootstrap: library
 From: ubuntu:18.04
+
+%labels
+    DESCRIPTION Image for running the run_qc.sh script
+    AUTHOR Leif Wigge
 ```
 
-Here we'll use the Singularity Library as bootstrap agent, instead of Dockerhub as in the lol_cow example above. The base Singularity image will be `ubuntu:18.04`.
+Here we'll use the Singularity Library as bootstrap agent, instead of Dockerhub as in the lol_cow example above. The base Singularity image will be `ubuntu:18.04`. We can also add metadata to our image using any name-value pair.
 
 * Next, add the `%environment` section:
 
@@ -183,10 +190,6 @@ Here we'll use the Singularity Library as bootstrap agent, instead of Dockerhub 
 ```
 
 This sets the default locale as well as includes the PATH to conda (which we will soon install).
-
-%files
-%test
-%labels
 
 * Now add the `%post` section:
 
@@ -211,7 +214,7 @@ This sets the default locale as well as includes the PATH to conda (which we wil
     conda clean --all
 ```
 
-You should recognize parts of this from the Docker tutorial. Basically, we install some required basic tools like bzip2, cca-certificates and curl, then install and configure conda and finally install the required tools for the `run_qc.sh` script.
+You should recognize parts of this from the Docker tutorial. Basically, we install some required basic tools like bzip2, ca-certificates and curl, then install and configure conda and finally install the required tools for the `run_qc.sh` script.
 
 * Next, add a `%test` section:
 
@@ -223,20 +226,26 @@ You should recognize parts of this from the Docker tutorial. Basically, we insta
 
 The test section runs at the end of the build process and you can include any code here to verify that your image works as intended. Here we just make sure that the `fastqc` and `fastq-dump` are available.
 
-Finally, add the `%runscript`:
+* Finally, add the `%runscript`:
 
 ```
 %runscript
     bash code/run_qc.sh
 ```
 
-We should now be ready to build our image from this def file. Do that by running:
+We should now be ready to build our image from this def file using `singularity build`. Now, depending on the system you are running on and the version of Singularity, you may not have the option to build locally. However, Singularity has the option to build images remotely. To do this, you need to:
+
+* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and create an account
+* Log in and find "Access Tokens" in the menu and create a new token
+* Copy the token and paste it in the file `~/.singularity/sylabs-token`
+
+We can now try to build the MRSA Singularity image using the `--remote` flag:
 
 ```bash
 singularity build --remote run_qc.sif run_qc.def
 ```
 
-Did it work? Can you figure out why it failed? Tip: it has to do with the PATH.
+Did it work? Can you figure out why it failed? Tip: it has to do with the PATH (well, to be fair, it could fail for several reasons, but if you did everything else correct it should be related to the PATH).
 
 ??? note "Click to see the solution"
     You need to add conda to the PATH. `%environment` makes it available at runtime but not during build.
@@ -265,33 +274,27 @@ The build should now hopefully work and produce a Singularity image called `run_
 singularity run run_qc.sif
 ```
 
+The fastq-files should now be downloaded and FastQC should be run on these files producing output directories and files in your current working directory.
+
 !!! tip
     For building testing convenience one can use sandbox, shell and install, then add it to he def file for final build
+
+!!! note
+    %files
 
 
 ## Converting the MRSA workflow Docker image to Singularity
 
-Instead of `pull` one can use `build` to build Singularity images with access to more options, e.g. like building a writable sandbox image. We will use `singularity build` to convert the Docker image of the MRSA project, that we use as a case study in this course, to a Singularity image. Now depending on the system you are running on and the version of Singularity you may not have the option to build locally. However, Singularity has the option to build images remotely. To do this, you need to:
-
-* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and create an account
-* Log in and find "Access Tokens" in the menu and create a new token
-* Copy the token and paste it in the file `~/.singularity/sylabs-token`
-
-We can now try to build the MRSA Singularity image using the `--remote` flag:
+As a final example we will use `singularity build` to convert the Docker image of the MRSA project, that we use as a case study in this course, to a Singularity image:
 
 ```bash
 singularity build --remote mrsa_proj.sif docker://scilifelablts/reproducible_research_course
 ```
 
-This should result in a file called `mrsa_proj.sif`. In the Docker image we included the code needed for the workflow in the `/course` directory of the image. These files are of course also available in the Singularity image. However, a Singularity image is read-only (unless using the sandbox feature), and this will be a problem if we try to run the wworkflow within the `/course` directory, since the workflow will produce files and Snakemake will create a `.snakemake` directory. Instead, we need to provide the files externally from our host system and simply use the sSingularity image as the environment to execute the workflow in (i.e. all the software). In your current working directory (`singularity/`) the vital MRSA project files are already available (`Snakefile`, `config.yml`, `code/header.tex` and `code/supplementary_material.Rmd`). And since Singularity bind mounts the current working directory we can simply execute the workflow and generate the output files using:
+This should result in a file called `mrsa_proj.sif`. In the Docker image we included the code needed for the workflow in the `/course` directory of the image. These files are of course also available in the Singularity image. However, a Singularity image is read-only (unless using the sandbox feature), and this will be a problem if we try to run the wworkflow within the `/course` directory, since the workflow will produce files and Snakemake will create a `.snakemake` directory. Instead, we need to provide the files externally from our host system and simply use the Singularity image as the environment to execute the workflow in (i.e. all the software). In your current working directory (`singularity/`) the vital MRSA project files are already available (`Snakefile`, `config.yml`, `code/header.tex` and `code/supplementary_material.Rmd`). And since Singularity bind mounts the current working directory we can simply execute the workflow and generate the output files using:
 
 ```bash
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is `snakemake -rp --configfile config.yml` (as defined in the original `Dockerfile`). Note here that we have also increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), needed to fully run through the workflow. Once completed you should see a bunch of directories and files generated in your current working directory, including the `results/` directory containing the final PDF report.
-
-### Other
-inspect
-instances
-more options to shell run exec
+This executes the default run command, which is `snakemake -rp --configfile config.yml` (as defined in the original `Dockerfile`). Note here that we have also increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), needed to fully run through the workflow. The previous step in this tutorial included running the `run_qc.sh` script, so that part of the workflow has already been run and Snakemake will continue from that automatically without redoing anything. Once completed you should see a bunch of directories and files generated in your current working directory, including the `results/` directory containing the final PDF report.
