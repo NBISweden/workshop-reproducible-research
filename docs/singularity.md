@@ -25,9 +25,9 @@ Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installat
 
 Installing on Windows may be tricky. This requires running Singularity through a Vagrant Box. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
-## Practical exercise
+# Practical exercise
 
-### The very basics
+## The very basics
 
 In the [Docker tutorial](docker.md) we started by downloading an Ubuntu image. Let's see how the same thing is achieved with Singularity:
 
@@ -70,7 +70,7 @@ While running a shell in the container, try executing `pwd` (showing the full pa
     * how to start an interactive terminal in a Singularity container using `singularity shell`
 
 
-### Bind mounts
+## Bind mounts
 
 In the previous section we saw how Singularity differs from Docker in terms of images being stored in stand-alone files and much of the host filesystem being mounted in the container. We will now explore this further.
 
@@ -99,7 +99,7 @@ Now, this was not really necessary since `conda/` would have been available to u
 
     * how to bind mount specific directories using `-B`
 
-### Pulling Docker images
+## Pulling Docker images
 
 Singularity has the ability to convert Docker images to the Singularity Image Format (SIF). We can try this out by running:
 
@@ -140,7 +140,7 @@ This executes the default run command, which is `snakemake -rp --configfile conf
 
     * how to use `singularity pull` and `singularity build` to run Docker images as Singularity containers
 
-### Building a Singularity image from scratch
+## Building a Singularity image from scratch
 
 As we have seen, it is possible to convert Docker images to the Singularity format when needed and run them using Singularity. In terms of making a research project reproducible using containers, it may be enough to e.g. define a Dockerfile (recipe for a Docker image) as well as supply a Docker image for others to download and use, either directly through Docker, or by Singularity. Even better, from a reproducibility aspect, would be to also generate the Singularity image from the Docker image and provide that for potential future users (since the image is a static file, whereas running `singularity pull` or `singularity build` would rebuild the image at the time of issuing the command).
 
