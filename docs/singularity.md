@@ -171,4 +171,12 @@ From: ubuntu:16.04
     fortune | cowsay | lolcat
 ```
 
+The first part of the header sets the bootstrap agent. In the lol_cow example DockerHub is used. Alternatively one could set it to *library* to use the Singularity Library. There are also other bootstrap agents available (see [this link](https://sylabs.io/guides/3.3/user-guide/definition_files.html#preferred-bootstrap-agents) for details). Next, the base image that the new image starts from is defined, in this case the Docker image `ubuntu:16.04`.
 
+In the lol_cow def file three sections are used (`%post`, `%environment`, and `runscript`).
+
+* `%post` is similar to the `RUN` instruction in Dockerfiles. Here is where you include code to download files from the internet, install software, create directories etc.
+* `%environment` is similar to the `ENV` instruction in Dockerfiles. It is used to set environmental variables that will be available when running the container. The variables set in this section will not however be available during the build and should in the cases they are needed then also be set in the `%post` section.
+* `%runscript` is similar to the `CMD` instruction in Dockerfiles and contains the default command to be executed when running the container.
+
+### Singularity def file for the MRSA project
