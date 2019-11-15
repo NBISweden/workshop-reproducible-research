@@ -5,6 +5,7 @@
 ## Tell me more
 
 * [Singularity docs](https://sylabs.io/guides/3.4/user-guide/index.html)
+* [Uppmax Singularity user guide](https://www.uppmax.uu.se/support/user-guides/singularity-user-guide/)
 
 # Setup
 
@@ -143,6 +144,31 @@ This executes the default run command, which is `snakemake -rp --configfile conf
 
 As we have seen, it is possible to convert Docker images to the Singularity format when needed and run them using Singularity. In terms of making a research project reproducible using containers, it may be enough to e.g. define a Dockerfile (recipe for a Docker image) as well as supply a Docker image for others to download and use, either directly through Docker, or by Singularity. Even better, from a reproducibility aspect, would be to also generate the Singularity image from the Docker image and provide that for potential future users (since the image is a static file, whereas running `singularity pull` or `singularity build` would rebuild the image at the time of issuing the command).
 
-A third option, would be to define a Singularity recipe, either on its own or in addition to the Dockerfile. The equivalent of a Dockerfile for Singularity is called a Singularity Definition file.
+A third option, would be to define a Singularity recipe, either on its own or in addition to the Dockerfile. The equivalent of a Dockerfile for Singularity is called a Singularity Definition file ("def file").
+
+The def file consists of two parts:
+
+* a header that defines the core OS and related features
+* optional sections, each starting with a `%`-sign, that add content or execute commands during the build process
+
+As an example, let's look at the def file for the lol_cow image that we played with above (above we pulled lol_cow from Dockerhub but it also exists in the Singularity library and can be pulled by `singularity pull library://godlovedc/funny/lolcow`).
+
+The file looks like this:
+
+```
+BootStrap: docker
+From: ubuntu:16.04
+
+%post
+    apt-get -y update
+    apt-get -y install fortune cowsay lolcat
+
+%environment
+    export LC_ALL=C
+    export PATH=/usr/games:$PATH
+
+%runscript
+    fortune | cowsay | lolcat
+```
 
 
