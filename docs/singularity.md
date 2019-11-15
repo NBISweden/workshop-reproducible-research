@@ -280,10 +280,10 @@ singularity run run_qc.sif
 The fastq-files should now be downloaded and FastQC should be run on these files producing output directories and files in your current working directory.
 
 !!! tip
-    For building testing convenience one can use sandbox, shell and install, then add it to he def file for final build
+    We do not cover it here but it is possible to build Singularity images as writable sandbox images. This enables starting a shell in the container and e.g. install software. This may be convenient during the design of the definition file to test what commands to include. When everything is working as expected one should rebuild directly from the definition file to a final SIF file.
 
 !!! note
-    %files
+    A somewhat important section that we have not covered here is the `%files` section. This is similar to the `ADD` or `COPY` instructions in a Dockerfile. One simply defines, on each line, a file to be copied from host to the container image using the format `<source> <destination>`. This does not currently work with `--remote` building though.
 
 
 ## Converting the MRSA workflow Docker image to Singularity
