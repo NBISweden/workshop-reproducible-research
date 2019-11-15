@@ -84,12 +84,12 @@ Let's start by creating an empty notebook by selecting the Files tab and clickin
     ```
 
 ## The very basics
-Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it's green indicates that it's in "edit mode", so you can write stuff in it. Cells in Jupyter notebooks can be of two types: markdown or code.
+Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it has a green border indicates that it's in "Edit mode", so you can write stuff in it. 
+A blue border indicates "Command mode" (see below).
+Cells in Jupyter notebooks can be of two types: markdown or code.
 
-* Markdown - These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called Github Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
-* Code - These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or figures, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
-
-Let's use our first cell to create a header. Change the format from Code to Markdown in the drop-down list above the cell. Double click on the cell to enter editing mode (green frame) and input "# My notebook" ("#" is used in Markdown for header 1). Run the cell with Shift-Enter. Tada!
+* **Markdown** - These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called Github Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
+* **Code** - These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or figures, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
 
 Before we continue, here are some shortcuts that can be useful. Note that they are only applicable when in command mode (blue frames). Most of them are also available from the menus.
 These shortcuts are also available from the **Help** menu in your notebook (there's even an option there to edit shortcuts).
@@ -105,7 +105,49 @@ These shortcuts are also available from the **Help** menu in your notebook (ther
 * d-d: delete a cell
 * a/b: insert cells above/below current cell
 * x/c/v: cut/copy/paste cells
+* o: toggle output of current cell
 
+### Some Markdown basics
+Let's use our first cell to create a header. Change the format from 
+Code to Markdown in the drop-down list above the cell. Double click on 
+the cell to enter editing mode (green frame) and input "# My notebook" 
+("#" is used in Markdown for header 1). Run the cell with Shift-Enter. 
+Tada!
+
+Markdown is a simple way to structure your notebook into sections with
+descriptive notes, lists, links, images etc.
+
+Below are some examples of what you can do in markdown. Paste all or parts
+of it into one or more cells in your notebook to see how it renders.
+
+```
+# My first notebook
+
+## Introduction
+In this notebook I will try out some of the **fantastic** concepts of Jupyter Notebooks.
+
+## Markdown basics
+Examples of text attributes are:
+
+* *italics*
+* **bold**
+* `monospace`
+
+Sections can be separated by horizontal lines.
+
+---
+
+Blockquotes can be added, for instance to insert a Monty Python quote:
+
+    Spam! 
+    Spam! 
+    Spam! 
+    Spam!
+
+See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html) for more information.    
+```
+
+### Writing code
 Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter this code in the second cell and run it:
 
 ```python
