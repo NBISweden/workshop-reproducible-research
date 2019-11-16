@@ -121,8 +121,6 @@ Below are some examples of what you can do in markdown. Paste all or parts
 of it into one or more cells in your notebook to see how it renders.
 
 ```
-# My first notebook
-
 ## Introduction
 In this notebook I will try out some of the **fantastic** concepts of Jupyter Notebooks.
 
@@ -175,7 +173,7 @@ print_me("Hi!")
 
 Your notebook should now look something like this.
 
-![](images/jupyter_basic.png)
+![](images/jupyter_basic_update.png)
 
 The focus here is not on how to write Markdown or Python; you can make really pretty notebooks with Markdown and you can code whatever you want with Python. Rather, we will focus on the Jupyter Notebook features that allow you to do a little more than that.
 
@@ -240,6 +238,20 @@ ax = fig.add_subplot(111)
 line, = plt.plot(x, y, 'r-')
 fig.canvas.draw()
 ```
+
+By default rendering is done as rasterized images which can make the quality poor. To render 
+in scalable vector graphics format add the following line magic
+
+```python
+%config InlineBackend.figure_format = 'svg'`
+``` 
+
+Try it by adding it to the cell with the lineplot and run it again. 
+
+!!! tip
+    The `%matplotlib inline` and `%config InlineBackend.figure_format = 'svg'` line 
+    magics are only required once per notebook. You could for instance 
+    add them to the first cell where you import matplotlib for plotting.
 
 !!! tip
     You can capture the output of some magics directly like this:
@@ -329,9 +341,19 @@ for axi in ax.flat:
     * How to use widgets and the mpld3 library for interactive plotting.
 
 ## Running the MRSA workflow in a Jupyter notebook
-As you might remember from the [intro](tutorial_intro.md), we are attempting to understand how lytic bacteriophages can be used as a future therapy for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). We have already defined the project environment in the [Conda tutorial](conda.md) and set up the workflow in the [Snakemake tutorial](snakemake.md). Here we will run the workflow in a Jupyter notebook as an example of how you can document your day-to-day work as a dry lab scientist. If you look in your current directory there should be a notebook called `mrsa.ipynb`. Now open the notebook with File > Open.
+As you might remember from the [intro](tutorial_intro.md), we are attempting 
+to understand how lytic bacteriophages can be used as a future therapy 
+for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). 
+We have already defined the project environment in the [Conda tutorial](conda.md) 
+and set up the workflow in the [Snakemake tutorial](snakemake.md). Here 
+we will run the workflow in a Jupyter notebook as an example of how you 
+can document your day-to-day work as a dry lab scientist. If you look in 
+your current directory there should be a notebook called `mrsa.ipynb`. Now 
+open the notebook with File > Open.
 
-The purpose of the notebook is to try out different settings for the `max_reads` parameter in our Snakemake workflow. Go through each of the cells and try to understand how they work. Now test to rerun the analysis cell by cell.
+The purpose of the notebook is to try out different settings for the
+ `max_reads` parameter in our Snakemake workflow. Go through each of the 
+ cells and try to understand how they work. Now test to rerun the analysis cell by cell.
 
 !!! attention
     If you do something that takes a long time, such as installing the Conda environment, you have to wait for the cell to finish before trying to run the next. Running cells have asterisks to the left of them, i.e. `In [*]`.
