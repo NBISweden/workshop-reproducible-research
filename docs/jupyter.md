@@ -435,7 +435,7 @@ Add the following to a new cell:
 %%bash
 for f in $(ls intermediate/*.sorted.bam);
 do
-    bedtools genomecov -ibam $f | gzip -c > $f.cov.gz
+    bedtools genomecov -ibam $f -d | gzip -c > $f.cov.gz
 done
 ```
 This will run `bedtools genomecov` on all bam-files in the `intermediate/` 
