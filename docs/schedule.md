@@ -56,7 +56,7 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
       <font size="2"><i><br>
       - Introduction to version control and git<br>
       - Practical tutorial: <a href="../git/">Git</a></i> <br>
-      - <a href="https://drive.google.com/file/d/1jtTobH-Wg_cGGbvPuYfyw0wXcL9D1wKZ/view?usp=sharing"> Git slides</a>
+      - <a href="https://drive.google.com/open?id=1jtTobH-Wg_cGGbvPuYfyw0wXcL9D1wKZ"> Git slides</a>
     </td>
   </tr>
   <tr>
