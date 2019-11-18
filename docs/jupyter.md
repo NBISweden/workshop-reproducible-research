@@ -476,12 +476,20 @@ Now we'll plot the read coverage for all samples:
 ```python
 # Set the figure size
 fig = plt.figure(figsize=(6,4))
+# Set colors
+colors = sns.color_palette("Dark2", n_colors=3)
+# Set legend handles
+handles = []
 # Iterate samples and plot coverage
-for sample in coverage_window.columns:
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample], linewidth=.75)
+for i, sample in enumerate(coverage_window.columns):
+    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample], linewidth=.75, color=colors[i])
+    # Update legend handles
+    handles.append(mpatches.Patch(color=colors[i], label=sample))
 # Set y and x labels
 ax.set_ylabel("Reads aligned");
 ax.set_xlabel("Genome position");
+# Plot legend
+plt.legend(handles=handles);
 ```
 
 Not too bad, but it's a bit difficult to see individual samples in one plot.
