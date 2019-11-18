@@ -24,7 +24,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `matplotlib`, `ipywidgets`, and `mpld3`: for generating plots
+* `matplotlib`, `ipywidgets`, `mpld3`, and `seaborn`: for generating plots
 * `pandas`: for working with data frames and generating tables
 
 !!! attention
@@ -340,23 +340,192 @@ for axi in ax.flat:
     * How to switch between different languages by using magics.
     * How to use widgets and the mpld3 library for interactive plotting.
 
-## Running the MRSA workflow in a Jupyter notebook
+## Exploring results from the MRSA workflow in a Jupyter notebook
 As you might remember from the [intro](tutorial_intro.md), we are attempting 
 to understand how lytic bacteriophages can be used as a future therapy 
 for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). 
 We have already defined the project environment in the [Conda tutorial](conda.md) 
 and set up the workflow in the [Snakemake tutorial](snakemake.md). Here 
-we will run the workflow in a Jupyter notebook as an example of how you 
-can document your day-to-day work as a dry lab scientist. If you look in 
-your current directory there should be a notebook called `mrsa.ipynb`. Now 
-open the notebook with File > Open.
+we explore the results from a the snakemake workflow in a Jupyter notebook
+ as an example of how you can document your day-to-day work as a dry lab scientist.  
+We will first create a report similar to the one in the [R Markdown tutorial](rmarkdown.md) 
+then generate and visualize read coverage across samples for the _S. aureus_ genome.
 
-The purpose of the notebook is to try out different settings for the
- `max_reads` parameter in our Snakemake workflow. Go through each of the 
- cells and try to understand how they work. Now test to rerun the analysis cell by cell.
+First update your current jupyter conda environment using the `environment.yml` file:
 
-!!! attention
-    If you do something that takes a long time, such as installing the Conda environment, you have to wait for the cell to finish before trying to run the next. Running cells have asterisks to the left of them, i.e. `In [*]`.
+```
+conda env update -f environment.yml
+``` 
+
+If you look at the Jupyter dashboard in your browser there should be a 
+notebook called `mrsa_notebook.ipynb`. Now open the notebook with File > Open.
+
+!!! tip
+    Using what you've learned about markdown in notebooks, add headers 
+    and descriptive text to subdivide sections as you add them. This will
+    help you train how to structure and keep note of your work with a 
+    notebook.
+
+You will see that the notebook contains only two cells: one with some 
+import statements and one with two function definitions. We'll come back 
+to those later. Now, run the cells and add a new empty cell to the notebook. 
+Typically the snakemake workflow will be executed from a terminal but let's 
+try to actually run the workflow directly from within the Jupyter notebook. 
+
+In the current directory you'll find the necessary `Snakefile` and `config.yml` 
+to run the workflow. In an empty cell in your notebook, add code to 
+run the workflow then run the cell.     
+
+??? note "Click to see how to run the workflow from a cell"
+    ```
+    !snakemake
+    ```
+
+Once the workflow is finished we can start to explore the results. 
+
+### Plot QC status
+First let's take a look at the FastQC summary for the samples. Add the following
+code to a cell then run the cell. This will extract and concatenate summary 
+files for all samples using FastQC output in the `intermediate/` directory. 
+
+```bash
+%%bash
+for f in $(ls intermediate/*_fastqc.zip);
+do
+    n=$(basename $f)
+    unzip -p $f ${n%.zip}/summary.txt >> summary.txt
+done
+```
+
+Read the summary results into a data frame using the pandas package:
+
+```python
+# Read the concatenated summary.txt
+qc = pd.read_csv("summary.txt", sep="\t", header=None, names=["Status","Statistic","Sample"], index_col=0)
+# Rename strings in the Sample column
+qc["Sample"] = [x.rstrip(".fastq.gz") for x in qc["Sample"]]
+# Map the status strings to numeric values for plotting
+qc.rename(index={"PASS": 1, "WARN": 0, "FAIL": -1}, inplace=True)
+# Convert from long to wide format
+qc = pd.pivot_table(qc.reset_index(), columns="Sample", index="Statistic")
+```
+
+Take a look at the `qc` DataFrame by adding the variable to an empty cell
+and running the cell.
+
+Now let's plot the heatmap using the `heatmap` function from the `seaborn` 
+package.
+
+```
+# Plot the heatmap
+ax = sns.heatmap(qc["Status"], cmap=["Red","Yellow","Green"], linewidth=.5, cbar=None)
+ax.set_ylim(11,0); # Only necessary in cases where matplotlib cuts the y-axis
+``` 
+
+To save the plot to a file add the following to the cell: `plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")`
+
+### Genome coverage
+In the workflow reads were aligned to the _S. aureus_ reference genome 
+using `bowtie2`. Let's take a look at genome coverage for the samples. To 
+do this we will first generate coverage files with `bedtools`.
+
+Add the following to a new cell:
+
+```
+%%bash
+for f in $(ls intermediate/*.sorted.bam);
+do
+    bedtools genomecov -ibam $f | gzip -c > $f.cov.gz
+done
+```
+This will run `bedtools genomecov` on all bam-files in the `intermediate/` 
+directory and generate coverage files. 
+
+Next, read coverage files and generate a table of genome positions and 
+aligned reads in each sample. For this we make use of the `read_cov_files` 
+function defined in the beginning of the notebook.
+
+```python
+import glob
+files = glob.glob("intermediate/*.sorted.bam.cov.gz")
+coverage_table = read_cov_tables(files)
+```
+Take a look at the `coverage_table` DataFrame. Because this is a relatively 
+large table you can use:
+```python
+coverage_table.head()
+```
+ to only view the first 5 rows. With
+
+```python
+coverage_table.sample(5)
+``` 
+you will see 5 randomly sampled rows.
+
+Next let's calculate reads aligned to the genome using a sliding window. 
+For this we'll use the `sliding_window` function defined at the start of the
+notebook. You can try different sizes of the sliding window, in the example
+below we're using 10 kbp.
+
+```python
+coverage_window = sliding_window(coverage_table, window=10000)
+```
+
+Now we'll plot the read coverage for all samples:
+
+```python
+# Set the figure size
+fig = plt.figure(figsize=(6,4))
+# Iterate samples and plot coverage
+for sample in coverage_window.columns:
+    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample], linewidth=.75)
+# Set y and x labels
+ax.set_ylabel("Reads aligned");
+ax.set_xlabel("Genome position");
+```
+
+Not too bad, but it's a bit difficult to see individual samples in one plot.
+
+Let's also make three subplots and plot each sample separately. First we 
+define the subplots grid using `plt.subplots`, then each sample is plotted
+in a separate subplot using the `ax=` keyword argument in `sns.lineplot`:
+
+```python
+# Define the subplots
+fig, axes = plt.subplots(ncols=1, nrows=3, sharey=True, sharex=True, figsize=(6,6))
+# Iterate samples and plot in separate subplot
+for i, sample in enumerate(coverage_window.columns):
+    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample], ax=axes[i], linewidth=.75)
+    ax.set_title(sample)
+    ax.set_ylabel("Reads aligned");
+# Adjust space between subplots
+plt.subplots_adjust(hspace=.3)
+```
+
+We can also visualize how the coverage correlates between the samples using
+the `scatterplot` function in `seaborn`:
+
+```python
+sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935091"])
+```
+
+Let's see if you can figure out how to visualize coverage correlation as 
+above for all sample combinations in a subplot figure. Try to combine what we
+used in the previous two cells. Then take a look at the answer below.
+
+??? note "Click to see how to plot correlations in subplots"
+    ```
+    fig, axes = plt.subplots(ncols=3, nrows=1, figsize=(12,3), sharex=False, sharey=False)
+    ax1 = sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935091"], ax=axes[0])
+    ax2 = sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935092"], ax=axes[1])
+    ax3 = sns.scatterplot(x=coverage_window["SRR935092"],y=coverage_window["SRR935091"], ax=axes[2])
+    plt.subplots_adjust(wspace=.4)
+    ```
+
+!!! tip
+    Seaborn actually has a function that essentially let's us generate the plot above
+    with one function call. Take a look at the `pairplot` function by running `?sns.pairplot` 
+    in a new cell. Can you figure out how to use it with our data?
 
 ## Sharing your work
 The files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
