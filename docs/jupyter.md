@@ -118,7 +118,8 @@ Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
 
 Below are some examples of what you can do in markdown. Paste all or parts
-of it into one or more cells in your notebook to see how it renders.
+of it into one or more cells in your notebook to see how it renders. Make 
+sure you set the cell type to Markdown.
 
 ```
 ## Introduction
