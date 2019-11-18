@@ -2,6 +2,7 @@ channels:
 - conda-forge
 - bioconda
 dependencies:
+- python=3.6
 - fastqc=0.11.6
 - sra-tools=2.8
 - snakemake-minimal=5.3.0
@@ -18,3 +19,5 @@ dependencies:
 - bioconductor-rtracklayer=1.42.1
 - bioconductor-geoquery=2.50.5
 - r-rmarkdown=1.12
+- bedtools=2.29.0
+- wget
