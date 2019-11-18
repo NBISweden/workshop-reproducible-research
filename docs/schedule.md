@@ -19,11 +19,17 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 10:30
-    <td> <font size="3"> Introduction to Reproducible Research</td>
+    <td> <font size="3"> Introduction to Reproducible Research<br>
+        <font size="2">
+        - <a href="https://drive.google.com/file/d/1U6-6ZEuCo5SIA9JLS11RAuDIzW1A0hin/view?usp=sharing">Introduction slides</a>
+    </td>
   </tr>
   <tr>
     <td> <font size="3"> 11:15 </td>
-    <td> <font size="3"> Data management and project organization</td>
+    <td> <font size="3"> Data management and project organization <br>
+        <font size="2">
+        - <a href="https://drive.google.com/file/d/1McHlrR0L2i1Hl9pg5OqWSneAI4s3k2bP/view?usp=sharing">Data management slides</a>
+    </td>
   </tr>
   <tr>
     <td> <font size="3"> 11:45  </td>
@@ -35,7 +41,8 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
       <font size="3"> Master your dependencies - environments and reproducibility
       <font size="2"><i><br>
       - Introduction to the package and environment manager Conda<br>
-      - Practical tutorial: <a href="../conda/">Conda</a>
+      - Practical tutorial: <a href="../conda/">Conda</a> <br>
+      - <a href="https://drive.google.com/file/d/1KkRSicN-7-PAz6H_Lub3QfUaFIUam05p/view?usp=sharing"> Conda slides</a>
     </td>
   </tr>
   <tr>
@@ -48,7 +55,8 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
       <font size="3"> Distributing and version tracking your code
       <font size="2"><i><br>
       - Introduction to version control and git<br>
-      - Practical tutorial: <a href="../git/">Git</a></i>
+      - Practical tutorial: <a href="../git/">Git</a></i> <br>
+      - <a href="https://drive.google.com/file/d/1jtTobH-Wg_cGGbvPuYfyw0wXcL9D1wKZ/view?usp=sharing"> Git slides</a>
     </td>
   </tr>
   <tr>
