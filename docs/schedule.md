@@ -61,7 +61,7 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up day 1</td>
+    <td> <font size="3"> Wrap-up day 1 <font size="2"><a href="https://drive.google.com/file/d/17vODMbM3qthLa1vScQ2zC5v9ZX2SURUj/view?usp=sharing">(slides)</a></td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
