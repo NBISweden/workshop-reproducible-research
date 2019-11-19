@@ -244,7 +244,7 @@ By default rendering is done as rasterized images which can make the quality poo
 in scalable vector graphics format add the following line magic
 
 ```python
-%config InlineBackend.figure_format = 'svg'`
+%config InlineBackend.figure_format = 'svg'
 ``` 
 
 Try it by adding it to the cell with the lineplot and run it again. 
