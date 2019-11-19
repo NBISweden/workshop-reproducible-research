@@ -11,4 +11,4 @@ The dinner will be at [Taverna Averna](https://www.tavernaaverna.se/) which is l
 
 <h1> Finding the "social event" venue </h1>
 
-We will go to [Ölstugan Tullen](https://www.olstugan.se/) which is located at [Utlandagatan 14](https://goo.gl/maps/o61JyTmTEmPzxcHz6).
+We will go to [Ölstugan Tullen](https://johanneberg.olstugan.se/) which is located at [Utlandagatan 14](https://goo.gl/maps/o61JyTmTEmPzxcHz6).
