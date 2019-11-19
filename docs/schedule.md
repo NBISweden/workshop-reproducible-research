@@ -117,7 +117,8 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
       <font size="2"><i><br>
       - Introduction to Jupyter and R Markdown<br>
       - Practical tutorial: <a href="../jupyter/">Jupyter</a><br>
-      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
+      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i><br>
+      - <a href="https://drive.google.com/file/d/1umkIYGIOs0dOQKosp8IaWdeiBctN5aZS/view?usp=sharing">Computational notebooks slides</a>
       <br><br>
       <font size="3">Fika break ~14:30
     </td>
