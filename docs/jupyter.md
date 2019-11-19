@@ -352,12 +352,19 @@ we explore the results from a the snakemake workflow in a Jupyter notebook
 We will first create a report similar to the one in the [R Markdown tutorial](rmarkdown.md) 
 then generate and visualize read coverage across samples for the _S. aureus_ genome.
 
+### Update the current environment
+
 First update your current jupyter conda environment using the `environment.yml` file:
+
+!!! attention
+    Run the conda update command below in your terminal (not in the 
+     notebook) with the jupyter exercise environment active.
 
 ```
 conda env update -f environment.yml
 ``` 
 
+### Open a new notebook
 If you look at the Jupyter dashboard in your browser there should be a 
 notebook called `mrsa_notebook.ipynb`. Now open the notebook with File > Open.
 
