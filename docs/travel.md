@@ -8,3 +8,7 @@
 
 <h1> Finding the restaurant for the course dinner </h1>
 The dinner will be at [Taverna Averna](https://www.tavernaaverna.se/) which is located at [Tredje Långgatan 7](https://goo.gl/maps/bJYBUVbmZHp3tC1d8).
+
+<h1> Finding the "social event" venue </h1>
+
+We will go to [Ölstugan Tullen](https://johanneberg.olstugan.se/) which is located at [Utlandagatan 14](https://goo.gl/maps/o61JyTmTEmPzxcHz6).
