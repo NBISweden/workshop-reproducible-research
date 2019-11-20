@@ -1,4 +1,4 @@
-# Making a project reproducible
+# Using the tools to put everything together
 
 It is time to try to setup a project from scratch and use the different 
 tools that we have covered during the course together! 
@@ -36,6 +36,17 @@ with answers from 3 course instances:
 * 2019-05:https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv
 * 2019-11:https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv
 
+The goal here is to create a snakemake workflow which:
+
+1. downloads the csv files (making use of a `config.yml` file to pass the urls)
+2. cleans the files (using `wildcards`)
+
+The final step is to plot the student experience in some way.
+
+The first two steps should be part of the workflow. If you need some help
+with the cleaning step, see below for a script that you can save to a file
+and run on your computer.
+
 ??? note "Click to show a script for cleaning column names"
     ```python
     #!/usr/bin/env python
@@ -58,6 +69,18 @@ with answers from 3 course instances:
         main(args)
     ```
     
+The last step is really up to you how to implement. You could:
+
+* include the plotting in the workflow using an RMarkdown document that 
+gets rendered into a report
+* have a script that produces separate figures (e.g. `png` files)
+* create a jupyter notebook that reads the cleaned output from the workflow
+and generates some plot or does other additional analyses
+
+If you need some help/inspiration with plotting the results, click below
+to see an example python script that you can save to file and run with
+the cleaned files as input.
+
 ??? note "Click to show a script for plotting the student experience"
     ```python
     #!/usr/bin/env python
@@ -144,3 +167,9 @@ with answers from 3 course instances:
         args = parser.parse_args()
         main(args)
     ```
+    
+!!! attention
+    Remember to:
+    1. keep everything versioned controlled with `git` 
+    2. add information to the `README` file so others know how to run the project
+    3. add required software to the conda `environment.yml` file 
