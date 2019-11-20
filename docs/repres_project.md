@@ -55,6 +55,7 @@ with the cleaning step, see below for a script that you can save to a file
 and run on your computer.
 
 ??? note "Click to show a script for cleaning column names"
+    The script (e.g. `clean_csv.py`):
     ```python
     #!/usr/bin/env python
     import pandas as pd
@@ -75,6 +76,10 @@ and run on your computer.
         args = parser.parse_args()
         main(args)
     ```
+    Command to execute the script:
+    ```
+    python clean_csv.py input_file.csv output_file.csv
+    ```
 
 The last step is really up to you how to implement. You could:
 
@@ -89,6 +94,7 @@ to see an example python script that you can save to file and run with
 the cleaned files as input.
 
 ??? note "Click to show a script for plotting the student experience"
+    The script (e.g. `plot.py`):
     ```python
     #!/usr/bin/env python
 
@@ -176,6 +182,10 @@ the cleaned files as input.
                             help="Output directory for plots (defaults to current directory)")
         args = parser.parse_args()
         main(args)
+    ```
+    Command to execute the script:
+    ```
+    python plot.py file1.csv file2.csv file3.csv --outdir results/
     ```
 
 !!! attention
