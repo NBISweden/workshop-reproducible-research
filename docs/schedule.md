@@ -61,7 +61,7 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up day 1 <font size="2"><a href="https://drive.google.com/file/d/17vODMbM3qthLa1vScQ2zC5v9ZX2SURUj/view?usp=sharing">(slides)</a></td>
+    <td> <font size="3"> Wrap-up day 1 <font size="2">(<a href="https://drive.google.com/file/d/17vODMbM3qthLa1vScQ2zC5v9ZX2SURUj/view?usp=sharing">slides</a>)</td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
@@ -125,7 +125,7 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up day 2</td>
+    <td> <font size="3"> Wrap-up day 2 <font size="2"><a href="https://drive.google.com/file/d/1_FpE6QqQzT4Rc0bOlSk2FxzomJ_NJwPy/view?usp=sharing">(slides)</a></td>
   </tr>
   <tr>
     <td> <font size="3"> 17:00 </td>
@@ -154,7 +154,7 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
     <td>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers<br>
+      - Introduction to containers (<a href="https://drive.google.com/file/d/1Wfdrp6QTOQrxuwz1Pn7Cleiwmm5FgZwK/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../docker/">Docker</a><br>
       - Practical tutorial: <a href="../singularity">Singularity</a></i><br><br>
       <font size="3">Fika break ~10:15 <br>
