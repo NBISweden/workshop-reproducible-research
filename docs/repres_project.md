@@ -35,19 +35,20 @@ course. For this you will use responses from students to the registration
 form for the course. Below you'll find links to **csv** format files
 with answers from 3 course instances:
 
-* 2018-11
+* 2018-11<br>
 <font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font>
-* 2019-05
-https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv
-* 2019-11
-https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv
+* 2019-05<br>
+<font size="2">
+https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv</font>
+* 2019-11<br>
+<font size="2">
+https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv</font>
 
 The goal here is to create a snakemake workflow which:
 
-1. downloads the csv files (making use of a `config.yml` file to pass the urls)
-2. cleans the files (using `wildcards`)
-
-The final step is to plot the student experience in some way.
+1. has a rule that downloads the csv files (making use of a `config.yml` file to pass the URLs and file names)
+2. has a rule that cleans the files (making use of `wildcards` so that the same rule can be run on each file)
+3. The final step is to plot the student experience in some way.
 
 The first two steps should be part of the workflow. If you need some help
 with the cleaning step, see below for a script that you can save to a file
