@@ -1,41 +1,46 @@
 # Using the tools to put everything together
 
-It is time to try to setup a project from scratch and use the different 
-tools that we have covered during the course together! 
+It is time to try to setup a project from scratch and use the different
+tools that we have covered during the course together!
 
-This exercise if very open-ended and you have free hands to try out a 
-bit what you want. But you should aim to use what you've learned to 
+This exercise if very open-ended and you have free hands to try out a
+bit what you want. But you should aim to use what you've learned to
 do the following:
 
 1. Create a new git repository for the project (either on BitBucket or GitHub)
 2. Add a README file which should contain the required information on how to run the project
 3. Create a conda `environment.yml` file with the required dependencies
-4. Create a snakemake file to run your workflow
+4. Create a `Snakefile` to run your workflow
 5. Use a `config.yml` file to add settings to the workflow
-6. Use git to commit changes for the repository
+6. Use git to continuously commit changes for the repository
+7. Possibly add an R Markdown or Jupyter document
+8. Possibly make a Docker or Singularity container for your project
 
 ## Option 1
-One option is to try to implement these methods on 
-one of your current projects. It is up to you what tools to include in 
+One option is to try to implement these methods on
+one of your current projects. It is up to you what tools to include in
 making your project reproducible, but aim for at least including git and conda.
 
 !!! tip
-    If your analysis project contains 
-    computationally intense steps it may be good to scale them down for 
-    the sake of the exercise. 
+    If your analysis project contains
+    computationally intense steps it may be good to scale them down for
+    the sake of the exercise.
 
 ## Option 2
-If you don't want to use a project you're currently working on we have 
+If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you.
 
 The idea is to analyze student experience for this Reproducible Research
-course. For this you will use responses from students to the registration 
+course. For this you will use responses from students to the registration
 form for the course. Below you'll find links to **csv** format files
 with answers from 3 course instances:
 
-* 2018-11:https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv
-* 2019-05:https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv
-* 2019-11:https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv
+* 2018-11
+<font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font>
+* 2019-05
+https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv
+* 2019-11
+https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv
 
 The goal here is to create a snakemake workflow which:
 
@@ -53,13 +58,13 @@ and run on your computer.
     #!/usr/bin/env python
     import pandas as pd
     from argparse import ArgumentParser
-    
+
     def main(args):
         df = pd.read_csv(args.input, header=0)
         df.rename(columns=lambda x: x.split("[")[-1].rstrip("]"), inplace=True)
         df.rename(columns={'R Markdown': 'RMarkdown'}, inplace=True)
         df.to_csv(args.output, index=False)
-        
+
     if __name__ == '__main__':
         parser = ArgumentParser()
         parser.add_argument("input", type=str,
@@ -69,10 +74,10 @@ and run on your computer.
         args = parser.parse_args()
         main(args)
     ```
-    
+
 The last step is really up to you how to implement. You could:
 
-* include the plotting in the workflow using an RMarkdown document that 
+* include the plotting in the workflow using an RMarkdown document that
 gets rendered into a report
 * have a script that produces separate figures (e.g. `png` files)
 * create a jupyter notebook that reads the cleaned output from the workflow
@@ -171,10 +176,10 @@ the cleaned files as input.
         args = parser.parse_args()
         main(args)
     ```
-    
+
 !!! attention
     Remember to:
-    
-    1. keep everything versioned controlled with `git` 
+
+    1. keep everything versioned controlled with `git`
     2. add information to the `README` file so others know how to run the project
-    3. add required software to the conda `environment.yml` file 
+    3. add required software to the conda `environment.yml` file
