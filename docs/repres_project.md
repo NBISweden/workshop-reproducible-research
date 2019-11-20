@@ -11,7 +11,8 @@ do the following:
 2. Add a README file which should contain the required information on how to run the project
 3. Create a conda `environment.yml` file with the required dependencies
 4. Create a snakemake file to run your workflow
-5. Use git to commit changes for the repository
+5. Use a `config.yml` file to add settings to the workflow
+6. Use git to commit changes for the repository
 
 ## Option 1
 One option is to try to implement these methods on 
@@ -35,7 +36,7 @@ with answers from 3 course instances:
 * 2019-05:https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv
 * 2019-11:https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv
 
-??? note Click to show a script for cleaning column names
+??? note "Click to show a script for cleaning column names"
     ```python
     #!/usr/bin/env python
     import pandas as pd
@@ -57,7 +58,7 @@ with answers from 3 course instances:
         main(args)
     ```
     
-??? note Click to show a script for plotting the student experience
+??? note "Click to show a script for plotting the student experience"
     ```python
     #!/usr/bin/env python
 
