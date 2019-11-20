@@ -14,7 +14,7 @@ do the following:
 5. Use a `config.yml` file to add settings to the workflow
 6. Use git to continuously commit changes for the repository
 7. Possibly add an R Markdown or Jupyter document
-8. Possibly make a Docker or Singularity container for your project
+8. Possibly make a Docker or Singularity image for your project
 
 ## Option 1
 One option is to try to implement these methods on
