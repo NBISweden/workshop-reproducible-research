@@ -110,6 +110,7 @@ the cleaned files as input.
         return df.reset_index().drop("index",axis=1).fillna(0)
 
     def count_experience(df, normalize=False):
+        """Generates long format dataframe of counts"""
         df_l = pd.DataFrame()
         for software in df.columns:
             if software=="Date":
@@ -128,6 +129,7 @@ the cleaned files as input.
 
 
     def plot_catplot(df, outdir, figname, y, palette="Blues"):
+        """Plot barplots of user experience per software"""
         ax = sns.catplot(data=df, x="Date", col="Software", col_wrap=3, y=y, hue="Experience", height=2.8,
                          kind="bar",
                          hue_order=["Never heard of it", "Heard of it but haven't used it", "Tried it once or twice",
@@ -139,6 +141,7 @@ the cleaned files as input.
         plt.close()
 
     def plot_barplot(df, outdir, figname, x):
+        """Plot a barplot summarizing user experience over all software"""
         ax = sns.barplot(data=df, hue="Date", y="Experience", x=x, errwidth=.5,
                     order=["Never heard of it", "Heard of it but haven't used it", "Tried it once or twice", "Use it"])
         plt.savefig("{}/{}".format(outdir, figname), bbox_inches="tight", dpi=300)
