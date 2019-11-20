@@ -71,3 +71,8 @@ rm -rf /var/lib/docker
 
 ### Windows
 Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7) via Control Panel > Programs > Programs and Features. Docker Toolbox will also have installed Oracle VM VirtualBox, so uninstall that as well if you're not using it for other purposes.
+
+## Singularity
+
+* Images are files that can simply be deleted
+* Singularity creates a hidden directory `.singularity` in your home directory
