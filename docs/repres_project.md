@@ -21,7 +21,8 @@ making your project reproducible, but aim for at least including git and conda.
 
 !!! tip
     If your analysis project contains 
-    computationally intense steps it may be good to scale down them for the sake of the exercise. 
+    computationally intense steps it may be good to scale them down for 
+    the sake of the exercise. 
 
 ## Option 2
 If you don't want to use a project you're currently working on we have 
