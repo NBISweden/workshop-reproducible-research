@@ -173,6 +173,7 @@ the cleaned files as input.
     
 !!! attention
     Remember to:
+    
     1. keep everything versioned controlled with `git` 
     2. add information to the `README` file so others know how to run the project
     3. add required software to the conda `environment.yml` file 
