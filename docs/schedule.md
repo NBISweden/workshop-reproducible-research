@@ -169,7 +169,7 @@ The course will take place in the room 10:an (see [travel info](travel.md)).
     <td>
       <font size="3"> Wrap-up - putting the pieces together
       <font size="2"><i><br>
-      - Overview - Using the tools in concert<br>
+      - Overview - Using the tools in concert (<a href="https://drive.google.com/file/d/14g8x5w5kl17ccxVK5iGOOONbWBkbKoQ5/view?usp=sharing">slides</a>)<br>
       - Practical tutorial: <a href="../repres_project">Making a project reproducible</a></i>
     </td>
   </tr>
