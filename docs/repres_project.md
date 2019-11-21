@@ -35,12 +35,12 @@ course. For this you will use responses from students to the registration
 form for the course. Below you'll find links to **csv** format files
 with answers from 3 course instances:
 
-* 2018-11<br>
-<font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font>
-* 2019-05<br>
+2018-11<br>
+<font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font><br>
+2019-05<br>
 <font size="2">
-https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv</font>
-* 2019-11<br>
+https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv</font><br>
+2019-11<br>
 <font size="2">
 https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv</font>
 
@@ -77,6 +77,7 @@ and run on your computer.
         main(args)
     ```
     Command to execute the script:
+    
     ```
     python clean_csv.py input_file.csv output_file.csv
     ```
