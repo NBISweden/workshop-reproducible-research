@@ -75,4 +75,4 @@ Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7) vi
 ## Singularity
 
 * Images are files that can simply be deleted
-* Singularity creates a hidden directory `.singularity` in your home directory
+* Singularity creates a hidden directory `.singularity` in your home directory that contains cache
