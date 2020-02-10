@@ -15,7 +15,7 @@ All of this might sound a bit abstract so far, so let's get going.
 * An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using Docker for reproducible research.
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/docker`.
+This tutorial depends on files from the course GitHub repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/docker`.
 
 !!! attention
     Docker images tend to take up quite a lot of space. In order to do all the exercises in this tutorial you need to have ~10 GB available.
@@ -355,7 +355,7 @@ If you want to refer to a Docker image in for example a publication, it's very i
 ## Packaging and running the MRSA workflow
 During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 3.75 GB image.
 
-* We've [set up a Bitbucket repository](git.md) for version control and for hosting our project.
+* We've [set up a GitHub repository](git.md) for version control and for hosting our project.
 * We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.
 * We've constructed a [Snakemake workflow](snakemake.md) that performs the data analysis and keeps track of files and parameters.
 * We've written a [R Markdown document](rmarkdown.md) that takes the results from the Snakemake workflow and summarizes them in a report.
