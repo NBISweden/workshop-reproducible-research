@@ -28,7 +28,7 @@ The best way to get an idea about git is simply to start using it. The tutorial 
 * [Git reference manual](https://book.git-scm.com/docs)
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already.
+This tutorial depends on files from the course GitHub repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already.
 
 ## Install git
 
@@ -36,7 +36,7 @@ Chances are that you already have git installed on your computer. You can check 
 
 ## Configure git
 
-If it is the first time you use git on your computer, you may want to configure it so that it is aware of your username. This username should match the username you have registered on Bitbucket. This will make it easier when you want to sync local changes with your remote Bitbucket repository.
+If it is the first time you use git on your computer, you may want to configure it so that it is aware of your username. This username should match the username you have registered on GitHub. This will make it easier when you want to sync local changes with your remote GitHub repository.
 
 ```
 git config --global user.name "Mona Lisa"
@@ -52,26 +52,24 @@ git config --global user.name "Mona Lisa"
     This will set the default username for that repository only.
 
 
-## Create an account at Bitbucket
+## Create an account at GitHub
 
-If you have not done so already, go to [bitbucket.org](https://bitbucket.org/account/signup/) and create an account.
+If you have not done so already, go to [bitbucket.org](https://github.com/join) and create an account.
 
 !!! note
-    You can also create an account on another online hosting service for version control, e.g. [GitHub](https://www.github.com) or [GitLab](https://about.gitlab.com/). The exercises below are written with examples from Bitbucket, but the same thing can be done on alternative services, although the exact menu structure and link placements differ a bit.
+    You can also create an account on another online hosting service for version control, e.g. [Bitbucket](https://bitbucket.org) or [GitLab](https://about.gitlab.com/). The exercises below are written with examples from GitHub, but the same thing can be done on alternative services, although the exact menu structure and link placements differ a bit.
 
 # Practical exercise
 
 ## Create a new git repository
 
-* Login to [Bitbucket](https://bitbucket.org/) and press the plus button to the left and select *Create repository*:
+* Login to [GitHub](https://github.com/) and press the green **New** button on the left:
     * Make sure you are listed as the owner
     * Add a repository name, e.g. *git_tutorial*
     * You can keep the repo private or make it public, as you wish
     * Skip including a README
-    * Make sure Git is selected for version control  
 
-
-![](images/new_repo_bitbucket.png)
+![](images/new_repo_github.png)
 
 You will now be redirected to the repository page. It is an empty repository, so there is not much to see yet. We want to add some contents (files) to the repository. To do that we will first *clone* the repository locally:
 
@@ -81,10 +79,10 @@ You will now be redirected to the repository page. It is an empty repository, so
     **Important:** the directory should *not* be within the `reproducible_research_course` directory, since
     this is itself a git-tracked directory.
 
-* Once you are in your directory of choice, run the following command (just make sure to change `user` to your Bitbucket username and `git_tutorial` to your repository name, in case you chose something different):
+* Once you are in your directory of choice, run the following command (just make sure to change `user` to your GitHub username and `git_tutorial` to your repository name, in case you chose something different):
 
 ```bash
-git clone https://user@bitbucket.org/user/git_tutorial.git
+git clone https://user@github.com/user/git_tutorial.git
 ```
 
 What will happen now is that the git repository will be cloned (i.e. downloaded) to your computer. You might get a warning that the repository is empty (which in fact is the case).
@@ -116,7 +114,7 @@ On branch master. Initial commit. nothing to commit (create/copy files and use "
 !!! note "Quick recap"
     We have used two `git` commands this far:
 
-    * `git clone` - to clone a remote repository locally (e.g. from Bitbucket). This is only done the first time you want to download the repository locally.
+    * `git clone` - to clone a remote repository locally (e.g. from GitHub). This is only done the first time you want to download the repository locally.
     * `git status` - this is a command you should use *a lot*. It will tell you, amongst other things, the status of your git clone in relation to the online remote repository.
 
 ## Committing
@@ -237,7 +235,7 @@ Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to stag
 
 ## Pushing
 
-So far we have just worked locally. A strength with git is that we can add a remote location to push our commits to. In fact, we already have setup such a remote, since we created the repository at Bitbucket and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote. Your local copy and the remote copy are then in sync. In principle, you can now safely delete your local copy since everything is backed up in the cloud, including the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
+So far we have just worked locally. A strength with git is that we can add a remote location to push our commits to. In fact, we already have setup such a remote, since we created the repository at GitHub and cloned it locally. The idea is that you work and edit your files locally, and commit changes as you go along. At some points, preferably as often as possible, you push your changes to the remote. Your local copy and the remote copy are then in sync. In principle, you can now safely delete your local copy since everything is backed up in the cloud, including the full commit history. This also enables collaboration. Several users can work on their local clones of a given repository and push changes to a common remote location. Let's try this out in practice!
 
 * Run `git remote -v`. This will show you what remote location is connected to your local git clone. The short name of the default remote is usually "*origin*".
 * Run `git branch`. This will show you the name of the current branch. By default this will be "*master*".
@@ -252,7 +250,7 @@ git push -u origin master
 ```
 
 * Run `git status`. This should tell you that "*Your branch is up-to-date with 'origin/master'.*".
-* Go to your Bitbucket repository in your browser again and click on Source to the left. You should now see that the files you have locally appear here as well!
+* Go to your GitHub repository in your browser again and click on Source to the left. You should now see that the files you have locally appear here as well!
 * Click on `config.yml`. You will see the contents of the file. Notice that it is the latest version, where we changed "genome_id".
 
 ![](images/bitbucket_config_yml.png)
@@ -281,7 +279,7 @@ You can now click on View source in the top right corner. You will now see the f
 
 We will now learn how to manage conflicts. This is important to know, since it will probably happen sooner or later. It can get a bit tricky, but the important thing is not to panic! :)
 
-* On the Bitbucket web page, click on `environment.yml` and click Edit. We can now edit this file directly on the web. This is generally not recommended, but we will do it here to demonstrate a point.
+* On the GitHub web page, click on `environment.yml` and click Edit. We can now edit this file directly on the web. This is generally not recommended, but we will do it here to demonstrate a point.
 * Let's pretend that using multiqc version 1.3 did not work. Change the multiqc version to 1.4:  
 
 ```yaml
@@ -291,7 +289,7 @@ multiqc=1.4
 * Click Commit. Add the commit message: "Update multiqc version to 1.4". Click Commit.
 * Click Commits to the left to see the commit history, and your latest change at the top.
 
-Now we have a change in the remote repository that is not yet in our local clone. This could happen for instance if a collaborator of yours committed a change and pushed it to Bitbucket.
+Now we have a change in the remote repository that is not yet in our local clone. This could happen for instance if a collaborator of yours committed a change and pushed it to GitHub.
 
 * Go back to your local terminal. Run `git status`. Notice that git says: "*Your branch is up-to-date with 'origin/master'.*". This is of course not true, but our local git clone is not yet aware of the remote changes. We will get those changes soon.
 * But first, we will edit `environment.yml` locally as well! (It may be the case that your collaborator thought it was good to use multiqc version 1.4, whereas you thought it would be better to use multiqc version 1.2, but neither of you communicated that to the other.) Use a text editor and change the multiqc line to:
@@ -374,7 +372,7 @@ dependencies:
 - r-rmarkdown=1.12
 ```
 
-The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of characters is the commit id (the first 7 are e.g. displayed on Bitbucket under Commits) which will be different for your repository.
+The part between `<<<<<<< HEAD` and `=======` is your local version, and the part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote and which caused the conflict when you tried to pull those changes to your local repository. The long sequence of characters is the commit id (the first 7 are e.g. displayed on GitHub under Commits) which will be different for your repository.
 
 * It is now up to you to decide which version to keep, or to change it to a third alternative. Let's say that you are confident that it is better to run multiqc v1.2 rather than v1.4. Edit the file so that it looks like you want it to, i.e. remove the lines added by git and delete the line with `multiqc=1.4`. The final file should look like this:
 
@@ -419,10 +417,10 @@ git commit -m "Merge and set multiqc to v1.2"
 git push
 ```
 
-* Go to Bitbucket in the browser and click Commits. You should be able to see a graph showing that the paths diverged (where one commit set the version to 1.4 and the other to 1.2) and that they are later merged, and the conflict fixed!
+* Go to GitHub in the browser and click Commits. You should be able to see a graph showing that the paths diverged (where one commit set the version to 1.4 and the other to 1.2) and that they are later merged, and the conflict fixed!
 
 !!! note "Quick recap"
-    We now learned how to sync our local clone with the remote one on Bitbucket, and how to fix potential conflicting commits. We added these commands to our repertoire:
+    We now learned how to sync our local clone with the remote one on GitHub, and how to fix potential conflicting commits. We added these commands to our repertoire:
 
     * `git fetch` - downloads information from the remote repository.
     * `git pull` - both fetches and integrates changes from the remote repository.
@@ -476,13 +474,13 @@ Git allows us to tag commits. This is of particular importance when it comes to 
 git tag "submission1"
 ```
 
-* To push this tag to Bitbucket we use:
+* To push this tag to GitHub we use:
 
 ```bash
 git push --tags
 ```
 
-* Go to Bitbucket and check Commits. Can you see that the tag has been added?
+* Go to GitHub and check Commits. Can you see that the tag has been added?
 * Let's assume we now got comments from the reviewers, and by fixing those we had to update our code. Open `config.yml` and change the line `max_reads: 25000` to `max_reads: 50000`. Commit and push that change:
 
 ```bash
@@ -506,7 +504,7 @@ git commit -m "Upgrade to newer multiqc version"
 git push
 ```
 
-* Go to Bitbucket and click Downloads, and then Tags. Here users can download a compressed file containing the repository at the versions specified by the tags.
+* Go to GitHub and click Downloads, and then Tags. Here users can download a compressed file containing the repository at the versions specified by the tags.
 
 ![](images/bitbucket_downloads.png)
 
@@ -589,7 +587,7 @@ git push -u origin test_alignment
 !!! note
     The `-u` in the command above sets the remote (upstream) tracking to origin for our `test_alignment` branch. If you would have just typed `git push test_alignment` git would not know where to push it. However, the next time you push commits to this branch you can simply use `git push` without the `-u` since we only need to specify the remote once. Again, you can see your remote locations using `git remote -v`. You will see it's name (e.g. origin) and URL.
 
-* Go the the repository at Bitbucket in your browser and see if the new branch has appeared. Under "Source" you can select which branch to view. Can you see the difference in the `Snakefile` depending on which branch you choose? Under "Commits" you should be able to see the commit history of all branches together with a graph.
+* Go the the repository at GitHub in your browser and see if the new branch has appeared. Under "Source" you can select which branch to view. Can you see the difference in the `Snakefile` depending on which branch you choose? Under "Commits" you should be able to see the commit history of all branches together with a graph.
 
 * Make an additional edit to the `Snakefile`. To the same line as above, add the `--trim5 5` flag:
 
