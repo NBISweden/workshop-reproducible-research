@@ -2,3 +2,5 @@ version: 2
 # Build documentation with MkDocs
 mkdocs:
   configuration: mkdocs.yml
+python:
+  version: 3.6
