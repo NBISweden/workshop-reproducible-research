@@ -54,10 +54,14 @@ git config --global user.name "Mona Lisa"
 
 ## Create an account at GitHub
 
-If you have not done so already, go to [bitbucket.org](https://github.com/join) and create an account.
+If you have not done so already, go to [github.com](https://github.com/join) and create an account.
 
-!!! note
-    You can also create an account on another online hosting service for version control, e.g. [Bitbucket](https://bitbucket.org) or [GitLab](https://about.gitlab.com/). The exercises below are written with examples from GitHub, but the same thing can be done on alternative services, although the exact menu structure and link placements differ a bit.
+!!! note You can also create an account on another online hosting
+service for version control, e.g. [Bitbucket](https://bitbucket.org) or
+[GitLab](https://about.gitlab.com/). The exercises below are written
+with examples from GitHub, but the same thing can be done on alternative
+services, although the exact menu structure and link placements differ a
+bit.
 
 # Practical exercise
 
