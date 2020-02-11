@@ -291,12 +291,12 @@ git push -u origin master
 ![](images/github_config_yml_diff.png)
 
 * Click **Browse files**, on the right to get back to an overview of
-  files in the repo. Then click on the commit count tracker. You will
-  see an overview of all commits made. Click on a specific commit to see
-  the changes introduced by that commit.
-  
+  files in the repo. Then click on the commit count tracker. 
 ![](images/github_commit_tracker.png)
-   
+  
+You will see an overview of all commits made. Clicking on a specific
+commit lets you see the changes introduced by that commit.
+     
 * Click on the commit that was the initial commit, where we added all 
   the files.
 
