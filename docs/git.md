@@ -668,6 +668,9 @@ The above command only deleted the local branch. If you want to remove the branc
 git push origin --delete test_alignment
 ```
 
+!!! tip "Tip"
+    There are many types of so-called "branching models", each with varying degrees of complexity depending on the developer's needs and the number of collaborators. While there certainly isn't a single branching model that can be considered to be the "best", it is very often most useful to keep it simple. An example of a simple and functional model is to have a `master` branch that is always working (*i.e.* can successfully run all your code and without known bugs) and develop new code on feature branches (one new feature per branch). Feature branches are short-lived, meaning that they are deleted once they are merged into master.
+
 !!! note "Quick recap"
     We have now learned how to divide our work into branches and manage those:
 
