@@ -462,9 +462,34 @@ intermediate/
 
 * Go ahead and add, commit, and push the `.gitignore` file.
 
-!!! note "Quick recap"
-    We now learned how to use a `.gitignore` file to control what directories and files git should ignore.
+* Sometimes you want to ignore all files in a directory with one or two exceptions. For example, you don't want to track all your huge raw data files, but there may be a smaller data file that you *do* want to track, *e.g.* metadata or a list of barcodes used in your experiment. Let's add some mock data:
 
+```bash
+mkdir data
+touch data/huge.fastq.gz
+touch data/metadata.txt
+```
+
+!!! tip "Tip"
+    It is common for certain programming languages or text editors to leave *e.g.* swap files or hidden data files in the working directory, which you don't want to track using git. Instead of manually adding these to every single project you have, you can use the `.gitignore_global` file, which should be placed in your home directory. It works exactly like a normal gitignore file, but is applied to all git repositories that you are using on your machine. Some common file extensions that might be put in the global gitignore are `.DS_Store` if you're working in R or `.swp` if you're coding in vim.
+
+* Git allows you to ignore all files using the aforementioned wildcard, but then *exclude* certain files from that ignore command. Open the .gitignore file again and add the following:
+
+```bash
+# Ignore all files in the data/ directory
+data/*
+
+# Exclude the metadata file be prefixing it with an exclamation mark
+!data/metadata.txt
+```
+
+* Finish up by adding, committing and pushing again.
+
+!!! note "Quick recap"
+    We now learned how to ignore certain files and directories:
+
+    * The `.gitignore` file controls which files and directories git should ignore
+    * Specific files can be excluded from ignored directories using the `!` prefix
 
 ## Tagging
 
