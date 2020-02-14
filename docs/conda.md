@@ -239,6 +239,8 @@ This should download the project fastq files and run FastQC on them (as mentione
 
 Note that all that was needed to carry out the analysis and generate these files and results was `environment.yml` (that we used to create a Conda environment with the required packages) and the analysis code in `code/run_qc.sh`.
 
+Projects can often be quite large and require lots of dependencies; it can feel daunting to try to capture all of that in a single Conda environment, especially when you consider potential incompatibilities that may arise. It can therefore be a good idea to start new projects with an environment file with each package you know that you will need to use, but without specifying exact version (except for those packages where you know you need a specific version). Conda will then try to get the latest compatible versions of all the specified software, making the start-up and installation part of new projects easier. You can then add the versions that were installed to your environment file afterwards, ensuring future reproducibility.
+
 !!! note "Quick recap"
     In this section we've learned:
 
