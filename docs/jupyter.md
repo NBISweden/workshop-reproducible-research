@@ -544,35 +544,101 @@ used in the previous two cells. Then take a look at the answer below.
     in a new cell. Can you figure out how to use it with our data?
 
 ## Sharing your work
-The files you're working with come from a Bitbucket repo. Both Bitbucket and Github can render Jupyter notebooks as well as other types of Markdown documents (you need to install an extension called "Bitbucket Notebook Viewer" on Bitbucket though). Now go to our Bitbucket repo at [https://bitbucket.org/scilifelab-lts/reproducible_research_course/](https://bitbucket.org/scilifelab-lts/reproducible_research_course/) and navigate to `jupyter/mrsa.ipynb`. Change the viewer from "Default File Viewer" to "IPython Notebook".
+The files you're working with come from a GitHub repo. Both GitHub and
+Bitbucket can render Jupyter notebooks as well as other types of
+Markdown documents. Now go to our GitHub repo at
+[https://github.com/NBISweden/workshop-reproducible-research](https://github.com/NBISweden/workshop-reproducible-research)
+and navigate to `jupyter/mrsa_notebook.ipynb`.
 
 ![](images/jupyter_mrsa.png)
 
-As you can imagine, having this very effortless way of sharing results can greatly increase the visibility of your work. You work as normal on your project, and push regularly to the repository as you would anyways, and the output is automatically available for anyone to see. Or for a select few if you're not ready to share your findings with the world quite yet.
+As you can imagine, having this very effortless way of sharing results
+can greatly increase the visibility of your work. You work as normal on
+your project, and push regularly to the repository as you would anyways,
+and the output is automatically available for anyone to see. Or for a
+select few if you're not ready to share your findings with the world
+quite yet.
 
-Say your notebook isn't on Github/Bitbucket (or you haven't activated the extension to view notebooks). All hope isn't lost there. Jupyter.org provides a neat functionality called nbviewer, where you can past an URL to any notebook and they will render it for you. Go to [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try this out with our notebook.
+Say your notebook isn't on Github/Bitbucket. All hope isn't lost there.
+Jupyter.org provides a neat functionality called nbviewer, where you can
+past an URL to any notebook and they will render it for you. Go to
+[https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try
+this out with our notebook.
 
 ```no-highlight
 https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/master/jupyter/mrsa_notebook.ipynb
 ```
 
-If you find all this repo stuff a little unsettling and would rather just get an old fashioned PDF to attach in an email like normal people, this is also possible. "File > Download as" lets you export your notebook to many formats, including HTML and PDF.
+If you find all this repo stuff a little unsettling and would rather
+just get an old fashioned PDF to attach in an email like normal people,
+this is also possible. "File > Download as" lets you export your
+notebook to many formats, including HTML and PDF.
 
-So far we've only shared static representations of notebooks. A strong trend at the moment is to run your notebooks in the cloud, so that the person you want to share with could actually execute and modify your code. This is a great way of increasing visibility and letting collaborators or readers get more hands-on with your data and analyses. From a reproducibility perspective, there are both advantages and drawbacks. On the plus side is that running your work remotely forces you to be strict when it comes to defining the environment it uses (probably in the form of a Conda environment or Docker image). On the negative side is that you become reliant on a third-party service that might change input formats, go out of business, or change payment model.
+### Shared interactive notebooks
+So far we've only shared static representations of notebooks. A strong
+trend at the moment is to run your notebooks in the cloud, so that the
+person you want to share with could actually execute and modify your
+code. This is a great way of increasing visibility and letting
+collaborators or readers get more hands-on with your data and analyses.
+From a reproducibility perspective, there are both advantages and
+drawbacks. On the plus side is that running your work remotely forces
+you to be strict when it comes to defining the environment it uses
+(probably in the form of a Conda environment or Docker image). On the
+negative side is that you become reliant on a third-party service that
+might change input formats, go out of business, or change payment model.
 
-Here we will try out a service called Binder, which lets you run and share Jupyter Notebooks in Git repositories for free. Unfortunately it only supports GitHub, and all these tutorials live in a Bitbucket repo. We will therefore use a Github repo that we've set up to serve as a project template. The repo is available at [https://github.com/NBISweden/project_template](https://github.com/NBISweden/project_template). It contains the directory structure that we've been using in these tutorials and `README.md` files that describe the intended contents of each directory. It also contains a minimal Conda environment, Snakemake workflow, and a Docker image to package the whole thing. Don't worry if you don't know what a Docker image is, it will be explained in the [Docker tutorial](docker.md).
+Here we will try out a service called Binder, which lets you run and
+share Jupyter Notebooks in Git repositories for free. There are a number
+of [example repositories](https://github.com/binder-examples/) that are
+setup to be used with Binder. Navigate to
+https://github.com/binder-examples/conda/ to see one such example. As
+you can see the repository contains a LICENSE file, a README, an
+environment file and a notebook. To use a repository with Binder the
+environment file should contain all the packages needed to run notebooks
+in the repo. So let's try to run the `index.ipynb` file using Binder:
 
-Starting the notebook is really easy, just go to [https://mybinder.org](https://mybinder.org) and paste the link to the GitHub repo. Note the link that you can use to share your notebook. Then press "launch".
+Just go to https://mybinder.org and paste the link to the GitHub repo.
+Note the link that you can use to share your notebook. Then press
+"launch".
 
 ![](images/binder.png)
 
 What will happen now it that:
 
-* Binder detects that you have a file called `Dockerfile` in the root of the repo. This file contains instructions for how to build the environment your notebook should run in (again, all of this is explained in the [Docker tutorial](docker.md)). Binder then builds a _Docker image_ based on the file. This might take a minute or two. You can follow the progress in the build log.
-* Binder then launches the Jupyter Notebook server in the Docker container..
+* Binder detects the `environment.yml` file in the root of the repo.
+  Binder then builds a _Docker image_ based on the file. This might take
+  a minute or two. You can follow the progress in the build log.
+* Binder then launches the Jupyter Notebook server in the Docker
+  container..
 * ..and opens a browser tab with it for you.
 
-The repo contains a notebook template in the `notebooks` directory. Open it and execute the first code cell. Tada! While a little underwhelming to the untrained eye, this is actually kind of cool. We now have a way to run our analyses in the cloud and in an environment that we define ourselves. All that's needed for someone to replicate your analyses is that you share a link with them. Note that notebooks on Binder are read-only; its purpose is for trying out and showing existing notebooks rather than making new ones.
+Once the process is finished you will be presented with a Jupyter server
+overview of the contents in the repository. Click on the `index.ipynb`
+notebook to open it. Tada! You are now able to interact with (and
+modify) someone else's notebook online.
+
+Applied to your own projects you now have a way to run analyses in the
+cloud and in an environment that you define yourself. All that's needed
+for someone to replicate your analyses is that you share a link with
+them. Note that notebooks on Binder are read-only; its purpose is for
+trying out and showing existing notebooks rather than making new ones.
+
+!!! tip "Binder configuration files" 
+
+    By default Binder looks for configuration files such as environment.yml
+     in the root of the repository being built. But you may also put 
+     such files outside the root by making a `binder/` folder in the root
+     and placing the file there.  
 
 !!! note "A note on transparency"
-    Resources like Github/Bitbucket and Jupyter Notebooks have changed the way we do scientific research by encouraging visibility, social interaction and transparency. It was not long ago that the analysis scripts and workflows in a lab were well-guarded secrets that we only most reluctantly shared with others. That assuming that it was even possible. In most cases, the only postdoc who knew how to get it to work had left for a new position in industry, or no one could remember the password to the file server. If you're a PhD student, we encourage you to embrace this new development wholeheartedly, for it will make your research better and make you into a better scientist. And you will have more fun.
+    Resources like Github/Bitbucket and Jupyter Notebooks have changed 
+    the way we do scientific research by encouraging visibility, social 
+    interaction and transparency. It was not long ago that the analysis 
+    scripts and workflows in a lab were well-guarded secrets that we 
+    only most reluctantly shared with others. That assuming that it was 
+    even possible. In most cases, the only postdoc who knew how to get 
+    it to work had left for a new position in industry, or no one could 
+    remember the password to the file server. If you're a PhD student, 
+    we encourage you to embrace this new development wholeheartedly, for
+     it will make your research better and make you into a better 
+     scientist. And you will have more fun.
