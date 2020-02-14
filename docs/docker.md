@@ -37,7 +37,7 @@ On Windows 10 we will install Docker for Windows, which is available at [docker.
 
 3. Start Docker from the Start menu. You can search for it if you cannot find it. The Docker whale icon should appear in the task bar.
 
-4. Now we want to share your local drive(s), so that they are available for Docker. Right-click on the Docker whale icon in the task bar and select "Settings". Go to "Shared drives" and enable the drives you want Docker to have access to. Note that the drive where you'll be running the tutorials from has to be enabled (most likely `C:\`).
+4. Now we want to share your local drive(s), so that they are available for Docker. Right-click on the Docker whale icon in the task bar and select "Settings". Go to "Shared drives" and enable the drives you want Docker to have access to. Note that the drive where you'll be running the tutorials from has to be enabled (most likely  `C:\ `).
 
 On Windows 7 we will instead use Docker Toolbox, which is available at [docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select "Get Docker Toolbox for Windows".
 
@@ -51,36 +51,44 @@ How to install Docker differs a bit depending on your Linux distro, but the step
 Here we show how to do it for Ubuntu, which is the most common desktop distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your OS is from 2015 or earlier you can double check this with `lsb_release -a`. If it's newer you're probably fine. The same instructions apply to distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you would have to map to the corresponding Ubuntu version and use that instead of `$(lsb_release -cs)` below (see [here](https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history) for Mint).
 
 1. Add the GPG key for the official Docker repository to the system:
+
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
 2. Add the Docker repository to APT sources:
+
 ```bash
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
 3. Update the package database with the Docker packages from the new repo:
+
 ```bash
 sudo apt-get update
 ```
 
 4. Install Docker Community Edition:
+
 ```bash
 sudo apt-get install -y docker-ce
 ```
 
 5. Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it's running:
+
 ```bash
 sudo systemctl status docker
 ```
+
 The output should say something about "Active: active (running) since..".
 
 !!! tip
     As mentioned before, Docker needs to run as root. You can achieve this by prepending all Docker commands with `sudo`. This is the approach that we will take in this tutorial, since the set up becomes a little simpler. If you plan on continuing using Docker you can get rid of this by adding your user to the group `docker`. Here are instructions for how to do this: [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
 # Practical exercise
+
 ## The very basics
+
 We're almost ready to start, just one last note on nomenclature. You might have noticed that we sometimes refer to "Docker images" and sometimes to "Docker containers". A container is simply an instance of an image. To use a programming metaphor, if an image is a class, then a container is an instance of that class — a runtime object. You can have an image containing, say, a certain Linux distribution, and then start multiple containers running that same OS.
 
 !!! attention
@@ -163,15 +171,16 @@ Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one
 
 ```no-highlight
 # Install necessary tools
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends bzip2 \
-                                               ca-certificates \
-                                               curl \
-                                               fontconfig \
-                                               git \
-                                               language-pack-en \
-                                               tzdata \
-                                               vim
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends bzip2 \
+                                                  ca-certificates \
+                                                  curl \
+                                                  fontconfig \
+                                                  git \
+                                                  language-pack-en \
+                                                  tzdata \
+                                                  vim \
+                                                  wget \
     && apt-get clean
 
 # Install Miniconda and add to PATH
@@ -188,13 +197,14 @@ RUN apt-get update
 
 #Install packages
 RUN apt-get install -y --no-install-recommends bzip2 \
-                                           ca-certificates \
-                                           curl \
-                                           fontconfig \
-                                           git \
-                                           language-pack-en \
-                                           tzdata \
-                                           vim
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim \
+                                               wget
 ```
 
 The first command will update the apt-get package lists and the second will install the packages `bzip2`, `ca-certificates`, `curl`, `fontconfig`, `git`, `language-pack-en`, `tzdata` and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
@@ -297,7 +307,7 @@ MES
 
 If we run `docker run` without any flags, your local terminal is attached to the container. This enables you to see the output of `run_qc.sh`, but also disables you from doing anything else in the meantime. We can start a container in detached mode with the `-d` flag. Try this out and run `docker container ls` to validate that the container is running.
 
-By default, Docker keeps containers after they have exited. This can be convenient for debugging or if you want to look at logs, but it also consumes huge amounts of disk space. It's therefore a good idea to always run with `--rm`, which will remove the container once it has exited.
+By default, Docker keeps containers after they have exited, though `docker container ls` only shows running containers by default (add the `-a` or `--all` flags to show all of them). This can be convenient for debugging or if you want to look at logs, but it also consumes huge amounts of disk space. It's therefore a good idea to always run with `--rm`, which will remove the container once it has exited.
 
 If we want to enter a running container, there are two related commands we can use, `docker attach` and `docker exec`. `docker attach` will attach local standard input, output, and error streams to a running container. This can be useful if your terminal closed down for some reason or if you started a terminal in detached mode and changed your mind. `docker exec` can be used to execute any command in a running container. It's typically used to peak in at what is happening by opening up a new shell. Here we start the container in detached mode and then start a new interactive shell so that we can see what happens. If you use `ls` inside the container you can see how the script generates file in the `data`, `intermediate` and `results` directories. Note that you will be thrown out when the container exits, so you have to be quick.
 
@@ -353,14 +363,14 @@ If you want to refer to a Docker image in for example a publication, it's very i
     On Dockerhub it is also possible to link to your Bitbucket or GitHub account and select repositories from which you want to automatically build and distribute Docker images. The Dockerhub servers will then build an image from the Dockerfile in your repository and make it available for download using `docker pull`. That way, you don't have to bother manually building and pushing using `docker push`.
 
 ## Packaging and running the MRSA workflow
-During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 3.75 GB image.
+During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far.
 
 * We've [set up a GitHub repository](git.md) for version control and for hosting our project.
 * We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.
 * We've constructed a [Snakemake workflow](snakemake.md) that performs the data analysis and keeps track of files and parameters.
 * We've written a [R Markdown document](rmarkdown.md) that takes the results from the Snakemake workflow and summarizes them in a report.
 
-The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the other tutorials is that we have also included the rendering of the Supplementary Material PDF into the Snakemake workflow as the rule `make_supplementary`.
+The `docker` directory contains the final versions of all the files we've generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference compared to the other tutorials is that we have also included the rendering of the Supplementary Material PDF into the Snakemake workflow as the rule `make_supplementary`. Running all of these steps will take some time to execute (around 20 minutes or so), in particular if you're on a slow internet connection, and result in a 3.75 GB image.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you, since it's basically the same steps as in the image we constructed in the previous section, although some sections have been moved around. The main difference is that we now also install LaTeX (through the TinyTeX package). We need this in order to be able to render the Supplementary Material report to PDF. Here, we also add the project files needed for executing the workflow (mentioned in the previous paragraph), and install the conda packages listed in `environment.yml`. If you look at the `CMD` command you can see that it will run the whole Snakemake workflow by default.
 
