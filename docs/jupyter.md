@@ -591,11 +591,12 @@ Here we will try out a service called Binder, which lets you run and
 share Jupyter Notebooks in Git repositories for free. There are a number
 of [example repositories](https://github.com/binder-examples/) that are
 setup to be used with Binder. Navigate to
-https://github.com/binder-examples/conda/ to see one such example. As
-you can see the repository contains a LICENSE file, a README, an
-environment file and a notebook. To use a repository with Binder the
-environment file should contain all the packages needed to run notebooks
-in the repo. So let's try to run the `index.ipynb` file using Binder:
+[https://github.com/binder-examples/conda/](https://github.com/binder-examples/conda/)
+to see one such example. As you can see the repository contains a
+LICENSE file, a README, an environment file and a notebook. To use a
+repository with Binder the environment file should contain all the
+packages needed to run notebooks in the repo. So let's try to run the
+`index.ipynb` file using Binder:
 
 Just go to https://mybinder.org and paste the link to the GitHub repo.
 Note the link that you can use to share your notebook. Then press
@@ -630,15 +631,16 @@ trying out and showing existing notebooks rather than making new ones.
      such files outside the root by making a `binder/` folder in the root
      and placing the file there.  
 
-!!! note "A note on transparency"
+!!! note "A note on transparency" 
+    
     Resources like Github/Bitbucket and Jupyter Notebooks have changed 
     the way we do scientific research by encouraging visibility, social 
-    interaction and transparency. It was not long ago that the analysis 
-    scripts and workflows in a lab were well-guarded secrets that we 
-    only most reluctantly shared with others. That assuming that it was 
-    even possible. In most cases, the only postdoc who knew how to get 
-    it to work had left for a new position in industry, or no one could 
-    remember the password to the file server. If you're a PhD student, 
-    we encourage you to embrace this new development wholeheartedly, for
-     it will make your research better and make you into a better 
-     scientist. And you will have more fun.
+    interaction and transparency. 
+    It was not long ago that the analysis scripts and workflows in a lab were
+    well-guarded secrets that we only most reluctantly shared with others.
+    Assuming that it was even possible. In most cases, the only postdoc who
+    knew how to get it to work had left for a new position in industry, or
+    no one could remember the password to the file server. If you're a PhD
+    student, we encourage you to embrace this new development
+    wholeheartedly, for it will make your research better and make you into
+    a better scientist. And you will have more fun.
