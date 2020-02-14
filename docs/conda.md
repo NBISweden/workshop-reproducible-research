@@ -22,30 +22,37 @@ This tutorial depends on files from the course GitHub repo. Take a look at the [
 
 * Go ahead and install Conda as described below. **Be sure to download the correct file for your OS**.
 
+**macOS**
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-MacOSX-x86_64.sh -O
-bash Miniconda3-4.6.14-MacOSX-x86_64.sh
-rm Miniconda3-4.6.14-MacOSX-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
+bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
+rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
+```
 
+**Linux**
+```bash
 # *** Install Miniconda3 for 64-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
-bash Miniconda3-4.6.14-Linux-x86_64.sh
-rm Miniconda3-4.6.14-Linux-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+bash Miniconda3-4.7.12.1-Linux-x86_64.sh
+rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
 * The installer will ask you questions during the installation:
     - do you accept the license terms? (Yes)
-    - do you accept the installation path or do you want to chose a different one? (Probably yes)
+    - do you accept the installation path or do you want to chose a
+        different one? (Probably yes)
     - do you want to run conda init to setup conda on your system? (Yes)
-* Either restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take effect, or source `~/.bashrc`/`~/.bash_profile`.
+* Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile`
+  can take effect.
 * You can verify that the installation worked by running:
 
 ```bash
 conda --version
 ```
 
-* Next, we will setup the the default channels (from where packages will be searched for and downloaded if no channel is specified).
+* Next, we will setup the the default channels (from where packages will
+  be searched for and downloaded if no channel is specified).
 
 ```
 conda config --add channels defaults
