@@ -11,7 +11,7 @@ A Conda package is a compressed tarball (system-level libraries, Python or other
 A Conda environment is essentially a directory that is added to your PATH and that contains a specific collection of Conda packages that you have installed. Packages are symlinked between environments to avoid unnecessary duplication.
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
+This tutorial depends on files from the course GitHub repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
 
 ## Install Conda
 !!! attention

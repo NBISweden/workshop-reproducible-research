@@ -3,11 +3,11 @@ theme:
     name: readthedocs
     custom_dir: docs_custom/
 pages:
-  - Welcome: index.md
+  - Welcome: 'index.md'
   - About: 'about.md'
   - 'The course':
-    - Schedule: schedule.md
-    - 'Travel info': travel.md
+    - Schedule: 'schedule.md'
+    - 'Travel info': 'travel.md'
     - Feedback: 'feedback.html'
   - Tutorials:
     - 'Introduction to the tutorials': 'tutorial_intro.md'
@@ -19,7 +19,7 @@ pages:
     - Docker: 'docker.md'
     - Singularity: 'singularity.md'
     - 'Making a project reproducible': 'repres_project.md'
-    - 'Take down': take_down.md
+    - 'Take down': 'take_down.md'
 
 markdown_extensions:
   - toc:

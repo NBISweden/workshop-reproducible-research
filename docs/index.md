@@ -3,13 +3,13 @@
 <h2> Tools for reproducible research </h2>
 
 **Date and time:**  
-- November 18-20, 2019 (3 days)
+- April 27-29, 2020 (3 days)
 
 **Location:**  
-- Chalmers University of Technology, Gothenburg, Sweden ([travel info](travel.md))
+- Science for Life Laboratory, Solna, Sweden ([travel info](travel.md))
 
 **Apply here:**  
-- Go to [SciLifeLab's webpage](https://www.scilifelab.se/events/tools-for-reproducible-research-3/) for details and application (deadline Oct 22).
+- Go to [SciLifeLab's webpage](https://www.scilifelab.se/events/tools-for-reproducible-research-4/) for details and application (deadline Mar 27).
 
 <h3> Course description </h3>
 
