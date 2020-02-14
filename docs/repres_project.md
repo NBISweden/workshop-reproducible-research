@@ -15,6 +15,13 @@ should aim to use what you've learned to do the following:
 7. Possibly add an R Markdown or Jupyter document
 8. Possibly make a Docker or Singularity image for your project
 
+This is not a small task and may seem overwhelming! Don't worry if you feel
+lost or if the task seems daunting. To get the most out of the exercise, take
+one step at a time and go back to the previous tutorials for help and
+inspiration. The goal is not necessarily for you to finish the whole exercise,
+but to really think about each step and how it all fits together in practice.
+And please ask for help if you get stuck!
+
 ## Option 1
 One option is to try to implement these methods on one of your current
 projects. It is up to you what tools to include in making your project
@@ -22,7 +29,10 @@ reproducible, but aim for at least including git and Conda.
 
 !!! tip
     If your analysis project contains computationally intense steps it may be
-    good to scale them down for the sake of the exercise.
+    good to scale them down for the sake of the exercise. You might, for
+    example, subset your raw data to only contain a minuscule part of its
+    original size. You can then test your implementation on the subset and only
+    run it on the whole dataset once everything works to your satisfaction.
 
 ## Option 2
 If you don't want to use a project you're currently working on we have
