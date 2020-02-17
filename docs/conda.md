@@ -287,3 +287,19 @@ PS1=$PS1' \$'
 
 This will also need to be added to your `~/.bash_profile` so that it is
 available when you start a new command line session.
+
+### Conda aliases
+
+In a similar way that some programmers like to have aliases for common git
+commands, some also like to have aliases for Conda commands. Here are two
+that might prove useful for you.
+
+```bash
+# Activate an environment
+alias coac='conda activate'
+
+# Deactivate an environment
+alias code='conda deactive'
+```
+
+Don't forget to add them to your `~/.bash_profile` if you want to use them!
