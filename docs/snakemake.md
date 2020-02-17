@@ -1,12 +1,36 @@
 # Introduction to Snakemake
 
-A workflow management system (WMS) is a piece of software that sets up, performs and monitors a defined sequence of computational tasks (i.e. "a workflow"). Snakemake is a WMS that was developed in the bioinformatics community, and as such it has some features that make it particularly well suited for creating reproducible and scalable data analyses.
+A workflow management system (WMS) is a piece of software that sets up
+, performs and monitors a defined sequence of computational tasks (i.e. "a
+workflow"). Snakemake is a WMS that was developed in the bioinformatics
+ community, and as such it has some features that make it particularly
+well suited for creating reproducible and scalable data analyses.
 
-* The language you use to formulate your workflows is based on Python, which is a language with strong standing in academia. However, users are not required to know how to code in Python to work efficiently with Snakemake.
-* Workflows can easily be scaled from your desktop to server, cluster, grid or cloud environments. This makes it possible to develop a workflow on your laptop, maybe using only a small subset of your data, and then run the real analysis on a cluster.
-* Snakemake has several features for defining the environment with which each task is carried out. This is important in bioinformatics, where workflows often involve running a large number of small third-party tools.
-* Snakemake is primarily intended to work on _files_ (rather than for example streams, reading/writing from databases or passing variables in memory). This fits well with many fields of bioinformatics, notably next-generation sequencing, that often involve computationally expensive operations on large files. It's also a good fit for a scientific research setting, where the exact specifications of the final workflow aren't always known at the beginning of a project.
-* Lastly, a WMS is a very important tool for making your analyses reproducible. By keeping track of when each file was generated, and by which operation, it is possible to ensure that there is a consistent "paper trail" from raw data to final results. Snakemake also has features that allow you to package and distribute the workflow, and any files it involves, once it's done.
+* The language you use to formulate your workflows is based on Python,
+  which is a language with strong standing in academia. However, users
+  are not required to know how to code in Python to work efficiently
+  with Snakemake.
+* Workflows can easily be scaled from your desktop to server, cluster,
+  grid or cloud environments. This makes it possible to develop a
+  workflow on your laptop, maybe using only a small subset of your data,
+  and then run the real analysis on a cluster.
+* Snakemake has several features for defining the environment with which
+  each task is carried out. This is important in bioinformatics, where
+  workflows often involve running a large number of small third-party
+  tools.
+* Snakemake is primarily intended to work on _files_ (rather than for
+  example streams, reading/writing from databases or passing variables
+  in memory). This fits well with many fields of bioinformatics, notably
+  next-generation sequencing, that often involve computationally
+  expensive operations on large files. It's also a good fit for a
+  scientific research setting, where the exact specifications of the
+  final workflow aren't always known at the beginning of a project.
+* Lastly, a WMS is a very important tool for making your analyses
+  reproducible. By keeping track of when each file was generated, and by
+  which operation, it is possible to ensure that there is a consistent
+  "paper trail" from raw data to final results. Snakemake also has
+  features that allow you to package and distribute the workflow, and
+  any files it involves, once it's done.
 
 ## Tell me more
 * The Snakemake documentation is available on [readthedocs](https://snakemake.readthedocs.io/en/stable/#).
@@ -14,22 +38,32 @@ A workflow management system (WMS) is a piece of software that sets up, performs
 * If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/snakemake`.
+This tutorial depends on files from the course GitHub repo. Take a look
+at the [intro](tutorial_intro.md) for instructions on how to set it up
+if you haven't done so already. Then open up a terminal and go to
+`workshop-reproducible-research/snakemake`.
 
 ## Construct the environment for the workflow
-If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda and an `environment.yml` file. Here we will use Snakemake as well as some other programs, all of which are available in the Bioconda channel. If you look in the current directory you will see an `environment.yml` file that specifies an environment containing FastQC and SRA Tools (identical to the one you made in the Conda tutorial). Add the following programs to the file and save it.
+If you have done the [Conda tutorial](conda.md) you should know how to
+define an environment and install packages using Conda and an
+`environment.yml` file. Here we will use Snakemake as well as some other
+programs, all of which are available in the Bioconda channel. If you
+look in the current directory you will see an `environment.yml` file
+that specifies an environment containing FastQC and SRA Tools (identical
+to the one you made in the Conda tutorial). Add the following programs
+to the file and save it.
 
 ```yaml
-# Specify python verison (not required but can help with downstream conflicts)
-- python=3.6
-# The workflow manager
-- snakemake-minimal=5.3.0
-# For visualizing workflows
-- graphviz=2.38.0
-- xorg-libxrender
-- xorg-libxpm
-# For downloading files
-- wget
+  # Specify python version (not required but can help with downstream conflicts)
+  - python=3.7.6
+  # The workflow manager
+  - snakemake-minimal=5.10.0
+  # For visualizing workflows
+  - graphviz=2.42.3
+  - xorg-libxrender
+  - xorg-libxpm
+  # For downloading files
+  - wget=1.20.1
 ```
 
 Now install the new environment and activate it.
@@ -335,16 +369,18 @@ This will require some more packages, so add the following lines to `environment
 
 ```yaml
 # For aggregating output from FastQC
-- multiqc=1.3
+- multiqc=1.7
 # For mapping reads to a genome
-- bowtie2=2.3
+- bowtie2=2.3.5.1
 # For sorting the output from Bowtie2
-- samtools=1.6
+- samtools=1.10
 # For generating a count table for further analysis
-- htseq=0.9
+- htseq=0.11.2
 ```
 
-You are probably already in your `snakemake_exercise` environment, otherwise activate it (use `conda info --envs` if you are unsure). You can update the current environment to contain the new packages like this:
+You are probably already in your `snakemake_exercise` environment, otherwise
+ activate it (use `conda info --envs` if you are unsure). You can update the
+   current environment to contain the new packages like this:
 
 ```bash
 conda env update -f environment.yml
@@ -437,7 +473,12 @@ rule some_rule:
         """
 ```
 
-We run most of the programs with default settings in our workflow. However, there is one parameter in the rule `get_SRA_by_accession` that we use for determining how many reads we want to retrieve from SRA for each sample (`-X 25000`). Change in this rule to use the parameter `max_reads` instead, set the value to 20000, and run through the workflow. Remember that Snakemake doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
+We run most of the programs with default settings in our workflow. However
+, there is one parameter in the rule `get_SRA_by_accession` that we use for
+ determining how many reads we want to retrieve from SRA for each sample (`-X
+  25000`). Change in this rule to use the parameter `max_reads` instead, set
+   the value to 20000, and run through the workflow. Remember that Snakemake
+     doesn't automatically rerun rules after parameter changes, so you have to trigger the execution of `get_SRA_by_accession` with `-R`.
 
 ```python
 rule get_SRA_by_accession:
@@ -450,13 +491,14 @@ rule get_SRA_by_accession:
         """
         fastq-dump {wildcards.sra_id} -X 25000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserve a lot of space
-        cache-mgr --clear >/dev/null 2>&1
         """
 ```
 
-The parameter values we set in the `params` section don't have to be static, they can be any Python expression. In particular, Snakemake provides a global dictionary of configuration parameters called `config`. Let's modify `get_SRA_by_accession` to look something like this in order to access the elements of this dictionary:
+The parameter values we set in the `params`  section don't have to be static
+, they can be any Python expression. In particular, Snakemake provides a
+ global dictionary of configuration parameters called `config`. Let's modify
+  `get_SRA_by_accession` to look something like this in order to access the
+   elements of this dictionary:
 
 ```python
 rule get_SRA_by_accession:
@@ -471,9 +513,6 @@ rule get_SRA_by_accession:
         """
         fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserve a lot of space
-        cache-mgr --clear >/dev/null 2>&1
         """
 ```
 
