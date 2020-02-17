@@ -834,3 +834,68 @@ git push origin --delete test_alignment
     * `git branch branch_name` - create a new branch
     * `git checkout` - update files to match the versions in the given branch or tag name
     * `git merge` - to merge one branch into another
+
+## Extra material
+
+The following extra material contains some more advanced things you can do with
+git and the command line in general, which is not part of the main course
+materials. All the essential skills of git are covered by the previous
+material, so you're not missing anything if you don't have time to get to this
+part of the course.
+
+### Decorating your prompt
+
+When you are working on the command line interface (CLI), you will usually have
+some small pieces of information relating to your current directory, the name
+of the computer or host you're working on, and so forth. You've probably
+already seen your prompt while working with git throughout this lesson, but
+here's an example of what one might look like:
+
+```no-highlight
+erikfmbp:~/teaching/workshop-reproducible-research erik.fasterius $
+```
+
+The above prompt contains, the name of the computer,  a colon, the current
+working directory, the username and a dollar-sign; it is stored in the
+variable `PS1`. You can type `echo $PS1` to see what variables your prompt
+is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
+hostname, `\W` the working directory and `\u` the username.
+
+Some programmers like to also show the current branch on their prompt, thus
+avoiding having to type `git branch` continuously. There are several ways you
+might do this, and we're only presenting one of them here: a bash function.
+
+```bash
+git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+```
+
+This function does a number of things:
+
+1. Ejects the error message from git if the current directory isn't a part of a
+   git repository into `/dev/null` (_i.e._ into nothing)
+2. Find the current branch by searching for a line that starts with `*` using
+   the command line program `sed`
+3. Put the current branch into parentheses with a space before it
+
+We can then build our new prompt by adding this function into it:
+
+```bash
+# The first part of the old prompt
+PS1='\h:\W \u'
+
+# Add the git branch
+PS1=$PS1'$(git_branch)'
+
+# Add the last part of the old prompt
+PS1=$PS1' \$'
+```
+
+Now you should see the current git branch on your prompt! The only problem now
+is that this only works for your current session: once you restart your CLI
+you'll have to re-define your prompt again. This can be circumvented, though.
+What you need to do is to add the code defining your prompt into your so-called
+bash profile: `~/.bash_profile`. Every time you load a new CLI session this
+file is read and any code inside it is executed. You might already have this
+file, so make sure you don't overwrite it! 
