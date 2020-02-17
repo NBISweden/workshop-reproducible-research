@@ -855,7 +855,7 @@ here's an example of what one might look like:
 erikfmbp:~/teaching/workshop-reproducible-research erik.fasterius $
 ```
 
-The above prompt contains, the name of the computer,  a colon, the current
+The above prompt contains, the name of the computer, a colon, the current
 working directory, the username and a dollar-sign; it is stored in the
 variable `PS1`. You can type `echo $PS1` to see what variables your prompt
 is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
@@ -899,3 +899,36 @@ What you need to do is to add the code defining your prompt into your so-called
 bash profile: `~/.bash_profile`. Every time you load a new CLI session this
 file is read and any code inside it is executed. You might already have this
 file, so make sure you don't overwrite it! 
+
+### Git aliases
+
+Some git commands are commands you are using over and over again when working
+continuously with git, such as `git status`. Some like to have aliases (_i.e._
+shortcuts) for these common commands. Here is a small list of such aliases that
+you may find useful or, even better, inspire you to create your own! Add them
+to your `~/.bash_profile` as above, so that they're available across sessions.
+
+```bash
+# Basic git commands
+alias gb='git branch'
+alias ga='git add'
+alias gd='git diff'
+alias gcm='git commit'
+alias gp='git push'
+alias gu='git pull'
+alias gm='git merge'
+alias gco='git checkout'
+alias gl='git log'
+
+# Git status in short format
+alias gst='git status -s'
+
+# Add and commit all tracked and modified files
+alias gca='git commit -a'
+
+# Create and checkout a new branch
+alias gcob='git checkout -b'
+
+# Git log with one line per commit
+alias glo='git log --oneline'
+```
