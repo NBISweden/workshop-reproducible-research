@@ -241,3 +241,49 @@ Note that all that was needed to carry out the analysis and generate these files
 
     * How to define our Conda environment using a yaml-file.
     * How to use `conda env create` to make a new environment from a yaml-file.
+
+## Extra material
+
+The following extra material contains some more advanced things you can do with
+conda and the command line in general, which is not part of the main course
+materials. All the essential skills of conda are covered by the previous
+material, so you're not missing anything if you don't have time to get to this
+part of the course.
+
+### Decorating your prompt
+
+By default, Conda adds the name of the currently activated environment to the
+end of your command line prompt. This is a good thing, as it makes it easier to
+keep track of what environment and packages you have access to. The way this is
+done in the default implementation becomes an issue when using absolute paths
+for environments (specifying `conda env create -p <path/to/environment>`,
+though, as the entire path will be added to the prompt. This can take up a lot
+of unnecessary space, but can be solved in a number of ways. Here we present
+one of them, using a custom bash function:
+
+```bash
+conda_env() {
+    basename $(echo $CONDA_DEFAULT_ENV) 2> /dev/null \
+        | sed -e 's/\(.*\)/(\1) /'
+}
+```
+
+This function finds the name of the current environment by removing all but the
+last part of its full path using `basename` (while throwing the error message
+into `/dev/null` if no environment is currently active) and adding a space at
+the end. You can then build your prompt in a similar way as was shown in the
+extra material for the git lesson:
+
+```bash
+# A basic prompt with hostname, working directory and username
+PS1='\h:\W \u'
+
+# Add the Conda environment
+PS1=$PS1'$(conda_env)'
+
+# Finish with a dollar-sign
+PS1=$PS1' \$'
+```
+
+This will also need to be added to your `~/.bash_profile` so that it is
+available when you start a new command line session.
