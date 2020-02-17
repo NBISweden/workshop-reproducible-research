@@ -184,7 +184,9 @@ The `-m` option adds a commit message. This should be a short description of wha
     where you can write a longer commit message and body.
 
 * Run `git status` (yep, again!). It should tell you "*nothing to commit, working directory clean*".
-* Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different value, e.g. `bowtie2=2.1`.
+* Now, let's edit a file. Open up `environment.yml` in your favorite
+ editor, and change the version of bowtie2 to a different value, e.g
+ . `bowtie2=2.2.4`.
 * Run `git status`. It will tell you that there are modifications in one file (`environment.yml`) compared to the previous commit. This is nice! We don't have to keep track of what files we have edited, git will do that for us.
 * Run `git diff environment.yml`. This will show you the changes made to the file. A `-` means a deleted line, a `+` means an added line. There are also shown a few lines before and after the changes, to put them in context.
 * Let's edit another file! Open `config.yml`and change the line `genome_id: NCTC8325` to `genome_id: ST398`. Run `git status`. Run `git diff`. If we don't specify a file, it will show all changes made in any file, compared to the previous commit. Do you see your changes?
@@ -322,14 +324,14 @@ but the important thing is not to panic! :)
   icon to the rigth to edit this file directly on the web. This is
   generally not recommended, but we will do it here to demonstrate a
   point.
-* Let's pretend that using multiqc version 1.3 did not work. Change the 
-  multiqc version to 1.4:
+* Let's pretend that using multiqc version 1.7 did not work. Change the 
+  multiqc version to 1.8:
 
 ```yaml
-multiqc=1.4
+multiqc=1.8
 ```
 
-* Add the commit message: "Update multiqc version to 1.4". Click Commit 
+* Add the commit message: "Update multiqc version to 1.8". Click Commit 
   changes.
 * Click History to the right to see the commit history, and your latest
   change at the top.
@@ -344,12 +346,12 @@ committed a change and pushed it to GitHub.
   remote changes. We will get those changes soon.
 * But first, we will edit `environment.yml` locally as well! (It may be 
   the case that your collaborator thought it was good to use multiqc
-  version 1.4, whereas you thought it would be better to use multiqc
-  version 1.2, but neither of you communicated that to the other.) Use a
+  version 1.8, whereas you thought it would be better to use multiqc
+  version 1.6, but neither of you communicated that to the other.) Use a
   text editor and change the multiqc line to:
 
 ```yaml
-multiqc=1.2
+multiqc=1.6
 ```
 
 * Commit your change (use `git status` along the way if you want to 
@@ -359,7 +361,7 @@ multiqc=1.2
 git status
 git add environment.yml
 git status
-git commit -m "Downgraded multiqc to v1.2"
+git commit -m "Downgraded multiqc to v1.6"
 git status
 ```
 
@@ -416,31 +418,38 @@ git pull
   the same line in this file. To fix a conflict, open the affected file
   in a text editor. You will see that it now looks something like this:
 
-```
+```yaml
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
+  - main
+  - r
 dependencies:
-- fastqc=0.11.6
-- sra-tools=2.8
-- snakemake-minimal=5.3.0
+  - python=3.7.6
+  - fastqc=0.11.9
+  - sra-tools=2.10.1
+  - snakemake-minimal=5.10.0
 <<<<<<< HEAD
-- multiqc=1.2
+  - multiqc=1.6
 =======
-- multiqc=1.4
+  - multiqc=1.8
 >>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf
-- bowtie2=2.3
-- samtools=1.6
-- htseq=0.9
-- graphviz=2.38.0
-- xorg-libxrender
-- xorg-libxpm
-- r-ggplot2=3.1.1
-- r-reshape2=1.4.3
-- r-pheatmap=1.0.12
-- bioconductor-rtracklayer=1.42.1
-- bioconductor-geoquery=2.50.5
-- r-rmarkdown=1.12
+  - bowtie2=2.3.5.1
+  - samtools=1.10
+  - htseq=0.11.2
+  - bedtools=2.29.2
+  - wget=1.20.1
+  - graphviz=2.42.3
+  - r-base=3.6.2
+  - r-ggplot2=3.2.1
+  - r-reshape2=1.4.3
+  - r-stringi=1.4.5
+  - r-pheatmap=1.0.12
+  - r-rmarkdown=2.1
+  - bioconductor-rtracklayer=1.46.0
+  - bioconductor-geoquery=2.54.0
+  - xorg-libxrender
+  - xorg-libxpm
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and
@@ -453,32 +462,39 @@ different for your repository.
 
 * It is now up to you to decide which version to keep, or to change it 
   to a third alternative. Let's say that you are confident that it is
-  better to run multiqc v1.2 rather than v1.4. Edit the file so that it
+  better to run multiqc v1.6 rather than v1.8. Edit the file so that it
   looks like you want it to, i.e. remove the lines added by git and
-  delete the line with `multiqc=1.4`. The final file should look like
+  delete the line with `multiqc=1.8`. The final file should look like
   this:
 
 ```yaml
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
+  - main
+  - r
 dependencies:
-- fastqc=0.11.6
-- sra-tools=2.8
-- snakemake-minimal=5.3.0
-- multiqc=1.2
-- bowtie2=2.3
-- samtools=1.6
-- htseq=0.9
-- graphviz=2.38.0
-- xorg-libxrender
-- xorg-libxpm
-- r-ggplot2=3.1.1
-- r-reshape2=1.4.3
-- r-pheatmap=1.0.12
-- bioconductor-rtracklayer=1.42.1
-- bioconductor-geoquery=2.50.5
-- r-rmarkdown=1.12
+  - python=3.7.6
+  - fastqc=0.11.9
+  - sra-tools=2.10.1
+  - snakemake-minimal=5.10.0
+  - multiqc=1.6
+  - bowtie2=2.3.5.1
+  - samtools=1.10
+  - htseq=0.11.2
+  - bedtools=2.29.2
+  - wget=1.20.1
+  - graphviz=2.42.3
+  - r-base=3.6.2
+  - r-ggplot2=3.2.1
+  - r-reshape2=1.4.3
+  - r-stringi=1.4.5
+  - r-pheatmap=1.0.12
+  - r-rmarkdown=2.1
+  - bioconductor-rtracklayer=1.46.0
+  - bioconductor-geoquery=2.54.0
+  - xorg-libxrender
+  - xorg-libxpm
 ```
 
 * Run `git status`, notice that it says *use "git add <file>..." to mark
@@ -493,7 +509,7 @@ git add environment.yml
   you probably guessed it, run:
 
 ```bash
-git commit -m "Merge and set multiqc to v1.2"
+git commit -m "Merge and set multiqc to v1.6"
 ```
 
 * Finally, push these changes to GitHub:
