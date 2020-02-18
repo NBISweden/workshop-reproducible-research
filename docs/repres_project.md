@@ -1,7 +1,7 @@
 # Putting everything together
 
 It is time to try to setup a project from scratch and use the different
-tools that we have covered during the course together! This exercise if very
+tools that we have covered during the course together! This exercise is very
 open-ended and you have free hands to try out a bit of what you want. But you
 should aim to use what you've learned to do the following:
 
