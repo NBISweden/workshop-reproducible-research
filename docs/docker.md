@@ -90,7 +90,7 @@ Select "Get Docker for Windows (Stable)".
    Docker. Right-click on the Docker whale icon in the task bar and select
    "Settings". Go to "Shared drives" and enable the drives you want Docker to
    have access to. Note that the drive where you'll be running the tutorials
-   from has to be enabled (most likely `C:\ `).
+   from has to be enabled (most likely  `C:\ `).
 
 On Windows 7 we will instead use Docker Toolbox, which is available at
 [docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select
@@ -119,22 +119,26 @@ https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
 for Mint).
 
 1. Add the GPG key for the official Docker repository to the system:
+
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
 2. Add the Docker repository to APT sources:
+
 ```bash
 sudo add-apt-repository "deb [arch=amd64] \
     https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
 3. Update the package database with the Docker packages from the new repo:
+
 ```bash
 sudo apt-get update
 ```
 
 4. Install Docker Community Edition:
+
 ```bash
 sudo apt-get install -y docker-ce
 ```
@@ -145,6 +149,7 @@ sudo apt-get install -y docker-ce
 ```bash
 sudo systemctl status docker
 ```
+
 The output should say something about "Active: active (running) since..".
 
 !!! tip
@@ -335,13 +340,14 @@ RUN apt-get update
 
 #Install packages
 RUN apt-get install -y --no-install-recommends bzip2 \
-                                           ca-certificates \
-                                           curl \
-                                           fontconfig \
-                                           git \
-                                           language-pack-en \
-                                           tzdata \
-                                           vim
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim \
+                                               wget
 ```
 
 The first command will update the apt-get package lists and the second will
@@ -625,8 +631,6 @@ you want to try it out here is how to do it:
    will automatically be retrieved from Dockerhub. You can use `docker pull`
    for downloading without running.
 
-That was easy!
-
 If you want to refer to a Docker image in for example a publication, it's very
 important that it's the correct version of the image. You can do this by adding
 a tag to the name like this `docker build -t
@@ -661,7 +665,9 @@ generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`,
 `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference
 compared to the other tutorials is that we have also included the rendering of
 the Supplementary Material PDF into the Snakemake workflow as the rule
-`make_supplementary`.
+`make_supplementary`. Running all of these steps will take some time to execute
+(around 20 minutes or so), in particular if you're on a slow internet
+connection, and result in a 3.75 GB image.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the

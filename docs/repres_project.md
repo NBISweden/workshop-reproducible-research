@@ -1,11 +1,9 @@
-# Using the tools to put everything together
+# Putting everything together
 
 It is time to try to setup a project from scratch and use the different
-tools that we have covered during the course together!
-
-This exercise if very open-ended and you have free hands to try out a
-bit what you want. But you should aim to use what you've learned to
-do the following:
+tools that we have covered during the course together! This exercise is very
+open-ended and you have free hands to try out a bit of what you want. But you
+should aim to use what you've learned to do the following:
 
 1. Create a new git repository for the project (either on BitBucket or GitHub)
 
@@ -24,24 +22,31 @@ do the following:
 
 8. Possibly make a Docker or Singularity image for your project
 
+This is not a small task and may seem overwhelming! Don't worry if you feel
+lost or if the task seems daunting. To get the most out of the exercise, take
+one step at a time and go back to the previous tutorials for help and
+inspiration. The goal is not necessarily for you to finish the whole exercise,
+but to really think about each step and how it all fits together in practice.
+And please ask for help if you get stuck!
+
 ## Option 1
 One option is to try to implement these methods on one of your current
 projects. It is up to you what tools to include in making your project
-reproducible, but aim for at least including git and conda.
+reproducible, but aim for at least including git and Conda.
 
 !!! tip
-    If your analysis project contains
-    computationally intense steps it may be good to scale them down for
-    the sake of the exercise.
+    If your analysis project contains computationally intense steps it may be
+    good to scale them down for the sake of the exercise. You might, for
+    example, subset your raw data to only contain a minuscule part of its
+    original size. You can then test your implementation on the subset and only
+    run it on the whole dataset once everything works to your satisfaction.
 
 ## Option 2
 If you don't want to use a project you're currently working on we have
-a suggestion for a small-scale project for you.
-
-The idea is to analyze student experience for this Reproducible Research
-course. For this you will use responses from students to the registration
-form for the course. Below you'll find links to **csv** format files
-with answers from 3 course instances:
+a suggestion for a small-scale project for you. The idea is to analyze
+students' experiences at this Reproducible Research course. For this you will
+use responses from students to the registration form for the course. Below
+you'll find links to **csv** format files with answers from 3 course instances:
 
 2018-11<br>
 <font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font><br>
@@ -52,12 +57,12 @@ https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM
 <font size="2">
 https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv</font>
 
-The goal here is to create a snakemake workflow which:
+The goal here is to create a Snakemake workflow, which contains the following:
 
-1. has a rule that downloads the csv files (making use of a `config.yml` file
+1. Has a rule that downloads the csv files (making use of a `config.yml` file
    to pass the URLs and file names)
 
-2. has a rule that cleans the files (making use of `wildcards` so that the same
+2. Has a rule that cleans the files (making use of `wildcards` so that the same
    rule can be run on each file)
 
 3. The final step is to plot the student experience in some way.
@@ -214,10 +219,7 @@ the cleaned files as input.
 
 !!! attention
     Remember to:
-
-    1. Keep everything versioned controlled with `git`
-
-    2. Add information to the `README` file so others know how to rerun the
-       project
-
-    3. Add required software to the conda `environment.yml` file
+    * Keep everything versioned controlled with `git`
+    * Add information to the `README` file so others know how to re-run the
+      project
+    * Add required software to the Conda `environment.yml` file

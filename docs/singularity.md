@@ -198,12 +198,11 @@ The def file consists of two parts:
 * Optional sections, each starting with a `%`-sign, that add content or execute
   commands during the build process
 
-As an example, let's look at the def file for the lol_cow image that we played
-with above (above we pulled lol_cow from Dockerhub but it also exists in the
-Singularity library and can be pulled by `singularity pull
-library://godlovedc/funny/lolcow`).
-
-The file looks like this:
+As an example, we can look at the def file used for the image we played with
+above in the `singularity/` directory (we previously pulled lolcow from
+Dockerhub, but it also exists in the Singularity library and can be pulled by
+`singularity pull library://godlovedc/funny/lolcow`). The lolcow def file looks
+like this:
 
 ```
 BootStrap: docker
@@ -221,15 +220,14 @@ From: ubuntu:16.04
     fortune | cowsay | lolcat
 ```
 
-The first part of the header sets the bootstrap agent. In the lol_cow example
+The first part of the header sets the bootstrap agent. In the lolcow example
 DockerHub is used. Alternatively one could set it to *library* to use the
-Singularity Library. There are also other bootstrap agents available (see
-[this link](
-https://sylabs.io/guides/3.3/user-guide/definition_files.html#preferred-bootstrap-agents)
+Singularity Library. There are also other bootstrap agents available (see [this
+link](https://sylabs.io/guides/3.3/user-guide/definition_files.html#preferred-bootstrap-agents)
 for details). Next, the base image that the new image starts from is defined,
 in this case the Docker image `ubuntu:16.04`.
 
-In the lol_cow def file three sections are used (`%post`, `%environment`, and
+In the lolcow def file three sections are used (`%post`, `%environment`, and
 `runscript`).
 
 * `%post` is similar to the `RUN` instruction in Dockerfiles. Here is where you
@@ -245,7 +243,8 @@ In the lol_cow def file three sections are used (`%post`, `%environment`, and
 
 !!! note "Quick recap"
     In this section we covered the basic parts of a Singularity definition
-    file.
+    file (a def file), including  `BootStrap`, `From` `%post`, `%environment`
+    and `%runscript`.
 
 ### Singularity def file for the MRSA project
 
@@ -338,7 +337,8 @@ has the option to build images remotely. To do this, you need to:
 
 * Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and
   create an account
-* Log in and find "Access Tokens" in the menu and create a new token
+* Log in and find "Access Tokens" in the menu and create a new token (you'll
+  have to give it a name, as well)
 * Copy the token and paste it in the file `~/.singularity/sylabs-token`
 
 We can now try to build the MRSA Singularity image using the `--remote` flag:
@@ -374,8 +374,8 @@ else correct it should be related to the PATH).
     ```
 
 The build should now hopefully work and produce a Singularity image called
-`run_qc.sif`. To run the image, thus executing `code/run_qc.sh` using the tools
-in the container, do:
+`run_qc.sif`. To run the image, *i.e.* executing `code/run_qc.sh` using the
+tools in the container, do the following:
 
 ```bash
 singularity run run_qc.sif
@@ -387,7 +387,7 @@ files producing output directories and files in your current working directory.
 !!! tip
     We do not cover it here but it is possible to build Singularity images as
     writable sandbox images. This enables starting a shell in the container and
-    *e.g.* install software. This may be convenient during the design of the
+    *e.g.* installing software. This may be convenient during the design of the
     definition file to test what commands to include. When everything is
     working as expected one should rebuild directly from the definition file to
     a final SIF file.
@@ -414,11 +414,11 @@ This should result in a file called `mrsa_proj.sif`. In the Docker image we
 included the code needed for the workflow in the `/course` directory of the
 image. These files are of course also available in the Singularity image.
 However, a Singularity image is read-only (unless using the sandbox feature),
-and this will be a problem if we try to run the wworkflow within the `/course`
+and this will be a problem if we try to run the workflow within the `/course`
 directory, since the workflow will produce files and Snakemake will create
 a `.snakemake` directory. Instead, we need to provide the files externally from
 our host system and simply use the Singularity image as the environment to
-execute the workflow in (*i.e.* all the software). In your current working
+execute the workflow in (i.e. all the software). In your current working
 directory (`singularity/`) the vital MRSA project files are already available
 (`Snakefile`, `config.yml`, `code/header.tex` and
 `code/supplementary_material.Rmd`). And since Singularity bind mounts the
