@@ -258,8 +258,7 @@ keep track of what environment and packages you have access to. The way this is
 done in the default implementation becomes an issue when using absolute paths
 for environments (specifying `conda env create -p <path/to/environment>`,
 though, as the entire path will be added to the prompt. This can take up a lot
-of unnecessary space, but can be solved in a number of ways. Here we present
-one of them, using a custom bash function:
+of unnecessary space, but can be solved in a number of ways.
 
 ```bash
 conda_env() {
