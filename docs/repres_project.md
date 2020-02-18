@@ -56,7 +56,7 @@ The goal here is to create a Snakemake workflow, which contains the following:
    pass the URLs and file names)
 2. A rule that cleans the files (making use of `wildcards` so that the same
    rule can be run on each file)
-3. A final step that cab plot the student experience in some way.
+3. A final step that can plot the student experience in some way.
 
 The first two steps should be part of the workflow. If you need some help
 with the cleaning step, see below for a script that you can save to a file
