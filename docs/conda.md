@@ -260,32 +260,36 @@ for environments (specifying `conda env create -p <path/to/environment>`,
 though, as the entire path will be added to the prompt. This can take up a lot
 of unnecessary space, but can be solved in a number of ways.
 
+The most straightforward way to solve this is to change the conda configuration
+file, specifically the settings of the env_prompt configuration value which
+determines how conda modifies your command line prompt. For more information
+about this setting you can run `conda config --describe env_prompt` and to see
+your current setting you can run `conda config --show env_prompt`.
+
+By default env_prompt is set to '({default_env})' which modifies your prompt
+with the active environment name if it was installed using the -n flag or if
+the environment folder has a parent folder named envs/. Otherwise the full
+environment path (*i.e.* the 'prefix') is displayed.
+
+If you instead set env_prompt to '({name}) ' conda will modify your prompt with
+the folder name of the active environment. You can change the setting by
+running the following:
+
 ```bash
-conda_env() {
-    basename $(echo $CONDA_DEFAULT_ENV) 2> /dev/null \
-        | sed -e 's/\(.*\)/(\1) /'
-}
+conda config --set env_prompt '({name}) '
 ```
 
-This function finds the name of the current environment by removing all but the
-last part of its full path using `basename` (while throwing the error message
-into `/dev/null` if no environment is currently active) and adding a space at
-the end. You can then build your prompt in a similar way as was shown in the
-extra material for the git lesson:
+If you wish to keep the ({default_env})' behaviour, or just don't want to
+change your conda config, an alternative is to keep conda environment folders
+within a parent folder called `envs/`. This will make conda only add the folder
+name of the conda environment to your prompt when you activate it.
 
-```bash
-# A basic prompt with hostname, working directory and username
-PS1='\h:\W \u'
-
-# Add the Conda environment
-PS1=$PS1'$(conda_env)'
-
-# Finish with a dollar-sign
-PS1=$PS1' \$'
-```
-
-This will also need to be added to your `~/.bash_profile` so that it is
-available when you start a new command line session.
+As an example, say you have a project called project_a with the project path
+`~/myprojects/project_a`. You could then install the environment for project_a
+into a folder `~/myprojects/project_a/envs/project_a_environment`. Activating
+the environment by pointing conda to it (*e.g.* conda activate
+`~/myprojects/project_a/envs/project_a_environment`) will only cause your promp
+to be modified with project_a_environment.
 
 ### Conda aliases
 
