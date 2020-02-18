@@ -40,7 +40,7 @@ singularity pull library://ubuntu
 
 This pulls an ubuntu image from the [Singularity library](https://cloud.sylabs.io/library) (somewhat equivalent to Dockerhub). The first thing you might have noticed is that this command produces a file `ubuntu_latest.sif` in the current working directory. Singularity, unlike Docker, stores its images as a single file. Docker on the other hand uses layers, which can be shared between multiple images, and thus stores downloaded images centrally (remember the `docker image ls` command?). A Singularity image file is self-contained (no shared layers) and can be moved around and shared like any other file.
 
-To run a command in a Singularity container (equivalent of e.g. `docker run ubuntu uname -a`) we can execute:
+To run a command in a Singularity container (equivalent of *e.g.* `docker run ubuntu uname -a`) we can execute:
 
 ```bash
 $ singularity exec ubuntu_latest.sif uname -a
@@ -57,7 +57,7 @@ Notice anything unexpected or different from what you learnt from the Docker tut
 
 Unlike Docker, Singularity attempts to map parts of your local file system to the image. By default Singularity bind mounts `$HOME`, `/tmp`, and `$PWD` (the current working directory) into your container. Also, inside a Singularity container, you are the same user as you are on the host system.
 
-We can also start an interactive shell (equivalent of e.g. `docker run -it ubuntu`):
+We can also start an interactive shell (equivalent of *e.g.* `docker run -it ubuntu`):
 
 ```bash
 singularity shell ubuntu_latest.sif
@@ -89,7 +89,7 @@ You can try this for example by mounting the `conda/` tutorial directory to `/mn
 singularity shell -B ../conda:/mnt ubuntu_latest.sif
 ```
 
-In the container, to see that the bind mounting worked, run e.g.:
+In the container, to see that the bind mounting worked, run *e.g.*:
 
 ```bash
 ls /mnt/code
@@ -127,7 +127,7 @@ singularity shell lolcow_latest.sif
 
 ## Building a Singularity image from scratch
 
-As we have seen, it is possible to convert Docker images to the Singularity format when needed and run them using Singularity. In terms of making a research project reproducible using containers, it may be enough to e.g. define a Dockerfile (recipe for a Docker image) as well as supply a Docker image for others to download and use, either directly through Docker, or by Singularity. Even better, from a reproducibility aspect, would be to also generate the Singularity image from the Docker image and provide that for potential future users (since the image is a static file, whereas running `singularity pull` or `singularity build` would rebuild the image at the time of issuing the command).
+As we have seen, it is possible to convert Docker images to the Singularity format when needed and run them using Singularity. In terms of making a research project reproducible using containers, it may be enough to *e.g.* define a Dockerfile (recipe for a Docker image) as well as supply a Docker image for others to download and use, either directly through Docker, or by Singularity. Even better, from a reproducibility aspect, would be to also generate the Singularity image from the Docker image and provide that for potential future users (since the image is a static file, whereas running `singularity pull` or `singularity build` would rebuild the image at the time of issuing the command).
 
 A third option, would be to define a Singularity recipe, either on its own or in addition to the Dockerfile. The equivalent of a Dockerfile for Singularity is called a Singularity Definition file ("def file").
 
@@ -280,7 +280,7 @@ singularity run run_qc.sif
 The fastq-files should now be downloaded and FastQC should be run on these files producing output directories and files in your current working directory.
 
 !!! tip
-    We do not cover it here but it is possible to build Singularity images as writable sandbox images. This enables starting a shell in the container and e.g. install software. This may be convenient during the design of the definition file to test what commands to include. When everything is working as expected one should rebuild directly from the definition file to a final SIF file.
+    We do not cover it here but it is possible to build Singularity images as writable sandbox images. This enables starting a shell in the container and *e.g.* install software. This may be convenient during the design of the definition file to test what commands to include. When everything is working as expected one should rebuild directly from the definition file to a final SIF file.
 
 !!! note
     A somewhat important section that we have not covered here is the `%files` section. This is similar to the `ADD` or `COPY` instructions in a Dockerfile. One simply defines, on each line, a file to be copied from host to the container image using the format `<source> <destination>`. This does not currently work with `--remote` building though.
@@ -294,7 +294,7 @@ As a final example we will use `singularity build` to convert the Docker image o
 singularity build --remote mrsa_proj.sif docker://scilifelablts/reproducible_research_course
 ```
 
-This should result in a file called `mrsa_proj.sif`. In the Docker image we included the code needed for the workflow in the `/course` directory of the image. These files are of course also available in the Singularity image. However, a Singularity image is read-only (unless using the sandbox feature), and this will be a problem if we try to run the wworkflow within the `/course` directory, since the workflow will produce files and Snakemake will create a `.snakemake` directory. Instead, we need to provide the files externally from our host system and simply use the Singularity image as the environment to execute the workflow in (i.e. all the software). In your current working directory (`singularity/`) the vital MRSA project files are already available (`Snakefile`, `config.yml`, `code/header.tex` and `code/supplementary_material.Rmd`). And since Singularity bind mounts the current working directory we can simply execute the workflow and generate the output files using:
+This should result in a file called `mrsa_proj.sif`. In the Docker image we included the code needed for the workflow in the `/course` directory of the image. These files are of course also available in the Singularity image. However, a Singularity image is read-only (unless using the sandbox feature), and this will be a problem if we try to run the wworkflow within the `/course` directory, since the workflow will produce files and Snakemake will create a `.snakemake` directory. Instead, we need to provide the files externally from our host system and simply use the Singularity image as the environment to execute the workflow in (*i.e.* all the software). In your current working directory (`singularity/`) the vital MRSA project files are already available (`Snakefile`, `config.yml`, `code/header.tex` and `code/supplementary_material.Rmd`). And since Singularity bind mounts the current working directory we can simply execute the workflow and generate the output files using:
 
 ```bash
 singularity run --vm-ram 2048 mrsa_proj.sif

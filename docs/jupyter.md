@@ -41,7 +41,7 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 
 # Practical exercise
 ## The Jupyter Notebook dashboard
-One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. But first you have to start the Jupyter Notebook server.
+One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, *i.e.* you edit and run your code from your browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
@@ -192,7 +192,7 @@ Magics constitute a simple command language that significantly extends the power
 * Line magics - Commands that are prepended by "%", and whose arguments only extend to the end of the line.
 * Cell magics - Commands that start with `%%` and then applies to the whole cell. Must be written on the first line of a cell.
 
-Now list all available magics with `%lsmagic` (which itself is a magic). You add a question mark to a magic to show the help (e.g. `%lsmagic?`). Some of them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`, ..). Others are useful for debugging and optimizing your code (`%timeit`, `%debug`, `%prun`, ..).
+Now list all available magics with `%lsmagic` (which itself is a magic). You add a question mark to a magic to show the help (*e.g.* `%lsmagic?`). Some of them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`, ..). Others are useful for debugging and optimizing your code (`%timeit`, `%debug`, `%prun`, ..).
 
 A very useful magic, in particular when using shell commands a lot in your work, is `%%capture`. This will capture the stdout/stderr of any code cell and store them in a Python object. Run `%%capture?` to display the help and try to understand how it works. Try it out with either some Python code, other magics or shell commands.
 

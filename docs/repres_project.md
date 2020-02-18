@@ -55,7 +55,7 @@ with the cleaning step, see below for a script that you can save to a file
 and run on your computer.
 
 ??? note "Click to show a script for cleaning column names"
-    The script (e.g. `clean_csv.py`):
+    The script (*e.g.* `clean_csv.py`):
     ```python
     #!/usr/bin/env python
     import pandas as pd
@@ -86,7 +86,7 @@ The last step is really up to you how to implement. You could:
 
 * include the plotting in the workflow using an RMarkdown document that
 gets rendered into a report
-* have a script that produces separate figures (e.g. `png` files)
+* have a script that produces separate figures (*e.g.* `png` files)
 * create a jupyter notebook that reads the cleaned output from the workflow
 and generates some plot or does other additional analyses
 
@@ -95,7 +95,7 @@ to see an example python script that you can save to file and run with
 the cleaned files as input.
 
 ??? note "Click to show a script for plotting the student experience"
-    The script (e.g. `plot.py`):
+    The script (*e.g.* `plot.py`):
     ```python
     #!/usr/bin/env python
 

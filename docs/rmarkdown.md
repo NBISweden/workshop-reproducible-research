@@ -1,7 +1,7 @@
 # Introduction to R Markdown
 
 ## Markup
-A *markup language* is a system for annotating text documents in order to e.g. define formatting. HTML, if you are familiar with that, is an example of a markup language. HTML uses tags, such as:
+A *markup language* is a system for annotating text documents in order to *e.g.* define formatting. HTML, if you are familiar with that, is an example of a markup language. HTML uses tags, such as:
 
 ```html
 <h1>Heading</h1>
@@ -40,7 +40,7 @@ A markdown document can be converted to other formats, such as HTML or PDF, for 
 
 R Markdown documents can be used both to save and execute code (with a focus on R) and to generate reports in various formats. This is done by mixing markdown (as in the example above), and so-called code chunks in the same document. The code itself, as well as the output it generates, can be included in the final report.
 
-R Markdown makes your analysis more reproducible by connecting your code, figures and descriptive text. You can use it to make reproducible reports, rather than e.g. copy-pasting figures into a Word document. You can also use it as a notebook, in the same way as lab notebooks are used in a wet lab setting (or as we us a Jupyter notebook in the [tutorial](jupyter.md)).
+R Markdown makes your analysis more reproducible by connecting your code, figures and descriptive text. You can use it to make reproducible reports, rather than *e.g.* copy-pasting figures into a Word document. You can also use it as a notebook, in the same way as lab notebooks are used in a wet lab setting (or as we us a Jupyter notebook in the [tutorial](jupyter.md)).
 
 The best way to understand R Markdown is by using it, so head down to the practical exercise below to learn more!
 
@@ -129,7 +129,7 @@ The above markdown would generate something like this:
 
 > ![](images/markdown_example.png)
 
-Instead of reiterating information here, take a look on the first page (only the first page!) of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf). This will show you how to write more stuff in markdown and how it will be displayed once the markdown document is converted to an output file (e.g. HTML or PDF). An even more complete guide is available [here](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html).
+Instead of reiterating information here, take a look on the first page (only the first page!) of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf). This will show you how to write more stuff in markdown and how it will be displayed once the markdown document is converted to an output file (*e.g.* HTML or PDF). An even more complete guide is available [here](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html).
 
 * Try out some of the markdown described above (and in the links) in your template R Markdown document! Press Knit to see the effect of your edits. Don't worry about the code chunks just yet, we'll come to that in a second.
 
@@ -146,10 +146,10 @@ plot(pressure)
 ```
 ````
 
-The R code is surrounded by: ` ```{r}` and ` ``` `. The `r` indicates that the code chunk contains R code (it is possible to add code chunks using other languages, e.g. Python). After that comes an optional chunk name, `pressure` in this case (this can be used to reference the code chunk as well as alleviate debugging). Last comes chunk options, separated by commas (in this case there is only one option: `echo = FALSE`).
+The R code is surrounded by: ` ```{r}` and ` ``` `. The `r` indicates that the code chunk contains R code (it is possible to add code chunks using other languages, *e.g.* Python). After that comes an optional chunk name, `pressure` in this case (this can be used to reference the code chunk as well as alleviate debugging). Last comes chunk options, separated by commas (in this case there is only one option: `echo = FALSE`).
 
 !!! note
-    Note that the code chunk name `pressure` has nothing to do with the code `plot(pressure)`. In the latter case, `pressure` is a default R dataframe that is used in examples. The chunk name happened to be set to the string `pressure` as well, but could just as well have been called something else, e.g. `plot_pressure_data`.
+    Note that the code chunk name `pressure` has nothing to do with the code `plot(pressure)`. In the latter case, `pressure` is a default R dataframe that is used in examples. The chunk name happened to be set to the string `pressure` as well, but could just as well have been called something else, *e.g.* `plot_pressure_data`.
 
 Below are listed some useful chunk options related to evaluating and displaying code chunks in the final file:
 
@@ -225,13 +225,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ````
 
-In this way we can set global chunk options, i.e. defaults for all chunks. In this example, `echo` will always be set to `TRUE`, unless otherwise specified in individual chunks.
+In this way we can set global chunk options, *i.e.* defaults for all chunks. In this example, `echo` will always be set to `TRUE`, unless otherwise specified in individual chunks.
 
 !!! tip
     For more chunk options, have a look at page 2-3 of this [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
 It is also possible to create different types of interactive plots using R Markdown. You can see some examples of this
-[here](http://www.htmlwidgets.org/showcase_networkD3.html). If you want to try it out, you can install e.g. the package `networkD3` with `install.packages("networkD3")`. Then add the following code chunk to your document:
+[here](http://www.htmlwidgets.org/showcase_networkD3.html). If you want to try it out, you can install *e.g.* the package `networkD3` with `install.packages("networkD3")`. Then add the following code chunk to your document:
 
 ````
 ```{r}
@@ -256,7 +256,7 @@ The settings are written in [YAML format](https://en.wikipedia.org/wiki/YAML) in
 * Now set `toc: false` and knit again. What happened?
 * A setting that works for HTML output is `toc_float: true`. Add that to your document (same indentation level as `toc: true`) and knit. What happened?
 * In the same way, add the option `number_sections: true`. What happened?
-* Think it looks weird with sections numbered with 0, e.g. 0.1? That is because the document does not contain any level-1-header. Add a header using only one `#` at the top of the document, just after the `setup` chunk. Knit and see what happens!
+* Think it looks weird with sections numbered with 0, *e.g.* 0.1? That is because the document does not contain any level-1-header. Add a header using only one `#` at the top of the document, just after the `setup` chunk. Knit and see what happens!
 
 We can also set parameters in the YAML header. These are either character strings, numerical values, or logicals, and they can be used in the R code in the code chunks. Let's try it out:
 
@@ -306,14 +306,14 @@ Below are a few practical things regarding working with R Markdown documents:
 
 * You can knit/render reports in several different ways:
     - By pressing the Knit button in RStudio (as we have done this far)
-    - By running the R command `render`, e.g. to Knit the file `my_file.Rmd` run `render("my_file.Rmd")` in the R console.
+    - By running the R command `render`, *e.g.* to Knit the file `my_file.Rmd` run `render("my_file.Rmd")` in the R console.
     - By running on the terminal command line: `R -e 'rmarkdown::render("my_file.Rmd")'`
-* Using the `render` command, we can also set YAML header options and change defaults (i.e. override those specified in the R Markdown document itself). Here are a few useful arguments (see `?rmarkdown::render` for a full list):
-    - `output_format` - change output format, e.g. `html_document` or `pdf_document`.
+* Using the `render` command, we can also set YAML header options and change defaults (*i.e.* override those specified in the R Markdown document itself). Here are a few useful arguments (see `?rmarkdown::render` for a full list):
+    - `output_format` - change output format, *e.g.* `html_document` or `pdf_document`.
     - `output_file` and `output_dir` - change directory and file name of the generated report file (defaults to the same name and directory as the .Rmd file).
     - `params` - change parameter defaults. Note that only parameters already listed in the YAML header can be set, no new parameters can be defined.
 
-Try to use the `render` command to knit your template R Markdown document and set the two parameters `data` and `color`. Hint: the `params` argument should be a list, so e.g.:
+Try to use the `render` command to knit your template R Markdown document and set the two parameters `data` and `color`. Hint: the `params` argument should be a list, so *e.g.*:
 
 ```
 rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
@@ -479,7 +479,7 @@ This will use the `cv_cutoff` and `max_cutoff` variables to ensure that the figu
 
 * Knit and have a look at the results.
 
-You may have noticed that the figures (probably) aren't positioned relative to the text exactly where you put the code chunks? This is a feature of the LaTeX rendering to PDF, where it tries to align tables and figures in an aestetically pleasing and efficient way. These are called "floats" in LaTeX, and can be a source of frustration. If you want to force the floats to be positioned in the order and context they appear in the text, you can use the following tweak. Note that this is only an issue with rendering to PDF, not with e.g. HTML.
+You may have noticed that the figures (probably) aren't positioned relative to the text exactly where you put the code chunks? This is a feature of the LaTeX rendering to PDF, where it tries to align tables and figures in an aestetically pleasing and efficient way. These are called "floats" in LaTeX, and can be a source of frustration. If you want to force the floats to be positioned in the order and context they appear in the text, you can use the following tweak. Note that this is only an issue with rendering to PDF, not with *e.g.* HTML.
 
 * Add the option `fig.pos = 'H'` to `opts_chunk` in the `setup` chunk (note the capital "H"). This will force figures to appear "here". Add the following lines to the header:
 
@@ -514,7 +514,7 @@ out.height = "11cm"
 
 As previously mentioned, the rendering process to PDF will make use of LaTeX. In the last part we will see how we can add LaTeX commands directly in the R Markdown document to further customize the look.
 
-* See the section on Reproducibility in the PDF. Notice that the R code output giving information about the R session is a bit big? We can fix this by adding the LaTeX commands `\footnotesize` and `\normalsize` before and after this part, i.e.:
+* See the section on Reproducibility in the PDF. Notice that the R code output giving information about the R session is a bit big? We can fix this by adding the LaTeX commands `\footnotesize` and `\normalsize` before and after this part, *i.e.*:
 
 ````
 \footnotesize
@@ -528,7 +528,7 @@ This will make the `sessionInfo()` text smaller and then set it back to normal.
 
 * Knit and check the outcome.
 * You may also notice that the heading "Reproducibility" would be better to place on a new page. To achieve this, insert `\newpage` before the heading (make sure to have a blank line before and after `\newpage`). Knit and see if it worked.
-* The last things that we will fix are the figure and table labels. Now they are automatically called e.g. Figure 1 and Table 1, but perhaps we would like to name them Figure S1 and Table S1, being Supplementary. We can customize this using the separate LaTeX file, `code/header.tex`. To include this in the Rmd, update the YAML header so that it looks like this. Note that we have now included `\usepackage{float}` in the `code/header.tex` file insted of having it in the header. Keeping all your configuration settings in one file is a good way of achieving a consistant look for your report.
+* The last things that we will fix are the figure and table labels. Now they are automatically called *e.g.* Figure 1 and Table 1, but perhaps we would like to name them Figure S1 and Table S1, being Supplementary. We can customize this using the separate LaTeX file, `code/header.tex`. To include this in the Rmd, update the YAML header so that it looks like this. Note that we have now included `\usepackage{float}` in the `code/header.tex` file insted of having it in the header. Keeping all your configuration settings in one file is a good way of achieving a consistant look for your report.
 
 ```yaml
 ---

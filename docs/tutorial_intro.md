@@ -61,7 +61,7 @@ cd reproducible_research_course
     later version.
 
 !!! tip
-    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`. Run this command after you have `cd` into `reproducible_research_course` as described above. If you do that, you probably also want to view the same older version of this website. Locate the version box in the bottom right corner of the browser and select the corresponding version.
+    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout tags/course_1905`. To list all available tags, use `git tag`. Run this command after you have `cd` into `reproducible_research_course` as described above. If you do that, you probably also want to view the same older version of this website. Locate the version box in the bottom right corner of the browser and select the corresponding version.
 
 ## For Windows users
 
@@ -74,9 +74,9 @@ There are several different ways to run the course material on a Windows compute
 
 ### Running in the Linux Bash Shell on Windows 10
 
-For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see e.g. [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
+For the difference between the Linux Bash Shell and the PowerShell on Windows 10, see *e.g.* [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
 
-Install Bash on Windows 10, follow the instructions at e.g. one of these resources:
+Install Bash on Windows 10, follow the instructions at *e.g.* one of these resources:
 
 - [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 - [https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
@@ -89,7 +89,7 @@ git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
 cd reproducible_research_course
 ```
 !!! tip
-    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout tags/course_1905`. To list all available tags, use `git tag`. Run this command after you have `cd` into `reproducible_research_course` as described above. If you do that, you probably also want to view the same older version of this website. Locate the version box in the bottom right corner of the browser and select the corresponding version.
+    If you want to revisit the material from an older instance of this course, you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout tags/course_1905`. To list all available tags, use `git tag`. Run this command after you have `cd` into `reproducible_research_course` as described above. If you do that, you probably also want to view the same older version of this website. Locate the version box in the bottom right corner of the browser and select the corresponding version.
 
 ### Using Docker to run the course
 
@@ -103,7 +103,7 @@ docker run -it -p 8888:8888 -v /c/my_dir:/course/ scilifelablts/reproducible_res
 !!! attention
     Note that we use `/c/my_dir` and not `c:/my_dir` as we normally do on Windows. This is required for Docker to parse the command correctly.
 
-This will start an isolated container running Linux, where the directory `c:/my_dir` is mounted (i.e. you can access the files in this Windows directory within the Linux container, and files edited or created within the Linux container will appear in this Windows directory).
+This will start an isolated container running Linux, where the directory `c:/my_dir` is mounted (*i.e.* you can access the files in this Windows directory within the Linux container, and files edited or created within the Linux container will appear in this Windows directory).
 Note that the idea is that you should edit files in the mounted `c:/my_dir` using an editor in your normal OS, say Notepad in Windows. The terminal in the container is for running stuff, not editing.
 
 You should now be at a terminal in the Docker container. Now clone the git/bitbucket repository containing all the files you will need for the tutorials.

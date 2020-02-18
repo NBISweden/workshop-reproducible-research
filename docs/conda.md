@@ -11,7 +11,7 @@ A Conda package is a compressed tarball (system-level libraries, Python or other
 A Conda environment is essentially a directory that is added to your PATH and that contains a specific collection of Conda packages that you have installed. Packages are symlinked between environments to avoid unnecessary duplication.
 
 # Set up
-This tutorial depends on files from the course GitHub repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (e.g. if it says "create a file", it means save it in `conda/`).
+This tutorial depends on files from the course GitHub repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/conda`. Instructions below assume that you are standing in `conda/` unless otherwise specified (*e.g.* if it says "create a file", it means save it in `conda/`).
 
 ## Install Conda
 !!! attention
@@ -121,7 +121,7 @@ conda install -c bioconda sra-tools
 conda search -c bioconda sra-tools
 ```
 
-* Now try to install a different version of sra-tools, e.g.:
+* Now try to install a different version of sra-tools, *e.g.*:
 
 ```bash
 conda install -c bioconda sra-tools=2.7.0
@@ -164,7 +164,7 @@ After making a few different environments and installing a bunch of packages, Co
 conda clean -a
 ```
 
-This will remove package tar-balls that are left from package installations, unused packages (i.e. those not present in any environments), and cached data.
+This will remove package tar-balls that are left from package installations, unused packages (*i.e.* those not present in any environments), and cached data.
 
 !!! note "Quick recap"
     In this section we've learned:

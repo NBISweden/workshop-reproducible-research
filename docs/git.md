@@ -6,15 +6,15 @@ collaborating on code. It is used to track changes in (text) files, thereby esta
 Using version control for tracking your files, and edits to those, is an essential step in making your computational research reproducible. A typical git workflow consists of:
 
 * making distinct and related edits to one or several files
-* committing those changes (i.e. telling git to add those edits to the history, together with a message about what those changes involve)
-* and pushing the commit to a remote repository (i.e. syncing your local project directory with one in the cloud)
+* committing those changes (*i.e.* telling git to add those edits to the history, together with a message about what those changes involve)
+* and pushing the commit to a remote repository (*i.e.* syncing your local project directory with one in the cloud)
 
 There are many benefits of using git in your research project:
 
 * You are automatically forced into a more organized way of working, which is usually a first step towards reproducibility.
 * If you have made some changes to a file and realize that those were probably not a good idea after all, it is simple to view exactly what the changes were and revert them.
 * If there is more than one person involved in the project, git makes it easy to collaborate by tracking all edits made by each person. It will also handle any potential conflicting edits.
-* Using a cloud-based repository hosting service (the one you push your commits to), like e.g. [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/), adds additional features, such as being able to discuss the project, comment on edits, or report issues.
+* Using a cloud-based repository hosting service (the one you push your commits to), like *e.g.* [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/), adds additional features, such as being able to discuss the project, comment on edits, or report issues.
 * At some point your project will be published. Github or Bitbucket (or similar) are excellent places to publicly distribute your code. Other researchers can then use git to access the code needed for reproducing your results, in exactly the state it was when used for the publication.
 * If needed, you can host private repositories on Github and Bitbucket as well. This may be convenient during an ongoing research project, before it is publicly published.
 
@@ -22,7 +22,7 @@ The best way to get an idea about git is simply to start using it. The tutorial 
 
 ## Tell me more
 
-* For a more complete introduction to git, check e.g. [Wikipedia](https://en.wikipedia.org/wiki/Git)
+* For a more complete introduction to git, check *e.g.* [Wikipedia](https://en.wikipedia.org/wiki/Git)
 * [A simple git guide](http://rogerdudler.github.io/git-guide/)
 * ["Got 15 minutes and want to learn Git?"](https://try.github.io/levels/1/challenges/1)
 * [Git reference manual](https://book.git-scm.com/docs)
@@ -32,7 +32,7 @@ This tutorial depends on files from the course GitHub repo. Take a look at the [
 
 ## Install git
 
-Chances are that you already have git installed on your computer. You can check by running e.g. `git --version`. If you don't have git, install it following the instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+Chances are that you already have git installed on your computer. You can check by running *e.g.* `git --version`. If you don't have git, install it following the instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 ## Configure git
 
@@ -43,7 +43,7 @@ git config --global user.name "Mona Lisa"
 ```
 
 !!! tip
-    If you have several accounts (e.g. both a Github and Bitbucket account), and thereby several different usernames, you can configure git on a per-repository level. Change directory into the relevant local git repository and run:
+    If you have several accounts (*e.g.* both a Github and Bitbucket account), and thereby several different usernames, you can configure git on a per-repository level. Change directory into the relevant local git repository and run:
 
     ```
     git config user.name "Mona Lisa"
@@ -57,7 +57,7 @@ git config --global user.name "Mona Lisa"
 If you have not done so already, go to [github.com](https://github.com/join) and create an account.
 
 !!! note You can also create an account on another online hosting
-service for version control, e.g. [Bitbucket](https://bitbucket.org) or
+service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
 [GitLab](https://about.gitlab.com/). The exercises below are written
 with examples from GitHub, but the same thing can be done on alternative
 services, although the exact menu structure and link placements differ a
@@ -69,7 +69,7 @@ bit.
 
 * Login to [GitHub](https://github.com/) and press the green **New** button on the left:
     * Make sure you are listed as the owner
-    * Add a repository name, e.g. *git_tutorial*
+    * Add a repository name, *e.g.* *git_tutorial*
     * You can keep the repo private or make it public, as you wish
     * Skip including a README
 
@@ -97,7 +97,7 @@ git clone https://user@github.com/user/git_tutorial.git
 ```
 
 What will happen now is that the git repository will be cloned 
-(i.e. downloaded) to your computer. You might get a warning that the
+(*i.e.* downloaded) to your computer. You might get a warning that the
  repository is empty (which in fact is the case).
 
 * A new directory, `git_tutorial` (or a different name if you choose so), has now been created, `cd` into that directory.  
@@ -120,7 +120,7 @@ nothing to commit (create/copy files and use "git add" to track)
     directory (run `ls -a` to see it). This hidden directory contains 
     all information and settings git needs in order to run and version 
     track your files. This also means that your git-tracked directory 
-    is self-contained, i.e. you can simply delete it and everything that
+    is self-contained, *i.e.* you can simply delete it and everything that
      has to do with git in connection to that directory will be gone.
 
 * Remember that git told you "*nothing to commit (create/copy files and use "git add" to track*"? Lets do that!  
@@ -138,12 +138,12 @@ nothing to commit (create/copy files and use "git add" to track)
 !!! note "Quick recap"
     We have used two `git` commands this far:
 
-    * `git clone` - to clone a remote repository locally (e.g. from GitHub). This is only done the first time you want to download the repository locally.
+    * `git clone` - to clone a remote repository locally (*e.g.* from GitHub). This is only done the first time you want to download the repository locally.
     * `git status` - this is a command you should use *a lot*. It will tell you, amongst other things, the status of your git clone in relation to the online remote repository.
 
 ## Committing
 
-* We will now commit the untracked files. A commit is essentially a set of changes to a set of files. Preferably, the changes making out a commit should be related to something, e.g. a specific bug fix or a new feature. Our first commit will be to add the copied files to the repository. Run (as suggested by `git status`):
+* We will now commit the untracked files. A commit is essentially a set of changes to a set of files. Preferably, the changes making out a commit should be related to something, *e.g.* a specific bug fix or a new feature. Our first commit will be to add the copied files to the repository. Run (as suggested by `git status`):
 
 ```bash
 git add Dockerfile Snakefile
@@ -184,7 +184,7 @@ The `-m` option adds a commit message. This should be a short description of wha
     where you can write a longer commit message and body.
 
 * Run `git status` (yep, again!). It should tell you "*nothing to commit, working directory clean*".
-* Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different value, e.g. `bowtie2=2.1`.
+* Now, let's edit a file. Open up `environment.yml` in your favorite editor, and change the version of bowtie2 to a different value, *e.g.* `bowtie2=2.1`.
 * Run `git status`. It will tell you that there are modifications in one file (`environment.yml`) compared to the previous commit. This is nice! We don't have to keep track of what files we have edited, git will do that for us.
 * Run `git diff environment.yml`. This will show you the changes made to the file. A `-` means a deleted line, a `+` means an added line. There are also shown a few lines before and after the changes, to put them in context.
 * Let's edit another file! Open `config.yml`and change the line `genome_id: NCTC8325` to `genome_id: ST398`. Run `git status`. Run `git diff`. If we don't specify a file, it will show all changes made in any file, compared to the previous commit. Do you see your changes?
@@ -253,7 +253,7 @@ Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to stag
     We now added four important git commands to our repertoire:
 
     * `git add` - adds a file so that changes in that file can be committed.
-    * `git rm` - the opposite of `git add`, i.e. sets a file to be deleted in the next commit.
+    * `git rm` - the opposite of `git add`, *i.e.* sets a file to be deleted in the next commit.
     * `git commit` - commits the changes we have staged (by using `git add` or `git rm`).
     * `git log` - shows us the commit history.
 
@@ -448,13 +448,13 @@ the part between `=======` and `>>>>>>>
 d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is the one added to the remote
 and which caused the conflict when you tried to pull those changes to
 your local repository. The long sequence of characters is the commit id
-(the first 7 are e.g. displayed on GitHub under Commits) which will be
+(the first 7 are *e.g.* displayed on GitHub under Commits) which will be
 different for your repository.
 
 * It is now up to you to decide which version to keep, or to change it 
   to a third alternative. Let's say that you are confident that it is
   better to run multiqc v1.2 rather than v1.4. Edit the file so that it
-  looks like you want it to, i.e. remove the lines added by git and
+  looks like you want it to, *i.e.* remove the lines added by git and
   delete the line with `multiqc=1.4`. The final file should look like
   this:
 
@@ -521,7 +521,7 @@ Git is aware of all files within the repository. However, it is not
 uncommon to have files that we don't want git to track. For instance,
 our analysis might produce several intermediate files and results. We
 typically don't track such files. Rather, we want to track the actual
-code and other related files (e.g. configuration files) that produce the
+code and other related files (*e.g.* configuration files) that produce the
 intermediate and result files, given the raw input data.
 
 * Let's make some mock-up intermediate and result files. These are some 
@@ -559,7 +559,7 @@ intermediate/
 
 * Run `git status` again. Now there is no mention of the `results` and 
   `intermediate` directories or the `log.tmp` file. Notice that we can
-  use wildcards (\*) to ignore files with a given pattern, e.g. a
+  use wildcards (\*) to ignore files with a given pattern, *e.g.* a
   specific extension.
 
 * Go ahead and add, commit, and push the `.gitignore` file.
@@ -673,7 +673,7 @@ git checkout master
 
 A more advanced, but commonly used, feature of Git is called branching. 
 Branching allows you to diverge from the main line of work and edit or
-update your code and files, e.g. to test out a new analysis or some
+update your code and files, *e.g.* to test out a new analysis or some
 experimental feature, without affecting your main work. If the work you
 did in the branch turns out to be useful you can merge that back into
 your main branch. On the other hand, if the work didn't turn out as
@@ -745,7 +745,7 @@ git push -u origin test_alignment
     However, the next time you push commits to this branch you can 
     simply use `git push` without the `-u` since we only need to specify
     the remote once. Again, you can see your remote locations using 
-    `git remote -v`. You will see it's name (e.g. origin) and URL.
+    `git remote -v`. You will see it's name (*e.g.* origin) and URL.
 
 * Go the the repository at GitHub in your browser and see if the new
   branch has appeared. Just above the file listing click the
@@ -781,7 +781,7 @@ run successfully with our new parameters. We want to merge our work into
 the master branch. It is good to start with checking the differences
 between branches (as we just did) so that we know what we will merge.
 
-* Next, checkout the branch you want to merge into, i.e. master:
+* Next, checkout the branch you want to merge into, *i.e.* master:
 
 ```bash
 git checkout master
@@ -798,7 +798,7 @@ brings back the changes made in test_alignment to master.
 
 !!! note
     When merging it is not uncommon to encounter merge conflicts. This 
-    can happen e.g. if work has continued on the master branch that is 
+    can happen *e.g.* if work has continued on the master branch that is 
     in conflict with the test_alignment branch (in this example). Handle
      these conflicts in the same manner as was described above.
 
@@ -806,7 +806,7 @@ brings back the changes made in test_alignment to master.
     If working on different features or parts of an analysis on 
     different branches, and at the same time maintaining a working 
     master branch for the stable code, it is convenient to periodically 
-    merge the changes made to master into relevant branches (i.e. the 
+    merge the changes made to master into relevant branches (*i.e.* the 
     opposite to what we did above). That way, you keep your experimental
      branches up-to-date with master and make them more easy to merge 
      into master when time comes.

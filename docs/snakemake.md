@@ -1,6 +1,6 @@
 # Introduction to Snakemake
 
-A workflow management system (WMS) is a piece of software that sets up, performs and monitors a defined sequence of computational tasks (i.e. "a workflow"). Snakemake is a WMS that was developed in the bioinformatics community, and as such it has some features that make it particularly well suited for creating reproducible and scalable data analyses.
+A workflow management system (WMS) is a piece of software that sets up, performs and monitors a defined sequence of computational tasks (*i.e.* "a workflow"). Snakemake is a WMS that was developed in the bioinformatics community, and as such it has some features that make it particularly well suited for creating reproducible and scalable data analyses.
 
 * The language you use to formulate your workflows is based on Python, which is a language with strong standing in academia. However, users are not required to know how to code in Python to work efficiently with Snakemake.
 * Workflows can easily be scaled from your desktop to server, cluster, grid or cloud environments. This makes it possible to develop a workflow on your laptop, maybe using only a small subset of your data, and then run the real analysis on a cluster.
@@ -205,10 +205,10 @@ Neat!
     * How to use named wildcards for writing generic and flexible rules.
 
 !!! tip
-    You can name a file whatever you want in a Snakemake workflow, but you will find that everything falls into place much nicer if the filename reflects the file's path through the workflow, e.g. `sample_a.trimmed.deduplicated.sorted.bam`.
+    You can name a file whatever you want in a Snakemake workflow, but you will find that everything falls into place much nicer if the filename reflects the file's path through the workflow, *e.g.* `sample_a.trimmed.deduplicated.sorted.bam`.
 
 ## Visualization, logging and workflow management
-All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WMS like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (i.e. an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualization of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
+All that we've done so far could quite easily be done in a simple shell script that takes the input files as parameters. Let's now take a look at some of the features where a WMS like Snakemake really adds value compared to a more straightforward approach. One such feature is the possibility to visualize your workflow. Snakemake can generate two types of graphs, one that show how the rules are connected and one that shows how the jobs (*i.e.* an execution of a rule with some given inputs/outputs/settings) are connected. First we look at the rule graph. The following command will generate a rule graph in the dot language and pipe it to the program `dot`, which in turn will save a visualization of the graph as a png file (if you're having troubles displaying png files you could use svg or jpg instead).
 
 ```bash
 snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
@@ -369,7 +369,7 @@ There are two differences in this command compared to the one we've used before.
 
 Now take some time and look through the workflow file and try to understand how the rules fit together. Use the rule graph as aid. The rules represent a quite standard, although somewhat simplified, workflow for RNA-seq analysis. If you are unfamiliar with the purpose of the different operations (index genome, FastQC and so on), then take a look at the [intro](tutorial_intro.md).
 
-Also generate the job graph in the same manner. Here you can see that three samples will be downloaded from SRA (Sequence Read Archive); SRR935090, SRR935091, and SRR935092. Those will then be quality controlled with FastQC and aligned to a genome. The QC output will be aggregated with MultiQC and the alignments will be used to generate a count table, i.e. a table that shows how many reads map to each gene for each sample. This count table is then what the downstream analysis will be based on (in the [R Markdown tutorial](rmarkdown.md) and in the [Docker tutorial](docker.md)).
+Also generate the job graph in the same manner. Here you can see that three samples will be downloaded from SRA (Sequence Read Archive); SRR935090, SRR935091, and SRR935092. Those will then be quality controlled with FastQC and aligned to a genome. The QC output will be aggregated with MultiQC and the alignments will be used to generate a count table, *i.e.* a table that shows how many reads map to each gene for each sample. This count table is then what the downstream analysis will be based on (in the [R Markdown tutorial](rmarkdown.md) and in the [Docker tutorial](docker.md)).
 
 ![](images/dag_mrsa.svg)
 
@@ -485,7 +485,7 @@ From a reproducibility perspective, it's not optimal to set parameters from the 
 max_reads: 25000
 ```
 
-If we now run Snakemake with `--configfile config.yml`, it will parse this file to form the `config` dictionary. If you want to overwrite a parameter value, e.g. for testing, you can still use the `--config` flag.
+If we now run Snakemake with `--configfile config.yml`, it will parse this file to form the `config` dictionary. If you want to overwrite a parameter value, *e.g.* for testing, you can still use the `--config` flag.
 
 !!! tip
     Rather than supplying the config file from the command line you could also add the line `configfile: "config.yml"` to the top of your Snakefile.
@@ -514,7 +514,7 @@ A log file is not different from any other output file, but it's dealt with a li
 * `index_genome` outputs some statistics about the genome indexing.
 * `align_to_genome` outputs important statistics about the alignments. This is probably the most important log to save.
 
-Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, e.g. `{some_wildcard}.log`, so that you don't end up with identical names for different samples.
+Now add a log file to some or all of the rules above. A good place to save them to would be `results/logs/rule_name/`. Be sure to include any wildcards used in the rule in the job name as well, *e.g.* `{some_wildcard}.log`, so that you don't end up with identical names for different samples.
 
 You also have to specify in the `shell` section of each rule what you want the log to contain. Some of the programs we use send their log information to standard out, some to standard error and some let us specify a log file via a flag. To save some time you can use the info below.
 
@@ -570,7 +570,7 @@ Snakemake has a number of options for marking files:
 * `temp("...")`: The output file should be deleted once it's no longer needed by any rules.
 * `protected("...")`: The output file should be write-protected. Typically used to protect files that require a huge amount of computational resources from being accidentally deleted.
 * `ancient("...")`: The timestamp of the input file is ignored and it's always assumed to be older than any of the output files.
-* `touch("...")`: The output file should be "touched", i.e. created or updated, when the rule has finished. Typically used as "flag files" to enforce some rule execution order without real file dependencies.
+* `touch("...")`: The output file should be "touched", *i.e.* created or updated, when the rule has finished. Typically used as "flag files" to enforce some rule execution order without real file dependencies.
 * `directory("...")`: The output is a directory rather than a file.
 * `dynamic("{some_wildcard}...")`: This one is a bit tricky. It's used when the number of output files from a rule cannot be determined beforehand. A typical use case could be if you run some clustering analysis and end up with one file per cluster.
 
@@ -627,7 +627,7 @@ rule some_rule:
 Try this out for the rules where we have to "manually" deal with files that aren't tracked by Snakemake (`multiqc`, `index_genome`, `generate_count_table`). Also remove the shell commands that remove temporary files from those rules, as they are no longer needed. Now rerun the workflow and validate that the temporary files don't show up in your working directory.
 
 !!! tip
-    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the shadow directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options (see e.g. the `--shadow-prefix` flag).
+    Some people use the shadow option for almost every rule and some never use it at all. One thing to keep in mind is that it leads to some extra file operations when the outputs are moved to their final location. This is no issue when the shadow directory is on the same disk as the output directory, but if you're running on a distributed file system and generate very many or very large files it might be worth considering other options (see *e.g.* the `--shadow-prefix` flag).
 
 ### Rule targets
 So far we have only defined the inputs/outputs of a rule as strings, or in some case a list of strings, but Snakemake allows us to be much more flexible than that. Actually, we can use any Python expression or even functions, as long as they return a string or list of strings. Consider the rule `align_to_genome` below.
@@ -684,7 +684,7 @@ It's generally a good idea to separate project-specific parameters from the actu
 
 * Specify which samples to run.
 * Specify which genome to align to and where to download its sequence and annotation files.
-* (Any other parameters we might need to make it into a general workflow, e.g. to support both paired-end and single-read sequencing)
+* (Any other parameters we might need to make it into a general workflow, *e.g.* to support both paired-end and single-read sequencing)
 
 !!! note
     Putting all configuration in `config.yml` will break the
@@ -703,7 +703,7 @@ sample_ids:
 - SRR935092
 ```
 
-The second point is trickier. Writing workflows in Snakemake is quite straightforward when the logic of the workflow is reflected in the file names, i.e. `my_sample.trimmed.deduplicated.sorted.fastq`, but that isn't always the case. In our case we have the FTP paths to the genome sequence and annotation where the naming doesn't quite fit with the rest of the workflow. The easiest solution is probably to make three parameters to hold these values, say `genome_id`, `genome_fasta_path` and `genome_gff_path`, but we will go for a somewhat more complex but very useful alternative. We want to construct a dictionary where something that will be a wildcard in the workflow is the key and the troublesome name is the value. An example might make this clearer (this is also in `config.yml`). This is a nested dictionary where "genomes" is a key with another dictionary as value, which in turn has genome ids as keys and so on. The idea is that we have a wildcard in the workflow that takes the id of a genome as value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can then be retrieved based on the value of the wildcard.
+The second point is trickier. Writing workflows in Snakemake is quite straightforward when the logic of the workflow is reflected in the file names, *i.e.* `my_sample.trimmed.deduplicated.sorted.fastq`, but that isn't always the case. In our case we have the FTP paths to the genome sequence and annotation where the naming doesn't quite fit with the rest of the workflow. The easiest solution is probably to make three parameters to hold these values, say `genome_id`, `genome_fasta_path` and `genome_gff_path`, but we will go for a somewhat more complex but very useful alternative. We want to construct a dictionary where something that will be a wildcard in the workflow is the key and the troublesome name is the value. An example might make this clearer (this is also in `config.yml`). This is a nested dictionary where "genomes" is a key with another dictionary as value, which in turn has genome ids as keys and so on. The idea is that we have a wildcard in the workflow that takes the id of a genome as value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can then be retrieved based on the value of the wildcard.
 
 ```yaml
 genomes:
@@ -753,7 +753,7 @@ rule get_genome_fasta:
         """
 ```
 
-Now change in `get_genome_gff3` in the same way. Also change in `index_genome` to use a wildcard rather than a hardcoded genome id. Here you will run into a complication if you have followed the previous instructions and use the `expand()` expression. We want the list to expand to `["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`, but for it to do so we must use double curly brackets around the wildcard, i.e. `{{genome_id}}`. Lastly, we need to define somewhere which genome id we actually want to use. This needs to be done both in `align_to_genome` and `generate_count_table`. Do this by introducing a parameter in `config.yml` called "genome_id". See below for an example for `align_to_genome`.
+Now change in `get_genome_gff3` in the same way. Also change in `index_genome` to use a wildcard rather than a hardcoded genome id. Here you will run into a complication if you have followed the previous instructions and use the `expand()` expression. We want the list to expand to `["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`, but for it to do so we must use double curly brackets around the wildcard, *i.e.* `{{genome_id}}`. Lastly, we need to define somewhere which genome id we actually want to use. This needs to be done both in `align_to_genome` and `generate_count_table`. Do this by introducing a parameter in `config.yml` called "genome_id". See below for an example for `align_to_genome`.
 
 ```python
 output:
