@@ -369,7 +369,8 @@ git status
 git push
 ```
 
-!!! tip Note that after the initial push you probably don't have to
+!!! note
+    Note that after the initial push you probably don't have to
     specify `-u origin master`, git will figure that out by itself.
 
 * Read the error message. It should be fairly informative of what is 
@@ -402,11 +403,11 @@ git diff origin/master
 git pull
 ```
 
-!!! tip Note that you can skip the `git fetch`command if you want to and
-    run `git pull` directly. The difference is that `fetch` will just update
-    git with the latest information of the remote status, whereas `pull`
-    will try to integrate and sync those changes to your local clone
-    directly.
+!!! tip
+    You can skip the `git fetch`command if you want to and run `git pull`
+    directly. The difference is that `fetch` will just update git with the
+    latest information of the remote status, whereas `pull` will try to
+    integrate and sync those changes to your local clone directly.
 
 * As you have probably noticed, the `git pull` command resulted in a 
   conflict. Git tells us about this and suggests that we should fix the
@@ -424,11 +425,7 @@ dependencies:
 - fastqc=0.11.6
 - sra-tools=2.8
 - snakemake-minimal=5.3.0
-<<<<<<< HEAD
-- multiqc=1.2
-=======
 - multiqc=1.4
->>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf
 - bowtie2=2.3
 - samtools=1.6
 - htseq=0.9
@@ -564,10 +561,34 @@ intermediate/
 
 * Go ahead and add, commit, and push the `.gitignore` file.
 
-!!! note "Quick recap" 
-    We now learned how to use a `.gitignore` file to
-    control what directories and files git should ignore.
+* Sometimes you want to ignore all files in a directory with one or two exceptions. For example, you don't want to track all your huge raw data files, but there may be a smaller data file that you *do* want to track, *e.g.* metadata or a list of barcodes used in your experiment. Let's add some mock data:
 
+```bash
+mkdir data
+touch data/huge.fastq.gz
+touch data/metadata.txt
+```
+
+!!! tip "Tip"
+    It is common for certain programming languages or text editors to leave *e.g.* swap files or hidden data files in the working directory, which you don't want to track using git. Instead of manually adding these to every single project you have, you can use the `.gitignore_global` file, which should be placed in your home directory. It works exactly like a normal gitignore file, but is applied to all git repositories that you are using on your machine. Some common file extensions that might be put in the global gitignore are `.DS_Store` if you're working in R or `.swp` if you're coding in vim.
+
+* Git allows you to ignore all files using the aforementioned wildcard, but then *exclude* certain files from that ignore command. Open the .gitignore file again and add the following:
+
+```bash
+# Ignore all files in the data/ directory
+data/*
+
+# Exclude the metadata file be prefixing it with an exclamation mark
+!data/metadata.txt
+```
+
+* Finish up by adding, committing and pushing again.
+
+!!! note "Quick recap"
+    We now learned how to ignore certain files and directories:
+
+    * The `.gitignore` file controls which files and directories git should ignore
+    * Specific files can be excluded from ignored directories using the `!` prefix
 
 ## Tagging
 
@@ -827,6 +848,9 @@ The above command only deleted the local branch. If you want to remove the branc
 ```bash
 git push origin --delete test_alignment
 ```
+
+!!! tip "Tip"
+    There are many types of so-called "branching models", each with varying degrees of complexity depending on the developer's needs and the number of collaborators. While there certainly isn't a single branching model that can be considered to be the "best", it is very often most useful to keep it simple. An example of a simple and functional model is to have a `master` branch that is always working (*i.e.* can successfully run all your code and without known bugs) and develop new code on feature branches (one new feature per branch). Feature branches are short-lived, meaning that they are deleted once they are merged into master.
 
 !!! note "Quick recap"
     We have now learned how to divide our work into branches and manage those:

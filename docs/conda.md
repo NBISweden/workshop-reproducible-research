@@ -22,30 +22,37 @@ This tutorial depends on files from the course GitHub repo. Take a look at the [
 
 * Go ahead and install Conda as described below. **Be sure to download the correct file for your OS**.
 
+**macOS**
 ```bash
 # *** Install Miniconda3 for 64-bit macOS ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-MacOSX-x86_64.sh -O
-bash Miniconda3-4.6.14-MacOSX-x86_64.sh
-rm Miniconda3-4.6.14-MacOSX-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
+bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
+rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
+```
 
+**Linux**
+```bash
 # *** Install Miniconda3 for 64-bit Linux ***
-curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
-bash Miniconda3-4.6.14-Linux-x86_64.sh
-rm Miniconda3-4.6.14-Linux-x86_64.sh
+curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+bash Miniconda3-4.7.12.1-Linux-x86_64.sh
+rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
 * The installer will ask you questions during the installation:
     - do you accept the license terms? (Yes)
-    - do you accept the installation path or do you want to chose a different one? (Probably yes)
+    - do you accept the installation path or do you want to chose a
+        different one? (Probably yes)
     - do you want to run conda init to setup conda on your system? (Yes)
-* Either restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take effect, or source `~/.bashrc`/`~/.bash_profile`.
+* Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile`
+  can take effect.
 * You can verify that the installation worked by running:
 
 ```bash
 conda --version
 ```
 
-* Next, we will setup the the default channels (from where packages will be searched for and downloaded if no channel is specified).
+* Next, we will setup the the default channels (from where packages will
+  be searched for and downloaded if no channel is specified).
 
 ```
 conda config --add channels defaults
@@ -193,7 +200,10 @@ dependencies:
 conda env create -n project_mrsa -f environment.yml
 ```
 
-!!! tip
+!!! tip "Tip"
+    You can also specify exactly which channel a package should come from inside the environment file, using the `<channel>::<package>=<version>` syntax.
+
+!!! tip "Tip"
     Instead of the `-n` flag you can use the `-p` flag to set the full path to where the conda environment
     should be installed. In that way you can contain the conda environment inside the project directory, which
     does make sense from a reproducibility perspective, and makes it easier to keep track of what environment
@@ -235,6 +245,8 @@ This should download the project fastq files and run FastQC on them (as mentione
 ```
 
 Note that all that was needed to carry out the analysis and generate these files and results was `environment.yml` (that we used to create a Conda environment with the required packages) and the analysis code in `code/run_qc.sh`.
+
+Projects can often be quite large and require lots of dependencies; it can feel daunting to try to capture all of that in a single Conda environment, especially when you consider potential incompatibilities that may arise. It can therefore be a good idea to start new projects with an environment file with each package you know that you will need to use, but without specifying exact version (except for those packages where you know you need a specific version). Conda will then try to get the latest compatible versions of all the specified software, making the start-up and installation part of new projects easier. You can then add the versions that were installed to your environment file afterwards, ensuring future reproducibility.
 
 !!! note "Quick recap"
     In this section we've learned:
