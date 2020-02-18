@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 LABEL description = "Image for the NBIS reproducible research course."
-MAINTAINER "Leif Wigge" leif.wigge@scilifelab.se
+MAINTAINER "John Sundh" john.sundh@scilifelab.se
 
 WORKDIR /course
 ENV LC_ALL en_US.UTF-8

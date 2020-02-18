@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 LABEL description = "Minimal image for the NBIS reproducible research course."
-MAINTAINER "Leif Wigge" leif.wigge@scilifelab.se
+MAINTAINER "John Sundh" john.sundh@scilifelab.se
 
 # Install necessary tools
 RUN apt-get update && \
