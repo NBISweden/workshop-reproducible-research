@@ -345,28 +345,45 @@ for axi in ax.flat:
 As you might remember from the [intro](tutorial_intro.md), we are attempting 
 to understand how lytic bacteriophages can be used as a future therapy 
 for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). 
-We have already defined the project environment in the [Conda tutorial](conda.md) 
-and set up the workflow in the [Snakemake tutorial](snakemake.md). Here 
-we explore the results from a the snakemake workflow in a Jupyter notebook
- as an example of how you can document your day-to-day work as a dry lab scientist.  
-We will first create a report similar to the one in the [R Markdown tutorial](rmarkdown.md) 
-then generate and visualize read coverage across samples for the _S. aureus_ genome.
+We have already seen how to define the project environment in the [Conda
+ tutorial](conda.md) and how to set up the workflow in the [Snakemake tutorial
+ ](snakemake.md). Here we explore the results from a the snakemake workflow in a
+ Jupyter notebook as an example of how you can document your day-to-day work
+  as a dry lab scientist.
 
-### Update the current environment
+We will create a report similar to the one in the [R Markdown tutorial
+](rmarkdown.md) and generate and visualize read coverage across samples for the
+ _S. aureus_ genome.
 
-First update your current jupyter conda environment using the `environment.yml` file:
+### Install a new conda environment
 
-!!! attention
-    Run the conda update command below in your terminal (not in the 
-     notebook) with the jupyter exercise environment active.
+For the purposes of this part of the tutorial we will install a new
+ conda environment and run a slightly slimmed down version of the MRSA snakemake
+ workflow to generate some output to work with.
 
-```
-conda env update -f environment.yml
-``` 
+In the `jupyter/` directory you'll find a `Snakefile` containing the workflow
+as well as a conda `environment.yml` file which contains all packages
+required for both the execution of the workflow as well as the downstream 
+analyses we will perform in the Jupyter notebook.
+  
+Install *a new* conda environment using the `environment.yml` file and then
+activate it. You can choose the name of the environment yourself. 
+Here's an example using the name `jupyter-snakemake`:
+ 
+ ````bash
+conda env create -f environment.yml -n jupyter-snakemake
+# Activate the environment 
+conda activate jupyter-snakemake
+ ````
 
 ### Open a new notebook
-If you look at the Jupyter dashboard in your browser there should be a 
-notebook called `mrsa_notebook.ipynb`. Now open the notebook with File > Open.
+In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
+.ipynb`. With the newly created conda environment active, open this notebook
+ directly by running:
+ 
+ ```bash
+jupyter notebook mrsa_notebook.ipynb
+```
 
 !!! tip
     Using what you've learned about markdown in notebooks, add headers 
@@ -377,12 +394,12 @@ notebook called `mrsa_notebook.ipynb`. Now open the notebook with File > Open.
 You will see that the notebook contains only two cells: one with some 
 import statements and one with two function definitions. We'll come back 
 to those later. Now, run the cells and add a new empty cell to the notebook. 
-Typically the snakemake workflow will be executed from a terminal but let's 
+Typically the snakemake workflow would be executed from a terminal but let's 
 try to actually run the workflow directly from within the Jupyter notebook. 
 
 In the current directory you'll find the necessary `Snakefile` and `config.yml` 
 to run the workflow. In an empty cell in your notebook, add code to 
-run the workflow then run the cell.     
+run the workflow. Then run the cell.     
 
 ??? note "Click to see how to run the workflow from a cell"
     ```
