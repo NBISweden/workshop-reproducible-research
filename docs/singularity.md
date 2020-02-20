@@ -367,7 +367,9 @@ else correct it should be related to the PATH).
     fastq-dump --version
     ```
 
-The build should now hopefully work and produce a Singularity image called `run_qc.sif`. To run the image, thus executing `code/run_qc.sh` using the tools in the container, do:
+The build should now hopefully work and produce a Singularity image called 
+`run_qc.sif`. To run the image, thus executing `code/run_qc.sh` using the tools 
+in the container, do:
 
 ```bash
 singularity run run_qc.sif
@@ -381,8 +383,8 @@ producing output directories and files in your current working directory.
     writable sandbox images. This enables starting a shell in the container and 
     e.g. install software. This may be convenient during the design of the 
     definition file to test what commands to include. When everything is working
-     as expected one should rebuild directly from the definition file to a final
-      SIF file.
+    as expected one should rebuild directly from the definition file to a final
+    SIF file.
 
 !!! note
     A somewhat important section that we have not covered here is the `%files` 
@@ -390,7 +392,6 @@ producing output directories and files in your current working directory.
     Dockerfile. One simply defines, on each line, a file to be copied from host 
     to the container image using the format `<source> <destination>`. This does 
     not currently work with `--remote` building though.
-
 
 ## Converting the MRSA workflow Docker image to Singularity
 
