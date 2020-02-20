@@ -260,7 +260,7 @@ From: ubuntu:16.04
 
 %labels
     DESCRIPTION Image for running the run_qc.sh script
-    AUTHOR John Sundh
+    AUTHOR <Your Name>
 ```
 
 Here we'll use the Singularity Library as bootstrap agent, instead of DockerHub 
