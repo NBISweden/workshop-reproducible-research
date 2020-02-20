@@ -3,11 +3,8 @@ FROM ubuntu:16.04
 LABEL description = "Image for the NBIS reproducible research course."
 MAINTAINER "John Sundh" john.sundh@scilifelab.se
 
-WORKDIR /course
-ENV LC_ALL en_US.UTF-8
-ENV LC_LANG en_US.UTF-8
-ENV HOME /usr
 SHELL ["/bin/bash", "-c"]
+WORKDIR /course
 
 # Install necessary tools
 RUN apt-get update && \
@@ -22,11 +19,8 @@ RUN apt-get update && \
                                                wget \
     && apt-get clean
 
-# Install TinyTeX
-RUN wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh  && \
-    tlmgr update --self && \
-    tlmgr install float && \
-    tlmgr install grffile
+ENV LC_ALL en_US.UTF-8
+ENV LC_LANG en_US.UTF-8
 
 # Install Miniconda and add to PATH
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
@@ -39,8 +33,7 @@ COPY environment.yml Snakefile config.yml ./
 COPY code ./code/
 
 # Install conda environment
-RUN conda config --add channels defaults && \
-    conda config --add channels bioconda && \
+RUN conda config --add channels bioconda && \
     conda config --add channels conda-forge && \
     conda env update -n base -f environment.yml && \
     conda clean --all
@@ -49,8 +42,15 @@ RUN conda config --add channels defaults && \
 RUN conda install -c conda-forge jupyter nb_conda && \
     conda clean --all
 
+# Install TinyTeX
+ENV PATH="/usr/.TinyTeX/bin/x86_64-linux:${PATH}"
+RUN echo -e "library(tinytex)\ntinytex::install_tinytex(dir='/usr/.TinyTeX')"| R --vanilla - && \
+    tlmgr path add && \
+    tlmgr update --self && \
+    tlmgr install float grffile xcolor mdwtools epstopdf-pkg
+
 # Open port for running Jupyter Notebook
-# (Juoyter Notebook has to be separately installed in the container)
+# (Jupyter Notebook has to be separately installed in the container)
 EXPOSE 8888
 
 CMD snakemake -rp --configfile config.yml
