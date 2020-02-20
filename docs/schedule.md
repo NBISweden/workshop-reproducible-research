@@ -24,7 +24,7 @@ travel.md)).
   </tr>
   <tr>
     <td> <font size="3"> 11:15
-    <td> <font size="3"> Data management and project organization 
+    <td> <font size="3"> Data management and project organization
   </tr>
   <tr>
     <td> <font size="3"> 11:45
@@ -138,7 +138,7 @@ travel.md)).
     <td>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers 
+      - Introduction to containers
       - Practical tutorial: <a href="../docker/">Docker</a><br>
       - Practical tutorial: <a href="../singularity">Singularity</a></i><br><br>
       <font size="3">Fika break ~10:15 <br>
@@ -174,8 +174,8 @@ travel.md)).
   </tr>
 </table>
 
-**Teachers:**  
-John Sundh  
-Verena Kutschera  
-Erik Fasterius  
-Tomas Larsson  
+**Teachers:**
+John Sundh
+Verena Kutschera
+Erik Fasterius
+Tomas Larsson
