@@ -265,7 +265,7 @@ From: ubuntu:16.04
 
 Here we'll use the Singularity Library as bootstrap agent, instead of DockerHub 
 as in the lol_cow example above. The base Singularity image will be 
-`ubuntu:18.04`. We can also add metadata to our image using any name-value pair.
+`ubuntu:16.04`. We can also add metadata to our image using any name-value pair.
 
 * Next, add the `%environment` section:
 
