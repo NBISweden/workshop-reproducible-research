@@ -190,8 +190,8 @@ channels:
 - conda-forge
 - bioconda
 dependencies:
-- fastqc=0.11.6
-- sra-tools=2.8
+- fastqc=0.11.9
+- sra-tools=2.10.1
 ```
 
 * Now, make a new Conda environment from the yaml file (note that here the command is `conda env create` as opposed to `conda create` that we used above):
