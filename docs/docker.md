@@ -156,10 +156,33 @@ Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile w
 FROM ubuntu:16.04
 
 LABEL description = "Minimal image for the NBIS reproducible research course."
-MAINTAINER "Leif Wigge" leif.wigge@scilifelab.se
+MAINTAINER "John Sundh" john.sundh@scilifelab.se
 ```
 
-Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one is `FROM`, which specifies the base image our image should start from. In this case we want it to be Ubuntu 16.04, which is one of the [official repositories](https://hub.docker.com/explore/). There are many roads to Rome when it comes to choosing the best image to start from. Say you want to run RStudio in a Conda environment through a Jupyter notebook. You could then start from one of the [rocker images](https://github.com/rocker-org/rocker) for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one of the low-level official images and set up everything from scratch. `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing your various Docker components.
+Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. The important one
+ is `FROM`, which specifies the base image our image should start from. In this 
+ case we want it to be Ubuntu 16.04, which is one of the 
+ [official repositories](https://hub.docker.com/explore/). There are many roads 
+ to Rome when it comes to choosing the best image to start from. Say you want to
+  run RStudio in a Conda environment through a Jupyter notebook. You could then 
+  start from one of the [rocker images](https://github.com/rocker-org/rocker) 
+  for R, a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), 
+  or a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start 
+  from one of the low-level official images and set up everything from scratch. 
+  `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing 
+  your various Docker components.
+
+Let's take a look at the next section of the Dockerfile.
+
+```no-highlight
+# Use bash as shell
+SHELL ["/bin/bash", "-c"]
+# Set workdir
+WORKDIR /course
+```
+
+`SHELL` simply sets which shell to use. `WORKDIR` determines the directory the 
+container should start in.
 
 ```no-highlight
 # Install necessary tools
@@ -171,16 +194,24 @@ RUN apt-get update && \
                                                git \
                                                language-pack-en \
                                                tzdata \
-                                               vim
+                                               vim \
+                                               wget
     && apt-get clean
 
 # Install Miniconda and add to PATH
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O && \
-    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
-    rm Miniconda3-4.6.14-Linux-x86_64.sh
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
+    bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
+    rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
-The next few lines introduce the important `RUN` instruction, which is used for executing shell commands. As a general rule, you want each layer in an image to be a "logical unit". For example, if you want to install a program the `RUN` command should both retrieve the program, install it and perform any necessary clean up. This is due to how layers work and how Docker decides what needs to be rerun between builds. The first command uses Ubuntu's package manager APT to install some packages (similar to how we've previously used Conda). Say that the first command was split into two instead:
+The next few lines introduce the important `RUN` instruction, which is used for 
+executing shell commands. As a general rule, you want each layer in an image to 
+be a "logical unit". For example, if you want to install a program the `RUN` 
+command should both retrieve the program, install it and perform any necessary 
+clean up. This is due to how layers work and how Docker decides what needs to be
+ rerun between builds. The first command uses Ubuntu's package manager APT to 
+ install some packages (similar to how we've previously used Conda). Say that 
+ the first command was split into two instead:
 
 ```no-highlight
 # Update apt-get
@@ -194,25 +225,42 @@ RUN apt-get install -y --no-install-recommends bzip2 \
                                            git \
                                            language-pack-en \
                                            tzdata \
-                                           vim
+                                           vim \
+                                           wget
 ```
 
-The first command will update the apt-get package lists and the second will install the packages `bzip2`, `ca-certificates`, `curl`, `fontconfig`, `git`, `language-pack-en`, `tzdata` and `vim`. Say that you build this image now, and then in a month's time you realize that you would have liked a Swedish language pack instead of an English. You change to `language-pack-sv` and rebuild the image. Docker detects that there is no layer with the new list of packages and reruns the second `RUN` command. **However, there is no way for Docker to know that it should also update the apt-get package lists**. You therefore risk to end up with old versions of packages and, even worse, the versions would depend on when the previous version of the image was first built.
+The first command will update the apt-get package lists and the second will 
+install the packages `bzip2`, `ca-certificates`, `curl`, `fontconfig`, `git`, 
+`language-pack-en`, `tzdata`, `wget` and `vim`. Say that you build this image 
+now, and then in a month's time you realize that you would have liked a Swedish 
+language pack instead of an English. You change to `language-pack-sv` and 
+rebuild the image. Docker detects that there is no layer with the new list of 
+packages and reruns the second `RUN` command. **However, there is no way for 
+Docker to know that it should also update the apt-get package lists**. You 
+therefore risk to end up with old versions of packages and, even worse, the 
+versions would depend on when the previous version of the image was first built.
 
-The next `RUN` command retrieves and installs Miniconda3. Let's see what would happen if we had that as three separate commands instead.
+The next `RUN` command retrieves and installs Miniconda3. Let's see what would 
+happen if we had that as three separate commands instead.
 
 ```no-highlight
 # Download Miniconda3
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
 
 # Install it
-RUN bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/
+RUN bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
 
 # Remove the downloaded installation file
-RUN rm Miniconda3-4.6.14-Linux-x86_64.sh
+RUN rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
-Remember that each layer contains the difference compared to the previous layer? What will happen here is that the first command adds the installation file and the second will unpack the file and install the software. The third layer will say "the installation file should no longer exist on the file system". However, the file will still remain in the image since the image is constructed layer-by-layer bottom-up. This results in unnecessarily many layers and bloated images.
+Remember that each layer contains the difference compared to the previous layer?
+ What will happen here is that the first command adds the installation file and 
+ the second will unpack the file and install the software. The third layer will 
+ say "the installation file should no longer exist on the file system". However,
+  the file will still remain in the image since the image is constructed 
+  layer-by-layer bottom-up. This results in unnecessarily many layers and 
+  bloated images.
 
 ```no-highlight
 # Add conda to PATH and set locale
@@ -221,15 +269,12 @@ ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 ```
 
-Here we use the new instruction `ENV`. The first command adds `conda` to the path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda install`. The other two set an UTF-8 character encoding so that we can use weird characters (and a bunch of other things).
+Here we use the new instruction `ENV`. The first command adds `conda` to the 
+path, so we can write `conda install` instead of 
+`/usr/miniconda3/bin/conda install`. The other two set an UTF-8 character 
+encoding so that we can use weird characters (and a bunch of other things).
 
 ```no-highlight
-# Use bash as shell
-SHELL ["/bin/bash", "-c"]
-
-# Set workdir
-WORKDIR /course
-
 # Open port for running Jupyter Notebook
 EXPOSE 8888
 
@@ -237,9 +282,16 @@ EXPOSE 8888
 CMD /bin/bash
 ```
 
-`SHELL` simply sets which shell to use. `EXPOSE` opens up the port 8888, so that we can later run a Jupyter Notebook server on that port. `WORKDIR` determines the directory the container should start in. `CMD` is an interesting instruction. It sets what a container should run when nothing else is specified. It can be used for example for printing some information on how to use the image or, as here, start a shell for the user. If the purpose of your image is to accompany a publication then `CMD` could be to run the workflow that generates the paper figures from raw data.
+`EXPOSE` opens up the port 8888, so that we can later run a Jupyter Notebook 
+server on that port. `CMD` is an interesting instruction. It sets what a 
+container should run when nothing else is specified. It can be used for example 
+for printing some information on how to use the image or, as here, start a shell
+ for the user. If the purpose of your image is to accompany a publication then 
+ `CMD` could be to run the workflow that generates the paper figures from raw 
+ data.
 
-Ok, so now we understand how a Dockerfile works. Constructing the image from the Dockerfile is really simple. Try it out now.
+Ok, so now we understand how a Dockerfile works. Constructing the image from the
+ Dockerfile is really simple. Try it out now.
 
 ```no-highlight
 $ docker build -f Dockerfile_slim -t my_docker_image .
@@ -259,34 +311,56 @@ Successfully built aaa39bdeb78a
 Successfully tagged my_docker_image:latest
 ```
 
-`-f` sets which Dockerfile to use and `-t` tags the image with a name. This name is how you will refer to the image later. Lastly, the `.` is the path to where the image should be build (`.` means the current directory). This had no real impact in this case, but matters if you want to import files. Validate with `docker image ls` that you can see your new image.
+`-f` sets which Dockerfile to use and `-t` tags the image with a name. This name
+ is how you will refer to the image later. Lastly, the `.` is the path to where 
+ the image should be build (`.` means the current directory). This had no real 
+ impact in this case, but matters if you want to import files. Validate with 
+ `docker image ls` that you can see your new image.
 
-Now it's time to make our own Dockerfile to reproduce the results from the [Conda tutorial](conda). If you haven't done the tutorial, it boils down to creating a Conda environment file, setting up that environment, downloading three RNA-seq data files, and running FastQC on those files. We will later package and run the whole RNA-seq workflow in a Docker container, but for now we keep it simple to reduce the size and time required.
+Now it's time to make our own Dockerfile to reproduce the results from the 
+[Conda tutorial](conda). If you haven't done the tutorial, it boils down to 
+creating a Conda environment file, setting up that environment, downloading 
+three RNA-seq data files, and running FastQC on those files. We will later 
+package and run the whole RNA-seq workflow in a Docker container, but for now we
+ keep it simple to reduce the size and time required.
 
 The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and running the analysis. A copy of this file should also be available in your current directory. If we want to use the same script we need to include it in the image. So, this is what we need to do:
 
 1. Create the file `Dockerfile_conda`.
 2. Set `FROM` to the image we just built.
-3. Install the required packages with Conda. We could do this by adding `environment.yml` from the Conda tutorial, but here we do it directly as `RUN` commands. We need to add the conda-forge and bioconda channels with `conda config --add channels channel_name` and install `fastqc=0.11.6` and `sra-tools=2.8` with `conda install`. There is little point in defining and activating a Conda environment since the container is self-contained, but do so if you want (otherwise the packages will be installed to a default environment named `base`).
-4. Add `run_qc.sh` to the image by using the `COPY` instruction. The syntax is `COPY source target`, so in our case simply `COPY run_qc.sh .` to copy to the work directory in the image.
-5. Set the default command for the image to `bash run_qc.sh`, which will execute the shell script.
+3. Install the required packages with Conda. We could do this by adding 
+`environment.yml` from the Conda tutorial, but here we do it directly as `RUN` 
+commands. We need to add the conda-forge and bioconda channels with 
+`conda config --add channels channel_name` and install `fastqc=0.11.9` and
+ `sra-tools=2.10.1` with `conda install`. The packages will be installed to the 
+ default environment named `base` inside the container.
+4. Add `run_qc.sh` to the image by using the `COPY` instruction. The syntax is 
+`COPY source target`, so in our case simply `COPY run_qc.sh .` to copy to the 
+work directory in the image.
+5. Set the default command for the image to `bash run_qc.sh`, which will execute
+ the shell script.
 6. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
 
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`, `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
+    * How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`, 
+    `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
     * The importance of letting each layer in the Dockerfile be a "logical unit".
     * How to use `docker build` to contruct and tag an image from a Dockerfile.
 
 ## Managing containers
-When you start a container with `docker run` it is given an unique id that you can use for interacting with the container. Let's try to run a container from the image we just created:
+When you start a container with `docker run` it is given an unique id that you 
+can use for interacting with the container. Let's try to run a container from 
+the image we just created:
 
 ```bash
 docker run my_docker_conda
 ```
 
-If everything worked `run_qc.sh` is executed and will first download and then analyse the three samples. Once it's finished you can list all containers, including those that have exited.
+If everything worked `run_qc.sh` is executed and will first download and then 
+analyse the three samples. Once it's finished you can list all containers, 
+including those that have exited.
 
 ```no-highlight
 $ docker container ls --all
@@ -295,11 +369,28 @@ MES
 39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
 ```
 
-If we run `docker run` without any flags, your local terminal is attached to the container. This enables you to see the output of `run_qc.sh`, but also disables you from doing anything else in the meantime. We can start a container in detached mode with the `-d` flag. Try this out and run `docker container ls` to validate that the container is running.
+If we run `docker run` without any flags, your local terminal is attached to the
+ container. This enables you to see the output of `run_qc.sh`, but also disables
+  you from doing anything else in the meantime. We can start a container in 
+  detached mode with the `-d` flag. Try this out and run `docker container ls` 
+  to validate that the container is running.
 
-By default, Docker keeps containers after they have exited. This can be convenient for debugging or if you want to look at logs, but it also consumes huge amounts of disk space. It's therefore a good idea to always run with `--rm`, which will remove the container once it has exited.
+By default, Docker keeps containers after they have exited. This can be 
+convenient for debugging or if you want to look at logs, but it also consumes 
+huge amounts of disk space. It's therefore a good idea to always run with 
+`--rm`, which will remove the container once it has exited.
 
-If we want to enter a running container, there are two related commands we can use, `docker attach` and `docker exec`. `docker attach` will attach local standard input, output, and error streams to a running container. This can be useful if your terminal closed down for some reason or if you started a terminal in detached mode and changed your mind. `docker exec` can be used to execute any command in a running container. It's typically used to peak in at what is happening by opening up a new shell. Here we start the container in detached mode and then start a new interactive shell so that we can see what happens. If you use `ls` inside the container you can see how the script generates file in the `data`, `intermediate` and `results` directories. Note that you will be thrown out when the container exits, so you have to be quick.
+If we want to enter a running container, there are two related commands we can 
+use, `docker attach` and `docker exec`. `docker attach` will attach local 
+standard input, output, and error streams to a running container. This can be 
+useful if your terminal closed down for some reason or if you started a terminal
+ in detached mode and changed your mind. `docker exec` can be used to execute 
+ any command in a running container. It's typically used to peak in at what is 
+ happening by opening up a new shell. Here we start the container in detached 
+ mode and then start a new interactive shell so that we can see what happens. If
+  you use `ls` inside the container you can see how the script generates file in
+   the `data`, `intermediate` and `results` directories. Note that you will be 
+   thrown out when the container exits, so you have to be quick.
 
 ```bash
 docker run -d --rm --name my_container my_docker_conda
@@ -307,53 +398,114 @@ docker exec -it my_container /bin/bash
 ```
 
 !!! tip
-    Sometimes you would like to enter a stopped container. It's not a common use case, but it's included here for those of you who are doing these tutorials on Windows using Docker. Inadvertently shutting down your container can result in loss of a lot of work if you're not able to restart it. If you were to use `docker start` it would rerun the command set by `CMD`, which may not be what you want. Instead we use `docker commit container_name new_image_name` to convert the container `container_name` to the image `new_image_name`. We can then start a new container in that image as we normally would with `docker run -it --rm new_image_name /bin/bash`. Confusing, right? In theory, this would allow you to bypass using Dockerfiles and instead generate your image by entering an empty container in interactive mode, install everything there, and then commit as a new image. However, by doing this you would lose many of the advantages that Dockerfiles provide, such as easy distribution and efficient space usage via layers.
+    Sometimes you would like to enter a stopped container. It's not a common use
+    case, but it's included here for those of you who are doing these tutorials
+    on Windows using Docker. Inadvertently shutting down your container can 
+    result in loss of a lot of work if you're not able to restart it. If you 
+    were to use `docker start` it would rerun the command set by `CMD`, which 
+    may not be what you want. Instead we use 
+    `docker commit container_name new_image_name` to convert the container 
+    `container_name` to the image `new_image_name`. We can then start a new 
+    container in that image as we normally would with 
+    `docker run -it --rm new_image_name /bin/bash`. Confusing, right? In theory,
+    this would allow you to bypass using Dockerfiles and instead generate your 
+    image by entering an empty container in interactive mode, install everything
+    there, and then commit as a new image. However, by doing this you would lose
+    many of the advantages that Dockerfiles provide, such as easy distribution 
+    and efficient space usage via layers.
 
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How to use `docker run` for starting a container and how the flags `-d`, `-it` and `--rm` work.
+    * How to use `docker run` for starting a container and how the flags `-d`, 
+    `-it` and `--rm` work.
     * How to use `docker container ls` for displaying information about the containers.
     * How to use `docker attach` and `docker exec` to interact with running containers.
 
 ### Bind mounts
-There are obviously some advantages to isolating and running your data analysis in containers, but at some point you need to be able to interact with the host system to actually deliver the results. This is done via bind mounts. When you use a bind mount, a file or directory on the *host machine* is mounted into a container. That way, when the container generates a file in such a directory it will appear in the mounted directory on your host system.
+There are obviously some advantages to isolating and running your data analysis 
+in containers, but at some point you need to be able to interact with the host 
+system to actually deliver the results. This is done via bind mounts. When you 
+use a bind mount, a file or directory on the *host machine* is mounted into a 
+container. That way, when the container generates a file in such a directory it 
+will appear in the mounted directory on your host system.
 
 !!! tip
-    Docker also has a more advanced way of data storage called [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide added flexibility and are independent of the host machine's filesystem having a specific directory structure available. They are particularly useful when you want to share data *between* containers.
+    Docker also has a more advanced way of data storage called 
+    [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide 
+    added flexibility and are independent of the host machine's filesystem 
+    having a specific directory structure available. They are particularly 
+    useful when you want to share data *between* containers.
 
-Say that we are interested in getting the resulting html reports from FastQC in our container. We can do this by mounting a directory called, say, `fastqc_results` in your current directory to the `/course/results/fastqc` directory in the container. Try this out and validate that it worked by opening one of the html reports.
+Say that we are interested in getting the resulting html reports from FastQC in 
+our container. We can do this by mounting a directory called, say, 
+`fastqc_results` in your current directory to the `/course/results/fastqc` 
+directory in the container. Try this out and validate that it worked by opening 
+one of the html reports.
 
 ```bash
 docker run --rm -v $(pwd)/fastqc_results:/course/results/fastqc my_docker_conda
 ```
 
-We can also use bind mounts for getting files into the container rather than out. We've mainly been discussing Docker in the context of packaging an analysis pipeline to allow someone else to reproduce its outcome. Another application is as a kind of very powerful environment manager, similarly to how we've used Conda before. If you've organized your work into projects, then you can mount the whole project directory in a container and use the container as the terminal for running stuff while still using your normal OS for editing files and so on. Let's try this out by mounting our current directory and start an interactive terminal. Note that this will override the `CMD` command, so we won't start the analysis automatically when we start the container.
+We can also use bind mounts for getting files into the container rather than 
+out. We've mainly been discussing Docker in the context of packaging an analysis
+pipeline to allow someone else to reproduce its outcome. Another application is
+as a kind of very powerful environment manager, similarly to how we've used 
+Conda before. If you've organized your work into projects, then you can mount 
+the whole project directory in a container and use the container as the terminal
+for running stuff while still using your normal OS for editing files and so on. 
+Let's try this out by mounting our current directory and start an interactive 
+terminal. Note that this will override the `CMD` command, so we won't start the 
+analysis automatically when we start the container.
 
 ```bash
 docker run -it --rm -v $(pwd):/course/ my_docker_conda /bin/bash
 ```
 
-If you run `ls` you will see that all the files in the `docker` directory are there. Now edit `run_qc.sh` **on your host system** to download, say, 15000 reads instead of 12000. Then rerun the analysis with `bash run_qc.sh`. Tada! Validate that the resulting html reports look fine and then exit the container with `exit`.
+If you run `ls` you will see that all the files in the `docker` directory are 
+there. Now edit `run_qc.sh` **on your host system** to download, say, 15000 
+reads instead of 12000. Then rerun the analysis with `bash run_qc.sh`. Tada! 
+Validate that the resulting html reports look fine and then exit the container 
+with `exit`.
 
 ## Distributing your images
-There would be little point in going through all the trouble of making your analyses reproducible if you can't distribute them to others. Luckily, sharing Docker containers is extremely easy. The most common way is to use [Dockerhub](https://hub.docker.com). Dockerhub lets you host unlimited public images and one private image for free, after that they charge a small fee. If you want to try it out here is how to do it:
+There would be little point in going through all the trouble of making your 
+analyses reproducible if you can't distribute them to others. Luckily, sharing 
+Docker containers is extremely easy. The most common way is to use 
+[Dockerhub](https://hub.docker.com). Dockerhub lets you host unlimited public 
+images and one private image for free, after that they charge a small fee. If 
+you want to try it out here is how to do it:
 
 1. Register for an account on [Dockerhub](https://hub.docker.com).
 2. Use `docker login -u your_dockerhub_id` to login to the Dockerhub registry.
-3. When you build an image, tag it with `-t your_dockerhub_id/image_name`, rather than just `image_name`.
-4. Once the image has been built, upload it to Dockerhub with `docker push your_dockerhub_id/image_name`.
-5. If another user runs `docker run your_dockerhub_id/image_name` the image will automatically be retrieved from Dockerhub. You can use `docker pull` for downloading without running.
+3. When you build an image, tag it with `-t your_dockerhub_id/image_name`, 
+rather than just `image_name`.
+4. Once the image has been built, upload it to Dockerhub with 
+`docker push your_dockerhub_id/image_name`.
+5. If another user runs `docker run your_dockerhub_id/image_name` the image will
+ automatically be retrieved from Dockerhub. You can use `docker pull` for 
+ downloading without running.
 
 That was easy!
 
-If you want to refer to a Docker image in for example a publication, it's very important that it's the correct version of the image. You can do this by adding a tag to the name like this `docker build -t your_dockerhub_id/image_name:tag_name`.
+If you want to refer to a Docker image in for example a publication, it's very 
+important that it's the correct version of the image. You can do this by adding 
+a tag to the name like this `docker build -t your_dockerhub_id/image_name:tag_name`.
 
 !!! tip
-    On Dockerhub it is also possible to link to your Bitbucket or GitHub account and select repositories from which you want to automatically build and distribute Docker images. The Dockerhub servers will then build an image from the Dockerfile in your repository and make it available for download using `docker pull`. That way, you don't have to bother manually building and pushing using `docker push`.
+    On Dockerhub it is also possible to link to your Bitbucket or GitHub account
+    and select repositories from which you want to automatically build and 
+    distribute Docker images. The Dockerhub servers will then build an image 
+    from the Dockerfile in your repository and make it available for download 
+    using `docker pull`. That way, you don't have to bother manually building 
+    and pushing using `docker push`.
 
 ## Packaging and running the MRSA workflow
-During these tutorials we have been working on a case study about the multiresistant bacteria MRSA. Here we will build and run a Docker container that contains all the work we've done so far. This will take some time to execute (~20 min or so), in particular if you're on a slow internet connection, and result in a 3.75 GB image.
+During these tutorials we have been working on a case study about the 
+multiresistant bacteria MRSA. Here we will build and run a Docker container that
+contains all the work we've done so far. This will take some time to execute 
+(~20 min or so), in particular if you're on a slow internet connection, and 
+result in a 3.75 GB image.
 
 * We've [set up a GitHub repository](git.md) for version control and for hosting our project.
 * We've defined a [Conda environment](conda.md) that specifies the packages we're depending on in the project.
