@@ -39,15 +39,17 @@ for!
 * A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
-# Set up This tutorial depends on files from the course Bitbucket repo. Take
+# Set up 
+This tutorial depends on files from the course GitHub repo. Take
 a look at the [intro](tutorial_intro.md) for instructions on how to set it up
 if you haven't done so already. Then open up a terminal and go to
 `reproducible_research_course/jupyter`.
 
-## Install Jupyter Notebook If you have done the [Conda tutorial](conda.md) you
-should know how to define an environment and install packages using Conda.
-Create an environment containing the following packages from the `conda-forge`
-channel. Don't forget to activate the environment.
+## Install Jupyter Notebook 
+If you have done the [Conda tutorial](conda.md) you should know how to define
+an environment and install packages using Conda. Create an environment
+containing the following packages from the `conda-forge` channel. Don't
+forget to activate the environment.
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
@@ -82,7 +84,7 @@ browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
-[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/arasmus/Documents/projects/reproducible_research_course/jupyter
+[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
 [I 18:02:26.723 NotebookApp] http://localhost:8888/?token=e03f10ccb40efc3c6154358593c410a139b76acf2cae785c
@@ -102,7 +104,7 @@ the server is running locally (as
 you have an active internet connection. Also note that it says:
 
 ```no-highlight
-Serving notebooks from local directory: /Users/arasmus/Documents/projects/reproducible_research_course/jupyter.
+Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter.
 ```
 
 Everything you do in your Notebook session will be stored in this directory, so
@@ -490,30 +492,45 @@ for axi in ax.flat:
 As you might remember from the [intro](tutorial_intro.md), we are attempting 
 to understand how lytic bacteriophages can be used as a future therapy 
 for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus
-aureus_). We have already defined the project environment in the [Conda
-tutorial](conda.md) and set up the workflow in the [Snakemake
-tutorial](snakemake.md). Here we explore the results from a the snakemake
-workflow in a Jupyter notebook as an example of how you can document your
-day-to-day work as a dry lab scientist.  We will first create a report similar
-to the one in the [R Markdown tutorial](rmarkdown.md) then generate and
-visualize read coverage across samples for the _S. aureus_ genome.
+aureus_). We have already seen how to define the project environment in the 
+[Conda tutorial](conda.md) and how to set up the workflow in the 
+[Snakemake tutorial](snakemake.md). Here we explore the results from a the 
+snakemake workflow in a Jupyter notebook as an example of how you can document 
+your day-to-day work as a dry lab scientist.
 
-### Update the current environment
+We will create a report similar to the one in the [R Markdown tutorial
+](rmarkdown.md) and generate and visualize read coverage across samples for the
+ _S. aureus_ genome.
 
-First update your current jupyter conda environment using the `environment.yml`
-file:
+### Install a new conda environment
 
-!!! attention
-    Run the conda update command below in your terminal (not in the 
-     notebook) with the jupyter exercise environment active.
+For the purposes of this part of the tutorial we will install a new
+conda environment and run a slightly slimmed down version of the MRSA snakemake
+workflow to generate some output to work with.
 
+In the `jupyter/` directory you'll find a `Snakefile` containing the workflow
+as well as a conda `environment.yml` file which contains all packages
+required for both the execution of the workflow as well as the downstream 
+analyses we will perform in the Jupyter notebook.
+  
+Install *a new* conda environment using the `environment.yml` file and then
+activate it. You can choose the name of the environment yourself. 
+Here's an example using the name `jupyter-snakemake`:
+ 
+ ````bash
+conda env create -f environment.yml -n jupyter-snakemake
+# Activate the environment 
+conda activate jupyter-snakemake
+ ````
+
+### Open the MRSA notebook
+In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
+.ipynb`. With the newly created conda environment active, open this notebook
+ directly by running:
+ 
+ ```bash
+jupyter notebook mrsa_notebook.ipynb
 ```
-conda env update -f environment.yml
-``` 
-
-### Open a new notebook
-If you look at the Jupyter dashboard in your browser there should be a 
-notebook called `mrsa_notebook.ipynb`. Now open the notebook with File > Open.
 
 !!! tip
     Using what you've learned about markdown in notebooks, add headers 
@@ -524,12 +541,12 @@ notebook called `mrsa_notebook.ipynb`. Now open the notebook with File > Open.
 You will see that the notebook contains only two cells: one with some 
 import statements and one with two function definitions. We'll come back 
 to those later. Now, run the cells and add a new empty cell to the notebook. 
-Typically the snakemake workflow will be executed from a terminal but let's 
+Typically the snakemake workflow would be executed from a terminal but let's 
 try to actually run the workflow directly from within the Jupyter notebook. 
 
 In the current directory you'll find the necessary `Snakefile` and `config.yml`
 to run the workflow. In an empty cell in your notebook, add code to run the
-workflow then run the cell.     
+workflow. Then run the cell.     
 
 ??? note "Click to see how to run the workflow from a cell"
     ```

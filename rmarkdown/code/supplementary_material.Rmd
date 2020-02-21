@@ -39,16 +39,21 @@ counts_other <- counts[grep("^__",rownames(counts)),]
 rownames(counts_other) <- gsub("^__","",rownames(counts_other))
 counts <- counts[grep("^__",rownames(counts), invert=T),]
 
-# Read meta data and FastQC info:
+# Read meta data:
 gse <- Meta(getGEO(GSM_IDs[1]))$series_id
 gse <- getGEO(gse, GSEMatrix=T)
 gse <- as.data.frame(gse[[1]])
 gsm2srr <- data.frame(geo_accession=GSM_IDs, SRR=SRR_IDs)
 meta <- merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession")
+# Read FastQC data and update column names
 qc <- read.delim(multiqc_file)
-columns <- gsub("gc","GC",gsub(".1","",gsub("FastQC ","",gsub("_"," ",colnames(qc)))))
-columns <- paste(toupper(substr(columns, 1, 1)),substr(columns, 2, nchar(columns)), sep="")
-colnames(qc) <- columns
+patterns <- c(".+percent_duplicates.*",".+percent_gc.*",
+  ".+avg_sequence_length.*", ".+percent_fails.*",".+total_sequences.*")
+subs <- c("Percent duplicates", "Percent GC", "Avg sequence length",
+  "Percent fails", "Total sequences")
+for (i in 1:length(patterns)) {
+  colnames(qc) <- gsub(patterns[i], subs[i], colnames(qc))
+}
 meta <- merge(meta, qc, by.x="SRR", by.y="Sample")
 if(any(colnames(counts)[-1] != meta$SRR)) stop("Mismatching count and meta-data")
 ```

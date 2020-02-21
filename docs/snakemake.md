@@ -38,31 +38,32 @@ suited for creating reproducible and scalable data analyses.
   https://stackoverflow.com/questions/tagged/snakemake).
 
 # Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at
-the [intro](tutorial_intro.md) for instructions on how to set it up if you
-haven't done so already. Then open up a terminal and go to
-`reproducible_research_course/snakemake`.
+This tutorial depends on files from the course GitHub repo. Take a look
+at the [intro](tutorial_intro.md) for instructions on how to set it up
+if you haven't done so already. Then open up a terminal and go to
+`workshop-reproducible-research/snakemake`.
 
 ## Construct the environment for the workflow
-If you have done the [Conda tutorial](conda.md) you should know how to define
-an environment and install packages using Conda and an `environment.yml` file.
-Here we will use Snakemake as well as some other programs, all of which are
-available in the Bioconda channel. If you look in the current directory you
-will see an `environment.yml` file that specifies an environment containing
-FastQC and SRA Tools (identical to the one you made in the Conda tutorial). Add
-the following programs to the file and save it.
+If you have done the [Conda tutorial](conda.md) you should know how to
+define an environment and install packages using Conda and an
+`environment.yml` file. Here we will use Snakemake as well as some other
+programs, all of which are available in the Bioconda channel. If you
+look in the current directory you will see an `environment.yml` file
+that specifies an environment containing FastQC and SRA Tools (identical
+to the one you made in the Conda tutorial). Add the following programs
+to the file and save it.
 
 ```yaml
-# Specify python verison (not required but can help with downstream conflicts)
-- python=3.6
-# The workflow manager
-- snakemake-minimal=5.3.0
-# For visualizing workflows
-- graphviz=2.38.0
-- xorg-libxrender
-- xorg-libxpm
-# For downloading files
-- wget
+  # Specify python version (not required but can help with downstream conflicts)
+  - python=3.7.6
+  # The workflow manager
+  - snakemake-minimal=5.10.0
+  # For visualizing workflows
+  - graphviz=2.42.3
+  - xorg-libxrender
+  - xorg-libxpm
+  # For downloading files
+  - wget=1.20.1
 ```
 
 Now install the new environment and activate it.
@@ -384,8 +385,6 @@ happen if you run `snakemake -n -r a_b.txt` again?
         reason: Updated input files: a.txt
         wildcards: some_name=a
 
-
-
     rule concatenate_files:
         input: a.upper.txt, b.upper.txt
         output: a_b.txt
@@ -535,13 +534,13 @@ This will require some more packages, so add the following lines to
 
 ```yaml
 # For aggregating output from FastQC
-- multiqc=1.3
+- multiqc=1.7
 # For mapping reads to a genome
-- bowtie2=2.3
+- bowtie2=2.3.5.1
 # For sorting the output from Bowtie2
-- samtools=1.6
+- samtools=1.10
 # For generating a count table for further analysis
-- htseq=0.9
+- htseq=0.11.2
 ```
 
 You are probably already in your `snakemake_exercise` environment, otherwise
@@ -687,9 +686,6 @@ rule get_SRA_by_accession:
         """
         fastq-dump {wildcards.sra_id} -X 25000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserve a lot of space
-        cache-mgr --clear >/dev/null 2>&1
         """
 ```
 
@@ -712,9 +708,6 @@ rule get_SRA_by_accession:
         """
         fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserve a lot of space
-        cache-mgr --clear >/dev/null 2>&1
         """
 ```
 
@@ -952,19 +945,21 @@ aren't tracked by Snakemake (`multiqc`, `index_genome`,
 files from those rules, as they are no longer needed. Now rerun the workflow
 and validate that the temporary files don't show up in your working directory.
 
-!!! tip Some people use the shadow option for almost every rule and some never
-use it at all. One thing to keep in mind is that it leads to some extra file
-operations when the outputs are moved to their final location. This is no issue
-when the shadow directory is on the same disk as the output directory, but if
-you're running on a distributed file system and generate very many or very
-large files it might be worth considering other options (see *e.g.* the
-`--shadow-prefix` flag).
+!!! tip 
+    Some people use the shadow option for almost every rule and some never
+    use it at all. One thing to keep in mind is that it leads to some extra file
+    operations when the outputs are moved to their final location. This is no 
+    issue when the shadow directory is on the same disk as the output directory,
+    but if you're running on a distributed file system and generate very many 
+    or very large files it might be worth considering other options (see *e.g.* 
+    the `--shadow-prefix` flag).
 
-### Rule targets So far we have only defined the inputs/outputs of a rule as
-strings, or in some case a list of strings, but Snakemake allows us to be much
-more flexible than that. Actually, we can use any Python expression or even
-functions, as long as they return a string or list of strings. Consider the
-rule `align_to_genome` below.
+### Rule targets 
+So far we have only defined the inputs/outputs of a rule as strings, or in
+some case a list of strings, but Snakemake allows us to be much more flexible
+than that. Actually, we can use any Python expression or even functions, as
+long as they return a string or list of strings. Consider the rule
+`align_to_genome` below.
 
 ```python
 rule align_to_genome:
