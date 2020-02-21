@@ -1016,13 +1016,14 @@ git push origin --delete test_alignment
       or tag name
     * `git merge` - to merge one branch into another
 
-## Extra material
+## Tips and tricks
 
 The following extra material contains some more advanced things you can do with
 git and the command line in general, which is not part of the main course
 materials. All the essential skills of git are covered by the previous
-material, so you're not missing anything if you don't have time to get to this
-part of the course.
+sections: the material here should be considered tips and tricks from people
+who use git every day. You thus don't need to use these things unless you want
+to, and you can even skip this part of the lesson if you like!
 
 ### Decorating your prompt
 

@@ -342,13 +342,14 @@ Projects can often be quite large and require lots of dependencies; it can feel 
     * How to define our Conda environment using a yaml-file.
     * How to use `conda env create` to make a new environment from a yaml-file.
 
-## Extra material
+## Tips and tricks
 
 The following extra material contains some more advanced things you can do with
 conda and the command line in general, which is not part of the main course
 materials. All the essential skills of conda are covered by the previous
-material, so you're not missing anything if you don't have time to get to this
-part of the course.
+section: the material here should be considered tips and tricks from people who
+use Conda as part of their daily work. You thus don't need to use these things
+unless you want to, and you can even skip this part of the lesson if you like!
 
 ### Decorating your prompt
 
