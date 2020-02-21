@@ -1,26 +1,55 @@
 # Introduction to Jupyter notebooks
-The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and text. The functionality is partly overlapping with R Markdown (see the [tutorial](rmarkdown.md)), in that they both use markdown and code chunks to generate reports that integrate results of computations with the code that generated them. Jupyter Notebook comes from the Python community while R Markdown was developed by RStudio, but you could use most common programming languages in either alternative. In practice though, it's quite common that R developers use Jupyter but probably not very common that Python developers use RStudio.
+The Jupyter Notebook is an open-source web application that allows you to
+create and share documents that contain code, equations, visualizations and
+text. The functionality is partly overlapping with R Markdown (see the
+[tutorial](rmarkdown.md)), in that they both use markdown and code chunks to
+generate reports that integrate results of computations with the code that
+generated them. Jupyter Notebook comes from the Python community while
+R Markdown was developed by RStudio, but you could use most common programming
+languages in either alternative. In practice though, it's quite common that
+R developers use Jupyter but probably not very common that Python developers
+use RStudio.
 
 ## What are Jupyter notebooks for?
 An excellent question! Some applications could be:
 
-* Python is lacking a really good IDE for doing exploratory scientific data analysis, like RStudio or Matlab. Some people use it simply as an alternative for that.
-* The community around Jupyter notebooks is large and dynamic, and there are tons of tools for sharing, displaying or interacting with notebooks.
-* An early ambition with Jupyter notebooks, and its predecessor IPython notebooks, was to be analogous to the lab notebook used in a wet lab. It would allow the data scientist to document her day-to-day work and interweave results, ideas, and hypotheses with the code. From a reproducibility perspective, this is one of the main advantages.
-* Jupyter notebooks can be used, just as R Markdown, to provide a tighter connection between your data and your results by integrating results of computations with the code that generated them. They can also do this in an interactive way that makes them very appealing for sharing with others.
+* Python is lacking a really good IDE for doing exploratory scientific data
+  analysis, like RStudio or Matlab. Some people use it simply as an alternative
+  for that.
+* The community around Jupyter notebooks is large and dynamic, and there are
+  tons of tools for sharing, displaying or interacting with notebooks.
+* An early ambition with Jupyter notebooks, and its predecessor IPython
+  notebooks, was to be analogous to the lab notebook used in a wet lab. It
+  would allow the data scientist to document her day-to-day work and interweave
+  results, ideas, and hypotheses with the code. From a reproducibility
+  perspective, this is one of the main advantages.
+* Jupyter notebooks can be used, just as R Markdown, to provide a tighter
+  connection between your data and your results by integrating results of
+  computations with the code that generated them. They can also do this in an
+  interactive way that makes them very appealing for sharing with others.
 
-As always, the best way is to try it out yourself and decide what to use it for!
+As always, the best way is to try it out yourself and decide what to use it
+for!
 
 ## Tell me more
-* The [Jupyter project site](http://jupyter.org) contains a lot of information and inspiration.
-* The [Jupyter Notebook documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
-* A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using widgets for creating interactive notebooks.
+* The [Jupyter project site](http://jupyter.org) contains a lot of information
+  and inspiration.
+* The [Jupyter Notebook
+  documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
+* A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
+  widgets for creating interactive notebooks.
 
-# Set up
-This tutorial depends on files from the course Bitbucket repo. Take a look at the [intro](tutorial_intro.md) for instructions on how to set it up if you haven't done so already. Then open up a terminal and go to `reproducible_research_course/jupyter`.
+# Set up 
+This tutorial depends on files from the course GitHub repo. Take
+a look at the [intro](tutorial_intro.md) for instructions on how to set it up
+if you haven't done so already. Then open up a terminal and go to
+`reproducible_research_course/jupyter`.
 
-## Install Jupyter Notebook
-If you have done the [Conda tutorial](conda.md) you should know how to define an environment and install packages using Conda. Create an environment containing the following packages from the `conda-forge` channel. Don't forget to activate the environment.
+## Install Jupyter Notebook 
+If you have done the [Conda tutorial](conda.md) you should know how to define
+an environment and install packages using Conda. Create an environment
+containing the following packages from the `conda-forge` channel. Don't
+forget to activate the environment.
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
@@ -28,24 +57,34 @@ If you have done the [Conda tutorial](conda.md) you should know how to define an
 * `pandas`: for working with data frames and generating tables
 
 !!! attention
-    If you are doing these exercises through a Docker container you also need the run the following:
+    If you are doing these exercises through a Docker container you also need
+    the run the following:
+    
     ```bash
     mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.ip = '0.0.0.0'" >> \
+        /root/.jupyter/jupyter_notebook_config.py
     ```
 
 !!! note "A note on nomenclature"
-    * Jupyter: a project to develop open-source software, open-standards, and services for interactive computing across dozens of programming languages. Lives at [jupyter.org](jupyter.org).
-    * Jupyter Notebook: A web application that you use for creating and managing notebooks. One of the outputs of the Jupyter project.
-    * Jupyter notebook: The actual `.ipynb` file that constitutes your notebook.
+    * Jupyter: a project to develop open-source software, open-standards, and
+      services for interactive computing across dozens of programming
+      languages. Lives at [jupyter.org](jupyter.org).
+    * Jupyter Notebook: A web application that you use for creating and
+      managing notebooks. One of the outputs of the Jupyter project.
+    * Jupyter notebook: The actual `.ipynb` file that constitutes your
+      notebook.
 
 # Practical exercise
+
 ## The Jupyter Notebook dashboard
-One thing that sets Jupyter Notebook apart from what you might be used to is that it's a web application, i.e. you edit and run your code from your browser. But first you have to start the Jupyter Notebook server.
+One thing that sets Jupyter Notebook apart from what you might be used to is
+that it's a web application, *i.e.* you edit and run your code from your
+browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
-[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/arasmus/Documents/projects/reproducible_research_course/jupyter
+[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
 [I 18:02:26.723 NotebookApp] http://localhost:8888/?token=e03f10ccb40efc3c6154358593c410a139b76acf2cae785c
@@ -58,41 +97,74 @@ $ jupyter notebook --allow-root
 [I 18:02:27.209 NotebookApp] Accepting one-time-token-authenticated connection from ::1
 ```
 
-Jupyter Notebook probably opened up a web browser for you automatically, otherwise go to the address specified in the message in the terminal. Note that the server is running locally (as [http://localhost:8888](http://localhost:8888)) so this does not require that you have an active internet connection. Also note that it says:
+Jupyter Notebook probably opened up a web browser for you automatically,
+otherwise go to the address specified in the message in the terminal. Note that
+the server is running locally (as
+[http://localhost:8888](http://localhost:8888)) so this does not require that
+you have an active internet connection. Also note that it says:
 
 ```no-highlight
-Serving notebooks from local directory: /Users/arasmus/Documents/projects/reproducible_research_course/jupyter.
+Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter.
 ```
 
-Everything you do in your Notebook session will be stored in this directory, so you won't lose any work if you shut down the server.
+Everything you do in your Notebook session will be stored in this directory, so
+you won't lose any work if you shut down the server.
 
 ![](images/jupyter_dashboard.png)
 
-What you're looking at is the Notebook dashboard. This is where you manage your files, notebooks, and kernels. The Files tab shows the files in your directory. If you've done the other tutorials the file names should look familiar; they are the files needed for running the RNA-seq workflow in Snakemake. The Running tab keeps track of all your processes. The third tab, Clusters, is used for parallel computing and won't be discussed further in this tutorial. The Conda tab lets us control our Conda environments. Let's take a quick look at that. You can see that I'm currently in the `jupyter_exercise` environment.
+What you're looking at is the Notebook dashboard. This is where you manage your
+files, notebooks, and kernels. The Files tab shows the files in your directory.
+If you've done the other tutorials the file names should look familiar; they
+are the files needed for running the RNA-seq workflow in Snakemake. The Running
+tab keeps track of all your processes. The third tab, Clusters, is used for
+parallel computing and won't be discussed further in this tutorial. The Conda
+tab lets us control our Conda environments. Let's take a quick look at that.
+You can see that I'm currently in the `jupyter_exercise` environment.
 
 ![](images/jupyter_conda.png)
 
-Let's start by creating an empty notebook by selecting the Files tab and clicking New > Notebook > Python [conda env:jupyter_exercise]. This will open up a new tab or window looking like this:
+Let's start by creating an empty notebook by selecting the Files tab and
+clicking New > Notebook > Python [conda env:jupyter_exercise]. This will open
+up a new tab or window looking like this:
 
 ![](images/jupyter_empty_nb.png)
 
 !!! tip
-    If you want to start Jupyter Notebooks on a cluster that you SSH to you have to do some port forwarding:
+    If you want to start Jupyter Notebooks on a cluster that you SSH to you
+    have to do some port forwarding:
+    
     ```bash
     ssh me@rackham.uppmax.uu.se -L8888:localhost:8888
     jupyter notebook --ip 0.0.0.0 --no-browser
     ```
 
 ## The very basics
-Jupyter notebooks are made up out of cells, and you are currently standing in the first cell in your notebook. The fact that it has a green border indicates that it's in "Edit mode", so you can write stuff in it. 
-A blue border indicates "Command mode" (see below).
+Jupyter notebooks are made up out of cells, and you are currently standing in
+the first cell in your notebook. The fact that it has a green border indicates
+that it's in "Edit mode", so you can write stuff in it. A blue border indicates
+"Command mode" (see below).
 Cells in Jupyter notebooks can be of two types: markdown or code.
 
-* **Markdown** - These cells contain static material such as captions, text, lists, images and so on. You express this using Markdown, which is a lightweight markup language. Markdown documents can then be converted to other formats for viewing (the document you're reading now is written in Markdown and then converted to HTML). The format is discussed a little more in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses a dialect of Markdown called Github Flavored Markdown, which is described [here](https://guides.github.com/features/mastering-markdown/).
-* **Code** - These are the cells that actually do something, just as code chunks do in R Markdown. You can write code in dozens of languages and all do all kinds of clever tricks. You then run the code cell and any output the code generates, such as text or figures, will be displayed beneath the cell. We will get back to this in much more detail, but for now it's enough to understand that code cells are for executing code that is interpreted by a kernel (in this case the Python version in your Conda environment).
+* **Markdown** - These cells contain static material such as captions, text,
+  lists, images and so on. You express this using Markdown, which is
+  a lightweight markup language. Markdown documents can then be converted to
+  other formats for viewing (the document you're reading now is written in
+  Markdown and then converted to HTML). The format is discussed a little more
+  in detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses
+  a dialect of Markdown called Github Flavored Markdown, which is described
+  [here](https://guides.github.com/features/mastering-markdown/).
+* **Code** - These are the cells that actually do something, just as code
+  chunks do in R Markdown. You can write code in dozens of languages and all do
+  all kinds of clever tricks. You then run the code cell and any output the
+  code generates, such as text or figures, will be displayed beneath the cell.
+  We will get back to this in much more detail, but for now it's enough to
+  understand that code cells are for executing code that is interpreted by
+  a kernel (in this case the Python version in your Conda environment).
 
-Before we continue, here are some shortcuts that can be useful. Note that they are only applicable when in command mode (blue frames). Most of them are also available from the menus.
-These shortcuts are also available from the **Help** menu in your notebook (there's even an option there to edit shortcuts).
+Before we continue, here are some shortcuts that can be useful. Note that they
+are only applicable when in command mode (blue frames). Most of them are also
+available from the menus. These shortcuts are also available from the **Help**
+menu in your notebook (there's even an option there to edit shortcuts).
 
 * ++enter++: enter Edit mode
 * ++escape++: enter Command mode
@@ -123,7 +195,8 @@ sure you set the cell type to Markdown.
 
 ```
 ## Introduction
-In this notebook I will try out some of the **fantastic** concepts of Jupyter Notebooks.
+In this notebook I will try out some of the **fantastic** concepts of Jupyter
+Notebooks.
 
 ## Markdown basics
 Examples of text attributes are:
@@ -147,19 +220,41 @@ See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/W
 ```
 
 ### Writing code
-Now let's write some code! Since we chose a Python kernel, Python would be the native language to run in a cell. Enter this code in the second cell and run it:
+Now let's write some code! Since we chose a Python kernel, Python would be the
+native language to run in a cell. Enter this code in the second cell and run
+it:
 
 ```python
 print("Hello world!")
 ```
 
-Note how the output is displayed below the cell. This interactive way of working is one of the things that sets Jupyter Notebook apart from RStudio and R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you work *in* a Jupyter notebook in a different way. This has partly changed with newer versions of RStudio, but it's probably still how most people use the two tools. Another indication of this is that there is no (good) way to hide the code cells if you want to render your Jupyter notebook to a cleaner looking report (for a publication for example).
+Note how the output is displayed below the cell. This interactive way of
+working is one of the things that sets Jupyter Notebook apart from RStudio and
+R Markdown. R Markdown is typically rendered top-to-bottom in one run, while
+you work *in* a Jupyter notebook in a different way. This has partly changed
+with newer versions of RStudio, but it's probably still how most people use the
+two tools. Another indication of this is that there is no (good) way to hide
+the code cells if you want to render your Jupyter notebook to a cleaner looking
+report (for a publication for example).
 
-What **is** a Jupyter notebook? Let's look a little at the notebook we're currently working in. Jupyter Notebook saves it every minute or so, so you will already have it available. We can be a little meta and do this from within the notebook itself. We do it by running some shell commands in the third code cell instead of Python code. This very handy functionality is possible by prepending the command with `!`. Try `!ls` to list the files in the current directory.
+What **is** a Jupyter notebook? Let's look a little at the notebook we're
+currently working in. Jupyter Notebook saves it every minute or so, so you will
+already have it available. We can be a little meta and do this from within the
+notebook itself. We do it by running some shell commands in the third code cell
+instead of Python code. This very handy functionality is possible by prepending
+the command with `!`. Try `!ls` to list the files in the current directory.
 
-Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's just a plain old JSON file. Since it's a text file it's suitable for version control with for example Git. It turns out that Github and Jupyter notebooks are the best of friends, as we will see more of later. This switching between languages and whatever-works mentality is very prominent within the Jupyter notebook community.
+Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
+the first ten lines of the file by using `!head Untitled.ipynb`. Seems like
+it's just a plain old JSON file. Since it's a text file it's suitable for
+version control with for example Git. It turns out that Github and Jupyter
+notebooks are the best of friends, as we will see more of later. This switching
+between languages and whatever-works mentality is very prominent within the
+Jupyter notebook community.
 
-Variables defined in cells become variables in the global namespace. You can therefore share information between cells. Try to define a function or variable in one cell and use it in the next. For example:
+Variables defined in cells become variables in the global namespace. You can
+therefore share information between cells. Try to define a function or variable
+in one cell and use it in the next. For example:
 
 ```python
 def print_me(str):
@@ -176,25 +271,41 @@ Your notebook should now look something like this.
 
 ![](images/jupyter_basic_update.png)
 
-The focus here is not on how to write Markdown or Python; you can make really pretty notebooks with Markdown and you can code whatever you want with Python. Rather, we will focus on the Jupyter Notebook features that allow you to do a little more than that.
+The focus here is not on how to write Markdown or Python; you can make really
+pretty notebooks with Markdown and you can code whatever you want with Python.
+Rather, we will focus on the Jupyter Notebook features that allow you to do
+a little more than that.
 
 !!! note "Quick recap"
     In this section we've learned:
 
-    * That a Jupyter notebook consists of a series of cells, and that they can be either markdown or code cells.
-    * That we execute the code in a code cell with the kernel that we chose when opening the notebook.
+    * That a Jupyter notebook consists of a series of cells, and that they can
+      be either markdown or code cells.
+    * That we execute the code in a code cell with the kernel that we chose
+      when opening the notebook.
     * We can run shell commands by prepending them with `!`.
     * A Jupyter notebook is simply a text file in JSON format.
 
 ## Magics
-Magics constitute a simple command language that significantly extends the power of Jupyter notebooks. There are two types of magics:
+Magics constitute a simple command language that significantly extends the
+power of Jupyter notebooks. There are two types of magics:
 
-* Line magics - Commands that are prepended by "%", and whose arguments only extend to the end of the line.
-* Cell magics - Commands that start with `%%` and then applies to the whole cell. Must be written on the first line of a cell.
+* Line magics - Commands that are prepended by "%", and whose arguments only
+  extend to the end of the line.
+* Cell magics - Commands that start with `%%` and then applies to the whole
+  cell. Must be written on the first line of a cell.
 
-Now list all available magics with `%lsmagic` (which itself is a magic). You add a question mark to a magic to show the help (e.g. `%lsmagic?`). Some of them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`, ..). Others are useful for debugging and optimizing your code (`%timeit`, `%debug`, `%prun`, ..).
+Now list all available magics with `%lsmagic` (which itself is a magic). You
+add a question mark to a magic to show the help (*e.g.* `%lsmagic?`). Some of
+them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`,
+..). Others are useful for debugging and optimizing your code (`%timeit`,
+`%debug`, `%prun`, ..).
 
-A very useful magic, in particular when using shell commands a lot in your work, is `%%capture`. This will capture the stdout/stderr of any code cell and store them in a Python object. Run `%%capture?` to display the help and try to understand how it works. Try it out with either some Python code, other magics or shell commands.
+A very useful magic, in particular when using shell commands a lot in your
+work, is `%%capture`. This will capture the stdout/stderr of any code cell and
+store them in a Python object. Run `%%capture?` to display the help and try to
+understand how it works. Try it out with either some Python code, other magics
+or shell commands.
 
 ??? note "Click to see one example"
     ```no-highlight
@@ -211,22 +322,28 @@ A very useful magic, in particular when using shell commands a lot in your work,
     print("stderr:" + output.stderr)
     ```
 
-
-The `%%script` magic is used for specifying a program (bash, perl, ruby, ..) with which to run the code (similar to a shebang). For some languages it's possible to use these shortcuts:
+The `%%script` magic is used for specifying a program (bash, perl, ruby, ..)
+with which to run the code (similar to a shebang). For some languages it's
+possible to use these shortcuts:
 
 * `%%ruby`
 * `%%perl`
 * `%%bash`
 * `%%html`
 * `%%latex`
-* `%%R` (here you have to first install the rpy2 extension, for example with Conda, and then load with `%load_ext rpy2.ipython`)
+* `%%R` (here you have to first install the rpy2 extension, for example with
+  Conda, and then load with `%load_ext rpy2.ipython`)
 
-Try this out if you know any of the languages above. Otherwise you can always try to print the quadratic formula with LaTeX!
+Try this out if you know any of the languages above. Otherwise you can always
+try to print the quadratic formula with LaTeX!
+
 ```no-highlight
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
-Python's favorite library for plotting, matplotlib, has its own magic as well: `%matplotlib`. Try out the code below, and you should hopefully get a pretty sine wave.
+Python's favorite library for plotting, matplotlib, has its own magic as well:
+`%matplotlib`. Try out the code below, and you should hopefully get a pretty
+sine wave.
 
 ```python
 %matplotlib inline
@@ -240,8 +357,8 @@ line, = plt.plot(x, y, 'r-')
 fig.canvas.draw()
 ```
 
-By default rendering is done as rasterized images which can make the quality poor. To render 
-in scalable vector graphics format add the following line magic
+By default rendering is done as rasterized images which can make the quality
+poor. To render in scalable vector graphics format add the following line magic
 
 ```python
 %config InlineBackend.figure_format = 'svg'
@@ -250,21 +367,30 @@ in scalable vector graphics format add the following line magic
 Try it by adding it to the cell with the lineplot and run it again. 
 
 !!! tip
-    The `%matplotlib inline` and `%config InlineBackend.figure_format = 'svg'` line 
-    magics are only required once per notebook. You could for instance 
+    The `%matplotlib inline` and `%config InlineBackend.figure_format = 'svg'`
+    line magics are only required once per notebook. You could for instance 
     add them to the first cell where you import matplotlib for plotting.
 
 !!! tip
     You can capture the output of some magics directly like this:
+
     ```python
     my_dir = %pwd
     print(my_dir)
     ```
 
 ## Widgets and interactive plotting
-Since we're typically running our notebooks in a web browser, they are quite well suited for also including more interactive elements. A typical use case could be that you want to communicate some results to a collaborator or to a wider audience, and that you would like them to be able to affect how the results are displayed. It could, for example, be to select which gene to plot for, or to see how some parameter value affects a clustering. Jupyter notebooks has great support for this in the form of widgets.
+Since we're typically running our notebooks in a web browser, they are quite
+well suited for also including more interactive elements. A typical use case
+could be that you want to communicate some results to a collaborator or to
+a wider audience, and that you would like them to be able to affect how the
+results are displayed. It could, for example, be to select which gene to plot
+for, or to see how some parameter value affects a clustering. Jupyter notebooks
+has great support for this in the form of widgets.
 
-Widgets are eventful Python objects that have a representation in the browser, often as a control like a slider, textbox, etc. Let's try to add a slider that allows us to change the frequency of the sine curve we plotted previously.
+Widgets are eventful Python objects that have a representation in the browser,
+often as a control like a slider, textbox, etc. Let's try to add a slider that
+allows us to change the frequency of the sine curve we plotted previously.
 
 ```python
 %matplotlib notebook
@@ -296,20 +422,40 @@ slider.observe(on_value_change, names='value')
 ```
 
 !!! attention
-    If you have problems getting these plots to display properly, first try with restarting the kernel (under the Kernel menu). Note that this will clear any variables you have loaded.
+    If you have problems getting these plots to display properly, first try
+    with restarting the kernel (under the Kernel menu). Note that this will
+    clear any variables you have loaded.
 
-This is how it should look if everything works. You can set the frequency of the sine curve by moving the slider.
-![](images/jupyter_widget.png)
+This is how it should look if everything works. You can set the frequency of
+the sine curve by moving the slider. ![](images/jupyter_widget.png)
 
-There are lots of widgets and they all work pretty much in the same way; you listen for some event to happen and if it does you pass the new state to some function. Here is a [list of all available widgets](http://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html) together with documentation and examples.
+There are lots of widgets and they all work pretty much in the same way; you
+listen for some event to happen and if it does you pass the new state to some
+function. Here is a [list of all available widgets](
+http://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html)
+together with documentation and examples.
 
-IPython widgets, like we used here, is the most vanilla way of getting interactive graphs in Jupyter notebooks. Some other alternatives are:
+IPython widgets, like we used here, is the most vanilla way of getting
+interactive graphs in Jupyter notebooks. Some other alternatives are:
 
-* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) - is actually an API to a web service that renders your graph and returns it for display in your Jupyter notebook. Generates very visually appealing graphs, but from a reproducibility perspective it's maybe not a good idea to be so reliant on a third party.
-* [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook) - is another popular tool for interactive graphs. Most plotting packages for Python are built on top of matplotlib, but Bokeh has its own library. This can give a steeper learning curve if you're used to the standard packages.
-* [mpld3](http://mpld3.github.io) - tries to integrate matplotlib with Javascript and the D3js package. It doesn't scale well for very large datasets, but it's easy to use and works quite seamlessly.
+* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) - is actually an
+  API to a web service that renders your graph and returns it for display in
+  your Jupyter notebook. Generates very visually appealing graphs, but from
+  a reproducibility perspective it's maybe not a good idea to be so reliant on
+  a third party.
+* [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook)
+  - is another popular tool for interactive graphs. Most plotting packages for
+    Python are built on top of matplotlib, but Bokeh has its own library. This
+  can give a steeper learning curve if you're used to the standard packages.
+* [mpld3](http://mpld3.github.io) - tries to integrate matplotlib with
+  Javascript and the D3js package. It doesn't scale well for very large
+  datasets, but it's easy to use and works quite seamlessly.
 
-Everyone likes pretty plots, so let's try one more example before we move on! This is with mpld3 and shows four subplots with shared axes. Hover over the figure and click the magnifying glass in the lower left corner. If you zoom in on a region in one plot, the others will adjust automatically. Note how seamlessly mpld3 integrates with normal matplotlib code.
+Everyone likes pretty plots, so let's try one more example before we move on!
+This is with mpld3 and shows four subplots with shared axes. Hover over the
+figure and click the magnifying glass in the lower left corner. If you zoom in
+on a region in one plot, the others will adjust automatically. Note how
+seamlessly mpld3 integrates with normal matplotlib code.
 
 ```python
 %matplotlib inline
@@ -337,19 +483,20 @@ for axi in ax.flat:
 !!! note "Quick recap"
     In the two previous sections we've learned:
 
-    * How magics can be used to extend the power of Jupyter notebooks, and the difference between line magics and cell magics.
+    * How magics can be used to extend the power of Jupyter notebooks, and the
+      difference between line magics and cell magics.
     * How to switch between different languages by using magics.
     * How to use widgets and the mpld3 library for interactive plotting.
 
 ## Exploring results from the MRSA workflow in a Jupyter notebook
 As you might remember from the [intro](tutorial_intro.md), we are attempting 
 to understand how lytic bacteriophages can be used as a future therapy 
-for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). 
-We have already seen how to define the project environment in the [Conda
- tutorial](conda.md) and how to set up the workflow in the [Snakemake tutorial
- ](snakemake.md). Here we explore the results from a the snakemake workflow in a
- Jupyter notebook as an example of how you can document your day-to-day work
-  as a dry lab scientist.
+for the multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus
+aureus_). We have already seen how to define the project environment in the 
+[Conda tutorial](conda.md) and how to set up the workflow in the 
+[Snakemake tutorial](snakemake.md). Here we explore the results from a the 
+snakemake workflow in a Jupyter notebook as an example of how you can document 
+your day-to-day work as a dry lab scientist.
 
 We will create a report similar to the one in the [R Markdown tutorial
 ](rmarkdown.md) and generate and visualize read coverage across samples for the
@@ -358,8 +505,8 @@ We will create a report similar to the one in the [R Markdown tutorial
 ### Install a new conda environment
 
 For the purposes of this part of the tutorial we will install a new
- conda environment and run a slightly slimmed down version of the MRSA snakemake
- workflow to generate some output to work with.
+conda environment and run a slightly slimmed down version of the MRSA snakemake
+workflow to generate some output to work with.
 
 In the `jupyter/` directory you'll find a `Snakefile` containing the workflow
 as well as a conda `environment.yml` file which contains all packages
@@ -376,7 +523,7 @@ conda env create -f environment.yml -n jupyter-snakemake
 conda activate jupyter-snakemake
  ````
 
-### Open a new notebook
+### Open the MRSA notebook
 In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
 .ipynb`. With the newly created conda environment active, open this notebook
  directly by running:
@@ -397,9 +544,9 @@ to those later. Now, run the cells and add a new empty cell to the notebook.
 Typically the snakemake workflow would be executed from a terminal but let's 
 try to actually run the workflow directly from within the Jupyter notebook. 
 
-In the current directory you'll find the necessary `Snakefile` and `config.yml` 
-to run the workflow. In an empty cell in your notebook, add code to 
-run the workflow. Then run the cell.     
+In the current directory you'll find the necessary `Snakefile` and `config.yml`
+to run the workflow. In an empty cell in your notebook, add code to run the
+workflow. Then run the cell.     
 
 ??? note "Click to see how to run the workflow from a cell"
     ```
@@ -409,9 +556,10 @@ run the workflow. Then run the cell.
 Once the workflow is finished we can start to explore the results. 
 
 ### Plot QC status
-First let's take a look at the FastQC summary for the samples. Add the following
-code to a cell then run the cell. This will extract and concatenate summary 
-files for all samples using FastQC output in the `intermediate/` directory. 
+First let's take a look at the FastQC summary for the samples. Add the
+following code to a cell then run the cell. This will extract and concatenate
+summary files for all samples using FastQC output in the `intermediate/`
+directory. 
 
 ```bash
 %%bash
@@ -426,7 +574,8 @@ Read the summary results into a data frame using the pandas package:
 
 ```python
 # Read the concatenated summary.txt
-qc = pd.read_csv("summary.txt", sep="\t", header=None, names=["Status","Statistic","Sample"], index_col=0)
+qc = pd.read_csv("summary.txt", sep="\t", header=None,
+    names=["Status","Statistic","Sample"], index_col=0)
 # Rename strings in the Sample column
 qc["Sample"] = [x.rstrip(".fastq.gz") for x in qc["Sample"]]
 # Map the status strings to numeric values for plotting
@@ -443,11 +592,13 @@ package.
 
 ```
 # Plot the heatmap
-ax = sns.heatmap(qc["Status"], cmap=["Red","Yellow","Green"], linewidth=.5, cbar=None)
+ax = sns.heatmap(qc["Status"], cmap=["Red","Yellow","Green"], linewidth=.5,
+    cbar=None)
 ax.set_ylim(11,0); # Only necessary in cases where matplotlib cuts the y-axis
 ``` 
 
-To save the plot to a file add the following to the cell: `plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")`
+To save the plot to a file add the following to the cell:
+`plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")`
 
 ### Genome coverage
 In the workflow reads were aligned to the _S. aureus_ reference genome 
@@ -507,7 +658,8 @@ colors = sns.color_palette("Dark2", n_colors=3)
 handles = []
 # Iterate samples and plot coverage
 for i, sample in enumerate(coverage_window.columns):
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample], linewidth=.75, color=colors[i])
+    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample],
+        linewidth=.75, color=colors[i])
     # Update legend handles
     handles.append(mpatches.Patch(color=colors[i], label=sample))
 # Set y and x labels
@@ -525,10 +677,12 @@ in a separate subplot using the `ax=` keyword argument in `sns.lineplot`:
 
 ```python
 # Define the subplots
-fig, axes = plt.subplots(ncols=1, nrows=3, sharey=True, sharex=True, figsize=(6,6))
+fig, axes = plt.subplots(ncols=1, nrows=3, sharey=True, sharex=True,
+    figsize=(6,6))
 # Iterate samples and plot in separate subplot
 for i, sample in enumerate(coverage_window.columns):
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample], ax=axes[i], linewidth=.75)
+    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample],
+        ax=axes[i], linewidth=.75)
     ax.set_title(sample)
     ax.set_ylabel("Reads aligned");
 # Adjust space between subplots
@@ -548,17 +702,22 @@ used in the previous two cells. Then take a look at the answer below.
 
 ??? note "Click to see how to plot correlations in subplots"
     ```
-    fig, axes = plt.subplots(ncols=3, nrows=1, figsize=(12,3), sharex=False, sharey=False)
-    ax1 = sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935091"], ax=axes[0])
-    ax2 = sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935092"], ax=axes[1])
-    ax3 = sns.scatterplot(x=coverage_window["SRR935092"],y=coverage_window["SRR935091"], ax=axes[2])
+    fig, axes = plt.subplots(ncols=3, nrows=1, figsize=(12,3), sharex=False,
+        sharey=False)
+    ax1 = sns.scatterplot(x=coverage_window["SRR935090"]
+        y=coverage_window["SRR935091"], ax=axes[0])
+    ax2 = sns.scatterplot(x=coverage_window["SRR935090"],
+        y=coverage_window["SRR935092"], ax=axes[1])
+    ax3 = sns.scatterplot(x=coverage_window["SRR935092"],
+        y=coverage_window["SRR935091"], ax=axes[2])
     plt.subplots_adjust(wspace=.4)
     ```
 
 !!! tip
-    Seaborn actually has a function that essentially let's us generate the plot above
-    with one function call. Take a look at the `pairplot` function by running `?sns.pairplot` 
-    in a new cell. Can you figure out how to use it with our data?
+    Seaborn actually has a function that essentially let's us generate the plot
+    above with one function call. Take a look at the `pairplot` function by
+    running `?sns.pairplot` in a new cell. Can you figure out how to use it
+    with our data?
 
 ## Sharing your work
 The files you're working with come from a GitHub repo. Both GitHub and
@@ -608,12 +767,11 @@ Here we will try out a service called Binder, which lets you run and
 share Jupyter Notebooks in Git repositories for free. There are a number
 of [example repositories](https://github.com/binder-examples/) that are
 setup to be used with Binder. Navigate to
-[https://github.com/binder-examples/conda/](https://github.com/binder-examples/conda/)
-to see one such example. As you can see the repository contains a
-LICENSE file, a README, an environment file and a notebook. To use a
-repository with Binder the environment file should contain all the
-packages needed to run notebooks in the repo. So let's try to run the
-`index.ipynb` file using Binder:
+[https://github.com/binder-examples/conda/][] to see one such example. As you
+can see the repository contains a LICENSE file, a README, an environment file
+and a notebook. To use a repository with Binder the environment file should
+contain all the packages needed to run notebooks in the repo. So let's try to
+run the `index.ipynb` file using Binder:
 
 Just go to https://mybinder.org and paste the link to the GitHub repo.
 Note the link that you can use to share your notebook. Then press
