@@ -20,9 +20,6 @@ rule get_SRA_by_accession:
         """
         fastq-dump {wildcards.sra_id} -X 25000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserves a lot of space
-        cache-mgr --clear >/dev/null 2>&1
         """
 
 rule fastqc:

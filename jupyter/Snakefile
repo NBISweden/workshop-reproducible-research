@@ -10,8 +10,7 @@ rule all:
     input:
         "results/tables/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.png",
-        "results/supplementary.pdf"
+        "results/rulegraph.png"
 
 rule get_SRA_by_accession:
     """
@@ -28,9 +27,6 @@ rule get_SRA_by_accession:
         """
         fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
-
-        # This clears a cache where SRA Tools reserves a lot of space
-        cache-mgr --clear >/dev/null 2>&1
         """
 
 rule fastqc:
@@ -180,32 +176,6 @@ rule generate_count_table:
         # with the sample names
         htseq-count --format bam --type gene --additional-attr description --idattr gene_id {input.bams} tempfile > tempfile2
         echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
-        """
-
-rule make_supplementary:
-    """
-    Generate Supplementary Material PDF
-    """
-    input:
-        counts = "results/tables/counts.tsv",
-        multiqc_file = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    output:
-        "results/supplementary.pdf"
-    params:
-        SRR_IDs = config["sample_ids"],
-        GSM_IDs = config["sample_ids_geo"]
-    shell:
-        """
-        echo 'rmarkdown::render("code/supplementary_material.Rmd", \
-                  output_file="supplementary.pdf", \
-                  params=list(counts_file="{input.counts}", \
-                              multiqc_file="{input.multiqc_file}", \
-                              rulegraph_file="{input.rulegraph}", \
-                              SRR_IDs="{params.SRR_IDs}", \
-                              GSM_IDs="{params.GSM_IDs}"))' \
-        | R --vanilla
-        mv code/supplementary.pdf results/
         """
 
 rule generate_rulegraph:

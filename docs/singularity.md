@@ -18,7 +18,7 @@ the container.
 
 # Setup
 
-This tutorial depends on files from the course Bitbucket repo. Take a look at
+This tutorial depends on files from the course GitHub repo. Take a look at
 the [intro](tutorial_intro.md) for instructions on how to set it up if you
 haven't done so already. Then open up a terminal and go to
 `reproducible_research_course/singularity`.
@@ -27,10 +27,13 @@ haven't done so already. Then open up a terminal and go to
 
 ### macOS
 
-Download the Singularity Desktop DMG file from
-[here](https://sylabs.io/singularity-desktop-macos/) and follow the
-instructions. Note that this is a beta version and not all features are
+Download the Singularity Desktop DMG file from 
+[here](https://sylabs.io/singularity-desktop-macos/) and follow the 
+instructions. Note that this is a beta version and not all features are 
 available yet.
+
+!!! attention
+    Make sure you that 'Singularity networking' is checked during installation
 
 ### Linux
 
@@ -260,17 +263,16 @@ FastQC.
 
 ```
 Bootstrap: library
-From: ubuntu:18.04
+From: ubuntu:16.04
 
 %labels
     DESCRIPTION Image for running the run_qc.sh script
-    AUTHOR Leif Wigge
+    AUTHOR <Your Name>
 ```
 
-Here we'll use the Singularity Library as bootstrap agent, instead of Dockerhub
-as in the lol_cow example above. The base Singularity image will be
-`ubuntu:18.04`. We can also add metadata to our image using any name-value
-pair.
+Here we'll use the Singularity Library as bootstrap agent, instead of DockerHub 
+as in the lol_cow example above. The base Singularity image will be 
+`ubuntu:16.04`. We can also add metadata to our image using any name-value pair.
 
 * Next, add the `%environment` section:
 
@@ -292,23 +294,22 @@ will soon install).
     apt-get clean
 
     # Install conda:
-    curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
-    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/
-    rm Miniconda3-4.6.14-Linux-x86_64.sh
+    curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+    bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
+    rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 
     # Configure conda:
-    conda config --add channels defaults
     conda config --add channels bioconda
     conda config --add channels conda-forge
 
     # Install requirements:
-    conda install -c bioconda fastqc=0.11.6 sra-tools=2.8
+    conda install -c bioconda fastqc=0.11.9 sra-tools=2.10.0
     conda clean --all
 ```
 
-You should recognize parts of this from the Docker tutorial. Basically, we
-install some required basic tools like bzip2, ca-certificates and curl, then
-install and configure conda and finally install the required tools for the
+You should recognize parts of this from the Docker tutorial. Basically, we 
+install some required basic tools like bzip2, ca-certificates and curl, then 
+install and configure conda and finally install the required tools for the 
 `run_qc.sh` script.
 
 * Next, add a `%test` section:
@@ -330,16 +331,17 @@ that the `fastqc` and `fastq-dump` are available.
     bash code/run_qc.sh
 ```
 
-We should now be ready to build our image from this def file using `singularity
-build`. Now, depending on the system you are running on and the version of
-Singularity, you may not have the option to build locally. However, Singularity
-has the option to build images remotely. To do this, you need to:
+We should now be ready to build our image from this def file using 
+`singularity build`. Now, depending on the system you are running on and the 
+version of Singularity, you may not have the option to build locally. However, 
+Singularity has the option to build images remotely. To do this, you need to:
 
-* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and
+* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and 
   create an account
-* Log in and find "Access Tokens" in the menu and create a new token (you'll
-  have to give it a name, as well)
-* Copy the token and paste it in the file `~/.singularity/sylabs-token`
+* Log in and find "Access Tokens" in the menu and create a new token
+* Copy the token
+* In your terminal, run `singularity remote login`, paste the copied token
+  and hit ENTER. You should get a **API Key Verified!** message.
 
 We can now try to build the MRSA Singularity image using the `--remote` flag:
 
@@ -359,9 +361,9 @@ else correct it should be related to the PATH).
 
     ```bash
     # Install conda:
-    curl https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O
-    bash Miniconda3-4.6.14-Linux-x86_64.sh -bf -p /usr/miniconda3/
-    rm Miniconda3-4.6.14-Linux-x86_64.sh
+    curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+    bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
+    rm Miniconda3-4.7.12.1-Linux-x86_64.sh
     export PATH=/usr/miniconda3/bin:$PATH ## <- add this line
     ```
 
@@ -407,34 +409,41 @@ of the MRSA project, that we use as a case study in this course, to
 a Singularity image:
 
 ```bash
-singularity build --remote mrsa_proj.sif docker://scilifelablts/reproducible_research_course
+singularity build --remote mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
 ```
 
-This should result in a file called `mrsa_proj.sif`. In the Docker image we
-included the code needed for the workflow in the `/course` directory of the
-image. These files are of course also available in the Singularity image.
-However, a Singularity image is read-only (unless using the sandbox feature),
-and this will be a problem if we try to run the workflow within the `/course`
-directory, since the workflow will produce files and Snakemake will create
-a `.snakemake` directory. Instead, we need to provide the files externally from
-our host system and simply use the Singularity image as the environment to
-execute the workflow in (i.e. all the software). In your current working
-directory (`singularity/`) the vital MRSA project files are already available
-(`Snakefile`, `config.yml`, `code/header.tex` and
-`code/supplementary_material.Rmd`). And since Singularity bind mounts the
-current working directory we can simply execute the workflow and generate the
-output files using:
+This should result in a file called `mrsa_proj.sif`. 
+
+In the Docker image we included the code needed for the workflow in the
+`/course` directory of the image. These files are of course also available
+in the Singularity image. However, a Singularity image is read-only (unless
+using the sandbox feature), and this will be a problem if we try to run the
+workflow within the `/course` directory, since the workflow will produce
+files and Snakemake will create a `.snakemake` directory. 
+
+Instead, we need to provide the files externally from our host system and
+simply use the Singularity image as the environment to execute the workflow
+in (i.e. all the software). 
+
+In your current working directory (`singularity/`) the vital MRSA project
+files are already available (`Snakefile`, `config.yml`, `code/header.tex` and 
+`code/supplementary_material.Rmd`). 
+
+Since Singularity bind mounts the current working directory we can simply
+execute the workflow and generate the output files using:
 
 ```bash
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is `snakemake -rp --configfile
-config.yml` (as defined in the original `Dockerfile`). Note here that we have
-also increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), needed to fully
-run through the workflow. The previous step in this tutorial included running
-the `run_qc.sh` script, so that part of the workflow has already been run and
-Snakemake will continue from that automatically without redoing anything. Once
-completed you should see a bunch of directories and files generated in your
-current working directory, including the `results/` directory containing the
+This executes the default run command, which is `snakemake -rp --configfile 
+config.yml` (as defined in the original `Dockerfile`). 
+
+Note here that we have also increased the allocated RAM to 2048 MiB (`--vm
+-ram 2048`), needed to fully run through the workflow. The previous step in
+this tutorial included running the `run_qc.sh` script, so that part of the
+workflow has already been run and Snakemake will continue from that 
+automatically without redoing anything. Once completed you should see a bunch
+of directories and files generated in your current working directory, including 
+the `results/` directory containing the 
 final PDF report.
