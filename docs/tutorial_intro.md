@@ -185,7 +185,7 @@ a subset of tutorials that suits your interests. Under the main figure there is
 a list of a few suggested alternative tutorial orders. You find the tutorials
 in the menu to the left!
 
-![](images/tutorials_overview.pdf)
+![](images/tutorials_overview.png)
 
 Note that running through the tutorials will involve installing several tools,
 which in turn will create quite a lot of files on your computer. In order to
