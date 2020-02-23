@@ -362,7 +362,7 @@ though, as the entire path will be added to the prompt. This can take up a lot
 of unnecessary space, but can be solved in a number of ways.
 
 The most straightforward way to solve this is to change the conda configuration
-file, specifically the settings of the env_prompt configuration value which
+file, specifically the settings of the `env_prompt` configuration value which
 determines how conda modifies your command line prompt. For more information
 about this setting you can run `conda config --describe env_prompt` and to see
 your current setting you can run `conda config --show env_prompt`.
