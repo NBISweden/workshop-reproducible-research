@@ -1082,7 +1082,7 @@ bash profile: `~/.bash_profile`. Every time you load a new CLI session this
 file is read and any code inside it is executed. You might already have this
 file, so make sure you don't overwrite it! 
 
-### Git aliases
+### Bash aliases for git
 
 Some git commands are commands you are using over and over again when working
 continuously with git, such as `git status`. Some like to have aliases (_i.e._

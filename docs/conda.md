@@ -392,7 +392,7 @@ the environment by pointing conda to it (*e.g.* conda activate
 `~/myprojects/project_a/envs/project_a_environment`) will only cause your promp
 to be modified with project_a_environment.
 
-### Conda aliases
+### Bash aliases for conda
 
 In a similar way that some programmers like to have aliases for common git
 commands, some also like to have aliases for Conda commands. Here are two
