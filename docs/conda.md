@@ -394,9 +394,8 @@ to be modified with project_a_environment.
 
 ### Bash aliases for conda
 
-In a similar way that some programmers like to have aliases for common git
-commands, some also like to have aliases for Conda commands. Here are two
-that might prove useful for you.
+Some programmers like to have aliases (_i.e._ shortcuts) for common commands. 
+Here are two aliases for conda that might prove useful for you.
 
 ```bash
 # Activate an environment
