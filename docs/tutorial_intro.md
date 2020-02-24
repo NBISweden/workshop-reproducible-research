@@ -9,12 +9,13 @@ research project reproducible using the tools:
 * R Markdown
 * Jupyter
 * Docker
+* Singularity
 
 ## The case study
 We will be running a small bioinformatics project as a case study, and use that
 to exemplify the different steps of setting up a reproducible research project.
-To give you some context, the study background and analysis steps are very
-briefly described below.
+To give you some context, the study background and analysis steps are briefly
+described below.
 
 ### Background
 
@@ -66,16 +67,17 @@ this project.
   from the QC, gene counting and the graph figure.
 
 # Setup
+
 ## For Mac / Linux users
 
-Clone the git/bitbucket repository containing all files you will need for
-completing the tutorials. First, `cd` into a directory on your computer (or
-create one) where it makes sense to download the course directory.
+Clone the GitHub repository containing all files you will need for completing
+the tutorials. First, `cd` into a directory on your computer (or create one)
+where it makes sense to download the course directory.
 
 ```bash
 cd /path/to/your/directory
-git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
-cd reproducible_research_course
+git clone https://github.com/NBISweden/workshop-reproducible-research.git
+cd workshop-reproducible-research
 ```
 
 !!! attention
@@ -84,9 +86,9 @@ cd reproducible_research_course
 
 !!! tip
     If you want to revisit the material from an older instance of this course,
-    you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+    you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout
     tags/course_1905`. To list all available tags, use `git tag`. Run this
-    command after you have `cd` into `reproducible_research_course` as
+    command after you have `cd` into `workshop-reproducible-research` as
     described above. If you do that, you probably also want to view the same
     older version of this website. Locate the version box in the bottom right
     corner of the browser and select the corresponding version.
@@ -125,9 +127,10 @@ sense to download the course directory.
 
 ```bash
 cd /path/to/your/directory
-git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
-cd reproducible_research_course
+git clone https://github.com/NBISweden/workshop-reproducible-research.git
+cd workshop-reproducible-research
 ```
+
 !!! tip
     If you want to revisit the material from an older instance of this course,
     you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
@@ -162,13 +165,12 @@ that you should edit files in the mounted `c:/my_dir` using an editor in your
 normal OS, say Notepad in Windows. The terminal in the container is for running
 stuff, not editing.
 
-You should now be at a terminal in the Docker container. Now clone the
-git/bitbucket repository containing all the files you will need for the
-tutorials.
+You should now be at a terminal in the Docker container. Now clone the GitHub
+repository containing all the files you will need for the tutorials.
 
 ```bash
-git clone https://bitbucket.org/scilifelab-lts/reproducible_research_course.git
-cd reproducible_research_course
+git clone https://github.com/NBISweden/workshop-reproducible-research.git
+cd workshop-reproducible-research
 ```
 
 Don't worry if you feel that this Docker stuff is a little confusing, it will
