@@ -379,14 +379,15 @@ When you create a new conda environment you can choose to install a specific
 version of python in that environment as well. As an example, create an
 environment containing python version `3.5` by running:
 
-````bash
+```bash
 conda create -n py35 python=3.5
-````
+```
 
 Here we name the environment `py35` but you can choose whatever name you want.
 
 To activate the environment run:
- ```bash
+
+```bash
 conda activate py35
 ```
 
@@ -404,9 +405,10 @@ conda create -n py27 python=2.7
 Activate this environment with:
 ```bash
 conda activate py27
-```
-Now, switching between python versions is as easy as typing `conda activate
- py35` / `conda activate py27`.
+````
+
+Now, switching between python versions is as easy as typing `conda activate 
+py35` / `conda activate py27`.
 
 !!! note 
     If you create an environment where none of the packages require python, 
