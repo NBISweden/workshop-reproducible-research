@@ -341,3 +341,68 @@ Projects can often be quite large and require lots of dependencies; it can feel 
 
     * How to define our Conda environment using a yaml-file.
     * How to use `conda env create` to make a new environment from a yaml-file.
+
+## Tips and tricks
+
+The following extra material contains some more advanced things you can do with
+conda and the command line in general, which is not part of the main course
+materials. All the essential skills of conda are covered by the previous
+section: the material here should be considered tips and tricks from people who
+use Conda as part of their daily work. You thus don't need to use these things
+unless you want to, and you can even skip this part of the lesson if you like!
+
+### Decorating your prompt
+
+By default, Conda adds the name of the currently activated environment to the
+end of your command line prompt. This is a good thing, as it makes it easier to
+keep track of what environment and packages you have access to. The way this is
+done in the default implementation becomes an issue when using absolute paths
+for environments (specifying `conda env create -p <path/to/environment>`,
+though, as the entire path will be added to the prompt. This can take up a lot
+of unnecessary space, but can be solved in a number of ways.
+
+The most straightforward way to solve this is to change the conda configuration
+file, specifically the settings of the `env_prompt` configuration value which
+determines how conda modifies your command line prompt. For more information
+about this setting you can run `conda config --describe env_prompt` and to see
+your current setting you can run `conda config --show env_prompt`.
+
+By default env_prompt is set to '({default_env})' which modifies your prompt
+with the active environment name if it was installed using the -n flag or if
+the environment folder has a parent folder named envs/. Otherwise the full
+environment path (*i.e.* the 'prefix') is displayed.
+
+If you instead set env_prompt to '({name}) ' conda will modify your prompt with
+the folder name of the active environment. You can change the setting by
+running the following:
+
+```bash
+conda config --set env_prompt '({name}) '
+```
+
+If you wish to keep the ({default_env})' behaviour, or just don't want to
+change your conda config, an alternative is to keep conda environment folders
+within a parent folder called `envs/`. This will make conda only add the folder
+name of the conda environment to your prompt when you activate it.
+
+As an example, say you have a project called project_a with the project path
+`~/myprojects/project_a`. You could then install the environment for project_a
+into a folder `~/myprojects/project_a/envs/project_a_environment`. Activating
+the environment by pointing conda to it (*e.g.* conda activate
+`~/myprojects/project_a/envs/project_a_environment`) will only cause your promp
+to be modified with project_a_environment.
+
+### Bash aliases for conda
+
+Some programmers like to have aliases (_i.e._ shortcuts) for common commands. 
+Here are two aliases for conda that might prove useful for you.
+
+```bash
+# Activate an environment
+alias coac='conda activate'
+
+# Deactivate an environment
+alias code='conda deactive'
+```
+
+Don't forget to add them to your `~/.bash_profile` if you want to use them!
