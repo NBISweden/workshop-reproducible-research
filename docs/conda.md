@@ -342,6 +342,80 @@ Projects can often be quite large and require lots of dependencies; it can feel 
     * How to define our Conda environment using a yaml-file.
     * How to use `conda env create` to make a new environment from a yaml-file.
 
+## Extra material
+
+### Managing python versions
+
+With conda it's possible to keep several different versions of python on your
+computer at the same time, and switching between these versions is very easy. 
+However, a single conda environment can only contain one version of python.
+
+#### Your current python installation
+The conda base environment has its own version of python installed.
+When you open a terminal (after having installed conda on your system) this base
+environment is activated by default (as evidenced by `(base)` prepended to your
+prompt). You can check what python version is installed in this environment by 
+running `python --verison`. To see the exact path to the python executable type
+`which python`.
+
+In addition to this your computer may already have python installed in a 
+separate (system-wide) location outside of the conda installation. To see if 
+that is the case type `conda deactivate` until your prompt is not prepended
+with a conda environment name. Then type `which python`. If a path was printed 
+to the terminal (*e.g.* `/usr/bin/python`) that means some python version is
+already installed in that location. Check what version it is by typing `python 
+--version`.
+
+Now activate the base conda environment again by typing `conda activate` (or
+the equivalent `conda activate base`) then check the python installation path
+and version using `which` and `python --version` as above. See the difference? 
+When you activate a conda environment your `$PATH` variable is updated so that 
+when you call `python` (or any other program) the system first searches the
+directory of the currently active environment.
+
+#### Different python versions
+
+When you create a new conda environment you can choose to install a specific 
+version of python in that environment as well. As an example, create an
+environment containing python version `3.5` by running:
+
+````bash
+conda create -n py35 python=3.5
+````
+
+Here we name the environment `py35` but you can choose whatever name you want.
+
+To activate the environment run:
+ ```bash
+conda activate py35
+```
+
+You now have a completely separate environment with its own python version. 
+
+Let's say you instead want an environment with pythonversion `2.7` of installed.
+You may for instance want to run scripts or packages that were written for
+Python 2.x and are thus incompatible with Python 3.x. Simply create the new
+conda environment with:
+
+```bash
+conda create -n py27 python=2.7
+```
+
+Activate this environment with:
+```bash
+conda activate py27
+```
+Now, switching between python versions is as easy as typing `conda activate
+ py35` / `conda activate py27`.
+
+!!! note 
+    If you create an environment where none of the packages require python, 
+    **and** you don't explicitly install the `python` package then that new
+    environment will use the python version installed in your base conda
+    environment.
+
+### Configuring conda
+
 ## Tips and tricks
 
 The following extra material contains some more advanced things you can do with
