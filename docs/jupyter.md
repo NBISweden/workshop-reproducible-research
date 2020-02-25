@@ -584,7 +584,7 @@ In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
 .ipynb`. With the newly created conda environment active, open this notebook
  directly by running:
  
- ```bash
+```bash
 jupyter notebook mrsa_notebook.ipynb
 ```
 
