@@ -329,6 +329,7 @@ RUN apt-get update && \
                                                language-pack-en \
                                                tzdata \
                                                vim \
+                                               unzip \
                                                wget
     && apt-get clean
 
@@ -360,6 +361,7 @@ RUN apt-get install -y --no-install-recommends bzip2 \
                                            language-pack-en \
                                            tzdata \
                                            vim \
+                                           unzip \
                                            wget
 ```
 
