@@ -355,7 +355,7 @@ The conda base environment has its own version of python installed.
 When you open a terminal (after having installed conda on your system) this base
 environment is activated by default (as evidenced by `(base)` prepended to your
 prompt). You can check what python version is installed in this environment by 
-running `python --verison`. To see the exact path to the python executable type
+running `python --version`. To see the exact path to the python executable type
 `which python`.
 
 In addition to this your computer may already have python installed in a 
@@ -405,12 +405,12 @@ conda create -n py27 python=2.7
 Activate this environment with:
 ```bash
 conda activate py27
-````
+```
 
 Now, switching between python versions is as easy as typing `conda activate 
 py35` / `conda activate py27`.
 
-!!! note 
+!!! note "Default python version"
     If you create an environment where none of the packages require python, 
     **and** you don't explicitly install the `python` package then that new
     environment will use the python version installed in your base conda
@@ -455,7 +455,7 @@ To see details about a config parameter you can run `conda config --describe
 conda config --describe channels
 ```
 
-In the beginning of this tutorial we used added conda channels to the `.condarc`
+In the beginning of this tutorial we added conda channels to the `.condarc`
 file using `conda config --add channels`. To remove one of the channels from 
 the configuration file you can run:
 
