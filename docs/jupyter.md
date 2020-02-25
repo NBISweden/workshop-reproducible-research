@@ -576,8 +576,7 @@ conda activate jupyter-snakemake
 !!! attention
     If you are doing these exercises through a Docker container you should
     instead update the current conda base environment by running:    
-    
-    conda env update -f environment.yml -n base
+    `conda env update -f environment.yml -n base`
 
 ### Open the MRSA notebook
 In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
@@ -817,10 +816,9 @@ should come from rules that are run towards the end of the workflow.
     ```
 
 To get snakemake to run the new rule as part of the rest of the workflow 
-(*i.e.* as part of the `snakemake` command) add `results/report.html` to the 
-input of the `all` rule. Now that the notebook is integrated into the
-workflow you can remove the cell where we executed snakemake (*e.g.* using 
-`!snakemake`).
+(*i.e.* when only running `snakemake`) add `results/report.html` to the input
+of the `all` rule. Now that the notebook is integrated into the workflow you
+can remove the cell where we executed snakemake (*e.g.* using `!snakemake`).
 
 Finally, try to re-run the updated workflow either by deleting the `data/`, 
 `intermediate/` and `results/` directories and executing `snakemake` again, or
