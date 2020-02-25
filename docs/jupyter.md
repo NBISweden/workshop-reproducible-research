@@ -777,7 +777,54 @@ used in the previous two cells. Then take a look at the answer below.
     running `?sns.pairplot` in a new cell. Can you figure out how to use it
     with our data?
 
-### Integrating the notebook 
+### Integrating the notebook into the workflow
+
+So now we have a Jupyter notebook that uses output from a snakemake workflow
+and produces some summary results and plots. Wouldn't it be nice if this was
+actually part of the workflow itself? We've already seen how we can [execute
+notebooks from the commandline](#executing-notebooks) using `nbconvert`. If 
+you've done the [Snakemake](snakemake.md) tutorial you should have an 
+understanding of how to add/modify rules in the `Snakefile` that's available
+in the current `jupyter/` folder. 
+
+Make sure you save the `mrsa_notebook.ipynb` notebook. Then open the `Snakefile`
+in a text editor and try to add a rule called`generate_report` that uses 
+the `mrsa_notebook.ipynb` you've been working on and produces a report file
+called `report.html` in the `results/` directory. **Hint**: because the notebook
+uses output from the current Snakemake workflow the input to `generate_report` 
+should come from rules that are run towards the end of the workflow. 
+
+
+??? note "Click to see an example on how to implement `generate_report`"
+    ```
+    rule generate_report:
+    """
+    Generate a report from a Jupyter notebook with nbconvert
+    """
+    input:
+        "results/tables/counts.tsv",
+        "results/multiqc.html"
+    output:
+        "results/report.html"
+    shell:
+        """
+        jupyter \
+            nbconvert \
+            --to html \
+            --execute mrsa_notebook.ipynb \
+            --output {output}
+        """
+    ```
+
+To get snakemake to run the new rule as part of the rest of the workflow 
+(*i.e.* as part of the `snakemake` command) add `results/report.html` to the 
+input of the `all` rule. Now that the notebook is integrated into the
+workflow you can remove the cell where we executed snakemake (*e.g.* using 
+`!snakemake`).
+
+Finally, try to re-run the updated workflow either by deleting the `data/`, 
+`intermediate/` and `results/` directories and executing `snakemake` again, or
+by running `snakemake --forceall`.
 
 ## Sharing your work
 The files you're working with come from a GitHub repo. Both GitHub and
