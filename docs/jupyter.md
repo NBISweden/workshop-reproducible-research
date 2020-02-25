@@ -850,11 +850,6 @@ this out with our notebook.
 https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/master/jupyter/mrsa_notebook.ipynb
 ```
 
-If you find all this repo stuff a little unsettling and would rather
-just get an old fashioned PDF to attach in an email like normal people,
-this is also possible. "File > Download as" lets you export your
-notebook to many formats, including HTML and PDF.
-
 ### Shared interactive notebooks
 So far we've only shared static representations of notebooks. A strong
 trend at the moment is to run your notebooks in the cloud, so that the
