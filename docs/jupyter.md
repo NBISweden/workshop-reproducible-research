@@ -567,11 +567,11 @@ Install *a new* conda environment using the `environment.yml` file and then
 activate it. You can choose the name of the environment yourself. 
 Here's an example using the name `jupyter-snakemake`:
  
- ````bash
+```bash
 conda env create -f environment.yml -n jupyter-snakemake
 # Activate the environment 
 conda activate jupyter-snakemake
- ````
+```
 
 !!! attention
     If you are doing these exercises through a Docker container you should
