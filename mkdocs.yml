@@ -11,8 +11,8 @@ pages:
     - Feedback: 'feedback.html'
   - Tutorials:
     - 'Introduction to the tutorials': 'tutorial_intro.md'
-    - Conda: 'conda.md'
     - Git: 'git.md'
+    - Conda: 'conda.md'
     - Snakemake: 'snakemake.md'
     - Jupyter: 'jupyter.md'
     - R Markdown: 'rmarkdown.md'
