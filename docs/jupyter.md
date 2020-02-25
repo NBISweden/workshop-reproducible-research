@@ -529,7 +529,7 @@ results in a new file. Try running it on the `Untitled.ipynb` notebook.
 As you can see the notebook was executed but also converted to HTML at the same
 time. To change the output format when executing a notebook simply add `--to 
 FORMAT` to the command. You can also specify a different output file with 
-`--output <filenam>`.
+`--output <filename>`.
 
 So in order to execute your `Untitled.ipynb` notebook and save it to a file 
 named `report.html` you could run:
