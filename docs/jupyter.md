@@ -519,7 +519,7 @@ far to HTML using `jupyter nbconvert`.
 `nbconvert` can also be used to run a Jupyter notebook from the commandline. By
 running:
  
- ```bash
+```bash
 jupyter nbconvert --execute notebook.ipynb 
 ```
 
