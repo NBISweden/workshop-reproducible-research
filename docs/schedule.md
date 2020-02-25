@@ -137,7 +137,7 @@ The course will take place in the rooms Air/Fire  (see [travel info](travel.md))
     <td>
       <font size="3"> Containerization
       <font size="2"><i><br>
-      - Introduction to containers 
+      - Introduction to containers <br>
       - Practical tutorial: <a href="../docker/">Docker</a><br>
       - Practical tutorial: <a href="../singularity">Singularity</a></i><br><br>
       <font size="3">Fika break ~10:15 <br>
@@ -150,21 +150,19 @@ The course will take place in the rooms Air/Fire  (see [travel info](travel.md))
   <tr>
     <td> <font size="3"> 12:45 </td>
     <td>
-      <font size="3"> Wrap-up - putting the pieces together
+      <font size="3"> Putting the pieces together
       <font size="2"><i><br>
-      - Overview - Using the tools in concert <br>
-      - Practical tutorial: <a href="../repres_project">Making a project reproducible</a></i>
+      - Overview: Using the tools in concert <br>
+      - Practical tutorial: <a href="../repres_project">Making a project reproducible</a></i><br><br>
+      <font size="3">Fika break ~14:30 <br>
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 14:30  </td>
-    <td> <font size="3"> Fika </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 15:00  </td>
+    <td> <font size="3"> 16:00  </td>
     <td>
-      <font size="3"> Open discussion - Reproducible research in practice<br>
-      <font size="2"><i>Tips and tricks on how to implement these procedures on a day-to-day basis<br>
+      <font size="3"> Wrap-up!
+      <font size="2"><i><br>
+      - Q&A: How to implement these procedures on a day-to-day basis
     </td>
   </tr>
   <tr>
