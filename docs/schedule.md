@@ -37,7 +37,7 @@ The course will take place in the rooms Air/Fire  (see [travel info](travel.md))
            - Practical tutorial: <a href="../git/">Git</a></i> <br>
   </tr>
   <tr>
-    <td> <font size="3"> 14:30
+    <td> <font size="3"> ~14:30
     <td> <font size="3"> Fika
   </tr>
   <tr>
