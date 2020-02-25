@@ -793,6 +793,8 @@ called `report.html` in the `results/` directory. **Hint**: because the notebook
 uses output from the current Snakemake workflow the input to `generate_report` 
 should come from rules that are run towards the end of the workflow. 
 
+Try to add the rule on your own first. If you get stuck, take a look at the 
+example below.
 
 ??? note "Click to see an example on how to implement `generate_report`"
     ```
