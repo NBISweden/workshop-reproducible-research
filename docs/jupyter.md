@@ -43,7 +43,7 @@ for!
 This tutorial depends on files from the course GitHub repo. Take
 a look at the [intro](tutorial_intro.md) for instructions on how to set it up
 if you haven't done so already. Then open up a terminal and go to
-`reproducible_research_course/jupyter`.
+`workshop-reproducible-research/jupyter`.
 
 ## Install Jupyter Notebook 
 If you have done the [Conda tutorial](conda.md) you should know how to define

@@ -259,7 +259,7 @@ channels needed to create the environment for a project.
   as the analysis workflow is expanded.
 * So let's get going! Make a yaml file called `environment.yml` looking like
   this, and save it in the current directory (should be
-  `reproducible_research_course/conda`):
+  `workshop-reproducible-research/conda`):
 
 ```yaml
 channels:

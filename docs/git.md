@@ -126,7 +126,7 @@ course if you haven't done so already).
 
 !!! attention
     **Important:** the directory should *not* be within the
-    `reproducible_research_course` directory, since this is itself
+    `workshop-reproducible-research` directory, since this is itself
     a git-tracked directory.
 
 * Once you are in your directory of choice, run the following command 
@@ -169,7 +169,7 @@ nothing to commit (create/copy files and use "git add" to track)
 * Remember that git told you "*nothing to commit (create/copy files and use
   "git add" to track*"? Lets do that!  
 * Copy the following files and directories from the
-  `reproducible_research_course/git` directory, into your `git_tutorial`
+  `workshop-reproducible-research/git` directory, into your `git_tutorial`
   directory:
     * `Dockerfile`
     * `Snakefile`

@@ -3,9 +3,9 @@ Depending on which of the tutorials you have taken, there might be quite a lot
 of files stored on your computer. Here are instructions for how to remove them.
 
 ## All tutorials
-All the tutorials depend on you cloning the `reproducible_research_course`
+All the tutorials depend on you cloning the `workshop-reproducible-research`
 GitHub repo. This can be removed like any other directory; via Finder,
-Explorer or `rm -rf reproducible_research_course`. Note that this will also
+Explorer or `rm -rf workshop-reproducible-research`. Note that this will also
 delete the hidden directories `.git`, which contains the history of the repo,
 and `.snakemake`, which contains the history of any Snakemake runs.
 
@@ -56,7 +56,7 @@ a hidden `.snakemake` directory in the directory where it's run. You can remove
 this with
 
 ```bash
-rm -rf reproducible_research_course/snakemake/.snakemake
+rm -rf workshop-reproducible-research/snakemake/.snakemake
 ```
 
 ## Jupyter
