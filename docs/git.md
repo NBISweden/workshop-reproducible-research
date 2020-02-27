@@ -669,7 +669,7 @@ the latter is how to store and share that history with others.
 
 * Log in to your GitHub account and press the *New* button on the left:
     * Make sure you are listed as the owner
-    * Add a repository name, *e.g.* *git_tutorial*
+    * Add a repository name, *e.g.* `git_tutorial`
     * You can keep the repo private or make it public, as you wish
     * Skip including a README, a `.gitignore` and licence
 
@@ -724,17 +724,18 @@ with others, that's not their only use: remotes also help when you are working
 from different computers, a computer cluster or a cloud service.
 
 * Let's pretend that you want to work on this repository from a different
-  computer. First, `cd` to a different directory (making sure it's not already
-  a git repository). Now we can download the repository we just uploaded using
-  the following:
+  computer. First, create a different directory (*e.g.* `git_remote_tutorial`)
+  in a separate location that is not already tracked by git and `cd` into it.
+  Now we can download the repository we just uploaded using the following:
 
 ```bash
-git clone https://user@github.com/user/git_remote_tutorial.git
+git clone https://user@github.com/user/git_tutorial.git .
 ```
 
-* A new directory, `git_remote_tutorial` (or a different name if you choose so),
-  has now been created; `cd` into that directory. You will see that all your
-  files are there, identical to the original `git_tutorial` repository!
+Notice the dot at the end of the command above, which will put the clone into
+the current directory, instead of creating a new directory with the same name as
+the remote repository. You will see that all your files are here, identical to
+the original `git_tutorial` repository!
 
 * Since you already gave the address to git when you cloned the repository, you
   don't have to add it manually as before. Verify this with `git remote -v`.
@@ -757,18 +758,18 @@ do with GitHub.
 
 ![](images/github_config_yml.png)
 
-* Click History. You will see an overview of the commits involving changes made
-  to this file:
+* Click on *History*. You will see an overview of the commits involving changes
+  made to this file:
 
 ![](images/github_config_yml_history.png)
 
 * Click on the `Change to ST398 for alignment` commit. You will see the changes
-  made to config.yml file compared to the previous commit.
+  made to `config.yml` file compared to the previous commit.
 
 ![](images/github_config_yml_diff.png)
 
 * Click *Browse files*, on the right to get back to an overview of files in
-  the repo. Then click on the commit count tracker.
+  the repository. Then click on the commit count tracker.
 
 ![](images/github_commit_tracker.png)
 
@@ -781,7 +782,8 @@ you see the changes introduced by that commit.
 
 You will now see the files as they were when we first added them. Specifically
 you can see that the `Dockerfile` is back, even though we deleted it! Click on
-the Code tab to the left to return to the overview of the latest repo version.
+the *Code* tab to the left to return to the overview of the latest repository
+version.
 
 !!! note "Quick recap"
     We learned some of the most important features of the GitHub interface and
@@ -794,7 +796,8 @@ push them separately; you might have noticed that GitHub only listed our
 repository as having one branch (you can see this by going to the *Code* tab).
 This is because we only pushed our `master` branch to the remote. Let's create
 a new local branch and add some changes that we'll push as a separate branch to
-our remote!
+our remote - you should do this in the original `git_tutorial` repository, so
+move back into that directory.
 
 * Create a new branch named `trimming` and add the `--trim5 5` flag to the
   bowtie2-command part of the `Snakefile`, which should now look like this:
@@ -853,7 +856,7 @@ git push --tags
 
 * Go to the repository overview page on GitHub. You will see that the repository
   now has one release! This is because GitHub releases are based on Git tags.
-  Click where it says *1 release*. This will give you an overview of the
+  Click where it says *3 releases*. This will give you an overview of the
   existing releases for your repository. If you click *Tags* you will see more
   or less the same information. Confusing? Well, a *tag* is a git concept while
   a *Release* is a GitHub concept that is based on git tags. Releases add some
