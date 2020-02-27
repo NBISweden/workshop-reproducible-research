@@ -263,11 +263,13 @@ This will add both our files to the staging area at the same time. Run `git
 status` and see that the changes in both `config.yml` and `environment.yml` are
 ready to be committed.
 
-But wait a minute! Shouldn't each commit optimally be a specified set of
-changes? Yes! So we want to make two commits, one for each change.
+But wait a minute! Shouldn't each commit optimally be a conceptually unit of
+change? Here we have one change to the genome ID used for an analysis and one
+change a where another software version is specified: these should probably be
+separate. We thus want to make two commits, one for each change.
 
 * Let's remove `environment.yml` from the staging area. `git status` tells us
-  how to do this: "*(use "git reset HEAD <file>..." to unstage)*". So run:
+  how to do this: *"(use "git reset HEAD <file>..." to unstage)"*. So run:
 
 ```bash
 git reset HEAD environment.yml
@@ -296,12 +298,6 @@ git status
 You don't have to run `git status` between each command, but it can be useful
 in the beginning while learning what each command does.
 
-* To see a history of our changes so far, run:
-
-```bash
-git log
-```
-
 As you can see, each commit is a point in history. The more often you commit,
 and the more specific you keep your commits, the better (more fine-grained)
 history and version tracking you will have of your files.
@@ -328,15 +324,19 @@ Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to
 stage the deletion. You can also use `git rm Dockerfile` to do both these
 operations in one step.
 
+* To see a history of our changes so far, run:
+
+```bash
+git log
+```
+
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
 
-    * `git add` - adds a file so that changes in that file can be committed.
-    * `git rm` - the opposite of `git add`, *i.e.* sets a file to be deleted in
-      the next commit.
-    * `git commit` - commits the changes we have staged (by using `git add` or
-      `git rm`).
-    * `git log` - shows us the commit history.
+    * `git add` - adds a file to the staging area
+    * `git commit` - commits the changes we have staged
+    * `git rm` - shorthand for `rm <file>; git add <file>`
+    * `git log` - shows us the commit history
 
 ## Ignoring files
 
@@ -1087,7 +1087,7 @@ here's an example of what one might look like:
 erikfmbp:~/teaching/workshop-reproducible-research erik.fasterius $
 ```
 
-The above prompt contains, the name of the computer, a colon, the current
+The above prompt contains the name of the computer, a colon, the current
 working directory, the username and a dollar-sign; it is stored in the
 variable `PS1`. You can type `echo $PS1` to see what variables your prompt
 is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
