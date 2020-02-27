@@ -394,6 +394,28 @@ touch data/huge.fastq.gz
 touch data/metadata.txt
 ```
 
+* Git allows you to ignore all files using the aforementioned wildcard, but
+  then *exclude* certain files from that ignore command. Open the `.gitignore`
+  file again and add the following:
+
+```bash
+# Ignore all files in the data/ directory
+data/*
+
+# Exclude the metadata file be prefixing it with an exclamation mark
+!data/metadata.txt
+```
+
+* Finish up by adding the `.gitignore` and `data/metadata.txt` files to the
+  staging area and committing them:
+
+```bash
+git add .gitignore
+git commit -m "Add .gitignore file"
+git add data/metadata.txt
+git commit -m "Add metadata file"
+```
+
 !!! tip "Tip"
     It is common for certain programming languages or text editors to leave
     *e.g.* swap files or hidden data files in the working directory, which you
@@ -404,18 +426,6 @@ touch data/metadata.txt
     on your machine. Some common file extensions that might be put in the
     global gitignore are `.DS_Store` if you're working in R or `.swp` if you're
     coding in vim.
-
-* Git allows you to ignore all files using the aforementioned wildcard, but
-  then *exclude* certain files from that ignore command. Open the .gitignore
-  file again and add the following:
-
-```bash
-# Ignore all files in the data/ directory
-data/*
-
-# Exclude the metadata file be prefixing it with an exclamation mark
-!data/metadata.txt
-```
 
 !!! note "Quick recap"
     We now learned how to ignore certain files and directories:
