@@ -1,4 +1,4 @@
-# Introduction to Git
+# Introduction
 
 Git is a widely used system (both in academia and industry) for version
 controlling files and collaborating on code. It is used to track changes in
@@ -46,35 +46,19 @@ There are many benefits of using git in your research project:
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
-The best way to get an idea about git is simply to start using it. The tutorial
-below will guide you through the essential steps, with a focus on what is needed
-for making a project reproducible. There are many additional features of both
-git and the web-based repository hosting services (like Github and Bitbucket)
-that are not included here. If you are interested in learning more, the web is
-filled with information (see some examples below)!
-
-## Tell me more
-
-* For a more complete introduction to git, check *e.g.*
-  [Wikipedia](https://en.wikipedia.org/wiki/Git)
-* [A simple git guide](http://rogerdudler.github.io/git-guide/)
-* ["Got 15 minutes and want to learn
-  Git?"](https://try.github.io/levels/1/challenges/1)
-* [Git reference manual](https://book.git-scm.com/docs)
-
-# Setup
+## Setup
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [intro](tutorial_intro.md) for instructions on how to set it up if you haven't
 done so already.
 
-## Install git
+### Install git
 
 Chances are that you already have git installed on your computer. You can check
 by running *e.g.* `git --version`. If you don't have git, install it following
-the instructions
-[here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+the instructions [here](
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-## Configure git
+### Configure git
 
 If it is the first time you use git on your computer, you may want to configure
 it so that it is aware of your username. This username should match the
@@ -89,28 +73,35 @@ git config --global user.name "Mona Lisa"
     If you have several accounts (*e.g.* both a Github and Bitbucket account),
     and thereby several different usernames, you can configure git on
     a per-repository level. Change directory into the relevant local git
-    repository and run:
+    repository and run `git config user.name "Mona Lisa"`. This will set the
+    default username for that repository only.
 
-    ```
-    git config user.name "Mona Lisa"
-    ```
-
-    This will set the default username for that repository only.
-
-
-## Create an account at GitHub
+### Create an account at GitHub
 
 If you have not done so already, go to [github.com](https://github.com/join)
 and create an account.
 
-!!! note You can also create an account on another online hosting
-service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
-[GitLab](https://about.gitlab.com/). The exercises below are written
-with examples from GitHub, but the same thing can be done on alternative
-services, although the exact menu structure and link placements differ a
-bit.
+!!! note
+    You can also create an account on another online hosting service for version
+    control, *e.g.* [Bitbucket](https://bitbucket.org) or
+    [GitLab](https://about.gitlab.com/). The exercises below are written with
+    examples from GitHub (as that is the most popular platform with the most
+    extensive features), but the same thing can be done on alternative services,
+    although the exact menu structure and link placements differ a bit.
 
-# Exercises
+# Tutorials
+
+These tutorials will walk you through the basics of using git as a tool for
+reproducible research. The things covered in these tutorials are what you will
+be using most of the time in your day-to-day work with git, but git has many
+more advanced features that might be of use to you. If you are interested in
+learning more about these things, here are some reading tips for you:
+
+* [A simple git guide](http://rogerdudler.github.io/git-guide/)
+
+* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
+
+* [Git reference manual](https://book.git-scm.com/docs)
 
 ## Creating a git repository
 
@@ -159,6 +150,7 @@ there are currently no files being tracked; let's add some!
     * `config.yml`
     * `environment.yml`
     * `code/`
+
 * Once you have done that, run `git status` again. It will tell you that there
   are files in the directory that are not version tracked by git.
 
@@ -171,19 +163,20 @@ there are currently no files being tracked; let's add some!
     and `config.yml` are both used to define the Snakemake workflow, that you
     should recognize from the [Snakemake tutorial](snakemake.md). The
     `Dockerfile` contains the recipe for making a Docker container for the
-    analysis, this will be convered in detail in the [Docker
-    tutorial](docker.md). The `code/` directory contains an R Markdown report
-    that is used in the final step of the analysis (more on this in the [R
-    Markdown tutorial](rmarkdown.md)).
+    analysis, this will be convered in detail in the [Docker tutorial](
+    docker.md). The `code/` directory contains an R Markdown report that is used
+    in the final step of the analysis (more on this in the [R Markdown
+    tutorial](rmarkdown.md)).
 
 !!! note "Quick recap"
     We have used two `git` commands this far:
+
     * `git init` - this command tells git to track the current directory
     * `git status` - this is a command you should use *a lot*. It will tell
       you, amongst other things, the status of your git clone in relation to
       the online remote repository.
 
-## Committing
+## Committing changes
 
 We will now commit the untracked files. A commit is essentially a set of
 changes to a set of files. Preferably, the changes making out a commit should
@@ -562,7 +555,7 @@ git branch -d test_alignment
       or tag name
     * `git merge` - to merge one branch into another
 
-## Tagging
+## Tagging commits
 
 Git allows us to *tag* commits and these tags are typically used to mark
 *release* points. When it comes to reproducible research this is of particular
@@ -661,10 +654,7 @@ the latter is how to store and share that history with others.
 
 ### Create a remote repository
 
-* Let's start with creating an account at [GitHub](https://github.com), if you
-  don't already have one.
-
-* Press the **New** button on the left:
+* Log in to your GitHub account and press the *New* button on the left:
     * Make sure you are listed as the owner
     * Add a repository name, *e.g.* *git_tutorial*
     * You can keep the repo private or make it public, as you wish
