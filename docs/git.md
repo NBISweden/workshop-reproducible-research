@@ -455,7 +455,7 @@ learn more about this in the section about working remotely.
 git branch
 ```
 
-This tells us that there is only the master branch at the moment.
+This tells us that there is only the `master` branch at the moment.
 
 * Let's make a new branch:
 
@@ -499,44 +499,46 @@ It is often useful to see what the differences exists between branches.
 You can use the `diff` command for this:
 
 ```bash
-git diff master --color-words
+git diff master
 ```
 
-This shows the difference between the active branch (test_alignment) and
-master. Here we add the argument `--color-words` which should display the
-difference on a word- rather than line-basis. Do you see that git reports
-`--very-sensitive-local` to be the difference between the `test_alignment` and
-`master` branches?
+This shows the difference between the active branch (test_alignment) and master
+on a line-per-line basis. Do you see which lines have changed between
+`test_alignment` and `master` branches?
 
-Now, assume that we have tested our code and the alignment analysis is run
-successfully with our new parameters. We want to merge our work into the master
-branch. It is good to start with checking the differences between branches (as
-we just did) so that we know what we will merge.
+!!! tip
+    We can also add the `--color-words` flag to `git diff`, which instead
+    displays the difference on a word-per-word basis rather than line-per-line.
 
-* Next, checkout the branch you want to merge into, *i.e.* master:
+Now, let's assume that we have tested our code and the alignment analysis is run
+successfully with our new parameters. We thus want to merge our work into the
+`master` branch. It is good to start with checking the differences between
+branches (as we just did) so that we know what we will merge.
+
+* Checkout the branch you want to merge into, *i.e.* `master`:
 
 ```bash
 git checkout master
 ```
 
-* To merge, run:
+* To merge, run the following code:
 
 ```bash
 git merge test_alignment
 ```
 
-Run `git log --graph --all --oneline` again to see how the merge commit
-brings back the changes made in test_alignment to master.
+Run `git log --graph --all --oneline` again to see how the merge commit brings
+back the changes made in test_alignment to master.
 
 !!! tip
     If working on different features or parts of an analysis on different
-    branches, and at the same time maintaining a working master branch for the
+    branches, and at the same time maintaining a working `master` branch for the
     stable code, it is convenient to periodically merge the changes made to
-    master into relevant branches (*i.e.* the opposite to what we did above).
-    That way, you keep your experimental branches up-to-date with master and
-    make them more easy to merge into master when time comes.
+    `master` into relevant branches (*i.e.* the opposite to what we did above).
+    That way, you keep your experimental branches up-to-date with the newest
+    changes and make them more easily merged into `master` when time comes.
 
-* If we do not want to do more work in test_alignment we can delete that
+* If we do not want to do more work in `test_alignment` we can delete that
   branch:
 
 ```bash
@@ -561,10 +563,10 @@ git branch -d test_alignment
 !!! note "Quick recap"
     We have now learned how to divide our work into branches and manage those:
 
-    * `git branch branch_name` - create a new branch
-    * `git checkout` - update files to match the versions in the given branch
-      or tag name
-    * `git merge` - to merge one branch into another
+    * `git branch <branch>` - create a new branch.
+    * `git checkout` - move the repository to the state in which the specified
+      branch is currently in.
+    * `git merge <branch>` - merge the specified branch into the current one.
 
 ## Tagging commits
 
@@ -943,7 +945,7 @@ git fetch
 * Now, since we ran `git fetch` our local git has up-to-date information about
   the status of the remote repository. We can therefore run the following to see
   what the difference is between the current state of our local clone and the
-  master branch on the remote origin:
+  `master` branch on the remote origin:
 
 ```bash
 git diff origin/master
