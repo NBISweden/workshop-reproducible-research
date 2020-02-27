@@ -171,7 +171,7 @@ there are currently no files being tracked; let's add some!
 !!! note "Quick recap"
     We have used two `git` commands this far:
 
-    * `git init` - this command tells git to track the current directory
+    * `git init` - this command tells git to track the current directory.
     * `git status` - this is a command you should use *a lot*. It will tell
       you, amongst other things, the status of your git clone in relation to
       the online remote repository.
@@ -333,10 +333,10 @@ git log
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
 
-    * `git add` - adds a file to the staging area
-    * `git commit` - commits the changes we have staged
-    * `git rm` - shorthand for `rm <file>; git add <file>`
-    * `git log` - shows us the commit history
+    * `git add` - adds a file to the staging area.
+    * `git commit` - commits the changes we have staged.
+    * `git rm` - shorthand for `rm <file>; git add <file>`.
+    * `git log` - shows us the commit history.
 
 ## Ignoring files
 
@@ -429,10 +429,11 @@ git commit -m "Add metadata file"
 
 !!! note "Quick recap"
     We now learned how to ignore certain files and directories:
+
     * The `.gitignore` file controls which files and directories git should
-      ignore
-    * Specific files can be excluded from ignored directories using the `!`
-      prefix
+      ignore, if any.
+    * Specific files can be excluded from ignored directories using the
+      exclamation mark (`!`) prefix.
 
 ## Branching and merging
 
@@ -473,7 +474,7 @@ git checkout test_alignment
 
 !!! tip
     You can create and checkout a new branch in one line with `git checkout -b
-    branch_name`
+    branch_name`.
 
 Let's add some changes to our new branch! We'll use this to try out a different
 set of parameters on the sequence alignment step of the case study project.
