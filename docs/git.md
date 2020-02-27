@@ -673,7 +673,7 @@ the latter is how to store and share that history with others.
     * You can keep the repo private or make it public, as you wish
     * Skip including a README, a `.gitignore` and licence
 
-![](images/new_repo_github.png)
+![](images/github_new_repo.png)
 
 You will now be redirected to the repository page which will list several ways
 for you to start adding content (files) to the repository. What we will do is to
@@ -862,13 +862,13 @@ git push --tags
   a *Release* is a GitHub concept that is based on git tags. Releases add some
   extra features that can be useful for distributing software.
 
-![](images/github_release_icon.png)
+![](images/github_tags_number.png)
 
 * Go to GitHub and then either the Releases or Tags tab. Here users can download
   a compressed file containing the repository at the versions specified by the
   tags.
 
-![](images/github_downloads.png)
+![](images/github_tags_list.png)
 
 Alternatively, git users who want to reproduce your analysis with the code used
 for the publication can clone the GitHub repository and then run `git checkout
