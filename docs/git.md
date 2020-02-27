@@ -570,15 +570,14 @@ git branch -d test_alignment
 
 ## Tagging commits
 
-Git allows us to *tag* commits and these tags are typically used to mark
-*release* points. When it comes to reproducible research this is of particular
-importance. We can tag commits that represent important points in the history
-of our project. This can be, for example, the version of the repository that
-was used for the manuscript submission, the version used during resubmission,
-and, most importantly, the version used for the final publication. The first
-two examples are mainly useful internally, but the latter is essential for
-other researchers to be able to rerun your published analysis. Let's try this
-out!
+Git allows us to *tag* commits, *i.e.* give names to specific points in the
+history of our project. This can be particularly important for reproducible
+research, but also for development projects that want to highlight specific
+versions of a software. A tag can be, for example, the version of the repository
+that was used for the manuscript submission, the version used during
+resubmission, and, most importantly, the version used for the final publication.
+The first two examples are mainly useful internally, but the latter is essential
+for other researchers to be able to rerun your published analysis.
 
 * Let's assume that the status of the repository as it is now is ready for
   a submission to a journal. It may for example contain the scripts that were
@@ -637,7 +636,7 @@ git checkout master
 
 !!! tip
     You can also see the difference between tags in the same way as for
-    branches and commits using *e.g.* `git diff tag1 tag2`.
+    branches and commits using *e.g.* `git diff <tag1> <tag2>`.
 
 * Finally, you could run `git log --oneline --decorate` to get a
   condensed commit history, where you should also be able to see the
@@ -645,8 +644,9 @@ git checkout master
 
 !!! note "Quick recap"
     We have now learned how to tag important commits:
+
     * `git tag` - add a tag to a commit
-    * `git checkout` to move between tags in a similar fashion as between
+    * `git checkout` - move between tags in a similar fashion as between
       branches
 
 ## Working remotely
