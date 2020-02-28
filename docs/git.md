@@ -117,7 +117,7 @@ git init
     The directory should *not* be within the `reproducible_research_course`
     directory, since this is itself a git-tracked directory.
 
-The directory is not a version-tracked directory. How can you know? Run the
+The directory is now a version-tracked directory. How can you know? Run the
 command `git status`, which will probably return something like this:
 
 ```no-highlight
@@ -157,16 +157,22 @@ there are currently no files being tracked; let's add some!
 !!! note
     For the purpose of this tutorial, the exact contents of the files you just
     copied are not important. But you will probably recognize many of them, as
-    they are all files used in the [MRSA case study](tutorial_intro.md). The
-    `environment.yml` file contains the Conda environment with all the software
-    used in the analysis (see the [Conda tutorial](conda.md)). The `Snakefile`
-    and `config.yml` are both used to define the Snakemake workflow, that you
-    should recognize from the [Snakemake tutorial](snakemake.md). The
-    `Dockerfile` contains the recipe for making a Docker container for the
-    analysis, this will be convered in detail in the [Docker tutorial](
-    docker.md). The `code/` directory contains an R Markdown report that is used
-    in the final step of the analysis (more on this in the [R Markdown
-    tutorial](rmarkdown.md)).
+    they are all files used in the MRSA case study described in the
+    [introduction to the tutorials](tutorial_intro.md). The details of what
+    these files do are described in their respective sessions later in the
+    course, but we provide a brief overview here:
+
+    * The `environment.yml` file contains the Conda environment with all the
+      software used in the analysis (see the [Conda tutorial](conda.md)).
+    * The `Snakefile` and `config.yml` are both used to define the Snakemake
+      workflow, that we'll go through in the
+      [Snakemake tutorial](snakemake.md).
+    * The `Dockerfile` contains the recipe for making a Docker container for
+      the analysis, which will be covered in detail in the
+      [Docker tutorial](docker.md).
+    * The `code/` directory contains an R Markdown report that is used in the
+      final step of the analysis (more on this in the [R Markdown
+      tutorial](rmarkdown.md)).
 
 !!! note "Quick recap"
     We have used two `git` commands this far:
