@@ -886,7 +886,7 @@ only working locally, so it's important to know how to deal with them! We'll
 now introduce a conflict on purpose, which we can then solve.
 
 * Remember that we have two separate local copies of the same repository? Let's
-  go into the first one, `git_tutorial`, and change the `multiqc` version in the
+  go into the first one, `git_tutorial`, and change the MultiQC version in the
   `environment.yml` file:
 
 ```yaml
@@ -896,38 +896,38 @@ multiqc=1.8
 * Add, commit and push your change to the remote.
 
 Now we have a change in our remote and *one* of our local copies, but not in the
-other. This could happen for instance if a collaborator of yours committed
-a change and pushed it to GitHub. Let's create a conflict!
+other. This could happen if a collaborator of yours committed a change and
+pushed it to GitHub. Let's create a conflict!
 
 * Move into your other local repository, `git_remote_tutorial`, which doesn't
   have the new change. Run `git status`. Notice that git says: "*Your branch is
-  up-to-date with 'origin/master'.*". This is of course not true, but this local
-  clone is not yet aware of the remote changes.
+  up-to-date with 'origin/master'.*". We know that this is not true, but this
+  local clone is not yet aware of the remote changes.
 
-* Edit the `environment.yml` file in this local repository as well, but to
-  version `1.6`, instead! (It may be the case that your collaborator thought it
+* Let's change the `environment.yml` file in this local repository as well, but
+  to version 1.6, instead! (It may be the case that your collaborator thought it
   was good to use MultiQC version 1.8, whereas you thought it would be better to
   use MultiQC version 1.6, but neither of you communicated that to the other.)
-  Use a text editor and change the MultiQC line to:
 
-```yaml
-multiqc=1.6
+* Add and commit your change and try to push the commit, which should give you
+  an error message that looks like this:
+
+```no-highlight
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/user/git_tutorial.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-* Add and commit your change and try to push the commit:
+This error message is thankfully quite informative in regards to what is going
+on and what might be done about it. In essence it will not allow you to push
+to the remote since there are conflicting changes made to it.
 
-```bash
-git add environment.yml
-git commit -m "Downgraded multiqc to v1.6"
-git push origin master
-```
-
-* Read the error message, which is be fairly informative in regards to what is
-  going on. In essence it will not allow you to push since there are conflicting
-  changes made to the remote repository.
-
-* We will now download the changes made to the remote, but without trying to
-  merge them directly:
+* Let's download the changes made to the remote, but without trying to merge
+  them directly. This can be done using the following command:
 
 ```bash
 git fetch
@@ -937,18 +937,17 @@ git fetch
     The `fetch` command is very similar to `pull` in that it downloads remote
     changes that are not present locally, but differs in that it doesn't try to
     merge them locally; `pull` both downloads and merges (unless there's
-    a conflict, in which case it will tell you so and fail). You can thus skip
-    `fetch` and just do `pull` straight away, if you prefer.
+    a conflict, in which case it will tell you so and raise an error like the
+    one above). You can thus skip `fetch` and just do `pull` straight away, if
+    you prefer.
 
 * Now run `git status`. Unlike before, our local git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
   lines: "*Your branch and 'origin/master' have diverged, and have 1 and
   1 different commit each, respectively.*".
 
-* Now, since we ran `git fetch` our local git has up-to-date information about
-  the status of the remote repository. We can therefore run the following to see
-  what the difference is between the current state of our local clone and the
-  `master` branch on the remote origin:
+* We can now run the following to see what the difference is between the current
+  state of our local clone and the `master` branch on the remote origin:
 
 ```bash
 git diff origin/master
@@ -958,18 +957,19 @@ git diff origin/master
   up to sync with the remote:
 
 ```bash
-git pull
+git pull origin master
 ```
 
-* As you have probably noticed, the `git pull` command resulted in a conflict.
-  Git tells us about this and suggests that we should fix the conflicts and
-  commit that. As always, run `git status` to get an overview: you will see that
-  you have so-called unmerged paths and that the conflicting file is
-  `environment.yml`, since both modified the same line in this file. To fix
-  a conflict, open the affected file in a text editor. You will see that it now
-  looks something like this:
+Unsurprisingly, the `git pull` command resulted in a conflict. Git tells us
+about this and suggests that we should fix the conflicts and commit that.
 
-```yaml
+* As always, run `git status` to get an overview: you will see that you have
+  so-called unmerged paths and that the conflicting file is `environment.yml`,
+  since both modified the same line in this file. To fix a conflict, open the
+  affected file in a text editor. You will see that it now looks something like
+  this:
+
+```no-highlight
 channels:
   - conda-forge
   - bioconda
@@ -984,8 +984,8 @@ dependencies:
   - multiqc=1.6
 =======
   - multiqc=1.8
->>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf
-  - bowtie2=2.3.5.1
+>>>>>>> eb1bda9f9d089289e5bd82e15d36e34a88a04879
+  - bowtie2=2.2.4
   - samtools=1.10
   - htseq=0.11.2
   - bedtools=2.29.2
@@ -1004,19 +1004,19 @@ dependencies:
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
-part between `=======` and `>>>>>>> d9b35ef61d2fde56fcbd64aacb10a96098c67cbf` is
+part between `=======` and `>>>>>>> eb1bda9f9d089289e5bd82e15d36e34a88a04879` is
 the one added to the remote and which caused the conflict when you tried to pull
 those changes to your local repository. The long sequence of characters is the
 commit ID (the first 7 are displayed on GitHub under *Commits*), which will be
-different for your repository.
+different for your repository. It is now up to you to decide which version to
+keep, or to change it to a third alternative.
 
-* It is now up to you to decide which version to keep, or to change it to
-  a third alternative. Let's say that you are confident that it is better to run
-  multiqc `1.6` rather than `1.8`. Edit the file so that it looks like you want
-  it to, *i.e.* remove the lines added by git and delete the line with
-  `multiqc=1.8`. The final file should look like this:
+* Let's say that you are confident that it is better to run MultiQC 1.6 rather
+  than 1.8. Edit the file so that it looks like you want it to, *i.e.* remove
+  the lines added by git and delete the line with `multiqc=1.8`. The final file
+  should look like this:
 
-```yaml
+```no-highlight
 channels:
   - conda-forge
   - bioconda
@@ -1028,7 +1028,7 @@ dependencies:
   - sra-tools=2.10.1
   - snakemake-minimal=5.10.0
   - multiqc=1.6
-  - bowtie2=2.3.5.1
+  - bowtie2=2.2.4
   - samtools=1.10
   - htseq=0.11.2
   - bedtools=2.29.2
@@ -1046,15 +1046,15 @@ dependencies:
   - xorg-libxpm
 ```
 
-* Run `git status` again. Notice that it says *use "git add <file>..." to mark
-  resolution*? Let's do that!
+* Run `git status` again. Notice that it says `use "git add <file>..." to mark
+  resolution`? Let's do that!
 
 ```bash
 git add environment.yml
 ```
 
-* Run `git status` again! It will now tell us: *"All conflicts fixed but you are
-  still merging. (use "git commit" to conclude merge)"*. So, you probably
+* Run `git status` again! It will now tell us: `All conflicts fixed but you are
+  still merging. (use "git commit" to conclude merge)`. So, you probably
   guessed it, run:
 
 ```bash
@@ -1075,12 +1075,13 @@ git push
 !!! note
     While the example we've used here is from a collaborative setting, conflicts
     also arise when you are working alone. They usually arise when you have
-    several feature branches that you want to merge into `master`, and you've
+    several feature branches that you want to merge into `master` and you've
     forgot to keep all branches up-to-date with each other.
 
 !!! note "Quick recap"
     We learned about how conflicting commits can happend and how to deal with
-    them when they do.
+    them by inspecting the affected files and looking for the source of the
+    conflict.
 
 ## Tips and tricks
 
