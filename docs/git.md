@@ -171,10 +171,10 @@ there are currently no files being tracked; let's add some!
 !!! note "Quick recap"
     We have used two `git` commands this far:
 
-    * `git init` - this command tells git to track the current directory.
-    * `git status` - this is a command you should use *a lot*. It will tell
-      you, amongst other things, the status of your git clone in relation to
-      the online remote repository.
+    * `git init` tells git to track the current directory.
+    * `git status` is a command you should use *a lot*. It will tell you,
+      amongst other things, the status of your git clone in relation to the
+      online remote repository.
 
 ## Committing changes
 
@@ -333,10 +333,10 @@ git log
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
 
-    * `git add` - adds a file to the staging area.
-    * `git commit` - commits the changes we have staged.
-    * `git rm` - shorthand for `rm <file>; git add <file>`.
-    * `git log` - shows us the commit history.
+    * `git add` adds a file to the staging area.
+    * `git commit` commits the changes we have staged.
+    * `git rm` is shorthand for `rm <file>; git add <file>`.
+    * `git log` shows us the commit history.
 
 ## Ignoring files
 
@@ -563,10 +563,10 @@ git branch -d test_alignment
 !!! note "Quick recap"
     We have now learned how to divide our work into branches and manage those:
 
-    * `git branch <branch>` - create a new branch.
-    * `git checkout` - move the repository to the state in which the specified
+    * `git branch <branch>` creates a new branch.
+    * `git checkout` moves the repository to the state in which the specified
       branch is currently in.
-    * `git merge <branch>` - merge the specified branch into the current one.
+    * `git merge <branch>` merges the specified branch into the current one.
 
 ## Tagging commits
 
@@ -645,9 +645,9 @@ git checkout master
 !!! note "Quick recap"
     We have now learned how to tag important commits:
 
-    * `git tag` - add a tag to a commit
-    * `git checkout` - move between tags in a similar fashion as between
-      branches
+    * `git tag` adds a tag to a commit.
+    * `git checkout` moves between tags in a similar fashion as between
+      branches.
 
 ## Working remotely
 
