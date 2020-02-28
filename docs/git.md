@@ -1123,10 +1123,10 @@ git_branch() {
 This function does a number of things:
 
 1. Ejects the error message from git if the current directory isn't a part of a
-   git repository into `/dev/null` (_i.e._ into nothing)
-2. Find the current branch by searching for a line that starts with `*` using
-   the command line program `sed`
-3. Put the current branch into parentheses with a space before it
+   git repository into `/dev/null` (_i.e._ into nothing).
+2. Find the current branch by searching for a line that starts with `*` (*i.e.*
+   the current branch) using the command line program `sed`.
+3. Put the current branch into parentheses with a space before it.
 
 We can then build our new prompt by adding this function into it:
 
@@ -1151,11 +1151,11 @@ file, so make sure you don't overwrite it!
 
 ### Bash aliases for git
 
-Some git commands are commands you are using over and over again when working
-continuously with git, such as `git status`. Some like to have aliases (_i.e._
-shortcuts) for these common commands. Here is a small list of such aliases that
-you may find useful or, even better, inspire you to create your own! Add them
-to your `~/.bash_profile` as above, so that they're available across sessions.
+Some git commands are used over and over again when working with git, such as
+`git status`. Some programmers like to have aliases (*i.e.* shortcuts) for these
+common commands. Here is a small list of such aliases that you may find useful
+or, even better, might inspire you to create your own! Add them to your
+`~/.bash_profile` as above, so that they're available across sessions.
 
 ```bash
 # Basic git commands
