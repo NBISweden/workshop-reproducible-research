@@ -105,9 +105,10 @@ learning more about these things, here are some reading tips for you:
 
 ## Creating a git repository
 
-In order to create a new git repository, we first need to navigate to the
-directory that we wish to track. Once we are inside the desired directory, we
-can *initialise* git with the following command:
+In order to create a new git repository, we first need a directory to track. 
+For this tutorial, go ahead and create a directory called `git_tutorial`, then 
+navigate into it. Once we are inside the desired directory, we can
+*initialise* git with the following command:
 
 ```bash
 git init
