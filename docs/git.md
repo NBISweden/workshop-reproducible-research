@@ -37,7 +37,7 @@ There are many benefits of using git in your research project:
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
 
-* At some point your project will be published. Github or Bitbucket (or
+* If at some point your project will be published Github or Bitbucket (or
   similar) are excellent places to publicly distribute your code. Other
   researchers can then use git to access the code needed for reproducing your
   results, in exactly the state it was when used for the publication.
