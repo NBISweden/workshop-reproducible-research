@@ -114,7 +114,7 @@ git init
 ```
 
 !!! attention
-    The directory should *not* be within the `reproducible_research_course`
+    The directory should *not* be within the `workshop-reproducible-research`
     directory, since this is itself a git-tracked directory.
 
 The directory is now a version-tracked directory. How can you know? Run the
