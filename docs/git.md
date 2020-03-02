@@ -716,7 +716,7 @@ branch on the remote (`origin`). Our git repository is now stored on GitHub!
   `multiqc=1.2`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
-  changes. Refresh your webpage again and see that the changes have taken
+  changes. Refresh your web page again and see that the changes have taken
   effect.
 
 !!! tip
@@ -817,8 +817,7 @@ shell("bowtie2 --very-sensitive-local --trim5 5 -x " + indexBase + " \
 * Add and commit the change to your local repository.
 
 * Instead of doing what we previously did, *i.e.* merge the `trimming` branch
-  into the `master` branch, but instead we'll push `trimming` straight to our
-  remote:
+  into the `master` branch, we'll push `trimming` straight to our remote:
 
 ```bash
 git push origin trimming
