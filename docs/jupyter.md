@@ -43,7 +43,7 @@ for!
 This tutorial depends on files from the course GitHub repo. Take
 a look at the [intro](tutorial_intro.md) for instructions on how to set it up
 if you haven't done so already. Then open up a terminal and go to
-`reproducible_research_course/jupyter`.
+`workshop-reproducible-research/jupyter`.
 
 ## Install Jupyter Notebook 
 If you have done the [Conda tutorial](conda.md) you should know how to define
@@ -422,9 +422,10 @@ slider.observe(on_value_change, names='value')
 ```
 
 !!! attention
-    If you have problems getting these plots to display properly, first try
-    with restarting the kernel (under the Kernel menu). Note that this will
-    clear any variables you have loaded.
+    If you have problems getting the interactive widget to display properly, 
+    first try running the cell again. If that doesn't work, try restarting the 
+    kernel (under the Kernel menu). Note that this will clear any variables you 
+    have loaded.
 
 This is how it should look if everything works. You can set the frequency of
 the sine curve by moving the slider. ![](images/jupyter_widget.png)
@@ -488,6 +489,55 @@ for axi in ax.flat:
     * How to switch between different languages by using magics.
     * How to use widgets and the mpld3 library for interactive plotting.
 
+## Managing notebooks from the commandline
+
+### Converting notebooks
+Notebooks can be converted to various output formats such as HTML, PDF, LaTex 
+etc. directly from the **File**->**Download as** menu. 
+
+Conversion can also be performed on the command line using the `jupyter
+ nbconvert` command. `nbconvert` is installed together with the `jupyter
+ ` conda package and is executed on the command line by running `jupyter 
+ nbconvert`. 
+ 
+ The syntax for converting a Jupyter notebook is:
+
+```bash
+jupyter nbconvert --to FORMAT notebook.ipynb
+``` 
+
+Here `FORMAT` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
+`notebook`, `pdf`, `python`, `rst`, `script`, `slides`. Converting to some 
+output formats (*e.g.* PDF) may require you to install separate software such
+as [Pandoc](pandoc.org) or a **TeX** environment.
+
+Try converting the `Untitled.ipynb` notebook that you have been working on so
+far to HTML using `jupyter nbconvert`.
+
+### Executing notebooks
+
+`nbconvert` can also be used to run a Jupyter notebook from the commandline. By
+running:
+ 
+```bash
+jupyter nbconvert --execute notebook.ipynb 
+```
+
+`nbconvert` executes the cells in a notebook, captures the output and saves the
+results in a new file. Try running it on the `Untitled.ipynb` notebook.
+
+As you can see the notebook was executed but also converted to HTML at the same
+time. To change the output format when executing a notebook simply add `--to 
+FORMAT` to the command. You can also specify a different output file with 
+`--output <filename>`.
+
+So in order to execute your `Untitled.ipynb` notebook and save it to a file 
+named `report.html` you could run:
+
+```bash
+jupyter nbconvert --to html --output report.html --execute Untitled.ipynb
+```
+
 ## Exploring results from the MRSA workflow in a Jupyter notebook
 As you might remember from the [intro](tutorial_intro.md), we are attempting 
 to understand how lytic bacteriophages can be used as a future therapy 
@@ -517,18 +567,23 @@ Install *a new* conda environment using the `environment.yml` file and then
 activate it. You can choose the name of the environment yourself. 
 Here's an example using the name `jupyter-snakemake`:
  
- ````bash
+```bash
 conda env create -f environment.yml -n jupyter-snakemake
 # Activate the environment 
 conda activate jupyter-snakemake
- ````
+```
+
+!!! attention
+    If you are doing these exercises through a Docker container you should
+    instead update the current conda base environment by running:    
+    `conda env update -f environment.yml -n base`
 
 ### Open the MRSA notebook
 In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
 .ipynb`. With the newly created conda environment active, open this notebook
  directly by running:
  
- ```bash
+```bash
 jupyter notebook mrsa_notebook.ipynb
 ```
 
@@ -590,7 +645,7 @@ and running the cell.
 Now let's plot the heatmap using the `heatmap` function from the `seaborn` 
 package.
 
-```
+```python
 # Plot the heatmap
 ax = sns.heatmap(qc["Status"], cmap=["Red","Yellow","Green"], linewidth=.5,
     cbar=None)
@@ -598,7 +653,9 @@ ax.set_ylim(11,0); # Only necessary in cases where matplotlib cuts the y-axis
 ``` 
 
 To save the plot to a file add the following to the cell:
-`plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")`
+```python
+plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")
+```
 
 ### Genome coverage
 In the workflow reads were aligned to the _S. aureus_ reference genome 
@@ -704,7 +761,7 @@ used in the previous two cells. Then take a look at the answer below.
     ```
     fig, axes = plt.subplots(ncols=3, nrows=1, figsize=(12,3), sharex=False,
         sharey=False)
-    ax1 = sns.scatterplot(x=coverage_window["SRR935090"]
+    ax1 = sns.scatterplot(x=coverage_window["SRR935090"],
         y=coverage_window["SRR935091"], ax=axes[0])
     ax2 = sns.scatterplot(x=coverage_window["SRR935090"],
         y=coverage_window["SRR935092"], ax=axes[1])
@@ -718,6 +775,56 @@ used in the previous two cells. Then take a look at the answer below.
     above with one function call. Take a look at the `pairplot` function by
     running `?sns.pairplot` in a new cell. Can you figure out how to use it
     with our data?
+
+### Integrating the notebook into the workflow
+
+So now we have a Jupyter notebook that uses output from a snakemake workflow
+and produces some summary results and plots. Wouldn't it be nice if this was
+actually part of the workflow itself? We've already seen how we can [execute
+notebooks from the commandline](#executing-notebooks) using `nbconvert`. If 
+you've done the [Snakemake](snakemake.md) tutorial you should have an 
+understanding of how to add/modify rules in the `Snakefile` that's available
+in the current `jupyter/` folder. 
+
+Make sure you save the `mrsa_notebook.ipynb` notebook. Then open the `Snakefile`
+in a text editor and try to add a rule called`generate_report` that uses 
+the `mrsa_notebook.ipynb` you've been working on and produces a report file
+called `report.html` in the `results/` directory. **Hint**: because the notebook
+uses output from the current Snakemake workflow the input to `generate_report` 
+should come from rules that are run towards the end of the workflow. 
+
+Try to add the rule on your own first. If you get stuck, take a look at the 
+example below.
+
+??? note "Click to see an example on how to implement `generate_report`"
+    ```
+    rule generate_report:
+    """
+    Generate a report from a Jupyter notebook with nbconvert
+    """
+    input:
+        "results/tables/counts.tsv",
+        "results/multiqc.html"
+    output:
+        "results/report.html"
+    shell:
+        """
+        jupyter \
+            nbconvert \
+            --to html \
+            --execute mrsa_notebook.ipynb \
+            --output {output}
+        """
+    ```
+
+To get snakemake to run the new rule as part of the rest of the workflow 
+(*i.e.* when only running `snakemake`) add `results/report.html` to the input
+of the `all` rule. Now that the notebook is integrated into the workflow you
+can remove the cell where we executed snakemake (*e.g.* using `!snakemake`).
+
+Finally, try to re-run the updated workflow either by deleting the `data/`, 
+`intermediate/` and `results/` directories and executing `snakemake` again, or
+by running `snakemake --forceall`.
 
 ## Sharing your work
 The files you're working with come from a GitHub repo. Both GitHub and
@@ -744,11 +851,6 @@ this out with our notebook.
 ```no-highlight
 https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/master/jupyter/mrsa_notebook.ipynb
 ```
-
-If you find all this repo stuff a little unsettling and would rather
-just get an old fashioned PDF to attach in an email like normal people,
-this is also possible. "File > Download as" lets you export your
-notebook to many formats, including HTML and PDF.
 
 ### Shared interactive notebooks
 So far we've only shared static representations of notebooks. A strong

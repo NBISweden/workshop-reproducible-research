@@ -135,7 +135,7 @@ cd workshop-reproducible-research
     If you want to revisit the material from an older instance of this course,
     you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
     tags/course_1905`. To list all available tags, use `git tag`. Run this
-    command after you have `cd` into `reproducible_research_course` as
+    command after you have `cd` into `workshop-reproducible-research` as
     described above. If you do that, you probably also want to view the same
     older version of this website. Locate the version box in the bottom right
     corner of the browser and select the corresponding version.
@@ -150,7 +150,7 @@ instructions in the [Docker tutorial](docker.md#windows). Then run:
 ```bash
 cd c:/my_dir
 docker run -it -p 8888:8888 -v /c/my_dir:/course/ \
-    scilifelablts/reproducible_research_course_slim
+    nbisweden/workshop-reproducible-research:slim
 ```
 
 !!! attention
