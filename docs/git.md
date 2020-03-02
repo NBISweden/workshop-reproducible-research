@@ -850,11 +850,10 @@ git push origin --delete trimming
     <branch>` and how to delete remote branches with `git push origin --delete
     <branch>`.
 
-### Remote tags
+### Sharing tags
 
-Remote tags work, yet again, very similarly to how they work locally, but they
-are not included when you do a normal push. To push tags to GitHub you need to
-supply the `--tags` flag:
+Your local repository tags are not included when you do a normal push. To push tags to the remote you need to
+supply the `--tags` flag to the `git push` command:
 
 ```bash
 git push --tags
