@@ -76,7 +76,7 @@ practical exercise below to learn more!
 This tutorial depends on files from the course Bitbucket repo. Take a look at
 the [intro](tutorial_intro.md) for instructions on how to set it up if you
 haven't done so already. Then open up RStudio and set your working directory to
-`reproducible_research_course/rmarkdown`.
+`workshop-reproducible-research/rmarkdown`.
 
 ## Install RStudio and R
 

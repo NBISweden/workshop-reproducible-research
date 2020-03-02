@@ -21,7 +21,7 @@ the container.
 This tutorial depends on files from the course GitHub repo. Take a look at
 the [intro](tutorial_intro.md) for instructions on how to set it up if you
 haven't done so already. Then open up a terminal and go to
-`reproducible_research_course/singularity`.
+`workshop-reproducible-research/singularity`.
 
 ## Install Singularity
 

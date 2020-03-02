@@ -18,6 +18,7 @@ RUN apt-get update && \
                                                language-pack-en \
                                                tzdata \
                                                vim \
+                                               unzip \
                                                wget \
     && apt-get clean
 

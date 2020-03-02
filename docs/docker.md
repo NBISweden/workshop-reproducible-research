@@ -40,8 +40,8 @@ All of this might sound a bit abstract so far, so let's get going.
 # Set up
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [intro](tutorial_intro.md) for instructions on how to set it up if you haven't
-done so already. Then open up a terminal and go to
-`reproducible_research_course/docker`.
+done so already. Then open up a terminal and go to 
+`workshop-reproducible-research/docker`.
 
 !!! attention
     Docker images tend to take up quite a lot of space. In order to do all the
@@ -329,6 +329,7 @@ RUN apt-get update && \
                                                language-pack-en \
                                                tzdata \
                                                vim \
+                                               unzip \
                                                wget
     && apt-get clean
 
@@ -360,6 +361,7 @@ RUN apt-get install -y --no-install-recommends bzip2 \
                                            language-pack-en \
                                            tzdata \
                                            vim \
+                                           unzip \
                                            wget
 ```
 
