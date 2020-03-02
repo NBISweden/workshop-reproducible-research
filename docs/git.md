@@ -144,7 +144,7 @@ tells us that while we are inside a directory that git is currently tracking,
 there are currently no files being tracked; let's add some!
 
 * Copy the following files and directories from the
-  `reproducible_research_course/git` directory, into your `git_tutorial`
+  `workshop-reproducible-research/git` directory, into your `git_tutorial`
   directory:
     * `Dockerfile`
     * `Snakefile`
@@ -705,7 +705,7 @@ git remote add origin https://user@github.com/user/git_tutorial.git
 git push origin master
 ```
 
-The `push` command send our local history of the `master` branch to the same
+The `push` command sends our local history of the `master` branch to the same
 branch on the remote (`origin`). Our git repository is now stored on GitHub!
 
 * Run `git status`. This should tell you that *"Your branch is up-to-date with
