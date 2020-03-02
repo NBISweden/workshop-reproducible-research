@@ -92,25 +92,10 @@ learning more about these things, here are some reading tips for you:
 
 ## Creating a git repository
 
-![](images/new_repo_github.png)
-
-You will now be redirected to the repository page which will list
-several ways for you to start adding content (files) to the repository.
-What we will do is to first *clone* the repository locally:
-
-* Open a terminal and `cd` to a directory where you want to clone your 
-newly created git repository (perhaps make a new directory for this 
-course if you haven't done so already).
-
-!!! attention
-    **Important:** the directory should *not* be within the
-    `reproducible_research_course` directory, since this is itself
-    a git-tracked directory.
-
-* Once you are in your directory of choice, run the following command 
-(just make sure to change `user` to your GitHub username and
- `git_tutorial` to your repository name, in case you chose something
-  different):
+In order to create a new git repository, we first need a directory to track.
+For this tutorial, go ahead and create a directory called `git_tutorial`, then
+navigate into it. Once we are inside the desired directory, we can *initialise*
+git with the following command:
 
 ```bash
 git init
