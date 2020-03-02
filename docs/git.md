@@ -76,19 +76,6 @@ git config --global user.name "Mona Lisa"
     repository and run `git config user.name "Mona Lisa"`. This will set the
     default username for that repository only.
 
-### Create an account at GitHub
-
-If you have not done so already, go to [github.com](https://github.com/join)
-and create an account.
-
-!!! note
-    You can also create an account on another online hosting service for version
-    control, *e.g.* [Bitbucket](https://bitbucket.org) or
-    [GitLab](https://about.gitlab.com/). The exercises below are written with
-    examples from GitHub (as that is the most popular platform with the most
-    extensive features), but the same thing can be done on alternative services,
-    although the exact menu structure and link placements differ a bit.
-
 # Tutorials
 
 These tutorials will walk you through the basics of using git as a tool for
@@ -672,6 +659,16 @@ version control system) and online hosting of *git repositories* (such as
 GitHub): the former is the core of keeping track of your code's history, while
 the latter is how to store and share that history with others.
 
+### Create an account at GitHub
+
+If you have not done so already, go to [github.com](https://github.com/join)
+and create an account. You can also create an account on another online hosting
+service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
+[GitLab](https://about.gitlab.com/). The exercises below are written with
+examples from GitHub (as that is the most popular platform with the most
+extensive features), but the same thing can be done on alternative services,
+although the exact menu structure and link placements differ a bit.
+
 ### Create a remote repository
 
 * Log in to your GitHub account and press the *New* button on the left:
@@ -852,8 +849,9 @@ git push origin --delete trimming
 
 ### Sharing tags
 
-Your local repository tags are not included when you do a normal push. To push tags to the remote you need to
-supply the `--tags` flag to the `git push` command:
+Your local repository tags are not included when you do a normal push. To push
+tags to the remote you need to supply the `--tags` flag to the `git push`
+command:
 
 ```bash
 git push --tags
