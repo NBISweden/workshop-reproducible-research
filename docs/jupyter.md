@@ -464,9 +464,10 @@ minimum value of `1`, maximum value of `5` and a step size of `1`. Try adjusting
 these numbers in the `interactive` call to see how the sliders change (you have
 to re-execute the cell).
 
-The final line of the cell is where the actual widgets and plot are displayed. 
-This code can be put in a separate cell, so that you can define functions and
-widgets in one part of your notebook, and reuse them somewhere else.
+The final line of the cell (`interactive_plot`) is where the actual widgets and 
+plot are displayed. This code can be put in a separate cell, so that you can
+define functions and widgets in one part of your notebook, and reuse them
+    somewhere else.
 
 This is how it should look if everything works. You can now set the frequency
 amplitude and phase of the sine curve by moving the sliders. 
