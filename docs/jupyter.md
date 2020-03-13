@@ -389,37 +389,77 @@ for, or to see how some parameter value affects a clustering. Jupyter notebooks
 has great support for this in the form of widgets.
 
 Widgets are eventful Python objects that have a representation in the browser,
-often as a control like a slider, textbox, etc. Let's try to add a slider that
-allows us to change the frequency of the sine curve we plotted previously.
+often as a control like a slider, textbox, etc. These are implemented in the 
+`ipywidgets` package.
+
+The easiest way to get started with using widgets are via the `interact` and
+`interactive` functions. These functions autogenerate widgets from functions
+that you define, and then call those functions when you manipulate the widgets.
+Too abstract? Let's put it into practice! 
+
+Let's try to add sliders that allow us to change the frequency, amplitude
+and phase of the sine curve we plotted previously.
+
+Start by importing the necessary functions.
 
 ```python
-%matplotlib notebook
-# To use the widget framework, we need to import ipywidgets
-import ipywidgets as widgets
+# Import the interact and interactive functions from ipywidgets
+from ipywidgets import interact, interactive
+# Also import numpy (for calculating the sine curve) 
+# and pyplot from matplotlib for plotting
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Plot default curve
-x = np.linspace(0,3*np.pi,100)
-y = np.sin(x)
-fig = plt.figure()
-ax = fig.add_subplot(111)
-line, = plt.plot(x, y, 'r-')
-fig.canvas.draw()
+# Define the function for plotting the sine curve
+def sine_curve(A, f, p):
+    # Set up the plot
+    plt.figure(1, figsize=(4,4))
+    # Create a range of 100 evenly spaced numbers between 0 and 100
+    x = np.linspace(0,10,100)
+    # Calculate the y values using the supplied parameters
+    y = A*np.sin(x*f+p)
+    # Plot the x and y values ('r-' specifies color and line style)
+    plt.plot(x, y, 'r-')
+    plt.show()
 
-# Create and show the slider
-slider = widgets.IntSlider(1, min = 0, max = 5)
-display(slider)
+# Here we supply the sine_curve function to interactive, 
+# and set some limits on the input parameters
+interactive_plot = interactive(sine_curve, 
+            A=(1, 5, 1), 
+            f=(0, 5, 1), 
+            p=(1, 5, 0.5))
 
-# Define a function for modifying the line when the slider's value changes
-def on_value_change(val):
-    y = np.sin(x*val['new'])
-    line.set_ydata(y)
-    fig.canvas.draw_idle()
-
-# Monitor for change, and send the new value to the function above on changes.
-slider.observe(on_value_change, names='value')
+# Display the widgets and the plot
+interactive_plot
 ```
+
+The code above defines a function called `sine_curve` which takes three 
+arguments: 
+- `A` = the amplitude of the curve
+- `f` = the frequency of the curve
+- `p` = the phase of the curve
+
+The function creates a plot area, generates x-values and calculates y-values
+using the `np.sin` function and the supplied parameters. Finally, the x and y
+values are plotted.
+
+Below the function definition we use `interactive` with the `sine_curve` 
+function as the first parameter. This means that the widgets will be tied to 
+the `sine_curve` function. As you can see we also supply the `A`, `f` and `p` 
+keyword arguments. Importantly, all parameters defined in the `sine_curve` 
+function must be given in the `interactive` call and a widget is created for
+each one. 
+
+By supplying the arguments in the form of 
+[tuples](https://docs.python.org/3/library/stdtypes.html#typesseq) we can
+adjust the properties of the sliders. `f=(1, 5, 1)` creates a widget with 
+minimum value of `1`, maximum value of `5` and a step size of `1`. Try adjusting
+these numbers in the `interactive` call to see how the sliders change (you have
+to re-execute the cell).
+
+The final line of the cell is where the actual widgets and plot are displayed. 
+This code can be put in a separate cell, so that you can define functions and
+widgets in one part of your notebook, and reuse them somewhere else.
 
 !!! attention
     If you have problems getting the interactive widget to display properly, 
