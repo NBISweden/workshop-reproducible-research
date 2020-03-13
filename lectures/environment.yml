@@ -1,13 +1,18 @@
-channels:
+name: lectures
 
-    - bioconda
+channels:
     - conda-forge
     - defaults
+    - r
 
 dependencies:
-
-    #  Base R
-    - r=3.6
-
-    # Xaringan (for creating presentations)
-    - r-xaringan=0.14
+  - python=3.8.2
+  - jupyter=1.0.1
+  - pandas=1.0.2
+  - rise=5.6.1
+  - seaborn=0.10.0
+  - rpy2=3.1.0
+  #  Base R
+  - r-base=3.6.2
+  # Xaringan (for creating presentations)
+  - r-xaringan=0.15
