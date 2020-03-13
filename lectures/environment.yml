@@ -1,0 +1,13 @@
+channels:
+
+    - bioconda
+    - conda-forge
+    - defaults
+
+dependencies:
+
+    #  Base R
+    - r=3.6
+
+    # Xaringan (for creating presentations)
+    - r-xaringan=0.14
