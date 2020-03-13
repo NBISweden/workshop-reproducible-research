@@ -473,7 +473,8 @@ amplitude and phase of the sine curve by moving the sliders.
 
 ![](images/jupyter_widget.png)
 
-There are lots of widgets, _e.g_ 
+There are lots of widgets, _e.g._:
+
 - Dropdown menus
 - Toggle buttons
 - Range sliders
