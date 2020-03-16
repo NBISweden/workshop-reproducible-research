@@ -16,3 +16,4 @@ dependencies:
   - r-base=3.6.2
   # Xaringan (for creating presentations)
   - r-xaringan=0.15
+  - r-ggplot2=3.3.0
