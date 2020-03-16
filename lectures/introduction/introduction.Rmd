@@ -8,6 +8,39 @@ output:
           slideNumberFormat: ""
 ---
 
+```{r, eval=TRUE, include=FALSE}
+library(ggplot2)
+library(gtable)
+blank_theme <- theme_minimal()+
+  theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  panel.border = element_blank(),
+  panel.grid=element_blank(),
+  axis.ticks = element_blank(),
+  legend.title = element_blank()
+  )
+```
+
+```{r, eval=TRUE, include=FALSE}
+# Create the Ioannidis dataframe
+df <- data.frame(
+  result = c("...in principle", "...with some discrepancies", "...from processed data with some discrepancies", "...partially with some discrepancies", "Cannot reproduce"),
+  value = c(2, 1, 4, 1, 10)
+  )
+df$result <- factor(df$result, levels=c("...in principle", "...with some discrepancies", "...from processed data with some discrepancies", "...partially with some discrepancies", "Cannot reproduce"))
+```
+
+```{r, eval=TRUE, include=FALSE}
+# Create the second dataframe
+data_df <- data.frame(
+  result = c("Data not available", "Software not available", "Methods unclear", "Different result"),
+  value = c(5, 1, 2, 2)
+)
+```
+
+
+
 layout: true
 <div class="scilife-logo"></div>
 <div class="nbis-logo"></div>
@@ -19,17 +52,16 @@ class: center, middle
 
 .green[Stockholm, April 27-29]
 
-<img src="figures/phd-comics.png" style="width:80%;"/>
+<img src="https://phdcomics.com/comics/archive/phd031214s.gif" style="width:80%;"/>
 
 ---
 
 class: center, middle
 .HUGE[The teachers]
 
-<img src="figures/john.png" style="width:20%" hspace=20/>
-<img src="figures/verena.png" style="width:20%" hspace=20/>
-<img src="figures/erik.png" style="width:20%" hspace=20/>
-
+<img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:180px" hspace=20/>
+<img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:180px" hspace=20/>
+<img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:180px" hspace=20/>
 ---
 
 # Course content
@@ -59,31 +91,32 @@ class: center, middle
 
 # Schedule
 
-*Schedule goes here*
+<iframe src="https://nbis-reproducible-research.readthedocs.io/en/devel/schedule/index.html" scrolling="yes" width="800" height="400" </iframe>
 
 ---
 
 # Please provide feedback!
+[https://nbis-reproducible-research.readthedocs.io/en/latest/feedback/](https://nbis-reproducible-research.readthedocs.io/en/devel/feedback/)
 
-<img src="figures/feedback-form.png"/>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLBmhUGCq_6D_NMCTKtgz8k-5idJmPvKwZ_Ip3A_u8wy1WqQ/viewform?embedded=true" scrolling="yes" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0" </iframe>
 
 ---
 
 # Why all the talk about reproducible research?
 
-.pull-left[
-<img src="figures/paper-1.png"/>
+.pull-left[ 
 
 The *Reproducibility project* set out to replicate 100 experiments published in
-high-impact psychology journals.
+high-impact psychology journals.<sup>1</sup>
 
 About one-half to two-thirds of the original findings could not be observed in
 the replication study.
 ]
 
 .pull-right[
+<img src="https://science.sciencemag.org/content/sci/349/6251/aac4716/F1.large.jpg"/>
 <br>
-<img src="figures/replication.png"/>
+.tiny[<sup>1</sup> "Estimating the reproducibility of psychological science". Science. 349]
 ]
 
 ---
@@ -91,7 +124,7 @@ the replication study.
 # Why all the talk about reproducible research?
 
 .pull-left[
-<img src="figures/reproducible-question-1.png"/>
+<img src="https://www.nature.com/news/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height="400"/>
 ]
 
 .pull-right[
@@ -106,7 +139,7 @@ across all domains of science.<sup>1</sup>
 # Why all the talk about reproducible research?
 
 .pull-left[
-<img src="figures/reproducible-question-2.png"/>
+<img src="https://www.nature.com/news/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg"/>
 ]
 
 .pull-right[
@@ -128,23 +161,47 @@ statistical tests.
 *Replication of data analyses in 18 articles on microarray-based gene
 expression profiling published in Nature Genetics in 2005–2006:*
 
-<img src="figures/can-reproduce.png"/>
-
 .tiny[Adopted from Ioannidis *et al.* "Repeatability of published microarray gene expression analyses", Nature Genetics 41 (2009) doi:10.1038/ng.295]
+
+```{r, eval=TRUE, echo=FALSE}
+pie1_cols <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
+bp <- ggplot(df, aes(x="", y=value, fill=result)) + geom_bar(width = 1, stat = "identity", color = "white")  
+pie1 <- bp + coord_polar("y", start = 0) + scale_fill_manual(values = pie1_cols) + blank_theme +
+  theme(axis.text.x=element_blank(), legend.text=element_text(size=12), legend.position = 'left') + guides(fill = guide_legend(reverse = TRUE))
+```
+
+.pull-left[
+```{r, fig.height=6, echo=FALSE}
+pie1
+```
+]
+
+--
+
+```{r, echo=FALSE, eval=TRUE}
+pie2_cols <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
+bp2 <- ggplot(data_df, aes(x="", y=value, fill=result)) + geom_bar(width = 1, stat = "identity", color = "white") 
+pie2 <- bp2 + coord_polar("y", start=0) + scale_fill_manual(values = pie2_cols) + blank_theme +
+  theme(axis.text.x=element_blank(),  legend.position = 'right', legend.text=element_text(size=12), legend.direction = "vertical", plot.margin= grid::unit(c(5,5,5,5), 'lines'))
+```
+.pull-right[
+```{r, fig.height=6, echo=FALSE}
+pie2
+```
+]
 
 ---
 
 # Reproducibility is rarer than you think
 
-<img src="figures/paper-2.png"/>
+The results of only 26% out of 204 randomly selected papers in the journal *Science* could be reproduced.<sup>1</sup>
 
-> Many journals are revising author guidelines to include data and code
-> availability.
+.tiny[<sup>1</sup> Stodden et. al (2018). "An empirical analysis of journal policy effectiveness for computational reproducibility". PNAS. 115 (11): 2584-2589]
 
 --
 
-The study found that the results of only 26% out of 204 randomly selected
-papers in the journal *Science* could be reproduced.
+> Many journals are revising author guidelines to include data and code
+> availability.
 
 --
 
@@ -176,9 +233,30 @@ There are many so-called excuses not to work reproducibly:
 ---
 
 # What does reproducible research mean?
-
 <br>
-.center[<img src="figures/reproducibility-meaning.png" width=80%/>]
+<br>
+<br>
+<table>
+<tr>
+  <td colspan="2" bgcolor="#FFFFFF"> &nbsp;</td>
+  <td colspan="2" align="center" bgcolor="#6DAD2A"> Data</td>
+</tr>
+  <td colspan="2" bgcolor="#FFFFFF"> &nbsp;</td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+</tr>
+<tr>
+  <td rowspan="2" bgcolor="#6DAD2A"> Code </td>
+  <td bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#CFE6B8">Reproducible</td>
+  <td align="center" bgcolor="#CFE6B8">Replicable</td>
+</tr>
+<tr>
+  <td bgcolor="#A3CF76">Different</td>
+  <td align="center" bgcolor="#CFE6B8">Robust</td>
+  <td align="center" bgcolor="#CFE6B8">Generalisable</td>
+</tr>
+</table>
 
 ---
 
@@ -363,4 +441,3 @@ class: center, middle
 
 # Questions so far?
 
-<img src="figures/calvin-and-hobbes.png" style="width:60%;"/>
