@@ -8,38 +8,11 @@ output:
           slideNumberFormat: ""
 ---
 
-```{r, eval=TRUE, include=FALSE}
-library(ggplot2)
-library(gtable)
-blank_theme <- theme_minimal()+
-  theme(
-  axis.title.x = element_blank(),
-  axis.title.y = element_blank(),
-  panel.border = element_blank(),
-  panel.grid=element_blank(),
-  axis.ticks = element_blank(),
-  legend.title = element_blank()
-  )
+```{r Setup, include = FALSE}
+# Chunk options
+knitr::opts_chunk$set(include = FALSE,
+                      echo    = FALSE)
 ```
-
-```{r, eval=TRUE, include=FALSE}
-# Create the Ioannidis dataframe
-df <- data.frame(
-  result = c("...in principle", "...with some discrepancies", "...from processed data with some discrepancies", "...partially with some discrepancies", "Cannot reproduce"),
-  value = c(2, 1, 4, 1, 10)
-  )
-df$result <- factor(df$result, levels=c("...in principle", "...with some discrepancies", "...from processed data with some discrepancies", "...partially with some discrepancies", "Cannot reproduce"))
-```
-
-```{r, eval=TRUE, include=FALSE}
-# Create the second dataframe
-data_df <- data.frame(
-  result = c("Data not available", "Software not available", "Methods unclear", "Different result"),
-  value = c(5, 1, 2, 2)
-)
-```
-
-
 
 layout: true
 <div class="scilife-logo"></div>
@@ -62,13 +35,14 @@ class: center, middle
 <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:180px" hspace=20/>
 <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:180px" hspace=20/>
 <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:180px" hspace=20/>
+
 ---
 
 # Course content
 
 * Good practices for working with data
 
-* How to use the version control system .green[git] to track changes to code
+* How to use the version control system .green[Git] to track changes to code
 
 * How to use the package and environment manager .green[Conda]
 
@@ -91,20 +65,21 @@ class: center, middle
 
 # Schedule
 
-<iframe src="https://nbis-reproducible-research.readthedocs.io/en/devel/schedule/index.html" scrolling="yes" width="800" height="400" </iframe>
+<iframe src="https://nbis-reproducible-research.readthedocs.io/en/devel/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
 
 ---
 
 # Please provide feedback!
-[https://nbis-reproducible-research.readthedocs.io/en/latest/feedback/](https://nbis-reproducible-research.readthedocs.io/en/devel/feedback/)
+[https://nbis-reproducible-research.readthedocs.io/en/latest/feedback/]()
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLBmhUGCq_6D_NMCTKtgz8k-5idJmPvKwZ_Ip3A_u8wy1WqQ/viewform?embedded=true" scrolling="yes" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0" </iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLBmhUGCq_6D_NMCTKtgz8k-5idJmPvKwZ_Ip3A_u8wy1WqQ/viewform?embedded=true" scrolling="yes" width="800" height="400" frameborder="0" marginheight="0" marginwidth="0"</iframe>
 
 ---
 
 # Why all the talk about reproducible research?
 
-.pull-left[ 
+.pull-left[
+<br>
 
 The *Reproducibility project* set out to replicate 100 experiments published in
 high-impact psychology journals.<sup>1</sup>
@@ -163,38 +138,92 @@ expression profiling published in Nature Genetics in 2005–2006:*
 
 .tiny[Adopted from Ioannidis *et al.* "Repeatability of published microarray gene expression analyses", Nature Genetics 41 (2009) doi:10.1038/ng.295]
 
-```{r, eval=TRUE, echo=FALSE}
-pie1_cols <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
-bp <- ggplot(df, aes(x="", y=value, fill=result)) + geom_bar(width = 1, stat = "identity", color = "white")  
-pie1 <- bp + coord_polar("y", start = 0) + scale_fill_manual(values = pie1_cols) + blank_theme +
-  theme(axis.text.x=element_blank(), legend.text=element_text(size=12), legend.position = 'left') + guides(fill = guide_legend(reverse = TRUE))
+```{r Load packages and define blank ggplot theme}
+# Load packages and create a basic minimal ggplot theme for downstream re-use
+library(ggplot2)
+library(gtable)
+blank_theme <- theme_minimal() +
+    theme(
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_blank(),
+        panel.grid   = element_blank(),
+        axis.ticks   = element_blank(),
+        legend.title = element_blank())
+```
+
+```{r Recreate the Ioannidis data, include = FALSE}
+# The first dataframe
+items = c("... in principle",
+          "... with some discrepancies",
+          "... from processed data with some discrepancies",
+          "... partially with some discrepancies",
+          "Cannot reproduce")
+ioannidis_1 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(2, 1, 4, 1, 10))
+
+# The second dataframe
+items = c("Data not available",
+          "Software not available",
+          "Methods unclear",
+          "Different result")
+ioannidis_2 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(5, 1, 2, 2))
 ```
 
 .pull-left[
-```{r, fig.height=6, echo=FALSE}
-pie1
+
+```{r Plot the first Ioannidis data, include = TRUE, fig.height = 6}
+pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
+ggplot(ioannidis_1, aes(x    = "",
+                        y    = value,
+                        fill = result)) +
+    geom_bar(width = 1,
+             stat  = "identity",
+             color = "white") +
+    coord_polar("y", start = 0) +
+    scale_fill_manual(values = pie_1_colours) +
+    blank_theme +
+    theme(axis.text.x     = element_blank(),
+          legend.text     = element_text(size = 12),
+          legend.position = "right") +
+    guides(fill = guide_legend(reverse = TRUE))
 ```
+
 ]
 
 --
 
-```{r, echo=FALSE, eval=TRUE}
-pie2_cols <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
-bp2 <- ggplot(data_df, aes(x="", y=value, fill=result)) + geom_bar(width = 1, stat = "identity", color = "white") 
-pie2 <- bp2 + coord_polar("y", start=0) + scale_fill_manual(values = pie2_cols) + blank_theme +
-  theme(axis.text.x=element_blank(),  legend.position = 'right', legend.text=element_text(size=12), legend.direction = "vertical", plot.margin= grid::unit(c(5,5,5,5), 'lines'))
-```
 .pull-right[
-```{r, fig.height=6, echo=FALSE}
-pie2
+
+```{r, Plot the second Ioannidis data, include = TRUE, fig.height = 6}
+pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
+ggplot(ioannidis_2, aes(x    = "",
+                        y    = value,
+                        fill = result)) +
+    geom_bar(width = 1,
+             stat  = "identity",
+             color = "white") +
+    coord_polar("y", start = 0) +
+    scale_fill_manual(values = pie_2_colours) +
+    blank_theme +
+    theme(axis.text.x      = element_blank(),
+          legend.position  = "right",
+          legend.text      = element_text(size = 12),
+          legend.direction = "vertical",
+          plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
 ```
+
 ]
 
 ---
 
 # Reproducibility is rarer than you think
 
-The results of only 26% out of 204 randomly selected papers in the journal *Science* could be reproduced.<sup>1</sup>
+The results of only 26% out of 204 randomly selected papers in the journal
+*Science* could be reproduced.<sup>1</sup>
 
 .tiny[<sup>1</sup> Stodden et. al (2018). "An empirical analysis of journal policy effectiveness for computational reproducibility". PNAS. 115 (11): 2584-2589]
 
@@ -238,21 +267,21 @@ There are many so-called excuses not to work reproducibly:
 <br>
 <table>
 <tr>
-  <td colspan="2" bgcolor="#FFFFFF"> &nbsp;</td>
-  <td colspan="2" align="center" bgcolor="#6DAD2A"> Data</td>
+  <td colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+  <td colspan="2" align="center" bgcolor="#6DAD2A">Data</td>
 </tr>
-  <td colspan="2" bgcolor="#FFFFFF"> &nbsp;</td>
+  <td colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
   <td align="center" bgcolor="#A3CF76">Same</td>
   <td align="center" bgcolor="#A3CF76">Different</td>
 </tr>
 <tr>
-  <td rowspan="2" bgcolor="#6DAD2A"> Code </td>
-  <td bgcolor="#A3CF76">Same</td>
+  <td rowspan="2" bgcolor="#6DAD2A">Code</td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
   <td align="center" bgcolor="#CFE6B8">Reproducible</td>
   <td align="center" bgcolor="#CFE6B8">Replicable</td>
 </tr>
 <tr>
-  <td bgcolor="#A3CF76">Different</td>
+  <td align="center" bgcolor="#A3CF76">Different</td>
   <td align="center" bgcolor="#CFE6B8">Robust</td>
   <td align="center" bgcolor="#CFE6B8">Generalisable</td>
 </tr>
