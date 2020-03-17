@@ -1,2 +1,9 @@
+# Conda environment
+*-env
+
+# Xaringan-related files
+**/*_files
+
+# Various
 .snakemake
 .DS_Store
