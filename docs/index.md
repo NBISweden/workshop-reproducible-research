@@ -1,13 +1,19 @@
 <h2> Tools for reproducible research </h2>
 
+**THE COURSE IS CANCELLED:**
+The course scheduled for April of 2020 has been **cancelled** due to the
+COVID-19 virus and its effects on Sweden. It is currently planned to be given
+in the autumn of 2020, on November 23-26 (four days instead of three); the
+applications will open in the beginning of autumn.
+
 **Date and time:**  
-- April 27-29, 2020 (3 days)
+- **(cancelled)** April 27-29, 2020 (3 days)
 
 **Location:**  
-- Science for Life Laboratory, Solna, Sweden ([travel info](travel.md))
+- **(cancelled)** Science for Life Laboratory, Solna, Sweden ([travel info](travel.md))
 
 **Apply here:**  
-- Go to [SciLifeLab's webpage](
+- **(cancelled)** Go to [SciLifeLab's webpage](
 https://www.scilifelab.se/events/tools-for-reproducible-research-4/) for
 details and application (deadline Mar 27).
 

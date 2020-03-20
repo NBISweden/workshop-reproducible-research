@@ -1,6 +1,7 @@
 <h1> Schedule </h1>
 
-The course will take place in the rooms Air/Fire  (see [travel info](travel.md)).
+The course will take place in the rooms Air/Fire  (see [travel
+info](travel.md)).
 
 <table>
   <tr>
