@@ -1,17 +1,28 @@
-# Introduction to the tutorials
+# Introduction
 
 Welcome to the tutorials! Here we will learn how to make a computational
-research project reproducible using the tools:
+research project reproducible using several different tools, described in the
+figure below:
 
-* Conda
-* Snakemake
-* Git
-* R Markdown
-* Jupyter
-* Docker
-* Singularity
+![](images/tutorials_overview.png)
+
+The figure gives an overview of the six available tutorials, a very brief
+description of their main purpose, and the suggested order to do them. However,
+each tutorial is made so that it can be completed independently of the other
+tutorials. It is therefore perfectly possible to choose a different order, or
+a subset of tutorials that suits your interests. Under the main figure there is
+a list of a few suggested alternative tutorial orders; you will find the
+tutorials in the menu to the left.
+
+Before going into the tutorials themselves, we first describe the case study
+from which the example data comes from, followed by the setup needed to install
+the tools themselves. These will create quite a lot of files on your computer,
+some of which will actually take up a bit of storage space too. In order to
+remove any traces of these after completing the tutorials, please refer to the
+[Take down section](take_down.md).
 
 ## The case study
+
 We will be running a small bioinformatics project as a case study, and use that
 to exemplify the different steps of setting up a reproducible research project.
 To give you some context, the study background and analysis steps are briefly
@@ -37,38 +48,38 @@ To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in
 ### Analysis
 
 The graph below shows the different steps of the analysis that are included in
-this project.
-
-* The input files are:
-    * RNA-seq raw data (fastq files) for the three strains
-    * *S. aureus* genome sequence (fasta file)
-    * *S. aureus* genome annotation (gff file)
+this project:
 
 ![](images/rulegraph_mrsa_intro.svg)
 
+The input files are:
+
+* RNA-seq raw data (FASTQ files) for the three strains
+* *S. aureus* genome sequence (a FASTA file)
+* *S. aureus* genome annotation (a GFF file)
+
+The different steps of the workflow and what they do are as follows:
 
 * `get_genome_fasta` - Download the genome file.
-* `index_genome` - Index the genome, required for the alignment step, using the
-  software Bowtie2.
+* `index_genome` - Index the genome using the *Bowtie2* software (required for
+  the alignment step)
 * `get_SRA_by_accession` - Download the RNA-seq raw data for the three strains
-  from the Sequence Read Archive (SRA).
-* `fastqc` - Run quality control on each of the RNA-seq fastq files, using the
-  software FastQC.
-* `multiqc` - Summarize the QC.
+  from the *Sequence Read Archive* (SRA).
+* `fastqc` - Run quality control on each of the RNA-seq FASTQ files using the
+  *FastQC* software.
+* `multiqc` - Summarize the quality controls.
 * `align_to_genome` - Align the RNA-seq data from the three strains to the
-  indexed genome, using the software Bowtie2.
-* `sort_bam` - Sort the alignment files by genome coordinate, using the
-  software Samtools.
+  indexed genome using the *Bowtie2* software.
+* `sort_bam` - Sort the alignment files by genome coordinate using the
+  *Samtools* software.
 * `get_genome_gff3` - Download the genome annotation file.
 * `generate_count_table` - Calculate gene expression by counting aligned reads
-  per gene, using the software HTSeq-count.
+  per gene using the *HTSeq-count* software.
 * `generate_rulegraph` - Generate the workflow overview figure shown above.
 * `make_supplementary` - Produce the supplementary materials section using data
-  from the QC, gene counting and the graph figure.
+  from the quality controls, gene counts and the workflow figure.
 
-# Setup
-
-## For Mac / Linux users
+## Setup for Mac / Linux users
 
 Clone the GitHub repository containing all files you will need for completing
 the tutorials. First, `cd` into a directory on your computer (or create one)
@@ -93,7 +104,7 @@ cd workshop-reproducible-research
     older version of this website. Locate the version box in the bottom right
     corner of the browser and select the corresponding version.
 
-## For Windows users
+## Setup for Windows users
 
 There are several different ways to run the course material on a Windows
 computer. Neither is perhaps optimal, and the material itself has not been
@@ -176,20 +187,3 @@ cd workshop-reproducible-research
 Don't worry if you feel that this Docker stuff is a little confusing, it will
 become clearer in the [Docker tutorial](docker.md). However, the priority right
 now is just to get it running so that you can start working.
-
-# The tutorials
-
-The figure below gives an overview of the six available tutorials, a very brief
-description of their main purpose, and the suggested order to do them. However,
-each tutorial is made so that it can be completed independently of the other
-tutorials. It is therefore perfectly possible to choose a different order, or
-a subset of tutorials that suits your interests. Under the main figure there is
-a list of a few suggested alternative tutorial orders. You find the tutorials
-in the menu to the left!
-
-![](images/tutorials_overview.png)
-
-Note that running through the tutorials will involve installing several tools,
-which in turn will create quite a lot of files on your computer. In order to
-remove any traces of these, after completing the tutorials, please refer to the
-[Take down section](take_down.md).
