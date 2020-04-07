@@ -110,3 +110,8 @@ a:hover {
   padding: 2px 3px 1px;
   font-size: 80% !important;
 }
+
+.image-with-text {
+  display: inline-block;
+  vertical-align: middle;
+}

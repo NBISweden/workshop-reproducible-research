@@ -34,9 +34,18 @@ class: center, middle
 class: center, middle
 .HUGE[The teachers]
 
-<img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:180px" hspace=20/>
-<img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:180px" hspace=20/>
-<img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:180px" hspace=20/>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:180px" hspace=20/>
+    <p>John Sundh</p>
+</div>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:180px" hspace=20/>
+    <p>Verena Kutchera</p>
+</div>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:180px" hspace=20/>
+    <p>Erik Fasterius</p>
+</div>
 
 ---
 
