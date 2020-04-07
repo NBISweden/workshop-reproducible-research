@@ -1,5 +1,5 @@
-# Introduction to Docker
-## What is Docker?
+# Introduction
+
 Docker is a tool designed to make it easier to create, deploy, and run
 applications by isolating them in "containers". The idea is to package your
 code together with everything it needs (other packages it depends on, various
@@ -29,15 +29,17 @@ Some applications relevant for reproducible research can be:
   collaborator is using Windows. You can then set up a Docker image specific
   for your project to ensure that you are working in an identical environment.
 
-All of this might sound a bit abstract so far, so let's get going.
+All of this might sound a bit abstract so far, but it'll become more clear
+during the exercises. If you want to read more you can check out these
+resources:
 
-## Tell me more
 * A "Get started with Docker" at
   [docker.com](https://docs.docker.com/get-started/).
 * An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using
   Docker for reproducible research.
 
-# Set up
+## Setup
+
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [intro](tutorial_intro.md) for instructions on how to set it up if you haven't
 done so already. Then open up a terminal and go to 
@@ -47,13 +49,13 @@ done so already. Then open up a terminal and go to
     Docker images tend to take up quite a lot of space. In order to do all the
     exercises in this tutorial you need to have ~10 GB available.
 
-## Install Docker
 First we need to install Docker. This is quite straightforward on macOS or
 Windows and a little more cumbersome on Linux. Note that Docker runs as root,
 which means that you have to have sudo privileges on your computer in order to
 install or run Docker.
 
 ### macOS
+
 Go to [docker.com](
 https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 and select "Get Docker for Mac (Stable)". This will download a dmg file. Click
@@ -64,6 +66,7 @@ the Docker app from the Applications menu. Now it's basically just to click
 icon in the menu bar in the upper right part of the screen.
 
 ### Windows
+
 The instructions are different depending on if you have Windows 10 or Windows
 7 (earlier versions aren't supported). In order to run Docker on Windows your
 computer must support Hardware Virtualization Technology and virtualization
@@ -160,9 +163,8 @@ The output should say something about "Active: active (running) since..".
     user to the group `docker`. Here are instructions for how to do this:
     [https://docs.docker.com/engine/installation/linux/linux-postinstall/][].
 
-# Practical exercise
+## The basics
 
-## The very basics
 We're almost ready to start, just one last note on nomenclature. You might have
 noticed that we sometimes refer to "Docker images" and sometimes to "Docker
 containers". A container is simply an instance of an image. To use
@@ -248,6 +250,7 @@ probably be useful on its own, but Docker is much more powerful than that.
     * How to use `docker run` for starting a container from an image.
 
 ## Building a Docker image
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 In the previous section we downloaded a Docker image of Ubuntu and noticed that
 it was based on layers, each with a unique hash as id. An image in Docker is
@@ -496,6 +499,7 @@ the image. So, this is what we need to do:
     * How to use `docker build` to contruct and tag an image from a Dockerfile.
 
 ## Managing containers
+
 When you start a container with `docker run` it is given an unique id that you 
 can use for interacting with the container. Let's try to run a container from 
 the image we just created:
@@ -617,6 +621,7 @@ Validate that the resulting html reports look fine and then exit the container
 with `exit`.
 
 ## Distributing your images
+
 There would be little point in going through all the trouble of making your
 analyses reproducible if you can't distribute them to others. Luckily, sharing
 Docker containers is extremely easy. The most common way is to use
@@ -651,7 +656,8 @@ your_dockerhub_id/image_name:tag_name`.
     download using `docker pull`. That way, you don't have to bother manually
     building and pushing using `docker push`.
 
-## Packaging and running the MRSA workflow
+## Packaging the case study
+
 During these tutorials we have been working on a case study about the
 multiresistant bacteria MRSA. Here we will build and run a Docker container
 that contains all the work we've done so far.
@@ -714,6 +720,7 @@ Dockerhub that is).
     ```
 
 ## Cleaning up
+
 As mentioned before, Docker tends to consume a lot of disk space. In general,
 `docker image rm` is used for removing images and `docker container rm` for
 removing containers. Here are some convenient commands for cleaning up.
