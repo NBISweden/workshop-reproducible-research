@@ -30,6 +30,7 @@ but to really think about each step and how it all fits together in practice.
 And please ask for help if you get stuck!
 
 ## Option 1
+
 One option is to try to implement these methods on one of your current
 projects. It is up to you what tools to include in making your project
 reproducible, but aim for at least including git and Conda.
@@ -42,6 +43,7 @@ reproducible, but aim for at least including git and Conda.
     run it on the whole dataset once everything works to your satisfaction.
 
 ## Option 2
+
 If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you. The idea is to analyze
 students' experiences at this Reproducible Research course. For this you will
@@ -73,6 +75,7 @@ and run on your computer.
 
 ??? note "Click to show a script for cleaning column names"
     The script (*e.g.* `clean_csv.py`):
+
     ```python
     #!/usr/bin/env python
     import pandas as pd
