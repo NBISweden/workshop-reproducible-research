@@ -99,7 +99,7 @@ done so already. Then open up RStudio and set your working directory to
 
 On the top is a so called YAML header:
 
-```yml
+```yaml
 ---
 title: "Untitled"
 output:
@@ -349,7 +349,7 @@ the code chunks. Let's try it out:
 * Add two parameters, `data` and `color`, to the YAML header. It should now
   look something like this:
 
-```yml
+```yaml
 ---
 title: "Untitled"
 output:
@@ -524,7 +524,7 @@ BiocManager::install("GEOquery")
   contain results that we want to include in the supplementary material
   document. We've also specified that we want to render to PDF.
 
-```yml
+```yaml
 ---
 title: "Supplementary Materials"
 output: pdf_document
@@ -590,7 +590,7 @@ see that we have specified the files in `params` with relative paths from the
 project root directory. To set a different directory as working directory for
 all chunks one modifies the knit options like this:
 
-```
+```r
 knitr::opts_knit$set(root.dir = normalizePath('../'))
 ```
 
@@ -621,7 +621,7 @@ part of the `knitr` package.
 
 * Go to the `sample-info` chunk. Replace the last line, `d`, with:
 
-```
+```r
 knitr::kable(d)
 ```
 
@@ -629,7 +629,7 @@ knitr::kable(d)
 * The column names can be improved, and we could use a table legend. Change to
   use the following:
 
-```
+```r
 knitr::kable(d, caption="Sample info",
       col.names=c("SRR", "GEO", "Strain", "Treatment"))
 ```
@@ -644,7 +644,7 @@ Let's move on to the figures!
 * Go to the `counts-barplot` chunk. To add a figure legend we have to use
   a chunk option (so not in the same way as for tables). Add the chunk option:
 
-```
+```r
 fig.cap = "Counting statistics per sample, in terms of read counts for genes
            and reads not counted for various reasons."
 ```
@@ -653,7 +653,7 @@ fig.cap = "Counting statistics per sample, in terms of read counts for genes
 * Next, add a figure legend to the figure in the `gene-heatmap` chunk. Here we
   can try out the possibility to add R code to generate the legend:
 
-```
+```r
 fig.cap = paste("Expression (log-10 counts) of genes with at least ",
                 max_cutoff, " counts in one sample and a CV>", cv_cutoff, ".",
                 sep = "")
@@ -679,7 +679,7 @@ Note that this is only an issue with rendering to PDF, not with *e.g.* HTML.
   capital "H"). This will force figures to appear "here". Add the following
   lines to the header:
 
-```
+```r
 header-includes:
   \usepackage{float}
 ```
@@ -696,20 +696,20 @@ out.height = "22cm"`. Knit and check the results. Does it look better now?
   used to generate the inputs for this report. Add a new chunk at the end of
   the Supplementary Tables and Figures section containing this code:
 
-```{r}
+```r
 knitr::include_graphics(normalizePath(rulegraph_file))
 ```
 
 * Also, add the chunk options:
 
-```
+```r
 fig.cap = "A rule graph showing the different steps of the bioinformatic
            analysis that is included in the Snakemake workflow."
 ```
 
 and:
 
-```
+```r
 out.height = "11cm"
 ```
 
@@ -748,7 +748,7 @@ This will make the `sessionInfo()` text smaller and then set it back to normal.
   insted of having it in the header. Keeping all your configuration settings in
   one file is a good way of achieving a consistant look for your report.
 
-```yml
+```yaml
 ---
 title: "Supplementary Material"
 author: John Doe, Joan Dough, Jan Doh, Dyon Do
