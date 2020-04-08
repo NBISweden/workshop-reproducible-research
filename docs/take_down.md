@@ -15,28 +15,26 @@ the future you can remove just the packages, or you can remove everything
 including Conda itself. Note that this is not needed if you've done the
 tutorials on Windows using Docker (see the section on Docker below instead).
 
-### Remove packages only but keep Conda
-
-First list all Conda environments
+In order to remove all your Conda environments, you first need to list them:
 
 ```bash
 conda env list
 ```
 
-For each of the environments except "base" run
+For each of the environments except "base" run the following:
 
 ```bash
 conda remove -n envname --all
 ```
 
-And lastly:
+And, finally:
 
 ```bash
 conda clean --all
 ```
 
-### Remove every trace of Conda
-First check where Conda is installed. Look for the row "base environment".
+If you also want to remove Conda itself (*i.e.* removing all traces of Conda),
+you need to check where Conda is installed. Look for the row "base environment".
 
 ```bash
 conda info
