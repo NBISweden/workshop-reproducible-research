@@ -1,48 +1,50 @@
-# Introduction to Conda
+# Introduction
 
-## What is Conda?
 Conda is a package and environment manager. As a package manager it enables you
 to install a wide range of software and tools using one simple command: `conda
 install`. As an environment manager it allows you to create and manage multiple
-different environments, each with their own set of packages. Why would you want
-to do that? For instance, you can easily run different versions of the same
-package or have different cross-package dependencies that are otherwise
-incompatible with each other.
+different environments, each with their own set of packages. What are the
+benefits of using an environment manager? Some examples include the ability to
+easily run different versions of the same package, have different cross-package
+dependencies that are otherwise incompatible with each other and, last but not
+least, easy installation of all the software needed for an analysis.
 
 Environments are of particular relevance when making bioinformatics projects
-reproducible. Full reproducibility requires the possibility to recreate the
-system that was originally used to generate the results. This can, to a large
-extent, be accomplished by using Conda to make a project environment with
-specific versions of the packages that are needed in the project. You can read
-more about Conda [here](https://conda.io/docs/user-guide/concepts.html).
+reproducible. Full reproducibility requires the ability to recreate the system
+that was originally used to generate the results. This can, to a large extent,
+be accomplished by using Conda to make a project environment with specific
+versions of the packages that are needed in the project. You can read more about
+Conda [here](https://conda.io/docs/user-guide/concepts.html).
 
-## Conda packages
-A Conda package is a compressed tarball (system-level libraries, Python or
-other modules, executable programs, or other components). Conda keeps track of
+A Conda *package* is a compressed tarball (system-level libraries, Python or
+other modules, executable programs or other components). Conda keeps track of
 the dependencies between packages and platforms - this means that when
 installing a given package, all necessary dependencies will also be installed.
-Conda packages are typically hosted and downloaded from remote channels. Some
-widely used channels for general-purpose and bioinformatics packages are
-[conda-forge](https://conda-forge.org/) and
+
+Conda packages are typically hosted and downloaded from remote so-called
+*channels*. Some widely used channels for general-purpose and bioinformatics
+packages are [conda-forge](https://conda-forge.org/) and
 [Bioconda](https://bioconda.github.io/), respectively. Both of these are
 community-driven projects, so if you're missing some package you can contribute
-by adding it to either channel. When installing a Conda package you specify the
-package name, version (optional), and channel to download from.
+to the channel by adding the package to it. When installing a Conda package you
+specify the package name, version (optional) and channel to download from.
 
-## Conda environments
-A Conda environment is essentially a directory that is added to your PATH and
-that contains a specific collection of Conda packages that you have installed.
+A Conda *environment* is essentially a directory that is added to your PATH and
+that contains a specific collection of packages that you have installed.
 Packages are symlinked between environments to avoid unnecessary duplication.
 
-# Set up
+## Setup
+
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if you haven't
+[intro](tutorial_intro.md) for instructions on how to set it up if, you haven't
 done so already. Then open up a terminal and go to
 `workshop-reproducible-research/conda`. Instructions below assume that you are
 standing in `conda/` unless otherwise specified (*e.g.* if it says "create
 a file", it means save it in `conda/`).
 
-## Install Conda
+Go ahead and install Conda as described below. *Make sure to download the
+correct file for your OS*.
+
 !!! attention
     If you are doing the tutorials by running a Docker container on your
     Windows machine, Conda will already be installed for you. You can then jump
@@ -54,40 +56,45 @@ a file", it means save it in `conda/`).
     to simply run `conda update conda` and subsequently `conda init`, and skip
     the installation instructions below.
 
-* Go ahead and install Conda as described below. **Be sure to download the
-  correct file for your OS**.
-
-**macOS**
 ```bash
-# *** Install Miniconda3 for 64-bit macOS ***
+# Install Miniconda3 for 64-bit Mac
 curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
 bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
 rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
 ```
 
-**Linux**
 ```bash
-# *** Install Miniconda3 for 64-bit Linux ***
+# Install Miniconda3 for 64-bit Linux
 curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
 bash Miniconda3-4.7.12.1-Linux-x86_64.sh
 rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
-* The installer will ask you questions during the installation:
-    - Do you accept the license terms? (Yes)
-    - Do you accept the installation path or do you want to chose a
-        different one? (Probably yes)
-    - Do you want to run conda init to setup conda on your system? (Yes)
-* Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile`
-  can take effect.
-* You can verify that the installation worked by running:
+!!! note
+    A note regarding installing Conda: there are three Conda-related things you
+    may have encountered: the first is Conda, the package and environment
+    manager we've been talking about so far. Second is *Miniconda*, which is the
+    installer for Conda. The third is *Anaconda*, which is a distribution of not
+    only Conda, but also over 150 scientific Python packages. It's generally
+    better to stick with only Conda, *i.e.* installing with Miniconda, rather
+    than installing 3 GB worth of packages you may not even use.
+
+The installer will ask you questions during the installation:
+
+- Do you accept the license terms? (Yes)
+- Do you accept the installation path or do you want to chose a different one?
+  (Probably yes)
+- Do you want to run `conda init` to setup Conda on your system? (Yes)
+
+Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take
+effect. You can verify that the installation worked by running:
 
 ```bash
 conda --version
 ```
 
-* Next, we will setup the the default channels (from where packages will
-  be searched for and downloaded if no channel is specified).
+* Next, we will setup the default channels (from where packages will be searched
+  for and downloaded if no channel is specified).
 
 ```
 conda config --add channels defaults
@@ -95,12 +102,10 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-# Practical exercise
-
-## Get going with environments
+## Environment basics
 
 Let's assume that you are just about to start a new exciting research project
-called Project A.
+called *Project A*.
 
 * Let's make our first Conda environment:
 
@@ -108,7 +113,7 @@ called Project A.
 conda create -n project_a -c bioconda fastqc
 ```
 
-This will create an environment called project_a, containing FastQC from the
+This will create an environment called `project_a`, containing FastQC from the
 Bioconda channel. Conda will list the packages that will be installed and ask
 for your confirmation.
 
@@ -150,48 +155,48 @@ Hopefully the FastQC software was not found in your base environment (unless
 you had installed it previously), but worked once your environment was
 activated.
 
-* Now, let's add another package (sra-tools) to our environment using `conda
-  install`. Make sure that project_a is the active environment first.
+* Now, let's add another package (*SRA-Tools*) to our environment using `conda
+  install`. Make sure that `project_a` is the active environment first.
 
 ```bash
 conda install -c bioconda sra-tools
 ```
 
 * If we don't specify the package version, the latest available version will be
-  installed. What version of sra-tools got installed?
+  installed. What version of SRA-Tools got installed?
 * Run the following to see what versions are available:
 
 ```bash
 conda search -c bioconda sra-tools
 ```
 
-* Now try to install a different version of sra-tools, *e.g.*:
+* Now try to install a different version of SRA-Tools, *e.g.*:
 
 ```bash
 conda install -c bioconda sra-tools=2.7.0
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
-you want to downgrade the initial sra-tools installation to the one specified
+you want to downgrade the initial SRA-Tools installation to the one specified
 here (2.7.0 in the example). You can only have one version of a given package
 in a given environment.
 
 Let's assume that you will have sequencing data in your Project A, and want to
-use the latest bowtie2 software to align your reads.
+use the latest Bowtie2 software to align your reads.
 
-* Find out what versions of bowtie2 are available in the bioconda channel using
+* Find out what versions of Bowtie2 are available in the Bioconda channel using
   `conda search -c bioconda`.
-* Now install the *latest* available version of bowtie2 in your project_a
+* Now install the *latest* available version of Bowtie2 in your `project_a`
   environment.
 
-Let's further assume that you have an old project (called Project Old) where
-you know you used bowtie2 v2.2.5. You just got back reviewer comments and they
+Let's further assume that you have an old project (called *Project Old*) where
+you know you used Bowtie2 v2.2.5. You just got back reviewer comments and they
 want you to include some alignment statistics. Unfortunately, you haven't saved
 that information so you will have to rerun the alignment. Now, it is essential
-that you use the same version of bowtie that your results are based on,
+that you use the same version of Bowtie that your results are based on,
 otherwise the alignment statistics will be misleading. Using Conda environments
 this becomes simple. You can just have a separate environment for your old
-project where you have an old version of bowtie2 without interfering with your
+project where you have an old version of Bowtie2 without interfering with your
 new Project A where you want the latest version.
 
 * Make a new environment for your old project:
@@ -201,8 +206,8 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 ```
 
 * List your environments (do you remember the command?).
-* Activate `project_old` and check the bowtie2 version (`bowtie2 --version`).
-* Activate `project_a` again and check the bowtie2 version.
+* Activate `project_old` and check the Bowtie2 version (`bowtie2 --version`).
+* Activate `project_a` again and check the Bowtie2 version.
 * Let's try to remove an installed package from the active environment:
 
 ```
@@ -232,36 +237,37 @@ data.
     In this section we've learned:
 
     * How to use `conda install` for installing packages on the fly.
-    * How to create and activate environments and how to change between them.
+    * How to create, activate and change between environments.
     * How to remove packages or environments and clean up.
 
-## How to use in a reproducible project setting
+## Environments in projects
 
 We have up until now specified which Conda packages to install directly on the
 command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use a file (in [yaml
-format](https://en.wikipedia.org/wiki/YAML)) specifying packages, versions and
-channels needed to create the environment for a project.
+reproducibility, it is better to use an *environment file* (in [yml
+format](https://en.wikipedia.org/wiki/yml)) that specifies the packages,
+versions and channels needed to create the environment for a project.
 
-* Throughout these tutorials we will use a case study where we analyze an
-  RNA-seq experiment with the multiresistant bacteria MRSA (see
-  [intro](tutorial_intro.md)). You will now start to make a Conda yml file for
-  this MRSA project. The file will contain a list of the software and versions
-  needed to execute the analysis code.
-* In this conda tutorial, all code for the analysis is available in the script
-  `code/run_qc.sh`. This code will:
-    - download the raw fastq-files
-    - run quality control on these using FastQC
-* We will start by making a Conda yml-file that contains the required packages
-  to perform these two steps.
-* Later in the course, you will update the Conda yml-file with more packages,
-  as the analysis workflow is expanded.
-* So let's get going! Make a yaml file called `environment.yml` looking like
-  this, and save it in the current directory (should be
+Throughout these tutorials we will use a case study where we analyze an RNA-seq
+experiment with the multiresistant bacteria MRSA (see
+[intro](tutorial_intro.md)). You will now start to make a Conda yml file for
+this MRSA project. The file will contain a list of the software and versions
+needed to execute the analysis code.
+
+In this conda tutorial, all code for the analysis is available in the script
+`code/run_qc.sh`. This code will download the raw FASTQ-files and subsequently
+run quality control on these using the FastQC software.
+
+We will start by making a Conda yml-file that contains the required packages to
+perform these two steps. Later in the course, you will update the Conda yml-file
+with more packages, as the analysis workflow is expanded.
+
+* Let's get going! Make a yml file called `environment.yml` looking like
+  this, and save it in the current directory (which should be
   `workshop-reproducible-research/conda`):
 
-```yaml
+```yml
 channels:
 - conda-forge
 - bioconda
@@ -270,7 +276,7 @@ dependencies:
 - sra-tools=2.10.1
 ```
 
-* Now, make a new Conda environment from the yaml file (note that here the
+* Now, make a new Conda environment from the yml file (note that here the
   command is `conda env create` as opposed to `conda create` that we used
   above):
 
@@ -296,7 +302,7 @@ conda env create -n project_mrsa -f environment.yml
   either by running `bash code/run_qc.sh` or by opening the `run_qc.sh` file
   and executing each line in the terminal one by one. Do this!
 
-This should download the project fastq files and run FastQC on them (as
+This should download the project FASTQ files and run FastQC on them (as
 mentioned above).
 
 * Check your directory contents (`ls -Rlh`, or in your file browser). It should
@@ -334,48 +340,59 @@ files and results was `environment.yml` (that we used to create a Conda
 environment with the required packages) and the analysis code in
 `code/run_qc.sh`.
 
-Projects can often be quite large and require lots of dependencies; it can feel daunting to try to capture all of that in a single Conda environment, especially when you consider potential incompatibilities that may arise. It can therefore be a good idea to start new projects with an environment file with each package you know that you will need to use, but without specifying exact version (except for those packages where you know you need a specific version). Conda will then try to get the latest compatible versions of all the specified software, making the start-up and installation part of new projects easier. You can then add the versions that were installed to your environment file afterwards, ensuring future reproducibility.
+Projects can often be quite large and require lots of dependencies; it can feel
+daunting to try to capture all of that in a single Conda environment, especially
+when you consider potential incompatibilities that may arise. It can therefore
+be a good idea to start new projects with an environment file with each package
+you know that you will need to use, but without specifying exact versions
+(except for those packages where you *know* you need a specific version). Conda
+will then try to get the latest compatible versions of all the specified
+software, making the start-up and installation part of new projects easier. You
+can then add the versions that were installed to your environment file
+afterwards, ensuring future reproducibility.
 
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How to define our Conda environment using a yaml-file.
-    * How to use `conda env create` to make a new environment from a yaml-file.
+    * How to define our Conda environment using a yml-file.
+    * How to use `conda env create` to make a new environment from a yml-file.
+    * How to work with Conda in a project-like setting.
 
 ## Extra material
 
 ### Managing python versions
 
 With conda it's possible to keep several different versions of python on your
-computer at the same time, and switching between these versions is very easy. 
+computer at the same time, and switching between these versions is very easy.
 However, a single conda environment can only contain one version of python.
 
 #### Your current python installation
+
 The conda base environment has its own version of python installed.
 When you open a terminal (after having installed conda on your system) this base
 environment is activated by default (as evidenced by `(base)` prepended to your
-prompt). You can check what python version is installed in this environment by 
+prompt). You can check what python version is installed in this environment by
 running `python --version`. To see the exact path to the python executable type
 `which python`.
 
-In addition to this your computer may already have python installed in a 
-separate (system-wide) location outside of the conda installation. To see if 
+In addition to this your computer may already have python installed in a
+separate (system-wide) location outside of the conda installation. To see if
 that is the case type `conda deactivate` until your prompt is not prepended
-with a conda environment name. Then type `which python`. If a path was printed 
+with a conda environment name. Then type `which python`. If a path was printed
 to the terminal (*e.g.* `/usr/bin/python`) that means some python version is
-already installed in that location. Check what version it is by typing `python 
+already installed in that location. Check what version it is by typing `python
 --version`.
 
 Now activate the base conda environment again by typing `conda activate` (or
 the equivalent `conda activate base`) then check the python installation path
-and version using `which` and `python --version` as above. See the difference? 
-When you activate a conda environment your `$PATH` variable is updated so that 
+and version using `which` and `python --version` as above. See the difference?
+When you activate a conda environment your `$PATH` variable is updated so that
 when you call `python` (or any other program) the system first searches the
 directory of the currently active environment.
 
 #### Different python versions
 
-When you create a new conda environment you can choose to install a specific 
+When you create a new conda environment you can choose to install a specific
 version of python in that environment as well. As an example, create an
 environment containing python version `3.5` by running:
 
@@ -391,7 +408,7 @@ To activate the environment run:
 conda activate py35
 ```
 
-You now have a completely separate environment with its own python version. 
+You now have a completely separate environment with its own python version.
 
 Let's say you instead want an environment with pythonversion `2.7` of installed.
 You may for instance want to run scripts or packages that were written for
@@ -407,11 +424,11 @@ Activate this environment with:
 conda activate py27
 ```
 
-Now, switching between python versions is as easy as typing `conda activate 
+Now, switching between python versions is as easy as typing `conda activate
 py35` / `conda activate py27`.
 
 !!! note "Default python version"
-    If you create an environment where none of the packages require python, 
+    If you create an environment where none of the packages require python,
     **and** you don't explicitly install the `python` package then that new
     environment will use the python version installed in your base conda
     environment.
@@ -421,34 +438,34 @@ py35` / `conda activate py27`.
 The behaviour of your conda installation can be changed using an optional
 configuration file `.condarc`. On a fresh conda install no such file is
 included but it's created in your home directory as `~/.condarc` the first time
-you run `conda config`. 
+you run `conda config`.
 
-You can edit the `.condarc` file either using a text editor or by way of the 
+You can edit the `.condarc` file either using a text editor or by way of the
 `conda config` command. To list all config parameters and their settings run:
 
 ```bash
 conda config --show
 ```
 
-Similar to conda environment files, the configuration file is in YAML syntax. 
-This means that the config file is structured in the form of `key:value` pairs 
+Similar to conda environment files, the configuration file is in yml syntax.
+This means that the config file is structured in the form of `key:value` pairs
 where the `key` is the name of the config parameter (*e.g.* `auto_update_conda`)
 and the `value` is the parameter setting (*e.g.* `True`).
 
 Adding the name of a config parameter to `conda config --show` will show only
 that parameter, *e.g.* `conda config --show channels`.
 
-You can change parameters with the `--set`, `--add`, `--append` and `--remove` 
-flags to `conda config`. 
+You can change parameters with the `--set`, `--add`, `--append` and `--remove`
+flags to `conda config`.
 
-If you for example want to enable the 'Always yes' behaviour which makes conda 
+If you for example want to enable the 'Always yes' behaviour which makes conda
 automatically choose the `yes` option, such as when installing, you can run:
 
 ```bash
 conda config --set always_yes True
-``` 
+```
 
-To see details about a config parameter you can run `conda config --describe 
+To see details about a config parameter you can run `conda config --describe
 <parameter>`. Try running it on the `channels` parameter:
 
 ```bash
@@ -456,7 +473,7 @@ conda config --describe channels
 ```
 
 In the beginning of this tutorial we added conda channels to the `.condarc`
-file using `conda config --add channels`. To remove one of the channels from 
+file using `conda config --add channels`. To remove one of the channels from
 the configuration file you can run:
 
 ```bash
@@ -476,7 +493,7 @@ To completely remove a parameter and all its values run:
 conda config --remove-key <parameter>
 ```
 
-For a list of conda configuration parameters see the 
+For a list of conda configuration parameters see the
 [Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
 page.
 
@@ -532,7 +549,7 @@ to be modified with project_a_environment.
 
 ### Bash aliases for conda
 
-Some programmers like to have aliases (_i.e._ shortcuts) for common commands. 
+Some programmers like to have aliases (_i.e._ shortcuts) for common commands.
 Here are two aliases for conda that might prove useful for you.
 
 ```bash
