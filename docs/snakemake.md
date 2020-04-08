@@ -1,72 +1,78 @@
-# Introduction to Snakemake
+# Introduction
 
-A workflow management system (WMS) is a piece of software that sets up,
+A *workflow management system* (WMS) is a piece of software that sets up,
 performs and monitors a defined sequence of computational tasks (*i.e.* "a
 workflow"). Snakemake is a WMS that was developed in the bioinformatics
-community, and as such it has some features that make it particularly well
-suited for creating reproducible and scalable data analyses.
+community, and as such it has a number of features that make it particularly
+well-suited for creating reproducible and scalable data analyses.
 
-* The language you use to formulate your workflows is based on Python, which is
-  a language with strong standing in academia. However, users are not required
-  to know how to code in Python to work efficiently with Snakemake.
-* Workflows can easily be scaled from your desktop to server, cluster, grid or
-  cloud environments. This makes it possible to develop a workflow on your
-  laptop, maybe using only a small subset of your data, and then run the real
-  analysis on a cluster.
-* Snakemake has several features for defining the environment with which each
-  task is carried out. This is important in bioinformatics, where workflows
-  often involve running a large number of small third-party tools.
-* Snakemake is primarily intended to work on _files_ (rather than for example
-  streams, reading/writing from databases or passing variables in memory). This
-  fits well with many fields of bioinformatics, notably next-generation
-  sequencing, that often involve computationally expensive operations on large
-  files. It's also a good fit for a scientific research setting, where the
-  exact specifications of the final workflow aren't always known at the
-  beginning of a project.
-* Lastly, a WMS is a very important tool for making your analyses reproducible.
-  By keeping track of when each file was generated, and by which operation, it
-  is possible to ensure that there is a consistent "paper trail" from raw data
-  to final results. Snakemake also has features that allow you to package and
-  distribute the workflow, and any files it involves, once it's done.
+First of all the language you use to formulate your workflows is based on
+Python, which is a language with strong standing in academia. However, users
+are not required to know how to code in Python to work efficiently with
+Snakemake. Workflows can easily be scaled from your desktop to server, cluster,
+grid or cloud environments. This makes it possible to develop a workflow on
+your laptop, maybe using only a small subset of your data, and then run the
+real analysis on a cluster. Snakemake also has several features for defining
+the environment with which each task is carried out. This is important in
+bioinformatics, where workflows often involve running a large number of small
+third-party tools.
 
-## Tell me more
+Snakemake is primarily intended to work on _files_ (rather than for example
+streams, reading/writing from databases or passing variables in memory). This
+fits well with many fields of bioinformatics, notably next-generation
+sequencing, that often involve computationally expensive operations on large
+files. It's also a good fit for a scientific research setting, where the exact
+specifications of the final workflow aren't always known at the beginning of
+a project.
+
+Lastly, a WMS is a very important tool for making your analyses reproducible.
+By keeping track of when each file was generated, and by which operation, it is
+possible to ensure that there is a consistent "paper trail" from raw data to
+final results. Snakemake also has features that allow you to package and
+distribute the workflow, and any files it involves, once it's done.
+
+If you want to read more, you can find several resources here:
+
 * The Snakemake documentation is available on [readthedocs](
   https://snakemake.readthedocs.io/en/stable/#).
-* Here is a great [tutorial](
+* Here is another (quite in-depth) [tutorial](
   https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
 * If you have questions, check out [stack overflow](
   https://stackoverflow.com/questions/tagged/snakemake).
 
-# Set up
+## Setup
+
 This tutorial depends on files from the course GitHub repo. Take a look
 at the [intro](tutorial_intro.md) for instructions on how to set it up
-if you haven't done so already. Then open up a terminal and go to
+if you haven't done so already, then open up a terminal and go to
 `workshop-reproducible-research/snakemake`.
 
-## Construct the environment for the workflow
 If you have done the [Conda tutorial](conda.md) you should know how to
 define an environment and install packages using Conda and an
 `environment.yml` file. Here we will use Snakemake as well as some other
 programs, all of which are available in the Bioconda channel. If you
 look in the current directory you will see an `environment.yml` file
-that specifies an environment containing FastQC and SRA Tools (identical
+that specifies an environment containing FastQC and SRA-Tools (identical
 to the one you made in the Conda tutorial). Add the following programs
 to the file and save it.
 
 ```yaml
-  # Specify python version (not required but can help with downstream conflicts)
-  - python=3.7.6
-  # The workflow manager
-  - snakemake-minimal=5.10.0
-  # For visualizing workflows
-  - graphviz=2.42.3
-  - xorg-libxrender
-  - xorg-libxpm
-  # For downloading files
-  - wget=1.20.1
+# Specify python version (not required but can help with downstream conflicts)
+- python=3.7.6
+
+# The workflow manager
+- snakemake-minimal=5.10.0
+
+# For visualizing workflows
+- graphviz=2.42.3
+- xorg-libxrender
+- xorg-libxpm
+
+# For downloading files
+- wget=1.20.1
 ```
 
-Now install the new environment and activate it.
+* Now install the new environment and activate it:
 
 ```bash
 conda env create -n snakemake_exercise -f environment.yml
@@ -84,8 +90,6 @@ ensure that the Conda steps were successful.
     and interacting with remote providers such as Google Drive or Dropbox. This
     was done to speed up the installation process. Use the normal `snakemake`
     package if you need those features.
-
-# Practical exercise
 
 ## The basics
 In this part of the tutorial we will create a very simple workflow from
@@ -180,7 +184,7 @@ files, or if one of the input files will be updated by another job**. This is
 how Snakemake ensures that everything in the workflow is up to date. We will
 get back to this shortly.
 
-What if we ask Snakemake to generate the file b.upper.txt?
+What if we ask Snakemake to generate the file `b.upper.txt`?
 
 ```no-highlight
 $ snakemake -n -r -p b.upper.txt
@@ -252,6 +256,7 @@ look at the spoiler below, but spend some time on it before you look. Also
 rename the rule to `concatenate_files` to reflect its new more general use.
 
 ??? note "Click to see how to implement `concatenate_files`"
+
     ```python
     rule concatenate_files:
         input:
@@ -322,7 +327,8 @@ Neat!
     the file's path through the workflow, *e.g.*
     `sample_a.trimmed.deduplicated.sorted.bam`.
 
-## Visualization, logging and workflow management
+## Workflows and visualization
+
 All that we've done so far could quite easily be done in a simple shell script
 that takes the input files as parameters. Let's now take a look at some of the
 features where a WMS like Snakemake really adds value compared to a more
@@ -332,8 +338,8 @@ rules are connected and one that shows how the jobs (*i.e.* an execution of
 a rule with some given inputs/outputs/settings) are connected. First we look at
 the rule graph. The following command will generate a rule graph in the dot
 language and pipe it to the program `dot`, which in turn will save
-a visualization of the graph as a png file (if you're having troubles
-displaying png files you could use svg or jpg instead).
+a visualization of the graph as a PNG file (if you're having troubles displaying
+PNG files you could use SVG or JPG instead).
 
 ```bash
 snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
@@ -367,6 +373,7 @@ way of indicating that this rule doesn't need to be rerun in order to generate
 `a_b.txt`. Validate this by running `snakemake -n -r a_b.txt` and it should say
 that there is nothing to be done.
 
+
 We've discussed before that one of the main purposes of using a WMS is that it
 automatically makes sure that everything is up to date. This is done by
 recursively checking that outputs are always newer than inputs for all the
@@ -375,6 +382,7 @@ contents of `a.txt` to some other text and save it. What do you think will
 happen if you run `snakemake -n -r a_b.txt` again?
 
 ??? note "Click to see output"
+
     ```no-highlight
     $ snakemake -n -r a_b.txt
 
@@ -447,7 +455,7 @@ files as well as rules, so you would get the same result with `-R a_b.txt`.
 Whenever you've made changes to a rule that will affect the output it's good
 practice to force re-execution like this. Still, there can be situations where
 you don't know if any rules have been changed. Maybe several people collaborate
-on the same workflow but are using it on different files for example. Snakemake
+on the same workflow but are using it on different files, for example. Snakemake
 keeps track of how all files were generated (when, by which rule, which version
 of the rule, and by which commands). You can export this information to
 a tab-delimited file like this:
@@ -456,8 +464,8 @@ a tab-delimited file like this:
 snakemake a_b.txt -D > summary.tsv
 ```
 
-The contents of `summary.tsv` is shown in the table below (scroll to see the
-full table).
+The contents of `summary.tsv` is shown in the table below (scroll horizontally
+to see the full table).
 
 | output_file   | date   | rule   | version   | log-file(s)   |  input-file(s)   | shellcmd   | status   | plan   |
 | --------------| ------ | ------ | --------- | ------------- | ---------------- | ---------- | -------- | ------ |
@@ -516,6 +524,7 @@ the other tutorials instead.
     * How logging in Snakemake works.
 
 ## RNA-seq analysis of MRSA
+
 As you might remember from the [intro](tutorial_intro.md), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
@@ -552,7 +561,7 @@ conda env update -f environment.yml
 ```
 
 !!! tip
-    Here we have one conda environment for  executing the whole Snakemake
+    Here we have one Conda environment for  executing the whole Snakemake
     workflow. Snakemake also supports using explicit conda environments on
     a per-rule basis, by specifying something like `conda:
     rule-specific-env.yml` in the rule definition and running Snakemake with
@@ -647,6 +656,7 @@ through the structure, in particular the quality control reports in `results`
 and the count table in `results/tables`.
 
 ### Parameters
+
 In a typical bioinformatics project, considerable efforts are spent on tweaking
 parameters for the various programs involved. It would be inconvenient if you
 had to change in the shell scripts themselves every time you wanted to run with
@@ -738,6 +748,7 @@ to form the `config` dictionary. If you want to overwrite a parameter value,
     add the line `configfile: "config.yml"` to the top of your Snakefile.
 
 ### Logs
+
 As you probably noticed it was difficult to follow how the workflow progressed
 since some rules printed a lot of output to the terminal. In some cases this
 also contained important information, such as statistics on the sequence
@@ -806,7 +817,8 @@ workflow when the rules write to logs instead of to the terminal. If you run
 with `-D` (or `-S` for a simpler version) you will see that the summary table
 now also contains the log file for each of the files in the workflow.
 
-### Marking files as temporary
+### Temporary files
+
 It's not uncommon that workflows contain temporary files that should be kept
 for some time and then deleted once they are no longer needed. A typical case
 could be that some operation generates a file, which is then compressed to save
@@ -871,6 +883,7 @@ Snakemake has a number of options for marking files:
   file per cluster.
 
 ### Shadow rules
+
 Take a look at the rule `generate_count_table` below. Since `input.annotation`
 is compressed, it is first unzipped to a temporary file. `htseq-count` then
 generates a temporary count table, which is finally prepended with a header
@@ -955,6 +968,7 @@ and validate that the temporary files don't show up in your working directory.
     the `--shadow-prefix` flag).
 
 ### Rule targets 
+
 So far we have only defined the inputs/outputs of a rule as strings, or in
 some case a list of strings, but Snakemake allows us to be much more flexible
 than that. Actually, we can use any Python expression or even functions, as
@@ -1026,6 +1040,7 @@ Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
 the sample ids. Much better!
 
 ### Generalizing the workflow
+
 It's generally a good idea to separate project-specific parameters from the
 actual implementation of the workflow. If we want to move all project-specific
 information to `config.yml`, and let the Snakefile be a more general RNA-seq
@@ -1157,6 +1172,7 @@ output:
 ```
 
 ### Summary
+
 Well done!
 
 * You have a general RNA-seq pipeline which can easily be reused between

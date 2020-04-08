@@ -1,6 +1,4 @@
-# Introduction to Singularity
-
-## What is Singularity?
+# Introduction
 
 Singularity is a container software alternative to Docker. It was originally
 developed by researchers at Lawrence Berkeley National Laboratory with focus on
@@ -9,25 +7,23 @@ Singularity is more suitable for HPC is that it very actively restricts
 permissions so that you do not gain access to additional resources while inside
 the container.
 
-## Tell me more
+If you want to read more, here are some additional resources:
 
 * [Singularity docs](https://sylabs.io/guides/3.4/user-guide/index.html)
 * [Singularity publication](https://doi.org/10.1371/journal.pone.017745)
 * [Uppmax Singularity user guide](
   https://www.uppmax.uu.se/support/user-guides/singularity-user-guide/)
 
-# Setup
+## Setup
 
 This tutorial depends on files from the course GitHub repo. Take a look at
 the [intro](tutorial_intro.md) for instructions on how to set it up if you
 haven't done so already. Then open up a terminal and go to
 `workshop-reproducible-research/singularity`.
 
-## Install Singularity
+### Installing on macOS
 
-### macOS
-
-Download the Singularity Desktop DMG file from 
+Download the Singularity Desktop DMG file from
 [here](https://sylabs.io/singularity-desktop-macos/) and follow the 
 instructions. Note that this is a beta version and not all features are 
 available yet.
@@ -35,20 +31,18 @@ available yet.
 !!! attention
     Make sure you that 'Singularity networking' is checked during installation
 
-### Linux
+### Installing on Linux
 
 Follow the instructions [here](
 https://sylabs.io/guides/3.4/user-guide/installation.html#distribution-packages-of-singularity).
 
-### Windows
+### Installing on Windows
 
 Installing on Windows may be tricky. This requires running Singularity through
 a Vagrant Box. See [instructions here](
 https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
-# Practical exercise
-
-## The very basics
+## The basics
 
 In the [Docker tutorial](docker.md) we started by downloading an Ubuntu image.
 Let's see how the same thing is achieved with Singularity:
@@ -110,7 +104,6 @@ Notice the difference?
     * How to run a command in a Singularity container using `singularity exec`
     * How to start an interactive terminal in a Singularity container using
       `singularity shell`
-
 
 ## Bind mounts
 
@@ -178,7 +171,7 @@ singularity shell lolcow_latest.sif
     * How to use `singularity pull` to download and run Docker images as
       Singularity containers
 
-## Building a Singularity image from scratch
+## Building from scratch
 
 As we have seen, it is possible to convert Docker images to the Singularity
 format when needed and run them using Singularity. In terms of making
@@ -402,7 +395,7 @@ files producing output directories and files in your current working directory.
     does not currently work with `--remote` building though.
 
 
-## Converting the MRSA workflow Docker image to Singularity
+## Singularity and the case study
 
 As a final example we will use `singularity build` to convert the Docker image
 of the MRSA project, that we use as a case study in this course, to
