@@ -786,14 +786,50 @@ params:
 ## Presentations in R Markdown
 
 Lastly, if you have time, you can try out using R Markdown for making
-presentations.
+presentations. There are several ways to do this, but one package that is both
+simple and effective is [Xaringan](https://github.com/yihui/xaringan). To use
+this package, you would change the output format specification in the YAML
+header to `xaringan::moon_reader`.
 
-The exercise task is short and simple: recreate the slides shown below using
-R Markdown (hint: use output format "ioslides").
+The package has functionality that is similar to PowerPoint when it comes to
+give the presentation, such as presenter view, notes, blackout, *etc.*. Each
+slide is separated by three dashes (`---`), supports both headers, code chunks
+and normal markdown text, just as in normal R Markdown documents. There are lots
+of more advanced options that you can specify manually or in custom CSS themes,
+such as getting a figure in a footer, specifying custom colours, text sizes,
+font families, HTML styles, and much more. Here's a minimal example:
 
-!!! tip
-    It is now also possible to [render PowerPoint presentations](
-    https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html),
-    but note that this requires rmarkdown >= v1.9 and Pandoc >= v2.0.5.
+```no-highlight
+---
+title: "An example presentation"
+output: xaringan::moon_reader
+---
 
-> ![](images/ioslides.png)
+# The first slide
+
+This is the first slide, which contains some markdown text.
+
+---
+
+# The second slide, with code
+
+This is the second slide, which contains some code.
+
+```{r}
+data(iris)
+head(iris)
+```
+```
+
+The lectures you've seen so far in the course have all been created with
+R Markdown. This not only makes them a lot easier to track with Git compared to
+the more common PowerPoint, they also allow you to execute code inside the
+presentation, which makes presenting results quite a bit easier.
+
+It can be trickier to get your presentation looking as nice as you want if
+you're inexperienced, though, so expect a bit of a learning curve. A good
+exercise is to take one of the presentations you have given in the past (such as
+for a lab meeting, a journal club, *etc.*) and try to recreate that with
+R Markdown. You'll soon find that some things are simpler with R Markdown, while
+others are more difficult. Which method of creating presentations you prefer is,
+ultimately, up to you.
