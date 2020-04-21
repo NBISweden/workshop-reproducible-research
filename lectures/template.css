@@ -21,6 +21,11 @@ h2 {
   font-size: 1.2em !important;
 }
 
+/* Header 3 font size */
+h3 {
+  font-size: 0.9em !important;
+}
+
 /* Custom font sizes */
 .micro { font-size: 25% }
 .tiny { font-size: 50% }
