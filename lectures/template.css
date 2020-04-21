@@ -30,6 +30,8 @@ h2 {
 .Huge { font-size: 200% }
 .HUGE { font-size: 250% }
 
+.remark-code { font-size: 50% }
+
 /* Custom colours */
 .green { color: #85be42; font-weight: bold }
 .dark-green { color: #487a2d; font-weight: bold }
