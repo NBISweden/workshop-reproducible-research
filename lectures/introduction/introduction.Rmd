@@ -302,7 +302,7 @@ There are many so-called excuses not to work reproducibly:
 
 # What does reproducible research mean?
 
-.center[<img src="figures/reproducibility-overview.png" width=60%/>]
+.center[<img src="../common-figures/reproducibility-overview.png" width=60%/>]
 
 --
 
