@@ -4,8 +4,9 @@
 # Xaringan-related files
 **/*_files
 
-# HTML lectures
+# HTML/PDF lectures
 lectures/**/*.html
+lectures/**/*.pdf
 
 # Various
 .snakemake
