@@ -437,7 +437,7 @@ useful you can merge that back into your main branch. On the other hand, if the
 work didn't turn out as planned, you can simply delete the branch and continue
 where you left off in your main line of work. Another use case for branching is
 when you are working in a project with multiple people. Branching can be a way
-of compartmentalizing your teams work on different parts of the project and
+of compartmentalizing your team's work on different parts of the project and
 enables merging back into the main branch in a controlled fashion; we will
 learn more about this in the section about working remotely.
 
@@ -556,8 +556,8 @@ git branch -d test_alignment
     We have now learned how to divide our work into branches and manage those:
 
     * `git branch <branch>` creates a new branch.
-    * `git checkout` moves the repository to the state in which the specified
-      branch is currently in.
+    * `git checkout <branch>` moves the repository to the state in which the
+      specified branch is currently in.
     * `git merge <branch>` merges the specified branch into the current one.
 
 ## Tagging commits
@@ -719,7 +719,8 @@ branch on the remote (`origin`). Our git repository is now stored on GitHub!
     circumvent this by telling git that you always want to push to
     `origin/master` when you're on your local `master` branch. To do this, use
     the command `git branch --set-upstream-to origin master`. Another way to
-    achieve the same effect is use the `-u` flag for the very first push.
+    achieve the same effect is use the `--set-upstream` flag for the very first
+    push.
 
 While remote repositories are extremely useful as backups and for collaborating
 with others, that's not their only use: remotes also help when you are working
@@ -906,9 +907,9 @@ pushed it to GitHub. Let's create a conflict!
   local clone is not yet aware of the remote changes.
 
 * Let's change the `environment.yml` file in this local repository as well, but
-  to version 1.6, instead! (It may be the case that your collaborator thought it
+  to version 1.6, instead! It may be the case that your collaborator thought it
   was good to use MultiQC version 1.8, whereas you thought it would be better to
-  use MultiQC version 1.6, but neither of you communicated that to the other.)
+  use MultiQC version 1.6, but neither of you communicated that to the other.
 
 * Add and commit your change and try to push the commit, which should give you
   an error message that looks like this:
@@ -1075,12 +1076,12 @@ git push
 
 !!! note
     While the example we've used here is from a collaborative setting, conflicts
-    also arise when you are working alone. They usually arise when you have
+    also arise when you are working alone. They usually happen when you have
     several feature branches that you want to merge into `master` and you've
     forgot to keep all branches up-to-date with each other.
 
 !!! note "Quick recap"
-    We learned about how conflicting commits can happend and how to deal with
+    We learned about how conflicting commits can happen and how to deal with
     them by inspecting the affected files and looking for the source of the
     conflict.
 
@@ -1089,7 +1090,7 @@ git push
 The following extra material contains some more advanced things you can do with
 git and the command line in general, which is not part of the main course
 materials. All the essential skills of git are covered by the previous
-sections: the material here should be considered tips and tricks from people
+sections; the material here should be considered tips and tricks from people
 who use git every day. You thus don't need to use these things unless you want
 to, and you can even skip this part of the lesson if you like!
 
