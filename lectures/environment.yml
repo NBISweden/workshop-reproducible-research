@@ -20,3 +20,4 @@ dependencies:
     - r-ggplot2=3.3
     - r-kableextra=1.1
     - r-xaringan=0.15
+    - phantomjs=2.1
