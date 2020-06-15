@@ -46,6 +46,18 @@ There are many benefits of using git in your research project:
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
+These tutorials will walk you through the basics of using git as a tool for
+reproducible research. The things covered in these tutorials are what you will
+be using most of the time in your day-to-day work with git, but git has many
+more advanced features that might be of use to you. If you are interested in
+learning more about these things, here are some reading tips for you:
+
+* [A simple git guide](http://rogerdudler.github.io/git-guide/)
+
+* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
+
+* [Git reference manual](https://book.git-scm.com/docs)
+
 ## Setup
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [intro](tutorial_intro.md) for instructions on how to set it up if you haven't
@@ -75,20 +87,6 @@ git config --global user.name "Mona Lisa"
     a per-repository level. Change directory into the relevant local git
     repository and run `git config user.name "Mona Lisa"`. This will set the
     default username for that repository only.
-
-# Tutorials
-
-These tutorials will walk you through the basics of using git as a tool for
-reproducible research. The things covered in these tutorials are what you will
-be using most of the time in your day-to-day work with git, but git has many
-more advanced features that might be of use to you. If you are interested in
-learning more about these things, here are some reading tips for you:
-
-* [A simple git guide](http://rogerdudler.github.io/git-guide/)
-
-* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
-
-* [Git reference manual](https://book.git-scm.com/docs)
 
 ## Creating a git repository
 
