@@ -1,5 +1,5 @@
 ---
-title: "Docker"
+title: "Containerization with Docker and Singularity"
 subtitle: "Tools for Reproducible Research NBIS course"
 output:
   xaringan::moon_reader:
@@ -92,7 +92,6 @@ Singularity
 | images stored centrally | image files that you can move around. No layers! |
 | isolates the host and container file system by default | containers have access to host file system |
 | well supported on Mac/Linux/Windows | limited support on Mac/Windows |
-| closed source community driven | open source community driven |
 
 ---
 
