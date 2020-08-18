@@ -1,0 +1,101 @@
+---
+title: "Docker"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+---
+
+layout: true
+<div class="scilife-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+
+*Making self-contained, distributable projects with*
+
+.pull-left[
+<img src="https://www.docker.com/sites/default/files/mono-vertical.png" style="width:50%;"/>
+<br>
+
+]
+
+.pull-right[
+<img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" style="width:45%;"/>
+<br>
+Singularity
+]
+
+---
+# What is Docker?
+
+* Docker lets you run applications securely isolated in a **container**, packaged with all its dependencies and libraries.
+
+---
+
+# Docker nomenclature
+
+--
+
+* A Docker .green[file] is a recipe used to build a Docker .green[image]
+
+--
+
+* A Docker .green[image] is a standalone executable package of software
+
+--
+
+* A Docker .green[container] is a standard unit of software run on the Docker Engine.
+
+--
+
+* .green[Docker Hub] is an online service for sharing docker images
+
+---
+
+# What can I use Docker for?
+
+--
+
+* As an advanced environment manager
+
+--
+
+* To package your code with the environment it needs
+
+--
+
+* To package a whole workflow (*e.g.* to accompany a manuscript).
+
+--
+
+* and much more...
+
+---
+# What is Singularity?
+
+* an open source container platform suitable for HPC clusters
+
+---
+
+# Docker vs. Singularity
+
+| Docker | Singularity |
+| ------ | ----------- |
+| runs as a daemon process with superuser privileges | runs as regular user |
+| images stored centrally | image files that you can move around. No layers! |
+| isolates the host and container file system by default | containers have access to host file system |
+| well supported on Mac/Linux/Windows | limited support on Mac/Windows |
+| closed source community driven | open source community driven |
+
+---
+
+class: center, middle
+
+# Questions?
