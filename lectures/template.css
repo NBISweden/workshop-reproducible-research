@@ -21,6 +21,11 @@ h2 {
   font-size: 1.2em !important;
 }
 
+/* Header 3 font size */
+h3 {
+  font-size: 0.9em !important;
+}
+
 /* Custom font sizes */
 .micro { font-size: 25% }
 .tiny { font-size: 50% }
@@ -29,6 +34,8 @@ h2 {
 .huge { font-size: 150% }
 .Huge { font-size: 200% }
 .HUGE { font-size: 250% }
+
+.remark-code { font-size: 50% }
 
 /* Custom colours */
 .green { color: #85be42; font-weight: bold }
@@ -109,4 +116,9 @@ a:hover {
   margin-right: 2px;
   padding: 2px 3px 1px;
   font-size: 80% !important;
+}
+
+.image-with-text {
+  display: inline-block;
+  vertical-align: middle;
 }

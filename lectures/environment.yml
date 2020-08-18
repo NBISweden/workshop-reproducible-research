@@ -6,14 +6,18 @@ channels:
     - r
 
 dependencies:
-  - python=3.8.2
-  - jupyter=1.0.0
-  - pandas=1.0.2
-  - rise=5.6.1
-  - seaborn=0.10.0
-  - rpy2=3.1.0
-  #  Base R
-  - r-base=3.6.2
-  # Xaringan (for creating presentations)
-  - r-xaringan=0.15
-  - r-ggplot2=3.3.0
+
+    # Jupyter
+    - python=3.8
+    - jupyter=1.0
+    - pandas=1.0
+    - rise=5.6
+    - seaborn=0.10
+    - rpy2=3.1
+
+    # R and Xaringan
+    - r-base=3.6
+    - r-ggplot2=3.3
+    - r-kableextra=1.1
+    - r-xaringan=0.15
+    - phantomjs=2.1
