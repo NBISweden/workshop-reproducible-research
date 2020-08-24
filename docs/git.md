@@ -46,6 +46,16 @@ There are many benefits of using git in your research project:
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
+These tutorials will walk you through the basics of using git as a tool for
+reproducible research. The things covered in these tutorials are what you will
+be using most of the time in your day-to-day work with git, but git has many
+more advanced features that might be of use to you. If you are interested in
+learning more about these things, here are some reading tips for you:
+
+* [A simple Git guide](http://rogerdudler.github.io/git-guide/)
+* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
+* [Git reference manual](https://book.git-scm.com/docs)
+
 ## Setup
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [intro](tutorial_intro.md) for instructions on how to set it up if you haven't
@@ -61,12 +71,13 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 ### Configure git
 
 If it is the first time you use git on your computer, you may want to configure
-it so that it is aware of your username. This username should match the
-username you have registered on GitHub. This will make it easier when you want
-to sync local changes with your remote GitHub repository.
+it so that it is aware of your username and email. These should match those that
+you have registered on GitHub. This will make it easier when you want to sync
+local changes with your remote GitHub repository.
 
 ```
 git config --global user.name "Mona Lisa"
+git config --global user.email "mona_lisa@gmail.com"
 ```
 
 !!! tip
@@ -744,9 +755,50 @@ the original `git_tutorial` repository!
 * Since you already gave the address to git when you cloned the repository, you
   don't have to add it manually as before. Verify this with `git remote -v`.
 
+* Let's say that we now want to change the `multiqc` software to an earlier
+  version: open the `environment.yml` file in the second local repo and change
+  `multiqc=1.7` to `multiqc=1.2`; add and commit the change.
+
+* We can now use `push` again to sync our remote repository with the new local
+  changes. Refresh your web page again and see that the changes have taken
+  effect.
+
+!!! tip
+    You always need to specify `git push origin master` by default, but you can
+    circumvent this by telling git that you always want to push to
+    `origin/master` when you're on your local `master` branch. To do this, use
+    the command `git branch --set-upstream-to origin master`. Another way to
+    achieve the same effect is use the `--set-upstream` flag for the very first
+    push.
+
+Since we have now updated the remote repository with code that came from the
+second local repository, the first local repository is now outdated. We thus
+need to update the first local repo with the new changes. This can be done with
+the `pull` command.
+
+* `cd` back into the first local repository (*e.g.* `git_tutorial`) and run the
+  `git pull` command. This will download the newest changes from the remote
+  repository and merge them locally automatically.
+
+* Check that everything is up-to-date with `git status`.
+
+Another command is `git fetch`, which will download remote changes *without*
+merging them. This can be useful when you want to see if there are any remote
+changes that you *may* want to merge, without actually doing it, such as in
+a collaborative setting. In fact, `git pull` in its default mode is just
+a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
+`FETCH_HEAD` points to the tip of the branch that was just fetched).
+
 !!! note "Quick recap"
     We have learnt the difference between local and remote copies of git
-    repositories and how to sync them using `push`, `pull` and `clone`.
+    repositories and how to sync them:
+
+    * `git push` uploads commits to a remote repository
+    * `git pull` downloads commits from a remote repository and merges them
+      to the local branch
+    * `git fetch` downloads commits from a remote repository without merging
+      them to the local branch
+    * `git clone` makes a local copy of a remote repository
 
 ### Browsing GitHub
 
