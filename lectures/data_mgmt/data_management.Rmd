@@ -19,7 +19,7 @@ layout: true
 
 class: center, middle
 
-*.huge[Data management]*
+*.huge[Managing your data]*
 
 ---
 
@@ -51,20 +51,30 @@ Scientific Data (2016)]</a>
 ---
 # Data management plan
 
-- Check the requirements of your funding agency and field of research.
-- Decide what data require archiving, and determine how much storage space you will need (short and long term).
-- Provide metadata that allows others to understand, cite and reuse your data files.
-- Make clear how and when your data can be shared with scientists outside your group.
-- If your research involves sensitive data, explain any legal and ethical restrictions on data access and reuse.
-- Look for suitable data repositories used by your research community.
+- Check requirements of funding agency and field of research.
+- Determine required storage space for short and long term.
+- Provide helpful metadata.
+- Consider legal/ethical restrictions if working with sensitive data.
+- Find suitable data repositories.
+- Strive towards uploading data to its final destination already at the beginning of a project.
 
 <a href="https://www.vr.se/english/calls-and-decisions/grant-terms-and-conditions/data-management-plan.html"> VR Data management plan requirements </a>
 
 ---
 
+# Data sharing
+
+.large[*Why Open Access?*]
+
++ Publicly funded research should be unrestricted.
++ Published results should be verifiable by others.
++ Enables other to build upon previous work.
+
+---
+
 class: center, middle
 
-# Pair-up and discuss!
+# Pair up and discuss!
 
 - Does your group have a data management plan in place?
 - Do you know "your" repositories and how to submit data to them?
@@ -73,24 +83,115 @@ class: center, middle
 
 class: center, middle
 
-# Questions?
+*.huge[Organizing your projects]*
+
+---
+
+class: left, middle
+```bash
+$ ls -l data/
+-rw-r--r--  user  staff  samples.mat
+-rw-r--r--  user  staff  samplesFinal.mat
+-rw-r--r--  user  staff  samplesFinalV2.mat
+-rw-r--r--  user  staff  samplesUSE_THIS_ONE.mat
+-rw-r--r--  user  staff  samplesV2.mat
+```
+
+---
+
+# The project directory
+
+The first step towards working reproducibly: **.green[Get organized!]**
+
+- Divide your work into distinct projects.
+- Keep all files needed to go from raw data to final results in a dedicated directory.
+- Use relevant subdirectories.
+
+
+---
+
+# There are many ways to organize a project
+
+One example: <a href="https://github.com/NBISweden/project_template" .green[NBISweden/project_template] </a>
+
+.small[
+```bash
+code/             all code needed to go from input files to final results
+
+data/             raw and primary data, essentially all input files, never edit!
+
+doc/              documentation of the study
+
+intermediate/     output files from different analysis steps, can be deleted
+
+logs/             logs from the different analysis steps
+
+notebooks/        notebooks that document your day-to-day work
+
+results/          output from workflows and analyses
+
+scratch/          temporary files that can be safely deleted or lost
+
+config.yml        configuration of the project workflow
+
+Dockerfile        recipe to create a project container
+
+environment.yml   project dependencies list used to create software environment
+
+README.md         project description and instructions
+
+Snakefile         recipe to create a project container
+```
+]
+
+---
+
+# There are many ways to organize a project
+
+Another example: <a href="https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow" .green[snakemake-workflows/template] </a>
+
+.small[
+```bash
+config/
+  - config.yaml
+  - samples.tsv
+resources/
+results/
+  - logs/
+  - plots/
+  - tables/
+workflow/
+  - envs/
+  - report/
+  - rules/
+  - schemas/
+  - scripts/
+  Snakefile
+LICENSE
+README.md
+```
+]
+---
+
+# Helpful tools
+
+*syntax highlighting, autocomplete, git integration etc*
+
+- <a href="https://atom.io/" .green[Atom] </a> 
+- <a href="https://rstudio.com/" .green[RStudio] </a>
+- <a href="https://www.jetbrains.com/pycharm/" .green[PyCharm] </a>
+
+---
+class: center, middle
+
+# Pair up and discuss!
+
+- Do you organize your work in distinct projects?
+- How do you organize your files in this context?
+- Are you happy with the way you work today?
 
 ---
 
 class: center, middle
 
-*.huge[Organizing your projects]*
-
----
-# The project directory
-
-The first step towards working reproducibly: .green[Get organized]
-
-```bash
-- data/
-| -- samples.mat
-| -- samplesV2.mat
-| -- samplesFinal.mat
-| -- samplesFinalV2.mat
-| -- samplesUSE_THIS_ONE.mat
-```
+# Questions?
