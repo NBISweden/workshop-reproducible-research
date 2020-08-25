@@ -46,6 +46,16 @@ There are many benefits of using git in your research project:
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
+These tutorials will walk you through the basics of using git as a tool for
+reproducible research. The things covered in these tutorials are what you will
+be using most of the time in your day-to-day work with git, but git has many
+more advanced features that might be of use to you. If you are interested in
+learning more about these things, here are some reading tips for you:
+
+* [A simple Git guide](http://rogerdudler.github.io/git-guide/)
+* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
+* [Git reference manual](https://book.git-scm.com/docs)
+
 ## Setup
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [intro](tutorial_intro.md) for instructions on how to set it up if you haven't
@@ -61,12 +71,13 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 ### Configure git
 
 If it is the first time you use git on your computer, you may want to configure
-it so that it is aware of your username. This username should match the
-username you have registered on GitHub. This will make it easier when you want
-to sync local changes with your remote GitHub repository.
+it so that it is aware of your username and email. These should match those that
+you have registered on GitHub. This will make it easier when you want to sync
+local changes with your remote GitHub repository.
 
 ```
 git config --global user.name "Mona Lisa"
+git config --global user.email "mona_lisa@gmail.com"
 ```
 
 !!! tip
@@ -75,20 +86,6 @@ git config --global user.name "Mona Lisa"
     a per-repository level. Change directory into the relevant local git
     repository and run `git config user.name "Mona Lisa"`. This will set the
     default username for that repository only.
-
-# Tutorials
-
-These tutorials will walk you through the basics of using git as a tool for
-reproducible research. The things covered in these tutorials are what you will
-be using most of the time in your day-to-day work with git, but git has many
-more advanced features that might be of use to you. If you are interested in
-learning more about these things, here are some reading tips for you:
-
-* [A simple git guide](http://rogerdudler.github.io/git-guide/)
-
-* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
-
-* [Git reference manual](https://book.git-scm.com/docs)
 
 ## Creating a git repository
 
@@ -439,7 +436,7 @@ useful you can merge that back into your main branch. On the other hand, if the
 work didn't turn out as planned, you can simply delete the branch and continue
 where you left off in your main line of work. Another use case for branching is
 when you are working in a project with multiple people. Branching can be a way
-of compartmentalizing your teams work on different parts of the project and
+of compartmentalizing your team's work on different parts of the project and
 enables merging back into the main branch in a controlled fashion; we will
 learn more about this in the section about working remotely.
 
@@ -558,8 +555,8 @@ git branch -d test_alignment
     We have now learned how to divide our work into branches and manage those:
 
     * `git branch <branch>` creates a new branch.
-    * `git checkout` moves the repository to the state in which the specified
-      branch is currently in.
+    * `git checkout <branch>` moves the repository to the state in which the
+      specified branch is currently in.
     * `git merge <branch>` merges the specified branch into the current one.
 
 ## Tagging commits
@@ -708,21 +705,6 @@ branch on the remote (`origin`). Our git repository is now stored on GitHub!
 * Run `git status`. This should tell you that *"Your branch is up-to-date with
   'origin/master'."*.
 
-* Let's say that we now want to change the `multiqc` software to an earlier
-  version: open the `environment.yml` file and change `multiqc=1.7` to
-  `multiqc=1.2`; add and commit the change.
-
-* We can now use `push` again to sync our remote repository with the new local
-  changes. Refresh your web page again and see that the changes have taken
-  effect.
-
-!!! tip
-    You always need to specify `git push origin master` by default, but you can
-    circumvent this by telling git that you always want to push to
-    `origin/master` when you're on your local `master` branch. To do this, use
-    the command `git branch --set-upstream-to origin master`. Another way to
-    achieve the same effect is use the `-u` flag for the very first push.
-
 While remote repositories are extremely useful as backups and for collaborating
 with others, that's not their only use: remotes also help when you are working
 from different computers, a computer cluster or a cloud service.
@@ -744,9 +726,50 @@ the original `git_tutorial` repository!
 * Since you already gave the address to git when you cloned the repository, you
   don't have to add it manually as before. Verify this with `git remote -v`.
 
+* Let's say that we now want to change the `multiqc` software to an earlier
+  version: open the `environment.yml` file in the second local repo and change
+  `multiqc=1.7` to `multiqc=1.2`; add and commit the change.
+
+* We can now use `push` again to sync our remote repository with the new local
+  changes. Refresh your web page again and see that the changes have taken
+  effect.
+
+!!! tip
+    You always need to specify `git push origin master` by default, but you can
+    circumvent this by telling git that you always want to push to
+    `origin/master` when you're on your local `master` branch. To do this, use
+    the command `git branch --set-upstream-to origin master`. Another way to
+    achieve the same effect is use the `--set-upstream` flag for the very first
+    push.
+
+Since we have now updated the remote repository with code that came from the
+second local repository, the first local repository is now outdated. We thus
+need to update the first local repo with the new changes. This can be done with
+the `pull` command.
+
+* `cd` back into the first local repository (*e.g.* `git_tutorial`) and run the
+  `git pull` command. This will download the newest changes from the remote
+  repository and merge them locally automatically.
+
+* Check that everything is up-to-date with `git status`.
+
+Another command is `git fetch`, which will download remote changes *without*
+merging them. This can be useful when you want to see if there are any remote
+changes that you *may* want to merge, without actually doing it, such as in
+a collaborative setting. In fact, `git pull` in its default mode is just
+a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
+`FETCH_HEAD` points to the tip of the branch that was just fetched).
+
 !!! note "Quick recap"
     We have learnt the difference between local and remote copies of git
-    repositories and how to sync them using `push`, `pull` and `clone`.
+    repositories and how to sync them:
+
+    * `git push` uploads commits to a remote repository
+    * `git pull` downloads commits from a remote repository and merges them
+      to the local branch
+    * `git fetch` downloads commits from a remote repository without merging
+      them to the local branch
+    * `git clone` makes a local copy of a remote repository
 
 ### Browsing GitHub
 
@@ -908,9 +931,9 @@ pushed it to GitHub. Let's create a conflict!
   local clone is not yet aware of the remote changes.
 
 * Let's change the `environment.yml` file in this local repository as well, but
-  to version 1.6, instead! (It may be the case that your collaborator thought it
+  to version 1.6, instead! It may be the case that your collaborator thought it
   was good to use MultiQC version 1.8, whereas you thought it would be better to
-  use MultiQC version 1.6, but neither of you communicated that to the other.)
+  use MultiQC version 1.6, but neither of you communicated that to the other.
 
 * Add and commit your change and try to push the commit, which should give you
   an error message that looks like this:
@@ -1077,12 +1100,12 @@ git push
 
 !!! note
     While the example we've used here is from a collaborative setting, conflicts
-    also arise when you are working alone. They usually arise when you have
+    also arise when you are working alone. They usually happen when you have
     several feature branches that you want to merge into `master` and you've
     forgot to keep all branches up-to-date with each other.
 
 !!! note "Quick recap"
-    We learned about how conflicting commits can happend and how to deal with
+    We learned about how conflicting commits can happen and how to deal with
     them by inspecting the affected files and looking for the source of the
     conflict.
 
@@ -1091,7 +1114,7 @@ git push
 The following extra material contains some more advanced things you can do with
 git and the command line in general, which is not part of the main course
 materials. All the essential skills of git are covered by the previous
-sections: the material here should be considered tips and tricks from people
+sections; the material here should be considered tips and tricks from people
 who use git every day. You thus don't need to use these things unless you want
 to, and you can even skip this part of the lesson if you like!
 
