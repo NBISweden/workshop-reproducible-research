@@ -1,0 +1,96 @@
+---
+title: "Managing your data"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "template.css"]
+      nature:
+          slideNumberFormat: ""
+
+---
+
+layout: true
+<div class="scilife-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+
+*.huge[Data management]*
+
+---
+
+# Data (mis)management in practice.
+
+.tiny[
+|   | .green[\> Data acquisition] | .green[\> Analysis] | .green[\> First submission] | .green[\> Review] | .green[\> Second submission] | .green[\> Publication] |
+| - | --------------------------- | ------------------- | --------------------------- | ----------------- | ---------------------------- | ----------------------
+| **Raw data** | Data arrives in cumbersome and proprietary format. | Gets converted to format of choice. Original files (and conversion settings) are lost. | | Leads a quiet life on the HPC cluster, until the project expires and the data has to be urgently retrieved. | Ends its days on an external hard drive on the researcher's desk. | "Data available upon request". |
+| **Metadata** | In researcher's lab journal. | Hard-coded in various analysis scripts. | Mailed back and forth between collaborators in ever-changing (but nicely colored) Excel sheets. | | Reformatted and included as PDF in the supplementary. | | |
+]
+---
+
+# FAIR data
+
+Strive to make your data FAIR:
+
+- .green[**F**indable]
+- .green[**A**ccessible]
+- .green[**I**nteroperable] 
+- .green[**R**eusable]
+
+*for both machines and humans.*
+
+<br>
+<a href="https://www.nature.com/articles/sdata201618">.tiny[Wilkinson, Mark et al. “The FAIR Guiding Principles for scientific data management and stewardship”.
+Scientific Data (2016)]</a>
+
+---
+# Data management plan
+
+- Check the requirements of your funding agency and field of research.
+- Decide what data require archiving, and determine how much storage space you will need (short and long term).
+- Provide metadata that allows others to understand, cite and reuse your data files.
+- Make clear how and when your data can be shared with scientists outside your group.
+- If your research involves sensitive data, explain any legal and ethical restrictions on data access and reuse.
+- Look for suitable data repositories used by your research community.
+
+<a href="https://www.vr.se/english/calls-and-decisions/grant-terms-and-conditions/data-management-plan.html"> VR Data management plan requirements </a>
+
+---
+
+class: center, middle
+
+# Pair-up and discuss!
+
+- Does your group have a data management plan in place?
+- Do you know "your" repositories and how to submit data to them?
+
+---
+
+class: center, middle
+
+# Questions?
+
+---
+
+class: center, middle
+
+*.huge[Organizing your projects]*
+
+---
+# The project directory
+
+The first step towards working reproducibly: .green[Get organized]
+
+```bash
+- data/
+| -- samples.mat
+| -- samplesV2.mat
+| -- samplesFinal.mat
+| -- samplesFinalV2.mat
+| -- samplesUSE_THIS_ONE.mat
+```
