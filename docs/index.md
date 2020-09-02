@@ -5,12 +5,12 @@
 - 09.00 - 12.30
 
 **Location:**  
-- The course will be held over Zoom
+- The course will be held online over Zoom
 
 **Apply here:**  
 - Go to [SciLifeLab's webpage](
 https://www.scilifelab.se/events/tools-for-reproducible-research-5/) for
-details and application (deadline **TBA**).
+details and application (**deadline October 23**).
 
 <h3> Course description </h3>
 
