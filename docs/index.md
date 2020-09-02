@@ -1,15 +1,16 @@
 <h2> Tools for reproducible research </h2>
 
 **Date and time:**  
-- April 27-29, 2020 (3 days)
+- November 23-27, 2020 (5 days)
+- 09.00 - 12.30
 
 **Location:**  
-- Science for Life Laboratory, Solna, Sweden ([travel info](travel.md))
+- The course will be held over Zoom
 
 **Apply here:**  
 - Go to [SciLifeLab's webpage](
-https://www.scilifelab.se/events/tools-for-reproducible-research-4/) for
-details and application (deadline Mar 27).
+https://www.scilifelab.se/events/tools-for-reproducible-research-5/) for
+details and application (deadline **TBA**).
 
 <h3> Course description </h3>
 
