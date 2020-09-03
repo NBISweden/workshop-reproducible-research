@@ -322,6 +322,16 @@ operations in one step.
 git log
 ```
 
+!!! tip 
+    Since Git keeps track of changes in text, *e.g.* code and text-based
+    documentation, there are some files which you should *not* commit. Examples
+    of such files are file formats that are not text-based, *e.g.* Microsoft
+    Word/Excel files or PDFs - although one might sometimes want to track one of
+    these files regardless, such as when you have a static PDF report you
+    received from a sequencing platform that's never going to change. Other
+    files you shouldn't track are vary large text files, *e.g.* those larger
+    than 50 MB.
+
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
 
