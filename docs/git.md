@@ -52,6 +52,7 @@ be using most of the time in your day-to-day work with git, but git has many
 more advanced features that might be of use to you. If you are interested in
 learning more about these things, here are some reading tips for you:
 
+* [Git cheat-sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 * [A simple Git guide](http://rogerdudler.github.io/git-guide/)
 * [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
 * [Git reference manual](https://book.git-scm.com/docs)
