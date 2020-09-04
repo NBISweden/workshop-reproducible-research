@@ -1,8 +1,7 @@
 <h2> Tools for reproducible research </h2>
 
 **Date and time:**  
-- November 23-27, 2020 (5 days)
-- 09.00 - 12.30
+- November 23-27, 2020 (5 days) between 09.00 - 12.30
 
 **Location:**  
 - The course will be held online over Zoom
@@ -41,7 +40,7 @@ In this course you will learn how to make your data analyses reproducible.
 In particular, you will learn:
 
 * Good practices for data analysis and management
-* How to use the version control system git to track edits and collaborate on
+* How to use the version control system Git to track edits and collaborate on
   coding
 * How to use the package and environment manager Conda
 * How to use the workflow manager Snakemake
