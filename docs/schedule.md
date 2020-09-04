@@ -1,13 +1,12 @@
 <h1> Schedule </h1>
 
-The course will take place in the rooms Air/Fire  (see [travel
-info](travel.md)).
+The course will take place online via [Zoom](https://zoom.us/)
 
 <table>
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 1 - 2020-04-27 </center>
+      <center> Day 1 - 2020-11-23 </center>
     </td>
   </tr>
   <tr>
@@ -15,54 +14,80 @@ info](travel.md)).
     <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:00
-    <td> <font size="3"> Coffee and fika available from 10.00. Welcome!</td>
+    <td> <font size="3"> 09:00 </td>
+    <td> <font size="3"> Setting up </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:30
-    <td> <font size="3"> Introduction to Reproducible Research
+    <td> <font size="3"> 10:00 </td>
+    <td> <font size="3"> Welcome lecture </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:15
-    <td> <font size="3"> Data management and project organization
+    <td> <font size="3"> 10:15 </td>
+    <td> <font size="3"> Introduction to Reproducible Research </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:45
-    <td> <font size="3"> Lunch
+    <td> <font size="3"> 10:45 </td>
+    <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:45
+    <td> <font size="3"> 11:15 </td>
+    <td> <font size="3"> Data management and project organization </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:45 </td>
+    <td> <font size="3"> Break-out rooms and ice breaker session </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 12:00 </td>
     <td> <font size="3"> Distributing and version tracking your code
          <font size="2"><i><br>
-           - Introduction to version control and git<br>
-           - Practical tutorial: <a href="../git/">Git</a></i> <br>
+           - Introduction to version control and git <br>
+           - Practical tutorial: <a href="../git/">git</a></i><br></td>
   </tr>
   <tr>
-    <td> <font size="3"> ~14:30
-    <td> <font size="3"> Fika
+    <td> <font size="3"> 12:30 </td>
+    <td> <font size="3"> Wrap-up day 1 </td>
   </tr>
   <tr>
-    <td> <font size="3"> 14:45
+    <td colspan="3"> </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <font size="4">
+      <center> Day 2  - 2020-11-24 </center>
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"><b>Time</b> </td>
+    <td> <font size="3"><b>Topic</b> </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 09:00 </td>
+    <td> <font size="3"><i>...continued: Practical tutorial: <a href="../git/">git</a></i><br></td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 10:00 </td>
+    <td> <font size="3"> Wrap-up - git tutorial </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 10:15 </td>
+    <td> <font size="3"> Break </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> Master your dependencies - environments and reproducibility
          <font size="2"><i><br>
-           - Introduction to the package and environment manager Conda<br>
-           - Practical tutorial: <a href="../conda/">Conda</a> <br>
+         - Introduction to the package and environment manager Conda <br>
+         - Practical tutorial: <a href="../conda/">Conda</a></i>
+    </td>
   </tr>
   <tr>
-    <td> <font size="3"> 16:45
-    <td> <font size="3"> Wrap-up day 1
+    <td> <font size="3"> 12:15 </td>
+    <td> <font size="3"> Wrap up - Conda tutorial </td>
   </tr>
   <tr>
-    <td> <font size="3"> 17:00
-    <td> <font size="3"> Free time!
-  </tr>
-  <tr>
-    <td> <font size="3"> 17:30
-    <td> <font size="3"> Joint departure for dinner
-  </tr>
-  <tr>
-    <td> <font size="3"> 18:00
-    <td> <font size="3"> Course dinner<br>
+    <td> <font size="3"> 12:30 </td>
+    <td> <font size="3"> Wrap-up day 2 </td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -70,7 +95,7 @@ info](travel.md)).
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 2  - 2020-04-28 </center>
+      <center> Day 3  - 2020-11-25 </center>
     </td>
   </tr>
   <tr>
@@ -78,46 +103,31 @@ info](travel.md)).
     <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
-    <td> <font size="3"> 09:00
+    <td> <font size="3"> 09:00 </td>
     <td> <font size="3"> Organize your analysis using workflow managers
-        <font size="2"><i><br>
-        - Introduction to Snakemake<br>
-        - Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
-        <font size="3">Fika break ~10:15 <br>
-  </tr>
-<tr>
-    <td> <font size="3"> 11:45  </td>
-    <td> <font size="3"> Lunch </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 12:45 </td>
-    <td>
-      <font size="2"><i><br>
-      ...continued: Practical tutorial: <a href="../snakemake/">Snakemake</a></i><br><br>
+         <font size="2"> <i><br>
+         - Introduction to Snakemake <br>
+         - Practical tutorial: <a href="../snakemake/">Snakemake</a>
+         </i>
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 13:45 </td>
-    <td>
-      <font size="3"> Computational notebooks and reproducible reports
-      <font size="2"><i><br>
-      - Introduction to Jupyter and R Markdown<br>
-      - Practical tutorial: <a href="../jupyter/">Jupyter</a><br>
-      - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i><br><br>
-      <font size="3">Fika break ~14:30 <br>
+    <td> <font size="3"> 10:30 </td>
+    <td> <font size="3"> Break </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> <i> 
+        ...continued - Practical tutorial:  <a href="../snakemake/">Snakemake</a> </i>
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 16:45 </td>
-    <td> <font size="3"> Wrap-up day 2
+    <td> <font size="3"> 12:15 </td>
+    <td> <font size="3"> Wrap-up - Snakemake tutorial </td>
   </tr>
   <tr>
-    <td> <font size="3"> 17:00 </td>
-    <td> <font size="3"> Free time! </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 17:30 </td>
-    <td> <font size="3"> Social event! </td>
+    <td> <font size="3"> 12:30 </td>
+    <td> <font size="3"> Wrap-up day 3 </td>
   </tr>
   <tr>
     <td colspan="3"> </td>
@@ -125,7 +135,7 @@ info](travel.md)).
   <tr>
     <td colspan="3">
       <font size="4">
-      <center> Day 3  - 2020-04-29 </center>
+      <center> Day 4  - 2020-11-26 </center>
     </td>
   </tr>
   <tr>
@@ -133,41 +143,72 @@ info](travel.md)).
     <td> <font size="3"><b>Topic</b> </td>
   </tr>
   <tr>
-    <td> <font size="3"> 09:00
-    </td>
-    <td>
-      <font size="3"> Containerization
-      <font size="2"><i><br>
-      - Introduction to containers <br>
-      - Practical tutorial: <a href="../docker/">Docker</a><br>
-      - Practical tutorial: <a href="../singularity">Singularity</a></i><br><br>
-      <font size="3">Fika break ~10:15 <br>
+    <td> <font size="3"> 09:00 </td>
+    <td> <font size="3"> Computational notebooks and reproducible reports
+         <font size="2"><i><br>
+         - Introduction to Jupyter and R Markdown<br>
+         - Practical tutorial: <a href="../jupyter/">Jupyter</a><br>
+         - Practical tutorial: <a href="../rmarkdown/">R Markdown</a></i>
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:45  </td>
-    <td> <font size="3"> Lunch </td>
+    <td> <font size="3"> 10:15 </td>
+    <td> <font size="3"> Wrap up - Notebook tutorial </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:45 </td>
-    <td>
-      <font size="3"> Putting the pieces together
-      <font size="2"><i><br>
-      - Overview: Using the tools in concert <br>
-      - Practical tutorial: <a href="../repres_project">Making a project reproducible</a></i><br><br>
-      <font size="3">Fika break ~14:30 <br>
+    <td> <font size="3"> 10:30 </td>
+    <td> <font size="3"> Break </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> Containerization
+         <font size="2"> <i> <br>
+         - Introduction to containers <br>
+         - Practical tutorial: <a href="../docker/">Docker</a><br>
+         - Practical tutorial: <a href="../singularity">Singularity</a></i>
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 16:00  </td>
-    <td>
-      <font size="3"> Wrap-up!
-      <font size="2"><i><br>
-      - Q&A: How to implement these procedures on a day-to-day basis
+    <td> <font size="3"> 12:30  </td>
+    <td> <font size="3"> Wrap-up - Day 4 </td>
+  </tr>
+  <tr>
+    <td colspan="3"> </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <font size="4">
+      <center> Day 5  - 2020-11-27 </center>
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 16:30 </td>
+    <td> <font size="3"> 09:00  </td>
+    <td> <font size="3"> <i> 
+         ...continued - Practical tutorial: <a href="../docker/">Docker</a> & 
+         <a href="../singularity/">Singularity</a></i>
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 10:15 </td>
+    <td> <font size="3"> Wrap-up - Container tutorial </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 10:30 </td>
+    <td> <font size="3"> Break </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> Putting the pieces together
+         <font size="2"> <i> <br>
+         - Q&A: How to implement these procedures on a day-to-day basis</i> 
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 12:15 </td>
+    <td> <font size="3"> Wrap-up </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 12:30 </td>
     <td> <font size="3"> All done! </td>
   </tr>
 </table>
