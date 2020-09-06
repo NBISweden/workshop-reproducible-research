@@ -1,15 +1,21 @@
 <h2> Tools for reproducible research </h2>
 
+**THE COURSE IS CANCELLED:**
+The course scheduled for April of 2020 has been **cancelled** due to the
+COVID-19 virus and its effects on Sweden. It is currently planned to be given
+in the autumn of 2020, on November 23-26 (four days instead of three); the
+applications will open in the beginning of autumn.
+
 **Date and time:**  
-- April 27-29, 2020 (3 days)
+- November 23-27, 2020 (5 days) between 09.00 - 12.30
 
 **Location:**  
-- Science for Life Laboratory, Solna, Sweden ([travel info](travel.md))
+- The course will be held online over Zoom
 
 **Apply here:**  
 - Go to [SciLifeLab's webpage](
-https://www.scilifelab.se/events/tools-for-reproducible-research-4/) for
-details and application (deadline Mar 27).
+https://www.scilifelab.se/events/tools-for-reproducible-research-5/) for
+details and application (**deadline October 23**).
 
 <h3> Course description </h3>
 
@@ -40,7 +46,7 @@ In this course you will learn how to make your data analyses reproducible.
 In particular, you will learn:
 
 * Good practices for data analysis and management
-* How to use the version control system git to track edits and collaborate on
+* How to use the version control system Git to track edits and collaborate on
   coding
 * How to use the package and environment manager Conda
 * How to use the workflow manager Snakemake

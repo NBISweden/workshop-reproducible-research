@@ -52,6 +52,7 @@ be using most of the time in your day-to-day work with git, but git has many
 more advanced features that might be of use to you. If you are interested in
 learning more about these things, here are some reading tips for you:
 
+* [Git cheat-sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 * [A simple Git guide](http://rogerdudler.github.io/git-guide/)
 * [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
 * [Git reference manual](https://book.git-scm.com/docs)
@@ -320,6 +321,16 @@ operations in one step.
 ```bash
 git log
 ```
+
+!!! tip 
+    Since Git keeps track of changes in text, *e.g.* code and text-based
+    documentation, there are some files which you should *not* commit. Examples
+    of such files are file formats that are not text-based, *e.g.* Microsoft
+    Word/Excel files or PDFs - although one might sometimes want to track one of
+    these files regardless, such as when you have a static PDF report you
+    received from a sequencing platform that's never going to change. Other
+    files you shouldn't track are vary large text files, *e.g.* those larger
+    than 50 MB.
 
 !!! note "Quick recap"
     We now added four important git commands to our repertoire:
