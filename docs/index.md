@@ -1,10 +1,7 @@
 <h2> Tools for reproducible research </h2>
 
-**THE COURSE IS CANCELLED:**
-The course scheduled for April of 2020 has been **cancelled** due to the
-COVID-19 virus and its effects on Sweden. It is currently planned to be given
-in the autumn of 2020, on November 23-26 (four days instead of three); the
-applications will open in the beginning of autumn.
+The next instance of this course will be **given online** in the autumn of 2020,
+**on November 23-27**.
 
 **Date and time:**  
 - November 23-27, 2020 (5 days) between 09.00 - 12.30
