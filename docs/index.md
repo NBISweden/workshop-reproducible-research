@@ -1,7 +1,7 @@
 <h2> Tools for reproducible research </h2>
 
-The next instance of this course will be **given online** in the autumn of 2020,
-**on November 23-27**.
+The next instance of this course will be **given online**, **on November 
+23-27** 2020.
 
 **Date and time:**  
 - November 23-27, 2020 (5 days) between 09.00 - 12.30
