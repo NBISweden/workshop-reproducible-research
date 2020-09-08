@@ -719,6 +719,62 @@ branch on the remote (`origin`). Our git repository is now stored on GitHub!
 * Run `git status`. This should tell you that *"Your branch is up-to-date with
   'origin/master'."*.
 
+If you go to the repository's GitHub page you should now be able to see all your
+files and your code there! It should look something like this:
+
+![](images/github_repo_overview.png)
+
+You can see a lot of things there, such as each file and the latest commit that
+changed them, the repository's branches and a message from GitHub at the bottom:
+*"Help people interested in this repository understand your project by adding
+a README."* This refers to GitHub's built-in functionality of automatically
+rendering any *markdown* document named `README` or `README.md` in the
+repository's root directory and displaying it along with what you can already
+see. Let's try it out!
+
+* Let's create a `README.md` file and fill it with the following text:
+
+```markdown
+# A Git tutorial
+
+This repository contains tutorial information related to the **NBIS** course
+*Tools for Reproducible Research*, specifically the session on using the `git`
+software for version control.
+
+## Links
+
+You can find the latest stable version of the Git tutorial for the course
+[here](https://nbis-reproducible-research.readthedocs.io/en/latest/git/).
+```
+
+* Add, commit and push these changes to GitHub. See what the repository's main
+  page looks like now!
+
+You should now be able to see the rendered markdown document, which looks a bit
+different from the text you copied in from above. Note that there are two
+different header levels, which come from the number of hash signs (`#`) used.
+You can also see bold text (which was surrounded by two asterisks; `**`), italic
+text (surrounded by one asterisk; `*`), in-line code (surrounded by acute
+accent; `\``) and a link (link text inside square brackets followed by link
+address inside parentheses).
+
+It is important to add README-files to your repositories so that they are more
+documented and easily understood by others and, more likely, your future self.
+In fact, documentation is an important part of reproducible research! While the
+tools that you are introduced to by this course are all directly related to
+making science reproducible, you will *also* need good documentation. Make it
+a habit of always adding README-files for your repositories, fully explaining
+the ideas and rationale behind the project. You can even add README-files to
+sub-directories as well, giving you the opportunity to go more in-depth where
+you so desire.
+
+!!! tip
+    There are a lot more things you can do with markdown what we show here.
+    Indeed, this entire course is mostly written in markdown! You can read
+    more about markdown [here](https://www.markdownguide.org/getting-started/).
+
+### Working with remote repositories
+
 While remote repositories are extremely useful as backups and for collaborating
 with others, that's not their only use: remotes also help when you are working
 from different computers, a computer cluster or a cloud service.
