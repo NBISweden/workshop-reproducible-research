@@ -957,18 +957,15 @@ git push --tags
 ```
 
 * Go to the repository overview page on GitHub. You will see that the repository
-  now has one release! This is because GitHub releases are based on Git tags.
-  Click where it says *3 releases*. This will give you an overview of the
-  existing releases for your repository. If you click *Tags* you will see more
-  or less the same information. Confusing? Well, a *tag* is a git concept while
-  a *Release* is a GitHub concept that is based on git tags. Releases add some
-  extra features that can be useful for distributing software.
+  now has three tags! If you click on *Tags* you will be given an overview of
+  the existing tags for your repository - if you click *Releases* you will see
+  more or less the same information. Confusing? Well, a *tag* is a git concept
+  while a *release* is a GitHub concept that is based on git tags. Releases add
+  some extra features that can be useful for distributing software and are done
+  manually from the repository's GitHub page.
 
-![](images/github_tags_number.png)
-
-* Go to GitHub and then either the Releases or Tags tab. Here users can download
-  a compressed file containing the repository at the versions specified by the
-  tags.
+* Click on one of the tags. Here users can download a compressed file
+  containing the repository at the version specified by the tags.
 
 ![](images/github_tags_list.png)
 
