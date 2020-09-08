@@ -749,6 +749,12 @@ You can find the latest stable version of the Git tutorial for the course
 
 * Add, commit and push these changes to GitHub.
 
+```bash
+git add README.md
+git commit -m "Add README.md"
+git push origin master
+```
+
 You should now be able to see the rendered markdown document, which looks a bit
 different from the text you copied in from above. Note that there are two
 different header levels, which come from the number of hash signs (`#`) used.
@@ -771,6 +777,11 @@ you so desire.
     There are a lot more things you can do with markdown what we show here.
     Indeed, this entire course is mostly written in markdown! You can read
     more about markdown [here](https://www.markdownguide.org/getting-started/).
+
+!!! note "Quick recap"
+    We learned how to connect local git repositories to remote locations such as
+    GitHub and how to upload commits using `git push`. We also learned the
+    basics of *markdown* and how it can be used to document git repositories.
 
 ### Browsing GitHub
 
