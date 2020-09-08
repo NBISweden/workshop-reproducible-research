@@ -758,10 +758,10 @@ git push origin master
 You should now be able to see the rendered markdown document, which looks a bit
 different from the text you copied in from above. Note that there are two
 different header levels, which come from the number of hash signs (`#`) used.
-You can also see bold text (which was surrounded by two asterisks; `**`), italic
-text (surrounded by one asterisk; `*`), in-line code (surrounded by acute
-accent; `\``) and a link (link text inside square brackets followed by link
-address inside parentheses).
+You can also see bold text (which was surrounded by two asterisks), italic
+text (surrounded by one asterisk), in-line code (surrounded by acute accents)
+and a link (link text inside square brackets followed by link address inside
+parentheses).
 
 It is important to add README-files to your repositories so that they are more
 documented and easily understood by others and, more likely, your future self.
