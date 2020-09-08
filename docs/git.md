@@ -257,7 +257,7 @@ This will add both our files to the staging area at the same time. Run `git
 status` and see that the changes in both `config.yml` and `environment.yml` are
 ready to be committed.
 
-But wait a minute! Shouldn't each commit optimally be a conceptually unit of
+But wait a minute! Shouldn't each commit optimally be a conceptual unit of
 change? Here we have one change to the genome ID used for an analysis and one
 change a where another software version is specified: these should probably be
 separate. We thus want to make two commits, one for each change.
@@ -565,7 +565,8 @@ git branch -d test_alignment
     are deleted once they are merged into master.
 
 !!! note "Quick recap"
-    We have now learned how to divide our work into branches and manage those:
+    We have now learned how to divide our work into branches and how to manage
+    them:
 
     * `git branch <branch>` creates a new branch.
     * `git checkout <branch>` moves the repository to the state in which the
