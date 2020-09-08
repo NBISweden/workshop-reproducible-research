@@ -747,8 +747,7 @@ You can find the latest stable version of the Git tutorial for the course
 [here](https://nbis-reproducible-research.readthedocs.io/en/latest/git/).
 ```
 
-* Add, commit and push these changes to GitHub. See what the repository's main
-  page looks like now!
+* Add, commit and push these changes to GitHub.
 
 You should now be able to see the rendered markdown document, which looks a bit
 different from the text you copied in from above. Note that there are two
@@ -772,6 +771,47 @@ you so desire.
     There are a lot more things you can do with markdown what we show here.
     Indeed, this entire course is mostly written in markdown! You can read
     more about markdown [here](https://www.markdownguide.org/getting-started/).
+
+### Browsing GitHub
+
+GitHub and the rest of the websites that offer remote hosting of git
+repositories all have numerous features, which can be somewhat difficult to
+navigate in the beginning. We here go through some of the basics of what you can
+do with GitHub.
+
+* Go to your GitHub repository in your browser again and click on *Code* to the
+  left. Click on `config.yml`. You will see the contents of the file. Notice
+  that it is the latest version, where we previously changed the `genome_id`
+  variable:
+
+![](images/github_config_yml.png)
+
+* Click on *History*. You will see an overview of the commits involving changes
+  made to this file:
+
+![](images/github_config_yml_history.png)
+
+* Click on the `Change to ST398 for alignment` commit. You will see the changes
+  made to `config.yml` file compared to the previous commit.
+
+![](images/github_config_yml_diff.png)
+
+* Go back to the repository's main page and click on the commit tracker on the
+  right above the list of files, which will give you an overview of all commits
+  made. Clicking on a specific commit lets you see the changes introduced by
+  that commit. Click on the commit that was the initial commit, where we added
+  all the files.
+
+![](images/github_initial_commit.png)
+
+You will now see the files as they were when we first added them. Specifically
+you can see that the `Dockerfile` is back, even though we deleted it! Click on
+the *Code* tab to the left to return to the overview of the latest repository
+version.
+
+!!! note "Quick recap"
+    We learned some of the most important features of the GitHub interface and
+    how repositories can be viewed online.
 
 ### Working with remote repositories
 
@@ -840,47 +880,6 @@ a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
     * `git fetch` downloads commits from a remote repository without merging
       them to the local branch
     * `git clone` makes a local copy of a remote repository
-
-### Browsing GitHub
-
-GitHub and the rest of the websites that offer remote hosting of git
-repositories all have numerous features, which can be somewhat difficult to
-navigate in the beginning. We here go through some of the basics of what you can
-do with GitHub.
-
-* Go to your GitHub repository in your browser again and click on *Code* to the
-  left. Click on `config.yml`. You will see the contents of the file. Notice
-  that it is the latest version, where we previously changed the `genome_id`
-  variable:
-
-![](images/github_config_yml.png)
-
-* Click on *History*. You will see an overview of the commits involving changes
-  made to this file:
-
-![](images/github_config_yml_history.png)
-
-* Click on the `Change to ST398 for alignment` commit. You will see the changes
-  made to `config.yml` file compared to the previous commit.
-
-![](images/github_config_yml_diff.png)
-
-* Go back to the repository's main page and click on the commit tracker on the
-  right above the list of files, which will give you an overview of all commits
-  made. Clicking on a specific commit lets you see the changes introduced by
-  that commit. Click on the commit that was the initial commit, where we added
-  all the files.
-
-![](images/github_initial_commit.png)
-
-You will now see the files as they were when we first added them. Specifically
-you can see that the `Dockerfile` is back, even though we deleted it! Click on
-the *Code* tab to the left to return to the overview of the latest repository
-version.
-
-!!! note "Quick recap"
-    We learned some of the most important features of the GitHub interface and
-    how repositories can be viewed online.
 
 ### Remote branches
 
