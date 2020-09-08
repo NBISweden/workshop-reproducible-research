@@ -205,8 +205,9 @@ The `-m` option adds a commit message. This should be a short description of
 what the commit contains.
 
 !!! tip
-    There are some general guidelines on how to write good commit messages. The
-    following points are often mentioned:
+    Writing informative and succinct commit messages can be tricky when you're
+    just starting out. Here are some general guidelines that can help you write
+    good commit messages from the start:
 
     - Separate subject from body with a blank line
     - Limit the subject line to 50 characters
@@ -222,8 +223,9 @@ what the commit contains.
     a period, and uses imperative mood (Add!). It is possible to add a
     descriptive body text as well, as hinted by the points above. This is
     easiest done in a text editor. If you run `git commit` without the `-m`
-    flag, git will open the default terminal text editor (can be configured)
-    where you can write a longer commit message and body.
+    flag, git will open the default terminal text editor (which can be
+    configured with the `core.editor` variable) where you can write a longer
+    commit message and body.
 
 * Run `git status` (yep, again!). It should tell you *"nothing to commit,
   working directory clean"*.
@@ -255,7 +257,7 @@ This will add both our files to the staging area at the same time. Run `git
 status` and see that the changes in both `config.yml` and `environment.yml` are
 ready to be committed.
 
-But wait a minute! Shouldn't each commit optimally be a conceptually unit of
+But wait a minute! Shouldn't each commit optimally be a conceptual unit of
 change? Here we have one change to the genome ID used for an analysis and one
 change a where another software version is specified: these should probably be
 separate. We thus want to make two commits, one for each change.
@@ -563,7 +565,8 @@ git branch -d test_alignment
     are deleted once they are merged into master.
 
 !!! note "Quick recap"
-    We have now learned how to divide our work into branches and manage those:
+    We have now learned how to divide our work into branches and how to manage
+    them:
 
     * `git branch <branch>` creates a new branch.
     * `git checkout <branch>` moves the repository to the state in which the
@@ -716,6 +719,113 @@ branch on the remote (`origin`). Our git repository is now stored on GitHub!
 * Run `git status`. This should tell you that *"Your branch is up-to-date with
   'origin/master'."*.
 
+If you go to the repository's GitHub page you should now be able to see all your
+files and your code there! It should look something like this:
+
+![](images/github_repo_overview.png)
+
+You can see a lot of things there, such as each file and the latest commit that
+changed them, the repository's branches and a message from GitHub at the bottom:
+*"Help people interested in this repository understand your project by adding
+a README."* This refers to GitHub's built-in functionality of automatically
+rendering any *markdown* document named `README` or `README.md` in the
+repository's root directory and displaying it along with what you can already
+see. Let's try it out!
+
+* Let's create a `README.md` file and fill it with the following text:
+
+```markdown
+# A Git tutorial
+
+This repository contains tutorial information related to the **NBIS** course
+*Tools for Reproducible Research*, specifically the session on using the `git`
+software for version control.
+
+## Links
+
+You can find the latest stable version of the Git tutorial for the course
+[here](https://nbis-reproducible-research.readthedocs.io/en/latest/git/).
+```
+
+* Add, commit and push these changes to GitHub.
+
+```bash
+git add README.md
+git commit -m "Add README.md"
+git push origin master
+```
+
+You should now be able to see the rendered markdown document, which looks a bit
+different from the text you copied in from above. Note that there are two
+different header levels, which come from the number of hash signs (`#`) used.
+You can also see bold text (which was surrounded by two asterisks), italic
+text (surrounded by one asterisk), in-line code (surrounded by acute accents)
+and a link (link text inside square brackets followed by link address inside
+parentheses).
+
+It is important to add README-files to your repositories so that they are more
+documented and easily understood by others and, more likely, your future self.
+In fact, documentation is an important part of reproducible research! While the
+tools that you are introduced to by this course are all directly related to
+making science reproducible, you will *also* need good documentation. Make it
+a habit of always adding README-files for your repositories, fully explaining
+the ideas and rationale behind the project. You can even add README-files to
+sub-directories as well, giving you the opportunity to go more in-depth where
+you so desire.
+
+!!! tip
+    There are a lot more things you can do with markdown what we show here.
+    Indeed, this entire course is mostly written in markdown! You can read
+    more about markdown [here](https://www.markdownguide.org/getting-started/).
+
+!!! note "Quick recap"
+    We learned how to connect local git repositories to remote locations such as
+    GitHub and how to upload commits using `git push`. We also learned the
+    basics of *markdown* and how it can be used to document git repositories.
+
+### Browsing GitHub
+
+GitHub and the rest of the websites that offer remote hosting of git
+repositories all have numerous features, which can be somewhat difficult to
+navigate in the beginning. We here go through some of the basics of what you can
+do with GitHub.
+
+* Go to your GitHub repository in your browser again and click on *Code* to the
+  left. Click on `config.yml`. You will see the contents of the file. Notice
+  that it is the latest version, where we previously changed the `genome_id`
+  variable:
+
+![](images/github_config_yml.png)
+
+* Click on *History*. You will see an overview of the commits involving changes
+  made to this file:
+
+![](images/github_config_yml_history.png)
+
+* Click on the `Change to ST398 for alignment` commit. You will see the changes
+  made to `config.yml` file compared to the previous commit.
+
+![](images/github_config_yml_diff.png)
+
+* Go back to the repository's main page and click on the commit tracker on the
+  right above the list of files, which will give you an overview of all commits
+  made. Clicking on a specific commit lets you see the changes introduced by
+  that commit. Click on the commit that was the initial commit, where we added
+  all the files.
+
+![](images/github_initial_commit.png)
+
+You will now see the files as they were when we first added them. Specifically
+you can see that the `Dockerfile` is back, even though we deleted it! Click on
+the *Code* tab to the left to return to the overview of the latest repository
+version.
+
+!!! note "Quick recap"
+    We learned some of the most important features of the GitHub interface and
+    how repositories can be viewed online.
+
+### Working with remote repositories
+
 While remote repositories are extremely useful as backups and for collaborating
 with others, that's not their only use: remotes also help when you are working
 from different computers, a computer cluster or a cloud service.
@@ -781,51 +891,6 @@ a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
     * `git fetch` downloads commits from a remote repository without merging
       them to the local branch
     * `git clone` makes a local copy of a remote repository
-
-### Browsing GitHub
-
-GitHub and the rest of the websites that offer remote hosting of git
-repositories all have numerous features, which can be somewhat difficult to
-navigate in the beginning. We here go through some of the basics of what you can
-do with GitHub.
-
-* Go to your GitHub repository in your browser again and click on *Code* to the
-  left. Click on `config.yml`. You will see the contents of the file. Notice
-  that it is the latest version, where we previously changed the `genome_id`
-  variable:
-
-![](images/github_config_yml.png)
-
-* Click on *History*. You will see an overview of the commits involving changes
-  made to this file:
-
-![](images/github_config_yml_history.png)
-
-* Click on the `Change to ST398 for alignment` commit. You will see the changes
-  made to `config.yml` file compared to the previous commit.
-
-![](images/github_config_yml_diff.png)
-
-* Click *Browse files*, on the right to get back to an overview of files in
-  the repository. Then click on the commit count tracker.
-
-![](images/github_commit_tracker.png)
-
-You will see an overview of all commits made. Clicking on a specific commit lets
-you see the changes introduced by that commit.
-
-* Click on the commit that was the initial commit, where we added all the files.
-
-![](images/github_initial_commit.png)
-
-You will now see the files as they were when we first added them. Specifically
-you can see that the `Dockerfile` is back, even though we deleted it! Click on
-the *Code* tab to the left to return to the overview of the latest repository
-version.
-
-!!! note "Quick recap"
-    We learned some of the most important features of the GitHub interface and
-    how repositories can be viewed online.
 
 ### Remote branches
 
@@ -1218,3 +1283,38 @@ alias gcob='git checkout -b'
 # Git log with one line per commit
 alias glo='git log --oneline'
 ```
+
+### Remote connections with SSH
+
+Throughout this tutorial we have been using normal HTTPS to connect with remote
+repositories, which means you need to provide your username and password. If you
+work with remote repositories a lot you might want to be able to skip writing in
+your user credentials all the time, which is something you can do with SSH
+(Secure Shell) keys. This basically entails setting up a pair of keys: one
+private and one public. You keep the private key on your local computer and give
+the public key to anywhere you want to be able to connect to, *e.g.* GitHub. The
+public key can be used to encrypt messages that *only* the corresponding private
+key can decrypt. A simplified description of how SSH authentication works goes
+like this:
+
+1. The client (*i.e.* the local computer) sends the ID of the SSH key pair it
+   would like to use for authentication to the server (*e.g.* GitHub)
+2. If that ID is found, the server generates a random number and encrypts this
+   with the public key and sends it back to the client
+3. The client decrypts the random number with the private key and sends it back
+   to the server
+
+Notice that the private key always remains on the client's side and is never
+transferred over the connection; the ability to decrypt messages encrypted with
+the public key is enough to ascertain the client's authenticity. This is in
+contrast with using passwords, which are themselves send across a connection
+(albeit encrypted). It is also important to note that even though the keys come
+in pairs it is impossible to derive the private key from the public key.
+
+So, how do you setup SSH authentication between your local computer and GitHub?
+GitHub actually has excellent and detailed instructions for exactly this at the
+[GitHub website](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh),
+so we won't repeat that here. Simply follow those instructions and you'll be
+good to go! If you want to read more details about how SSH authentication work
+you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
+which has more in-depth information than we provide here.
