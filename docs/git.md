@@ -205,8 +205,9 @@ The `-m` option adds a commit message. This should be a short description of
 what the commit contains.
 
 !!! tip
-    There are some general guidelines on how to write good commit messages. The
-    following points are often mentioned:
+    Writing informative and succinct commit messages can be tricky when you're
+    just starting out. Here are some general guidelines that can help you write
+    good commit messages from the start:
 
     - Separate subject from body with a blank line
     - Limit the subject line to 50 characters
@@ -222,8 +223,9 @@ what the commit contains.
     a period, and uses imperative mood (Add!). It is possible to add a
     descriptive body text as well, as hinted by the points above. This is
     easiest done in a text editor. If you run `git commit` without the `-m`
-    flag, git will open the default terminal text editor (can be configured)
-    where you can write a longer commit message and body.
+    flag, git will open the default terminal text editor (which can be
+    configured with the `core.editor` variable) where you can write a longer
+    commit message and body.
 
 * Run `git status` (yep, again!). It should tell you *"nothing to commit,
   working directory clean"*.
