@@ -62,7 +62,7 @@ table_rot {
 /* SciLifeLab logo in bottom left corner  */
 div.scilife-logo {
     content: "";
-    background-image: url("https://opensource.scilifelab.se/wp-content/themes/opensource.scilifelab/img/scilifelab-logo.svg");
+    background-image: url("https://www.scilifelab.se/wp-content/uploads/2020/09/SciLifeLab_Logotype_Green_POS_large-copy-1536x334.png");
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
@@ -79,7 +79,7 @@ div.nbis-logo {
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 27px;
+    bottom: 23px;
     right: 27px;
     height: 35px;
     width: 100px;
