@@ -6,6 +6,7 @@ channels:
     - r
 
 dependencies:
+    - snakemake-minimal
 
     # Jupyter
     - python=3.8
