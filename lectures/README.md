@@ -22,3 +22,11 @@ Lectures in **Jupyter notebook** format can be rendered using:
 ```bash
 jupyter nbconvert --to slides --execute <.ipynb-file>
 ```
+
+## Render everything
+
+To render all lectures you can use `snakemake`:
+
+```bash
+snakemake -j 1
+```
