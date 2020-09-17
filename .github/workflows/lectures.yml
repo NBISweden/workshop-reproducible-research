@@ -1,0 +1,33 @@
+name: lectures
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    paths:
+      - 'lectures/*/*.Rmd'
+      - 'lectures/*/*.ipynb'
+    branches:
+      - lectures
+  pull_request:
+    paths:
+      - 'lectures/*/*.Rmd'
+      - 'lectures/*/*.ipynb'
+    branches:
+      - master
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: s-weigand/setup-conda@v1
+    - name: Install the conda environment
+      run: conda env update -n base -f lectures/environment.yml
+    - name: Render lectures
+      run: snakemake -d lectures/ -s lectures/Snakefile -j 1
+    - name: Upload lectures
+      uses: actions/upload-artifact@v1
+      with:
+        name: lectures.zip
+        path: lectures/*/*.html
