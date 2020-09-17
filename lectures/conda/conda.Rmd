@@ -1,0 +1,88 @@
+---
+title: "Managing your data"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+
+---
+
+layout: true
+<div class="scilife-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+
+*Managing software environments with*
+
+<img src="https://docs.conda.io/en/latest/_images/conda_logo.svg" style="width:50%;padding: 15px 15px 15px 15px;">
+
+---
+
+# Conda is a package, dependency, and environment manager
+
+- .green[packages]: any type of program (*e.g.* bowtie2, snakemake etc.)
+- .green[dependency]: other software required by a package
+- .green[environment]: a distinct collection of packages
+
+Conda keeps track of the dependencies between packages in each environment
+
+---
+
+# Conda channels
+
+Channels are remote directories containing packages. Two common examples are:
+
+- .green[bioconda]: a channel specializing in bioinformatics software
+- .green[conda-forge]: a community-led channel made up of thousands of contributors
+
+---
+
+# Conda, Anaconda, Miniconda...
+
+- .green[Conda]: the package manager itself, written in python
+- .green[Anaconda]: 
+  - a cloud service where conda packages are hosted ([anaconda.org](https://anaconda.org))
+  - a distribution of packages for data science ([anaconda.com](https://anaconda.com))
+- .green[Miniconda]: an installer for conda containing only the most necessary packages to get started
+
+---
+
+# Defining and sharing environments
+
+```yaml
+# --- environment.yml --- #
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - fastqc=0.11
+  - sra-tools=2.8
+  - snakemake=4.3.0
+  - multiqc=1.3
+  - bowtie2=2.3
+  - samtools=1.6
+  - htseq=0.9
+  - graphviz=2.38.0
+# --- environment.yml --- #
+```
+
+--
+
+Create an environment from specifications in a file:
+<br>`conda env create --name project_a -f environment.yml`
+
+Update an existing environment based on an environment file:
+<br>`conda env update -f environment.yml`
+
+Export existing environment as new yaml file (also includes dependencies):
+<br>`conda env export > environment_full.yml`
+
+Export explicit environment (identical environment on same OS):
+<br>`conda list --explicit > spec-file.txt`
