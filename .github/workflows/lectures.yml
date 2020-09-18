@@ -7,6 +7,7 @@ on:
       - 'lectures/*/*.ipynb'
     branches:
       - lectures
+      - master
   pull_request:
     paths:
       - 'lectures/*/*.Rmd'
@@ -27,5 +28,5 @@ jobs:
     - name: Upload lectures
       uses: actions/upload-artifact@v2
       with:
-        name: lectures.zip
+        name: lectures
         path: lectures/*/*.html
