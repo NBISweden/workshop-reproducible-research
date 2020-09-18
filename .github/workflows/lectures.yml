@@ -27,7 +27,7 @@ jobs:
     - name: Render lectures
       run: snakemake -d lectures/ -s lectures/Snakefile -j 1
     - name: Upload lectures
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: lectures.zip
         path: lectures/*/*.html
