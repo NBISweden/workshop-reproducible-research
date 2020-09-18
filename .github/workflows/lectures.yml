@@ -9,6 +9,7 @@ on:
       - 'lectures/*/*.ipynb'
     branches:
       - lectures
+      - master
   pull_request:
     paths:
       - 'lectures/*/*.Rmd'
