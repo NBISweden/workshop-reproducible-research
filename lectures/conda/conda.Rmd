@@ -1,5 +1,5 @@
 ---
-title: "Managing your software environment"
+title: "Managing your software environments"
 subtitle: "Tools for Reproducible Research NBIS course"
 output:
   xaringan::moon_reader:
