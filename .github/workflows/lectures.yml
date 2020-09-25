@@ -7,6 +7,7 @@ on:
     paths:
       - 'lectures/*/*.Rmd'
       - 'lectures/*/*.ipynb'
+      - '.github/workflows/*.yml'
     branches:
       - lectures
       - master
@@ -26,7 +27,9 @@ jobs:
     - name: Install the conda environment
       run: conda env update -n base -f lectures/environment.yml
     - name: Render lectures
-      run: snakemake -d lectures/ -s lectures/Snakefile -j 1
+      run: |
+        cd lectures/
+        snakemake -j 1
     - name: Upload lectures
       uses: actions/upload-artifact@v2
       with:
