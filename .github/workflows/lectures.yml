@@ -24,12 +24,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: s-weigand/setup-conda@v1
+    - uses: r-lib/actions/setup-r@v1
     - name: Install the conda environment
       run: conda env update -n base -f lectures/environment.yml
     - name: Render lectures
-      run: |
-        cd lectures/
-        snakemake -j 1
+      run: snakemake -d lectures/ -s lectures/Snakefile -j 1
     - name: Upload lectures
       uses: actions/upload-artifact@v2
       with:
