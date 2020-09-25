@@ -29,12 +29,9 @@ class: center, middle
 --
 <br>
 .pull-left[
-<img src="https://images.unsplash.com/photo-1549319114-d67887c51aed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80">
+<img src="https://images.unsplash.com/photo-1549319114-d67887c51aed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80" width="90%">
 ]
 .pull-right[
-<br>
-<br>
-<br>
 *As projects grow or age, it becomes increasingly difficult to keep track of all the parts and how they fit together.*
 ]
 
