@@ -220,12 +220,13 @@ what the commit contains.
 
     In the command above we just added a short subject line ("Add initial
     files"). It is capitalized, less than 50 characters, does not end with
-    a period, and uses imperative mood (Add!). It is possible to add a
-    descriptive body text as well, as hinted by the points above. This is
+    a period, and uses imperative mood (Add!). It is possible to add
+    a descriptive body text as well, as hinted by the points above. This is
     easiest done in a text editor. If you run `git commit` without the `-m`
     flag, git will open the default terminal text editor (which can be
     configured with the `core.editor` variable) where you can write a longer
-    commit message and body.
+    commit message and body. If you want to read more about the motivation for
+    these points, please see [this website](https://chris.beams.io/posts/git-commit/).
 
 * Run `git status` (yep, again!). It should tell you *"nothing to commit,
   working directory clean"*.
