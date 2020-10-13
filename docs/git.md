@@ -700,7 +700,7 @@ server:
   your GitHub username and `git_tutorial` to your repository name):
 
 ```bash
-git remote add origin https://user@github.com/user/git_tutorial.git
+git remote add origin https://github.com/user/git_tutorial.git
 ```
 
 * Run `git remote -v`. This will show you what remote location is connected to
