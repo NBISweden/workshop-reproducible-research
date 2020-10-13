@@ -114,8 +114,8 @@ adapted specifically for Windows. Nevertheless, in principle everything
 - Run as Linux through a virtual machine (and see the Linux setup above)
 - Use the Windows 10 PowerShell, install git and clone the course repository
   (see the Mac/Linux setup above)
-- Use the Linux Bash Shell on Windows 10 (see below) *Recommended for the
-  course*
+- Use the Linux Bash Shell on Windows 10 (see below) _**Recommended for the
+  course**_
 - Run the course in a Docker container (see below)
 
 ### Running in the Linux Bash Shell on Windows 10
