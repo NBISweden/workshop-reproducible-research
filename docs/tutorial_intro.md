@@ -127,9 +127,9 @@ https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comp
 Install Bash on Windows 10, follow the instructions at *e.g.* one of these
 resources:
 
-- [https://docs.microsoft.com/en-us/windows/wsl/install-win10][]
-- [https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/][]
-- [https://itsfoss.com/install-bash-on-windows/][]
+- [Installing the Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+- [Installing and using Linux Bash on Windows](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
+- [Installing Linux Bash on Windows](https://itsfoss.com/install-bash-on-windows/)
 
 Open the Bash Shell Linux terminal and clone the git/bitbucket repository
 containing all files you will need for completing the tutorials, as follows.
