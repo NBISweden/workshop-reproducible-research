@@ -44,7 +44,7 @@ class: center, middle
 
 --
 
-* How to use .green[R Markdown] to generate automated reports
+* How to use .green[RMarkdown] to generate automated reports
 
 * How to use .green[Jupyter] notebooks to document your analysis
 
@@ -55,146 +55,116 @@ class: center, middle
 
 ---
 
-# How are you handling your .green[data]?
+# Options for reproducing a project
 
-.left-column[
-## Decent
-]
+Everything can be a project
 
-.right-column[
-* Data available on request
-* All meta data required for generating the results available
+* Divide your work into .green[distinct projects]
+
+--
+
+* Keep all files needed to go .green[from raw data to final results] in a dedicated directory
+
+--
+
+* Use .green[relevant subdirectories]
+
+--
+
+* Many software support the “project way of working”, e.g. .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
+
+
+---
+
+# Options for reproducing a project
+
+<img src="my_project_repo.png" style="width:75%;"/>
+
+---
+
+# Options for reproducing a project
+
+<img src="my_project_repo_2.png" style="width:75%;"/>
+
+---
+
+# Options for reproducing a project
+
+<img src="my_project_repo_2.png" style="width:75%;"/>
+
+
+* .green[Git] clone and run .green[code or workflow]
+
+--
+
+* .green[Git] clone, activate .green[conda] env, and run .green[code or workflow]
+
+--
+
+* .green[Git] clone, .green[docker] build, and run .green[code or workflow] in container
+
+--
+
+* .green[Docker] pull (from online repository) and run .green[code or workflow] in container
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
+
+.pull-right[
+
+Code:
+* Code in .green[RMarkdown] or .green[Jupyter notebooks] for reproducible results
+* Track your code with .green[Git]
+* Manage your software dependencies using .green[Conda]
+
 ]
 
 ---
 
-# How are you handling your .green[data]?
+# What is reasonable for your project?
 
-.left-column[
-## .light-grey[Decent]
-## Good
-]
+.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
 
-.right-column[
-* .light-grey[Data available on request]
-* .light-grey[All meta data required for generating the results available]
-* Data deposited in public repositories
-* Raw data available in unedited form
-* If the raw data needed preprocessing, scripts were used rather than modifying
-  it manually
+.pull-right[
+
+Environment:
+* Track your .green[code] with .green[Git]
+* Use .green[Conda] or .green[Containers] to manage your software dependencies and compute environment
+
 ]
 
 ---
 
-# How are you handling your .green[data]?
+# What is reasonable for your project?
 
-.left-column[
-## .light-grey[Decent]
-## .light-grey[Good]
-## Great
-]
+.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
 
-.right-column[
-* .light-grey[Data available on request]
-* .light-grey[All meta data required for generating the results available]
-* .light-grey[Data deposited in public repositories]
-* .light-grey[Raw data available in unedited form]
-* .light-grey[If the raw data needed preprocessing, scripts were used rather than modifying it manually]
-* Section in the paper to aid in reproduction
-* Used non-proprietary and machine-readable formats, *e.g.* `.csv` rather than
-  `.xls`.
+.pull-right[
+
+Workflow:
+* Convert your code into a .green[Snakemake workflow]
+* Track your code with .green[Git]
+* Manage your software dependencies using .green[Conda]
+
 ]
 
 ---
 
-# How are you handling your .green[code]?
+# What is reasonable for your project?
 
-.left-column[
-## Decent
-]
+.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
 
-.right-column[
-* All code for generating results from processed data available on request
-]
+.pull-right[
 
----
+...or do it all!
 
-# How are you handling your .green[code]?
-
-.left-column[
-## .light-grey[Decent]
-## Good
-]
-
-.right-column[
-* .light-grey[All code for generating results from processed data available on request]
-* All code for generating results from raw data is available
-* The code is publicly available with timestamps or tags
 ]
 
 ---
 
-# How are you handling your .green[code]?
-
-.left-column[
-## .light-grey[Decent]
-## .light-grey[Good]
-## Great
-]
-
-.right-column[
-* .light-grey[All code for generating results from processed data available on request]
-* .light-grey[All code for generating results from raw data is available]
-* .light-grey[The code is publicly available with timestamps or tags]
-* All code for generating results from publicly available raw data is
-  available
-* Code is documented and contains instructions for reproducing results
-* Seeds were used and documented for heuristic methods
-]
-
----
-
-# How are you handling your .green[environment]?
-
-.left-column[
-## Decent
-]
-
-.right-column[
-* Key programs used are mentioned in the methods section
-]
-
----
-
-# How are you handling your .green[environment]?
-
-.left-column[
-## .light-grey[Decent]
-## Good
-]
-
-.right-column[
-* .light-grey[Key programs used are mentioned in the methods section]
-* List of all programs used and their respective versions are available
-]
-
----
-
-# How are you handling your .green[environment]?
-
-.left-column[
-## .light-grey[Decent]
-## .light-grey[Good]
-## Great
-]
-
-.right-column[
-* .light-grey[Key programs used are mentioned in the methods section]
-* .light-grey[List of all programs used and their respective versions are available]
-* Instructions for reproducing the environment publicly available
-]
-
----
 
 class: center, middle
 
