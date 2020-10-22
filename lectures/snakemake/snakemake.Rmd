@@ -40,15 +40,15 @@ class: center, middle
 # Workflow managers
 
 .pull-left[.center[
-<img src="MakeflowLogoSmall.png", width=75%>
+<img src="http://ccl.cse.nd.edu/software/makeflow/MakeflowLogoSmall.png", width=75%>
 <br>
 <br>
 <br>
-<img src="nextflow_logo.png", width=75%>
+<img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png", width=75%>
 ]]
 
 .pull-right[.center[
-<img src="s11150183_gnuMAKE.jpg", width=50%>
+<img src="https://img3.doubanio.com/lpic/s11150183.jpg", width=50%>
 <br>
 GNU Make
 
@@ -216,7 +216,7 @@ Here we ask for .green[supplementary.pdf], which is an RMarkdown report generate
 ]
 
 .pull-right[
-<img src="rulegraph.svg">
+<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/rulegraph_mrsa.svg">
 
 `$ snakemake supplementary.pdf`
 
