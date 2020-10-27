@@ -32,47 +32,116 @@ class: center, middle
 
 # What have we learned?
 
+.pull-left[
+<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>
+]
+
+.pull-right[
 * How to use the version control system .green[Git] to track changes to code
-
---
-
 * How to use the package and environment manager .green[Conda]
-
---
-
 * How to use the workflow manager .green[Snakemake]
-
---
-
 * How to use .green[RMarkdown] to generate automated reports
-
 * How to use .green[Jupyter] notebooks to document your analysis
-
---
-
 * How to use .green[Docker] and .green[Singularity] to distribute containerized
   computational environments
+]
 
 ---
 
-# Options for reproducing a project
 
-Everything can be a project
-
-* Divide your work into .green[distinct projects]
+# Everything can be a project
 
 --
 
-* Keep all files needed to go .green[from raw data to final results] in a dedicated directory
+* Divide your work into distinct .green[projects]
 
 --
 
-* Use .green[relevant subdirectories]
+* Keep all .green[files] needed to go from raw data to final results in a dedicated directory
+
+--
+
+* Use relevant .green[subdirectories]
 
 --
 
 * Many software support the “project way of working”, e.g. .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
 
+--
+
+
+* Project directory templates
+  * https://github.com/NBISweden/project_template
+  * https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow
+
+
+---
+
+# Treasure your data
+
+--
+
+* Keep your input data .green[read-only] - consider it static
+
+--
+
+* Don't make different versions - make a .green[script] if you need to preprocess your input data so that the steps can be recreated
+
+--
+
+* .green[Backup]! Keep redundant copies in different physical locations
+
+--
+
+* Upload your raw data as soon as possible to a .green[public data repository]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:100%;"/>]
+
+.pull-right[
+
+Don't know where to start?
+* Track your code with .green[Git]
+* Manage your software dependencies using .green[Conda]
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:100%;"/>]
+
+.pull-right[
+
+Organize your coding:
+* Avoid generating files interactively or doing things by hand (no way to track how they were made)
+* Write scripts, .green[RMarkdown] or .green[Jupyter notebooks] for reproducible results
+* Keep the parameters separate (e.g. at top of file or input arguments)
+
+Take another step:
+* Convert your code into a .green[Snakemake] workflow
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:100%;"/>]
+
+.pull-right[
+
+Manage the software environment:
+* .green[Conda] to install software in an environment which can be easily exported and installed on a different system
+
+Completely recreate the compute system:
+* Consider packaging your project in a .green[Docker] or .green[Singularity] container
+
+]
 
 ---
 
@@ -93,80 +162,96 @@ Everything can be a project
 <img src="my_project_repo_2.png" style="width:75%;"/>
 
 
-* .green[Git] clone and run .green[code or workflow]
+* .green[Git] clone and run code or workflow
 
 --
 
-* .green[Git] clone, activate .green[conda] env, and run .green[code or workflow]
+* .green[Git] clone, activate .green[conda] env, and run code or workflow
 
 --
 
-* .green[Git] clone, .green[docker] build, and run .green[code or workflow] in container
+* .green[Git] clone, .green[docker] build, and run code or workflow in container
 
 --
 
-* .green[Docker] pull (from online repository) and run .green[code or workflow] in container
+* .green[Docker] pull (from online repository) and run code or workflow in container
 
 ---
 
-# What is reasonable for your project?
+class: center, middle
 
-.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
+<img src="whats_in_it_for_me.png" style="width:50%;"/>
 
-.pull-right[
-
-Code:
-* Code in .green[RMarkdown] or .green[Jupyter notebooks] for reproducible results
-* Track your code with .green[Git]
-* Manage your software dependencies using .green[Conda]
-
-]
+By moving towards a reproducible way of working you will quickly realize that you at the same time make your own life a lot easier! 
 
 ---
 
-# What is reasonable for your project?
+class: center, middle
 
-.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
+# Discuss in your groups
 
-.pull-right[
+* Which of the tools and concepts from the course seem most useful to you? 
 
-Environment:
-* Track your .green[code] with .green[Git]
-* Use .green[Conda] or .green[Containers] to manage your software dependencies and compute environment
-
-]
+* Are you going to use these tools or concepts in your work? If yes, how?
 
 ---
 
-# What is reasonable for your project?
+# Alternatives
 
-.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
+.green[Version control]
 
-.pull-right[
+* **Git** – Widely used and a lot of tools available + GitHub.
+* **Mercurial** – Distributed model just like Git, close to sourceforge.
+* **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
 
-Workflow:
-* Convert your code into a .green[Snakemake workflow]
-* Track your code with .green[Git]
-* Manage your software dependencies using .green[Conda]
+--
 
-]
+.green[Environment / package managers]
 
----
-
-# What is reasonable for your project?
-
-.pull-left[<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>]
-
-.pull-right[
-
-...or do it all!
-
-]
+* **Conda** – General purpose environment and package manager. Community-hosted collections of tools at bioconda or conda-forge.
+* **Pip** – Package manager for Python, has a large repository at pypi.
+* **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with e.g. update notifications better.
+* **Virtualenv** – Environment manager used to set up semi-isolated python environments.
 
 ---
 
+# Alternatives
+
+.green[Workflow managers]
+
+* **Snakemake** – Based on Python, easily understandable format, relies on file names.
+* **Nextflow** – Based on Groovy, uses data pipes rather than file names to construct the workflow.
+* **Make** – Used in software development and has been around since the 70s. Flexible but notoriously obscure syntax.
+* **Galaxy** -  attempts to make computational biology accessible to researchers without programming experience by using a GUI.
+
+---
+
+# Alternatives
+
+.green[Literate programming]
+
+* **Jupyter** – Create and share notebooks in a variety of languages and formats by using a web browser.
+* **Rmarkdown** – Developed by Rstudio, focuses on generating high-quality documents.
+* **Zeppelin** – Developed by Apache. Closely integrated with Spark for distributed computing and Big Data applications.
+* **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on integrating multiple languages in the same notebook.
+
+---
+
+# Alternatives
+
+.green[Containerization / virtualization]
+
+* **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
+* **Singularity** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+* **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
+* **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
+
+---
 
 class: center, middle
 
 # Questions?
 
+<img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/>
+
+---
