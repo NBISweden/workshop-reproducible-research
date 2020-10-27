@@ -95,9 +95,10 @@ Two common examples are
 
 --
 
-Define a conda environment in a YAML file (`environment.yml`):
+Define a conda environment in a YAML file:
 
 ```yaml
+# --- environment.yml --- #
 channels:
   - conda-forge
   - bioconda
@@ -109,7 +110,8 @@ dependencies:
   - bowtie2=2.3
   - samtools=1.6
 
-  
+
+# --- environment.yml --- #
 ```
 
 --
@@ -122,9 +124,10 @@ Create an environment from the specifications in the YAML file:
 # Defining and sharing environments
 
 
-Define a conda environment in a YAML file (`environment.yml`):
+Define a conda environment in a YAML file:
 
 ```yaml
+# --- environment.yml --- #
 channels:
   - conda-forge
   - bioconda
@@ -137,6 +140,7 @@ dependencies:
   - samtools=1.6
   - htseq=0.9
   - graphviz=2.38.0
+# --- environment.yml --- #
 ```
 
 
@@ -156,3 +160,11 @@ Export existing environment as new yaml file (also includes dependencies):
 
 Export explicit environment (identical environment on same operating system):
 <br>`conda list --explicit > spec-file.txt`
+
+---
+
+class: center, middle
+
+# Questions?
+
+---
