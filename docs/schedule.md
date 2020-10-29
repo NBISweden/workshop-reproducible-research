@@ -1,6 +1,7 @@
 <h1> Schedule </h1>
 
-The course will take place online via [Zoom](https://zoom.us/)
+The course will take place online via [Zoom](https://zoom.us/) We will follow
+the approximate schedule below:
 
 <table>
   <tr>
@@ -19,30 +20,26 @@ The course will take place online via [Zoom](https://zoom.us/)
   </tr>
   <tr>
     <td> <font size="3"> 10:00 </td>
-    <td> <font size="3"> Welcome lecture </td>
+    <td> <font size="3"> Introductory to Reproducible Research </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:15 </td>
-    <td> <font size="3"> Introduction to Reproducible Research </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 10:45 </td>
+    <td> <font size="3"> 10:30 </td>
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:15 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> Data management and project organization </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:45 </td>
+    <td> <font size="3"> 11:15 </td>
     <td> <font size="3"> Break-out rooms and ice breaker session </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:00 </td>
+    <td> <font size="3"> 11:30 </td>
     <td> <font size="3"> Distributing and version tracking your code
          <font size="2"><i><br>
-           - Introduction to version control and git <br>
-           - Practical tutorial: <a href="../git/">git</a></i><br></td>
+           - Introduction to version control and Git <br>
+           - Practical tutorial: <a href="../Git/">git</a></i><br></td>
   </tr>
   <tr>
     <td> <font size="3"> 12:30 </td>
@@ -63,7 +60,7 @@ The course will take place online via [Zoom](https://zoom.us/)
   </tr>
   <tr>
     <td> <font size="3"> 09:00 </td>
-    <td> <font size="3"><i>...continued: Practical tutorial: <a href="../git/">git</a></i><br></td>
+    <td> <font size="3"><i>... continued: Practical tutorial: <a href="../Git/">git</a></i><br></td>
   </tr>
   <tr>
     <td> <font size="3"> 10:00 </td>
@@ -74,7 +71,7 @@ The course will take place online via [Zoom](https://zoom.us/)
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:45 </td>
+    <td> <font size="3"> 10:30 </td>
     <td> <font size="3"> Master your dependencies - environments and reproducibility
          <font size="2"><i><br>
          - Introduction to the package and environment manager Conda <br>
@@ -116,7 +113,7 @@ The course will take place online via [Zoom](https://zoom.us/)
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> <i> 
         ...continued - Practical tutorial:  <a href="../snakemake/">Snakemake</a> </i>
     </td>
@@ -160,7 +157,7 @@ The course will take place online via [Zoom](https://zoom.us/)
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> Containerization
          <font size="2"> <i> <br>
          - Introduction to containers <br>
@@ -197,7 +194,7 @@ The course will take place online via [Zoom](https://zoom.us/)
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
          - Q&A: How to implement these procedures on a day-to-day basis</i> 
