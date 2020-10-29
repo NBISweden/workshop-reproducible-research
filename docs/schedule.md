@@ -1,6 +1,6 @@
 <h1> Schedule </h1>
 
-The course will take place online via [Zoom](https://zoom.us/) We will follow
+The course will take place online via [Zoom](https://zoom.us/). We will follow
 the approximate schedule below:
 
 <table>
@@ -20,7 +20,7 @@ the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 10:00 </td>
-    <td> <font size="3"> Introductory to Reproducible Research </td>
+    <td> <font size="3"> Introduction to Reproducible Research </td>
   </tr>
   <tr>
     <td> <font size="3"> 10:30 </td>
@@ -39,7 +39,7 @@ the approximate schedule below:
     <td> <font size="3"> Distributing and version tracking your code
          <font size="2"><i><br>
            - Introduction to version control and Git <br>
-           - Practical tutorial: <a href="../Git/">git</a></i><br></td>
+           - Practical tutorial: <a href="../git/">Git</a></i><br></td>
   </tr>
   <tr>
     <td> <font size="3"> 12:30 </td>
@@ -60,7 +60,7 @@ the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 09:00 </td>
-    <td> <font size="3"><i>... continued: Practical tutorial: <a href="../Git/">git</a></i><br></td>
+    <td> <font size="3"><i>... continued: Practical tutorial: <a href="../git/">Git</a></i><br></td>
   </tr>
   <tr>
     <td> <font size="3"> 10:00 </td>
