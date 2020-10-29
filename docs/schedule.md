@@ -71,7 +71,7 @@ the approximate schedule below:
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:45 </td>
+    <td> <font size="3"> 10:30 </td>
     <td> <font size="3"> Master your dependencies - environments and reproducibility
          <font size="2"><i><br>
          - Introduction to the package and environment manager Conda <br>
@@ -113,7 +113,7 @@ the approximate schedule below:
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> <i> 
         ...continued - Practical tutorial:  <a href="../snakemake/">Snakemake</a> </i>
     </td>
@@ -157,7 +157,7 @@ the approximate schedule below:
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> Containerization
          <font size="2"> <i> <br>
          - Introduction to containers <br>
@@ -194,7 +194,7 @@ the approximate schedule below:
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
-    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> 10:45 </td>
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
          - Q&A: How to implement these procedures on a day-to-day basis</i> 
