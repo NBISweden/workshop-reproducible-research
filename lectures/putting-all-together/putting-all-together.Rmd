@@ -25,10 +25,22 @@ layout: true
 class: center, middle
 .HUGE[Putting it all together]
 
+---
+
+class: center, middle
 <img src="../common-figures/reproducibility-overview.png" style="width:50%;"/>
+
+Take control of your research project by making its different components reproducible
 
 ---
 
+class: center, middle
+
+<img src="whats_in_it_for_me.png" style="width:50%;"/>
+
+By moving towards a reproducible way of working you will quickly realize that you at the same time make your own life a lot easier! 
+
+---
 
 # What have we learned?
 
@@ -47,7 +59,6 @@ class: center, middle
 ]
 
 ---
-
 
 # Everything can be a project
 
@@ -69,6 +80,11 @@ class: center, middle
 
 --
 
+* Use .green[Git] to create structured and version controlled project repositories
+
+---
+
+# Everything can be a project
 
 * Project directory templates
   * https://github.com/NBISweden/project_template
@@ -85,7 +101,7 @@ class: center, middle
 
 --
 
-* Don't make different versions - make a .green[script] if you need to preprocess your input data so that the steps can be recreated
+* Don't create different versions of the input data - write a .green[script], .green[RMarkdown] or .green[Jupyter notebook] if you need to preprocess your input data so that the steps can be recreated
 
 --
 
@@ -97,57 +113,37 @@ class: center, middle
 
 ---
 
-# What is reasonable for your project?
+# Organize your coding
 
-.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:100%;"/>]
+--
 
-.pull-right[
+* Avoid generating files .green[interactively] or doing things .green[by hand] - there is no way to track how they were made
 
-Don't know where to start?
-* Track your code with .green[Git]
-* Manage your software dependencies using .green[Conda]
+--
 
-]
+* Write scripts, .green[RMarkdown] or .green[Jupyter notebooks] for reproducible results to connect raw data to final results
 
----
+--
 
-# What is reasonable for your project?
-
-.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:100%;"/>]
-
-.pull-right[
-
-Organize your coding:
-* Avoid generating files interactively or doing things by hand (no way to track how they were made)
-* Write scripts, .green[RMarkdown] or .green[Jupyter notebooks] for reproducible results
-* Keep the parameters separate (e.g. at top of file or input arguments)
-
-Take another step:
-* Convert your code into a .green[Snakemake] workflow
-
-]
+* Keep the .green[parameters] separate (e.g. at top of file or input arguments)
 
 ---
 
-# What is reasonable for your project?
+class: center, middle
 
-.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:100%;"/>]
+# Discuss in your groups
 
-.pull-right[
+Which of these advices are relevant to your work?
 
-Manage the software environment:
-* .green[Conda] to install software in an environment which can be easily exported and installed on a different system
-
-Completely recreate the compute system:
-* Consider packaging your project in a .green[Docker] or .green[Singularity] container
-
-]
+Are you going to change your way of working? If yes, how?
 
 ---
 
 # Options for reproducing a project
 
 <img src="my_project_repo.png" style="width:75%;"/>
+
+.small[www.bitbucket.org]
 
 ---
 
@@ -166,11 +162,11 @@ Completely recreate the compute system:
 
 --
 
-* .green[Git] clone, activate .green[conda] env, and run code or workflow
+* .green[Git] clone, activate .green[Conda] env, and run code or workflow
 
 --
 
-* .green[Git] clone, .green[docker] build, and run code or workflow in container
+* .green[Git] clone, .green[Docker] build, and run code or workflow in container
 
 --
 
@@ -178,11 +174,101 @@ Completely recreate the compute system:
 
 ---
 
-class: center, middle
+# What is reasonable for your project?
 
-<img src="whats_in_it_for_me.png" style="width:50%;"/>
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>]
 
-By moving towards a reproducible way of working you will quickly realize that you at the same time make your own life a lot easier! 
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
+
+.green[Minimal]: write code for reproducible results
+
+]
+
+--
+
+.pull-right[
+
+Connect your results with the code:
+* Use .green[RMarkdown] or .green[Jupyter notebooks]
+
+Take another step:
+* Convert your code into a .green[Snakemake] workflow
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
+
+.green[Minimal]: write code for reproducible results
+
+.green[Good]: versioned and structured repository
+
+]
+
+--
+
+.pull-right[
+
+Use .green[Git] for version controlling and collaboration:
+* Create one .green[Git] repository per project
+* Publish your code along with your results on <a href="https://github.com" .green[GitHub] </a> or <a href="https://bitbucket.org" .green[BitBucket] </a>
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
+
+.green[Minimal]: write code for reproducible results
+
+.green[Good]: versioned and structured repository
+
+.green[Better]: organize software dependencies
+
+]
+
+--
+
+.pull-right[
+
+Manage your depencencies:
+* Use .green[Conda] to install software in environments that can be easily exported and installed on a different system
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
+
+.green[Minimal]: write code for reproducible results
+
+.green[Good]: versioned and structured repository
+
+.green[Better]: organize software dependencies
+
+.green[Best]: export everything!
+
+]
+
+--
+
+.pull-right[
+
+Completely recreate the compute system:
+* Consider packaging your project in a .green[Docker] or .green[Singularity] container
+
+]
 
 ---
 
@@ -190,17 +276,19 @@ class: center, middle
 
 # Discuss in your groups
 
-* Which of the tools and concepts from the course seem most useful to you? 
+Which of the tools from the course seem most useful to you?
 
-* Are you going to use these tools or concepts in your work? If yes, how?
+Are you going to use some or all of the tools in your research? If yes, how?
 
 ---
 
 # Alternatives
 
+--
+
 .green[Version control]
 
-* **Git** – Widely used and a lot of tools available + GitHub.
+* **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
 * **Mercurial** – Distributed model just like Git, close to sourceforge.
 * **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
 
@@ -231,7 +319,7 @@ class: center, middle
 .green[Literate programming]
 
 * **Jupyter** – Create and share notebooks in a variety of languages and formats by using a web browser.
-* **Rmarkdown** – Developed by Rstudio, focuses on generating high-quality documents.
+* **RMarkdown** – Developed by Rstudio, focuses on generating high-quality documents.
 * **Zeppelin** – Developed by Apache. Closely integrated with Spark for distributed computing and Big Data applications.
 * **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on integrating multiple languages in the same notebook.
 
@@ -250,8 +338,20 @@ class: center, middle
 
 class: center, middle
 
-# Questions?
-
 <img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/>
 
 ---
+
+# NBIS Bioinformatics drop-in
+
+Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
+
+* Online (.green[zoom])
+* Every .green[Tuesday, 14.00-15.00] (except public holidays)
+* Check .green[www.nbis.se/events] for zoom link and more info
+
+---
+
+class: center, middle
+
+# Questions?
