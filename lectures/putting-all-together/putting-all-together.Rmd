@@ -86,10 +86,12 @@ By moving towards a reproducible way of working you will quickly realize that yo
 
 # Everything can be a project
 
-* Project directory templates
+Project directory templates, e.g. NBIS project template:
+
+.center[<img src="NBISweden_project_template.png" style="width:60%;"/>]
+
   * https://github.com/NBISweden/project_template
   * https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow
-
 
 ---
 
@@ -218,6 +220,7 @@ Take another step:
 
 Use .green[Git] for version controlling and collaboration:
 * Create one .green[Git] repository per project
+* Track your changes with .green[Git]
 * Publish your code along with your results on <a href="https://github.com" .green[GitHub] </a> or <a href="https://bitbucket.org" .green[BitBucket] </a>
 
 ]
@@ -355,3 +358,9 @@ Any questions related to reproducible research tools and concepts? Talk to an NB
 class: center, middle
 
 # Questions?
+
+---
+
+class: center, middle
+
+# Q&A: How to implement these procedures on a day-to-day basis
