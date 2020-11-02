@@ -25,8 +25,8 @@ class: center, middle
 
 # Data (mis)management in practice.
 
-.tiny[
-|   | .green[\> Data acquisition] | .green[\> Analysis] | .green[\> First submission] | .green[\> Review] | .green[\> Second submission] | .green[\> Publication] |
+.smaller[
+|   | .green[Data acquisition] | .green[Analysis] | .green[First submission] | .green[Review] | .green[Second submission] | .green[Publication] |
 | - | --------------------------- | ------------------- | --------------------------- | ----------------- | ---------------------------- | ----------------------
 | **Raw data** | Data arrives in cumbersome and proprietary format. | Gets converted to format of choice. Original files (and conversion settings) are lost. | | Leads a quiet life on the HPC cluster, until the project expires and the data has to be urgently retrieved. | Ends its days on an external hard drive on the researcher's desk. | "Data available upon request". |
 | **Metadata** | In researcher's lab journal. | Hard-coded in various analysis scripts. | Mailed back and forth between collaborators in ever-changing (but nicely colored) Excel sheets. | | Reformatted and included as PDF in the supplementary. | | |

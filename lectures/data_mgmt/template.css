@@ -29,6 +29,7 @@ h3 {
 /* Custom font sizes */
 .micro { font-size: 25% }
 .tiny { font-size: 50% }
+.smaller { font-size: 66% }
 .small { font-size: 75% }
 .large { font-size: 125% }
 .huge { font-size: 150% }
