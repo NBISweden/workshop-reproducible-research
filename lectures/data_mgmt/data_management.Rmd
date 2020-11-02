@@ -74,10 +74,12 @@ Scientific Data (2016)]</a>
 
 class: center, middle
 
-# Pair up and discuss!
+.huge[
 
-- Does your group have a data management plan in place?
-- Do you know "your" repositories and how to submit data to them?
+Does your group have a data management plan in place?
+
+Do you know "your" repositories and how to submit data to them?
+]
 
 ---
 
@@ -87,7 +89,8 @@ class: center, middle
 
 ---
 
-class: left, middle
+Which sample file represents the latest version?
+
 ```bash
 $ ls -l data/
 -rw-r--r--  user  staff  samples.mat
@@ -116,13 +119,13 @@ One example: <a href="https://github.com/NBISweden/project_template" .green[NBIS
 
 .small[
 ```bash
-code/             all code needed to go from input files to final results
+code/             code needed to go from input files to final results
 
-data/             raw and primary data, essentially all input files, never edit!
+data/             raw and primary data (never edit!)
 
 doc/              documentation of the study
 
-intermediate/     output files from different analysis steps, can be deleted
+intermediate/     output files from intermediate analysis steps
 
 logs/             logs from the different analysis steps
 
@@ -182,14 +185,16 @@ README.md
 - <a href="https://www.jetbrains.com/pycharm/" .green[PyCharm] </a>
 
 ---
+
 class: center, middle
 
-# Pair up and discuss!
+.huge[
+Do you organize your work in distinct projects?
 
-- Do you organize your work in distinct projects?
-- How do you organize your files in this context?
-- Are you happy with the way you work today?
+How do you organize your files in this context?
 
+Are you happy with the way you work today?
+]
 ---
 
 class: center, middle
