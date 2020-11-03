@@ -14,7 +14,7 @@ reproducible. Full reproducibility requires the ability to recreate the system
 that was originally used to generate the results. This can, to a large extent,
 be accomplished by using Conda to make a project environment with specific
 versions of the packages that are needed in the project. You can read more about
-Conda [here](https://conda.io/docs/user-guide/concepts.html).
+Conda [here](https://conda.io/projects/conda/en/latest/user-guide/concepts/index.html).
 
 A Conda *package* is a compressed tarball (system-level libraries, Python or
 other modules, executable programs or other components). Conda keeps track of
@@ -58,14 +58,14 @@ correct file for your OS*.
 
 ```bash
 # Install Miniconda3 for 64-bit Mac
-curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
+curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
 bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
 rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
 ```
 
 ```bash
 # Install Miniconda3 for 64-bit Linux
-curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
 bash Miniconda3-4.7.12.1-Linux-x86_64.sh
 rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
