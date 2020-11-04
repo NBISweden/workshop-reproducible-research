@@ -88,6 +88,29 @@ git config --global user.email "mona_lisa@gmail.com"
     repository and run `git config user.name "Mona Lisa"`. This will set the
     default username for that repository only.
 
+You will also need to configure the default branch name to be `main` instead of
+`master`:
+
+```bash
+git config --global init.defaultBranch main
+```
+
+The TL;DR of this is that GitHub uses `main` as the default branch while Git
+itself is still using `master` - please read the box below for more information.
+
+!!! tip The default branch name
+    The default branch name for Git and many of the online resources for hosting
+    Git repositories has traditionally been `master`, which historically comes
+    from the "master/slave" repositories of [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
+    This has been heavily discussed by many parties, and in 2020 the decision
+    was made by many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    to start using `main` instead. Any repository created with GitHub uses this
+    new naming scheme since October of 2020, and Git itself is currently
+    discussing implementing a similar change. Git did, however, introduce the
+    ability to set the default branch name when using `git init` in [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
+    instead of using a hard-coded `master`. We at NBIS want to be a part of this
+    change, so we have chosen to use `main` for this course.
+
 ## Creating a git repository
 
 In order to create a new git repository, we first need a directory to track.
