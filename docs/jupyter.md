@@ -966,7 +966,7 @@ past an URL to any notebook and they will render it for you. Go to
 this out with our notebook.
 
 ```no-highlight
-https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/master/jupyter/mrsa_notebook.ipynb
+https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/mrsa_notebook.ipynb
 ```
 
 ### Shared interactive notebooks
