@@ -27,6 +27,16 @@ class: center, middle
 
 ---
 
+# Putting it all together
+
+
+1. .green[Lecture]: Summary of the week & how to put all the tools and procedures together
+
+2. .green[Q&A]: How to implement these procedures on a day-to-day basis
+
+
+---
+
 class: center, middle
 <img src="../common-figures/reproducibility-overview.png" style="width:50%;"/>
 
@@ -178,7 +188,11 @@ Are you going to change your way of working? If yes, how?
 
 # What is reasonable for your project?
 
-.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>]
+.pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
+
+   
+
+]
 
 ---
 
@@ -186,7 +200,7 @@ Are you going to change your way of working? If yes, how?
 
 .pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
 
-.green[Minimal]: write code for reproducible results
+.green[Minimal]: write code in a reproducible way
 
 ]
 
@@ -208,7 +222,7 @@ Take another step:
 
 .pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
 
-.green[Minimal]: write code for reproducible results
+.green[Minimal]: write code in a reproducible way
 
 .green[Good]: versioned and structured repository
 
@@ -231,7 +245,7 @@ Use .green[Git] for version controlling and collaboration:
 
 .pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
 
-.green[Minimal]: write code for reproducible results
+.green[Minimal]: write code in a reproducible way
 
 .green[Good]: versioned and structured repository
 
@@ -254,7 +268,7 @@ Manage your depencencies:
 
 .pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
 
-.green[Minimal]: write code for reproducible results
+.green[Minimal]: write code in a reproducible way
 
 .green[Good]: versioned and structured repository
 
@@ -279,9 +293,10 @@ class: center, middle
 
 # Discuss in your groups
 
-Which of the tools from the course seem most useful to you?
+Which of the suggested ambition levels seems most reasonable for your work?
 
-Are you going to use some or all of the tools in your research? If yes, how?
+Are you going to use one of the suggested combinations of tools in your research? 
+Or are you planning to use a different combination?
 
 ---
 
