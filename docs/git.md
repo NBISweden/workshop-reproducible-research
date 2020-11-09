@@ -88,6 +88,29 @@ git config --global user.email "mona_lisa@gmail.com"
     repository and run `git config user.name "Mona Lisa"`. This will set the
     default username for that repository only.
 
+You will also need to configure the default branch name to be `main` instead of
+`master`:
+
+```bash
+git config --global init.defaultBranch main
+```
+
+The TL;DR of this is that GitHub uses `main` as the default branch while Git
+itself is still using `master` - please read the box below for more information.
+
+!!! tip The default branch name
+    The default branch name for Git and many of the online resources for hosting
+    Git repositories has traditionally been `master`, which historically comes
+    from the "master/slave" repositories of [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
+    This has been heavily discussed by many parties, and in 2020 the decision
+    was made by many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    to start using `main` instead. Any repository created with GitHub uses this
+    new naming scheme since October of 2020, and Git itself is currently
+    discussing implementing a similar change. Git did, however, introduce the
+    ability to set the default branch name when using `git init` in [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
+    instead of using a hard-coded `master`. We at NBIS want to be a part of this
+    change, so we have chosen to use `main` for this course.
+
 ## Creating a git repository
 
 In order to create a new git repository, we first need a directory to track.
@@ -107,7 +130,7 @@ The directory is now a version-tracked directory. How can you know? Run the
 command `git status`, which will probably return something like this:
 
 ```no-highlight
-On branch master
+On branch main
 
 No commits yet
 
@@ -325,7 +348,7 @@ operations in one step.
 git log
 ```
 
-!!! tip 
+!!! tip
     Since Git keeps track of changes in text, *e.g.* code and text-based
     documentation, there are some files which you should *not* commit. Examples
     of such files are file formats that are not text-based, *e.g.* Microsoft
@@ -460,7 +483,7 @@ learn more about this in the section about working remotely.
 git branch
 ```
 
-This tells us that there is only the `master` branch at the moment.
+This tells us that there is only the `main` branch at the moment.
 
 * Let's make a new branch:
 
@@ -504,12 +527,12 @@ It is often useful to see what the differences exists between branches.
 You can use the `diff` command for this:
 
 ```bash
-git diff master
+git diff main
 ```
 
-This shows the difference between the active branch (test_alignment) and master
+This shows the difference between the active branch (test_alignment) and main
 on a line-per-line basis. Do you see which lines have changed between
-`test_alignment` and `master` branches?
+`test_alignment` and `main` branches?
 
 !!! tip
     We can also add the `--color-words` flag to `git diff`, which instead
@@ -517,13 +540,13 @@ on a line-per-line basis. Do you see which lines have changed between
 
 Now, let's assume that we have tested our code and the alignment analysis is run
 successfully with our new parameters. We thus want to merge our work into the
-`master` branch. It is good to start with checking the differences between
+`main` branch. It is good to start with checking the differences between
 branches (as we just did) so that we know what we will merge.
 
-* Checkout the branch you want to merge into, *i.e.* `master`:
+* Checkout the branch you want to merge into, *i.e.* `main`:
 
 ```bash
-git checkout master
+git checkout main
 ```
 
 * To merge, run the following code:
@@ -533,15 +556,15 @@ git merge test_alignment
 ```
 
 Run `git log --graph --all --oneline` again to see how the merge commit brings
-back the changes made in test_alignment to master.
+back the changes made in test_alignment to main.
 
 !!! tip
     If working on different features or parts of an analysis on different
-    branches, and at the same time maintaining a working `master` branch for the
+    branches, and at the same time maintaining a working `main` branch for the
     stable code, it is convenient to periodically merge the changes made to
-    `master` into relevant branches (*i.e.* the opposite to what we did above).
+    `main` into relevant branches (*i.e.* the opposite to what we did above).
     That way, you keep your experimental branches up-to-date with the newest
-    changes and make them more easily merged into `master` when time comes.
+    changes and make them more easily merged into `main` when time comes.
 
 * If we do not want to do more work in `test_alignment` we can delete that
   branch:
@@ -559,11 +582,11 @@ git branch -d test_alignment
     degrees of complexity depending on the developer's needs and the number of
     collaborators. While there certainly isn't a single branching model that
     can be considered to be the "best", it is very often most useful to keep it
-    simple. An example of a simple and functional model is to have a `master`
+    simple. An example of a simple and functional model is to have a `main`
     branch that is always working (*i.e.* can successfully run all your code
     and without known bugs) and develop new code on feature branches (one new
     feature per branch). Feature branches are short-lived, meaning that they
-    are deleted once they are merged into master.
+    are deleted once they are merged into main.
 
 !!! note "Quick recap"
     We have now learned how to divide our work into branches and how to manage
@@ -635,7 +658,7 @@ git checkout submission1
   back to the latest version, run:
 
 ```bash
-git checkout master
+git checkout main
 ```
 
 * Open `config.yml` and see that the value is now `50000`.
@@ -711,14 +734,14 @@ git remote add origin https://github.com/user/git_tutorial.git
   connected them. Let's sync them now:
 
 ```bash
-git push origin master
+git push origin main
 ```
 
-The `push` command sends our local history of the `master` branch to the same
+The `push` command sends our local history of the `main` branch to the same
 branch on the remote (`origin`). Our git repository is now stored on GitHub!
 
 * Run `git status`. This should tell you that *"Your branch is up-to-date with
-  'origin/master'."*.
+  'origin/main'."*.
 
 If you go to the repository's GitHub page you should now be able to see all your
 files and your code there! It should look something like this:
@@ -753,7 +776,7 @@ You can find the latest stable version of the Git tutorial for the course
 ```bash
 git add README.md
 git commit -m "Add README.md"
-git push origin master
+git push origin main
 ```
 
 You should now be able to see the rendered markdown document, which looks a bit
@@ -857,10 +880,10 @@ the original `git_tutorial` repository!
   effect.
 
 !!! tip
-    You always need to specify `git push origin master` by default, but you can
+    You always need to specify `git push origin main` by default, but you can
     circumvent this by telling git that you always want to push to
-    `origin/master` when you're on your local `master` branch. To do this, use
-    the command `git branch --set-upstream-to origin master`. Another way to
+    `origin/main` when you're on your local `main` branch. To do this, use
+    the command `git branch --set-upstream-to origin main`. Another way to
     achieve the same effect is use the `--set-upstream` flag for the very first
     push.
 
@@ -898,7 +921,7 @@ a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
 Remote branches work much in the same way a local branches, but you have to
 push them separately; you might have noticed that GitHub only listed our
 repository as having one branch (you can see this by going to the *Code* tab).
-This is because we only pushed our `master` branch to the remote. Let's create
+This is because we only pushed our `main` branch to the remote. Let's create
 a new local branch and add some changes that we'll push as a separate branch to
 our remote - you should do this in the original `git_tutorial` repository, so
 move back into that directory.
@@ -914,7 +937,7 @@ shell("bowtie2 --very-sensitive-local --trim5 5 -x " + indexBase + " \
 * Add and commit the change to your local repository.
 
 * Instead of doing what we previously did, *i.e.* merge the `trimming` branch
-  into the `master` branch, we'll push `trimming` straight to our remote:
+  into the `main` branch, we'll push `trimming` straight to our remote:
 
 ```bash
 git push origin trimming
@@ -925,14 +948,14 @@ git push origin trimming
   view it. Can you see the difference in the `Snakefile` depending on which
   branch you choose?
 
-We now have two branches both locally and remotely: `master` and `trimming`. We
+We now have two branches both locally and remotely: `main` and `trimming`. We
 can continue working on our `trimming` branch until we're satisfied (all the
 while pushing to the remote branch with the same name), at which point we want
-to merge it into `master`.
+to merge it into `main`.
 
-* Checkout your local `master` branch and merge it with the `trimming` branch.
+* Checkout your local `main` branch and merge it with the `trimming` branch.
 
-* Push your `master` branch to your remote and subsequently delete your local
+* Push your `main` branch to your remote and subsequently delete your local
   `trimming` branch.
 
 The above command only deleted the local branch. If you want to remove the
@@ -1001,7 +1024,7 @@ pushed it to GitHub. Let's create a conflict!
 
 * Move into your other local repository, `git_remote_tutorial`, which doesn't
   have the new change. Run `git status`. Notice that git says: "*Your branch is
-  up-to-date with 'origin/master'.*". We know that this is not true, but this
+  up-to-date with 'origin/main'.*". We know that this is not true, but this
   local clone is not yet aware of the remote changes.
 
 * Let's change the `environment.yml` file in this local repository as well, but
@@ -1013,7 +1036,7 @@ pushed it to GitHub. Let's create a conflict!
   an error message that looks like this:
 
 ```no-highlight
- ! [rejected]        master -> master (fetch first)
+ ! [rejected]        main -> main (fetch first)
 error: failed to push some refs to 'https://github.com/user/git_tutorial.git'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
@@ -1043,21 +1066,21 @@ git fetch
 
 * Now run `git status`. Unlike before, our local git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
-  lines: "*Your branch and 'origin/master' have diverged, and have 1 and
+  lines: "*Your branch and 'origin/main' have diverged, and have 1 and
   1 different commit each, respectively.*".
 
 * We can now run the following to see what the difference is between the current
-  state of our local clone and the `master` branch on the remote origin:
+  state of our local clone and the `main` branch on the remote origin:
 
 ```bash
-git diff origin/master
+git diff origin/main
 ```
 
 * Now let's try to integrate the remote changes with our local changes and get
   up to sync with the remote:
 
 ```bash
-git pull origin master
+git pull origin main
 ```
 
 Unsurprisingly, the `git pull` command resulted in a conflict. Git tells us
@@ -1175,7 +1198,7 @@ git push
 !!! note
     While the example we've used here is from a collaborative setting, conflicts
     also arise when you are working alone. They usually happen when you have
-    several feature branches that you want to merge into `master` and you've
+    several feature branches that you want to merge into `main` and you've
     forgot to keep all branches up-to-date with each other.
 
 !!! note "Quick recap"
