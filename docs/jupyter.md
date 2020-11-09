@@ -62,7 +62,7 @@ forget to activate the environment.
     * Jupyter notebook: The actual `.ipynb` file that constitutes your
       notebook.
 
-!!! attention
+!!! attention "Windows users"
     If you are doing these exercises through a Docker container you also need
     the run the following:
     
