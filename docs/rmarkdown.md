@@ -597,7 +597,7 @@ You will probably get a good idea of the contents of the file, but the tables
 look weird and the figures could be better formatted. Let's start by adjusting
 the figures!
 
-* Locate the `setup` chunk. Here, we have already set `echo = FALSE`. Let's add
+* Locate the `Setup` chunk. Here, we have already set `echo = FALSE`. Let's add
   some default figure options: `fig.height = 6, fig.width = 6, fig.align
   = 'center'`. This will make the figures slightly smaller than default and
   center them.
@@ -609,10 +609,10 @@ Let's improve the tables! We have not talked about tables before. There are
 several options to print tables, here we will use the `kable` function which is
 part of the `knitr` package.
 
-* Go to the `sample-info` chunk. Replace the last line, `d`, with:
+* Go to the `Sample info` chunk. Replace the last line, `sample_info`, with:
 
 ```r
-knitr::kable(d)
+knitr::kable(sample_info)
 ```
 
 * Knit again and look at the result. You should see a formatted table.
@@ -620,18 +620,18 @@ knitr::kable(d)
   use the following:
 
 ```r
-knitr::kable(d, caption = "Sample info",
+knitr::kable(sample_info, caption = "Sample info",
              col.names = c("SRR", "GEO", "Strain", "Treatment"))
 ```
 
 * Knit and check the result.
-* Try to fix the table in the `qc-stats` chunk in the same manner. The colnames
-  are fine here, so no need to bother changing them, but add a table legend:
+* Try to fix the table in the `QC statistics` chunk in the same manner. The
+  column names are fine here so no need to change them, but add a table legend:
   "QC stats from FastQC". Knit and check your results.
 
 Let's move on to the figures!
 
-* Go to the `counts-barplot` chunk. To add a figure legend we have to use
+* Go to the `Counts barplot` chunk. To add a figure legend we have to use
   a chunk option (so not in the same way as for tables). Add the chunk option:
 
 ```r

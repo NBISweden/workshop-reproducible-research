@@ -9,12 +9,12 @@ params:
   GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir=normalizePath('../'))
+```{r Setup, include = FALSE}
+knitr::opts_knit$set(root.dir = normalizePath("../"))
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r dependencies, include=FALSE}
+```{r Dependencies, include = FALSE}
 library("ggplot2")
 library("reshape2")
 library("pheatmap")
@@ -22,86 +22,93 @@ library("rtracklayer")
 library("GEOquery")
 ```
 
-```{r read_params, include=FALSE}
+```{r Read parameters, include = FALSE}
 counts_file <- params$counts_file
 multiqc_file <- params$multiqc_file
 rulegraph_file <- params$rulegraph_file
-SRR_IDs <- unlist(strsplit(params$SRR_IDs," "))
-GSM_IDs <- unlist(strsplit(params$GSM_IDs," "))
+SRR_IDs <- unlist(strsplit(params$SRR_IDs, " "))
+GSM_IDs <- unlist(strsplit(params$GSM_IDs, " "))
 ```
 
-```{r read_data, include=FALSE}
-# Read counts:
-counts <- read.delim(counts_file, skip=1, header=F, row.names=1)
-sample_names <- t(read.delim(counts_file, nrow=1, header=F))
-colnames(counts) <- c("description",gsub(".*(SRR[0-9]*)\\..*","\\1", sample_names))
-counts_other <- counts[grep("^__",rownames(counts)),]
-rownames(counts_other) <- gsub("^__","",rownames(counts_other))
-counts <- counts[grep("^__",rownames(counts), invert=T),]
+```{r Read data, include = FALSE}
+# Read count data
+counts <- read.delim(counts_file, skip = 1, header = FALSE, row.names = 1)
+sample_names <- t(read.delim(counts_file, nrow = 1, header = FALSE))
+colnames(counts) <- c("description", gsub(".*(SRR[0-9]*)\\..*", "\\1", sample_names))
+counts_other <- counts[grep("^__", rownames(counts)), ]
+rownames(counts_other) <- gsub("^__", "", rownames(counts_other))
+counts <- counts[grep("^__", rownames(counts), invert = TRUE), ]
 
-# Read meta data:
+# Read metadata
 gse <- Meta(getGEO(GSM_IDs[1]))$series_id
-gse <- getGEO(gse, GSEMatrix=T)
+gse <- getGEO(gse, GSEMatrix = TRUE)
 gse <- as.data.frame(gse[[1]])
-gsm2srr <- data.frame(geo_accession=GSM_IDs, SRR=SRR_IDs)
-meta <- merge(x=gse, y=gsm2srr, by.x="geo_accession",by.y="geo_accession")
+gsm2srr <- data.frame(geo_accession = GSM_IDs, SRR = SRR_IDs)
+meta <- merge(x = gse, y = gsm2srr,
+              by.x = "geo_accession", by.y = "geo_accession")
+
 # Read FastQC data and update column names
 qc <- read.delim(multiqc_file)
-patterns <- c(".+percent_duplicates.*",".+percent_gc.*",
-  ".+avg_sequence_length.*", ".+percent_fails.*",".+total_sequences.*")
+patterns <- c(".+percent_duplicates.*",
+              ".+percent_gc.*",
+              ".+avg_sequence_length.*",
+              ".+percent_fails.*",
+              ".+total_sequences.*")
 subs <- c("Percent duplicates", "Percent GC", "Avg sequence length",
-  "Percent fails", "Total sequences")
+          "Percent fails", "Total sequences")
 for (i in 1:length(patterns)) {
   colnames(qc) <- gsub(patterns[i], subs[i], colnames(qc))
 }
-meta <- merge(meta, qc, by.x="SRR", by.y="Sample")
-if(any(colnames(counts)[-1] != meta$SRR)) stop("Mismatching count and meta-data")
+meta <- merge(meta, qc, by.x = "SRR", by.y = "Sample")
+if (any(colnames(counts)[-1] != meta$SRR)) {
+    stop("Mismatching count and meta-data")
+}
 ```
 
 # Supplementary Methods
 
-## Preparing samples
-
-Living valley had silent eat merits esteem bed. In last an or went wise as left. Visited civilly am demesne so colonel he calling. So unreserved do interested increasing sentiments. Vanity day giving points within six not law. Few impression difficulty his use has comparison decisively.
-
-## Statistical analysis
-
-She who arrival end how fertile enabled. Brother she add yet see minuter natural smiling article painted. Themselves at dispatched interested insensible am be prosperous reasonably it. In either so spring wished. Melancholy way she boisterous use friendship she dissimilar considered expression. Sex quick arose mrs lived. Mr things do plenty others an vanity myself waited to. Always parish tastes at as mr father dining at.
-
-## Data processing
-
-Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exercise. My wishing an in attempt ferrars. Visited eat you why service looking engaged. At place no walls hopes rooms fully in. Roof hope shy tore leaf joy paid boy. Noisier out brought entered detract because sitting sir. Fat put occasion rendered off humanity has.
+Here you might include a description of the methods used in obtaining and
+analysing the data before getting into this document, *e.g.* how sequencing data
+was aligned and counted.
 
 # Supplementary Tables and Figures
 
-```{r sample-info}
+```{r Sample info}
 columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
-d <- meta[,columns]
-d$characteristics_ch1.1 <- gsub("treatment: ", "", d$characteristics_ch1.1)
-d
+sample_info <- meta[, columns]
+sample_info$characteristics_ch1.1 <- gsub("treatment: ", "", sample_info$characteristics_ch1.1)
+sample_info
 ```
 
-```{r qc-stats}
+```{r QC statistics}
 columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
              "Percent fails", "Total sequences")
-d <- meta[,columns]
-d
+qc_data <- meta[, columns]
+qc_data
 ```
 
-```{r counts-barplot}
-d <- rbind(genes=apply(counts[,-1], 2, sum), counts_other[,-1])
-d <- melt(as.matrix(d), varnames=c("Feature","Sample"), value.name="Reads")
-ggplot(d, aes(x=Sample, y=Reads, fill=Feature)) +
-  geom_bar(stat="identity")
+```{r Counts barplot}
+count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_other[, -1])
+count_data <- melt(as.matrix(count_data),
+                   varnames   = c("Feature", "Sample"),
+                   value.name = "Reads")
+ggplot(count_data, aes(x = Sample, y = Reads, fill = Feature)) +
+    geom_bar(stat = "identity")
 ```
 
-```{r gene-heatmap}
+```{r Gene heatmap}
 cv_cutoff <- 1.2
 max_cutoff <- 5
-d <- counts[apply(counts[,-1], 1, function(x) sd(x)/mean(x))>cv_cutoff &
-            apply(counts[,-1],1,max)>max_cutoff,]
-colnames(d)[2:4] <- as.character(meta$title)
-pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",substr(gsub("%2C","",d$description),1,50),")",sep=""), fontsize_row=8)
+heatmap_data <-
+    counts[apply(counts[, -1], 1, function(x) sd(x) / mean(x)) > cv_cutoff &
+           apply(counts[, -1], 1, max) > max_cutoff, ]
+colnames(heatmap_data)[2:4] <- as.character(meta$title)
+labels_row <- paste0(rownames(heatmap_data), " (",
+                     substr(gsub("%2C", "", heatmap_data$description), 1, 50),
+                     ")")
+pheatmap(log10(heatmap_data[, -1] + 1),
+         fontsize_row = 8,
+         labels_row = labels_row)
 ```
 
 ## Reproducibility
@@ -109,12 +116,12 @@ pheatmap(log10(d[,-1]+1), labels_row=paste(rownames(d)," (",substr(gsub("%2C",""
 The code for reproducing this analysis is available in this [GitHub repo](https://github.com/NBISweden/workshop-reproducible-research/tree/master/docker).
 The repo contains:
 
-* A Snakemake workflow for running all analysis steps.
-* A Conda environment file for installing all needed dependencies.
-* A Docker file for running the analysis in a well-defined and isolated system.
+* A Snakemake workflow for running all analysis steps
+* A Conda environment file for installing all needed dependenciesx
+* A Docker file for running the analysis in a well-defined and isolated system
 
 The results in this supplementary were generated in the following R environment:
 
-```{r session_info}
+```{r Session info}
 sessionInfo()
 ```
