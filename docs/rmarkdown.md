@@ -785,7 +785,27 @@ params:
     section of your Snakemake rule (see the Snakefile in `docker/` for an
     example).
 
-## Presentations in R Markdown
+## Extra material
+
+While the above tutorial teaches you all the basics of using R Markdown, there
+is much more you can do with it, if you want to! Here we cover some extra
+material if you're curious to learn more, but we don't consider this to be
+a main part of the course.
+
+### R Markdown and LaTeX
+
+R Markdown uses LaTeX behind the scenes to render PDF documents, but you miss
+some of the features that is inherent in LaTeX by going this route. There is,
+thankfully, a different file format that you can use that more explicitly merges
+R Markdown and all the functionality of LaTeX, called [Sweave](https://rpubs.com/YaRrr/SweaveIntro).
+
+Sweave allows you to use any LaTeX command you want outside of R code chunks,
+which is awesome for those of you who are already using LaTeX and want to
+combine it with R Markdown. These files use the `.Rnw` extension rather than
+`.Rmd`, with some additional changes, such as code chunks starting with `<<>>=`
+and ending with `@`.
+
+### Presentations in R Markdown
 
 Lastly, if you have time, you can try out using R Markdown for making
 presentations.
