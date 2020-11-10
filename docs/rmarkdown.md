@@ -68,24 +68,56 @@ If you want to read more, here are some useful resources:
 
 ## Setup
 
-If you don't already have R or RStudio, you will need to install them:
+This tutorial depends on files from the course GitHub repo. Take a look at the
+[introduction](tutorial_intro.md) for instructions on how to set it up if you
+haven't done so already. Since we've already learnt how to use Conda for
+installing software packages in a [previous tutorial](conda.md), let's continue
+using it!
 
-* Download and install R following the instructions
-  [here](https://cran.rstudio.com/).
-* Download and install RStudio Desktop (free) following the instructions
-  [here](https://www.rstudio.com/products/rstudio/download/#download).
+Set your working directory to `workshop-reproducible-research/rmarkdown` and
+install the necessary R packages defined in the `rmarkdown-environment.yml`:
+
+```bash
+conda env create -f rmarkdown-environment.yml -p rmarkdown-env
+```
+
+You can then activate the environment as normal, followed by running RStudio
+in the background from the command line:
+
+```bash
+conda activate rmarkdown-env
+rstudio &
+```
+
+!!! note "RStudio and Conda"
+    In some cases RStudio doesn't play well with Conda due to differing
+    libpaths. To fix this, first check the available library path by
+    `.libPaths()` to make sure that it points to a path within your conda
+    environment. It might be that `.libPaths()` shows multiple library paths, in
+    which case R packages will be searched for by R in both these locations.
+    This means that your R session will not be completely isolated in your Conda
+    environment and that something that works for you might not work for
+    someone else using the same Conda environment, simply because you had
+    additional packages installed in the second library location. One way to
+    force R to just use the conda library path is to add a `.Renviron` file to
+    the directory where you start R with these lines:
+
+    ```
+    R_LIBS_USER=""
+    R_LIBS=""
+    ```
+
+    ... and restart RStudio. The `rmarkdown/` directory in the course materials
+    already contains this file, so you shouldn't have to add this yourself, but
+    we mention it here for your future projects.
 
 !!! attention "Windows users"
     Although most of the tutorials are best to run in the Linux Bash Shell or
     in a Docker container if you are a Windows user (see information in the
     [intro](tutorial_intro.md)), both R and RStudio run well directly on
-    Windows. It is therefore suggested that you install Windows versions of
-    these software (if you haven't done so already) when doing this tutorial.
-
-This tutorial depends on files from the course GitHub repo. Take a look at the
-[introduction](tutorial_intro.md) for instructions on how to set it up if you
-haven't done so already. Then open up RStudio and set your working directory to
-`workshop-reproducible-research/rmarkdown`.
+    Windows. You may therefore want to install Windows versions of these
+    software (if you haven't done so already) when doing this tutorial, if
+    you're having trouble using Conda. Conda is, however, the recommended way.
 
 ## The basics
 
@@ -182,17 +214,24 @@ the last code chunk in the template R Markdown document that you just created,
 as an example:
 
 ````
-```{r Plot pressure data, echo = FALSE}
+```{r pressure, echo = FALSE}
 plot(pressure)
 ```
 ````
 
 The R code is surrounded by: ` ```{r}` and ` ``` `. The `r` indicates that the
 code chunk contains R code (it is possible to add code chunks using other
-languages, *e.g.* Python). After that comes an optional chunk name, `Plot
-pressure data` in this case (this can be used to reference the code chunk as
-well as alleviate debugging). Last comes chunk options, separated by commas (in
-this case there is only one option: `echo = FALSE`).
+languages, *e.g.* Python). After that comes an optional chunk name, `pressure`
+in this case (this can be used to reference the code chunk as well as alleviate
+debugging). Last comes chunk options, separated by commas (in this case there is
+only one option: `echo = FALSE`).
+
+!!! note "Code chunk names"
+    Note that the code chunk name pressure has nothing to do with the code
+    plot(pressure). In the latter case, pressure is a default R dataframe that
+    is used in examples. The chunk name happened to be set to the string
+    pressure as well, but could just as well have been called something else,
+    *e.g.* "Plot pressure data".
 
 Below are listed some useful chunk options related to evaluating and displaying
 code chunks in the final file:
@@ -245,22 +284,22 @@ There are also some chunk options related to plots:
 | `fig.cap = "This is a plot."` | Adds a figure caption.
 
 * Go back to your template R Markdown document in RStudio and locate the
-  `Plot pressure data` code chunk.
+  `pressure` code chunk.
 * Add the `fig.width` and `fig.height` options as below:
 
 ````
-```{r Plot pressure data, echo = FALSE, fig.width = 6, fig.height = 4}
+```{r pressure, echo = FALSE, fig.width = 6, fig.height = 4}
 plot(pressure)
 ```
 ````
 
 * Press *Knit* and look at the output. Can you see any differences?
 * Now add a whole new code chunk to the end of the document. Give it the name
-  `Plot pressure again` (code chunks have to have unique names, or no
+  `pressure 2` (code chunks have to have unique names, or no
   name). Add the `fig.width` and `out.width` options like this:
 
 ````
-```{r Plot pressure again, echo = FALSE, fig.width = 9, out.width = "560px"}
+```{r pressure 2, echo = FALSE, fig.width = 9, out.width = "560px"}
 plot(pressure)
 ```
 ````
@@ -289,11 +328,8 @@ in individual chunks.
     https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
 It is also possible to create different types of interactive plots using
-R Markdown. You can see some examples of this
-[here](http://www.htmlwidgets.org/showcase_networkD3.html). If you want to try
-it out, you can install *e.g.* the package `networkD3` with
-`install.packages("networkD3")`. Then add the following code chunk to your
-document:
+R Markdown. You can see some examples of this [here](http://www.htmlwidgets.org/showcase_networkD3.html).
+If you want to try it out you can add the following code chunk to your document:
 
 ````
 ```{r}
@@ -354,10 +390,10 @@ params:
 ```
 
 * So now we have two parameters that we can use in the code! Modify the
-  `Plot pressure data` code chunk so that it looks like this:
+  `pressure` code chunk so that it looks like this:
 
 ````
-```{r Plot pressure data, fig.width = 6, fig.height = 4}
+```{r pressure, fig.width = 6, fig.height = 4}
 plot(get(params$data), col = params$color)
 ```
 ````
@@ -464,47 +500,23 @@ Before you start:
 * Make sure that your working directory in R is `rmarkdown` in the course
   directory (Session > Set Working Directory).
 * Open the file `rmarkdown/code/supplementary_material.Rmd`.
-* To complete this part you first need to install the following R-packages:
-
-```
-BiocManager::install("ggplot2")
-BiocManager::install("reshape2")
-BiocManager::install("pheatmap")
-BiocManager::install("rtracklayer")
-BiocManager::install("GEOquery")
-```
 
 !!! note
-    In this tutorial, for the sake of trying out R Markdown, we have installed
-    R and RStudio separately and now we install individual R packages using the
-    standard R procedure (using `install.packages()` or
-    `BiocManager::install()`). Nevertheless, it is possible to install R,
-    R packages and even RStudio through conda. If you want to, you can try to
-    install the above packages using conda instead (we will do that later in
-    the Docker tutorial). As conda packages, the R packages above are called
-    `r-ggplot2`, `r-reshape2`, `r-pheatmap`, `bioconductor-rtracklayer`, and
-    `bioconductor-geoquery`.
-
-    However, to get access to the installed R packages in RStudio you will need
-    to open RStudio from the command line in the activated conda environment.
-    On Mac you can do this by `open -a RStudio -n`. In R, check the available
-    library path by `.libPaths()` to make sure that it points to a path within
-    your conda environment. It might be that `.libPaths()` shows multiple
-    library paths, in which case R packages will be searched for by R in both
-    these locations. This means that your R session will not be completely
-    isolated in your conda environment, and that something that works for you
-    might not work for someone else using the same conda environment, simply
-    because you had additional packages installed in the second library
-    location. One way to force R to just use the conda library path is to add
-    a `.Renviron` file to the directory where you start R with these lines:
+    In this tutorial we have used Conda to install all the R packages we need,
+    so that you get to practice how you can actually do this in projects of your
+    own. You can, however, install things using `install.packages()` or
+    `BiocManager::install()` as well, even though this makes it both less
+    reproducible and more complicated. This is the code you will need to run in
+    order to install everything without Conda:
 
     ```
-    R_LIBS_USER=""
-    R_LIBS=""
+    BiocManager::install("ggplot2")
+    BiocManager::install("reshape2")
+    BiocManager::install("pheatmap")
+    BiocManager::install("rtracklayer")
+    BiocManager::install("GEOquery")
+    install.packages("networkD3")
     ```
-    and restart R or RStudio from here. Also note that if your `.libPaths()`
-    now only point to your conda environment, you will probably also need to
-    install `r-rmarkdown`.
 
 ### Overview
 
