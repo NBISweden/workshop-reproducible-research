@@ -792,6 +792,20 @@ is much more you can do with it, if you want to! Here we cover some extra
 material if you're curious to learn more, but we don't consider this to be
 a main part of the course.
 
+### A nicer session info
+
+While the default `sessionInfo()` command is highly useful for ending your
+report with all the packages and their respective versions, it can be a bit hard
+to read. There is, however, another version of the same command, which you can
+find in the `devtools` package. By combining this command with the `markup`
+result format you can get a more nicely formatted session information:
+
+````
+```{r Session info, echo = FALSE, results = "markup"}
+devtools::session_info()
+```
+````
+
 ### R Markdown and LaTeX
 
 R Markdown uses LaTeX behind the scenes to render PDF documents, but you miss

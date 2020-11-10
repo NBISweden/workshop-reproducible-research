@@ -6,6 +6,7 @@ channels:
 dependencies:
   - r-base=3.6.2
   - rstudio=1.1.456
+  - r-devtools=2.3.2
   - r-ggplot2=3.2.1
   - r-networkd3=0.4
   - r-pheatmap=1.0.12
