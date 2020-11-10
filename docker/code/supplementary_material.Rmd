@@ -119,7 +119,8 @@ knitr::include_graphics(normalizePath(rulegraph_file))
 
 ## Reproducibility
 
-The code for reproducing this analysis is available in this [Bitbucket repo](https://bitbucket.org/scilifelab-lts/reproducible_research_course/src/master/docker/). The repo contains:
+The code for reproducing this analysis is available in this [GitHub repo](https://github.com/NBISweden/workshop-reproducible-research/tree/master/docker).
+The repo contains:
 
 * A Snakemake workflow for running all analysis steps.
 * A Conda environment file for installing all needed dependencies.

@@ -7,13 +7,13 @@ on:
       - 'lectures/*/*.ipynb'
     branches:
       - lectures
-      - master
+      - main
   pull_request:
     paths:
       - 'lectures/*/*.Rmd'
       - 'lectures/*/*.ipynb'
     branches:
-      - master
+      - main
 
 jobs:
   render:

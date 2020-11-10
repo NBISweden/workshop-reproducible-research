@@ -1,2 +1,25 @@
 .snakemake
 .DS_Store
+lectures/snakemake/snakemake_files/remark-css-0.0.1/default.css
+lectures/snakemake/snakemake_files/header-attrs-2.3/header-attrs.js
+lectures/snakemake/snakemake.html
+lectures/putting-all-together/putting-all-together_files/remark-css-0.0.1/default.css
+lectures/putting-all-together/putting-all-together_files/header-attrs-2.3/header-attrs.js
+lectures/putting-all-together/putting-all-together.html
+lectures/introduction/introduction_files/remark-css-0.0.1/default.css
+lectures/introduction/introduction_files/header-attrs-2.3/header-attrs.js
+lectures/introduction/introduction_files/figure-html/Plot the second Ioannidis data-1.png
+lectures/introduction/introduction_files/figure-html/Plot the first Ioannidis data-1.png
+lectures/introduction/introduction.html
+lectures/git/git_files/remark-css-0.0.1/default.css
+lectures/git/git_files/header-attrs-2.3/header-attrs.js
+lectures/git/git.html
+lectures/data_mgmt/data_management_files/remark-css-0.0.1/default.css
+lectures/data_mgmt/data_management_files/header-attrs-2.3/header-attrs.js
+lectures/data_mgmt/data_management.html
+lectures/containers/containers_files/remark-css-0.0.1/default.css
+lectures/containers/containers_files/header-attrs-2.3/header-attrs.js
+lectures/containers/containers.html
+lectures/conda/conda_files/remark-css-0.0.1/default.css
+lectures/conda/conda_files/header-attrs-2.3/header-attrs.js
+lectures/conda/conda.html

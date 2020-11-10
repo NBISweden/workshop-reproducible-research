@@ -45,11 +45,14 @@ a file", it means save it in `conda/`).
 Go ahead and install Conda as described below. *Make sure to download the
 correct file for your OS*.
 
-!!! attention
+!!! attention "Windows users"
     If you are doing the tutorials by running a Docker container on your
     Windows machine, Conda will already be installed for you. You can then jump
     ahead to the last point about setting up the default channels (`conda
     config`) and then go ahead with the practical exercise.
+
+    If you are using the Linux Bash Shell, follow the installation instructions 
+    for Linux users (see below).
 
 !!! attention
     If you already have installed conda but want to update, you should be able

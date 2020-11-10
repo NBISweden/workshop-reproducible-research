@@ -62,7 +62,7 @@ forget to activate the environment.
     * Jupyter notebook: The actual `.ipynb` file that constitutes your
       notebook.
 
-!!! attention
+!!! attention "Windows users"
     If you are doing these exercises through a Docker container you also need
     the run the following:
     
@@ -966,7 +966,7 @@ past an URL to any notebook and they will render it for you. Go to
 this out with our notebook.
 
 ```no-highlight
-https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/master/jupyter/mrsa_notebook.ipynb
+https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/mrsa_notebook.ipynb
 ```
 
 ### Shared interactive notebooks

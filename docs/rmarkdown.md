@@ -76,8 +76,8 @@ If you don't already have R or RStudio, you will need to install them:
   [here](https://www.rstudio.com/products/rstudio/download/#download).
 
 !!! attention "Windows users"
-    Although most of the tutorials are best to run in a Docker container or in
-    the Linux Bash Shell if you are a Windows user (see information in the
+    Although most of the tutorials are best to run in the Linux Bash Shell or
+    in a Docker container if you are a Windows user (see information in the
     [intro](tutorial_intro.md)), both R and RStudio run well directly on
     Windows. It is therefore suggested that you install Windows versions of
     these software (if you haven't done so already) when doing this tutorial.
