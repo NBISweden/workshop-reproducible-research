@@ -119,15 +119,14 @@ rstudio &
     software (if you haven't done so already) when doing this tutorial, if
     you're having trouble using Conda. Conda is, however, the recommended way.
 
-## The basics
+## Writing in R Markdown
 
-* Start RStudio
-* Select: File --> New File --> R Markdown
-* You might get prompted to install a few required packages - do so!
-* In the window that opens, select: *Document and HTML* (should be default), and
-  click *Ok*. This will open a template R Markdown document for you
-
-On the top is a so called YAML header:
+Let's begin with starting RStudio and opening a new file (*File* --> *New File*
+--> *R Markdown*). If you're using Conda you should have all the packages
+needed, but install anything that RStudio prompts you to. In the window that
+opens, select *Document and HTML* (which should be the default), and click *Ok*.
+This will open a template R Markdown document for you. On the top is a so called
+YAML header:
 
 ```yaml
 ---
@@ -145,17 +144,14 @@ output:
 Here we can specify settings for the document, like the title and the output
 format.
 
-* Change the title to "My first R Markdown document"
-* Now, read through the rest of the template R Markdown document to get
-  a feeling for the format
+* Change the title to `My first R Markdown document`
 
-As you can see, there are essentially three types of components in an
-R Markdown document:
+Now, read through the rest of the template R Markdown document to get a feeling
+for the format. As you can see, there are essentially three types of components
+in an R Markdown document:
 
 1. Text (written in R Markdown)
-
-2. Code chunks (written in R, or another supported language)
-
+2. Code chunks (written in R or another [supported language](#r-markdown-and-other-languages))
 3. The YAML header
 
 Let's dig deeper into each of these in the following sections! But first, just
@@ -163,8 +159,6 @@ to get the flavor for things to come: press the little *Knit*-button located at
 the top of the text editor panel in RStudio. This will prompt you to save the
 Rmd file (do that), and generate the output file (an HTML file in this case).
 It will also open up a preview of this file for you.
-
-### Markdown text
 
 Some commonly used formatting written in markdown is shown below:
 
@@ -207,7 +201,7 @@ HTML or PDF). An even more complete guide is available
     In this section you learned and tried out some of the basic markdown
     syntax.
 
-### Code chunks
+## Code chunks
 
 Enough about markdown, let's get to the fun part and include some code! Look at
 the last code chunk in the template R Markdown document that you just created,
@@ -345,7 +339,7 @@ forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
     In this section you learned how to include code chunks and how to use chunk
     options to control how the output (code, results and figures) is displayed.
 
-### The YAML header
+## The YAML header
 
 Last but not least, we have the YAML header. Here is where you configure
 general settings for the final output file, and a few other things.
@@ -423,9 +417,9 @@ and some YAML settings are specific for the given output format chosen.
     In this section you learned how to set document-wide settings in the YAML
     header, including document output type and user defined parameters.
 
-### Rendering
+## Rendering
 
-You can knit/render reports in several different ways:
+You can render (sometimes called "knitting") reports in several different ways:
 
 - Pressing the *Knit* button in RStudio (as we have done this far)
 - Running the R command `render`: to Knit the file `my_file.Rmd` run
@@ -454,7 +448,8 @@ rmarkdown::render("my_file.Rmd", params = list(data = "cars", color = "green"))
 
 ### RStudio and R Markdown
 
-You might already have noticed that you can run code chunks directly in RStudio:
+You might already have noticed the various ways in which you can run code chunks
+directly in RStudio:
 
 - Place the cursor on an R command and press `CTRL + Enter` (Windows) or
   `Cmd + Enter` (Mac) to run that line in R.
@@ -464,15 +459,16 @@ You might already have noticed that you can run code chunks directly in RStudio:
   all chunks above the current chunk and one for running the code in the current
   chunk (depending on your layout, otherwise you can find the options in the
   *Run* drop-down).
-- Depending on your settings, the output of the chunk code will be displayed
-  inline in the Rmd document, or in RStudio's *Console* and *Plot* panels. To
-  customize this setting, press the cog-wheel next to the *Knit* button and
-  select either "Chunk Output Inline" or "Chunk Output in Console".
 * You can easily insert an empty chunk in your Rmd document in RStudio by
   pressing *Insert* --> *R*.
-* In the top right in the editor panel in RStudio there is a button to toggle
-  the document outline. By making that visible you can click and jump between
-  sections (headers and named code chunks) in your R Markdown document.
+
+Depending on your settings, the output of the chunk code will be displayed
+inline in the Rmd document, or in RStudio's *Console* and *Plot* panels. To
+customize this setting, press the cog-wheel next to the *Knit* button and select
+either "Chunk Output Inline" or "Chunk Output in Console". Additionally, in the
+top right in the editor panel in RStudio there is a button to toggle the
+document outline. By making that visible you can click and jump between sections
+(headers and named code chunks) in your R Markdown document.
 
 ## R Markdown and the case study
 
@@ -493,8 +489,6 @@ material (or even the full manuscript) in R Markdown format are:
   finish the research part and _then_ start creating the tables and figures for
   the paper.
 
-### Packages and setup
-
 Before you start:
 
 * Make sure that your working directory in R is `rmarkdown` in the course
@@ -506,10 +500,10 @@ Before you start:
     so that you get to practice how you can actually do this in projects of your
     own. You can, however, install things using `install.packages()` or
     `BiocManager::install()` as well, even though this makes it both less
-    reproducible and more complicated. This is the code you will need to run in
-    order to install everything without Conda:
+    reproducible and more complicated in most cases. This is the code you will
+    need to run in order to install everything without Conda:
 
-    ```
+    ```r
     BiocManager::install("ggplot2")
     BiocManager::install("reshape2")
     BiocManager::install("pheatmap")
@@ -717,14 +711,15 @@ out.height = "11cm"
 
 * Knit and check the results.
 
+### Using LaTeX in R Markdown
+
 As previously mentioned, the rendering process to PDF will make use of LaTeX.
 In the last part we will see how we can add LaTeX commands directly in the
 R Markdown document to further customize the look.
 
-* See the section on Reproducibility in the PDF. Notice that the R code output
-  giving information about the R session is a bit big? We can fix this by
-  adding the LaTeX commands `\footnotesize` and `\normalsize` before and after
-  this part, *i.e.*:
+See the section on Reproducibility in the PDF. Notice that the R code output
+giving information about the R session is a bit big? We can fix this by adding
+the LaTeX commands `\footnotesize` and `\normalsize` before and after this part:
 
 ````
 \footnotesize
@@ -747,8 +742,8 @@ This will make the `sessionInfo()` text smaller and then set it back to normal.
   customize this using the separate LaTeX file, `code/header.tex`. To include
   this in the Rmd, update the YAML header so that it looks like this. Note that
   we have now included `\usepackage{float}` in the `code/header.tex` file
-  insted of having it in the header. Keeping all your configuration settings in
-  one file is a good way of achieving a consistant look for your report.
+  instead of having it in the header. Keeping all your configuration settings in
+  one file is a good way of achieving a consistent look for your report.
 
 ```yaml
 ---
