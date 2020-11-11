@@ -168,7 +168,7 @@ It will also open up a preview of this file for you.
 
 Some commonly used formatting written in markdown is shown below:
 
-```
+```no-highlight
 # This is a heading
 
 This is a paragraph.
