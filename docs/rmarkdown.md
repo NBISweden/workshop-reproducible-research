@@ -38,10 +38,10 @@ Bullet list:
 ```
 
 A markdown document can be converted to other formats, such as HTML or PDF, for
-viewing in a browser or a PDF reader (the page you are reading right now is
-written in markdown). Markdown is somewhat ill-defined, and as a consequence of
-that there exists many implementations and extensions (although they share most
-of the syntax). *R Markdown* is one such implementation/extension.
+viewing in a browser or a PDF reader; the page you are reading right now is
+written in markdown. Markdown is somewhat ill-defined, and as a consequence of
+that there exists many implementations and extensions, although they share most
+of the syntax. *R Markdown* is one such implementation/extension.
 
 R Markdown documents can be used both to save and execute code (with a focus on
 R) and to generate reports in various formats. This is done by mixing markdown
@@ -61,43 +61,72 @@ If you want to read more, here are some useful resources:
   at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
 * [R Markdown cheat sheet](
   https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
-  (also available from Help > Cheatsheets in RStudio)
+  (also available from Help --> Cheatsheets in RStudio)
 * [R Markdown reference guide](
   https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-  (also available from Help > Cheatsheets in RStudio)
+  (also available from Help --> Cheatsheets in RStudio)
 
 ## Setup
 
-If you don't already have R or RStudio, you will need to install them:
+This tutorial depends on files from the course GitHub repo. Take a look at the
+[introduction](tutorial_intro.md) for instructions on how to set it up if you
+haven't done so already. Since we've already learnt how to use Conda for
+installing software packages in a [previous tutorial](conda.md), let's continue
+using it!
 
-* Download and install R following the instructions
-  [here](https://cran.rstudio.com/).
-* Download and install RStudio Desktop (free) following the instructions
-  [here](https://www.rstudio.com/products/rstudio/download/#download).
+Set your working directory to `workshop-reproducible-research/rmarkdown` and
+install the necessary R packages defined in the `rmarkdown-environment.yml`:
+
+```bash
+conda env create -f environment.yml -p rmarkdown-env
+```
+
+You can then activate the environment as normal, followed by running RStudio
+in the background from the command line:
+
+```bash
+conda activate rmarkdown-env
+rstudio &
+```
+
+!!! note "RStudio and Conda"
+    In some cases RStudio doesn't play well with Conda due to differing
+    libpaths. To fix this, first check the available library path by
+    `.libPaths()` to make sure that it points to a path within your conda
+    environment. It might be that `.libPaths()` shows multiple library paths, in
+    which case R packages will be searched for by R in both these locations.
+    This means that your R session will not be completely isolated in your Conda
+    environment and that something that works for you might not work for
+    someone else using the same Conda environment, simply because you had
+    additional packages installed in the second library location. One way to
+    force R to just use the conda library path is to add a `.Renviron` file to
+    the directory where you start R with these lines:
+
+    ```
+    R_LIBS_USER=""
+    R_LIBS=""
+    ```
+
+    ... and restart RStudio. The `rmarkdown/` directory in the course materials
+    already contains this file, so you shouldn't have to add this yourself, but
+    we mention it here for your future projects.
 
 !!! attention "Windows users"
     Although most of the tutorials are best to run in the Linux Bash Shell or
     in a Docker container if you are a Windows user (see information in the
     [intro](tutorial_intro.md)), both R and RStudio run well directly on
-    Windows. It is therefore suggested that you install Windows versions of
-    these software (if you haven't done so already) when doing this tutorial.
+    Windows. You may therefore want to install Windows versions of these
+    software (if you haven't done so already) when doing this tutorial, if
+    you're having trouble using Conda. Conda is, however, the recommended way.
 
-This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if you haven't
-done so already. Then open up RStudio and set your working directory to
-`workshop-reproducible-research/rmarkdown`.
+## Writing in R Markdown
 
-## The basics
-
-* Start RStudio
-* Select: File > New File > R Markdown
-* You might get prompted to install a few required packages. Do that in such
-  case!
-* In the window that opens, select: Document and HTML (should be default), and
-  click *Ok*.
-* This will open a template R Markdown document for you
-
-On the top is a so called YAML header:
+Let's begin with starting RStudio and opening a new file (*File* --> *New File*
+--> *R Markdown*). If you're using Conda you should have all the packages
+needed, but install anything that RStudio prompts you to. In the window that
+opens, select *Document and HTML* (which should be the default), and click *Ok*.
+This will open a template R Markdown document for you. On the top is a so called
+YAML header:
 
 ```yaml
 ---
@@ -115,35 +144,30 @@ output:
 Here we can specify settings for the document, like the title and the output
 format.
 
-* Change the title to "My first R Markdown document".
-* Now, read through the rest of the template R Markdown document to get
-  a feeling for the format.
+* Change the title to `My first R Markdown document`
 
-As you can see, there are essentially three types of components in an
-R Markdown document:
+Now, read through the rest of the template R Markdown document to get a feeling
+for the format. As you can see, there are essentially three types of components
+in an R Markdown document:
 
 1. Text (written in R Markdown)
-
-2. Code chunks (written in R, or another supported language).
-
+2. Code chunks (written in R or another [supported language](#r-markdown-and-other-languages))
 3. The YAML header
 
 Let's dig deeper into each of these in the following sections! But first, just
-to get the flavor for things to come: press the little Knit-button located at
+to get the flavor for things to come: press the little *Knit*-button located at
 the top of the text editor panel in RStudio. This will prompt you to save the
 Rmd file (do that), and generate the output file (an HTML file in this case).
 It will also open up a preview of this file for you.
 
-### Markdown text
-
 Some commonly used formatting written in markdown is shown below:
 
-```
+```no-highlight
 # This is a heading
 
 This is a paragraph.
-This line-break will not appear in the output file.  
-But this will (since the previous line ends with two spaces).
+This line-break will not appear in the output file.\
+But this will (since the previous line ends with a backslash).
 
 This is a new paragraph.
 
@@ -152,10 +176,10 @@ This is a new paragraph.
 This is **bold text**, this is *italic text*, this is `monospaced text`,
 and this is [a link](http://rmarkdown.rstudio.com/lesson-1.html).
 
-An important feature of R Markdown, is that you are allowed to use R code
+An important feature of R Markdown is that you are allowed to use R code
 inline to generate text by enclosing it with `r `. As an example: 112/67 is
 equal to `r round(112/67, 2)`. You can also use multiple commands like this:
-I like `r fruits <- c("apples","bananas"); paste(fruits, collapse=" and ")`!
+I like `r fruits <- c("apples","bananas"); paste(fruits, collapse = " and ")`!
 ```
 
 The above markdown would generate something like this:
@@ -163,22 +187,21 @@ The above markdown would generate something like this:
 > ![](images/markdown_example.png)
 
 Instead of reiterating information here, take a look on the first page (only
-the first page!) of this [reference](
-https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+the first page!) of this [reference]( https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 This will show you how to write more stuff in markdown and how it will be
 displayed once the markdown document is converted to an output file (*e.g.*
 HTML or PDF). An even more complete guide is available
 [here](http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html).
 
 * Try out some of the markdown described above (and in the links) in your
-  template R Markdown document! Press Knit to see the effect of your edits.
+  template R Markdown document! Press *Knit* to see the effect of your changes.
   Don't worry about the code chunks just yet, we'll come to that in a second.
 
 !!! note "Quick recap"
     In this section you learned and tried out some of the basic markdown
     syntax.
 
-### Code chunks
+## Code chunks
 
 Enough about markdown, let's get to the fun part and include some code! Look at
 the last code chunk in the template R Markdown document that you just created,
@@ -194,15 +217,15 @@ The R code is surrounded by: ` ```{r}` and ` ``` `. The `r` indicates that the
 code chunk contains R code (it is possible to add code chunks using other
 languages, *e.g.* Python). After that comes an optional chunk name, `pressure`
 in this case (this can be used to reference the code chunk as well as alleviate
-debugging). Last comes chunk options, separated by commas (in this case there
-is only one option: `echo = FALSE`).
+debugging). Last comes chunk options, separated by commas (in this case there is
+only one option: `echo = FALSE`).
 
-!!! note
-    Note that the code chunk name `pressure` has nothing to do with the code
-    `plot(pressure)`. In the latter case, `pressure` is a default R dataframe
-    that is used in examples. The chunk name happened to be set to the string
-    `pressure` as well, but could just as well have been called something else,
-    *e.g.* `plot_pressure_data`.
+!!! note "Code chunk names"
+    Note that the code chunk name pressure has nothing to do with the code
+    plot(pressure). In the latter case, pressure is a default R dataframe that
+    is used in examples. The chunk name happened to be set to the string
+    pressure as well, but could just as well have been called something else,
+    *e.g.* "Plot pressure data".
 
 Below are listed some useful chunk options related to evaluating and displaying
 code chunks in the final file:
@@ -226,8 +249,8 @@ summary(cars)
 ```
 ````
 
-* Guess how this will affect the final file. Press Knit and look at the
-  generated file. Were you right?
+* How do you think this will affect the rendered file? Press *Knit* and check if
+  you were right.
 * Remove the `echo = FALSE` option and add `eval = FALSE` instead:
 
 ````
@@ -236,8 +259,8 @@ summary(cars)
 ```
 ````
 
-* Guess how this will affect the final file. Press Knit and look at the
-  generated file. Were you right?
+* How do you think this will affect the rendered file? Press *Knit* and check if
+  you were right.
 * Remove the `eval = FALSE` option and add `include = FALSE` instead:
 
 ````
@@ -264,23 +287,23 @@ plot(pressure)
 ```
 ````
 
-* Press Knit and look at the output. Can you notice any difference?
+* Press *Knit* and look at the output. Can you see any differences?
 * Now add a whole new code chunk to the end of the document. Give it the name
-  `pressure2` (code chunks have to have unique names, or no name). Add the
-  `fig.width` and `out.width` options like this:
+  `pressure 2` (code chunks have to have unique names, or no
+  name). Add the `fig.width` and `out.width` options like this:
 
 ````
-```{r pressure2, echo = FALSE, fig.width = 9, out.width = "560px"}
+```{r pressure 2, echo = FALSE, fig.width = 9, out.width = "560px"}
 plot(pressure)
 ```
 ````
 
-* Press Knit and look at the output. Notice the difference between the two
+* Press *Knit* and look at the output. Notice the difference between the two
   plots? In the second chunk we have first plotted a figure that is a fair bit
   larger (9 inches wide) than that in the first chunk. Next we have down-sized
-  it in the final output, using the `out.width` option. (Here we need to use
+  it in the final output, using the `out.width` option (where we need to use
   a size metric recognized by the output format, in this case "560px" which
-  works for HTML.)
+  works for HTML).
 
 Have you noticed the first chunk?
 
@@ -299,11 +322,8 @@ in individual chunks.
     https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
 It is also possible to create different types of interactive plots using
-R Markdown. You can see some examples of this
-[here](http://www.htmlwidgets.org/showcase_networkD3.html). If you want to try
-it out, you can install *e.g.* the package `networkD3` with
-`install.packages("networkD3")`. Then add the following code chunk to your
-document:
+R Markdown. You can see some examples of this [here](http://www.htmlwidgets.org/showcase_networkD3.html).
+If you want to try it out you can add the following code chunk to your document:
 
 ````
 ```{r}
@@ -319,7 +339,7 @@ forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
     In this section you learned how to include code chunks and how to use chunk
     options to control how the output (code, results and figures) is displayed.
 
-### The YAML header
+## The YAML header
 
 Last but not least, we have the YAML header. Here is where you configure
 general settings for the final output file, and a few other things.
@@ -337,7 +357,7 @@ automatically compiled from the section headers (marked by #).
 * A setting that works for HTML output is `toc_float: true`. Add that to your
   document (same indentation level as `toc: true`) and knit. What happened?
 * In the same way, add the option `number_sections: true`. What happened?
-* Think it looks weird with sections numbered with 0, *e.g.* 0.1? That is
+* Do you think it looks weird with sections numbered with 0, *e.g.* 0.1? That is
   because the document does not contain any level-1-header. Add a header using
   only one `#` at the top of the document, just after the `setup` chunk. Knit
   and see what happens!
@@ -361,7 +381,6 @@ params:
     data: cars
     color: blue
 ---
-
 ```
 
 * So now we have two parameters that we can use in the code! Modify the
@@ -373,7 +392,8 @@ plot(get(params$data), col = params$color)
 ```
 ````
 
-This will plot the dataset `cars` using the color `blue`.
+This will plot the dataset `cars` using the color `blue`, based on the
+parameters we set in the YAML header.
 
 * Knit and see what happens!
 
@@ -397,11 +417,11 @@ and some YAML settings are specific for the given output format chosen.
     In this section you learned how to set document-wide settings in the YAML
     header, including document output type and user defined parameters.
 
-### Rendering
+## Rendering
 
-You can knit/render reports in several different ways:
+You can render (sometimes called "knitting") reports in several different ways:
 
-- Pressing the Knit button in RStudio (as we have done this far)
+- Pressing the *Knit* button in RStudio (as we have done this far)
 - Running the R command `render`: to Knit the file `my_file.Rmd` run
   `render("my_file.Rmd")` in the R console.
 - Running from the command line: `R -e 'rmarkdown::render("my_file.Rmd")'`
@@ -410,53 +430,55 @@ Using the `render` command, we can also set YAML header options and change
 defaults (*i.e.* override those specified in the R Markdown document itself).
 Here are a few useful arguments (see `?rmarkdown::render` for a full list):
 
-- `output_format` - change output format, *e.g.* `html_document` or
-  `pdf_document`.
-- `output_file` and `output_dir` - change directory and file name of the
+- `output_format`: change output format, *e.g.* `html_document` or
+  `pdf_document`
+- `output_file` and `output_dir`: change directory and file name of the
   generated report file (defaults to the same name and directory as the .Rmd
-  file).
-- `params` - change parameter defaults. Note that only parameters already listed
-  in the YAML header can be set, no new parameters can be defined.
+  file)
+- `params`: change parameter defaults. Note that only parameters already listed
+  in the YAML header can be set, no new parameters can be defined
 
 Try to use the `render` command to knit your template R Markdown document and
 set the two parameters `data` and `color`. Hint: the `params` argument should
-be a list, so *e.g.*:
+be a list, *e.g.*:
 
 ```
-rmarkdown::render("my_file.Rmd", params=list(data="cars", color="green"))
+rmarkdown::render("my_file.Rmd", params = list(data = "cars", color = "green"))
 ```
 
 ### RStudio and R Markdown
 
-You might already have noticed that you can run code chunks directly in RStudio:
+You might already have noticed the various ways in which you can run code chunks
+directly in RStudio:
 
-- Place the cursor on an R command and press `CTRL + Enter` (Windows) or `Cmd
-  + Enter` (Mac) to run that line in R.
+- Place the cursor on an R command and press `CTRL + Enter` (Windows) or
+  `Cmd + Enter` (Mac) to run that line in R.
 - Select several R command lines and use the same keyboard shortcut as above to
   run those lines.
 - To the right in each chunk there are two buttons; one for running the code in
   all chunks above the current chunk and one for running the code in the current
-  chunk (depending on your layout, otherwise you can find the options in the Run
-  drop-down).
-- Depending on your settings, the output of the chunk code will be displayed
-  inline in the Rmd document, or in RStudios Console and Plot panels. To
-  customize this setting, press the cog-wheel next to the Knit button and select
-  either "Chunk Output Inline" or "Chunk Output in Console".
+  chunk (depending on your layout, otherwise you can find the options in the
+  *Run* drop-down).
 * You can easily insert an empty chunk in your Rmd document in RStudio by
-  pressing Insert > R.
-* In the top right in the editor panel in RStudio there is a button to toggle
-  the document outline. By making that visible you can click and jump between
-  sections (headers and named code chunks) in your R Markdown document.
+  pressing *Insert* --> *R*.
+
+Depending on your settings, the output of the chunk code will be displayed
+inline in the Rmd document, or in RStudio's *Console* and *Plot* panels. To
+customize this setting, press the cog-wheel next to the *Knit* button and select
+either "Chunk Output Inline" or "Chunk Output in Console". Additionally, in the
+top right in the editor panel in RStudio there is a button to toggle the
+document outline. By making that visible you can click and jump between sections
+(headers and named code chunks) in your R Markdown document.
 
 ## R Markdown and the case study
 
 As you might remember from the [intro](tutorial_intro.md), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
-In this exercise we will use R Markdown to make a report in form of
-a Supplementary Material PDF based on the outputs from the [Snakemake
-tutorial](snakemake.md). Among the benefits of having the supplementary
-material (or even the full manuscript) in R Markdown format are:
+In this exercise we will use R Markdown to make a report in form of a
+Supplementary Material HTML based on the outputs from the [Snakemake tutorial](snakemake.md).
+Among the benefits of having the supplementary material (or even the full
+manuscript) in R Markdown format are:
 
 * It is fully transparent how the text, tables and figures were produced.
 * If you get reviewer comments, or realize you've made a mistake somewhere, you
@@ -467,54 +489,28 @@ material (or even the full manuscript) in R Markdown format are:
   finish the research part and _then_ start creating the tables and figures for
   the paper.
 
-### Packages and setup
-
 Before you start:
 
 * Make sure that your working directory in R is `rmarkdown` in the course
   directory (Session > Set Working Directory).
 * Open the file `rmarkdown/code/supplementary_material.Rmd`.
-* To complete this part you first need to install the following R-packages:
-
-```
-BiocManager::install("ggplot2")
-BiocManager::install("reshape2")
-BiocManager::install("pheatmap")
-BiocManager::install("rtracklayer")
-BiocManager::install("GEOquery")
-```
 
 !!! note
-    In this tutorial, for the sake of trying out R Markdown, we have installed
-    R and RStudio separately and now we install individual R packages using the
-    standard R procedure (using `install.packages()` or
-    `BiocManager::install()`). Nevertheless, it is possible to install R,
-    R packages and even RStudio through conda. If you want to, you can try to
-    install the above packages using conda instead (we will do that later in
-    the Docker tutorial). As conda packages, the R packages above are called
-    `r-ggplot2`, `r-reshape2`, `r-pheatmap`, `bioconductor-rtracklayer`, and
-    `bioconductor-geoquery`.
+    In this tutorial we have used Conda to install all the R packages we need,
+    so that you get to practice how you can actually do this in projects of your
+    own. You can, however, install things using `install.packages()` or
+    `BiocManager::install()` as well, even though this makes it both less
+    reproducible and more complicated in most cases. This is the code you will
+    need to run in order to install everything without Conda:
 
-    However, to get access to the installed R packages in RStudio you will need
-    to open RStudio from the command line in the activated conda environment.
-    On Mac you can do this by `open -a RStudio -n`. In R, check the available
-    library path by `.libPaths()` to make sure that it points to a path within
-    your conda environment. It might be that `.libPaths()` shows multiple
-    library paths, in which case R packages will be searched for by R in both
-    these locations. This means that your R session will not be completely
-    isolated in your conda environment, and that something that works for you
-    might not work for someone else using the same conda environment, simply
-    because you had additional packages installed in the second library
-    location. One way to force R to just use the conda library path is to add
-    a `.Renviron` file to the directory where you start R with these lines:
-
+    ```r
+    BiocManager::install("ggplot2")
+    BiocManager::install("reshape2")
+    BiocManager::install("pheatmap")
+    BiocManager::install("rtracklayer")
+    BiocManager::install("GEOquery")
+    install.packages("networkD3")
     ```
-    R_LIBS_USER=""
-    R_LIBS=""
-    ```
-    and restart R or RStudio from here. Also note that if your `.libPaths()`
-    now only point to your conda environment, you will probably also need to
-    install `r-rmarkdown`.
 
 ### Overview
 
@@ -522,12 +518,12 @@ BiocManager::install("GEOquery")
   parameters correspond to files (and sample IDs) that are generated by the
   MRSA analysis workflow (see the [Snakemake tutorial](snakemake.md)) and
   contain results that we want to include in the supplementary material
-  document. We've also specified that we want to render to PDF.
+  document. We've also specified that we want to render to HTML.
 
 ```yaml
 ---
 title: "Supplementary Materials"
-output: pdf_document
+output: html_document
 params:
     counts_file: "results/tables/counts.tsv"
     multiqc_file: "intermediate/multiqc_general_stats.txt"
@@ -564,22 +560,22 @@ each for a specific table or figure. Have a quick look at the code and see if
 you can figure out what it does, but don't worry if you can't understand
 everything.
 
-Finally, there is a Reproducibility section which describes how the results in
+Finally, there is a *Reproducibility* section which describes how the results in
 the report can be reproduced. The `session_info` chunk prints information
 regarding R version and which packages and versions that are used. We highly
-encourage you to include this chunk in all your R Markdown reports. It's an
+encourage you to include this chunk in all your R Markdown reports: it's an
 effortless way to increase reproducibility.
 
 ### Rendering options and paths
 
 * Now that you have had a look at the R Markdown document, it is time to Knit!
-  We will do this from the R terminal (rather than pressing Knit).
+  We will do this from the R terminal (rather than pressing *Knit*).
 
 ```r
 rmarkdown::render("code/supplementary_material.Rmd", output_dir = "results")
 ```
 
-The reason for this is that we can then redirect the output PDF file to be
+The reason for this is that we can then redirect the output html file to be
 saved in the `results/` directory.
 
 Normally, while rendering, R code in the Rmd file will be executed using the
@@ -598,7 +594,7 @@ Here we set the working directory to the parent directory of the Rmd file
 (`../`), in other words, the project root. Use this rather than `setwd()` while
 working with Rmd files.
 
-* Take a look at the output. You should find the PDF file in the `results`
+* Take a look at the output. You should find the html file in the `results`
   directory.
 
 ### Formatting tables and figures
@@ -607,7 +603,7 @@ You will probably get a good idea of the contents of the file, but the tables
 look weird and the figures could be better formatted. Let's start by adjusting
 the figures!
 
-* Locate the `setup` chunk. Here, we have already set `echo = FALSE`. Let's add
+* Locate the `Setup` chunk. Here, we have already set `echo = FALSE`. Let's add
   some default figure options: `fig.height = 6, fig.width = 6, fig.align
   = 'center'`. This will make the figures slightly smaller than default and
   center them.
@@ -619,10 +615,10 @@ Let's improve the tables! We have not talked about tables before. There are
 several options to print tables, here we will use the `kable` function which is
 part of the `knitr` package.
 
-* Go to the `sample-info` chunk. Replace the last line, `d`, with:
+* Go to the `Sample info` chunk. Replace the last line, `sample_info`, with:
 
 ```r
-knitr::kable(d)
+knitr::kable(sample_info)
 ```
 
 * Knit again and look at the result. You should see a formatted table.
@@ -630,18 +626,18 @@ knitr::kable(d)
   use the following:
 
 ```r
-knitr::kable(d, caption="Sample info",
-      col.names=c("SRR", "GEO", "Strain", "Treatment"))
+knitr::kable(sample_info, caption = "Sample info",
+             col.names = c("SRR", "GEO", "Strain", "Treatment"))
 ```
 
 * Knit and check the result.
-* Try to fix the table in the `qc-stats` chunk in the same manner. The colnames
-  are fine here, so no need to bother changing them, but add a table legend:
+* Try to fix the table in the `QC statistics` chunk in the same manner. The
+  column names are fine here so no need to change them, but add a table legend:
   "QC stats from FastQC". Knit and check your results.
 
 Let's move on to the figures!
 
-* Go to the `counts-barplot` chunk. To add a figure legend we have to use
+* Go to the `Counts barplot` chunk. To add a figure legend we have to use
   a chunk option (so not in the same way as for tables). Add the chunk option:
 
 ```r
@@ -654,9 +650,8 @@ fig.cap = "Counting statistics per sample, in terms of read counts for genes
   can try out the possibility to add R code to generate the legend:
 
 ```r
-fig.cap = paste("Expression (log-10 counts) of genes with at least ",
-                max_cutoff, " counts in one sample and a CV>", cv_cutoff, ".",
-                sep = "")
+fig.cap = paste0("Expression (log-10 counts) of genes with at least ",
+                 max_cutoff, " counts in one sample and a CV>", cv_cutoff, ".")
 ```
 
 This will use the `cv_cutoff` and `max_cutoff` variables to ensure that the
@@ -666,25 +661,6 @@ evaluated. This means we can use objects defined in the code chunk in the
 legend.
 
 * Knit and have a look at the results.
-
-You may have noticed that the figures (probably) aren't positioned relative to
-the text exactly where you put the code chunks? This is a feature of the LaTeX
-rendering to PDF, where it tries to align tables and figures in an aestetically
-pleasing and efficient way. These are called "floats" in LaTeX, and can be
-a source of frustration. If you want to force the floats to be positioned in
-the order and context they appear in the text, you can use the following tweak.
-Note that this is only an issue with rendering to PDF, not with *e.g.* HTML.
-
-* Add the option `fig.pos = 'H'` to `opts_chunk` in the `setup` chunk (note the
-  capital "H"). This will force figures to appear "here". Add the following
-  lines to the header:
-
-```r
-header-includes:
-  \usepackage{float}
-```
-
-* Knit and admire the results!
 
 The heatmap still looks a bit odd. Let's play with the `fig.height` and
 `out.height` options, like we did above, to scale the figure in a more
@@ -715,64 +691,11 @@ out.height = "11cm"
 
 * Knit and check the results.
 
-As previously mentioned, the rendering process to PDF will make use of LaTeX.
-In the last part we will see how we can add LaTeX commands directly in the
-R Markdown document to further customize the look.
-
-* See the section on Reproducibility in the PDF. Notice that the R code output
-  giving information about the R session is a bit big? We can fix this by
-  adding the LaTeX commands `\footnotesize` and `\normalsize` before and after
-  this part, *i.e.*:
-
-````
-\footnotesize
-```{r session_info}
-sessionInfo()
-```
-\normalsize
-````
-
-This will make the `sessionInfo()` text smaller and then set it back to normal.
-
-* Knit and check the outcome.
-* You may also notice that the heading "Reproducibility" would be better to
-  place on a new page. To achieve this, insert `\newpage` before the heading
-  (make sure to have a blank line before and after `\newpage`). Knit and see if
-  it worked.
-* The last things that we will fix are the figure and table labels. Now they
-  are automatically called *e.g.* Figure 1 and Table 1, but perhaps we would
-  like to name them Figure S1 and Table S1, being Supplementary. We can
-  customize this using the separate LaTeX file, `code/header.tex`. To include
-  this in the Rmd, update the YAML header so that it looks like this. Note that
-  we have now included `\usepackage{float}` in the `code/header.tex` file
-  insted of having it in the header. Keeping all your configuration settings in
-  one file is a good way of achieving a consistant look for your report.
-
-```yaml
----
-title: "Supplementary Material"
-author: John Doe, Joan Dough, Jan Doh, Dyon Do
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  pdf_document:
-    includes:
-      in_header: header.tex
-params:
-  counts_file: "results/tables/counts.tsv"
-  multiqc_file: "intermediate/multiqc_general_stats.txt"
-  rulegraph_file: "results/rulegraph.png"
-  SRR_IDs: "SRR935090 SRR935091 SRR935092"
-  GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
----
-```
-
-* Knit and view the results.
-
 !!! note "Quick recap"
     In this section you learned some additional details for making nice
     R Markdown reports in a reproducible research project setting, including
-    setting the root directory, adding tables, setting figure and table
-    captions, and using LaTeX commands for formatting details.
+    setting the root directory, adding tables as well as setting figure and
+    table captions.
 
 !!! note "R Markdown and Snakemake"
     It is definitely possible to render R Markdown documents as part of
@@ -783,17 +706,167 @@ params:
     section of your Snakemake rule (see the Snakefile in `docker/` for an
     example).
 
-## Presentations in R Markdown
+## Extra material
 
-Lastly, if you have time, you can try out using R Markdown for making
-presentations.
+While the above tutorial teaches you all the basics of using R Markdown, there
+is much more you can do with it, if you want to! Here we cover some extra
+material if you're curious to learn more, but we don't consider this to be
+a main part of the course.
 
-The exercise task is short and simple: recreate the slides shown below using
-R Markdown (hint: use output format "ioslides").
+### A nicer session info
 
-!!! tip
-    It is now also possible to [render PowerPoint presentations](
-    https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html),
-    but note that this requires rmarkdown >= v1.9 and Pandoc >= v2.0.5.
+While the default `sessionInfo()` command is highly useful for ending your
+report with all the packages and their respective versions, it can be a bit hard
+to read. There is, however, another version of the same command, which you can
+find in the `devtools` package. By combining this command with the `markup`
+result format you can get a more nicely formatted session information:
 
-> ![](images/ioslides.png)
+````
+```{r Session info, echo = FALSE, results = "markup"}
+devtools::session_info()
+```
+````
+
+### R Markdown and other languages
+
+While R is the default and original language for any R Markdown document it
+supports several others, including Python, bash, SQL, JavaScript, to name a few.
+This means that you can actually get the reproducibility of R Markdown documents
+when coding in languages other than just R, if your language is one of the
+supported ones.
+
+Two of the most important languages are Python and bash. While bash is supported
+out-of-the-box directly and only require you to specify `bash` instead of `r` in
+the start of the code chunk, Python will additionally require you to have
+installed the `reticulate` package. Not only does this allow you to code in
+Python your in R Markdown document, but the objects and variables you use in one
+language/chunk will actually be available for the other language! You can read
+more about the R Markdown Python engine [here](https://rstudio.github.io/reticulate/articles/r_markdown.html).
+
+### R Markdown and LaTeX
+
+This tutorial has been using HTML as the output format, as this is the most
+common format that many data analyses are using. Some reasons for this include
+not having to think about a page-layout (which is especially useful for
+documents with many figures/plots, which is common for data analyses documents),
+simplified creation (*i.e.* not having to think about special LaTeX commands for
+PDF output) and fewer dependencies.
+
+The PDF format has a lot going for it as well, however, such as being an
+end-point for journal articles, books and similar documents, as well as being
+much more powerful (meaning a steeper learning curve) than just HTML rendering:
+you can customise almost anything you can think of. Not that HTML output is
+lacking in options, it's just that LaTeX is simply more feature-rich.
+
+Let's take an example: font sizes. This is something that is quite hard to do on
+a per-chunk basis in HTML, but easy in LaTeX. You can change the font size of
+all HTML chunks by using a custom CSS template, for instance, but in LaTeX you
+can just set the font size to something before and after a chunk, like so:
+
+````
+\footnotesize
+```{r Count to 3}
+seq_len(3)
+```
+\normalsize
+````
+
+You could also do automatic figure captions using the LaTeX engine, meaning you
+won't have to add "Figure X" to each caption manually. You can even have
+separate groups of figure captions, such as one group for main article figures
+and one group for supplementary figures - the same goes for tables, of course.
+
+R Markdown uses LaTeX behind the scenes to render PDF documents, but you miss
+some of the features that is inherent in LaTeX by going this route. There is,
+thankfully, a different file format that you can use that more explicitly merges
+R Markdown and all the functionality of LaTeX, called [Sweave](https://rpubs.com/YaRrr/SweaveIntro).
+
+Sweave allows you to use any LaTeX command you want outside of R code chunks,
+which is awesome for those of you who are already using LaTeX and want to
+combine it with R Markdown. These files use the `.Rnw` extension rather than
+`.Rmd`, with some additional changes, such as code chunks starting with `<<>>=`
+and ending with `@`.
+
+There is simply a plethora of tweaks, variables and parameters that you can use
+for PDF rendering, but it can be quite overwhelming if you're just starting out.
+We recommend using HTML for most things, especially data analysis, but PDF
+certainly has its strengths - you could, for example, write a whole paper (and
+its supplementary material) in R Markdown with LaTeX *ONLY*, without using
+Microsoft Word or anything else! It doesn't get much more reproducible than
+that.
+
+### Presentations in R Markdown
+
+R Markdown is not only for data analyses reports and papers, but you can also
+create presentations with it! In fact, most of the presentations created for
+this course were done using R Markdown.
+
+A major difference between presentations in R Markdown and *e.g.* Microsoft
+PowerPoint is the same as between any Markdown document (or LaTeX, for that
+matter) and the more common Microsoft Word: the more usual Microsoft software is
+"what you see is what you get", while Markdown/LaTeX doesn't show you the actual
+output until you've rendered it. This difference is more pronounced when it
+comes to presentations, as they are more visually heavy.
+
+In essence, an R Markdown presentation works the same way as for a R Markdown
+report, except some different formatting and output specifications. There are
+a number of output formats you can use, but the ones we've used for this course
+(for no other reason than that we like it) is [Xaringan](https://github.com/yihui/xaringan).
+You can install this from Conda (`r-xaringan`) like normal and then specify the
+output format as `xaringan::moon_reader` in your YAML header. Slides are
+separated using three dashes (`---`) while two dashes (`--`) signify slide
+elements that should appear on-click.
+
+Here bare-bones example of a R Markdown presentation using Xaringan:
+
+````
+---
+title: "A R Markdown presentation"
+output: xaringan::moon_reader
+---
+
+# R Markdown presentations
+
+You can write text like normal, including all the normal Markdown formatting
+such as *italics* or **bold**.
+
+--
+
+Anything can be separated into on-click appearance using double dashes.
+
+## Sub-headers work fine as well
+
+Just remember to separate your slides with three dashes!
+
+---
+
+# Use code chunks just like normal
+
+This is especially useful for presentations of data analyses, since you don't
+have to have a separate R Markdown or script to create the tables/figures and
+then copy/paste them into a PowerPoint!
+
+```{r, fig.height = 5, fig.width = 5, fig.align = "center"}
+data(cars)
+plot(cars)
+```
+````
+
+Having said that, presentations is R Markdown can do *most* things that
+PowerPoint can do, but it'll take some more effort. Getting something to look
+like you want in a WYSIWYG-editor like PowerPoint is easier, since you're seeing
+the output as you're making it, but it'll take more experimentation in
+R Markdown. You can, however, automate a lot of things, such as by using CSS
+templates that apply to each slide (including things such as font styles,
+header, footers, and more) or like the above mentioned benefit of having both
+code and its results already in your presentation without having to muck about
+with copying and pasting figures and tables to a separate presentation.
+
+For inspiration, we suggest you go to the `lectures/` directory of the course
+Git repository. You should also have a look at the [official documentation](https://slides.yihui.org/xaringan/#1)
+of Xaringan (which is itself a R Markdown-based presentation), as well as its
+[several alternatives](https://rmarkdown.rstudio.com/lesson-11.html). We find
+that using R Markdown for presentations does take about the same time or
+slightly more compared to PowerPoint once you're used to it, but there's
+a learning curve - as with everything else. Anything related to actual code and
+presenting results it can be much quicker, however!
