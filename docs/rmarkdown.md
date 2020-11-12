@@ -797,15 +797,76 @@ that.
 
 ### Presentations in R Markdown
 
-Lastly, if you have time, you can try out using R Markdown for making
-presentations.
+R Markdown is not only for data analyses reports and papers, but you can also
+create presentations with it! In fact, most of the presentations created for
+this course were done using R Markdown.
 
-The exercise task is short and simple: recreate the slides shown below using
-R Markdown (hint: use output format "ioslides").
+A major difference between presentations in R Markdown and *e.g.* Microsoft
+PowerPoint is the same as between any Markdown document (or LaTeX, for that
+matter) and the more common Microsoft Word: the more usual Microsoft software is
+"what you see is what you get", while Markdown/LaTeX doesn't show you the actual
+output until you've rendered it. This difference is more pronounced when it
+comes to presentations, as they are more visually heavy.
 
-!!! tip
-    It is now also possible to [render PowerPoint presentations](
-    https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html),
-    but note that this requires rmarkdown >= v1.9 and Pandoc >= v2.0.5.
+In essence, an R Markdown presentation works the same way as for a R Markdown
+report, except some different formatting and output specifications. There are
+a number of output formats you can use, but the ones we've used for this course
+(for no other reason than that we like it) is [Xaringan](https://github.com/yihui/xaringan).
+You can install this from Conda (`r-xaringan`) like normal and then specify the
+output format as `xaringan::moon_reader` in your YAML header. Slides are
+separated using three dashes (`---`) while two dashes (`--`) signify slide
+elements that should appear on-click.
 
-> ![](images/ioslides.png)
+Here bare-bones example of a R Markdown presentation using Xaringan:
+
+````
+---
+title: "A R Markdown presentation"
+output: xaringan::moon_reader
+---
+
+# R Markdown presentations
+
+You can write text like normal, including all the normal Markdown formatting
+such as *italics* or **bold**.
+
+--
+
+Anything can be separated into on-click appearance using double dashes.
+
+## Sub-headers work fine as well
+
+Just remember to separate your slides with three dashes!
+
+---
+
+# Use code chunks just like normal
+
+This is especially useful for presentations of data analyses, since you don't
+have to have a separate R Markdown or script to create the tables/figures and
+then copy/paste them into a PowerPoint!
+
+```{r, fig.height = 5, fig.width = 5, fig.align = "center"}
+data(cars)
+plot(cars)
+```
+````
+
+Having said that, presentations is R Markdown can do *most* things that
+PowerPoint can do, but it'll take some more effort. Getting something to look
+like you want in a WYSIWYG-editor like PowerPoint is easier, since you're seeing
+the output as you're making it, but it'll take more experimentation in
+R Markdown. You can, however, automate a lot of things, such as by using CSS
+templates that apply to each slide (including things such as font styles,
+header, footers, and more) or like the above mentioned benefit of having both
+code and its results already in your presentation without having to muck about
+with copying and pasting figures and tables to a separate presentation.
+
+For inspiration, we suggest you go to the `lectures/` directory of the course
+Git repository. You should also have a look at the [official documentation](https://slides.yihui.org/xaringan/#1)
+of Xaringan (which is itself a R Markdown-based presentation), as well as its
+[several alternatives](https://rmarkdown.rstudio.com/lesson-11.html). We find
+that using R Markdown for presentations does take about the same time or
+slightly more compared to PowerPoint once you're used to it, but there's
+a learning curve - as with everything else. Anything related to actual code and
+presenting results it can be much quicker, however!
