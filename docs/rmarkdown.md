@@ -78,7 +78,7 @@ Set your working directory to `workshop-reproducible-research/rmarkdown` and
 install the necessary R packages defined in the `rmarkdown-environment.yml`:
 
 ```bash
-conda env create -f rmarkdown-environment.yml -p rmarkdown-env
+conda env create -f environment.yml -p rmarkdown-env
 ```
 
 You can then activate the environment as normal, followed by running RStudio
