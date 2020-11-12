@@ -1,1 +1,1 @@
-../../code/supplementary_material.Rmd
+../../rmarkdown/code/supplementary_material.Rmd
