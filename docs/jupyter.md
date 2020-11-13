@@ -99,7 +99,7 @@ the server is running locally (as [http://localhost:8888]) so this does not
 require that you have an active internet connection. Also note that it says:
 
 ```no-highlight
-Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter.
+Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/jupyter>
 ```
 
 Everything you do in your Notebook session will be stored in this directory, so
