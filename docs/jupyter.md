@@ -770,7 +770,6 @@ aligned reads in each sample. For this we make use of the `read_cov_files`
 function defined in the beginning of the notebook.
 
 ```python
-import glob
 files = glob.glob("intermediate/*.sorted.bam.cov.gz")
 coverage_table = read_cov_tables(files)
 ```
