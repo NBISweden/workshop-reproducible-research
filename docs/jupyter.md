@@ -700,13 +700,20 @@ following code to a cell then run the cell. This will extract and concatenate
 summary files for all samples using FastQC output in the `intermediate/`
 directory. 
 
-```bash
-%%bash
-for f in $(ls intermediate/*_fastqc.zip);
-do
-    n=$(basename $f)
-    unzip -p $f ${n%.zip}/summary.txt >> summary.txt
-done
+```python
+import glob
+import os
+
+with open('summary.txt', 'w') as fhout:
+    # Find all zip files from fastqc
+    for f in glob.glob('intermediate/*_fastqc.zip'):
+        # Extract the archive name
+        arc_name = os.path.splitext(os.path.basename(f))[0]
+        # Open up the 'summary.txt' in the zip archive
+        # and output the contents to 'summary.txt'
+        with ZipFile(f) as myzip:
+            with myzip.open('{arc_name}/summary.txt'.format(arc_name=arc_name), 'r') as fhin:
+                fhout.write(fhin.read().decode())
 ```
 
 Read the summary results into a data frame using the pandas package:
