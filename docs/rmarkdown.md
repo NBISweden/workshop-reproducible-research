@@ -75,7 +75,7 @@ installing software packages in a [previous tutorial](conda.md), let's continue
 using it!
 
 Set your working directory to `workshop-reproducible-research/rmarkdown` and
-install the necessary R packages defined in the `rmarkdown-environment.yml`:
+install the necessary R packages defined in the `environment.yml`:
 
 ```bash
 conda env create -f environment.yml -p rmarkdown-env
