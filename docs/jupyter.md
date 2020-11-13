@@ -50,7 +50,7 @@ forget to activate the environment.
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
-* `matplotlib`, `ipywidgets`, `mpld3`, and `seaborn`: for generating plots
+* `matplotlib` and `ipywidgets` and `seaborn`: for generating plots
 * `pandas`: for working with data frames and generating tables
 
 !!! note "A note on nomenclature"
@@ -120,8 +120,8 @@ the name I chose when I created the environment (you may have used another name)
 ![](images/jupyter_conda.png)
 
 Let's start by creating an empty notebook by selecting the Files tab and
-clicking New > Notebook > Python [conda env:jupyter_exercise]. This will open
-up a new tab or window looking like this:
+clicking New > Notebook > Python 3. This will open up a new tab or window 
+looking like this:
 
 ![](images/jupyter_empty_nb.png)
 
@@ -565,35 +565,6 @@ interactive graphs in Jupyter notebooks. Some other alternatives are:
   Javascript and the D3js package. It doesn't scale well for very large
   datasets, but it's easy to use and works quite seamlessly.
 
-Everyone likes pretty plots, so let's try one more example before we move on!
-This is with mpld3 and shows four subplots with shared axes. Hover over the
-figure and click the magnifying glass in the lower left corner. If you zoom in
-on a region in one plot, the others will adjust automatically. Note how
-seamlessly mpld3 integrates with normal matplotlib code.
-
-```python
-%matplotlib inline
-import matplotlib.pyplot as plt
-import numpy as np
-import mpld3
-
-# Plot using mpld3
-mpld3.enable_notebook()
-
-# Normal matplotlib stuff
-fig, ax = plt.subplots(2, 2, figsize=(8, 6),sharex='col', sharey='row')
-fig.subplots_adjust(hspace=0.3)
-
-np.random.seed(0)
-
-for axi in ax.flat:
-    color = np.random.random(3)
-    axi.plot(np.random.random(30), lw=2, c=color)
-    axi.set_title("RGB = ({0:.2f}, {1:.2f}, {2:.2f})".format(*color),
-                  size=14)
-    axi.grid(color='lightgray', alpha=0.7)
-```
-
 !!! note "Quick recap"
     In the two previous sections we've learned:
 
@@ -616,10 +587,10 @@ package and is executed on the command line by running `jupyter nbconvert`.
 The syntax for converting a Jupyter notebook is:
 
 ```bash
-jupyter nbconvert --to FORMAT notebook.ipynb
+jupyter nbconvert --to <FORMAT> notebook.ipynb
 ``` 
 
-Here `FORMAT` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
+Here `<FORMAT>` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
 `notebook`, `pdf`, `python`, `rst`, `script`, `slides`. Converting to some 
 output formats (*e.g.* PDF) may require you to install separate software such
 as [Pandoc](pandoc.org) or a **TeX** environment.
@@ -633,16 +604,13 @@ far to HTML using `jupyter nbconvert`.
 running:
  
 ```bash
-jupyter nbconvert --execute notebook.ipynb 
+jupyter nbconvert --execute --to <FORMAT> notebook.ipynb 
 ```
 
 `nbconvert` executes the cells in a notebook, captures the output and saves the
 results in a new file. Try running it on the `Untitled.ipynb` notebook.
 
-As you can see the notebook was executed but also converted to HTML at the same
-time. To change the output format when executing a notebook simply add `--to 
-FORMAT` to the command. You can also specify a different output file with 
-`--output <filename>`.
+You can also specify a different output file with `--output <filename>`.
 
 So in order to execute your `Untitled.ipynb` notebook and save it to a file 
 named `report.html` you could run:
