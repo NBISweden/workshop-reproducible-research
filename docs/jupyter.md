@@ -114,7 +114,8 @@ are the files needed for running the RNA-seq workflow in Snakemake. The Running
 tab keeps track of all your processes. The third tab, Clusters, is used for
 parallel computing and won't be discussed further in this tutorial. The Conda
 tab lets us control our Conda environments. Let's take a quick look at that.
-You can see that I'm currently in the `jupyter_exercise` environment.
+You can see that I'm currently in the `jupyter_exercise` environment which is 
+the name I chose when I created the environment (you may have used another name).
 
 ![](images/jupyter_conda.png)
 
