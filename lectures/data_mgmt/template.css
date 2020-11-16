@@ -1,0 +1,125 @@
+/* CSS style general NBIS presentations using Xaringen and RMarkdown */
+
+/* Import Google font */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+/* Fonts */
+body,p,h1,h2,h3,h4,h5,h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #333333;
+}
+
+/* Header 1 font size */
+h1 {
+  font-size: 1.7em !important;
+}
+
+/* Header 2 font size */
+h2 {
+  font-size: 1.2em !important;
+}
+
+/* Header 3 font size */
+h3 {
+  font-size: 0.9em !important;
+}
+
+/* Custom font sizes */
+.micro { font-size: 25% }
+.tiny { font-size: 50% }
+.smaller { font-size: 66% }
+.small { font-size: 75% }
+.large { font-size: 125% }
+.huge { font-size: 150% }
+.Huge { font-size: 200% }
+.HUGE { font-size: 250% }
+
+.remark-code { font-size: 100% }
+
+/* Custom colours */
+.green { color: #85be42; font-weight: bold }
+.dark-green { color: #487a2d; font-weight: bold }
+.blue { color: #0099c2; font-weight: bold }
+.dark-blue { color: #015491; font-weight: bold }
+.light-grey { color: #999999 }
+.grey { color: #666666 }
+.dark-grey { color: #333333 }
+
+/* Set the maximum figure size to 100% of the slide */
+img, video, iframe {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+table_rot {
+    color: black;
+    text-transform: uppercase;
+    @include transform(rotate(270deg))
+    @include transform-origin(0 0);
+}
+
+/* SciLifeLab logo in bottom left corner  */
+div.scilife-logo {
+    content: "";
+    background-image: url("https://www.scilifelab.se/wp-content/uploads/2020/09/SciLifeLab_Logotype_Green_POS_large-copy-1536x334.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    height: 50px;
+    width: 200px;
+}
+
+/* NBIS logo in bottom right corner  */
+div.nbis-logo {
+    content: "";
+    background-image: url("https://nbis.se/assets/img/logos/nbislogo-green.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 23px;
+    right: 27px;
+    height: 35px;
+    width: 100px;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 5px solid #85be42;
+    background: #f9f9f9;
+    font-style: italic;
+    padding: 0.01em;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+    border-radius: 0 5px 5px 0;
+}
+
+/* Link colour */
+a {
+    color: #85be42;
+    text-decoration: none;
+}
+
+/* Underline links when hovering */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Inline code color and border */
+.remark-inline-code {
+  background: #f2f2f2;
+  border-radius: 3px;
+  margin-right: 2px;
+  padding: 2px 3px 1px;
+  font-size: 80% !important;
+}
+
+.image-with-text {
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -1,19 +1,22 @@
 name: lectures
 
+# Controls when the action will run. Triggers the workflow on push or pull
+# request events but only for the main branch
 on:
   push:
     paths:
       - 'lectures/*/*.Rmd'
       - 'lectures/*/*.ipynb'
+      - '.github/workflows/*.yml'
     branches:
       - lectures
-      - master
+      - main
   pull_request:
     paths:
       - 'lectures/*/*.Rmd'
       - 'lectures/*/*.ipynb'
     branches:
-      - master
+      - main
 
 jobs:
   render:

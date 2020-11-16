@@ -1,0 +1,32 @@
+# A snakefile used to render all lectures in one go
+
+from glob import glob
+import os.path as path
+
+rmd_files = glob("*/*.Rmd")
+ipy_files = glob("*/*.ipynb")
+
+rule all:
+    input:
+        ["{}.html".format(path.splitext(x)[0]) for x in rmd_files + ipy_files]
+
+rule render_rmarkdown:
+    input:
+        "{f}.Rmd"
+    output:
+        "{f}.html"
+    shell:
+        """
+        Rscript -e 'rmarkdown::render("{input}", "xaringan::moon_reader")'
+        """
+
+rule render_jupyter:
+    input:
+        "{f}.ipynb"
+    output:
+        "{f}.html"
+    shell:
+        """
+        jupyter nbconvert --to slides --execute {input}
+        mv {wildcards.f}.slides.html {output}
+        """

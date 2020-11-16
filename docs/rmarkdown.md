@@ -869,4 +869,8 @@ of Xaringan (which is itself a R Markdown-based presentation), as well as its
 that using R Markdown for presentations does take about the same time or
 slightly more compared to PowerPoint once you're used to it, but there's
 a learning curve - as with everything else. Anything related to actual code and
-presenting results it can be much quicker, however!
+presenting results it can be much quicker, however! A good exercise is to take
+one of the presentations you have given in the past (such as for a lab meeting,
+a journal club, *etc.*) and try to recreate that with R Markdown. Which method
+of creating presentations you prefer is, ultimately, up to you and what the
+your current end-goal is for the presentation.
