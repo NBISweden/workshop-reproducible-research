@@ -113,10 +113,10 @@ adapted specifically for Windows. Nevertheless, in principle everything
 
 - Use the Linux Bash Shell on Windows 10 (see below) _**Recommended for the
   course**_
+- Run the course in a Docker container (see below)
 - Run as Linux through a virtual machine (and see the Linux setup above)
 - Use the Windows 10 PowerShell, install git and clone the course repository
   (see the Mac/Linux setup above)
-- Run the course in a Docker container (see below)
 
 ### Running in the Linux Bash Shell on Windows 10
 
@@ -153,10 +153,11 @@ cd workshop-reproducible-research
 
 ### Using Docker to run the course
 
-Alternatively, you could use Docker to run the course in a Docker container.
-First, cd into a directory on your computer (or create one) where it makes
-sense to download the course directory. Install Docker by following the
-instructions in the [Docker tutorial](docker.md#windows). Then run:
+Alternatively, you can use Docker to run the course in a Docker container.
+First, open the Windows 10 PowerShell and `cd` into a directory on your computer 
+(or create one) where it makes sense to download the course directory. 
+Install Docker by following the instructions in the [Docker tutorial](docker.md#windows). 
+Then run:
 
 ```bash
 cd c:/my_dir
