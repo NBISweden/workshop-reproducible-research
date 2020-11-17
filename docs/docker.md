@@ -181,7 +181,7 @@ same OS.
 
 Docker containers typically run Linux, so let's start by downloading an image
 containing Ubuntu (a popular Linux distribution that is based on only
-open-source tools).
+open-source tools) through the command line.
 
 ```no-highlight
 $ docker pull ubuntu:latest
