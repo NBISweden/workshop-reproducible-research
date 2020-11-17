@@ -212,7 +212,8 @@ either by "REPOSITORY:TAG" ("latest" is the default so we can omit it) or
 "IMAGE ID". The syntax for `docker run` is `docker run [OPTIONS] IMAGE
 [COMMAND] [ARG...]`. Let's run the command `uname -a` to get some info about
 the operating system. First run on your own system (skip this if you're using
-Windows, or use `ver` which is the Windows equivalent).
+Windows via the Windows 10 PowerShell, or use `systeminfo` which is the 
+Windows equivalent).
 
 ```no-highlight
 $ uname -a
