@@ -87,13 +87,15 @@ Select "Get Docker for Windows (Stable)".
    installer.
 
 3. Start Docker from the Start menu. You can search for it if you cannot find
-   it. The Docker whale icon should appear in the task bar.
+   it. The Docker whale icon should appear in the task bar. Open the Windows 10
+   PowerShell to run the tutorial.
 
-4. If you are using the Linux Bash Shell on Windows, you might need to enable
-    integration with the Linux app you installed. Right-click on the Docker whale 
-    icon in the task bar and select Settings. Choose Resources and WPS
-    integration. Enable integration with the Linux app you installed and click
-    Apply & Restart. Restart also your Linux app.
+4. If you would like to use the Linux Bash Shell instead of the Windows 10 
+    PowerShell, you might need to enable integration with the Linux app you 
+    installed. Right-click on the Docker whale icon in the task bar and 
+    select Settings. Choose Resources and in there, select WPS integration. 
+    Enable integration with the Linux app you installed and click Apply & Restart. 
+    Restart also the Linux app.
 
 On Windows 7 we will instead use Docker Toolbox, which is available at
 [docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select
