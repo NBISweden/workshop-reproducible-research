@@ -548,9 +548,9 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
     parameters rather than hard-coding them later in the R code.
 
 Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks.
-They 1) load the required packages, 2) reads the parameters and stores them in
-R objects to be used later in the code, and 3) reads the data in the counts
-file, the multiqc file, as well as fetches meta data from GEO. These chunks are
+They 1) load the required packages, 2) read the parameters and store them in
+R objects to be used later in the code, and 3) read the data in the counts
+file, the multiqc file, as well as fetch meta data from GEO. These chunks are
 provided as is, and you do not need to edit them.
 
 Below these chunks there is some markdown text that contains the Supplementary

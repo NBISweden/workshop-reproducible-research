@@ -34,3 +34,18 @@ lectures/containers/containers.html
 lectures/conda/conda_files/remark-css-0.0.1/default.css
 lectures/conda/conda_files/header-attrs-2.3/header-attrs.js
 lectures/conda/conda.html
+
+# Output files from running tutorials
+jupyter/report.html
+jupyter/summary.txt
+jupyter/.ipynb_checkpoints
+*/data
+*/intermediate
+*/results
+rmarkdown/.R*
+rmarkdown/*html
+rmarkdown/*Rproj
+snakemake/*txt
+snakemake/*png
+snakemake/*tsv
+.Rproj.user
