@@ -808,16 +808,16 @@ matter) and the more common Microsoft Word: the more usual Microsoft software is
 output until you've rendered it. This difference is more pronounced when it
 comes to presentations, as they are more visually heavy.
 
-In essence, an R Markdown presentation works the same way as for a R Markdown
+In essence, a R Markdown presentation works the same way as for a R Markdown
 report, except some different formatting and output specifications. There are
-a number of output formats you can use, but the ones we've used for this course
+a number of output formats you can use, but the one we've used for this course
 (for no other reason than that we like it) is [Xaringan](https://github.com/yihui/xaringan).
-You can install this from Conda (`r-xaringan`) like normal and then specify the
-output format as `xaringan::moon_reader` in your YAML header. Slides are
+You can install it from Conda (`r-xaringan`) like any other package and then 
+specify the output format as `xaringan::moon_reader` in your YAML header. Slides are
 separated using three dashes (`---`) while two dashes (`--`) signify slide
 elements that should appear on-click.
 
-Here bare-bones example of a R Markdown presentation using Xaringan:
+Here is a bare-bones example of a R Markdown presentation using Xaringan:
 
 ````
 ---
