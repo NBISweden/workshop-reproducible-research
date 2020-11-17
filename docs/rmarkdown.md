@@ -423,7 +423,7 @@ You can render (sometimes called "knitting") reports in several different ways:
 
 - Pressing the *Knit* button in RStudio (as we have done this far)
 - Running the R command `render`: to Knit the file `my_file.Rmd` run
-  `render("my_file.Rmd")` in the R console.
+  `rmarkdown::render("my_file.Rmd")` in the R console.
 - Running from the command line: `R -e 'rmarkdown::render("my_file.Rmd")'`
 
 Using the `render` command, we can also set YAML header options and change
@@ -460,7 +460,7 @@ directly in RStudio:
   chunk (depending on your layout, otherwise you can find the options in the
   *Run* drop-down).
 * You can easily insert an empty chunk in your Rmd document in RStudio by
-  pressing *Insert* --> *R*.
+  pressing *Code* --> *Insert Chunk* in the menu.
 
 Depending on your settings, the output of the chunk code will be displayed
 inline in the Rmd document, or in RStudio's *Console* and *Plot* panels. To
