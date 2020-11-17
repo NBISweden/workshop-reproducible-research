@@ -434,6 +434,7 @@ interactive_plot
 
 The code above defines a function called `sine_curve` which takes three 
 arguments: 
+
 - `A` = the amplitude of the curve
 - `f` = the frequency of the curve
 - `p` = the phase of the curve
@@ -961,15 +962,16 @@ Here we will try out a service called Binder, which lets you run and
 share Jupyter Notebooks in Git repositories for free. There are a number
 of [example repositories](https://github.com/binder-examples/) that are
 setup to be used with Binder. Navigate to
-[https://github.com/binder-examples/conda/][] to see one such example. As you
-can see the repository contains a LICENSE file, a README, an environment file
-and a notebook. To use a repository with Binder the environment file should
-contain all the packages needed to run notebooks in the repo. So let's try to
-run the `index.ipynb` file using Binder:
+[https://github.com/binder-examples/conda/](https://github.com/binder-examples/conda/) 
+to see one such example. As you can see the repository contains a LICENSE 
+file, a README, an environment file and a notebook. To use a repository 
+with Binder the environment file should contain all the packages needed 
+to run notebooks in the repo. So let's try to run the `index.ipynb` file 
+using Binder:
 
-Just go to https://mybinder.org and paste the link to the GitHub repo.
-Note the link that you can use to share your notebook. Then press
-"launch".
+Just go to [https://mybinder.org](https://mybinder.org) and paste the link 
+to the GitHub repo. Note the link that you can use to share your notebook. 
+Then press "launch".
 
 ![](images/binder.png)
 
