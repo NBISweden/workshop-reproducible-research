@@ -91,9 +91,9 @@ Select "Get Docker for Windows (Stable)".
 
 4. If you are using the Linux Bash Shell on Windows, you might need to enable
     integration with the Linux app you installed. Right-click on the Docker whale 
-    icon in the task bar and select "Settings". Choose "Resources" and "WPS
-    integration". Enable integration with the Linux app you installed and click
-    "Apply & Restart". Restart also your Linux app.
+    icon in the task bar and select Settings. Choose Resources and WPS
+    integration. Enable integration with the Linux app you installed and click
+    Apply & Restart. Restart also your Linux app.
 
 On Windows 7 we will instead use Docker Toolbox, which is available at
 [docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select
