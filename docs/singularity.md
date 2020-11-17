@@ -38,13 +38,10 @@ https://sylabs.io/guides/3.4/user-guide/installation.html#distribution-packages-
 
 ### Installing on Windows
 
-Installing on Windows may be tricky. This requires running Singularity through
-a Vagrant Box. See [instructions here](
+Installing on Windows requires running Singularity through a Vagrant Box, which may be tricky. 
+See [instructions here](
 https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
-!!! attention
-    If you are using a Linux Bash Shell during the course, you can try to follow the
-    instructions for Linux users. 
 
 ## The basics
 
