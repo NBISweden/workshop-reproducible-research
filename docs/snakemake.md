@@ -1063,7 +1063,8 @@ analysis workflow, we need the config file to:
 The first point is straightforward; rather than using `SAMPLES = ["..."]` in
 the Snakefile we define it as a parameter in `config.yml`. Do a dry-run
 afterwards to make sure that everything works as expected. You can either add
-it as a list as it was expressed before, or you can use this yaml notation:
+it as a list similar to the way it was expressed before by adding
+ `SAMPLES: ["..."]` to `config.yml`, or you can use this yaml notation:
 
 ```yaml
 sample_ids:
