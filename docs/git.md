@@ -152,14 +152,12 @@ The text `nothing to commit (create/copy files and use "git add" to track)`
 tells us that while we are inside a directory that git is currently tracking,
 there are currently no files being tracked; let's add some!
 
-* Copy the following files and directories from the
-  `workshop-reproducible-research/git` directory, into your `git_tutorial`
-  directory:
+* Copy the following files from the `workshop-reproducible-research/git`
+  directory into your `git_tutorial` directory:
     * `Dockerfile`
     * `Snakefile`
     * `config.yml`
     * `environment.yml`
-    * `code/`
 
 * Once you have done that, run `git status` again. It will tell you that there
   are files in the directory that are not version tracked by git.
@@ -180,9 +178,6 @@ there are currently no files being tracked; let's add some!
     * The `Dockerfile` contains the recipe for making a Docker container for
       the analysis, which will be covered in detail in the
       [Docker tutorial](docker.md).
-    * The `code/` directory contains an R Markdown report that is used in the
-      final step of the analysis (more on this in the [R Markdown
-      tutorial](rmarkdown.md)).
 
 !!! note "Quick recap"
     We have used two `git` commands this far:
@@ -213,7 +208,7 @@ git add Dockerfile Snakefile
   files as well:
 
 ```bash
-git add config.yml environment.yml code/
+git add config.yml environment.yml
 ```
 
 * Run `git status` and see that all files are in the staging area, and that no
