@@ -186,6 +186,21 @@ Are you going to change your way of working? If yes, how?
 
 ---
 
+# Options for reproducing a project
+
+.pull-left[
+[Example](https://drive.google.com/file/d/1lXHlDdseHTe2Pb1JaCIhqDS7odTCVyRC/view?usp=sharing): 
+
+Pulling the Docker image for the case study from an online repository and running the workflow in a container
+
+]
+
+.pull-right[
+<img src="https://nbis-reproducible-research.readthedocs.io/en/devel/images/rulegraph_mrsa_intro.svg"/>
+]
+
+---
+
 # What is reasonable for your project?
 
 .pull-left[<img src="../common-figures/reproducibility-overview.png" style="width:75%;"/>
