@@ -1,0 +1,5 @@
+- [Introduction](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/introduction/introduction.html)
+- [Data management and project organization](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/data_mgmt/data_management.html)
+- [Introduction to version control and Git](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/git/git.html)
+- [Introduction to the package and environment manager Conda](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/conda/conda.html)
+- [Introduction to Snakemake](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/snakemake/snakemake.html)

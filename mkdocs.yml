@@ -9,6 +9,7 @@ pages:
     - Schedule: 'schedule.md'
     - 'Travel info': 'travel.md'
     - Feedback: 'feedback.html'
+  - Lectures: 'lectures.md'
   - Tutorials:
     - 'Introduction to the tutorials': 'tutorial_intro.md'
     - Git: 'git.md'
