@@ -25,7 +25,7 @@ layout: true
 class: center, middle
 .HUGE[Tools for reproducible research]
 
-.green[Stockholm, April 27-29]
+.green[Online, November 23-27]
 
 <img src="https://phdcomics.com/comics/archive/phd031214s.gif" style="width:80%;"/>
 
@@ -35,16 +35,20 @@ class: center, middle
 .HUGE[The teachers]
 
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:180px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:150px" hspace=20/>
     <p>John Sundh</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:180px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:150px" hspace=20/>
     <p>Verena Kutchera</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:180px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:150px" hspace=20/>
     <p>Erik Fasterius</p>
+</div>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/tomas-larsson.png" style="height:150px" hspace=20/>
+    <p>Tomas Larsson</p>
 </div>
 
 ---
