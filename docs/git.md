@@ -95,8 +95,9 @@ You will also need to configure the default branch name to be `main` instead of
 git config --global init.defaultBranch "main"
 ```
 
-The TL;DR of this is that GitHub uses `main` as the default branch while Git
-itself is still using `master`; please read the box below for more information.
+The short version of why you need to do this is that GitHub uses `main` as the
+default branch while Git itself is still using `master`; please read the box
+below for more information.
 
 !!! tip The default branch name
     The default branch name for Git and many of the online resources for hosting
