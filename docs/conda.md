@@ -500,7 +500,7 @@ For a list of conda configuration parameters see the
 [Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
 page.
 
-## Tips and tricks
+## Extra material
 
 The following extra material contains some more advanced things you can do with
 conda and the command line in general, which is not part of the main course

@@ -1221,7 +1221,7 @@ git push
     them by inspecting the affected files and looking for the source of the
     conflict.
 
-## Tips and tricks
+## Extra material
 
 The following extra material contains some more advanced things you can do with
 git and the command line in general, which is not part of the main course
