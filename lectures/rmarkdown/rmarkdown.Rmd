@@ -140,7 +140,7 @@ class: center, middle
 
 # Presentations with R Markdown
 
-```{r Plot iris, dpi = 300, fig.width = 14, fig.height = 6.5}
+```{r Plot iris, dpi = 150, fig.width = 14, fig.height = 6.5}
 library("ggplot2")
 data(iris)
 ggplot(iris, aes(x      = Petal.Length,
