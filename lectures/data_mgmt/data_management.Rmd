@@ -188,15 +188,16 @@ README.md
 
 class: center, middle
 
-.huge[
-Do you organize your work in distinct projects?
+# Questions?
 
-How do you organize your files in this context?
-
-Are you happy with the way you work today?
-]
 ---
 
-class: center, middle
+# Topics for discussion in breakout rooms
 
-# Questions?
+.large[
+- Do you organize your work in distinct projects?
+- How do you organize your files in this context?
+- Are you happy with the way you work today?
+- Does your group have a data management plan in place?
+- Do you know "your" repositories and how to submit data to them?
+]
