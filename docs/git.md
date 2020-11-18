@@ -337,7 +337,7 @@ rm Dockerfile
 ```bash
 git add Dockerfile
 git status
-git commit -m "remove Dockerfile"
+git commit -m "Remove Dockerfile"
 git status
 git log
 ```
