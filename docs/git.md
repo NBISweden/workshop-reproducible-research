@@ -217,7 +217,7 @@ git add config.yml environment.yml
 * We are now ready to commit! Run the following:
 
 ```bash
-git commit -m "Initial commit"
+git commit -m "Add initial files"
 ```
 
 The `-m` option adds a commit message. This should be a short description of
