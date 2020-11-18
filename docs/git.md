@@ -802,7 +802,7 @@ sub-directories as well, giving you the opportunity to go more in-depth where
 you so desire.
 
 !!! tip
-    There are a lot more things you can do with markdown what we show here.
+    There are a lot more things you can do with markdown than what we show here.
     Indeed, this entire course is mostly written in markdown! You can read
     more about markdown [here](https://www.markdownguide.org/getting-started/).
 
