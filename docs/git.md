@@ -218,7 +218,7 @@ git add config.yml environment.yml code/
 * Run `git status` and see that all files are in the staging area, and that no
   files are listed as untracked.
 
-* We are now ready to commit! Run:
+* We are now ready to commit! Run the following:
 
 ```bash
 git commit -m "Add initial files"
@@ -251,12 +251,20 @@ what the commit contains.
     commit message and body. If you want to read more about the motivation for
     these points, please see [this website](https://chris.beams.io/posts/git-commit/).
 
-* Run `git status` (yep, again!). It should tell you *"nothing to commit,
-  working directory clean"*.
+* Run `git status` again. It should tell you *"nothing to commit, working
+  directory clean"*.
 
-* Now, let's edit a file. Open up `environment.yml` in your favorite editor,
-  and change the version of bowtie2 to a different value, *e.g.*
-  `bowtie2=2.2.4`.
+What have we done, so far? We had some files in our working directory that we
+added to the Git staging area, which we subsequently committed to our Git
+repository. A schematic overview of this process can be seen in the following
+figure:
+
+![](images/git_overview_local.png)
+
+Let's repeat this process by editing a file!
+
+* Open up `environment.yml` in your favorite editor, and change the version of
+  bowtie2 to a different value, *e.g.* `bowtie2=2.2.4`.
 
 * Run `git status`. It will tell you that there are modifications in one file
   (`environment.yml`) compared to the previous commit. This is nice! We don't
@@ -904,6 +912,13 @@ changes that you *may* want to merge, without actually doing it, such as in
 a collaborative setting. In fact, `git pull` in its default mode is just
 a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
 `FETCH_HEAD` points to the tip of the branch that was just fetched).
+
+That's quite a few concepts and commands you've just learnt! It can be a bit
+hard to keep track of everything and the connections between local and remote
+Git repositories and how you work with them, but hopefully the following figure
+will give you a short visual summary:
+
+![](images/git_overview_remote.png)
 
 !!! note "Quick recap"
     We have learnt the difference between local and remote copies of git
