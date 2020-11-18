@@ -237,13 +237,13 @@ The results of only 26% out of 204 randomly selected papers in the journal
 
 --
 
-> Many journals are revising author guidelines to include data and code
-> availability.
+> "Many journals are revising author guidelines to include data and code
+> availability."
 
 --
 
-> (...) an improvement over no policy, but currently insufficient for
-> reproducibility.
+> "(...) an improvement over no policy, but currently insufficient for
+> reproducibility."
 
 ---
 
