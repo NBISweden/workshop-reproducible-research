@@ -128,9 +128,9 @@ class: center, middle
 
 # Output formats
 
-* .green[Reports] and general documents (HTML, PDF, MS Word, Tufte handouts)
+* .green[Reports] and general documents (HTML, PDF, Microsoft Word)
 
-* .green[Presentations] (reveal.js, Powerpoint, Beamer, Slidy, ioslides)
+* .green[Presentations] (Xaringan, reveal.js, PowerPoint, Beamer)
 
 * .green[Interactive documents] and .green[dashboards] (HTML widgets, Shiny)
 
