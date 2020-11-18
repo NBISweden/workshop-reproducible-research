@@ -80,7 +80,7 @@ class: center, middle
 
 # Schedule
 
-<iframe src="https://nbis-reproducible-research.readthedocs.io/en/devel/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
+<iframe src="https://nbis-reproducible-research.readthedocs.io/en/latest/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
 
 ---
 
