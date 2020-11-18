@@ -3,3 +3,6 @@
 - [Introduction to version control and Git](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/git/git.html)
 - [Introduction to the package and environment manager Conda](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/conda/conda.html)
 - [Introduction to Snakemake](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/snakemake/snakemake.html)
+- [Introduction to Rmarkdown](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/rmarkdown/rmarkdown.html)
+- [Introduction to Jupyter](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/jupyter/jupyter.html)
+- [Putting it all together](https://nbis-reproducible-research.readthedocs.io/en/lecture_links/lectures/putting-all-together/putting-all-together.html)
