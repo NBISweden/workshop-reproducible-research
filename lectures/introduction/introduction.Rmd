@@ -182,9 +182,7 @@ ioannidis_2 <- data.frame(
     value  = c(5, 1, 2, 2))
 ```
 
-.pull-left[
-
-```{r Plot the first Ioannidis data, include = TRUE, fig.height = 6}
+```{r Plot the first Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
 pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
 ggplot(ioannidis_1, aes(x    = "",
                         y    = value,
@@ -196,18 +194,21 @@ ggplot(ioannidis_1, aes(x    = "",
     scale_fill_manual(values = pie_1_colours) +
     blank_theme +
     theme(axis.text.x     = element_blank(),
-          legend.text     = element_text(size = 12),
+          legend.text     = element_text(size = 18),
           legend.position = "right") +
     guides(fill = guide_legend(reverse = TRUE))
 ```
 
-]
+---
 
---
+# Why all the talk about reproducible research?
 
-.pull-right[
+*Replication of data analyses in 18 articles on microarray-based gene
+expression profiling published in Nature Genetics in 2005–2006:*
 
-```{r, Plot the second Ioannidis data, include = TRUE, fig.height = 6}
+.tiny[Adopted from Ioannidis *et al.* "Repeatability of published microarray gene expression analyses", Nature Genetics 41 (2009) doi:10.1038/ng.295]
+
+```{r Plot the second Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
 pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
 ggplot(ioannidis_2, aes(x    = "",
                         y    = value,
@@ -220,12 +221,10 @@ ggplot(ioannidis_2, aes(x    = "",
     blank_theme +
     theme(axis.text.x      = element_blank(),
           legend.position  = "right",
-          legend.text      = element_text(size = 12),
+          legend.text      = element_text(size = 18),
           legend.direction = "vertical",
           plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
 ```
-
-]
 
 ---
 
