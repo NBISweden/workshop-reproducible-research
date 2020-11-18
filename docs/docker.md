@@ -336,13 +336,17 @@ RUN apt-get update && \
                                                tzdata \
                                                vim \
                                                unzip \
-                                               wget
+                                               wget \
     && apt-get clean
 
 # Install Miniconda and add to PATH
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
     bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
-    rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+    rm Miniconda3-4.7.12.1-Linux-x86_64.sh && \
+    /usr/miniconda3/bin/conda clean -tipsy && \
+    ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /usr/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 ```
 
 The next few lines introduce the important `RUN` instruction, which is used for
@@ -352,29 +356,32 @@ command should both retrieve the program, install it and perform any necessary
 clean up. This is due to how layers work and how Docker decides what needs to
 be rerun between builds. The first command uses Ubuntu's package manager APT to
 install some packages (similar to how we've previously used Conda). Say that
-the first command was split into two instead:
+the first command was split into three instead:
 
 ```no-highlight
 # Update apt-get
 RUN apt-get update
 
-#Install packages
+# Install packages
 RUN apt-get install -y --no-install-recommends bzip2 \
-                                           ca-certificates \
-                                           curl \
-                                           fontconfig \
-                                           git \
-                                           language-pack-en \
-                                           tzdata \
-                                           vim \
-                                           unzip \
-                                           wget
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim \
+                                               unzip \
+                                               wget
+
+# Clear the local repository of retrieved package files 
+RUN apt-get clean
 ```
 
 The first command will update the apt-get package lists and the second will
 install the packages `bzip2`, `ca-certificates`, `curl`, `fontconfig`, `git`,
-`language-pack-en`, `tzdata`, `vim` and `wget`. Say that you build this image 
-now, and then in a month's time you realize that you would have liked a
+`language-pack-en`, `tzdata`, `vim`, `unzip` and `wget`. Say that you build this 
+image now, and then in a month's time you realize that you would have liked a
 Swedish language pack instead of an English. You change to `language-pack-sv` 
 and rebuild the image. Docker detects that there is no layer with the new
 list of packages and reruns the second `RUN` command. **However, there is no
@@ -384,17 +391,27 @@ the versions would depend on when the previous version of the image was first
 built.
 
 The next `RUN` command retrieves and installs Miniconda3. Let's see what would
-happen if we had that as three separate commands instead.
+happen if we had that as separate commands instead.
 
 ```no-highlight
 # Download Miniconda3
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
 
 # Install it
 RUN bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
 
 # Remove the downloaded installation file
 RUN rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+
+# Remove unused packages and caches
+RUN /usr/miniconda3/bin/conda clean -tipsy
+
+# Permanently enable the Conda command
+RUN ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+RUN echo ". /usr/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+
+# Add the base environment permanently to PATH
+RUN echo "conda activate base" >> ~/.bashrc
 ```
 
 Remember that each layer contains the difference compared to the previous
@@ -403,19 +420,34 @@ file and the second will unpack the file and install the software. The third
 layer will say "the installation file should no longer exist on the file
 system". However, the file will still remain in the image since the image is
 constructed layer-by-layer bottom-up. This results in unnecessarily many layers
-and bloated images.
+and bloated images. Line four is cleaning up conda to free up space, and the 
+next two lines are there to make the Conda command available in the shell. 
+The last command automatically activates the Conda base environment in the container.
+
 
 ```no-highlight
 # Add conda to PATH and set locale
 ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
+ENV CONDA_ENVS_PATH="/course/envs"
+RUN mkdir /course/envs
 ```
 
 Here we use the new instruction `ENV`. The first command adds `conda` to the
-path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda
-install`. The other two set an UTF-8 character encoding so that we can use
-weird characters (and a bunch of other things).
+path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda install`. 
+The next two commands set an UTF-8 character encoding so that we can use
+weird characters (and a bunch of other things). The final two commands
+are specifying a directory in which Conda environments are stored.
+Every time an image is run, a brand new container is started and Conda 
+environments from previous runs that were stored in the default directory would be lost. 
+The directory `course/` can be mounted to a local directory when starting
+the container. This will make it and all its contents that are created while running
+the container available on the local computer (more about bind mounts further 
+below in the tutorial). So by specifying this directory in the Dockerfile, 
+Conda environments from previous runs of the image can be made available
+in future runs.
+
 
 ```no-highlight
 # Open port for running Jupyter Notebook
