@@ -436,7 +436,7 @@ touch data/metadata.txt
 # Ignore all files in the data/ directory
 data/*
 
-# Exclude the metadata file be prefixing it with an exclamation mark
+# Exclude the metadata file by prefixing it with an exclamation mark
 !data/metadata.txt
 ```
 
@@ -529,7 +529,7 @@ shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} \
 git log --graph --all --oneline
 ```
 
-It is often useful to see what the differences exists between branches.
+It is often useful to see what differences exist between branches.
 You can use the `diff` command for this:
 
 ```bash
@@ -570,7 +570,7 @@ back the changes made in test_alignment to main.
     stable code, it is convenient to periodically merge the changes made to
     `main` into relevant branches (*i.e.* the opposite to what we did above).
     That way, you keep your experimental branches up-to-date with the newest
-    changes and make them more easily merged into `main` when time comes.
+    changes and make them easier to merge into `main` when time comes.
 
 * If we do not want to do more work in `test_alignment` we can delete that
   branch:
