@@ -116,10 +116,10 @@ steps are the same. For details on how to do it on your distro see
 Here we show how to do it for Ubuntu, which is the most common desktop
 distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your
 OS is from 2015 or earlier you can double check this with `lsb_release -a`. If
-it's newer you're probably fine. The same instructions apply to distributions
-based on Ubuntu, such as Elementary OS or Linux Mint, but you would have to map
-to the corresponding Ubuntu version and use that instead of `$(lsb_release
--cs)` below (see [here](
+it's newer you're probably fine. The same instructions apply to other 
+distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you 
+would have to map to the corresponding Ubuntu version and use that instead of 
+`$(lsb_release -cs)` below (see [here](
 https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
 for Mint).
 
@@ -183,28 +183,31 @@ Docker containers typically run Linux, so let's start by downloading an image
 containing Ubuntu (a popular Linux distribution that is based on only
 open-source tools) through the command line.
 
-```no-highlight
-$ docker pull ubuntu:latest
-Using default tag: latest
-latest: Pulling from library/ubuntu
-660c48dd555d: Pull complete
-4c7380416e78: Pull complete
-421e436b5f80: Pull complete
-e4ce6c3651b3: Pull complete
-be588e74bd34: Pull complete
-Digest: sha256:7c67a2206d3c04703e5c23518707bdd4916c057562dd51c74b99b2ba26af0f79
-Status: Downloaded newer image for ubuntu:latest
+```bash
+docker pull ubuntu:latest
 ```
 
-You might have noticed that it downloaded five different layers with weird
-hashes as names ("660c48dd555d" and so on). This represents a very fundamental
-property of Docker images that we'll get back to in just a little while. For
-now let's just look at our new and growing collection of Docker images:
+You will notice that it downloads different layers with weird hashes as names. 
+This represents a very fundamental property of Docker images that we'll get 
+back to in just a little while. The process should end with something along the
+lines of:
 
 ```no-highlight
-$ docker image ls
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+```
+
+Let's take a look at our new and growing collection of Docker images:
+
+```bash
+docker images
+```
+
+The Ubuntu image show show up in this list, with something looking like this:
+
+```
 REPOSITORY       TAG              IMAGE ID            CREATED             SIZE
-ubuntu           latest           20c44cd7596f        2 weeks ago         123MB
+ubuntu           latest           d70eaf7277ea        3 weeks ago         72.9MB
 ```
 
 We can now start a container running our image. We can refer to the image
@@ -215,8 +218,11 @@ the operating system. First run on your own system (skip this if you're using
 Windows via the Windows 10 PowerShell, or use `systeminfo` which is the 
 Windows equivalent).
 
+```bash
+uname -a
+```
+
 ```no-highlight
-$ uname -a
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
@@ -227,13 +233,23 @@ Docker container.
 docker run ubuntu uname -a
 ```
 
+```no-highlight
+Linux 24d063b5d877 5.4.39-linuxkit #1 SMP Fri May 8 23:03:06 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+```
+
 And now I'm running on Linux! Try the same thing with `whoami`.
 
 So, seems we can execute arbitrary commands on Linux. Seems useful, but maybe
 a bit limited. We can also get an interactive terminal with the flags `-it`.
 
+```bash
+docker run -it ubuntu
+```
+
+This should put at a terminal prompt inside a container running Ubuntu. Your
+prompt should now look similar to:
+
 ```no-highlight
-$ docker run -it ubuntu
 root@1f339e929fa9:/#
 ```
 
@@ -248,7 +264,7 @@ probably be useful on its own, but Docker is much more powerful than that.
     In this section we've learned:
 
     * How to use `docker pull` for downloading images from a central registry.
-    * How to use `docker image ls` for getting information about the images we
+    * How to use `docker images` for getting information about the images we
       have on our system.
     * How to use `docker run` for starting a container from an image.
 
