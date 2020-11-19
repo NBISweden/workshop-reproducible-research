@@ -211,7 +211,9 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 * List your environments (do you remember the command?).
 * Activate `project_old` and check the Bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the Bowtie2 version.
-* Let's try to remove an installed package from the active environment:
+
+
+* Now let's try to remove an installed package from the active environment:
 
 ```
 conda remove sra-tools
