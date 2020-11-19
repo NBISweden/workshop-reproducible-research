@@ -159,6 +159,13 @@ you all available flags.
 ```no-highlight
 $ snakemake -n -r -p a.upper.txt
 
+Building DAG of jobs...
+Job counts:
+	count	jobs
+	1	convert_to_upper_case
+	1
+
+[Thu Nov 19 13:31:30 2020]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
@@ -169,9 +176,10 @@ rule convert_to_upper_case:
         tr [a-z] [A-Z] < a.txt > a.upper.txt
 
 Job counts:
-        count   jobs
-        1       convert_to_upper_case
-        1
+	count	jobs
+	1	convert_to_upper_case
+	1
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
 You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case`
@@ -188,6 +196,8 @@ What if we ask Snakemake to generate the file `b.upper.txt`?
 
 ```no-highlight
 $ snakemake -n -r -p b.upper.txt
+
+Building DAG of jobs...
 MissingRuleException:
 No rule to produce b.upper.txt (if you use input functions make sure that they do not raise unexpected exceptions)
 ```
@@ -275,6 +285,9 @@ Snakemake to generate.
 
 ```no-highlight
 $ snakemake a_b.txt
+
+Building DAG of jobs...
+Using shell: /usr/local/bin/bash
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
@@ -321,8 +334,7 @@ Neat!
     * How to define target files when executing a workflow.
     * How to use named wildcards for writing generic and flexible rules.
 
-!!! tip
-    You can name a file whatever you want in a Snakemake workflow, but you will
+!!! tip You can name a file whatever you want in a Snakemake workflow, but you will
     find that everything falls into place much nicer if the filename reflects
     the file's path through the workflow, *e.g.*
     `sample_a.trimmed.deduplicated.sorted.bam`.
@@ -386,6 +398,7 @@ happen if you run `snakemake -n -r a_b.txt` again?
     ```no-highlight
     $ snakemake -n -r a_b.txt
 
+    Building DAG of jobs...
     rule convert_to_upper_case:
         input: a.txt
         output: a.upper.txt
@@ -609,6 +622,7 @@ Now try to run the whole workflow. Hopefully you see something like this.
 
 ```no-highlight
 Building DAG of jobs...
+Using shell: /usr/local/bin/bash
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
