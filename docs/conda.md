@@ -250,8 +250,8 @@ data.
 We have up until now specified which Conda packages to install directly on the
 command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use an *environment file* (in [yml
-format](https://en.wikipedia.org/wiki/yml)) that specifies the packages,
+reproducibility, it is better to use an *environment file* (in [yaml
+format](https://en.wikipedia.org/wiki/YAML)) that specifies the packages,
 versions and channels needed to create the environment for a project.
 
 Throughout these tutorials we will use a case study where we analyze an RNA-seq
