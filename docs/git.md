@@ -95,8 +95,9 @@ You will also need to configure the default branch name to be `main` instead of
 git config --global init.defaultBranch "main"
 ```
 
-The TL;DR of this is that GitHub uses `main` as the default branch while Git
-itself is still using `master`; please read the box below for more information.
+The short version of why you need to do this is that GitHub uses `main` as the
+default branch while Git itself is still using `master`; please read the box
+below for more information.
 
 !!! tip The default branch name
     The default branch name for Git and many of the online resources for hosting
@@ -151,14 +152,12 @@ The text `nothing to commit (create/copy files and use "git add" to track)`
 tells us that while we are inside a directory that git is currently tracking,
 there are currently no files being tracked; let's add some!
 
-* Copy the following files and directories from the
-  `workshop-reproducible-research/git` directory, into your `git_tutorial`
-  directory:
+* Copy the following files from the `workshop-reproducible-research/git`
+  directory into your `git_tutorial` directory:
     * `Dockerfile`
     * `Snakefile`
     * `config.yml`
     * `environment.yml`
-    * `code/`
 
 * Once you have done that, run `git status` again. It will tell you that there
   are files in the directory that are not version tracked by git.
@@ -179,9 +178,6 @@ there are currently no files being tracked; let's add some!
     * The `Dockerfile` contains the recipe for making a Docker container for
       the analysis, which will be covered in detail in the
       [Docker tutorial](docker.md).
-    * The `code/` directory contains an R Markdown report that is used in the
-      final step of the analysis (more on this in the [R Markdown
-      tutorial](rmarkdown.md)).
 
 !!! note "Quick recap"
     We have used two `git` commands this far:
@@ -212,7 +208,7 @@ git add Dockerfile Snakefile
   files as well:
 
 ```bash
-git add config.yml environment.yml code/
+git add config.yml environment.yml
 ```
 
 * Run `git status` and see that all files are in the staging area, and that no
@@ -341,7 +337,7 @@ rm Dockerfile
 ```bash
 git add Dockerfile
 git status
-git commit -m "remove Dockerfile"
+git commit -m "Remove Dockerfile"
 git status
 git log
 ```
@@ -806,7 +802,7 @@ sub-directories as well, giving you the opportunity to go more in-depth where
 you so desire.
 
 !!! tip
-    There are a lot more things you can do with markdown what we show here.
+    There are a lot more things you can do with markdown than what we show here.
     Indeed, this entire course is mostly written in markdown! You can read
     more about markdown [here](https://www.markdownguide.org/getting-started/).
 
@@ -1248,9 +1244,9 @@ variable `PS1`. You can type `echo $PS1` to see what variables your prompt
 is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
 hostname, `\W` the working directory and `\u` the username.
 
-Some programmers like to also show the current branch on their prompt, thus
-avoiding having to type `git branch` continuously. There are several ways you
-might do this, and we're only presenting one of them here: a bash function.
+Some people like to also show the current branch on their prompt, thus avoiding
+having to type `git branch` continuously. There are several ways you might do
+this, and we're only presenting one of them here: a bash function.
 
 ```bash
 git_branch() {
@@ -1290,7 +1286,7 @@ file, so make sure you don't overwrite it!
 ### Bash aliases for git
 
 Some git commands are used over and over again when working with git, such as
-`git status`. Some programmers like to have aliases (*i.e.* shortcuts) for these
+`git status`. Some people like to have aliases (*i.e.* shortcuts) for these
 common commands. Here is a small list of such aliases that you may find useful
 or, even better, might inspire you to create your own! Add them to your
 `~/.bash_profile` as above, so that they're available across sessions.

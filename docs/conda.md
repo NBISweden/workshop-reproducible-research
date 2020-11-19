@@ -363,6 +363,13 @@ afterwards, ensuring future reproducibility.
 
 ## Extra material
 
+The following extra material contains some more advanced things you can do with
+conda and the command line in general, which is not part of the main course
+materials. All the essential skills of conda are covered by the previous
+section: the material here should be considered tips and tricks from people who
+use Conda as part of their daily work. You thus don't need to use these things
+unless you want to, and you can even skip this part of the lesson if you like!
+
 ### Managing python versions
 
 With conda it's possible to keep several different versions of python on your
@@ -499,15 +506,6 @@ conda config --remove-key <parameter>
 For a list of conda configuration parameters see the
 [Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
 page.
-
-## Extra material
-
-The following extra material contains some more advanced things you can do with
-conda and the command line in general, which is not part of the main course
-materials. All the essential skills of conda are covered by the previous
-section: the material here should be considered tips and tricks from people who
-use Conda as part of their daily work. You thus don't need to use these things
-unless you want to, and you can even skip this part of the lesson if you like!
 
 ### Decorating your prompt
 
