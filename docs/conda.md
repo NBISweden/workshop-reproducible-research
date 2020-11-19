@@ -248,15 +248,14 @@ data.
 We have up until now specified which Conda packages to install directly on the
 command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use an *environment file* (in [yml
-format](https://en.wikipedia.org/wiki/yml)) that specifies the packages,
-versions and channels needed to create the environment for a project.
+reproducibility, it is better to use an *environment file* (in [yml format](https://en.wikipedia.org/wiki/yml))
+that specifies the packages, versions and channels needed to create the
+environment for a project.
 
 Throughout these tutorials we will use a case study where we analyze an RNA-seq
-experiment with the multiresistant bacteria MRSA (see
-[intro](tutorial_intro.md)). You will now start to make a Conda yml file for
-this MRSA project. The file will contain a list of the software and versions
-needed to execute the analysis code.
+experiment with the multiresistant bacteria MRSA (see [intro](tutorial_intro.md)).
+You will now start to make a Conda yml file for this MRSA project. The file will
+contain a list of the software and versions needed to execute the analysis code.
 
 In this Conda tutorial, all code for the analysis is available in the script
 `code/run_qc.sh`. This code will download the raw FASTQ-files and subsequently
@@ -562,3 +561,41 @@ alias code='conda deactive'
 ```
 
 Don't forget to add them to your `~/.bash_profile` if you want to use them!
+
+### Optimising for speed
+
+One of the greatest strengths of Conda is, unfortunately, also is greatest
+weakness in its current implementation: the availability of a frankly enormous
+number of packages and versions. This means that the search space for the
+dependency hierarchy of any given Conda environment can become equally enormous,
+leading to a (at times) ridiculous execution time for the dependency solver. It
+is not uncommon to find yourself waiting for minutes for Conda to solve
+a dependency hierarchy, sometimes even into the double digits. How can this be
+circumvented?
+
+Firstly, it is useful to specify as many of the `major.minor.patch` version
+numbers as possible when defining your environment: this drastically reduces the
+search space that Conda needs to go through. This is not always possible,
+though. For example, we mentioned in the end of the *Environments in projects*
+section that you might want to start out new projects without version
+specifications for most packages, which means that the search space is going to
+be large. Here is where another software comes into play: *Mamba*.
+
+The [Mamba package manager](https://github.com/mamba-org/mamba) is built on-top
+of Conda with some changes and additions that greatly speed up the execution
+time. First of all, core parts of Mamba is written in C++ instead of Python,
+like the original Conda. Secondly, it uses a different dependency solver
+algorithm which is much faster than the one Conda uses. Lastly, it allows for
+parallel downloading of repository data and package files with multi-threading.
+All in all, these changes means that Mamba is (currently) simply a better
+version of Conda. Hopefully these changes will be incorporated into the Conda
+core at some point in the future!
+
+So, do you get Mamba? Funnily enough, the easiest way to install it is (of
+course) using Conda! Just run `conda install -n base -c conda-forge mamba`,
+which will install Mamba in your `base` Conda environment. Mamba works *exactly*
+the same as Conda, meaning that all you need to do is to stop using `conda
+<command>` and instead use `mamba <command>` - simple! There are only two
+exceptions to this, and that is activating and deactivating environments: you
+still have to use `conda activate` and `conda deactivate`. So transitioning into
+using Mamba is actually quite easy - enjoy your shorter execution times!
