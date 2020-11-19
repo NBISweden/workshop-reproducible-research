@@ -8,7 +8,7 @@ pages:
   - Practicalities:
     - Schedule: 'schedule.md'
     - 'Travel info': 'travel.md'
-    - Feedback: 'feedback.html'
+    - Feedback: 'feedback.md'
     - Lectures: 'lectures.md'
   - Tutorials:
     - 'Introduction to the tutorials': 'tutorial_intro.md'
