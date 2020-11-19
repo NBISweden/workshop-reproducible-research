@@ -762,7 +762,7 @@ The `docker` directory contains the final versions of all the files we've
 generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`,
 `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference
 compared to the other tutorials is that we have also included the rendering of
-the Supplementary Material PDF into the Snakemake workflow as the rule
+the Supplementary Material HTML file into the Snakemake workflow as the rule
 `make_supplementary`. Running all of these steps will take some time to execute
 (around 20 minutes or so), in particular if you're on a slow internet
 connection, and result in a 3.75 GB image.
@@ -770,21 +770,26 @@ connection, and result in a 3.75 GB image.
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
 previous section, although some sections have been moved around. The main
-difference is that we now also install LaTeX (through the TinyTeX package). We
-need this in order to be able to render the Supplementary Material report to
-PDF. Here, we also add the project files needed for executing the workflow
+difference is that we add the project files needed for executing the workflow
 (mentioned in the previous paragraph), and install the conda packages listed in
 `environment.yml`. If you look at the `CMD` command you can see that it will
 run the whole Snakemake workflow by default.
 
-Now run `docker build` as before and go get a coffee while the image builds (or
+Now run `docker build` as before:
+ 
+````bash
+docker build -f Dockerfile .
+````
+and go get a coffee while the image builds (or
 you could use `docker pull nbisweden/workshop-reproducible-research` which
-will download the same image). Validate with `docker image ls`. Now all that
-remains is to run the whole thing with `docker run`. We just want to get the
-results, so mount the directory `/course/results/` to, say, `mrsa_results` in
-your current directory. Well done! You now have an image that allows anyone to
-exactly reproduce your analysis workflow (if you first `docker push` to
-Dockerhub that is).
+will download the same image). 
+
+Validate with `docker images`. Now all that remains is to run the whole thing 
+with `docker run`. We just want to get the results, so mount the directory 
+`/course/results/` to, say, `mrsa_results` in your current directory. 
+
+Well done! You now have an image that allows anyone to exactly reproduce your 
+analysis workflow (if you first `docker push` to Dockerhub that is).
 
 !!! tip
     If you've done the [Jupyter Notebook tutorial](jupyter.md), you know that
