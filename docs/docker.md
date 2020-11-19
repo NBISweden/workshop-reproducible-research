@@ -586,10 +586,13 @@ If everything worked `run_qc.sh` is executed and will first download and then
 analyse the three samples. Once it's finished you can list all containers, 
 including those that have exited.
 
-```no-highlight
-$ docker container ls --all
-CONTAINER ID        IMAGE               COMMAND                   CREATED             STATUS                           PORTS               NA
-MES
+```bash
+docker container ls --all
+```
+
+This should show information about the container that we just ran. Similar to: 
+```
+CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS                      PORTS               NAMES
 39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
 ```
 
@@ -666,12 +669,18 @@ it will appear in the mounted directory on your host system.
 Say that we are interested in getting the resulting html reports from FastQC in
 our container. We can do this by mounting a directory called, say,
 `fastqc_results` in your current directory to the `/course/results/fastqc`
-directory in the container. Try this out and validate that it worked by opening
-one of the html reports.
+directory in the container. Try this out by running:
 
 ```bash
 docker run --rm -v $(pwd)/fastqc_results:/course/results/fastqc my_docker_conda
 ```
+
+Here the `-v` flag to docker run specifies the bind mount in the form of 
+`directory/on/your/computer:/directory/inside/container`. `$(pwd)` simply 
+evaluates to the working directory on your computer.
+
+Once the container finishes validate that it worked by opening one of the html 
+reports under `fastqc_results/`.
 
 We can also use bind mounts for getting files into the container rather than
 out. We've mainly been discussing Docker in the context of packaging an
@@ -728,7 +737,11 @@ your_dockerhub_id/image_name:tag_name`.
     and distribute Docker images. The Dockerhub servers will then build an
     image from the Dockerfile in your repository and make it available for
     download using `docker pull`. That way, you don't have to bother manually
-    building and pushing using `docker push`.
+    building and pushing using `docker push`. The GitHub repository for this 
+    course is linked to Dockerhub and the Docker images are built automatically
+    from `Dockerfile` and `Dockerfile_slim`, triggered by changes made to the
+    GitHub repository. You can take a look at the course on Dockerhub 
+    [here](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
 
 ## Packaging the case study
 
