@@ -564,7 +564,7 @@ Don't forget to add them to your `~/.bash_profile` if you want to use them!
 
 ### Optimising for speed
 
-One of the greatest strengths of Conda is, unfortunately, also is greatest
+One of the greatest strengths of Conda is, unfortunately, also its greatest
 weakness in its current implementation: the availability of a frankly enormous
 number of packages and versions. This means that the search space for the
 dependency hierarchy of any given Conda environment can become equally enormous,
@@ -583,19 +583,19 @@ be large. Here is where another software comes into play: *Mamba*.
 
 The [Mamba package manager](https://github.com/mamba-org/mamba) is built on-top
 of Conda with some changes and additions that greatly speed up the execution
-time. First of all, core parts of Mamba is written in C++ instead of Python,
+time. First of all, core parts of Mamba are written in C++ instead of Python,
 like the original Conda. Secondly, it uses a different dependency solver
 algorithm which is much faster than the one Conda uses. Lastly, it allows for
 parallel downloading of repository data and package files with multi-threading.
-All in all, these changes means that Mamba is (currently) simply a better
+All in all, these changes mean that Mamba is (currently) simply a better
 version of Conda. Hopefully these changes will be incorporated into the Conda
 core at some point in the future!
 
-So, do you get Mamba? Funnily enough, the easiest way to install it is (of
+So, how do you get Mamba? Funnily enough, the easiest way to install it is (of
 course) using Conda! Just run `conda install -n base -c conda-forge mamba`,
 which will install Mamba in your `base` Conda environment. Mamba works *exactly*
-the same as Conda, meaning that all you need to do is to stop using `conda
-<command>` and instead use `mamba <command>` - simple! There are only two
-exceptions to this, and that is activating and deactivating environments: you
-still have to use `conda activate` and `conda deactivate`. So transitioning into
+the same as Conda, meaning that all you need to do is to stop using `conda <command>` 
+and instead use `mamba <command>` - simple! There are only two exceptions 
+to this, and that is activating and deactivating environments: you still 
+have to use `conda activate` and `conda deactivate`. So transitioning into
 using Mamba is actually quite easy - enjoy your shorter execution times!
