@@ -483,10 +483,14 @@ for the user. If the purpose of your image is to accompany a publication then
 data.
 
 Ok, so now we understand how a Dockerfile works. Constructing the image from
-the Dockerfile is really simple. Try it out now.
+the Dockerfile is really simple. Try it out now:
 
-```no-highlight
-$ docker build -f Dockerfile_slim -t my_docker_image .
+```bash
+docker build -f Dockerfile_slim -t my_docker_image .
+```
+
+This should result in
+```
 Step 1/13 : FROM ubuntu:16.04
  ---> 20c44cd7596f
 Step 2/13 : LABEL description = "Minimal image for the NBIS reproducible research course."
@@ -507,7 +511,7 @@ Successfully tagged my_docker_image:latest
 name is how you will refer to the image later. Lastly, the `.` is the path to
 where the image should be build (`.` means the current directory). This had no
 real impact in this case, but matters if you want to import files. Validate
-with `docker image ls` that you can see your new image.
+with `docker images` that you can see your new image.
 
 Now it's time to make our own Dockerfile to reproduce the results from the
 [Conda tutorial](conda). If you haven't done the tutorial, it boils down to
@@ -528,7 +532,7 @@ the image. So, this is what we need to do:
 3. Install the required packages with Conda. We could do this by adding
    `environment.yml` from the Conda tutorial, but here we do it directly as
    `RUN` commands. We need to add the conda-forge and bioconda channels with
-   `conda config --add channels channel_name` and install `fastqc=0.11.9` and
+   `conda config --add channels <channel_name>` and install `fastqc=0.11.9` and
    `sra-tools=2.10.1` with `conda install`. The packages will be installed to 
    the default environment named `base` inside the container.
 
@@ -539,7 +543,25 @@ the image. So, this is what we need to do:
 5. Set the default command for the image to `bash run_qc.sh`, which will
    execute the shell script.
 
-6. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
+Try to add required lines to `Dockerfile_conda`. If it seems overwhelming you 
+can take a look below
+
+??? note "Click to see an example of Dockerfile_conda"
+    FROM my_docker_image:latest
+    RUN conda config --add channels bioconda && \
+        conda config --add channels conda-forge && \
+        conda install -n base fastqc=0.11.9 sra-tools=2.10.1
+    COPY run_qc.sh .
+    CMD bash run_qc.sh
+
+
+Build the image and tag it `my_docker_conda`: 
+
+```bash
+docker build -t my_docker_conda -f Dockerfile_conda .
+```
+
+Verify that the image was built using `docker images`.
 
 !!! note "Quick recap"
     In this section we've learned:
