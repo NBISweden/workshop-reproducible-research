@@ -33,16 +33,16 @@ There are many benefits of using git in your research project:
   any potential conflicting edits.
 
 * Using a cloud-based repository hosting service (the one you push your commits
-  to), like *e.g.* [Github](https://github.com/) or
+  to), like *e.g.* [GitHub](https://github.com/) or
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
 
-* If at some point your project will be published Github or Bitbucket (or
+* If at some point your project will be published GitHub or Bitbucket (or
   similar) are excellent places to publicly distribute your code. Other
   researchers can then use git to access the code needed for reproducing your
   results, in exactly the state it was when used for the publication.
 
-* If needed, you can host private repositories on Github and Bitbucket as well.
+* If needed, you can host private repositories on GitHub and Bitbucket as well.
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
@@ -82,7 +82,7 @@ git config --global user.email "mona_lisa@gmail.com"
 ```
 
 !!! tip
-    If you have several accounts (*e.g.* both a Github and Bitbucket account),
+    If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
     and thereby several different usernames, you can configure git on
     a per-repository level. Change directory into the relevant local git
     repository and run `git config user.name "Mona Lisa"`. This will set the
@@ -103,8 +103,8 @@ below for more information.
     The default branch name for Git and many of the online resources for hosting
     Git repositories has traditionally been `master`, which historically comes
     from the "master/slave" repositories of [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-    This has been heavily discussed by many parties, and in 2020 the decision
-    was made by many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    This has been heavily discussed and in 2020 the decision was made by 
+    many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
     to start using `main` instead. Any repository created with GitHub uses this
     new naming scheme since October of 2020, and Git itself is currently
     discussing implementing a similar change. Git did, however, introduce the
