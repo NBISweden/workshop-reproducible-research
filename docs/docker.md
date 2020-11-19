@@ -422,7 +422,8 @@ system". However, the file will still remain in the image since the image is
 constructed layer-by-layer bottom-up. This results in unnecessarily many layers
 and bloated images. Line four is cleaning up conda to free up space, and the 
 next two lines are there to make the Conda command available in the shell. 
-The last command automatically activates the Conda base environment in the container.
+The last command adds a code snippet to the bash startup file which 
+automatically activates the Conda base environment in the container.
 
 
 ```no-highlight
