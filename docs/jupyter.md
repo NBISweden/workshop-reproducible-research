@@ -95,7 +95,7 @@ $ jupyter notebook --allow-root
 
 Jupyter Notebook probably opened up a web browser for you automatically,
 otherwise go to the address specified in the message in the terminal. Note that
-the server is running locally (as [http://localhost:8888]) so this does not
+the server is running locally (as `http://localhost:8888`) so this does not
 require that you have an active internet connection. Also note that it says:
 
 ```no-highlight
@@ -162,18 +162,20 @@ are only applicable when in command mode (blue frames). Most of them are also
 available from the menus. These shortcuts are also available from the **Help**
 menu in your notebook (there's even an option there to edit shortcuts).
 
-* ++enter++: enter Edit mode
-* ++escape++: enter Command mode
-* ++ctrl+enter++: run the cell
-* ++shift+enter++: run the cell and select the cell below
-* ++alt+enter++: run the cell and insert a new cell below
-* ++ctrl+s++: save the notebook
-* ++tab++: for code completion or indentation
-* m/y: toggle between Markdown and Code cells
-* d-d: delete a cell
-* a/b: insert cells above/below current cell
-* x/c/v: cut/copy/paste cells
-* o: toggle output of current cell
+| Shortcut        | Effect                                   |
+|-----------------|------------------------------------------|
+| ++enter++       | enter Edit mode                          |
+| ++escape++      | enter Command mode                       |
+| ++ctrl+enter++  | run the cell                             |
+| ++shift+enter++ | run the cell and select the cell below   |
+| ++alt+enter++   | run the cell and insert a new cell below |
+| ++ctrl+s++      | save the notebook                        |
+| ++tab++         | for code completion or indentation       |
+| ++m++/++y++     | toggle between Markdown and Code cells   |
+| ++d-d++         | delete a cell                            |
+| ++a/b++         | insert cells above/below current cell    |
+| ++x/c/v++       | cut/copy/paste cells                     |
+| ++o++           | toggle output of current cell            |
 
 ### Writing markdown
 
