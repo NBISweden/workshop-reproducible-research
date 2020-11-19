@@ -555,16 +555,16 @@ an argument in the call to `interactive`. If you need help, click below.
 Jupyter widgets, like we used here, is the most vanilla way of getting
 interactive graphs in Jupyter notebooks. Some other alternatives are:
 
-* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) - is actually an
+* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) is actually an
   API to a web service that renders your graph and returns it for display in
   your Jupyter notebook. Generates very visually appealing graphs, but from
   a reproducibility perspective it's maybe not a good idea to be so reliant on
   a third party.
 * [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook)
-  - is another popular tool for interactive graphs. Most plotting packages for
-    Python are built on top of matplotlib, but Bokeh has its own library. This
+  is another popular tool for interactive graphs. Most plotting packages for
+  Python are built on top of matplotlib, but Bokeh has its own library. This
   can give a steeper learning curve if you're used to the standard packages.
-* [mpld3](http://mpld3.github.io) - tries to integrate matplotlib with
+* [mpld3](http://mpld3.github.io) tries to integrate matplotlib with
   Javascript and the D3js package. It doesn't scale well for very large
   datasets, but it's easy to use and works quite seamlessly.
 
