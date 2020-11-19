@@ -422,7 +422,7 @@ conda activate py35
 
 You now have a completely separate environment with its own python version.
 
-Let's say you instead want an environment with pythonversion `2.7` of installed.
+Let's say you instead want an environment with python version `2.7` installed.
 You may for instance want to run scripts or packages that were written for
 Python 2.x and are thus incompatible with Python 3.x. Simply create the new
 conda environment with:
@@ -547,7 +547,7 @@ As an example, say you have a project called project_a with the project path
 `~/myprojects/project_a`. You could then install the environment for project_a
 into a folder `~/myprojects/project_a/envs/project_a_environment`. Activating
 the environment by pointing conda to it (*e.g.* conda activate
-`~/myprojects/project_a/envs/project_a_environment`) will only cause your promp
+`~/myprojects/project_a/envs/project_a_environment`) will only cause your prompt
 to be modified with project_a_environment.
 
 ### Bash aliases for conda
