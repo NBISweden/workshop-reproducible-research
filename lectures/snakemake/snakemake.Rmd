@@ -84,13 +84,13 @@ GNU Make
 
 # Reproducible...
 
-.center[<img src="repr_scal_1.png">]
+.center[<img src="repr_scal_1.png", width=100%>]
 
 ---
 
 # ...and scalable workflows
 
-.center[<img src="repr_scal_2.png">]
+.center[<img src="repr_scal_2.png", width=100%>]
 
 ---
 
@@ -216,7 +216,7 @@ Here we ask for .green[supplementary.pdf], which is an RMarkdown report generate
 ]
 
 .pull-right[
-<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/rulegraph_mrsa.svg">
+<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/rulegraph_mrsa.svg", width=100%>
 
 `$ snakemake supplementary.pdf`
 
@@ -232,7 +232,7 @@ than downstream files, so it reruns the necessary rules.
 ]
 
 .pull-right[
-<img src="dag1.png">
+<img src="dag1.png", width=100%>
 
 `$ touch intermediate/NCTC8325.1.bt2`
 `$ snakemake supplementary.pdf`
