@@ -111,7 +111,7 @@ On Windows 7 we will instead use Docker Toolbox, which is available at
 ### Linux
 How to install Docker differs a bit depending on your Linux distro, but the
 steps are the same. For details on how to do it on your distro see
-[https://docs.docker.com/engine/installation/#server][].
+[https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/install/#server).
 
 Here we show how to do it for Ubuntu, which is the most common desktop
 distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your
