@@ -22,6 +22,8 @@ Simply click the `Edit` button in the top menu to get started. You can view the 
 We've created headers for each day to keep things organised. Simply write your questions and comments under the respective day.
 
 ## Technical issues
+_Please add questions about general technical issues here._
+
 
 ## Day 1 (Mon Nov 23)
 
