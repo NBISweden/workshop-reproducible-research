@@ -14,9 +14,6 @@ on how to make your data analyses reproducible. In particular, it covers:
 
 <h1> Material </h1>
 
-Slides from lectures covering the topics above are available on [Google
-Drive](https://drive.google.com/open?id=1yR9ti8nAbAfPGf9-COVWKSGISpUW8Wmm)
-
 This documentation and all the resources used in the course are available as a
 [GitHub repo](https://github.com/NBISweden/workshop-reproducible-research.git).
 
