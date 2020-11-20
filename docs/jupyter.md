@@ -704,6 +704,7 @@ directory.
 ```python
 import glob
 import os
+import zipfile
 
 with open('summary.txt', 'w') as fhout:
     # Find all zip files from fastqc
@@ -712,7 +713,7 @@ with open('summary.txt', 'w') as fhout:
         arc_name = os.path.splitext(os.path.basename(f))[0]
         # Open up the 'summary.txt' in the zip archive
         # and output the contents to 'summary.txt'
-        with ZipFile(f) as myzip:
+        with zipfile.ZipFile(f) as myzip:
             with myzip.open('{arc_name}/summary.txt'.format(arc_name=arc_name), 'r') as fhin:
                 fhout.write(fhin.read().decode())
 ```
