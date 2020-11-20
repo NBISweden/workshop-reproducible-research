@@ -72,16 +72,15 @@ If you've done the Docker tutorial **or if you've been running Docker for
 Windows** you have some cleaning up to do. Docker is infamous for quickly
 taking up huge amounts of space, and some maintenance is necessary every now
 and then. Here is how to uninstall Docker completely. For instructions for how
-to remove individual images or containers, see the [Docker tutorial](docker.md)
+to remove individual images or containers, see the [Docker tutorial](docker.md).
 
 ### macOS
 
 Click the Docker icon in the menu bar (upper right part of the screen) and
-select "Preferences". This will open up the window below. First select "Reset"
-and fill in your password. Then select "Uninstall". Once it's done
-uninstalling, drag the Docker app from Applications to Trash.
-
-![](images/docker_uninstall_osx.png)
+select "Preferences". In the upper right corner, you should find a little bug icon.
+Click on that icon and select "Reset to factory defaults". You may have to fill 
+in your password. Then select "Uninstall". Once it's done uninstalling, drag the 
+Docker app from Applications to Trash.
 
 ### Linux
 
@@ -110,3 +109,8 @@ using it for other purposes.
 Singularity images are files that can simply be deleted. Singularity also
 creates a hidden directory `.singularity` in your home directory that contains
 its cache, which you may delete.
+
+### Windows
+
+On Windows, you will additionally need to uninstall Git for Windows, VirtualBox, Vagrant and Vagrant Manager (see the 
+[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).
