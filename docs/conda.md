@@ -211,7 +211,9 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 * List your environments (do you remember the command?).
 * Activate `project_old` and check the Bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the Bowtie2 version.
-* Let's try to remove an installed package from the active environment:
+
+
+* Now let's try to remove an installed package from the active environment:
 
 ```
 conda remove sra-tools
@@ -419,7 +421,7 @@ conda activate py35
 
 You now have a completely separate environment with its own python version.
 
-Let's say you instead want an environment with pythonversion `2.7` of installed.
+Let's say you instead want an environment with python version `2.7` installed.
 You may for instance want to run scripts or packages that were written for
 Python 2.x and are thus incompatible with Python 3.x. Simply create the new
 Conda environment with:

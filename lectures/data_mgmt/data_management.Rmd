@@ -74,17 +74,6 @@ Scientific Data (2016)]</a>
 
 class: center, middle
 
-.huge[
-
-Does your group have a data management plan in place?
-
-Do you know "your" repositories and how to submit data to them?
-]
-
----
-
-class: center, middle
-
 *.huge[Organizing your projects]*
 
 ---

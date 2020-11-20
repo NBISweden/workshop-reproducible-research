@@ -33,16 +33,16 @@ There are many benefits of using git in your research project:
   any potential conflicting edits.
 
 * Using a cloud-based repository hosting service (the one you push your commits
-  to), like *e.g.* [Github](https://github.com/) or
+  to), like *e.g.* [GitHub](https://github.com/) or
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
 
-* If at some point your project will be published Github or Bitbucket (or
+* If at some point your project will be published GitHub or Bitbucket (or
   similar) are excellent places to publicly distribute your code. Other
   researchers can then use git to access the code needed for reproducing your
   results, in exactly the state it was when used for the publication.
 
-* If needed, you can host private repositories on Github and Bitbucket as well.
+* If needed, you can host private repositories on GitHub and Bitbucket as well.
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
@@ -82,7 +82,7 @@ git config --global user.email "mona_lisa@gmail.com"
 ```
 
 !!! tip
-    If you have several accounts (*e.g.* both a Github and Bitbucket account),
+    If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
     and thereby several different usernames, you can configure git on
     a per-repository level. Change directory into the relevant local git
     repository and run `git config user.name "Mona Lisa"`. This will set the
@@ -103,8 +103,8 @@ below for more information.
     The default branch name for Git and many of the online resources for hosting
     Git repositories has traditionally been `master`, which historically comes
     from the "master/slave" repositories of [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-    This has been heavily discussed by many parties, and in 2020 the decision
-    was made by many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    This has been heavily discussed and in 2020 the decision was made by 
+    many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
     to start using `main` instead. Any repository created with GitHub uses this
     new naming scheme since October of 2020, and Git itself is currently
     discussing implementing a similar change. Git did, however, introduce the
@@ -116,16 +116,18 @@ below for more information.
 
 In order to create a new git repository, we first need a directory to track.
 For this tutorial, go ahead and create a directory called `git_tutorial`, then
-navigate into it. Once we are inside the desired directory, we can *initialise*
+navigate into it. 
+
+!!! attention
+    The directory should *not* be within the `workshop-reproducible-research`
+    directory, since this is itself a git-tracked directory.
+
+Once we are inside the desired directory, we can *initialise*
 git with the following command:
 
 ```bash
 git init
 ```
-
-!!! attention
-    The directory should *not* be within the `workshop-reproducible-research`
-    directory, since this is itself a git-tracked directory.
 
 The directory is now a version-tracked directory. How can you know? Run the
 command `git status`, which will probably return something like this:
@@ -434,7 +436,7 @@ touch data/metadata.txt
 # Ignore all files in the data/ directory
 data/*
 
-# Exclude the metadata file be prefixing it with an exclamation mark
+# Exclude the metadata file by prefixing it with an exclamation mark
 !data/metadata.txt
 ```
 
@@ -527,7 +529,7 @@ shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} \
 git log --graph --all --oneline
 ```
 
-It is often useful to see what the differences exists between branches.
+It is often useful to see what differences exist between branches.
 You can use the `diff` command for this:
 
 ```bash
@@ -568,7 +570,7 @@ back the changes made in test_alignment to main.
     stable code, it is convenient to periodically merge the changes made to
     `main` into relevant branches (*i.e.* the opposite to what we did above).
     That way, you keep your experimental branches up-to-date with the newest
-    changes and make them more easily merged into `main` when time comes.
+    changes and make them easier to merge into `main` when time comes.
 
 * If we do not want to do more work in `test_alignment` we can delete that
   branch:
