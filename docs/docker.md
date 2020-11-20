@@ -501,7 +501,7 @@ the image. So, this is what we need to do:
       `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
     * The importance of letting each layer in the Dockerfile be a "logical
       unit".
-    * How to use `docker build` to contruct and tag an image from a Dockerfile.
+    * How to use `docker build` to construct and tag an image from a Dockerfile.
 
 ## Managing containers
 
