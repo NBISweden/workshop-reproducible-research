@@ -166,8 +166,6 @@ singularity exec lolcow_latest.sif fortune
 singularity shell lolcow_latest.sif
 ```
 
-
-
 !!! note "Quick recap"
     In this section we covered how to use `singularity pull` to download and
     run Docker images as Singularity containers.
