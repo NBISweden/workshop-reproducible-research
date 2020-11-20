@@ -317,6 +317,7 @@ Let's take a look at the next section of the Dockerfile.
 ```no-highlight
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
+
 # Set workdir
 WORKDIR /course
 ```

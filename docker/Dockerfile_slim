@@ -5,6 +5,7 @@ MAINTAINER "John Sundh" john.sundh@scilifelab.se
 
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
+
 # Set workdir
 WORKDIR /course
 
