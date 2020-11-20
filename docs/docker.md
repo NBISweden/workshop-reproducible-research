@@ -251,6 +251,7 @@ probably be useful on its own, but Docker is much more powerful than that.
     * How to use `docker image ls` for getting information about the images we
       have on our system.
     * How to use `docker run` for starting a container from an image.
+    * How to use the `-it` flag for running in interactive mode.
 
 ## Building a Docker image
 
@@ -317,12 +318,14 @@ Let's take a look at the next section of the Dockerfile.
 ```no-highlight
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
+
 # Set workdir
 WORKDIR /course
 ```
 
-`SHELL` simply sets which shell to use. `WORKDIR` determines the directory the 
-container should start in.
+`SHELL` simply sets which shell to use. `WORKDIR` determines the directory the
+container should start in. The next few lines introduce the important `RUN`
+instruction, which is used for executing shell commands:
 
 ```no-highlight
 # Install necessary tools
@@ -349,14 +352,13 @@ RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64
     echo "conda activate base" >> ~/.bashrc
 ```
 
-The next few lines introduce the important `RUN` instruction, which is used for
-executing shell commands. As a general rule, you want each layer in an image to
-be a "logical unit". For example, if you want to install a program the `RUN`
-command should both retrieve the program, install it and perform any necessary
-clean up. This is due to how layers work and how Docker decides what needs to
-be rerun between builds. The first command uses Ubuntu's package manager APT to
-install some packages (similar to how we've previously used Conda). Say that
-the first command was split into three instead:
+As a general rule, you want each layer in an image to be a "logical unit". For
+example, if you want to install a program the `RUN` command should both
+retrieve the program, install it and perform any necessary clean up. This is
+due to how layers work and how Docker decides what needs to be rerun between
+builds. The first command uses Ubuntu's package manager APT to install some
+packages (similar to how we've previously used Conda). Say that the first
+command was split into two instead:
 
 ```no-highlight
 # Update apt-get
@@ -532,7 +534,7 @@ the image. So, this is what we need to do:
       `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
     * The importance of letting each layer in the Dockerfile be a "logical
       unit".
-    * How to use `docker build` to contruct and tag an image from a Dockerfile.
+    * How to use `docker build` to construct and tag an image from a Dockerfile.
 
 ## Managing containers
 
@@ -603,8 +605,8 @@ docker exec -it my_container /bin/bash
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How to use `docker run` for starting a container and how the flags `-d`,
-      `-it` and `--rm` work.
+    * How to use `docker run` for starting a container and how the flags `-d`
+      and `--rm` work.
     * How to use `docker container ls` for displaying information about the
       containers.
     * How to use `docker attach` and `docker exec` to interact with running
