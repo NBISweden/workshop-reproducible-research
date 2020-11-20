@@ -775,10 +775,10 @@ difference is that we add the project files needed for executing the workflow
 `environment.yml`. If you look at the `CMD` command you can see that it will
 run the whole Snakemake workflow by default.
 
-Now run `docker build` as before:
+Now run `docker build` as before, tag the image with `my_docker_project`:
  
 ````bash
-docker build -f Dockerfile .
+docker build -t my_docker_project -f Dockerfile .
 ````
 and go get a coffee while the image builds (or
 you could use `docker pull nbisweden/workshop-reproducible-research` which
