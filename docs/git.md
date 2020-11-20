@@ -33,16 +33,16 @@ There are many benefits of using git in your research project:
   any potential conflicting edits.
 
 * Using a cloud-based repository hosting service (the one you push your commits
-  to), like *e.g.* [Github](https://github.com/) or
+  to), like *e.g.* [GitHub](https://github.com/) or
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
 
-* If at some point your project will be published Github or Bitbucket (or
+* If at some point your project will be published GitHub or Bitbucket (or
   similar) are excellent places to publicly distribute your code. Other
   researchers can then use git to access the code needed for reproducing your
   results, in exactly the state it was when used for the publication.
 
-* If needed, you can host private repositories on Github and Bitbucket as well.
+* If needed, you can host private repositories on GitHub and Bitbucket as well.
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
@@ -82,7 +82,7 @@ git config --global user.email "mona_lisa@gmail.com"
 ```
 
 !!! tip
-    If you have several accounts (*e.g.* both a Github and Bitbucket account),
+    If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
     and thereby several different usernames, you can configure git on
     a per-repository level. Change directory into the relevant local git
     repository and run `git config user.name "Mona Lisa"`. This will set the
@@ -95,15 +95,16 @@ You will also need to configure the default branch name to be `main` instead of
 git config --global init.defaultBranch "main"
 ```
 
-The TL;DR of this is that GitHub uses `main` as the default branch while Git
-itself is still using `master`; please read the box below for more information.
+The short version of why you need to do this is that GitHub uses `main` as the
+default branch while Git itself is still using `master`; please read the box
+below for more information.
 
 !!! tip The default branch name
     The default branch name for Git and many of the online resources for hosting
     Git repositories has traditionally been `master`, which historically comes
     from the "master/slave" repositories of [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-    This has been heavily discussed by many parties, and in 2020 the decision
-    was made by many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    This has been heavily discussed and in 2020 the decision was made by 
+    many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
     to start using `main` instead. Any repository created with GitHub uses this
     new naming scheme since October of 2020, and Git itself is currently
     discussing implementing a similar change. Git did, however, introduce the
@@ -115,16 +116,18 @@ itself is still using `master`; please read the box below for more information.
 
 In order to create a new git repository, we first need a directory to track.
 For this tutorial, go ahead and create a directory called `git_tutorial`, then
-navigate into it. Once we are inside the desired directory, we can *initialise*
+navigate into it. 
+
+!!! attention
+    The directory should *not* be within the `workshop-reproducible-research`
+    directory, since this is itself a git-tracked directory.
+
+Once we are inside the desired directory, we can *initialise*
 git with the following command:
 
 ```bash
 git init
 ```
-
-!!! attention
-    The directory should *not* be within the `workshop-reproducible-research`
-    directory, since this is itself a git-tracked directory.
 
 The directory is now a version-tracked directory. How can you know? Run the
 command `git status`, which will probably return something like this:
@@ -151,14 +154,12 @@ The text `nothing to commit (create/copy files and use "git add" to track)`
 tells us that while we are inside a directory that git is currently tracking,
 there are currently no files being tracked; let's add some!
 
-* Copy the following files and directories from the
-  `workshop-reproducible-research/git` directory, into your `git_tutorial`
-  directory:
+* Copy the following files from the `workshop-reproducible-research/git`
+  directory into your `git_tutorial` directory:
     * `Dockerfile`
     * `Snakefile`
     * `config.yml`
     * `environment.yml`
-    * `code/`
 
 * Once you have done that, run `git status` again. It will tell you that there
   are files in the directory that are not version tracked by git.
@@ -179,9 +180,6 @@ there are currently no files being tracked; let's add some!
     * The `Dockerfile` contains the recipe for making a Docker container for
       the analysis, which will be covered in detail in the
       [Docker tutorial](docker.md).
-    * The `code/` directory contains an R Markdown report that is used in the
-      final step of the analysis (more on this in the [R Markdown
-      tutorial](rmarkdown.md)).
 
 !!! note "Quick recap"
     We have used two `git` commands this far:
@@ -212,13 +210,13 @@ git add Dockerfile Snakefile
   files as well:
 
 ```bash
-git add config.yml environment.yml code/
+git add config.yml environment.yml
 ```
 
 * Run `git status` and see that all files are in the staging area, and that no
   files are listed as untracked.
 
-* We are now ready to commit! Run:
+* We are now ready to commit! Run the following:
 
 ```bash
 git commit -m "Add initial files"
@@ -251,12 +249,20 @@ what the commit contains.
     commit message and body. If you want to read more about the motivation for
     these points, please see [this website](https://chris.beams.io/posts/git-commit/).
 
-* Run `git status` (yep, again!). It should tell you *"nothing to commit,
-  working directory clean"*.
+* Run `git status` again. It should tell you *"nothing to commit, working
+  directory clean"*.
 
-* Now, let's edit a file. Open up `environment.yml` in your favorite editor,
-  and change the version of bowtie2 to a different value, *e.g.*
-  `bowtie2=2.2.4`.
+What have we done, so far? We had some files in our working directory that we
+added to the Git staging area, which we subsequently committed to our Git
+repository. A schematic overview of this process can be seen in the following
+figure:
+
+![](images/git_overview_local.png)
+
+Let's repeat this process by editing a file!
+
+* Open up `environment.yml` in your favorite editor, and change the version of
+  bowtie2 to a different value, *e.g.* `bowtie2=2.2.4`.
 
 * Run `git status`. It will tell you that there are modifications in one file
   (`environment.yml`) compared to the previous commit. This is nice! We don't
@@ -333,7 +339,7 @@ rm Dockerfile
 ```bash
 git add Dockerfile
 git status
-git commit -m "remove Dockerfile"
+git commit -m "Remove Dockerfile"
 git status
 git log
 ```
@@ -430,7 +436,7 @@ touch data/metadata.txt
 # Ignore all files in the data/ directory
 data/*
 
-# Exclude the metadata file be prefixing it with an exclamation mark
+# Exclude the metadata file by prefixing it with an exclamation mark
 !data/metadata.txt
 ```
 
@@ -523,7 +529,7 @@ shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} \
 git log --graph --all --oneline
 ```
 
-It is often useful to see what the differences exists between branches.
+It is often useful to see what differences exist between branches.
 You can use the `diff` command for this:
 
 ```bash
@@ -564,7 +570,7 @@ back the changes made in test_alignment to main.
     stable code, it is convenient to periodically merge the changes made to
     `main` into relevant branches (*i.e.* the opposite to what we did above).
     That way, you keep your experimental branches up-to-date with the newest
-    changes and make them more easily merged into `main` when time comes.
+    changes and make them easier to merge into `main` when time comes.
 
 * If we do not want to do more work in `test_alignment` we can delete that
   branch:
@@ -798,7 +804,7 @@ sub-directories as well, giving you the opportunity to go more in-depth where
 you so desire.
 
 !!! tip
-    There are a lot more things you can do with markdown what we show here.
+    There are a lot more things you can do with markdown than what we show here.
     Indeed, this entire course is mostly written in markdown! You can read
     more about markdown [here](https://www.markdownguide.org/getting-started/).
 
@@ -904,6 +910,13 @@ changes that you *may* want to merge, without actually doing it, such as in
 a collaborative setting. In fact, `git pull` in its default mode is just
 a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
 `FETCH_HEAD` points to the tip of the branch that was just fetched).
+
+That's quite a few concepts and commands you've just learnt! It can be a bit
+hard to keep track of everything and the connections between local and remote
+Git repositories and how you work with them, but hopefully the following figure
+will give you a short visual summary:
+
+![](images/git_overview_remote.png)
 
 !!! note "Quick recap"
     We have learnt the difference between local and remote copies of git
@@ -1206,7 +1219,7 @@ git push
     them by inspecting the affected files and looking for the source of the
     conflict.
 
-## Tips and tricks
+## Extra material
 
 The following extra material contains some more advanced things you can do with
 git and the command line in general, which is not part of the main course
@@ -1233,9 +1246,9 @@ variable `PS1`. You can type `echo $PS1` to see what variables your prompt
 is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
 hostname, `\W` the working directory and `\u` the username.
 
-Some programmers like to also show the current branch on their prompt, thus
-avoiding having to type `git branch` continuously. There are several ways you
-might do this, and we're only presenting one of them here: a bash function.
+Some people like to also show the current branch on their prompt, thus avoiding
+having to type `git branch` continuously. There are several ways you might do
+this, and we're only presenting one of them here: a bash function.
 
 ```bash
 git_branch() {
@@ -1275,7 +1288,7 @@ file, so make sure you don't overwrite it!
 ### Bash aliases for git
 
 Some git commands are used over and over again when working with git, such as
-`git status`. Some programmers like to have aliases (*i.e.* shortcuts) for these
+`git status`. Some people like to have aliases (*i.e.* shortcuts) for these
 common commands. Here is a small list of such aliases that you may find useful
 or, even better, might inspire you to create your own! Add them to your
 `~/.bash_profile` as above, so that they're available across sessions.

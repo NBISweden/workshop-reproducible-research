@@ -5,12 +5,12 @@ Links to the zoom meeting and for the HackMD used during the course are sent out
 
 # Finding the course venue
 
-N.A.
+--
 
 # Finding the restaurant for the course dinner
 
-N.A.
+--
 
 # Finding the "social event" venue
 
-N.A.
+--

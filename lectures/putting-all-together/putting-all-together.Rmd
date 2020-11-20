@@ -55,7 +55,7 @@ By moving towards a reproducible way of working you will quickly realize that yo
 # What have we learned?
 
 .pull-left[
-<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png"/>
+<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png" style="width:100%;"/>
 ]
 
 .pull-right[
@@ -183,6 +183,21 @@ Are you going to change your way of working? If yes, how?
 --
 
 * .green[Docker] pull (from online repository) and run code or workflow in container
+
+---
+
+# Options for reproducing a project
+
+.pull-left[
+[Example](https://drive.google.com/file/d/1lXHlDdseHTe2Pb1JaCIhqDS7odTCVyRC/view?usp=sharing): 
+
+Pulling the Docker image for the case study from an online repository and running the workflow in a container
+
+]
+
+.pull-right[
+<img src="https://nbis-reproducible-research.readthedocs.io/en/devel/images/rulegraph_mrsa_intro.svg" style="width:100%;"/>
+]
 
 ---
 
@@ -357,6 +372,17 @@ Or are you planning to use a different combination?
 class: center, middle
 
 <img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/>
+
+---
+
+# Still don't know where to start?
+
+Our material includes a section on [Making a project reproducible](https://nbis-reproducible-research.readthedocs.io/en/latest/repres_project/) 
+with some ideas on how to get started.
+
+* Option 1: try to implement the tools in one of your own projects
+
+* Option 2: use a small-scale data set that we prepared for you to implement the tools
 
 ---
 

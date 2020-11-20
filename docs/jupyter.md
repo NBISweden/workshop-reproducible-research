@@ -95,7 +95,7 @@ $ jupyter notebook --allow-root
 
 Jupyter Notebook probably opened up a web browser for you automatically,
 otherwise go to the address specified in the message in the terminal. Note that
-the server is running locally (as [http://localhost:8888]) so this does not
+the server is running locally (as `http://localhost:8888`) so this does not
 require that you have an active internet connection. Also note that it says:
 
 ```no-highlight
@@ -162,18 +162,20 @@ are only applicable when in command mode (blue frames). Most of them are also
 available from the menus. These shortcuts are also available from the **Help**
 menu in your notebook (there's even an option there to edit shortcuts).
 
-* ++enter++: enter Edit mode
-* ++escape++: enter Command mode
-* ++ctrl+enter++: run the cell
-* ++shift+enter++: run the cell and select the cell below
-* ++alt+enter++: run the cell and insert a new cell below
-* ++ctrl+s++: save the notebook
-* ++tab++: for code completion or indentation
-* m/y: toggle between Markdown and Code cells
-* d-d: delete a cell
-* a/b: insert cells above/below current cell
-* x/c/v: cut/copy/paste cells
-* o: toggle output of current cell
+| Shortcut        | Effect                                   |
+|-----------------|------------------------------------------|
+| ++enter++       | enter Edit mode                          |
+| ++escape++      | enter Command mode                       |
+| ++ctrl+enter++  | run the cell                             |
+| ++shift+enter++ | run the cell and select the cell below   |
+| ++alt+enter++   | run the cell and insert a new cell below |
+| ++ctrl+s++      | save the notebook                        |
+| ++tab++         | for code completion or indentation       |
+| ++m++/++y++     | toggle between Markdown and Code cells   |
+| ++d-d++         | delete a cell                            |
+| ++a/b++         | insert cells above/below current cell    |
+| ++x/c/v++       | cut/copy/paste cells                     |
+| ++o++           | toggle output of current cell            |
 
 ### Writing markdown
 
@@ -553,16 +555,16 @@ an argument in the call to `interactive`. If you need help, click below.
 Jupyter widgets, like we used here, is the most vanilla way of getting
 interactive graphs in Jupyter notebooks. Some other alternatives are:
 
-* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) - is actually an
+* [Plotly](https://plot.ly/python/ipython-notebook-tutorial) is actually an
   API to a web service that renders your graph and returns it for display in
   your Jupyter notebook. Generates very visually appealing graphs, but from
   a reproducibility perspective it's maybe not a good idea to be so reliant on
   a third party.
 * [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook)
-  - is another popular tool for interactive graphs. Most plotting packages for
-    Python are built on top of matplotlib, but Bokeh has its own library. This
+  is another popular tool for interactive graphs. Most plotting packages for
+  Python are built on top of matplotlib, but Bokeh has its own library. This
   can give a steeper learning curve if you're used to the standard packages.
-* [mpld3](http://mpld3.github.io) - tries to integrate matplotlib with
+* [mpld3](http://mpld3.github.io) tries to integrate matplotlib with
   Javascript and the D3js package. It doesn't scale well for very large
   datasets, but it's easy to use and works quite seamlessly.
 
@@ -704,6 +706,7 @@ directory.
 ```python
 import glob
 import os
+import zipfile
 
 with open('summary.txt', 'w') as fhout:
     # Find all zip files from fastqc
@@ -712,7 +715,7 @@ with open('summary.txt', 'w') as fhout:
         arc_name = os.path.splitext(os.path.basename(f))[0]
         # Open up the 'summary.txt' in the zip archive
         # and output the contents to 'summary.txt'
-        with ZipFile(f) as myzip:
+        with zipfile.ZipFile(f) as myzip:
             with myzip.open('{arc_name}/summary.txt'.format(arc_name=arc_name), 'r') as fhin:
                 fhout.write(fhin.read().decode())
 ```

@@ -92,7 +92,7 @@ cd workshop-reproducible-research
 ```
 
 !!! attention
-    Check your git version by `git --version`. If you have a very old version
+    Check your git version with `git --version`. If you have a very old version
     of git you might want to update to a later version.
 
 !!! tip

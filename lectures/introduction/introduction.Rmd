@@ -25,7 +25,7 @@ layout: true
 class: center, middle
 .HUGE[Tools for reproducible research]
 
-.green[Stockholm, April 27-29]
+.green[Online, November 23-27]
 
 <img src="https://phdcomics.com/comics/archive/phd031214s.gif" style="width:80%;"/>
 
@@ -35,16 +35,20 @@ class: center, middle
 .HUGE[The teachers]
 
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:180px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:150px" hspace=20/>
     <p>John Sundh</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:180px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:150px" hspace=20/>
     <p>Verena Kutchera</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:180px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:150px" hspace=20/>
     <p>Erik Fasterius</p>
+</div>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/tomas-larsson.png" style="height:150px" hspace=20/>
+    <p>Tomas Larsson</p>
 </div>
 
 ---
@@ -68,15 +72,9 @@ class: center, middle
 
 ---
 
-# Students' experiences
-
-*Students' experiences go here*
-
----
-
 # Schedule
 
-<iframe src="https://nbis-reproducible-research.readthedocs.io/en/devel/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
+<iframe src="https://nbis-reproducible-research.readthedocs.io/en/latest/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
 
 ---
 
@@ -184,9 +182,7 @@ ioannidis_2 <- data.frame(
     value  = c(5, 1, 2, 2))
 ```
 
-.pull-left[
-
-```{r Plot the first Ioannidis data, include = TRUE, fig.height = 6}
+```{r Plot the first Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
 pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
 ggplot(ioannidis_1, aes(x    = "",
                         y    = value,
@@ -198,18 +194,21 @@ ggplot(ioannidis_1, aes(x    = "",
     scale_fill_manual(values = pie_1_colours) +
     blank_theme +
     theme(axis.text.x     = element_blank(),
-          legend.text     = element_text(size = 12),
+          legend.text     = element_text(size = 18),
           legend.position = "right") +
     guides(fill = guide_legend(reverse = TRUE))
 ```
 
-]
+---
 
---
+# Why all the talk about reproducible research?
 
-.pull-right[
+*Replication of data analyses in 18 articles on microarray-based gene
+expression profiling published in Nature Genetics in 2005–2006:*
 
-```{r, Plot the second Ioannidis data, include = TRUE, fig.height = 6}
+.tiny[Adopted from Ioannidis *et al.* "Repeatability of published microarray gene expression analyses", Nature Genetics 41 (2009) doi:10.1038/ng.295]
+
+```{r Plot the second Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
 pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
 ggplot(ioannidis_2, aes(x    = "",
                         y    = value,
@@ -222,12 +221,10 @@ ggplot(ioannidis_2, aes(x    = "",
     blank_theme +
     theme(axis.text.x      = element_blank(),
           legend.position  = "right",
-          legend.text      = element_text(size = 12),
+          legend.text      = element_text(size = 18),
           legend.direction = "vertical",
           plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
 ```
-
-]
 
 ---
 
@@ -240,13 +237,13 @@ The results of only 26% out of 204 randomly selected papers in the journal
 
 --
 
-> Many journals are revising author guidelines to include data and code
-> availability.
+> "Many journals are revising author guidelines to include data and code
+> availability."
 
 --
 
-> (...) an improvement over no policy, but currently insufficient for
-> reproducibility.
+> "(...) an improvement over no policy, but currently insufficient for
+> reproducibility."
 
 ---
 
@@ -321,7 +318,7 @@ There are many so-called excuses not to work reproducibly:
 
 .right-column[
 * Data available on request
-* All meta data required for generating the results available
+* All metadata required for generating the results available
 ]
 
 ---
@@ -335,7 +332,7 @@ There are many so-called excuses not to work reproducibly:
 
 .right-column[
 * .light-grey[Data available on request]
-* .light-grey[All meta data required for generating the results available]
+* .light-grey[All metadata required for generating the results available]
 * Data deposited in public repositories
 * Raw data available in unedited form
 * If the raw data needed preprocessing, scripts were used rather than modifying
@@ -354,7 +351,7 @@ There are many so-called excuses not to work reproducibly:
 
 .right-column[
 * .light-grey[Data available on request]
-* .light-grey[All meta data required for generating the results available]
+* .light-grey[All metadata required for generating the results available]
 * .light-grey[Data deposited in public repositories]
 * .light-grey[Raw data available in unedited form]
 * .light-grey[If the raw data needed preprocessing, scripts were used rather than modifying it manually]

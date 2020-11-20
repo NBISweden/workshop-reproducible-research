@@ -58,7 +58,7 @@ thing you might have noticed is that this command produces a file
 `ubuntu_latest.sif` in the current working directory. Singularity, unlike
 Docker, stores its images as a single file. Docker on the other hand uses
 layers, which can be shared between multiple images, and thus stores downloaded
-images centrally (remember the `docker image ls` command?). A Singularity image
+images centrally (remember the `docker images` command?). A Singularity image
 file is self-contained (no shared layers) and can be moved around and shared
 like any other file.
 
@@ -66,9 +66,12 @@ To run a command in a Singularity container (equivalent of *e.g.* `docker run
 ubuntu uname -a`) we can execute:
 
 ```bash
-$ singularity exec ubuntu_latest.sif uname -a
+singularity exec ubuntu_latest.sif uname -a
+```
+
+This should result in something similar to:
+```no-highlight
 Linux (none) 4.19.10 #1 SMP Mon Apr 8 00:07:40 CDT 2019 x86_64 x86_64 x86_64 GNU/Linux
-[    4.994162] reboot: Power down
 ```
 
 Now, try to also run the following commands in the ubuntu container in the same
@@ -134,16 +137,15 @@ ls /mnt/code
 ```
 
 Now, this was not really necessary since `conda/` would have been available to
-us anyway since it most likely has you home directory as a parent, but it
+us anyway since it most likely is a sub-directory under your `$HOME`, but it
 illustrates the capabilities to get files from the host system into the
 container when needed. Note also that if you run Singularity on say an HPC
 cluster, the system admins may have enabled additional default directories that
 are bind mounted automatically.
 
 !!! note "Quick recap"
-    In this section we covered:
-
-    * how to bind mount specific directories using `-B`
+    In this section we covered how to bind mount specific directories using
+    `-B`.
 
 ## Pulling Docker images
 
@@ -164,13 +166,9 @@ singularity exec lolcow_latest.sif fortune
 singularity shell lolcow_latest.sif
 ```
 
-
-
 !!! note "Quick recap"
-    In this section we covered:
-
-    * How to use `singularity pull` to download and run Docker images as
-      Singularity containers
+    In this section we covered how to use `singularity pull` to download and
+    run Docker images as Singularity containers.
 
 ## Building from scratch
 

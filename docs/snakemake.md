@@ -159,6 +159,13 @@ you all available flags.
 ```no-highlight
 $ snakemake -n -r -p a.upper.txt
 
+Building DAG of jobs...
+Job counts:
+	count	jobs
+	1	convert_to_upper_case
+	1
+
+[Thu Nov 19 13:31:30 2020]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
@@ -169,9 +176,10 @@ rule convert_to_upper_case:
         tr [a-z] [A-Z] < a.txt > a.upper.txt
 
 Job counts:
-        count   jobs
-        1       convert_to_upper_case
-        1
+	count	jobs
+	1	convert_to_upper_case
+	1
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
 You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case`
@@ -188,6 +196,8 @@ What if we ask Snakemake to generate the file `b.upper.txt`?
 
 ```no-highlight
 $ snakemake -n -r -p b.upper.txt
+
+Building DAG of jobs...
 MissingRuleException:
 No rule to produce b.upper.txt (if you use input functions make sure that they do not raise unexpected exceptions)
 ```
@@ -275,6 +285,9 @@ Snakemake to generate.
 
 ```no-highlight
 $ snakemake a_b.txt
+
+Building DAG of jobs...
+Using shell: /usr/local/bin/bash
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
@@ -321,13 +334,12 @@ Neat!
     * How to define target files when executing a workflow.
     * How to use named wildcards for writing generic and flexible rules.
 
-!!! tip
-    You can name a file whatever you want in a Snakemake workflow, but you will
+!!! tip You can name a file whatever you want in a Snakemake workflow, but you will
     find that everything falls into place much nicer if the filename reflects
     the file's path through the workflow, *e.g.*
     `sample_a.trimmed.deduplicated.sorted.bam`.
 
-## Workflows and visualization
+## Visualizing workflows
 
 All that we've done so far could quite easily be done in a simple shell script
 that takes the input files as parameters. Let's now take a look at some of the
@@ -386,6 +398,7 @@ happen if you run `snakemake -n -r a_b.txt` again?
     ```no-highlight
     $ snakemake -n -r a_b.txt
 
+    Building DAG of jobs...
     rule convert_to_upper_case:
         input: a.txt
         output: a.upper.txt
@@ -523,7 +536,7 @@ the other tutorials instead.
       there have been changes.
     * How logging in Snakemake works.
 
-## RNA-seq analysis of MRSA
+## The MRSA workflow
 
 As you might remember from the [intro](tutorial_intro.md), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
@@ -609,6 +622,7 @@ Now try to run the whole workflow. Hopefully you see something like this.
 
 ```no-highlight
 Building DAG of jobs...
+Using shell: /usr/local/bin/bash
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
@@ -655,7 +669,7 @@ in the directories `data`, `intermediate` and `results`. Take some time to look
 through the structure, in particular the quality control reports in `results`
 and the count table in `results/tables`.
 
-### Parameters
+## Parameters
 
 In a typical bioinformatics project, considerable efforts are spent on tweaking
 parameters for the various programs involved. It would be inconvenient if you
@@ -747,7 +761,7 @@ to form the `config` dictionary. If you want to overwrite a parameter value,
     Rather than supplying the config file from the command line you could also
     add the line `configfile: "config.yml"` to the top of your Snakefile.
 
-### Logs
+## Logs
 
 As you probably noticed it was difficult to follow how the workflow progressed
 since some rules printed a lot of output to the terminal. In some cases this
@@ -817,7 +831,7 @@ workflow when the rules write to logs instead of to the terminal. If you run
 with `-D` (or `-S` for a simpler version) you will see that the summary table
 now also contains the log file for each of the files in the workflow.
 
-### Temporary files
+## Temporary files
 
 It's not uncommon that workflows contain temporary files that should be kept
 for some time and then deleted once they are no longer needed. A typical case
@@ -882,7 +896,7 @@ Snakemake has a number of options for marking files:
   use case could be if you run some clustering analysis and end up with one
   file per cluster.
 
-### Shadow rules
+## Shadow rules
 
 Take a look at the rule `generate_count_table` below. Since `input.annotation`
 is compressed, it is first unzipped to a temporary file. `htseq-count` then
@@ -967,7 +981,7 @@ and validate that the temporary files don't show up in your working directory.
     or very large files it might be worth considering other options (see *e.g.* 
     the `--shadow-prefix` flag).
 
-### Rule targets 
+## Rule targets
 
 So far we have only defined the inputs/outputs of a rule as strings, or in
 some case a list of strings, but Snakemake allows us to be much more flexible
@@ -1039,7 +1053,7 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
 the sample ids. Much better!
 
-### Generalizing the workflow
+## Generalizing the workflow
 
 It's generally a good idea to separate project-specific parameters from the
 actual implementation of the workflow. If we want to move all project-specific
@@ -1185,5 +1199,5 @@ Well done!
 * You have a logical directory structure which makes it easy to separate raw
   data, intermediate files, and results.
 * You have set up you project in a way that makes it very easy to distribute
-  and reproduce, either via git, via Snakemake's `--archive` option, or via
-  a Docker image.
+  and reproduce either via Git, Snakemake's `--archive` option or a Docker
+  image.

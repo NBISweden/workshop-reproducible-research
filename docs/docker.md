@@ -111,15 +111,15 @@ On Windows 7 we will instead use Docker Toolbox, which is available at
 ### Linux
 How to install Docker differs a bit depending on your Linux distro, but the
 steps are the same. For details on how to do it on your distro see
-[https://docs.docker.com/engine/installation/#server][].
+[https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/install/#server).
 
 Here we show how to do it for Ubuntu, which is the most common desktop
 distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your
 OS is from 2015 or earlier you can double check this with `lsb_release -a`. If
-it's newer you're probably fine. The same instructions apply to distributions
-based on Ubuntu, such as Elementary OS or Linux Mint, but you would have to map
-to the corresponding Ubuntu version and use that instead of `$(lsb_release
--cs)` below (see [here](
+it's newer you're probably fine. The same instructions apply to other 
+distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you 
+would have to map to the corresponding Ubuntu version and use that instead of 
+`$(lsb_release -cs)` below (see [here](
 https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
 for Mint).
 
@@ -183,28 +183,31 @@ Docker containers typically run Linux, so let's start by downloading an image
 containing Ubuntu (a popular Linux distribution that is based on only
 open-source tools) through the command line.
 
-```no-highlight
-$ docker pull ubuntu:latest
-Using default tag: latest
-latest: Pulling from library/ubuntu
-660c48dd555d: Pull complete
-4c7380416e78: Pull complete
-421e436b5f80: Pull complete
-e4ce6c3651b3: Pull complete
-be588e74bd34: Pull complete
-Digest: sha256:7c67a2206d3c04703e5c23518707bdd4916c057562dd51c74b99b2ba26af0f79
-Status: Downloaded newer image for ubuntu:latest
+```bash
+docker pull ubuntu:latest
 ```
 
-You might have noticed that it downloaded five different layers with weird
-hashes as names ("660c48dd555d" and so on). This represents a very fundamental
-property of Docker images that we'll get back to in just a little while. For
-now let's just look at our new and growing collection of Docker images:
+You will notice that it downloads different layers with weird hashes as names. 
+This represents a very fundamental property of Docker images that we'll get 
+back to in just a little while. The process should end with something along the
+lines of:
 
 ```no-highlight
-$ docker image ls
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+```
+
+Let's take a look at our new and growing collection of Docker images:
+
+```bash
+docker images
+```
+
+The Ubuntu image show show up in this list, with something looking like this:
+
+```
 REPOSITORY       TAG              IMAGE ID            CREATED             SIZE
-ubuntu           latest           20c44cd7596f        2 weeks ago         123MB
+ubuntu           latest           d70eaf7277ea        3 weeks ago         72.9MB
 ```
 
 We can now start a container running our image. We can refer to the image
@@ -215,8 +218,11 @@ the operating system. First run on your own system (skip this if you're using
 Windows via the Windows 10 PowerShell, or use `systeminfo` which is the 
 Windows equivalent).
 
+```bash
+uname -a
+```
+
 ```no-highlight
-$ uname -a
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
@@ -227,13 +233,23 @@ Docker container.
 docker run ubuntu uname -a
 ```
 
+```no-highlight
+Linux 24d063b5d877 5.4.39-linuxkit #1 SMP Fri May 8 23:03:06 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+```
+
 And now I'm running on Linux! Try the same thing with `whoami`.
 
 So, seems we can execute arbitrary commands on Linux. Seems useful, but maybe
 a bit limited. We can also get an interactive terminal with the flags `-it`.
 
+```bash
+docker run -it ubuntu
+```
+
+This should put at a terminal prompt inside a container running Ubuntu. Your
+prompt should now look similar to:
+
 ```no-highlight
-$ docker run -it ubuntu
 root@1f339e929fa9:/#
 ```
 
@@ -248,9 +264,10 @@ probably be useful on its own, but Docker is much more powerful than that.
     In this section we've learned:
 
     * How to use `docker pull` for downloading images from a central registry.
-    * How to use `docker image ls` for getting information about the images we
+    * How to use `docker images` for getting information about the images we
       have on our system.
     * How to use `docker run` for starting a container from an image.
+    * How to use the `-it` flag for running in interactive mode.
 
 ## Building a Docker image
 
@@ -317,12 +334,14 @@ Let's take a look at the next section of the Dockerfile.
 ```no-highlight
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
+
 # Set workdir
 WORKDIR /course
 ```
 
-`SHELL` simply sets which shell to use. `WORKDIR` determines the directory the 
-container should start in.
+`SHELL` simply sets which shell to use. `WORKDIR` determines the directory the
+container should start in. The next few lines introduce the important `RUN`
+instruction, which is used for executing shell commands:
 
 ```no-highlight
 # Install necessary tools
@@ -336,45 +355,51 @@ RUN apt-get update && \
                                                tzdata \
                                                vim \
                                                unzip \
-                                               wget
+                                               wget \
     && apt-get clean
 
 # Install Miniconda and add to PATH
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
     bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
-    rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+    rm Miniconda3-4.7.12.1-Linux-x86_64.sh && \
+    /usr/miniconda3/bin/conda clean -tipsy && \
+    ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /usr/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 ```
 
-The next few lines introduce the important `RUN` instruction, which is used for
-executing shell commands. As a general rule, you want each layer in an image to
-be a "logical unit". For example, if you want to install a program the `RUN`
-command should both retrieve the program, install it and perform any necessary
-clean up. This is due to how layers work and how Docker decides what needs to
-be rerun between builds. The first command uses Ubuntu's package manager APT to
-install some packages (similar to how we've previously used Conda). Say that
-the first command was split into two instead:
+As a general rule, you want each layer in an image to be a "logical unit". For
+example, if you want to install a program the `RUN` command should both
+retrieve the program, install it and perform any necessary clean up. This is
+due to how layers work and how Docker decides what needs to be rerun between
+builds. The first command uses Ubuntu's package manager APT to install some
+packages (similar to how we've previously used Conda). Say that the first
+command was split into two instead:
 
 ```no-highlight
 # Update apt-get
 RUN apt-get update
 
-#Install packages
+# Install packages
 RUN apt-get install -y --no-install-recommends bzip2 \
-                                           ca-certificates \
-                                           curl \
-                                           fontconfig \
-                                           git \
-                                           language-pack-en \
-                                           tzdata \
-                                           vim \
-                                           unzip \
-                                           wget
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim \
+                                               unzip \
+                                               wget
+
+# Clear the local repository of retrieved package files 
+RUN apt-get clean
 ```
 
 The first command will update the apt-get package lists and the second will
 install the packages `bzip2`, `ca-certificates`, `curl`, `fontconfig`, `git`,
-`language-pack-en`, `tzdata`, `vim` and `wget`. Say that you build this image 
-now, and then in a month's time you realize that you would have liked a
+`language-pack-en`, `tzdata`, `vim`, `unzip` and `wget`. Say that you build this 
+image now, and then in a month's time you realize that you would have liked a
 Swedish language pack instead of an English. You change to `language-pack-sv` 
 and rebuild the image. Docker detects that there is no layer with the new
 list of packages and reruns the second `RUN` command. **However, there is no
@@ -384,17 +409,27 @@ the versions would depend on when the previous version of the image was first
 built.
 
 The next `RUN` command retrieves and installs Miniconda3. Let's see what would
-happen if we had that as three separate commands instead.
+happen if we had that as separate commands instead.
 
 ```no-highlight
 # Download Miniconda3
-RUN curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
 
 # Install it
 RUN bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
 
 # Remove the downloaded installation file
 RUN rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+
+# Remove unused packages and caches
+RUN /usr/miniconda3/bin/conda clean -tipsy
+
+# Permanently enable the Conda command
+RUN ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+RUN echo ". /usr/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+
+# Add the base environment permanently to PATH
+RUN echo "conda activate base" >> ~/.bashrc
 ```
 
 Remember that each layer contains the difference compared to the previous
@@ -403,19 +438,35 @@ file and the second will unpack the file and install the software. The third
 layer will say "the installation file should no longer exist on the file
 system". However, the file will still remain in the image since the image is
 constructed layer-by-layer bottom-up. This results in unnecessarily many layers
-and bloated images.
+and bloated images. Line four is cleaning up conda to free up space, and the 
+next two lines are there to make the Conda command available in the shell. 
+The last command adds a code snippet to the bash startup file which 
+automatically activates the Conda base environment in the container.
+
 
 ```no-highlight
 # Add conda to PATH and set locale
 ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
+ENV CONDA_ENVS_PATH="/course/envs"
+RUN mkdir /course/envs
 ```
 
 Here we use the new instruction `ENV`. The first command adds `conda` to the
-path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda
-install`. The other two set an UTF-8 character encoding so that we can use
-weird characters (and a bunch of other things).
+path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda install`. 
+The next two commands set an UTF-8 character encoding so that we can use
+weird characters (and a bunch of other things). The final two commands
+are specifying a directory in which Conda environments are stored.
+Every time an image is run, a brand new container is started and Conda 
+environments from previous runs that were stored in the default directory would be lost. 
+The directory `course/` can be mounted to a local directory when starting
+the container. This will make it and all its contents that are created while running
+the container available on the local computer (more about bind mounts further 
+below in the tutorial). So by specifying this directory in the Dockerfile, 
+Conda environments from previous runs of the image can be made available
+in future runs.
+
 
 ```no-highlight
 # Open port for running Jupyter Notebook
@@ -434,10 +485,14 @@ for the user. If the purpose of your image is to accompany a publication then
 data.
 
 Ok, so now we understand how a Dockerfile works. Constructing the image from
-the Dockerfile is really simple. Try it out now.
+the Dockerfile is really simple. Try it out now:
 
-```no-highlight
-$ docker build -f Dockerfile_slim -t my_docker_image .
+```bash
+docker build -f Dockerfile_slim -t my_docker_image .
+```
+
+This should result in
+```
 Step 1/13 : FROM ubuntu:16.04
  ---> 20c44cd7596f
 Step 2/13 : LABEL description = "Minimal image for the NBIS reproducible research course."
@@ -458,7 +513,7 @@ Successfully tagged my_docker_image:latest
 name is how you will refer to the image later. Lastly, the `.` is the path to
 where the image should be build (`.` means the current directory). This had no
 real impact in this case, but matters if you want to import files. Validate
-with `docker image ls` that you can see your new image.
+with `docker images` that you can see your new image.
 
 Now it's time to make our own Dockerfile to reproduce the results from the
 [Conda tutorial](conda). If you haven't done the tutorial, it boils down to
@@ -479,7 +534,7 @@ the image. So, this is what we need to do:
 3. Install the required packages with Conda. We could do this by adding
    `environment.yml` from the Conda tutorial, but here we do it directly as
    `RUN` commands. We need to add the conda-forge and bioconda channels with
-   `conda config --add channels channel_name` and install `fastqc=0.11.9` and
+   `conda config --add channels <channel_name>` and install `fastqc=0.11.9` and
    `sra-tools=2.10.1` with `conda install`. The packages will be installed to 
    the default environment named `base` inside the container.
 
@@ -490,7 +545,25 @@ the image. So, this is what we need to do:
 5. Set the default command for the image to `bash run_qc.sh`, which will
    execute the shell script.
 
-6. Build the image and tag it `my_docker_conda`. Verify with `docker image ls`.
+Try to add required lines to `Dockerfile_conda`. If it seems overwhelming you 
+can take a look below
+
+??? note "Click to see an example of Dockerfile_conda"
+    FROM my_docker_image:latest
+    RUN conda config --add channels bioconda && \
+        conda config --add channels conda-forge && \
+        conda install -n base fastqc=0.11.9 sra-tools=2.10.1
+    COPY run_qc.sh .
+    CMD bash run_qc.sh
+
+
+Build the image and tag it `my_docker_conda`: 
+
+```bash
+docker build -t my_docker_conda -f Dockerfile_conda .
+```
+
+Verify that the image was built using `docker images`.
 
 !!! note "Quick recap"
     In this section we've learned:
@@ -499,7 +572,7 @@ the image. So, this is what we need to do:
       `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
     * The importance of letting each layer in the Dockerfile be a "logical
       unit".
-    * How to use `docker build` to contruct and tag an image from a Dockerfile.
+    * How to use `docker build` to construct and tag an image from a Dockerfile.
 
 ## Managing containers
 
@@ -515,10 +588,13 @@ If everything worked `run_qc.sh` is executed and will first download and then
 analyse the three samples. Once it's finished you can list all containers, 
 including those that have exited.
 
-```no-highlight
-$ docker container ls --all
-CONTAINER ID        IMAGE               COMMAND                   CREATED             STATUS                           PORTS               NA
-MES
+```bash
+docker container ls --all
+```
+
+This should show information about the container that we just ran. Similar to: 
+```
+CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS                      PORTS               NAMES
 39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
 ```
 
@@ -570,8 +646,8 @@ docker exec -it my_container /bin/bash
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How to use `docker run` for starting a container and how the flags `-d`,
-      `-it` and `--rm` work.
+    * How to use `docker run` for starting a container and how the flags `-d`
+      and `--rm` work.
     * How to use `docker container ls` for displaying information about the
       containers.
     * How to use `docker attach` and `docker exec` to interact with running
@@ -595,12 +671,18 @@ it will appear in the mounted directory on your host system.
 Say that we are interested in getting the resulting html reports from FastQC in
 our container. We can do this by mounting a directory called, say,
 `fastqc_results` in your current directory to the `/course/results/fastqc`
-directory in the container. Try this out and validate that it worked by opening
-one of the html reports.
+directory in the container. Try this out by running:
 
 ```bash
 docker run --rm -v $(pwd)/fastqc_results:/course/results/fastqc my_docker_conda
 ```
+
+Here the `-v` flag to docker run specifies the bind mount in the form of 
+`directory/on/your/computer:/directory/inside/container`. `$(pwd)` simply 
+evaluates to the working directory on your computer.
+
+Once the container finishes validate that it worked by opening one of the html 
+reports under `fastqc_results/`.
 
 We can also use bind mounts for getting files into the container rather than
 out. We've mainly been discussing Docker in the context of packaging an
@@ -657,7 +739,11 @@ your_dockerhub_id/image_name:tag_name`.
     and distribute Docker images. The Dockerhub servers will then build an
     image from the Dockerfile in your repository and make it available for
     download using `docker pull`. That way, you don't have to bother manually
-    building and pushing using `docker push`.
+    building and pushing using `docker push`. The GitHub repository for this 
+    course is linked to Dockerhub and the Docker images are built automatically
+    from `Dockerfile` and `Dockerfile_slim`, triggered by changes made to the
+    GitHub repository. You can take a look at the course on Dockerhub 
+    [here](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
 
 ## Packaging the case study
 
@@ -678,7 +764,7 @@ The `docker` directory contains the final versions of all the files we've
 generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`,
 `code/header.tex`, and `code/supplementary_material.Rmd`. The only difference
 compared to the other tutorials is that we have also included the rendering of
-the Supplementary Material PDF into the Snakemake workflow as the rule
+the Supplementary Material HTML file into the Snakemake workflow as the rule
 `make_supplementary`. Running all of these steps will take some time to execute
 (around 20 minutes or so), in particular if you're on a slow internet
 connection, and result in a 3.75 GB image.
@@ -686,21 +772,26 @@ connection, and result in a 3.75 GB image.
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
 previous section, although some sections have been moved around. The main
-difference is that we now also install LaTeX (through the TinyTeX package). We
-need this in order to be able to render the Supplementary Material report to
-PDF. Here, we also add the project files needed for executing the workflow
+difference is that we add the project files needed for executing the workflow
 (mentioned in the previous paragraph), and install the conda packages listed in
 `environment.yml`. If you look at the `CMD` command you can see that it will
 run the whole Snakemake workflow by default.
 
-Now run `docker build` as before and go get a coffee while the image builds (or
+Now run `docker build` as before, tag the image with `my_docker_project`:
+ 
+````bash
+docker build -t my_docker_project -f Dockerfile .
+````
+and go get a coffee while the image builds (or
 you could use `docker pull nbisweden/workshop-reproducible-research` which
-will download the same image). Validate with `docker image ls`. Now all that
-remains is to run the whole thing with `docker run`. We just want to get the
-results, so mount the directory `/course/results/` to, say, `mrsa_results` in
-your current directory. Well done! You now have an image that allows anyone to
-exactly reproduce your analysis workflow (if you first `docker push` to
-Dockerhub that is).
+will download the same image). 
+
+Validate with `docker images`. Now all that remains is to run the whole thing 
+with `docker run`. We just want to get the results, so mount the directory 
+`/course/results/` to, say, `mrsa_results` in your current directory. 
+
+Well done! You now have an image that allows anyone to exactly reproduce your 
+analysis workflow (if you first `docker push` to Dockerhub that is).
 
 !!! tip
     If you've done the [Jupyter Notebook tutorial](jupyter.md), you know that
