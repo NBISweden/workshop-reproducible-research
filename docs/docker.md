@@ -552,14 +552,16 @@ the image. So, this is what we need to do:
 Try to add required lines to `Dockerfile_conda`. If it seems overwhelming you 
 can take a look below
 
-??? note "Click to see an example of Dockerfile_conda"
+??? note "Click to see an example of `Dockerfile_conda`"
+
+    ```
     FROM my_docker_image:latest
     RUN conda config --add channels bioconda && \
         conda config --add channels conda-forge && \
         conda install -n base fastqc=0.11.9 sra-tools=2.10.1
     COPY run_qc.sh .
     CMD bash run_qc.sh
-
+    ```
 
 Build the image and tag it `my_docker_conda`: 
 
