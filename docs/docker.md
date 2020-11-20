@@ -216,22 +216,26 @@ either by "REPOSITORY:TAG" ("latest" is the default so we can omit it) or
 [COMMAND] [ARG...]`. Let's run the command `uname -a` to get some info about
 the operating system. First run on your own system (skip this if you're using
 Windows via the Windows 10 PowerShell, or use `systeminfo` which is the 
-Windows equivalent).
+Windows equivalent):
 
 ```bash
 uname -a
 ```
+
+This should print something like this to your command line:
 
 ```no-highlight
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
 Seems like I'm running the Darwin version of macOS. Then run it in the Ubuntu
-Docker container.
+Docker container:
 
 ```bash
 docker run ubuntu uname -a
 ```
+
+Here I get the following result:
 
 ```no-highlight
 Linux 24d063b5d877 5.4.39-linuxkit #1 SMP Fri May 8 23:03:06 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
