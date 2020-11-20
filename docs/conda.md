@@ -55,7 +55,7 @@ correct file for your OS*.
     for Linux users (see below).
 
 !!! attention
-    If you already have installed conda but want to update, you should be able
+    If you already have installed Conda but want to update, you should be able
     to simply run `conda update conda` and subsequently `conda init`, and skip
     the installation instructions below.
 
@@ -250,17 +250,16 @@ data.
 We have up until now specified which Conda packages to install directly on the
 command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use an *environment file* (in [yml
-format](https://en.wikipedia.org/wiki/yml)) that specifies the packages,
-versions and channels needed to create the environment for a project.
+reproducibility, it is better to use an *environment file* (in [yml format](https://en.wikipedia.org/wiki/yml))
+that specifies the packages, versions and channels needed to create the
+environment for a project.
 
 Throughout these tutorials we will use a case study where we analyze an RNA-seq
-experiment with the multiresistant bacteria MRSA (see
-[intro](tutorial_intro.md)). You will now start to make a Conda yml file for
-this MRSA project. The file will contain a list of the software and versions
-needed to execute the analysis code.
+experiment with the multiresistant bacteria MRSA (see [intro](tutorial_intro.md)).
+You will now start to make a Conda yml file for this MRSA project. The file will
+contain a list of the software and versions needed to execute the analysis code.
 
-In this conda tutorial, all code for the analysis is available in the script
+In this Conda tutorial, all code for the analysis is available in the script
 `code/run_qc.sh`. This code will download the raw FASTQ-files and subsequently
 run quality control on these using the FastQC software.
 
@@ -296,8 +295,8 @@ conda env create -n project_mrsa -f environment.yml
 
 !!! tip
     Instead of the `-n` flag you can use the `-p` flag to set the full path to
-    where the conda environment should be installed. In that way you can
-    contain the conda environment inside the project directory, which does make
+    where the Conda environment should be installed. In that way you can
+    contain the Conda environment inside the project directory, which does make
     sense from a reproducibility perspective, and makes it easier to keep track
     of what environment belongs to what project. If you don't specify `-p` the
     environment will be installed in the default `miniconda3/envs/` directory.
@@ -366,45 +365,45 @@ afterwards, ensuring future reproducibility.
 ## Extra material
 
 The following extra material contains some more advanced things you can do with
-conda and the command line in general, which is not part of the main course
-materials. All the essential skills of conda are covered by the previous
+Conda and the command line in general, which is not part of the main course
+materials. All the essential skills of Conda are covered by the previous
 section: the material here should be considered tips and tricks from people who
 use Conda as part of their daily work. You thus don't need to use these things
 unless you want to, and you can even skip this part of the lesson if you like!
 
 ### Managing python versions
 
-With conda it's possible to keep several different versions of python on your
+With Conda it's possible to keep several different versions of python on your
 computer at the same time, and switching between these versions is very easy.
-However, a single conda environment can only contain one version of python.
+However, a single Conda environment can only contain one version of python.
 
 #### Your current python installation
 
-The conda base environment has its own version of python installed.
-When you open a terminal (after having installed conda on your system) this base
+The Conda base environment has its own version of python installed.
+When you open a terminal (after having installed Conda on your system) this base
 environment is activated by default (as evidenced by `(base)` prepended to your
 prompt). You can check what python version is installed in this environment by
 running `python --version`. To see the exact path to the python executable type
 `which python`.
 
 In addition to this your computer may already have python installed in a
-separate (system-wide) location outside of the conda installation. To see if
+separate (system-wide) location outside of the Conda installation. To see if
 that is the case type `conda deactivate` until your prompt is not prepended
-with a conda environment name. Then type `which python`. If a path was printed
+with a Conda environment name. Then type `which python`. If a path was printed
 to the terminal (*e.g.* `/usr/bin/python`) that means some python version is
 already installed in that location. Check what version it is by typing `python
 --version`.
 
-Now activate the base conda environment again by typing `conda activate` (or
+Now activate the base Conda environment again by typing `conda activate` (or
 the equivalent `conda activate base`) then check the python installation path
 and version using `which` and `python --version` as above. See the difference?
-When you activate a conda environment your `$PATH` variable is updated so that
+When you activate a Conda environment your `$PATH` variable is updated so that
 when you call `python` (or any other program) the system first searches the
 directory of the currently active environment.
 
 #### Different python versions
 
-When you create a new conda environment you can choose to install a specific
+When you create a new Conda environment you can choose to install a specific
 version of python in that environment as well. As an example, create an
 environment containing python version `3.5` by running:
 
@@ -425,7 +424,7 @@ You now have a completely separate environment with its own python version.
 Let's say you instead want an environment with python version `2.7` installed.
 You may for instance want to run scripts or packages that were written for
 Python 2.x and are thus incompatible with Python 3.x. Simply create the new
-conda environment with:
+Conda environment with:
 
 ```bash
 conda create -n py27 python=2.7
@@ -442,13 +441,13 @@ py35` / `conda activate py27`.
 !!! note "Default python version"
     If you create an environment where none of the packages require python,
     **and** you don't explicitly install the `python` package then that new
-    environment will use the python version installed in your base conda
+    environment will use the python version installed in your base Conda
     environment.
 
-### Configuring conda
+### Configuring Conda
 
-The behaviour of your conda installation can be changed using an optional
-configuration file `.condarc`. On a fresh conda install no such file is
+The behaviour of your Conda installation can be changed using an optional
+configuration file `.condarc`. On a fresh Conda install no such file is
 included but it's created in your home directory as `~/.condarc` the first time
 you run `conda config`.
 
@@ -459,7 +458,7 @@ You can edit the `.condarc` file either using a text editor or by way of the
 conda config --show
 ```
 
-Similar to conda environment files, the configuration file is in yml syntax.
+Similar to Conda environment files, the configuration file is in yml syntax.
 This means that the config file is structured in the form of `key:value` pairs
 where the `key` is the name of the config parameter (*e.g.* `auto_update_conda`)
 and the `value` is the parameter setting (*e.g.* `True`).
@@ -470,7 +469,7 @@ that parameter, *e.g.* `conda config --show channels`.
 You can change parameters with the `--set`, `--add`, `--append` and `--remove`
 flags to `conda config`.
 
-If you for example want to enable the 'Always yes' behaviour which makes conda
+If you for example want to enable the 'Always yes' behaviour which makes Conda
 automatically choose the `yes` option, such as when installing, you can run:
 
 ```bash
@@ -484,7 +483,7 @@ To see details about a config parameter you can run `conda config --describe
 conda config --describe channels
 ```
 
-In the beginning of this tutorial we added conda channels to the `.condarc`
+In the beginning of this tutorial we added Conda channels to the `.condarc`
 file using `conda config --add channels`. To remove one of the channels from
 the configuration file you can run:
 
@@ -492,7 +491,7 @@ the configuration file you can run:
 conda config --remove channels conda-forge
 ```
 
-Check your `.condarc` file to see the change. To add the conda-forge channel
+Check your `.condarc` file to see the change. To add the *conda-forge* channel
 back to the top of the `channels` simply run:
 
 ```bash
@@ -505,7 +504,7 @@ To completely remove a parameter and all its values run:
 conda config --remove-key <parameter>
 ```
 
-For a list of conda configuration parameters see the
+For a list of Conda configuration parameters see the
 [Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
 page.
 
@@ -519,9 +518,9 @@ for environments (specifying `conda env create -p <path/to/environment>`,
 though, as the entire path will be added to the prompt. This can take up a lot
 of unnecessary space, but can be solved in a number of ways.
 
-The most straightforward way to solve this is to change the conda configuration
+The most straightforward way to solve this is to change the Conda configuration
 file, specifically the settings of the `env_prompt` configuration value which
-determines how conda modifies your command line prompt. For more information
+determines how Conda modifies your command line prompt. For more information
 about this setting you can run `conda config --describe env_prompt` and to see
 your current setting you can run `conda config --show env_prompt`.
 
@@ -530,7 +529,7 @@ with the active environment name if it was installed using the -n flag or if
 the environment folder has a parent folder named envs/. Otherwise the full
 environment path (*i.e.* the 'prefix') is displayed.
 
-If you instead set env_prompt to '({name}) ' conda will modify your prompt with
+If you instead set env_prompt to '({name}) ' Conda will modify your prompt with
 the folder name of the active environment. You can change the setting by
 running the following:
 
@@ -538,17 +537,17 @@ running the following:
 conda config --set env_prompt '({name}) '
 ```
 
-If you wish to keep the ({default_env})' behaviour, or just don't want to
-change your conda config, an alternative is to keep conda environment folders
-within a parent folder called `envs/`. This will make conda only add the folder
-name of the conda environment to your prompt when you activate it.
+If you wish to keep the '({default_env})' behaviour, or just don't want to
+change your Conda config, an alternative is to keep Conda environment folders
+within a parent folder called `envs/`. This will make Conda only add the folder
+name of the Conda environment to your prompt when you activate it.
 
-As an example, say you have a project called project_a with the project path
-`~/myprojects/project_a`. You could then install the environment for project_a
+As an example, say you have a project called *project_a* with the project path
+`~/myprojects/project_a`. You could then install the environment for *project_a*
 into a folder `~/myprojects/project_a/envs/project_a_environment`. Activating
-the environment by pointing conda to it (*e.g.* conda activate
-`~/myprojects/project_a/envs/project_a_environment`) will only cause your prompt
-to be modified with project_a_environment.
+the environment by pointing Conda to it (*e.g.*
+`conda activate ~/myprojects/project_a/envs/project_a_environment`) will only
+cause your prompt to be modified with *project_a_environment*.
 
 ### Bash aliases for conda
 
@@ -564,3 +563,41 @@ alias code='conda deactive'
 ```
 
 Don't forget to add them to your `~/.bash_profile` if you want to use them!
+
+### Optimising for speed
+
+One of the greatest strengths of Conda is, unfortunately, also its greatest
+weakness in its current implementation: the availability of a frankly enormous
+number of packages and versions. This means that the search space for the
+dependency hierarchy of any given Conda environment can become equally enormous,
+leading to a (at times) ridiculous execution time for the dependency solver. It
+is not uncommon to find yourself waiting for minutes for Conda to solve
+a dependency hierarchy, sometimes even into the double digits. How can this be
+circumvented?
+
+Firstly, it is useful to specify as many of the `major.minor.patch` version
+numbers as possible when defining your environment: this drastically reduces the
+search space that Conda needs to go through. This is not always possible,
+though. For example, we mentioned in the end of the *Environments in projects*
+section that you might want to start out new projects without version
+specifications for most packages, which means that the search space is going to
+be large. Here is where another software comes into play: *Mamba*.
+
+The [Mamba package manager](https://github.com/mamba-org/mamba) is built on-top
+of Conda with some changes and additions that greatly speed up the execution
+time. First of all, core parts of Mamba are written in C++ instead of Python,
+like the original Conda. Secondly, it uses a different dependency solver
+algorithm which is much faster than the one Conda uses. Lastly, it allows for
+parallel downloading of repository data and package files with multi-threading.
+All in all, these changes mean that Mamba is (currently) simply a better
+version of Conda. Hopefully these changes will be incorporated into the Conda
+core at some point in the future!
+
+So, how do you get Mamba? Funnily enough, the easiest way to install it is (of
+course) using Conda! Just run `conda install -n base -c conda-forge mamba`,
+which will install Mamba in your `base` Conda environment. Mamba works *exactly*
+the same as Conda, meaning that all you need to do is to stop using `conda <command>` 
+and instead use `mamba <command>` - simple! There are only two exceptions 
+to this, and that is activating and deactivating environments: you still 
+have to use `conda activate` and `conda deactivate`. So transitioning into
+using Mamba is actually quite easy - enjoy your shorter execution times!

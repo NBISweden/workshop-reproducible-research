@@ -141,9 +141,8 @@ cluster, the system admins may have enabled additional default directories that
 are bind mounted automatically.
 
 !!! note "Quick recap"
-    In this section we covered:
-
-    * how to bind mount specific directories using `-B`
+    In this section we covered how to bind mount specific directories using
+    `-B`.
 
 ## Pulling Docker images
 
@@ -167,10 +166,8 @@ singularity shell lolcow_latest.sif
 
 
 !!! note "Quick recap"
-    In this section we covered:
-
-    * How to use `singularity pull` to download and run Docker images as
-      Singularity containers
+    In this section we covered how to use `singularity pull` to download and
+    run Docker images as Singularity containers.
 
 ## Building from scratch
 
