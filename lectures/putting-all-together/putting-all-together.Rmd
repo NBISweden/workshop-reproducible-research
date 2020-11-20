@@ -375,6 +375,17 @@ class: center, middle
 
 ---
 
+# Still don't know where to start?
+
+Our material includes a section on [Making a project reproducible](https://nbis-reproducible-research.readthedocs.io/en/latest/repres_project/) 
+with some ideas on how to get started.
+
+* Option 1: try to implement the tools in one of your own projects
+
+* Option 2: use a small-scale data set that we prepared for you to implement the tools
+
+---
+
 # NBIS Bioinformatics drop-in
 
 Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
