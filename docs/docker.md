@@ -251,6 +251,7 @@ probably be useful on its own, but Docker is much more powerful than that.
     * How to use `docker image ls` for getting information about the images we
       have on our system.
     * How to use `docker run` for starting a container from an image.
+    * How to use the `-it` flag for running in interactive mode.
 
 ## Building a Docker image
 
@@ -571,8 +572,8 @@ docker exec -it my_container /bin/bash
 !!! note "Quick recap"
     In this section we've learned:
 
-    * How to use `docker run` for starting a container and how the flags `-d`,
-      `-it` and `--rm` work.
+    * How to use `docker run` for starting a container and how the flags `-d`
+      and `--rm` work.
     * How to use `docker container ls` for displaying information about the
       containers.
     * How to use `docker attach` and `docker exec` to interact with running
