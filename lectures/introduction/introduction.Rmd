@@ -78,13 +78,6 @@ class: center, middle
 
 ---
 
-# Please provide feedback!
-[https://nbis-reproducible-research.readthedocs.io/en/latest/feedback/]()
-
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLBmhUGCq_6D_NMCTKtgz8k-5idJmPvKwZ_Ip3A_u8wy1WqQ/viewform?embedded=true" scrolling="yes" width="800" height="400" frameborder="0" marginheight="0" marginwidth="0"</iframe>
-
----
-
 # Why all the talk about reproducible research?
 
 .pull-left[
