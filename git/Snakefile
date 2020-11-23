@@ -11,7 +11,7 @@ rule all:
         "results/tables/counts.tsv",
         "results/multiqc.html",
         "results/rulegraph.png",
-        "results/supplementary.pdf"
+        "results/supplementary.html"
 
 rule get_SRA_by_accession:
     """
@@ -181,28 +181,28 @@ rule generate_count_table:
 
 rule make_supplementary:
     """
-    Generate Supplementary Material PDF
+    Generate Supplementary Material
     """
     input:
         counts = "results/tables/counts.tsv",
         multiqc_file = "intermediate/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     output:
-        "results/supplementary.pdf"
+        "results/supplementary.html"
     params:
         SRR_IDs = config["sample_ids"],
         GSM_IDs = config["sample_ids_geo"]
     shell:
         """
         echo 'rmarkdown::render("code/supplementary_material.Rmd", \
-                  output_file="supplementary.pdf", \
+                  output_file="supplementary.html", \
+                  output_dir="results/", \
                   params=list(counts_file="{input.counts}", \
                               multiqc_file="{input.multiqc_file}", \
                               rulegraph_file="{input.rulegraph}", \
                               SRR_IDs="{params.SRR_IDs}", \
                               GSM_IDs="{params.GSM_IDs}"))' \
         | R --vanilla
-        mv code/supplementary.pdf results/
         """
 
 rule generate_rulegraph:
