@@ -1,5 +1,11 @@
 # Tools for Reproducible Research
 
+!!! attention
+    If you're viewing this page from the course documentation at Read the Docs
+    then you won't be able to add questions/feedback nor see the live updates
+    to the document. To do that, go to the 
+    [document at HackMD](https://hackmd.io/4hSZFZdiROGOq8ZtiAvMUw).
+
 ## Important links
 
 - [Course homepage](https://nbis-reproducible-research.readthedocs.io/en/latest/)
