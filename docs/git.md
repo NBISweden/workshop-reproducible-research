@@ -632,9 +632,13 @@ git tag
     You can use the flag `-a` or `--annotate` to give more detailed information
     about a specific tag, similar to a commit message. This can be quite useful
     when there are many changes that happened, in that it allows you to
-    summarise them. To list all your tags along with their annotations you can
-    use *e.g.* `git tag -n10` (which will list the first 10 lines of each tag's
-    annotation).
+    summarise them. You can, for example, do `git tag -a submission1 -m
+    "Annotation for tag submission1"` to write the annotation along with the
+    command (similar to the `-m` flag for committing) or just `git tag -a
+    submission1` to write the annotation with your default editor.
+
+    To list all your tags along with their annotations you can use *e.g.* `git
+    tag -n10` (which will list the first 10 lines of each tag's annotation).
 
 * Let's assume we now got comments from the reviewers, and by fixing
   those we had to update our code. Open `config.yml` and change the line

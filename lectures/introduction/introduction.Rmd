@@ -40,7 +40,7 @@ class: center, middle
 </div>
 <div class="image-with-text">
     <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:150px" hspace=20/>
-    <p>Verena Kutchera</p>
+    <p>Verena Kutschera</p>
 </div>
 <div class="image-with-text">
     <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:150px" hspace=20/>

@@ -132,7 +132,7 @@ environment.yml   project dependencies list used to create software environment
 
 README.md         project description and instructions
 
-Snakefile         recipe to create a project container
+Snakefile         workflow file used by snakemake
 ```
 ]
 
