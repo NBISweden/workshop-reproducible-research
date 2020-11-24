@@ -595,9 +595,10 @@ core at some point in the future!
 
 So, how do you get Mamba? Funnily enough, the easiest way to install it is (of
 course) using Conda! Just run `conda install -n base -c conda-forge mamba`,
-which will install Mamba in your `base` Conda environment. Mamba works *exactly*
-the same as Conda, meaning that all you need to do is to stop using `conda <command>` 
-and instead use `mamba <command>` - simple! There are only two exceptions 
-to this, and that is activating and deactivating environments: you still 
-have to use `conda activate` and `conda deactivate`. So transitioning into
-using Mamba is actually quite easy - enjoy your shorter execution times!
+which will install Mamba in your `base` Conda environment. Mamba works almost
+exactly the same as Conda, meaning that all you need to do is to stop using
+`conda <command>` and instead use `mamba <command>` - simple! There are only
+a few exceptions to this, the two major ones beings activating and deactivating
+environments: you still have to use `conda activate` and `conda deactivate`. So
+transitioning into using Mamba is actually quite easy - enjoy your shorter
+execution times!
