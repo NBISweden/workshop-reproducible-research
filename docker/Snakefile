@@ -196,13 +196,13 @@ rule make_supplementary:
         """
         echo 'rmarkdown::render("code/supplementary_material.Rmd", \
                   output_file="supplementary.html", \
+                  output_dir="results/", \
                   params=list(counts_file="{input.counts}", \
                               multiqc_file="{input.multiqc_file}", \
                               rulegraph_file="{input.rulegraph}", \
                               SRR_IDs="{params.SRR_IDs}", \
                               GSM_IDs="{params.GSM_IDs}"))' \
         | R --vanilla
-        mv code/supplementary.html results/
         """
 
 rule generate_rulegraph:
