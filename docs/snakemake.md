@@ -54,7 +54,7 @@ programs, all of which are available in the Bioconda channel. If you
 look in the current directory you will see an `environment.yml` file
 that specifies an environment containing FastQC and SRA-Tools (identical
 to the one you made in the Conda tutorial). Add the following programs
-to the file and save it.
+to the file (make sure you use correct indentation!) and save it.
 
 ```yaml
 # Specify python version (not required but can help with downstream conflicts)
