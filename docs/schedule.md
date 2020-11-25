@@ -211,7 +211,4 @@ the approximate schedule below:
 </table>
 
 **Teachers:**
-John Sundh
-Verena Kutschera
-Erik Fasterius
-Tomas Larsson
+John Sundh, Verena Kutschera, Erik Fasterius, Tomas Larsson
