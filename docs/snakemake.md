@@ -1168,16 +1168,21 @@ rule get_genome_fasta:
         """
 ```
 
-Now change in `get_genome_gff3` in the same way. Also change in `index_genome`
-to use a wildcard rather than a hardcoded genome id. Here you will run into
-a complication if you have followed the previous instructions and use the
-`expand()` expression. We want the list to expand to
-`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
-but for it to do so we must use double curly brackets around the wildcard,
-*i.e.* `{{genome_id}}`. Lastly, we need to define somewhere which genome id we
-actually want to use. This needs to be done both in `align_to_genome` and
-`generate_count_table`. Do this by introducing a parameter in `config.yml`
-called "genome_id". See below for an example for `align_to_genome`.
+Now change in `get_genome_gff3` in the same way. 
+
+Also change in `index_genome` to use a wildcard rather than a hardcoded genome 
+id. Here you will run into a complication if you have followed the previous 
+instructions and use the `expand()` expression. We want the list to expand to
+`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`, 
+*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the 
+`genome_id` wildcard from being expanded we have to "mask" it with double curly 
+brackets: `{{genome_id}}`. 
+
+Lastly, we need to define somewhere which genome id we actually want to use. 
+This needs to be done both in `align_to_genome` and `generate_count_table`. 
+Do this by introducing a parameter in `config.yml` called "genome_id". See 
+below for an example for `align_to_genome`. Here the `substr` wildcard gets
+expanded from a list while `genome_id` gets expanded from the config file.
 
 ```python
 output:
