@@ -447,4 +447,4 @@ workflow has already been run and Snakemake will continue from that
 automatically without redoing anything. Once completed you should see a bunch
 of directories and files generated in your current working directory, including 
 the `results/` directory containing the 
-final PDF report.
+final HTML report.
