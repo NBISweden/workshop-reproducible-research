@@ -36,8 +36,6 @@ RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64
 ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
-ENV CONDA_ENVS_PATH="/course/envs"
-RUN mkdir /course/envs
 
 # Open port for running Jupyter Notebook
 EXPOSE 8888

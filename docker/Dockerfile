@@ -62,8 +62,4 @@ RUN echo -e "library(tinytex)\ntinytex::install_tinytex(dir='/usr/.TinyTeX')"| R
 # (Jupyter Notebook has to be separately installed in the container)
 EXPOSE 8888
 
-# Add conda envs dir
-ENV CONDA_ENVS_PATH="/course/envs"
-RUN mkdir /course/envs
-
 CMD snakemake -rp --configfile config.yml
