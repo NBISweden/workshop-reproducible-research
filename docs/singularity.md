@@ -295,7 +295,7 @@ will soon install).
     apt-get clean
 
     # Install conda:
-    curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+    curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
     bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
     rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 
@@ -362,7 +362,7 @@ else correct it should be related to the PATH).
 
     ```bash
     # Install conda:
-    curl https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+    curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
     bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
     rm Miniconda3-4.7.12.1-Linux-x86_64.sh
     export PATH=/usr/miniconda3/bin:$PATH ## <- add this line
