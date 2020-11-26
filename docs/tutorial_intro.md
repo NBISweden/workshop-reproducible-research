@@ -191,6 +191,44 @@ git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
 
+#### Setting up persistent conda environments
+Because the root file system of each container is an isolated instance conda
+environments you create during this course will be lost if you exit the 
+container or if it is killed for some reason. This means that you will have to 
+recreate each environment every time you run a new container for
+the course. To avoid this, you can make sure conda uses a subfolder `envs/` 
+inside the `/course` directory for storing environments. If you run containers
+for the course with some folder on your local machine mounted inside `/course`
+that will cause the conda environments to be available on your local machine
+even though they are created inside the container. Should a container be stopped
+for some reason you can simply run a new one and activate conda environments
+under `/course/envs`, saving you the trouble of recreating them.
+
+What you have to do is to, after you've started a container with the 
+`docker run` command above, first create the `envs/` directory:
+
+```bash
+mkdir /course/envs
+``` 
+
+Then set the environment variable `CONDA_ENVS_PATH` to `/course/envs`:
+
+```bash
+export CONDA_ENVS_PATH="/course/envs"
+```
+
+Now when you use Conda to create environments inside the Docker container for
+the course, the environments will be placed in `/course/envs` which is also 
+present on your local system because you mounted the folder inside the 
+container. **Note that you will have to set the `CONDA_ENVS_PATH` each time you
+start a new container for this to work**.
+
+!!! attention
+    This usage of persistent conda environments should be considered an edge 
+    case of how you use Docker containers. We do this only to make it easier to
+    run the course through Docker, but in general we do not advocate creating
+    conda environments separate from the actual Docker container.  
+
 Don't worry if you feel that this Docker stuff is a little confusing, it will
 become clearer in the [Docker tutorial](docker.md). However, the priority right
 now is just to get it running so that you can start working.
