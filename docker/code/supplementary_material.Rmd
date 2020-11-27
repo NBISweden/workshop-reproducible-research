@@ -1,6 +1,6 @@
 ---
 title: "Supplementary Material"
-output: pdf_document
+output: html_document
 params:
   counts_file: "results/tables/counts.tsv"
   multiqc_file: "intermediate/multiqc_general_stats.txt"

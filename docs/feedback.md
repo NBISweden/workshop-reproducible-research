@@ -301,22 +301,76 @@ _Write your questions about Snakemake here that come up later during the week._
 
 **Response:**
 
-
 --
 
 ## Day 4 (Thu Nov 26)
 
 ### Jupyter
 
+**Question:** How do you launch a Jupyter notebook from UPPMAX? Is there a module you can load?
+
+**Response 1:** You can try the [ThinLinc](https://www.uppmax.uu.se/support/user-guides/thinlinc-graphical-connection-guide/) software that's installed on Uppmax, which can give you a GUI desktop on a login-node on both Rackham and Bianca. None of us teachers have used it, so we can't say any details on it, but we think it might be able to run Jupyter on Uppmax. You can always ask the Uppmax Support for help regarding this, if you're interested in getting it to work.
+
+**Response 2:** On Rackham (but probably not Bianca) you can follow the instructions from the tutorial:
+
+```bash
+ssh me@rackham.uppmax.uu.se -L8888:localhost:8888
+jupyter notebook --ip 0.0.0.0 --no-browser
+```
+
 --
+
+**Question:** What does the icon in the upper right corner mean that says "Not trusted" or "Trusted"?
+
+**Response:** The notebook gets "Trusted" when the user has executed all code, and whenever you load it again, HTML and Javascript output will be displayed. For "Not trusted" notebooks, these are disabled until you run the cells that require either of them. You can read more about it here: https://jupyter-notebook.readthedocs.io/en/latest/notebook.html#trusting-notebooks
+
+--
+
+**Question:** I tried the widget "ColorPicker", but the color won't change from "red" to "blue". Why could that be? 
+
+```python
+colorpicker = widgets.ColorPicker(
+    description='Color',
+    value='blue')
+```
+
+**Response:** You also need to edit the following line of code from:
+
+```python
+interactive_plot = interactive(sine_curve, A=A, f=5, p=5)
+```
+
+to
+
+```python
+interactive_plot = interactive(sine_curve, 
+            A=(1, 5, 1), 
+            f=(0, 5, 1), 
+            p=(1, 5, 0.5),
+            color=colorpicker) ## <- Supply the colorpicker to the function
+```
 
 ### R Markdown
 
---
+**Question:** Would it be possible to give an example on how you start up a new R Markdown document on uppmax, using your preferred editor (whatever that might be)?
+
+**Response:** As R Markdown is simply a format, you can just create a new file ending in `.Rmd` and start typing away. Depending on your editor this can require some sort of port/X-forwarding or GUI interface with [ThinLinc](https://www.uppmax.uu.se/support/user-guides/thinlinc-graphical-connection-guide/) or similar, but it can also not matter if you're using a text editor like Vim or Emacs.
+
+With Vim, for example, I (Erik) has so-called "snippets" that allow me to easily start from a fresh R Markdown file and quickly add a template YAML header (which I edit) and then start typing away at markdown and chunks as needed. I render with the same command line-based code that's shown in the tutorial (through Vim shortcuts). If you're interested I could show in more detail, but it varies very much from setup to setup. For RStudio it's the same as editing any other R Markdown document, you just have to connect it to Rackham through something. This can be done if you have X-forwarding enabled when you SSH in (read more at the [Uppmax website](https://www.uppmax.uu.se/support/user-guides/r-user-guide/)).
+
+A thing to keep in mind with ANY notebook that you run on Uppmax (so either Jupyter or R Markdown) is that the login nodes are not capable of very heavy computations (probably less than your own laptop, actually), so if you're doing heavy computations you'll want to submit it to the SLURM system (either through scripts or, more reproducibly, through a workflow manager like Snakemake).
 
 ### Docker
 
+**Question:** Do images you build become independent from the base image layer you use in the `FROM` directive?
+
+**Response:** Yes, once an image is built it is a separate stand-alone unit of software. At build-time however the base image you specify in `FROM` has to be available to Docker somehow, either via a remote registry such as DockerHub or on your local computer.
+
 --
+
+**Question:** Can you push images that you haven't built with a tag (`-t`) to a remote repository?
+
+**Response:** Yes but you have to tag the image first with `docker tag`.
 
 ### Singularity
 
@@ -324,14 +378,64 @@ _Write your questions about Snakemake here that come up later during the week._
 - The website has been updated with instructions how to open the Vagrant VirtualBox (https://nbis-reproducible-research.readthedocs.io/en/latest/singularity/#setup).
 - Files in the Vagrant VirtualBox and your local computer are shared via the folder `vagrant/` (in the Vagrant VirtualBox). Per default, you are standing in `/home/vagrant`.
 
+
+### Jupyter tutorial follow-up questions
+
+_Write your questions about Jupyter here that come up later during the week._
+
+**Question:**
+
+**Response:**
+
+--
+
+### R Markdown tutorial follow-up questions
+
+_Write your questions about R Markdown here that come up later during the week._
+
+**Question:**
+
+**Response:**
+
+--
+
+### Docker tutorial follow-up questions
+
+_Write your questions about Docker here that come up later during the week._
+
+**Question:**
+
+**Response:**
+
+--
+
+### Singularity tutorial follow-up questions
+
+_Write your questions about Singularity here that come up later during the week._
+
+**Question:**
+
+**Response:**
+
+--
+
 ## Day 5 (Thu Nov 27)
 
 ### Docker
 
---
+
 
 ### Singularity
 
---
+
 
 ### Putting the pieces together
+
+
+### Q&A: How to implement these procedures on a day-to-day basis
+
+**Question:**
+
+**Response:**
+
+--

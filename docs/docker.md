@@ -453,24 +453,12 @@ automatically activates the Conda base environment in the container.
 ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
-ENV CONDA_ENVS_PATH="/course/envs"
-RUN mkdir /course/envs
 ```
 
 Here we use the new instruction `ENV`. The first command adds `conda` to the
 path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda install`. 
 The next two commands set an UTF-8 character encoding so that we can use
-weird characters (and a bunch of other things). The final two commands
-are specifying a directory in which Conda environments are stored.
-Every time an image is run, a brand new container is started and Conda 
-environments from previous runs that were stored in the default directory would be lost. 
-The directory `course/` can be mounted to a local directory when starting
-the container. This will make it and all its contents that are created while running
-the container available on the local computer (more about bind mounts further 
-below in the tutorial). So by specifying this directory in the Dockerfile, 
-Conda environments from previous runs of the image can be made available
-in future runs.
-
+weird characters (and a bunch of other things). 
 
 ```no-highlight
 # Open port for running Jupyter Notebook
