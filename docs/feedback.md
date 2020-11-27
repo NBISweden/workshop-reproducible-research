@@ -377,15 +377,38 @@ A thing to keep in mind with ANY notebook that you run on Uppmax (so either Jupy
 **Comments for Windows users:** 
 - The website has been updated with instructions how to open the Vagrant VirtualBox (https://nbis-reproducible-research.readthedocs.io/en/latest/singularity/#setup).
 - Files in the Vagrant VirtualBox and your local computer are shared via the folder `vagrant/` (in the Vagrant VirtualBox). Per default, you are standing in `/home/vagrant`.
-
+ 
+**Comment for Linux users** (Ubuntu 16.04)
+I run into trouble with version 2.6.0 as described in the setup. I had to install the newest by following [this link](https://sylabs.io/guides/3.4/user-guide/installation.html#distribution-packages-of-singularity) (but actually installing 3.7.0 as it is the newest).  Make sure to install Go as described before singularity.
 
 ### Jupyter tutorial follow-up questions
 
 _Write your questions about Jupyter here that come up later during the week._
 
 **Question:**
+I had to create a separate conda environment for jupyter notebook on Uppmax:
 
-**Response:**
+```yaml
+channels:
+- conda-forge
+
+dependencies:
+- jupyter
+- nb_conda
+- matplotlib
+- ipywidgets
+- seaborn
+- pandas
+```
+
+Then I activate this: `conda activate jupyter`
+
+But when I run `jupyter notebook --ip 0.0.0.0 --no-browser`, the link provided doesn't seem to work :)
+
+   To access the notebook, open this file in a browser:
+        file:///domus/h1/.local/share/jupyter/runtime/nbserver-36818-open.html
+
+**Response:** We'll look into that :-) 
 
 --
 
@@ -393,9 +416,7 @@ _Write your questions about Jupyter here that come up later during the week._
 
 _Write your questions about R Markdown here that come up later during the week._
 
-**Question:**
-
-**Response:**
+**Comment:** A comment on writing simple reports: If you write scripts in R and use RStudio, you can also simply knit R script without using R markdown language, as RStudio converts a script for you.
 
 --
 
@@ -423,19 +444,134 @@ _Write your questions about Singularity here that come up later during the week.
 
 ### Docker
 
-
+**Comment:** Some Mac users might run into an error message when building the Docker image for the MRSA case study from `Dockerfile`, during the step when conda is installed. This can be solved by giving the Docker Desktop App more memory, as it only has access to 2 GB RAM per default. Go to the Docker Desktop App, click on the little wheel in the upper right corner, and go to "Resources". Under "Advanced", increase the memory to *e.g.* 4 GB and click "Apply & Restart".
 
 ### Singularity
 
-
+--
 
 ### Putting the pieces together
 
+_Write your questions about the lecture here_
 
 ### Q&A: How to implement these procedures on a day-to-day basis
 
-**Question:**
+**Question:** How do you deal with files not neccesarily following the same naming convention? For example, I work with genome assemblies from different people and different tools, and the headers are often very different in regards to which chromosome a scaffold represents, so I need different code for each assembly to change the header to useful information for my finaly results.
 
-**Response:**
+**Response:** You are sadly correct that if you have input data that is used for the same thing (*e.g.* alignment) but are formatted differently, you need to have some kind of variation on those files are handled. You could use separate Snakemake rules that take the differently formatted+named files, for example, or you could have a single rule with some script with if-clauses.
 
 --
+
+**Question:** Will we get a certificate for this course?
+
+**Response:** Yes!
+
+--
+
+**Question:** Mamba seems good too? Any thoughts?
+
+**Response:** It's great, use it!
+
+--
+
+**Question:** Any suggestion about a user-friendly text editor in Ubuntu? e.g. that would make easier to work more interactively and documenting at the same time, similar to Rstudio.
+
+**Response:** How about Rstudio? There's an Ubuntu version of that. Sublime, Atom, VSCode, PyCharm, Visual Studio Code and Vim are others.
+
+--
+
+**Question:** Technical question: do you need to supply a .sif file in this command?
+
+```bash
+snakemake -s snakefile --use-singularity *.sif -j 1
+```
+
+or just
+
+```bash
+snakemake -s snakefile --use-singularity -j 1
+```
+
+**Response:** The `--use-singularity` flag only tells snakemake to use singularity for the rules that have the `singularity` (more recently `container`) directive specified. Or for workflows that have a global `singularity` directive. So the latter command is correct. A rule using singularity may look like this:
+
+**Note:** Recently snakemake has made the `singularity` directive deprecated. Instead you should use `container`, but this may depend on the snakemake version you're using.
+
+```python
+rule trimrule:
+    input: "file1.fastq.gz"
+    output: "file1.trimmed.fastq.gz"
+    singularity: "docker://biocontainers/seqtk"
+    shell:
+        """
+        seqtk trimfq {input} > {output}
+        """
+```
+
+--
+
+**Question**: If you want to work with bioinformatics at e.g. NBIS, how do you go about to acquire the skills needed (except for practicing a lot)?
+
+**Reponse:** Practice a lot! Seriously. More useful ideas are: take courses (like you're doing now), google a lot, find best practices, ask colleagues, come to the NBIS drop-in, try to add new things to learn for each new project.
+
+--
+
+**Question**: Any suggestions for learning Python? There's only one course per year at NBIS.
+
+**Response 1:** Have a look at the tutorials at [RealPython](https://realpython.com/).
+
+**Response 2:** I heard positive things about the Python course at [kaggle](https://www.kaggle.com/learn/overview). If you are looking for some examples to apply Python too, check the [Rosalind problems](http://rosalind.info/problems/list-view/).
+
+**Response 3:** Some useful things here: (https://www.codecademy.com)
+
+
+--
+
+**Question**: Do some of you do even stats and plotting in python?
+
+**Response 1:** Yes! I (John) typically do all my plotting and most statistics through python (via Jupyter notebooks). For plotting I really recommend the `seaborn` package. For stats you have `scikit-learn`, `scipy` etc.
+
+**Response 2:** I'm also doing plotting in Python (Verena) and I'm planning to move statistical analysis to Python, too. I'm currently working through this book: https://github.com/wesm/pydata-book
+
+**Response 3:** (from the zoom chat :-) ) While starting my bioinformatic ambition I tried the capstone project with John Hopkins course on coursera, and this course helped me a lot. So if one has some idea about python and start with something as a reference point, one can start with this. https://www.coursera.org/specializations/genomic-data-science
+
+--
+
+**Question**: This has been a steep one for me, because there is ggplot analogues in Python but I already have easy ggplot in R :P will need to spend lots of time I guess! Also seems like more examples for ggplot in R versus nice plotting in Python? Porbably I need to google more :)
+
+**Response:** There is actually a ggplot implementation in Python, but it sadly is not as feature-rich as the one in R and it can be a little buggy. Python plotting libraries are, for example, `bokeh` and `seaborn`.
+
+**Question**: Matplotlib is perhaps less desirable? Thanks again for the great course!
+
+**Response:** Matplotlib is a very powerful but also a very dense package with lots of features and functionality. This can make it somewhat difficult to start using for your daily plotting. Seaborn, for instance, is built on top of Matplotlib but offers a simpler interface to start creating high-quality plots.
+
+--
+
+**Question:** There seems to be an issue with pulling a singularity container through docker, where one needs to specific the version?
+
+For example:
+
+```bash
+singularity pull docker://quay.io/biocontainers/*:latest *_latest.sif
+```
+
+Or how does one need to specify a specific version?
+
+For example, I have:
+docker pull quay.io/biocontainers/smoove:<tag> for tag, can I type: docker pull quay.io/biocontainers/smoove:0.2.6-0 
+
+**Response 1:** I think this might be because a specific image does not have the `latest` tag? Could you specify what image you tried this with? Also, for this example the command should be:
+
+```bash
+# For docker
+docker pull quay.io/biocontainers/smoove:0.2.6--0
+# For singularity
+singularity pull docker://quay.io/biocontainers/smoove:0.2.6--0
+```
+
+**Response 2:** If you are looking for containers related to bioinformatics, you can also search here: https://biocontainers.pro/#/registry Here, all conda packages are listed in their conda version and their equivalent container version.
+
+--
+
+**Question:** A practical question regarding implimenting these things in our projects. If I want to start implimenting git with a sub-project of what will become a paper (i.e. there are other directories outside this one, but part of the same project), should I make a git for the bigger project now, or can I add this sub-project git to the main project git if I make that at a later date?
+
+**Response:** You can break out part of the project and create a git repository for that (with a paper directory inside it), but try to organise the whole project at one point.
