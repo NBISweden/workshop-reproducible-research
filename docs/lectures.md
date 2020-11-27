@@ -9,4 +9,5 @@ Here are links to the course lectures in HTML format.
 - [Snakemake](https://nbis-reproducible-research.readthedocs.io/en/lecture_renders/snakemake/snakemake.html)
 - [Rmarkdown](https://nbis-reproducible-research.readthedocs.io/en/lecture_renders/rmarkdown/rmarkdown.html)
 - [Jupyter](https://nbis-reproducible-research.readthedocs.io/en/lecture_renders/jupyter/jupyter.html)
+- [Containers](https://drive.google.com/file/d/1QyDY0auouJgdWY_TDdAqRwiUHgJJ_kxX/view?usp=sharing) (in Powerpoint format)
 - [Putting it all together](https://nbis-reproducible-research.readthedocs.io/en/lecture_renders/putting-all-together/putting-all-together.html)
