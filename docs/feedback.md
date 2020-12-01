@@ -311,12 +311,7 @@ _Write your questions about Snakemake here that come up later during the week._
 
 **Response 1:** You can try the [ThinLinc](https://www.uppmax.uu.se/support/user-guides/thinlinc-graphical-connection-guide/) software that's installed on Uppmax, which can give you a GUI desktop on a login-node on both Rackham and Bianca. None of us teachers have used it, so we can't say any details on it, but we think it might be able to run Jupyter on Uppmax. You can always ask the Uppmax Support for help regarding this, if you're interested in getting it to work.
 
-**Response 2:** On Rackham (but probably not Bianca) you can follow the instructions from the tutorial:
-
-```bash
-ssh me@rackham.uppmax.uu.se -L8888:localhost:8888
-jupyter notebook --ip 0.0.0.0 --no-browser
-```
+**Response 2 (updated):** The Jupyter tutorial has a brief explanation that needs to be updated. You can follow the instructions explained below under [Jupyter tutorial follow-up questions](https://hackmd.io/4hSZFZdiROGOq8ZtiAvMUw?view#Jupyter-tutorial-follow-up-questions).
 
 --
 
@@ -408,7 +403,45 @@ But when I run `jupyter notebook --ip 0.0.0.0 --no-browser`, the link provided d
    To access the notebook, open this file in a browser:
         file:///domus/h1/.local/share/jupyter/runtime/nbserver-36818-open.html
 
-**Response:** We'll look into that :-) 
+**Response:** The description in the Jupyter tutorial needs updating. Here's what you should do:
+
+**On Uppmax**
+* Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
+```
+ssh <your-user-name>@rackham1.uppmax.uu.se
+```
+
+* Activate the conda environment you created then run `python` to start python console. Type:
+
+```python
+import IPython.lib
+IPython.lib.passwd()
+```
+* Enter some password and then save the line starting with `'sha1:'`
+* Create a config file named _e.g._ `my_jupyter_config.py` and add this to it:
+```python
+c = get_config()
+# Notebook config
+#c.NotebookApp.certfile = u''
+c.NotebookApp.ip = 'localhost'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = u'sha1:...' #<-- Add your 'sha1:' string here
+c.NotebookApp.port = 9990
+```
+* Save the file and then start the jupyter server on Uppmax with:
+```bash
+jupyter notebook --config my_jupyter_config.py
+```
+
+**On your local computer**
+* Forward port 8080 to the remote port on the Uppmax login node:
+```bash
+ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.se
+```
+
+* Connect to the jupyter server by opening `localhost:8080` in your browser. You should be prompted for the password you generated.
+
+You are now (hopefully) accessing the jupyter server that's running on Upmmax, via your local browser.
 
 --
 
