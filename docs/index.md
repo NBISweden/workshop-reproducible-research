@@ -1,10 +1,10 @@
 <h2> Tools for reproducible research </h2>
 
-The next instance of this course will be **given online**, **on November 
-23-27** 2020.
+The next instance of this course will be **given online**, **on April
+19-23**, 2021.
 
 **Date and time:**  
-- November 23-27, 2020 (5 days) between 09.00 - 12.30
+- April 19-23, 2021 (5 days) between 09:00 - 14:30
 
 **Location:**  
 - The course will be held online over Zoom
@@ -12,7 +12,7 @@ The next instance of this course will be **given online**, **on November
 **Apply here:**  
 - Go to [SciLifeLab's webpage](
 https://www.scilifelab.se/event/tools-for-reproducible-research-online) for
-details and application (**deadline October 23**).
+details and application (**deadline March 19th**).
 
 <h3> Course description </h3>
 
