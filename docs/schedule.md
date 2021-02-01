@@ -174,8 +174,8 @@ the approximate schedule below:
     <td> <font size="3"> Containerization
          <font size="2"> <i> <br>
          - Introduction to containers <br>
-         - Practical tutorial: <a href="../docker/">Docker</a><br>
-         - Practical tutorial: <a href="../singularity">Singularity</a></i>
+         - Practical tutorial: <a href="../docker/">docker</a><br>
+         - Practical tutorial: <a href="../singularity">singularity</a></i>
     </td>
   </tr>
   <tr>
@@ -203,8 +203,8 @@ the approximate schedule below:
     <td> <font size="3"> 09:00  </td>
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
-         * How to implement these procedures on a day-to-day basis
-         * Making a project reproducible </i>
+         - How to implement these procedures on a day-to-day basis
+         - Making a project reproducible </i>
     </td>
   </tr>
   <tr>
