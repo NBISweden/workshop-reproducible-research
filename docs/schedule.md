@@ -203,7 +203,7 @@ the approximate schedule below:
     <td> <font size="3"> 09:00  </td>
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
-         - How to implement these procedures on a day-to-day basis
+         - How to implement these procedures on a day-to-day basis <br>
          - Making a project reproducible </i>
     </td>
   </tr>
