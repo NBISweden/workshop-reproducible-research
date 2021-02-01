@@ -148,8 +148,8 @@ the approximate schedule below:
     <td> <font size="3"> 13:00 </td>
     <td> <font size="3"> Computational notebooks and reproducible reports
          <font size="2"><i><br>
-         - Introduction to Jypyter<br>
-         - Practical tutorial: <a href="../jupyter/">Jupyter</a><br>
+         - Introduction to Jypyter <br>
+         - Practical tutorial: <a href="../jupyter/">Jupyter</a> <br>
     </td>
   </tr>
   <tr>
@@ -204,7 +204,7 @@ the approximate schedule below:
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
          - How to implement these procedures on a day-to-day basis <br>
-         - Making a project reproducible </i>
+         - Making a project reproducible </i> <br>
     </td>
   </tr>
   <tr>
