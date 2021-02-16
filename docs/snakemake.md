@@ -47,29 +47,30 @@ at the [intro](tutorial_intro.md) for instructions on how to set it up
 if you haven't done so already, then open up a terminal and go to
 `workshop-reproducible-research/snakemake`.
 
-If you have done the [Conda tutorial](conda.md) you should know how to
-define an environment and install packages using Conda and an
-`environment.yml` file. Here we will use Snakemake as well as some other
-programs, all of which are available in the Bioconda channel. If you
-look in the current directory you will see an `environment.yml` file
-that specifies an environment containing FastQC and SRA-Tools (identical
-to the one you made in the Conda tutorial). Add the following programs
-to the file (make sure you use correct indentation!) and save it.
+We will use Conda environments for the set up of this tutorial. If you have 
+done the [Conda tutorial](conda.md) you should know how to define an environment 
+and install packages using Conda and an `environment.yml` file. Here we 
+will use Snakemake as well as some other programs, all of which are available 
+in the Bioconda channel. If you look in the current directory you will see 
+an `environment.yml` file that specifies an environment containing FastQC 
+and SRA-Tools (identical to the one you made in the Conda tutorial). 
+Add the following programs to the file (make sure you use the correct 
+indentation!) and save it.
 
 ```yaml
 # Specify python version (not required but can help with downstream conflicts)
-- python=3.7.6
+  - python=3.7.6
 
 # The workflow manager
-- snakemake-minimal=5.10.0
+  - snakemake-minimal=5.10.0
 
 # For visualizing workflows
-- graphviz=2.42.3
-- xorg-libxrender
-- xorg-libxpm
+  - graphviz=2.42.3
+  - xorg-libxrender
+  - xorg-libxpm
 
 # For downloading files
-- wget=1.20.1
+  - wget=1.20.1
 ```
 
 * Now install the new environment and activate it:
