@@ -1277,11 +1277,12 @@ following command:
 snakemake 
     -j 10 \
     --cluster-config cluster.yaml \
-    --cluster "sbatch -A {cluster.account} \
-    -p {cluster.partition} \
-    -t {cluster.time} \
-    --ntasks {cluster.ntasks} \
-    --cpus-per-task {cluster.cpus-per-task}" 
+    --cluster "sbatch \
+               -A {cluster.account} \
+               -p {cluster.partition} \
+               -t {cluster.time} \
+               --ntasks {cluster.ntasks} \
+               --cpus-per-task {cluster.cpus-per-task}" 
 ```
 
 The additional parameter `-j` specifies the number of jobs that Snakemake is 
