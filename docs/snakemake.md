@@ -1227,4 +1227,119 @@ and the rule will be run in this container.
 You can find pre-made Singularity or Docker images for many tools on 
 https://biocontainers.pro/ (bioinformatics-specific) or on https://hub.docker.com/.
 
+### Running Snakemake workflows on UPPMAX
 
+There are several options to execute Snakemake workflows on UPPMAX (or any HPC 
+cluster with the SLURM workload manager). In any case, we highly recommend to use 
+a session manager like `tmux` or `screen` so that you can run your workflow in a 
+session in the background while doing other things on the cluster or even logging 
+out of the cluster.
+
+1. Run your workflow in an interactive job
+
+For short workflows with only a few rules that need the same compute resources 
+in terms of CPU (cores), you can start an interactive job (in your `tmux` or 
+`screen` session) and run your Snakemake workflow as you would do that on your 
+local machine.
+
+2. Cluster configuration
+
+For workflows with long run times and/or where each rule requires different 
+compute resources, Snakemake can be configured to automatically send each rule 
+as a job to the SLURM queue and to track the status of each job.
+
+The relevant parameters for such a cluster configuration are `--cluster` and 
+`--cluster-config`, in combination with a `cluster.yaml` file that specifies 
+default and rule-specific compute resources and your compute account details.
+
+Here is an example for a `cluster.yaml` file:
+
+```yaml
+# cluster.yaml - cluster configuration file
+__default__:
+  account: # fill in your project compute account ID
+  partition: core
+  time: 01:00:00
+  ntasks: 1
+  cpus-per-task: 1
+### rule-specific resources
+trimming:
+  time: 01-00:00:00
+mapping:
+  time: 01-00:00:00
+  cpus-per-task: 16
+```
+
+Start your Snakemake workflow in a `tmux` or `screen` session with the 
+following command:
+
+```bash
+snakemake 
+    -j 10 \
+    --cluster-config cluster.yaml \
+    --cluster "sbatch -A {cluster.account} \
+    -p {cluster.partition} \
+    -t {cluster.time} \
+    --ntasks {cluster.ntasks} \
+    --cpus-per-task {cluster.cpus-per-task}" 
+```
+
+The additional parameter `-j` specifies the number of jobs that Snakemake is 
+allowed to send to SLURM at the same time.
+
+3. SLURM Profile
+
+In future Snakemake versions, the cluster configuration will be replaced 
+by so-called Profiles. The SLURM Profile needs to be set up with the software 
+[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via Conda). 
+During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm) setup, 
+you will be asked for several values for your Profile, e.g. for a Profile name 
+or your compute project account ID.
+
+Rule-specific resources can be defined in each rule via the `resources: ` 
+directive, for example:
+
+```python
+rule align_to_genome:
+    input:
+        "{genome_id}.bt2",
+        "{sample}.fastq.gz"
+    output:
+        "{sample}.bam"
+    resources:
+        runtime = 360
+    threads: 10
+    shell:
+        """
+        aligner -t {threads} -i {input[1]} -x {input[0]} > {output}
+        """
+```
+
+Any rule for which runtime is specified in the `resources` directive will be 
+submitted as one job to the SLURM queue with runtime as the allocated time. 
+Similarly, the number specified in the `threads` directive will be used as the 
+number of allocated cores.
+
+You can even specify if rules should be resubmitted to the SLURM queue, 
+asking for more resources on subsequent attempts. Do this by modifying the 
+`resources` directive with e.g.:
+
+```python
+    resources:
+        runtime = lambda wildcards, attempt: attempt*360
+```
+
+In this example, the rule will ask for 360 minutes on the first attempt, 
+for 2*360 minutes on the second attempt, etc.
+
+Finally, instead of specifying compute resources in the `resources` and 
+`threads` directives, it is possible to set up the SLURM Profile by providing 
+a `cluster.yaml` file.
+
+
+Start the workflow with your SLURM Profile as follows from within a 
+`tmux` or `screen` session:
+
+```bash
+snakemake -j 10 --profile your_profile_name
+```
