@@ -1323,7 +1323,7 @@ number of allocated cores.
 
 You can even specify if rules should be resubmitted to the SLURM queue, 
 asking for more resources on subsequent attempts. Do this by modifying the 
-`resources` directive with e.g.:
+`resources` directive with _e.g._:
 
 ```python
     resources:
@@ -1335,11 +1335,16 @@ for 2*360 minutes on the second attempt, etc.
 
 Finally, instead of specifying compute resources in the `resources` and 
 `threads` directives, it is possible to set up the SLURM Profile by providing 
-a `cluster.yaml` file.
+a `cluster.yaml` file. When you create the profile with cookiecutter and you
+are prompted for `cluster_config []:` enter the path to a `cluster.yaml` file, 
+_e.g._: `cluster_config []: config/cluster.yaml`. Now you can control resource 
+allocations for rules either using the `resources:` directive in each rule, 
+_or_ by adding that information to the `config/cluster.yaml` file. If rules
+are found in both locations, the allocations in the `cluster.yaml` file will 
+take precedence.
 
-
-Start the workflow with your SLURM Profile as follows from within a 
-`tmux` or `screen` session:
+With this setup you can start the workflow with your SLURM Profile as follows 
+from within a `tmux` or `screen` session:
 
 ```bash
 snakemake -j 10 --profile your_profile_name
