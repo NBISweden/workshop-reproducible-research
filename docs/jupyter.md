@@ -44,14 +44,17 @@ done so already. Then open up a terminal and go to
 `workshop-reproducible-research/jupyter`.
 
 If you have done the [Conda tutorial](conda.md) you should know how to define
-an environment and install packages using Conda. Create an environment
-containing the following packages from the `conda-forge` channel. Don't
-forget to activate the environment.
+an environment and install packages using Conda. 
+
+Create a **new environment** containing the following packages from the 
+`conda-forge` channel. 
 
 * `jupyter`: for running everything
 * `nb_conda`: for integrating Conda with Jupyter Notebook
 * `matplotlib` and `ipywidgets` and `seaborn`: for generating plots
 * `pandas`: for working with data frames and generating tables
+
+**Don't forget to activate the environment.**
 
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and
