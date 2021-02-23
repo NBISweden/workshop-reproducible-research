@@ -135,7 +135,7 @@ looking like this:
     
 ## The basics
 
-Jupyter notebooks are made up out of cells, and you are currently standing in
+Jupyter notebooks are made up of cells, and you are currently standing in
 the first cell in your notebook. The fact that it has a green border indicates
 that it's in "Edit mode", so you can write stuff in it. A blue border indicates
 "Command mode" (see below). Cells in Jupyter notebooks can be of two types:
@@ -162,20 +162,20 @@ are only applicable when in command mode (blue frames). Most of them are also
 available from the menus. These shortcuts are also available from the **Help**
 menu in your notebook (there's even an option there to edit shortcuts).
 
-| Shortcut        | Effect                                   |
-|-----------------|------------------------------------------|
-| ++enter++       | enter Edit mode                          |
-| ++escape++      | enter Command mode                       |
-| ++ctrl+enter++  | run the cell                             |
-| ++shift+enter++ | run the cell and select the cell below   |
-| ++alt+enter++   | run the cell and insert a new cell below |
-| ++ctrl+s++      | save the notebook                        |
-| ++tab++         | for code completion or indentation       |
-| ++m++/++y++     | toggle between Markdown and Code cells   |
-| ++d-d++         | delete a cell                            |
-| ++a/b++         | insert cells above/below current cell    |
-| ++x/c/v++       | cut/copy/paste cells                     |
-| ++o++           | toggle output of current cell            |
+| Shortcut            | Effect                                   |
+|---------------------|------------------------------------------|
+| ++enter++           | enter Edit mode                          |
+| ++escape++          | enter Command mode                       |
+| ++ctrl+enter++      | run the cell                             |
+| ++shift+enter++     | run the cell and select the cell below   |
+| ++alt+enter++       | run the cell and insert a new cell below |
+| ++ctrl+s++          | save the notebook                        |
+| ++tab++             | for code completion or indentation       |
+| ++m++/++y++         | toggle between Markdown and Code cells   |
+| ++d++-++d++         | delete a cell                            |
+| ++a++/++b++         | insert cells above/below current cell    |
+| ++x++/++c++/++v++   | cut/copy/paste cells                     |
+| ++o++               | toggle output of current cell            |
 
 ### Writing markdown
 
