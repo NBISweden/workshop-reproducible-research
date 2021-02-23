@@ -1227,6 +1227,44 @@ and the rule will be run in this container.
 You can find pre-made Singularity or Docker images for many tools on 
 https://biocontainers.pro/ (bioinformatics-specific) or on https://hub.docker.com/.
 
+Here is an example for a rule and its execution:
+
+```python
+rule align_to_genome:
+    """
+    Align a fastq file to a genome index using Bowtie 2.
+    """
+    input:
+        "data/raw_internal/{sra_id}.fastq.gz",
+        "intermediate/NCTC8325.1.bt2",
+        "intermediate/NCTC8325.2.bt2",
+        "intermediate/NCTC8325.3.bt2",
+        "intermediate/NCTC8325.4.bt2",
+        "intermediate/NCTC8325.rev.1.bt2",
+        "intermediate/NCTC8325.rev.2.bt2"
+    output:
+        "intermediate/{sra_id,\w+}.bam"
+    container: "docker://quay.io/biocontainers/bowtie2:2.3.4.1--py35h2d50403_1"
+    shell:
+        """
+        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
+        """
+```
+
+Start your Snakemake workflow with the following command:
+
+```bash
+snakemake --use-singularity
+```
+
+Feel free to modify the MRSA workflow according to this example. As Singularity 
+is a container software that was developed for HPC clusters, and for example the
+Mac version is still a beta version, it might not work to run your updated 
+Snakemake workflow with Singularity locally on your computer. 
+In the next section we explain how you can run Snakemake workflows on UPPMAX 
+where Singularity is pre-installed.
+
+
 ### Running Snakemake workflows on UPPMAX
 
 There are several options to execute Snakemake workflows on UPPMAX (or any HPC 
@@ -1240,7 +1278,8 @@ out of the cluster.
 For short workflows with only a few rules that need the same compute resources 
 in terms of CPU (cores), you can start an interactive job (in your `tmux` or 
 `screen` session) and run your Snakemake workflow as you would do that on your 
-local machine.
+local machine. Make sure to give your interactive job enough time to finish 
+running all rules of your Snakemake workflow.
 
 2. Cluster configuration
 
