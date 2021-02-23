@@ -129,13 +129,10 @@ looking like this:
 ![](images/jupyter_empty_nb.png)
 
 !!! tip
-    If you want to start Jupyter Notebooks on a cluster that you SSH to you
-    have to do some port forwarding:
+    If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
+    Uppmax) see the section in the 
+    [Extra material](#running-jupyter-notebooks-on-a-cluster)
     
-    ```bash
-    ssh me@rackham.uppmax.uu.se -L8888:localhost:8888
-    jupyter notebook --ip 0.0.0.0 --no-browser
-    ```
 ## The basics
 
 Jupyter notebooks are made up out of cells, and you are currently standing in
@@ -1021,3 +1018,44 @@ trying out and showing existing notebooks rather than making new ones.
     student, we encourage you to embrace this new development
     wholeheartedly, for it will make your research better and make you into
     a better scientist. And you will have more fun.
+
+## Extra material
+
+### Running jupyter notebooks on a cluster
+
+* Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
+```
+ssh <your-user-name>@rackham1.uppmax.uu.se
+```
+
+* Activate the conda environment you created then run `python` to start python console. Type:
+
+```python
+import IPython.lib
+IPython.lib.passwd()
+```
+* Enter some password and then save the line starting with `'sha1:'`
+* Create a config file named _e.g._ `my_jupyter_config.py` and add this to it:
+```python
+c = get_config()
+# Notebook config
+#c.NotebookApp.certfile = u''
+c.NotebookApp.ip = 'localhost'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = u'sha1:...' #<-- Add your 'sha1:' string here
+c.NotebookApp.port = 9990
+```
+* Save the file and then start the jupyter server on Uppmax with:
+```bash
+jupyter notebook --config my_jupyter_config.py
+```
+
+**On your local computer**
+* Forward port 8080 to the remote port on the Uppmax login node:
+```bash
+ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.se
+```
+
+* Connect to the jupyter server by opening `localhost:8080` in your browser. You should be prompted for the password you generated.
+
+You are now (hopefully) accessing the jupyter server that's running on Upmmax, via your local browser.
