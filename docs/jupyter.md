@@ -180,9 +180,12 @@ menu in your notebook (there's even an option there to edit shortcuts).
 ### Writing markdown
 
 Let's use our first cell to create a header. Change the format from 
-Code to Markdown in the drop-down list above the cell. Double click on 
-the cell to enter editing mode (green frame) and input "# My notebook" 
-("#" is used in Markdown for header 1). Run the cell with Shift-Enter. 
+Code to Markdown using the drop-down list in the Notebook Toolbar, or by 
+pressing the ++m++ key when in command mode. Double click on 
+the cell, or hit ++Enter++ to enter editing mode (green frame) and input 
+"# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
+++Ctrl++-++Enter++. 
+
 Tada!
 
 Markdown is a simple way to structure your notebook into sections with
