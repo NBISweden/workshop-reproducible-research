@@ -346,6 +346,23 @@ try to print the quadratic formula with LaTeX!
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
+Another useful magic is `%precision` which sets the floating point precision 
+in the notebook. As a quick example, add the following to a cell and run it:
+
+```python
+float(100/3)
+```
+
+Next set the precision to 4 decimal points by running a cell with:
+
+```
+%precision 4
+```
+
+Now run the cell with `float(100/3)` again to see the difference.
+
+Running `%precision` without additional arguments will restore the default.
+
 ## Plotting
 
 Python's favorite library for plotting, matplotlib, has its own magic as well:
