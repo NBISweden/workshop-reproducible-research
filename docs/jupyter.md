@@ -236,9 +236,7 @@ is one of the things that sets Jupyter Notebook apart from RStudio and
 R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
 work *in* a Jupyter notebook in a different way. This has partly changed with
 newer versions of RStudio, but it's probably still how most people use the two
-tools. Another indication of this is that there is no (good) way to hide the
-code cells if you want to render your Jupyter notebook to a cleaner looking
-report (for a publication for example).
+tools.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
 currently working in. Jupyter Notebook saves it every minute or so, so you will
