@@ -239,11 +239,12 @@ newer versions of RStudio, but it's probably still how most people use the two
 tools.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
-currently working in. Jupyter Notebook saves it every minute or so, so you will
-already have it available. We can be a little meta and do this from within the
-notebook itself. We do it by running some shell commands in the third code cell
-instead of Python code. This very handy functionality is possible by prepending
-the command with `!`. Try `!ls` to list the files in the current directory.
+currently working in. Jupyter Notebooks are autosaved every minute or so, so you
+will already have it available. We can be a little meta and do this from within 
+the notebook itself. We do it by running some shell commands in the third code 
+cell instead of Python code. This very handy functionality is possible by 
+prepending the command with `!`. Try `!ls` to list the files in the current 
+directory.
 
 Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
 the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's
@@ -301,7 +302,8 @@ Now list all available magics with `%lsmagic` (which itself is a magic). You
 add a question mark to a magic to show the help (*e.g.* `%lsmagic?`). Some of
 them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`,
 ..). Others are useful for debugging and optimizing your code (`%timeit`,
-`%debug`, `%prun`, ..).
+`%debug`, `%prun`, ..). For more information see the 
+[magics documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html).
 
 A very useful magic, in particular when using shell commands a lot in your
 work, is `%%capture`. This will capture the stdout/stderr of any code cell and
@@ -344,6 +346,8 @@ try to print the quadratic formula with LaTeX!
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
+## Plotting
+
 Python's favorite library for plotting, matplotlib, has its own magic as well:
 `%matplotlib`. Try out the code below, and you should hopefully get a pretty
 sine wave.
@@ -382,7 +386,7 @@ Try it by adding it to the cell with the lineplot and run it again.
     print(my_dir)
     ```
 
-## Widgets and plotting
+## Interactive widgets
 
 Since we're typically running our notebooks in a web browser, they are quite
 well suited for also including more interactive elements. A typical use case
