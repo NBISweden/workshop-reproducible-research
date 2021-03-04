@@ -481,7 +481,7 @@ examples of other ways to plot data!
 Since we're typically running our notebooks in a web browser, they are quite
 well suited for also including more interactive elements. A typical use case
 could be that you want to communicate some results to a collaborator or to
-a wider audience, and that you would like them to be able to affect how the
+a wider audience, and that you would like them to be able to modify how the
 results are displayed. It could, for example, be to select which gene to plot
 for, or to see how some parameter value affects a clustering. Jupyter notebooks
 has great support for this in the form of *widgets*.
