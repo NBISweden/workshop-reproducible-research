@@ -43,18 +43,33 @@ This tutorial depends on files from the course GitHub repo. Take a look at the
 done so already. Then open up a terminal and go to
 `workshop-reproducible-research/jupyter`.
 
-If you have done the [Conda tutorial](conda.md) you should know how to define
-an environment and install packages using Conda. 
+Just like in the [Conda tutorial](conda.md) we'll create a new conda 
+environment using the `environment.yml` file inside the `jupyter` directory:
 
-Create a **new environment** containing the following packages from the 
-`conda-forge` channel. 
+```bash
+conda env create -f environment.yml -n jupyter-env
+```
+
+This will install:
 
 * `jupyter`: for running everything
+* `jupyter_contrib_nbextensions`: a set of extensions with added functionality   
 * `nb_conda`: for integrating Conda with Jupyter Notebook
 * `matplotlib` and `ipywidgets` and `seaborn`: for generating plots
 * `pandas`: for working with data frames and generating tables
 
-**Don't forget to activate the environment.**
+Activate the environment with:
+
+```bash
+conda activate jupyter-env
+```
+
+Finally, run the command below in order to install the required javascript and
+css files needed for the notebook extensions package:
+
+```bash
+jupyter contrib nbextension install --user
+```
 
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and
@@ -112,15 +127,12 @@ you won't lose any work if you shut down the server.
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
-If you've done the other tutorials the file names should look familiar; they
-are the files needed for running the RNA-seq workflow in Snakemake. The Running
-tab keeps track of all your processes. The third tab, Clusters, is used for
-parallel computing and won't be discussed further in this tutorial. The Conda
-tab lets us control our Conda environments. Let's take a quick look at that.
-You can see that I'm currently in the `jupyter_exercise` environment which is 
-the name I chose when I created the environment (you may have used another name).
+The Running tab keeps track of all your processes. The third tab, Clusters, is 
+used for parallel computing and won't be discussed further in this tutorial.
+Finally, the Nbextensions tab shows a list of configurable notebook extensions
+that you can use to add functionality to your notebook (as we'll see below).
 
-![](images/jupyter_conda.png)
+![](images/jupyter_nbextensions.png)
 
 Let's start by creating an empty notebook by selecting the Files tab and
 clicking New > Notebook > Python 3. This will open up a new tab or window 
@@ -436,7 +448,7 @@ penguins.head(5)
 The most basic way to generate a bar plot of this data with seaborn is:
 
 ```python
-sns.barplot(penguins)
+sns.barplot(data=penguins)
 ```
 
 Simple right? Yes, but maybe not very informative. Here seaborn simply 
@@ -447,7 +459,7 @@ Let's say that instead we want to plot the mean value of the body mass of the
 penguins at the different islands where they were examined.
 
 ```
-sns.barplot(data=penguins, x="island", y="body_mass_g", ci="sd", errwidth=.5)
+sns.barplot(data=penguins, x="island", y="body_mass_g", ci="sd", errwidth=.5);
 ```
 
 Here we specified to use values in the 'island' column as categories for the 
@@ -472,6 +484,16 @@ ax.set_ylabel("Body mass (g)")
 # Set legend position outside of plot
 ax.legend(bbox_to_anchor=(1,1));
 ```
+
+If you want to save a plot to file you can use the `plt.savefig` function. Add
+the following to the bottom of the cell with the scatterplot code:
+
+```python
+plt.savefig("scatterplot.pdf", bbox_inches="tight")
+```
+
+The `bbox_inches="tight"` setting ensures that the figure is not clipped when
+saved to file.
 
 The Seaborn [website](http://seaborn.pydata.org/) contains great tutorials and
 examples of other ways to plot data!
@@ -643,6 +665,10 @@ an argument in the call to `interactive`. If you need help, click below.
     interactive_plot
     ```
 
+!!! attention "Color picking"
+    Note that you may have to close the color picker once you've made your 
+    choice in order to make the plot update.
+
 ### Other interactive plots
 
 Jupyter widgets, like we used here, is the most vanilla way of getting
@@ -723,7 +749,7 @@ understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). We
 have already seen how to define the project environment in the [Conda
 tutorial](conda.md) and how to set up the workflow in the [Snakemake
-tutorial](snakemake.md). Here we explore the results from a the snakemake
+tutorial](snakemake.md). Here we explore the results from the snakemake
 workflow in a Jupyter notebook as an example of how you can document your
 day-to-day work as a dry lab scientist.
 
@@ -731,36 +757,8 @@ We will create a report similar to the one in the [R Markdown tutorial](
 rmarkdown.md) and generate and visualize read coverage across samples for the
 _S. aureus_ genome.
 
-### Install a new Conda environment
-
-For the purposes of this part of the tutorial we will install a new Conda
-environment and run a slightly slimmed down version of the MRSA Snakemake
-workflow to generate some output to work with.
-
-In the `jupyter/` directory you'll find a `Snakefile` containing the workflow
-as well as a Conda `environment.yml` file which contains all packages
-required for both the execution of the workflow as well as the downstream 
-analyses we will perform in the Jupyter notebook.
-  
-Install *a new* Conda environment using the `environment.yml` file and then
-activate it. You can choose the name of the environment yourself. 
-Here's an example using the name `jupyter-snakemake`:
- 
-```bash
-conda env create -f environment.yml -n jupyter-snakemake
-# Activate the environment 
-conda activate jupyter-snakemake
-```
-
-!!! attention
-    If you are doing these exercises through a Docker container you should
-    instead update the current conda base environment by running `conda env
-    update -f environment.yml -n base`.
-
-### Open the MRSA notebook
-
-In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
-.ipynb`. With the newly created conda environment active, open this notebook
+In the `jupyter/` directory you will find a notebook called 
+`supplementary_material.ipynb`. Open this notebook either from the 
  directly by running:
  
 ```bash
