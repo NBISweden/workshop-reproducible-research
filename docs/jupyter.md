@@ -395,9 +395,9 @@ y = np.sin(x)
 line, = plt.plot(x, y, color='red', linestyle="-")
 ```
 
-By default inline rendering is done as rasterized images which can make the quality
-poor. To render in scalable vector graphics format use the `set_matplotlib_formats`
-function from the IPython package:
+By default plots are rendered in the notebook as rasterized images which can 
+make the quality poor. To render in scalable vector graphics format use the 
+`set_matplotlib_formats` function from the IPython package:
 
 ```python
 from IPython.display import set_matplotlib_formats
