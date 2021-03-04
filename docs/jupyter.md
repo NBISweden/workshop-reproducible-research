@@ -182,9 +182,9 @@ menu in your notebook (there's even an option there to edit shortcuts).
 Let's use our first cell to create a header. Change the format from 
 Code to Markdown using the drop-down list in the Notebook Toolbar, or by 
 pressing the ++m++ key when in command mode. Double click on 
-the cell, or hit ++Enter++ to enter editing mode (green frame) and input 
+the cell, or hit ++enter++ to enter editing mode (green frame) and input 
 "# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
-++Ctrl++-++Enter++. 
+++ctrl++-++enter++. 
 
 Tada!
 
