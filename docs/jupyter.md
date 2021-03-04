@@ -327,6 +327,14 @@ or shell commands.
     print("stderr:" + output.stderr)
     ```
 
+!!! tip
+    You can capture the output of some magics directly like this:
+
+    ```python
+    my_dir = %pwd
+    print(my_dir)
+    ```
+
 The `%%script` magic is used for specifying a program (bash, perl, ruby, ..)
 with which to run the code (similar to a shebang). For some languages it's
 possible to use these shortcuts:
@@ -362,14 +370,6 @@ Next set the precision to 4 decimal points by running a cell with:
 Now run the cell with `float(100/3)` again to see the difference.
 
 Running `%precision` without additional arguments will restore the default.
-
-!!! tip
-    You can capture the output of some magics directly like this:
-
-    ```python
-    my_dir = %pwd
-    print(my_dir)
-    ```
 
 ## Plotting
 
