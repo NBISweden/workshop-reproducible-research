@@ -662,12 +662,13 @@ interactive graphs in Jupyter notebooks. Some other alternatives are:
   datasets, but it's easy to use and works quite seamlessly.
 
 !!! note "Quick recap"
-    In the two previous sections we've learned:
+    In the three previous sections we've learned:
 
     * How magics can be used to extend the power of Jupyter notebooks, and the
       difference between line magics and cell magics.
     * How to switch between different languages by using magics.
-    * How to use widgets and the mpld3 library for interactive plotting.
+    * How to do some basic plotting in Jupyter.
+    * How to implement interactive widgets.
 
 ## Using the command line
 
