@@ -12,11 +12,10 @@ should aim to use what you've learned to do the following:
 
 3. Create a Conda `environment.yml` file with the required dependencies
 
-4. Create a `Snakefile` to run your workflow and use a `config.yml` file 
-   to add settings to the workflow
+4. Create a R Markdown or Jupyter notebook to run your code
 
-5. Possibly add a R Markdown or Jupyter document to write a report for your 
-   workflow, or use it instead of a Snakemake workflow to run your code
+5. Alternatively, create a `Snakefile` to run your code as a workflow and use a `config.yml` file 
+   to add settings to the workflow
 
 6. Use git to continuously commit changes to the repository
 
@@ -27,15 +26,15 @@ lost or if the task seems daunting. To get the most out of the exercise, take
 one step at a time and go back to the previous tutorials for help and
 inspiration. The goal is not necessarily for you to finish the whole exercise,
 but to really think about each step and how it all fits together in practice.
-We recommend to start with a very short Snakemake workflow or R Markdown/Jupyter 
-document to be able to try out the different tools together. 
-And please ask for help if you get stuck!
+We recommend to start with git, Conda and a notebook. In case you would like
+to create a Snakemake workflow, we suggest to keep it short so that you have
+time to try out the different tools together. And please ask for help if you get stuck!
 
-## Option 1
+## Option 1: your own project
 
-One option is to try to implement these methods on one of your current
-projects. It is up to you what tools to include in making your project
-reproducible, but aim for at least including git and Conda.
+This is a great opportunity for you to try to implement these methods on one 
+of your current projects. It is up to you what tools to include in making 
+your project reproducible, but aim for at least including git and Conda.
 
 !!! tip
     If your analysis project contains computationally intense steps it may be
@@ -44,7 +43,7 @@ reproducible, but aim for at least including git and Conda.
     original size. You can then test your implementation on the subset and only
     run it on the whole dataset once everything works to your satisfaction.
 
-## Option 2
+## Option 2: student experience project
 
 If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you. The idea is to analyze
