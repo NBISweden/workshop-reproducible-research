@@ -33,8 +33,8 @@ time to try out the different tools together. And please ask for help if you get
 ## Option 1: your own project
 
 This is a great opportunity for you to try to implement these methods on one 
-of your current projects. It is up to you what tools to include in making 
-your project reproducible, but aim for at least including git and Conda.
+of your current projects. It is of course up to you what tools to include in making 
+your research project reproducible, but aim for at least including git and Conda.
 
 !!! tip
     If your analysis project contains computationally intense steps it may be
@@ -70,11 +70,10 @@ The goal here is to create a Snakemake workflow, which contains the following:
 
 3. The final step is to plot the student experience in some way
 
-!!! attention
-    Remember to:
+!!! attention "Remember to"
     * Keep everything versioned controlled with `git`
-    * Add information to the `README` file so others know how to re-run the
-      project
+    * Add information to the `README` file so others know how to re-run 
+      the project
     * Add required software to the Conda `environment.yml` file
 
 ### Inspiration and tipps for the student experience workflow
