@@ -10,30 +10,31 @@ should aim to use what you've learned to do the following:
 2. Add a README file which should contain the required information on how to
    run the project
 
-3. Create a conda `environment.yml` file with the required dependencies
+3. Create a Conda `environment.yml` file with the required dependencies
 
-4. Create a `Snakefile` to run your workflow
+4. Create a R Markdown or Jupyter notebook to run your code
 
-5. Use a `config.yml` file to add settings to the workflow
+5. Alternatively, create a `Snakefile` to run your code as a workflow and use a `config.yml` file 
+   to add settings to the workflow
 
-6. Use git to continuously commit changes for the repository
+6. Use git to continuously commit changes to the repository
 
-7. Possibly add an R Markdown or Jupyter document
-
-8. Possibly make a Docker or Singularity image for your project
+7. Possibly make a Docker or Singularity image for your project
 
 This is not a small task and may seem overwhelming! Don't worry if you feel
 lost or if the task seems daunting. To get the most out of the exercise, take
 one step at a time and go back to the previous tutorials for help and
 inspiration. The goal is not necessarily for you to finish the whole exercise,
 but to really think about each step and how it all fits together in practice.
-And please ask for help if you get stuck!
+We recommend to start with git, Conda and a notebook. In case you would like
+to create a Snakemake workflow, we suggest to keep it short so that you have
+time to try out the different tools together. And please ask for help if you get stuck!
 
-## Option 1
+## Option 1: your own project
 
-One option is to try to implement these methods on one of your current
-projects. It is up to you what tools to include in making your project
-reproducible, but aim for at least including git and Conda.
+This is a great opportunity for you to try to implement these methods on one 
+of your current projects. It is up to you what tools to include in making 
+your project reproducible, but aim for at least including git and Conda.
 
 !!! tip
     If your analysis project contains computationally intense steps it may be
@@ -42,13 +43,13 @@ reproducible, but aim for at least including git and Conda.
     original size. You can then test your implementation on the subset and only
     run it on the whole dataset once everything works to your satisfaction.
 
-## Option 2
+## Option 2: student experience project
 
 If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you. The idea is to analyze
 students' experiences at this Reproducible Research course. For this you will
 use responses from students to the registration form for the course. Below
-you'll find links to **csv** format files with answers from 3 course instances:
+you'll find links to files in `*.csv` format with answers from 3 course instances:
 
 2018-11<br>
 <font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font><br>
@@ -61,17 +62,26 @@ https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-
 
 The goal here is to create a Snakemake workflow, which contains the following:
 
-1. Has a rule that downloads the csv files (making use of a `config.yml` file
+1. Has a rule that downloads the `csv` files (making use of a `config.yml` file
    to pass the URLs and file names)
 
 2. Has a rule that cleans the files (making use of `wildcards` so that the same
    rule can be run on each file)
 
-3. The final step is to plot the student experience in some way.
+3. The final step is to plot the student experience in some way
 
-The first two steps should be part of the workflow. If you need some help
-with the cleaning step, see below for a script that you can save to a file
-and run on your computer.
+!!! attention
+    Remember to:
+    * Keep everything versioned controlled with `git`
+    * Add information to the `README` file so others know how to re-run the
+      project
+    * Add required software to the Conda `environment.yml` file
+
+### Inspiration and tipps for the student experience workflow
+
+The first two steps should be part of the Snakemake workflow. If you need some help
+with the cleaning step, see below for a Python script that you can save to a file
+and run in the second Snakemake rule.
 
 ??? note "Click to show a script for cleaning column names"
     The script (*e.g.* `clean_csv.py`):
@@ -96,13 +106,14 @@ and run on your computer.
         args = parser.parse_args()
         main(args)
     ```
+
     Command to execute the script:
     
     ```
     python clean_csv.py input_file.csv output_file.csv
     ```
 
-The last step is really up to you how to implement. You could:
+The third step is really up to you how to implement. You could:
 
 * Include the plotting in the workflow using an RMarkdown document that
   gets rendered into a report
@@ -111,14 +122,14 @@ The last step is really up to you how to implement. You could:
   and generates some plot or does other additional analyses
 
 If you need some help/inspiration with plotting the results, click below
-to see an example python script that you can save to file and run with
+to see an example Python script that you can save to file and run with
 the cleaned files as input.
 
 ??? note "Click to show a script for plotting the student experience"
     The script (*e.g.* `plot.py`):
+
     ```python
     #!/usr/bin/env python
-
     import matplotlib as mpl
     import matplotlib.pyplot as plt
     plt.style.use('ggplot')
@@ -219,10 +230,3 @@ the cleaned files as input.
     ```
     python plot.py file1.csv file2.csv file3.csv --outdir results/
     ```
-
-!!! attention
-    Remember to:
-    * Keep everything versioned controlled with `git`
-    * Add information to the `README` file so others know how to re-run the
-      project
-    * Add required software to the Conda `environment.yml` file
