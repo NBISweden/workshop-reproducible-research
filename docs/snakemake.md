@@ -1267,13 +1267,13 @@ where Singularity is pre-installed.
 
 ### Running Snakemake workflows on UPPMAX
 
-There are several options to execute Snakemake workflows on UPPMAX (or any HPC 
+There are several options to execute Snakemake workflows on UPPMAX (a HPC 
 cluster with the SLURM workload manager). In any case, we highly recommend to use 
 a session manager like `tmux` or `screen` so that you can run your workflow in a 
 session in the background while doing other things on the cluster or even logging 
 out of the cluster.
 
-1. Run your workflow in an interactive job
+#### Run your workflow in an interactive job
 
 For short workflows with only a few rules that need the same compute resources 
 in terms of CPU (cores), you can start an interactive job (in your `tmux` or 
@@ -1281,7 +1281,7 @@ in terms of CPU (cores), you can start an interactive job (in your `tmux` or
 local machine. Make sure to give your interactive job enough time to finish 
 running all rules of your Snakemake workflow.
 
-2. Cluster configuration
+#### Cluster configuration
 
 For workflows with long run times and/or where each rule requires different 
 compute resources, Snakemake can be configured to automatically send each rule 
@@ -1327,7 +1327,7 @@ snakemake
 The additional parameter `-j` specifies the number of jobs that Snakemake is 
 allowed to send to SLURM at the same time.
 
-3. SLURM Profile
+#### SLURM Profile
 
 In future Snakemake versions, the cluster configuration will be replaced 
 by so-called Profiles. The SLURM Profile needs to be set up with the software 
@@ -1378,7 +1378,7 @@ a `cluster.yaml` file. When you create the profile with cookiecutter and you
 are prompted for `cluster_config []:` enter the path to a `cluster.yaml` file, 
 _e.g._: `cluster_config []: config/cluster.yaml`. Now you can control resource 
 allocations for rules either using the `resources:` directive in each rule, 
-_or_ by adding that information to the `config/cluster.yaml` file. If rules
+_or_ by adding that information to the `config/cluster.yaml` file. If resources
 are found in both locations, the allocations in the `cluster.yaml` file will 
 take precedence.
 
