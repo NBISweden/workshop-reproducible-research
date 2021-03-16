@@ -11,7 +11,7 @@ The next instance of this course will be **given online**, **on April
 
 **Apply here:**  
 - Go to [SciLifeLab's webpage](
-https://www.scilifelab.se/event/tools-for-reproducible-research-online) for
+https://www.scilifelab.se/event/tools-for-reproducible-research-online-2) for
 details and application (**deadline March 19th**).
 
 <h3> Course description </h3>
