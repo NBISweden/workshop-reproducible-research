@@ -749,20 +749,16 @@ understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). We
 have already seen how to define the project environment in the [Conda
 tutorial](conda.md) and how to set up the workflow in the [Snakemake
-tutorial](snakemake.md). Here we explore the results from the snakemake
-workflow in a Jupyter notebook as an example of how you can document your
-day-to-day work as a dry lab scientist.
-
-We will create a report similar to the one in the [R Markdown tutorial](
-rmarkdown.md) and generate and visualize read coverage across samples for the
-_S. aureus_ genome.
+tutorial](snakemake.md). Here we explore the results from the
+[Snakemake tutorial](snakemake.md) and generate a Supplementary Material file
+with some basic stats.
 
 In the `jupyter/` directory you will find a notebook called 
 `supplementary_material.ipynb`. Open this notebook either from the 
  directly by running:
  
 ```bash
-jupyter notebook mrsa_notebook.ipynb
+jupyter notebook supplementary_material.ipynb
 ```
 
 !!! tip
@@ -771,196 +767,155 @@ jupyter notebook mrsa_notebook.ipynb
     help you train how to structure and keep note of your work with a 
     notebook.
 
-You will see that the notebook contains only two cells: one with some 
-import statements and one with two function definitions. We'll come back 
-to those later. Now, run the cells and add a new empty cell to the notebook. 
-Typically the Snakemake workflow would be executed from a terminal but let's 
-try to actually run the workflow directly from within the Jupyter notebook. 
-
-In the current directory you'll find the necessary `Snakefile` and `config.yml`
-to run the workflow. In an empty cell in your notebook, add code to run the
-workflow. Then run the cell.     
-
-??? note "Click to see how to run the workflow from a cell"
-
-    ```
-    !snakemake
-    ```
-
-Once the workflow is finished we can start to explore the results. 
-
-### Plot QC status
-First let's take a look at the FastQC summary for the samples. Add the
-following code to a cell then run the cell. This will extract and concatenate
-summary files for all samples using FastQC output in the `intermediate/`
-directory. 
+You will see that the notebook contains only a little markdown text and a code
+cell with a function `get_geodata`. We'll start by adding a cell with some 
+import statements. Create a new cell at the bottom of the notebook and add the 
+following to it:
 
 ```python
-import glob
-import os
-import zipfile
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+```
+This imports the `pandas` (for working with tables), `seaborn` and 
+`matplotlib.pyplot` (for plotting) and `numpy` (for numerical operations)
+python modules.
 
-with open('summary.txt', 'w') as fhout:
-    # Find all zip files from fastqc
-    for f in glob.glob('intermediate/*_fastqc.zip'):
-        # Extract the archive name
-        arc_name = os.path.splitext(os.path.basename(f))[0]
-        # Open up the 'summary.txt' in the zip archive
-        # and output the contents to 'summary.txt'
-        with zipfile.ZipFile(f) as myzip:
-            with myzip.open('{arc_name}/summary.txt'.format(arc_name=arc_name), 'r') as fhin:
-                fhout.write(fhin.read().decode())
+Also add:
+```python
+from IPython.display import set_matplotlib_formats
+set_matplotlib_formats('pdf', 'svg')
 ```
 
-Read the summary results into a data frame using the pandas package:
+to set high-quality output for plots.
+
+Run the cell and create a new one below it.
+
+In the next cell we'll define some parameters to use for the notebook:
+```python
+counts_file="results/tables/counts.tsv"
+multiqc_file="intermediate/multiqc_general_stats.txt"
+rulegraph_file="results/rulegraph.png"
+SRR_IDs=["SRR935090","SRR935091","SRR935092"]
+GSM_IDs=["GSM1186459","GSM1186460","GSM1186461"]
+GEO_ID="GSE48896"
+```
+
+As you can see we add paths to results files and define lists with some sample 
+IDS. Run this cell and add a new one below it.
+
+Next, we'll fetch some sample information from NCBI using the `get_geodata`
+function defined at the start of the notebook and collate it into a dataframe.
 
 ```python
-# Read the concatenated summary.txt
-qc = pd.read_csv("summary.txt", sep="\t", header=None,
-    names=["Status","Statistic","Sample"], index_col=0)
-# Rename strings in the Sample column
-qc["Sample"] = [x.rstrip(".fastq.gz") for x in qc["Sample"]]
-# Map the status strings to numeric values for plotting
-qc.rename(index={"PASS": 1, "WARN": 0, "FAIL": -1}, inplace=True)
-# Convert from long to wide format
-qc = pd.pivot_table(qc.reset_index(), columns="Sample", index="Statistic")
+id_df = pd.DataFrame(data=GSM_IDs, index=SRR_IDs, columns=["geo_accession"])
+geo_df = get_geodata(GEO_ID)
+name_df = pd.merge(id_df, geo_df, left_on="geo_accession", right_index=True)
 ```
 
-Take a look at the `qc` DataFrame by adding the variable to an empty cell
-and running the cell.
+Take a look at the contents of the `name_df` dataframe (_e.g._ run a cell with 
+that variable only to output it below the cell).
 
-Now let's plot the heatmap using the `heatmap` function from the `seaborn` 
-package.
+Now we'll load some statistics from the QC part of the workflow, specifically
+the 'general_stats' file from `multiqc`. Add the following to a new cell and run
+it:
 
 ```python
-# Plot the heatmap
-ax = sns.heatmap(qc["Status"], cmap=["Red","Yellow","Green"], linewidth=.5,
-    cbar=None)
-ax.set_ylim(11,0); # Only necessary in cases where matplotlib cuts the y-axis
-``` 
-
-To save the plot to a file add the following to the cell:
-```python
-plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")
+qc = pd.read_csv(multiqc_file, sep="\t")
+qc.rename(columns=lambda x: x.replace("FastQC_mqc-generalstats-fastqc-", "").replace("_", " "), inplace=True)
+qc = pd.merge(qc, name_df, left_on="Sample", right_index=True)
+qc
 ```
 
-### Genome coverage
-In the workflow reads were aligned to the _S. aureus_ reference genome 
-using `bowtie2`. Let's take a look at genome coverage for the samples. To 
-do this we will first generate coverage files with `bedtools`.
+In the code above we load the multiqc file, rename the columns by stripping the 
+`FastQC_mqc-generalstats-fastqc-` part from column names and replace underscores
+with spaces. Finally the table is merged with the information obtained in the 
+step above and output to show summary statistics from the QC stage.
 
-Add the following to a new cell:
-
-```
-%%bash
-for f in $(ls intermediate/*.sorted.bam);
-do
-    bedtools genomecov -ibam $f -d | gzip -c > $f.cov.gz
-done
-```
-This will run `bedtools genomecov` on all bam-files in the `intermediate/` 
-directory and generate coverage files. 
-
-Next, read coverage files and generate a table of genome positions and 
-aligned reads in each sample. For this we make use of the `read_cov_files` 
-function defined in the beginning of the notebook.
+Next it's time to start loading gene count results from the workflow. Start by 
+reading the counts file, and edit the columns and index:
 
 ```python
-files = glob.glob("intermediate/*.sorted.bam.cov.gz")
-coverage_table = read_cov_tables(files)
-```
-Take a look at the `coverage_table` DataFrame. Because this is a relatively 
-large table you can use:
-```python
-coverage_table.head()
-```
- to only view the first 5 rows. With
-
-```python
-coverage_table.sample(5)
-``` 
-you will see 5 randomly sampled rows.
-
-Next let's calculate reads aligned to the genome using a sliding window. 
-For this we'll use the `sliding_window` function defined at the start of the
-notebook. You can try different sizes of the sliding window, in the example
-below we're using 10 kbp.
-
-```python
-coverage_window = sliding_window(coverage_table, window=10000)
+# Read count data
+counts = pd.read_csv(counts_file, sep="\t", header=0)
+# Rename columns to extract SRR ids
+counts.rename(columns = lambda x: x.split("/")[-1].replace(".sorted.bam",""), inplace=True)
+# Set index to gene ids
+gene_names = dict(zip([x[0] for x in counts.index], [x[1] for x in counts.index]))
+counts.index = [x[0] for x in counts.index]
 ```
 
-Now we'll plot the read coverage for all samples:
+Take a look at the `counts` dataframe to get an idea of the data structure. As
+you can see the dataframe shows read counts for genes (rows) in each sample 
+(columns). 
+
+The last few rows that are prefixed with '__' correspond to summary
+statistics output from `htseq-count` for unassigned reads. We'll extract 
+these lines from the dataframe for downstream visualization:
 
 ```python
-# Set the figure size
-fig = plt.figure(figsize=(6,4))
-# Set colors
-colors = sns.color_palette("Dark2", n_colors=3)
-# Set legend handles
-handles = []
-# Iterate samples and plot coverage
-for i, sample in enumerate(coverage_window.columns):
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample],
-        linewidth=.75, color=colors[i])
-    # Update legend handles
-    handles.append(mpatches.Patch(color=colors[i], label=sample))
-# Set y and x labels
-ax.set_ylabel("Reads aligned");
-ax.set_xlabel("Genome position");
-# Plot legend
-plt.legend(handles=handles);
+# Extract stats from htseq starting with "__"
+counts_other = counts.loc[counts.index.str.startswith("__")]
+counts_other = counts_other.rename(index=lambda x: x.lstrip("_"))
+# Drop the "__" lines from counts
+counts = counts.drop(counts.loc[counts.index.str.startswith("__")].index)
 ```
 
-Not too bad, but it's a bit difficult to see individual samples in one plot.
-
-Let's also make three subplots and plot each sample separately. First we 
-define the subplots grid using `plt.subplots`, then each sample is plotted
-in a separate subplot using the `ax=` keyword argument in `sns.lineplot`:
+Now let's generate a barplot showing number of reads assigned to genes as well
+as reads unassigned for various reasons. First we sum up all assigned reads per 
+sample and merge it with the unassigned stats from the previous step:
 
 ```python
-# Define the subplots
-fig, axes = plt.subplots(ncols=1, nrows=3, sharey=True, sharex=True,
-    figsize=(6,6))
-# Iterate samples and plot in separate subplot
-for i, sample in enumerate(coverage_window.columns):
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample],
-        ax=axes[i], linewidth=.75)
-    ax.set_title(sample)
-    ax.set_ylabel("Reads aligned");
-# Adjust space between subplots
-plt.subplots_adjust(hspace=.3)
+# Sum counts in 'genes' and merge with 'other' categories
+count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
+count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
 ```
 
-We can also visualize how the coverage correlates between the samples using
-the `scatterplot` function in `seaborn`:
+Now for the plotting:
 
 ```python
-sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935091"])
+# Set color palette to 'husl', with number of colors corresponding to categories
+# in the count_data
+colors = sns.color_palette("husl", n_colors=count_data.shape[1])
+# Create a stacked barplot
+ax = count_data.plot(kind="bar", stacked=True, color=colors)
+# Move legend and set legend title
+ax.legend(bbox_to_anchor=(1,1), title="Feature");
 ```
 
-Let's see if you can figure out how to visualize coverage correlation as 
-above for all sample combinations in a subplot figure. Try to combine what we
-used in the previous two cells. Then take a look at the answer below.
+The final plot will be a heatmap of gene counts for a subset of the genes. We'll
+select genes whose standard deviation/mean count across samples is greater than 
+1.2, **and** have a maximum of at least 5 reads in 1 or more sample:
 
-??? note "Click to see how to plot correlations in subplots"
-    ```
-    fig, axes = plt.subplots(ncols=3, nrows=1, figsize=(12,3), sharex=False,
-        sharey=False)
-    ax1 = sns.scatterplot(x=coverage_window["SRR935090"],
-        y=coverage_window["SRR935091"], ax=axes[0])
-    ax2 = sns.scatterplot(x=coverage_window["SRR935090"],
-        y=coverage_window["SRR935092"], ax=axes[1])
-    ax3 = sns.scatterplot(x=coverage_window["SRR935092"],
-        y=coverage_window["SRR935091"], ax=axes[2])
-    plt.subplots_adjust(wspace=.4)
-    ```
+```python
+heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
+```
 
-!!! tip
-    Seaborn actually has a function that essentially let's us generate the plot
-    above with one function call. Take a look at the `pairplot` function by
-    running `?sns.pairplot` in a new cell. Can you figure out how to use it
-    with our data?
+In order to make the heatmap more informative we'll also add gene names to the
+rows of the heatmap data, and replace the SRR ids with the title of samples
+used in the study:
+```python
+heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
+heatmap_data.rename(columns = lambda x: name_dict[x]['title'], inplace=True)
+```
+
+Now let's plot the heatmap. We'll log-transform the counts, set color scale 
+to Blue-Yellow-Red and cluster both samples and genes using 'complete' linkage
+clustering:
+
+```python
+with sns.plotting_context("notebook", font_scale=0.7):
+    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
+                        method="complete", yticklabels=True, linewidth=.5,
+                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
+    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
+```
+
+In the code above we use the seaborn `plotting_context` function to scale all 
+text elements of the heatmap in one go.
+
+As a final step we'll add some info for reproducibility.
 
 ### Integrating the notebook into the workflow
 
