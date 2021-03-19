@@ -78,5 +78,3 @@ The different steps of the workflow and what they do are as follows:
 * `generate_rulegraph` - Generate the workflow overview figure shown above.
 * `make_supplementary` - Produce the supplementary materials section using data
   from the quality controls, gene counts and the workflow figure.
-
-Without further ado, let's jump right in [Git](git.md)!

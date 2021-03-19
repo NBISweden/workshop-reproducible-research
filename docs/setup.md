@@ -16,18 +16,14 @@ git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
 
-!!! attention
-    Check your git version with `git --version`. If you have a very old version
-    of git you might want to update to a later version.
-
 !!! tip
     If you want to revisit the material from an older instance of this course,
-    you can do that using `git checkout tags/<tag-name>`, e.g. `git checkout
-    tags/course_1905`. To list all available tags, use `git tag`. Run this
-    command after you have `cd` into `workshop-reproducible-research` as
-    described above. If you do that, you probably also want to view the same
-    older version of this website. Locate the version box in the bottom right
-    corner of the browser and select the corresponding version.
+    you can do that using `git checkout tags/<tag-name>`, e.g. 
+    `git checkout tags/course_1905`. To list all available tags, use `git tag`. 
+    Run this command after you have `cd` into `workshop-reproducible-research` 
+    as described above. If you do that, you probably also want to view the 
+    same older version of this website. Locate the version box in the bottom 
+    right corner of the browser and select the corresponding version.
 
 ## Setup for Windows users
 
@@ -164,6 +160,7 @@ now is just to get it running so that you can start working.
 Chances are that you already have git installed on your computer. You can check
 by running *e.g.* `git --version`. If you don't have git, install it following
 the instructions [here]( https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+If you have a very old version of git you might want to update to a later version.
 
 ### Configure git
 
@@ -198,13 +195,15 @@ below for more information.
 !!! tip The default branch name
     The default branch name for Git and many of the online resources for hosting
     Git repositories has traditionally been `master`, which historically comes
-    from the "master/slave" repositories of [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-    This has been heavily discussed and in 2020 the decision was made by 
-    many ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    from the "master/slave" repositories of 
+    [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
+    This has been heavily discussed and in 2020 the decision was made by  many 
+    ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
     to start using `main` instead. Any repository created with GitHub uses this
     new naming scheme since October of 2020, and Git itself is currently
     discussing implementing a similar change. Git did, however, introduce the
-    ability to set the default branch name when using `git init` in [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
+    ability to set the default branch name when using `git init` in 
+    [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
     instead of using a hard-coded `master`. We at NBIS want to be a part of this
     change, so we have chosen to use `main` for this course.
 
@@ -234,7 +233,7 @@ rm Miniconda3-4.7.12.1-Linux-x86_64.sh
     config`) and then go ahead with the practical exercise.
 
     If you are using the Linux Bash Shell, follow the installation instructions 
-    for Linux users (see below).
+    for Linux users.
 
 !!! attention
     If you already have installed Conda but want to update, you should be able
@@ -244,11 +243,11 @@ rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 The installer will ask you questions during the installation:
 
 - Do you accept the license terms? (Yes)
-- Do you accept the installation path or do you want to chose a different one?
+- Do you accept the installation path or do you want to choose a different one?
   (Probably yes)
 - Do you want to run `conda init` to setup Conda on your system? (Yes)
 
-Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take
+Restart your shell so that the settings in `~/.bashrc`/`~/.bash_profile` can take
 effect. You can verify that the installation worked by running:
 
 ```bash
@@ -256,13 +255,13 @@ conda --version
 ```
 
 !!! note
-    A note regarding installing Conda: there are three Conda-related things you
-    may have encountered: the first is Conda, the package and environment
-    manager we've been talking about so far. Second is *Miniconda*, which is the
-    installer for Conda. The third is *Anaconda*, which is a distribution of not
-    only Conda, but also over 150 scientific Python packages. It's generally
-    better to stick with only Conda, *i.e.* installing with Miniconda, rather
-    than installing 3 GB worth of packages you may not even use.
+    There are three Conda-related things you may have encountered: the first is 
+    Conda, the package and environment manager we've been talking about so far. 
+    Second is *Miniconda*, which is the installer for Conda. The third is 
+    *Anaconda*, which is a distribution of not only Conda, but also over 150 
+    scientific Python packages. It's generally better to stick with only Conda, 
+    *i.e.* installing with Miniconda, rather than installing 3 GB worth of 
+    packages you may not even use.
 
 ### Configuring Conda
 
@@ -324,7 +323,7 @@ rstudio &
     libpaths. To fix this, first check the available library path by
     `.libPaths()` to make sure that it points to a path within your conda
     environment. It might be that `.libPaths()` shows multiple library paths, in
-    which case R packages will be searched for by R in both these locations.
+    which case R packages will be searched for by R in all these locations.
     This means that your R session will not be completely isolated in your Conda
     environment and that something that works for you might not work for
     someone else using the same Conda environment, simply because you had
@@ -388,12 +387,11 @@ icon in the menu bar in the upper right part of the screen.
 
 ### Windows
 
-The instructions are different depending on if you have Windows 10 or Windows
-7 (earlier versions aren't supported). In order to run Docker on Windows your
-computer must support Hardware Virtualization Technology and virtualization
-must be enabled. This is typically done in BIOS. Setting this is outside the
-scope of this tutorial, so we'll simply go ahead as if though it's enabled and
-hope that it works.
+The instructions are different depending on if you have Windows 10 or Windows 7.
+In order to run Docker on Windows your computer must support Hardware 
+Virtualization Technology and virtualization must be enabled. This is 
+typically done in BIOS. Setting this is outside the scope of this tutorial, 
+so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
@@ -432,7 +430,7 @@ On Windows 7 we will instead use Docker Toolbox, which is available at
 ### Linux
 
 How to install Docker differs a bit depending on your Linux distribution, but
-the steps are the same. For details on how to do it on your distro see
+the steps are the same. For details on how to do it on your distribution see
 [https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/install/#server).
 
 Here we show how to do it for Ubuntu, which is the most common desktop
@@ -441,7 +439,8 @@ OS is from 2015 or earlier you can double check this with `lsb_release -a`. If
 it's newer you're probably fine. The same instructions apply to other 
 distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you 
 would have to map to the corresponding Ubuntu version and use that instead of 
-`$(lsb_release -cs)` below (see [here](https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
+`$(lsb_release -cs)` below (see 
+[here](https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
 for Mint).
 
 1. Add the GPG key for the official Docker repository to the system:
@@ -481,8 +480,8 @@ The output should say something about "Active: active (running) since..".
 !!! tip
     As mentioned before, Docker needs to run as root. You can achieve this by
     prepending all Docker commands with `sudo`. This is the approach that we
-    will take in this tutorial, since the set up becomes a little simpler. If
-    you plan on continuing using Docker you can get rid of this by adding your
+    will take in this tutorial, since the set up becomes a little simpler that way. 
+    If     you plan on continuing using Docker you can get rid of this by adding your
     user to the group `docker`. Here are instructions for how to do this:
     [https://docs.docker.com/engine/installation/linux/linux-postinstall/][].
 
@@ -520,5 +519,5 @@ like this:
   VirtualBox is running with `vagrant status`
 * Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
 * Here, you will have to download the course material again to obtain a copy
-  within the Vagrant VirtualBox for the Singularity tutorial by typing `git
-  clone https://github.com/NBISweden/workshop-reproducible-research.git`
+  within the Vagrant VirtualBox for the Singularity tutorial by typing 
+  `git clone https://github.com/NBISweden/workshop-reproducible-research.git`
