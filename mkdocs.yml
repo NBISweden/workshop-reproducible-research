@@ -1,4 +1,4 @@
-site_name: NBIS course: Tools for Reproducible Research
+site_name: NBIS Tools for Reproducible Research
 theme:
     name: readthedocs
     custom_dir: docs_custom/
