@@ -66,58 +66,11 @@ If you want to read more, here are some useful resources:
   https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
   (also available from Help --> Cheatsheets in RStudio)
 
-## Setup
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[introduction](tutorial_intro.md) for instructions on how to set it up if you
-haven't done so already. Since we've already learnt how to use Conda for
-installing software packages in a [previous tutorial](conda.md), let's continue
-using it!
-
-Set your working directory to `workshop-reproducible-research/rmarkdown` and
-install the necessary R packages defined in the `environment.yml`:
-
-```bash
-conda env create -f environment.yml -n rmarkdown-env
-```
-
-You can then activate the environment as normal, followed by running RStudio
-in the background from the command line:
-
-```bash
-conda activate rmarkdown-env
-rstudio &
-```
-
-!!! note "RStudio and Conda"
-    In some cases RStudio doesn't play well with Conda due to differing
-    libpaths. To fix this, first check the available library path by
-    `.libPaths()` to make sure that it points to a path within your conda
-    environment. It might be that `.libPaths()` shows multiple library paths, in
-    which case R packages will be searched for by R in both these locations.
-    This means that your R session will not be completely isolated in your Conda
-    environment and that something that works for you might not work for
-    someone else using the same Conda environment, simply because you had
-    additional packages installed in the second library location. One way to
-    force R to just use the conda library path is to add a `.Renviron` file to
-    the directory where you start R with these lines:
-
-    ```
-    R_LIBS_USER=""
-    R_LIBS=""
-    ```
-
-    ... and restart RStudio. The `rmarkdown/` directory in the course materials
-    already contains this file, so you shouldn't have to add this yourself, but
-    we mention it here for your future projects.
-
-!!! attention "Windows users"
-    Although most of the tutorials are best to run in the Linux Bash Shell or
-    in a Docker container if you are a Windows user (see information in the
-    [intro](tutorial_intro.md)), both R and RStudio run well directly on
-    Windows. You may therefore want to install Windows versions of these
-    software (if you haven't done so already) when doing this tutorial, if
-    you're having trouble using Conda. Conda is, however, the recommended way.
+[setup](setup.md) for instructions on how to set it up if you haven't done so
+already. Place yourself in the `rmarkdown/` directory, activate your
+`rmarkdown-env` Conda environment and start RStudio from the command line (type
+`rstudio &`)
 
 ## Writing in R Markdown
 

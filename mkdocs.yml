@@ -1,4 +1,4 @@
-site_name: NBIS Reproducible research course
+site_name: NBIS course: Tools for Reproducible Research
 theme:
     name: readthedocs
     custom_dir: docs_custom/
@@ -8,10 +8,11 @@ pages:
   - Practicalities:
     - Schedule: 'schedule.md'
     - 'Travel info': 'travel.md'
-    - Feedback: 'feedback.md'
     - Lectures: 'lectures.md'
+    - Feedback: 'feedback.md'
+    - Setup: 'setup.md'
   - Tutorials:
-    - 'Introduction to the tutorials': 'tutorial_intro.md'
+    - Introduction: 'introduction.md'
     - Git: 'git.md'
     - Conda: 'conda.md'
     - Snakemake: 'snakemake.md'
@@ -19,7 +20,7 @@ pages:
     - Jupyter: 'jupyter.md'
     - Docker: 'docker.md'
     - Singularity: 'singularity.md'
-    - 'Making a project reproducible': 'repres_project.md'
+    - 'Making a project reproducible': 'project.md'
     - 'Take down': 'take_down.md'
 
 markdown_extensions:

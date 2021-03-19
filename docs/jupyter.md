@@ -36,22 +36,10 @@ for! Here are some useful resources if you want to read more:
 * A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
-## Setup 
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if you haven't
-done so already. Then open up a terminal and go to
-`workshop-reproducible-research/jupyter`.
-
-If you have done the [Conda tutorial](conda.md) you should know how to define
-an environment and install packages using Conda. Create an environment
-containing the following packages from the `conda-forge` channel. Don't
-forget to activate the environment.
-
-* `jupyter`: for running everything
-* `nb_conda`: for integrating Conda with Jupyter Notebook
-* `matplotlib` and `ipywidgets` and `seaborn`: for generating plots
-* `pandas`: for working with data frames and generating tables
+[setup](setup.md) for instructions on how to set it up if you haven't done so
+already. Then open up a terminal and go to `workshop-reproducible-research/jupyter`
+and activate your `jupyter-env` Conda environment.
 
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and
@@ -61,16 +49,6 @@ forget to activate the environment.
       managing notebooks. One of the outputs of the Jupyter project.
     * Jupyter notebook: The actual `.ipynb` file that constitutes your
       notebook.
-
-!!! attention "Windows users"
-    If you are doing these exercises through a Docker container you also need
-    the run the following:
-    
-    ```bash
-    mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> \
-        /root/.jupyter/jupyter_notebook_config.py
-    ```
 
 ## Getting started
 
@@ -114,8 +92,8 @@ are the files needed for running the RNA-seq workflow in Snakemake. The Running
 tab keeps track of all your processes. The third tab, Clusters, is used for
 parallel computing and won't be discussed further in this tutorial. The Conda
 tab lets us control our Conda environments. Let's take a quick look at that.
-You can see that I'm currently in the `jupyter_exercise` environment which is 
-the name I chose when I created the environment (you may have used another name).
+You can see that I'm currently in the `jupyter-env` environment which is 
+the name I chose when I created the environment (as per the setup instructions).
 
 ![](images/jupyter_conda.png)
 
@@ -643,19 +621,18 @@ For the purposes of this part of the tutorial we will install a new Conda
 environment and run a slightly slimmed down version of the MRSA Snakemake
 workflow to generate some output to work with.
 
-In the `jupyter/` directory you'll find a `Snakefile` containing the workflow
-as well as a Conda `environment.yml` file which contains all packages
-required for both the execution of the workflow as well as the downstream 
-analyses we will perform in the Jupyter notebook.
+In the `jupyter/` directory you'll find a `Snakefile` containing the workflow as
+well as a Conda `jupyter-snakemake-environment.yml` file which contains all
+packages required for both the execution of the workflow as well as the
+downstream analyses we will perform in the Jupyter notebook.
   
-Install *a new* Conda environment using the `environment.yml` file and then
-activate it. You can choose the name of the environment yourself. 
-Here's an example using the name `jupyter-snakemake`:
+Install *a new* Conda environment using the `jupyter-snakemake-environment.yml`
+file and then activate it. You can choose the name of the environment yourself.
+Here's an example using the name `jupyter-snakemake-env`:
  
 ```bash
-conda env create -f environment.yml -n jupyter-snakemake
-# Activate the environment 
-conda activate jupyter-snakemake
+conda env create -f environment.yml -n jupyter-snakemake-env
+conda activate jupyter-snakemake-env
 ```
 
 !!! attention
@@ -698,6 +675,7 @@ workflow. Then run the cell.
 Once the workflow is finished we can start to explore the results. 
 
 ### Plot QC status
+
 First let's take a look at the FastQC summary for the samples. Add the
 following code to a cell then run the cell. This will extract and concatenate
 summary files for all samples using FastQC output in the `intermediate/`
@@ -753,6 +731,7 @@ plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")
 ```
 
 ### Genome coverage
+
 In the workflow reads were aligned to the _S. aureus_ reference genome 
 using `bowtie2`. Let's take a look at genome coverage for the samples. To 
 do this we will first generate coverage files with `bedtools`.
@@ -949,6 +928,7 @@ https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/
 ```
 
 ### Shared interactive notebooks
+
 So far we've only shared static representations of notebooks. A strong
 trend at the moment is to run your notebooks in the cloud, so that the
 person you want to share with could actually execute and modify your

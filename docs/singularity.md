@@ -14,43 +14,10 @@ If you want to read more, here are some additional resources:
 * [Uppmax Singularity user guide](
   https://www.uppmax.uu.se/support/user-guides/singularity-user-guide/)
 
-## Setup
-
 This tutorial depends on files from the course GitHub repo. Take a look at
-the [intro](tutorial_intro.md) for instructions on how to set it up if you
+the [setup](setup.md) for instructions on how to set it up if you
 haven't done so already. Then open up a terminal and go to
 `workshop-reproducible-research/singularity`.
-
-### Installing on macOS
-
-Download the Singularity Desktop DMG file from
-[here](https://sylabs.io/singularity-desktop-macos/) and follow the 
-instructions. Note that this is a beta version and not all features are 
-available yet.
-
-!!! attention
-    Make sure you that 'Singularity networking' is checked during installation
-
-### Installing on Linux
-
-Follow the instructions [here](
-https://sylabs.io/guides/3.4/user-guide/installation.html#distribution-packages-of-singularity).
-
-### Installing on Windows
-
-Installing on Windows requires running Singularity through a Vagrant Box, which may be tricky. 
-See [instructions here](
-https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
-
-
-The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC like this:
-
-* Open the Vagrant Manager app
-* Open the Git Bash and move with `cd` into the folder `vm-singularity` where you installed Singularity
-* Type `vagrant up` and once this has finished, verify that the Vagrant VirtualBox is running with `vagrant status`
-* Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
-* Here, you will have to download the course material again to obtain a copy within the Vagrant VirtualBox for the Singularity tutorial by typing `git clone https://github.com/NBISweden/workshop-reproducible-research.git`
-
 
 ## The basics
 
