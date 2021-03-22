@@ -5,6 +5,15 @@ repository for the course. The first step of the setup is thus to download all
 the files that you will need, which is done differently depending on which
 operating system you have.
 
+At the last day, you will have the opportunity to try out the different tools
+on one of your own projects. In case you don't want to use a project you are
+currently working on, we have prepared a small-scale project for you. If you
+would like to work on your own project, it would be great if you could have the
+code and data ready before Friday so that you have more time for the exercise.
+In case your analysis project contains computationally intense steps it may be
+good to scale them down for the sake of the exercise. You might, for example,
+subset your raw data to only contain a minuscule part of its original size.
+
 ## Setup for Mac / Linux users
 
 First, `cd` into a directory on your computer (or create one) where it makes
