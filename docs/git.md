@@ -65,7 +65,7 @@ already.
 
 In order to create a new git repository, we first need a directory to track.
 For this tutorial, go ahead and create a directory called `git_tutorial`, then
-navigate into it. 
+navigate into it.
 
 !!! attention
     The directory should *not* be within the `workshop-reproducible-research`
@@ -1305,3 +1305,29 @@ so we won't repeat that here. Simply follow those instructions and you'll be
 good to go! If you want to read more details about how SSH authentication work
 you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
 which has more in-depth information than we provide here.
+
+### Forking
+
+When you want to work on an Open Source project that is available on *e.g.*
+GitHub, you usually don't have permission to directly push code to the project's
+repository - this is so that the project's maintainers are the only ones that
+can directly change anything in their codebase. How do you then contribute to
+projects that don't allow you to push your code to their repository? Simple: use
+*forking*!
+
+Forking is when you make your own copy of a repository on your GitHub account,
+which you will then have permissions to change as you see fit. You can then
+create pull requests from your fork to the original repository, rather than
+pushing code to a new branch and making a pull request from that. Working with
+forks just adds an additional step to the whole workflow: instead of being
+"clone; code and commit changes on a new branch; push branch to remote; pull
+request from branch" it becomes "fork; clone; code and commit changes; push code
+to fork; pull request from fork".
+
+You might also want to do a fork of a project simply because you want to have
+your own copy of it as well, without ever having the intention of changing it.
+This is, of course, perfectly fine as well, but do keep in mind that developers
+are usually quite happy to incorporate new changes from contributors if they are
+reasonable and fulfil a purpose and add functionality to the project. It is
+quite common that you have a use-case the maintainer didn't think of before, and
+that you've helped the project grow by contributing your code!
