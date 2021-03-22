@@ -680,6 +680,36 @@ devtools::session_info()
 ```
 ````
 
+### R Markdown and Snakemake
+
+Working with R Markdown in the context of a Snakemake workflow is something that
+is highly useful for reproducibility and quite easy to get going with. An
+important thing that you'll have to manage a bit more than usual is, however,
+the working directory of the R Markdown document, which is something you can do
+with parameters, the `root_directory`, `output_dir` and `output_file` special
+variables. The following is a simple example of how you can write a Snakemake
+rule for R Markdown:
+
+```python
+rule report:
+    input:
+        report = "report.Rmd"
+    output:
+        html = "results/report.html"
+    params:
+        outdir = "results"
+    shell:
+        """
+        Rscript -e 'parameters <- list(root_directory = getwd(),
+                                       parameter_a    = "first",
+                                       parameter_b    = 10);
+                    rmarkdown::render("{input.report}",
+                                      params      = parameters,
+                                      output_dir  = "{params.outdir}",
+                                      output_file = "{output.html}")'
+        """
+```
+
 ### R Markdown and other languages
 
 While R is the default and original language for any R Markdown document it
