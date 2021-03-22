@@ -33,77 +33,11 @@ A Conda *environment* is essentially a directory that is added to your PATH and
 that contains a specific collection of packages that you have installed.
 Packages are symlinked between environments to avoid unnecessary duplication.
 
-## Setup
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if, you haven't
-done so already. Then open up a terminal and go to
-`workshop-reproducible-research/conda`. Instructions below assume that you are
-standing in `conda/` unless otherwise specified (*e.g.* if it says "create
-a file", it means save it in `conda/`).
-
-Go ahead and install Conda as described below. *Make sure to download the
-correct file for your OS*.
-
-!!! attention "Windows users"
-    If you are doing the tutorials by running a Docker container on your
-    Windows machine, Conda will already be installed for you. You can then jump
-    ahead to the last point about setting up the default channels (`conda
-    config`) and then go ahead with the practical exercise.
-
-    If you are using the Linux Bash Shell, follow the installation instructions 
-    for Linux users (see below).
-
-!!! attention
-    If you already have installed Conda but want to update, you should be able
-    to simply run `conda update conda` and subsequently `conda init`, and skip
-    the installation instructions below.
-
-```bash
-# Install Miniconda3 for 64-bit Mac
-curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
-bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
-rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
-```
-
-```bash
-# Install Miniconda3 for 64-bit Linux
-curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
-bash Miniconda3-4.7.12.1-Linux-x86_64.sh
-rm Miniconda3-4.7.12.1-Linux-x86_64.sh
-```
-
-!!! note
-    A note regarding installing Conda: there are three Conda-related things you
-    may have encountered: the first is Conda, the package and environment
-    manager we've been talking about so far. Second is *Miniconda*, which is the
-    installer for Conda. The third is *Anaconda*, which is a distribution of not
-    only Conda, but also over 150 scientific Python packages. It's generally
-    better to stick with only Conda, *i.e.* installing with Miniconda, rather
-    than installing 3 GB worth of packages you may not even use.
-
-The installer will ask you questions during the installation:
-
-- Do you accept the license terms? (Yes)
-- Do you accept the installation path or do you want to chose a different one?
-  (Probably yes)
-- Do you want to run `conda init` to setup Conda on your system? (Yes)
-
-Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take
-effect. You can verify that the installation worked by running:
-
-```bash
-conda --version
-```
-
-* Next, we will setup the default channels (from where packages will be searched
-  for and downloaded if no channel is specified).
-
-```
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-```
+[setup](setup.md) for instructions on how to set it up if, you haven't done so
+already. Then open up a terminal and go to `workshop-reproducible-research/conda`. 
+Instructions below assume that you are standing in `conda/` unless otherwise
+specified (*e.g.* if it says "create a file", it means save it in `conda/`).
 
 ## Environment basics
 

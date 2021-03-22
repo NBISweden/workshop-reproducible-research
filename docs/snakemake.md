@@ -40,59 +40,13 @@ If you want to read more, you can find several resources here:
 * If you have questions, check out [stack overflow](
   https://stackoverflow.com/questions/tagged/snakemake).
 
-## Setup
-
-This tutorial depends on files from the course GitHub repo. Take a look
-at the [intro](tutorial_intro.md) for instructions on how to set it up
-if you haven't done so already, then open up a terminal and go to
-`workshop-reproducible-research/snakemake`.
-
-We will use Conda environments for the set up of this tutorial. If you have 
-done the [Conda tutorial](conda.md) you should know how to define an environment 
-and install packages using Conda and an `environment.yml` file. Here we 
-will use Snakemake as well as some other programs, all of which are available 
-in the Bioconda channel. If you look in the current directory you will see 
-an `environment.yml` file that specifies an environment containing FastQC 
-and SRA-Tools (identical to the one you made in the Conda tutorial). 
-Add the following programs to the file (make sure you use the correct 
-indentation!) and save it.
-
-```yaml
-# Specify python version (not required but can help with downstream conflicts)
-  - python=3.7.6
-
-# The workflow manager
-  - snakemake-minimal=5.10.0
-
-# For visualizing workflows
-  - graphviz=2.42.3
-  - xorg-libxrender
-  - xorg-libxpm
-
-# For downloading files
-  - wget=1.20.1
-```
-
-* Now install the new environment and activate it:
-
-```bash
-conda env create -n snakemake_exercise -f environment.yml
-conda activate snakemake_exercise
-```
-
-Check that Snakemake is installed correctly, for example by executing
-`snakemake --help`. This should output a list of available Snakemake settings.
-If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Conda steps were successful.
-
-!!! attention
-    Here we used the package `snakemake-minimal`. This is a slimmed down
-    version that lack some features, in particular relating to cloud computing
-    and interacting with remote providers such as Google Drive or Dropbox. This
-    was done to speed up the installation process. Use the normal `snakemake`
-    package if you need those features.
+This tutorial depends on files from the course GitHub repo. Take a look at the
+[setup](setup.md) for instructions on how to set it up if you haven't done so
+already, then open up a terminal and go to `workshop-reproducible-research/snakemake`
+and activate your `snakemake-env` Conda environment.
 
 ## The basics
+
 In this part of the tutorial we will create a very simple workflow from
 scratch, in order to show the fundamentals of how Snakemake works. The workflow
 will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to
