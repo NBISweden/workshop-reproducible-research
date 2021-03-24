@@ -1,4 +1,4 @@
-<h1> Preliminary schedule </h1>
+<h1> Schedule </h1>
 
 The course will take place online via [Zoom](https://zoom.us/). We will follow
 the approximate schedule below:
