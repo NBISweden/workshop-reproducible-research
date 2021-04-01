@@ -5,6 +5,7 @@ channels:
   - main
 dependencies:
   - python=3.9.2
+  - biopython=1.78
   - jupyter=1.0.0
   - pandas=1.2.3
   - seaborn=0.11.1
