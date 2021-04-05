@@ -64,13 +64,6 @@ Activate the environment with:
 conda activate jupyter-env
 ```
 
-Finally, run the command below in order to install the required javascript and
-css files needed for the notebook extensions package:
-
-```bash
-jupyter contrib nbextension install --user
-```
-
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and
       services for interactive computing across dozens of programming
@@ -812,6 +805,8 @@ function defined at the start of the notebook and collate it into a dataframe.
 id_df = pd.DataFrame(data=GSM_IDs, index=SRR_IDs, columns=["geo_accession"])
 geo_df = get_geodata(GEO_ID)
 name_df = pd.merge(id_df, geo_df, left_on="geo_accession", right_index=True)
+# Create a dictionary to rename sample ids in downstream plots
+name_dict = name_df.to_dict() 
 ```
 
 Take a look at the contents of the `name_df` dataframe (_e.g._ run a cell with 
@@ -897,7 +892,7 @@ rows of the heatmap data, and replace the SRR ids with the title of samples
 used in the study:
 ```python
 heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
-heatmap_data.rename(columns = lambda x: name_dict[x]['title'], inplace=True)
+heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
 ```
 
 Now let's plot the heatmap. We'll log-transform the counts, set color scale 
@@ -915,58 +910,70 @@ with sns.plotting_context("notebook", font_scale=0.7):
 In the code above we use the seaborn `plotting_context` function to scale all 
 text elements of the heatmap in one go.
 
-As a final step we'll add some info for reproducibility.
+As a final step we'll add some info for reproducibility under the 
+**Reproducibility** section. To add the overview image of the workflow found in
+`results/rulegraph.png` we can use the `Image` function from `IPython.display`:
+
+```python
+from IPython.display import Image
+Image(rulegraph_file)
+```
+
+Let's also output the full conda environment so that all packages and versions 
+are included in the notebook. There are several ways this can be done, for 
+example you could simply add:
+
+```python
+!conda list
+```
+
+to the end of the notebook.
 
 ### Integrating the notebook into the workflow
 
 So now we have a Jupyter notebook that uses output from a Snakemake workflow
 and produces some summary results and plots. Wouldn't it be nice if this was
-actually part of the workflow itself? We've already seen how we can [execute
-notebooks from the commandline](#executing-notebooks) using `nbconvert`. If 
-you've done the [Snakemake](snakemake.md) tutorial you should have an 
-understanding of how to add/modify rules in the `Snakefile` that's available
-in the current `jupyter/` folder. 
+actually part of the workflow itself? To generate a HTML version of the notebook
+we can use what we learned in the section about 
+[Converting noteboks](#converting-notebooks). The command to execute the notebook
+and save it in HTML format in a file `results/supplementary.html` would be:
 
-Make sure you save the `mrsa_notebook.ipynb` notebook. Then open the `Snakefile`
-in a text editor and try to add a rule called`generate_report` that uses 
-the `mrsa_notebook.ipynb` you've been working on and produces a report file
-called `report.html` in the `results/` directory. **Hint**: because the notebook
-uses output from the current Snakemake workflow the input to `generate_report` 
-should come from rules that are run towards the end of the workflow. 
+```bash
+jupyter nbconvert --to HTML --output-dir results --output supplementary.html --execute supplementary_material.ipynb
+```
 
-Try to add the rule on your own first. If you get stuck, take a look at the 
-example below.
+This command could be used in a rule, _e.g._ `make_supplementary`, the input of 
+which would be `results/tables/counts.tsv`, `intermediate/multiqc_general_stats.txt`, 
+and `results/rulegraph.png`. See if you can work out how to implement such a 
+rule at the end of the `Snakefile` found in the `jupyter/` directory.  Click 
+below to see an example.
 
-??? note "Click to see an example on how to implement `generate_report`"
+??? note "Click to see an example of the `make_supplementary` rule"
 
-    ```
-    rule generate_report:
-    """
-    Generate a report from a Jupyter notebook with nbconvert
-    """
+    ```python
     input:
-        "results/tables/counts.tsv",
-        "results/multiqc.html"
+        counts = "results/tables/counts.tsv",
+        multiqc_file = "intermediate/multiqc_general_stats.txt",
+        rulegraph = "results/rulegraph.png"
     output:
-        "results/report.html"
+        "results/supplementary.html"
+    params:
+        base = lambda wildcards, output: os.path.basename(output[0]),
+        dir = lambda wildcards, output: os.path.dirname(output[0])
     shell:
         """
-        jupyter \
-            nbconvert \
-            --to html \
-            --execute mrsa_notebook.ipynb \
-            --output {output}
+        jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
+            --execute supplementary_material.ipynb
         """
     ```
 
-To get snakemake to run the new rule as part of the rest of the workflow 
-(*i.e.* when only running `snakemake`) add `results/report.html` to the input
-of the `all` rule. Now that the notebook is integrated into the workflow you
-can remove the cell where we executed snakemake (*e.g.* using `!snakemake`).
-
-Finally, try to re-run the updated workflow either by deleting the `data/`, 
-`intermediate/` and `results/` directories and executing `snakemake` again, or
-by running `snakemake --forceall`.
+#### Moar integration! 
+Snakemake actually supports the execution of notebooks via the `notebook:` 
+rules directive. See more about Jupyter integration in the 
+[snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
+This is not ideally suited to producing a HTML-version of your executed notebook,
+but it works well if you want to generate individual plots (in _e.g._ pdf/png) 
+from using a jupyter notebook. 
 
 ## Sharing your work
 
