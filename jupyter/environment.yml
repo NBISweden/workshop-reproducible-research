@@ -12,3 +12,4 @@ dependencies:
   - matplotlib=3.3.4
   - ipywidgets=7.6.3
   - jupyter_contrib_nbextensions=0.5.1
+  - snakemake-minimal=5.10.0
