@@ -36,33 +36,10 @@ for! Here are some useful resources if you want to read more:
 * A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
-## Setup 
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if you haven't
-done so already. Then open up a terminal and go to
-`workshop-reproducible-research/jupyter`.
-
-Just like in the [Conda tutorial](conda.md) we'll create a new conda 
-environment using the `environment.yml` file inside the `jupyter` directory:
-
-```bash
-conda env create -f environment.yml -n jupyter-env
-```
-
-This will install:
-
-* `jupyter`: for running everything
-* `jupyter_contrib_nbextensions`: a set of extensions with added functionality   
-* `nb_conda`: for integrating Conda with Jupyter Notebook
-* `matplotlib` and `ipywidgets` and `seaborn`: for generating plots
-* `pandas`: for working with data frames and generating tables
-
-Activate the environment with:
-
-```bash
-conda activate jupyter-env
-```
+[setup](setup.md) for instructions on how to set it up if you haven't done so
+already. Then open up a terminal and go to `workshop-reproducible-research/jupyter`
+and activate your `jupyter-env` Conda environment.
 
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and
@@ -72,16 +49,6 @@ conda activate jupyter-env
       managing notebooks. One of the outputs of the Jupyter project.
     * Jupyter notebook: The actual `.ipynb` file that constitutes your
       notebook.
-
-!!! attention "Windows users"
-    If you are doing these exercises through a Docker container you also need
-    the run the following:
-    
-    ```bash
-    mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> \
-        /root/.jupyter/jupyter_notebook_config.py
-    ```
 
 ## Getting started
 
@@ -1164,6 +1131,7 @@ https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/
 ```
 
 ### Shared interactive notebooks
+
 So far we've only shared static representations of notebooks. A strong
 trend at the moment is to run your notebooks in the cloud, so that the
 person you want to share with could actually execute and modify your
