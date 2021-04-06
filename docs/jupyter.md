@@ -742,6 +742,14 @@ as [Pandoc](pandoc.org) or a **TeX** environment.
 Try converting the `Untitled.ipynb` notebook that you have been working on so
 far to HTML using `jupyter nbconvert`.
 
+!!! tip Exporting notebooks with extensions
+
+    To export notebooks in the form they appear with Jupyter Extensions activated
+    you can make use of the `nbextensions` template that is installed with the
+    `jupyter_contrib_nbextensions` package. Adding `--template=nbextensions` to 
+    the `jupyter nbconvert` call should do the trick, but note that not all 
+    extensions are guaranteed to display right after exporting.
+
 ### Executing notebooks
 
 `nbconvert` can also be used to run a Jupyter notebook from the commandline. By
