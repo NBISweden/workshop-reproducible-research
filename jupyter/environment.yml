@@ -4,12 +4,13 @@ channels:
   - bioconda
   - main
 dependencies:
-  - python=3.9.2
+  - python=3.8
   - biopython=1.78
   - jupyter=1.0.0
   - pandas=1.2.3
   - seaborn=0.11.1
   - matplotlib=3.3.4
   - ipywidgets=7.6.3
+  - nbconvert=5.6.1
   - jupyter_contrib_nbextensions=0.5.1
   - snakemake-minimal=5.10.0
