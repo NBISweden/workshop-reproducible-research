@@ -125,8 +125,6 @@ used for parallel computing and won't be discussed further in this tutorial.
 Finally, the Nbextensions tab shows a list of configurable notebook extensions
 that you can use to add functionality to your notebook (as we'll see below).
 
-![](images/jupyter_nbextensions.png)
-
 Let's start by creating an empty notebook by selecting the Files tab and
 clicking New > Notebook > Python 3. This will open up a new tab or window 
 looking like this:
@@ -689,6 +687,36 @@ interactive graphs in Jupyter notebooks. Some other alternatives are:
     * How to do some basic plotting in Jupyter.
     * How to implement interactive widgets.
 
+## Jupyter extensions
+
+Jupyter Notebook extensions are add-ons that can increase the functionality of
+your notebooks. These were installed in the [Setup](#setup) section of this 
+tutorial by including the `jupyter_contrib_nbextensions` package in the conda
+environment file. You can read more about the extensions 
+[here](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/). 
+
+To manage extensions go to the Jupyter dashboard in your browser and click the
+**Nbextensions** tab. You should see something similar to this:
+
+![](images/jupyter_nbextensions.png)
+
+Clicking an extension in the list displays more information about it. To 
+enable/disable extensions simply click the checkbox next to the extension name 
+in the list. Some useful extensions include 
+
+- **Hide input all**, which allows you to hide all code cells with the click of 
+  a button.
+  
+- **Collapsible Headings**, which allows you to collapse sections below markdown 
+  headings to increase readability.
+  
+- **Table of Contents (2)**, which adds a table of contents to the notebook making
+  navigation a lot quicker especially for long notebooks.
+  
+Feel free to peruse the list and find your own favourites! Keep in mind that 
+these are unofficial, community-contributed extensions and as such they come 
+with few, if any, guarantees.
+
 ## Using the command line
 
 ### Converting notebooks
@@ -1077,7 +1105,7 @@ count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=T
 colors = sns.color_palette("husl", n_colors=count_data.shape[1])
 ax = count_data.plot(kind="bar", stacked=True, color=colors)
 ax.legend(bbox_to_anchor=(1,1), title="Feature");
-plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight")
+plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight") ## <-- Add this line!
 ```
 
 Finally, edit the cell that generates the heatmap so that it looks like this:
@@ -1091,7 +1119,7 @@ with sns.plotting_context("notebook", font_scale=0.7):
                         method="complete", yticklabels=True, linewidth=.5,
                         cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
     plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
-    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight")
+    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight") ## <-- Add this line!
 ```
 
 Now you can run the following to generate the plots:
