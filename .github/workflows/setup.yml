@@ -29,13 +29,13 @@ jobs:
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
         curl -L https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-Linux-x86_64.sh -O
-        bash Miniconda3-$CONDA_VERSION-Linux-x86_64.sh
+        bash Miniconda3-$CONDA_VERSION-Linux-x86_64.sh -b
         rm Miniconda3-$CONDA_VERSION-Linux-x86_64.sh
     - name: Install conda on Mac
       if: ${{ matrix.os == 'macos-latest' }}
       run: |
         curl -L https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh -O
-        bash Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh
+        bash Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh -b
         rm Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh
     - name: Install Snakemake
       run: |
