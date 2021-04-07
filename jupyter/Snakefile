@@ -1,3 +1,4 @@
+import os
 from snakemake.utils import min_version
 min_version("5.3.0")
 
@@ -10,7 +11,8 @@ rule all:
     input:
         "results/tables/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.png"
+        "results/rulegraph.png",
+        "results/supplementary.html"
 
 rule get_SRA_by_accession:
     """
@@ -188,3 +190,8 @@ rule generate_rulegraph:
         """
         snakemake --rulegraph --configfile config.yml | dot -Tpng > {output}
         """
+
+rule make_supplementary:
+    """
+    Generate Supplementary Material
+    """

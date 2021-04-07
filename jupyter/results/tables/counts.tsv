@@ -1,0 +1,2934 @@
+intermediate/SRR935090.sorted.bam	intermediate/SRR935091.sorted.bam	intermediate/SRR935092.sorted.bam
+EBG00001047198		82	92	98
+EBG00001047212		1	0	0
+EBG00001047229		0	0	0
+EBG00001047235		0	0	0
+EBG00001047237		0	0	0
+EBG00001047248		0	0	0
+EBG00001047250		0	0	0
+EBG00001047252		0	1	0
+EBG00001047255		0	0	0
+EBG00001047260		0	0	0
+EBG00001047269		0	0	0
+EBG00001047278		0	0	0
+EBG00001047280		0	0	0
+EBG00001047285		0	1	2
+EBG00001047286		0	3	3
+EBG00001047298		0	0	0
+EBG00001047307		0	0	0
+EBG00001047310		0	0	0
+EBG00001047317		0	0	0
+EBG00001047320		0	0	1
+EBG00001047326		8	9	10
+EBG00001047332		0	0	0
+EBG00001047335		0	0	0
+EBG00001047341		0	0	0
+EBG00001047348		0	0	0
+EBG00001047356		1	0	0
+EBG00001047368		0	0	0
+EBG00001047369		0	0	1
+EBG00001047384		0	0	0
+EBG00001047393		0	0	0
+EBG00001047397		0	0	0
+EBG00001047398		3	1	2
+EBG00001047401		0	0	0
+EBG00001047407		0	0	0
+EBG00001047416		0	0	0
+EBG00001047423		28	14	5
+SAOUHSC_00001	chromosomal replication initiator protein DnaA	5	5	8
+SAOUHSC_00002	DNA polymerase III%2C beta subunit	7	1	13
+SAOUHSC_00003	conserved hypothetical protein	0	0	3
+SAOUHSC_00004	DNA replication and repair protein%2C putative	1	0	4
+SAOUHSC_00005	DNA gyrase%2C B subunit	6	3	10
+SAOUHSC_00006	DNA gyrase%2C A subunit	16	6	20
+SAOUHSC_00007	conserved hypothetical protein	0	0	2
+SAOUHSC_00008	histidine ammonia-lyase	1	0	0
+SAOUHSC_00009	seryl-tRNA synthetase	5	1	8
+SAOUHSC_00010	conserved hypothetical protein	0	0	1
+SAOUHSC_00012	conserved hypothetical protein	0	0	0
+SAOUHSC_00013	conserved hypothetical protein	1	0	0
+SAOUHSC_00014	conserved hypothetical protein	2	1	5
+SAOUHSC_00015	conserved hypothetical protein	11	6	20
+SAOUHSC_00017	ribosomal protein L9	4	0	4
+SAOUHSC_00018	replicative DNA helicase	5	3	8
+SAOUHSC_00019	adenylosuccinate synthetase	20	3	5
+SAOUHSC_00020	two-component response regulator%2C putative	0	0	2
+SAOUHSC_00021	sensory box histidine kinase VicK%2C putative	1	2	4
+SAOUHSC_00022	conserved hypothetical protein	1	0	8
+SAOUHSC_00023	conserved hypothetical protein	3	1	0
+SAOUHSC_00024	conserved hypothetical protein	1	0	1
+SAOUHSC_00025	conserved hypothetical protein	0	1	1
+SAOUHSC_00026	conserved hypothetical protein	1	0	0
+SAOUHSC_00027	conserved hypothetical protein	0	0	1
+SAOUHSC_00028	hypothetical protein	0	0	0
+SAOUHSC_00029	conserved hypothetical protein	0	0	0
+SAOUHSC_00030	conserved hypothetical protein	1	2	3
+SAOUHSC_00031	conserved hypothetical protein	1	0	0
+SAOUHSC_00032	conserved hypothetical protein	0	0	0
+SAOUHSC_00033	conserved hypothetical protein	0	0	0
+SAOUHSC_00034	conserved hypothetical protein	0	0	0
+SAOUHSC_00035	conserved hypothetical protein	0	0	0
+SAOUHSC_00036	conserved hypothetical protein	0	0	0
+SAOUHSC_00037	conserved hypothetical protein	0	0	0
+SAOUHSC_00038	conserved hypothetical protein	0	0	0
+SAOUHSC_00039	conserved hypothetical protein	0	4	4
+SAOUHSC_00040	conserved hypothetical protein	0	0	0
+SAOUHSC_00041	conserved hypothetical protein	0	0	0
+SAOUHSC_00042	conserved hypothetical protein	1	1	0
+SAOUHSC_00043	conserved hypothetical protein	1	0	0
+SAOUHSC_00044	conserved hypothetical protein	0	1	3
+SAOUHSC_00045	conserved hypothetical protein	0	0	0
+SAOUHSC_00046	conserved hypothetical protein	0	0	1
+SAOUHSC_00047	conserved hypothetical protein	0	0	2
+SAOUHSC_00049	conserved hypothetical protein	0	2	3
+SAOUHSC_00050	conserved hypothetical protein	0	0	1
+SAOUHSC_00051	1-phosphatidylinositol phosphodiesterase precursor%2C putative	0	0	0
+SAOUHSC_00052	conserved hypothetical protein	0	0	0
+SAOUHSC_00053	conserved hypothetical protein	0	0	1
+SAOUHSC_00054	conserved hypothetical protein	0	1	0
+SAOUHSC_00055	conserved hypothetical protein	0	0	1
+SAOUHSC_00056	conserved hypothetical protein	0	2	4
+SAOUHSC_00057	conserved hypothetical protein	0	1	0
+SAOUHSC_00058	conserved hypothetical protein	1	1	0
+SAOUHSC_00060	conserved hypothetical protein	2	5	4
+SAOUHSC_00061	conserved hypothetical protein	0	0	2
+SAOUHSC_00062	conserved hypothetical protein	0	0	0
+SAOUHSC_00064	conserved hypothetical protein	0	0	2
+SAOUHSC_00065	conserved hypothetical protein	0	0	0
+SAOUHSC_00067	L-lactate permease	3	0	8
+SAOUHSC_00069	protein A	110	8	15
+SAOUHSC_00070	staphylococcal accessory regulator-like protein	4	0	2
+SAOUHSC_00071	lipoprotein%2C SirC%2C putative	1	0	0
+SAOUHSC_00072	lipoprotein%2C SirB%2C putative	0	0	1
+SAOUHSC_00074	periplasmic binding protein%2C putative	1	0	6
+SAOUHSC_00075	conserved hypothetical protein	0	0	0
+SAOUHSC_00076	ornithine cyclodeaminase%2C putative	0	0	0
+SAOUHSC_00077	conserved hypothetical protein	0	0	0
+SAOUHSC_00078	conserved hypothetical protein	0	0	0
+SAOUHSC_00079	conserved hypothetical protein	0	0	0
+SAOUHSC_00080	conserved hypothetical protein	0	0	0
+SAOUHSC_00081	conserved hypothetical protein	0	0	0
+SAOUHSC_00082	conserved hypothetical protein	1	2	1
+SAOUHSC_00083	conserved hypothetical protein	0	0	0
+SAOUHSC_00084	conserved hypothetical protein	0	0	0
+SAOUHSC_00085	conserved hypothetical protein	0	0	0
+SAOUHSC_00086	3-ketoacyl-acyl carrier protein reductase%2C putative	0	0	0
+SAOUHSC_00087	conserved hypothetical protein	0	0	0
+SAOUHSC_00088	conserved hypothetical protein	0	0	0
+SAOUHSC_00089	conserved hypothetical protein	0	0	0
+SAOUHSC_00090	conserved hypothetical protein	0	0	1
+SAOUHSC_00091	conserved hypothetical protein	0	0	0
+SAOUHSC_00092	conserved hypothetical protein	1	1	1
+SAOUHSC_00093	superoxide dismutase%2C putative	3	1	9
+SAOUHSC_00094	conserved hypothetical protein	1	0	0
+SAOUHSC_00096	transcriptional regulator%2C GntR family%2C putative	2	0	0
+SAOUHSC_00097	purine nucleoside phosphorylase	0	0	0
+SAOUHSC_00099	conserved hypothetical protein	0	1	0
+SAOUHSC_00100	deoxyribose-phosphate aldolase	2	0	1
+SAOUHSC_00101	phosphopentomutase	6	0	8
+SAOUHSC_00102	phosphonates ABC transporter%2C permease protein CC0363%2C putative	0	0	0
+SAOUHSC_00103	phosphonates ABC transporter%2C permease protein CC0363%2C putative	0	0	0
+SAOUHSC_00104	amino acid ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00105	phosphonate ABC transporter%2C substrate-binding protein%2C putative	0	0	0
+SAOUHSC_00106	conserved hypothetical protein	0	0	0
+SAOUHSC_00107	conserved hypothetical protein	0	0	1
+SAOUHSC_00108	conserved hypothetical protein	0	0	0
+SAOUHSC_00109	replication initiation protein%2C putative	0	0	0
+SAOUHSC_00110	truncated replication initiation protein%2C putative	0	0	0
+SAOUHSC_00111	hypothetical protein	0	0	0
+SAOUHSC_00112	transposase%2C IS200 family%2C putative	0	0	0
+SAOUHSC_00113	alcohol dehydrogenase%2C iron-containing%2C putative	0	0	0
+SAOUHSC_00114	capsular polysaccharide biosynthesis protein%2C putative	0	0	0
+SAOUHSC_00115	capsular polysaccharide synthesis enzyme Cap5B	0	0	0
+SAOUHSC_00116	capsular polysaccharide synthesis enzyme Cap8C	0	0	0
+SAOUHSC_00117	capsular polysaccharide biosynthesis protein Cap5D%2C putative	0	0	0
+SAOUHSC_00118	capsular polysaccharide biosynthesis protein Cap5E%2C putative	0	0	0
+SAOUHSC_00119	capsular polysaccharide synthesis enzyme Cap8F	0	0	0
+SAOUHSC_00120	UDP-N-acetylglucosamine 2-epimerase	0	1	0
+SAOUHSC_00121	capsular polysaccharide synthesis enzyme O-acetyl transferase Cap5H%2C putative	0	0	0
+SAOUHSC_00122	capsular polysaccharide biosynthesis protein Cap5I%2C putative	0	0	0
+SAOUHSC_00123	capsular polysaccharide biosynthesis protein Cap5J%2C putative	0	0	0
+SAOUHSC_00124	capsular polysaccharide biosynthesis protein Cap5K%2C putative	0	0	0
+SAOUHSC_00125	cap5L protein/glycosyltransferase%2C putative	0	0	1
+SAOUHSC_00126	capsular polysaccharide biosynthesis protein Cap8M	0	0	0
+SAOUHSC_00127	cap5N protein/UDP-glucose 4-epimerase%2C putative	0	0	0
+SAOUHSC_00128	cap5O protein/UDP-N-acetyl-D-mannosaminuronic acid dehydrogenase	0	0	0
+SAOUHSC_00129	UDP-N-acetylglucosamine 2-epimerase	0	2	0
+SAOUHSC_00130	conserved hypothetical protein	0	1	0
+SAOUHSC_00131	conserved hypothetical protein	0	0	0
+SAOUHSC_00132	aldehyde dehydrogenase%2C putative	0	0	0
+SAOUHSC_00133	conserved hypothetical protein	0	0	0
+SAOUHSC_00134	conserved hypothetical protein	0	0	0
+SAOUHSC_00135	conserved hypothetical protein	2	0	0
+SAOUHSC_00136	conserved hypothetical protein	0	2	0
+SAOUHSC_00137	conserved hypothetical protein	1	2	0
+SAOUHSC_00138	conserved hypothetical protein	1	0	0
+SAOUHSC_00139	conserved hypothetical protein	0	0	0
+SAOUHSC_00141	conserved hypothetical protein	0	0	0
+SAOUHSC_00142	formate dehydrogenase%2C NAD-dependent%2C putative	0	0	0
+SAOUHSC_00143	conserved hypothetical protein	0	0	2
+SAOUHSC_00144	conserved hypothetical protein	2	0	1
+SAOUHSC_00145	conserved hypothetical protein	0	0	1
+SAOUHSC_00146	conserved hypothetical protein	0	0	0
+SAOUHSC_00147	acetylglutamate kinase%2C putative	0	0	0
+SAOUHSC_00148	glutamate N-acetyltransferase/amino-acid acetyltransferase	0	0	0
+SAOUHSC_00149	N-acetylglutamate gamma-semialdehyde dehydrogenase%2C putative	0	0	0
+SAOUHSC_00150	ornithine aminotransferase%2C putative	0	0	0
+SAOUHSC_00151	branched-chain amino acid transport system II carrier protein	2	0	0
+SAOUHSC_00152	conserved hypothetical protein	1	0	1
+SAOUHSC_00153	indolepyruvate decarboxylase%2C putative	2	0	9
+SAOUHSC_00154	conserved hypothetical protein	0	0	0
+SAOUHSC_00155	PTS system%2C glucose-specific component	11	0	23
+SAOUHSC_00156	conserved hypothetical protein	0	0	0
+SAOUHSC_00157	conserved hypothetical protein	0	0	0
+SAOUHSC_00158	PTS system component	1	0	0
+SAOUHSC_00160	conserved hypothetical protein	1	0	0
+SAOUHSC_00161	conserved hypothetical protein	0	0	0
+SAOUHSC_00162	type I site-specific deoxyribonuclease%2C HsdR family%2C putative	0	1	2
+SAOUHSC_00163	conserved hypothetical protein	0	0	1
+SAOUHSC_00164	conserved hypothetical protein	0	0	0
+SAOUHSC_00166	conserved hypothetical protein	0	0	1
+SAOUHSC_00167	peptide ABC transporter%2C ATP-binding protein%2C putative	0	0	1
+SAOUHSC_00168	conserved hypothetical protein	0	0	0
+SAOUHSC_00169	peptide ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_00170	conserved hypothetical protein	0	0	0
+SAOUHSC_00171	gamma-glutamyltranspeptidase%2C putative	1	0	0
+SAOUHSC_00172	conserved hypothetical protein	0	0	0
+SAOUHSC_00173	acyl carrier phosphodiesterase	1	0	0
+SAOUHSC_00174	M23/M37 peptidase domain protein	0	0	1
+SAOUHSC_00175	multiple sugar-binding transport ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00176	bacterial extracellular solute-binding protein%2C putative	0	1	0
+SAOUHSC_00177	maltose ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_00178	maltose ABC transporter%2C permease protein	0	0	0
+SAOUHSC_00179	conserved hypothetical protein	0	0	0
+SAOUHSC_00180	conserved hypothetical protein	0	0	1
+SAOUHSC_00181	conserved hypothetical protein	0	0	0
+SAOUHSC_00182	conserved hypothetical protein	0	0	6
+SAOUHSC_00183	membrane protein%2C putative	1	0	0
+SAOUHSC_00184	Response regulator receiver domain protein	0	0	0
+SAOUHSC_00185	conserved hypothetical protein	0	0	0
+SAOUHSC_00186	lipoprotein%2C putative	0	1	0
+SAOUHSC_00187	formate acetyltransferase	0	0	0
+SAOUHSC_00188	pyruvate formate-lyase 1 activating enzyme%2C putative	0	0	0
+SAOUHSC_00189	conserved hypothetical protein	0	0	0
+SAOUHSC_00190	conserved hypothetical protein	0	0	1
+SAOUHSC_00191	conserved hypothetical protein	0	0	1
+SAOUHSC_00192	coagulase	1	0	1
+SAOUHSC_00193	hypothetical protein	0	0	0
+SAOUHSC_00194	hypothetical protein	0	0	0
+SAOUHSC_00195	acetyl-CoA acetyltransferase%2C putative	0	0	0
+SAOUHSC_00196	conserved hypothetical protein	0	0	0
+SAOUHSC_00197	conserved hypothetical protein	0	0	0
+SAOUHSC_00198	conserved hypothetical protein	0	0	0
+SAOUHSC_00199	conserved hypothetical protein	1	0	0
+SAOUHSC_00200	membrane protein%2C putative	1	0	1
+SAOUHSC_00201	conserved hypothetical protein	0	0	0
+SAOUHSC_00202	conserved hypothetical protein	0	0	0
+SAOUHSC_00203	conserved hypothetical protein	0	0	0
+SAOUHSC_00204	Globin domain protein	0	2	2
+SAOUHSC_00205	hypothetical protein	0	0	0
+SAOUHSC_00206	L-lactate dehydrogenase	0	0	0
+SAOUHSC_00208	hypothetical protein	0	0	0
+SAOUHSC_00209	PTS system%2C glucose-specific IIBC component%2C putative	0	0	0
+SAOUHSC_00211	conserved hypothetical protein	0	0	0
+SAOUHSC_00212	conserved hypothetical protein	0	0	0
+SAOUHSC_00213	conserved hypothetical protein	0	0	0
+SAOUHSC_00214	phosphoenolpyruvate-dependent sugar phosphotransferase system%2C EIIA 2%2C putative	0	0	0
+SAOUHSC_00215	PTS system component%2C putative	0	0	0
+SAOUHSC_00216	PTS system component	0	0	0
+SAOUHSC_00217	sorbitol dehydrogenase%2C putative	0	0	0
+SAOUHSC_00218	conserved hypothetical protein	0	0	0
+SAOUHSC_00219	conserved hypothetical protein	1	0	0
+SAOUHSC_00220	conserved hypothetical protein	0	0	0
+SAOUHSC_00221	alcohol dehydrogenase%2C zinc-containing	3	1	0
+SAOUHSC_00222	tagB protein%2C putative	5	0	2
+SAOUHSC_00223	teichoic acid biosynthesis protein F%2C putative	1	0	1
+SAOUHSC_00225	conserved hypothetical protein	1	1	2
+SAOUHSC_00226	conserved hypothetical protein	4	0	6
+SAOUHSC_00227	conserved hypothetical protein	3	7	18
+SAOUHSC_00228	conserved hypothetical protein	5	3	12
+SAOUHSC_00229	ScdA protein%2C putative	0	0	0
+SAOUHSC_00230	two-component sensor histidine kinase%2C putative	1	0	1
+SAOUHSC_00231	two-component response regulator%2C putative	1	1	0
+SAOUHSC_00232	conserved hypothetical protein	0	1	0
+SAOUHSC_00233	holin-like protein LrgB%2C putative	0	0	0
+SAOUHSC_00234	conserved hypothetical protein	2	0	1
+SAOUHSC_00235	conserved hypothetical protein	0	0	0
+SAOUHSC_00236	6-phospho-beta-glucosidase%2C putative	0	0	2
+SAOUHSC_00237	conserved hypothetical protein	1	0	0
+SAOUHSC_00238	hypothetical protein	0	0	0
+SAOUHSC_00239	ribokinase%2C putative	0	0	0
+SAOUHSC_00240	ribose ABC transporter protein%2C putative	1	0	0
+SAOUHSC_00241	conserved hypothetical protein	0	0	1
+SAOUHSC_00242	conserved hypothetical protein	2	1	1
+SAOUHSC_00243	NADH dehydrogenase subunit%2C putative	0	0	0
+SAOUHSC_00244	conserved hypothetical protein	1	0	0
+SAOUHSC_00245	truncated transposase	0	0	0
+SAOUHSC_00246	drug transporter%2C putative	0	0	0
+SAOUHSC_00247	conserved hypothetical protein	0	0	1
+SAOUHSC_00248	peptidoglycan hydrolase%2C putative	3	2	0
+SAOUHSC_00249	conserved hypothetical protein	0	0	0
+SAOUHSC_00250	conserved hypothetical protein	0	0	2
+SAOUHSC_00251	conserved hypothetical protein	0	0	1
+SAOUHSC_00253	conserved hypothetical protein	3	0	0
+SAOUHSC_00254	conserved hypothetical protein	0	0	0
+SAOUHSC_00255	conserved hypothetical protein	0	0	0
+SAOUHSC_00256	conserved hypothetical protein	0	0	0
+SAOUHSC_00257	conserved hypothetical protein	1	5	1
+SAOUHSC_00258	conserved hypothetical protein	2	0	0
+SAOUHSC_00259	conserved hypothetical protein	0	0	0
+SAOUHSC_00260	conserved hypothetical protein	0	0	0
+SAOUHSC_00261	conserved hypothetical protein	0	1	0
+SAOUHSC_00262	conserved hypothetical protein	1	1	0
+SAOUHSC_00264	conserved hypothetical protein	0	0	0
+SAOUHSC_00265	conserved hypothetical protein	0	0	0
+SAOUHSC_00266	conserved hypothetical protein	1	0	0
+SAOUHSC_00267	conserved hypothetical protein	0	0	0
+SAOUHSC_00268	conserved hypothetical protein	1	1	0
+SAOUHSC_00269	conserved hypothetical protein	0	0	2
+SAOUHSC_00270	conserved hypothetical protein	1	0	1
+SAOUHSC_00271	conserved hypothetical protein	0	0	0
+SAOUHSC_00272	conserved hypothetical protein	0	0	1
+SAOUHSC_00274	conserved hypothetical protein	0	0	0
+SAOUHSC_00275	conserved hypothetical protein	0	0	0
+SAOUHSC_00276	conserved hypothetical protein	0	0	0
+SAOUHSC_00277	conserved hypothetical protein	0	0	0
+SAOUHSC_00278	conserved hypothetical protein	0	0	0
+SAOUHSC_00279	conserved hypothetical protein	1	0	0
+SAOUHSC_00280	conserved hypothetical protein	0	1	2
+SAOUHSC_00281	conserved hypothetical protein	0	0	0
+SAOUHSC_00282	branched-chain amino acid transport system II carrier protein	2	0	3
+SAOUHSC_00284	5'-nucleotidase%2C lipoprotein e(P4) family	2	0	3
+SAOUHSC_00285	conserved hypothetical protein	0	1	0
+SAOUHSC_00287	ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00289	hypothetical protein	0	0	0
+SAOUHSC_00290	conserved hypothetical protein	0	0	2
+SAOUHSC_00291	pfkB family carbohydrate kinase family%2C putative	0	0	0
+SAOUHSC_00292	conserved hypothetical protein	0	0	0
+SAOUHSC_00293	conserved hypothetical protein	0	0	0
+SAOUHSC_00294	conserved hypothetical protein	0	0	0
+SAOUHSC_00295	N-acetylneuraminate lyase subunit%2C putative	0	0	0
+SAOUHSC_00296	ROK family protein	0	0	0
+SAOUHSC_00297	conserved hypothetical protein	1	0	1
+SAOUHSC_00298	conserved hypothetical protein	0	0	0
+SAOUHSC_00299	conserved hypothetical protein	0	0	0
+SAOUHSC_00300	lipase precursor	3	10	2
+SAOUHSC_00301	conserved hypothetical protein	1	3	0
+SAOUHSC_00302	conserved hypothetical protein	0	0	2
+SAOUHSC_00303	hypothetical protein	0	0	0
+SAOUHSC_00304	conserved hypothetical protein	0	0	0
+SAOUHSC_00305	conserved hypothetical protein	0	0	0
+SAOUHSC_00306	conserved hypothetical protein	0	0	0
+SAOUHSC_00307	conserved hypothetical protein	0	0	0
+SAOUHSC_00308	conserved hypothetical protein	1	0	0
+SAOUHSC_00309	conserved hypothetical protein	0	2	0
+SAOUHSC_00310	conserved hypothetical protein	0	0	1
+SAOUHSC_00311	conserved hypothetical protein	0	0	0
+SAOUHSC_00312	conserved hypothetical protein	0	0	0
+SAOUHSC_00313	conserved hypothetical protein	0	0	0
+SAOUHSC_00314	conserved hypothetical protein	0	0	1
+SAOUHSC_00315	conserved hypothetical protein	0	0	0
+SAOUHSC_00316	conserved hypothetical protein	0	0	0
+SAOUHSC_00317	glycerol-3-phosphate transporter	0	0	0
+SAOUHSC_00318	conserved hypothetical protein	0	0	0
+SAOUHSC_00319	conserved hypothetical protein	0	0	1
+SAOUHSC_00320	NADPH-dependent FMN reductase%2C putative	0	0	0
+SAOUHSC_00322	conserved hypothetical protein	0	1	0
+SAOUHSC_00323	conserved hypothetical protein	0	0	0
+SAOUHSC_00324	ribosomal-protein-serine acetyltransferase%2C putative	0	0	1
+SAOUHSC_00325	conserved hypothetical protein	0	0	0
+SAOUHSC_00326	conserved hypothetical protein	0	0	0
+SAOUHSC_00327	conserved hypothetical protein	0	1	1
+SAOUHSC_00328	conserved hypothetical protein	0	0	2
+SAOUHSC_00329	mttA/Hcf106 family protein-related protein	0	0	0
+SAOUHSC_00330	conserved hypothetical protein	1	0	0
+SAOUHSC_00331	conserved hypothetical protein	0	0	0
+SAOUHSC_00332	conserved hypothetical protein	1	0	0
+SAOUHSC_00333	ABC transporter%2C ATP-binding protein%2C putative	1	0	1
+SAOUHSC_00334	conserved hypothetical protein	0	1	3
+SAOUHSC_00335	conserved hypothetical protein	1	0	1
+SAOUHSC_00336	acetyl-CoA acetyltransferase%2C putative	3	1	8
+SAOUHSC_00337	conserved hypothetical protein	1	1	0
+SAOUHSC_00338	5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase	1	1	1
+SAOUHSC_00339	conserved hypothetical protein	0	2	0
+SAOUHSC_00340	trans-sulfuration enzyme family protein	1	0	0
+SAOUHSC_00341	conserved hypothetical protein	1	0	0
+SAOUHSC_00342	chromosome partioning protein%2C ParB family%2C putative	0	0	0
+SAOUHSC_00344	conserved hypothetical protein	0	1	2
+SAOUHSC_00345	conserved hypothetical protein	1	0	1
+SAOUHSC_00346	conserved hypothetical protein	2	0	7
+SAOUHSC_00347	conserved hypothetical protein	0	0	1
+SAOUHSC_00348	ribosomal protein S6	18	5	47
+SAOUHSC_00349	bacteriophage L54a%2C single-stranded DNA binding protein	32	7	44
+SAOUHSC_00350	ribosomal protein S18	5	0	4
+SAOUHSC_00351	conserved hypothetical protein	0	0	0
+SAOUHSC_00352	integrase-like protein	0	0	0
+SAOUHSC_00353	conserved hypothetical protein	0	0	0
+SAOUHSC_00354	conserved hypothetical protein	0	0	0
+SAOUHSC_00355	conserved hypothetical protein	0	0	0
+SAOUHSC_00356	conserved hypothetical protein	0	2	0
+SAOUHSC_00357	conserved hypothetical protein	1	0	2
+SAOUHSC_00358	conserved hypothetical protein	0	0	0
+SAOUHSC_00359	phosphoglycerate mutase family protein	0	1	0
+SAOUHSC_00360	conserved hypothetical protein	1	0	0
+SAOUHSC_00362	conserved hypothetical protein	0	4	2
+SAOUHSC_00363	conserved hypothetical protein	0	0	2
+SAOUHSC_00364	alkyl hydroperoxide reductase%2C subunit F%2C putative	34	37	29
+SAOUHSC_00365	alkyl hydroperoxide reductase	14	12	16
+SAOUHSC_00366	NAD(P)H-flavin oxidoreductase%2C putative	1	0	3
+SAOUHSC_00367	conserved hypothetical protein	6	1	1
+SAOUHSC_00368	conserved hypothetical protein	0	0	0
+SAOUHSC_00369	conserved hypothetical protein	3	5	8
+SAOUHSC_00370	conserved hypothetical protein	0	0	1
+SAOUHSC_00371	conserved hypothetical protein	0	0	0
+SAOUHSC_00372	xanthine phosphoribosyltransferase	0	0	1
+SAOUHSC_00373	xanthine permease%2C putative	0	1	1
+SAOUHSC_00374	inosine-5'-monophosphate dehydrogenase	7	0	9
+SAOUHSC_00375	GMP synthase%2C putative	3	1	9
+SAOUHSC_00376	conserved hypothetical protein	1	0	0
+SAOUHSC_00377	conserved hypothetical protein	1	0	0
+SAOUHSC_00378	conserved hypothetical protein	0	0	0
+SAOUHSC_00380	hypothetical protein	0	0	0
+SAOUHSC_00381	conserved hypothetical protein	1	0	0
+SAOUHSC_00382	conserved hypothetical protein	0	1	0
+SAOUHSC_00383	conserved hypothetical protein	0	0	0
+SAOUHSC_00384	conserved hypothetical protein	0	0	0
+SAOUHSC_00386	conserved hypothetical protein	0	0	0
+SAOUHSC_00387	conserved hypothetical protein	0	0	0
+SAOUHSC_00389	conserved hypothetical protein	0	0	0
+SAOUHSC_00390	conserved hypothetical protein	0	0	0
+SAOUHSC_00391	conserved hypothetical protein	0	0	0
+SAOUHSC_00392	conserved hypothetical protein	0	0	0
+SAOUHSC_00393	conserved hypothetical protein	0	0	0
+SAOUHSC_00394	conserved hypothetical protein	0	0	0
+SAOUHSC_00395	conserved hypothetical protein	0	0	0
+SAOUHSC_00396	conserved hypothetical protein	0	0	0
+SAOUHSC_00397	type I restriction-modification system%2C M subunit	0	0	1
+SAOUHSC_00398	restriction modification system specificity subunit%2C putative	1	1	1
+SAOUHSC_00399	conserved hypothetical protein	0	0	0
+SAOUHSC_00400	conserved hypothetical protein	2	0	0
+SAOUHSC_00401	conserved hypothetical protein	0	0	0
+SAOUHSC_00402	conserved hypothetical protein	0	0	1
+SAOUHSC_00404	conserved hypothetical protein	0	0	0
+SAOUHSC_00405	conserved hypothetical protein	0	1	1
+SAOUHSC_00406	conserved hypothetical protein	0	1	0
+SAOUHSC_00407	conserved hypothetical protein	0	0	1
+SAOUHSC_00408	conserved hypothetical protein	0	0	1
+SAOUHSC_00409	conserved hypothetical protein	1	0	0
+SAOUHSC_00410	conserved hypothetical protein	0	0	0
+SAOUHSC_00411	conserved hypothetical protein	0	0	0
+SAOUHSC_00412	NADH dehydrogenase subunit 5%2C putative	2	2	1
+SAOUHSC_00413	conserved hypothetical protein	2	5	7
+SAOUHSC_00414	conserved hypothetical protein	2	2	0
+SAOUHSC_00415	conserved hypothetical protein	0	0	1
+SAOUHSC_00416	conserved hypothetical protein	2	0	0
+SAOUHSC_00417	conserved hypothetical protein	2	1	4
+SAOUHSC_00418	conserved hypothetical protein	0	0	0
+SAOUHSC_00420	conserved hypothetical protein	3	0	6
+SAOUHSC_00421	conserved hypothetical protein	0	1	0
+SAOUHSC_00422	trans-sulfuration enzyme family protein%2C putative	1	0	1
+SAOUHSC_00423	conserved hypothetical protein	2	0	1
+SAOUHSC_00424	ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_00426	ABC transporter%2C substrate-binding protein%2C putative	0	0	0
+SAOUHSC_00427	autolysin precursor%2C putative	4	3	6
+SAOUHSC_00428	conserved hypothetical protein	0	0	3
+SAOUHSC_00429	MutT/nudix family protein%2C putative	0	0	0
+SAOUHSC_00430	conserved hypothetical protein	0	1	1
+SAOUHSC_00431	conserved hypothetical protein	2	0	1
+SAOUHSC_00433	conserved hypothetical protein	2	0	2
+SAOUHSC_00434	transcriptional regulator%2C lysR family%2C putative	0	0	0
+SAOUHSC_00435	glutamate synthase%2C large subunit%2C putative	0	2	1
+SAOUHSC_00436	NADH-glutamate synthase small subunit%2C putative	0	1	0
+SAOUHSC_00437	conserved hypothetical protein	0	1	0
+SAOUHSC_00438	alpha amylase family protein%2C putative	0	0	3
+SAOUHSC_00439	conserved hypothetical protein	1	1	0
+SAOUHSC_00440	conserved hypothetical protein	0	0	0
+SAOUHSC_00441	conserved hypothetical protein	0	0	1
+SAOUHSC_00442	DNA polymerase III%2C gamma and tau subunits%2C putative	2	1	6
+SAOUHSC_00444	conserved hypothetical protein	2	0	6
+SAOUHSC_00445	recombination protein RecR	0	1	6
+SAOUHSC_00446	hypothetical protein	0	0	0
+SAOUHSC_00450	Orn/Lys/Arg decarboxylase%2C putative	0	3	0
+SAOUHSC_00451	thymidylate kinase	1	0	1
+SAOUHSC_00452	conserved hypothetical protein	1	2	7
+SAOUHSC_00453	hypothetical protein	0	0	1
+SAOUHSC_00454	DNA polymerase III%2C delta prime subunit%2C putative	1	0	0
+SAOUHSC_00455	conserved hypothetical protein	1	0	0
+SAOUHSC_00456	conserved hypothetical protein	0	0	0
+SAOUHSC_00457	conserved hypothetical protein	1	0	0
+SAOUHSC_00458	conserved hypothetical protein	0	0	0
+SAOUHSC_00459	conserved hypothetical protein	0	1	1
+SAOUHSC_00460	conserved hypothetical protein	0	0	0
+SAOUHSC_00461	methionyl-tRNA synthetase%2C putative	6	2	11
+SAOUHSC_00462	conserved hypothetical protein	3	5	4
+SAOUHSC_00463	conserved hypothetical protein	2	0	0
+SAOUHSC_00464	dimethyladenosine transferase	1	0	0
+SAOUHSC_00465	conserved hypothetical protein	2	6	5
+SAOUHSC_00466	4-diphosphocytidyl-2C-methyl-D-erythritol kinase	0	4	3
+SAOUHSC_00467	pur operon repressor	3	4	5
+SAOUHSC_00468	conserved hypothetical protein	1	3	2
+SAOUHSC_00469	conserved hypothetical protein	1	2	1
+SAOUHSC_00470	conserved hypothetical protein	0	0	0
+SAOUHSC_00471	UDP-N-acetylglucosamine pyrophosphorylase	2	1	6
+SAOUHSC_00472	ribose-phosphate pyrophosphokinase%2C putative	10	1	9
+SAOUHSC_00473	hypothetical protein	4	0	4
+SAOUHSC_00474	ribosomal 5S rRNA E-loop binding protein Ctc/L25/TL5	47	10	92
+SAOUHSC_00475	peptidyl-tRNA hydrolase	2	0	2
+SAOUHSC_00477	transcription-repair coupling factor	1	0	2
+SAOUHSC_00479	conserved hypothetical protein	0	3	3
+SAOUHSC_00480	conserved hypothetical protein	0	5	5
+SAOUHSC_00481	conserved hypothetical protein	0	1	0
+SAOUHSC_00482	conserved hypothetical protein	1	1	1
+SAOUHSC_00483	S1 RNA binding domain protein	6	1	14
+SAOUHSC_00484	conserved hypothetical protein	3	1	4
+SAOUHSC_00485	hypoxanthine phosphoribosyltransferase	3	0	1
+SAOUHSC_00486	conserved hypothetical protein	19	4	31
+SAOUHSC_00487	conserved hypothetical protein	0	0	3
+SAOUHSC_00488	conserved hypothetical protein	13	4	10
+SAOUHSC_00489	dihydropteroate synthase	0	0	2
+SAOUHSC_00490	dihydroneopterin aldolase	1	1	1
+SAOUHSC_00491	2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase	1	0	0
+SAOUHSC_00492	conserved hypothetical protein	0	1	1
+SAOUHSC_00493	lysyl-tRNA synthetase	9	0	23
+SAOUHSC_00497	conserved hypothetical protein	1	0	2
+SAOUHSC_00499	pyridoxine biosynthesis protein	3	0	11
+SAOUHSC_00500	conserved hypothetical protein	4	0	5
+SAOUHSC_00501	conserved hypothetical protein	6	3	5
+SAOUHSC_00502	conserved hypothetical protein	3	0	1
+SAOUHSC_00503	UvrB/uvrC motif domain protein	1	1	1
+SAOUHSC_00504	ATP:guanido phosphotransferase%2C C-terminal catalytic domain protein	3	0	5
+SAOUHSC_00505	endopeptidase%2C putative	10	4	20
+SAOUHSC_00506	hypothetical protein	0	0	5
+SAOUHSC_00507	DNA repair protein RadA	2	4	4
+SAOUHSC_00508	conserved hypothetical protein	0	4	6
+SAOUHSC_00509	glutamyl-tRNA synthetase	6	6	20
+SAOUHSC_00510	serine acetyltransferase%2C putative	1	2	1
+SAOUHSC_00511	cysteinyl-tRNA synthetase	2	3	4
+SAOUHSC_00512	conserved hypothetical protein	0	1	0
+SAOUHSC_00513	conserved hypothetical protein	3	0	0
+SAOUHSC_00514	conserved hypothetical protein	0	1	2
+SAOUHSC_00515	conserved hypothetical protein	1	2	1
+SAOUHSC_00516	preprotein translocase SecE subunit	4	0	2
+SAOUHSC_00517	transcription antitermination protein%2C putative	8	0	2
+SAOUHSC_00518	ribosomal protein L11	63	7	63
+SAOUHSC_00519	ribosomal protein L1	80	13	76
+SAOUHSC_00520	ribosomal protein L10	80	18	121
+SAOUHSC_00521	ribosomal protein L7/L12	43	7	63
+SAOUHSC_00523	conserved hypothetical protein	1	0	3
+SAOUHSC_00524	RNA polymerase beta chain%2C putative	46	77	77
+SAOUHSC_00525	DNA directed RNA polymerase beta-prime chain%2C putative	54	90	86
+SAOUHSC_00526	conserved hypothetical protein	25	7	40
+SAOUHSC_00527	ribosomal protein S12	47	17	90
+SAOUHSC_00528	ribosomal protein S7	35	22	69
+SAOUHSC_00529	translation elongation factor G	207	107	250
+SAOUHSC_00530	translation elongation factor Tu	169	100	335
+SAOUHSC_00531	conserved hypothetical protein	2	1	2
+SAOUHSC_00532	conserved hypothetical protein	1	0	1
+SAOUHSC_00533	conserved hypothetical protein	5	3	14
+SAOUHSC_00534	L-ribulokinase	0	0	1
+SAOUHSC_00535	conserved hypothetical protein	1	0	2
+SAOUHSC_00536	branched-chain amino acid aminotransferase	3	0	8
+SAOUHSC_00537	conserved hypothetical protein	0	0	0
+SAOUHSC_00538	haloacid dehalogenase-like hydrolase%2C putative	0	0	1
+SAOUHSC_00539	conserved hypothetical protein	1	1	3
+SAOUHSC_00540	conserved hypothetical protein	0	0	3
+SAOUHSC_00541	conserved hypothetical protein	2	0	0
+SAOUHSC_00542	conserved hypothetical protein	1	1	3
+SAOUHSC_00543	conserved hypothetical protein	0	0	1
+SAOUHSC_00544	sdrC protein%2C putative	4	2	3
+SAOUHSC_00545	sdrD protein%2C putative	17	1	0
+SAOUHSC_00547	conserved hypothetical protein	1	0	0
+SAOUHSC_00548	conserved hypothetical protein	1	1	3
+SAOUHSC_00549	conserved hypothetical protein	3	2	5
+SAOUHSC_00550	conserved hypothetical protein	1	2	2
+SAOUHSC_00551	conserved hypothetical protein	4	0	4
+SAOUHSC_00552	conserved hypothetical protein	2	0	1
+SAOUHSC_00553	conserved hypothetical protein	3	0	11
+SAOUHSC_00554	SIS domain protein	1	0	2
+SAOUHSC_00555	hydrolase%2C haloacid dehalogenase-like	2	2	2
+SAOUHSC_00556	proline/betaine transporter%2C putative	0	2	3
+SAOUHSC_00557	conserved hypothetical protein	0	0	0
+SAOUHSC_00558	acetyl-CoA acetyltransferase%2C putative	0	1	2
+SAOUHSC_00559	conserved hypothetical protein	0	0	0
+SAOUHSC_00560	conserved hypothetical protein	0	0	0
+SAOUHSC_00561	conserved hypothetical protein	2	5	2
+SAOUHSC_00562	phosphomethylpyrimidine kinase	1	1	1
+SAOUHSC_00564	uracil-DNA glycosylase	1	0	1
+SAOUHSC_00565	conserved hypothetical protein	0	0	2
+SAOUHSC_00567	conserved hypothetical protein	1	0	0
+SAOUHSC_00569	conserved hypothetical protein	2	1	1
+SAOUHSC_00571	conserved hypothetical protein	0	0	0
+SAOUHSC_00572	conserved hypothetical protein	0	0	0
+SAOUHSC_00573	conserved hypothetical protein	2	2	4
+SAOUHSC_00574	phosphate acetyltransferase	6	3	18
+SAOUHSC_00575	conserved hypothetical protein	1	1	10
+SAOUHSC_00577	mevalonate kinase%2C putative	1	0	4
+SAOUHSC_00578	diphosphomevalonate decarboxylase	2	0	1
+SAOUHSC_00579	phosphomevalonate kinase	1	0	3
+SAOUHSC_00580	conserved hypothetical protein	1	0	0
+SAOUHSC_00581	conserved hypothetical protein	2	0	0
+SAOUHSC_00582	conserved hypothetical protein	0	0	0
+SAOUHSC_00583	conserved hypothetical protein	0	0	0
+SAOUHSC_00584	conserved hypothetical protein	0	0	0
+SAOUHSC_00585	conserved hypothetical protein	0	0	0
+SAOUHSC_00586	conserved hypothetical protein	1	0	0
+SAOUHSC_00587	conserved hypothetical protein	0	0	0
+SAOUHSC_00588	conserved hypothetical protein	0	0	1
+SAOUHSC_00589	hypothetical protein	0	0	0
+SAOUHSC_00591	conserved hypothetical protein	0	0	0
+SAOUHSC_00592	conserved hypothetical protein	0	0	0
+SAOUHSC_00593	conserved hypothetical protein	0	0	0
+SAOUHSC_00595	conserved hypothetical protein	0	0	0
+SAOUHSC_00596	conserved hypothetical protein	0	0	1
+SAOUHSC_00598	conserved hypothetical protein	0	0	0
+SAOUHSC_00599	conserved hypothetical protein	0	0	0
+SAOUHSC_00600	conserved hypothetical protein	0	0	1
+SAOUHSC_00602	conserved hypothetical protein	0	0	1
+SAOUHSC_00603	conserved hypothetical protein	1	2	2
+SAOUHSC_00604	conserved hypothetical protein	1	2	1
+SAOUHSC_00605	conserved hypothetical protein	0	2	0
+SAOUHSC_00606	conserved hypothetical protein	5	7	3
+SAOUHSC_00607	conserved hypothetical protein	0	3	4
+SAOUHSC_00608	alcohol dehydrogenase I%2C putative	0	0	1
+SAOUHSC_00609	conserved hypothetical protein	0	0	0
+SAOUHSC_00610	conserved hypothetical protein	0	1	1
+SAOUHSC_00611	arginyl-tRNA synthetase	2	2	6
+SAOUHSC_00612	endonuclease III%2C putative	0	0	0
+SAOUHSC_00613	iron compound ABC transporter%2C substrate-binding protein%2C putative	0	0	0
+SAOUHSC_00614	conserved hypothetical protein	1	1	0
+SAOUHSC_00615	haloacid dehalogenase-like hydrolase%2C putative	0	0	3
+SAOUHSC_00616	conserved hypothetical protein	0	0	2
+SAOUHSC_00617	conserved hypothetical protein	4	1	4
+SAOUHSC_00618	conserved hypothetical protein	0	1	0
+SAOUHSC_00619	conserved hypothetical protein	0	2	0
+SAOUHSC_00620	staphylococcal accessory regulator T%2C putative	1	3	4
+SAOUHSC_00621	conserved hypothetical protein	1	0	0
+SAOUHSC_00622	conserved hypothetical protein	0	0	0
+SAOUHSC_00624	integrase/recombinase%2C putative	0	0	0
+SAOUHSC_00625	conserved hypothetical protein	0	1	1
+SAOUHSC_00626	conserved hypothetical protein	0	0	0
+SAOUHSC_00627	conserved hypothetical protein	0	0	0
+SAOUHSC_00628	conserved hypothetical protein	0	2	0
+SAOUHSC_00629	conserved hypothetical protein	0	0	1
+SAOUHSC_00630	hypothetical protein	0	0	0
+SAOUHSC_00632	conserved hypothetical protein	0	0	0
+SAOUHSC_00633	conserved hypothetical protein	2	1	3
+SAOUHSC_00634	ABC transporter%2C substrate-binding protein%2C putative	46	15	2
+SAOUHSC_00636	iron (chelated) ABC transporter%2C permease protein%2C putative	19	9	0
+SAOUHSC_00637	conserved hypothetical protein	40	13	5
+SAOUHSC_00638	conserved hypothetical protein	2	1	1
+SAOUHSC_00639	conserved hypothetical protein	0	0	0
+SAOUHSC_00640	conserved hypothetical protein	0	3	2
+SAOUHSC_00641	teichoic acid translocation ATP-binding protein%2C putative	2	2	3
+SAOUHSC_00642	teichoic acid biosynthesis protein%2C putative	6	1	3
+SAOUHSC_00643	tagB protein%2C putative	2	0	0
+SAOUHSC_00644	tagX protein%2C putative	1	2	0
+SAOUHSC_00645	glycerol-3-phosphate cytidylyltransferase	0	0	0
+SAOUHSC_00646	penicillin-binding protein 4%2C putative	0	0	3
+SAOUHSC_00647	conserved hypothetical protein	1	0	3
+SAOUHSC_00648	conserved hypothetical protein	6	6	5
+SAOUHSC_00650	conserved hypothetical protein	0	0	0
+SAOUHSC_00651	conserved hypothetical protein	0	5	1
+SAOUHSC_00652	iron compound ABC transporter%2C ATP-binding protein	1	0	4
+SAOUHSC_00653	ferrichrome transport permease fhuB%2C putative	0	0	3
+SAOUHSC_00654	ferrichrome ABC transporter (permease)%2C putative	1	0	2
+SAOUHSC_00655	conserved hypothetical protein	0	0	0
+SAOUHSC_00656	conserved hypothetical protein	0	0	0
+SAOUHSC_00658	conserved hypothetical protein	0	0	0
+SAOUHSC_00659	conserved hypothetical protein	7	0	9
+SAOUHSC_00660	conserved hypothetical protein	5	3	9
+SAOUHSC_00661	conserved hypothetical protein	1	0	1
+SAOUHSC_00662	conserved hypothetical protein	0	0	0
+SAOUHSC_00663	conserved hypothetical protein	0	2	2
+SAOUHSC_00664	conserved hypothetical protein	0	0	0
+SAOUHSC_00665	conserved hypothetical protein	0	1	0
+SAOUHSC_00666	conserved hypothetical protein	3	0	4
+SAOUHSC_00667	ABC transporter ATP-binding protein%2C putative	1	0	0
+SAOUHSC_00668	ABC transporter permease%2C putative	2	0	4
+SAOUHSC_00669	conserved hypothetical protein	5	7	7
+SAOUHSC_00670	conserved hypothetical protein	4	22	6
+SAOUHSC_00671	secretory antigen SsaA-like protein	4	1	16
+SAOUHSC_00672	conserved hypothetical protein	0	2	5
+SAOUHSC_00673	conserved hypothetical protein	0	0	4
+SAOUHSC_00674	conserved hypothetical protein	2	0	1
+SAOUHSC_00675	conserved hypothetical protein	2	1	1
+SAOUHSC_00676	conserved hypothetical protein	1	1	0
+SAOUHSC_00677	conserved hypothetical protein	0	0	0
+SAOUHSC_00678	conserved hypothetical protein	3	0	0
+SAOUHSC_00679	conserved hypothetical protein	4	0	3
+SAOUHSC_00680	hypothetical protein	0	0	1
+SAOUHSC_00681	major facilitator superfamily protein superfamily	1	0	1
+SAOUHSC_00682	conserved hypothetical protein	0	0	0
+SAOUHSC_00683	conserved hypothetical protein	0	0	0
+SAOUHSC_00684	conserved hypothetical protein	0	0	0
+SAOUHSC_00685	conserved hypothetical protein	1	1	1
+SAOUHSC_00686	conserved hypothetical protein	0	0	2
+SAOUHSC_00687	conserved hypothetical protein	1	0	0
+SAOUHSC_00688	conserved hypothetical protein	0	0	2
+SAOUHSC_00689	conserved hypothetical protein	1	1	2
+SAOUHSC_00690	conserved hypothetical protein	0	0	1
+SAOUHSC_00691	undecaprenol kinase%2C putative	1	3	3
+SAOUHSC_00692	conserved hypothetical protein	1	0	2
+SAOUHSC_00693	conserved hypothetical protein	0	2	2
+SAOUHSC_00694	conserved hypothetical protein	16	14	24
+SAOUHSC_00695	conserved hypothetical protein	0	1	0
+SAOUHSC_00696	conserved hypothetical protein	2	1	1
+SAOUHSC_00697	conserved hypothetical protein	0	0	0
+SAOUHSC_00698	conserved hypothetical protein	0	1	0
+SAOUHSC_00699	deoxyribodipyrimidine photolyase%2C putative	1	0	2
+SAOUHSC_00700	conserved hypothetical protein	0	1	1
+SAOUHSC_00701	conserved hypothetical protein	2	0	2
+SAOUHSC_00702	conserved hypothetical protein	0	0	0
+SAOUHSC_00703	quinolone resistance norA protein%2C putative	2	3	1
+SAOUHSC_00704	conserved hypothetical protein	0	2	0
+SAOUHSC_00705	conserved hypothetical protein	0	0	0
+SAOUHSC_00706	conserved hypothetical protein	0	0	4
+SAOUHSC_00707	fructose 1-phosphate kinase%2C putative	3	0	2
+SAOUHSC_00708	fructose specific permease%2C putative	2	1	7
+SAOUHSC_00709	hypothetical protein	0	0	0
+SAOUHSC_00710	N-acetylglucosamine-6-phosphate deacetylase	0	2	3
+SAOUHSC_00711	conserved hypothetical protein	2	2	5
+SAOUHSC_00712	conserved hypothetical protein	0	0	1
+SAOUHSC_00713	conserved hypothetical protein	1	0	2
+SAOUHSC_00714	sensor histidine kinase SaeS%2C putative	4	0	3
+SAOUHSC_00715	response regulator%2C putative	6	1	3
+SAOUHSC_00716	conserved hypothetical protein	3	1	1
+SAOUHSC_00717	conserved hypothetical protein	0	0	2
+SAOUHSC_00718	conserved hypothetical protein	2	0	2
+SAOUHSC_00719	conserved hypothetical protein	2	2	3
+SAOUHSC_00720	6-pyruvoyl tetrahydropterin synthase superfamily%2C putative	0	1	2
+SAOUHSC_00721	conserved hypothetical protein	0	0	2
+SAOUHSC_00722	para-aminobenzoate synthase%2C glutamine amidotransferase%2C component II%2C putative	0	0	1
+SAOUHSC_00723	conserved hypothetical protein	0	0	1
+SAOUHSC_00724	chorismate binding enzyme%2C putative	1	0	1
+SAOUHSC_00725	conserved hypothetical protein	0	0	0
+SAOUHSC_00726	conserved hypothetical protein	0	1	0
+SAOUHSC_00727	conserved hypothetical protein	1	2	4
+SAOUHSC_00728	conserved hypothetical protein	13	8	34
+SAOUHSC_00729	ABC transporter%2C ATP-binding protein	2	3	3
+SAOUHSC_00730	ATP-dependent DNA helicase RecQ	0	1	3
+SAOUHSC_00731	ABC transporter domain protein	1	7	2
+SAOUHSC_00732	amino acid ABC transporter%2C permease protein%2C putative	3	20	1
+SAOUHSC_00733	histidinol-phosphate aminotransferase	0	2	1
+SAOUHSC_00734	conserved hypothetical protein	0	1	1
+SAOUHSC_00735	conserved hypothetical protein	0	0	0
+SAOUHSC_00736	conserved hypothetical protein	0	0	0
+SAOUHSC_00737	hypothetical protein	0	0	0
+SAOUHSC_00738	conserved hypothetical protein	17	0	9
+SAOUHSC_00739	conserved hypothetical protein	2	1	2
+SAOUHSC_00740	conserved hypothetical protein	1	1	3
+SAOUHSC_00741	ribonucleoside-diphosphate reductase 2%2C putative	1	0	4
+SAOUHSC_00742	ribonucleotide-diphosphate reductase alpha chain%2C putative	18	2	25
+SAOUHSC_00743	ribonucleotide-disphosphate reductase beta chain%2C putative	14	3	10
+SAOUHSC_00744	conserved hypothetical protein	0	0	0
+SAOUHSC_00745	conserved hypothetical protein	0	0	0
+SAOUHSC_00746	conserved hypothetical protein	0	0	0
+SAOUHSC_00747	conserved hypothetical protein	0	0	0
+SAOUHSC_00748	conserved hypothetical protein	0	0	1
+SAOUHSC_00749	conserved hypothetical protein	2	0	2
+SAOUHSC_00751	conserved hypothetical protein	0	1	1
+SAOUHSC_00752	UDP-N-acetylenolpyruvoylglucosamine reductase%2C putative	4	1	3
+SAOUHSC_00753	conserved hypothetical protein	1	0	1
+SAOUHSC_00754	conserved hypothetical protein	1	0	1
+SAOUHSC_00755	conserved hypothetical protein	2	0	1
+SAOUHSC_00756	conserved hypothetical protein	3	1	4
+SAOUHSC_00757	peptidase T%2C putative	2	2	9
+SAOUHSC_00758	conserved hypothetical protein	1	1	2
+SAOUHSC_00759	conserved hypothetical protein	0	0	0
+SAOUHSC_00760	conserved hypothetical protein	1	0	3
+SAOUHSC_00762	conserved hypothetical protein	2	0	5
+SAOUHSC_00763	conserved hypothetical protein	0	3	1
+SAOUHSC_00764	conserved hypothetical protein	5	0	3
+SAOUHSC_00765	conserved hypothetical protein	0	0	0
+SAOUHSC_00766	conserved hypothetical protein	0	0	0
+SAOUHSC_00767	conserved hypothetical protein	2	3	1
+SAOUHSC_00769	preprotein translocase%2C SecA subunit	8	0	14
+SAOUHSC_00770	conserved hypothetical protein	0	0	0
+SAOUHSC_00771	peptide chain release factor 2%2C putative	1	0	2
+SAOUHSC_00772	conserved hypothetical protein	0	0	0
+SAOUHSC_00773	LysM domain protein	0	0	0
+SAOUHSC_00774	conserved hypothetical protein	3	0	0
+SAOUHSC_00775	conserved hypothetical protein	0	0	1
+SAOUHSC_00776	excinuclease ABC%2C B subunit	0	0	0
+SAOUHSC_00778	conserved hypothetical protein	0	0	0
+SAOUHSC_00779	excinuclease ABC subunit B%2C putative	0	0	2
+SAOUHSC_00780	excinuclease ABC%2C A subunit	3	2	4
+SAOUHSC_00781	HPr(Ser) kinase/phosphatase	2	0	3
+SAOUHSC_00782	prolipoprotein diacylglyceryl transferase	1	1	2
+SAOUHSC_00783	conserved hypothetical protein	0	0	0
+SAOUHSC_00784	conserved hypothetical protein	2	1	3
+SAOUHSC_00785	thioredoxin reductase	7	1	5
+SAOUHSC_00786	conserved hypothetical protein	0	0	0
+SAOUHSC_00787	conserved hypothetical protein	1	0	0
+SAOUHSC_00788	conserved hypothetical protein	1	0	3
+SAOUHSC_00789	conserved hypothetical protein	1	0	2
+SAOUHSC_00790	ATP-dependent Clp protease%2C proteolytic subunit ClpP	13	1	18
+SAOUHSC_00792	conserved hypothetical protein	0	1	2
+SAOUHSC_00793	conserved hypothetical protein	1	0	0
+SAOUHSC_00794	glycolytic operon regulator	35	2	28
+SAOUHSC_00795	glyceraldehyde-3-phosphate dehydrogenase%2C type I	62	6	87
+SAOUHSC_00796	phosphoglycerate kinase%2C putative	8	3	18
+SAOUHSC_00797	triosephosphate isomerase	9	0	17
+SAOUHSC_00798	phosphoglycerate mutase%2C 2%2C3-bisphosphoglycerate-independent	21	0	26
+SAOUHSC_00799	enolase	34	56	70
+SAOUHSC_00800	conserved hypothetical protein	1	0	2
+SAOUHSC_00801	preprotein translocase%2C SecG subunit	1	2	2
+SAOUHSC_00802	carboxylesterase precursor%2C putative	1	2	1
+SAOUHSC_00803	ribonuclease R%2C putative	10	1	8
+SAOUHSC_00804	SsrA-binding protein	1	0	1
+SAOUHSC_00805	conserved hypothetical protein	0	0	0
+SAOUHSC_00806	conserved hypothetical protein	0	0	0
+SAOUHSC_00807	conserved hypothetical protein	1	0	0
+SAOUHSC_00808	conserved hypothetical protein	1	1	0
+SAOUHSC_00809	conserved hypothetical protein	0	0	0
+SAOUHSC_00810	conserved hypothetical protein	0	0	0
+SAOUHSC_00811	conserved hypothetical protein	1	0	0
+SAOUHSC_00812	clumping factor	1	2	4
+SAOUHSC_00813	truncated secreted von Willebrand factor-binding protein	0	0	0
+SAOUHSC_00814	truncated secreted von Willebrand factor-binding protein (coagulase) VWbp%2C putative	0	0	0
+SAOUHSC_00816	extracellular matrix and plasma binding protein%2C putative	0	1	0
+SAOUHSC_00817	conserved hypothetical protein	0	1	0
+SAOUHSC_00818	thermonuclease precursor	0	1	0
+SAOUHSC_00819	conserved hypothetical protein	8	0	2
+SAOUHSC_00820	conserved hypothetical protein	0	0	1
+SAOUHSC_00821	conserved hypothetical protein	0	0	0
+SAOUHSC_00822	conserved hypothetical protein	0	0	0
+SAOUHSC_00823	conserved hypothetical protein	1	0	1
+SAOUHSC_00824	conserved hypothetical protein	0	0	0
+SAOUHSC_00825	conserved hypothetical protein	0	1	0
+SAOUHSC_00826	conserved hypothetical protein	2	1	0
+SAOUHSC_00827	conserved hypothetical protein	0	1	1
+SAOUHSC_00828	conserved hypothetical protein	1	0	2
+SAOUHSC_00830	conserved hypothetical protein	2	0	1
+SAOUHSC_00831	conserved hypothetical protein	0	0	0
+SAOUHSC_00832	3-dehydroquinate dehydratase%2C type I	0	0	0
+SAOUHSC_00833	conserved hypothetical protein	1	1	2
+SAOUHSC_00834	thioredoxin%2C putative	0	1	5
+SAOUHSC_00835	conserved hypothetical protein	0	1	2
+SAOUHSC_00836	glycine cleavage system H protein	1	2	8
+SAOUHSC_00837	conserved hypothetical protein	0	0	0
+SAOUHSC_00838	conserved hypothetical protein	0	0	0
+SAOUHSC_00839	conserved hypothetical protein	0	0	0
+SAOUHSC_00840	conserved hypothetical protein	1	0	1
+SAOUHSC_00841	conserved hypothetical protein	0	0	1
+SAOUHSC_00842	ABC transporter%2C ATP-binding protein%2C putative	2	0	3
+SAOUHSC_00843	conserved hypothetical protein	0	0	0
+SAOUHSC_00844	conserved hypothetical protein	1	0	0
+SAOUHSC_00845	conserved hypothetical protein	0	0	0
+SAOUHSC_00846	conserved hypothetical protein	3	2	4
+SAOUHSC_00847	ABC transporter%2C ATP-binding protein%2C putative	3	6	5
+SAOUHSC_00848	conserved hypothetical protein	5	7	14
+SAOUHSC_00849	aminotransferase%2C class V superfamily%2C putative	5	7	6
+SAOUHSC_00850	conserved hypothetical protein	3	6	2
+SAOUHSC_00851	conserved hypothetical protein	11	16	15
+SAOUHSC_00852	conserved hypothetical protein	0	0	0
+SAOUHSC_00853	conserved hypothetical protein	0	1	0
+SAOUHSC_00854	conserved hypothetical protein	1	1	0
+SAOUHSC_00855	conserved hypothetical protein	0	0	1
+SAOUHSC_00857	conserved hypothetical protein	0	0	0
+SAOUHSC_00858	conserved hypothetical protein	0	2	0
+SAOUHSC_00859	conserved hypothetical protein	0	1	3
+SAOUHSC_00860	5-nucleotidase family protein	1	0	3
+SAOUHSC_00861	lipoic acid synthetase	4	4	17
+SAOUHSC_00862	conserved hypothetical protein	1	0	2
+SAOUHSC_00863	conserved hypothetical protein	0	1	0
+SAOUHSC_00864	conserved hypothetical protein	0	0	2
+SAOUHSC_00865	conserved hypothetical protein	2	0	4
+SAOUHSC_00866	D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain protein	1	1	2
+SAOUHSC_00867	conserved hypothetical protein	0	0	0
+SAOUHSC_00868	conserved hypothetical protein	0	1	0
+SAOUHSC_00869	D-alanine-activating enzyme	4	8	13
+SAOUHSC_00870	dltB protein%2C putative	11	5	14
+SAOUHSC_00871	D-alanyl carrier protein	0	0	5
+SAOUHSC_00872	extramembranal protein	14	6	19
+SAOUHSC_00873	conserved hypothetical protein	2	0	9
+SAOUHSC_00874	conserved hypothetical protein	0	1	3
+SAOUHSC_00875	conserved hypothetical protein	2	0	5
+SAOUHSC_00876	conserved hypothetical protein	0	0	0
+SAOUHSC_00877	conserved hypothetical protein	0	0	1
+SAOUHSC_00878	conserved hypothetical protein	11	2	44
+SAOUHSC_00879	probable cytosol aminopeptidase	2	0	2
+SAOUHSC_00880	conserved hypothetical protein	3	3	0
+SAOUHSC_00881	conserved hypothetical protein	0	1	2
+SAOUHSC_00882	conserved hypothetical protein	0	0	0
+SAOUHSC_00883	monovalent cation/proton antiporter%2C MnhG/PhaG subunit subfamily%2C putative	0	0	2
+SAOUHSC_00884	Multiple resistance and pH regulation protein F (MrpF / PhaF) family%2C putative	0	0	0
+SAOUHSC_00885	conserved hypothetical protein	1	2	1
+SAOUHSC_00886	Na+/H+ antiporter%2C MnhD component%2C putative	6	1	5
+SAOUHSC_00887	Na+/H+ antiporter subunit%2C putative	1	1	1
+SAOUHSC_00888	monovalent cation:proton antiporter subfamily%2C putative	0	1	1
+SAOUHSC_00889	Na+/H+ antiporter subunit%2C putative	5	9	15
+SAOUHSC_00890	conserved hypothetical protein	0	0	2
+SAOUHSC_00891	peptidyl-prolyl cis-trans isomerase%2C cyclophilin-type%2C putative	3	1	7
+SAOUHSC_00892	conserved hypothetical protein	1	0	2
+SAOUHSC_00893	FMN oxidoreductase%2C putative	0	0	1
+SAOUHSC_00894	ornithine aminotransferase%2C putative	0	2	1
+SAOUHSC_00895	glutamate dehydrogenase%2C NAD-specific%2C putative	1	3	0
+SAOUHSC_00896	conserved hypothetical protein	0	0	0
+SAOUHSC_00897	conserved hypothetical protein	0	0	0
+SAOUHSC_00898	argininosuccinate lyase	1	1	1
+SAOUHSC_00899	argininosuccinate synthase	0	0	0
+SAOUHSC_00900	glucose-6-phosphate isomerase	12	1	30
+SAOUHSC_00901	conserved hypothetical protein	0	0	1
+SAOUHSC_00902	Signal peptidase IA%2C putative	0	0	3
+SAOUHSC_00903	Signal peptidase IB%2C putative	1	1	4
+SAOUHSC_00904	exonuclease RexB%2C putative	1	2	6
+SAOUHSC_00905	ATP-dependent nuclease subunit A%2C putative	2	1	6
+SAOUHSC_00906	conserved hypothetical protein	10	3	21
+SAOUHSC_00907	conserved hypothetical protein	0	4	1
+SAOUHSC_00908	coenzyme A disulfide reductase%2C putative	7	1	6
+SAOUHSC_00909	conserved hypothetical protein	4	0	1
+SAOUHSC_00910	conserved hypothetical protein	2	8	4
+SAOUHSC_00911	conserved hypothetical protein	0	1	2
+SAOUHSC_00912	ATP-dependent Clp protease%2C ATP-binding subunit ClpB	4	12	4
+SAOUHSC_00913	conserved hypothetical protein	0	0	0
+SAOUHSC_00914	2-isopropylmalate synthase%2C putative	0	0	0
+SAOUHSC_00915	conserved hypothetical protein	0	0	0
+SAOUHSC_00916	conserved hypothetical protein	0	0	0
+SAOUHSC_00917	conserved hypothetical protein	1	0	0
+SAOUHSC_00918	truncated MHC class II analog protein	0	5	2
+SAOUHSC_00919	conserved hypothetical protein	3	0	6
+SAOUHSC_00920	conserved hypothetical protein	13	4	23
+SAOUHSC_00921	3-oxoacyl-synthase%2C putative	12	6	27
+SAOUHSC_00922	conserved hypothetical protein	0	0	0
+SAOUHSC_00923	conserved hypothetical protein	0	0	0
+SAOUHSC_00924	conserved hypothetical protein	0	1	0
+SAOUHSC_00925	conserved hypothetical protein	1	0	0
+SAOUHSC_00926	oligopeptide ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00927	oligopeptide ABC transporter%2C substrate-binding protein%2C putative	1	0	1
+SAOUHSC_00928	oligopeptide ABC transporter%2C substrate-binding protein%2C putative	0	0	0
+SAOUHSC_00929	oligopeptide ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00930	oligopeptide ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00931	oligopeptide ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_00932	oligopeptide ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_00933	tryptophanyl-tRNA synthetase	2	0	4
+SAOUHSC_00934	conserved hypothetical protein	21	23	25
+SAOUHSC_00935	conserved hypothetical protein	3	6	5
+SAOUHSC_00936	conserved hypothetical protein	0	0	0
+SAOUHSC_00937	oligoendopeptidase F	6	0	9
+SAOUHSC_00938	conserved hypothetical protein	2	0	3
+SAOUHSC_00939	conserved hypothetical protein	3	0	0
+SAOUHSC_00940	conserved hypothetical protein	1	0	2
+SAOUHSC_00941	conserved hypothetical protein	2	1	1
+SAOUHSC_00942	GTP pyrophosphokinase%2C putative	2	0	6
+SAOUHSC_00943	ATP-NAD kinase%2C putative	2	0	3
+SAOUHSC_00944	conserved hypothetical protein	1	1	0
+SAOUHSC_00945	magnesium transporter	2	2	2
+SAOUHSC_00946	conserved hypothetical protein	1	1	5
+SAOUHSC_00947	enoyl-(acyl-carrier-protein) reductase	9	6	9
+SAOUHSC_00948	conserved hypothetical protein	1	1	7
+SAOUHSC_00949	conserved hypothetical protein	0	0	0
+SAOUHSC_00950	conserved hypothetical protein	1	0	0
+SAOUHSC_00951	conserved hypothetical protein	0	7	5
+SAOUHSC_00952	conserved hypothetical protein	1	3	4
+SAOUHSC_00953	conserved hypothetical protein	4	0	6
+SAOUHSC_00954	UDP-N-acetylmuramoylalanyl-D-glutamate--2%2C 6-diaminopimelate ligase	4	0	4
+SAOUHSC_00955	conserved hypothetical protein	0	1	1
+SAOUHSC_00956	peptide chain release factor 3	1	3	5
+SAOUHSC_00957	conserved hypothetical protein	0	0	4
+SAOUHSC_00958	serine protease HtrA%2C putative	1	1	4
+SAOUHSC_00959	conserved hypothetical protein	3	5	2
+SAOUHSC_00960	conserved hypothetical protein	1	1	1
+SAOUHSC_00961	conserved hypothetical protein	0	0	0
+SAOUHSC_00962	conserved hypothetical protein	0	0	0
+SAOUHSC_00963	lipoyltransferase and lipoate-protein ligase%2C putative	1	0	4
+SAOUHSC_00964	conserved hypothetical protein	0	0	4
+SAOUHSC_00965	conserved hypothetical protein	1	0	5
+SAOUHSC_00966	conserved hypothetical protein	0	1	0
+SAOUHSC_00967	hypothetical protein	0	0	0
+SAOUHSC_00968	conserved hypothetical protein	0	0	0
+SAOUHSC_00969	conserved hypothetical protein	0	0	0
+SAOUHSC_00970	ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_00971	conserved hypothetical protein	0	0	1
+SAOUHSC_00972	conserved hypothetical protein	0	0	0
+SAOUHSC_00973	conserved hypothetical protein	0	0	2
+SAOUHSC_00974	glycosyl transferase%2C group 1	0	0	0
+SAOUHSC_00975	conserved hypothetical protein	7	2	3
+SAOUHSC_00976	conserved hypothetical protein	0	0	0
+SAOUHSC_00977	conserved hypothetical protein	0	0	0
+SAOUHSC_00978	conserved hypothetical protein	0	0	0
+SAOUHSC_00979	conserved hypothetical protein	0	0	0
+SAOUHSC_00980	conserved hypothetical protein	2	0	6
+SAOUHSC_00981	conserved hypothetical protein	0	0	0
+SAOUHSC_00982	conserved hypothetical protein	0	0	2
+SAOUHSC_00983	2-succinyl-6-hydroxy-2%2C 4-cyclohexadiene-1-carboxylic acid synthase/2-oxoglutarate decarboxylase	2	2	2
+SAOUHSC_00984	conserved hypothetical protein	0	2	2
+SAOUHSC_00985	enoyl-CoA hydratase/isomerase family protein%2C putative	6	7	15
+SAOUHSC_00986	cysteine protease%2C putative	0	1	0
+SAOUHSC_00987	cysteine protease precursor%2C putative	0	0	0
+SAOUHSC_00988	glutamyl endopeptidase precursor%2C putative	0	1	1
+SAOUHSC_00989	conserved hypothetical protein	0	4	0
+SAOUHSC_00991	conserved hypothetical protein	2	0	0
+SAOUHSC_00992	transcriptional regulator%2C MarR family%2C putative	0	0	0
+SAOUHSC_00993	conserved hypothetical protein	0	0	0
+SAOUHSC_00994	bifunctional autolysin precursor%2C putative	8	25	31
+SAOUHSC_00995	conserved hypothetical protein	0	0	0
+SAOUHSC_00996	conserved hypothetical protein	1	0	3
+SAOUHSC_00997	conserved hypothetical protein	3	2	2
+SAOUHSC_00998	fmt protein%2C putative	1	0	3
+SAOUHSC_00999	quinol oxidase%2C subunit IV%2C putative	2	1	4
+SAOUHSC_01000	cytochrome c oxidase subunit III%2C putative	5	2	13
+SAOUHSC_01001	quinol oxidase%2C subunit I	22	1	42
+SAOUHSC_01002	quinol oxidase AA3%2C subunit II%2C putative	22	0	27
+SAOUHSC_01003	hypothetical protein	0	0	0
+SAOUHSC_01005	conserved hypothetical protein	3	1	2
+SAOUHSC_01007	FolD bifunctional protein%2C putative	1	1	4
+SAOUHSC_01008	phosphoribosylaminoimidazole carboxylase%2C catalytic subunit	0	0	0
+SAOUHSC_01009	phosphoribosylaminoimidazole carboxylase%2C ATPase subunit	0	0	0
+SAOUHSC_01010	phosphoribosylaminoimidazole-succinocarboxamide synthase	0	0	0
+SAOUHSC_01011	phosphoribosylformylglycinamidine synthase%2C PurS protein	0	0	0
+SAOUHSC_01012	phosphoribosylformylglycinamidine synthase I	0	0	0
+SAOUHSC_01013	phosphoribosylformylglycinamidine synthase II	1	0	0
+SAOUHSC_01014	amidophosphoribosyltransferase	0	0	1
+SAOUHSC_01015	phosphoribosylformylglycinamidine cyclo-ligase	0	0	0
+SAOUHSC_01016	phosphoribosylglycinamide formyltransferase%2C putative	0	1	0
+SAOUHSC_01017	phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase	0	1	1
+SAOUHSC_01018	phosphoribosylamine-glycine ligase	1	0	2
+SAOUHSC_01019	conserved hypothetical protein	3	0	2
+SAOUHSC_01021	conserved hypothetical protein	11	0	3
+SAOUHSC_01022	conserved hypothetical protein	2	0	2
+SAOUHSC_01023	hypothetical protein	0	0	0
+SAOUHSC_01024	hypothetical protein	0	0	0
+SAOUHSC_01025	conserved hypothetical protein	5	0	5
+SAOUHSC_01026	conserved hypothetical protein	0	0	0
+SAOUHSC_01027	conserved hypothetical protein	1	0	1
+SAOUHSC_01028	phosphocarrier protein hpr%2C putative	11	2	18
+SAOUHSC_01029	phosphoenolpyruvate-protein phosphotransferase	27	20	72
+SAOUHSC_01030	conserved hypothetical protein	0	0	2
+SAOUHSC_01031	cytochrome d ubiquinol oxidase%2C subunit I%2C putative	1	0	0
+SAOUHSC_01032	cytochrome d ubiquinol oxidase%2C subunit II%2C putative	2	0	0
+SAOUHSC_01034	conserved hypothetical protein	3	0	1
+SAOUHSC_01035	conserved hypothetical protein	10	1	16
+SAOUHSC_01036	conserved hypothetical protein	2	0	0
+SAOUHSC_01037	hypothetical protein	0	0	1
+SAOUHSC_01038	polypeptide deformylase	2	0	1
+SAOUHSC_01039	conserved hypothetical protein	2	0	3
+SAOUHSC_01040	pyruvate dehydrogenase complex%2C E1 component%2C alpha subunit%2C putative	36	10	49
+SAOUHSC_01041	pyruvate dehydrogenase complex%2C E1 component%2C pyruvate dehydrogenase beta subunit%2C putative	17	10	41
+SAOUHSC_01042	dihydrolipoamide S-acetyltransferase component of pyruvate dehydrogenase complex E2%2C putative	37	11	77
+SAOUHSC_01043	dihydrolipoamide dehydrogenase	36	17	50
+SAOUHSC_01044	conserved hypothetical protein	0	0	0
+SAOUHSC_01045	conserved hypothetical protein	1	0	0
+SAOUHSC_01046	ABC transporter domain protein	1	0	2
+SAOUHSC_01047	spermidine/putrescine ABC transporter%2C permease protein%2C putative	0	0	2
+SAOUHSC_01048	spermidine/putrescine ABC transporter%2C permease protein%2C putative	1	1	1
+SAOUHSC_01049	spermidine/putrescine ABC transporter%2C spermidine/putrescine-binding protein%2C putative	0	1	0
+SAOUHSC_01050	conserved hypothetical protein	5	0	8
+SAOUHSC_01051	conserved hypothetical protein	0	1	2
+SAOUHSC_01053	conserved hypothetical protein	2	0	0
+SAOUHSC_01054	conserved hypothetical protein	0	1	5
+SAOUHSC_01055	inositol monophosphatase family protein%2C putative	1	2	1
+SAOUHSC_01057	hypothetical protein	1	0	3
+SAOUHSC_01058	GTP-binding protein TypA%2C putative	15	5	20
+SAOUHSC_01060	conserved hypothetical protein	0	0	1
+SAOUHSC_01061	conserved hypothetical protein	1	3	0
+SAOUHSC_01062	conserved hypothetical protein	1	0	1
+SAOUHSC_01063	conserved hypothetical protein	3	1	1
+SAOUHSC_01064	pyruvate carboxylase	16	0	29
+SAOUHSC_01065	heme A synthase%2C putative	2	2	3
+SAOUHSC_01066	protoheme IX farnesyltransferase	1	1	4
+SAOUHSC_01067	conserved hypothetical protein	0	0	3
+SAOUHSC_01068	conserved hypothetical protein	0	0	0
+SAOUHSC_01069	conserved hypothetical protein	5	0	2
+SAOUHSC_01070	conserved hypothetical protein	0	0	1
+SAOUHSC_01071	glycerophosphoryl diester phosphodiesterase%2C putative	0	0	6
+SAOUHSC_01072	conserved hypothetical protein	1	1	0
+SAOUHSC_01073	conserved hypothetical protein	0	0	1
+SAOUHSC_01074	conserved hypothetical protein	1	0	2
+SAOUHSC_01075	pantetheine-phosphate adenylyltransferase	3	0	3
+SAOUHSC_01076	conserved hypothetical protein	3	3	1
+SAOUHSC_01077	conserved hypothetical protein	32	35	51
+SAOUHSC_01078	ribosomal protein L32	7	5	10
+SAOUHSC_01079	neurofilament protein	0	0	1
+SAOUHSC_01081	conserved hypothetical protein	5	0	5
+SAOUHSC_01082	conserved hypothetical protein	0	0	1
+SAOUHSC_01084	conserved hypothetical protein	0	0	1
+SAOUHSC_01085	conserved hypothetical protein	0	0	0
+SAOUHSC_01086	iron compound ABC transporter%2C permease protein%2C putative	0	0	1
+SAOUHSC_01087	iron compound ABC transporter%2C permease protein	1	0	0
+SAOUHSC_01088	conserved hypothetical protein	0	0	1
+SAOUHSC_01089	conserved hypothetical protein	0	0	0
+SAOUHSC_01090	conserved hypothetical protein	0	0	0
+SAOUHSC_01091	conserved hypothetical protein	0	0	0
+SAOUHSC_01092	phenylalanyl-tRNA synthetase%2C alpha subunit	3	1	5
+SAOUHSC_01093	phenylalanyl-tRNA synthetase%2C beta subunit	5	1	7
+SAOUHSC_01095	ribonuclease HIII	0	0	0
+SAOUHSC_01096	conserved hypothetical protein	0	0	1
+SAOUHSC_01097	conserved hypothetical protein	0	0	2
+SAOUHSC_01098	DNA-dependent DNA polymerase beta chain%2C putative	1	0	2
+SAOUHSC_01099	DNA mismatch repair MutS2 family protein	2	0	4
+SAOUHSC_01100	thioredoxin	8	0	10
+SAOUHSC_01101	conserved hypothetical protein	0	0	0
+SAOUHSC_01102	excinuclease ABC%2C C subunit	0	1	2
+SAOUHSC_01103	succinate dehydrogenase cytochrome b-558 subunit%2C putative	0	1	1
+SAOUHSC_01104	succinate dehydrogenase%2C flavoprotein chain TC0881%2C putative	2	1	5
+SAOUHSC_01105	iron-sulphur subunit of succinate dehydrogenase%2C putative	1	0	3
+SAOUHSC_01106	glutamate racemase	0	1	1
+SAOUHSC_01107	conserved hypothetical protein	2	1	1
+SAOUHSC_01108	conserved hypothetical protein	0	0	2
+SAOUHSC_01109	conserved hypothetical protein	0	0	0
+SAOUHSC_01110	fibrinogen-binding protein-related	3	0	5
+SAOUHSC_01111	hypothetical protein	0	0	0
+SAOUHSC_01112	conserved hypothetical protein	0	0	0
+SAOUHSC_01113	conserved hypothetical protein	1	0	1
+SAOUHSC_01114	fibrinogen-binding protein	0	1	1
+SAOUHSC_01115	conserved hypothetical protein	0	1	0
+SAOUHSC_01118	conserved hypothetical protein	0	0	0
+SAOUHSC_01119	conserved hypothetical protein	1	0	3
+SAOUHSC_01120	conserved hypothetical protein	0	0	5
+SAOUHSC_01121	alpha-hemolysin precursor	0	0	0
+SAOUHSC_01122	conserved hypothetical protein	0	0	0
+SAOUHSC_01123	conserved hypothetical protein	0	0	0
+SAOUHSC_01124	conserved hypothetical protein	0	0	1
+SAOUHSC_01125	conserved hypothetical protein	0	0	0
+SAOUHSC_01127	conserved hypothetical protein	0	0	0
+SAOUHSC_01128	ornithine carbamoyltransferase	0	0	0
+SAOUHSC_01129	carbamate kinase	0	0	0
+SAOUHSC_01130	conserved hypothetical protein	0	0	1
+SAOUHSC_01131	conserved hypothetical protein	0	0	0
+SAOUHSC_01133	conserved hypothetical protein	1	4	2
+SAOUHSC_01134	conserved hypothetical protein	0	1	0
+SAOUHSC_01135	conserved hypothetical protein	0	0	0
+SAOUHSC_01136	conserved hypothetical protein	0	0	0
+SAOUHSC_01137	conserved hypothetical protein	0	0	0
+SAOUHSC_01138	conserved hypothetical protein	3	0	2
+SAOUHSC_01139	conserved hypothetical protein	0	0	0
+SAOUHSC_01140	hypothetical protein	1	0	0
+SAOUHSC_01141	conserved hypothetical protein	0	0	1
+SAOUHSC_01142	conserved hypothetical protein	7	1	9
+SAOUHSC_01143	S-adenosyl-methyltransferase MraW	11	2	10
+SAOUHSC_01144	conserved hypothetical protein	3	0	1
+SAOUHSC_01145	penicillin-binding protein 1	6	4	17
+SAOUHSC_01146	phospho-N-acetylmuramoyl-pentapeptide-transferase	2	1	4
+SAOUHSC_01147	UDP-N-acetylmuramoylalanine--D-glutamate ligase	3	8	4
+SAOUHSC_01148	cell division protein%2C putative	3	5	11
+SAOUHSC_01149	cell division protein%2C putative	14	9	27
+SAOUHSC_01150	cell division protein FtsZ	25	24	31
+SAOUHSC_01152	conserved hypothetical protein	0	1	1
+SAOUHSC_01153	conserved hypothetical protein	7	5	10
+SAOUHSC_01154	conserved hypothetical protein	4	3	13
+SAOUHSC_01155	conserved hypothetical protein	0	2	0
+SAOUHSC_01156	conserved hypothetical protein	1	5	4
+SAOUHSC_01158	conserved hypothetical protein	4	10	6
+SAOUHSC_01159	isoleucyl-tRNA synthetase	10	10	13
+SAOUHSC_01160	conserved hypothetical protein	0	0	4
+SAOUHSC_01161	truncated transposase	0	0	0
+SAOUHSC_01162	lipoprotein signal peptidase	2	1	2
+SAOUHSC_01163	conserved hypothetical protein	2	0	4
+SAOUHSC_01164	PyrR bifunctional protein	4	1	10
+SAOUHSC_01165	uracil permease%2C putative	7	1	3
+SAOUHSC_01166	aspartate carbamoyltransferase	2	0	1
+SAOUHSC_01168	dihydroorotase	3	0	4
+SAOUHSC_01169	carbamoyl-phosphate synthase%2C small subunit	4	0	3
+SAOUHSC_01170	carbamoyl-phosphate synthase%2C large subunit	10	1	7
+SAOUHSC_01171	orotidine 5'-phosphate decarboxylase	4	0	3
+SAOUHSC_01172	orotate phosphoribosyltransferase	3	0	5
+SAOUHSC_01173	conserved hypothetical protein	0	0	1
+SAOUHSC_01174	conserved hypothetical protein	0	0	2
+SAOUHSC_01175	fibronectin-binding protein A-related	4	1	7
+SAOUHSC_01176	guanylate kinase	6	2	2
+SAOUHSC_01177	conserved hypothetical protein	1	0	1
+SAOUHSC_01178	phosphopantothenoylcysteine decarboxylase/phosphopantothenate--cysteine ligase	0	0	2
+SAOUHSC_01179	primosomal protein N	1	5	3
+SAOUHSC_01180	conserved hypothetical protein	6	0	1
+SAOUHSC_01181	conserved hypothetical protein	0	0	0
+SAOUHSC_01182	polypeptide deformylase%2C putative	0	0	1
+SAOUHSC_01183	methionyl-tRNA formyltransferase	3	0	5
+SAOUHSC_01184	sun protein	1	0	3
+SAOUHSC_01185	radical SAM enzyme%2C Cfr family	3	0	2
+SAOUHSC_01186	conserved hypothetical protein	0	0	1
+SAOUHSC_01187	conserved hypothetical protein	7	2	11
+SAOUHSC_01188	conserved hypothetical protein	2	1	0
+SAOUHSC_01189	ribulose-phosphate 3-epimerase	2	0	1
+SAOUHSC_01190	conserved hypothetical protein	0	0	1
+SAOUHSC_01191	ribosomal protein L28	24	8	59
+SAOUHSC_01192	conserved hypothetical protein	2	3	4
+SAOUHSC_01193	conserved hypothetical protein	11	17	17
+SAOUHSC_01194	ATP-dependent DNA helicase RecG	1	0	2
+SAOUHSC_01196	conserved hypothetical protein	6	0	9
+SAOUHSC_01197	fatty acid/phospholipid synthesis protein PlsX	8	0	15
+SAOUHSC_01198	malonyl CoA-acyl carrier protein transacylase	5	1	22
+SAOUHSC_01199	3-oxoacyl-(acyl-carrier-protein) reductase%2C putative	13	0	29
+SAOUHSC_01200	conserved hypothetical protein	2	0	2
+SAOUHSC_01201	acyl carrier protein	13	4	30
+SAOUHSC_01203	ribonuclease III%2C putative	1	0	0
+SAOUHSC_01204	SMC family%2C C-terminal domain family	1	3	5
+SAOUHSC_01205	signal recognition particle-docking protein FtsY	0	2	0
+SAOUHSC_01206	conserved hypothetical protein	3	0	3
+SAOUHSC_01207	signal recognition particle protein	5	4	9
+SAOUHSC_01208	ribosomal protein S16	3	1	32
+SAOUHSC_01209	conserved hypothetical protein	2	0	3
+SAOUHSC_01210	tRNA (guanine-N1)-methyltransferase	4	2	3
+SAOUHSC_01211	ribosomal protein L19	24	8	34
+SAOUHSC_01212	hypothetical protein	0	0	0
+SAOUHSC_01213	conserved hypothetical protein	1	3	4
+SAOUHSC_01214	conserved hypothetical protein	1	0	2
+SAOUHSC_01215	conserved hypothetical protein	3	0	0
+SAOUHSC_01216	succinyl-CoA synthetase%2C beta subunit%2C putative	1	2	10
+SAOUHSC_01218	succinyl-CoA synthetase%2C alpha subunit%2C putative	2	1	4
+SAOUHSC_01219	cell wall hydrolase%2C putative	0	0	0
+SAOUHSC_01220	conserved hypothetical protein	1	0	0
+SAOUHSC_01221	conserved hypothetical protein	0	0	0
+SAOUHSC_01222	DNA topoisomerase I	8	0	11
+SAOUHSC_01223	gid protein	3	0	4
+SAOUHSC_01224	site-specific recombinase%2C putative	0	1	1
+SAOUHSC_01225	heat shock protein HslV%2C putative	2	0	2
+SAOUHSC_01226	heat shock protein HslVU%2C ATPase subunit HslU	5	1	8
+SAOUHSC_01228	conserved hypothetical protein	4	1	4
+SAOUHSC_01230	conserved hypothetical protein	0	0	0
+SAOUHSC_01232	ribosomal protein S2	46	29	65
+SAOUHSC_01233	conserved hypothetical protein	0	2	6
+SAOUHSC_01234	translation elongation factor Ts	31	22	46
+SAOUHSC_01235	uridylate kinase%2C putative	2	13	7
+SAOUHSC_01236	ribosome recycling factor	9	11	13
+SAOUHSC_01237	undecaprenyl diphosphate synthase	0	1	2
+SAOUHSC_01238	conserved hypothetical protein	2	5	5
+SAOUHSC_01239	conserved hypothetical protein	4	13	3
+SAOUHSC_01240	prolyl-tRNA synthetase	6	25	20
+SAOUHSC_01241	DNA polymerase III%2C alpha subunit%2C Gram-positive type	5	7	10
+SAOUHSC_01242	conserved hypothetical protein	1	3	2
+SAOUHSC_01243	transcription termination-antitermination factor%2C putative	6	16	5
+SAOUHSC_01244	conserved hypothetical protein	1	3	0
+SAOUHSC_01245	conserved hypothetical protein	2	2	3
+SAOUHSC_01246	translation initiation factor IF-2	9	30	29
+SAOUHSC_01247	ribosome-binding factor A	2	2	6
+SAOUHSC_01248	conserved hypothetical protein	0	1	0
+SAOUHSC_01249	riboflavin biosynthesis protein RibF	0	1	5
+SAOUHSC_01250	ribosomal protein S15	16	3	28
+SAOUHSC_01251	polyribonucleotide nucleotidyltransferase%2C putative	13	0	16
+SAOUHSC_01252	conserved hypothetical protein	12	0	9
+SAOUHSC_01253	conserved hypothetical protein	3	1	11
+SAOUHSC_01254	conserved hypothetical protein	1	0	0
+SAOUHSC_01255	conserved hypothetical protein	0	0	4
+SAOUHSC_01256	conserved hypothetical protein	0	0	2
+SAOUHSC_01257	conserved hypothetical protein	2	0	1
+SAOUHSC_01258	conserved hypothetical protein	4	1	6
+SAOUHSC_01259	conserved hypothetical protein	0	0	2
+SAOUHSC_01260	CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase	1	1	1
+SAOUHSC_01261	competence-damage inducible protein cinA	0	0	0
+SAOUHSC_01262	recombination protein RecA%2C putative	4	2	15
+SAOUHSC_01263	conserved hypothetical protein	7	1	21
+SAOUHSC_01264	conserved hypothetical protein	0	0	1
+SAOUHSC_01265	conserved hypothetical protein	1	0	3
+SAOUHSC_01266	conserved hypothetical protein	3	6	3
+SAOUHSC_01267	conserved hypothetical protein	2	1	3
+SAOUHSC_01268	conserved hypothetical protein	0	0	0
+SAOUHSC_01269	tRNA-i(6)A37 modification enzyme MiaB	5	5	7
+SAOUHSC_01270	conserved hypothetical protein	0	2	4
+SAOUHSC_01271	conserved hypothetical protein	1	1	1
+SAOUHSC_01272	DNA mismatch repair protein MutS	1	3	5
+SAOUHSC_01273	DNA mismatch repair protein HexB%2C putative	4	1	1
+SAOUHSC_01274	glycerol uptake operon antiterminator regulatory protein%2C putative	0	0	3
+SAOUHSC_01275	conserved hypothetical protein	1	0	1
+SAOUHSC_01276	glycerol kinase	4	0	1
+SAOUHSC_01278	conserved hypothetical protein	1	0	7
+SAOUHSC_01279	hydrolase%2C alpha/beta fold family domain protein	1	0	2
+SAOUHSC_01280	tRNA delta(2)-isopentenylpyrophosphate transferase	1	0	1
+SAOUHSC_01281	host factor 1 protein%2C putative	0	0	0
+SAOUHSC_01282	conserved hypothetical protein	1	1	3
+SAOUHSC_01283	conserved hypothetical protein	3	2	1
+SAOUHSC_01284	conserved hypothetical protein	1	3	1
+SAOUHSC_01285	conserved hypothetical protein	9	0	8
+SAOUHSC_01287	glutamine synthetase%2C type I	29	1	18
+SAOUHSC_01288	conserved hypothetical protein	1	0	0
+SAOUHSC_01289	conserved hypothetical protein	0	0	0
+SAOUHSC_01290	conserved hypothetical protein	0	0	0
+SAOUHSC_01291	conserved hypothetical protein	0	0	0
+SAOUHSC_01292	conserved hypothetical protein	0	0	0
+SAOUHSC_01293	conserved hypothetical protein	0	0	0
+SAOUHSC_01294	conserved hypothetical protein	0	0	0
+SAOUHSC_01295	conserved hypothetical protein	0	0	0
+SAOUHSC_01296	conserved hypothetical protein	0	0	1
+SAOUHSC_01297	conserved hypothetical protein	0	0	0
+SAOUHSC_01298	hypothetical protein	0	0	0
+SAOUHSC_01299	conserved hypothetical protein	0	0	0
+SAOUHSC_01300	conserved hypothetical protein	0	0	0
+SAOUHSC_01301	conserved hypothetical protein	0	0	0
+SAOUHSC_01302	conserved hypothetical protein	0	0	1
+SAOUHSC_01303	conserved hypothetical protein	0	0	0
+SAOUHSC_01304	conserved hypothetical protein	0	0	1
+SAOUHSC_01305	conserved hypothetical protein	1	0	0
+SAOUHSC_01306	conserved hypothetical protein	0	0	0
+SAOUHSC_01307	conserved hypothetical protein	0	0	0
+SAOUHSC_01309	hypothetical protein	0	0	0
+SAOUHSC_01310	cardiolipin synthetase%2C putative	0	1	3
+SAOUHSC_01311	ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_01312	conserved hypothetical protein	0	0	1
+SAOUHSC_01313	Histidine kinase-%2C DNA gyrase B-%2C and HSP90-like ATPase domain protein	1	0	0
+SAOUHSC_01314	conserved hypothetical protein	0	0	0
+SAOUHSC_01315	conserved hypothetical protein	0	0	1
+SAOUHSC_01316	conserved hypothetical protein	2	0	2
+SAOUHSC_01317	conserved hypothetical protein	1	0	2
+SAOUHSC_01318	conserved hypothetical protein	1	0	1
+SAOUHSC_01319	aspartate kinase%2C putative	0	0	0
+SAOUHSC_01320	homoserine dehydrogenase%2C putative	1	2	0
+SAOUHSC_01321	threonine synthase	1	0	0
+SAOUHSC_01322	homoserine kinase	1	0	0
+SAOUHSC_01323	conserved hypothetical protein	0	1	2
+SAOUHSC_01324	conserved hypothetical protein	2	2	3
+SAOUHSC_01325	hypothetical protein	0	0	0
+SAOUHSC_01326	conserved hypothetical protein	9	1	3
+SAOUHSC_01327	catalase	16	6	7
+SAOUHSC_01328	ribosomal protein L33	2	2	5
+SAOUHSC_01329	ribosomal protein S14p/S29e	0	0	0
+SAOUHSC_01330	guanosine monophosphate reductase	2	0	0
+SAOUHSC_01331	conserved hypothetical protein	0	0	0
+SAOUHSC_01332	conserved hypothetical protein	5	1	3
+SAOUHSC_01333	LexA repressor	2	1	3
+SAOUHSC_01334	conserved hypothetical protein	0	0	0
+SAOUHSC_01336	conserved hypothetical protein	0	2	1
+SAOUHSC_01337	transketolase	15	18	43
+SAOUHSC_01338	conserved hypothetical protein	1	0	9
+SAOUHSC_01339	conserved hypothetical protein	0	0	0
+SAOUHSC_01340	conserved hypothetical protein	0	0	3
+SAOUHSC_01341	conserved hypothetical protein	0	1	1
+SAOUHSC_01342	conserved hypothetical protein	1	3	0
+SAOUHSC_01343	conserved hypothetical protein	0	0	0
+SAOUHSC_01344	conserved hypothetical protein	7	1	5
+SAOUHSC_01346	glycine betaine transporter%2C putative	19	13	23
+SAOUHSC_01347	aconitate hydratase 1	3	1	6
+SAOUHSC_01348	conserved hypothetical protein	1	1	1
+SAOUHSC_01349	conserved hypothetical protein	1	0	0
+SAOUHSC_01350	conserved hypothetical protein	3	0	6
+SAOUHSC_01351	DNA topoisomerase IV%2C B subunit	1	0	12
+SAOUHSC_01352	DNA topoisomerase IV%2C A subunit	8	6	14
+SAOUHSC_01353	conserved hypothetical protein	0	0	0
+SAOUHSC_01354	sodium:alanine symporter family protein%2C putative	7	0	8
+SAOUHSC_01356	transcriptional antiterminator	3	1	1
+SAOUHSC_01357	conserved hypothetical protein	0	0	0
+SAOUHSC_01358	conserved hypothetical protein	4	5	2
+SAOUHSC_01359	conserved hypothetical protein	2	3	5
+SAOUHSC_01360	peptide methionine sulfoxide reductase	4	1	0
+SAOUHSC_01361	transcriptional regulator%2C putative	2	2	5
+SAOUHSC_01362	4-oxalocrotonate tautomerase%2C putative	2	1	0
+SAOUHSC_01363	conserved hypothetical protein	0	0	0
+SAOUHSC_01364	prephenate dehydrogenase%2C putative	0	0	4
+SAOUHSC_01365	conserved hypothetical protein	1	0	2
+SAOUHSC_01366	anthranilate synthase component I	0	1	0
+SAOUHSC_01367	anthranilate synthase component II%2C putative	0	0	0
+SAOUHSC_01368	anthranilate phosphoribosyltransferase	0	0	0
+SAOUHSC_01369	indole-3-glycerol phosphate synthase%2C putative	0	0	0
+SAOUHSC_01370	N-(5'phosphoribosyl)anthranilate isomerase%2C putative	0	0	0
+SAOUHSC_01371	tryptophan synthase%2C beta subunit	0	0	0
+SAOUHSC_01372	tryptophan synthase%2C alpha subunit	0	0	0
+SAOUHSC_01373	methicillin resistance factor%2C FemA%2C putative	4	5	14
+SAOUHSC_01374	methicillin resistance factor%2C putative	7	2	10
+SAOUHSC_01375	conserved hypothetical protein	1	0	1
+SAOUHSC_01376	conserved hypothetical protein	0	0	1
+SAOUHSC_01377	oligopeptide ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_01378	peptide ABC transporter%2C ATP-binding protein%2C putative	1	0	1
+SAOUHSC_01379	oligopeptide transporter putative membrane permease domain	0	0	1
+SAOUHSC_01380	oligopeptide transporter putative membrane permease domain	0	1	0
+SAOUHSC_01381	hypothetical protein	0	0	0
+SAOUHSC_01382	conserved hypothetical protein	0	0	1
+SAOUHSC_01383	conserved hypothetical protein	7	2	5
+SAOUHSC_01384	PhoU family%2C putative	0	0	0
+SAOUHSC_01385	phosphate ABC transporter ATP-binding protein%2C putative	0	0	0
+SAOUHSC_01386	phosphate ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_01387	conserved hypothetical protein	0	0	1
+SAOUHSC_01388	hypothetical protein	0	0	0
+SAOUHSC_01389	phosphate ABC transporter%2C periplasmic phosphate-binding protein%2C putative	0	0	0
+SAOUHSC_01390	truncated transposase	0	0	0
+SAOUHSC_01391	conserved hypothetical protein	1	1	6
+SAOUHSC_01392	ABC transporter%2C ATP-binding protein%2C putative	4	3	7
+SAOUHSC_01394	aspartokinase II%2C putative	0	0	0
+SAOUHSC_01395	aspartate-semialdehyde dehydrogenase	0	0	0
+SAOUHSC_01396	dihydrodipicolinate synthase	0	1	1
+SAOUHSC_01397	dihydrodipicolinate reductase	0	0	0
+SAOUHSC_01398	2%2C3%2C4%2C5-tetrahydropyridine-2-carboxylate N-succinyltransferase%2C putative	0	0	0
+SAOUHSC_01399	conserved hypothetical protein	1	1	0
+SAOUHSC_01400	alanine racemase%2C putative	0	1	1
+SAOUHSC_01401	diaminopimelate decarboxylase	2	0	3
+SAOUHSC_01402	conserved hypothetical protein	0	0	0
+SAOUHSC_01403	cold shock protein%2C putative	21	3	53
+SAOUHSC_01404	hypothetical protein	0	0	0
+SAOUHSC_01405	conserved hypothetical protein	0	0	1
+SAOUHSC_01406	acylphosphatase	0	0	0
+SAOUHSC_01407	conserved hypothetical protein	1	0	1
+SAOUHSC_01408	conserved hypothetical protein	1	0	4
+SAOUHSC_01409	truncated transposase	0	0	1
+SAOUHSC_01410	truncated transposase	0	0	0
+SAOUHSC_01411	branched-chain amino acid transport system II carrier protein	2	1	5
+SAOUHSC_01412	conserved hypothetical protein	1	1	1
+SAOUHSC_01413	conserved hypothetical protein	1	0	1
+SAOUHSC_01414	conserved hypothetical protein	0	0	1
+SAOUHSC_01415	conserved hypothetical protein	3	0	2
+SAOUHSC_01416	2-oxoglutarate dehydrogenase%2C E2 component%2C dihydrolipoamide succinyltransferase	2	3	1
+SAOUHSC_01418	2-oxoglutarate dehydrogenase%2C E1 component	1	2	3
+SAOUHSC_01419	conserved hypothetical protein	0	0	0
+SAOUHSC_01420	DNA-binding response regulator%2C putative	0	0	0
+SAOUHSC_01421	hypothetical protein	0	0	0
+SAOUHSC_01422	conserved hypothetical protein	0	0	0
+SAOUHSC_01423	conserved hypothetical protein	1	0	2
+SAOUHSC_01424	UDP-N-acetylglucosamine--N-acetylmuramyl-(pentapeptide) pyrophosphoryl-undecaprenol N-acetylglucosamine transferase	2	2	1
+SAOUHSC_01425	conserved hypothetical protein	0	0	0
+SAOUHSC_01427	conserved hypothetical protein	3	0	3
+SAOUHSC_01428	hypothetical protein	0	0	0
+SAOUHSC_01429	conserved hypothetical protein	0	0	1
+SAOUHSC_01430	phosphotransferase system enzyme IIA%2C putative	4	1	0
+SAOUHSC_01431	methionine sulfoxide reductase%2C putative	2	0	3
+SAOUHSC_01432	peptide methionine sulfoxide reductase	2	1	4
+SAOUHSC_01433	conserved hypothetical protein	2	1	1
+SAOUHSC_01434	dihydrofolate reductase	0	1	1
+SAOUHSC_01435	thymidylate synthase%2C putative	3	0	0
+SAOUHSC_01436	conserved hypothetical protein	1	0	3
+SAOUHSC_01437	conserved hypothetical protein	1	1	4
+SAOUHSC_01438	conserved hypothetical protein	0	2	1
+SAOUHSC_01439	conserved hypothetical protein	1	0	1
+SAOUHSC_01440	conserved hypothetical protein	1	0	1
+SAOUHSC_01441	conserved hypothetical protein	0	0	1
+SAOUHSC_01442	conserved hypothetical protein	0	0	0
+SAOUHSC_01443	conserved hypothetical protein	1	0	1
+SAOUHSC_01447	conserved hypothetical protein	1	1	2
+SAOUHSC_01448	conserved hypothetical protein	0	0	0
+SAOUHSC_01450	conserved hypothetical protein	0	0	0
+SAOUHSC_01451	threonine dehydratase	0	0	0
+SAOUHSC_01452	alanine dehydrogenase	0	0	0
+SAOUHSC_01454	conserved hypothetical protein	0	1	0
+SAOUHSC_01455	conserved hypothetical protein	2	4	6
+SAOUHSC_01456	conserved hypothetical protein	0	0	0
+SAOUHSC_01458	hypothetical protein	0	0	1
+SAOUHSC_01459	conserved hypothetical protein	1	0	1
+SAOUHSC_01460	conserved hypothetical protein	2	0	4
+SAOUHSC_01462	conserved hypothetical protein	4	1	3
+SAOUHSC_01463	conserved hypothetical protein	6	0	6
+SAOUHSC_01464	conserved hypothetical protein	0	0	2
+SAOUHSC_01465	conserved hypothetical protein	0	0	0
+SAOUHSC_01466	conserved hypothetical protein	1	8	8
+SAOUHSC_01467	penicillin-binding protein 2	19	24	39
+SAOUHSC_01468	conserved hypothetical protein	2	1	2
+SAOUHSC_01469	endonuclease III%2C putative	2	0	2
+SAOUHSC_01470	conserved hypothetical protein	0	0	2
+SAOUHSC_01471	asparaginyl-tRNA synthetase%2Cputative	7	0	18
+SAOUHSC_01472	DnaQ family exonuclease/DinG family helicase%2C putative	3	0	6
+SAOUHSC_01473	BirA bifunctional protein%2C putative	0	0	1
+SAOUHSC_01474	conserved hypothetical protein	0	1	0
+SAOUHSC_01475	conserved hypothetical protein	2	0	2
+SAOUHSC_01476	conserved hypothetical protein	1	0	0
+SAOUHSC_01477	conserved hypothetical protein	21	6	40
+SAOUHSC_01478	conserved hypothetical protein	3	1	0
+SAOUHSC_01479	conserved hypothetical protein	0	0	0
+SAOUHSC_01480	conserved hypothetical protein	6	3	4
+SAOUHSC_01481	3-phosphoshikimate 1-carboxyvinyltransferase	2	2	4
+SAOUHSC_01482	3-dehydroquinate synthase	2	0	1
+SAOUHSC_01483	chorismate synthase	1	2	0
+SAOUHSC_01484	conserved hypothetical protein	0	0	0
+SAOUHSC_01485	nucleoside diphosphate kinase%2C putative	1	0	0
+SAOUHSC_01486	heptaprenyl diphosphate syntase component II%2C putative	5	1	4
+SAOUHSC_01487	menaquinone biosynthesis methyltransferase%2C putative	1	3	1
+SAOUHSC_01488	conserved hypothetical protein	1	1	2
+SAOUHSC_01489	hypothetical protein	0	0	0
+SAOUHSC_01490	DNA-binding protein HU%2C putative	23	29	61
+SAOUHSC_01491	glycerol-3-phosphate dehydrogenase%2C NAD-dependent%2C putative	4	23	6
+SAOUHSC_01492	conserved hypothetical protein	8	25	10
+SAOUHSC_01493	30S ribosomal protein S1%2C putative	5	3	14
+SAOUHSC_01494	hypothetical protein	0	0	0
+SAOUHSC_01495	conserved hypothetical protein	0	0	0
+SAOUHSC_01496	cytidylate kinase	1	0	5
+SAOUHSC_01497	L-asparaginase%2C putative	0	0	3
+SAOUHSC_01499	conserved hypothetical protein	0	0	1
+SAOUHSC_01500	conserved hypothetical protein	0	0	0
+SAOUHSC_01501	elastin binding protein	8	1	7
+SAOUHSC_01502	ATP-dependent DNA helicase RecQ%2C putative	0	0	0
+SAOUHSC_01503	conserved hypothetical protein	1	1	1
+SAOUHSC_01504	ferredoxin%2C putative	2	0	2
+SAOUHSC_01505	conserved hypothetical protein	2	0	4
+SAOUHSC_01507	conserved hypothetical protein	0	0	0
+SAOUHSC_01508	conserved hypothetical protein	0	0	1
+SAOUHSC_01510	conserved hypothetical protein	0	0	0
+SAOUHSC_01511	conserved hypothetical protein	1	0	1
+SAOUHSC_01512	conserved hypothetical protein	0	0	0
+SAOUHSC_01513	conserved hypothetical protein	0	0	0
+SAOUHSC_01514	hypothetical phage protein	0	0	0
+SAOUHSC_01515	petidoglycan hydrolase%2C putative	0	0	0
+SAOUHSC_01516	holin protein	0	0	0
+SAOUHSC_01517	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01518	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01519	SLT orf 129-like protein	0	0	0
+SAOUHSC_01520	SLT orf 488-like protein	0	0	0
+SAOUHSC_01521	SLT orf 636-like protein	0	0	0
+SAOUHSC_01522	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01523	SLT orf 527-like protein	0	0	0
+SAOUHSC_01524	holin-like protein	0	0	0
+SAOUHSC_01525	phage tail tape meausure protein%2C TP901 family%2C core region domain protein	0	0	0
+SAOUHSC_01526	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01527	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01528	bacteriophage L54a%2C bacterial Ig-like domain group 2 family protein	0	0	0
+SAOUHSC_01529	major tail protein	0	0	0
+SAOUHSC_01530	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01531	SLT orf 123-like protein	0	0	0
+SAOUHSC_01532	SLT orf 110-like protein	0	0	0
+SAOUHSC_01533	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01535	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01536	scaffolding protease	0	0	0
+SAOUHSC_01537	phage portal protein%2C HK97 family	0	0	0
+SAOUHSC_01538	phage terminase%2C large subunit%2C putative	0	0	0
+SAOUHSC_01539	terminase-small subunit	0	0	0
+SAOUHSC_01540	bacteriophage L54a%2C HNH endonuclease family protein	0	0	0
+SAOUHSC_01541	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01542	SNF2 family N-terminal domain protein	0	0	0
+SAOUHSC_01543	phi related protein	0	0	0
+SAOUHSC_01544	hypothetical phage protein	0	0	0
+SAOUHSC_01545	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01546	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01547	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01548	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01549	transcriptional activator rinB-related protein	0	0	0
+SAOUHSC_01550	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01551	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01552	bacteriophage L54a%2C deoxyuridine 5-triphosphate nucleotidohydrolase	0	0	0
+SAOUHSC_01553	PVL orf 52-like protein	0	0	0
+SAOUHSC_01554	PV83 orf 27-like protein	0	0	0
+SAOUHSC_01555	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01556	PVL orf 52-like protein	0	0	0
+SAOUHSC_01557	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01558	PVL orf 51-like protein	0	0	0
+SAOUHSC_01559	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01560	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01561	PVL orf 50-like protein	0	0	0
+SAOUHSC_01562	ETA orf 26-like protein-related protein	0	0	0
+SAOUHSC_01563	phage encoded DNA polymerase I	0	0	0
+SAOUHSC_01565	phage-related protein	0	0	0
+SAOUHSC_01566	phi APSE P51-like protein	0	0	0
+SAOUHSC_01567	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01568	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01569	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01570	PVL orf 37-like protein	0	0	0
+SAOUHSC_01571	SLT orf 71-like protein-related protein	0	0	0
+SAOUHSC_01572	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01573	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01574	Helix-turn-helix domain protein	0	0	0
+SAOUHSC_01575	Helix-turn-helix domain protein	0	0	0
+SAOUHSC_01576	exonuclease family	0	0	0
+SAOUHSC_01577	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01578	conserved hypothetical phage protein	0	0	0
+SAOUHSC_01579	hypothetical phage protein	0	0	0
+SAOUHSC_01580	phi PVL ORF 30-like protein	0	0	0
+SAOUHSC_01582	bacteriophage integrase	0	0	0
+SAOUHSC_01583	conserved hypothetical phage protein	2	0	2
+SAOUHSC_01584	conserved hypothetical protein	0	0	1
+SAOUHSC_01585	staphylococcal respiratory response protein SrrB%2C putative	1	9	5
+SAOUHSC_01586	DNA-binding response regulator%2C putative	2	7	6
+SAOUHSC_01587	ribosomal large subunit pseudouridine synthase B%2C putative	4	2	1
+SAOUHSC_01588	conserved hypothetical protein	2	2	0
+SAOUHSC_01589	conserved hypothetical protein	1	3	5
+SAOUHSC_01590	conserved hypothetical protein	0	0	0
+SAOUHSC_01591	integrase/recombinase XerD	0	0	4
+SAOUHSC_01592	transcriptional regulator%2C Fur%2C putative	1	0	3
+SAOUHSC_01593	NUDIX domain protein	1	0	1
+SAOUHSC_01594	conserved hypothetical protein	0	1	2
+SAOUHSC_01595	conserved hypothetical protein	0	0	0
+SAOUHSC_01596	conserved hypothetical protein	0	0	0
+SAOUHSC_01597	pyrroline-5-carboxylate reductase	0	0	2
+SAOUHSC_01598	AtsA/ElaC family protein	1	4	2
+SAOUHSC_01599	glucose-6-phosphate 1-dehydrogenase	6	3	11
+SAOUHSC_01600	conserved hypothetical protein	1	0	5
+SAOUHSC_01601	alpha-glucosidase%2C putative	1	0	0
+SAOUHSC_01602	transcriptional regulator%2C putative	0	1	0
+SAOUHSC_01603	hypothetical protein	0	0	0
+SAOUHSC_01604	conserved hypothetical protein	1	1	1
+SAOUHSC_01605	6-phosphogluconate dehydrogenase%2C decarboxylating	10	10	26
+SAOUHSC_01606	peptidase T%2C putative	0	3	4
+SAOUHSC_01607	conserved hypothetical protein	0	0	2
+SAOUHSC_01608	hypothetical protein	0	0	0
+SAOUHSC_01609	conserved hypothetical protein	3	0	3
+SAOUHSC_01610	conserved hypothetical protein	0	0	3
+SAOUHSC_01611	2-oxoisovalerate dehydrogenase%2C E2 component%2C dihydrolipoamide acetyltransferase%2C putative	1	1	14
+SAOUHSC_01612	2-oxoisovalerate dehydrogenase%2C E1 component%2C beta subunit%2C putative	3	0	5
+SAOUHSC_01613	2-oxoisovalerate dehydrogenase%2C E1 component%2C alpha subunit%2C putative	7	2	2
+SAOUHSC_01614	dihydrolipoamide dehydrogenase	2	0	8
+SAOUHSC_01615	DNA repair protein RecN	4	1	3
+SAOUHSC_01617	arginine repressor	1	0	0
+SAOUHSC_01618	geranyltranstransferase%2C putative	2	1	8
+SAOUHSC_01619	exodeoxyribonuclease VII%2C small subunit	1	0	6
+SAOUHSC_01620	exodeoxyribonuclease VII%2C large subunit	5	1	5
+SAOUHSC_01621	N utilization substance protein B%2C putative	3	1	2
+SAOUHSC_01622	conserved hypothetical protein	3	0	0
+SAOUHSC_01623	acetyl-CoA carboxylase%2C biotin carboxylase	5	1	7
+SAOUHSC_01624	acetyl-CoA carboxylase%2C biotin carboxyl carrier protein	4	1	7
+SAOUHSC_01625	translation elongation factor P	15	1	20
+SAOUHSC_01626	proline dipeptidase%2C putative	1	0	3
+SAOUHSC_01627	conserved hypothetical protein	1	1	2
+SAOUHSC_01628	conserved hypothetical protein	0	0	1
+SAOUHSC_01629	conserved hypothetical protein	0	0	7
+SAOUHSC_01630	conserved hypothetical protein	1	1	6
+SAOUHSC_01632	glycine cleavage system P-protein subunit ll%2C putative	1	3	2
+SAOUHSC_01633	glycine cleavage system P-protein subunit I%2C putative	0	1	1
+SAOUHSC_01634	glycine cleavage system T protein	1	0	0
+SAOUHSC_01635	shikimate kinase%2C putative	0	0	1
+SAOUHSC_01636	hypothetical protein	0	0	0
+SAOUHSC_01637	conserved hypothetical protein	0	0	0
+SAOUHSC_01638	conserved hypothetical protein	0	0	0
+SAOUHSC_01639	conserved hypothetical protein	0	0	0
+SAOUHSC_01640	conserved hypothetical protein	0	0	0
+SAOUHSC_01641	conserved hypothetical protein	0	0	0
+SAOUHSC_01643	conserved hypothetical protein	0	0	0
+SAOUHSC_01644	conserved hypothetical protein	0	1	3
+SAOUHSC_01645	conserved hypothetical protein	1	0	0
+SAOUHSC_01646	glucokinase%2C putative	3	1	0
+SAOUHSC_01647	conserved hypothetical protein	0	0	0
+SAOUHSC_01648	conserved hypothetical protein	1	0	0
+SAOUHSC_01649	rhomboid family protein	0	0	0
+SAOUHSC_01650	conserved hypothetical protein	0	0	0
+SAOUHSC_01651	ribosomal protein L33	1	2	7
+SAOUHSC_01652	penicillin-binding protein 3	2	0	7
+SAOUHSC_01653	superoxide dismutase%2C Mn%2C putative	10	11	27
+SAOUHSC_01655	conserved hypothetical protein	0	0	1
+SAOUHSC_01656	conserved hypothetical protein	2	0	1
+SAOUHSC_01657	ABC transporter%2C putative	3	1	2
+SAOUHSC_01658	endonuclease IV%2C putative	2	1	1
+SAOUHSC_01659	conserved hypothetical protein	4	4	7
+SAOUHSC_01660	conserved hypothetical protein	1	0	1
+SAOUHSC_01661	conserved hypothetical protein	0	1	0
+SAOUHSC_01662	RNA polymerase sigma factor%2C putative	4	2	12
+SAOUHSC_01663	DNA primase%2C putative	7	1	10
+SAOUHSC_01664	conserved hypothetical protein	0	2	4
+SAOUHSC_01665	CBS domain protein	0	0	1
+SAOUHSC_01666	glycyl-tRNA synthetase	12	8	23
+SAOUHSC_01667	conserved hypothetical protein	0	1	2
+SAOUHSC_01668	GTP-binding protein Era	0	1	2
+SAOUHSC_01669	hypothetical protein	0	0	0
+SAOUHSC_01670	cytidine deaminase	0	0	1
+SAOUHSC_01671	diacylglycerol kinase%2C putative	1	2	0
+SAOUHSC_01672	conserved hypothetical protein	1	0	2
+SAOUHSC_01673	conserved hypothetical protein	1	0	0
+SAOUHSC_01675	conserved hypothetical protein	8	2	5
+SAOUHSC_01676	conserved hypothetical protein	8	4	17
+SAOUHSC_01677	conserved hypothetical protein	16	2	11
+SAOUHSC_01678	ribosomal protein S21	15	4	45
+SAOUHSC_01679	conserved hypothetical protein	7	7	7
+SAOUHSC_01680	conserved hypothetical protein	0	2	0
+SAOUHSC_01681	ribosomal protein L11 methyltransferase	1	6	8
+SAOUHSC_01682	DnaJ protein	3	1	6
+SAOUHSC_01683	DNAk protein%2C putative	24	20	56
+SAOUHSC_01684	co-chaperone GrpE	6	5	17
+SAOUHSC_01685	heat-inducible transcription repressor HrcA	5	6	24
+SAOUHSC_01686	conserved hypothetical protein	0	2	0
+SAOUHSC_01687	conserved hypothetical protein	0	0	0
+SAOUHSC_01688	conserved hypothetical protein	1	4	7
+SAOUHSC_01689	ribosomal protein S20	8	3	35
+SAOUHSC_01690	conserved hypothetical protein	0	4	0
+SAOUHSC_01691	DNA internalization-related competence protein ComEC/Rec2	0	0	0
+SAOUHSC_01692	conserved hypothetical protein	5	1	2
+SAOUHSC_01693	conserved hypothetical protein	0	0	1
+SAOUHSC_01694	conserved hypothetical protein	0	0	5
+SAOUHSC_01695	conserved hypothetical protein	4	1	0
+SAOUHSC_01696	conserved hypothetical protein	1	2	2
+SAOUHSC_01697	nicotinate (nicotinamide) nucleotide adenylyltransferase	2	0	2
+SAOUHSC_01698	conserved hypothetical protein	1	0	0
+SAOUHSC_01699	shikimate 5-dehydrogenase	1	0	3
+SAOUHSC_01700	conserved hypothetical protein	0	2	10
+SAOUHSC_01701	conserved hypothetical protein	2	1	3
+SAOUHSC_01702	MTA/SAH nucleosidase	2	0	2
+SAOUHSC_01703	hypothetical protein	0	0	0
+SAOUHSC_01704	conserved hypothetical protein	0	0	0
+SAOUHSC_01705	enterotoxin family protein	0	0	0
+SAOUHSC_01706	conserved hypothetical protein	2	0	1
+SAOUHSC_01707	conserved hypothetical protein	1	0	2
+SAOUHSC_01708	conserved hypothetical protein	0	0	0
+SAOUHSC_01709	acetyl-CoA carboxylase%2C biotin carboxylase%2C putative	0	0	1
+SAOUHSC_01710	acetyl-CoA carboxylase%2C biotin carboxyl carrier protein%2C putative	0	0	0
+SAOUHSC_01711	conserved hypothetical protein	2	0	1
+SAOUHSC_01712	conserved hypothetical protein	0	0	0
+SAOUHSC_01714	transcription elongation factor GreA	3	4	5
+SAOUHSC_01715	uridine kinase	2	3	3
+SAOUHSC_01716	conserved hypothetical protein	3	8	5
+SAOUHSC_01717	conserved hypothetical protein	1	1	2
+SAOUHSC_01718	conserved hypothetical protein	1	0	0
+SAOUHSC_01719	conserved hypothetical protein	3	0	3
+SAOUHSC_01720	conserved hypothetical protein	3	0	1
+SAOUHSC_01721	conserved hypothetical protein	4	2	1
+SAOUHSC_01722	alanyl-tRNA synthetase	3	5	8
+SAOUHSC_01723	conserved hypothetical protein	1	2	3
+SAOUHSC_01724	conserved hypothetical protein	1	2	1
+SAOUHSC_01725	tRNA methyl transferase%2C putative	4	1	2
+SAOUHSC_01726	(5-methylaminomethyl-2-thiouridylate)-methyltransferase	2	1	3
+SAOUHSC_01727	conserved hypothetical protein	2	0	5
+SAOUHSC_01728	conserved hypothetical protein	0	1	0
+SAOUHSC_01729	conserved hypothetical protein	0	0	0
+SAOUHSC_01730	conserved hypothetical protein	0	1	0
+SAOUHSC_01732	conserved hypothetical protein	0	0	0
+SAOUHSC_01733	hypothetical protein	0	0	0
+SAOUHSC_01734	conserved hypothetical protein	2	2	5
+SAOUHSC_01735	conserved hypothetical protein	1	0	5
+SAOUHSC_01736	conserved hypothetical protein	0	0	0
+SAOUHSC_01737	aspartyl-tRNA synthetase	4	0	3
+SAOUHSC_01738	histidyl-tRNA synthetase	0	0	2
+SAOUHSC_01739	conserved hypothetical protein	0	2	3
+SAOUHSC_01741	D-tyrosyl-tRNA(Tyr) deacylase	0	0	3
+SAOUHSC_01742	GTP pyrophosphokinase	5	1	7
+SAOUHSC_01743	adenine phosphoribosyltransferase	2	0	0
+SAOUHSC_01744	conserved hypothetical protein	3	3	6
+SAOUHSC_01746	protein-export membrane protein SecDF	10	10	16
+SAOUHSC_01747	preprotein translocase%2C YajC subunit	4	3	0
+SAOUHSC_01748	queuine tRNA-ribosyltransferase	16	5	10
+SAOUHSC_01749	S-adenosylmethionine:tRNA ribosyltransferase-isomerase	2	4	2
+SAOUHSC_01750	Holliday junction DNA helicase RuvB	4	1	4
+SAOUHSC_01751	Holliday junction DNA helicase RuvA	0	2	0
+SAOUHSC_01752	ACT domain protein	0	3	3
+SAOUHSC_01753	GTP-binding protein	4	3	10
+SAOUHSC_01755	ribosomal protein L27	13	7	20
+SAOUHSC_01756	conserved hypothetical protein	12	6	32
+SAOUHSC_01757	ribosomal protein L21	18	6	37
+SAOUHSC_01758	conserved hypothetical protein	0	0	2
+SAOUHSC_01759	rod shape-determining protein MreC	2	0	4
+SAOUHSC_01760	conserved hypothetical protein	1	0	0
+SAOUHSC_01761	conserved hypothetical protein	0	0	0
+SAOUHSC_01762	conserved hypothetical protein	0	0	0
+SAOUHSC_01763	conserved hypothetical protein	0	0	0
+SAOUHSC_01764	conserved hypothetical protein	0	0	0
+SAOUHSC_01765	hypothetical protein	0	0	0
+SAOUHSC_01766	folylpolyglutamate synthase/dihydrofolate synthase%2C putative	5	2	8
+SAOUHSC_01767	valyl-tRNA synthetase	16	0	14
+SAOUHSC_01768	conserved hypothetical protein	0	1	1
+SAOUHSC_01769	conserved hypothetical protein	1	0	1
+SAOUHSC_01770	conserved hypothetical protein	0	0	0
+SAOUHSC_01771	glutamate-1-semialdehyde-2%2C1-aminomutase	6	5	12
+SAOUHSC_01772	porphobilinogen synthase	1	2	3
+SAOUHSC_01773	uroporphyrinogen-III synthase%2C putative	0	0	2
+SAOUHSC_01774	porphobilinogen deaminase	2	2	1
+SAOUHSC_01775	conserved hypothetical protein	1	4	2
+SAOUHSC_01776	glutamyl-tRNA reductase	5	2	15
+SAOUHSC_01777	GTP-binding protein	0	0	2
+SAOUHSC_01778	ATP-dependent Clp protease%2C ATP-binding subunit ClpX	10	12	26
+SAOUHSC_01779	trigger factor	30	12	62
+SAOUHSC_01780	hypothetical protein	0	0	0
+SAOUHSC_01781	conserved hypothetical protein	3	1	2
+SAOUHSC_01782	conserved hypothetical protein	1	1	2
+SAOUHSC_01783	hypothetical protein	2	0	4
+SAOUHSC_01784	ribosomal protein L20	16	3	13
+SAOUHSC_01785	ribosomal protein L35	14	3	21
+SAOUHSC_01786	translation initiation factor IF-3	25	6	21
+SAOUHSC_01787	conserved hypothetical protein	2	0	4
+SAOUHSC_01788	threonyl-tRNA synthetase	8	5	12
+SAOUHSC_01789	conserved hypothetical protein	0	0	1
+SAOUHSC_01791	conserved hypothetical protein	3	3	3
+SAOUHSC_01792	conserved hypothetical protein	0	2	8
+SAOUHSC_01793	conserved hypothetical protein	4	1	2
+SAOUHSC_01794	glyceraldehyde-3-phosphate dehydrogenase%2C type I	0	0	0
+SAOUHSC_01795	dephospho-CoA kinase	2	1	0
+SAOUHSC_01796	formamidopyrimidine-DNA glycosylase	4	0	2
+SAOUHSC_01797	DNA polymerase I	2	12	8
+SAOUHSC_01798	conserved hypothetical protein	0	0	1
+SAOUHSC_01799	Histidine kinase-%2C DNA gyrase B-%2C and HSP90-like ATPase domain protein	2	1	2
+SAOUHSC_01800	two-component response regulator%2C putative	1	0	0
+SAOUHSC_01801	isocitrate dehydrogenase%2C NADP-dependent	0	3	0
+SAOUHSC_01802	conserved hypothetical protein	1	0	2
+SAOUHSC_01803	conserved hypothetical protein	7	1	10
+SAOUHSC_01804	transposase%2C putative	0	0	0
+SAOUHSC_01805	truncated transposase%2C putative	0	0	0
+SAOUHSC_01806	pyruvate kinase	16	6	45
+SAOUHSC_01807	6-phosphofructokinase%2C putative	8	0	18
+SAOUHSC_01808	acetyl-CoA carboxylase%2C carboxyl transferase%2C alpha subunit	5	8	9
+SAOUHSC_01809	acetyl-CoA carboxylase%2C carboxyl transferase%2C beta subunit	5	5	6
+SAOUHSC_01810	NADP-dependent malic enzyme%2C putative	4	7	14
+SAOUHSC_01811	DNA polymerase III%2C alpha subunit superfamily	4	1	9
+SAOUHSC_01812	conserved hypothetical protein	3	1	1
+SAOUHSC_01813	conserved hypothetical protein	0	1	2
+SAOUHSC_01814	conserved hypothetical protein	1	0	3
+SAOUHSC_01815	conserved hypothetical protein	1	1	4
+SAOUHSC_01816	conserved hypothetical protein	0	3	2
+SAOUHSC_01817	conserved hypothetical protein	0	0	0
+SAOUHSC_01818	alanine dehydrogenase	1	0	1
+SAOUHSC_01819	conserved hypothetical protein	2	3	1
+SAOUHSC_01820	acetate kinase	14	0	25
+SAOUHSC_01821	conserved hypothetical protein	2	0	4
+SAOUHSC_01822	conserved hypothetical protein	5	1	13
+SAOUHSC_01823	conserved hypothetical protein	0	0	0
+SAOUHSC_01824	thiamine biosynthesis protein ThiI	2	0	2
+SAOUHSC_01825	conserved hypothetical protein	1	0	1
+SAOUHSC_01826	conserved hypothetical protein	0	0	0
+SAOUHSC_01827	conserved hypothetical protein	12	11	15
+SAOUHSC_01828	GAF domain protein	1	0	1
+SAOUHSC_01829	ribosomal protein S4	32	6	66
+SAOUHSC_01830	conserved hypothetical protein	0	0	0
+SAOUHSC_01831	conserved hypothetical protein	0	1	0
+SAOUHSC_01832	conserved hypothetical protein	0	0	0
+SAOUHSC_01833	D-3-phosphoglycerate dehydrogenase	1	0	0
+SAOUHSC_01834	hypothetical protein	1	0	0
+SAOUHSC_01835	conserved hypothetical protein	1	1	0
+SAOUHSC_01836	conserved hypothetical protein	3	5	4
+SAOUHSC_01837	1-acyl-sn-glycerol-3-phosphate acyltransferases domain protein	0	4	0
+SAOUHSC_01838	conserved hypothetical protein	2	1	5
+SAOUHSC_01839	tyrosyl-tRNA synthetase	2	2	8
+SAOUHSC_01840	transglycosylase domain protein	1	0	1
+SAOUHSC_01841	hypothetical protein	0	0	0
+SAOUHSC_01843	conserved hypothetical protein	0	0	0
+SAOUHSC_01844	conserved hypothetical protein	0	0	0
+SAOUHSC_01845	formate-tetrahydrofolate ligase%2C putative	5	1	10
+SAOUHSC_01846	acetyl-CoA synthetase%2C putative	0	0	0
+SAOUHSC_01847	conserved hypothetical protein	0	0	1
+SAOUHSC_01849	conserved hypothetical protein	0	0	0
+SAOUHSC_01850	catabolite control protein A	8	1	5
+SAOUHSC_01851	hypothetical protein	0	0	0
+SAOUHSC_01852	conserved hypothetical protein	1	0	0
+SAOUHSC_01853	hypothetical protein	0	0	0
+SAOUHSC_01854	conserved hypothetical protein	1	0	6
+SAOUHSC_01855	conserved hypothetical protein	4	1	9
+SAOUHSC_01856	UDP-N-acetylmuramate--alanine ligase	6	1	15
+SAOUHSC_01857	conserved hypothetical protein	13	2	31
+SAOUHSC_01858	conserved hypothetical protein	1	1	2
+SAOUHSC_01859	conserved hypothetical protein	1	1	3
+SAOUHSC_01860	conserved hypothetical protein	0	0	0
+SAOUHSC_01861	conserved hypothetical protein	1	1	0
+SAOUHSC_01863	conserved hypothetical protein	0	0	5
+SAOUHSC_01864	conserved hypothetical protein	0	5	2
+SAOUHSC_01865	conserved hypothetical protein	1	1	9
+SAOUHSC_01866	conserved hypothetical protein	7	3	10
+SAOUHSC_01867	D-amino acid aminotransferase	1	2	7
+SAOUHSC_01868	conserved hypothetical protein	2	0	5
+SAOUHSC_01869	conserved hypothetical protein	0	0	0
+SAOUHSC_01870	ribosomal small subunit pseudouridine synthase A%2C putative	1	1	3
+SAOUHSC_01871	polysaccharide biosynthesis protein%2C putative	3	0	3
+SAOUHSC_01872	conserved hypothetical protein	0	0	1
+SAOUHSC_01873	conserved hypothetical protein	0	1	0
+SAOUHSC_01874	conserved hypothetical protein	0	0	0
+SAOUHSC_01875	leucyl-tRNA synthetase	8	5	8
+SAOUHSC_01876	conserved hypothetical protein	1	0	2
+SAOUHSC_01877	conserved hypothetical protein	4	0	5
+SAOUHSC_01878	conserved hypothetical protein	3	1	4
+SAOUHSC_01879	virulence factor regulator protein	2	2	3
+SAOUHSC_01880	conserved hypothetical protein	0	0	1
+SAOUHSC_01881	conserved hypothetical protein	0	0	0
+SAOUHSC_01882	conserved hypothetical protein	2	0	2
+SAOUHSC_01883	conserved hypothetical protein	0	0	0
+SAOUHSC_01884	conserved hypothetical protein	1	0	0
+SAOUHSC_01886	riboflavin synthase%2C beta subunit	3	0	3
+SAOUHSC_01887	riboflavin biosynthesis protein%2C putative	2	0	4
+SAOUHSC_01888	riboflavin synthase%2C alpha subunit	6	0	2
+SAOUHSC_01889	riboflavin biosynthesis protein RibD	3	0	3
+SAOUHSC_01890	conserved hypothetical protein	0	0	0
+SAOUHSC_01891	arsenate operon regulator	0	0	0
+SAOUHSC_01893	arsenical pump membrane protein subfamily	0	1	2
+SAOUHSC_01894	arsenate reductase	0	0	0
+SAOUHSC_01895	conserved hypothetical protein	6	24	11
+SAOUHSC_01896	conserved hypothetical protein	2	0	0
+SAOUHSC_01897	conserved hypothetical protein	0	0	0
+SAOUHSC_01898	conserved hypothetical protein	0	0	0
+SAOUHSC_01899	conserved hypothetical protein	1	0	3
+SAOUHSC_01900	conserved hypothetical protein	0	1	1
+SAOUHSC_01901	conserved hypothetical protein	5	2	6
+SAOUHSC_01902	conserved hypothetical protein	0	0	1
+SAOUHSC_01903	conserved hypothetical protein	0	0	0
+SAOUHSC_01904	conserved hypothetical protein	0	0	0
+SAOUHSC_01905	truncated transposase%2C putative	0	0	0
+SAOUHSC_01906	truncated transposase%2C putative	0	0	0
+SAOUHSC_01907	conserved hypothetical protein	0	2	2
+SAOUHSC_01908	conserved hypothetical protein	3	1	16
+SAOUHSC_01909	S-adenosylmethionine synthetase	8	3	7
+SAOUHSC_01910	phosphoenolpyruvate carboxykinase (ATP)	0	0	0
+SAOUHSC_01911	transposase%2C IS200 family	0	1	0
+SAOUHSC_01912	conserved hypothetical protein	0	0	0
+SAOUHSC_01913	conserved hypothetical protein	0	0	1
+SAOUHSC_01914	conserved hypothetical protein	1	0	0
+SAOUHSC_01915	conserved hypothetical protein	1	0	0
+SAOUHSC_01916	o-succinylbenzoic acid--coa ligase%2C putative	0	0	3
+SAOUHSC_01917	conserved hypothetical protein	0	0	0
+SAOUHSC_01918	conserved hypothetical protein	0	0	0
+SAOUHSC_01919	conserved hypothetical protein	0	0	0
+SAOUHSC_01920	conserved hypothetical protein	0	0	0
+SAOUHSC_01921	conserved hypothetical protein	0	0	0
+SAOUHSC_01922	conserved hypothetical protein	1	0	0
+SAOUHSC_01923	conserved hypothetical protein	0	0	0
+SAOUHSC_01924	conserved hypothetical protein	0	0	0
+SAOUHSC_01925	conserved hypothetical protein	0	0	0
+SAOUHSC_01926	conserved hypothetical protein	0	0	0
+SAOUHSC_01927	transposase%2C IS3 family%2C truncation-related protein%2C putative	0	1	0
+SAOUHSC_01928	transposase family protein%2C putative	0	0	0
+SAOUHSC_01929	conserved hypothetical protein	0	0	0
+SAOUHSC_01930	conserved hypothetical protein	0	0	1
+SAOUHSC_01931	conserved hypothetical protein	0	0	5
+SAOUHSC_01932	type I restriction-modification enzyme%2C S subunit%2C EcoA family%2C putative	0	0	0
+SAOUHSC_01933	type I restriction-modification system%2C M subunit	0	0	0
+SAOUHSC_01934	conserved hypothetical protein	0	0	0
+SAOUHSC_01935	serine protease SplF%2C putative	0	0	0
+SAOUHSC_01936	serine protease SplE	0	0	1
+SAOUHSC_01937	hypothetical protein	0	0	0
+SAOUHSC_01938	serine protease SplD	0	0	0
+SAOUHSC_01939	serine protease SplC	0	0	0
+SAOUHSC_01941	serine protease SplB	0	0	0
+SAOUHSC_01942	serine protease SplA	0	0	0
+SAOUHSC_01943	conserved hypothetical protein	0	0	0
+SAOUHSC_01944	conserved hypothetical protein	0	0	0
+SAOUHSC_01945	membrane protein%2C putative	0	0	0
+SAOUHSC_01947	membrane protein%2C putative	0	0	0
+SAOUHSC_01948	ABC transporter domain protein	0	0	0
+SAOUHSC_01949	intracellular serine protease%2C putative	0	0	0
+SAOUHSC_01950	flavoprotein%2C epiD%2C putative	0	1	0
+SAOUHSC_01951	epidermin biosynthesis protein EpiC%2C authentic point mutation	0	0	0
+SAOUHSC_01952	lantibiotic epidermin biosynthesis protein EpiB%2C putative	0	0	0
+SAOUHSC_01953	Gallidermin superfamily epiA%2C putative	0	0	0
+SAOUHSC_01954	leukotoxin%2C LukD	0	0	0
+SAOUHSC_01955	leukotoxin%2C LukE%2C putative	0	0	0
+SAOUHSC_01956	conserved hypothetical protein	0	0	0
+SAOUHSC_01957	conserved hypothetical protein	0	0	1
+SAOUHSC_01958	conserved hypothetical protein	1	0	0
+SAOUHSC_01959	conserved hypothetical protein	2	0	2
+SAOUHSC_01960	protoporphyrinogen oxidase	1	3	5
+SAOUHSC_01961	ferrochelatase	0	3	2
+SAOUHSC_01962	uroporphyrinogen decarboxylase	4	0	0
+SAOUHSC_01963	conserved hypothetical protein	0	0	0
+SAOUHSC_01964	conserved hypothetical protein	5	0	7
+SAOUHSC_01966	conserved hypothetical protein	5	2	6
+SAOUHSC_01967	ABC transporter%2C ATP-binding protein%2C putative	0	4	4
+SAOUHSC_01968	conserved hypothetical protein	0	0	3
+SAOUHSC_01969	conserved hypothetical protein	1	3	2
+SAOUHSC_01971	conserved hypothetical protein	1	0	2
+SAOUHSC_01972	protein export protein PrsA%2C putative	3	1	9
+SAOUHSC_01973	conserved hypothetical protein	5	0	5
+SAOUHSC_01974	conserved hypothetical protein	8	2	15
+SAOUHSC_01975	conserved hypothetical protein	1	2	4
+SAOUHSC_01976	conserved hypothetical protein	0	0	0
+SAOUHSC_01977	conserved hypothetical protein	9	2	40
+SAOUHSC_01978	conserved hypothetical protein	0	4	1
+SAOUHSC_01979	conserved hypothetical protein	3	0	7
+SAOUHSC_01980	DNA-binding response regulator%2C putative	2	1	0
+SAOUHSC_01981	sensor histidine kinase%2C putative	1	0	4
+SAOUHSC_01982	ribosomal large subunit pseudouridine synthase%2C RluD subfamily%2C putative	3	1	3
+SAOUHSC_01983	fumarate hydratase%2C class II	1	1	3
+SAOUHSC_01984	conserved hypothetical protein	1	2	1
+SAOUHSC_01985	conserved hypothetical protein	0	0	0
+SAOUHSC_01986	conserved hypothetical protein	1	2	0
+SAOUHSC_01987	conserved hypothetical protein	0	1	3
+SAOUHSC_01988	conserved hypothetical protein	0	1	1
+SAOUHSC_01989	conserved hypothetical protein	1	2	2
+SAOUHSC_01990	amino acid ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_01991	ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_01992	Phosphotransferase system%2C EIIC domain protein	2	0	0
+SAOUHSC_01993	transposase%2C putative	0	0	0
+SAOUHSC_01997	ferric uptake regulator-like protein%2C putative	7	1	8
+SAOUHSC_01998	conserved hypothetical protein	0	0	2
+SAOUHSC_01999	conserved hypothetical protein	0	1	1
+SAOUHSC_02000	glutamate-1-semialdehyde-2%2C1-aminomutase%2C putative	1	4	4
+SAOUHSC_02001	conserved hypothetical protein	1	1	0
+SAOUHSC_02002	hypothetical protein	0	0	0
+SAOUHSC_02003	ABC transporter%2C ATP-binding/permease protein%2C putative	1	1	5
+SAOUHSC_02004	conserved hypothetical protein	1	0	4
+SAOUHSC_02005	A/G-specific adenine glycosylase%2C putative	0	0	0
+SAOUHSC_02006	conserved hypothetical protein	1	2	2
+SAOUHSC_02007	hypothetical protein	0	0	1
+SAOUHSC_02008	conserved hypothetical protein	0	0	4
+SAOUHSC_02009	conserved hypothetical protein	2	1	5
+SAOUHSC_02010	conserved hypothetical protein	0	0	0
+SAOUHSC_02011	conserved hypothetical protein	1	0	1
+SAOUHSC_02012	Transglycosylase domain protein	0	0	2
+SAOUHSC_02013	conserved hypothetical protein	1	0	2
+SAOUHSC_02014	conserved hypothetical protein	2	0	1
+SAOUHSC_02015	hypothetical phage protein	0	0	0
+SAOUHSC_02016	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02017	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02018	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02019	autolysin	0	0	0
+SAOUHSC_02020	holin	0	0	0
+SAOUHSC_02021	phi ETA orf 63-like protein	0	0	0
+SAOUHSC_02022	phage tail fiber protein%2C putative	0	0	0
+SAOUHSC_02023	bifunctional autolysin precursor	0	0	0
+SAOUHSC_02025	phi SLT orf 99-like protein	0	0	0
+SAOUHSC_02026	phi ETA orf 58-like protein-related protein	0	0	0
+SAOUHSC_02027	SLT orf 129-like protein	0	0	0
+SAOUHSC_02028	phiETA ORF57-like protein	0	0	0
+SAOUHSC_02029	phi ETA orf 56-like protein	0	0	0
+SAOUHSC_02030	phi ETA orf 55-like protein	0	0	0
+SAOUHSC_02031	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02033	phage tape measure protein	0	0	0
+SAOUHSC_02034	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02035	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02036	phage structural protein%2C putative	0	0	0
+SAOUHSC_02037	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02038	phage protein%2C HK97 gp10 family	0	0	0
+SAOUHSC_02040	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02041	phi Mu50B-like protein	0	0	0
+SAOUHSC_02042	phi Mu50B-like protein	0	0	0
+SAOUHSC_02043	phage head protein%2C putative	0	0	0
+SAOUHSC_02044	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02046	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02047	phage putative head morphogenesis protein%2C SPP1 gp7 family domain protein	0	0	0
+SAOUHSC_02048	phage portal protein%2C SPP1 family	0	0	0
+SAOUHSC_02049	phage terminase%2C large subunit%2C PBSX family	0	0	0
+SAOUHSC_02050	terminase small subunit%2C putative	0	0	0
+SAOUHSC_02051	int gene activator RinA	0	0	0
+SAOUHSC_02052	hypothetical phage protein	0	0	0
+SAOUHSC_02053	transcriptional activator rinb-related protein	0	0	0
+SAOUHSC_02054	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02055	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02056	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02057	dUTP pyrophosphatase	0	0	0
+SAOUHSC_02058	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02059	phi PVL orf 52-like protein	0	0	0
+SAOUHSC_02060	phi PVL orf 51-like protein	0	0	0
+SAOUHSC_02061	phi PVL orf 50-like protein	0	0	0
+SAOUHSC_02062	helix-turn-helix DNA binding protein	0	0	0
+SAOUHSC_02063	PV83 orf 23-like protein-related protein	0	0	0
+SAOUHSC_02064	phi ETA orf 25-like protein	0	0	0
+SAOUHSC_02065	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02066	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02067	bacteriophage L54a%2C DnaB-like helicase family protein	0	0	0
+SAOUHSC_02068	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02069	phi PV83 orf 20-like protein	0	0	0
+SAOUHSC_02070	phi PV83 orf 19-like protein	0	0	0
+SAOUHSC_02071	single-strand DNA-binding protein%2C putative	0	0	0
+SAOUHSC_02072	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02073	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02074	phi PVL orf 39-like protein	0	0	0
+SAOUHSC_02075	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02076	phi PVL orf 38-like protein-related protein	0	0	0
+SAOUHSC_02077	phi PV83 orf 12-like protein-related protein	0	0	0
+SAOUHSC_02078	phi PV83 orf 10-like protein	0	0	0
+SAOUHSC_02079	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02080	bacteriophage L54a%2C antirepressor%2C putative	0	0	0
+SAOUHSC_02081	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02083	bacteriophage L54a%2C Cro-related protein	0	0	0
+SAOUHSC_02084	phage repressor protein%2C putative	0	0	0
+SAOUHSC_02085	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02086	PV83 orf 4-like protein-related protein	0	0	0
+SAOUHSC_02087	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02088	excisionase-related protein	0	0	0
+SAOUHSC_02089	integrase%2C phage family%2C putative	0	0	0
+SAOUHSC_02090	conserved hypothetical phage protein	0	0	2
+SAOUHSC_02091	conserved hypothetical protein	0	0	4
+SAOUHSC_02092	aminopeptidase PepS%2C putative	7	2	10
+SAOUHSC_02093	conserved hypothetical protein	1	0	1
+SAOUHSC_02095	conserved hypothetical protein	2	1	3
+SAOUHSC_02096	conserved hypothetical protein	1	2	3
+SAOUHSC_02097	conserved hypothetical protein	0	3	1
+SAOUHSC_02098	DNA-binding response regulator VraR%2C putative	3	1	2
+SAOUHSC_02099	histidine kinase%2C putative	2	0	3
+SAOUHSC_02100	conserved hypothetical protein	0	0	0
+SAOUHSC_02101	conserved hypothetical protein	0	0	0
+SAOUHSC_02102	methionine aminopeptidase%2C type I	1	0	3
+SAOUHSC_02103	conserved hypothetical protein	0	0	0
+SAOUHSC_02104	conserved hypothetical protein	0	1	0
+SAOUHSC_02105	conserved hypothetical protein	0	0	0
+SAOUHSC_02106	conserved hypothetical protein	1	3	4
+SAOUHSC_02107	UDP-N-acetylmuramyl tripeptide synthetase%2C putative	0	10	4
+SAOUHSC_02108	ferritin%2C putative	4	6	6
+SAOUHSC_02109	conserved hypothetical protein	1	1	1
+SAOUHSC_02110	conserved hypothetical protein	0	1	1
+SAOUHSC_02111	ImpB/MucB/SamB family superfamily	0	1	0
+SAOUHSC_02112	conserved hypothetical protein	0	0	1
+SAOUHSC_02113	RNA methyltransferase%2C TrmA family%2C putative	0	0	0
+SAOUHSC_02114	conserved hypothetical protein	1	0	3
+SAOUHSC_02115	conserved hypothetical protein	0	0	0
+SAOUHSC_02116	glutamyl-tRNA(Gln) amidotransferase%2C B subunit	9	3	18
+SAOUHSC_02117	glutamyl-tRNA(Gln) amidotransferase%2C A subunit	9	2	12
+SAOUHSC_02118	glutamyl-tRNA(Gln) amidotransferase%2C C subunit	1	0	11
+SAOUHSC_02119	proline uptake protein	2	0	0
+SAOUHSC_02121	conserved hypothetical protein	0	1	3
+SAOUHSC_02122	DNA ligase%2C NAD-dependent	3	1	7
+SAOUHSC_02123	ATP-dependent DNA helicase PcrA	3	1	3
+SAOUHSC_02124	conserved hypothetical protein	0	0	2
+SAOUHSC_02125	conserved hypothetical protein	0	0	3
+SAOUHSC_02126	adenylosuccinate lyase	5	3	11
+SAOUHSC_02127	staphopain thiol proteinase	0	0	1
+SAOUHSC_02129	conserved hypothetical protein	0	0	0
+SAOUHSC_02130	conserved hypothetical protein	0	0	0
+SAOUHSC_02131	conserved hypothetical protein	0	1	2
+SAOUHSC_02132	NAD+ synthetase	2	0	2
+SAOUHSC_02133	nicotinate phosphoribosyltransferase%2C putative	0	1	1
+SAOUHSC_02134	nitric oxide synthase%2C oxygenase domain%2C putative	0	0	1
+SAOUHSC_02135	conserved hypothetical protein	1	1	0
+SAOUHSC_02136	hypothetical protein	0	0	0
+SAOUHSC_02137	sodium-dependent transporter (huNaDC-1)%2C putative	0	1	1
+SAOUHSC_02138	conserved hypothetical protein	0	0	0
+SAOUHSC_02139	pyrazinamidase/nicotinamidase%2C putative	3	1	4
+SAOUHSC_02140	conserved hypothetical protein	5	3	12
+SAOUHSC_02141	conserved hypothetical protein	0	0	0
+SAOUHSC_02142	aldehyde dehydrogenase%2C putative	3	0	2
+SAOUHSC_02143	conserved hypothetical protein	1	0	3
+SAOUHSC_02144	conserved hypothetical protein	0	0	0
+SAOUHSC_02145	conserved hypothetical protein	0	0	4
+SAOUHSC_02146	conserved hypothetical protein	0	1	0
+SAOUHSC_02147	conserved hypothetical protein	3	2	3
+SAOUHSC_02148	conserved hypothetical protein	0	0	0
+SAOUHSC_02149	conserved hypothetical protein	0	0	2
+SAOUHSC_02150	conserved hypothetical protein	5	1	5
+SAOUHSC_02151	conserved hypothetical protein	0	1	1
+SAOUHSC_02152	ABC transporter%2C ATP-binding protein%2C putative	0	1	2
+SAOUHSC_02153	conserved hypothetical protein	0	0	0
+SAOUHSC_02154	ABC transporter%2C ATP-binding protein%2C putative	0	0	3
+SAOUHSC_02155	conserved hypothetical protein	1	0	3
+SAOUHSC_02156	conserved hypothetical protein	0	0	1
+SAOUHSC_02157	conserved hypothetical protein	0	0	0
+SAOUHSC_02158	conserved hypothetical protein	6	1	7
+SAOUHSC_02160	conserved hypothetical protein	0	0	0
+SAOUHSC_02161	MHC class II analog protein	0	1	0
+SAOUHSC_02163	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02164	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02165	hypothetical phage protein	0	0	0
+SAOUHSC_02166	hypothetical phage protein	0	0	0
+SAOUHSC_02167	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02169	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02170	peptidoglycan hydrolase%2C putative	0	0	0
+SAOUHSC_02171	staphylokinase precursor%2C putative	0	0	0
+SAOUHSC_02173	amidase	0	0	0
+SAOUHSC_02174	holin%2C phage phi LC3 family	0	0	0
+SAOUHSC_02175	hypothetical phage protein	0	0	0
+SAOUHSC_02176	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02177	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02178	phi PVL orf 22-like protein	0	0	0
+SAOUHSC_02179	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02180	phage minor structural protein%2C N-terminal region domain protein	0	0	0
+SAOUHSC_02181	phi PVL orfs 18-19-like protein	0	0	0
+SAOUHSC_02182	tail length tape measure protein	0	0	0
+SAOUHSC_02183	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02184	phi PVL orf 14-like protein	0	0	0
+SAOUHSC_02185	phi PVL orf 13-like protein	0	0	0
+SAOUHSC_02186	phi PVL orf 12-like protein	0	0	0
+SAOUHSC_02187	phage protein%2C HK97 gp10 family	0	0	0
+SAOUHSC_02188	phage head-tail adaptor%2C putative	0	0	0
+SAOUHSC_02189	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02190	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02191	phage major capsid protein%2C HK97 family	0	0	0
+SAOUHSC_02193	prohead protease	0	0	0
+SAOUHSC_02194	phage portal protein%2C HK97 family	0	0	0
+SAOUHSC_02195	phi PVL orf 3-like protein-related protein	0	0	0
+SAOUHSC_02196	phage terminase%2C large subunit%2C putative	0	0	0
+SAOUHSC_02197	phage terminase%2C small subunit%2C putative	0	0	0
+SAOUHSC_02198	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02199	phi PVL orf 62-like protein	0	0	0
+SAOUHSC_02200	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02202	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02203	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02204	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02205	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02206	hypothetical phage protein	0	0	0
+SAOUHSC_02207	phi PVL/orf 52-like protein	0	0	0
+SAOUHSC_02208	PV83 orf 27-like protein	0	0	0
+SAOUHSC_02209	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02210	phi PVL orf 51-like protein	0	0	0
+SAOUHSC_02211	phi PVL orf 50-like protein	0	0	0
+SAOUHSC_02212	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02213	phi ETA orf 25-like protein	0	0	0
+SAOUHSC_02214	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02215	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02216	phage DnaC-like protein	0	0	0
+SAOUHSC_02217	phi ETA orf 22-like protein	0	0	0
+SAOUHSC_02218	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02219	phi ETA orf 20-like protein	0	0	0
+SAOUHSC_02220	phi ETA orf 18-like protein	0	0	0
+SAOUHSC_02221	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02222	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02223	phi PVL orf 39-like protein	0	0	0
+SAOUHSC_02224	phi PVL orf 38-like protein-related protein	0	0	0
+SAOUHSC_02225	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02226	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02227	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02228	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02229	anti repressor	0	0	0
+SAOUHSC_02231	anti repressor	0	0	0
+SAOUHSC_02232	phi PVL orf 33-like protein	0	0	0
+SAOUHSC_02233	phi PVL orf 32-like protein	0	0	0
+SAOUHSC_02234	repressor-like protein-related protein	0	0	0
+SAOUHSC_02235	repressor	0	0	0
+SAOUHSC_02236	conserved hypothetical phage protein	0	0	0
+SAOUHSC_02237	hypothetical phage protein	0	0	0
+SAOUHSC_02238	phi PVL ORF 30-like protein	0	0	0
+SAOUHSC_02239	integrase	0	0	0
+SAOUHSC_02240	truncated beta-hemolysin	0	0	1
+SAOUHSC_02241	conserved hypothetical protein	1	1	0
+SAOUHSC_02243	conserved hypothetical protein	1	1	0
+SAOUHSC_02244	conserved hypothetical protein	0	0	0
+SAOUHSC_02245	conserved hypothetical protein	0	0	0
+SAOUHSC_02246	conserved hypothetical protein	0	0	0
+SAOUHSC_02247	cation transport protein%2C putative	0	0	1
+SAOUHSC_02248	conserved hypothetical protein	0	0	0
+SAOUHSC_02249	conserved hypothetical protein	0	0	0
+SAOUHSC_02250	phage terminase%2C small subunit%2C putative	0	0	0
+SAOUHSC_02251	conserved hypothetical protein	0	0	0
+SAOUHSC_02252	conserved hypothetical protein	0	0	0
+SAOUHSC_02254	chaperonin%2C 60 kDa%2C GrpEL%2C putative	7	4	27
+SAOUHSC_02255	chaperonin%2C 10 kDa%2C GroES%2C putative	1	0	5
+SAOUHSC_02256	abortive infection protein	1	1	4
+SAOUHSC_02257	conserved hypothetical protein	0	0	3
+SAOUHSC_02258	conserved hypothetical protein	0	0	0
+SAOUHSC_02259	conserved hypothetical protein	0	0	1
+SAOUHSC_02260	delta-hemolysin precursor	0	0	4
+SAOUHSC_02261	accessory gene regulator protein B	0	0	4
+SAOUHSC_02262	conserved hypothetical protein	1	0	1
+SAOUHSC_02264	accessory gene regulator protein C	0	0	9
+SAOUHSC_02265	accessory gene regulator protein A	0	1	5
+SAOUHSC_02266	conserved hypothetical protein	0	0	0
+SAOUHSC_02267	fructokinase%2C putative	2	0	3
+SAOUHSC_02268	sucrose-6-phosphate dehydrogenase%2C putative	1	0	2
+SAOUHSC_02269	sucrose operon repressor%2C putative	0	0	1
+SAOUHSC_02270	ammonium transporter	0	0	1
+SAOUHSC_02271	conserved hypothetical protein	0	1	0
+SAOUHSC_02272	conserved hypothetical protein	1	0	0
+SAOUHSC_02273	conserved hypothetical protein	4	1	3
+SAOUHSC_02274	ABC transporter%2C ATP-binding protein%2C putative	0	2	0
+SAOUHSC_02275	hypothetical protein	0	0	0
+SAOUHSC_02276	MutS domain V protein	1	0	5
+SAOUHSC_02277	O-sialoglycoprotein endopeptidase%2C putative	0	2	3
+SAOUHSC_02278	ribosomal-protein-alanine acetyltransferase	0	1	0
+SAOUHSC_02279	conserved hypothetical protein	2	0	2
+SAOUHSC_02280	conserved hypothetical protein	0	0	0
+SAOUHSC_02281	dihydroxy-acid dehydratase	0	0	0
+SAOUHSC_02282	acetolactate synthase%2C large subunit%2C biosynthetic type	0	0	0
+SAOUHSC_02283	conserved hypothetical protein	0	0	0
+SAOUHSC_02284	ketol-acid reductoisomerase	0	0	0
+SAOUHSC_02285	2-isopropylmalate synthase	1	1	0
+SAOUHSC_02286	3-isopropylmalate dehydrogenase	0	0	0
+SAOUHSC_02287	3-isopropylmalate dehydratase%2C large subunit	1	0	0
+SAOUHSC_02288	3-isopropylmalate dehydratase%2C small subunit	0	0	0
+SAOUHSC_02289	thereonine dehydratase%2C putative	0	0	0
+SAOUHSC_02290	conserved hypothetical protein	0	0	0
+SAOUHSC_02294	hypothetical protein	0	0	0
+SAOUHSC_02296	conserved hypothetical protein	1	0	2
+SAOUHSC_02297	S1 RNA binding domain protein	4	1	7
+SAOUHSC_02298	sigma factor B%2C putative	5	1	4
+SAOUHSC_02299	anti-sigma B factor%2C putative	2	0	2
+SAOUHSC_02300	STAS domain%2C putative	1	3	2
+SAOUHSC_02301	sigmaB regulation protein RsbU%2C putative	0	0	3
+SAOUHSC_02302	sigmaB regulation protein RsbU%2C putative	1	1	1
+SAOUHSC_02303	conserved hypothetical protein	1	0	3
+SAOUHSC_02304	conserved hypothetical protein	2	0	4
+SAOUHSC_02305	alanine racemase	2	2	2
+SAOUHSC_02306	holo-(acyl-carrier-protein) synthase	0	0	2
+SAOUHSC_02307	conserved hypothetical protein	0	0	0
+SAOUHSC_02308	conserved hypothetical protein	1	2	4
+SAOUHSC_02309	conserved hypothetical protein	0	0	0
+SAOUHSC_02310	potassium-transporting ATPase%2C C subunit	0	1	1
+SAOUHSC_02311	potassium-translocating P-type ATPase%2C B subunit%2C putative	1	0	0
+SAOUHSC_02312	potassium-transporting ATPase%2C A subunit	0	0	0
+SAOUHSC_02313	hypothetical protein	0	0	0
+SAOUHSC_02314	sensor protein KdpD%2C putative	0	0	1
+SAOUHSC_02315	DNA-binding response regulator%2C putative	0	1	0
+SAOUHSC_02316	ATP-dependent RNA helicase%2C DEAD box family%2C putative	19	2	35
+SAOUHSC_02317	UDP-N-acetylmuramoylalanyl-D-glutamyl-2%2C 6-diaminopimelate--D-alanyl-D-alanyl ligase	6	3	8
+SAOUHSC_02318	D-alanine--D-alanine ligase	3	0	5
+SAOUHSC_02319	conserved hypothetical protein	0	0	7
+SAOUHSC_02320	conserved hypothetical protein	0	0	0
+SAOUHSC_02321	conserved hypothetical protein	0	0	0
+SAOUHSC_02322	conserved hypothetical protein	2	0	1
+SAOUHSC_02323	cardiolipin synthetase%2C putative	3	1	3
+SAOUHSC_02324	conserved hypothetical protein	1	0	2
+SAOUHSC_02325	hypothetical protein	0	0	0
+SAOUHSC_02326	conserved hypothetical protein	0	1	1
+SAOUHSC_02327	conserved hypothetical protein	7	6	20
+SAOUHSC_02328	thiamine-phosphate pyrophosphorylase	0	0	0
+SAOUHSC_02329	hydroxyethylthiazole kinase%2C putative	1	0	0
+SAOUHSC_02330	phosphomethylpyrimidine kinase	0	1	0
+SAOUHSC_02331	conserved hypothetical protein	0	0	0
+SAOUHSC_02332	conserved hypothetical protein	0	0	0
+SAOUHSC_02333	sceD protein%2C putative	1	0	3
+SAOUHSC_02334	bacteriophage L54a%2C single-stranded DNA binding protein	0	0	1
+SAOUHSC_02335	conserved hypothetical protein	0	0	0
+SAOUHSC_02336	beta-hydroxyacyl-ACP dehydratase%2C putative	1	0	2
+SAOUHSC_02337	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	5	2	11
+SAOUHSC_02338	conserved hypothetical protein	0	1	1
+SAOUHSC_02339	hypothetical protein	0	0	0
+SAOUHSC_02340	ATP synthase F1%2C epsilon subunit	4	5	8
+SAOUHSC_02341	ATP synthase F1%2C beta subunit	20	17	37
+SAOUHSC_02343	ATP synthase F1%2C gamma subunit	12	9	18
+SAOUHSC_02345	ATP synthase F1%2C alpha subunit	19	14	28
+SAOUHSC_02346	ATP synthase F1%2C delta subunit	3	11	7
+SAOUHSC_02347	ATP synthase F0%2C B subunit	9	8	8
+SAOUHSC_02349	ATP synthase F0%2C C subunit	5	3	5
+SAOUHSC_02350	ATP synthase F0%2C A subunit	9	11	15
+SAOUHSC_02351	conserved hypothetical protein	5	7	4
+SAOUHSC_02352	UDP-N-acetylglucosamine 2-epimerase	2	1	10
+SAOUHSC_02353	uracil phosphoribosyltransferase	1	1	5
+SAOUHSC_02354	serine hydroxymethyltransferase%2C putative	6	1	10
+SAOUHSC_02355	conserved hypothetical protein	1	1	4
+SAOUHSC_02356	conserved hypothetical protein	1	1	0
+SAOUHSC_02357	conserved hypothetical protein	1	1	1
+SAOUHSC_02358	modification methylase%2C HemK family%2C putative	2	2	4
+SAOUHSC_02359	peptide chain release factor 1	4	3	6
+SAOUHSC_02360	thymidine kinase%2C putative	0	3	2
+SAOUHSC_02361	ribosomal protein L31	13	6	31
+SAOUHSC_02362	transcription termination factor Rho	3	15	21
+SAOUHSC_02363	aldehyde dehydrogenase%2C putative	3	3	8
+SAOUHSC_02364	conserved hypothetical protein	1	0	2
+SAOUHSC_02365	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	1	1	3
+SAOUHSC_02366	conserved hypothetical protein	24	7	108
+SAOUHSC_02367	conserved hypothetical protein	0	0	3
+SAOUHSC_02368	CTP synthase	7	3	16
+SAOUHSC_02369	DNA-directed RNA polymerase%2C delta subunit%2C putative	4	0	8
+SAOUHSC_02370	conserved hypothetical protein	1	0	0
+SAOUHSC_02371	conserved hypothetical protein	0	0	1
+SAOUHSC_02372	conserved hypothetical protein	3	2	9
+SAOUHSC_02373	conserved hypothetical protein	1	2	1
+SAOUHSC_02374	aminobenzoyl-glutamate utilization protein B%2C putative	0	0	0
+SAOUHSC_02375	autoinducer-2 production protein LuxS%2C putative	1	1	3
+SAOUHSC_02376	conserved hypothetical protein	0	0	1
+SAOUHSC_02377	pyrimidine nucleoside phosphorylase%2C putative	1	0	0
+SAOUHSC_02378	hypothetical protein	0	0	1
+SAOUHSC_02379	deoxyribose-phosphate aldolase	0	0	0
+SAOUHSC_02380	purine nucleoside phosphorylase	6	1	17
+SAOUHSC_02381	conserved hypothetical protein	6	37	4
+SAOUHSC_02382	conserved hypothetical protein	0	1	0
+SAOUHSC_02383	conserved hypothetical protein	4	4	8
+SAOUHSC_02384	conserved hypothetical protein	0	0	0
+SAOUHSC_02385	mannose-6-phosphate isomerase%2C class I	3	0	3
+SAOUHSC_02386	conserved hypothetical protein	0	0	0
+SAOUHSC_02387	conserved hypothetical protein	0	0	0
+SAOUHSC_02388	conserved hypothetical protein	0	2	0
+SAOUHSC_02389	cation efflux family protein%2C putative	1	2	2
+SAOUHSC_02390	lytic regulatory protein%2C putative	4	2	18
+SAOUHSC_02391	conserved hypothetical protein	3	3	6
+SAOUHSC_02392	truncated resolvase	0	0	1
+SAOUHSC_02393	conserved hypothetical protein	0	0	0
+SAOUHSC_02394	hypothetical protein	0	0	0
+SAOUHSC_02396	conserved hypothetical protein	0	1	2
+SAOUHSC_02397	ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_02399	glucosamine--fructose-6-phosphate aminotransferase%2C isomerizing	11	4	17
+SAOUHSC_02400	PTS system%2C mannitol-specific component%2C putative	1	0	0
+SAOUHSC_02401	conserved hypothetical protein	0	0	0
+SAOUHSC_02402	PTS system%2C mannitol-specific IIa component%2C putative	0	0	0
+SAOUHSC_02403	mannitol-1-phosphate 5-dehydrogenase%2C putative	1	0	0
+SAOUHSC_02404	conserved hypothetical protein	0	0	0
+SAOUHSC_02405	phosphoglucosamine mutase	4	0	5
+SAOUHSC_02406	conserved hypothetical protein	3	0	5
+SAOUHSC_02407	conserved hypothetical protein	4	0	3
+SAOUHSC_02409	arginase	0	0	1
+SAOUHSC_02410	transposase%2C putative	0	0	0
+SAOUHSC_02411	hypothetical protein	1	0	1
+SAOUHSC_02412	hypothetical protein	1	0	0
+SAOUHSC_02416	hypothetical protein	0	0	0
+SAOUHSC_02417	conserved hypothetical protein	1	0	6
+SAOUHSC_02418	conserved hypothetical protein	1	0	0
+SAOUHSC_02419	conserved hypothetical protein	0	1	2
+SAOUHSC_02420	conserved hypothetical protein	2	1	5
+SAOUHSC_02422	conserved hypothetical protein	3	1	1
+SAOUHSC_02423	UDP-N-acetylglucosamine pyrophosphorylase%2C putative	3	1	5
+SAOUHSC_02424	conserved hypothetical protein	1	0	1
+SAOUHSC_02425	conserved hypothetical protein	0	0	0
+SAOUHSC_02426	membrane protein%2C putative	0	0	3
+SAOUHSC_02427	conserved hypothetical protein	1	0	2
+SAOUHSC_02428	conserved hypothetical protein	0	0	0
+SAOUHSC_02430	ABC transporter periplasmic binding protein%2C putative	3	0	3
+SAOUHSC_02432	hypothetical protein	0	0	0
+SAOUHSC_02433	conserved hypothetical protein	1	1	0
+SAOUHSC_02434	conserved hypothetical protein	0	0	0
+SAOUHSC_02435	conserved hypothetical protein	0	1	0
+SAOUHSC_02436	conserved hypothetical protein	1	1	4
+SAOUHSC_02437	conserved hypothetical protein	0	0	0
+SAOUHSC_02438	conserved hypothetical protein	0	0	0
+SAOUHSC_02440	conserved hypothetical protein	0	0	0
+SAOUHSC_02441	conserved hypothetical protein	0	4	0
+SAOUHSC_02442	conserved hypothetical protein	0	0	0
+SAOUHSC_02443	conserved hypothetical protein	0	1	0
+SAOUHSC_02444	osmoprotectant transporter%2C BCCT family%2C opuD-like protein%2C putative	0	1	0
+SAOUHSC_02445	conserved hypothetical protein	0	0	0
+SAOUHSC_02447	conserved hypothetical protein	3	0	7
+SAOUHSC_02448	conserved hypothetical protein	0	0	0
+SAOUHSC_02449	6-phospho-beta-galactosidase	0	0	0
+SAOUHSC_02450	pts system%2C lactose-specific IIBC component%2C putative	0	0	0
+SAOUHSC_02451	PTS system lactose-specific IIA component%2C putative	0	0	0
+SAOUHSC_02452	tagatose 1%2C6-diphosphate aldolase	0	0	0
+SAOUHSC_02453	tagatose-6-phosphate kinase	0	0	0
+SAOUHSC_02454	galactose-6-phosphate isomerase%2C LacB subunit	0	0	0
+SAOUHSC_02455	galactose-6-phosphate isomerase%2C LacA subunit	0	0	0
+SAOUHSC_02456	lactose phosphotransferase system repressor%2C putative	0	3	1
+SAOUHSC_02457	transcriptional regulator%2C Sir2 family%2C putative	0	1	1
+SAOUHSC_02458	conserved hypothetical protein	0	0	0
+SAOUHSC_02459	conserved hypothetical protein	0	0	0
+SAOUHSC_02460	conserved hypothetical protein	1	0	1
+SAOUHSC_02461	transcriptional regulator%2C merR family%2C putative	0	0	0
+SAOUHSC_02462	hypothetical protein	0	0	0
+SAOUHSC_02463	hyaluronate lyase	0	0	1
+SAOUHSC_02464	conserved hypothetical protein	0	0	1
+SAOUHSC_02465	conserved hypothetical protein	0	0	0
+SAOUHSC_02466	truncated MHC class II analog protein	0	0	0
+SAOUHSC_02467	alpha-acetolactate decarboxylase	0	0	2
+SAOUHSC_02468	acetolactate synthase%2C putative	0	1	6
+SAOUHSC_02469	conserved hypothetical protein	0	0	1
+SAOUHSC_02470	conserved hypothetical protein	0	0	0
+SAOUHSC_02471	conserved hypothetical protein	0	0	2
+SAOUHSC_02472	conserved hypothetical protein	0	0	1
+SAOUHSC_02473	hypothetical protein	0	0	0
+SAOUHSC_02474	conserved hypothetical protein	0	0	0
+SAOUHSC_02475	conserved hypothetical protein	0	0	0
+SAOUHSC_02476	conserved hypothetical protein	0	0	1
+SAOUHSC_02477	ribosomal protein S9%2C putative	16	5	30
+SAOUHSC_02478	ribosomal protein L13	32	2	39
+SAOUHSC_02480	tRNA pseudouridine synthase A	3	0	1
+SAOUHSC_02481	cobalt transport protein%2C putative	2	0	2
+SAOUHSC_02482	ABC transporter%2C ATP-binding protein%2C putative	1	0	0
+SAOUHSC_02483	ABC transporter%2C ATP-binding protein%2C putative	0	0	1
+SAOUHSC_02484	ribosomal protein L17	11	4	10
+SAOUHSC_02485	DNA-directed RNA polymerase alpha chain%2C putative	32	11	39
+SAOUHSC_02486	ribosomal protein S11%2C putative	19	5	17
+SAOUHSC_02487	conserved hypothetical protein	13	5	16
+SAOUHSC_02488	ribosomal protein L36	7	5	5
+SAOUHSC_02489	translation initiation factor IF-1	2	4	5
+SAOUHSC_02490	adenylate kinase%2C putative	13	2	22
+SAOUHSC_02491	preprotein translocase%2C SecY subunit%2C putative	24	9	39
+SAOUHSC_02492	ribosomal protein L15	15	5	10
+SAOUHSC_02493	ribosomal protein L30	6	1	9
+SAOUHSC_02494	ribosomal protein S5	15	5	14
+SAOUHSC_02495	ribosomal protein L18	11	4	15
+SAOUHSC_02496	ribosomal protein L6%2C putative	15	8	24
+SAOUHSC_02498	ribosomal protein S8%2C putative	19	6	10
+SAOUHSC_02499	ribosomal protein S14p/S29e%2C putative	8	1	5
+SAOUHSC_02500	50S ribosomal protein L5%2C putative	17	4	12
+SAOUHSC_02501	ribosomal protein L24	11	5	8
+SAOUHSC_02502	ribosomal protein L14	16	5	10
+SAOUHSC_02503	30S ribosomal protein S17%2C putative	8	3	11
+SAOUHSC_02504	ribosomal protein L29	7	3	5
+SAOUHSC_02505	ribosomal protein L16	14	5	13
+SAOUHSC_02506	ribosomal protein S3	29	9	19
+SAOUHSC_02507	ribosomal protein L22	8	8	10
+SAOUHSC_02508	ribosomal protein S19	11	4	13
+SAOUHSC_02509	ribosomal protein L2	38	15	67
+SAOUHSC_02510	ribosomal protein L23%2C putative	15	1	17
+SAOUHSC_02511	conserved hypothetical protein	27	7	39
+SAOUHSC_02512	ribosomal protein L3%2C putative	30	10	33
+SAOUHSC_02515	conserved hypothetical protein	0	0	2
+SAOUHSC_02516	conserved hypothetical protein	7	4	7
+SAOUHSC_02517	DNA topoisomerase III%2C putative	2	2	4
+SAOUHSC_02518	conserved hypothetical protein	0	0	0
+SAOUHSC_02519	conserved hypothetical protein	0	0	3
+SAOUHSC_02520	sugar transporter%2C putative	4	8	3
+SAOUHSC_02521	conserved hypothetical protein	0	1	2
+SAOUHSC_02522	conserved hypothetical protein	0	3	0
+SAOUHSC_02523	conserved hypothetical protein	1	0	1
+SAOUHSC_02524	conserved hypothetical protein	0	1	3
+SAOUHSC_02525	conserved hypothetical protein	1	3	0
+SAOUHSC_02527	FmhB protein%2C putative	2	0	4
+SAOUHSC_02528	conserved hypothetical protein	0	0	0
+SAOUHSC_02529	conserved hypothetical protein	0	0	0
+SAOUHSC_02530	conserved hypothetical protein	0	0	0
+SAOUHSC_02531	conserved hypothetical protein	0	0	0
+SAOUHSC_02532	conserved hypothetical protein	0	0	1
+SAOUHSC_02533	conserved hypothetical protein	0	0	0
+SAOUHSC_02534	conserved hypothetical protein	0	0	0
+SAOUHSC_02535	conserved hypothetical protein	0	0	0
+SAOUHSC_02536	molybdopterin cofactor biosynthesis protein A%2C putative	1	0	5
+SAOUHSC_02537	molybdopterin-guanine dinucleotide biosynthesis mobA%2C putative	1	0	0
+SAOUHSC_02538	molybdopterin converting factor%2C subunit 1	0	0	0
+SAOUHSC_02540	molybdopterin converting factor moa%2C putative	0	0	1
+SAOUHSC_02541	molybdopterin-guanine dinucleotide biosynthesis protein MobB	0	0	1
+SAOUHSC_02542	molybdopterin biosynthesis protein moeA%2C putative	0	0	3
+SAOUHSC_02543	molybdenum cofactor biosynthesis protein C	1	0	1
+SAOUHSC_02544	molybdopterin precursor biosynthesis moaB%2C putative	0	0	1
+SAOUHSC_02545	conserved hypothetical protein	1	0	1
+SAOUHSC_02546	molybdenum transport ATP-binding protein ModC%2C putative	0	0	1
+SAOUHSC_02547	molybdenum ABC transporter%2C permease protein%2C putative	1	1	0
+SAOUHSC_02549	molybdenum ABC transporter%2C periplasmic molybdate-binding protein	2	0	0
+SAOUHSC_02550	formate dehydrogenase family accessory protein FdhD	3	0	0
+SAOUHSC_02551	conserved hypothetical protein	0	0	0
+SAOUHSC_02552	conserved hypothetical protein	0	0	1
+SAOUHSC_02553	conserved hypothetical protein	0	0	0
+SAOUHSC_02554	conserved hypothetical protein	3	0	1
+SAOUHSC_02555	conserved hypothetical protein	0	0	0
+SAOUHSC_02556	conserved hypothetical protein	0	1	1
+SAOUHSC_02557	urea transporter%2C putative	0	0	0
+SAOUHSC_02558	urease%2C gamma subunit	0	0	0
+SAOUHSC_02559	urease%2C beta subunit%2C putative	0	0	0
+SAOUHSC_02561	urease%2C alpha subunit	0	0	0
+SAOUHSC_02562	urease accessory protein UreE%2C putative	0	0	0
+SAOUHSC_02563	urease accessory protein UreF%2C putative	0	0	0
+SAOUHSC_02564	urease accessory protein UreG	1	0	2
+SAOUHSC_02565	urease accessory protein UreD%2C putative	0	0	1
+SAOUHSC_02566	conserved hypothetical protein	3	0	10
+SAOUHSC_02567	hypothetical protein	1	0	0
+SAOUHSC_02568	conserved hypothetical protein	1	0	2
+SAOUHSC_02569	conserved hypothetical protein	0	0	0
+SAOUHSC_02570	conserved hypothetical protein	0	0	0
+SAOUHSC_02571	secretory antigen precursor%2C putative	18	7	37
+SAOUHSC_02572	conserved hypothetical protein	2	1	2
+SAOUHSC_02573	Na+/H+ antiporter NhaC	1	0	4
+SAOUHSC_02574	conserved hypothetical protein	1	0	1
+SAOUHSC_02575	conserved hypothetical protein	0	0	0
+SAOUHSC_02576	secretory antigen precursor SsaA%2C putative	1	1	7
+SAOUHSC_02577	D-isomer specific 2-hydroxyacid dehydrogenase%2C NAD binding domain protein	1	2	4
+SAOUHSC_02579	conserved hypothetical protein	0	0	2
+SAOUHSC_02580	N-acetylmuramoyl-L-alanine amidase%2C putative	2	0	2
+SAOUHSC_02581	conserved hypothetical protein	1	0	2
+SAOUHSC_02582	formate dehydrogenase%2C alpha subunit%2C putative	7	0	4
+SAOUHSC_02583	transcriptional regulator%2C putative	1	0	0
+SAOUHSC_02584	conserved hypothetical protein	0	0	0
+SAOUHSC_02585	conserved hypothetical protein	0	0	1
+SAOUHSC_02586	conserved hypothetical protein	0	0	2
+SAOUHSC_02587	conserved hypothetical protein	3	0	3
+SAOUHSC_02588	conserved hypothetical protein	0	0	0
+SAOUHSC_02589	conserved hypothetical protein	2	1	1
+SAOUHSC_02590	conserved hypothetical protein	1	2	5
+SAOUHSC_02591	conserved hypothetical protein	0	0	2
+SAOUHSC_02592	conserved hypothetical protein	0	0	0
+SAOUHSC_02593	conserved hypothetical protein	0	0	0
+SAOUHSC_02594	conserved hypothetical protein	1	1	1
+SAOUHSC_02595	conserved hypothetical protein	1	0	0
+SAOUHSC_02596	conserved hypothetical protein	0	0	0
+SAOUHSC_02597	PTS system component%2C putative	0	0	0
+SAOUHSC_02599	Hex regulon repressor%2C putative	0	2	1
+SAOUHSC_02600	conserved hypothetical protein	0	4	1
+SAOUHSC_02601	Na+/H+ antiporter%2C putative	2	4	1
+SAOUHSC_02602	hypothetical protein	0	0	0
+SAOUHSC_02603	conserved hypothetical protein	0	1	0
+SAOUHSC_02604	conserved hypothetical protein	0	0	1
+SAOUHSC_02605	conserved hypothetical protein	1	0	0
+SAOUHSC_02606	imidazolonepropionase	0	0	0
+SAOUHSC_02607	urocanate hydratase	0	0	0
+SAOUHSC_02608	conserved hypothetical protein	0	0	0
+SAOUHSC_02609	fosfomycin resistance protein%2C putative	0	0	0
+SAOUHSC_02610	formiminoglutamase	0	0	0
+SAOUHSC_02611	conserved hypothetical protein	4	4	13
+SAOUHSC_02612	ribose 5-phosphate isomerase%2C putative	1	1	1
+SAOUHSC_02613	conserved hypothetical protein	0	0	0
+SAOUHSC_02614	aldose 1-epimerase precursor%2C putative	2	0	5
+SAOUHSC_02615	conserved hypothetical protein	1	0	1
+SAOUHSC_02616	hypothetical protein	0	0	0
+SAOUHSC_02618	conserved hypothetical protein	0	1	2
+SAOUHSC_02619	conserved hypothetical protein	1	1	0
+SAOUHSC_02620	conserved hypothetical protein	1	1	2
+SAOUHSC_02621	DNA-3-methyladenine glycosylase%2C putative	0	0	0
+SAOUHSC_02622	sodium/glutamate symporter	1	0	2
+SAOUHSC_02623	conserved hypothetical protein	2	0	4
+SAOUHSC_02624	conserved hypothetical protein	0	0	2
+SAOUHSC_02625	conserved hypothetical protein	0	1	2
+SAOUHSC_02626	conserved hypothetical protein	1	1	1
+SAOUHSC_02627	conserved hypothetical protein	0	0	2
+SAOUHSC_02628	conserved hypothetical protein	0	0	1
+SAOUHSC_02629	drug resistance transporter%2C EmrB/QacA subfamily%2C putative	1	2	2
+SAOUHSC_02630	conserved hypothetical protein	0	0	1
+SAOUHSC_02631	conserved hypothetical protein	2	0	1
+SAOUHSC_02632	conserved hypothetical protein	0	0	0
+SAOUHSC_02633	conserved hypothetical protein	1	0	0
+SAOUHSC_02634	conserved hypothetical protein	0	0	0
+SAOUHSC_02635	conserved hypothetical protein	1	0	5
+SAOUHSC_02636	conserved hypothetical protein	0	0	0
+SAOUHSC_02637	conserved hypothetical protein	1	1	1
+SAOUHSC_02638	conserved hypothetical protein	1	0	1
+SAOUHSC_02639	truncated transposase	0	0	0
+SAOUHSC_02640	conserved hypothetical protein	0	0	0
+SAOUHSC_02641	permease%2C putative domain protein	0	0	1
+SAOUHSC_02643	DNA-binding response regulator%2C putative	0	0	0
+SAOUHSC_02644	sensor histidine kinase%2C putative	0	0	1
+SAOUHSC_02645	conserved hypothetical protein	0	1	0
+SAOUHSC_02646	conserved hypothetical protein	0	0	1
+SAOUHSC_02647	malate:quinone-oxidoreductase	2	2	1
+SAOUHSC_02648	L-lactate permease	3	0	4
+SAOUHSC_02649	conserved hypothetical protein	2	0	1
+SAOUHSC_02650	lipoprotein%2C putative	1	4	1
+SAOUHSC_02651	conserved hypothetical protein	1	0	0
+SAOUHSC_02652	conserved hypothetical protein	3	0	1
+SAOUHSC_02653	conserved hypothetical protein	1	0	0
+SAOUHSC_02654	conserved hypothetical protein	0	0	0
+SAOUHSC_02655	conserved hypothetical protein	0	0	0
+SAOUHSC_02656	conserved hypothetical protein	0	1	1
+SAOUHSC_02657	conserved hypothetical protein	0	0	0
+SAOUHSC_02658	membrane protein%2C putative	0	0	0
+SAOUHSC_02659	conserved hypothetical protein	1	0	1
+SAOUHSC_02660	conserved hypothetical protein	1	0	2
+SAOUHSC_02661	PTS system sucrose-specific IIBC component%2C putative	0	0	0
+SAOUHSC_02662	PTS system sucrose-specific IIBC component	0	0	0
+SAOUHSC_02663	conserved hypothetical protein	0	0	1
+SAOUHSC_02664	transcriptional regulator%2C putative	1	0	1
+SAOUHSC_02665	conserved hypothetical protein	2	1	0
+SAOUHSC_02666	conserved hypothetical protein	0	2	1
+SAOUHSC_02667	conserved hypothetical protein	5	4	5
+SAOUHSC_02668	conserved hypothetical protein	1	0	0
+SAOUHSC_02669	conserved hypothetical protein	1	0	2
+SAOUHSC_02670	conserved hypothetical protein	3	0	0
+SAOUHSC_02671	conserved hypothetical protein	0	0	0
+SAOUHSC_02672	conserved hypothetical protein	0	0	0
+SAOUHSC_02673	conserved hypothetical protein	0	0	0
+SAOUHSC_02674	conserved hypothetical protein	0	0	0
+SAOUHSC_02675	conserved hypothetical protein	0	0	0
+SAOUHSC_02676	conserved hypothetical protein	2	0	1
+SAOUHSC_02677	conserved hypothetical protein	0	0	0
+SAOUHSC_02678	respiratory nitrate reductase%2C gamma subunit	0	1	0
+SAOUHSC_02679	respiratory nitrate reductase%2C delta subunit%2C putative	0	0	0
+SAOUHSC_02680	nitrate reductase%2C beta subunit	0	0	0
+SAOUHSC_02681	nitrate reductase%2C alpha subunit	0	0	0
+SAOUHSC_02682	uroporphyrin-III C-methyltransferase%2C putative	0	1	0
+SAOUHSC_02683	assimilatory nitrite reductase [NAD(P)H]%2C small subunit%2C putative	0	0	0
+SAOUHSC_02684	assimilatory nitrite reductase [NAD(P)H]%2C large subunit%2C putative	0	0	0
+SAOUHSC_02685	conserved hypothetical protein	0	0	0
+SAOUHSC_02686	conserved hypothetical protein	0	0	1
+SAOUHSC_02687	formate/nitrite transporter%2C putative	2	1	0
+SAOUHSC_02688	conserved hypothetical protein	1	0	0
+SAOUHSC_02689	conserved hypothetical protein	0	0	0
+SAOUHSC_02690	conserved hypothetical protein	0	0	5
+SAOUHSC_02691	conserved hypothetical protein	1	0	0
+SAOUHSC_02692	conserved hypothetical protein	0	0	0
+SAOUHSC_02693	conserved hypothetical protein	0	0	0
+SAOUHSC_02694	conserved hypothetical protein	0	0	2
+SAOUHSC_02695	conserved hypothetical protein	0	0	0
+SAOUHSC_02696	fmhA protein%2C putative	0	0	0
+SAOUHSC_02697	amino acid ABC transporter%2C ATP-binding protein%2C putative	5	1	4
+SAOUHSC_02698	amino acid ABC transproter%2C permease protein%2C putative	7	0	3
+SAOUHSC_02699	conserved hypothetical protein	7	1	7
+SAOUHSC_02700	conserved hypothetical protein	0	0	0
+SAOUHSC_02701	hypothetical protein	0	1	0
+SAOUHSC_02702	conserved hypothetical protein	0	0	2
+SAOUHSC_02703	phosphoglycerate mutase%2C putative	6	4	1
+SAOUHSC_02704	conserved hypothetical protein	1	1	2
+SAOUHSC_02705	conserved hypothetical protein	0	0	0
+SAOUHSC_02706	immunoglobulin G-binding protein Sbi%2C putative	5	1	8
+SAOUHSC_02707	hypothetical protein	1	1	1
+SAOUHSC_02708	gamma-hemolysin h-gamma-ii subunit%2C putative	1	0	0
+SAOUHSC_02709	leukocidin s subunit precursor%2C putative	0	0	0
+SAOUHSC_02710	leukocidin f subunit precursor	0	0	0
+SAOUHSC_02711	conserved hypothetical protein	0	0	0
+SAOUHSC_02712	6-carboxyhexanoate--CoA ligase%2C putative	0	0	0
+SAOUHSC_02713	conserved hypothetical protein	0	0	1
+SAOUHSC_02714	biotin synthase	0	0	0
+SAOUHSC_02715	adenosylmethionine-8-amino-7-oxononanoate aminotransferase	0	0	0
+SAOUHSC_02716	dethiobiotin synthase%2C putative	0	1	0
+SAOUHSC_02717	conserved hypothetical protein	0	0	0
+SAOUHSC_02718	conserved hypothetical protein	0	0	0
+SAOUHSC_02719	conserved hypothetical protein	0	0	0
+SAOUHSC_02720	conserved hypothetical protein	0	0	0
+SAOUHSC_02721	conserved hypothetical protein	0	0	0
+SAOUHSC_02722	conserved hypothetical protein	0	0	0
+SAOUHSC_02723	glycerate kinase%2C putative	4	6	1
+SAOUHSC_02724	conserved hypothetical protein	0	2	1
+SAOUHSC_02725	conserved hypothetical protein	4	1	0
+SAOUHSC_02726	positive transcriptional activator%2C putative	0	0	0
+SAOUHSC_02727	conserved hypothetical protein	0	0	0
+SAOUHSC_02728	conserved hypothetical protein	0	0	0
+SAOUHSC_02729	amino acid ABC transporter-like protein%2C putative	0	0	0
+SAOUHSC_02731	conserved hypothetical protein	1	0	1
+SAOUHSC_02732	hypothetical protein	0	0	0
+SAOUHSC_02733	membrane protein%2C putative	2	1	5
+SAOUHSC_02734	conserved hypothetical protein	0	0	0
+SAOUHSC_02736	conserved hypothetical protein	2	1	2
+SAOUHSC_02737	epimerase/dehydratase%2C putative	1	2	5
+SAOUHSC_02738	conserved hypothetical protein	0	1	0
+SAOUHSC_02739	2-dehydropantoate 2-reductase	4	3	0
+SAOUHSC_02740	drug transporter%2C putative	3	21	4
+SAOUHSC_02741	amino acid ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_02742	amino acid transporter%2C putative	0	0	0
+SAOUHSC_02743	amino acid ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_02744	amino acid ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_02745	conserved hypothetical protein	0	0	0
+SAOUHSC_02746	conserved hypothetical protein	0	0	0
+SAOUHSC_02747	conserved hypothetical protein	0	1	1
+SAOUHSC_02750	conserved hypothetical protein	0	2	0
+SAOUHSC_02751	conserved hypothetical protein	1	1	1
+SAOUHSC_02752	conserved hypothetical protein	3	0	3
+SAOUHSC_02753	membrane protein%2C putative	0	0	0
+SAOUHSC_02754	ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_02755	conserved hypothetical protein	0	2	3
+SAOUHSC_02756	conserved hypothetical protein	0	0	1
+SAOUHSC_02757	conserved hypothetical protein	2	0	1
+SAOUHSC_02758	conserved hypothetical protein	0	0	0
+SAOUHSC_02759	conserved hypothetical protein	0	0	7
+SAOUHSC_02760	glutamate synthase alpha subunit%2C putative	3	2	0
+SAOUHSC_02761	conserved hypothetical protein	0	1	0
+SAOUHSC_02762	conserved hypothetical protein	0	0	0
+SAOUHSC_02763	peptide ABC transporter%2C ATP-binding protein%2C putative	0	0	1
+SAOUHSC_02764	peptide ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_02765	nickel ABC transporter%2C permease protein%2C putative	0	0	0
+SAOUHSC_02766	peptide ABC transporter%2C permease protein%2C putative	0	0	2
+SAOUHSC_02767	peptide ABC transporter%2C peptide-binding protein%2C putative	1	0	0
+SAOUHSC_02768	conserved hypothetical protein	0	0	0
+SAOUHSC_02769	conserved hypothetical protein	0	0	0
+SAOUHSC_02770	conserved hypothetical protein	0	0	1
+SAOUHSC_02771	conserved hypothetical protein	0	0	0
+SAOUHSC_02772	conserved hypothetical protein	0	0	0
+SAOUHSC_02773	transporter%2C putative	3	0	1
+SAOUHSC_02774	conserved hypothetical protein	0	0	0
+SAOUHSC_02775	conserved hypothetical protein	1	0	0
+SAOUHSC_02776	conserved hypothetical protein	0	0	0
+SAOUHSC_02777	conserved hypothetical protein	0	0	0
+SAOUHSC_02778	conserved hypothetical protein	1	0	0
+SAOUHSC_02779	conserved hypothetical protein	0	0	0
+SAOUHSC_02780	conserved hypothetical protein	0	0	0
+SAOUHSC_02781	conserved hypothetical protein	0	0	1
+SAOUHSC_02782	conserved hypothetical protein	0	0	0
+SAOUHSC_02783	conserved hypothetical protein	0	0	1
+SAOUHSC_02784	conserved hypothetical protein	0	0	0
+SAOUHSC_02785	conserved hypothetical protein	0	0	0
+SAOUHSC_02786	conserved hypothetical protein	0	0	0
+SAOUHSC_02787	conserved hypothetical protein	0	0	0
+SAOUHSC_02788	conserved hypothetical protein	0	0	0
+SAOUHSC_02789	conserved hypothetical protein	0	0	0
+SAOUHSC_02790	conserved hypothetical protein	4	0	3
+SAOUHSC_02791	pyrophosphohydrolase%2C putative	0	0	0
+SAOUHSC_02793	conserved hypothetical protein	2	1	1
+SAOUHSC_02794	conserved hypothetical protein	0	0	0
+SAOUHSC_02795	conserved hypothetical protein	0	0	0
+SAOUHSC_02796	conserved hypothetical protein	0	0	0
+SAOUHSC_02797	conserved hypothetical protein	0	0	2
+SAOUHSC_02798	conserved hypothetical protein	1	0	1
+SAOUHSC_02799	staphylococcal accessory regulator T%2C putative	0	0	0
+SAOUHSC_02800	conserved hypothetical protein	0	0	0
+SAOUHSC_02801	UTP-glucose-1-phosphate uridylyltransferase	0	0	1
+SAOUHSC_02802	fibronectin binding protein B%2C putative	5	1	3
+SAOUHSC_02803	fibronectin-binding protein precursor%2C putative	0	1	0
+SAOUHSC_02804	conserved hypothetical protein	0	0	0
+SAOUHSC_02805	conserved hypothetical protein	0	0	0
+SAOUHSC_02806	gluconate permease%2C putative	0	1	0
+SAOUHSC_02808	gluconate kinase	0	0	0
+SAOUHSC_02809	gluconate operon transcriptional repressor%2C putative	0	0	0
+SAOUHSC_02810	conserved hypothetical protein	0	0	2
+SAOUHSC_02811	conserved hypothetical protein	0	0	1
+SAOUHSC_02812	conserved hypothetical protein	0	1	0
+SAOUHSC_02813	conserved hypothetical protein	0	1	0
+SAOUHSC_02814	conserved hypothetical protein	0	1	1
+SAOUHSC_02815	conserved hypothetical protein	2	0	0
+SAOUHSC_02816	conserved hypothetical protein	0	0	0
+SAOUHSC_02817	hypothetical protein	0	0	0
+SAOUHSC_02818	conserved hypothetical protein	0	0	0
+SAOUHSC_02819	conserved hypothetical protein	0	0	0
+SAOUHSC_02820	conserved hypothetical protein	5	0	5
+SAOUHSC_02821	membrane spanning protein%2C putative	4	0	1
+SAOUHSC_02822	conserved hypothetical protein	0	0	1
+SAOUHSC_02823	conserved hypothetical protein	0	0	3
+SAOUHSC_02824	conserved hypothetical protein	0	0	0
+SAOUHSC_02825	conserved hypothetical protein	0	0	0
+SAOUHSC_02826	conserved hypothetical protein	1	1	1
+SAOUHSC_02827	conserved hypothetical protein	0	0	1
+SAOUHSC_02828	conserved hypothetical protein	0	0	0
+SAOUHSC_02829	NAD(P)H-flavin oxidoreductase%2C putative	0	0	0
+SAOUHSC_02830	D-lactate dehydrogenase%2C putative	1	1	0
+SAOUHSC_02831	conserved hypothetical protein	0	0	0
+SAOUHSC_02832	conserved hypothetical protein	0	0	0
+SAOUHSC_02833	conserved hypothetical protein	0	0	0
+SAOUHSC_02834	sortase%2C putative	1	0	2
+SAOUHSC_02836	conserved hypothetical protein	1	0	0
+SAOUHSC_02837	conserved hypothetical protein	0	0	0
+SAOUHSC_02838	conserved hypothetical protein	0	0	0
+SAOUHSC_02839	L-serine dehydratase%2C iron-sulfur-dependent%2C alpha subunit	0	0	1
+SAOUHSC_02840	L-serine dehydratase%2C iron-sulfur-dependent%2C beta subunit	0	0	1
+SAOUHSC_02841	conserved hypothetical protein	0	1	1
+SAOUHSC_02842	conserved hypothetical protein	0	0	0
+SAOUHSC_02843	conserved hypothetical protein	3	1	0
+SAOUHSC_02844	conserved hypothetical protein	1	0	3
+SAOUHSC_02845	conserved hypothetical protein	0	0	1
+SAOUHSC_02846	conserved hypothetical protein	0	0	0
+SAOUHSC_02848	PTS system glucose-specific IIABC component	1	0	1
+SAOUHSC_02849	pyruvate oxidase%2C putative	1	0	16
+SAOUHSC_02850	conserved hypothetical protein	0	0	7
+SAOUHSC_02851	conserved hypothetical protein	0	0	1
+SAOUHSC_02852	conserved hypothetical protein	1	0	0
+SAOUHSC_02853	conserved hypothetical protein	14	14	29
+SAOUHSC_02855	LysM domain protein	0	0	0
+SAOUHSC_02856	hypothetical protein	0	0	0
+SAOUHSC_02857	conserved hypothetical protein	0	0	0
+SAOUHSC_02858	conserved hypothetical protein	0	0	0
+SAOUHSC_02859	hydroxymethylglutaryl-CoA reductase%2C degradative	1	1	0
+SAOUHSC_02860	HMG-CoA synthase%2C putative	5	3	19
+SAOUHSC_02861	methylated-DNA--protein-cysteine methyltransferase%2C putative	0	0	0
+SAOUHSC_02862	ATP-dependent Clp protease%2C ATP-binding subunit ClpC%2C putative	0	0	0
+SAOUHSC_02863	conserved hypothetical protein	0	0	0
+SAOUHSC_02864	ferrous iron transport protein B	0	0	0
+SAOUHSC_02865	conserved hypothetical protein	0	0	0
+SAOUHSC_02866	conserved hypothetical protein	1	0	3
+SAOUHSC_02867	conserved hypothetical protein	0	0	0
+SAOUHSC_02868	conserved hypothetical protein	0	0	0
+SAOUHSC_02869	delta-1-pyrroline-5-carboxylate dehydrogenase%2C putative	0	0	3
+SAOUHSC_02871	conserved hypothetical protein	0	0	1
+SAOUHSC_02872	conserved hypothetical protein	0	0	0
+SAOUHSC_02873	cation-transporting ATPase%2C E1-E2 family%2C putative	2	0	2
+SAOUHSC_02874	cation-transporting ATPase%2C E1-E2 family%2C putative	1	0	2
+SAOUHSC_02875	D-lactate dehydrogenase%2C putative	0	0	0
+SAOUHSC_02876	conserved hypothetical protein	0	0	1
+SAOUHSC_02877	squalene synthase%2C putative	0	0	0
+SAOUHSC_02879	squalene desaturase%2C putative	0	1	0
+SAOUHSC_02880	conserved hypothetical protein	0	0	0
+SAOUHSC_02881	conserved hypothetical protein	0	0	0
+SAOUHSC_02882	conserved hypothetical protein	0	0	0
+SAOUHSC_02883	LysM domain protein	3	0	1
+SAOUHSC_02885	conserved hypothetical protein	6	11	6
+SAOUHSC_02886	conserved hypothetical protein	0	0	0
+SAOUHSC_02887	immunodominant antigen A%2C putative	31	78	74
+SAOUHSC_02888	conserved hypothetical protein	0	1	0
+SAOUHSC_02889	hypothetical protein	0	0	0
+SAOUHSC_02890	conserved hypothetical protein	0	0	0
+SAOUHSC_02891	conserved hypothetical protein	0	0	1
+SAOUHSC_02892	conserved hypothetical protein	0	0	0
+SAOUHSC_02893	conserved hypothetical protein	0	0	0
+SAOUHSC_02894	conserved hypothetical protein	0	1	0
+SAOUHSC_02895	conserved hypothetical protein	0	0	0
+SAOUHSC_02896	conserved hypothetical protein	0	0	0
+SAOUHSC_02897	conserved hypothetical protein	0	0	0
+SAOUHSC_02898	conserved hypothetical protein	0	0	0
+SAOUHSC_02899	conserved hypothetical protein	1	0	1
+SAOUHSC_02900	conserved hypothetical protein	0	0	0
+SAOUHSC_02901	conserved hypothetical protein	0	0	0
+SAOUHSC_02902	conserved hypothetical protein	0	0	0
+SAOUHSC_02903	conserved hypothetical protein	0	0	0
+SAOUHSC_02904	conserved hypothetical protein	0	0	0
+SAOUHSC_02905	conserved hypothetical protein	0	0	0
+SAOUHSC_02906	conserved hypothetical protein	0	0	1
+SAOUHSC_02907	conserved hypothetical protein	0	1	0
+SAOUHSC_02908	conserved hypothetical protein	0	0	0
+SAOUHSC_02909	dihydroorotate dehydrogenase	2	1	4
+SAOUHSC_02910	conserved hypothetical protein	1	1	2
+SAOUHSC_02911	conserved hypothetical protein	1	2	1
+SAOUHSC_02912	conserved hypothetical protein	1	1	3
+SAOUHSC_02913	conserved hypothetical protein	0	0	1
+SAOUHSC_02914	conserved hypothetical protein	0	0	0
+SAOUHSC_02915	conserved hypothetical protein	0	0	0
+SAOUHSC_02916	aspartate 1-decarboxylase	0	0	1
+SAOUHSC_02918	pantoate--beta-alanine ligase	0	0	1
+SAOUHSC_02919	3-methyl-2-oxobutanoate hydroxymethyltransferase	0	1	2
+SAOUHSC_02920	2-dehydropantoate 2-reductase	0	1	2
+SAOUHSC_02921	alpha-acetolactate decarboxylase	1	0	0
+SAOUHSC_02922	L-lactate dehydrogenase	1	0	10
+SAOUHSC_02923	conserved hypothetical protein	4	0	0
+SAOUHSC_02924	conserved hypothetical protein	0	0	0
+SAOUHSC_02925	conserved hypothetical protein	0	0	0
+SAOUHSC_02926	fructose-bisphosphate aldolase class-I%2C putative	10	3	29
+SAOUHSC_02927	malate:quinone-oxidoreductase	53	8	93
+SAOUHSC_02928	conserved hypothetical protein	0	0	1
+SAOUHSC_02929	acetyl-CoA synthetase%2C putative	3	2	8
+SAOUHSC_02930	conserved hypothetical protein	0	0	0
+SAOUHSC_02931	conserved hypothetical protein	0	0	1
+SAOUHSC_02932	choline dehydrogenase	0	1	0
+SAOUHSC_02933	betaine aldehyde dehydrogenase	1	2	0
+SAOUHSC_02934	conserved hypothetical protein	0	0	0
+SAOUHSC_02935	conserved hypothetical protein	0	0	0
+SAOUHSC_02936	conserved hypothetical protein	0	0	0
+SAOUHSC_02937	choline transporter%2C putative	0	0	0
+SAOUHSC_02939	hypothetical protein	0	0	0
+SAOUHSC_02940	conserved hypothetical protein	0	0	0
+SAOUHSC_02941	conserved hypothetical protein	0	0	0
+SAOUHSC_02942	anaerobic ribonucleoside-triphosphate reductase%2C putative	1	0	0
+SAOUHSC_02943	citrate transporter%2C putative	0	0	0
+SAOUHSC_02944	conserved hypothetical protein	0	0	0
+SAOUHSC_02945	siroheme synthase%2C putative	1	0	3
+SAOUHSC_02947	sulfite reductase (NADPH) flavoprotein alpha-component%2C putative	0	1	3
+SAOUHSC_02948	hypothetical protein	0	0	0
+SAOUHSC_02949	conserved hypothetical protein	0	0	0
+SAOUHSC_02950	hypothetical protein	0	0	0
+SAOUHSC_02953	permease%2C putative domain protein	2	0	3
+SAOUHSC_02954	ABC transporter%2C ATP-binding protein%2C putative	0	1	0
+SAOUHSC_02955	sensor histidine kinase%2C putative	0	0	0
+SAOUHSC_02956	DNA-binding response regulator%2C putative	0	0	0
+SAOUHSC_02957	conserved hypothetical protein	0	0	0
+SAOUHSC_02958	alkaline phosphatase III precursor%2C putative	0	0	0
+SAOUHSC_02960	hypothetical protein	1	1	5
+SAOUHSC_02961	conserved hypothetical protein	0	0	2
+SAOUHSC_02962	tributyrin esterase%2C putative	0	0	0
+SAOUHSC_02963	clumping factor B%2C putative	44	7	3
+SAOUHSC_02964	conserved hypothetical protein	1	0	0
+SAOUHSC_02965	carbamate kinase	0	0	0
+SAOUHSC_02967	arginine/ornithine antiporter%2C putative	0	0	0
+SAOUHSC_02968	ornithine carbamoyltransferase	0	0	0
+SAOUHSC_02969	arginine deiminase	0	0	0
+SAOUHSC_02970	conserved hypothetical protein	0	0	0
+SAOUHSC_02971	aureolysin%2C putative	1	0	1
+SAOUHSC_02972	conserved hypothetical protein	0	0	2
+SAOUHSC_02973	conserved hypothetical protein	0	0	0
+SAOUHSC_02974	conserved hypothetical protein	1	0	1
+SAOUHSC_02975	PTS system%2C fructose-specific IIABC component%2C putative	1	2	0
+SAOUHSC_02976	mannose-6-phosphate isomerase%2C class I	0	0	1
+SAOUHSC_02978	phage infection protein%2C putative	5	6	16
+SAOUHSC_02979	conserved hypothetical protein	6	2	15
+SAOUHSC_02980	conserved hypothetical protein	0	0	2
+SAOUHSC_02982	conserved hypothetical protein	6	1	7
+SAOUHSC_02983	conserved hypothetical protein	0	1	0
+SAOUHSC_02984	conserved hypothetical protein	3	0	1
+SAOUHSC_02985	preprotein translocase%2C SecA subunit%2C putative	0	1	2
+SAOUHSC_02986	conserved hypothetical protein	0	0	0
+SAOUHSC_02987	conserved hypothetical protein	0	1	0
+SAOUHSC_02988	conserved hypothetical protein	0	1	0
+SAOUHSC_02989	conserved hypothetical protein	1	0	0
+SAOUHSC_02990	conserved hypothetical protein	3	0	0
+SAOUHSC_02991	conserved hypothetical protein	0	0	0
+SAOUHSC_02992	conserved hypothetical protein	0	0	0
+SAOUHSC_02993	conserved hypothetical protein	0	0	0
+SAOUHSC_02994	conserved hypothetical protein	0	1	0
+SAOUHSC_02995	conserved hypothetical protein	0	0	0
+SAOUHSC_02996	peptide methionine sulfoxide reductase%2C putative	0	0	1
+SAOUHSC_02997	conserved hypothetical protein	0	0	0
+SAOUHSC_02998	capsular polysaccharide biosynthesis protein%2C Cap5C	0	0	0
+SAOUHSC_02999	capsular polysaccharide biosynthesis protein Cap5B	0	0	0
+SAOUHSC_03000	capsular polysaccharide biosynthesis%2C capA%2C putative	0	0	0
+SAOUHSC_03001	ica operon transcriptional regulator IcaR%2C putative	2	1	2
+SAOUHSC_03002	intercellular adhesion protein A%2C putative	0	1	1
+SAOUHSC_03003	conserved hypothetical protein	0	0	0
+SAOUHSC_03004	icaB protein%2C putative	0	0	0
+SAOUHSC_03005	intercellular adhesion protein C%2C putative	0	0	0
+SAOUHSC_03006	lipase	0	0	0
+SAOUHSC_03008	imidazole glycerol phosphate synthase subunit hisF%2C putative	0	0	0
+SAOUHSC_03009	phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase%2C putative	0	0	0
+SAOUHSC_03010	imidazole glycerol phosphate synthase%2C subunit H (hisH)%2C putative	0	0	0
+SAOUHSC_03011	imidazoleglycerol-phosphate dehydratase%2C putative	0	0	0
+SAOUHSC_03012	histidinol-phosphate aminotransferase%2C putative	0	0	0
+SAOUHSC_03013	histidinol dehydrogenase	0	0	0
+SAOUHSC_03014	ATP phosphoribosyltransferase%2C putative	0	0	0
+SAOUHSC_03015	conserved hypothetical protein	0	2	0
+SAOUHSC_03016	conserved hypothetical protein	0	0	0
+SAOUHSC_03017	conserved hypothetical protein	1	0	1
+SAOUHSC_03018	conserved hypothetical protein	0	0	1
+SAOUHSC_03019	ABC transporter%2C ATP-binding protein%2C putative	1	1	0
+SAOUHSC_03020	conserved hypothetical protein	0	0	0
+SAOUHSC_03021	conserved hypothetical protein	0	0	0
+SAOUHSC_03022	conserved hypothetical protein	0	0	0
+SAOUHSC_03023	Drp35	0	0	0
+SAOUHSC_03024	conserved hypothetical protein	0	6	5
+SAOUHSC_03025	pyrrolidone-carboxylate peptidase	0	2	0
+SAOUHSC_03026	conserved hypothetical protein	0	0	1
+SAOUHSC_03027	conserved hypothetical protein	0	0	0
+SAOUHSC_03028	conserved hypothetical protein	0	0	0
+SAOUHSC_03030	sodium%2C sulfate symporter%2C putative	2	0	3
+SAOUHSC_03031	conserved hypothetical protein	1	0	1
+SAOUHSC_03032	conserved hypothetical protein	0	0	0
+SAOUHSC_03033	high affinity nickel transporter%2C putative	0	1	0
+SAOUHSC_03034	conserved hypothetical protein	1	0	1
+SAOUHSC_03035	conserved hypothetical protein	0	0	0
+SAOUHSC_03036	ABC transporter%2C ATP-binding protein%2C putative	0	0	0
+SAOUHSC_03037	permease%2C putative	0	0	0
+SAOUHSC_03038	hypothetical protein	0	0	0
+SAOUHSC_03040	integrase/recombinase	0	0	0
+SAOUHSC_03041	conserved hypothetical protein	0	0	0
+SAOUHSC_03042	integrase/recombinase%2C core domain family	0	0	0
+SAOUHSC_03043	hypothetical protein	0	0	0
+SAOUHSC_03045	cold shock protein%2C putative	9	1	10
+SAOUHSC_03046	Helix-turn-helix domain protein	0	0	0
+SAOUHSC_03047	conserved hypothetical protein	1	0	0
+SAOUHSC_03048	conserved hypothetical protein	0	0	0
+SAOUHSC_03049	conserved hypothetical protein	2	8	9
+SAOUHSC_03051	glucose-inhibited division protein B	2	5	1
+SAOUHSC_03052	glucose inhibited division protein A%2C putative	3	10	4
+SAOUHSC_03053	tRNA modification GTPase TrmE	2	4	2
+SAOUHSC_03054	ribonuclease P protein component	0	1	0
+SAOUHSC_03055	ribosomal protein L34	3	7	8
+SAOUHSC_A00084	hypothetical protein	0	0	0
+SAOUHSC_A00097	hypothetical protein	0	0	0
+SAOUHSC_A00219	hypothetical protein	0	0	0
+SAOUHSC_A00283	hypothetical protein	0	0	0
+SAOUHSC_A00332	hypothetical protein	0	0	1
+SAOUHSC_A00354	conserved hypothetical protein	0	0	0
+SAOUHSC_A00379	hypothetical protein	0	0	0
+SAOUHSC_A00526	hypothetical protein	0	0	0
+SAOUHSC_A00635	hypothetical protein	0	0	0
+SAOUHSC_A00703	hypothetical protein	0	0	0
+SAOUHSC_A00747	conserved hypothetical protein	0	0	1
+SAOUHSC_A00992	conserved hypothetical protein	0	0	0
+SAOUHSC_A01041	hypothetical protein	11	8	15
+SAOUHSC_A01079	hypothetical protein	1	0	2
+SAOUHSC_A01081	conserved hypothetical protein	1	0	1
+SAOUHSC_A01332	conserved hypothetical protein	0	0	0
+SAOUHSC_A01436	hypothetical protein	0	0	0
+SAOUHSC_A01455	hypothetical phage protein	0	0	0
+SAOUHSC_A01514	hypothetical phage protein	0	0	0
+SAOUHSC_A01723	hypothetical protein	0	0	0
+SAOUHSC_A01754	hypothetical protein	0	0	0
+SAOUHSC_A01909	hypothetical protein	1	0	1
+SAOUHSC_A01910	hypothetical protein	2	2	1
+SAOUHSC_A01912	conserved hypothetical protein	0	0	0
+SAOUHSC_A02013	conserved hypothetical protein	0	0	1
+SAOUHSC_A02094	hypothetical phage protein	0	0	0
+SAOUHSC_A02169	hypothetical protein	0	0	0
+SAOUHSC_A02189	hypothetical protein	0	0	1
+SAOUHSC_A02254	hypothetical protein	0	0	0
+SAOUHSC_A02273	hypothetical protein	0	0	0
+SAOUHSC_A02331	conserved hypothetical protein	0	0	0
+SAOUHSC_A02350	hypothetical protein	0	0	0
+SAOUHSC_A02445	conserved hypothetical protein	0	0	0
+SAOUHSC_A02450	conserved hypothetical protein	0	0	2
+SAOUHSC_A02483	hypothetical protein	2	0	0
+SAOUHSC_A02503	hypothetical protein	0	0	0
+SAOUHSC_A02505	conserved hypothetical protein	0	0	0
+SAOUHSC_A02577	hypothetical protein	0	0	0
+SAOUHSC_A02635	hypothetical protein	0	0	0
+SAOUHSC_A02680	conserved hypothetical protein	0	0	0
+SAOUHSC_A02771	hypothetical protein	0	0	0
+SAOUHSC_A02794	hypothetical protein	0	0	0
+SAOUHSC_A02795	hypothetical protein	0	0	0
+SAOUHSC_A02801	hypothetical protein	0	0	1
+SAOUHSC_A02811	hypothetical protein	0	0	0
+SAOUHSC_A02856	hypothetical protein	0	0	0
+__no_feature		8021	5574	12142
+__ambiguous		105	50	188
+__too_low_aQual		189	648	191
+__not_aligned		10339	15010	2320
+__alignment_not_unique		0	0	0
