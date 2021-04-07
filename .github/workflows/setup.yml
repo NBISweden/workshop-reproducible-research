@@ -37,6 +37,7 @@ jobs:
         curl -L https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh -O
         bash Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh -b
         rm Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh
+    - uses: s-weigand/setup-conda@v1
     - name: Install Snakemake
       run: |
         conda env create -f snakemake/environment.yml -n snakemake-env
