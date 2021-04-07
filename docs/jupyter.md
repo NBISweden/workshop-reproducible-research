@@ -932,176 +932,10 @@ example you could simply add:
 
 to the end of the notebook.
 
-### Integrating the notebook into the workflow
+!!! tip "Snakemake integration"
 
-So now we have a Jupyter notebook that uses output from a Snakemake workflow
-and produces some summary results and plots. Wouldn't it be nice if this was
-actually part of the workflow itself? To generate a HTML version of the notebook
-we can use what we learned in the section about 
-[Converting noteboks](#converting-notebooks). The command to execute the notebook
-and save it in HTML format in a file `results/supplementary.html` would be:
-
-```bash
-jupyter nbconvert --to HTML --output-dir results --output supplementary.html --execute supplementary_material.ipynb
-```
-
-This command could be used in a rule, _e.g._ `make_supplementary`, the input of 
-which would be `results/tables/counts.tsv`, `intermediate/multiqc_general_stats.txt`, 
-and `results/rulegraph.png`. See if you can work out how to implement such a 
-rule at the end of the `Snakefile` found in the `jupyter/` directory.  Click 
-below to see an example.
-
-??? note "Click to see an example of the `make_supplementary` rule"
-
-    ```python
-    input:
-        counts = "results/tables/counts.tsv",
-        multiqc_file = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    output:
-        "results/supplementary.html"
-    params:
-        base = lambda wildcards, output: os.path.basename(output[0]),
-        dir = lambda wildcards, output: os.path.dirname(output[0])
-    shell:
-        """
-        jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
-            --execute supplementary_material.ipynb
-        """
-    ```
-
-#### Moar integration! 
-Snakemake actually supports the execution of notebooks via the `notebook:` 
-rules directive. See more about Jupyter integration in the 
-[snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
-In the `notebook:` directive of such a rule you specify the path to a jupyter 
-notebook (relative to the Snakefile) which is then executed when 
-the rule is run. 
-
-So how is this useful? 
-
-In the notebook itself this gives you access to a `snakemake` object 
-containing information about **input** and **output** files for the rule via 
-`snakemake.input` and `snakemake.output`. Similarly you can access rule 
-**wildcards** with `snakemake.wildcards`, **params** with `snakemake.params`, 
-and **config** settings with `snakemake.config`. 
-
-When snakemake runs the rule with the `notebook:` directive `jupyter-nbconvert` 
-is used to execute the notebook. No HTML output is generated here but it is 
-possible to store a version of the notebook in its final processed form by 
-adding 
-
-```python
-log:
-    notebook="<path>/<to>/<processed>/<notebook.ipynb>"
-```
-
-to the rule.
-
-Because you won't get the notebook in full HTML glory, this type of 
-integration is better suited if you want to use a notebook to generate figures 
-and store these in local files (_e.g._ pdf/svg/png formats). 
-
-We'll use the `supplementary_material.ipynb` notebook as an example! Let's say
-that instead of exporting the entire notebook to HTML we want a rule that 
-outputs pdf versions of the barplot and heatmap figures we created.
-
-Let's start by setting up the rule. For simplicity we'll use the same input as
-when we edited the notebook in the first place. The output will be 
-`results/barplot.pdf` and `results/heatmap.pdf`. Let's also output a finalized 
-version of the notebook using the `log: notebook=` directive:
-
-```python
-rule make_supplementary_plots:
-    input:
-        counts = "results/tables/counts.tsv",
-        multiqc = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    output:
-        barplot = "results/barplot.pdf",
-        heatmap = "results/heatmap.pdf"
-    log:
-        notebook = "results/supplementary.ipynb"
-```
-
-The notebook will now have access to `snakemake.input.counts`, 
-`snakemake.output.barplot` and `snakemake.output.heatmap` when executed from
-within the workflow. Let's go ahead and edit the notebook! In the cell where we
-defined notebook parameters edit the code so that it looks like this:
-
-```python
-counts_file=snakemake.input.counts
-multiqc_file=snakemake.input.multiqc
-rulegraph_file=snakemake.input.rulegraph
-
-SRR_IDs=snakemake.params.SRR_IDs
-GSM_IDs=snakemake.params.GSM_IDs
-GEO_ID=snakemake.params.GEO_ID
-```
-
-Notice that we set the `SRR_IDs`, `GSM_IDs` and `GEO_ID` variables using 
-variables in `snakemake.params`? However, we haven't defined these in our rule 
-yet so let's go ahead and do that now. Add the `params` section so that the 
-`make_supplementary_plots` in the Snakefile looks like this:
-
-```python
-rule make_supplementary_plots:
-    input:
-        counts = "results/tables/counts.tsv",
-        multiqc = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    output:
-        barplot = "results/barplot.pdf",
-        heatmap = "results/heatmap.pdf"
-    log:
-        notebook = "results/supplementary.ipynb"
-    params:
-        SRR_IDs = ["SRR935090","SRR935091","SRR935092"],
-        GSM_IDs = ["GSM1186459", "GSM1186460", "GSM1186461"],
-        GEO_ID = "GSE48896"
-    notebook: "supplementary_material.ipynb"
-```
-
-!!! tip Generalization
-    
-    One way to further generalize this rule could be to define the SRR_IDs, GSM_IDs
-    and GEO_ID parameters in a config file instead, in which case they would be 
-    directly accessible from within the notebook using `snakemake.config['SRR_IDs']`
-    etc.
-
-Now the rule contains everything needed, but we still need to edit the notebook
-to save the plots to the output files. First, edit the cell that generates the 
-barplot so that it looks like this:
-
-```python
-count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
-count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
-
-colors = sns.color_palette("husl", n_colors=count_data.shape[1])
-ax = count_data.plot(kind="bar", stacked=True, color=colors)
-ax.legend(bbox_to_anchor=(1,1), title="Feature");
-plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight") ## <-- Add this line!
-```
-
-Finally, edit the cell that generates the heatmap so that it looks like this:
-
-```python
-heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
-heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
-heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
-with sns.plotting_context("notebook", font_scale=0.7):
-    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
-                        method="complete", yticklabels=True, linewidth=.5,
-                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
-    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
-    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight") ## <-- Add this line!
-```
-
-Now you can run the following to generate the plots:
-
-```bash
-snakemake -j 1 make_supplementary_plots
-```
+    If you want to know more about how notebooks can be integrated into 
+    Snakemake worfklows, see the Extra material at the end of this tutorial
 
 ## Sharing your work
 
@@ -1242,3 +1076,176 @@ ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.s
 * Connect to the jupyter server by opening `localhost:8080` in your browser. You should be prompted for the password you generated.
 
 You are now (hopefully) accessing the jupyter server that's running on Upmmax, via your local browser.
+
+### Integrating notebooks with Snakemake workflows
+
+In the [case study](#jupyter-and-the-case-study) section of this tutorial we
+created a Jupyter notebook that used output from a Snakemake workflow
+and produced some summary results and plots. Wouldn't it be nice if this was
+actually part of the workflow itself? To generate a HTML version of the notebook
+we can use what we learned in the section about 
+[Converting noteboks](#converting-notebooks). The command to execute the notebook
+and save it in HTML format in a file `results/supplementary.html` would be:
+
+```bash
+jupyter nbconvert --to HTML --output-dir results --output supplementary.html --execute supplementary_material.ipynb
+```
+
+This command could be used in a rule, _e.g._ `make_supplementary`, the input of 
+which would be `results/tables/counts.tsv`, `intermediate/multiqc_general_stats.txt`, 
+and `results/rulegraph.png`. See if you can work out how to implement such a 
+rule at the end of the `Snakefile` found in the `jupyter/` directory.  Click 
+below to see an example.
+
+??? note "Click to see an example of the `make_supplementary` rule"
+
+    ```python
+    input:
+        counts = "results/tables/counts.tsv",
+        multiqc_file = "intermediate/multiqc_general_stats.txt",
+        rulegraph = "results/rulegraph.png"
+    output:
+        "results/supplementary.html"
+    params:
+        base = lambda wildcards, output: os.path.basename(output[0]),
+        dir = lambda wildcards, output: os.path.dirname(output[0])
+    shell:
+        """
+        jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
+            --execute supplementary_material.ipynb
+        """
+    ```
+
+#### Moar integration! 
+
+Snakemake actually supports the execution of notebooks via the `notebook:` 
+rules directive. See more about Jupyter integration in the 
+[snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
+In the `notebook:` directive of such a rule you specify the path to a jupyter 
+notebook (relative to the Snakefile) which is then executed when 
+the rule is run. 
+
+So how is this useful? 
+
+In the notebook itself this gives you access to a `snakemake` object 
+containing information about **input** and **output** files for the rule via 
+`snakemake.input` and `snakemake.output`. Similarly, you can access rule 
+**wildcards** with `snakemake.wildcards`, **params** with `snakemake.params`, 
+and **config** settings with `snakemake.config`.
+
+When snakemake runs the rule with the `notebook:` directive `jupyter-nbconvert` 
+is used to execute the notebook. No HTML output is generated here but it is 
+possible to store a version of the notebook in its final processed form by 
+adding 
+
+```python
+log:
+    notebook="<path>/<to>/<processed>/<notebook.ipynb>"
+```
+
+to the rule.
+
+Because you won't get the notebook in full HTML glory, this type of 
+integration is better suited if you want to use a notebook to generate figures 
+and store these in local files (_e.g._ pdf/svg/png formats). 
+
+We'll use the `supplementary_material.ipynb` notebook as an example! Let's say
+that instead of exporting the entire notebook to HTML we want a rule that 
+outputs pdf versions of the barplot and heatmap figures we created.
+
+Let's start by setting up the rule. For simplicity we'll use the same input as
+when we edited the notebook in the first place. The output will be 
+`results/barplot.pdf` and `results/heatmap.pdf`. Let's also output a finalized 
+version of the notebook using the `log: notebook=` directive:
+
+```python
+rule make_supplementary_plots:
+    input:
+        counts = "results/tables/counts.tsv",
+        multiqc = "intermediate/multiqc_general_stats.txt",
+        rulegraph = "results/rulegraph.png"
+    output:
+        barplot = "results/barplot.pdf",
+        heatmap = "results/heatmap.pdf"
+    log:
+        notebook = "results/supplementary.ipynb"
+```
+
+The notebook will now have access to `snakemake.input.counts`, 
+`snakemake.output.barplot` and `snakemake.output.heatmap` when executed from
+within the workflow. Let's go ahead and edit the notebook! In the cell where we
+defined notebook parameters edit the code so that it looks like this:
+
+```python
+counts_file=snakemake.input.counts
+multiqc_file=snakemake.input.multiqc
+rulegraph_file=snakemake.input.rulegraph
+
+SRR_IDs=snakemake.params.SRR_IDs
+GSM_IDs=snakemake.params.GSM_IDs
+GEO_ID=snakemake.params.GEO_ID
+```
+
+Notice that we set the `SRR_IDs`, `GSM_IDs` and `GEO_ID` variables using 
+variables in `snakemake.params`? However, we haven't defined these in our rule 
+yet so let's go ahead and do that now. Add the `params` section so that the 
+`make_supplementary_plots` in the Snakefile looks like this:
+
+```python
+rule make_supplementary_plots:
+    input:
+        counts = "results/tables/counts.tsv",
+        multiqc = "intermediate/multiqc_general_stats.txt",
+        rulegraph = "results/rulegraph.png"
+    output:
+        barplot = "results/barplot.pdf",
+        heatmap = "results/heatmap.pdf"
+    log:
+        notebook = "results/supplementary.ipynb"
+    params:
+        SRR_IDs = ["SRR935090","SRR935091","SRR935092"],
+        GSM_IDs = ["GSM1186459", "GSM1186460", "GSM1186461"],
+        GEO_ID = "GSE48896"
+    notebook: "supplementary_material.ipynb"
+```
+
+!!! tip Generalization
+    
+    One way to further generalize this rule could be to define the SRR_IDs, GSM_IDs
+    and GEO_ID parameters in a config file instead, in which case they would be 
+    directly accessible from within the notebook using `snakemake.config['SRR_IDs']`
+    etc.
+
+Now the rule contains everything needed, but we still need to edit the notebook
+to save the plots to the output files. First, edit the cell that generates the 
+barplot so that it looks like this:
+
+```python
+count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
+count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
+
+colors = sns.color_palette("husl", n_colors=count_data.shape[1])
+ax = count_data.plot(kind="bar", stacked=True, color=colors)
+ax.legend(bbox_to_anchor=(1,1), title="Feature");
+plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight") ## <-- Add this line!
+```
+
+Finally, edit the cell that generates the heatmap so that it looks like this:
+
+```python
+heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
+heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
+heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
+with sns.plotting_context("notebook", font_scale=0.7):
+    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
+                        method="complete", yticklabels=True, linewidth=.5,
+                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
+    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
+    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight") ## <-- Add this line!
+```
+
+Now you can run the following to generate the plots:
+
+```bash
+snakemake -j 1 make_supplementary_plots
+```
