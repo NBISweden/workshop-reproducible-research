@@ -17,9 +17,9 @@ jobs:
   install:
     name: Installation steps
     runs-on: ${{ matrix.os }}
-      strategy:
-        matrix:
-          os: [ ubuntu-latest, macos-latest ]
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
 
     steps:
     - name: Checkout repo
