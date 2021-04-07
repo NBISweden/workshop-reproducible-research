@@ -1,0 +1,43 @@
+name: setup
+
+# Controls when the action will run. Triggers the workflow on push or pull
+# request events but only for the main branch
+on: workflow_dispatch
+  #push:
+  #  branches:
+  #    - main
+  #pull_request:
+  #  branches:
+  #    - main
+
+
+env:
+  CONDA_VERSION: 4.7.12.1
+
+jobs:
+  install:
+    name: Installation steps
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Install conda on Linux
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: |
+        curl -L https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-Linux-x86_64.sh -O
+        bash Miniconda3-$CONDA_VERSION-Linux-x86_64.sh
+        rm Miniconda3-$CONDA_VERSION-Linux-x86_64.sh
+    - name: Install conda on Mac
+      if: ${{ matrix.os == 'macos-latest' }}
+      run: |
+        curl -L https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh -O
+        bash Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh
+        rm Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh
+    - name: Install Snakemake
+      run: |
+        conda env create -f snakemake/environment.yml -n snakemake-env
+        conda activate snakemake-env
