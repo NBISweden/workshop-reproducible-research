@@ -59,6 +59,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install ${{ matrix.env }}
         run: |
-          conda env create -f ${{ matrix.env }}/environment.yml
+          conda env create -f ${{ matrix.env }}/environment.yml -n ${{ matrix.env }}-env
           conda activate ${{ matrix.env }}-env
           ${{ matrix.cmd }}
