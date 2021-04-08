@@ -30,16 +30,12 @@ jobs:
     - name: Install Snakemake
       run: |
         conda env create -f snakemake/environment.yml -n snakemake-env
-        conda activate snakemake-env
     - name: Install Rmarkdown
       run: |
         conda env create -f rmarkdown/environment.yml -n rmarkdown-env
-        conda activate rmarkdown-env
     - name: Install Jupyter
       run: |
         conda env create -f jupyter/environment.yml -n jupyter-env
-        conda activate jupyter-env
-
   conda-install:
     runs-on: ${{ matrix.os }}
     strategy:
