@@ -14,7 +14,7 @@ Simply click the `Edit` button in the top menu to get started. You can view the 
 
 ## Important links
 
-- Zoom link: [https://stockholmuniversity.zoom.us/j/62925138459](https://stockholmuniversity.zoom.us/j/62925138459)
+- Zoom link: [https://stockholmuniversity.zoom.us/j/66028516843](https://stockholmuniversity.zoom.us/j/66028516843)
 - [Course homepage](https://nbis-reproducible-research.readthedocs.io/en/latest/)
 
 ## Teachers
