@@ -27,7 +27,7 @@ jobs:
       run: |
         conda env create -f snakemake/environment.yml -n snakemake-env
         conda activate snakemake-env
-  install-conda:
+  conda:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
