@@ -1,4 +1,4 @@
-name: setupnew
+name: setup
 
 # Controls when the action will run. Triggers the workflow on push or pull
 # request events but only for the main branch
@@ -15,7 +15,7 @@ env:
   CONDA_VERSION: 4.7.12.1
 
 jobs:
-  install-mac:
+  install:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -26,13 +26,20 @@ jobs:
             url: https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-MacOSX-x86_64.sh
           - os: ubuntu-latest
             url: https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-Linux-x86_64.sh
+          - env: snakemake
+            cmd: snakemake --version
+          - env: jupyter
+            cmd: jupyter --version
+          - env: rmarkdown
+            cmd: Rscript --version
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          installer-url: ${{ matrix.link }}
+          installer-url: ${{ matrix.url }}
           activate-environment: ${{ matrix.env }}-env
           environment-file: ${{ matrix.env }}/environment.yml
           auto-activate-base: false
       - run: |
           conda list
+          ${{ matrix.cmd }}
