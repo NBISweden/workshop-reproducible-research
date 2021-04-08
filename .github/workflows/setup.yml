@@ -32,6 +32,7 @@ jobs:
     strategy:
       matrix:
        os: [ ubuntu-latest, macos-latest ]
+    steps:
     - name: Install conda on Linux
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
