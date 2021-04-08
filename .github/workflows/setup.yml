@@ -23,10 +23,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: s-weigand/setup-conda@v1.0.5
-      with:
-        activate-conda: true
-    - name: Test conda
-      run: conda activate
     - name: Install Snakemake
       run: |
         conda env create -f snakemake/environment.yml -n snakemake-env
