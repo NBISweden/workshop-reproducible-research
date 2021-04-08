@@ -30,7 +30,6 @@ jobs:
             cmd: Rscript --version
     steps:
       - uses: actions/checkout@v2
-      - name: Install env
       - uses: conda-incubator/setup-miniconda@v2
         with:
           installer-url: ${{ matrix.url }}
