@@ -40,3 +40,4 @@ jobs:
         shell: bash -l {0}
         run: |
           conda list
+          ${{ matrix.cmd }}
