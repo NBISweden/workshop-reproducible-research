@@ -28,12 +28,9 @@ jobs:
             url: https://repo.continuum.io/miniconda/Miniconda3-$CONDA_VERSION-Linux-x86_64.sh
     steps:
       - uses: actions/checkout@v2
-      - name: Install
-        env:
-          URL: ${{ matrix.link }}
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          installer-url: $URL
+          installer-url: ${{ matrix.link }}
           activate-environment: ${{ matrix.env }}-env
           environment-file: ${{ matrix.env }}/environment.yml
           auto-activate-base: false
