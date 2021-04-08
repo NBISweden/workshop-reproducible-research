@@ -36,6 +36,7 @@ jobs:
           activate-environment: ${{ matrix.env }}-env
           environment-file: ${{ matrix.env }}/environment.yml
           auto-activate-base: false
-      - run: |
+      - name: Test ${{ matrix.env }}
+        shell: bash -l {0}
+        run: |
           conda list
-          ${{ matrix.cmd }}
