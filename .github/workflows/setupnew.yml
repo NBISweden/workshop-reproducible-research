@@ -30,12 +30,13 @@ jobs:
             cmd: Rscript --version
     steps:
       - uses: actions/checkout@v2
+      - name: Install env
       - uses: conda-incubator/setup-miniconda@v2
         with:
           installer-url: ${{ matrix.url }}
           activate-environment: ${{ matrix.env }}-env
           environment-file: ${{ matrix.env }}/environment.yml
           auto-activate-base: false
-      - run: |
+        run: |
           conda list
           ${{ matrix.cmd }}
