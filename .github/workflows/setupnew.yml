@@ -37,6 +37,6 @@ jobs:
           activate-environment: ${{ matrix.env }}-env
           environment-file: ${{ matrix.env }}/environment.yml
           auto-activate-base: false
-        run: |
+      - run: |
           conda list
           ${{ matrix.cmd }}
