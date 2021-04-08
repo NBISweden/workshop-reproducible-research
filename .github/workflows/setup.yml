@@ -41,3 +41,24 @@ jobs:
         run: |
           conda list
           ${{ matrix.cmd }}
+  docker-install:
+    runs-on: ubuntu-latest
+    container:
+      nbisweden/workshop-reproducible-research:slim
+    strategy:
+      matrix:
+        env: [snakemake, jupyter, rmarkdown]
+        include:
+          - env: snakemake
+            cmd: snakemake --version
+          - env: jupyter
+            cmd: jupyter --version
+          - env: rmarkdown
+            cmd: Rscript --version
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install ${{ matrix.env }}
+        run: |
+          conda env create -f ${{ matrix.env }}/environment.yml
+          conda activate ${{ matrix.env }}-env
+          ${{ matrix.cmd }}
