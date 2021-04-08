@@ -73,8 +73,9 @@ jobs:
     # Run the snakemake workflow inside the finished container
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Run workflow
         uses: docker://nbisweden/workshop-reproducible-research:latest
         with:
           entrypoint: snakemake
-          args: '-d /course -rp --configfile config.yml'
+          args: '-d docker/ -rp --configfile config.yml'
