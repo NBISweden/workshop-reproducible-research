@@ -16,12 +16,10 @@ env:
 
 jobs:
   install:
-    name: Installation steps
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-
     steps:
     - uses: actions/checkout@v2
     - uses: s-weigand/setup-conda@v1
@@ -29,6 +27,11 @@ jobs:
       run: |
         conda env create -f snakemake/environment.yml -n snakemake-env
         conda activate snakemake-env
+  install-conda:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+       os: [ ubuntu-latest, macos-latest ]
     - name: Install conda on Linux
       if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
