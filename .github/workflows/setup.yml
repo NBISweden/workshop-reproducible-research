@@ -41,13 +41,14 @@ jobs:
         run: |
           conda list
           ${{ matrix.cmd }}
-  docker-install:
+  docker-slim-install:
+    # Install environments inside the slim container
     runs-on: ubuntu-latest
     container:
       nbisweden/workshop-reproducible-research:slim
     strategy:
       matrix:
-        env: [snakemake, jupyter, rmarkdown]
+        env: [ snakemake, jupyter, rmarkdown ]
         include:
           - env: snakemake
             cmd: snakemake --version
@@ -57,8 +58,14 @@ jobs:
             cmd: Rscript --version
     steps:
       - uses: actions/checkout@v2
-      - name: Install ${{ matrix.env }}
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
+          activate-environment: ${{ matrix.env }}-env
+          environment-file: ${{ matrix.env }}/environment.yml
+          auto-activate-base: false
+      - name: Test ${{ matrix.env }}
+        shell: bash -l {0}
         run: |
-          conda env create -f ${{ matrix.env }}/environment.yml
-          conda activate ${{ matrix.env }}-env
+          conda list
           ${{ matrix.cmd }}
