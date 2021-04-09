@@ -329,6 +329,16 @@ conda activate rmarkdown-env
 rstudio &
 ```
 
+!!! note "The sluggishness of Conda"
+    Some environments are inherently quite complicated in that they have many
+    and varied dependencies, meaning that the search space for the entire
+    dependency hierarchy becomes huge - leading to slow and sluggish
+    installations. This is often the case for R environments. This can be
+    improved by using Mamba, a faster wrapper around Conda. Simply run `conda
+    install -n base mamba` to install Mamba in your base environment, and
+    replace any `conda` command with `mamba` - except activating and
+    deactivating environments, which still needs to be done using Conda.
+
 Once you've successfully completed the above steps you can deactivate your Conda
 environment using `conda deactivate` and continue with the setup for the other
 tools.
