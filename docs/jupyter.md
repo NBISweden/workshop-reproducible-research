@@ -765,8 +765,10 @@ jupyter notebook supplementary_material.ipynb
 
 You will see that the notebook contains only a little markdown text and a code
 cell with a function `get_geodata`. We'll start by adding a cell with some 
-import statements. Create a new cell at the bottom of the notebook and add the 
-following to it:
+import statements. 
+
+Create a new cell after the `get_geodata` function but 
+**before** the Reproducibility section and add the following to it:
 
 ```python
 import pandas as pd
