@@ -327,6 +327,14 @@ conda activate rmarkdown-env
 rstudio &
 ```
 
+!!! attention "Windows users"
+    Although most of the tutorials are best to run in the Linux Bash Shell or
+    in a Docker container if you are a Windows user (see information in the
+    [intro](tutorial_intro.md)), both R and RStudio run well directly on
+    Windows. You may therefore want to install Windows versions of these
+    software (if you haven't done so already) when doing this tutorial, if
+    you're having trouble using Conda. Conda is, however, the recommended way.
+
 !!! note "RStudio and Conda"
     In some cases RStudio doesn't play well with Conda due to differing
     libpaths. To fix this, first check the available library path by
@@ -348,14 +356,6 @@ rstudio &
     ... and restart RStudio. The `rmarkdown/` directory in the course materials
     already contains this file, so you shouldn't have to add this yourself, but
     we mention it here for your future projects.
-
-!!! attention "Windows users"
-    Although most of the tutorials are best to run in the Linux Bash Shell or
-    in a Docker container if you are a Windows user (see information in the
-    [intro](tutorial_intro.md)), both R and RStudio run well directly on
-    Windows. You may therefore want to install Windows versions of these
-    software (if you haven't done so already) when doing this tutorial, if
-    you're having trouble using Conda. Conda is, however, the recommended way.
 
 ## Installing Jupyter
 
