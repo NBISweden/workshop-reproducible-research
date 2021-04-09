@@ -750,8 +750,7 @@ tutorial](snakemake.md). Here we explore the results from the
 with some basic stats.
 
 In the `jupyter/` directory you will find a notebook called 
-`supplementary_material.ipynb`. Open this notebook either from the 
- directly by running:
+`supplementary_material.ipynb`. Open this notebook with jupyter by running:
  
 ```bash
 jupyter notebook supplementary_material.ipynb
