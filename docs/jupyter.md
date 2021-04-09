@@ -943,9 +943,9 @@ The files you're working with come from a GitHub repo. Both GitHub and Bitbucket
 can render Jupyter notebooks as well as other types of Markdown documents. Now
 go to our GitHub repo at
 [https://github.com/NBISweden/workshop-reproducible-research](https://github.com/NBISweden/workshop-reproducible-research)
-and navigate to `jupyter/mrsa_notebook.ipynb`.
+and navigate to `jupyter/supplementary_material.ipynb`.
 
-![](images/jupyter_mrsa.png)
+![](images/jupyter_supplementary.png)
 
 As you can imagine, having this very effortless way of sharing results
 can greatly increase the visibility of your work. You work as normal on
@@ -961,7 +961,7 @@ past an URL to any notebook and they will render it for you. Go to
 this out with our notebook.
 
 ```no-highlight
-https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/mrsa_notebook.ipynb
+https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/supplementary_material.ipynb
 ```
 
 ### Shared interactive notebooks
