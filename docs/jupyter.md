@@ -1104,21 +1104,30 @@ below to see an example.
 ??? note "Click to see an example of the `make_supplementary` rule"
 
     ```python
-    input:
-        counts = "results/tables/counts.tsv",
-        multiqc_file = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    output:
-        "results/supplementary.html"
-    params:
-        base = lambda wildcards, output: os.path.basename(output[0]),
-        dir = lambda wildcards, output: os.path.dirname(output[0])
-    shell:
-        """
-        jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
-            --execute supplementary_material.ipynb
-        """
+    rule make_supplementary:
+        input:
+            counts = "results/tables/counts.tsv",
+            multiqc_file = "intermediate/multiqc_general_stats.txt",
+            rulegraph = "results/rulegraph.png"
+        output:
+            "results/supplementary.html"
+        params:
+            base = lambda wildcards, output: os.path.basename(output[0]),
+            dir = lambda wildcards, output: os.path.dirname(output[0])
+        shell:
+            """
+            jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
+                --execute supplementary_material.ipynb
+            """
     ```
+
+!!! note Install missing dependencies
+
+    The conda enivronment for the jupyter tutorial does not contain packages
+    required to run the full snakemake workflow. So if you wish to test jupyter
+    integration fully you should update the conda environment by running 
+    `conda install snakemake-minimal fastqc sra-tools multiqc bowtie2 tbb 
+    samtools htseq bedtools wget graphviz`
 
 #### Moar integration! 
 
