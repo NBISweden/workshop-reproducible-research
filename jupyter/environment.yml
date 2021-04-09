@@ -5,6 +5,8 @@ channels:
   - main
 dependencies:
   - python=3.8
+
+  # Workflow dependencies
   - fastqc=0.11.9
   - sra-tools=2.10.1
   - snakemake-minimal=5.10.0
@@ -16,6 +18,8 @@ dependencies:
   - bedtools=2.29.2
   - wget=1.20.1
   - graphviz=2.42.3
+
+  # Notebook dependencies for tutorial
   - biopython=1.78
   - jupyter=1.0.0
   - pandas=1.2.3
