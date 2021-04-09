@@ -308,8 +308,13 @@ Singularity has the option to build images remotely. To do this, you need to:
   create an account
 * Log in and find "Access Tokens" in the menu and create a new token
 * Copy the token
-* In your terminal, run `singularity remote login`, paste the copied token
-  and hit ENTER. You should get a **API Key Verified!** message.
+* In your terminal, run `singularity remote login` and hit ENTER. You should be
+  asked to enter the token (API Key). Paste the copied token and hit ENTER. 
+  You should get a **API Key Verified!** message.
+
+!!! attention
+    In case you are not asked to enter the API Key, you can try to run 
+    `singularity remote login SylabsCloud` instead.
 
 We can now try to build the MRSA Singularity image using the `--remote` flag:
 
