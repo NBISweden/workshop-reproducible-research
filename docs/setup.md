@@ -518,15 +518,19 @@ Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installat
 Installing on Windows requires running Singularity through a Vagrant Box, which
 may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
+!!! note "Note"
+    Last time we checked, the software "Vagrant Manager" was not available for download
+    but the installation of Singularity was successful even without it.
+
 The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC
 like this:
 
-* Open the Vagrant Manager app
 * Open the Git Bash and move with `cd` into the folder `vm-singularity` where
   you installed Singularity
 * Type `vagrant up` and once this has finished, verify that the Vagrant
   VirtualBox is running with `vagrant status`
 * Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
-* Here, you will have to download the course material again to obtain a copy
-  within the Vagrant VirtualBox for the Singularity tutorial by typing 
+* The first time you open the Vagrant VirtualBox like this, you will have to 
+  download the course material to obtain a copy for the Singularity tutorial 
+  within the Vagrant VirtualBox by typing 
   `git clone https://github.com/NBISweden/workshop-reproducible-research.git`
