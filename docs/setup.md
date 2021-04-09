@@ -404,21 +404,19 @@ so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
-Select "Get Docker for Windows (Stable)".
+Click the link "Download from Docker Hub", and select "Get Docker". Once the
+download is complete, execute the file and follow the [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows”).
 
-1. Once it's downloaded, double-click `Docker for Windows Installer.exe` to run
-   the installer.
-
-2. Follow the install wizard and accept the license, authorize the installer,
+1. Follow the install wizard and accept the license, authorize the installer,
    and proceed with the install. You will be asked to authorize Docker.app with
    your system password during the install process. Click Finish to exit the
    installer.
 
-3. Start Docker from the Start menu. You can search for it if you cannot find
+2. Start Docker from the Start menu. You can search for it if you cannot find
    it. The Docker whale icon should appear in the task bar. Open the Windows 10
    PowerShell to run the tutorial.
 
-4. If you would like to use the Linux Bash Shell instead of the Windows 10
+3. If you would like to use the Linux Bash Shell instead of the Windows 10
    PowerShell, you might need to enable integration with the Linux app you
    installed. Right-click on the Docker whale icon in the task bar and select
    Settings. Choose Resources and in there, select WPS integration. Enable
