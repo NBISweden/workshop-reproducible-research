@@ -442,60 +442,16 @@ Click the link "Download from Docker Hub", and select "Get Docker".
 ### Linux
 
 How to install Docker differs a bit depending on your Linux distribution, but
-the steps are the same. For details on how to do it on your distribution see
-[https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/install/#server).
-
-Here we show how to do it for Ubuntu, which is the most common desktop
-distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your
-OS is from 2015 or earlier you can double check this with `lsb_release -a`. If
-it's newer you're probably fine. The same instructions apply to other 
-distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you 
-would have to map to the corresponding Ubuntu version and use that instead of 
-`$(lsb_release -cs)` below (see 
-[here](https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
-for Mint).
-
-1. Add the GPG key for the official Docker repository to the system:
-
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-2. Add the Docker repository to APT sources:
-
-```bash
-sudo add-apt-repository "deb [arch=amd64] \
-    https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-```
-
-3. Update the package database with the Docker packages from the new repo:
-
-```bash
-sudo apt-get update
-```
-
-4. Install Docker Community Edition:
-
-```bash
-sudo apt-get install -y docker-ce
-```
-
-5. Docker should now be installed, the daemon started, and the process enabled
-   to start on boot. Check that it's running:
-
-```bash
-sudo systemctl status docker
-```
-
-The output should say something about "Active: active (running) since..".
+the steps are the same. Please follow the instructions for your distribution on
+[https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
 
 !!! tip
     As mentioned before, Docker needs to run as root. You can achieve this by
     prepending all Docker commands with `sudo`. This is the approach that we
     will take in this tutorial, since the set up becomes a little simpler that way. 
-    If     you plan on continuing using Docker you can get rid of this by adding your
+    If you plan on continuing using Docker you can get rid of this by adding your
     user to the group `docker`. Here are instructions for how to do this:
-    [https://docs.docker.com/engine/installation/linux/linux-postinstall/][].
+    [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
 
 ## Installing Singularity
