@@ -1046,13 +1046,14 @@ trying out and showing existing notebooks rather than making new ones.
 ssh <your-user-name>@rackham1.uppmax.uu.se
 ```
 
-* Activate the conda environment you created then run `python` to start python console. Type:
+* Create/activate a conda environment containing `jupyter` then run `python` to 
+  start a python console. Type:
 
 ```python
 import IPython.lib
 IPython.lib.passwd()
 ```
-* Enter some password and then save the line starting with `'sha1:'`
+* Enter some password and then copy the line starting with `'sha1:'`
 * Create a config file named _e.g._ `my_jupyter_config.py` and add this to it:
 ```python
 c = get_config()
@@ -1060,7 +1061,7 @@ c = get_config()
 #c.NotebookApp.certfile = u''
 c.NotebookApp.ip = 'localhost'
 c.NotebookApp.open_browser = False
-c.NotebookApp.password = u'sha1:...' #<-- Add your 'sha1:' string here
+c.NotebookApp.password = u'sha1:...' #<-- Update with your 'sha1:' string here
 c.NotebookApp.port = 9990
 ```
 * Save the file and then start the jupyter server on Uppmax with:
@@ -1074,9 +1075,11 @@ jupyter notebook --config my_jupyter_config.py
 ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.se
 ```
 
-* Connect to the jupyter server by opening `localhost:8080` in your browser. You should be prompted for the password you generated.
+* Connect to the jupyter server by opening `localhost:8080` in your browser. 
+  You should be prompted for the password you generated.
 
-You are now (hopefully) accessing the jupyter server that's running on Upmmax, via your local browser.
+You are now (hopefully) accessing the jupyter server that's running on Upmmax, 
+via your local browser.
 
 ### Integrating notebooks with Snakemake workflows
 
