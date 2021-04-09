@@ -164,7 +164,7 @@ Don't worry if you feel that this Docker stuff is a little confusing, it will
 become clearer in the [Docker tutorial](docker.md). However, the priority right
 now is just to get it running so that you can start working.
 
-## Installing Git
+## Installing git
 
 Chances are that you already have git installed on your computer. You can check
 by running *e.g.* `git --version`. If you don't have git, install it following
@@ -344,12 +344,10 @@ environment using `conda deactivate` and continue with the setup for the other
 tools.
 
 !!! attention "Windows users"
-    Although most of the tutorials are best to run in the Linux Bash Shell or
-    in a Docker container if you are a Windows user (see information in the
-    [intro](tutorial_intro.md)), both R and RStudio run well directly on
-    Windows. You may therefore want to install Windows versions of these
-    software (if you haven't done so already) when doing this tutorial, if
-    you're having trouble using Conda. Conda is, however, the recommended way.
+    In case you are having trouble installing R and RStudio using Conda, both 
+    run well directly on Windows and you may therefore want to install Windows 
+    versions of these software for this tutorial (if you haven't done so already). 
+    Conda is, however, the recommended way.
 
 !!! note "RStudio and Conda"
     In some cases RStudio doesn't play well with Conda due to differing
