@@ -12,5 +12,6 @@ dependencies:
   - r-pheatmap=1.0.12
   - r-reshape2=1.4.4
   - r-rmarkdown=2.5
+  - r-stringi=1.4.6
   - bioconductor-rtracklayer=1.46.0
   - bioconductor-geoquery=2.54.0
