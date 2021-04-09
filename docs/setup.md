@@ -299,7 +299,9 @@ conda activate snakemake-env
 Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Conda steps were successful.
+ensure that the Conda steps were successful. Once you've successfully completed
+the above steps you can deactivate your Conda environment using `conda
+deactivate` and continue with the setup for the other tools.
 
 !!! attention
     If you look inside `snakemake/environment.yml` you will see that we used the
@@ -326,6 +328,10 @@ background from the command line:
 conda activate rmarkdown-env
 rstudio &
 ```
+
+Once you've successfully completed the above steps you can deactivate your Conda
+environment using `conda deactivate` and continue with the setup for the other
+tools.
 
 !!! attention "Windows users"
     Although most of the tutorials are best to run in the Linux Bash Shell or
@@ -367,6 +373,10 @@ the installation of Jupyter, like so:
 conda env create -f jupyter/environment.yml -n jupyter-env
 conda activate jupyter-env
 ```
+
+Once you've successfully completed the above steps you can deactivate your Conda
+environment using `conda deactivate` and continue with the setup for the other
+tools.
 
 !!! attention "Windows users"
     If you are doing these exercises through a Docker container you also need
