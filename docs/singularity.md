@@ -409,14 +409,18 @@ execute the workflow and generate the output files using:
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is `snakemake -rp --configfile 
-config.yml` (as defined in the original `Dockerfile`). 
+This executes the default run command, which is 
+`snakemake -rp --configfile config.yml` (as defined in the original 
+`Dockerfile`). 
 
-Note here that we have also increased the allocated RAM to 2048 MiB (`--vm
--ram 2048`), needed to fully run through the workflow. The previous step in
-this tutorial included running the `run_qc.sh` script, so that part of the
-workflow has already been run and Snakemake will continue from that 
-automatically without redoing anything. Once completed you should see a bunch
-of directories and files generated in your current working directory, including 
-the `results/` directory containing the 
-final HTML report.
+!!! note
+    Note here that we have increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), 
+    needed to fully run through the workflow. In case the command fails, 
+    you can try to increase the RAM to e.g. 4096 MiB, or you can try to run the command
+    without the  `--vm-ram` parameter.
+
+The previous step in this tutorial included running the `run_qc.sh` script, 
+so that part of the workflow has already been run and Snakemake will continue 
+from that automatically without redoing anything. Once completed you should 
+see a bunch of directories and files generated in your current working 
+directory, including the `results/` directory containing the final HTML report.
