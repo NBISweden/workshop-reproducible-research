@@ -424,13 +424,10 @@ so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
-Click the link "Download from Docker Hub", and select "Get Docker". Once the
-download is complete, execute the file and follow the [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows”).
+Click the link "Download from Docker Hub", and select "Get Docker". 
 
-1. Follow the install wizard and accept the license, authorize the installer,
-   and proceed with the install. You will be asked to authorize Docker.app with
-   your system password during the install process. Click Finish to exit the
-   installer.
+1. Once the download is complete, execute the file and follow the 
+    [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
 
 2. Start Docker from the Start menu. You can search for it if you cannot find
    it. The Docker whale icon should appear in the task bar. Open the Windows 10
@@ -438,21 +435,11 @@ download is complete, execute the file and follow the [instructions](https://doc
 
 3. If you would like to use the Linux Bash Shell instead of the Windows 10
    PowerShell, you might need to enable integration with the Linux app you
-   installed. Right-click on the Docker whale icon in the task bar and select
+   installed (if you haven't done so during the installation of Docker Desktop). 
+   Right-click on the Docker whale icon in the task bar and select
    Settings. Choose Resources and in there, select WPS integration. Enable
    integration with the Linux app you installed and click Apply & Restart.
    Restart also the Linux app.
-
-On Windows 7 we will instead use Docker Toolbox, which is available at
-[docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select
-"Get Docker Toolbox for Windows".
-
-1. Install Docker Toolbox by double-clicking the installer. Step through the
-   installation and accept all the defaults. If Windows security dialog prompts
-   you to allow the program to make a change, choose Yes. If you get a prompt
-   asking "Would you like to install this device software?" select Install.
-
-2. You should now have a Docker Quickstart icon on the desktop.
 
 ### Linux
 
