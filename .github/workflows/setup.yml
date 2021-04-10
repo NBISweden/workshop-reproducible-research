@@ -53,11 +53,11 @@ jobs:
         env: [ snakemake, jupyter, rmarkdown ]
         include:
           - env: snakemake
-            cmd: snakemake --version
+            cmd: conda install -y -c bioconda multiqc=1.7 bowtie2=2.3.5.1 samtools=1.10 htseq=0.11.2 && snakemake -j 1 -d snakemake/ -s snakemake/Snakefile_mrsa
           - env: jupyter
-            cmd: jupyter --version
+            cmd: jupyter nbconvert --template=nbextensions --to HTML jupyter/supplementary_material.ipynb
           - env: rmarkdown
-            cmd: Rscript --version
+            cmd: echo 'rmarkdown::render("rmarkdown/code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
