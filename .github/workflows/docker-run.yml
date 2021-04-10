@@ -1,22 +1,26 @@
 name: docker
 
-# Controls when the action will run. Triggers the workflow on push or pull
-# request events but only for the main branch
-on: workflow_dispatch
-  #push:
-  #  branches:
-  #    - main
-  #pull_request:
-  #  branches:
-  #    - main
+on:
+  workflow_dispatch:
+    branches:
+      - main
+      - devel
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   docker-build-and-run:
-      # Run the snakemake workflow inside the finished container
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Docker build
-          run: |
-            docker build -t my_docker_project -f docker/Dockerfile docker/
-            docker run --rm my_docker_project
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build
+        run: |
+          docker build -t my_docker_project -f docker/Dockerfile docker/
+          docker run --rm my_docker_project
