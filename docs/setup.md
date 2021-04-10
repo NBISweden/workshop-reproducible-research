@@ -164,7 +164,7 @@ Don't worry if you feel that this Docker stuff is a little confusing, it will
 become clearer in the [Docker tutorial](docker.md). However, the priority right
 now is just to get it running so that you can start working.
 
-## Installing Git
+## Installing git
 
 Chances are that you already have git installed on your computer. You can check
 by running *e.g.* `git --version`. If you don't have git, install it following
@@ -299,7 +299,9 @@ conda activate snakemake-env
 Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Conda steps were successful.
+ensure that the Conda steps were successful. Once you've successfully completed
+the above steps you can deactivate your Conda environment using `conda
+deactivate` and continue with the setup for the other tools.
 
 !!! attention
     If you look inside `snakemake/environment.yml` you will see that we used the
@@ -327,6 +329,26 @@ conda activate rmarkdown-env
 rstudio &
 ```
 
+!!! note "The sluggishness of Conda"
+    Some environments are inherently quite complicated in that they have many
+    and varied dependencies, meaning that the search space for the entire
+    dependency hierarchy becomes huge - leading to slow and sluggish
+    installations. This is often the case for R environments. This can be
+    improved by using Mamba, a faster wrapper around Conda. Simply run `conda
+    install -n base mamba` to install Mamba in your base environment, and
+    replace any `conda` command with `mamba` - except activating and
+    deactivating environments, which still needs to be done using Conda.
+
+Once you've successfully completed the above steps you can deactivate your Conda
+environment using `conda deactivate` and continue with the setup for the other
+tools.
+
+!!! attention "Windows users"
+    In case you are having trouble installing R and RStudio using Conda, both 
+    run well directly on Windows and you may therefore want to install Windows 
+    versions of these software for this tutorial (if you haven't done so already). 
+    Conda is, however, the recommended way.
+
 !!! note "RStudio and Conda"
     In some cases RStudio doesn't play well with Conda due to differing
     libpaths. To fix this, first check the available library path by
@@ -349,14 +371,6 @@ rstudio &
     already contains this file, so you shouldn't have to add this yourself, but
     we mention it here for your future projects.
 
-!!! attention "Windows users"
-    Although most of the tutorials are best to run in the Linux Bash Shell or
-    in a Docker container if you are a Windows user (see information in the
-    [intro](tutorial_intro.md)), both R and RStudio run well directly on
-    Windows. You may therefore want to install Windows versions of these
-    software (if you haven't done so already) when doing this tutorial, if
-    you're having trouble using Conda. Conda is, however, the recommended way.
-
 ## Installing Jupyter
 
 Let's continue using Conda for installing software, since it's so convenient to
@@ -367,6 +381,10 @@ the installation of Jupyter, like so:
 conda env create -f jupyter/environment.yml -n jupyter-env
 conda activate jupyter-env
 ```
+
+Once you've successfully completed the above steps you can deactivate your Conda
+environment using `conda deactivate` and continue with the setup for the other
+tools.
 
 !!! attention "Windows users"
     If you are doing these exercises through a Docker container you also need
@@ -404,95 +422,36 @@ so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
-Select "Get Docker for Windows (Stable)".
+Click the link "Download from Docker Hub", and select "Get Docker". 
 
-1. Once it's downloaded, double-click `Docker for Windows Installer.exe` to run
-   the installer.
+1. Once the download is complete, execute the file and follow the 
+    [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
 
-2. Follow the install wizard and accept the license, authorize the installer,
-   and proceed with the install. You will be asked to authorize Docker.app with
-   your system password during the install process. Click Finish to exit the
-   installer.
-
-3. Start Docker from the Start menu. You can search for it if you cannot find
+2. Start Docker from the Start menu. You can search for it if you cannot find
    it. The Docker whale icon should appear in the task bar. Open the Windows 10
    PowerShell to run the tutorial.
 
-4. If you would like to use the Linux Bash Shell instead of the Windows 10
+3. If you would like to use the Linux Bash Shell instead of the Windows 10
    PowerShell, you might need to enable integration with the Linux app you
-   installed. Right-click on the Docker whale icon in the task bar and select
+   installed (if you haven't done so during the installation of Docker Desktop). 
+   Right-click on the Docker whale icon in the task bar and select
    Settings. Choose Resources and in there, select WPS integration. Enable
    integration with the Linux app you installed and click Apply & Restart.
    Restart also the Linux app.
 
-On Windows 7 we will instead use Docker Toolbox, which is available at
-[docker.com](https://docs.docker.com/toolbox/toolbox_install_windows/). Select
-"Get Docker Toolbox for Windows".
-
-1. Install Docker Toolbox by double-clicking the installer. Step through the
-   installation and accept all the defaults. If Windows security dialog prompts
-   you to allow the program to make a change, choose Yes. If you get a prompt
-   asking "Would you like to install this device software?" select Install.
-
-2. You should now have a Docker Quickstart icon on the desktop.
-
 ### Linux
 
 How to install Docker differs a bit depending on your Linux distribution, but
-the steps are the same. For details on how to do it on your distribution see
-[https://docs.docker.com/engine/installation/#server](https://docs.docker.com/engine/install/#server).
-
-Here we show how to do it for Ubuntu, which is the most common desktop
-distribution. Docker requires a 64-bit Ubuntu version 14.04 or higher. If your
-OS is from 2015 or earlier you can double check this with `lsb_release -a`. If
-it's newer you're probably fine. The same instructions apply to other 
-distributions based on Ubuntu, such as Elementary OS or Linux Mint, but you 
-would have to map to the corresponding Ubuntu version and use that instead of 
-`$(lsb_release -cs)` below (see 
-[here](https://en.wikipedia.org/wiki/Linux_Mint_version_history#Release_history)
-for Mint).
-
-1. Add the GPG key for the official Docker repository to the system:
-
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-2. Add the Docker repository to APT sources:
-
-```bash
-sudo add-apt-repository "deb [arch=amd64] \
-    https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-```
-
-3. Update the package database with the Docker packages from the new repo:
-
-```bash
-sudo apt-get update
-```
-
-4. Install Docker Community Edition:
-
-```bash
-sudo apt-get install -y docker-ce
-```
-
-5. Docker should now be installed, the daemon started, and the process enabled
-   to start on boot. Check that it's running:
-
-```bash
-sudo systemctl status docker
-```
-
-The output should say something about "Active: active (running) since..".
+the steps are the same. Please follow the instructions for your distribution on
+[https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
 
 !!! tip
     As mentioned before, Docker needs to run as root. You can achieve this by
     prepending all Docker commands with `sudo`. This is the approach that we
     will take in this tutorial, since the set up becomes a little simpler that way. 
-    If     you plan on continuing using Docker you can get rid of this by adding your
+    If you plan on continuing using Docker you can get rid of this by adding your
     user to the group `docker`. Here are instructions for how to do this:
-    [https://docs.docker.com/engine/installation/linux/linux-postinstall/][].
+    [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
 
 ## Installing Singularity
@@ -518,15 +477,19 @@ Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installat
 Installing on Windows requires running Singularity through a Vagrant Box, which
 may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
+!!! note "Note"
+    Last time we checked, the software "Vagrant Manager" was not available for download
+    but the installation of Singularity was successful even without it.
+
 The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC
 like this:
 
-* Open the Vagrant Manager app
 * Open the Git Bash and move with `cd` into the folder `vm-singularity` where
   you installed Singularity
 * Type `vagrant up` and once this has finished, verify that the Vagrant
   VirtualBox is running with `vagrant status`
 * Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
-* Here, you will have to download the course material again to obtain a copy
-  within the Vagrant VirtualBox for the Singularity tutorial by typing 
+* The first time you open the Vagrant VirtualBox like this, you will have to 
+  download the course material to obtain a copy for the Singularity tutorial 
+  within the Vagrant VirtualBox by typing 
   `git clone https://github.com/NBISweden/workshop-reproducible-research.git`

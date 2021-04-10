@@ -719,10 +719,10 @@ when coding in languages other than just R, if your language is one of the
 supported ones.
 
 Two of the most important languages are Python and bash. While bash is supported
-out-of-the-box directly and only require you to specify `bash` instead of `r` in
+out-of-the-box directly and only requires you to specify `bash` instead of `r` in
 the start of the code chunk, Python will additionally require you to have
 installed the `reticulate` package. Not only does this allow you to code in
-Python your in R Markdown document, but the objects and variables you use in one
+Python directly in your in R Markdown document, but the objects and variables you use in one
 language/chunk will actually be available for the other language! You can read
 more about the R Markdown Python engine [here](https://rstudio.github.io/reticulate/articles/r_markdown.html).
 

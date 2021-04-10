@@ -1178,8 +1178,8 @@ For the given rule, a Singularity container will then be created from the image
 or Singularity file that is provided in the rule definition on the fly by Snakemake 
 and the rule will be run in this container.
 
-You can find pre-made Singularity or Docker images for many tools on 
-https://biocontainers.pro/ (bioinformatics-specific) or on https://hub.docker.com/.
+You can find pre-made Singularity or Docker images for many tools on [https://biocontainers.pro/](https://biocontainers.pro/)
+(bioinformatics-specific) or on [https://hub.docker.com/](https://hub.docker.com/).
 
 Here is an example for a rule and its execution:
 
