@@ -10,7 +10,7 @@ params:
 ---
 
 ```{r Setup, include = FALSE}
-knitr::opts_knit$set(root.dir = normalizePath("../"))
+knitr::opts_knit$set(root.dir = "../")
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
