@@ -1,3 +1,4 @@
+name: rmarkdown-env
 channels:
   - conda-forge
   - bioconda
