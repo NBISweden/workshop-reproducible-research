@@ -1,6 +1,10 @@
 name: docker
 
 on:
+  workflow_dispatch:
+    branches:
+      - main
+      - devel
   push:
     branches:
       - main
@@ -10,10 +14,13 @@ on:
 
 jobs:
   docker-build-and-run:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Docker build
-          run: |
-            docker build -t my_docker_project -f docker/Dockerfile docker/
-            docker run --rm my_docker_project
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build
+        run: |
+          docker build -t my_docker_project -f docker/Dockerfile docker/
+          docker run --rm my_docker_project
