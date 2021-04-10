@@ -344,11 +344,11 @@ Running `%precision` without additional arguments will restore the default.
 ## Plotting
 
 An essential feature of Jupyter Notebooks is of course the ability to visualize
-data and results via plots. A full guide to plotting in python is beyond the 
+data and results via plots. A full guide to plotting in Python is beyond the 
 scope of this course, but we'll offer a few glimpses into the plotting landscape
-of python.
+of Python.
 
-First of all, python has a library for plotting called
+First of all, Python has a library for plotting called
 [matplotlib](https://matplotlib.org/stable/index.html), which comes packed with 
 functionality for creating high-quality plots. Below is an example of how to 
 generate a line plot of a sine wave.
@@ -383,7 +383,7 @@ because it allows you to create all sorts of plots and modify them exactly to
 your liking. However, this can also mean that creating very basic plots might 
 involve a lot of cumbersome coding, when all you want is a simple bar chart!
 
-Fortunately there are a number of python packages that build upon matplotlib but 
+Fortunately there are a number of Python packages that build upon matplotlib but 
 with a much simplified interface. One such popular package is 
 [seaborn](http://seaborn.pydata.org/). Below we'll see how to generate a nice 
 looking bar plot with error bars.
@@ -777,7 +777,7 @@ import numpy as np
 ```
 This imports the `pandas` (for working with tables), `seaborn` and 
 `matplotlib.pyplot` (for plotting) and `numpy` (for numerical operations)
-python modules.
+Python modules.
 
 Also add:
 ```python
@@ -1047,7 +1047,7 @@ ssh <your-user-name>@rackham1.uppmax.uu.se
 ```
 
 * Create/activate a conda environment containing `jupyter` then run `python` to 
-  start a python console. Type:
+  start a Python console. Type:
 
 ```python
 import IPython.lib
