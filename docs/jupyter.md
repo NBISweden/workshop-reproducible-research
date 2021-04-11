@@ -1262,3 +1262,38 @@ Now you can run the following to generate the plots:
 ```bash
 snakemake -j 1 make_supplementary_plots
 ```
+
+### Presentations with Jupyter
+
+As if all the above wasn't enough you can also create presentations/slideshows
+with Jupyter! Simply use conda to install the 
+[RISE](https://rise.readthedocs.io/en/stable/) extension to your jupyter 
+environment:
+
+```bash
+conda install -c conda-forge rise
+```
+
+then open up a notebook of your choice. In the menu click **View**->**Cell 
+Toolbar**->**Slideshow**. Now every cell will have a drop-down in the upper
+right corner allowing you to set the cell type:
+
+- **Slide**: a regular slide
+- **Sub-Slide**: a regular slide that will be displayed _below_ the previous
+- **Fragment**: these cells split up slides so that content (fragments) are 
+  added only when you press Space
+- **Skip**: these cells will not appear in the presentation
+- **Notes**: these cells act as notes, shown in the speaker view but not in the 
+  main view
+  
+The presentation can be run directly from the notebook by clicking the 
+'Enter/Exit RISE Slideshow' button (looks like a bar chart) in the toolbar, or 
+by using the keyboard shortcut `Alt-r`. Running it directly from a notebook 
+means you can also edit and run cells during your presentation. The downside is
+that the presentation is not as portable because it may rely on certain software 
+packages that other people are not comfortable with installing.
+
+You can also export the notebook to an HTML-file with `jupyter nbconvert 
+--execute --to SLIDES <your-notebook.ipynb>`. The resulting file, with the 
+slideshow functionality included, can be opened in any browser. However, in 
+this format you cannot run/edit cells.
