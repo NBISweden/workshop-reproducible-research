@@ -37,6 +37,13 @@ ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
 ENV LC_LANG en_US.UTF-8
 
+# Configure Conda channels and install Mamba
+RUN conda config --add channels bioconda \
+    && conda config --add channels conda-forge \
+    && conda config --set channel_priority strict \
+    && conda install mamba \
+    && mamba clean --all
+
 # Open port for running Jupyter Notebook
 EXPOSE 8888
 
