@@ -90,15 +90,18 @@ cd workshop-reproducible-research
 ### Using Docker to run the course
 
 Alternatively, you can use Docker to run the course in a Docker container.
-First, open the Windows 10 PowerShell and `cd` into a directory on your computer
-(or create one) where it makes sense to download the course directory.
-Install Docker by following the instructions in the [Docker tutorial](docker.md#windows).
-Then run:
+Install Docker by following the instructions below on this page for Docker on Windows,
+and start Docker Desktop. Then, open the Windows 10 PowerShell and `cd` into a directory 
+on your computer (or create one) where it makes sense to download the course directory:
 
 ```bash
 cd c:/my_dir
-docker run -it -p 8888:8888 -v /c/my_dir:/course/ \
-    nbisweden/workshop-reproducible-research:slim
+```
+
+Then run:
+
+```bash
+docker run -it -p 8888:8888 -v /c/my_dir:/course/ nbisweden/workshop-reproducible-research:slim
 ```
 
 !!! attention
@@ -106,12 +109,12 @@ docker run -it -p 8888:8888 -v /c/my_dir:/course/ \
     Windows. This is required for Docker to parse the command correctly.
 
 This will start an isolated container running Linux, where the directory
-`c:/my_dir` is mounted (*i.e.* you can access the files in this Windows
-directory within the Linux container, and files edited or created within the
-Linux container will appear in this Windows directory). Note that the idea is
-that you should edit files in the mounted `c:/my_dir` using an editor in your
-normal OS, say Notepad in Windows. The terminal in the container is for running
-stuff, not editing.
+on your computer (`c:/my_dir`) is mounted (*i.e.* you can access the files in 
+this Windows directory within the Linux container, and files edited or created 
+within the Linux container will appear in this Windows directory). Note that 
+the idea is that you should edit files in the mounted `c:/my_dir` using an 
+editor in your normal OS, say Notepad in Windows. The terminal in the container 
+is for running stuff, not editing.
 
 You should now be at a terminal in the Docker container. Now clone the GitHub
 repository containing all the files you will need for the tutorials.
@@ -136,10 +139,11 @@ for some reason you can simply run a new one and activate Conda environments
 under `/course/envs`, saving you the trouble of recreating them.
 
 What you have to do is to, after you've started a container with the
-`docker run` command above, first create the `envs/` directory:
+`docker run` command above, first create the `/course/envs/` directory (making sure 
+you are standing in the `course/` directory with `pwd`):
 
 ```bash
-mkdir /course/envs
+mkdir envs
 ```
 
 Then set the environment variable `CONDA_ENVS_PATH` to `/course/envs`:
