@@ -248,6 +248,15 @@ separate. We thus want to make two commits, one for each change.
 git reset HEAD environment.yml
 ```
 
+!!! note
+    Maybe you didn't see the same message as indicated above? Is Git telling you
+    to use a `git restore` instead? This is another one of Git's newer and
+    experimental commands, which aims to remove some confusion about what
+    commands do what (as many have multiple functions). While we have opted to
+    stick with the old and stable commands until the new commands are no longer
+    considered experimental, you are very welcome to use `git restore` instead
+    of `git reset` to unstage the file above!
+
 * Run `git status` again. See that now only `config.yml` is staged for being
   committed, whereas the changes in `environment.yml` are tracked by git, but
   not ready to be committed.
@@ -492,6 +501,14 @@ on a line-per-line basis. Do you see which lines have changed between
 !!! tip
     We can also add the `--color-words` flag to `git diff`, which instead
     displays the difference on a word-per-word basis rather than line-per-line.
+
+!!! note
+    Git is constantly evolving, along with some of its commands. While the
+    `checkout` is quite versatile (it's used for more than just switching
+    branches), this versatility can sometimes be confusing. The Git team thus
+    added a new command, `git switch`, that can be used instead. This command is
+    still experimental, however, so we have opted to stick with `checkout` for
+    the course - for now.
 
 Now, let's assume that we have tested our code and the alignment analysis is run
 successfully with our new parameters. We thus want to merge our work into the
