@@ -250,9 +250,9 @@ git reset HEAD environment.yml
 
 !!! note
     Maybe you didn't see the same message as indicated above? Is Git telling you
-    to use a `git restore` instead? This is another one of Git's never and
+    to use a `git restore` instead? This is another one of Git's newer and
     experimental commands, which aims to remove some confusion about what
-    commands to what (as many have multiple functions). While we have opted to
+    commands do what (as many have multiple functions). While we have opted to
     stick with the old and stable commands until the new commands are no longer
     considered experimental, you are very welcome to use `git restore` instead
     of `git reset` to unstage the file above!
