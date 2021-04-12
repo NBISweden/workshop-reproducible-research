@@ -14,5 +14,5 @@ dependencies:
   - r-pheatmap=1.0.12
   - r-reshape2=1.4.4
   - r-rmarkdown=2.7
-  - r-stringi=1.4.3
+  - r-stringi=1.4.6
   - rstudio=1.1.456
