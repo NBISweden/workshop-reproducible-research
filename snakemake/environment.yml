@@ -1,3 +1,4 @@
+name: snakemake-env
 channels:
   - conda-forge
   - bioconda
@@ -6,4 +7,10 @@ channels:
 dependencies:
   - fastqc=0.11.9
   - sra-tools=2.10.1
-# Add tools here
+  - python=3.7.6
+  - snakemake-minimal=5.10.0
+  - graphviz=2.42.3
+  - xorg-libxrender
+  - xorg-libxpm
+  - wget=1.20.1
+  - tbb=2020.3

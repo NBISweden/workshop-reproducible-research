@@ -13,14 +13,16 @@ dependencies:
     - python=3.8
     - jupyter=1.0
     - pandas=1.0
+    - jupyter_contrib_nbextensions=0.5.1
+    - nbconvert=5.6.1
     - rise=5.6
     - seaborn=0.10
     - rpy2=3.1
 
     # R and Xaringan
-    - r::r-base=3.6
+    - r-base=3.6.1
     - r-ggplot2=3.3
     - r-kableextra=1.1
     - r-xaringan=0.15
     - phantomjs=2.1
-    - r::r-stringi=1.4.3
+    - r-stringi=1.4.6

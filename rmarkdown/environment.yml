@@ -1,16 +1,18 @@
+name: rmarkdown-env
 channels:
+  - r
   - conda-forge
   - bioconda
   - main
-  - r
 dependencies:
+  - bioconductor-geoquery=2.54.0
+  - bioconductor-rtracklayer=1.46.0
   - r-base=3.6.1
-  - rstudio=1.1.456
-  - r-devtools=2.3.2
-  - r-ggplot2=3.3.2
+  - r-devtools=2.4.0
+  - r-ggplot2=3.3.3
   - r-networkd3=0.4
   - r-pheatmap=1.0.12
   - r-reshape2=1.4.4
-  - r-rmarkdown=2.5
-  - bioconductor-rtracklayer=1.46.0
-  - bioconductor-geoquery=2.54.0
+  - r-rmarkdown=2.7
+  - r-stringi=1.4.3
+  - rstudio=1.1.456
