@@ -1,9 +1,9 @@
 name: rmarkdown-env
 channels:
+  - r
   - conda-forge
   - bioconda
   - main
-  - r
 dependencies:
   - bioconductor-geoquery=2.54.0
   - bioconductor-rtracklayer=1.46.0
