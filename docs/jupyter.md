@@ -36,22 +36,10 @@ for! Here are some useful resources if you want to read more:
 * A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
-## Setup 
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if you haven't
-done so already. Then open up a terminal and go to
-`workshop-reproducible-research/jupyter`.
-
-If you have done the [Conda tutorial](conda.md) you should know how to define
-an environment and install packages using Conda. Create an environment
-containing the following packages from the `conda-forge` channel. Don't
-forget to activate the environment.
-
-* `jupyter`: for running everything
-* `nb_conda`: for integrating Conda with Jupyter Notebook
-* `matplotlib` and `ipywidgets` and `seaborn`: for generating plots
-* `pandas`: for working with data frames and generating tables
+[setup](setup.md) for instructions on how to set it up if you haven't done so
+already. Then open up a terminal and go to `workshop-reproducible-research/jupyter`
+and activate your `jupyter-env` Conda environment.
 
 !!! note "A note on nomenclature"
     * Jupyter: a project to develop open-source software, open-standards, and
@@ -61,16 +49,6 @@ forget to activate the environment.
       managing notebooks. One of the outputs of the Jupyter project.
     * Jupyter notebook: The actual `.ipynb` file that constitutes your
       notebook.
-
-!!! attention "Windows users"
-    If you are doing these exercises through a Docker container you also need
-    the run the following:
-    
-    ```bash
-    mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> \
-        /root/.jupyter/jupyter_notebook_config.py
-    ```
 
 ## Getting started
 
@@ -109,15 +87,10 @@ you won't lose any work if you shut down the server.
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
-If you've done the other tutorials the file names should look familiar; they
-are the files needed for running the RNA-seq workflow in Snakemake. The Running
-tab keeps track of all your processes. The third tab, Clusters, is used for
-parallel computing and won't be discussed further in this tutorial. The Conda
-tab lets us control our Conda environments. Let's take a quick look at that.
-You can see that I'm currently in the `jupyter_exercise` environment which is 
-the name I chose when I created the environment (you may have used another name).
-
-![](images/jupyter_conda.png)
+The Running tab keeps track of all your processes. The third tab, Clusters, is 
+used for parallel computing and won't be discussed further in this tutorial.
+Finally, the Nbextensions tab shows a list of configurable notebook extensions
+that you can use to add functionality to your notebook (as we'll see below).
 
 Let's start by creating an empty notebook by selecting the Files tab and
 clicking New > Notebook > Python 3. This will open up a new tab or window 
@@ -126,16 +99,13 @@ looking like this:
 ![](images/jupyter_empty_nb.png)
 
 !!! tip
-    If you want to start Jupyter Notebooks on a cluster that you SSH to you
-    have to do some port forwarding:
+    If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
+    Uppmax) see the section in the 
+    [Extra material](#running-jupyter-notebooks-on-a-cluster)
     
-    ```bash
-    ssh me@rackham.uppmax.uu.se -L8888:localhost:8888
-    jupyter notebook --ip 0.0.0.0 --no-browser
-    ```
 ## The basics
 
-Jupyter notebooks are made up out of cells, and you are currently standing in
+Jupyter notebooks are made up of cells, and you are currently standing in
 the first cell in your notebook. The fact that it has a green border indicates
 that it's in "Edit mode", so you can write stuff in it. A blue border indicates
 "Command mode" (see below). Cells in Jupyter notebooks can be of two types:
@@ -162,27 +132,30 @@ are only applicable when in command mode (blue frames). Most of them are also
 available from the menus. These shortcuts are also available from the **Help**
 menu in your notebook (there's even an option there to edit shortcuts).
 
-| Shortcut        | Effect                                   |
-|-----------------|------------------------------------------|
-| ++enter++       | enter Edit mode                          |
-| ++escape++      | enter Command mode                       |
-| ++ctrl+enter++  | run the cell                             |
-| ++shift+enter++ | run the cell and select the cell below   |
-| ++alt+enter++   | run the cell and insert a new cell below |
-| ++ctrl+s++      | save the notebook                        |
-| ++tab++         | for code completion or indentation       |
-| ++m++/++y++     | toggle between Markdown and Code cells   |
-| ++d-d++         | delete a cell                            |
-| ++a/b++         | insert cells above/below current cell    |
-| ++x/c/v++       | cut/copy/paste cells                     |
-| ++o++           | toggle output of current cell            |
+| Shortcut            | Effect                                   |
+|---------------------|------------------------------------------|
+| ++enter++           | enter Edit mode                          |
+| ++escape++          | enter Command mode                       |
+| ++ctrl+enter++      | run the cell                             |
+| ++shift+enter++     | run the cell and select the cell below   |
+| ++alt+enter++       | run the cell and insert a new cell below |
+| ++ctrl+s++          | save the notebook                        |
+| ++tab++             | for code completion or indentation       |
+| ++m++/++y++         | toggle between Markdown and Code cells   |
+| ++d++-++d++         | delete a cell                            |
+| ++a++/++b++         | insert cells above/below current cell    |
+| ++x++/++c++/++v++   | cut/copy/paste cells                     |
+| ++o++               | toggle output of current cell            |
 
 ### Writing markdown
 
 Let's use our first cell to create a header. Change the format from 
-Code to Markdown in the drop-down list above the cell. Double click on 
-the cell to enter editing mode (green frame) and input "# My notebook" 
-("#" is used in Markdown for header 1). Run the cell with Shift-Enter. 
+Code to Markdown using the drop-down list in the Notebook Toolbar, or by 
+pressing the ++m++ key when in command mode. Double click on 
+the cell, or hit ++enter++ to enter editing mode (green frame) and input 
+"# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
+++ctrl++-++enter++. 
+
 Tada!
 
 Markdown is a simple way to structure your notebook into sections with
@@ -233,16 +206,15 @@ is one of the things that sets Jupyter Notebook apart from RStudio and
 R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
 work *in* a Jupyter notebook in a different way. This has partly changed with
 newer versions of RStudio, but it's probably still how most people use the two
-tools. Another indication of this is that there is no (good) way to hide the
-code cells if you want to render your Jupyter notebook to a cleaner looking
-report (for a publication for example).
+tools.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
-currently working in. Jupyter Notebook saves it every minute or so, so you will
-already have it available. We can be a little meta and do this from within the
-notebook itself. We do it by running some shell commands in the third code cell
-instead of Python code. This very handy functionality is possible by prepending
-the command with `!`. Try `!ls` to list the files in the current directory.
+currently working in. Jupyter Notebooks are autosaved every minute or so, so you
+will already have it available. We can be a little meta and do this from within 
+the notebook itself. We do it by running some shell commands in the third code 
+cell instead of Python code. This very handy functionality is possible by 
+prepending the command with `!`. Try `!ls` to list the files in the current 
+directory.
 
 Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
 the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's
@@ -300,7 +272,8 @@ Now list all available magics with `%lsmagic` (which itself is a magic). You
 add a question mark to a magic to show the help (*e.g.* `%lsmagic?`). Some of
 them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`,
 ..). Others are useful for debugging and optimizing your code (`%timeit`,
-`%debug`, `%prun`, ..).
+`%debug`, `%prun`, ..). For more information see the 
+[magics documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html).
 
 A very useful magic, in particular when using shell commands a lot in your
 work, is `%%capture`. This will capture the stdout/stderr of any code cell and
@@ -324,6 +297,14 @@ or shell commands.
     print("stderr:" + output.stderr)
     ```
 
+!!! tip
+    You can capture the output of some magics directly like this:
+
+    ```python
+    my_dir = %pwd
+    print(my_dir)
+    ```
+
 The `%%script` magic is used for specifying a program (bash, perl, ruby, ..)
 with which to run the code (similar to a shebang). For some languages it's
 possible to use these shortcuts:
@@ -343,50 +324,144 @@ try to print the quadratic formula with LaTeX!
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
-Python's favorite library for plotting, matplotlib, has its own magic as well:
-`%matplotlib`. Try out the code below, and you should hopefully get a pretty
-sine wave.
+Another useful magic is `%precision` which sets the floating point precision 
+in the notebook. As a quick example, add the following to a cell and run it:
 
 ```python
-%matplotlib inline
-import numpy as np
-import matplotlib.pyplot as plt
-x = np.linspace(0,3*np.pi,100)
-y = np.sin(x)
-fig = plt.figure()
-ax = fig.add_subplot(111)
-line, = plt.plot(x, y, 'r-')
-fig.canvas.draw()
+float(100/3)
 ```
 
-By default rendering is done as rasterized images which can make the quality
-poor. To render in scalable vector graphics format add the following line magic
+Next set the precision to 4 decimal points by running a cell with:
+
+```
+%precision 4
+```
+
+Now run the cell with `float(100/3)` again to see the difference.
+
+Running `%precision` without additional arguments will restore the default.
+
+## Plotting
+
+An essential feature of Jupyter Notebooks is of course the ability to visualize
+data and results via plots. A full guide to plotting in Python is beyond the 
+scope of this course, but we'll offer a few glimpses into the plotting landscape
+of Python.
+
+First of all, Python has a library for plotting called
+[matplotlib](https://matplotlib.org/stable/index.html), which comes packed with 
+functionality for creating high-quality plots. Below is an example of how to 
+generate a line plot of a sine wave.
 
 ```python
-%config InlineBackend.figure_format = 'svg'
-``` 
+# Import packages
+import numpy as np
+import matplotlib.pyplot as plt
+# Generate a set of evenly spaced numbers between 0 and 100 
+x = np.linspace(0,3*np.pi,100)
+# Use the sine function to generate y-values
+y = np.sin(x)
+# Plot the data
+line, = plt.plot(x, y, color='red', linestyle="-")
+```
 
-Try it by adding it to the cell with the lineplot and run it again. 
+By default plots are rendered in the notebook as rasterized images which can 
+make the quality poor. To render in scalable vector graphics format use the 
+`set_matplotlib_formats` function from the IPython package:
 
-!!! tip
-    The `%matplotlib inline` and `%config InlineBackend.figure_format = 'svg'`
-    line magics are only required once per notebook. You could for instance 
-    add them to the first cell where you import matplotlib for plotting.
+```python
+from IPython.display import set_matplotlib_formats
+set_matplotlib_formats('pdf', 'svg')
+```
 
-!!! tip
-    You can capture the output of some magics directly like this:
+Now try running the code for the sine wave plot again.
 
-    ```python
-    my_dir = %pwd
-    print(my_dir)
-    ```
+### Other packages for plotting
 
-## Widgets and plotting
+As we mentioned Matplotlib comes with **a lot** of functionality which is great
+because it allows you to create all sorts of plots and modify them exactly to 
+your liking. However, this can also mean that creating very basic plots might 
+involve a lot of cumbersome coding, when all you want is a simple bar chart!
+
+Fortunately there are a number of Python packages that build upon matplotlib but 
+with a much simplified interface. One such popular package is 
+[seaborn](http://seaborn.pydata.org/). Below we'll see how to generate a nice 
+looking bar plot with error bars.
+
+First import the seaborn package (using an abbreviated name to simplify typing):
+
+```python
+import seaborn as sns
+```
+
+Next we'll load some example data of penguins collected at the Palmer Station, 
+in Antarctica.
+
+```python
+penguins = sns.load_dataset("penguins")
+# Look at first 5 lines of the data
+penguins.head(5)
+```
+
+The most basic way to generate a bar plot of this data with seaborn is:
+
+```python
+sns.barplot(data=penguins)
+```
+
+Simple right? Yes, but maybe not very informative. Here seaborn simply 
+calculates the mean of all numeric variables for the penguins and plots them 
+with error bars representing a 95% confidence interval.
+
+Let's say that instead we want to plot the mean value of the body mass of the
+penguins at the different islands where they were examined.
+
+```
+sns.barplot(data=penguins, x="island", y="body_mass_g", ci="sd", errwidth=.5);
+```
+
+Here we specified to use values in the 'island' column as categories for the 
+x-axis, and values in the 'body_mass_g' column as values for the y-axis. 
+The barplot function of seaborn will then calculate the mean body mass for each
+island and plot the bars. With `ci="sd"` we tell the function to draw the 
+standard deviation as error bars, instead of computing a confidence interval. 
+Finally `errwidth=.5` sets the linewidth of the error bars.
+
+If we instead want to visualize the data as a scatterplot we can use the 
+`sns.scatterplot` function. Let's plot the body mass vs. bill length for all
+penguins and color the data points by species. We'll also move the legend 
+outside of the plotting area and modify the x and y-axis labels:
+
+```python
+# Store the matplotlib axes containing the plot in a variable called 'ax'
+ax = sns.scatterplot(data=penguins, x="bill_length_mm", y="body_mass_g", 
+                     hue="species")
+# Modify the labels of the plot
+ax.set_xlabel("Bill length (mm)")
+ax.set_ylabel("Body mass (g)")
+# Set legend position outside of plot
+ax.legend(bbox_to_anchor=(1,1));
+```
+
+If you want to save a plot to file you can use the `plt.savefig` function. Add
+the following to the bottom of the cell with the scatterplot code:
+
+```python
+plt.savefig("scatterplot.pdf", bbox_inches="tight")
+```
+
+The `bbox_inches="tight"` setting ensures that the figure is not clipped when
+saved to file.
+
+The Seaborn [website](http://seaborn.pydata.org/) contains great tutorials and
+examples of other ways to plot data!
+
+## Interactive widgets
 
 Since we're typically running our notebooks in a web browser, they are quite
 well suited for also including more interactive elements. A typical use case
 could be that you want to communicate some results to a collaborator or to
-a wider audience, and that you would like them to be able to affect how the
+a wider audience, and that you would like them to be able to modify how the
 results are displayed. It could, for example, be to select which gene to plot
 for, or to see how some parameter value affects a clustering. Jupyter notebooks
 has great support for this in the form of *widgets*.
@@ -404,8 +479,8 @@ Let's try to add sliders that allow us to change the frequency, amplitude and
 phase of the sine curve we plotted previously.
 
 ```python
-# Import the interact and interactive functions from ipywidgets
-from ipywidgets import interact, interactive
+# Import the interactive function from ipywidgets
+from ipywidgets import interactive
 # Also import numpy (for calculating the sine curve) 
 # and pyplot from matplotlib for plotting
 import numpy as np
@@ -420,8 +495,7 @@ def sine_curve(A, f, p):
     # Calculate the y values using the supplied parameters
     y = A*np.sin(x*f+p)
     # Plot the x and y values ('r-' specifies color and line style)
-    plt.plot(x, y, 'r-')
-    plt.show()
+    plt.plot(x, y, color='red', linestyle="-")
 
 # Here we supply the sine_curve function to interactive, 
 # and set some limits on the input parameters
@@ -516,8 +590,8 @@ an argument in the call to `interactive`. If you need help, click below.
 ??? note "Click to see how to add a color picker"
     
     ```python
-    # Import the interact and interactive functions from ipywidgets
-    from ipywidgets import interact, interactive
+    # Import the interactive function from ipywidgets
+    from ipywidgets import interactive
     # Also import numpy (for calculating the sine curve) 
     # and pyplot from matplotlib for plotting
     import numpy as np
@@ -534,7 +608,6 @@ an argument in the call to `interactive`. If you need help, click below.
         y = A*np.sin(x*f+p)
         # Plot the x and y values 
         plt.plot(x, y, color=color) ## <- Use color from widget here
-        plt.show()
     
     # Here we supply the sine_curve function to interactive, 
     # and set some limits on the input parameters
@@ -549,6 +622,10 @@ an argument in the call to `interactive`. If you need help, click below.
     # Display the widgets and the plot
     interactive_plot
     ```
+
+!!! attention "Color picking"
+    Note that you may have to close the color picker once you've made your 
+    choice in order to make the plot update.
 
 ### Other interactive plots
 
@@ -569,12 +646,43 @@ interactive graphs in Jupyter notebooks. Some other alternatives are:
   datasets, but it's easy to use and works quite seamlessly.
 
 !!! note "Quick recap"
-    In the two previous sections we've learned:
+    In the three previous sections we've learned:
 
     * How magics can be used to extend the power of Jupyter notebooks, and the
       difference between line magics and cell magics.
     * How to switch between different languages by using magics.
-    * How to use widgets and the mpld3 library for interactive plotting.
+    * How to do some basic plotting in Jupyter.
+    * How to implement interactive widgets.
+
+## Jupyter extensions
+
+Jupyter Notebook extensions are add-ons that can increase the functionality of
+your notebooks. These were installed in the [Setup](#setup) section of this 
+tutorial by including the `jupyter_contrib_nbextensions` package in the conda
+environment file. You can read more about the extensions 
+[here](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/). 
+
+To manage extensions go to the Jupyter dashboard in your browser and click the
+**Nbextensions** tab. You should see something similar to this:
+
+![](images/jupyter_nbextensions.png)
+
+Clicking an extension in the list displays more information about it. To 
+enable/disable extensions simply click the checkbox next to the extension name 
+in the list. Some useful extensions include 
+
+- **Hide input all**, which allows you to hide all code cells with the click of 
+  a button.
+  
+- **Collapsible Headings**, which allows you to collapse sections below markdown 
+  headings to increase readability.
+  
+- **Table of Contents (2)**, which adds a table of contents to the notebook making
+  navigation a lot quicker especially for long notebooks.
+  
+Feel free to peruse the list and find your own favourites! Keep in mind that 
+these are unofficial, community-contributed extensions and as such they come 
+with few, if any, guarantees.
 
 ## Using the command line
 
@@ -600,6 +708,14 @@ as [Pandoc](pandoc.org) or a **TeX** environment.
 
 Try converting the `Untitled.ipynb` notebook that you have been working on so
 far to HTML using `jupyter nbconvert`.
+
+!!! tip Exporting notebooks with extensions
+
+    To export notebooks in the form they appear with Jupyter Extensions activated
+    you can make use of the `nbextensions` template that is installed with the
+    `jupyter_contrib_nbextensions` package. Adding `--template=nbextensions` to 
+    the `jupyter nbconvert` call should do the trick, but note that not all 
+    extensions are guaranteed to display right after exporting.
 
 ### Executing notebooks
 
@@ -629,48 +745,15 @@ understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). We
 have already seen how to define the project environment in the [Conda
 tutorial](conda.md) and how to set up the workflow in the [Snakemake
-tutorial](snakemake.md). Here we explore the results from a the snakemake
-workflow in a Jupyter notebook as an example of how you can document your
-day-to-day work as a dry lab scientist.
+tutorial](snakemake.md). Here we explore the results from the
+[Snakemake tutorial](snakemake.md) and generate a Supplementary Material file
+with some basic stats.
 
-We will create a report similar to the one in the [R Markdown tutorial](
-rmarkdown.md) and generate and visualize read coverage across samples for the
-_S. aureus_ genome.
-
-### Install a new Conda environment
-
-For the purposes of this part of the tutorial we will install a new Conda
-environment and run a slightly slimmed down version of the MRSA Snakemake
-workflow to generate some output to work with.
-
-In the `jupyter/` directory you'll find a `Snakefile` containing the workflow
-as well as a Conda `environment.yml` file which contains all packages
-required for both the execution of the workflow as well as the downstream 
-analyses we will perform in the Jupyter notebook.
-  
-Install *a new* Conda environment using the `environment.yml` file and then
-activate it. You can choose the name of the environment yourself. 
-Here's an example using the name `jupyter-snakemake`:
+In the `jupyter/` directory you will find a notebook called 
+`supplementary_material.ipynb`. Open this notebook with jupyter by running:
  
 ```bash
-conda env create -f environment.yml -n jupyter-snakemake
-# Activate the environment 
-conda activate jupyter-snakemake
-```
-
-!!! attention
-    If you are doing these exercises through a Docker container you should
-    instead update the current conda base environment by running `conda env
-    update -f environment.yml -n base`.
-
-### Open the MRSA notebook
-
-In the `jupyter/` directory you will also see a notebook called `mrsa_notebook
-.ipynb`. With the newly created conda environment active, open this notebook
- directly by running:
- 
-```bash
-jupyter notebook mrsa_notebook.ipynb
+jupyter notebook supplementary_material.ipynb
 ```
 
 !!! tip
@@ -679,247 +762,181 @@ jupyter notebook mrsa_notebook.ipynb
     help you train how to structure and keep note of your work with a 
     notebook.
 
-You will see that the notebook contains only two cells: one with some 
-import statements and one with two function definitions. We'll come back 
-to those later. Now, run the cells and add a new empty cell to the notebook. 
-Typically the Snakemake workflow would be executed from a terminal but let's 
-try to actually run the workflow directly from within the Jupyter notebook. 
+You will see that the notebook contains only a little markdown text and a code
+cell with a function `get_geodata`. We'll start by adding a cell with some 
+import statements. 
 
-In the current directory you'll find the necessary `Snakefile` and `config.yml`
-to run the workflow. In an empty cell in your notebook, add code to run the
-workflow. Then run the cell.     
-
-??? note "Click to see how to run the workflow from a cell"
-
-    ```
-    !snakemake
-    ```
-
-Once the workflow is finished we can start to explore the results. 
-
-### Plot QC status
-First let's take a look at the FastQC summary for the samples. Add the
-following code to a cell then run the cell. This will extract and concatenate
-summary files for all samples using FastQC output in the `intermediate/`
-directory. 
+Create a new cell after the `get_geodata` function but 
+**before** the Reproducibility section and add the following to it:
 
 ```python
-import glob
-import os
-import zipfile
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+```
+This imports the `pandas` (for working with tables), `seaborn` and 
+`matplotlib.pyplot` (for plotting) and `numpy` (for numerical operations)
+Python modules.
 
-with open('summary.txt', 'w') as fhout:
-    # Find all zip files from fastqc
-    for f in glob.glob('intermediate/*_fastqc.zip'):
-        # Extract the archive name
-        arc_name = os.path.splitext(os.path.basename(f))[0]
-        # Open up the 'summary.txt' in the zip archive
-        # and output the contents to 'summary.txt'
-        with zipfile.ZipFile(f) as myzip:
-            with myzip.open('{arc_name}/summary.txt'.format(arc_name=arc_name), 'r') as fhin:
-                fhout.write(fhin.read().decode())
+Also add:
+```python
+from IPython.display import set_matplotlib_formats
+set_matplotlib_formats('pdf', 'svg')
 ```
 
-Read the summary results into a data frame using the pandas package:
+to set high-quality output for plots.
+
+Run the cell and create a new one below it.
+
+In the next cell we'll define some parameters to use for the notebook:
+```python
+counts_file="results/tables/counts.tsv"
+multiqc_file="intermediate/multiqc_general_stats.txt"
+rulegraph_file="results/rulegraph.png"
+SRR_IDs=["SRR935090","SRR935091","SRR935092"]
+GSM_IDs=["GSM1186459","GSM1186460","GSM1186461"]
+GEO_ID="GSE48896"
+```
+
+As you can see we add paths to results files and define lists with some sample 
+IDS. Run this cell and add a new one below it.
+
+Next, we'll fetch some sample information from NCBI using the `get_geodata`
+function defined at the start of the notebook and collate it into a dataframe.
 
 ```python
-# Read the concatenated summary.txt
-qc = pd.read_csv("summary.txt", sep="\t", header=None,
-    names=["Status","Statistic","Sample"], index_col=0)
-# Rename strings in the Sample column
-qc["Sample"] = [x.rstrip(".fastq.gz") for x in qc["Sample"]]
-# Map the status strings to numeric values for plotting
-qc.rename(index={"PASS": 1, "WARN": 0, "FAIL": -1}, inplace=True)
-# Convert from long to wide format
-qc = pd.pivot_table(qc.reset_index(), columns="Sample", index="Statistic")
+id_df = pd.DataFrame(data=GSM_IDs, index=SRR_IDs, columns=["geo_accession"])
+geo_df = get_geodata(GEO_ID)
+name_df = pd.merge(id_df, geo_df, left_on="geo_accession", right_index=True)
+# Create a dictionary to rename sample ids in downstream plots
+name_dict = name_df.to_dict() 
 ```
 
-Take a look at the `qc` DataFrame by adding the variable to an empty cell
-and running the cell.
+Take a look at the contents of the `name_df` dataframe (_e.g._ run a cell with 
+that variable only to output it below the cell).
 
-Now let's plot the heatmap using the `heatmap` function from the `seaborn` 
-package.
+Now we'll load some statistics from the QC part of the workflow, specifically
+the 'general_stats' file from `multiqc`. Add the following to a new cell and run
+it:
 
 ```python
-# Plot the heatmap
-ax = sns.heatmap(qc["Status"], cmap=["Red","Yellow","Green"], linewidth=.5,
-    cbar=None)
-ax.set_ylim(11,0); # Only necessary in cases where matplotlib cuts the y-axis
-``` 
-
-To save the plot to a file add the following to the cell:
-```python
-plt.savefig("qc_heatmap.png", dpi=300, bbox_inches="tight")
+qc = pd.read_csv(multiqc_file, sep="\t")
+qc.rename(columns=lambda x: x.replace("FastQC_mqc-generalstats-fastqc-", "").replace("_", " "), inplace=True)
+qc = pd.merge(qc, name_df, left_on="Sample", right_index=True)
+qc
 ```
 
-### Genome coverage
-In the workflow reads were aligned to the _S. aureus_ reference genome 
-using `bowtie2`. Let's take a look at genome coverage for the samples. To 
-do this we will first generate coverage files with `bedtools`.
+In the code above we load the multiqc file, rename the columns by stripping the 
+`FastQC_mqc-generalstats-fastqc-` part from column names and replace underscores
+with spaces. Finally the table is merged with the information obtained in the 
+step above and output to show summary statistics from the QC stage.
 
-Add the following to a new cell:
-
-```
-%%bash
-for f in $(ls intermediate/*.sorted.bam);
-do
-    bedtools genomecov -ibam $f -d | gzip -c > $f.cov.gz
-done
-```
-This will run `bedtools genomecov` on all bam-files in the `intermediate/` 
-directory and generate coverage files. 
-
-Next, read coverage files and generate a table of genome positions and 
-aligned reads in each sample. For this we make use of the `read_cov_files` 
-function defined in the beginning of the notebook.
+Next it's time to start loading gene count results from the workflow. Start by 
+reading the counts file, and edit the columns and index:
 
 ```python
-files = glob.glob("intermediate/*.sorted.bam.cov.gz")
-coverage_table = read_cov_tables(files)
-```
-Take a look at the `coverage_table` DataFrame. Because this is a relatively 
-large table you can use:
-```python
-coverage_table.head()
-```
- to only view the first 5 rows. With
-
-```python
-coverage_table.sample(5)
-``` 
-you will see 5 randomly sampled rows.
-
-Next let's calculate reads aligned to the genome using a sliding window. 
-For this we'll use the `sliding_window` function defined at the start of the
-notebook. You can try different sizes of the sliding window, in the example
-below we're using 10 kbp.
-
-```python
-coverage_window = sliding_window(coverage_table, window=10000)
+# Read count data
+counts = pd.read_csv(counts_file, sep="\t", header=0)
+# Rename columns to extract SRR ids
+counts.rename(columns = lambda x: x.split("/")[-1].replace(".sorted.bam",""), inplace=True)
+# Set index to gene ids
+gene_names = dict(zip([x[0] for x in counts.index], [x[1] for x in counts.index]))
+counts.index = [x[0] for x in counts.index]
 ```
 
-Now we'll plot the read coverage for all samples:
+Take a look at the `counts` dataframe to get an idea of the data structure. As
+you can see the dataframe shows read counts for genes (rows) in each sample 
+(columns). 
+
+The last few rows that are prefixed with '__' correspond to summary
+statistics output from `htseq-count` for unassigned reads. We'll extract 
+these lines from the dataframe for downstream visualization:
 
 ```python
-# Set the figure size
-fig = plt.figure(figsize=(6,4))
-# Set colors
-colors = sns.color_palette("Dark2", n_colors=3)
-# Set legend handles
-handles = []
-# Iterate samples and plot coverage
-for i, sample in enumerate(coverage_window.columns):
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample],
-        linewidth=.75, color=colors[i])
-    # Update legend handles
-    handles.append(mpatches.Patch(color=colors[i], label=sample))
-# Set y and x labels
-ax.set_ylabel("Reads aligned");
-ax.set_xlabel("Genome position");
-# Plot legend
-plt.legend(handles=handles);
+# Extract stats from htseq starting with "__"
+counts_other = counts.loc[counts.index.str.startswith("__")]
+counts_other = counts_other.rename(index=lambda x: x.lstrip("_"))
+# Drop the "__" lines from counts
+counts = counts.drop(counts.loc[counts.index.str.startswith("__")].index)
 ```
 
-Not too bad, but it's a bit difficult to see individual samples in one plot.
-
-Let's also make three subplots and plot each sample separately. First we 
-define the subplots grid using `plt.subplots`, then each sample is plotted
-in a separate subplot using the `ax=` keyword argument in `sns.lineplot`:
+Now let's generate a barplot showing number of reads assigned to genes as well
+as reads unassigned for various reasons. First we sum up all assigned reads per 
+sample and merge it with the unassigned stats from the previous step:
 
 ```python
-# Define the subplots
-fig, axes = plt.subplots(ncols=1, nrows=3, sharey=True, sharex=True,
-    figsize=(6,6))
-# Iterate samples and plot in separate subplot
-for i, sample in enumerate(coverage_window.columns):
-    ax = sns.lineplot(x=coverage_window.index, y=coverage_window[sample],
-        ax=axes[i], linewidth=.75)
-    ax.set_title(sample)
-    ax.set_ylabel("Reads aligned");
-# Adjust space between subplots
-plt.subplots_adjust(hspace=.3)
+# Sum counts in 'genes' and merge with 'other' categories
+count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
+count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
 ```
 
-We can also visualize how the coverage correlates between the samples using
-the `scatterplot` function in `seaborn`:
+Now for the plotting:
 
 ```python
-sns.scatterplot(x=coverage_window["SRR935090"],y=coverage_window["SRR935091"])
+# Set color palette to 'husl', with number of colors corresponding to categories
+# in the count_data
+colors = sns.color_palette("husl", n_colors=count_data.shape[1])
+# Create a stacked barplot
+ax = count_data.plot(kind="bar", stacked=True, color=colors)
+# Move legend and set legend title
+ax.legend(bbox_to_anchor=(1,1), title="Feature");
 ```
 
-Let's see if you can figure out how to visualize coverage correlation as 
-above for all sample combinations in a subplot figure. Try to combine what we
-used in the previous two cells. Then take a look at the answer below.
+The final plot will be a heatmap of gene counts for a subset of the genes. We'll
+select genes whose standard deviation/mean count across samples is greater than 
+1.2, **and** have a maximum of at least 5 reads in 1 or more sample:
 
-??? note "Click to see how to plot correlations in subplots"
-    ```
-    fig, axes = plt.subplots(ncols=3, nrows=1, figsize=(12,3), sharex=False,
-        sharey=False)
-    ax1 = sns.scatterplot(x=coverage_window["SRR935090"],
-        y=coverage_window["SRR935091"], ax=axes[0])
-    ax2 = sns.scatterplot(x=coverage_window["SRR935090"],
-        y=coverage_window["SRR935092"], ax=axes[1])
-    ax3 = sns.scatterplot(x=coverage_window["SRR935092"],
-        y=coverage_window["SRR935091"], ax=axes[2])
-    plt.subplots_adjust(wspace=.4)
-    ```
+```python
+heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
+```
 
-!!! tip
-    Seaborn actually has a function that essentially let's us generate the plot
-    above with one function call. Take a look at the `pairplot` function by
-    running `?sns.pairplot` in a new cell. Can you figure out how to use it
-    with our data?
+In order to make the heatmap more informative we'll also add gene names to the
+rows of the heatmap data, and replace the SRR ids with the title of samples
+used in the study:
+```python
+heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
+heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
+```
 
-### Integrating the notebook into the workflow
+Now let's plot the heatmap. We'll log-transform the counts, set color scale 
+to Blue-Yellow-Red and cluster both samples and genes using 'complete' linkage
+clustering:
 
-So now we have a Jupyter notebook that uses output from a Snakemake workflow
-and produces some summary results and plots. Wouldn't it be nice if this was
-actually part of the workflow itself? We've already seen how we can [execute
-notebooks from the commandline](#executing-notebooks) using `nbconvert`. If 
-you've done the [Snakemake](snakemake.md) tutorial you should have an 
-understanding of how to add/modify rules in the `Snakefile` that's available
-in the current `jupyter/` folder. 
+```python
+with sns.plotting_context("notebook", font_scale=0.7):
+    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
+                        method="complete", yticklabels=True, linewidth=.5,
+                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
+    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
+```
 
-Make sure you save the `mrsa_notebook.ipynb` notebook. Then open the `Snakefile`
-in a text editor and try to add a rule called`generate_report` that uses 
-the `mrsa_notebook.ipynb` you've been working on and produces a report file
-called `report.html` in the `results/` directory. **Hint**: because the notebook
-uses output from the current Snakemake workflow the input to `generate_report` 
-should come from rules that are run towards the end of the workflow. 
+In the code above we use the seaborn `plotting_context` function to scale all 
+text elements of the heatmap in one go.
 
-Try to add the rule on your own first. If you get stuck, take a look at the 
-example below.
+As a final step we'll add some info for reproducibility under the 
+**Reproducibility** section. To add the overview image of the workflow found in
+`results/rulegraph.png` we can use the `Image` function from `IPython.display`:
 
-??? note "Click to see an example on how to implement `generate_report`"
+```python
+from IPython.display import Image
+Image(rulegraph_file)
+```
 
-    ```
-    rule generate_report:
-    """
-    Generate a report from a Jupyter notebook with nbconvert
-    """
-    input:
-        "results/tables/counts.tsv",
-        "results/multiqc.html"
-    output:
-        "results/report.html"
-    shell:
-        """
-        jupyter \
-            nbconvert \
-            --to html \
-            --execute mrsa_notebook.ipynb \
-            --output {output}
-        """
-    ```
+Let's also output the full conda environment so that all packages and versions 
+are included in the notebook. There are several ways this can be done, for 
+example you could simply add:
 
-To get snakemake to run the new rule as part of the rest of the workflow 
-(*i.e.* when only running `snakemake`) add `results/report.html` to the input
-of the `all` rule. Now that the notebook is integrated into the workflow you
-can remove the cell where we executed snakemake (*e.g.* using `!snakemake`).
+```python
+!conda list
+```
 
-Finally, try to re-run the updated workflow either by deleting the `data/`, 
-`intermediate/` and `results/` directories and executing `snakemake` again, or
-by running `snakemake --forceall`.
+to the end of the notebook.
+
+!!! tip "Snakemake integration"
+
+    If you want to know more about how notebooks can be integrated into 
+    Snakemake worfklows, see the Extra material at the end of this tutorial
 
 ## Sharing your work
 
@@ -927,9 +944,9 @@ The files you're working with come from a GitHub repo. Both GitHub and Bitbucket
 can render Jupyter notebooks as well as other types of Markdown documents. Now
 go to our GitHub repo at
 [https://github.com/NBISweden/workshop-reproducible-research](https://github.com/NBISweden/workshop-reproducible-research)
-and navigate to `jupyter/mrsa_notebook.ipynb`.
+and navigate to `jupyter/supplementary_material.ipynb`.
 
-![](images/jupyter_mrsa.png)
+![](images/jupyter_supplementary.png)
 
 As you can imagine, having this very effortless way of sharing results
 can greatly increase the visibility of your work. You work as normal on
@@ -945,10 +962,11 @@ past an URL to any notebook and they will render it for you. Go to
 this out with our notebook.
 
 ```no-highlight
-https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/mrsa_notebook.ipynb
+https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/supplementary_material.ipynb
 ```
 
 ### Shared interactive notebooks
+
 So far we've only shared static representations of notebooks. A strong
 trend at the moment is to run your notebooks in the cloud, so that the
 person you want to share with could actually execute and modify your
@@ -1018,3 +1036,264 @@ trying out and showing existing notebooks rather than making new ones.
     student, we encourage you to embrace this new development
     wholeheartedly, for it will make your research better and make you into
     a better scientist. And you will have more fun.
+
+## Extra material
+
+### Running jupyter notebooks on a cluster
+
+* Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
+```
+ssh <your-user-name>@rackham1.uppmax.uu.se
+```
+
+* Create/activate a conda environment containing `jupyter` then run `python` to 
+  start a Python console. Type:
+
+```python
+import IPython.lib
+IPython.lib.passwd()
+```
+* Enter some password and then copy the line starting with `'sha1:'`
+* Create a config file named _e.g._ `my_jupyter_config.py` and add this to it:
+```python
+c = get_config()
+# Notebook config
+#c.NotebookApp.certfile = u''
+c.NotebookApp.ip = 'localhost'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = u'sha1:...' #<-- Update with your 'sha1:' string here
+c.NotebookApp.port = 9990
+```
+* Save the file and then start the jupyter server on Uppmax with:
+```bash
+jupyter notebook --config my_jupyter_config.py
+```
+
+**On your local computer**
+* Forward port 8080 to the remote port on the Uppmax login node:
+```bash
+ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.se
+```
+
+* Connect to the jupyter server by opening `localhost:8080` in your browser. 
+  You should be prompted for the password you generated.
+
+You are now (hopefully) accessing the jupyter server that's running on Upmmax, 
+via your local browser.
+
+### Integrating notebooks with Snakemake workflows
+
+In the [case study](#jupyter-and-the-case-study) section of this tutorial we
+created a Jupyter notebook that used output from a Snakemake workflow
+and produced some summary results and plots. Wouldn't it be nice if this was
+actually part of the workflow itself? To generate a HTML version of the notebook
+we can use what we learned in the section about 
+[Converting noteboks](#converting-notebooks). The command to execute the notebook
+and save it in HTML format in a file `results/supplementary.html` would be:
+
+```bash
+jupyter nbconvert --to HTML --output-dir results --output supplementary.html --execute supplementary_material.ipynb
+```
+
+This command could be used in a rule, _e.g._ `make_supplementary`, the input of 
+which would be `results/tables/counts.tsv`, `intermediate/multiqc_general_stats.txt`, 
+and `results/rulegraph.png`. See if you can work out how to implement such a 
+rule at the end of the `Snakefile` found in the `jupyter/` directory.  Click 
+below to see an example.
+
+??? note "Click to see an example of the `make_supplementary` rule"
+
+    ```python
+    rule make_supplementary:
+        input:
+            counts = "results/tables/counts.tsv",
+            multiqc_file = "intermediate/multiqc_general_stats.txt",
+            rulegraph = "results/rulegraph.png"
+        output:
+            "results/supplementary.html"
+        params:
+            base = lambda wildcards, output: os.path.basename(output[0]),
+            dir = lambda wildcards, output: os.path.dirname(output[0])
+        shell:
+            """
+            jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
+                --execute supplementary_material.ipynb
+            """
+    ```
+
+!!! note Install missing dependencies
+
+    The conda enivronment for the jupyter tutorial does not contain packages
+    required to run the full snakemake workflow. So if you wish to test jupyter
+    integration fully you should update the conda environment by running 
+    `conda install snakemake-minimal fastqc sra-tools multiqc bowtie2 tbb 
+    samtools htseq bedtools wget graphviz`
+
+#### Moar integration! 
+
+Snakemake actually supports the execution of notebooks via the `notebook:` 
+rules directive. See more about Jupyter integration in the 
+[snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
+In the `notebook:` directive of such a rule you specify the path to a jupyter 
+notebook (relative to the Snakefile) which is then executed when 
+the rule is run. 
+
+So how is this useful? 
+
+In the notebook itself this gives you access to a `snakemake` object 
+containing information about **input** and **output** files for the rule via 
+`snakemake.input` and `snakemake.output`. Similarly, you can access rule 
+**wildcards** with `snakemake.wildcards`, **params** with `snakemake.params`, 
+and **config** settings with `snakemake.config`.
+
+When snakemake runs the rule with the `notebook:` directive `jupyter-nbconvert` 
+is used to execute the notebook. No HTML output is generated here but it is 
+possible to store a version of the notebook in its final processed form by 
+adding 
+
+```python
+log:
+    notebook="<path>/<to>/<processed>/<notebook.ipynb>"
+```
+
+to the rule.
+
+Because you won't get the notebook in full HTML glory, this type of 
+integration is better suited if you want to use a notebook to generate figures 
+and store these in local files (_e.g._ pdf/svg/png formats). 
+
+We'll use the `supplementary_material.ipynb` notebook as an example! Let's say
+that instead of exporting the entire notebook to HTML we want a rule that 
+outputs pdf versions of the barplot and heatmap figures we created.
+
+Let's start by setting up the rule. For simplicity we'll use the same input as
+when we edited the notebook in the first place. The output will be 
+`results/barplot.pdf` and `results/heatmap.pdf`. Let's also output a finalized 
+version of the notebook using the `log: notebook=` directive:
+
+```python
+rule make_supplementary_plots:
+    input:
+        counts = "results/tables/counts.tsv",
+        multiqc = "intermediate/multiqc_general_stats.txt",
+        rulegraph = "results/rulegraph.png"
+    output:
+        barplot = "results/barplot.pdf",
+        heatmap = "results/heatmap.pdf"
+    log:
+        notebook = "results/supplementary.ipynb"
+```
+
+The notebook will now have access to `snakemake.input.counts`, 
+`snakemake.output.barplot` and `snakemake.output.heatmap` when executed from
+within the workflow. Let's go ahead and edit the notebook! In the cell where we
+defined notebook parameters edit the code so that it looks like this:
+
+```python
+counts_file=snakemake.input.counts
+multiqc_file=snakemake.input.multiqc
+rulegraph_file=snakemake.input.rulegraph
+
+SRR_IDs=snakemake.params.SRR_IDs
+GSM_IDs=snakemake.params.GSM_IDs
+GEO_ID=snakemake.params.GEO_ID
+```
+
+Notice that we set the `SRR_IDs`, `GSM_IDs` and `GEO_ID` variables using 
+variables in `snakemake.params`? However, we haven't defined these in our rule 
+yet so let's go ahead and do that now. Add the `params` section so that the 
+`make_supplementary_plots` in the Snakefile looks like this:
+
+```python
+rule make_supplementary_plots:
+    input:
+        counts = "results/tables/counts.tsv",
+        multiqc = "intermediate/multiqc_general_stats.txt",
+        rulegraph = "results/rulegraph.png"
+    output:
+        barplot = "results/barplot.pdf",
+        heatmap = "results/heatmap.pdf"
+    log:
+        notebook = "results/supplementary.ipynb"
+    params:
+        SRR_IDs = ["SRR935090","SRR935091","SRR935092"],
+        GSM_IDs = ["GSM1186459", "GSM1186460", "GSM1186461"],
+        GEO_ID = "GSE48896"
+    notebook: "supplementary_material.ipynb"
+```
+
+!!! tip Generalization
+    
+    One way to further generalize this rule could be to define the SRR_IDs, GSM_IDs
+    and GEO_ID parameters in a config file instead, in which case they would be 
+    directly accessible from within the notebook using `snakemake.config['SRR_IDs']`
+    etc.
+
+Now the rule contains everything needed, but we still need to edit the notebook
+to save the plots to the output files. First, edit the cell that generates the 
+barplot so that it looks like this:
+
+```python
+count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
+count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
+
+colors = sns.color_palette("husl", n_colors=count_data.shape[1])
+ax = count_data.plot(kind="bar", stacked=True, color=colors)
+ax.legend(bbox_to_anchor=(1,1), title="Feature");
+plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight") ## <-- Add this line!
+```
+
+Finally, edit the cell that generates the heatmap so that it looks like this:
+
+```python
+heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
+heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
+heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
+with sns.plotting_context("notebook", font_scale=0.7):
+    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
+                        method="complete", yticklabels=True, linewidth=.5,
+                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
+    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
+    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight") ## <-- Add this line!
+```
+
+Now you can run the following to generate the plots:
+
+```bash
+snakemake -j 1 make_supplementary_plots
+```
+
+### Presentations with Jupyter
+
+As if all the above wasn't enough you can also create presentations/slideshows
+with Jupyter! Simply use conda to install the 
+[RISE](https://rise.readthedocs.io/en/stable/) extension to your jupyter 
+environment:
+
+```bash
+conda install -c conda-forge rise
+```
+
+then open up a notebook of your choice. In the menu click **View**->**Cell 
+Toolbar**->**Slideshow**. Now every cell will have a drop-down in the upper
+right corner allowing you to set the cell type:
+
+- **Slide**: a regular slide
+- **Sub-Slide**: a regular slide that will be displayed _below_ the previous
+- **Fragment**: these cells split up slides so that content (fragments) are 
+  added only when you press Space
+- **Skip**: these cells will not appear in the presentation
+- **Notes**: these cells act as notes, shown in the speaker view but not in the 
+  main view
+  
+The presentation can be run directly from the notebook by clicking the 
+'Enter/Exit RISE Slideshow' button (looks like a bar chart) in the toolbar, or 
+by using the keyboard shortcut `Alt-r`. Running it directly from a notebook 
+means you can also edit and run cells during your presentation. The downside is
+that the presentation is not as portable because it may rely on certain software 
+packages that other people are not comfortable with installing.
+
+You can also export the notebook to an HTML-file with `jupyter nbconvert 
+--execute --to SLIDES <your-notebook.ipynb>`. The resulting file, with the 
+slideshow functionality included, can be opened in any browser. However, in 
+this format you cannot run/edit cells.

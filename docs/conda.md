@@ -33,77 +33,11 @@ A Conda *environment* is essentially a directory that is added to your PATH and
 that contains a specific collection of packages that you have installed.
 Packages are symlinked between environments to avoid unnecessary duplication.
 
-## Setup
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[intro](tutorial_intro.md) for instructions on how to set it up if, you haven't
-done so already. Then open up a terminal and go to
-`workshop-reproducible-research/conda`. Instructions below assume that you are
-standing in `conda/` unless otherwise specified (*e.g.* if it says "create
-a file", it means save it in `conda/`).
-
-Go ahead and install Conda as described below. *Make sure to download the
-correct file for your OS*.
-
-!!! attention "Windows users"
-    If you are doing the tutorials by running a Docker container on your
-    Windows machine, Conda will already be installed for you. You can then jump
-    ahead to the last point about setting up the default channels (`conda
-    config`) and then go ahead with the practical exercise.
-
-    If you are using the Linux Bash Shell, follow the installation instructions 
-    for Linux users (see below).
-
-!!! attention
-    If you already have installed Conda but want to update, you should be able
-    to simply run `conda update conda` and subsequently `conda init`, and skip
-    the installation instructions below.
-
-```bash
-# Install Miniconda3 for 64-bit Mac
-curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
-bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
-rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
-```
-
-```bash
-# Install Miniconda3 for 64-bit Linux
-curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
-bash Miniconda3-4.7.12.1-Linux-x86_64.sh
-rm Miniconda3-4.7.12.1-Linux-x86_64.sh
-```
-
-!!! note
-    A note regarding installing Conda: there are three Conda-related things you
-    may have encountered: the first is Conda, the package and environment
-    manager we've been talking about so far. Second is *Miniconda*, which is the
-    installer for Conda. The third is *Anaconda*, which is a distribution of not
-    only Conda, but also over 150 scientific Python packages. It's generally
-    better to stick with only Conda, *i.e.* installing with Miniconda, rather
-    than installing 3 GB worth of packages you may not even use.
-
-The installer will ask you questions during the installation:
-
-- Do you accept the license terms? (Yes)
-- Do you accept the installation path or do you want to chose a different one?
-  (Probably yes)
-- Do you want to run `conda init` to setup Conda on your system? (Yes)
-
-Restart your shell so the settings in `~/.bashrc`/`~/.bash_profile` can take
-effect. You can verify that the installation worked by running:
-
-```bash
-conda --version
-```
-
-* Next, we will setup the default channels (from where packages will be searched
-  for and downloaded if no channel is specified).
-
-```
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-```
+[setup](setup.md) for instructions on how to set it up if, you haven't done so
+already. Then open up a terminal and go to `workshop-reproducible-research/conda`. 
+Instructions below assume that you are standing in `conda/` unless otherwise
+specified (*e.g.* if it says "create a file", it means save it in `conda/`).
 
 ## Environment basics
 
@@ -371,41 +305,41 @@ section: the material here should be considered tips and tricks from people who
 use Conda as part of their daily work. You thus don't need to use these things
 unless you want to, and you can even skip this part of the lesson if you like!
 
-### Managing python versions
+### Managing Python versions
 
-With Conda it's possible to keep several different versions of python on your
+With Conda it's possible to keep several different versions of Python on your
 computer at the same time, and switching between these versions is very easy.
-However, a single Conda environment can only contain one version of python.
+However, a single Conda environment can only contain one version of Python.
 
-#### Your current python installation
+#### Your current Python installation
 
-The Conda base environment has its own version of python installed.
+The Conda base environment has its own version of Python installed.
 When you open a terminal (after having installed Conda on your system) this base
 environment is activated by default (as evidenced by `(base)` prepended to your
-prompt). You can check what python version is installed in this environment by
-running `python --version`. To see the exact path to the python executable type
+prompt). You can check what Python version is installed in this environment by
+running `python --version`. To see the exact path to the Python executable type
 `which python`.
 
-In addition to this your computer may already have python installed in a
+In addition to this your computer may already have Python installed in a
 separate (system-wide) location outside of the Conda installation. To see if
 that is the case type `conda deactivate` until your prompt is not prepended
 with a Conda environment name. Then type `which python`. If a path was printed
-to the terminal (*e.g.* `/usr/bin/python`) that means some python version is
+to the terminal (*e.g.* `/usr/bin/python`) that means some Python version is
 already installed in that location. Check what version it is by typing `python
 --version`.
 
 Now activate the base Conda environment again by typing `conda activate` (or
-the equivalent `conda activate base`) then check the python installation path
+the equivalent `conda activate base`) then check the Python installation path
 and version using `which` and `python --version` as above. See the difference?
 When you activate a Conda environment your `$PATH` variable is updated so that
 when you call `python` (or any other program) the system first searches the
 directory of the currently active environment.
 
-#### Different python versions
+#### Different Python versions
 
 When you create a new Conda environment you can choose to install a specific
-version of python in that environment as well. As an example, create an
-environment containing python version `3.5` by running:
+version of Python in that environment as well. As an example, create an
+environment containing Python version `3.5` by running:
 
 ```bash
 conda create -n py35 python=3.5
@@ -419,9 +353,9 @@ To activate the environment run:
 conda activate py35
 ```
 
-You now have a completely separate environment with its own python version.
+You now have a completely separate environment with its own Python version.
 
-Let's say you instead want an environment with python version `2.7` installed.
+Let's say you instead want an environment with Python version `2.7` installed.
 You may for instance want to run scripts or packages that were written for
 Python 2.x and are thus incompatible with Python 3.x. Simply create the new
 Conda environment with:
@@ -435,13 +369,13 @@ Activate this environment with:
 conda activate py27
 ```
 
-Now, switching between python versions is as easy as typing `conda activate
+Now, switching between Python versions is as easy as typing `conda activate
 py35` / `conda activate py27`.
 
-!!! note "Default python version"
-    If you create an environment where none of the packages require python,
+!!! note "Default Python version"
+    If you create an environment where none of the packages require Python,
     **and** you don't explicitly install the `python` package then that new
-    environment will use the python version installed in your base Conda
+    environment will use the Python version installed in your base Conda
     environment.
 
 ### Configuring Conda

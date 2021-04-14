@@ -2,8 +2,7 @@ name: snakemake-env
 channels:
   - conda-forge
   - bioconda
-  - main
-  - r
+  - defaults
 dependencies:
   - fastqc=0.11.9
   - sra-tools=2.10.1

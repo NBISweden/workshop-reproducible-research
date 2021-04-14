@@ -14,43 +14,10 @@ If you want to read more, here are some additional resources:
 * [Uppmax Singularity user guide](
   https://www.uppmax.uu.se/support/user-guides/singularity-user-guide/)
 
-## Setup
-
 This tutorial depends on files from the course GitHub repo. Take a look at
-the [intro](tutorial_intro.md) for instructions on how to set it up if you
+the [setup](setup.md) for instructions on how to set it up if you
 haven't done so already. Then open up a terminal and go to
 `workshop-reproducible-research/singularity`.
-
-### Installing on macOS
-
-Download the Singularity Desktop DMG file from
-[here](https://sylabs.io/singularity-desktop-macos/) and follow the 
-instructions. Note that this is a beta version and not all features are 
-available yet.
-
-!!! attention
-    Make sure you that 'Singularity networking' is checked during installation
-
-### Installing on Linux
-
-Follow the instructions [here](
-https://sylabs.io/guides/3.4/user-guide/installation.html#distribution-packages-of-singularity).
-
-### Installing on Windows
-
-Installing on Windows requires running Singularity through a Vagrant Box, which may be tricky. 
-See [instructions here](
-https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
-
-
-The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC like this:
-
-* Open the Vagrant Manager app
-* Open the Git Bash and move with `cd` into the folder `vm-singularity` where you installed Singularity
-* Type `vagrant up` and once this has finished, verify that the Vagrant VirtualBox is running with `vagrant status`
-* Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
-* Here, you will have to download the course material again to obtain a copy within the Vagrant VirtualBox for the Singularity tutorial by typing `git clone https://github.com/NBISweden/workshop-reproducible-research.git`
-
 
 ## The basics
 
@@ -341,8 +308,13 @@ Singularity has the option to build images remotely. To do this, you need to:
   create an account
 * Log in and find "Access Tokens" in the menu and create a new token
 * Copy the token
-* In your terminal, run `singularity remote login`, paste the copied token
-  and hit ENTER. You should get a **API Key Verified!** message.
+* In your terminal, run `singularity remote login` and hit ENTER. You should be
+  asked to enter the token (API Key). Paste the copied token and hit ENTER. 
+  You should get a **API Key Verified!** message.
+
+!!! attention
+    In case you are not asked to enter the API Key, you can try to run 
+    `singularity remote login SylabsCloud` instead.
 
 We can now try to build the MRSA Singularity image using the `--remote` flag:
 
@@ -437,14 +409,18 @@ execute the workflow and generate the output files using:
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is `snakemake -rp --configfile 
-config.yml` (as defined in the original `Dockerfile`). 
+This executes the default run command, which is 
+`snakemake -rp --configfile config.yml` (as defined in the original 
+`Dockerfile`). 
 
-Note here that we have also increased the allocated RAM to 2048 MiB (`--vm
--ram 2048`), needed to fully run through the workflow. The previous step in
-this tutorial included running the `run_qc.sh` script, so that part of the
-workflow has already been run and Snakemake will continue from that 
-automatically without redoing anything. Once completed you should see a bunch
-of directories and files generated in your current working directory, including 
-the `results/` directory containing the 
-final HTML report.
+!!! note
+    Note here that we have increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), 
+    needed to fully run through the workflow. In case the command fails, 
+    you can try to increase the RAM to e.g. 4096 MiB, or you can try to run the command
+    without the  `--vm-ram` parameter.
+
+The previous step in this tutorial included running the `run_qc.sh` script, 
+so that part of the workflow has already been run and Snakemake will continue 
+from that automatically without redoing anything. Once completed you should 
+see a bunch of directories and files generated in your current working 
+directory, including the `results/` directory containing the final HTML report.
