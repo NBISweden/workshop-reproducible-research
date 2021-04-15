@@ -626,7 +626,7 @@ out.height = "22cm"`. Knit and check the results. Does it look better now?
   the Supplementary Tables and Figures section containing this code:
 
 ```r
-knitr::include_graphics(normalizePath(rulegraph_file))
+knitr::include_graphics(rulegraph_file)
 ```
 
 * Also, add the chunk options:
