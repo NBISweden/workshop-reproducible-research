@@ -214,7 +214,7 @@ the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 10:30 </td>
-    <td> <font size="3"> ... continued: <a href="../project">Making a project reproducible</a></i>
+    <td> <font size="3"> <i> ... continued: <a href="../project">Making a project reproducible</a></i>
   </tr>
   <tr>
     <td> <font size="3"> 12:15 </td>
