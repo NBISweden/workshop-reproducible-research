@@ -158,7 +158,7 @@ Export existing environment as new yaml file (also includes dependencies):
 
 --
 
-Export explicit environment (identical environment on same operating system):
+Export explicit environment (for the same operating system):
 <br>`conda list --explicit > spec-file.txt`
 
 ---
