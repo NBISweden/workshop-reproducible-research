@@ -9,7 +9,6 @@ on:
       - 'lectures/*/*.ipynb'
       - '.github/workflows/lectures.yml'
     branches:
-      - lectures
       - main
   pull_request:
     paths:
