@@ -23,8 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: s-weigand/setup-conda@v1
-    - name: Install the conda environment
-      run: conda env update -n base -f lectures/environment.yml
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
+        activate-environment: lectures
+        environment-file: lectures/environment.yml
+        auto-activate-base: false
     - name: Render lectures
       run: snakemake -d lectures/ -s lectures/Snakefile -j 1
