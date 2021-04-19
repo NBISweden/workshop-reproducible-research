@@ -28,8 +28,3 @@ jobs:
       run: conda env update -n base -f lectures/environment.yml
     - name: Render lectures
       run: snakemake -d lectures/ -s lectures/Snakefile -j 1
-    - name: Upload lectures
-      uses: actions/upload-artifact@v2
-      with:
-        name: lectures
-        path: lectures/*/*.html
