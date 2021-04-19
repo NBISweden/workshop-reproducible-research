@@ -34,21 +34,23 @@ class: center, middle
 
 2. .green[Q&A]: How to implement these procedures on a day-to-day basis
 
+3. .green[Project]: Time for you to apply the tools on one of your own research projects
 
 ---
 
 class: center, middle
-<img src="../common-figures/reproducibility-overview.png" style="width:50%;"/>
 
 Take control of your research project by making its different components reproducible
 
+<img src="../common-figures/reproducibility-overview.png" style="width:50%;"/>
+
 ---
 
 class: center, middle
 
-<img src="whats_in_it_for_me.png" style="width:50%;"/>
-
 By moving towards a reproducible way of working you will quickly realize that you at the same time make your own life a lot easier! 
+
+<img src="whats_in_it_for_me.png" style="width:50%;"/>
 
 ---
 
@@ -62,7 +64,7 @@ By moving towards a reproducible way of working you will quickly realize that yo
 * How to use the version control system .green[Git] to track changes to code
 * How to use the package and environment manager .green[Conda]
 * How to use the workflow manager .green[Snakemake]
-* How to use .green[RMarkdown] to generate automated reports
+* How to use .green[R Markdown] to generate automated reports
 * How to use .green[Jupyter] notebooks to document your analysis
 * How to use .green[Docker] and .green[Singularity] to distribute containerized
   computational environments
@@ -70,11 +72,7 @@ By moving towards a reproducible way of working you will quickly realize that yo
 
 ---
 
-# Everything can be a project
-
---
-
-* Divide your work into distinct .green[projects]
+# Divide your work into distinct projects
 
 --
 
@@ -113,7 +111,7 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Don't create different versions of the input data - write a .green[script], .green[RMarkdown] or .green[Jupyter notebook] if you need to preprocess your input data so that the steps can be recreated
+* Don't create different versions of the input data - write a .green[script], .green[R Markdown] document or .green[Jupyter] notebook if you need to preprocess your input data so that the steps can be recreated
 
 --
 
@@ -133,7 +131,7 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Write scripts, .green[RMarkdown] or .green[Jupyter notebooks] for reproducible results to connect raw data to final results
+* Write scripts, .green[R Markdown] documents or .green[Jupyter] notebooks for reproducible results to connect raw data to final results
 
 --
 
@@ -145,13 +143,13 @@ class: center, middle
 
 # Discuss in your groups
 
-Which of these advices are relevant to your work?
+Which of these advices are most relevant to your work?
 
 Are you going to change your way of working? If yes, how?
 
 ---
 
-# Options for reproducing a project
+# Options for reproducing a research project
 
 <img src="my_project_repo.png" style="width:75%;"/>
 
@@ -159,13 +157,13 @@ Are you going to change your way of working? If yes, how?
 
 ---
 
-# Options for reproducing a project
+# Options for reproducing a research project
 
 <img src="my_project_repo_2.png" style="width:75%;"/>
 
 ---
 
-# Options for reproducing a project
+# Options for reproducing a research project
 
 <img src="my_project_repo_2.png" style="width:75%;"/>
 
@@ -174,7 +172,7 @@ Are you going to change your way of working? If yes, how?
 
 --
 
-* .green[Git] clone, activate .green[Conda] env, and run code or workflow
+* .green[Git] clone, create .green[Conda] env, and run code or workflow
 
 --
 
@@ -186,7 +184,7 @@ Are you going to change your way of working? If yes, how?
 
 ---
 
-# Options for reproducing a project
+# Options for reproducing a research project
 
 .pull-left[
 [Example](https://drive.google.com/file/d/1lXHlDdseHTe2Pb1JaCIhqDS7odTCVyRC/view?usp=sharing): 
@@ -224,7 +222,7 @@ Pulling the Docker image for the case study from an online repository and runnin
 .pull-right[
 
 Connect your results with the code:
-* Use .green[RMarkdown] or .green[Jupyter notebooks]
+* Use .green[R Markdown] documents or .green[Jupyter] notebooks
 
 Take another step:
 * Convert your code into a .green[Snakemake] workflow
@@ -352,7 +350,7 @@ Or are you planning to use a different combination?
 .green[Literate programming]
 
 * **Jupyter** – Create and share notebooks in a variety of languages and formats by using a web browser.
-* **RMarkdown** – Developed by Rstudio, focuses on generating high-quality documents.
+* **R Markdown** – Developed by Rstudio, focuses on generating high-quality documents.
 * **Zeppelin** – Developed by Apache. Closely integrated with Spark for distributed computing and Big Data applications.
 * **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on integrating multiple languages in the same notebook.
 
@@ -372,17 +370,6 @@ Or are you planning to use a different combination?
 class: center, middle
 
 <img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/>
-
----
-
-# Still don't know where to start?
-
-Our material includes a section on [Making a project reproducible](https://nbis-reproducible-research.readthedocs.io/en/latest/repres_project/) 
-with some ideas on how to get started.
-
-* Option 1: try to implement the tools in one of your own projects
-
-* Option 2: use a small-scale data set that we prepared for you to implement the tools
 
 ---
 

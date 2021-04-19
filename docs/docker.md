@@ -328,7 +328,6 @@ next two lines are there to make the Conda command available in the shell.
 The last command adds a code snippet to the bash startup file which 
 automatically activates the Conda base environment in the container.
 
-
 ```no-highlight
 # Add conda to PATH and set locale
 ENV PATH="/usr/miniconda3/bin:${PATH}"
@@ -340,6 +339,18 @@ Here we use the new instruction `ENV`. The first command adds `conda` to the
 path, so we can write `conda install` instead of `/usr/miniconda3/bin/conda install`. 
 The next two commands set an UTF-8 character encoding so that we can use
 weird characters (and a bunch of other things). 
+
+```no-highlight
+# Configure Conda channels and install Mamba
+RUN conda config --add channels bioconda \
+    && conda config --add channels conda-forge \
+    && conda config --set channel_priority strict \
+    && conda install mamba \
+    && mamba clean --all
+```
+
+Here we just configure Conda and install Mamba, for quicker installations of
+any subsequent Conda packages we might want to do.
 
 ```no-highlight
 # Open port for running Jupyter Notebook

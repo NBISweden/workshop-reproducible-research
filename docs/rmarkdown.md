@@ -540,7 +540,7 @@ project root directory. To set a different directory as working directory for
 all chunks one modifies the knit options like this:
 
 ```r
-knitr::opts_knit$set(root.dir = normalizePath('../'))
+knitr::opts_knit$set(root.dir = '../')
 ```
 
 Here we set the working directory to the parent directory of the Rmd file
@@ -626,7 +626,7 @@ out.height = "22cm"`. Knit and check the results. Does it look better now?
   the Supplementary Tables and Figures section containing this code:
 
 ```r
-knitr::include_graphics(normalizePath(rulegraph_file))
+knitr::include_graphics(rulegraph_file)
 ```
 
 * Also, add the chunk options:

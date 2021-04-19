@@ -203,8 +203,9 @@ the approximate schedule below:
     <td> <font size="3"> 09:00  </td>
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
+         - How to put all the tools and procedures together <br>
          - How to implement these procedures on a day-to-day basis <br>
-         - Making a project reproducible </i> <br>
+         - Practical tutorial: <a href="../project">Making a project reproducible</a></i>
     </td>
   </tr>
   <tr>
@@ -213,7 +214,7 @@ the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 10:30 </td>
-    <td> <font size="3"> ... continued: putting the pieces together </td>
+    <td> <font size="3"> <i> ... continued: <a href="../project">Making a project reproducible</a></i>
   </tr>
   <tr>
     <td> <font size="3"> 12:15 </td>
