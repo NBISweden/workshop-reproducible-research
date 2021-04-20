@@ -207,7 +207,7 @@ shell:
 
 Now try to construct this rule yourself and name it `concatenate_a_and_b`. 
 The syntax for concatenating two files in Bash is 
-`cat first_file second_file > output_file`. Call the output `c.txt`. 
+`cat first_file.txt second_file.txt > output_file.txt`. Call the output `c.txt`. 
 Run the workflow in Snakemake and validate that the output looks as expected.
 
 Wouldn't it be nice if our workflow could be used for _any_ files, not just
