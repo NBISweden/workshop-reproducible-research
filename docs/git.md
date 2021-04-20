@@ -859,7 +859,7 @@ the original `git_tutorial` repository!
     You always need to specify `git push origin main` by default, but you can
     circumvent this by telling git that you always want to push to
     `origin/main` when you're on your local `main` branch. To do this, use
-    the command `git branch --set-upstream-to origin main`. Another way to
+    the command `git branch --set-upstream-to origin/main`. Another way to
     achieve the same effect is use the `--set-upstream` flag for the very first
     push.
 
