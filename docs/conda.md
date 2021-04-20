@@ -493,7 +493,7 @@ Here are two aliases for conda that might prove useful for you.
 alias coac='conda activate'
 
 # Deactivate an environment
-alias code='conda deactive'
+alias code='conda deactivate'
 ```
 
 Don't forget to add them to your `~/.bash_profile` if you want to use them!
