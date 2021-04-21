@@ -205,9 +205,9 @@ shell:
     Snakemake workflows. The parser will complain, but sometimes the error
     message can be difficult to interpret.
 
-Now try to construct this rule yourself and name it `concatenate_a_and_b`. 
-The syntax for concatenating two files in Bash is 
-`cat first_file second_file > output_file`. Call the output `c.txt`. 
+Now try to construct this rule yourself and name it `concatenate_a_and_b`.
+The syntax for concatenating two files in Bash is
+`cat first_file second_file > output_file`. Call the output `c.txt`.
 Run the workflow in Snakemake and validate that the output looks as expected.
 
 Wouldn't it be nice if our workflow could be used for _any_ files, not just
@@ -851,6 +851,78 @@ Snakemake has a number of options for marking files:
   use case could be if you run some clustering analysis and end up with one
   file per cluster.
 
+## Rule targets
+
+So far we have only defined the inputs/outputs of a rule as strings, or in
+some case a list of strings, but Snakemake allows us to be much more flexible
+than that. Actually, we can use any Python expression or even functions, as
+long as they return a string or list of strings. Consider the rule
+`align_to_genome` below.
+
+```python
+rule align_to_genome:
+    """
+    Align a fastq file to a genome index using Bowtie 2.
+    """
+    input:
+        "data/raw_internal/{sra_id}.fastq.gz",
+        "intermediate/NCTC8325.1.bt2",
+        "intermediate/NCTC8325.2.bt2",
+        "intermediate/NCTC8325.3.bt2",
+        "intermediate/NCTC8325.4.bt2",
+        "intermediate/NCTC8325.rev.1.bt2",
+        "intermediate/NCTC8325.rev.2.bt2"
+    output:
+        "intermediate/{sra_id,\w+}.bam"
+    shell:
+        """
+        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
+        """
+```
+
+Here we have seven inputs; the fastq file with the reads and six files with
+similar file names from the Bowtie 2 genome indexing. We can try to tidy this
+up by using a Python expression to generate a list of these files instead. If
+you're familiar with Python you could do this with list comprehensions like
+this:
+
+```python
+input:
+    "data/raw_internal/{sra_id}.fastq.gz",
+    ["intermediate/NCTC8325.{my_substr}.bt2".format(my_substr=substr) for
+        substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
+```
+
+This will take the elements of the list of substrings one by one, and insert
+that element in the place of `{my_substring}`. Since this type of aggregating
+rules are quite common, Snakemake also has a more compact way of achieving the
+same thing.
+
+```python
+input:
+    "data/raw_internal/{sra_id}.fastq.gz",
+    expand("intermediate/NCTC8325.{my_substr}.bt2",
+           my_substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+```
+
+Now change in the rules `index_genome` and `align_to_genome` to use the
+`expand()` expression.
+
+In the workflow we decide which samples to run by including the SRR ids in the
+names of the inputs to the rules `multiqc` and `generate_count_table`. This is
+a potential source of errors since it's easy to change in one place and forget
+to change in the other. As we've mentioned before, but not really used so far,
+Snakemake allows us to use Python code "everywhere". Let's therefore define
+a list of sample ids and put at the very top of the Snakefile, just before the
+rule `all`.
+
+```python
+SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
+```
+
+Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
+the sample ids. Much better!
+
 ## Shadow rules
 
 Take a look at the rule `generate_count_table` below. Since `input.annotation`
@@ -927,86 +999,14 @@ aren't tracked by Snakemake (`multiqc`, `index_genome`,
 files from those rules, as they are no longer needed. Now rerun the workflow
 and validate that the temporary files don't show up in your working directory.
 
-!!! tip 
+!!! tip
     Some people use the shadow option for almost every rule and some never
     use it at all. One thing to keep in mind is that it leads to some extra file
-    operations when the outputs are moved to their final location. This is no 
+    operations when the outputs are moved to their final location. This is no
     issue when the shadow directory is on the same disk as the output directory,
-    but if you're running on a distributed file system and generate very many 
-    or very large files it might be worth considering other options (see *e.g.* 
+    but if you're running on a distributed file system and generate very many
+    or very large files it might be worth considering other options (see *e.g.*
     the `--shadow-prefix` flag).
-
-## Rule targets
-
-So far we have only defined the inputs/outputs of a rule as strings, or in
-some case a list of strings, but Snakemake allows us to be much more flexible
-than that. Actually, we can use any Python expression or even functions, as
-long as they return a string or list of strings. Consider the rule
-`align_to_genome` below.
-
-```python
-rule align_to_genome:
-    """
-    Align a fastq file to a genome index using Bowtie 2.
-    """
-    input:
-        "data/raw_internal/{sra_id}.fastq.gz",
-        "intermediate/NCTC8325.1.bt2",
-        "intermediate/NCTC8325.2.bt2",
-        "intermediate/NCTC8325.3.bt2",
-        "intermediate/NCTC8325.4.bt2",
-        "intermediate/NCTC8325.rev.1.bt2",
-        "intermediate/NCTC8325.rev.2.bt2"
-    output:
-        "intermediate/{sra_id,\w+}.bam"
-    shell:
-        """
-        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
-        """
-```
-
-Here we have seven inputs; the fastq file with the reads and six files with
-similar file names from the Bowtie 2 genome indexing. We can try to tidy this
-up by using a Python expression to generate a list of these files instead. If
-you're familiar with Python you could do this with list comprehensions like
-this:
-
-```python
-input:
-    "data/raw_internal/{sra_id}.fastq.gz",
-    ["intermediate/NCTC8325.{my_substr}.bt2".format(my_substr=substr) for 
-        substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
-```
-
-This will take the elements of the list of substrings one by one, and insert
-that element in the place of `{my_substring}`. Since this type of aggregating
-rules are quite common, Snakemake also has a more compact way of achieving the
-same thing.
-
-```python
-input:
-    "data/raw_internal/{sra_id}.fastq.gz",
-    expand("intermediate/NCTC8325.{my_substr}.bt2",
-           my_substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
-```
-
-Now change in the rules `index_genome` and `align_to_genome` to use the
-`expand()` expression.
-
-In the workflow we decide which samples to run by including the SRR ids in the
-names of the inputs to the rules `multiqc` and `generate_count_table`. This is
-a potential source of errors since it's easy to change in one place and forget
-to change in the other. As we've mentioned before, but not really used so far,
-Snakemake allows us to use Python code "everywhere". Let's therefore define
-a list of sample ids and put at the very top of the Snakefile, just before the
-rule `all`.
-
-```python
-SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
-```
-
-Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
-the sample ids. Much better!
 
 ## Generalizing the workflow
 
@@ -1123,19 +1123,19 @@ rule get_genome_fasta:
         """
 ```
 
-Now change in `get_genome_gff3` in the same way. 
+Now change in `get_genome_gff3` in the same way.
 
-Also change in `index_genome` to use a wildcard rather than a hardcoded genome 
-id. Here you will run into a complication if you have followed the previous 
+Also change in `index_genome` to use a wildcard rather than a hardcoded genome
+id. Here you will run into a complication if you have followed the previous
 instructions and use the `expand()` expression. We want the list to expand to
-`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`, 
-*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the 
-`genome_id` wildcard from being expanded we have to "mask" it with double curly 
-brackets: `{{genome_id}}`. 
+`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
+*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the
+`genome_id` wildcard from being expanded we have to "mask" it with double curly
+brackets: `{{genome_id}}`.
 
-Lastly, we need to define somewhere which genome id we actually want to use. 
-This needs to be done both in `align_to_genome` and `generate_count_table`. 
-Do this by introducing a parameter in `config.yml` called "genome_id". See 
+Lastly, we need to define somewhere which genome id we actually want to use.
+This needs to be done both in `align_to_genome` and `generate_count_table`.
+Do this by introducing a parameter in `config.yml` called "genome_id". See
 below for an example for `align_to_genome`. Here the `substr` wildcard gets
 expanded from a list while `genome_id` gets expanded from the config file.
 
@@ -1167,15 +1167,15 @@ Well done!
 ### Running jobs in Singularity or Docker containers
 
 Snakemake also supports defining a Singularity or Docker container for each rule
-(you will have time to work on the [Docker tutorial](docker.md) and the 
+(you will have time to work on the [Docker tutorial](docker.md) and the
 [Singularity tutorial](singularity.md) later during the course).
-Analogous to using a rule-specific Conda environment, specify 
+Analogous to using a rule-specific Conda environment, specify
 `container: "docker://some-account/rule-specific-image"` in the rule definition.
 Instead of a link to a container image, it is also possible to provide the path
 to a `*.sif` file (= a Singularity file).
-When executing Snakemake, add the `--use-singularity` flag to the command line. 
-For the given rule, a Singularity container will then be created from the image 
-or Singularity file that is provided in the rule definition on the fly by Snakemake 
+When executing Snakemake, add the `--use-singularity` flag to the command line.
+For the given rule, a Singularity container will then be created from the image
+or Singularity file that is provided in the rule definition on the fly by Snakemake
 and the rule will be run in this container.
 
 You can find pre-made Singularity or Docker images for many tools on [https://biocontainers.pro/](https://biocontainers.pro/)
@@ -1211,38 +1211,38 @@ Start your Snakemake workflow with the following command:
 snakemake --use-singularity
 ```
 
-Feel free to modify the MRSA workflow according to this example. As Singularity 
+Feel free to modify the MRSA workflow according to this example. As Singularity
 is a container software that was developed for HPC clusters, and for example the
-Mac version is still a beta version, it might not work to run your updated 
-Snakemake workflow with Singularity locally on your computer. 
-In the next section we explain how you can run Snakemake workflows on UPPMAX 
+Mac version is still a beta version, it might not work to run your updated
+Snakemake workflow with Singularity locally on your computer.
+In the next section we explain how you can run Snakemake workflows on UPPMAX
 where Singularity is pre-installed.
 
 
 ### Running Snakemake workflows on UPPMAX
 
-There are several options to execute Snakemake workflows on UPPMAX (a HPC 
-cluster with the SLURM workload manager). In any case, we highly recommend to use 
-a session manager like `tmux` or `screen` so that you can run your workflow in a 
-session in the background while doing other things on the cluster or even logging 
+There are several options to execute Snakemake workflows on UPPMAX (a HPC
+cluster with the SLURM workload manager). In any case, we highly recommend to use
+a session manager like `tmux` or `screen` so that you can run your workflow in a
+session in the background while doing other things on the cluster or even logging
 out of the cluster.
 
 #### Run your workflow in an interactive job
 
-For short workflows with only a few rules that need the same compute resources 
-in terms of CPU (cores), you can start an interactive job (in your `tmux` or 
-`screen` session) and run your Snakemake workflow as you would do that on your 
-local machine. Make sure to give your interactive job enough time to finish 
+For short workflows with only a few rules that need the same compute resources
+in terms of CPU (cores), you can start an interactive job (in your `tmux` or
+`screen` session) and run your Snakemake workflow as you would do that on your
+local machine. Make sure to give your interactive job enough time to finish
 running all rules of your Snakemake workflow.
 
 #### Cluster configuration
 
-For workflows with long run times and/or where each rule requires different 
-compute resources, Snakemake can be configured to automatically send each rule 
+For workflows with long run times and/or where each rule requires different
+compute resources, Snakemake can be configured to automatically send each rule
 as a job to the SLURM queue and to track the status of each job.
 
-The relevant parameters for such a cluster configuration are `--cluster` and 
-`--cluster-config`, in combination with a `cluster.yaml` file that specifies 
+The relevant parameters for such a cluster configuration are `--cluster` and
+`--cluster-config`, in combination with a `cluster.yaml` file that specifies
 default and rule-specific compute resources and your compute account details.
 
 Here is an example for a `cluster.yaml` file:
@@ -1263,11 +1263,11 @@ mapping:
   cpus-per-task: 16
 ```
 
-Start your Snakemake workflow in a `tmux` or `screen` session with the 
+Start your Snakemake workflow in a `tmux` or `screen` session with the
 following command:
 
 ```bash
-snakemake 
+snakemake
     -j 10 \
     --cluster-config cluster.yaml \
     --cluster "sbatch \
@@ -1275,22 +1275,22 @@ snakemake
                -p {cluster.partition} \
                -t {cluster.time} \
                --ntasks {cluster.ntasks} \
-               --cpus-per-task {cluster.cpus-per-task}" 
+               --cpus-per-task {cluster.cpus-per-task}"
 ```
 
-The additional parameter `-j` specifies the number of jobs that Snakemake is 
+The additional parameter `-j` specifies the number of jobs that Snakemake is
 allowed to send to SLURM at the same time.
 
 #### SLURM Profile
 
-In future Snakemake versions, the cluster configuration will be replaced 
-by so-called Profiles. The SLURM Profile needs to be set up with the software 
-[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via Conda). 
-During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm) setup, 
-you will be asked for several values for your Profile, e.g. for a Profile name 
+In future Snakemake versions, the cluster configuration will be replaced
+by so-called Profiles. The SLURM Profile needs to be set up with the software
+[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via Conda).
+During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm) setup,
+you will be asked for several values for your Profile, e.g. for a Profile name
 or your compute project account ID.
 
-Rule-specific resources can be defined in each rule via the `resources: ` 
+Rule-specific resources can be defined in each rule via the `resources: `
 directive, for example:
 
 ```python
@@ -1309,13 +1309,13 @@ rule align_to_genome:
         """
 ```
 
-Any rule for which runtime is specified in the `resources` directive will be 
-submitted as one job to the SLURM queue with runtime as the allocated time. 
-Similarly, the number specified in the `threads` directive will be used as the 
+Any rule for which runtime is specified in the `resources` directive will be
+submitted as one job to the SLURM queue with runtime as the allocated time.
+Similarly, the number specified in the `threads` directive will be used as the
 number of allocated cores.
 
-You can even specify if rules should be resubmitted to the SLURM queue, 
-asking for more resources on subsequent attempts. Do this by modifying the 
+You can even specify if rules should be resubmitted to the SLURM queue,
+asking for more resources on subsequent attempts. Do this by modifying the
 `resources` directive with _e.g._:
 
 ```python
@@ -1323,20 +1323,20 @@ asking for more resources on subsequent attempts. Do this by modifying the
         runtime = lambda wildcards, attempt: attempt*360
 ```
 
-In this example, the rule will ask for 360 minutes on the first attempt, 
+In this example, the rule will ask for 360 minutes on the first attempt,
 for 2*360 minutes on the second attempt, etc.
 
-Finally, instead of specifying compute resources in the `resources` and 
-`threads` directives, it is possible to set up the SLURM Profile by providing 
+Finally, instead of specifying compute resources in the `resources` and
+`threads` directives, it is possible to set up the SLURM Profile by providing
 a `cluster.yaml` file. When you create the profile with cookiecutter and you
-are prompted for `cluster_config []:` enter the path to a `cluster.yaml` file, 
-_e.g._: `cluster_config []: config/cluster.yaml`. Now you can control resource 
-allocations for rules either using the `resources:` directive in each rule, 
+are prompted for `cluster_config []:` enter the path to a `cluster.yaml` file,
+_e.g._: `cluster_config []: config/cluster.yaml`. Now you can control resource
+allocations for rules either using the `resources:` directive in each rule,
 _or_ by adding that information to the `config/cluster.yaml` file. If resources
-are found in both locations, the allocations in the `cluster.yaml` file will 
+are found in both locations, the allocations in the `cluster.yaml` file will
 take precedence.
 
-With this setup you can start the workflow with your SLURM Profile as follows 
+With this setup you can start the workflow with your SLURM Profile as follows
 from within a `tmux` or `screen` session:
 
 ```bash
