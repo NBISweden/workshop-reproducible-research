@@ -541,7 +541,7 @@ Done! Let's start by generating the rule graph so that we get an overview of
 the workflow.
 
 ```bash
-snakemake -s Snakefile_mrsa --rulegraph | dot -Tpng > rulegraph_mrsa.png
+snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png
 ```
 
 There are two differences in this command compared to the one we've used
