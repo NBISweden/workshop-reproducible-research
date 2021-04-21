@@ -458,12 +458,12 @@ determines how Conda modifies your command line prompt. For more information
 about this setting you can run `conda config --describe env_prompt` and to see
 your current setting you can run `conda config --show env_prompt`.
 
-By default env_prompt is set to '({default_env})' which modifies your prompt
-with the active environment name if it was installed using the -n flag or if
-the environment folder has a parent folder named envs/. Otherwise the full
+By default `env_prompt` is set to `({default_env})` which modifies your prompt
+with the active environment name if it was installed using the `-n` flag or if
+the environment folder has a parent folder named `envs/`. Otherwise the full
 environment path (*i.e.* the 'prefix') is displayed.
 
-If you instead set env_prompt to '({name}) ' Conda will modify your prompt with
+If you instead set env_prompt to `({name}) ` Conda will modify your prompt with
 the folder name of the active environment. You can change the setting by
 running the following:
 
@@ -471,7 +471,7 @@ running the following:
 conda config --set env_prompt '({name}) '
 ```
 
-If you wish to keep the '({default_env})' behaviour, or just don't want to
+If you wish to keep the `({default_env})` behaviour, or just don't want to
 change your Conda config, an alternative is to keep Conda environment folders
 within a parent folder called `envs/`. This will make Conda only add the folder
 name of the Conda environment to your prompt when you activate it.

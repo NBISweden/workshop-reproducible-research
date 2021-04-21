@@ -168,7 +168,7 @@ Don't worry if you feel that this Docker stuff is a little confusing, it will
 become clearer in the [Docker tutorial](docker.md). However, the priority right
 now is just to get it running so that you can start working.
 
-## Installing git
+## Installing Git
 
 Chances are that you already have git installed on your computer. You can check
 by running *e.g.* `git --version`. If you don't have git, install it following
