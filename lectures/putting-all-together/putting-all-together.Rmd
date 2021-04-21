@@ -111,7 +111,7 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Don't create different versions of the input data - write a .green[script], .green[R Markdown] document or .green[Jupyter] notebook if you need to preprocess your input data so that the steps can be recreated
+* Don't create different versions of the input data - write a .green[script], .green[R Markdown] document, .green[Jupyter] notebook or a .green[Snakemake] workflow if you need to preprocess your input data so that the steps can be recreated
 
 --
 
@@ -131,11 +131,11 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Write scripts, .green[R Markdown] documents or .green[Jupyter] notebooks for reproducible results to connect raw data to final results
+* Write .green[scripts], .green[R Markdown] documents, .green[Jupyter] notebooks or .green[Snakemake] workflows for reproducible results to connect raw data to final results
 
 --
 
-* Keep the .green[parameters] separate (e.g. at top of file or input arguments)
+* Keep the .green[parameters] separate (e.g. at top of file or in a separate configuration file)
 
 ---
 
@@ -187,7 +187,7 @@ Are you going to change your way of working? If yes, how?
 # Options for reproducing a research project
 
 .pull-left[
-[Example](https://drive.google.com/file/d/1lXHlDdseHTe2Pb1JaCIhqDS7odTCVyRC/view?usp=sharing): 
+[Example video](https://drive.google.com/file/d/1lXHlDdseHTe2Pb1JaCIhqDS7odTCVyRC/view?usp=sharing): 
 
 Pulling the Docker image for the case study from an online repository and running the workflow in a container
 
@@ -369,6 +369,8 @@ Or are you planning to use a different combination?
 
 class: center, middle
 
+# "What's in it for me?"
+
 <img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/>
 
 ---
@@ -380,12 +382,6 @@ Any questions related to reproducible research tools and concepts? Talk to an NB
 * Online (.green[zoom])
 * Every .green[Tuesday, 14.00-15.00] (except public holidays)
 * Check .green[www.nbis.se/events] for zoom link and more info
-
----
-
-class: center, middle
-
-# Questions?
 
 ---
 
