@@ -80,7 +80,7 @@ The goal here is to create a Snakemake workflow, which contains the following:
       the project
     * Add required software to the Conda `environment.yml` file
 
-### Inspiration and tipps for the student experience workflow
+### Inspiration and tips for the student experience workflow
 
 The first two steps should be part of the Snakemake workflow. If you need some help
 with the cleaning step, see below for a Python script that you can save to a file
