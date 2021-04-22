@@ -375,28 +375,32 @@ the Dockerfile is really simple. Try it out now:
 docker build -f Dockerfile_slim -t my_docker_image .
 ```
 
-This should result in
+This should result in something similar to this:
+
 ```
-Step 1/13 : FROM ubuntu:16.04
- ---> 20c44cd7596f
-Step 2/13 : LABEL description = "Minimal image for the NBIS reproducible research course."
-.
-.
-[lots of stuff]
-.
-.
-Step 13/13 : CMD "/bin/bash"
- ---> Running in f34c2dbbbecf
- ---> aaa39bdeb78a
-Removing intermediate container f34c2dbbbecf
-Successfully built aaa39bdeb78a
-Successfully tagged my_docker_image:latest
+[+] Building (10/10) FINISHED
+ => [internal] load build definition from Dockerfile_slim                                                                                                                      
+ => => transferring dockerfile: 1.88kB                                                                                                                                         
+ => [internal] load .dockerignore                                                                                                                                              
+ => => transferring context: 2B                                                                                                                                                
+ => [internal] load metadata for docker.io/library/ubuntu:16.04                                                                                                                
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                                                                  
+ => [1/5] FROM docker.io/library/ubuntu:16.04@sha256:bb84bbf2ff36d46acaf0bb0c6bcb33dae64cd93cba8652d74c9aaf438fada438                                                          
+ => CACHED [2/5] WORKDIR /course                                                                                                                                               
+ => CACHED [3/5] RUN apt-get update &&     apt-get install -y --no-install-recommends bzip2                                                ca-certificates                     
+ => CACHED [4/5] RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O &&   h Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3 
+ => CACHED [5/5] RUN conda config --add channels bioconda     && conda config --add channels conda-forge     && conda config --set channel_priority strict     && conda instal 
+ => exporting to image                                                                                                                                                         
+ => => exporting layers                                                                                                                                                        
+ => => writing image sha256:d14301f829d4554816df54ace927ec0aaad4a994e028371455f7a18a370f6af9                                                                                   
+ => => naming to docker.io/library/my_docker_image
 ```
 
-`-f` sets which Dockerfile to use and `-t` tags the image with a name. This
-name is how you will refer to the image later. Lastly, the `.` is the path to
-where the image should be build (`.` means the current directory). This had no
-real impact in this case, but matters if you want to import files. Validate
+Exactly how the output looks depends on which version of Docker you are using.
+The `-f` flag sets which Dockerfile to use and `-t` tags the image with a name.
+This name is how you will refer to the image later. Lastly, the `.` is the path
+to where the image should be build (`.` means the current directory). This had
+no real impact in this case, but matters if you want to import files. Validate
 with `docker images` that you can see your new image.
 
 Now it's time to make our own Dockerfile to reproduce the results from the
