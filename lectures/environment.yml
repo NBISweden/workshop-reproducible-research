@@ -1,13 +1,13 @@
-name: lectures
-
+name: lecture-env
 channels:
+    - r
     - conda-forge
     - bioconda
     - defaults
-    - r
-
 dependencies:
-    - snakemake-minimal
+
+    # Snakemake
+    - snakemake-minimal=6.0.5
 
     # Jupyter
     - python=3.8
@@ -20,9 +20,10 @@ dependencies:
     - rpy2=3.1
 
     # R and Xaringan
-    - r-base=3.6.1
-    - r-ggplot2=3.3
-    - r-kableextra=1.1
-    - r-xaringan=0.15
-    - phantomjs=2.1
+    - phantomjs=2.1.1
+    - r-base=3.6.3
+    - r-ggplot2=3.3.3
+    - r-kableextra=1.1.0
+    - r-palmerpenguins=0.1.0
     - r-stringi=1.4.6
+    - r-xaringan=0.15
