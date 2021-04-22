@@ -140,17 +140,18 @@ class: center, middle
 
 # Presentations with R Markdown
 
-```{r Plot iris, dpi = 150, fig.width = 14, fig.height = 6.5}
+```{r Plot, dpi = 150, fig.width = 14, fig.height = 6.5, warning = FALSE}
 library("ggplot2")
-data(iris)
-ggplot(iris, aes(x      = Petal.Length,
-                 y      = Petal.Width,
-                 colour = Species)) +
+library("palmerpenguins")
+data(penguins, package = "palmerpenguins")
+ggplot(penguins, aes(x      = bill_length_mm,
+                     y      = body_mass_g,
+                     colour = species)) +
     geom_point(size = 4) +
     theme_bw() +
-    labs(x = "Petal length (cm)",
-         y = "Petal width (cm)") +
-    ggtitle("Iris petal sizes") +
+    labs(x = "Bill length (mm)",
+         y = "Body mass (g)") +
+    ggtitle("Penguin weight and bill length") +
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
 ```
