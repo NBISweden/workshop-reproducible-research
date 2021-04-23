@@ -404,7 +404,9 @@ tools.
 
 Installing Docker is quite straightforward on Mac or Windows and a little more
 cumbersome on Linux. Note that Docker runs as root, which means that you have to
-have `sudo` privileges on your computer in order to install or run Docker.
+have `sudo` privileges on your computer in order to install or run Docker. When
+you have finished installing docker, regardless of which OS you are on, please
+type `docker --version` to verify that the installation was successful!
 
 ### macOS
 
@@ -457,11 +459,11 @@ the steps are the same. Please follow the instructions for your distribution on
     user to the group `docker`. Here are instructions for how to do this:
     [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
 
-
 ## Installing Singularity
 
-Installation of Singularity depends, again, on your operating system. Here are
-instructions for each of them:
+Installation of Singularity depends, again, on your operating system. When you
+have finished, regardless of your OS, please type `singularity --version` to
+verify that your installation was successful!
 
 ### macOS
 
