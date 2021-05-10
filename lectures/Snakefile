@@ -20,6 +20,16 @@ rule render_rmarkdown:
         Rscript -e 'rmarkdown::render("{input}", "xaringan::moon_reader")'
         """
 
+rule render_pdf:
+    input:
+        "{f}.html"
+    output:
+        "{f}.pdf"
+    shell:
+        """
+        Rscript -e 'library(webshot); webshot("{input[0]}", "{output[0]}")'
+        """
+
 rule render_jupyter:
     input:
         "{f}.ipynb"
