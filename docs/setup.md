@@ -65,6 +65,9 @@ git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
 
+Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two,
+with no alternative for Windows), please follow the Linux instructions.
+
 !!! tip
     You can find the directory where the Linux distribution is storing all its
     files by typing `explorer.exe .`. This will launch the Windows File Explorer
@@ -149,15 +152,6 @@ curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh 
 bash Miniconda3-4.7.12.1-Linux-x86_64.sh
 rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
-
-!!! attention "Windows users"
-    If you are doing the tutorials by running a Docker container on your
-    Windows machine, Conda will already be installed for you. You can then jump
-    ahead to the last point about setting up the default channels (`conda
-    config`) and then go ahead with the practical exercise.
-
-    If you are using the Linux Bash Shell, follow the installation instructions 
-    for Linux users.
 
 !!! attention
     If you already have installed Conda but want to update, you should be able
@@ -291,7 +285,7 @@ tools.
 Let's continue using Conda for installing software, since it's so convenient to
 do so! Create an environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
- 
+
 ```bash
 conda env create -f jupyter/environment.yml -n jupyter-env
 conda activate jupyter-env
@@ -300,16 +294,6 @@ conda activate jupyter-env
 Once you've successfully completed the above steps you can deactivate your Conda
 environment using `conda deactivate` and continue with the setup for the other
 tools.
-
-!!! attention "Windows users"
-    If you are doing these exercises through a Docker container you also need
-    the run the following:
-    
-    ```bash
-    mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> \
-        /root/.jupyter/jupyter_notebook_config.py
-    ```
 
 ## Installing Docker
 
