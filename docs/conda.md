@@ -207,11 +207,11 @@ with more packages, as the analysis workflow is expanded.
 
 ```yml
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
 dependencies:
-- fastqc=0.11.9
-- sra-tools=2.10.1
+  - fastqc=0.11.9
+  - sra-tools=2.10.1
 ```
 
 * Now, make a new Conda environment from the yml file (note that here the
@@ -294,14 +294,14 @@ a number of software packages, like so:
 
 ```yml
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
 dependencies:
-- r-base=3.6.1
-- r-ggplot2
-- bioconductor-deseq2
-- bioconductor-biomart
-- salmon
+  - r-base=3.6.1
+  - r-ggplot2
+  - bioconductor-deseq2
+  - bioconductor-biomart
+  - salmon
 ```
 
 We've specified that we want R version `3.6.1`, but we've left everything else
