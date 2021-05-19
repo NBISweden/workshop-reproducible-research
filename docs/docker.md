@@ -81,7 +81,7 @@ docker.io/library/ubuntu:latest
 Let's take a look at our new and growing collection of Docker images:
 
 ```bash
-docker images
+docker image ls
 ```
 
 The Ubuntu image show show up in this list, with something looking like this:
@@ -149,7 +149,7 @@ probably be useful on its own, but Docker is much more powerful than that.
     In this section we've learned:
 
     * How to use `docker pull` for downloading images from a central registry.
-    * How to use `docker images` for getting information about the images we
+    * How to use `docker image ls` for getting information about the images we
       have on our system.
     * How to use `docker run` for starting a container from an image.
     * How to use the `-it` flag for running in interactive mode.
@@ -400,7 +400,7 @@ The `-f` flag sets which Dockerfile to use and `-t` tags the image with a name.
 This name is how you will refer to the image later. Lastly, the `.` is the path
 to where the image should be build (`.` means the current directory). This had
 no real impact in this case, but matters if you want to import files. Validate
-with `docker images` that you can see your new image.
+with `docker image ls` that you can see your new image.
 
 Now it's time to make our own Dockerfile to reproduce the results from the
 [Conda tutorial](conda). If you haven't done the tutorial, it boils down to
@@ -452,7 +452,7 @@ Build the image and tag it `my_docker_conda`:
 docker build -t my_docker_conda -f Dockerfile_conda .
 ```
 
-Verify that the image was built using `docker images`.
+Verify that the image was built using `docker image ls`.
 
 !!! note "Quick recap"
     In this section we've learned:
@@ -482,6 +482,7 @@ docker container ls --all
 ```
 
 This should show information about the container that we just ran. Similar to:
+
 ```
 CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS                      PORTS               NAMES
 39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
@@ -543,6 +544,7 @@ docker exec -it my_container /bin/bash
       containers.
 
 ### Bind mounts
+
 There are obviously some advantages to isolating and running your data analysis
 in containers, but at some point you need to be able to interact with the host
 system to actually deliver the results. This is done via bind mounts. When you
@@ -675,7 +677,7 @@ and go get a coffee while the image builds (or
 you could use `docker pull nbisweden/workshop-reproducible-research` which
 will download the same image).
 
-Validate with `docker images`. Now all that remains is to run the whole thing
+Validate with `docker image ls`. Now all that remains is to run the whole thing
 with `docker run`. We just want to get the results, so mount the directory
 `/course/results/` to, say, `mrsa_results` in your current directory.
 
