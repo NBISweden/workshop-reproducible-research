@@ -315,30 +315,24 @@ icon in the menu bar in the upper right part of the screen.
 
 ### Windows
 
-The instructions are different depending on if you have Windows 10 or Windows 7.
-In order to run Docker on Windows your computer must support Hardware 
-Virtualization Technology and virtualization must be enabled. This is 
+In order to run Docker on Windows your computer must support *Hardware
+Virtualization Technology* and virtualization must be enabled. This is
 typically done in BIOS. Setting this is outside the scope of this tutorial, 
 so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
-Click the link "Download from Docker Hub", and select "Get Docker". 
+Click the link *Download from Docker Hub*, and select *Get Docker*. Once the
+download is complete, execute the file and follow the
+[instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
+You can now start Docker from the Start menu. You can search for it if you
+cannot find it; the Docker whale icon should appear in the task bar.
 
-1. Once the download is complete, execute the file and follow the 
-    [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
-
-2. Start Docker from the Start menu. You can search for it if you cannot find
-   it. The Docker whale icon should appear in the task bar. Open the Windows 10
-   PowerShell to run the tutorial.
-
-3. If you would like to use the Linux Bash Shell instead of the Windows 10
-   PowerShell, you might need to enable integration with the Linux app you
-   installed (if you haven't done so during the installation of Docker Desktop). 
-   Right-click on the Docker whale icon in the task bar and select
-   Settings. Choose Resources and in there, select WPS integration. Enable
-   integration with the Linux app you installed and click Apply & Restart.
-   Restart also the Linux app.
+You will probably need to enable integration with the Linux subsystem, if you
+haven't done so during the installation of Docker Desktop. Right-click on the
+Docker whale icon in the task bar and select *Settings*. Choose *Resources* and
+select *WPS integration*. Enable integration with the Linux subsystem and click
+*Apply & Restart*; also restart the Linux subsystem.
 
 ### Linux
 
