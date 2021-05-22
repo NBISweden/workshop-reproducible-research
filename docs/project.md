@@ -50,29 +50,16 @@ for at least git and Conda.
 ## Alternative: student experience project
 
 If you don't want to use a project you're currently working on we have
-a suggestion for a small-scale project for you. The idea is to analyze
-students' experiences at this Reproducible Research course. For this you will
-use responses from students to the registration form for the course. Below
-you'll find links to files in `*.csv` format with answers from 3 course instances:
+a suggestion for a small-scale project for you. The idea is to analyze students'
+experiences at this Reproducible Research course. For this you will use
+responses from students to the registration form for previous course rounds. You
+can find the responses in the `data/` directory in the project root. The goal
+is to create a Snakemake workflow, which contains the following:
 
-2018-11<br>
-<font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font><br>
-2019-05<br>
-<font size="2">
-https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv</font><br>
-2019-11<br>
-<font size="2">
-https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv</font>
+1. A rule that cleans the files (making use of `wildcards` so that the same rule
+   can be run on each file)
 
-The goal here is to create a Snakemake workflow, which contains the following:
-
-1. Has a rule that downloads the `csv` files (making use of a `config.yml` file
-   to pass the URLs and file names)
-
-2. Has a rule that cleans the files (making use of `wildcards` so that the same
-   rule can be run on each file)
-
-3. The final step is to plot the student experience in some way
+2. Plot the student experiences in some interesting way
 
 !!! attention "Remember to"
     * Keep everything versioned controlled with `git`
@@ -82,9 +69,9 @@ The goal here is to create a Snakemake workflow, which contains the following:
 
 ### Inspiration and tips for the student experience workflow
 
-The first two steps should be part of the Snakemake workflow. If you need some help
-with the cleaning step, see below for a Python script that you can save to a file
-and run in the second Snakemake rule.
+The first step should be part of the Snakemake workflow. If you need some help
+with the cleaning step, see below for a Python script that you can save to
+a file and run in the second Snakemake rule.
 
 ??? note "Click to show a script for cleaning column names"
     The script (*e.g.* `clean_csv.py`):
@@ -116,12 +103,12 @@ and run in the second Snakemake rule.
     python clean_csv.py input_file.csv output_file.csv
     ```
 
-The third step is really up to you how to implement. You could:
+The second step is really up to you how to implement. You could:
 
-* Include the plotting in the workflow using an RMarkdown document that
+* Include the plotting in the workflow using an R Markdown document that
   gets rendered into a report
 * Have a script that produces separate figures (*e.g.* `png` files)
-* Create a jupyter notebook that reads the cleaned output from the workflow
+* Create a Jupyter notebook that reads the cleaned output from the workflow
   and generates some plot or does other additional analyses
 
 If you need some help/inspiration with plotting the results, click below
