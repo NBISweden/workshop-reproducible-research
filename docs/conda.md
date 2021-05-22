@@ -207,11 +207,11 @@ with more packages, as the analysis workflow is expanded.
 
 ```yml
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
 dependencies:
-- fastqc=0.11.9
-- sra-tools=2.10.1
+  - fastqc=0.11.9
+  - sra-tools=2.10.1
 ```
 
 * Now, make a new Conda environment from the yml file (note that here the
@@ -288,6 +288,42 @@ will then try to get the latest compatible versions of all the specified
 software, making the start-up and installation part of new projects easier. You
 can then add the versions that were installed to your environment file
 afterwards, ensuring future reproducibility.
+
+For example, let's say that we have a relatively complicated environment with
+a number of software packages, like so:
+
+```yml
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=3.6.1
+  - r-ggplot2
+  - bioconductor-deseq2
+  - bioconductor-biomart
+  - salmon
+```
+
+We've specified that we want R version `3.6.1`, but we've left everything else
+out (for now, that is). We can easily create this environment using `conda env
+create -f environment.yml -n complex-env`, which will then try to find the
+latest compatible combination of package versions with the sole demand that the
+R version must be equal to `3.6.1`. All we need to do now is to retroactively
+add versions to the environment file from those that were installed! We can
+easily get the installed versions with the following command:
+
+```bash
+conda env export -n complex-env
+```
+
+This will print out the specific versions of all the installed packages,
+including exact build versions (which is the weird-looking things at the end,
+after the second equal-sign; these are platform-specific). Rather than trawling
+through this huge list, we can supply the above command with the
+`--from-history` flag. Try it out and see what happens! Two things happen:
+first, we don't get the platform-specific build versions; secondly, we only get
+the versions of the packages we specified in our environment file. Nice! This is
+something we can easily add to our `environment.yml` file.
 
 !!! note "Quick recap"
     In this section we've learned:
