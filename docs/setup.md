@@ -36,47 +36,42 @@ cd workshop-reproducible-research
 
 ## Setup for Windows users
 
-There are several different ways to run the course material on a Windows
-computer. Neither is perhaps optimal, and the material itself has not been
-adapted specifically for Windows. Nevertheless, in principle everything
-*should* be possible to run. A few ways you could setup:
+Using a Windows computer for bioinformatic work has sadly not been ideal most of
+the time, but large advanced in recent years have made this quite feasible
+through the Windows 10 *Linux subsystem*. This is the only setup for Windows
+users that we allow for participants of this course, as all the material has
+been created and tested to work on Unix-based systems.
 
-- Use the Linux Bash Shell on Windows 10 (see below) _**Recommended for the
-  course**_
-- Run the course in a Docker container (see below)
-- Run as Linux through a virtual machine (and see the Linux setup above)
-- Use the Windows 10 PowerShell, install git and clone the course repository
-  (see the Mac/Linux setup above)
-
-### Running in the Linux Bash Shell on Windows 10
-
-This will give you access to a full command-line bash shell based on Linux on your
-Windows 10 PC. For the difference between the Linux Bash Shell and the PowerShell on Windows
-10, see *e.g.* [this article](
+Using the Linux subsystem will give you access to a full command-line bash shell
+based on Linux on your Windows 10 PC. For the difference between the Linux Bash
+Shell and the PowerShell on Windows 10, see *e.g.* [this article](
 https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
 
-Install Bash on Windows 10, following the instructions at *e.g.* one of these
+Install Bash on Windows 10, follow the instructions at *e.g.* one of these
 resources:
 
 - [Installing the Windows Subsystem and the Linux Bash](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 - [Installing and using Linux Bash on Windows](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
 - [Installing Linux Bash on Windows](https://itsfoss.com/install-bash-on-windows/)
 
-Open a bash shell Linux terminal and clone the GitHub repository
-containing all files you will need for completing the tutorials as follows.
-First, `cd` into a directory on your computer (or create one) where it makes
-sense to download the course directory.
-
-!!! tip
-    You can find the directory where the Linux distribution is storing all its files by
-    typing `explorer.exe .`. This will launch the Windows File Explorer showing the
-    current Linux directory.
+Open a bash shell Linux terminal and clone the GitHub repository containing all
+files you will need for completing the tutorials as follows. First, `cd` into
+a directory on your computer (or create one) where it makes sense to download
+the course directory.
 
 ```bash
 cd /path/to/your/directory
 git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
+
+Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two,
+with no alternative for Windows), please follow the Linux instructions.
+
+!!! tip
+    You can find the directory where the Linux distribution is storing all its
+    files by typing `explorer.exe .`. This will launch the Windows File Explorer
+    showing the current Linux directory.
 
 !!! tip
     If you want to revisit the material from an older instance of this course,
@@ -86,87 +81,6 @@ cd workshop-reproducible-research
     described above. If you do that, you probably also want to view the same
     older version of this website. Locate the version box in the bottom right
     corner of the browser and select the corresponding version.
-
-### Using Docker to run the course
-
-Alternatively, you can use Docker to run the course in a Docker container.
-Install Docker by following the instructions below on this page for Docker on Windows,
-and start Docker Desktop. Then, open the Windows 10 PowerShell and `cd` into a directory 
-on your computer (or create one) where it makes sense to download the course directory:
-
-```bash
-cd c:/my_dir
-```
-
-Then run:
-
-```bash
-docker run -it -p 8888:8888 -v /c/my_dir:/course/ nbisweden/workshop-reproducible-research:slim
-```
-
-!!! attention
-    Note that we use `/c/my_dir` and not `c:/my_dir` as we normally do on
-    Windows. This is required for Docker to parse the command correctly.
-
-This will start an isolated container running Linux, where the directory
-on your computer (`c:/my_dir`) is mounted (*i.e.* you can access the files in 
-this Windows directory within the Linux container, and files edited or created 
-within the Linux container will appear in this Windows directory). Note that 
-the idea is that you should edit files in the mounted `c:/my_dir` using an 
-editor in your normal OS, say Notepad in Windows. The terminal in the container 
-is for running stuff, not editing.
-
-You should now be at a terminal in the Docker container. Now clone the GitHub
-repository containing all the files you will need for the tutorials.
-
-```bash
-git clone https://github.com/NBISweden/workshop-reproducible-research.git
-cd workshop-reproducible-research
-```
-
-#### Setting up persistent Conda environments
-
-Because the root file system of each container is an isolated instance, Conda
-environments you create during this course will be lost if you exit the
-container or if it is killed for some reason. This means that you will have to
-recreate each environment every time you run a new container for
-the course. To avoid this, you can make sure that Conda uses a subfolder `envs/`
-inside the `/course` directory for storing environments. If you run containers
-for the course with some folder on your local machine mounted inside `/course`
-that will cause the Conda environments to be available on your local machine
-even though they are created inside the container. Should a container be stopped
-for some reason you can simply run a new one and activate Conda environments
-under `/course/envs`, saving you the trouble of recreating them.
-
-What you have to do is to, after you've started a container with the
-`docker run` command above, first create the `/course/envs/` directory (making sure 
-you are standing in the `course/` directory with `pwd`):
-
-```bash
-mkdir envs
-```
-
-Then set the environment variable `CONDA_ENVS_PATH` to `/course/envs`:
-
-```bash
-export CONDA_ENVS_PATH="/course/envs"
-```
-
-Now when you use Conda to create environments inside the Docker container for
-the course, the environments will be placed in `/course/envs` which is also
-present on your local system because you mounted the folder inside the
-container. **Note that you will have to set the `CONDA_ENVS_PATH` each time you
-start a new container for this to work**.
-
-!!! attention
-    This usage of persistent Conda environments should be considered an edge
-    case of how you use Docker containers. We do this only to make it easier to
-    run the course through Docker, but in general we do not advocate creating
-    Conda environments separate from the actual Docker container.
-
-Don't worry if you feel that this Docker stuff is a little confusing, it will
-become clearer in the [Docker tutorial](docker.md). However, the priority right
-now is just to get it running so that you can start working.
 
 ## Installing Git
 
@@ -238,15 +152,6 @@ curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh 
 bash Miniconda3-4.7.12.1-Linux-x86_64.sh
 rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
-
-!!! attention "Windows users"
-    If you are doing the tutorials by running a Docker container on your
-    Windows machine, Conda will already be installed for you. You can then jump
-    ahead to the last point about setting up the default channels (`conda
-    config`) and then go ahead with the practical exercise.
-
-    If you are using the Linux Bash Shell, follow the installation instructions 
-    for Linux users.
 
 !!! attention
     If you already have installed Conda but want to update, you should be able
@@ -351,7 +256,9 @@ tools.
     In case you are having trouble installing R and RStudio using Conda, both 
     run well directly on Windows and you may therefore want to install Windows 
     versions of these software for this tutorial (if you haven't done so already). 
-    Conda is, however, the recommended way.
+    Conda is, however, the recommended way. If you're having issues with
+    graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
+    scroll down to the "Graphical applications".
 
 !!! note "RStudio and Conda"
     In some cases RStudio doesn't play well with Conda due to differing
@@ -380,7 +287,7 @@ tools.
 Let's continue using Conda for installing software, since it's so convenient to
 do so! Create an environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
- 
+
 ```bash
 conda env create -f jupyter/environment.yml -n jupyter-env
 conda activate jupyter-env
@@ -389,16 +296,6 @@ conda activate jupyter-env
 Once you've successfully completed the above steps you can deactivate your Conda
 environment using `conda deactivate` and continue with the setup for the other
 tools.
-
-!!! attention "Windows users"
-    If you are doing these exercises through a Docker container you also need
-    the run the following:
-    
-    ```bash
-    mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '0.0.0.0'" >> \
-        /root/.jupyter/jupyter_notebook_config.py
-    ```
 
 ## Installing Docker
 
@@ -420,30 +317,24 @@ icon in the menu bar in the upper right part of the screen.
 
 ### Windows
 
-The instructions are different depending on if you have Windows 10 or Windows 7.
-In order to run Docker on Windows your computer must support Hardware 
-Virtualization Technology and virtualization must be enabled. This is 
+In order to run Docker on Windows your computer must support *Hardware
+Virtualization Technology* and virtualization must be enabled. This is
 typically done in BIOS. Setting this is outside the scope of this tutorial, 
 so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
-Click the link "Download from Docker Hub", and select "Get Docker". 
+Click the link *Download from Docker Hub*, and select *Get Docker*. Once the
+download is complete, execute the file and follow the
+[instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
+You can now start Docker from the Start menu. You can search for it if you
+cannot find it; the Docker whale icon should appear in the task bar.
 
-1. Once the download is complete, execute the file and follow the 
-    [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
-
-2. Start Docker from the Start menu. You can search for it if you cannot find
-   it. The Docker whale icon should appear in the task bar. Open the Windows 10
-   PowerShell to run the tutorial.
-
-3. If you would like to use the Linux Bash Shell instead of the Windows 10
-   PowerShell, you might need to enable integration with the Linux app you
-   installed (if you haven't done so during the installation of Docker Desktop). 
-   Right-click on the Docker whale icon in the task bar and select
-   Settings. Choose Resources and in there, select WPS integration. Enable
-   integration with the Linux app you installed and click Apply & Restart.
-   Restart also the Linux app.
+You will probably need to enable integration with the Linux subsystem, if you
+haven't done so during the installation of Docker Desktop. Right-click on the
+Docker whale icon in the task bar and select *Settings*. Choose *Resources* and
+select *WPS integration*. Enable integration with the Linux subsystem and click
+*Apply & Restart*; also restart the Linux subsystem.
 
 ### Linux
 
