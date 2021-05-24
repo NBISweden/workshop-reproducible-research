@@ -256,7 +256,9 @@ tools.
     In case you are having trouble installing R and RStudio using Conda, both 
     run well directly on Windows and you may therefore want to install Windows 
     versions of these software for this tutorial (if you haven't done so already). 
-    Conda is, however, the recommended way.
+    Conda is, however, the recommended way. If you're having issues with
+    graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
+    scroll down to the "Graphical applications".
 
 !!! note "RStudio and Conda"
     In some cases RStudio doesn't play well with Conda due to differing
