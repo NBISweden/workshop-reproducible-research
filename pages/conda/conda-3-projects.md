@@ -41,12 +41,12 @@ dependencies:
 conda env create -n project_mrsa -f environment.yml
 ```
 
-> **Tip**
+> **Tip** <br>
 > You can also specify exactly which channel a package should come from
 > inside the environment file, using the `channel::package=version`
 > syntax.
 
-> **Tip**
+> **Tip** <br>
 > Instead of the `-n` flag you can use the `-p` flag to set the full path to
 > where the Conda environment should be installed. In that way you can
 > contain the Conda environment inside the project directory, which does make
@@ -108,8 +108,8 @@ software, making the start-up and installation part of new projects easier. You
 can then add the versions that were installed to your environment file
 afterwards, ensuring future reproducibility.
 
-> **Quick recap**
-> In this section we've learned:
-> - How to define our Conda environment using a yml-file.
-> - How to use `conda env create` to make a new environment from a yml-file.
-> - How to work with Conda in a project-like setting.
+> **Quick recap**<br>
+> In this section we've learned:<br>
+> - How to define our Conda environment using a yml-file.<br>
+> - How to use `conda env create` to make a new environment from a yml-file.<br>
+> - How to work with Conda in a project-like setting.<br>

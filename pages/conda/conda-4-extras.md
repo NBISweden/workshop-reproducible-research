@@ -67,6 +67,7 @@ conda create -n py27 python=2.7
 ```
 
 Activate this environment with:
+
 ```bash
 conda activate py27
 ```
@@ -74,11 +75,11 @@ conda activate py27
 Now, switching between Python versions is as easy as typing `conda activate
 py35` / `conda activate py27`.
 
- note "Default Python version"
-    If you create an environment where none of the packages require Python,
-    **and** you don't explicitly install the `python` package then that new
-    environment will use the Python version installed in your base Conda
-    environment.
+> **Note**<br>
+> If you create an environment where none of the packages require Python,
+> **and** you don't explicitly install the `python` package then that new
+> environment will use the Python version installed in your base Conda
+> environment.
 
 ## Configuring Conda
 
