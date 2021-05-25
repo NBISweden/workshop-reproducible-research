@@ -22,8 +22,10 @@ docker run --rm \
     pandoc/latex $MARKDOWN -o $HTML
 
 # Add maximum page width
-CONTENT="$(echo \<div class="col-lg-$PAGE_WIDTH"\>; cat $HTML; echo \</div\>)" \
-    > /dev/null
+echo "<div class='col-lg-$PAGE_WIDTH'>" > tmp.html
+cat "$HTML" >> tmp.html
+echo "</div>" >> tmp.html
+mv tmp.html "$HTML"
 
 # Check if current page already exists
 curl -X GET \
@@ -38,7 +40,7 @@ if [ $? -eq 0 ]; then
     curl -X PUT \
         "$API/$COURSE_ID/pages/$PAGE" \
         --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
-        --data wiki_page[body]="$(echo $CONTENT)" \
+        --data wiki_page[body]="$(cat $HTML)" \
         --silent --show-error \
         > /dev/null
 else
@@ -47,7 +49,7 @@ else
         "$API/$COURSE_ID/pages/$PAGE" \
         --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
         --data wiki_page[title]="$PAGE" \
-        --data wiki_page[body]="$(echo $CONTENT)" \
+        --data wiki_page[body]="$(cat $HTML)" \
         --silent --show-error \
         > /dev/null
 fi
