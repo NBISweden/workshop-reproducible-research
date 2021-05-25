@@ -13,6 +13,7 @@ TOKEN="$HOME/.canvas-api-token"
 API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's/.md//g')
 HTML=$(basename $MARKDOWN | sed 's/.md/.html/g')
+PAGE_WIDTH=4
 
 # Convert using Pandoc
 docker run --rm \
@@ -21,8 +22,7 @@ docker run --rm \
     pandoc/latex $MARKDOWN -o $HTML
 
 # Add maximum page width
-WIDTH=4
-CONTENT="$(echo \<div class="col-lg-$WIDTH"\>; cat $HTML; echo \</div\>)" \
+CONTENT="$(echo \<div class="col-lg-$PAGE_WIDTH"\>; cat $HTML; echo \</div\>)" \
     > /dev/null
 
 # Check if current page already exists
