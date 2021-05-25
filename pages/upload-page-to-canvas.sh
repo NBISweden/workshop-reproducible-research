@@ -20,6 +20,11 @@ docker run --rm \
     --user `id -u`:`id -g` \
     pandoc/latex $MARKDOWN -o $HTML
 
+# Add maximum page width
+WIDTH=4
+CONTENT="$(echo \<div class="col-lg-$WIDTH"\>; cat $HTML; echo \</div\>)" \
+    > /dev/null
+
 # Check if current page already exists
 curl -X GET \
     "$API/$COURSE_ID/pages/$PAGE" \
@@ -33,16 +38,16 @@ if [ $? -eq 0 ]; then
     curl -X PUT \
         "$API/$COURSE_ID/pages/$PAGE" \
         --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
-        --data wiki_page[body]="$(cat $HTML)" \
+        --data wiki_page[body]="$(echo $CONTENT)" \
         --silent --show-error \
         > /dev/null
 else
-    echo "Page \`$PAGE\` does not exists: creating it"
+    echo "Page \`$PAGE\` does not exist: creating it"
     curl -X POST \
         "$API/$COURSE_ID/pages/$PAGE" \
         --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
         --data wiki_page[title]="$PAGE" \
-        --data wiki_page[body]="$(cat $HTML)" \
+        --data wiki_page[body]="$(echo $CONTENT)" \
         --silent --show-error \
         > /dev/null
 fi
