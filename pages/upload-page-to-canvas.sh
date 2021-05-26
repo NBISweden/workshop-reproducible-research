@@ -40,7 +40,7 @@ if [ $? -eq 0 ]; then
     curl -X PUT \
         "$API/$COURSE_ID/pages/$PAGE" \
         --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
-        --data wiki_page[body]="$(cat $HTML)" \
+        --data-urlencode wiki_page[body]="$(cat $HTML)" \
         --silent --show-error \
         > /dev/null
 else
@@ -48,8 +48,8 @@ else
     curl -X POST \
         "$API/$COURSE_ID/pages/$PAGE" \
         --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
-        --data wiki_page[title]="$PAGE" \
-        --data wiki_page[body]="$(cat $HTML)" \
+        --data-urlencode wiki_page[title]="$PAGE" \
+        --data-urlencode wiki_page[body]="$(cat $HTML)" \
         --silent --show-error \
         > /dev/null
 fi
