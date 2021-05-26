@@ -19,7 +19,7 @@ PAGE_WIDTH=4
 docker run --rm \
     --volume "`pwd`:/data" \
     --user `id -u`:`id -g` \
-    pandoc/latex $MARKDOWN -o $HTML
+    pandoc/latex $MARKDOWN --output="$HTML"
 
 # Add maximum page width
 echo "<div class='col-lg-$PAGE_WIDTH'>" > tmp.html
