@@ -27,32 +27,13 @@ cat "$HTML" >> tmp.html
 echo "</div>" >> tmp.html
 mv tmp.html "$HTML"
 
-# Check if current page already exists
-curl -X GET \
+# Create or update page curl PUT
+curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
-    --header "Authorization: Bearer $(cat $TOKEN)" \
+    --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
+    --data-urlencode wiki_page[body]="$(cat $HTML)" \
     --silent --show-error \
     > /dev/null
-
-# Create or update page, as applicable
-if [ $? -eq 0 ]; then
-    echo "Page \`$PAGE\` already exists: updating it"
-    curl -X PUT \
-        "$API/$COURSE_ID/pages/$PAGE" \
-        --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
-        --data-urlencode wiki_page[body]="$(cat $HTML)" \
-        --silent --show-error \
-        > /dev/null
-else
-    echo "Page \`$PAGE\` does not exist: creating it"
-    curl -X POST \
-        "$API/$COURSE_ID/pages/$PAGE" \
-        --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
-        --data-urlencode wiki_page[title]="$PAGE" \
-        --data-urlencode wiki_page[body]="$(cat $HTML)" \
-        --silent --show-error \
-        > /dev/null
-fi
 
 # Delete rendered HTML
 rm $HTML
