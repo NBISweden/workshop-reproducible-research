@@ -77,7 +77,7 @@ py35` / `conda activate py27`.
 
 > **Note**<br>
 > If you create an environment where none of the packages require Python,
-> **and** you don't explicitly install the `python` package then that new
+> *and* you don't explicitly install the `python` package then that new
 > environment will use the Python version installed in your base Conda
 > environment.
 

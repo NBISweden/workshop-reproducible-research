@@ -108,8 +108,9 @@ software, making the start-up and installation part of new projects easier. You
 can then add the versions that were installed to your environment file
 afterwards, ensuring future reproducibility.
 
-> **Quick recap**<br>
-> In this section we've learned:<br>
-> - How to define our Conda environment using a yml-file.<br>
-> - How to use `conda env create` to make a new environment from a yml-file.<br>
-> - How to work with Conda in a project-like setting.<br>
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to define our Conda environment using a yml-file.
+> - How to use `conda env create` to make a new environment from a yml-file.
+> - How to work with Conda in a project-like setting.

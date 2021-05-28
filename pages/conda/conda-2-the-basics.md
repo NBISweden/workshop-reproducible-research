@@ -131,7 +131,8 @@ unused packages (*i.e.* those not present in any environments), and cached
 data.
 
 > **Quick recap** <br>
-> In this section we've learned: <br>
-> - How to use `conda install` for installing packages on the fly. <br>
-> - How to create, activate and change between environments. <br>
-> - How to remove packages or environments and clean up. <br>
+> In this section we've learned:
+>
+> - How to use `conda install` for installing packages on the fly.
+> - How to create, activate and change between environments.
+> - How to remove packages or environments and clean up.
