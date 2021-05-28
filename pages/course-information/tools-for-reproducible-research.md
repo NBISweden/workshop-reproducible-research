@@ -89,6 +89,11 @@ valid for formal credits or not.
 
 You can find the course schedule at [this page](https://uppsala.instructure.com/courses/COURSE_ID/pages/schedule).
 
+# Travel information
+
+This course round is given using Zoom, so there will be no need for travel or
+accommodations at this time.
+
 # Pre-course material
 
 The [pre-course preparation](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-material)
@@ -103,6 +108,7 @@ the source code used to create the lectures is available under the
 [lectures/](https://github.com/NBISweden/workshop-reproducible-research.git)
 directory on GitHub. The [project template repository](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
 can also be found on GitHub.
+
 
 # Teachers
 
