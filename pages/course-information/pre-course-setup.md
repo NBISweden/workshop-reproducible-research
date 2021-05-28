@@ -1,4 +1,4 @@
-# Setup
+# Pre-course-setup
 
 All of the tutorials and the material in them is dependent on the GitHub
 repository for the course. The first step of the setup is thus to download all
@@ -25,14 +25,14 @@ git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
 
-!!! tip
-    If you want to revisit the material from an older instance of this course,
-    you can do that using `git checkout tags/<tag-name>`, e.g. 
-    `git checkout tags/course_1905`. To list all available tags, use `git tag`. 
-    Run this command after you have `cd` into `workshop-reproducible-research` 
-    as described above. If you do that, you probably also want to view the 
-    same older version of this website. Locate the version box in the bottom 
-    right corner of the browser and select the corresponding version.
+> **Tip** <br>
+> If you want to revisit the material from an older instance of this course,
+> you can do that using `git checkout tags/<tag-name>`, e.g. 
+> `git checkout tags/course_1905`. To list all available tags, use `git tag`. 
+> Run this command after you have `cd` into `workshop-reproducible-research` 
+> as described above. If you do that, you probably also want to view the 
+> same older version of this website. Locate the version box in the bottom 
+> right corner of the browser and select the corresponding version.
 
 ## Setup for Windows users
 
@@ -68,19 +68,19 @@ cd workshop-reproducible-research
 Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two,
 with no alternative for Windows), please follow the Linux instructions.
 
-!!! tip
-    You can find the directory where the Linux distribution is storing all its
-    files by typing `explorer.exe .`. This will launch the Windows File Explorer
-    showing the current Linux directory.
+> **Tip** <br>
+> You can find the directory where the Linux distribution is storing all its
+> files by typing `explorer.exe .`. This will launch the Windows File Explorer
+> showing the current Linux directory.
 
-!!! tip
-    If you want to revisit the material from an older instance of this course,
-    you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-    tags/course_1905`. To list all available tags, use `git tag`. Run this
-    command after you have `cd` into `workshop-reproducible-research` as
-    described above. If you do that, you probably also want to view the same
-    older version of this website. Locate the version box in the bottom right
-    corner of the browser and select the corresponding version.
+> **Tip** <br>
+> If you want to revisit the material from an older instance of this course,
+> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+> tags/course_1905`. To list all available tags, use `git tag`. Run this
+> command after you have `cd` into `workshop-reproducible-research` as
+> described above. If you do that, you probably also want to view the same
+> older version of this website. Locate the version box in the bottom right
+> corner of the browser and select the corresponding version.
 
 ## Installing Git
 
@@ -101,12 +101,12 @@ git config --global user.name "Mona Lisa"
 git config --global user.email "mona_lisa@gmail.com"
 ```
 
-!!! tip
-    If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
-    and thereby several different usernames, you can configure git on
-    a per-repository level. Change directory into the relevant local git
-    repository and run `git config user.name "Mona Lisa"`. This will set the
-    default username for that repository only.
+> **Tip** <br>
+> If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
+> and thereby several different usernames, you can configure git on
+> a per-repository level. Change directory into the relevant local git
+> repository and run `git config user.name "Mona Lisa"`. This will set the
+> default username for that repository only.
 
 You will also need to configure the default branch name to be `main` instead of
 `master`:
@@ -119,20 +119,20 @@ The short version of why you need to do this is that GitHub uses `main` as the
 default branch while Git itself is still using `master`; please read the box
 below for more information.
 
-!!! tip The default branch name
-    The default branch name for Git and many of the online resources for hosting
-    Git repositories has traditionally been `master`, which historically comes
-    from the "master/slave" repositories of 
-    [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-    This has been heavily discussed and in 2020 the decision was made by  many 
-    ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
-    to start using `main` instead. Any repository created with GitHub uses this
-    new naming scheme since October of 2020, and Git itself is currently
-    discussing implementing a similar change. Git did, however, introduce the
-    ability to set the default branch name when using `git init` in 
-    [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
-    instead of using a hard-coded `master`. We at NBIS want to be a part of this
-    change, so we have chosen to use `main` for this course.
+> **The default branch name** <br>
+> The default branch name for Git and many of the online resources for hosting
+> Git repositories has traditionally been `master`, which historically comes
+> from the "master/slave" repositories of 
+> [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
+> This has been heavily discussed and in 2020 the decision was made by  many 
+> ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+> to start using `main` instead. Any repository created with GitHub uses this
+> new naming scheme since October of 2020, and Git itself is currently
+> discussing implementing a similar change. Git did, however, introduce the
+> ability to set the default branch name when using `git init` in 
+> [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
+> instead of using a hard-coded `master`. We at NBIS want to be a part of this
+> change, so we have chosen to use `main` for this course.
 
 ## Installing Conda
 
@@ -153,10 +153,10 @@ bash Miniconda3-4.7.12.1-Linux-x86_64.sh
 rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
-!!! attention
-    If you already have installed Conda but want to update, you should be able
-    to simply run `conda update conda` and subsequently `conda init`, and skip
-    the installation instructions below.
+> **Attention!** <br>
+> If you already have installed Conda but want to update, you should be able
+> to simply run `conda update conda` and subsequently `conda init`, and skip
+> the installation instructions below.
 
 The installer will ask you questions during the installation:
 
@@ -172,14 +172,14 @@ effect. You can verify that the installation worked by running:
 conda --version
 ```
 
-!!! note
-    There are three Conda-related things you may have encountered: the first is 
-    Conda, the package and environment manager we've been talking about so far. 
-    Second is *Miniconda*, which is the installer for Conda. The third is 
-    *Anaconda*, which is a distribution of not only Conda, but also over 150 
-    scientific Python packages. It's generally better to stick with only Conda, 
-    *i.e.* installing with Miniconda, rather than installing 3 GB worth of 
-    packages you may not even use.
+> **Different Condas** <br>
+> There are three Conda-related things you may have encountered: the first is 
+> Conda, the package and environment manager we've been talking about so far. 
+> Second is *Miniconda*, which is the installer for Conda. The third is 
+> *Anaconda*, which is a distribution of not only Conda, but also over 150 
+> scientific Python packages. It's generally better to stick with only Conda, 
+> *i.e.* installing with Miniconda, rather than installing 3 GB worth of 
+> packages you may not even use.
 
 ### Configuring Conda
 
@@ -212,13 +212,13 @@ ensure that the Conda steps were successful. Once you've successfully completed
 the above steps you can deactivate your Conda environment using `conda
 deactivate` and continue with the setup for the other tools.
 
-!!! attention
-    If you look inside `snakemake/environment.yml` you will see that we used the
-    package `snakemake-minimal`. This is a slimmed down version that lack some
-    features, in particular relating to cloud computing and interacting with
-    remote providers such as Google Drive or Dropbox. This was done to speed up
-    the installation process. Use the normal `snakemake` package if you need
-    those features.
+> **Note** <br>
+> If you look inside `snakemake/environment.yml` you will see that we used the
+> package `snakemake-minimal`. This is a slimmed down version that lack some
+> features, in particular relating to cloud computing and interacting with
+> remote providers such as Google Drive or Dropbox. This was done to speed up
+> the installation process. Use the normal `snakemake` package if you need
+> those features.
 
 ## Installing R Markdown
 
@@ -238,40 +238,40 @@ conda activate rmarkdown-env
 rstudio &
 ```
 
-!!! note "The sluggishness of Conda"
-    Some environments are inherently quite complicated in that they have many
-    and varied dependencies, meaning that the search space for the entire
-    dependency hierarchy becomes huge - leading to slow and sluggish
-    installations. This is often the case for R environments. This can be
-    improved by using Mamba, a faster wrapper around Conda. Simply run `conda
-    install -n base mamba` to install Mamba in your base environment, and
-    replace any `conda` command with `mamba` - except activating and
-    deactivating environments, which still needs to be done using Conda.
+> **The sluggishness of Conda** <br>
+> Some environments are inherently quite complicated in that they have many
+> and varied dependencies, meaning that the search space for the entire
+> dependency hierarchy becomes huge - leading to slow and sluggish
+> installations. This is often the case for R environments. This can be
+> improved by using Mamba, a faster wrapper around Conda. Simply run `conda
+> install -n base mamba` to install Mamba in your base environment, and
+> replace any `conda` command with `mamba` - except activating and
+> deactivating environments, which still needs to be done using Conda.
 
 Once you've successfully completed the above steps you can deactivate your Conda
 environment using `conda deactivate` and continue with the setup for the other
 tools.
 
-!!! attention "Windows users"
-    In case you are having trouble installing R and RStudio using Conda, both 
-    run well directly on Windows and you may therefore want to install Windows 
-    versions of these software for this tutorial (if you haven't done so already). 
-    Conda is, however, the recommended way. If you're having issues with
-    graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
-    scroll down to the "Graphical applications".
+> **Windows users** <br>
+> In case you are having trouble installing R and RStudio using Conda, both 
+> run well directly on Windows and you may therefore want to install Windows 
+> versions of these software for this tutorial (if you haven't done so already). 
+> Conda is, however, the recommended way. If you're having issues with
+> graphical applications, please have a look at [this website](https://seanthegeek.net/234/> graphical-linux-applications-bash-ubuntu-windows/> );
+> scroll down to the "Graphical applications".
 
-!!! note "RStudio and Conda"
-    In some cases RStudio doesn't play well with Conda due to differing
-    libpaths. To fix this, first check the available library path by
-    `.libPaths()` to make sure that it points to a path within your conda
-    environment. It might be that `.libPaths()` shows multiple library paths, in
-    which case R packages will be searched for by R in all these locations.
-    This means that your R session will not be completely isolated in your Conda
-    environment and that something that works for you might not work for
-    someone else using the same Conda environment, simply because you had
-    additional packages installed in the second library location. One way to
-    force R to just use the conda library path is to add a `.Renviron` file to
-    the directory where you start R with these lines:
+> **RStudio and Conda** <br>
+> In some cases RStudio doesn't play well with Conda due to differing
+> libpaths. To fix this, first check the available library path by
+> `.libPaths()` to make sure that it points to a path within your conda
+> environment. It might be that `.libPaths()` shows multiple library paths, in
+> which case R packages will be searched for by R in all these locations.
+> This means that your R session will not be completely isolated in your Conda
+> environment and that something that works for you might not work for
+> someone else using the same Conda environment, simply because you had
+> additional packages installed in the second library location. One way to
+> force R to just use the conda library path is to add a `.Renviron` file to
+> the directory where you start R with these lines:
 
     ```
     R_LIBS_USER=""
@@ -342,13 +342,13 @@ How to install Docker differs a bit depending on your Linux distribution, but
 the steps are the same. Please follow the instructions for your distribution on
 [https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
 
-!!! tip
-    As mentioned before, Docker needs to run as root. You can achieve this by
-    prepending all Docker commands with `sudo`. This is the approach that we
-    will take in this tutorial, since the set up becomes a little simpler that way. 
-    If you plan on continuing using Docker you can get rid of this by adding your
-    user to the group `docker`. Here are instructions for how to do this:
-    [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.com/engine/installation/linux/linux-postinstall/).
+> **Tip** <br>
+> As mentioned before, Docker needs to run as root. You can achieve this by
+> prepending all Docker commands with `sudo`. This is the approach that we
+> will take in this tutorial, since the set up becomes a little simpler that way. 
+> If you plan on continuing using Docker you can get rid of this by adding your
+> user to the group `docker`. Here are instructions for how to do this:
+> [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
 
 ## Installing Singularity
 
@@ -362,8 +362,8 @@ Download the Singularity Desktop DMG file from [here](https://sylabs.io/singular
 and follow the instructions. Note that this is a beta version and not all
 features are available yet.
 
-!!! attention
-    Make sure you that 'Singularity networking' is checked during installation
+> **Attention!** <br>
+> Make sure you that 'Singularity networking' is checked during installation
 
 ### Linux
 
@@ -374,9 +374,9 @@ Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installat
 Installing on Windows requires running Singularity through a Vagrant Box, which
 may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
-!!! note "Note"
-    Last time we checked, the software "Vagrant Manager" was not available for download
-    but the installation of Singularity was successful even without it.
+> **Note** <br>
+> Last time we checked, the software "Vagrant Manager" was not available for download
+> but the installation of Singularity was successful even without it.
 
 The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC
 like this:

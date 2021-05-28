@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to the tutorials
 
 Welcome to the tutorials! Here we will learn how to make a computational
 research project reproducible using several different tools, described in the
@@ -12,7 +12,7 @@ each tutorial is made so that it can be completed independently of the other
 tutorials. It is therefore perfectly possible to choose a different order, or
 a subset of tutorials that suits your interests. Under the main figure there is
 a list of a few suggested alternative tutorial orders; you will find the
-tutorials in the menu to the left.
+tutorials in the *Modules* section in the navigation menu.
 
 Before going into the tutorials themselves, we first describe the case study
 from which the example data comes from, followed by the setup needed to install
@@ -21,14 +21,14 @@ some of which will actually take up a bit of storage space too. In order to
 remove any traces of these after completing the tutorials, please refer to the
 [Take down section](take_down.md).
 
-## The case study
+# The case study
 
 We will be running a small bioinformatics project as a case study, and use that
 to exemplify the different steps of setting up a reproducible research project.
 To give you some context, the study background and analysis steps are briefly
 described below.
 
-### Background
+## Background
 
 The data is taken from [Osmundson, Dewell, and Darst (2013)](
 http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0076572),
@@ -45,7 +45,7 @@ To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in
 * RN4220 with empty pRMC2
 * NCTC8325-4
 
-### Analysis
+## Analysis
 
 The graph below shows the different steps of the analysis that are included in
 this project:
