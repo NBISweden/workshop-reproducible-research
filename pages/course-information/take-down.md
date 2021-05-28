@@ -1,6 +1,8 @@
-# Take down
-Depending on which of the tutorials you have taken, there might be quite a lot
-of files stored on your computer. Here are instructions for how to remove them.
+# Take-down
+
+There might be a lot of files stored on your computer after you've taken the
+course, depending on how many modules you've gone through. Here are instructions
+for how to remove them.
 
 All the tutorials depend on you cloning the `workshop-reproducible-research`
 GitHub repo. This can be removed like any other directory; via Finder,
@@ -9,6 +11,7 @@ delete the hidden directories `.git`, which contains the history of the repo,
 and `.snakemake`, which contains the history of any Snakemake runs.
 
 ## Conda
+
 Several of the tutorials use Conda for installing packages. This amounts to
 about 2.6 GB if you've done all the tutorials. If you plan on using Conda in
 the future you can remove just the packages, or you can remove everything
