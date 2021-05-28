@@ -1,8 +1,14 @@
 # Tips for the student experience project
 
 The first step should be part of the Snakemake workflow. If you need some help
-with the cleaning step, see below for a Python script that you can save to
-a file (*e.g.* as `clean_csv.py`) and run in the second Snakemake rule.
+with the cleaning step, see below for an example.
+
+<details>
+<summary>Click to show</summary>
+***
+
+You can save this script as *e.g.* `clean_csv.py` and run it in the second
+Snakemake rule.
 
 ```python
 #!/usr/bin/env python
@@ -31,6 +37,9 @@ You can execute the script with the following command:
 python clean_csv.py input_file.csv output_file.csv
 ```
 
+***
+</details>
+
 The second step is really up to you how to implement. You could:
 
 * Include the plotting in the workflow using an R Markdown document that
@@ -39,9 +48,14 @@ The second step is really up to you how to implement. You could:
 * Create a Jupyter notebook that reads the cleaned output from the workflow
   and generates some plot or does other additional analyses
 
-If you need some help or inspiration, please see the code below for an example
-Python script that you save to file (*e.g.* as `plot.py`) and run with the
-cleaned files as input.
+If you need some help or inspiration, please see the code below for an example.
+
+<details>
+<summary>Click to show</summary>
+***
+
+You can save the following script as *e.g.* `plot.py` and run with the cleaned
+files as input.
 
 ```python
 #!/usr/bin/env python
@@ -145,3 +159,6 @@ You can execute the script with the following command:
 ```
 python plot.py file1.csv file2.csv file3.csv --outdir results/
 ```
+
+***
+</details>

@@ -201,27 +201,33 @@ Did it work? Can you figure out why it failed? Tip: it has to do with the PATH
 (well, to be fair, it could fail for several reasons, but if you did everything
 else correct it should be related to the PATH).
 
-??? note "Click to see the solution"
-    You need to add conda to the PATH. `%environment` makes it available at
-    runtime but not during build.
+<details>
+<summary>Click to see the solution</summary>
+***
 
-    Update the `%post` section as follows:
+You need to add conda to the PATH. `%environment` makes it available at
+runtime but not during build.
 
-    ```bash
-    # Install conda:
-    curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
-    bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
-    rm Miniconda3-4.7.12.1-Linux-x86_64.sh
-    export PATH=/usr/miniconda3/bin:$PATH ## <- add this line
-    ```
+Update the `%post` section as follows:
 
-    You also need to update the `%test` section:
+```bash
+# Install conda:
+curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
+rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+export PATH=/usr/miniconda3/bin:$PATH ## <- add this line
+```
 
-    ```bash
-    export PATH=/usr/miniconda3/bin:$PATH ## <- add this line
-    fastqc --version
-    fastq-dump --version
-    ```
+You also need to update the `%test` section:
+
+```bash
+export PATH=/usr/miniconda3/bin:$PATH ## <- add this line
+fastqc --version
+fastq-dump --version
+```
+
+***
+</details>
 
 The build should now hopefully work and produce a Singularity image called
 `run_qc.sif`. To run the image, *i.e.* executing `code/run_qc.sh` using the

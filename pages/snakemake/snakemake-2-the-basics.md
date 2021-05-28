@@ -173,20 +173,23 @@ based on. Try to figure out how to do this yourself. If you're stuck you can
 look at the spoiler below, but spend some time on it before you look. Also
 rename the rule to `concatenate_files` to reflect its new more general use.
 
-??? note "Click to see how to implement `concatenate_files`"
+<details>
+<summary> Click to show </summary>
 
-    ```python
-    rule concatenate_files:
-        input:
-            "{first}.upper.txt",
-            "{second}.upper.txt"
-        output:
-            "{first}_{second}.txt"
-        shell:
-            """
-            cat {input[0]} {input[1]} > {output}
-            """
-    ```
+```python
+rule concatenate_files:
+    input:
+        "{first}.upper.txt",
+        "{second}.upper.txt"
+    output:
+        "{first}_{second}.txt"
+    shell:
+        """
+        cat {input[0]} {input[1]} > {output}
+        """
+```
+
+</details>
 
 We can now control which input files to use by the name of the file we ask
 Snakemake to generate.

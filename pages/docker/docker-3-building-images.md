@@ -273,7 +273,10 @@ the image. So, this is what we need to do:
    execute the shell script.
 
 Try to add required lines to `Dockerfile_conda`. If it seems overwhelming you
-can take a look below:
+can take a look at an example below:
+
+<details>
+<summary> Click to show </summary>
 
 ```no-highlight
 FROM my_docker_image:latest
@@ -283,6 +286,8 @@ RUN conda config --add channels bioconda && \
 COPY run_qc.sh .
 CMD bash run_qc.sh
 ```
+
+</details>
 
 Build the image and tag it `my_docker_conda`:
 

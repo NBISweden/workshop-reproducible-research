@@ -52,32 +52,35 @@ rules involved in the generation of your target files. Now try to change the
 contents of `a.txt` to some other text and save it. What do you think will
 happen if you run `snakemake -n -r a_b.txt` again?
 
-??? note "Click to see output"
+<details>
+<summary> Click to show </summary>
 
-    ```no-highlight
-    $ snakemake -n -r a_b.txt
+```no-highlight
+$ snakemake -n -r a_b.txt
 
-    Building DAG of jobs...
-    rule convert_to_upper_case:
-        input: a.txt
-        output: a.upper.txt
-        jobid: 2
-        reason: Updated input files: a.txt
-        wildcards: some_name=a
+Building DAG of jobs...
+rule convert_to_upper_case:
+    input: a.txt
+    output: a.upper.txt
+    jobid: 2
+    reason: Updated input files: a.txt
+    wildcards: some_name=a
 
-    rule concatenate_files:
-        input: a.upper.txt, b.upper.txt
-        output: a_b.txt
-        jobid: 0
-        reason: Input files updated by another job: a.upper.txt
-        wildcards: first=a, second=b
+rule concatenate_files:
+    input: a.upper.txt, b.upper.txt
+    output: a_b.txt
+    jobid: 0
+    reason: Input files updated by another job: a.upper.txt
+    wildcards: first=a, second=b
 
-    Job counts:
-            count   jobs
-            1       concatenate_files
-            1       convert_to_upper_case
-            2
-    ```
+Job counts:
+        count   jobs
+        1       concatenate_files
+        1       convert_to_upper_case
+        2
+```
+
+</details>
 
 Were you correct? Also generate the job graph and compare to the one generated
 above. What's the difference? Now rerun without `-n` and validate that
