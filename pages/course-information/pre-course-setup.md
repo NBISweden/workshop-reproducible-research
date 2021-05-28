@@ -1,5 +1,3 @@
-# Pre-course-setup
-
 All of the tutorials and the material in them is dependent on the GitHub
 repository for the course. The first step of the setup is thus to download all
 the files that you will need, which is done differently depending on which

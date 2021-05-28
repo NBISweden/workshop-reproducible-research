@@ -1,5 +1,3 @@
-# Introduction to the tutorials
-
 Welcome to the tutorials! Here we will learn how to make a computational
 research project reproducible using several different tools, described in the
 figure below:

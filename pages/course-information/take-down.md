@@ -1,5 +1,3 @@
-# Take-down
-
 There might be a lot of files stored on your computer after you've taken the
 course, depending on how many modules you've gone through. Here are instructions
 for how to remove them.
