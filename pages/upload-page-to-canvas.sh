@@ -22,9 +22,6 @@ API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's/.md//g')
 HTML=$(basename $MARKDOWN | sed 's/.md/.html/g')
 
-# Page width
-PAGE_WIDTH=4
-
 # Current Git branch and course image path
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 GITHUB="https:\/\/raw\.githubusercontent\.com\/NBISweden\/workshop-reproducible-research\/$BRANCH\/pages\/"
@@ -35,15 +32,11 @@ docker run --rm \
     --user `id -u`:`id -g` \
     pandoc/latex $MARKDOWN --output="$HTML"
 
-# Add maximum page width
-echo "<div class='col-lg-$PAGE_WIDTH'>" > tmp.html
-cat "$HTML" >> tmp.html
-echo "</div>" >> tmp.html
-
 # Add images from GitHub on current branch
-cat tmp.html \
+cat "$HTML" \
     | sed "s/\(src=\"\)\(images\/\)/\1$GITHUB\2/g" \
-    > "$HTML"
+    > tmp.html
+mv tmp.html "$HTML"
 
 # Create or update page curl PUT
 echo "Uploading \`$HTML\` ..."
@@ -54,5 +47,5 @@ curl -X PUT \
     --silent --show-error \
     > /dev/null
 
-# Delete HTMLs
-rm $HTML tmp.html
+# Delete rendered HTML
+rm $HTML
