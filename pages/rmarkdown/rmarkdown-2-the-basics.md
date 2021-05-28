@@ -76,6 +76,6 @@ HTML or PDF). An even more complete guide is available
   template R Markdown document! Press *Knit* to see the effect of your changes.
   Don't worry about the code chunks just yet, we'll come to that in a second.
 
-> **Note** <br>
+> **Quick recap** <br>
 > In this section you learned and tried out some of the basic markdown
 > syntax.
