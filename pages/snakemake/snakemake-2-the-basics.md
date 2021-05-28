@@ -244,7 +244,8 @@ Neat!
 > the file's path through the workflow, *e.g.* `sample_a.trimmed.deduplicated.sorted.bam`.
 
 > **Quick recap** <br>
-> In this section we've learned: <br>
-> * How a simple Snakemake rule looks. <br>
-> * How to define target files when executing a workflow. <br>
-> * How to use named wildcards for writing generic and flexible rules. <br>
+> In this section we've learned:
+>
+> - How a simple Snakemake rule looks.
+> - How to define target files when executing a workflow.
+> - How to use named wildcards for writing generic and flexible rules.

@@ -190,9 +190,10 @@ if you felt that this section was a struggle then you could move on to one of
 the other tutorials instead.
 
 > **Quick recap** <br>
-> In this section we've learned: <br>
-> * How to use `--dag` and `--rulegraph` for visualizing the job and rule
->   graphs, respectively. <br>
-> * How to force Snakemake to rerun relevant parts of the workflow after
->   there have been changes. <br>
-> * How logging in Snakemake works.
+> In this section we've learned:
+>
+> - How to use `--dag` and `--rulegraph` for visualizing the job and rule
+>   graphs, respectively.
+> - How to force Snakemake to rerun relevant parts of the workflow after
+>   there have been changes.
+> - How logging in Snakemake works.

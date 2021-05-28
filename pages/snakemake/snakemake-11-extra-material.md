@@ -1,6 +1,4 @@
-# Extra material
-
-## Running jobs in Singularity or Docker containers
+# Running jobs in Singularity or Docker containers
 
 Snakemake also supports defining a Singularity or Docker container for each rule
 (you will have time to work on the [Docker tutorial](docker.md) and the
@@ -54,7 +52,7 @@ Snakemake workflow with Singularity locally on your computer.
 In the next section we explain how you can run Snakemake workflows on UPPMAX
 where Singularity is pre-installed.
 
-## Running Snakemake workflows on UPPMAX
+# Running Snakemake workflows on UPPMAX
 
 There are several options to execute Snakemake workflows on UPPMAX (a HPC
 cluster with the SLURM workload manager). In any case, we highly recommend to use

@@ -136,18 +136,17 @@ output:
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
-## Summary
-
-Well done!
-
-* You have a general RNA-seq pipeline which can easily be reused between
-  projects, thanks to clear separation between code and settings.
-* You have great traceability due to logs and summary tables.
-* You have clearly defined the environment for the workflow using Conda.
-* You have kept the workflow neat and free from temporary files by using
-  `temp()` and `shadow`.
-* You have a logical directory structure which makes it easy to separate raw
-  data, intermediate files, and results.
-* You have set up you project in a way that makes it very easy to distribute
-  and reproduce either via Git, Snakemake's `--archive` option or a Docker
-  image.
+> **Summary** <br>
+> Well done! You now have a complete Snakemake workflow with a number of
+> excellent features:
+>
+> - A general RNA-seq pipeline which can easily be reused between projects,
+>   thanks to clear separation between code and settings.
+> - Great traceability due to logs and summary tables.
+> - Clearly defined the environment for the workflow using Conda.
+> - The workflow is neat and free from temporary files due to using `temp()` and
+>   `shadow`.
+> - A logical directory structure which makes it easy to separate raw data,
+>   intermediate files, and results.
+> - A project set up in a way that makes it very easy to distribute and
+>   reproduce either via Git, Snakemake's `--archive` option or a Docker image.
