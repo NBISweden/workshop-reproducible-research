@@ -42,10 +42,11 @@ already. Then open up a terminal and go to `workshop-reproducible-research/jupyt
 and activate your `jupyter-env` Conda environment.
 
 > **A note on nomenclature** <br>
-> * Jupyter: a project to develop open-source software, open-standards, and
+>
+> - Jupyter: a project to develop open-source software, open-standards, and
 >   services for interactive computing across dozens of programming
 >   languages. Lives at [jupyter.org](jupyter.org).
-> * Jupyter Notebook: A web application that you use for creating and
+> - Jupyter Notebook: A web application that you use for creating and
 >   managing notebooks. One of the outputs of the Jupyter project.
-> * Jupyter notebook: The actual `.ipynb` file that constitutes your
+> - Jupyter notebook: The actual `.ipynb` file that constitutes your
 >   notebook.

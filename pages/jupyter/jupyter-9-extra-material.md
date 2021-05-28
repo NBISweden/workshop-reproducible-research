@@ -235,8 +235,8 @@ environment:
 conda install -c conda-forge rise
 ```
 
-then open up a notebook of your choice. In the menu click **View**->**Cell 
-Toolbar**->**Slideshow**. Now every cell will have a drop-down in the upper
+then open up a notebook of your choice. In the menu click **View** -> **Cell 
+Toolbar** -> **Slideshow**. Now every cell will have a drop-down in the upper
 right corner allowing you to set the cell type:
 
 - **Slide**: a regular slide

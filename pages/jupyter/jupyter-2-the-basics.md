@@ -80,27 +80,27 @@ menu in your notebook (there's even an option there to edit shortcuts).
 
 | Shortcut            | Effect                                   |
 |---------------------|------------------------------------------|
-| ++enter++           | enter Edit mode                          |
-| ++escape++          | enter Command mode                       |
-| ++ctrl+enter++      | run the cell                             |
-| ++shift+enter++     | run the cell and select the cell below   |
-| ++alt+enter++       | run the cell and insert a new cell below |
-| ++ctrl+s++          | save the notebook                        |
-| ++tab++             | for code completion or indentation       |
-| ++m++/++y++         | toggle between Markdown and Code cells   |
-| ++d++-++d++         | delete a cell                            |
-| ++a++/++b++         | insert cells above/below current cell    |
-| ++x++/++c++/++v++   | cut/copy/paste cells                     |
-| ++o++               | toggle output of current cell            |
+| `enter`             | enter Edit mode                          |
+| `escape`            | enter Command mode                       |
+| `ctrl` + `enter`    | run the cell                             |
+| `shift` + `enter`   | run the cell and select the cell below   |
+| `alt` + `enter`     | run the cell and insert a new cell below |
+| `ctrl` + `s`        | save the notebook                        |
+| `tab`               | for code completion or indentation       |
+| `m` / `y`           | toggle between Markdown and Code cells   |
+| `d` - `d`           | delete a cell                            |
+| `a` / `b`           | insert cells above/below current cell    |
+| `x` / `c` / `v`     | cut/copy/paste cells                     |
+| `o`                 | toggle output of current cell            |
 
 ## Writing markdown
 
 Let's use our first cell to create a header. Change the format from 
 Code to Markdown using the drop-down list in the Notebook Toolbar, or by 
-pressing the ++m++ key when in command mode. Double click on 
-the cell, or hit ++enter++ to enter editing mode (green frame) and input 
+pressing the `m` key when in command mode. Double click on 
+the cell, or hit `enter` to enter editing mode (green frame) and input 
 "# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
-++ctrl++-++enter++. 
+`ctrl`-`enter`. 
 
 Tada!
 
@@ -195,10 +195,11 @@ Rather, we will focus on the Jupyter Notebook features that allow you to do
 a little more than that.
 
 > **Quick recap** <br>
-> In this section we've learned: <br>
-> * That a Jupyter notebook consists of a series of cells, and that they can
->   be either markdown or code cells. <br>
-> * That we execute the code in a code cell with the kernel that we chose
->   when opening the notebook. <br>
-> * We can run shell commands by prepending them with `!`. <br>
-> * A Jupyter notebook is simply a text file in JSON format.
+> In this section we've learned:
+>
+> - That a Jupyter notebook consists of a series of cells, and that they can
+>   be either markdown or code cells.
+> - That we execute the code in a code cell with the kernel that we chose
+>   when opening the notebook.
+> - We can run shell commands by prepending them with `!`.
+> - A Jupyter notebook is simply a text file in JSON format.
