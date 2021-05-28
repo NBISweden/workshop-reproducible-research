@@ -57,8 +57,9 @@ the container (`exit`) and run `ls /` to see how it looks on your local system.
 Notice the difference?
 
 > **Note** "Quick recap" <br>
-> In this section we covered: <br>
-> * How to download a Singularity image using `singularity pull` <br>
-> * How to run a command in a Singularity container using `singularity exec` <br>
-> * How to start an interactive terminal in a Singularity container using
+> In this section we covered:
+>
+> - How to download a Singularity image using `singularity pull`
+> - How to run a command in a Singularity container using `singularity exec`
+> - How to start an interactive terminal in a Singularity container using
 >   `singularity shell`
