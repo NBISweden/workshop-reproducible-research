@@ -11,12 +11,16 @@
 # Images are linked to their specified location on GitHub (the `GITHUB`
 # variable) and should be referenced to as e.g. `![](images/<some-image.png>)`
 # in the markdown.
+#
+# Links to pages on Canvas can be given using the URL to the page, but replacing
+# the course ID with the string 'COURSE_ID', which will then automatically build
+# the correct link by using the $COURSE_ID variable defined below.
 
-# Input markdown file
+# Input parameters
 MARKDOWN=$1
+COURSE_ID=51980
 
 # General parameters
-COURSE_ID=51980
 TOKEN="$HOME/.canvas-api-token"
 API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's/.md//g')
@@ -32,9 +36,10 @@ docker run --rm \
     --user `id -u`:`id -g` \
     pandoc/latex $MARKDOWN --output="$HTML"
 
-# Add images from GitHub on current branch
+# Add images from GitHub and course ID for links
 cat "$HTML" \
     | sed "s/\(src=\"\)\(images\/\)/\1$GITHUB\2/g" \
+    | sed "s/COURSE_ID/$COURSE_ID/g" \
     > tmp.html
 mv tmp.html "$HTML"
 
