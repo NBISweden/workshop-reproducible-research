@@ -98,8 +98,10 @@ Ok, so Docker lets us work in any OS in a quite convenient way. That would
 probably be useful on its own, but Docker is much more powerful than that.
 
 > **Quick recap** <br>
-> In this section we've learned: <br>
-> - How to use `docker pull` for downloading images from a central registry. <br>
-> - How to use `docker image ls` for getting information about the images we have on our system. <br>
-> - How to use `docker run` for starting a container from an image. <br>
-> - How to use the `-it` flag for running in interactive mode. <br>
+> In this section we've learned:
+>
+> - How to use `docker pull` for downloading images from a central registry.
+> - How to use `docker image ls` for getting information about the images we
+>   have on our system.
+> - How to use `docker run` for starting a container from an image.
+> - How to use the `-it` flag for running in interactive mode.

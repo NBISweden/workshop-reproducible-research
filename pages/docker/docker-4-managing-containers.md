@@ -69,13 +69,14 @@ docker exec -it my_container /bin/bash
 > via layers.
 
 > **Quick recap** <br>
-> In this section we've learned: <br>
-> * How to use `docker run` for starting a container and how the flags `-d`
->   and `--rm` work. <br>
-> * How to use `docker container ls` for displaying information about the
->   containers. <br>
-> * How to use `docker attach` and `docker exec` to interact with running
->   containers. <br>
+> In this section we've learned:
+>
+> - How to use `docker run` for starting a container and how the flags `-d`
+>   and `--rm` work.
+> - How to use `docker container ls` for displaying information about the
+>   containers.
+> - How to use `docker attach` and `docker exec` to interact with running
+>   containers.
 
 ## Bind mounts
 
