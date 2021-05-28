@@ -26,11 +26,12 @@ although the exact menu structure and link placements differ a bit.
 
 ## Create a remote repository
 
-* Log in to your GitHub account and press the *New* button on the left:
-    * Make sure you are listed as the owner
-    * Add a repository name, *e.g.* `git_tutorial`
-    * You can keep the repo private or make it public, as you wish
-    * Skip including a README, a `.gitignore` and licence
+Log in to your GitHub account and press the *New* button on the left:
+
+* Make sure you are listed as the owner
+* Add a repository name, *e.g.* `git_tutorial`
+* You can keep the repo private or make it public, as you wish
+* Skip including a README, a `.gitignore` and licence
 
 ![](images/github_new_repo.png)
 
@@ -234,13 +235,14 @@ will give you a short visual summary:
 
 > **Quick recap** <br>
 > We have learnt the difference between local and remote copies of git
-> repositories and how to sync them: <br>
-> * `git push` uploads commits to a remote repository <br>
-> * `git pull` downloads commits from a remote repository and merges them
->   to the local branch <br>
-> * `git fetch` downloads commits from a remote repository without merging
->   them to the local branch <br>
-> * `git clone` makes a local copy of a remote repository
+> repositories and how to sync them:
+>
+> - `git push` uploads commits to a remote repository
+> - `git pull` downloads commits from a remote repository and merges them
+>   to the local branch
+> - `git fetch` downloads commits from a remote repository without merging
+>   them to the local branch
+> - `git clone` makes a local copy of a remote repository
 
 ## Remote branches
 

@@ -75,7 +75,8 @@ At this point could run `git log --oneline --decorate` to get a condensed
 commit history, where you should also be able to see the tagged commits.
 
 > **Quick recap** <br>
-> We have now learned how to tag important commits: <br>
-> * `git tag` adds a tag to a commit. <br>
-> * `git checkout` moves between tags in a similar fashion as between
+> We have now learned how to tag important commits:
+>
+> - `git tag` adds a tag to a commit.
+> - `git checkout` moves between tags in a similar fashion as between
 >   branches.

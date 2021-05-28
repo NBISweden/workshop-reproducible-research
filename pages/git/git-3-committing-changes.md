@@ -37,16 +37,16 @@ what the commit contains.
 > **Tip** <br>
 > Writing informative and succinct commit messages can be tricky when you're
 > just starting out. Here are some general guidelines that can help you write
-> good commit messages from the start: <br>
+> good commit messages from the start:
 >
->   - Separate subject from body with a blank line <br>
->   - Limit the subject line to 50 characters <br>
->   - Capitalize the subject line <br>
->   - Do not end the subject line with a period <br>
->   - Use the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood)
->     in the subject line <br>
->   - Wrap the body at 72 characters <br>
->   - Use the body to explain what and why vs. how <br>
+> * Separate subject from body with a blank line
+> * Limit the subject line to 50 characters
+> * Capitalize the subject line
+> * Do not end the subject line with a period
+> * Use the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood)
+>   in the subject line
+> * Wrap the body at 72 characters
+> * Use the body to explain *what* and *why* vs. *how*
 >
 > In the command above we just added a short subject line ("Add initial
 > files"). It is capitalized, less than 50 characters, does not end with
@@ -183,8 +183,9 @@ git log
 > than 50 MB.
 
 > **Quick recap** <br>
-> We now added four important git commands to our repertoire: <br>
-> * `git add` adds a file to the staging area. <br>
-> * `git commit` commits the changes we have staged. <br>
-> * `git rm` is shorthand for `rm <file>; git add <file>`. <br>
-> * `git log` shows us the commit history.
+> We now added four important git commands to our repertoire:
+>
+> * `git add` adds a file to the staging area
+> * `git commit` commits the changes we have staged
+> * `git rm` is shorthand for `rm <file>; git add <file>`
+> * `git log` shows us the commit history

@@ -133,8 +133,9 @@ git branch -d test_alignment
 
 > **Quick recap** <br>
 > We have now learned how to divide our work into branches and how to manage
-> them: <br>
-> * `git branch <branch>` creates a new branch. <br>
-> * `git checkout <branch>` moves the repository to the state in which the
->   specified branch is currently in. <br>
-> * `git merge <branch>` merges the specified branch into the current one.
+> them:
+>
+> - `git branch <branch>` creates a new branch.
+> - `git checkout <branch>` moves the repository to the state in which the
+>   specified branch is currently in.
+> - `git merge <branch>` merges the specified branch into the current one.

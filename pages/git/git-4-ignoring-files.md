@@ -88,8 +88,9 @@ git commit -m "Add metadata file"
 > coding in vim.
 
 > **Quick recap** <br>
-> We now learned how to ignore certain files and directories: <br>
-> * The `.gitignore` file controls which files and directories git should
->   ignore, if any. <br>
-> * Specific files can be excluded from ignored directories using the
+> We now learned how to ignore certain files and directories:
+>
+> - The `.gitignore` file controls which files and directories git should
+>   ignore, if any.
+> - Specific files can be excluded from ignored directories using the
 >   exclamation mark (`!`) prefix.
