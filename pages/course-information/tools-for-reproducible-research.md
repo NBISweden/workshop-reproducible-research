@@ -34,7 +34,7 @@ realize the immediate personal benefits: an organized and structured way of
 working. The person that most often has to reproduce your own analysis is your
 future self!
 
-# Course content
+# Course content and learning outcomes
 
 The following topics and tools are covered in the course:
 
@@ -47,8 +47,6 @@ The following topics and tools are covered in the course:
 * Jupyter
 * Docker
 * Singularity
-
-# Learning outcomes
 
 At the end of the course, students should be able to:
 
@@ -67,9 +65,12 @@ At the end of the course, students should be able to:
 This is an NBIS / Elixir course. The course is open for PhD students, postdocs,
 group leaders and core facility staff. International applications are welcome,
 but we will give approximately half of the participant slots to applicants from
-Swedish universities, due to the national role NBIS plays in Sweden.
+Swedish universities, due to the national role NBIS plays in Sweden. This
+online training event has no fee. However, if you confirm your participation
+but do not do so(no-show) you will be invoiced 2000 SEK. Please note that NBIS
+cannot invoice individuals.
 
-The only entry requirements for this course is a basic knowledge of unix systems
+The only entry requirements for this course is a basic knowledge of Unix systems
 (*i.e.* being able to work on the command line) as well as at least a basic
 knowledge of either R or Python.
 
