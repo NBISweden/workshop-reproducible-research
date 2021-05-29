@@ -32,7 +32,7 @@ rule convert_to_upper_case:
         """
 ```
 
-> **Attention** <br>
+> **Attention!** <br>
 > Indentation is important in Snakefiles, so make sure that you have the
 > correct number of spaces before `input`/`output`/`shell` and their
 > respective subsections. The number of spaces per level doesn't matter as
@@ -150,7 +150,7 @@ shell:
     """
 ```
 
-> **Attention** <br>
+> **Attention!** <br>
 > If you have multiple inputs or outputs they need to be delimited with
 > a comma (as seen above). This is a very common mistake when writing
 > Snakemake workflows. The parser will complain, but sometimes the error

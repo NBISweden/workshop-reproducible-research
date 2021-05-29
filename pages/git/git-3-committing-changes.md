@@ -32,7 +32,7 @@ git commit -m "Add initial files"
 The `-m` option adds a commit message. This should be a short description of
 what the commit contains.
 
-> **Tip** <br>
+> **Good commit messages** <br>
 > Writing informative and succinct commit messages can be tricky when you're
 > just starting out. Here are some general guidelines that can help you write
 > good commit messages from the start:

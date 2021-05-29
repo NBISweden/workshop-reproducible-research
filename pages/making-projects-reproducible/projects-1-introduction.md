@@ -53,10 +53,10 @@ is to create a Snakemake workflow, which contains the following:
 
 2. Plot the student experiences in some interesting way
 
-> **Attention** <br>
-> Remember to: <br>
+> **Attention!** <br>
+> Remember to:
 >
-> * Keep everything versioned controlled with `git` <br>
+> * Keep everything versioned controlled with `git`
 > * Add information to the `README` file so others know how to re-run 
->   the project <br>
-> * Add required software to the Conda `environment.yml` file <br>
+>   the project
+> * Add required software to the Conda `environment.yml` file

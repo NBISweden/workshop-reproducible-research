@@ -162,7 +162,7 @@ interactive_plot = interactive(sine_curve,
 interactive_plot
 ```
 
-> **Attention** <br>
+> **Attention!** <br>
 > Note that you may have to close the color picker once you've made your 
 > choice in order to make the plot update.
 

@@ -157,6 +157,4 @@ You can execute the script with the following command:
 ```
 python plot.py file1.csv file2.csv file3.csv --outdir results/
 ```
-
-***
 </details>

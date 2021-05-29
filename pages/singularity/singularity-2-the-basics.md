@@ -54,7 +54,7 @@ working directory? Try `ls /` to see the files and directory in the root. Exit
 the container (`exit`) and run `ls /` to see how it looks on your local system.
 Notice the difference?
 
-> **Note** "Quick recap" <br>
+> **Quick recap** <br>
 > In this section we covered:
 >
 > - How to download a Singularity image using `singularity pull`

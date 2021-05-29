@@ -15,10 +15,6 @@ singularity exec lolcow_latest.sif fortune
 singularity shell lolcow_latest.sif
 ```
 
-> **Quick recap** <br>
-> In this section we covered how to use `singularity pull` to download and
-> run Docker images as Singularity containers.
-
 ## Building from scratch
 
 As we have seen, it is possible to convert Docker images to the Singularity
@@ -252,3 +248,8 @@ files producing output directories and files in your current working directory.
 > a Dockerfile. One simply defines, on each line, a file to be copied from
 > host to the container image using the format `<source> <destination>`. This
 > does not currently work with `--remote` building though.
+
+> **Quick recap** <br>
+> In this section we covered how to use `singularity pull` to download and
+> run Docker images as Singularity containers, as well as how to build
+> Singularity images from scratch.

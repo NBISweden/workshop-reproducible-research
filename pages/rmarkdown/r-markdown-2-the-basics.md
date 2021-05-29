@@ -14,7 +14,7 @@ output:
 ---
 ```
 
-> **Attention** <br>
+> **Attention!** <br>
 > The header might look slightly different depending on your version of
 > RStudio. If so, replace the default with the header above.
 

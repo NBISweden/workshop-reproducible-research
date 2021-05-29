@@ -2,7 +2,7 @@ In order to create a new git repository, we first need a directory to track.
 For this tutorial, go ahead and create a directory called `git_tutorial`, then
 navigate into it.
 
-> **Attention** <br>
+> **Attention!** <br>
 > The directory should *not* be within the `workshop-reproducible-research`
 > directory, since this is itself a git-tracked directory.
 
