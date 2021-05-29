@@ -53,11 +53,12 @@ and the start/end of lists, otherwise they will not render as proper lists.
 ## Hidden boxes
 
 If you want to have hidden boxes that can be expanded on click, you can do so
-with standard HTML tags. It can be started and ended with horizontal rulers
-(`***`) - it usually looks nice to end with a ruler regardless of content, to
-make a clear demarcation between box content and normal content, but only to
-start the box with a ruler if it starts with text; if it starts with a code
-chunk you can exclude the starting ruler.
+with standard HTML tags: the `<details>` tag creates a hidden box with
+clickable text to expand specified inside `<summary>` tags. It can be started
+and ended with horizontal rulers (`***`) - it usually looks nice to end with
+a ruler regardless of content, to make a clear demarcation between box content
+and normal content, but only to start the box with a ruler if it starts with
+text; if it starts with a code chunk you can exclude the starting ruler.
 
 ````no-hightlight
 <details>
