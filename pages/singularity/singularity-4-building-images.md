@@ -1,5 +1,3 @@
-# Building images
-
 Singularity has the ability to convert Docker images to the Singularity Image
 Format (SIF). We can try this out by running:
 

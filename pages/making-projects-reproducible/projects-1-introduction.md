@@ -1,5 +1,3 @@
-# Introduction
-
 It is time to try to set up a project from scratch and use the different
 tools that we have covered during the course together! This exercise is very
 open-ended and you have free hands to try out a bit of what you want. But you

@@ -1,5 +1,3 @@
-# Rendering
-
 You can render (sometimes called "knitting") reports in several different ways:
 
 - Pressing the *Knit* button in RStudio (as we have done this far)

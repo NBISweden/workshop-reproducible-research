@@ -1,5 +1,3 @@
-# Ignoring files
-
 Git is aware of all files within the repository. However, it is not uncommon to
 have files that we don't want git to track. For instance, our analysis might
 produce several intermediate files and results. We typically don't track such

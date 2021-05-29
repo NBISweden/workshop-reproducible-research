@@ -1,5 +1,3 @@
-# Widgets
-
 Since we're typically running our notebooks in a web browser, they are quite
 well suited for also including more interactive elements. A typical use case
 could be that you want to communicate some results to a collaborator or to

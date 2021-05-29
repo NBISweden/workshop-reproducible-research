@@ -1,5 +1,3 @@
-# Code chunks
-
 Enough about markdown, let's get to the fun part and include some code! Look at
 the last code chunk in the template R Markdown document that you just created,
 as an example:

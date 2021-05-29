@@ -1,5 +1,3 @@
-# Extra material
-
 Docker is a large and complicated thing, but once you start using it regularly
 you'll find that you start understand these complexities. There are lots of
 different things you can do with images and containers in general, especially

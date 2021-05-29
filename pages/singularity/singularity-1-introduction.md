@@ -1,5 +1,3 @@
-# Introduction
-
 Singularity is a container software alternative to Docker. It was originally
 developed by researchers at Lawrence Berkeley National Laboratory with focus on
 security, scientific software, and HPC clusters. One of the ways in which

@@ -1,5 +1,3 @@
-# Conflicts
-
 It is not uncommon to run into conflicts when you are trying to merge separate
 branches, and it's even more common when you're working in a collaborative
 setting with remote repositories. It'll happen sooner or later, even if you're

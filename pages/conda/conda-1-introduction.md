@@ -1,5 +1,3 @@
-# Introduction
-
 Conda is a package and environment manager. As a package manager it enables you
 to install a wide range of software and tools using one simple command: `conda
 install`. As an environment manager it allows you to create and manage multiple

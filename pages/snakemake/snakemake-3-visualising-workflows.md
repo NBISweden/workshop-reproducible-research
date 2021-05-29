@@ -1,5 +1,3 @@
-# Visualizing workflows
-
 All that we've done so far could quite easily be done in a simple shell script
 that takes the input files as parameters. Let's now take a look at some of the
 features where a WMS like Snakemake really adds value compared to a more

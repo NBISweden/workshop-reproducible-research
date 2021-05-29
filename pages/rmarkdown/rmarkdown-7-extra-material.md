@@ -1,5 +1,3 @@
-# Extra material
-
 While the above tutorial teaches you all the basics of using R Markdown, there
 is much more you can do with it, if you want to! Here we cover some extra
 material if you're curious to learn more, but we don't consider this to be

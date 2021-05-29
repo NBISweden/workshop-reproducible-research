@@ -1,5 +1,3 @@
-# The MRSA workflow
-
 As you might remember from the [intro](tutorial_intro.md), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).

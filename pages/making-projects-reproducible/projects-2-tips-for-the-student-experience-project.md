@@ -1,5 +1,3 @@
-# Tips for the student experience project
-
 The first step should be part of the Snakemake workflow. If you need some help
 with the cleaning step, see below for an example.
 

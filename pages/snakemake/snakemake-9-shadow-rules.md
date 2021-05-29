@@ -1,5 +1,3 @@
-# Shadow rules
-
 Take a look at the rule `generate_count_table` below. Since `input.annotation`
 is compressed, it is first unzipped to a temporary file. `htseq-count` then
 generates a temporary count table, which is finally prepended with a header

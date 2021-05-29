@@ -1,5 +1,3 @@
-# Logs
-
 As you probably noticed it was difficult to follow how the workflow progressed
 since some rules printed a lot of output to the terminal. In some cases this
 also contained important information, such as statistics on the sequence

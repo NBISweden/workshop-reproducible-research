@@ -1,5 +1,3 @@
-# Cleaning up
-
 As mentioned before, Docker tends to consume a lot of disk space. In general,
 `docker image rm` is used for removing images and `docker container rm` for
 removing containers. Here are some convenient commands for cleaning up.

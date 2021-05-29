@@ -1,5 +1,3 @@
-# Introduction
-
 Docker is a tool designed to make it easier to create, deploy, and run
 applications by isolating them in "containers". The idea is to package your
 code together with everything it needs (other packages it depends on, various

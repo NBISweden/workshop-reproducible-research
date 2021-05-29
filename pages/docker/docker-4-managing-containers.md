@@ -1,5 +1,3 @@
-# Managing containers
-
 When you start a container with `docker run` it is given an unique id that you
 can use for interacting with the container. Let's try to run a container from
 the image we just created:

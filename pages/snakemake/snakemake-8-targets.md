@@ -1,5 +1,3 @@
-# Targets
-
 So far we have only defined the inputs/outputs of a rule as strings, or in
 some case a list of strings, but Snakemake allows us to be much more flexible
 than that. Actually, we can use any Python expression or even functions, as

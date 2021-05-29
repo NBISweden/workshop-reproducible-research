@@ -1,5 +1,3 @@
-# Introduction
-
 Git is a widely used system (both in academia and industry) for version
 controlling files and collaborating on code. It is used to track changes in
 (text) files, thereby establishing a history of all edits made to each file,

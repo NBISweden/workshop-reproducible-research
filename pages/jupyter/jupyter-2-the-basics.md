@@ -1,5 +1,3 @@
-# The basics
-
 One thing that sets Jupyter Notebook apart from what you might be used to is
 that it's a web application, *i.e.* you edit and run your code from your
 browser. But first you have to start the Jupyter Notebook server.

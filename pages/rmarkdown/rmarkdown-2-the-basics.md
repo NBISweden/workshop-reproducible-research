@@ -1,5 +1,3 @@
-# The basics
-
 Let's begin with starting RStudio and opening a new file (*File* --> *New File*
 --> *R Markdown*). If you're using Conda you should have all the packages
 needed, but install anything that RStudio prompts you to. In the window that

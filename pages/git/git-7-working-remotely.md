@@ -1,5 +1,3 @@
-# Working remotely
-
 So far we've only been working on files present on our own computer, *i.e.*
 locally. While git is an amazing tool for reproducibility even if you're
 working alone, it really starts to shine in collaborative work. This entails

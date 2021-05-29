@@ -1,5 +1,3 @@
-# Parameters
-
 In a typical bioinformatics project, considerable efforts are spent on tweaking
 parameters for the various programs involved. It would be inconvenient if you
 had to change in the shell scripts themselves every time you wanted to run with

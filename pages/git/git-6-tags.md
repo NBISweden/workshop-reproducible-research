@@ -1,5 +1,3 @@
-# Tags
-
 Git allows us to *tag* commits, *i.e.* give names to specific points in the
 history of our project. This can be particularly important for reproducible
 research, but also for development projects that want to highlight specific

@@ -1,5 +1,3 @@
-# Introduction
-
 The Jupyter Notebook is an open-source web application that allows you to
 create and share documents that contain code, equations, visualizations and
 text. The functionality is partly overlapping with R Markdown (see the

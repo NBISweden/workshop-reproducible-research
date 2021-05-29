@@ -1,5 +1,3 @@
-# Generalizing workflows
-
 It's generally a good idea to separate project-specific parameters from the
 actual implementation of the workflow. If we want to move all project-specific
 information to `config.yml`, and let the Snakefile be a more general RNA-seq

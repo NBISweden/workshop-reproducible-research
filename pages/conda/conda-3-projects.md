@@ -1,5 +1,3 @@
-# Environments in projects
-
 We have up until now specified which Conda packages to install directly on the
 command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and

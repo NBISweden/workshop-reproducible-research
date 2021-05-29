@@ -1,5 +1,3 @@
-# Environment basics
-
 Let's assume that you are just about to start a new exciting research project
 called *Project A*.
 

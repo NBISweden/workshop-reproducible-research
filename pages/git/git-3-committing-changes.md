@@ -1,5 +1,3 @@
-# Committing changes
-
 We will now commit the untracked files. A commit is essentially a set of
 changes to a set of files. Preferably, the changes making out a commit should
 be related to something, *e.g.* a specific bug fix or a new feature.

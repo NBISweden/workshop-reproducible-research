@@ -1,5 +1,3 @@
-# Running jobs in Singularity or Docker containers
-
 Snakemake also supports defining a Singularity or Docker container for each rule
 (you will have time to work on the [Docker tutorial](docker.md) and the
 [Singularity tutorial](singularity.md) later during the course).

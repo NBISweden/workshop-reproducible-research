@@ -1,5 +1,3 @@
-# Magics
-
 Magics constitute a simple command language that significantly extends the
 power of Jupyter notebooks. There are two types of magics:
 

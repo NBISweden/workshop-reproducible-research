@@ -1,5 +1,3 @@
-# Introduction
-
 A *workflow management system* (WMS) is a piece of software that sets up,
 performs and monitors a defined sequence of computational tasks (*i.e.* "a
 workflow"). Snakemake is a WMS that was developed in the bioinformatics

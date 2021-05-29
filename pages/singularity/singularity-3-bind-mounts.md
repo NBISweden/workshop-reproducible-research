@@ -1,5 +1,3 @@
-# Bind mounts
-
 In the previous section we saw how Singularity differs from Docker in terms of
 images being stored in stand-alone files and much of the host filesystem being
 mounted in the container. We will now explore this further.

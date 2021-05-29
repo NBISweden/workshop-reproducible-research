@@ -1,5 +1,3 @@
-# The basics
-
 In the [Docker tutorial](docker.md) we started by downloading an Ubuntu image.
 Let's see how the same thing is achieved with Singularity:
 

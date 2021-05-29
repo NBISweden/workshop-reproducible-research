@@ -1,5 +1,3 @@
-# Building images
-
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 In the previous section we downloaded a Docker image of Ubuntu and noticed that
 it was based on layers, each with a unique hash as id. An image in Docker is

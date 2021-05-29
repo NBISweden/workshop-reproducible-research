@@ -1,5 +1,3 @@
-# Introduction
-
 A *markup language* is a system for annotating text documents in order to
 *e.g.* define formatting. HTML, if you are familiar with that, is an example of
 a markup language. HTML uses tags, such as:

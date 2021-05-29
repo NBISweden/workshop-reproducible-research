@@ -1,5 +1,3 @@
-# Extra material
-
 ## Running jupyter notebooks on a cluster
 
 * Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:

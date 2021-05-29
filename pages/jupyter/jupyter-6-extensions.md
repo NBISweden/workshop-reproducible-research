@@ -1,5 +1,3 @@
-# Extensions
-
 Jupyter Notebook extensions are add-ons that can increase the functionality of
 your notebooks. These were installed in the [Setup](#setup) section of this 
 tutorial by including the `jupyter_contrib_nbextensions` package in the conda

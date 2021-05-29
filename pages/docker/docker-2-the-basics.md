@@ -1,5 +1,3 @@
-# The basics
-
 We're almost ready to start, just one last note on nomenclature. You might have
 noticed that we sometimes refer to "Docker images" and sometimes to "Docker
 containers". A container is simply an instance of an image. To use

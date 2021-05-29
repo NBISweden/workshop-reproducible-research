@@ -1,5 +1,3 @@
-# Temporary files
-
 It's not uncommon that workflows contain temporary files that should be kept
 for some time and then deleted once they are no longer needed. A typical case
 could be that some operation generates a file, which is then compressed to save

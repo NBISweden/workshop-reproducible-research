@@ -1,5 +1,3 @@
-# Extra material
-
 A common problem with Singularity is that you can only create local builds if
 you are working on a Linux system, as local builds for MacOS and Windows are
 currently not supported. This means that you might favour using Docker instead

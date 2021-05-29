@@ -1,5 +1,3 @@
-# The YAML header
-
 Last but not least, we have the YAML header. Here is where you configure
 general settings for the final output file, and a few other things.
 

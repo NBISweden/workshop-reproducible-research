@@ -1,5 +1,3 @@
-# Plotting
-
 An essential feature of Jupyter Notebooks is of course the ability to visualize
 data and results via plots. A full guide to plotting in Python is beyond the 
 scope of this course, but we'll offer a few glimpses into the plotting landscape

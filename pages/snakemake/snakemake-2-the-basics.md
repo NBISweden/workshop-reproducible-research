@@ -1,5 +1,3 @@
-# The basics
-
 In this part of the tutorial we will create a very simple workflow from
 scratch, in order to show the fundamentals of how Snakemake works. The workflow
 will take two files as inputs, `a.txt` and `b.txt`, and the purpose is to

@@ -1,5 +1,3 @@
-# Converting notebooks
-
 Notebooks can be converted to various output formats such as HTML, PDF, LaTeX
 *etc.* directly from the **File** -> **Download as** menu. 
 

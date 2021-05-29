@@ -1,5 +1,3 @@
-# The MRSA case study
-
 As a final example we will use `singularity build` to convert the Docker image
 of the MRSA project, that we use as a case study in this course, to
 a Singularity image:

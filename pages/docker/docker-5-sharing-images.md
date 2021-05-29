@@ -1,5 +1,3 @@
-# Sharing images
-
 There would be little point in going through all the trouble of making your
 analyses reproducible if you can't distribute them to others. Luckily, sharing
 Docker containers is extremely easy. The most common way is to use
