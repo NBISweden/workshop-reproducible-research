@@ -97,7 +97,7 @@ accommodations at this time.
 
 # Pre-course material
 
-The [pre-course preparation](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-material)
+The [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
 page lists all the information you need before the course starts. The most
 important part is the installation and setup of all the tools used in the
 course, so make sure you've gone through it all for the course start.
