@@ -8,7 +8,7 @@ that contains all the work we've done so far.
   packages we're depending on in the project.
 * We've constructed a [Snakemake workflow](snakemake-10-generalizing-workflows)
   that performs the data analysis and keeps track of files and parameters.
-* We've written a [R Markdown document](rmarkdown-the-mrsa-case-study) that
+* We've written a [R Markdown document](r-markdown-6-the-mrsa-case-study) that
   takes the results from the Snakemake workflow and summarizes them in a report.
 
 The `docker` directory contains the final versions of all the files we've

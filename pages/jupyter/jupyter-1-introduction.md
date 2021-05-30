@@ -1,7 +1,7 @@
 The Jupyter Notebook is an open-source web application that allows you to
 create and share documents that contain code, equations, visualizations and
 text. The functionality is partly overlapping with R Markdown (see the
-[tutorial](rmarkdown-1-introduction)), in that they both use markdown and code
+[tutorial](r-markdown-1-introduction)), in that they both use markdown and code
 chunks to generate reports that integrate results of computations with the code
 that generated them. Jupyter Notebook comes from the Python community while
 R Markdown was developed by RStudio, but you could use most common programming
