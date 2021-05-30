@@ -14,7 +14,11 @@
 #
 # Links to pages on Canvas can be given using the URL to the page, but replacing
 # the course ID with the string 'COURSE_ID', which will then automatically build
-# the correct link by using the $COURSE_ID variable defined below.
+# the correct link by using the $COURSE_ID variable defined below. You can also
+# just provide the link using the markdown format: `[link text](<page-name>)`.
+
+# TODO: what is the difference between using an explicit URL with course ID
+# (HTML) versus just using the path to the file (markdown)?
 
 # Input parameters
 MARKDOWN=$1
