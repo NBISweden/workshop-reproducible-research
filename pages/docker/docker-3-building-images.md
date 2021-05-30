@@ -2,15 +2,16 @@
 In the previous section we downloaded a Docker image of Ubuntu and noticed that
 it was based on layers, each with a unique hash as id. An image in Docker is
 based on a number of read-only layers, where each layer contains the
-differences to the previous layers. If you've done the [Git tutorial](git.md)
+differences to the previous layers. If you've done the [Git tutorial](git-1-introduction)
 this might remind you of how a Git commit contains the difference to the
 previous commit. The great thing about this is that we can start from one base
 layer, say containing an operating system and some utility programs, and then
 generate many new images based on this, say 10 different project-specific
 images. The total space requirements would then only be $base+\sum_{i=1}^{10}(specific_{i})$
-rather than $\sum_{i=1}^{10}(base+specific_{i})$. For example, Bioconda (see
-the [Conda tutorial](conda.md)) has one base image and then one individual
-layer for each of the more than 3000 packages available in Bioconda.
+rather than $\sum_{i=1}^{10}(base+specific_{i})$. For example, Bioconda (see the
+[Conda tutorial](conda-1-introduction)) has one base image and then
+one individual layer for each of the more than 3000 packages available in
+Bioconda.
 
 Docker provides a convenient way to describe how to go from a base image to the
 image we want by using a "Dockerfile". This is a simple text file containing
@@ -24,7 +25,7 @@ We will be looking at an image called `Dockerfile_slim` and is located in your
 `docker` directory (where you should hopefully be standing already). We will now
 go through that file and discuss the different steps and what they do. After
 that we'll build the image and test it out. Lastly, we'll start from that image
-and make a new one to reproduce the results from the [Conda tutorial](conda.md).
+and make a new one to reproduce the results from the [Conda tutorial](conda-3-projects).
 
 Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile
 will typically result in one layer in the resulting image. The format for
@@ -241,11 +242,11 @@ no real impact in this case, but matters if you want to import files. Validate
 with `docker image ls` that you can see your new image.
 
 Now it's time to make our own Dockerfile to reproduce the results from the
-[Conda tutorial](conda). If you haven't done the tutorial, it boils down to
-creating a Conda environment file, setting up that environment, downloading
-three RNA-seq data files, and running FastQC on those files. We will later
-package and run the whole RNA-seq workflow in a Docker container, but for now
-we keep it simple to reduce the size and time required.
+[Conda tutorial](conda-3-projects). If you haven't done the tutorial,
+it boils down to creating a Conda environment file, setting up that
+environment, downloading three RNA-seq data files, and running FastQC on those
+files. We will later package and run the whole RNA-seq workflow in a Docker
+container, but for now we keep it simple to reduce the size and time required.
 
 The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and
 running the analysis. A copy of this file should also be available in your

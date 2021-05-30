@@ -6,7 +6,7 @@ that specifies the packages, versions and channels needed to create the
 environment for a project.
 
 Throughout these tutorials we will use a case study where we analyze an RNA-seq
-experiment with the multiresistant bacteria MRSA (see [intro](tutorial_intro.md)).
+experiment with the multiresistant bacteria MRSA (see [intro](introduction)).
 You will now start to make a Conda yml file for this MRSA project. The file will
 contain a list of the software and versions needed to execute the analysis code.
 

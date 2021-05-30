@@ -53,17 +53,17 @@ are files in the directory that are not version tracked by git.
 > For the purpose of this tutorial, the exact contents of the files you just
 > copied are not important. But you will probably recognize many of them, as
 > they are all files used in the MRSA case study described in the
-> [introduction to the tutorials](tutorial_intro.md). The details of what
+> [introduction to the tutorials](introduction). The details of what
 > these files do are described in their respective sessions later in the
 > course, but we provide a brief overview here:
 > 
 > - The `environment.yml` file contains the Conda environment with all the
->   software used in the analysis (see the [Conda tutorial](conda.md)).
+>   software used in the analysis (see the [Conda tutorial](conda-1-introduction)).
 > - The `Snakefile` and `config.yml` are both used to define the Snakemake
->   workflow, that we'll go through in the [Snakemake tutorial](snakemake.md).
+>   workflow, that we'll go through in the [Snakemake tutorial](snakemake-1-introduction).
 > - The `Dockerfile` contains the recipe for making a Docker container for
 >   the analysis, which will be covered in detail in the
->   [Docker tutorial](docker.md).
+>   [Docker tutorial](docker-1-introduction).
 
 > **Quick recap** <br>
 > We have used two `git` commands this far:

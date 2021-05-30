@@ -51,7 +51,8 @@ R Markdown makes your analysis more reproducible by connecting your code,
 figures and descriptive text. You can use it to make reproducible reports,
 rather than *e.g.* copy-pasting figures into a Word document. You can also use
 it as a notebook, in the same way as lab notebooks are used in a wet lab
-setting (or as we us a Jupyter notebook in the [tutorial](jupyter.md)).
+setting (or as we us a Jupyter notebook in the
+[tutorial](jupyter-1-introduction)).
 
 If you want to read more, here are some useful resources:
 
@@ -65,7 +66,7 @@ If you want to read more, here are some useful resources:
   (also available from Help --> Cheatsheets in RStudio)
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](setup.md) for instructions on how to set it up if you haven't done so
-already. Place yourself in the `rmarkdown/` directory, activate your
+[setup](pre-course-setup) for instructions on how to set it up if you haven't
+done so already. Place yourself in the `rmarkdown/` directory, activate your
 `rmarkdown-env` Conda environment and start RStudio from the command line (type
 `rstudio &`).

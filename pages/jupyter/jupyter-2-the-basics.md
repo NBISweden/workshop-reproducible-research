@@ -56,13 +56,13 @@ that it's in "Edit mode", so you can write stuff in it. A blue border indicates
 *markdown* or *code*.
 
 * **Markdown:** These cells contain static material such as captions, text,
-  lists, images and so on. You express this using Markdown, which is
-  a lightweight markup language. Markdown documents can then be converted to
-  other formats for viewing (the document you're reading now is written in
-  Markdown and then converted to HTML). The format is discussed a little more in
-  detail in the [R Markdown tutorial](rmarkdown.md). Jupyter Notebook uses
-  a dialect of Markdown called Github Flavored Markdown, which is described
-  [here](https://guides.github.com/features/mastering-markdown/).
+lists, images and so on. You express this using Markdown, which is
+a lightweight markup language. Markdown documents can then be converted to
+other formats for viewing (the document you're reading now is written in
+Markdown and then converted to HTML). The format is discussed a little more in
+detail in the [R Markdown tutorial](rmarkdown-1-introduction). Jupyter Notebook
+uses a dialect of Markdown called Github Flavored Markdown, which is described
+[here](https://guides.github.com/features/mastering-markdown/).
 * **Code:** These are the cells that actually do something, just as code chunks
   do in R Markdown. You can write code in dozens of languages and all do all
   kinds of clever tricks. You then run the code cell and any output the code

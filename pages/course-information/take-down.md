@@ -73,7 +73,7 @@ If you've done the Docker tutorial **or if you've been running Docker for
 Windows** you have some cleaning up to do. Docker is infamous for quickly
 taking up huge amounts of space, and some maintenance is necessary every now
 and then. Here is how to uninstall Docker completely. For instructions for how
-to remove individual images or containers, see the [Docker tutorial](docker.md).
+to remove individual images or containers, see the [Docker tutorial](docker-2-the-basics).
 
 #### macOS
 

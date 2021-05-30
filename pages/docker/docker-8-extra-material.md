@@ -11,7 +11,7 @@ Conda inside the image when we built it. Wouldn't it be nice if we didn't have
 to do this particular step? After all, installing Conda is just busy-work,
 compared to installing the actual environment that we want to use for the
 analyses. Luckily, there are already Docker images out there that have Conda
-(and [Mamba](conda.md#optimising-for-speed)) installed, such as the ones over at
+(and [Mamba](conda-4-extra-material)) installed, such as the ones over at
 `condaforge/mambaforge`! What follows is a Dockerfile that you could use instead
 of the ones described above to install things using a Conda `environment.yml`
 file, without having to install Conda in the Docker image when building it!

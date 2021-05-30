@@ -1,11 +1,11 @@
-As you might remember from the [intro](tutorial_intro.md), we are attempting to
+As you might remember from the [intro](introduction), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_). We
-have already seen how to define the project environment in the [Conda
-tutorial](conda.md) and how to set up the workflow in the [Snakemake
-tutorial](snakemake.md). Here we explore the results from the
-[Snakemake tutorial](snakemake.md) and generate a Supplementary Material file
-with some basic stats.
+multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+We have already seen how to define the project environment in the [Conda
+tutorial](conda-3-projects) and how to set up the workflow in the [Snakemake
+tutorial](snakemake-10-generalizing-workflows). Here we explore the results
+from the Snakemake tutorial and generate a Supplementary Material file with
+some basic stats.
 
 In the `jupyter/` directory you will find a notebook called 
 `supplementary_material.ipynb`. Open this notebook with jupyter by running:

@@ -1,5 +1,5 @@
-In the [Docker tutorial](docker.md) we started by downloading an Ubuntu image.
-Let's see how the same thing is achieved with Singularity:
+In the [Docker tutorial](docker-2-the-basics) we started by downloading an
+Ubuntu image. Let's see how the same thing is achieved with Singularity:
 
 ```bash
 singularity pull library://ubuntu

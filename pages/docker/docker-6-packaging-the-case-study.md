@@ -2,14 +2,14 @@ During these tutorials we have been working on a case study about the
 multiresistant bacteria MRSA. Here we will build and run a Docker container
 that contains all the work we've done so far.
 
-* We've [set up a GitHub repository](git.md) for version control and for
-  hosting our project.
-* We've defined a [Conda environment](conda.md) that specifies the packages
-  we're depending on in the project.
-* We've constructed a [Snakemake workflow](snakemake.md) that performs the data
-  analysis and keeps track of files and parameters.
-* We've written a [R Markdown document](rmarkdown.md) that takes the results
-  from the Snakemake workflow and summarizes them in a report.
+* We've [set up a GitHub repository](git-3-working-remotely) for version control
+  and for hosting our project.
+* We've defined a [Conda environment](conda-3-projects) that specifies the
+  packages we're depending on in the project.
+* We've constructed a [Snakemake workflow](snakemake-10-generalizing-workflows)
+  that performs the data analysis and keeps track of files and parameters.
+* We've written a [R Markdown document](rmarkdown-the-mrsa-case-study) that
+  takes the results from the Snakemake workflow and summarizes them in a report.
 
 The `docker` directory contains the final versions of all the files we've
 generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`,
@@ -46,7 +46,7 @@ Well done! You now have an image that allows anyone to exactly reproduce your
 analysis workflow (if you first `docker push` to Dockerhub that is).
 
 > **Tip** <br>
-> If you've done the [Jupyter Notebook tutorial](jupyter.md), you know that
+> If you've done the [Jupyter tutorials](jupyter-1-introduction), you know that
 > Jupyter Notebook runs as a web server. This makes it very well suited for
 > running in a Docker container, since we can just expose the port Jupyter
 > Notebook uses and redirect it to one of our own. You can then work with the

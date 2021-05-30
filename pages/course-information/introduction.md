@@ -17,7 +17,7 @@ from which the example data comes from, followed by the setup needed to install
 the tools themselves. These will create quite a lot of files on your computer,
 some of which will actually take up a bit of storage space too. In order to
 remove any traces of these after completing the tutorials, please refer to the
-[Take down section](take_down.md).
+[Take down section](take-down).
 
 # The case study
 

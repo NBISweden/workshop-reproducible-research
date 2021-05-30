@@ -1,14 +1,15 @@
-Snakemake also supports defining a Singularity or Docker container for each rule
-(you will have time to work on the [Docker tutorial](docker.md) and the
-[Singularity tutorial](singularity.md) later during the course).
-Analogous to using a rule-specific Conda environment, specify
-`container: "docker://some-account/rule-specific-image"` in the rule definition.
-Instead of a link to a container image, it is also possible to provide the path
-to a `*.sif` file (= a Singularity file).
-When executing Snakemake, add the `--use-singularity` flag to the command line.
-For the given rule, a Singularity container will then be created from the image
-or Singularity file that is provided in the rule definition on the fly by Snakemake
-and the rule will be run in this container.
+Snakemake also supports defining a Singularity or Docker container for each
+rule (you will have time to work on the [Docker
+tutorial](docker-1-introduction) and the [Singularity
+tutorial](singularity-1-introduction) later during the course). Analogous to
+using a rule-specific Conda environment, specify `container:
+"docker://some-account/rule-specific-image"` in the rule definition. Instead of
+a link to a container image, it is also possible to provide the path to
+a `*.sif` file (= a Singularity file). When executing Snakemake, add the
+`--use-singularity` flag to the command line. For the given rule, a Singularity
+container will then be created from the image or Singularity file that is
+provided in the rule definition on the fly by Snakemake and the rule will be
+run in this container.
 
 You can find pre-made Singularity or Docker images for many tools on [https://biocontainers.pro/](https://biocontainers.pro/)
 (bioinformatics-specific) or on [https://hub.docker.com/](https://hub.docker.com/).
