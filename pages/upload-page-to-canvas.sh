@@ -18,7 +18,9 @@
 # just provide the link using the markdown format: `[link text](<page-name>)`.
 
 # TODO: what is the difference between using an explicit URL with course ID
-# (HTML) versus just using the path to the file (markdown)?
+# (HTML) versus just using the path to the file (markdown)? The "course link
+# validator" seems to say markdown-based links are invalid even though they link
+# to the correct page with the correct course ID.
 
 # Input parameters
 MARKDOWN=$1
