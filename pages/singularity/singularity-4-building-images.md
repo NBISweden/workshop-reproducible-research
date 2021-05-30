@@ -181,7 +181,7 @@ Singularity has the option to build images remotely. To do this, you need to:
   asked to enter the token (API Key). Paste the copied token and hit ENTER. 
   You should get a **API Key Verified!** message.
 
-> **Attention** <br>
+> **Attention!** <br>
 > In case you are not asked to enter the API Key, you can try to run 
 > `singularity remote login SylabsCloud` instead.
 
