@@ -9,6 +9,7 @@ lectures/**/*.html
 lectures/**/*.pdf
 
 # Various
+nextflow/work
 .snakemake
 .DS_Store
 lectures/*/*/remark-css-0.0.1/default.css
