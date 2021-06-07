@@ -58,7 +58,7 @@ process run_fastqc {
     Run FastQC on a FASTQ file.
     """
     tag "${sample}"
-    publishDir "${resultsdir}/",
+    publishDir "${resultsdir}/qc/",
         mode: "copy",
         // Here we specify that anything ending in `.zip` should be put into the
         // `intermediate/` directory rathern in the default publishDir. One
@@ -66,7 +66,7 @@ process run_fastqc {
         // just intermediate files for MultiQC we do not need to publish them.
         saveAs: { filename ->
             filename.indexOf(".zip") > 0 ? \
-                "${filename}" : "intermediate/${filename}"
+                "intermediate/${filename}" : "${filename}"
         }
 
     input:
@@ -101,7 +101,7 @@ process run_multiqc {
     """
     Aggregate all FastQC reports into a MultiQC report.
     """
-    publishDir "${resultsdir}/quality-controls/",
+    publishDir "${resultsdir}/qc/",
         mode: "copy"
 
     input:
@@ -126,7 +126,7 @@ process get_genome_fasta {
     """
     Retrieve the sequence in fasta format for a genome.
     """
-    publishDir "${resultsdir}/",
+    publishDir "${resultsdir}/idx/",
         mode: "copy"
 
     output:
@@ -142,7 +142,7 @@ process get_genome_gff3 {
     """
     Retrieve annotation in gff3 format for a genome.
     """
-    publishDir "${resultsdir}/",
+    publishDir "${resultsdir}/idx/",
         mode: "copy"
 
     output:
@@ -180,8 +180,6 @@ process align_to_genome {
     Align a fastq file to a genome index using Bowtie 2.
     """
     tag "${sample}"
-    publishDir "${resultsdir}/",
-        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
@@ -201,7 +199,7 @@ process sort_bam {
     Sort a bam file.
     """
     tag "${sample}"
-    publishDir "${resultsdir}/",
+    publishDir "${resultsdir}/bam/",
         mode: "copy"
 
     input:
