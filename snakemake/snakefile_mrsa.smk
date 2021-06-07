@@ -151,16 +151,7 @@ rule generate_count_table:
         "results/tables/counts.tsv"
     shell:
         """
-        # htseq-count cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input.annotation} > tempfile
-
-        # Save the count table as a temporary file and then prepend a header line
-        # with the sample names
-        htseq-count --format bam --type gene --additional-attr description --idattr gene_id {input.bams} tempfile > tempfile2
-        echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
-
-        # Remove the temporary files
-        rm tempfile tempfile2
+        featureCounts -t exon -g Name -a {input.annotation} -o {output} {input.bams}
         """
 
 rule generate_rulegraph:
@@ -171,5 +162,5 @@ rule generate_rulegraph:
         "results/rulegraph.png"
     shell:
         """
-        snakemake --snakefile Snakefile_mrsa --config max_reads=0 --rulegraph | dot -Tpng > {output}
+        snakemake --snakefile Snakefile_mrsa.smk --config max_reads=0 --rulegraph | dot -Tpng > {output}
         """
