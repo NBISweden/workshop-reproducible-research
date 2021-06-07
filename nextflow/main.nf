@@ -8,14 +8,27 @@ resultsdir = "results/"
 
 workflow {
     """ Workflow for generating count data for the MRSA case study """
-    // Get the input SRA IDs from parameters as channel
+    // Here we define something that Nextflow denotes a "channel", which is a
+    // stream of data. These are used to define the input to be passed through
+    // the workflow - meaning SRA IDs defined as coming from (using `from()`)
+    // list in the config file, in this particular case. The `set{...}` part
+    // sets the name for the channel, which is then used as input in the first
+    // process (see below).
     Channel
         .from( params.sra_ids )
         .set{ sra_ids }
 
-    // Define the workflow
+    // Here we define the workflow itself, which in Nextflow is a sequence of
+    // function-like calls: each process (which is the equivalent of Snakemake's
+    // rules) is called like a function, i.e. with input arguments. Each
+    // process' output can be accessed by appending `.out` to it, which is how
+    // downstream processes can use the output of those upstream.
     get_sra_by_accession(sra_ids)
     run_fastqc(get_sra_by_accession.out)
+    // The `collect()` function is almost equivalent to Snakemake's `expand()`,
+    // in that it collects all the outputs from a particular channel into one:
+    // in this way, you can make a process run on ALL of the outputs from some
+    // other process in a single execution, rather than once sample at a time.
     run_multiqc(run_fastqc.out.zip.collect())
     get_genome_fasta()
     index_genome(get_genome_fasta.out)
@@ -30,17 +43,32 @@ process get_sra_by_accession {
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
     accession number.
     """
+    // The `tag` parameter is what will be shown for each execution of this
+    // particular process, e.g. once for each SRA ID in this case.
     tag "${sra_id}"
+    // The `publishDir` parameter is where the output files will be "published"
+    // once the process has run, i.e. where they will be copied to once the
+    // process has been successful. We could omit the publishing of this
+    // process' results as it is only data downloaded from the internet, and is
+    // not directly useful for the user to have access to.
     publishDir "${resultsdir}/data/",
         mode: "copy"
 
+    // Notice that the input is an object rather than an explicit string, since
+    // we have given the inputs above in the `workflow {...}` specification.
     input:
     val(sra_id)
 
+    // Notice how we're actually giving two thing as one output channel: both
+    // the SRA ID (a value) and the downloaded FASTQ file (a file path). This
+    // makes it easy to keep a file and its associated sample name together,
+    // without having to do any string/filename manipulation.
     output:
     tuple val(sra_id), path("*.fastq.gz")
 
     script:
+    // Rather than saying e.g. {input.sra_id} as in Snakemake we only specify
+    // the variable name in Nextflow.
     """
     fastq-dump ${sra_id} \
         -X 25000 \
@@ -79,21 +107,20 @@ process run_fastqc {
 
     output:
     // Since the compressed files will be used by MultiQC (but not the HTML) we
-    // "emit" these files and name them, which can then be used by other
-    // processes specifically.
-    path("*.html")
+    // name the output data streams and "emit" them individually, which can then
+    // be used by other processes specifically.
+    path("*.html"), emit: html
     path("*.zip"), emit: zip
 
     script:
+    // Note that We don't need to specify `-o .` as when using Snakemake, as all
+    // Nextflow processes are run inside their own directories automatically).
+    // Also note that we do not need to move the files afterwards with Nextflow,
+    // as the output files will automatically be published in the directory
+    // specified `publishDir`.)
     """
     # Run FastQC
     fastqc ${fastq} -q
-
-    # Note that We don't need to specify `-o .`, as all Nextflow processes are
-    #   run inside their own directories automatically)
-    # Note that we do not need to move the files afterwards with Nextflow, as
-    #   the output files will automatically be published in the directory
-    #   specified `publishDir`.)
     """
 }
 
@@ -112,13 +139,12 @@ process run_multiqc {
     path("multiqc_data/multiqc_general_stats.txt")
 
     script:
+    // Note that we do not need to move/rename any output files.
+    // Also note that we do not need to remove any of the intermediate
+    // directories that MultiQC creates, as they are not published and can
+    // easily be cleaned up by Nextflow or by removing the `work/` directory.
     """
     multiqc -n multiqc.html .
-
-    # Note that we do not need to move/rename any output files.
-    # Note that we do not need to remove any of the intermediate directories
-    #   that MultiQC creates, as they are published and can easily be cleanup up
-    #   by Nextflow or by removing the `work/` directory.
     """
 }
 
