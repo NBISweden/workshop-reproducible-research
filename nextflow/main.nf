@@ -10,12 +10,12 @@ workflow {
     """ Workflow for generating count data for the MRSA case study """
     // Here we define something that Nextflow denotes a "channel", which is a
     // stream of data. These are used to define the input to be passed through
-    // the workflow - meaning SRA IDs defined as coming from (using `from()`)
-    // list in the config file, in this particular case. The `set{...}` part
-    // sets the name for the channel, which is then used as input in the first
-    // process (see below).
+    // the workflow - meaning SRA IDs defined as coming from the list in the
+    // config file (using `fromList`), in this particular case. The `set{...}`
+    // part sets the name for the channel, which is then used as input in the
+    // first process (see below).
     Channel
-        .from( params.sra_ids )
+        .fromList( params.sra_ids )
         .set{ sra_ids }
 
     // Here we define the workflow itself, which in Nextflow is a sequence of
