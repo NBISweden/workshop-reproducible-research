@@ -7,6 +7,7 @@ nextflow.enable.dsl=2
 resultsdir = "results/"
 
 workflow {
+    """ Workflow for generating count data for the MRSA case study """
     // Get the input SRA IDs from parameters as channel
     Channel
         .from( params.sra_ids )
@@ -25,6 +26,10 @@ workflow {
 }
 
 process get_sra_by_accession {
+    """
+    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
+    accession number.
+    """
     tag "${sra_id}"
     publishDir "${resultsdir}/data/",
         mode: "copy"
@@ -49,6 +54,9 @@ process get_sra_by_accession {
 }
 
 process run_fastqc {
+    """
+    Run FastQC on a FASTQ file.
+    """
     tag "${sample}"
     publishDir "${resultsdir}/",
         mode: "copy",
@@ -90,6 +98,9 @@ process run_fastqc {
 }
 
 process run_multiqc {
+    """
+    Aggregate all FastQC reports into a MultiQC report.
+    """
     publishDir "${resultsdir}/quality-controls/",
         mode: "copy"
 
@@ -112,6 +123,9 @@ process run_multiqc {
 }
 
 process get_genome_fasta {
+    """
+    Retrieve the sequence in fasta format for a genome.
+    """
     publishDir "${resultsdir}/",
         mode: "copy"
 
@@ -124,7 +138,26 @@ process get_genome_fasta {
     """
 }
 
+process get_genome_gff3 {
+    """
+    Retrieve annotation in gff3 format for a genome.
+    """
+    publishDir "${resultsdir}/",
+        mode: "copy"
+
+    output:
+    path("*.gff3.gz")
+
+    script:
+    """
+    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz
+    """
+}
+
 process index_genome {
+    """
+    Index a genome using Bowtie 2.
+    """
     publishDir "${resultsdir}/idx/",
         mode: "copy"
 
@@ -143,6 +176,9 @@ process index_genome {
 }
 
 process align_to_genome {
+    """
+    Align a fastq file to a genome index using Bowtie 2.
+    """
     tag "${sample}"
     publishDir "${resultsdir}/",
         mode: "copy"
@@ -161,6 +197,9 @@ process align_to_genome {
 }
 
 process sort_bam {
+    """
+    Sort a bam file.
+    """
     tag "${sample}"
     publishDir "${resultsdir}/",
         mode: "copy"
@@ -177,20 +216,10 @@ process sort_bam {
     """
 }
 
-process get_genome_gff3 {
-    publishDir "${resultsdir}/",
-        mode: "copy"
-
-    output:
-    path("*.gff3.gz")
-
-    script:
-    """
-    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz
-    """
-}
-
 process generate_counts_table {
+    """
+    Generate a count table using featureCounts.
+    """
     publishDir "${resultsdir}/",
         mode: "copy"
 
