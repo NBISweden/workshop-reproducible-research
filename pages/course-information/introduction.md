@@ -12,12 +12,14 @@ a subset of tutorials that suits your interests. Under the main figure there is
 a list of a few suggested alternative tutorial orders; you will find the
 tutorials in the *Modules* section in the navigation menu.
 
+Please make sure to carefully follow the [setup instructions](pre-course-setup) to 
+install the tools and download the course material before starting with any of the 
+tutorials. These will create quite a lot of files on your computer, some of which 
+will actually take up a bit of storage space too. In order to remove any traces of 
+these after completing the tutorials, please refer to the [Take down section](take-down).
+
 Before going into the tutorials themselves, we first describe the case study
-from which the example data comes from, followed by the setup needed to install
-the tools themselves. These will create quite a lot of files on your computer,
-some of which will actually take up a bit of storage space too. In order to
-remove any traces of these after completing the tutorials, please refer to the
-[Take down section](take-down).
+from which the example data comes from. 
 
 # The case study
 
