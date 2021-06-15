@@ -4,7 +4,7 @@ The `upload-page-to-canvas.sh` bash script can be used to upload or update
 pages on Canvas. Usage is simple, for example:
 
 ```bash
-./upload-age-to-canvas.sh conda/conda-1-introduction.md
+./upload-page-to-canvas.sh conda/conda-1-introduction.md
 ```
 
 This will either upload or update the `conda-1-introduction.md` page to Canvas,
@@ -60,7 +60,7 @@ a ruler regardless of content, to make a clear demarcation between box content
 and normal content, but only to start the box with a ruler if it starts with
 text; if it starts with a code chunk you can exclude the starting ruler.
 
-````no-hightlight
+````no-highlight
 <details>
 <summary> Text to always show, such as "Click to expand" </summary>
 ***

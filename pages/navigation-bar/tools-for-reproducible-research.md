@@ -67,7 +67,7 @@ group leaders and core facility staff. International applications are welcome,
 but we will give approximately half of the participant slots to applicants from
 Swedish universities, due to the national role NBIS plays in Sweden. This
 online training event has no fee. However, if you confirm your participation
-but do not do so(no-show) you will be invoiced 2000 SEK. Please note that NBIS
+but do not do so (no-show) you will be invoiced 2,000 SEK. Please note that NBIS
 cannot invoice individuals.
 
 The only entry requirements for this course is a basic knowledge of Unix systems
@@ -117,6 +117,6 @@ can also be found on GitHub.
 # Teachers
 
 * John Sundh (course responsible)
-* Verena Kutchera (course responsible)
+* Verena Kutschera (course responsible)
 * Erik Fasterius (course responsible)
 * Tomas Larsson (teacher)
