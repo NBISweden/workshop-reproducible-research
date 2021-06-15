@@ -280,9 +280,9 @@ tools.
     R_LIBS=""
     ```
 
-    ... and restart RStudio. The `rmarkdown/` directory in the course materials
-    already contains this file, so you shouldn't have to add this yourself, but
-    we mention it here for your future projects.
+> ... and restart RStudio. The `rmarkdown/` directory in the course materials
+> already contains this file, so you shouldn't have to add this yourself, but
+> we mention it here for your future projects.
 
 ## Installing Jupyter
 
@@ -317,6 +317,20 @@ the Docker app from the Applications menu. Now it's basically just to click
 "next" a couple of times and we should be good to go. You can find the Docker
 icon in the menu bar in the upper right part of the screen.
 
+### Linux
+
+How to install Docker differs a bit depending on your Linux distribution, but
+the steps are the same. Please follow the instructions for your distribution on
+[https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
+
+> **Tip** <br>
+> As mentioned before, Docker needs to run as root. You can achieve this by
+> prepending all Docker commands with `sudo`. This is the approach that we
+> will take in this tutorial, since the set up becomes a little simpler that way. 
+> If you plan on continuing using Docker you can get rid of this by adding your
+> user to the group `docker`. Here are instructions for how to do this:
+> [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
+
 ### Windows
 
 In order to run Docker on Windows your computer must support *Hardware
@@ -337,20 +351,6 @@ haven't done so during the installation of Docker Desktop. Right-click on the
 Docker whale icon in the task bar and select *Settings*. Choose *Resources* and
 select *WPS integration*. Enable integration with the Linux subsystem and click
 *Apply & Restart*; also restart the Linux subsystem.
-
-### Linux
-
-How to install Docker differs a bit depending on your Linux distribution, but
-the steps are the same. Please follow the instructions for your distribution on
-[https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
-
-> **Tip** <br>
-> As mentioned before, Docker needs to run as root. You can achieve this by
-> prepending all Docker commands with `sudo`. This is the approach that we
-> will take in this tutorial, since the set up becomes a little simpler that way. 
-> If you plan on continuing using Docker you can get rid of this by adding your
-> user to the group `docker`. Here are instructions for how to do this:
-> [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
 
 ## Installing Singularity
 
