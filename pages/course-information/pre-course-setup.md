@@ -29,8 +29,10 @@ cd workshop-reproducible-research
 > `git checkout tags/course_1905`. To list all available tags, use `git tag`. 
 > Run this command after you have `cd` into `workshop-reproducible-research` 
 > as described above. If you do that, you probably also want to view the 
-> same older version of this website. Locate the version box in the bottom 
-> right corner of the browser and select the corresponding version.
+> same older version of this website. Until spring 2021, the website was 
+> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
+> Locate the version box in the bottom right corner of the website and 
+> select the corresponding version.
 
 ## Setup for Windows users
 
@@ -76,9 +78,11 @@ with no alternative for Windows), please follow the Linux instructions.
 > you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
 > tags/course_1905`. To list all available tags, use `git tag`. Run this
 > command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the same
-> older version of this website. Locate the version box in the bottom right
-> corner of the browser and select the corresponding version.
+> described above. If you do that, you probably also want to view the 
+> same older version of this website. Until spring 2021, the website was 
+> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
+> Locate the version box in the bottom right corner of the website and 
+> select the corresponding version.
 
 ## Installing Git
 
