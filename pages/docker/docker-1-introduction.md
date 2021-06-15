@@ -36,8 +36,9 @@ resources:
   Docker for reproducible research.
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-setup page for instructions on how to set it up if you haven't done so already,
-then open up a terminal and go to `workshop-reproducible-research/docker`.
+[setup](pre-course-setup) for instructions on how to install Docker if you 
+haven't done so already, then open up a terminal and go to 
+`workshop-reproducible-research/docker`.
 
 > **Attention!** <br>
 > Docker images tend to take up quite a lot of space. In order to do all

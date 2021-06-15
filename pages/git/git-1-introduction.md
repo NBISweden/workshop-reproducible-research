@@ -56,5 +56,5 @@ learning more about these things, here are some reading tips for you:
 * [Git reference manual](https://book.git-scm.com/docs)
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](setup) for instructions on how to set it up if you haven't done so
-already.
+[setup](pre-course-setup) for instructions on how to set it up if you haven't 
+done so already.
