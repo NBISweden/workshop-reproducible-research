@@ -25,7 +25,7 @@ but to really think about each step and how it all fits together in practice.
 > analysis for this exercise short so that you have time to try out the
 > different tools together while you have the opportunity to ask for help.
 
-## Alternative 1: your own project
+## Your own project
 
 This is a great opportunity for you to try to implement these methods on one 
 of your current research projects. It is of course up to you which tools to 
@@ -39,14 +39,14 @@ for at least git and Conda.
 > original size. You can then test your implementation on the subset and only
 > run it on the whole dataset once everything works to your satisfaction.
 
-## Alternative 2: student experience project
+## Alternative: student experience project
 
 If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you. The idea is to analyze students'
 experiences at this Reproducible Research course. For this you will use
 responses from students to the registration form for previous course rounds. You
-can find the responses in the `data/` directory in the project root. The goal
-is to create a Snakemake workflow, which contains the following:
+can find the responses in the `workshop-reproducible-research/data/` directory. 
+The goal is to create a Snakemake workflow, which contains the following:
 
 1. A rule that cleans the files (making use of `wildcards` so that the same rule
    can be run on each file)
