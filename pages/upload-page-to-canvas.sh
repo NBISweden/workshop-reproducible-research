@@ -40,7 +40,7 @@ GITHUB="https:\/\/raw\.githubusercontent\.com\/NBISweden\/workshop-reproducible-
 docker run --rm \
     --volume "`pwd`:/data" \
     --user `id -u`:`id -g` \
-    pandoc/latex $MARKDOWN --output="$HTML"
+    pandoc/latex $MARKDOWN --mathjax --output="$HTML"
 
 # Add images from GitHub and course ID for links
 cat "$HTML" \
