@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Get list of pages
       run: |
         echo "page_list=$(git diff --name-only HEAD HEAD~1)" >> $GITHUB_ENV
