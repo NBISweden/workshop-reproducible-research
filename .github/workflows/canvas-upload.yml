@@ -7,11 +7,8 @@ on:
       - devel
       - canvas_actions
   push:
-    paths:
-      - 'pages/*.md'
-      - 'pages/*/*.md'
     branches:
-      - main
+      - canvas_actions
   pull_request:
     paths:
       - 'pages/*.md'
