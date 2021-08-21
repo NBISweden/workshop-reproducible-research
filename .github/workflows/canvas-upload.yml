@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Get list of pages
       run: |
-        echo "page_list=$(git diff --name-only HEAD HEAD~1 | grep '.md')" >> $GITHUB_ENV
+        echo "page_list=$(git diff --name-only HEAD HEAD~1)" >> $GITHUB_ENV
     - name: Upload pages
       run: |
         for f in "${{ env.page_list }}";
