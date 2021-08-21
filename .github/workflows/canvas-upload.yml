@@ -1,0 +1,35 @@
+name: canvas-upload
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+      - devel
+      - canvas_actions
+  push:
+    paths:
+      - 'pages/*.md'
+      - 'pages/*/*.md'
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'pages/*.md'
+      - 'pages/*/*.md'
+    branches:
+      - main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get list of pages
+      run: |
+        echo "page_list=$(git diff --name-only HEAD HEAD~1 | grep '.md')" >> $GITHUB_ENV
+    - name: Upload pages
+      run: |
+        for f in "${{ env.page_list }}";
+        do
+          echo $f
+        done
