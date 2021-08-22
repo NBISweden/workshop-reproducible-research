@@ -26,8 +26,13 @@
 MARKDOWN=$1
 COURSE_ID=51980
 
+if [ "$2" == "" ]; then
+  TOKEN="$HOME/.canvas-api-token"
+else
+  TOKEN="$2"
+fi
+
 # General parameters
-TOKEN="$HOME/.canvas-api-token"
 API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's/.md//g')
 HTML=$(basename $MARKDOWN | sed 's/.md/.html/g')
