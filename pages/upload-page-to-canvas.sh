@@ -24,7 +24,6 @@
 
 # Input parameters
 MARKDOWN=$1
-COURSE_ID=51980
 
 if [ "$2" == "" ]; then
   TOKEN=$(cat "$HOME/.canvas-api-token")
@@ -39,6 +38,7 @@ HTML=$(basename $MARKDOWN | sed 's/.md/.html/g')
 
 # Current Git branch and course image path
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+COURSE_ID=$(grep $BRANCH pages/.course_id | cut -f2 -d ':')
 GITHUB="https:\/\/raw\.githubusercontent\.com\/NBISweden\/workshop-reproducible-research\/$BRANCH\/pages\/"
 
 # Convert using Pandoc
