@@ -26,8 +26,13 @@
 MARKDOWN=$1
 COURSE_ID=51980
 
+if [ "$2" == "" ]; then
+  TOKEN=$(cat "$HOME/.canvas-api-token")
+else
+  TOKEN="$2"
+fi
+
 # General parameters
-TOKEN="$HOME/.canvas-api-token"
 API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's/.md//g')
 HTML=$(basename $MARKDOWN | sed 's/.md/.html/g')
@@ -53,7 +58,7 @@ mv tmp.html "$HTML"
 echo "Uploading \`$HTML\` ..."
 curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
-    --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
+    --header "Authorization: Bearer $TOKEN" \
     --data-urlencode wiki_page[body]="$(cat $HTML)" \
     --silent --show-error \
     > /dev/null

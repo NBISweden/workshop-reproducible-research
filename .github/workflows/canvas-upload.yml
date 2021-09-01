@@ -1,0 +1,40 @@
+name: canvas-upload
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+      - devel
+      - canvas_actions
+  push:
+    paths:
+      - 'pages/*.md'
+      - 'pages/*/*.md'
+    branches:
+      - main
+      - canvas_actions
+  pull_request:
+    paths:
+      - 'pages/*.md'
+      - 'pages/*/*.md'
+    branches:
+      - main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Get list of pages
+      run: |
+        echo "page_list=$(git diff --name-only HEAD HEAD~1 | grep '.md')" >> $GITHUB_ENV
+    - name: Upload pages
+      env:
+        API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
+      run: |
+        for file in "${{ env.page_list }}";
+        do
+          bash pages/upload-page-to-canvas.sh "$file" "$API_TOKEN"
+        done
