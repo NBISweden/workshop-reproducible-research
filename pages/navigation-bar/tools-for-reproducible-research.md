@@ -109,9 +109,8 @@ course, so make sure you've gone through it all for the course start.
 
 All of the lectures used in this course is available at **MISSING PAGE**, while
 the source code used to create the lectures is available under the
-[lectures/](https://github.com/NBISweden/workshop-reproducible-research.git)
-directory on GitHub. The [project template repository](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
-can also be found on GitHub.
+[lectures/](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
+directory on GitHub.
 
 
 # Teachers
