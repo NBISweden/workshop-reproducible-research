@@ -31,7 +31,7 @@ jobs:
       run: |
         echo "page_list=$(git diff --name-only HEAD HEAD~1 | grep '.md')" >> $GITHUB_ENV
     - name: Upload pages
-      with:
+      env:
         API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
       run: |
         for file in "${{ env.page_list }}";
