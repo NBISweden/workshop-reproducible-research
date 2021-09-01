@@ -203,7 +203,7 @@ tutorials directory (`workshop-reproducible-research/tutorials`) and then
 create the Conda environment like so:
 
 ```bash
-conda env create -f tutorials/snakemake/environment.yml -n snakemake-env
+conda env create -f snakemake/environment.yml -n snakemake-env
 conda activate snakemake-env
 ```
 
@@ -287,7 +287,8 @@ tools.
 ## Installing Jupyter
 
 Let's continue using Conda for installing software, since it's so convenient to
-do so! Create an environment from the `jupyter/environment.yml` file and test
+do so! Move in the tutorials directory (`workshop-reproducible-research/tutorials`), 
+create a Conda environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
 
 ```bash
