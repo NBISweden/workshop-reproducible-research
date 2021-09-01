@@ -199,11 +199,11 @@ conda config --add channels conda-forge
 We will use Conda environments for the set up of this tutorial, but don't worry
 if you don't understand exactly what everything does - you'll learn all the
 details at the course. First make sure you're currently situated inside the
-course directory (`workshop-reproducible-research`) and then create the Conda
-environment like so:
+tutorials directory (`workshop-reproducible-research/tutorials`) and then
+create the Conda environment like so:
 
 ```bash
-conda env create -f snakemake/environment.yml -n snakemake-env
+conda env create -f tutorials/snakemake/environment.yml -n snakemake-env
 conda activate snakemake-env
 ```
 
@@ -225,8 +225,8 @@ deactivate` and continue with the setup for the other tools.
 ## Installing R Markdown
 
 We also use Conda to install R Markdown: make sure your working directory is in
-the course directory (`workshop-reproducible-research`) and install the
-necessary R packages defined in the `environment.yml`:
+the tutorials directory (`workshop-reproducible-research/tutorials`) and
+install the necessary R packages defined in the `environment.yml`:
 
 ```bash
 conda env create -f rmarkdown/environment.yml -n rmarkdown-env

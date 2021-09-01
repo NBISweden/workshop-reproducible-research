@@ -7,8 +7,8 @@ tutorial](snakemake-10-generalizing-workflows). Here we explore the results
 from the Snakemake tutorial and generate a Supplementary Material file with
 some basic stats.
 
-In the `jupyter/` directory you will find a notebook called 
-`supplementary_material.ipynb`. Open this notebook with jupyter by running:
+In the `tutorials/jupyter/` directory you will find a notebook called 
+`supplementary_material.ipynb`. Open this notebook with Jupyter by running:
 
 ```bash
 jupyter notebook supplementary_material.ipynb
@@ -205,7 +205,7 @@ The files you're working with come from a GitHub repo. Both GitHub and Bitbucket
 can render Jupyter notebooks as well as other types of Markdown documents. Now
 go to our GitHub repo at
 [https://github.com/NBISweden/workshop-reproducible-research](https://github.com/NBISweden/workshop-reproducible-research)
-and navigate to `jupyter/supplementary_material.ipynb`.
+and navigate to `tutorials/jupyter/supplementary_material.ipynb`.
 
 ![](images/jupyter_supplementary.png)
 
@@ -223,7 +223,7 @@ past an URL to any notebook and they will render it for you. Go to
 this out with our notebook.
 
 ```no-highlight
-https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/supplementary_material.ipynb
+https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/tutorials/jupyter/supplementary_material.ipynb
 ```
 
 ## Shared interactive notebooks

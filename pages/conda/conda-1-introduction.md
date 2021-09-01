@@ -34,6 +34,6 @@ Packages are symlinked between environments to avoid unnecessary duplication.
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if, you haven't
 done so already. Then open up a terminal and go to
-`workshop-reproducible-research/conda`. Instructions below assume that you are
-standing in `conda/` unless otherwise specified (*e.g.* if it says "create
-a file", it means save it in `conda/`).
+`workshop-reproducible-research/tutorials/conda`. Instructions below assume
+that you are standing in `conda/` unless otherwise specified (*e.g.* if it says
+"create a file", it means save it in `conda/`).

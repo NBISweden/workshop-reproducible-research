@@ -4,7 +4,7 @@ browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
-[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter
+[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/tutorials/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
 [I 18:02:26.723 NotebookApp] http://localhost:8888/?token=e03f10ccb40efc3c6154358593c410a139b76acf2cae785c
@@ -23,7 +23,7 @@ the server is running locally (as `http://localhost:8888`) so this does not
 require that you have an active internet connection. Also note that it says:
 
 ```no-highlight
-Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/jupyter>
+Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/tutorials/jupyter>
 ```
 
 Everything you do in your Notebook session will be stored in this directory, so
