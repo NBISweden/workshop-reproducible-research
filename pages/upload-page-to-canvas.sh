@@ -27,7 +27,7 @@ MARKDOWN=$1
 COURSE_ID=51980
 
 if [ "$2" == "" ]; then
-  TOKEN="$HOME/.canvas-api-token"
+  TOKEN=$(cat "$HOME/.canvas-api-token")
 else
   TOKEN="$2"
 fi
@@ -58,7 +58,7 @@ mv tmp.html "$HTML"
 echo "Uploading \`$HTML\` ..."
 curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
-    --header "Authorization: Bearer $(cat ~/.canvas-api-token)" \
+    --header "Authorization: Bearer $TOKEN" \
     --data-urlencode wiki_page[body]="$(cat $HTML)" \
     --silent --show-error \
     > /dev/null
