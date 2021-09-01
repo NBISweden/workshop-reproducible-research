@@ -18,9 +18,9 @@ are:
 
 Before you start:
 
-* Make sure that your working directory in R is `tutorials/rmarkdown` in the
-  course directory (Session > Set Working Directory).
-* Open the file `tutorials/rmarkdown/code/supplementary_material.Rmd`.
+* Make sure that your working directory in R is `workshop-reproducible-research/tutorials/rmarkdown` 
+  in the course directory (Session > Set Working Directory).
+* Open the file `code/supplementary_material.Rmd`.
 
 > **Note** <br>
 > In this tutorial we have used Conda to install all the R packages we need,

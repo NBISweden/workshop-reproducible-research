@@ -7,8 +7,9 @@ tutorial](snakemake-10-generalizing-workflows). Here we explore the results
 from the Snakemake tutorial and generate a Supplementary Material file with
 some basic stats.
 
-In the `tutorials/jupyter/` directory you will find a notebook called 
-`supplementary_material.ipynb`. Open this notebook with Jupyter by running:
+In the `workshop-reproducible-research/tutorials/jupyter/` directory you will 
+find a notebook called `supplementary_material.ipynb`. Open this notebook with 
+Jupyter by running:
 
 ```bash
 jupyter notebook supplementary_material.ipynb
