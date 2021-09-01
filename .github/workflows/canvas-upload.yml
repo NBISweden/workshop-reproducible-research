@@ -5,21 +5,20 @@ on:
     branches:
       - main
       - devel
-      - canvas_actions
   push:
     paths:
       - 'pages/*.md'
       - 'pages/*/*.md'
     branches:
       - main
-      - canvas_actions
+      - devel
   pull_request:
     paths:
       - 'pages/*.md'
       - 'pages/*/*.md'
     branches:
       - main
-
+      - devel
 jobs:
   upload:
     runs-on: ubuntu-latest
