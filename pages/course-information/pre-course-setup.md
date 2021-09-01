@@ -30,7 +30,7 @@ cd workshop-reproducible-research
 > Run this command after you have `cd` into `workshop-reproducible-research` 
 > as described above. If you do that, you probably also want to view the 
 > same older version of this website. Until spring 2021, the website was 
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
+> hosted at https://nbis-reproducible-research.readthedocs.io. 
 > Locate the version box in the bottom right corner of the website and 
 > select the corresponding version.
 
