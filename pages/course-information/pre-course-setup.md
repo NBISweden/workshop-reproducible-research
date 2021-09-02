@@ -222,6 +222,20 @@ deactivate` and continue with the setup for the other tools.
 > the installation process. Use the normal `snakemake` package if you need
 > those features.
 
+## Installing Nextflow
+
+We'll use Conda to install Nextflow as well: navigate to
+`workshop-reproducible-research` and create the Conda environment:
+
+```bash
+conda env create -f tutorials/nextflow/environment.yml -n nextflow-env
+conda activate nextflow-env
+```
+
+Check that Nextflow was installed correctly by running `nextflow -version`. Once
+you've successfully completed the installation you can deactive the environment
+using `conda deactivate` and continue with the other setups, as needed.
+
 ## Installing R Markdown
 
 We also use Conda to install R Markdown: make sure your working directory is in
