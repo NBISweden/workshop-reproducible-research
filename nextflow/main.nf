@@ -64,7 +64,7 @@ process get_sra_by_accession {
     // makes it easy to keep a file and its associated sample name together,
     // without having to do any string/filename manipulation.
     output:
-    tuple val(sra_id), path("*.fastq.gz")
+    tuple val(sra_id), path("${sra_id}.fastq.gz")
 
     script:
     // Rather than saying e.g. {input.sra_id} as in Snakemake we only specify
