@@ -15,7 +15,7 @@ workflow {
     // part sets the name for the channel, which is then used as input in the
     // first process (see below).
     Channel
-        .fromList( params.sra_ids )
+        .fromList( params.sra_id_list )
         .set{ sra_ids }
 
     // Here we define the workflow itself, which in Nextflow is a sequence of
