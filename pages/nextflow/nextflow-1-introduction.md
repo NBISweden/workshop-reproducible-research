@@ -12,7 +12,7 @@ carried out, just like in Snakemake. Nextflow has a large community centered
 around it, including the [nf-core](https://nf-co.re/) curated collection of high
 quality pipelines used by *e.g.* the [National Genomics Infrastructure](https://ngisweden.scilifelab.se/).
 
-#### Differences between Nextflow and Snakemake
+## Differences between Nextflow and Snakemake
 
 There are some major differences in the philosophy behind Nextflow and
 Snakemake. First of all, everything in Snakemake is a file, while Nextflow uses
@@ -56,7 +56,7 @@ that you need to think less about full paths for all the workflow's files, as
 the locations of all the files are fully taken care of by Nextflow - the only
 thing you need to care about is the final output paths.
 
-#### The aim of this tutorial
+## The aim of this tutorial
 
 Will all that said, both Nextflow and Snakemake are excellent systems for
 workflow management, and you can do basically everything in either: it is very

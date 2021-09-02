@@ -49,7 +49,7 @@ examine a process more carefully, simply navigate to its directory, *e.g.*
 If you want to view the logs you can use `nextflow log <run name>` or look in
 the hidden file `.nextflow.log`.
 
-#### Re-running workflows
+## Re-running workflows
 
 If you run the same command again, Nextflow will re-run the entire workflow from
 scratch. This is an important difference to Snakemake, which only re-runs parts
@@ -60,7 +60,7 @@ also processes and parameters. This means you don't have to run with a specific
 flag and target if you changed a process (like `-R <rule>` in Snakemake), but
 just re-run with `-resume` and Nextflow will take care of the rest.
 
-#### Reports and visualisations
+## Reports and visualisations
 
 Nextflow can also automatically supply execution reports by running with the
 `-with-report` flag. This will give you the `report.html` file, containing
