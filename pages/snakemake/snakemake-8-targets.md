@@ -67,3 +67,9 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
 the sample ids. Much better!
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to use the `expand()` expression to create a list with file names, 
+>   inserting all provided wildcard values.

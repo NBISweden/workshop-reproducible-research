@@ -80,3 +80,8 @@ and validate that the temporary files don't show up in your working directory.
 > but if you're running on a distributed file system and generate very many
 > or very large files it might be worth considering other options (see *e.g.*
 > the `--shadow-prefix` flag).
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to use the shadow option to handle files that are not tracked by Snakemake.

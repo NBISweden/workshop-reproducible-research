@@ -87,3 +87,9 @@ to form the `config` dictionary. If you want to overwrite a parameter value,
 > **Tip** <br>
 > Rather than supplying the config file from the command line you could also
 > add the line `configfile: "config.yml"` to the top of your Snakefile.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to set parameter values with the `params` directive.
+> - How to run Snakemake with the `config` variable and with a configuration file.

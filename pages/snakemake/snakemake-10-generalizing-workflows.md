@@ -148,3 +148,8 @@ output:
 >   intermediate files, and results.
 > - A project set up in a way that makes it very easy to distribute and
 >   reproduce either via Git, Snakemake's `--archive` option or a Docker image.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to generalize a Snakemake workflow.
