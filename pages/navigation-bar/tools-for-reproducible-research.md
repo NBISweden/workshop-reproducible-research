@@ -43,6 +43,7 @@ The following topics and tools are covered in the course:
 * Git
 * Conda
 * Snakemake
+* Nextflow
 * R Markdown
 * Jupyter
 * Docker
@@ -54,10 +55,10 @@ At the end of the course, students should be able to:
 * Clearly organise their bioinformatic projects
 * Use the version control system Git to track and collaborate on code
 * Use the package and environment manager Conda
-* Use and develop pipelines the workflow manager Snakemake
-* Use both R Markdown and Jupyter Notebooks to document and generate automated
+* Use and develop workflows with Snakemake and Nextflow
+* Use R Markdown and Jupyter Notebooks to document and generate automated
   reports for their analyses
-* Use both Docker and Singularity to distribute containerized computational
+* Use Docker and Singularity to distribute containerized computational
   environments
 
 # Application
