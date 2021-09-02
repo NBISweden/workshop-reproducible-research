@@ -65,7 +65,7 @@ external script you've defined elsewhere. Nextflow variables are called using
 `${NF_VARIABLE}` syntax, while bash variables need to be preceded with a
 backslash, like so: `\${BASH_VARIABLE}`.
 
-> **Using external scripts**
+> **Using external scripts** <br>
 > While not used here, if you have an external script you can put it in a `bin/`
 > directory in the same directory as the `main.nf` file, which will
 > automatically give all processes access to that script without you needing to
@@ -107,7 +107,7 @@ two separate outputs? The `saveAs` parameter of the `publishDir` directive
 allows us to conditionally publish the output files in different locations, in
 this case depending on whether the file end in `.zip` or not.
 
-> **Syntax explanation**
+> **Syntax explanation** <br>
 > The Groovy syntax used here translates to roughly `if filename contains
 > ".zip", publish it in the "intermediate/" directory, otherwise publish it in
 > the default directory`.
@@ -117,7 +117,7 @@ they may be referred to separately in downstream processes. For example, the
 `run_multiqc` process uses the `run_fastqc.out.zip` as input, *i.e.* only the
 compressed files from this process' output.
 
-> **Note**
+> **Note** <br>
 > Notice that you can both use specific files in output definitions (*e.g*
 > `{$sra_id}.fastq.gz`) as well as any file defined by some wildcard, commonly
 > using a file extension (*e.g.* `*.zip`). This is useful for when you want
@@ -129,7 +129,7 @@ input for the `run_fastqc` process. This allows us to easily grab both the
 sample name and the corresponding FASTQ file without any use of wildcards, which
 is how you would do it in Snakemake.
 
-> **Variable names**
+> **Variable names** <br>
 > Remember that we can use any name for each input variable within a process,
 > regardless of what the variable is called outside the process, just like in
 > functional programming. We use the name `sample` here, but the same value was
