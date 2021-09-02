@@ -62,6 +62,17 @@ this with the following:
 rm -rf workshop-reproducible-research/snakemake/.snakemake
 ```
 
+## Nextflow
+
+Since we installed Nextflow using Conda we can remove it in the same way as
+above. You may also want to remove the `results/` and `work/` directories, which
+you can do like so:
+
+```bash
+rm -rf workshop-reproducible-research/tutorials/nextflow/results
+rm -rf workshop-reproducible-research/tutorials/nextflow/work
+```
+
 ## Jupyter
 
 Jupyter is installed via Conda and will be removed if you follow the
