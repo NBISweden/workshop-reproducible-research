@@ -59,23 +59,12 @@ The input files are:
 * *S. aureus* genome sequence (a FASTA file)
 * *S. aureus* genome annotation (a GFF file)
 
-The different steps of the workflow and what they do are as follows:
+The workflow itself will perform the following tasks:
 
-* `get_genome_fasta` - Download the genome file.
-* `index_genome` - Index the genome using the *Bowtie2* software (required for
-  the alignment step)
-* `get_SRA_by_accession` - Download the RNA-seq raw data for the three strains
-  from the *Sequence Read Archive* (SRA).
-* `fastqc` - Run quality control on each of the RNA-seq FASTQ files using the
-  *FastQC* software.
-* `multiqc` - Summarize the quality controls.
-* `align_to_genome` - Align the RNA-seq data from the three strains to the
-  indexed genome using the *Bowtie2* software.
-* `sort_bam` - Sort the alignment files by genome coordinate using the
-  *Samtools* software.
-* `get_genome_gff3` - Download the genome annotation file.
-* `generate_count_table` - Calculate gene expression by counting aligned reads
-  per gene using the *HTSeq-count* software.
-* `generate_rulegraph` - Generate the workflow overview figure shown above.
-* `make_supplementary` - Produce the supplementary materials section using data
-  from the quality controls, gene counts and the workflow figure.
+* Downloading and indexing of the reference genome using *Bowtie2*
+* Downloading the raw FASTQ data from the *Sequence Read Archive* (SRA)
+* Run some quality controls on the data using *FastQC* and *MultiQC*
+* Align the raw data to the genome and calculate the gene expression using
+  *HTSeq-count*
+* Produce supplementary materials using data from quality controls, gene
+  expression and the workflow figure shown above
