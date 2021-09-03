@@ -34,7 +34,7 @@ Now run `docker build` as before, tag the image with `my_docker_project`:
 docker build -t my_docker_project -f Dockerfile .
 ````
 
-and go get a coffee while the image builds (or
+Go get a coffee while the image builds (or
 you could use `docker pull nbisweden/workshop-reproducible-research` which
 will download the same image).
 
