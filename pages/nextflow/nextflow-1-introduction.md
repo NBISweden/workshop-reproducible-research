@@ -58,7 +58,7 @@ thing you need to care about is the final output paths.
 
 ## The aim of this tutorial
 
-Will all that said, both Nextflow and Snakemake are excellent systems for
+With all that said, both Nextflow and Snakemake are excellent systems for
 workflow management, and you can do basically everything in either: it is very
 much up to personal preference and what you think is most important. We suggest
 that you try both and get a feel for them, and then decide which you like the
