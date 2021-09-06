@@ -8,7 +8,8 @@ ipy_files = glob("*/*.ipynb")
 
 rule all:
     input:
-        ["{}.html".format(path.splitext(x)[0]) for x in rmd_files + ipy_files]
+        ["{}.html".format(path.splitext(x)[0]) for x in rmd_files + ipy_files],
+        ["{}.pdf".format(path.splitext(x)[0]) for x in rmd_files]
 
 rule render_rmarkdown:
     input:
