@@ -29,7 +29,7 @@ Serving notebooks from local directory: </some/local/path/workshop-reproducible-
 Everything you do in your Notebook session will be stored in this directory, so
 you won't lose any work if you shut down the server.
 
-![](images/jupyter_dashboard.png)
+> ![](images/jupyter_dashboard.png){ width=700px }
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
@@ -42,7 +42,7 @@ Let's start by creating an empty notebook by selecting the Files tab and
 clicking New > Notebook > Python 3. This will open up a new tab or window 
 looking like this:
 
-![](images/jupyter_empty_nb.png)
+> ![](images/jupyter_empty_nb.png){ width=700px }
 
 > **Tip** <br>
 > If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
@@ -185,7 +185,7 @@ print_me("Hi!")
 
 Your notebook should now look something like this.
 
-![](images/jupyter_basic_update.png)
+> ![](images/jupyter_basic_update.png){ width=700px }
 
 The focus here is not on how to write Markdown or Python; you can make really
 pretty notebooks with Markdown and you can code whatever you want with Python.

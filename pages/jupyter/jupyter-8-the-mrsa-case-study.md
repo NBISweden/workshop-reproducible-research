@@ -207,7 +207,7 @@ go to our GitHub repo at
 [https://github.com/NBISweden/workshop-reproducible-research](https://github.com/NBISweden/workshop-reproducible-research)
 and navigate to `jupyter/supplementary_material.ipynb`.
 
-![](images/jupyter_supplementary.png)
+![](images/jupyter_supplementary.png){ width=700px }
 
 As you can imagine, having this very effortless way of sharing results
 can greatly increase the visibility of your work. You work as normal on
@@ -255,7 +255,7 @@ Just go to [https://mybinder.org](https://mybinder.org) and paste the link
 to the GitHub repo. Note the link that you can use to share your notebook. 
 Then press "launch".
 
-![](images/binder.png)
+![](images/binder.png){ width=700px }
 
 What will happen now it that:
 
