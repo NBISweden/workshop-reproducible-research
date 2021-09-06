@@ -68,7 +68,7 @@ together into a nested tuple looking like this:
 
 The first index of the tuple (`[0]`) thus contains the value `sample`, while the
 second index (`[1]`) contains another tuple with paths to both read files. This
-nested tuple can easily to passed into processes for *e.g.* read alignment, and
+nested tuple can easily be passed into processes for *e.g.* read alignment, and
 it makes the entire procedure of going from read pairs (*i.e.* two separate
 files, one sample) into a single alignment file (one file, one sample) very
 simple.

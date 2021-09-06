@@ -27,7 +27,7 @@ as well as the executor used (local, in this case).
 
 What follows next is all the various processes for this particular workflow.
 Just like Snakemake, the order of execution is not necessarily in order
-(depending in each process' inputs and output dependencies), but they are in the
+(depending on each process' inputs and output dependencies), but they are in the
 order they were defined in the workflow file. The first part (*e.g*
 `[c9/e5f818]`) is the process ID, which is also the first part of the
 subdirectory in which the process is run. We then get the process and its name,
@@ -64,7 +64,7 @@ just re-run with `-resume` and Nextflow will take care of the rest.
 
 Nextflow can also automatically supply execution reports by running with the
 `-with-report` flag. This will give you the `report.html` file, containing
-various different kinds of information regarding the execution, such as runtime,
+various kinds of information regarding the execution, such as runtime,
 resource usage, and details about the different processes. You can also get a
 timeline report by similarly using `-with-timeline` or a visualisation of the
 entire DAG using `-with-dag <filename>.png`.
