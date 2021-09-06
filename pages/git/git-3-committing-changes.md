@@ -64,7 +64,7 @@ added to the Git staging area, which we subsequently committed to our Git
 repository. A schematic overview of this process can be seen in the following
 figure:
 
-![](images/git_overview_local.png)
+![](images/git_overview_local.png){ width=600px }
 
 Let's repeat this process by editing a file!
 

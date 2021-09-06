@@ -2,7 +2,7 @@ Welcome to the tutorials! Here we will learn how to make a computational
 research project reproducible using several different tools, described in the
 figure below:
 
-![](images/tutorials_overview.png)
+![](images/tutorials_overview.png){ width=700px }
 
 The figure gives an overview of the six available tutorials, a very brief
 description of their main purpose, and the suggested order to do them. However,
@@ -51,7 +51,7 @@ To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in
 The graph below shows the different steps of the analysis that are included in
 this project:
 
-![](images/rulegraph_mrsa_intro.svg)
+![](images/rulegraph_mrsa_intro.svg){ width=400px }
 
 The input files are:
 

@@ -7,7 +7,7 @@ environment file. You can read more about the extensions
 To manage extensions go to the Jupyter dashboard in your browser and click the
 **Nbextensions** tab. You should see something similar to this:
 
-![](images/jupyter_nbextensions.png)
+> ![](images/jupyter_nbextensions.png){ width=700px }
 
 Clicking an extension in the list displays more information about it. To 
 enable/disable extensions simply click the checkbox next to the extension name 

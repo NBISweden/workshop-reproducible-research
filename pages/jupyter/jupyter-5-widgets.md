@@ -89,7 +89,7 @@ somewhere else.
 This is how it should look if everything works. You can now set the frequency
 amplitude and phase of the sine curve by moving the sliders. 
 
-![](images/jupyter_widget.png)
+![](images/jupyter_widget.png){ width=700px }
 
 There are lots of widgets, _e.g._:
 
