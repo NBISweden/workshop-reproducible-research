@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - devel
+      - canvas_actions
   push:
     paths:
       - 'pages/*.md'
