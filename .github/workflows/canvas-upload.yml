@@ -26,14 +26,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Brute force listing
-      run: |
-        echo "page_list=$(find pages -name '*.md')" >> $GITHUB_ENV
     - name: Upload pages
       env:
         API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
       run: |
-        for file in "${{ env.page_list }}";
+        for file in $(find pages -name '*.md');
         do
           bash pages/upload-page-to-canvas.sh "$file" "$API_TOKEN"
         done
