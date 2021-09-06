@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - devel
-      - canvas_actions
   push:
     paths:
       - 'pages/*.md'
@@ -29,7 +28,7 @@ jobs:
         fetch-depth: 0
     - name: Brute force listing
       run: |
-        echo "page_list=$(find pages/ -name '*.md')" >> $GITHUB_ENV
+        echo "page_list=$(find pages -name '*.md')" >> $GITHUB_ENV
     - name: Upload pages
       env:
         API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
