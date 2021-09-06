@@ -72,12 +72,6 @@ class: center, middle
 
 ---
 
-# Schedule
-
-<iframe src="https://nbis-reproducible-research.readthedocs.io/en/latest/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
-
----
-
 # Why all the talk about reproducible research?
 
 .pull-left[
