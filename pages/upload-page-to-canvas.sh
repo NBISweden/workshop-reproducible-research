@@ -51,6 +51,7 @@ docker run --rm \
 cat "$HTML" \
     | sed "s/\(src=\"\)\(images\/\)/\1$GITHUB\2/g" \
     | sed "s/COURSE_ID/$COURSE_ID/g" \
+    | sed "s/GITHUB_BRANCH/$BRANCH/g" \
     > tmp.html
 mv tmp.html "$HTML"
 
