@@ -4,24 +4,15 @@
 # Xaringan-related files
 **/*_files
 
-# HTML/PDF lectures
+# Lecture-related files
 lectures/**/*.html
-lectures/**/*.pdf
+# lectures/**/*.pdf
+lectures/*/*/remark-css-0.0.1/default.css
+lectures/*/*/header-attrs-2.3/header-attrs.js
 
 # Various
 .snakemake
 .DS_Store
-lectures/*/*/remark-css-0.0.1/default.css
-lectures/*/*/header-attrs-2.3/header-attrs.js
-lectures/snakemake/snakemake.html
-ectures/putting-all-together/putting-all-together.html
-lectures/introduction/introduction_files/figure-html/Plot the second Ioannidis data-1.png
-lectures/introduction/introduction_files/figure-html/Plot the first Ioannidis data-1.png
-lectures/introduction/introduction.html
-lectures/git/git.html
-lectures/data_mgmt/data_management.html
-lectures/containers/containers.html
-lectures/conda/conda.html
 
 # Output files from running tutorials
 jupyter/report.html
