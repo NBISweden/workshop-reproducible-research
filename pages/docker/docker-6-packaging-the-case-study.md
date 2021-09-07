@@ -11,14 +11,15 @@ that contains all the work we've done so far.
 * We've written a [R Markdown document](r-markdown-6-the-mrsa-case-study) that
   takes the results from the Snakemake workflow and summarizes them in a report.
 
-The `docker` directory contains the final versions of all the files we've
-generated in the other tutorials: `environment.yml`, `Snakefile`, `config.yml`,
-`code/header.tex`, and `code/supplementary_material.Rmd`. The only difference
-compared to the other tutorials is that we have also included the rendering of
-the Supplementary Material HTML file into the Snakemake workflow as the rule
-`make_supplementary`. Running all of these steps will take some time to execute
-(around 20 minutes or so), in particular if you're on a slow internet
-connection, and result in a 3.75 GB image.
+The `workshop-reproducible-research/tutorials/docker` directory contains the 
+final versions of all the files we've generated in the other tutorials: 
+`environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and 
+`code/supplementary_material.Rmd`. The only difference compared to the other 
+tutorials is that we have also included the rendering of the Supplementary 
+Material HTML file into the Snakemake workflow as the rule `make_supplementary`. 
+Running all of these steps will take some time to execute (around 20 minutes 
+or so), in particular if you're on a slow internet connection, and result in 
+a 3.75 GB image.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
@@ -46,7 +47,7 @@ Well done! You now have an image that allows anyone to exactly reproduce your
 analysis workflow (if you first `docker push` to Dockerhub that is).
 
 > **Tip** <br>
-> If you've done the [Jupyter tutorials](jupyter-1-introduction), you know that
+> If you've done the [Jupyter tutorial](jupyter-1-introduction), you know that
 > Jupyter Notebook runs as a web server. This makes it very well suited for
 > running in a Docker container, since we can just expose the port Jupyter
 > Notebook uses and redirect it to one of our own. You can then work with the

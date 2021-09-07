@@ -30,7 +30,7 @@ cd workshop-reproducible-research
 > Run this command after you have `cd` into `workshop-reproducible-research` 
 > as described above. If you do that, you probably also want to view the 
 > same older version of this website. Until spring 2021, the website was 
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
+> hosted at https://nbis-reproducible-research.readthedocs.io. 
 > Locate the version box in the bottom right corner of the website and 
 > select the corresponding version.
 
@@ -199,8 +199,8 @@ conda config --add channels conda-forge
 We will use Conda environments for the set up of this tutorial, but don't worry
 if you don't understand exactly what everything does - you'll learn all the
 details at the course. First make sure you're currently situated inside the
-course directory (`workshop-reproducible-research`) and then create the Conda
-environment like so:
+tutorials directory (`workshop-reproducible-research/tutorials`) and then
+create the Conda environment like so:
 
 ```bash
 conda env create -f snakemake/environment.yml -n snakemake-env
@@ -225,8 +225,8 @@ deactivate` and continue with the setup for the other tools.
 ## Installing R Markdown
 
 We also use Conda to install R Markdown: make sure your working directory is in
-the course directory (`workshop-reproducible-research`) and install the
-necessary R packages defined in the `environment.yml`:
+the tutorials directory (`workshop-reproducible-research/tutorials`) and
+install the necessary R packages defined in the `environment.yml`:
 
 ```bash
 conda env create -f rmarkdown/environment.yml -n rmarkdown-env
@@ -287,7 +287,8 @@ tools.
 ## Installing Jupyter
 
 Let's continue using Conda for installing software, since it's so convenient to
-do so! Create an environment from the `jupyter/environment.yml` file and test
+do so! Move in the tutorials directory (`workshop-reproducible-research/tutorials`), 
+create a Conda environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
 
 ```bash

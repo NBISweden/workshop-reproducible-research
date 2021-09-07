@@ -1,8 +1,8 @@
 Notebooks can be converted to various output formats such as HTML, PDF, LaTeX
 *etc.* directly from the **File** -> **Download as** menu. 
 
-Conversion can also be performed on the command line using the `jupyter
-nbconvert` command. `nbconvert` is installed together with the `jupyter` Conda
+Conversion can also be performed on the command line using the `jupyter nbconvert` 
+command. `nbconvert` is installed together with the `jupyter` Conda
 package and is executed on the command line by running `jupyter nbconvert`. 
  
 The syntax for converting a Jupyter notebook is:
