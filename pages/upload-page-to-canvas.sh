@@ -51,8 +51,12 @@ docker run --rm \
 cat "$HTML" \
     | sed "s/\(src=\"\)\(images\/\)/\1$GITHUB\2/g" \
     | sed "s/COURSE_ID/$COURSE_ID/g" \
+    | sed "s/^/    /" \
     > tmp.html
-mv tmp.html "$HTML"
+echo '<div class="container">' | cat - tmp.html > tmp2.html
+echo "</div>" >> tmp2.html
+mv tmp2.html "$HTML"
+rm tmp.html
 
 # Create or update page curl PUT
 echo "Uploading \`$HTML\` ..."
