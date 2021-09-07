@@ -16,13 +16,13 @@ This will require some more packages, so add the following lines to
 
 ```yaml
 # For aggregating output from FastQC
-- multiqc=1.7
+  - multiqc=1.7
 # For mapping reads to a genome
-- bowtie2=2.3.5.1
+  - bowtie2=2.3.5.1
 # For sorting the output from Bowtie2
-- samtools=1.10
+  - samtools=1.10
 # For generating a count table for further analysis
-- htseq=0.11.2
+  - htseq=0.11.2
 ```
 
 You are probably already in your `snakemake_exercise` environment, otherwise
@@ -127,3 +127,10 @@ After everything is done, the workflow will have resulted in a bunch of files
 in the directories `data`, `intermediate` and `results`. Take some time to look
 through the structure, in particular the quality control reports in `results`
 and the count table in `results/tables`.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How the MRSA workflow looks.
+> - How to run the MRSA workflow.
+> - Which output files the MRSA workflow produces.

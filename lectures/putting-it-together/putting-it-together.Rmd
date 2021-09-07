@@ -57,7 +57,7 @@ By moving towards a reproducible way of working you will quickly realize that yo
 # What have we learned?
 
 .pull-left[
-<img src="https://nbis-reproducible-research.readthedocs.io/en/latest/images/tutorials_overview.png" style="width:100%;"/>
+<img src="https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/devel/pages/images/tutorials_overview.png" style="width:100%;"/>
 ]
 
 .pull-right[
@@ -194,7 +194,7 @@ Pulling the Docker image for the case study from an online repository and runnin
 ]
 
 .pull-right[
-<img src="https://nbis-reproducible-research.readthedocs.io/en/devel/images/rulegraph_mrsa_intro.svg" style="width:100%;"/>
+<img src="https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/devel/pages/images/rulegraph_mrsa_intro.svg" style="width:100%;"/>
 ]
 
 ---

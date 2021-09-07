@@ -29,7 +29,7 @@ class: center, middle
 
 *Managing software environments with*
 
-<img src="https://docs.conda.io/en/latest/_images/conda_logo.svg" style="width:50%;padding: 15px 15px 15px 15px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
 
 ---
 
@@ -166,5 +166,3 @@ Export explicit environment (for the same operating system):
 class: center, middle
 
 # Questions?
-
----

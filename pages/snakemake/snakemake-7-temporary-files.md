@@ -60,3 +60,8 @@ Snakemake has a number of options for marking files:
   number of output files from a rule cannot be determined beforehand. A typical
   use case could be if you run some clustering analysis and end up with one
   file per cluster.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to mark an output file as temporary for automatic removal.

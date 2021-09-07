@@ -65,3 +65,8 @@ they should? Note how much easier it is to follow the progression of the
 workflow when the rules write to logs instead of to the terminal. If you run
 with `-D` (or `-S` for a simpler version) you will see that the summary table
 now also contains the log file for each of the files in the workflow.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to redirect output to log files with the `log` directive.

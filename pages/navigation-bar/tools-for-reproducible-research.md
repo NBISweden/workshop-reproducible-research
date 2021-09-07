@@ -1,3 +1,5 @@
+# Tools for Reproducible Research
+
 ![](images/achievement-agreement-arms-1068523.jpg)
 
 # Course overview
@@ -110,8 +112,8 @@ page.
 
 # Lectures
 
-All of the lectures used in this course is available at **MISSING PAGE**, while
-the source code used to create the lectures is available under the
+All of the lectures used in this course is available at the [lecture page](https://uppsala.instructure.com/courses/COURSE_ID/pages/lectures),
+while the source code used to create the lectures is available under the
 [lectures/](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
 directory on GitHub.
 
