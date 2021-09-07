@@ -67,3 +67,9 @@ as that for Snakemake. We have recreated the MRSA workflow from Snakemake in
 Nextflow and will, through it, give you an overview of how Nextflow does things.
 The idea is that you should have a rough idea of both Snakemake and Nextflow, so
 that you may continue in what manner you think suits you the best.
+
+This tutorial depends on files from the course GitHub repo. Take a look at the
+[setup](pre-course-setup) for instructions on how to set it up if you haven't
+done so already, then open up a terminal and go to
+`workshop-reproducible-research/tutorials/nextflow` and activate your
+`nextflow-env` Conda environment.
