@@ -4,7 +4,7 @@ figure below:
 
 ![](images/tutorials_overview.png){ width=700px }
 
-The figure gives an overview of the six available tutorials, a very brief
+The figure gives an overview of all the available tutorials, a very brief
 description of their main purpose, and the suggested order to do them. However,
 each tutorial is made so that it can be completed independently of the other
 tutorials. It is therefore perfectly possible to choose a different order, or
