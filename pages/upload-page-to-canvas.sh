@@ -51,6 +51,7 @@ docker run --rm \
 cat "$HTML" \
     | sed "s/\(src=\"\)\(images\/\)/\1$GITHUB\2/g" \
     | sed "s/COURSE_ID/$COURSE_ID/g" \
+    | sed "s/GITHUB_BRANCH/$BRANCH/g" \
     | sed "s/^/    /" \
     > tmp.html
 echo '<div class="container">' | cat - tmp.html > tmp2.html
