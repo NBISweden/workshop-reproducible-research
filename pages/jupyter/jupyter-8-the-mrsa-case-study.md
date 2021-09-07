@@ -7,8 +7,9 @@ tutorial](snakemake-10-generalizing-workflows). Here we explore the results
 from the Snakemake tutorial and generate a Supplementary Material file with
 some basic stats.
 
-In the `jupyter/` directory you will find a notebook called 
-`supplementary_material.ipynb`. Open this notebook with jupyter by running:
+In the `workshop-reproducible-research/tutorials/jupyter/` directory you will 
+find a notebook called `supplementary_material.ipynb`. Open this notebook with 
+Jupyter by running:
 
 ```bash
 jupyter notebook supplementary_material.ipynb
@@ -205,9 +206,9 @@ The files you're working with come from a GitHub repo. Both GitHub and Bitbucket
 can render Jupyter notebooks as well as other types of Markdown documents. Now
 go to our GitHub repo at
 [https://github.com/NBISweden/workshop-reproducible-research](https://github.com/NBISweden/workshop-reproducible-research)
-and navigate to `jupyter/supplementary_material.ipynb`.
+and navigate to `tutorials/jupyter/supplementary_material.ipynb`.
 
-![](images/jupyter_supplementary.png)
+![](images/jupyter_supplementary.png){ width=700px }
 
 As you can imagine, having this very effortless way of sharing results
 can greatly increase the visibility of your work. You work as normal on
@@ -223,7 +224,7 @@ past an URL to any notebook and they will render it for you. Go to
 this out with our notebook.
 
 ```no-highlight
-https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/jupyter/supplementary_material.ipynb
+https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/tutorials/jupyter/supplementary_material.ipynb
 ```
 
 ## Shared interactive notebooks
@@ -255,7 +256,7 @@ Just go to [https://mybinder.org](https://mybinder.org) and paste the link
 to the GitHub repo. Note the link that you can use to share your notebook. 
 Then press "launch".
 
-![](images/binder.png)
+![](images/binder.png){ width=700px }
 
 What will happen now it that:
 

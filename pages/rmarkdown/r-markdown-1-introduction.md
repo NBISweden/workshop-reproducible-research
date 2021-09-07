@@ -67,6 +67,6 @@ If you want to read more, here are some useful resources:
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if you haven't
-done so already. Place yourself in the `rmarkdown/` directory, activate your
-`rmarkdown-env` Conda environment and start RStudio from the command line (type
-`rstudio &`).
+done so already. Place yourself in the `workshop-reproducible-research/tutorials/rmarkdown/` 
+directory, activate your `rmarkdown-env` Conda environment and start RStudio 
+from the command line (type `rstudio &`).

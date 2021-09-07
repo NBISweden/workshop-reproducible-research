@@ -20,7 +20,7 @@ with more packages, as the analysis workflow is expanded.
 
 * Let's get going! Make a yml file called `environment.yml` looking like
   this, and save it in the current directory (which should be
-  `workshop-reproducible-research/conda`):
+  `workshop-reproducible-research/tutorials/conda`):
 
 ```yml
 channels:

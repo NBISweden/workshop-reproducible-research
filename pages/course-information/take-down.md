@@ -59,7 +59,7 @@ a hidden `.snakemake` directory in the directory where it's run. You can remove
 this with the following:
 
 ```bash
-rm -rf workshop-reproducible-research/snakemake/.snakemake
+rm -rf workshop-reproducible-research/tutorials/snakemake/.snakemake
 ```
 
 ## Nextflow

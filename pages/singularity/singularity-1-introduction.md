@@ -15,4 +15,4 @@ If you want to read more, here are some additional resources:
 This tutorial depends on files from the course GitHub repo. Take a look at
 the [setup](pre-course-setup) for instructions on how to set it up if you
 haven't done so already. Then open up a terminal and go to
-`workshop-reproducible-research/singularity`.
+`workshop-reproducible-research/tutorials/singularity`.

@@ -38,7 +38,7 @@ The text `nothing to commit (create/copy files and use "git add" to track)`
 tells us that while we are inside a directory that git is currently tracking,
 there are currently no files being tracked; let's add some!
 
-Copy the following files from the `workshop-reproducible-research/git`
+Copy the following files from the `workshop-reproducible-research/tutorials/git`
 directory into your `git_tutorial` directory:
 
 * `Dockerfile`

@@ -61,7 +61,7 @@ I like `r fruits <- c("apples","bananas"); paste(fruits, collapse = " and ")`!
 
 The above markdown would generate something like this:
 
-> ![](images/markdown_example.png)
+> ![](images/markdown_example.png){ width=600px }
 
 Instead of reiterating information here, take a look on the first page (only
 the first page!) of this [reference]( https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).

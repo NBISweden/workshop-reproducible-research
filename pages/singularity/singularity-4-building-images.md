@@ -92,9 +92,9 @@ Let's use the MRSA case study project to define our own Singularity def file!
 We will not make an image for the whole workflow but rather focus on the
 `run_qc.sh` script that we used in the end of the [conda
 tutorial](conda-3-projects). This script is included in the `code` directory of
-your current working directory (`singularity`) and, when executed, downloads
-a few fastq-files and runs FastQC on them. To run the script we need the
-software SRA-Tools and FastQC.
+your current working directory (`tutorials/singularity`) and, when executed,
+downloads a few fastq-files and runs FastQC on them. To run the script we need
+the software SRA-Tools and FastQC.
 
 * Make a new file called `run_qc.def` and add the following lines:
 

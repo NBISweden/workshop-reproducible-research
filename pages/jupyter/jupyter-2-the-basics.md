@@ -4,7 +4,7 @@ browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
-[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/jupyter
+[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/tutorials/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
 [I 18:02:26.723 NotebookApp] http://localhost:8888/?token=e03f10ccb40efc3c6154358593c410a139b76acf2cae785c
@@ -23,13 +23,13 @@ the server is running locally (as `http://localhost:8888`) so this does not
 require that you have an active internet connection. Also note that it says:
 
 ```no-highlight
-Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/jupyter>
+Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/tutorials/jupyter>
 ```
 
 Everything you do in your Notebook session will be stored in this directory, so
 you won't lose any work if you shut down the server.
 
-![](images/jupyter_dashboard.png)
+> ![](images/jupyter_dashboard.png){ width=700px }
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
@@ -42,7 +42,7 @@ Let's start by creating an empty notebook by selecting the Files tab and
 clicking New > Notebook > Python 3. This will open up a new tab or window 
 looking like this:
 
-![](images/jupyter_empty_nb.png)
+> ![](images/jupyter_empty_nb.png){ width=700px }
 
 > **Tip** <br>
 > If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
@@ -185,7 +185,7 @@ print_me("Hi!")
 
 Your notebook should now look something like this.
 
-![](images/jupyter_basic_update.png)
+> ![](images/jupyter_basic_update.png){ width=700px }
 
 The focus here is not on how to write Markdown or Python; you can make really
 pretty notebooks with Markdown and you can code whatever you want with Python.

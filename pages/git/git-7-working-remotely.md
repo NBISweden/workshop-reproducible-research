@@ -31,7 +31,7 @@ Log in to your GitHub account and press the *New* button on the left:
 * You can keep the repo private or make it public, as you wish
 * Skip including a README, a `.gitignore` and licence
 
-![](images/github_new_repo.png)
+> ![](images/github_new_repo.png){ width=600px }
 
 You will now be redirected to the repository page which will list several ways
 for you to start adding content (files) to the repository. What we will do is to
@@ -65,7 +65,7 @@ branch on the remote (`origin`). Our git repository is now stored on GitHub!
 If you go to the repository's GitHub page you should now be able to see all your
 files and your code there! It should look something like this:
 
-![](images/github_repo_overview.png)
+> ![](images/github_repo_overview.png){ width=600px }
 
 You can see a lot of things there, such as each file and the latest commit that
 changed them, the repository's branches and a message from GitHub at the bottom:
@@ -138,17 +138,17 @@ do with GitHub.
   that it is the latest version, where we previously changed the `genome_id`
   variable:
 
-![](images/github_config_yml.png)
+> ![](images/github_config_yml.png){ width=600px }
 
 * Click on *History*. You will see an overview of the commits involving changes
   made to this file:
 
-![](images/github_config_yml_history.png)
+> ![](images/github_config_yml_history.png){ width=600px }
 
 * Click on the `Change to ST398 for alignment` commit. You will see the changes
   made to `config.yml` file compared to the previous commit.
 
-![](images/github_config_yml_diff.png)
+> ![](images/github_config_yml_diff.png){ width=600px }
 
 * Go back to the repository's main page and click on the commit tracker on the
   right above the list of files, which will give you an overview of all commits
@@ -156,7 +156,7 @@ do with GitHub.
   that commit. Click on the commit that was the initial commit, where we added
   all the files.
 
-![](images/github_initial_commit.png)
+> ![](images/github_initial_commit.png){ width=600px }
 
 You will now see the files as they were when we first added them. Specifically
 you can see that the `Dockerfile` is back, even though we deleted it! Click on
@@ -229,7 +229,7 @@ hard to keep track of everything and the connections between local and remote
 Git repositories and how you work with them, but hopefully the following figure
 will give you a short visual summary:
 
-![](images/git_overview_remote.png)
+![](images/git_overview_remote.png){ width=600px }
 
 > **Quick recap** <br>
 > We have learnt the difference between local and remote copies of git
@@ -317,7 +317,7 @@ git push --tags
 * Click on one of the tags. Here users can download a compressed file
   containing the repository at the version specified by the tags.
 
-![](images/github_tags_list.png)
+> ![](images/github_tags_list.png){ width=600px }
 
 Alternatively, git users who want to reproduce your analysis with the code used
 for the publication can clone the GitHub repository and then run `git checkout

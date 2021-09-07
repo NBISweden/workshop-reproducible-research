@@ -1,3 +1,5 @@
+# Tools for Reproducible Research
+
 ![](images/achievement-agreement-arms-1068523.jpg)
 
 # Course overview
@@ -104,12 +106,15 @@ accommodations at this time.
 The [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
 page lists all the information you need before the course starts. The most
 important part is the installation and setup of all the tools used in the
-course, so make sure you've gone through it all for the course start.
+course, so make sure you've gone through it all for the course start. You can
+find the tutorials themselves (*i.e.* the content we will go through during the
+course) in the [modules](https://uppsala.instructure.com/courses/COURSE_ID/modules)
+page.
 
 # Lectures
 
-All of the lectures used in this course is available at **MISSING PAGE**, while
-the source code used to create the lectures is available under the
+All of the lectures used in this course is available at the [lecture page](https://uppsala.instructure.com/courses/COURSE_ID/pages/lectures),
+while the source code used to create the lectures is available under the
 [lectures/](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
 directory on GitHub.
 

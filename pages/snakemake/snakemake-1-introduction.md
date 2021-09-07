@@ -41,5 +41,5 @@ If you want to read more, you can find several resources here:
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if you haven't
 done so already, then open up a terminal and go to
-`workshop-reproducible-research/snakemake` and activate your `snakemake-env`
-Conda environment.
+`workshop-reproducible-research/tutorials/snakemake` and activate your
+`snakemake-env` Conda environment.

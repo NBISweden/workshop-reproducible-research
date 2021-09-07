@@ -45,8 +45,9 @@ If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you. The idea is to analyze students'
 experiences at this Reproducible Research course. For this you will use
 responses from students to the registration form for previous course rounds. You
-can find the responses in the `workshop-reproducible-research/data/` directory. 
-The goal is to create a Snakemake workflow, which contains the following:
+can find the responses in the `workshop-reproducible-research/tutorials/data/`
+directory. The goal is to create a Snakemake workflow, which contains the
+following:
 
 1. A rule that cleans the files (making use of `wildcards` so that the same rule
    can be run on each file)
