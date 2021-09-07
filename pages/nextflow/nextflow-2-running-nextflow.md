@@ -1,9 +1,10 @@
-Before we go into the details regarding how to write a workflow in Nextflow,
-let's just try running it! The simplest and most common way of running a
+Before we go into the details regarding how to write a workflow in Nextflow, let's 
+just try running the MRSA workflow! The simplest and most common way of running a
 Nextflow workflow is by `nextflow run .`, which means "run the workflow situated
 in the current directory". Make sure you've activated the `nextflow-env` Conda
-environment and run the command. After it has finished (which shouldn't take
-long), you should see something like this:
+environment and that you are standing in `workshop-reproducible-research/tutorials/nextflow`
+and run the command. After it has finished (which shouldn't take long), 
+you should see something like this:
 
 ```bash
 N E X T F L O W  ~  version 21.04.0
@@ -25,18 +26,19 @@ Nextflow version used, which workflow definition file was used (`main.nf`), a
 randomly generated run name (an adjective and a scientist), the revision number
 as well as the executor used (local, in this case).
 
-What follows next is all the various processes for this particular workflow.
-Just like Snakemake, the order of execution is not necessarily in order
-(depending on each process' inputs and output dependencies), but they are in the
+What follows next is a list of all the various processes for this particular workflow.
+Just like Snakemake, the order does not necessarily reflect the order of execution
+(depending on each process' input and output dependencies), but they are in the
 order they were defined in the workflow file. The first part (*e.g*
 `[c9/e5f818]`) is the process ID, which is also the first part of the
 subdirectory in which the process is run. We then get the process and its name,
 where some include the current sample name being run (*e.g.* `SRR935092`).
-Lastly, we get how many instances of each process is being and has been run.
+Lastly, we get how many instances of each process are currently being and have 
+been run.
 
 If you successfully ran the command above, you will have seen that the output
 shown above is not exactly what it looks like during execution: the list of
-processes is continuously updated and changed, depending on what processes is
+processes is continuously updated and changed, depending on what processes are
 being run and which ones have been completed. You might also get a different SRA
 ID than above as the "final" one, *i.e.* the last one being handled by the
 different processes. This is because Nextflow (just like Snakemake) doesn't
@@ -52,9 +54,9 @@ the hidden file `.nextflow.log`.
 ## Re-running workflows
 
 If you run the same command again, Nextflow will re-run the entire workflow from
-scratch. This is an important difference to Snakemake, which only re-runs parts
-of the workflow that has changed. This behaviour exists in Nextflow as well
-using the `-resume` flag, but it doesn't re-run anything at all by default.
+scratch. This is an important difference to Snakemake, which only re-runs those parts
+of the workflow that have changed. This behaviour exists in Nextflow as well
+through the `-resume` flag, but it doesn't re-run anything at all by default.
 Nextflow does, however, not only keep track of changed inputs and outputs, but
 also processes and parameters. This means you don't have to run with a specific
 flag and target if you changed a process (like `-R <rule>` in Snakemake), but
@@ -65,13 +67,13 @@ just re-run with `-resume` and Nextflow will take care of the rest.
 Nextflow can also automatically supply execution reports by running with the
 `-with-report` flag. This will give you the `report.html` file, containing
 various kinds of information regarding the execution, such as runtime,
-resource usage, and details about the different processes. You can also get a
-timeline report by similarly using `-with-timeline` or a visualisation of the
+resource usage, and details about the different processes. Similarly, you can 
+also get a timeline report by using `-with-timeline` or a visualisation of the
 entire DAG using `-with-dag <filename>.png`.
 
 > **Quick recap:** <br>
 > In this section we covered:
 >
 > - How to execute Nextflow workflows
-> - How to re-run only changed parts workflows
+> - How to re-run only changed parts of workflows
 > - How to get execution reports, timelines and DAG visualisations

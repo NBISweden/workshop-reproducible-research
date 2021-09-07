@@ -1,8 +1,9 @@
 The tutorial for Nextflow has intentionally been quite short, but there are many
-more things you can do with it than what was covered here. In this section we
-will briefly show some of these things if you are interested to know more
-details about Nextflow, and we'll also provide some links to additional
-resources below:
+more things you can do with it than what were covered here. If you are interested 
+to learn more details about Nextflow, we will briefly show some of its features
+in this section.
+
+Here are some links to additional resources on Nextflow:
 
  * The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
  * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
@@ -39,10 +40,11 @@ profiles {
 This will add a profile to your workflow, which you can access by running the
 workflow with `-profile uppmax`. You will have to edit the `"account"` part of
 the code above to correspond to your project account, but the rest you can leave
-as-is, unless you want to tinker with *e.g.* resource specifications. That's all
-you need! Nextflow will take care of communications with SLURM (the system used
-by Uppmax) and send off jobs to the cluster for you, and everything will look
-exactly the same as if you were executing locally.
+as-is, unless you want to tinker with *e.g.* compute resource specifications. 
+That's all you need! Nextflow will take care of communications with SLURM (the 
+system used by Uppmax) and will send off jobs to the cluster for you, and 
+everything will look exactly the same way as if you were executing the pipeline 
+locally.
 
 ## Advanced channel creation
 
@@ -58,8 +60,8 @@ Channel
     .set( raw_reads )
 ```
 
-This will create a channel containing all the reads in the `data/` directory on
-the format `<sample>_R1.fastq.gz` or `<sample>_R2.fastq.gz` and pair them
+This will create a channel containing all the reads in the `data/` directory in
+the format `<sample>_R1.fastq.gz` and `<sample>_R2.fastq.gz` and will pair them
 together into a nested tuple looking like this:
 
 ```groovy
@@ -87,7 +89,7 @@ Channel
 
 That's a bit of a handful! But what does it do? The first line specifies that we
 want to read some data from a file specified by the `metadata` parameter, and
-the second line actually reads that data using TAB as delimiter, including a
+the second line actually reads that data using tab as delimiter, including a
 header. The `map` operator takes each entire row and subsets it to only two
 columns: the `sample_id` and `treatment` columns. This subset is stored as a
 tuple. The `filter` operator is then used to remove any tuples where the second
@@ -150,4 +152,4 @@ path to a FASTA file as well as the name of that file *without* the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
 bash: we can mix and match as we like. The first line of the `script` directive
 gets the name of the FASTA file without the extension by removing anything after
-the dot, while the second calls the `index` command like normal using Bash.
+the dot, while the second calls the `index` command like normal using bash.

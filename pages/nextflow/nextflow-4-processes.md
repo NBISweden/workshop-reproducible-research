@@ -30,14 +30,16 @@ process get_sra_by_accession {
 }
 ```
 
-The overall structure is actually quite similar to that of Snakemake: we have
-`input`, `output` and `script` sections, with the additions of `tag` and
-`publishDir` directives. Let's go through them from top to bottom.
+The overall structure of a Nextflow process is actually quite similar to 
+that of a Snakemake rule: we have `input`, `output` and `script` sections, 
+with the additions of `tag` and `publishDir` directives. Let's go through 
+them from top to bottom.
 
 The `tag` directive defines what should be shown during the execution of the
 process as it is run, *i.e.* the SRA ID in this case. This is useful for viewing
-the currently running tag (sample) for any given process at a glance; you'll see
-exactly how this looks when we run the pipeline later.
+the currently running tag (sample) for any given process at a glance; you can
+see exactly how this looks if you run the pipeline one more time with the command
+`nextflow run .`.
 
 The `publishDir` directive is used to define where the process' outputs should
 be placed. Remember that Nextflow runs each process in its own hidden directory
@@ -53,7 +55,7 @@ using `val()`, since it's coming from the `sra_ids` channel we previously
 defined, and we name the input variable `sra_id`.
 
 Then comes the `output` directive, which is defined as a `tuple`, *i.e.* having
-more than one entry. The output of this process is thus a combination of the
+more than one entry. The output of this process is a combination of the
 sample name (from the `sra_id` value variable) and the FASTQ file containing the
 reads for that sample. Nextflow will look for files corresponding to the path
 defined here and output them to the `publishDir` directory, as well as pass the
@@ -62,12 +64,12 @@ entire output tuple to any downstream process that uses them.
 The last part of the process is the `script` directive, which works in the same
 way as for Snakemake: you either write something in bash itself or call some
 external script you've defined elsewhere. Nextflow variables are called using
-`${NF_VARIABLE}` syntax, while bash variables need to be preceded with a
+the syntax `${NF_VARIABLE}`, while bash variables need to be preceded with a
 backslash, like so: `\${BASH_VARIABLE}`.
 
 > **Using external scripts** <br>
-> While not used here, if you have an external script you can put it in a `bin/`
-> directory in the same directory as the `main.nf` file, which will
+> While not used in this example, if you have an external script you can put it 
+> in a `bin/` directory in the same directory as the `main.nf` file, which will
 > automatically give all processes access to that script without you needing to
 > specify its absolute path - convenient!
 
@@ -105,23 +107,24 @@ process run_fastqc {
 Let's start with the extended `publishDir` directive. Notice how the process has
 two separate outputs? The `saveAs` parameter of the `publishDir` directive
 allows us to conditionally publish the output files in different locations, in
-this case depending on whether the file end in `.zip` or not.
+this case depending on whether the file ends in `.zip` or not.
 
 > **Syntax explanation** <br>
 > The Groovy syntax used here translates to roughly `if filename contains
 > ".zip", publish it in the "intermediate/" directory, otherwise publish it in
 > the default directory`.
 
-The `emit` output parameter is used to name the two different output, so that
-they may be referred to separately in downstream processes. For example, the
+If we move on to the `output` directive, we find another new parameter: `emit` 
+is used to name the two different outputs, so that they may be referred to 
+separately in downstream processes. For example, the
 `run_multiqc` process uses the `run_fastqc.out.zip` as input, *i.e.* only the
 compressed files from this process' output.
 
 > **Note** <br>
 > Notice that you can both use specific files in output definitions (*e.g*
 > `{$sra_id}.fastq.gz`) as well as any file defined by some wildcard, commonly
-> using a file extension (*e.g.* `*.zip`). This is useful for when you want
-> only a specific file or several.
+> using a file extension (*e.g.* `*.zip`). This is useful when you want
+> only a specific file or several files.
 
 Remember that this process was called as `run_fastqc(get_sra_by_accession.out)`,
 which means that the output tuple from the `get_sra_by_accession` will be the
@@ -137,7 +140,7 @@ is how you would do it in Snakemake.
 
 The script part of this process is slightly changed from its Snakemake
 counterpart: firstly, we don't need to use the `-o` flag as all processes in
-Nextflow is run in their own directory; and secondly, we don't need to move the
+Nextflow are run in their own directory; and secondly, we don't need to move the
 files afterwards, as they are automatically published in the directory specified
 by `publishDir`. The same kind of difference holds true for the `run_multiqc`
 process as well.
