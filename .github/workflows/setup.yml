@@ -25,7 +25,7 @@ jobs:
           - os: ubuntu-latest
             url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
           - env: snakemake
-            cmd: conda install -y -c bioconda multiqc=1.7 bowtie2=2.3.5.1 samtools=1.10 htseq=0.11.2 && snakemake -j 1 -d tutorials/snakemake/ -s tutorials/snakemake/Snakefile_mrsa
+            cmd: conda install -y -c bioconda multiqc=1.7 bowtie2=2.3.5.1 samtools=1.10 htseq=0.11.2 && snakemake -j 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
           - env: jupyter
             cmd: jupyter nbconvert --template=nbextensions --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
