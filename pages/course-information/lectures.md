@@ -11,7 +11,7 @@ along with instructions on how to render them.
 * [Git](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/git/git.pdf)
 * [Conda](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/conda/conda.pdf)
 * [R Markdown](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/rmarkdown/rmarkdown.pdf)
-* [Jupyter](https://github.com/NBISweden/workshop-reproducible-research/blob/lecture-test/lectures/jupyter/jupyter.ipynb)
+* [Jupyter](https://github.com/NBISweden/workshop-reproducible-research/blob/GITHUB_BRANCH/lectures/jupyter/jupyter.ipynb)
 * [Snakemake](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/snakemake/snakemake.pdf)
 * [Nextflow](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/nextflow/nextflow.pdf)
 * [Containers](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/containers/containers.pdf)
