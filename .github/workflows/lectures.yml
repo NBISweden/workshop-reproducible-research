@@ -20,13 +20,17 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
     - uses: actions/checkout@v2
     - uses: conda-incubator/setup-miniconda@v2
       with:
-        installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
         activate-environment: lecture-env
         environment-file: lectures/environment.yml
+        installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
         auto-activate-base: false
     - name: Render lectures
-      run: snakemake -d lectures/ -s lectures/Snakefile -j 1
+      run: |
+        snakemake -d lectures/ -s lectures/Snakefile -j 1
