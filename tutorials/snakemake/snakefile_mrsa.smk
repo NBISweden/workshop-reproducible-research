@@ -162,5 +162,5 @@ rule generate_rulegraph:
         "results/rulegraph.png"
     shell:
         """
-        snakemake --snakefile Snakefile_mrsa.smk --config max_reads=0 --rulegraph | dot -Tpng > {output}
+        snakemake --snakefile snakefile_mrsa.smk --config max_reads=0 --rulegraph | dot -Tpng > {output}
         """
