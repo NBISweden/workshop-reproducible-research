@@ -25,8 +25,6 @@ layout: true
 class: center, middle
 .HUGE[Tools for reproducible research]
 
-.green[Online, November 23-27]
-
 <img src="https://phdcomics.com/comics/archive/phd031214s.gif" style="width:80%;"/>
 
 ---
@@ -72,12 +70,6 @@ class: center, middle
 
 ---
 
-# Schedule
-
-<iframe src="https://nbis-reproducible-research.readthedocs.io/en/latest/schedule/index.html" scrolling="yes" width="800" height="400"</iframe>
-
----
-
 # Why all the talk about reproducible research?
 
 .pull-left[
@@ -91,7 +83,7 @@ the replication study.
 ]
 
 .pull-right[
-<img src="https://science.sciencemag.org/content/sci/349/6251/aac4716/F1.large.jpg"/>
+<img src="https://www.science.org/cms/10.1126/science.aac4716/asset/777e71c4-b815-428a-b41c-b4d63ef7a747/assets/graphic/349_aac4716_fa.jpeg"/>
 <br>
 .tiny[<sup>1</sup> "Estimating the reproducibility of psychological science". Science. 349]
 ]

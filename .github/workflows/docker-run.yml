@@ -19,5 +19,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker build
         run: |
-          docker build -t my_docker_project -f docker/Dockerfile docker/
+          docker build -t my_docker_project -f tutorials/docker/Dockerfile tutorials/docker/
           docker run --rm my_docker_project

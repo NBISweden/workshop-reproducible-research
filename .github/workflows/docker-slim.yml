@@ -23,18 +23,18 @@ jobs:
         env: [ snakemake, jupyter, rmarkdown ]
         include:
           - env: snakemake
-            cmd: conda install -y -c bioconda multiqc=1.7 bowtie2=2.3.5.1 samtools=1.10 htseq=0.11.2 && snakemake -j 1 -d snakemake/ -s snakemake/Snakefile_mrsa
+            cmd: conda install -y -c bioconda multiqc=1.7 bowtie2=2.3.5.1 samtools=1.10 htseq=0.11.2 && snakemake -j 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
           - env: jupyter
-            cmd: jupyter nbconvert --template=nbextensions --to HTML jupyter/supplementary_material.ipynb
+            cmd: jupyter nbconvert --template=nbextensions --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
-            cmd: echo 'rmarkdown::render("rmarkdown/code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
+            cmd: echo 'rmarkdown::render("tutorials/rmarkdown/code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
         with:
           installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
           activate-environment: ${{ matrix.env }}-env
-          environment-file: ${{ matrix.env }}/environment.yml
+          environment-file: tutorials/${{ matrix.env }}/environment.yml
           auto-activate-base: false
       - name: Test ${{ matrix.env }}
         shell: bash -l {0}

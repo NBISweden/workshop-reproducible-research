@@ -1,0 +1,19 @@
+name: snakemake-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bowtie2=2.4.4
+  - fastqc=0.11.9
+  - graphviz=2.42.3
+  - multiqc=1.10.1
+  - python=3.7.6
+  - samtools=1.12
+  - snakemake-minimal=5.10.0
+  - sra-tools=2.10.1
+  - subread=2.0.1
+  - tbb=2020.3
+  - wget=1.20.1
+  - xorg-libxrender
+  - xorg-libxpm
