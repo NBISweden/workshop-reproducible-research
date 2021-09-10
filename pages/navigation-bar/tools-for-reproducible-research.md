@@ -103,7 +103,7 @@ need for travel or accommodations at this time. you can find the link to the
 course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics)
 section.
 
-# Pre-course material
+# Course material
 
 The [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
 page lists all the information you need before the course starts. The most
@@ -112,8 +112,6 @@ course, so make sure you've gone through it all for the course start. You can
 find the tutorials themselves (*i.e.* the content we will go through during the
 course) in the [modules](https://uppsala.instructure.com/courses/COURSE_ID/modules)
 page.
-
-# Lectures
 
 All of the lectures used in this course is available at the [lecture page](https://uppsala.instructure.com/courses/COURSE_ID/pages/lectures),
 while the source code used to create the lectures is available under the
