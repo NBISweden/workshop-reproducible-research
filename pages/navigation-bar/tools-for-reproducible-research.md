@@ -96,10 +96,12 @@ Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
 
 You can find the course schedule at [this page](https://uppsala.instructure.com/courses/COURSE_ID/pages/schedule).
 
-# Travel information
+# Location
 
-This course round is given using Zoom, so there will be no need for travel or
-accommodations at this time.
+This course round is given using [Zoom](https://zoom.us), so there will be no
+need for travel or accommodations at this time. you can find the link to the
+course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics)
+section.
 
 # Pre-course material
 
