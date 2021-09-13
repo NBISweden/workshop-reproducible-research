@@ -110,3 +110,10 @@ saved to file.
 
 The Seaborn [website](http://seaborn.pydata.org/) contains great tutorials and
 examples of other ways to plot data!
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+- How to generate simple plots with `matplotlib`
+- How to import and use the `seaborn` package for plotting
+- How to save plots from notebooks to a file

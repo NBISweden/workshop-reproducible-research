@@ -71,3 +71,10 @@ Next set the precision to 4 decimal points by running a cell with:
 Now run the cell with `float(100/3)` again to see the difference.
 
 Running `%precision` without additional arguments will restore the default.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - The basics of Jupyter magics commands
+> - How to capture and use output from notebook cells with `%%capture`
+> - How to use magics to run non-Python code in notebooks
