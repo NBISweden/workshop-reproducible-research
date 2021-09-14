@@ -35,3 +35,8 @@ your_dockerhub_id/image_name:tag_name`.
 > from `Dockerfile` and `Dockerfile_slim`, triggered by changes made to the
 > GitHub repository. You can take a look at the course on Dockerhub
 > [here](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to use [DockerHub](https://hub.docker.com) to share Docker images
