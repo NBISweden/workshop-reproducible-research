@@ -1,3 +1,5 @@
+# Using containers in Snakemake
+
 Snakemake also supports defining a Singularity or Docker container for each
 rule (you will have time to work on the [Docker
 tutorial](docker-1-introduction) and the [Singularity
