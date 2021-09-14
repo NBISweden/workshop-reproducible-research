@@ -116,19 +116,22 @@ The course will follow the approximate schedule below:
     <td> <font size="3"> <i> ... continued: Snakemake tutorial </i></td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:00 </td>
-    <td> <font size="3"> Wrap-up - Snakemake tutorial </td>
-  </tr>
-  <tr>
     <td> <font size="3"> 10:15 </td>
     <td> <font size="3"> Break </td>
   </tr>
   <tr>
     <td> <font size="3"> 10:30 </td>
-    <td> <font size="3"> Computational notebooks and reproducible reports
+    <td> <font size="3"> <i> ... continued: Snakemake tutorial </i></td>
+  <tr>
+    <td> <font size="3"> 11:00 </td>
+    <td> <font size="3"> Wrap-up - Snakemake tutorial </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:15 </td>
+    <td> <font size="3"> Organize your analysis using workflow managers
          <font size="2"><i><br>
-         - Introduction to R Markdown<br>
-         - Practical tutorial: [R Markdown](r-markdown-1-introduction) </i>
+         - Introduction to Nextflow <br>
+         - Practical tutorial: [Nextflow](nextflow-1-introduction) </i>
     </td>
   </tr>
   <tr>
@@ -137,12 +140,8 @@ The course will follow the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 13:00 </td>
-    <td> <font size="3"> Computational notebooks and reproducible reports
-         <font size="2"><i><br>
-         - Introduction to Jypyter <br>
-         - Practical tutorial: [Jupyter](jupyter-1-introduction) <br>
-    </td>
-  </tr>
+    <td> <font size="3"> ... continued: Nextflow tutorial </td>
+  <tr>
   <tr>
     <td> <font size="3"> 14:30 </td>
     <td> <font size="3"> Wrap-up day 3 </td>
@@ -159,11 +158,10 @@ The course will follow the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 09:00 </td>
-    <td> <font size="3"> Containerization
-         <font size="2"> <i> <br>
-         - Introduction to containers <br>
-         - Practical tutorial: [Docker](docker-1-introduction) <br>
-         - Practical tutorial: [Singularity](singularity-1-introduction) </i>
+    <td> <font size="3"> Computational notebooks and reproducible reports
+         <font size="2"><i><br>
+         - Introduction to R Markdown<br>
+         - Practical tutorial: [R Markdown](r-markdown-1-introduction) </i>
     </td>
   </tr>
   <tr>
@@ -172,10 +170,27 @@ The course will follow the approximate schedule below:
   </tr>
   <tr>
     <td> <font size="3"> 10:45 </td>
-    <td> <font size="3"> <i> ... continued: Docker & Singularity <i>
+    <td> <font size="3"> Computational notebooks and reproducible reports
+         <font size="2"><i><br>
+         - Introduction to Jypyter <br>
+         - Practical tutorial: [Jupyter](jupyter-1-introduction) <br>
+    </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:30  </td>
+    <td> <font size="3"> 12:15 </td>
+    <td> <font size="3"> Lunch </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 13:15 </td>
+    <td> <font size="3"> Containerization
+         <font size="2"> <i> <br>
+         - Introduction to containers <br>
+         - Practical tutorial: [Docker](docker-1-introduction) <br>
+         - Practical tutorial: [Singularity](singularity-1-introduction) </i>
+    </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 14:30  </td>
     <td> <font size="3"> Wrap-up day 4 </td>
   </tr>
   <tr>
@@ -185,7 +200,19 @@ The course will follow the approximate schedule below:
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 09:00  </td>
+    <td> <font size="3"> 09:00 </td>
+    <td> <font size="3"> ... continued: Docker & Singularity </td>
+  <tr>
+  <tr>
+    <td> <font size="3"> 10:15 </td>
+    <td> <font size="3"> Break </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 10:30 </td>
+    <td> <font size="3"> ... continued: Docker & Singularity </td>
+  </tr>
+  <tr>
+    <td> <font size="3"> 11:00  </td>
     <td> <font size="3"> Putting the pieces together
          <font size="2"> <i> <br>
          - How to put all the tools and procedures together <br>
@@ -194,19 +221,15 @@ The course will follow the approximate schedule below:
     </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:15 </td>
-    <td> <font size="3"> Break </td>
+    <td> <font size="3"> 12:00 </td>
+    <td> <font size="3"> Lunch </td>
   </tr>
   <tr>
-    <td> <font size="3"> 10:30 </td>
-    <td> <font size="3"> <i> ... continued: Making projects reproducible </i>
+    <td> <font size="3"> 13:00  </td>
+    <td> <font size="3"> ... continued: putting the pieces together </td>
   </tr>
   <tr>
-    <td> <font size="3"> 12:15 </td>
-    <td> <font size="3"> Wrap-up day 5 </td>
-  </tr>
-  <tr>
-    <td> <font size="3"> 12:30 </td>
+    <td> <font size="3"> 14:30 </td>
     <td> <font size="3"> End of the course! </td>
   </tr>
 </table>
