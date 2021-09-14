@@ -53,14 +53,14 @@ the hidden file `.nextflow.log`.
 
 ## Re-running workflows
 
-If you run the same command again, Nextflow will re-run the entire workflow from
-scratch. This is an important difference to Snakemake, which only re-runs those parts
-of the workflow that have changed. This behaviour exists in Nextflow as well
-through the `-resume` flag, but it doesn't re-run anything at all by default.
-Nextflow does, however, not only keep track of changed inputs and outputs, but
-also processes and parameters. This means you don't have to run with a specific
-flag and target if you changed a process (like `-R <rule>` in Snakemake), but
-just re-run with `-resume` and Nextflow will take care of the rest.
+If you run the same command again, Nextflow will re-run the entire workflow
+from scratch. This is an important difference to Snakemake, which only re-runs
+those parts of the workflow that have changed. This behaviour exists in
+Nextflow as well through the `-resume` flag. Nextflow does, however, not only
+keep track of changed inputs and outputs, but also processes and parameters.
+This means you don't have to run with a specific flag and target if you changed
+a process (like `-R <rule>` in Snakemake), but just re-run with `-resume` and
+Nextflow will take care of the rest.
 
 ## Reports and visualisations
 
