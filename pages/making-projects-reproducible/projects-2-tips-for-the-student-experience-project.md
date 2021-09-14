@@ -1,4 +1,4 @@
-The first step should be part of the Snakemake workflow. If you need some help
+The first step should be part of a Snakemake or Nextflow workflow. If you need some help
 with the cleaning step, see below for an example.
 
 <details>
@@ -6,7 +6,7 @@ with the cleaning step, see below for an example.
 ***
 
 You can save this script as *e.g.* `clean_csv.py` and run it in the second
-Snakemake rule.
+Snakemake rule (or Nextflow process).
 
 ```python
 #!/usr/bin/env python
@@ -42,7 +42,8 @@ The second step is really up to you how to implement. You could:
 
 * Include the plotting in the workflow using an R Markdown document that
   gets rendered into a report
-* Have a script that produces separate figures (*e.g.* `png` files)
+* Have a script that produces separate figures (*e.g.* `png` files) that
+  can be run in the workflow
 * Create a Jupyter notebook that reads the cleaned output from the workflow
   and generates some plot or does other additional analyses
 
