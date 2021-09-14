@@ -25,3 +25,8 @@ in the list. Some useful extensions include
 Feel free to peruse the list and find your own favourites! Keep in mind that 
 these are unofficial, community-contributed extensions and as such they come 
 with few, if any, guarantees.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+- What Jupyter extensions are and how to enable/disable them
