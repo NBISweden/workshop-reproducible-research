@@ -8,9 +8,7 @@ Here are some links to additional resources on Nextflow:
  * The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
  * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
  * Common [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html)
- * The [nf-core](https://nf-co.re/) pipeline collection
  * Nextflow training at [Seqera](https://seqera.io/training/)
-
 
 ## Running Nextflow on Uppmax
 
@@ -153,3 +151,32 @@ extension. We can use Groovy in the `script` directive together with normal
 bash: we can mix and match as we like. The first line of the `script` directive
 gets the name of the FASTA file without the extension by removing anything after
 the dot, while the second calls the `index` command like normal using bash.
+
+## The nf-core pipeline collection
+
+You may have heard of the [nf-core](https://nf-co.re/) pipeline collection
+previously, which is a large, collaborative bioinformatics community dedicated
+to building, developing and maintaining Nextflow workflows. In fact, if you have
+sequenced data at *e.g.* the National Genomics Infrastructure ([NGI](https://ngisweden.scilifelab.se/)),
+you can be sure that the data processing has been run using one of the nf-core
+pipelines! While the community only started in 2018 (with a [Nature Biotechnology](https://www.nature.com/articles/s41587-020-0439-x)
+paper in 2020), it already has over 30 production-ready pipelines with
+everything from genomics, transcriptomics, proteomics and metagenomics - and
+more being developed all the time.
+
+The nf-core pipelines all work in the same way, in that they have the same exact
+base for inputs, parameters and arguments, making them all highly similar to
+run. Since you've already learnt the basics of Nextflow in this course, you
+should now be able to also run the nf-core pipelines! It might be that you have
+a data type that you can analyse using one of the pipelines in nf-core, meaning
+you don't need to do anything other than find out what parameters you should run
+it with.
+
+Each pipeline comes with extensive documentation, test datasets that you can use
+to practice on, can be run on both HPCs like Uppmax, cloud services like AWS or
+locally on your own computer. All pipelines support both Conda and
+Docker/Singularity, and you can additionally run specific versions of the
+pipelines, easily allowing for full reproducibility of your analyses. If you
+want to check nf-core out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
+and see what's available! Who knows, you might even write your own nf-core
+pipeline in the future?
