@@ -4,13 +4,26 @@ figure below:
 
 ![](images/reproducibility_overview_with_logos.png){ width=700px }
 
-The figure gives an overview of all the available tutorials, a very brief
-description of their main purpose, and the suggested order to do them. However,
-each tutorial is made so that it can be completed independently of the other
-tutorials. It is therefore perfectly possible to choose a different order, or
-a subset of tutorials that suits your interests. Under the main figure there is
-a list of a few suggested alternative tutorial orders; you will find the
-tutorials in the *Modules* section in the navigation menu.
+The figure above gives an overview of the different parts of computational
+reproducibility (data, code, workflow and environment), as well as the various
+tools that are used for each part; Git is, arguably, integral to all of the
+parts, but we only listed it in the *code* section for a less cluttered figure.
+
+The course has a tutorial for each of the tools, all made so that they can be
+completed independently of each other. It is therefore perfectly
+possible to go through them in whatever order you prefer, but we suggest the
+following order:
+
+1. Git
+2. Conda
+3. Snakemake
+4. Nextflow
+5. R Markdown
+6. Jupyter
+7. Docker
+8. Singularity
+
+You will find the tutorials in the *Modules* section in the navigation menu.
 
 Please make sure to carefully follow the [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup) 
 to install the tools and download the course material before starting with any of the 
