@@ -2,7 +2,7 @@ Welcome to the tutorials! Here we will learn how to make a computational
 research project reproducible using several different tools, described in the
 figure below:
 
-![](images/tutorials_overview.png){ width=700px }
+![](images/reproducibility_overview_with_logos.png){ width=700px }
 
 The figure gives an overview of all the available tutorials, a very brief
 description of their main purpose, and the suggested order to do them. However,
