@@ -10,7 +10,7 @@ A fully reproducible project could be done like this:
    and the required information on how to run all its analyses
 3. Create a Conda `environment.yml` file with the required dependencies
 4. Create a R Markdown or Jupyter notebook with your analyses
-5. Create a Snakemake or Nextflow workflow to encompass all the analyses
+5. Create a Snakemake or Nextflow workflow to connect all the analyses
 6. Create a Docker or Singularity image for your project
 
 This is not a small task and may seem overwhelming! Don't worry if you feel
@@ -46,7 +46,7 @@ include to make your research project reproducible.
 If you don't want to use a project you're currently working on we have
 a suggestion for a small-scale project for you. The idea is to analyze
 students' experiences at this Tools for Reproducible Research course. For this
-you will use responses from students to the registration form for previous
+you will use responses from students to the registration form from previous
 course rounds. You can find the responses in the `workshop-reproducible-research/tutorials/data/`
 directory. The goal is to:
 

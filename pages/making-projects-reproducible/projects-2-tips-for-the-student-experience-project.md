@@ -5,7 +5,7 @@ some help with the cleaning step, see below for an example.
 <summary>Click to show</summary>
 ***
 
-You can save this script as *e.g.* `clean_csv.py` and run it in the a
+You can save this script as *e.g.* `clean_csv.py` and run it in a
 Snakemake rule or Nextflow process.
 
 ```python
