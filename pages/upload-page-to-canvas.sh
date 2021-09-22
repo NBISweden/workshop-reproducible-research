@@ -36,10 +36,16 @@ API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's/.md//g')
 HTML=$(basename $MARKDOWN | sed 's/.md/.html/g')
 
-# Current Git branch and course image path
+# Get current branch and build GitHub address
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-COURSE_ID=$(grep $BRANCH pages/.course_id | cut -f2 -d ':')
 GITHUB="https:\/\/raw\.githubusercontent\.com\/NBISweden\/workshop-reproducible-research\/$BRANCH\/pages\/"
+
+# Get the appropriate course ID from the current branch
+# (set to devel ID on feature branches for easier testing)
+COURSE_ID=$(grep $BRANCH pages/.course_id | cut -f2 -d ':')
+if [ "$COURSE_ID" == "" ]; then
+    COURSE_ID=54324
+fi
 
 # Convert using Pandoc
 docker run --rm \
