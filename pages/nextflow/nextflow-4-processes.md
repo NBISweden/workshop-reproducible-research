@@ -65,7 +65,7 @@ example, another process might be called in the workflow definition like this:
 `downstream_process(get_sra_by_accession.out.sra_data)`, which will then use the
 specific `sra_data` output of the `get_sra_by_accession` process as input.
 
-> **The `emit` directive** <br>
+> **Note** <br>
 > If a process only has a single output you can skip using the `emit` directive,
 > and just use `.out` for any downstream process using that output instead of
 > `.out.<emitted output>`. We have, however, opted to use the `emit` directive
