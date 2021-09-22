@@ -16,7 +16,7 @@ resultsdir = "results/"
 The first part enables modular designs of Nextflow pipelines (more on this
 later), while the second simply defines where the workflow's results should end
 up. Double slashes (`//`) are used as comments in Nextflow. The next part
-really defines the workflow itself:
+defines the workflow itself:
 
 ```groovy
 workflow {
@@ -25,33 +25,53 @@ workflow {
 
     // Define SRA input data channel
     Channel
-        .fromList( params.sra_id_list )
-        .set{ sra_ids }
+        .fromList ( params.sra_id_list )
+        .set      { ch_sra_ids }
 
     // Define the workflow
-    get_sra_by_accession(sra_ids)
-    run_fastqc(get_sra_by_accession.out.sra_data)
-    run_multiqc(run_fastqc.out.zip.collect())
-    get_genome_fasta()
-    index_genome(get_genome_fasta.out.fasta)
-    align_to_genome(get_sra_by_accession.out.sra_data,
-                    index_genome.out.index)
-    sort_bam(align_to_genome.out.bam)
-    get_genome_gff3()
-    generate_counts_table(sort_bam.out.bam.collect(),
-                          get_genome_gff3.out.gff)
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out.sra_data
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.zip.collect()
+    )
+    GET_GENOME_FASTA ()
+    INDEX_GENOME (
+        GET_GENOME_FASTA.out.fasta
+    )
+    ALIGN_TO_GENOME (
+        GET_SRA_BY_ACCESSION.out.sra_data,
+        INDEX_GENOME.out.index
+    )
+    SORT_BAM (
+        ALIGN_TO_GENOME.out.bam
+    )
+    GET_GENOME_GFF3 ()
+    GENERATE_COUNTS_TABLE (
+        SORT_BAM.out.bam.collect(),
+        GET_GENOME_GFF3.out.gff
+    )
 }
 ```
 
 Let's break it down! The whole paragraph contained in `workflow{}` is the
 entirety of the workflow, giving you an overview of it all at a glance.
 
-The first part is the definition of the `sra_ids` channel for input data. Line
-by line, we first create a new channel using the `Channel` directive, define
-that the input should be taken as a list (using `.fromList()`) with the values
-stored in the `sra_id_list` parameter, and finally `set` the channel name to
-`sra_ids`. The parameters themselves come from the `nextflow.config` file,
+The first part is the definition of the `ch_sra_ids` channel for input data.
+Line by line, we first create a new channel using the `Channel` directive,
+define that the input should be taken as a list (using `.fromList()`) with the
+values stored in the `sra_id_list` parameter, and finally `set` the channel name
+to `ch_sra_ids`. The parameters themselves come from the `nextflow.config` file,
 which contains this:
+
+> **Naming channels** <br>
+> Notice that we prepend our channel name with `ch_`, which is only done for
+> readability and easy of development; there is nothing at all that forces you
+> to follow this convention if you don't want to, but it's nice to be able to
+> see at a glance which variables are channels and which ones are not.
 
 ```groovy
 params {
@@ -63,9 +83,16 @@ The next part is the definition of the workflow itself. If you're used to
 functional programming you may notice that it looks very much like functions
 with arguments, which is the previously mentioned modularity of Nextflow. The
 first process is called `get_sra_by_accession` and it takes one input argument;
-the previously defined `sra_ids` input channel. Since we have three separate
+the previously defined `ch_sra_ids` input channel. Since we have three separate
 values in this channel, it means that the `get_sra_by_accession` process will
 be executed three times.
+
+> **Nextflow and whitespace** <br>
+> You might have noticed that whitespace is used liberally in a lot of the
+> workflow definition above. Nextflow doesn't care at all about whitespace, so
+> go ahead and use it in whatever manner you think is easiest to read and work
+> with! The style chosen here (including the choice to use UPPERCASE for all
+> processes) is based on [nf-core](https://nf-co.re://nf-co.re/).
 
 What follows are the remaining processes and their respective input arguments.
 You can see that we can take the output from one process and use it as the

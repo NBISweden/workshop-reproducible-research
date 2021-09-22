@@ -12,24 +12,38 @@ workflow {
 
     // Define SRA input data channel
     Channel
-        .fromList( params.sra_id_list )
-        .set{ sra_ids }
+        .fromList ( params.sra_id_list )
+        .set      { ch_sra_ids }
 
     // Define the workflow
-    get_sra_by_accession(sra_ids)
-    run_fastqc(get_sra_by_accession.out.sra_data)
-    run_multiqc(run_fastqc.out.zip.collect())
-    get_genome_fasta()
-    index_genome(get_genome_fasta.out.fasta)
-    align_to_genome(get_sra_by_accession.out.sra_data,
-                    index_genome.out.index)
-    sort_bam(align_to_genome.out.bam)
-    get_genome_gff3()
-    generate_counts_table(sort_bam.out.bam.collect(),
-                          get_genome_gff3.out.gff)
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out.sra_data
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.zip.collect()
+    )
+    GET_GENOME_FASTA ()
+    INDEX_GENOME (
+        GET_GENOME_FASTA.out.fasta
+    )
+    ALIGN_TO_GENOME (
+        GET_SRA_BY_ACCESSION.out.sra_data,
+        INDEX_GENOME.out.index
+    )
+    SORT_BAM (
+        ALIGN_TO_GENOME.out.bam
+    )
+    GET_GENOME_GFF3 ()
+    GENERATE_COUNTS_TABLE (
+        SORT_BAM.out.bam.collect(),
+        GET_GENOME_GFF3.out.gff
+    )
 }
 
-process get_sra_by_accession {
+process GET_SRA_BY_ACCESSION {
 
     // Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
     // accession number.
@@ -57,7 +71,7 @@ process get_sra_by_accession {
     """
 }
 
-process run_fastqc {
+process RUN_FASTQC {
 
     // Run FastQC on a FASTQ file.
 
@@ -83,7 +97,7 @@ process run_fastqc {
     """
 }
 
-process run_multiqc {
+process RUN_MULTIQC {
 
     // Aggregate all FastQC reports into a MultiQC report.
 
@@ -103,7 +117,7 @@ process run_multiqc {
     """
 }
 
-process get_genome_fasta {
+process GET_GENOME_FASTA {
 
     // Retrieve the sequence in fasta format for a genome.
 
@@ -119,7 +133,7 @@ process get_genome_fasta {
     """
 }
 
-process get_genome_gff3 {
+process GET_GENOME_GFF3 {
 
     // Retrieve annotation in gff3 format for a genome.
 
@@ -135,7 +149,7 @@ process get_genome_gff3 {
     """
 }
 
-process index_genome {
+process INDEX_GENOME {
 
     // Index a genome using Bowtie 2.
 
@@ -156,7 +170,7 @@ process index_genome {
     """
 }
 
-process align_to_genome {
+process ALIGN_TO_GENOME {
 
     // Align a fastq file to a genome index using Bowtie 2.
 
@@ -175,7 +189,7 @@ process align_to_genome {
     """
 }
 
-process sort_bam {
+process SORT_BAM {
 
     // Sort a bam file.
 
@@ -195,7 +209,7 @@ process sort_bam {
     """
 }
 
-process generate_counts_table {
+process GENERATE_COUNTS_TABLE {
 
     // Generate a count table using featureCounts.
 

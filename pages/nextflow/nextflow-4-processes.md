@@ -1,7 +1,7 @@
 Let's look at the first process definition of our `main.nf` Nextflow file:
 
 ```groovy
-process get_sra_by_accession {
+process GET_SRA_BY_ACCESSION {
 
     // Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
     // accession number.
@@ -51,7 +51,7 @@ variable we defined in the beginning of the file) and how the files should be
 handled (copied, in this case).
 
 Next comes the `input` directive. We first specify that the input is a value
-using `val()`, since it's coming from the `sra_ids` channel we previously
+using `val()`, since it's coming from the `ch_sra_ids` channel we previously
 defined, and we name the input variable `sra_id`.
 
 Then comes the `output` directive, which is defined as a `tuple`, *i.e.* having
@@ -96,7 +96,7 @@ Let's look at the next process, which is the next in line in our workflow
 definition:
 
 ```groovy
-process run_fastqc {
+process RUN_FASTQC {
 
     // Run FastQC on a FASTQ file.
 
