@@ -63,9 +63,9 @@ entirety of the workflow, giving you an overview of it all at a glance.
 The first part is the definition of the `ch_sra_ids` channel for input data.
 Line by line, we first create a new channel using the `Channel` directive,
 define that the input should be taken as a list (using `.fromList()`) with the
-values stored in the `sra_id_list` parameter, and finally `set` the channel name
-to `ch_sra_ids`. The parameters themselves come from the `nextflow.config` file,
-which contains this:
+values stored in the `sra_id_list` parameter, and finally `set{}` the channel
+name to `ch_sra_ids`. The parameters themselves come from the `nextflow.config`
+file, which contains this:
 
 > **Naming channels** <br>
 > Notice that we prepend our channel name with `ch_`, which is only done for
@@ -113,4 +113,4 @@ the `run_multiqc` process will only be run once.
 >
 > - Defining channels for input data
 > - Defining parameters in a separate configuration file
-> - Defining workflows as sets of function-like processes with arguments
+> - Defining workflows as groups of function-like processes with arguments
