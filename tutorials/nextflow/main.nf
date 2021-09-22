@@ -62,12 +62,12 @@ process run_fastqc {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/qc/",
+    publishDir "${resultsdir}/qc",
         mode: "copy",
-        saveAs: { filename ->
-            filename.indexOf(".zip") > 0 ? \
-                "intermediate/${filename}" : "${filename}"
-        }
+        pattern: "*.html"
+    publishDir "${resultsdir}/qc/intermediate",
+        mode: "copy",
+        pattern: "*.zip"
 
     input:
     tuple val(sample), path(fastq)

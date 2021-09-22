@@ -101,12 +101,12 @@ process run_fastqc {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/qc/",
+    publishDir "${resultsdir}/qc",
         mode: "copy",
-        saveAs: { filename ->
-            filename.indexOf(".zip") > 0 ? \
-                "intermediate/${filename}" : "${filename}"
-        }
+        pattern: "*.html"
+    publishDir "${resultsdir}/qc/intermediate",
+        mode: "copy",
+        pattern: "*.zip"
 
     input:
     tuple val(sample), path(fastq)
@@ -124,14 +124,16 @@ process run_fastqc {
 ```
 
 Let's start with the extended `publishDir` directive. Notice how the process has
-two separate outputs? The `saveAs` parameter of the `publishDir` directive
-allows us to conditionally publish the output files in different locations, in
-this case depending on whether the file ends in `.zip` or not.
-
-> **Syntax explanation** <br>
-> The Groovy syntax used here translates to roughly `if filename contains
-> ".zip", publish it in the "intermediate/" directory, otherwise publish it in
-> the default directory`.
+two separate outputs, as well as two separate `publishDir` directives? We use
+`pattern` as part of the `publishDir` directives to put the HTML and ZIP files
+in separate output directives. This is useful when you want to separate the
+final location of your different outputs. Another useful instance for this is
+when you have intermediate data that you don't necessarily want to publish: one
+could argue that this is the case here, where the `.zip`-files are not really
+something the end-user wants to look at, but they are still required as output
+for the process. One could simply omit the second `publishDir` directive here,
+and the `.zip`-files would not be published, yet still available to downstream
+processes.
 
 If we move on to the `output` directive, we find that we have two separate
 outputs, each with their own `emit` directive, so that they may be referred to
