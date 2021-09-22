@@ -73,13 +73,13 @@ they can be complicated when you first start working with them.
 
 In Snakemake, the entire workflow and each rule is **executed** in the working
 directory, while Nextflow executes each individual *process* (the equivalent of
-a rule in Snakemake) using an isolated environment in a hidden directory of its
-own. This greatly simplifies testing and debugging, as you can always go into a
-process' directory and see exactly which files it has access to and which code
-was executed. This general structure means that you need to think less about
-full paths for all the workflow's in- and output files, as the locations of all
-the files are fully taken care of by Nextflow - the only thing you need to care
-about are the final output file paths.
+a rule in Snakemake) using an isolated environment in a directory of its own.
+This greatly simplifies testing and debugging, as you can always go into
+a process' directory and see exactly which files it has access to and which
+code was executed. This general structure means that you need to think less
+about full paths for all the workflow's in- and output files, as the locations
+of all the files are fully taken care of by Nextflow - the only thing you need
+to care about are the final output file paths.
 
 Snakemake uses a "pull"-**philosophy** similar to its inspiring predecessor
 [make](https://www.gnu.org/software/make/), meaning that you define a number of

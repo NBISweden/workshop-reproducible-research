@@ -42,13 +42,13 @@ see exactly how this looks if you run the pipeline one more time with the comman
 `nextflow run .`.
 
 The `publishDir` directive is used to define where the process' outputs should
-be placed. Remember that Nextflow runs each process in its own hidden directory
-where only files relevant to its execution exist? That means that we actually
-need to move or copy the output files from that hidden directory after a
-successful execution of the process to wherever we want them to be stored, which
-is what `publishDir` is for: we specify a path (here derived from the
-`resultsdir` variable we defined in the beginning of the file) and how the files
-should be handled (copied, in this case).
+be placed. Remember that Nextflow runs each process in its own directory where
+only files relevant to its execution exist? That means that we actually need to
+move or copy the output files from that directory after a successful execution
+of the process to wherever we want them to be stored, which is what
+`publishDir` is for: we specify a path (here derived from the `resultsdir`
+variable we defined in the beginning of the file) and how the files should be
+handled (copied, in this case).
 
 Next comes the `input` directive. We first specify that the input is a value
 using `val()`, since it's coming from the `sra_ids` channel we previously

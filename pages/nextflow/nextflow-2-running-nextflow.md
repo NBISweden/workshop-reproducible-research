@@ -45,7 +45,7 @@ different processes. This is because Nextflow (just like Snakemake) doesn't
 order the execution of the processes by default, so it happens randomly.
 
 You can find the results of the workflow in the `results/` directory, while the
-hidden directories where each process is run is found in `work/`. If you want to
+directories where each process is run is found in `work/`. If you want to
 examine a process more carefully, simply navigate to its directory, *e.g.*
 `work/` followed by the first part given in the list above, *e.g.* `87/32ce10`.
 If you want to view the logs you can use `nextflow log <run name>` or look in
