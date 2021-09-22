@@ -22,14 +22,14 @@ profiles {
     // Uppmax general profile
     uppmax {
         process {
-            executor = 'slurm'
+            executor       = 'slurm'
             clusterOptions = '-A "account"'
-            memory = { 6.GB * task.attempt }
-            cpus = { 1 * task.attempt }
-            time = { 10.h * task.attempt }
-            scratch = '$SNIC_TMP'
+            memory         = { 6.GB * task.attempt }
+            cpus           = { 1 * task.attempt }
+            time           = { 10.h * task.attempt }
+            scratch        = '$SNIC_TMP'
             errorStrategy  = 'retry'
-            maxRetries = 1
+            maxRetries     = 1
         }
     }
 }
@@ -54,8 +54,8 @@ Nextflow has a special, built-in way to create channels for this data type: the
 
 ```groovy
 Channel
-    .fromFilePairs( "data/*_R{1,2}.fastq.gz" )
-    .set( raw_reads )
+    .fromFilePairs ( "data/*_R{1,2}.fastq.gz" )
+    .set           { ch_raw_reads }
 ```
 
 This will create a channel containing all the reads in the `data/` directory in
@@ -77,12 +77,12 @@ We can also do quite advanced things when creating channels, such as this:
 
 ```groovy
 Channel
-    .fromPath( params.metadata )
-    .splitCsv( sep: "\t", header: true )
-    .map{ row -> tuple("${row.sample_id}", "${row.treatment}") }
-    .filter{ it[1] != "DMSO" }
-    .unique()
-    .set { samples_and_treatments }
+    .fromPath ( params.metadata )
+    .splitCsv ( sep: "\t", header: true )
+    .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }
+    .filter   { it[1] != "DMSO" }
+    .unique   (  )
+    .set      { samples_and_treatments }
 ```
 
 That's a bit of a handful! But what does it do? The first line specifies that we
