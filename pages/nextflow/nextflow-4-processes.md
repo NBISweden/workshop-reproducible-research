@@ -143,7 +143,7 @@ process' output.
 
 > **Note** <br>
 > Notice that you can both use specific files in output definitions (*e.g*
-> `{$sra_id}.fastq.gz`) as well as any file defined by some wildcard, commonly
+> `${sra_id}.fastq.gz`) as well as any file defined by some wildcard, commonly
 > using a file extension (*e.g.* `*.zip`). This is useful when you want
 > only a specific file or several files.
 
