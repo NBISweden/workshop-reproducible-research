@@ -67,17 +67,17 @@ values stored in the `sra_id_list` parameter, and finally `set{}` the channel
 name to `ch_sra_ids`. The parameters themselves come from the `nextflow.config`
 file, which contains this:
 
-> **Naming channels** <br>
-> Notice that we prepend our channel name with `ch_`, which is only done for
-> readability and easy of development; there is nothing at all that forces you
-> to follow this convention if you don't want to, but it's nice to be able to
-> see at a glance which variables are channels and which ones are not.
-
 ```groovy
 params {
     sra_id_list = ["SRR935090", "SRR935091", "SRR935092"]
 }
 ```
+
+> **Naming channels** <br>
+> Notice that we prepend our channel name with `ch_`, which is only done for
+> readability and easy of development; there is nothing at all that forces you
+> to follow this convention if you don't want to, but it's nice to be able to
+> see at a glance which variables are channels and which ones are not.
 
 The next part is the definition of the workflow itself. If you're used to
 functional programming you may notice that it looks very much like functions
