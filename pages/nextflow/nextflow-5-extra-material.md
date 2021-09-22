@@ -23,7 +23,7 @@ profiles {
     uppmax {
         process {
             executor = 'slurm'
-            clusterOptions = { '-A "account"' }
+            clusterOptions = '-A "account"'
             memory = { 6.GB * task.attempt }
             cpus = { 1 * task.attempt }
             time = { 10.h * task.attempt }
