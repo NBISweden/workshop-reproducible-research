@@ -3,7 +3,7 @@ which the workflow itself is written. You can view the Nextflow implementation
 of the MRSA pipeline in the `tutorials/nextflow/main.nf` file, through which we'll 
 go piece by piece in this tutorial. Let's start at the beginning!
 
-This are the first few lines of the file `main.nf`:
+These are the first few lines of the file `main.nf`:
 
 ```groovy
 // Enable DSL2 for a more modular workflow
