@@ -73,9 +73,18 @@ specific `sra_data` output of the `get_sra_by_accession` process as input.
 
 The last part of the process is the `script` directive, which works in the same
 way as for Snakemake: you either write something in bash itself or call some
-external script you've defined elsewhere. Nextflow variables are called using
-the syntax `${NF_VARIABLE}`, while bash variables need to be preceded with a
-backslash, like so: `\${BASH_VARIABLE}`.
+external script you've defined elsewhere. When you contain some text in triple
+quotes inside the `script` directive you will run whatever code you write using
+bash, just like in Snakemake.
+
+Using Nextflow variables inside its Bash context works the same way as for
+Snakemake: `$NF_VARIABLE` (or with squiggly brackets: `${NF_VARIABLE}`). This
+clashes with Bash variables, however, which works exactly the same way (*e.g.*
+`$BASH_VARIABLE` or `${BASH_VARIABLE}`). This means that when we refer to a Bash
+variable in the Nextflow `script` bash context, we need to prepend the dollar
+sign with a backslash, like so: `\${BASH_VARIABLE}`. In the
+`get_sra_by_accession` process above we are using `${sra_id}`, which tells us
+that it is a Nextflow variable, which comes from the process input in this case.
 
 > **Using external scripts** <br>
 > While not used in this example, if you have an external script you can put it 
