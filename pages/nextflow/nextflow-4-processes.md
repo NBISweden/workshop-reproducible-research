@@ -65,6 +65,12 @@ example, another process might be called in the workflow definition like this:
 `downstream_process(get_sra_by_accession.out.sra_data)`, which will then use the
 specific `sra_data` output of the `get_sra_by_accession` process as input.
 
+> **The `emit` directive** <br>
+> If a process only has a single output you can skip using the `emit` directive,
+> and just use `.out` for any downstream process using that output instead of
+> `.out.<emitted output>`. We have, however, opted to use the `emit` directive
+> for all processes and outputs in this material for clarity and consistency.
+
 The last part of the process is the `script` directive, which works in the same
 way as for Snakemake: you either write something in bash itself or call some
 external script you've defined elsewhere. Nextflow variables are called using
