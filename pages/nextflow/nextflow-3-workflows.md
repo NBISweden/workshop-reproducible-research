@@ -6,8 +6,8 @@ go piece by piece in this tutorial. Let's start at the beginning!
 These are the first few lines of the file `main.nf`:
 
 ```groovy
-// Enable DSL2 for a more modular workflow
-nextflow.enable.dsl=2
+// Enable DSL2 for more powerful functionality
+nextflow.enable.dsl = 2
 
 // Define where results should end up
 resultsdir = "results/"

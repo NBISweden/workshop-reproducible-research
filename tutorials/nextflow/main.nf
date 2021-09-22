@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
-// Enable DSL2 for a more modular workflow
-nextflow.enable.dsl=2
+// Enable DSL2 for more powerful functionality
+nextflow.enable.dsl = 2
 
 // Define where results should end up
 resultsdir = "results/"
