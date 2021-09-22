@@ -46,11 +46,11 @@ locally.
 
 ## Advanced channel creation
 
-The input data shown in the MRSA example workflow is quite simple, but Nextflow
-channels can do much more than that. A common scenario in high-throughput
-sequencing is that you have pairs of reads for each sample. Nextflow has a
-special, built-in way to create channels for this data type: the `fromFilePairs`
-channel factory:
+The input data shown in the MRSA example workflow is not that complex, but
+Nextflow channels can do much more than that. A common scenario in
+high-throughput sequencing is that you have pairs of reads for each sample.
+Nextflow has a special, built-in way to create channels for this data type: the
+`fromFilePairs` channel factory:
 
 ```groovy
 Channel
@@ -66,9 +66,9 @@ together into a nested tuple looking like this:
 [sample, [data/sample_R1.fastq.gz, data/sample_R2.fastq.gz]]
 ```
 
-The first index of the tuple (`[0]`) thus contains the value `sample`, while the
-second index (`[1]`) contains another tuple with paths to both read files. This
-nested tuple can easily be passed into processes for *e.g.* read alignment, and
+The first index of the tuple (`[0]`) thus contains the value `sample`, while
+the second index (`[1]`) contains another tuple with paths to both read files.
+This nested tuple can be passed into processes for *e.g.* read alignment, and
 it makes the entire procedure of going from read pairs (*i.e.* two separate
 files, one sample) into a single alignment file (one file, one sample) very
 simple.
@@ -172,11 +172,11 @@ a data type that you can analyse using one of the pipelines in nf-core, meaning
 you don't need to do anything other than find out what parameters you should run
 it with.
 
-Each pipeline comes with extensive documentation, test datasets that you can use
-to practice on, can be run on both HPCs like Uppmax, cloud services like AWS or
-locally on your own computer. All pipelines support both Conda and
+Each pipeline comes with extensive documentation, test datasets that you can
+use to practice on, can be run on both HPCs like Uppmax, cloud services like
+AWS or locally on your own computer. All pipelines support both Conda and
 Docker/Singularity, and you can additionally run specific versions of the
-pipelines, easily allowing for full reproducibility of your analyses. If you
-want to check nf-core out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
+pipelines, allowing for full reproducibility of your analyses. If you want to
+check nf-core out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
 and see what's available! Who knows, you might even write your own nf-core
 pipeline in the future?

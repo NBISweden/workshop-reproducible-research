@@ -149,9 +149,9 @@ process' output.
 
 Remember that this process was called as `run_fastqc(get_sra_by_accession.out)`,
 which means that the output tuple from the `get_sra_by_accession` will be the
-input for the `run_fastqc` process. This allows us to easily grab both the
-sample name and the corresponding FASTQ file without any use of wildcards, which
-is how you would do it in Snakemake.
+input for the `run_fastqc` process. This allows us to grab both the sample name
+and the corresponding FASTQ file without any use of wildcards, which is how you
+would do it in Snakemake.
 
 > **Variable names** <br>
 > Remember that we can use any name for each input variable within a process,

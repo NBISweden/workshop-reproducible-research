@@ -6,9 +6,9 @@ just like you don't need to know Python to write good Snakemake workflows.
 
 Nextflow is built from the ground-up to be portable, scalable, reproducible and
 usable in a platform-agnostic sense. This means that any pipeline you write in
-Nextflow can easily be run locally on your laptop, a computer cluster or
-a cloud service. You can also define the compute environment in which each task
-is carried out, just like in Snakemake. Nextflow has a large community centered
+Nextflow can be run locally on your laptop, a computer cluster or a cloud
+service. You can also define the compute environment in which each task is
+carried out, just like in Snakemake. Nextflow has a large community centered
 around it, including the [nf-core](https://nf-co.re/) curated collection of
 high quality pipelines used by *e.g.* the [National Genomics Infrastructure](https://ngisweden.scilifelab.se/).
 
