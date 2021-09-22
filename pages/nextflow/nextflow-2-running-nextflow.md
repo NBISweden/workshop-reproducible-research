@@ -1,10 +1,10 @@
-Before we go into the details regarding how to write a workflow in Nextflow, let's 
-just try running the MRSA workflow! The simplest and most common way of running a
-Nextflow workflow is by `nextflow run .`, which means "run the workflow situated
-in the current directory". Make sure you've activated the `nextflow-env` Conda
-environment and that you are standing in `workshop-reproducible-research/tutorials/nextflow`
-and run the command. After it has finished (which shouldn't take long), 
-you should see something like this:
+Before we go into the details regarding how to write a workflow in Nextflow,
+let's just try running the MRSA workflow! The simplest and most common way of
+running a Nextflow workflow is by `nextflow run main.nf`, which means "run the
+workflow situated in the current directory". Make sure you've activated the
+`nextflow-env` Conda environment and that you are standing in `workshop-reproducible-research/tutorials/nextflow`
+and run the command. After it has finished (which shouldn't take long), you
+should see something like this:
 
 ```bash
 N E X T F L O W  ~  version 21.04.0
@@ -26,14 +26,14 @@ Nextflow version used, which workflow definition file was used (`main.nf`), a
 randomly generated run name (an adjective and a scientist), the revision number
 as well as the executor used (local, in this case).
 
-What follows next is a list of all the various processes for this particular workflow.
-Just like Snakemake, the order does not necessarily reflect the order of execution
-(depending on each process' input and output dependencies), but they are in the
-order they were defined in the workflow file. The first part (*e.g*
-`[c9/e5f818]`) is the process ID, which is also the first part of the
+What follows next is a list of all the various processes for this particular
+workflow. Just like Snakemake, the order does not necessarily reflect the order
+of execution (depending on each process' input and output dependencies), but
+they are in the order they were defined in the workflow file. The first part
+(*e.g* `[c9/e5f818]`) is the process ID, which is also the first part of the
 subdirectory in which the process is run. We then get the process and its name,
 where some include the current sample name being run (*e.g.* `SRR935092`).
-Lastly, we get how many instances of each process are currently being and have 
+Lastly, we get how many instances of each process are currently being and have
 been run.
 
 If you successfully ran the command above, you will have seen that the output
