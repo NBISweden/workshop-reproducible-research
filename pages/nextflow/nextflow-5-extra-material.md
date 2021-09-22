@@ -135,7 +135,7 @@ process index_fasta {
     tuple val(fasta), path(fasta_file)
 
     output:
-    path("${fasta_name}.idx")
+    path("${fasta_name}.idx"), emit: fasta
 
     script:
     fasta_name = fasta.substring(0, fasta.lastIndexOf("."))

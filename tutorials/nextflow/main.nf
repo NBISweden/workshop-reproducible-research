@@ -17,14 +17,16 @@ workflow {
 
     // Define the workflow
     get_sra_by_accession(sra_ids)
-    run_fastqc(get_sra_by_accession.out)
+    run_fastqc(get_sra_by_accession.out.sra_data)
     run_multiqc(run_fastqc.out.zip.collect())
     get_genome_fasta()
-    index_genome(get_genome_fasta.out)
-    align_to_genome(get_sra_by_accession.out, index_genome.out)
-    sort_bam(align_to_genome.out)
+    index_genome(get_genome_fasta.out.fasta)
+    align_to_genome(get_sra_by_accession.out.sra_data,
+                    index_genome.out.index)
+    sort_bam(align_to_genome.out.bam)
     get_genome_gff3()
-    generate_counts_table(sort_bam.out.collect(), get_genome_gff3.out)
+    generate_counts_table(sort_bam.out.bam.collect(),
+                          get_genome_gff3.out.gff)
 }
 
 process get_sra_by_accession {
@@ -40,7 +42,7 @@ process get_sra_by_accession {
     val(sra_id)
 
     output:
-    tuple val(sra_id), path("${sra_id}.fastq.gz")
+    tuple val(sra_id), path("${sra_id}.fastq.gz"), emit: sra_data
 
     script:
     """
@@ -92,8 +94,8 @@ process run_multiqc {
     path(zips)
 
     output:
-    path("*.html")
-    path("multiqc_data/multiqc_general_stats.txt")
+    path("*.html"), emit: html
+    path("multiqc_data/multiqc_general_stats.txt"), emit: general_stats
 
     script:
     """
@@ -109,7 +111,7 @@ process get_genome_fasta {
         mode: "copy"
 
     output:
-    path("*.fa.gz")
+    path("*.fa.gz"), emit: fasta
 
     script:
     """
@@ -125,7 +127,7 @@ process get_genome_gff3 {
         mode: "copy"
 
     output:
-    path("*.gff3.gz")
+    path("*.gff3.gz"), emit: gff
 
     script:
     """
@@ -144,7 +146,7 @@ process index_genome {
     path(fasta)
 
     output:
-    path("*.bt2")
+    path("*.bt2"), emit: index
 
     script:
     """
@@ -165,7 +167,7 @@ process align_to_genome {
     path(idx)
 
     output:
-    tuple val(sample), path("*.bam")
+    tuple val(sample), path("*.bam"), emit: bam
 
     script:
     """
@@ -185,7 +187,7 @@ process sort_bam {
     tuple val(sample), path(bam)
 
     output:
-    path("*.sorted.bam")
+    path("*.sorted.bam"), emit: bam
 
     script:
     """
@@ -205,7 +207,7 @@ process generate_counts_table {
     path(annotation)
 
     output:
-    path("counts.tsv")
+    path("counts.tsv"), emit: counts
 
     script:
     """

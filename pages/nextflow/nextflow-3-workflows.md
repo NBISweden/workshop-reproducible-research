@@ -15,10 +15,12 @@ resultsdir = "results/"
 
 The first part enables modular designs of Nextflow pipelines (more on this
 later), while the second simply defines where the workflow's results should end
-up. The next part really defines the workflow itself:
+up. Double slashes (`//`) are used as comments in Nextflow. The next part
+really defines the workflow itself:
 
 ```groovy
 workflow {
+
     // Workflow for generating count data for the MRSA case study
 
     // Define SRA input data channel
@@ -28,28 +30,28 @@ workflow {
 
     // Define the workflow
     get_sra_by_accession(sra_ids)
-    run_fastqc(get_sra_by_accession.out)
+    run_fastqc(get_sra_by_accession.out.sra_data)
     run_multiqc(run_fastqc.out.zip.collect())
     get_genome_fasta()
-    index_genome(get_genome_fasta.out)
-    align_to_genome(get_sra_by_accession.out, index_genome.out)
-    sort_bam(align_to_genome.out)
+    index_genome(get_genome_fasta.out.fasta)
+    align_to_genome(get_sra_by_accession.out.sra_data,
+                    index_genome.out.index)
+    sort_bam(align_to_genome.out.bam)
     get_genome_gff3()
-    generate_counts_table(sort_bam.out.collect(), get_genome_gff3.out)
+    generate_counts_table(sort_bam.out.bam.collect(),
+                          get_genome_gff3.out.gff)
 }
 ```
 
 Let's break it down! The whole paragraph contained in `workflow{}` is the
-entirety of the workflow, giving you an overview of it all at a glance. The
-first line contained in the triple quotes is just a comment describing the
-pipeline, and doesn't actually do anything other than provide a description.
+entirety of the workflow, giving you an overview of it all at a glance.
 
-After this comes the definition of the `sra_ids` channel for input data. Line
+The first part is the definition of the `sra_ids` channel for input data. Line
 by line, we first create a new channel using the `Channel` directive, define
 that the input should be taken as a list (using `.fromList()`) with the values
 stored in the `sra_id_list` parameter, and finally `set` the channel name to
-`sra_ids`. The parameters themselves come from the `nextflow.config` file, which
-contains this:
+`sra_ids`. The parameters themselves come from the `nextflow.config` file,
+which contains this:
 
 ```groovy
 params {
@@ -57,20 +59,21 @@ params {
 }
 ```
 
-The next part is the definition of the workflow itself. If you're used to functional
-programming you may notice that it looks very much like functions with
-arguments, which is the previously mentioned modularity of Nextflow. The first
-process is called `get_sra_by_accession` and it takes one input argument; the 
-previously defined `sra_ids` input channel. Since we have three separate values 
-in this channel, it means that the `get_sra_by_accession` process will be executed 
-three times. 
+The next part is the definition of the workflow itself. If you're used to
+functional programming you may notice that it looks very much like functions
+with arguments, which is the previously mentioned modularity of Nextflow. The
+first process is called `get_sra_by_accession` and it takes one input argument;
+the previously defined `sra_ids` input channel. Since we have three separate
+values in this channel, it means that the `get_sra_by_accession` process will
+be executed three times.
 
 What follows are the remaining processes and their respective input arguments.
-You can see that we can take the output from one process and use it as the input
-for another. For example, the `run_fastqc` process uses the output from the
-`get_sra_by_accession` process, which is done using the `.out` call. Some
-processes have no input arguments (such as the `get_genome_fasta` process) while
-others use more than one input argument.
+You can see that we can take the output from one process and use it as the
+input for another. For example, the `run_fastqc` process uses the named
+`sra_data` output from the `get_sra_by_accession` process, which is done using
+the `.out` call. Some processes have no input arguments (such as the
+`get_genome_fasta` process) while others use more than one input argument,
+which is defined in each process (just like how functions work).
 
 The only other thing that is used here is the `collect()` operator, which
 collects a channel's content into a single stream. The `run_multiqc` process

@@ -14,7 +14,7 @@ process get_sra_by_accession {
     val(sra_id)
 
     output:
-    tuple val(sra_id), path("${sra_id}.fastq.gz")
+    tuple val(sra_id), path("${sra_id}.fastq.gz"), emit: sra_data
 
     script:
     """
@@ -38,8 +38,8 @@ them from top to bottom.
 The `tag` directive defines what should be shown during the execution of the
 process as it is run, *i.e.* the SRA ID in this case. This is useful for viewing
 the currently running tag (sample) for any given process at a glance; you can
-see exactly how this looks if you run the pipeline one more time with the command
-`nextflow run .`.
+see exactly how this looks if you run the pipeline one more time with the
+command `nextflow run main.nf`.
 
 The `publishDir` directive is used to define where the process' outputs should
 be placed. Remember that Nextflow runs each process in its own directory where
@@ -59,7 +59,11 @@ more than one entry. The output of this process is a combination of the
 sample name (from the `sra_id` value variable) and the FASTQ file containing the
 reads for that sample. Nextflow will look for files corresponding to the path
 defined here and output them to the `publishDir` directory, as well as pass the
-entire output tuple to any downstream process that uses them.
+entire output tuple to any downstream process that uses them. The `emit`
+directive is used to name the output for use in downstream processes: for
+example, another process might be called in the workflow definition like this:
+`downstream_process(get_sra_by_accession.out.sra_data)`, which will then use the
+specific `sra_data` output of the `get_sra_by_accession` process as input.
 
 The last part of the process is the `script` directive, which works in the same
 way as for Snakemake: you either write something in bash itself or call some
@@ -114,11 +118,11 @@ this case depending on whether the file ends in `.zip` or not.
 > ".zip", publish it in the "intermediate/" directory, otherwise publish it in
 > the default directory`.
 
-If we move on to the `output` directive, we find another new parameter: `emit` 
-is used to name the two different outputs, so that they may be referred to 
-separately in downstream processes. For example, the
-`run_multiqc` process uses the `run_fastqc.out.zip` as input, *i.e.* only the
-compressed files from this process' output.
+If we move on to the `output` directive, we find that we have two separate
+outputs, each with their own `emit` directive, so that they may be referred to
+separately in downstream processes. For example, the `run_multiqc` process uses
+the `run_fastqc.out.zip` as input, *i.e.* only the compressed files from this
+process' output.
 
 > **Note** <br>
 > Notice that you can both use specific files in output definitions (*e.g*
