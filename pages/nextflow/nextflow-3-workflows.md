@@ -19,14 +19,14 @@ up. The next part really defines the workflow itself:
 
 ```groovy
 workflow {
-    """ Workflow for generating count data for the MRSA case study """
+    // Workflow for generating count data for the MRSA case study
 
-    # Define SRA input data channel
+    // Define SRA input data channel
     Channel
         .fromList( params.sra_id_list )
         .set{ sra_ids }
 
-    # Define the workflow
+    // Define the workflow
     get_sra_by_accession(sra_ids)
     run_fastqc(get_sra_by_accession.out)
     run_multiqc(run_fastqc.out.zip.collect())

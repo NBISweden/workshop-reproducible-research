@@ -2,10 +2,10 @@ Let's look at the first process definition of our `main.nf` Nextflow file:
 
 ```groovy
 process get_sra_by_accession {
-    """
-    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
-    accession number.
-    """
+
+    // Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
+    // accession number.
+
     tag "${sra_id}"
     publishDir "${resultsdir}/data/",
         mode: "copy"
@@ -78,9 +78,9 @@ definition:
 
 ```groovy
 process run_fastqc {
-    """
-    Run FastQC on a FASTQ file.
-    """
+
+    // Run FastQC on a FASTQ file.
+
     tag "${sample}"
     publishDir "${resultsdir}/qc/",
         mode: "copy",
