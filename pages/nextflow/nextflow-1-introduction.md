@@ -18,41 +18,43 @@ There are several major differences between Snakemake and Nextflow, both in how
 they work and in their underlying philosophies, summarised by the following
 table:
 
-<table border=1; style="margin-left:auto;margin-right:auto;">
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+        </tr>
+    </thead>
     <tr>
-    <td style="padding:5px"> <font size="3"></td>
-    <td style="padding:5px"> <font size="3"><b>Snakemake</b> </td>
-    <td style="padding:5px"> <font size="3"><b>Nextflow</b> </td>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
     </tr>
     <tr>
-    <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
-    <td style="padding:5px"> <font size="3"> Python </td>
-    <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
     </tr>
     <tr>
-    <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
-    <td style="padding:5px"> <font size="3"> Everything is a file </td>
-    <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+        <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
+        <td style="padding:5px"> <font size="3"> Working directory </td>
+        <td style="padding:5px"> <font size="3"> Each job in its own directory </td>
     </tr>
     <tr>
-    <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
-    <td style="padding:5px"> <font size="3"> Working directory </td>
-    <td style="padding:5px"> <font size="3"> Each job in its own directory </td>
+        <td style="padding:5px"> <font size="3"> <b>Philosophy</b> </td>
+        <td style="padding:5px"> <font size="3"> "Pull" </td>
+        <td style="padding:5px"> <font size="3"> "Push" </td>
     </tr>
     <tr>
-    <td style="padding:5px"> <font size="3"> <b>Philosophy</b> </td>
-    <td style="padding:5px"> <font size="3"> "Pull" </td>
-    <td style="padding:5px"> <font size="3"> "Push" </td>
+        <td style="padding:5px"> <font size="3"> <b>Dry runs</b>  </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
+        <td style="padding:5px"> <font size="3"> No </td>
     </tr>
     <tr>
-    <td style="padding:5px"> <font size="3"> <b>Dry runs</b>  </td>
-    <td style="padding:5px"> <font size="3"> Yes </td>
-    <td style="padding:5px"> <font size="3"> No </td>
-    </tr>
-    <tr>
-    <td style="padding:5px"> <font size="3"> <b>Track code changes</b> </td>
-    <td style="padding:5px"> <font size="3"> No </td>
-    <td style="padding:5px"> <font size="3"> Yes </td>
+        <td style="padding:5px"> <font size="3"> <b>Track code changes</b> </td>
+        <td style="padding:5px"> <font size="3"> No </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
     </tr>
 </table>
 
