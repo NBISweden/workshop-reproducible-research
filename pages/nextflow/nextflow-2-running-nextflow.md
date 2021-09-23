@@ -48,9 +48,17 @@ ID than above as the "final" one, *i.e.* the last one being handled by the
 different processes. This is because Nextflow (just like Snakemake) doesn't
 order the execution of the processes by default, so it happens randomly.
 
-You can find the results of the workflow in the `results/` directory, while the
-directories where each process is run is found in `work/`. If you want to
-examine a process more carefully, simply navigate to its directory, *e.g.*
+You can find the results of the workflow in the `results/` directory, with a
+directory structure specified in the workflow itself (we'll come to that in the
+next part of this tutorial).
+
+* Check what's inside the results directory by running `ls results/`.
+
+The directories you see should be familiar to you if you went through the
+Snakemake tutorial, as they are the same.
+
+You can find the work done by each process in the `work/` directory. If you want
+to examine a process more carefully, simply navigate to its directory, *e.g.*
 `work/` followed by the first part given in the list above, *e.g.* `87/32ce10`.
 
 * Let's check the results of the `RUN_MULTIQC` process! Move to the directory
@@ -96,6 +104,6 @@ entire DAG using `-with-dag <filename>.png`.
 > **Quick recap:** <br>
 > In this section we covered:
 >
-> - How to execute Nextflow workflows
+> - How to execute and examine the output of Nextflow workflows
 > - How to re-run only changed parts of workflows
 > - How to get execution reports, timelines and DAG visualisations

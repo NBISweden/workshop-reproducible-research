@@ -7,7 +7,7 @@ process GET_SRA_BY_ACCESSION {
     // accession number.
 
     tag "${sra_id}"
-    publishDir "${resultsdir}/data/",
+    publishDir "${resultsdir}/data/raw_internal",
         mode: "copy"
 
     input:
@@ -101,12 +101,12 @@ process RUN_FASTQC {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/qc",
-        mode: "copy",
-        pattern: "*.html"
-    publishDir "${resultsdir}/qc/intermediate",
-        mode: "copy",
-        pattern: "*.zip"
+    publishDir "${resultsdir}/results/",
+        pattern: "*.html",
+        mode: "copy"
+    publishDir "${resultsdir}/intermediate",
+        pattern: "*.zip",
+        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)

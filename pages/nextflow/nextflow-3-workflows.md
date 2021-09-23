@@ -1,7 +1,7 @@
 The most important file for any Nextflow workflow is the `main.nf` file, in
 which the workflow itself is written. You can view the Nextflow implementation
-of the MRSA pipeline in the `tutorials/nextflow/main.nf` file, through which we'll 
-go piece by piece in this tutorial. Let's start at the beginning!
+of the MRSA pipeline in the `tutorials/nextflow/main.nf` file, through which
+we'll go piece by piece in this tutorial. Let's start at the beginning!
 
 These are the first few lines of the file `main.nf`:
 

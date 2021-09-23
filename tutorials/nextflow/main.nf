@@ -49,7 +49,7 @@ process GET_SRA_BY_ACCESSION {
     // accession number.
 
     tag "${sra_id}"
-    publishDir "${resultsdir}/data/",
+    publishDir "${resultsdir}/data/raw_internal",
         mode: "copy"
 
     input:
@@ -76,12 +76,12 @@ process RUN_FASTQC {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/qc",
-        mode: "copy",
-        pattern: "*.html"
-    publishDir "${resultsdir}/qc/intermediate",
-        mode: "copy",
-        pattern: "*.zip"
+    publishDir "${resultsdir}/results/",
+        pattern: "*.html",
+        mode: "copy"
+    publishDir "${resultsdir}/intermediate",
+        pattern: "*.zip",
+        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
@@ -101,7 +101,11 @@ process RUN_MULTIQC {
 
     // Aggregate all FastQC reports into a MultiQC report.
 
-    publishDir "${resultsdir}/qc/",
+    publishDir "${resultsdir}/results",
+        pattern: "*.html",
+        mode: "copy"
+    publishDir "${resultsdir}/intermediate",
+        pattern: "*.txt",
         mode: "copy"
 
     input:
@@ -109,11 +113,12 @@ process RUN_MULTIQC {
 
     output:
     path("*.html"), emit: html
-    path("multiqc_data/multiqc_general_stats.txt"), emit: general_stats
+    path("multiqc_general_stats.txt"), emit: general_stats
 
     script:
     """
     multiqc -n multiqc.html .
+    mv multiqc_data/multiqc_general_stats.txt multiqc_general_stats.txt
     """
 }
 
@@ -121,7 +126,7 @@ process GET_GENOME_FASTA {
 
     // Retrieve the sequence in fasta format for a genome.
 
-    publishDir "${resultsdir}/idx/",
+    publishDir "${resultsdir}/data/raw_external",
         mode: "copy"
 
     output:
@@ -129,7 +134,7 @@ process GET_GENOME_FASTA {
 
     script:
     """
-    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
+    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O NCTC8325.fa.gz
     """
 }
 
@@ -137,7 +142,7 @@ process GET_GENOME_GFF3 {
 
     // Retrieve annotation in gff3 format for a genome.
 
-    publishDir "${resultsdir}/idx/",
+    publishDir "${resultsdir}/data/raw_external",
         mode: "copy"
 
     output:
@@ -145,7 +150,7 @@ process GET_GENOME_GFF3 {
 
     script:
     """
-    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz
+    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O NCTC8325.gff3.gz
     """
 }
 
@@ -153,7 +158,7 @@ process INDEX_GENOME {
 
     // Index a genome using Bowtie 2.
 
-    publishDir "${resultsdir}/idx/",
+    publishDir "${resultsdir}/intermediate/",
         mode: "copy"
 
     input:
@@ -175,6 +180,8 @@ process ALIGN_TO_GENOME {
     // Align a fastq file to a genome index using Bowtie 2.
 
     tag "${sample}"
+    publishDir "${resultsdir}/intermediate/",
+        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
@@ -194,7 +201,7 @@ process SORT_BAM {
     // Sort a bam file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/bam/",
+    publishDir "${resultsdir}/intermediate/",
         mode: "copy"
 
     input:
@@ -213,7 +220,7 @@ process GENERATE_COUNTS_TABLE {
 
     // Generate a count table using featureCounts.
 
-    publishDir "${resultsdir}/",
+    publishDir "${resultsdir}/results/tables",
         mode: "copy"
 
     input:
@@ -222,6 +229,7 @@ process GENERATE_COUNTS_TABLE {
 
     output:
     path("counts.tsv"), emit: counts
+    path("counts.tsv.summary"), emit: summary
 
     script:
     """
