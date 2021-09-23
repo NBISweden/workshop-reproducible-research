@@ -110,12 +110,24 @@ automatically keeps track of code changes for you.
 
 ## Reports and visualisations
 
-Nextflow can also automatically supply execution reports by running with the
-`-with-report` flag. This will give you the `report.html` file, containing
-various kinds of information regarding the execution, such as runtime,
-resource usage, and details about the different processes. Similarly, you can 
-also get a timeline report by using `-with-timeline` or a visualisation of the
-entire DAG using `-with-dag <filename>.png`.
+Nextflow has a number of reports and visualisations it can provide you
+automatically for any given pipeline you have. Let's have Nextflow create a few
+of them for us by executing the following command:
+
+```bash
+nextflow run main.nf -with-report -with-timeline -with-dag dag.png
+```
+
+After successful executing, you will find three more files in your current
+directory: `report.html`, `timeline.html` and `dag.png`. The first file contains
+a workflow report, which includes various information regarding execution such
+as runtime, resource usage and details about the different processes. The second
+file contains a timeline for how long each individual process took to execute,
+while the last contains a visualisation of the workflow itself.
+
+Take a few minutes to browse these files for yourself! When running a workflow
+you can of course choose which of these additional files you want to include by
+picking which ones are important or interesting to you - or don't include any!
 
 > **Quick recap:** <br>
 > In this section we covered:
