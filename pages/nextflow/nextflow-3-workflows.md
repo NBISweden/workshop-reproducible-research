@@ -13,10 +13,10 @@ nextflow.enable.dsl = 2
 resultsdir = "results/"
 ```
 
-The first part enables modular designs of Nextflow pipelines (more on this
-later), while the second simply defines where the workflow's results should end
-up. Double slashes (`//`) are used as comments in Nextflow. The next part
-defines the workflow itself:
+The first part enables more powerful functionality of Nextflow, including
+modular designs of pipelines (more on this later), while the second simply
+defines where the workflow's results should end up. Double slashes (`//`) are
+used as comments in Nextflow. The next part defines the workflow itself:
 
 ```groovy
 workflow {
@@ -75,16 +75,16 @@ params {
 
 > **Naming channels** <br>
 > Notice that we prepend our channel name with `ch_`, which is only done for
-> readability and easy of development; there is nothing at all that forces you
+> readability and ease of development; there is nothing at all that forces you
 > to follow this convention if you don't want to, but it's nice to be able to
 > see at a glance which variables are channels and which ones are not.
 
 The next part is the definition of the workflow itself. If you're used to
 functional programming you may notice that it looks very much like functions
 with arguments, which is the previously mentioned modularity of Nextflow. The
-first process is called `get_sra_by_accession` and it takes one input argument;
+first process is called `GET_SRA_BY_ACCESSION` and it takes one input argument:
 the previously defined `ch_sra_ids` input channel. Since we have three separate
-values in this channel, it means that the `get_sra_by_accession` process will
+values in this channel, it means that the `GET_SRA_BY_ACCESSION` process will
 be executed three times.
 
 > **Nextflow and whitespace** <br>
@@ -96,17 +96,17 @@ be executed three times.
 
 What follows are the remaining processes and their respective input arguments.
 You can see that we can take the output from one process and use it as the
-input for another. For example, the `run_fastqc` process uses the named
-`sra_data` output from the `get_sra_by_accession` process, which is done using
+input for another. For example, the `RUN_FASTQC` process uses the named
+`sra_data` output from the `GET_SRA_BY_ACCESSION` process, which is done using
 the `.out` call. Some processes have no input arguments (such as the
-`get_genome_fasta` process) while others use more than one input argument,
+`GET_GENOME_FASTA` process) while others use more than one input argument,
 which is defined in each process (just like how functions work).
 
 The only other thing that is used here is the `collect()` operator, which
-collects a channel's content into a single stream. The `run_multiqc` process
-uses this operator to collect all the output from the `run_fastqc` process; the
-`run_fastqc` process will thus be run three times (one for each sample), while
-the `run_multiqc` process will only be run once.
+collects a channel's content into a single stream. The `RUN_MULTIQC` process
+uses this operator to collect all the output from the `RUN_FASTQC` process; the
+`RUN_FASTQC` process will thus be run three times (one for each sample), while
+the `RUN_MULTIQC` process will only be run once.
 
 > **Quick recap:** <br>
 > In this section we covered:
