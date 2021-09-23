@@ -10,6 +10,57 @@ Here are some links to additional resources on Nextflow:
  * Common [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html)
  * Nextflow training at [Seqera](https://seqera.io/training/)
 
+## Using containers in Nextflow
+
+Nextflow has built-in support for using both Docker and Singularity containers,
+either with a single container the workflow as a whole or separate containers
+for each individual process. The simplest way to do it is to have a single
+container for your entire workflow, in which case you simply run the workflow
+and specify the image you want to use, like so:
+
+```bash
+# Run with docker
+nextflow run main.nf -with-docker [image]
+
+# Run with Singularity
+nextflow run main.nf -with-singularity [image].sif
+```
+
+If you don't want to supply this at every execution, you can also add it
+directly to your configuration file:
+
+```bash
+# Docker configuration
+process.container = 'image'
+docker.enabled = true
+
+# Singularity configuration
+process.container = 'path/to/image.sif'
+singularity.enabled = true
+```
+
+If you instead would like to have each process use a different container you can
+use the `container` directive in your processes:
+
+```groovy
+process PROCESS_01 {
+    (...)
+    container: 'image_02'
+    (...)
+}
+
+process PROCESS_02 {
+    (...)
+    container: 'image_01'
+    (...)
+}
+```
+
+Regardless of which solution you go for, Nextflow will execute all the processes
+inside the specified container. In practice, this means that Nextflow will
+automatically wrap your processes and run them by executing the Docker or
+Singularity command with the image you have provided.
+
 ## Running Nextflow on Uppmax
 
 A lot of researchers in Sweden are using the Uppmax computer cluster in Uppsala,
