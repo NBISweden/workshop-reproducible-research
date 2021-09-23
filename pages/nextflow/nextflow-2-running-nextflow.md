@@ -83,14 +83,30 @@ from here!
 
 ## Re-running workflows
 
-If you run the same command again, Nextflow will re-run the entire workflow
-from scratch. This is an important difference to Snakemake, which only re-runs
-those parts of the workflow that have changed. This behaviour exists in
-Nextflow as well through the `-resume` flag. Nextflow does, however, not only
-keep track of changed inputs and outputs, but also processes and parameters.
-This means you don't have to run with a specific flag and target if you changed
-a process (like `-R <rule>` in Snakemake), but just re-run with `-resume` and
-Nextflow will take care of the rest.
+Just like in Snakemake, something you often want to do in Nextflow is to re-run
+the workflow when you changed some input files or some of the code for its
+analyses, but you don't want to re-run the entire workflow from start to finish.
+Let's find out how this works in Nextflow!
+
+* Run the same `nextflow run main.nf` command again.
+
+What happened here? Nextflow actually re-ran the entire workflow from scratch,
+even though we didn't change anything. This is the default behaviour of
+Nextflow.
+
+* Let's try that again: run `nextflow run main.nf -resume` instead.
+
+Now you can see that Nextflow didn't actually re-run anything, but used the
+cached results from the previous run by supplying the `-resume` flag to the
+command!
+
+As mentioned in the introduction, how Nextflow re-runs its processes is
+slightly different than Snakemake, in that Snakemake only checks if the inputs
+are newer than the outputs, whereas Nextflow also checks if any of the code or
+scripts have changed. This means that when you change the `script` section of a
+Snakemake rule (or an external script it calls) you need to run with the `-R
+<rule>` flag in order to re-run with the new changes, whereas Nextflow
+automatically keeps track of code changes for you.
 
 ## Reports and visualisations
 
