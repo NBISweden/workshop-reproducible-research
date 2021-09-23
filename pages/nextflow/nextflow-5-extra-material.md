@@ -61,6 +61,39 @@ inside the specified container. In practice, this means that Nextflow will
 automatically wrap your processes and run them by executing the Docker or
 Singularity command with the image you have provided.
 
+## Using Conda in Nextflow
+
+While you can execute Nextflow inside Conda environments just like you would any
+other type of software, you can also use Conda with Nextflow in the same way as
+for Docker and Singularity above. You can either supply an `environment.yml`
+file, the path to a existing environment or the packages and their versions
+directly in the `conda` directive, like so:
+
+```groovy
+process PROCESS_01 {
+    (...)
+    conda: 'mrsa-environment.yml'
+    (...)
+}
+process PROCESS_02 {
+    (...)
+    conda: 'path/to/mrsa-env'
+    (...)
+}
+process PROCESS_03 {
+    (...)
+    conda: 'bioconda::bwa=0.7.17 bioconda::samtools=1.13'
+    (...)
+}
+```
+
+You can use either of the methods described above with your configuration file
+as well, here exemplified using an `environment.yml` file:
+
+```groovy
+process.conda = 'mrsa-environment.yml'
+```
+
 ## Running Nextflow on Uppmax
 
 A lot of researchers in Sweden are using the Uppmax computer cluster in Uppsala,
