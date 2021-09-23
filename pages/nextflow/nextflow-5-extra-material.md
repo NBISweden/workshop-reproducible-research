@@ -148,9 +148,10 @@ process index_fasta {
 Here we have some command `index` that, for whatever reason, requires both the
 path to a FASTA file as well as the name of that file *without* the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
-bash: we can mix and match as we like. The first line of the `script` directive
-gets the name of the FASTA file without the extension by removing anything after
-the dot, while the second calls the `index` command like normal using bash.
+Bash, mixing and matching as we like. The first line of the `script` directive
+gets the name of the FASTA file without the extension by removing anything
+after the dot, while the second calls the `index` command like normal using
+bash.
 
 ## The nf-core pipeline collection
 
