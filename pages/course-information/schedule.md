@@ -1,5 +1,3 @@
-The course will follow the approximate schedule below:
-
 <h1> Day 1 </h1>
 <table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
@@ -275,3 +273,5 @@ The course will follow the approximate schedule below:
         <td style="padding:5px"> <font size="3"> </td>
     </tr>
 </table>
+
+The course schedule is approximate; variations may occur.
