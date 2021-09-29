@@ -57,6 +57,7 @@
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
 </table>
+
 <h1> Day 2 </h1>
 <table class="table table-hover table-condensed" border=1; style="width:800px;">
     </tr>
@@ -117,6 +118,7 @@
         <td style="padding:5px"> <font size="3"> VK </td>
     </tr>
 </table>
+
 <h1> Day 3 </h1>
 <table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
@@ -170,6 +172,7 @@
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
 </table>
+
 <h1> Day 4 </h1>
 <table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
@@ -223,6 +226,7 @@
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
 </table>
+
 <h1> Day 5 </h1>
 <table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
