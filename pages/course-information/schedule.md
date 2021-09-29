@@ -274,4 +274,19 @@
     </tr>
 </table>
 
-The course schedule is approximate; variations may occur.
+The above schedule is approximate; variations may occur.
+
+<table>
+    <tr>
+        <td style="width:30px"> <b> EF </b> </td>
+        <td> Erik Fasterius </td>
+    </tr>
+    <tr>
+        <td> <b> VK </b> </td>
+        <td> Verena Kutschera </td>
+    </tr>
+    <tr>
+        <td> <b> JS </b> </td>
+        <td> John Sundh </td>
+    </tr>
+</table>
