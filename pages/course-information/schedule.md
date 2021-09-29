@@ -1,14 +1,12 @@
 The course will follow the approximate schedule below:
 
+<h1> Day 1 </h1>
 <table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
         <tr>
-            <td style="padding:5px" colspan="3"> <center><h2> Day 1 </h2></center> </td>
-        </tr>
-        <tr>
-            <td style="padding:5px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
+            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
+            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -60,15 +58,15 @@ The course will follow the approximate schedule below:
         <td style="padding:5px"> <font size="3"> Wrap-up day 1 </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
+</table>
+<h1> Day 2 </h1>
+<table class="table table-hover table-condensed" border=1; style="width:800px;">
     </tr>
     <thead style="background-color:#DAE7F1">
         <tr>
-                <td style="padding:5px" colspan="3"> <center><h2> Day 2 </h2></center> </td>
-        </tr>
-        <tr>
-            <td style="padding:5px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
+            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
+            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -120,14 +118,14 @@ The course will follow the approximate schedule below:
         <td style="padding:5px"> <font size="3"> Wrap-up day 2 </td>
         <td style="padding:5px"> <font size="3"> VK </td>
     </tr>
+</table>
+<h1> Day 3 </h1>
+<table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
         <tr>
-            <td style="padding:5px" colspan="3"> <center><h2> Day 3 </h2></center> </td>
-        </tr>
-        <tr>
-            <td style="padding:5px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
+            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
+            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -173,14 +171,14 @@ The course will follow the approximate schedule below:
         <td style="padding:5px"> <font size="3"> Wrap-up day 3 </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
+</table>
+<h1> Day 4 </h1>
+<table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
         <tr>
-            <td style="padding:5px" colspan="3"> <center><h2> Day 4 </h2></center> </td>
-        </tr>
-        <tr>
-            <td style="padding:5px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
+            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
+            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -226,14 +224,14 @@ The course will follow the approximate schedule below:
         <td style="padding:5px"> <font size="3"> Wrap-up day 4 </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
+</table>
+<h1> Day 5 </h1>
+<table class="table table-hover table-condensed" border=1; style="width:800px;">
     <thead style="background-color:#DAE7F1">
         <tr>
-            <td style="padding:5px" colspan="3"> <center><h2> Day 5 </h2></center> </td>
-        </tr>
-        <tr>
-            <td style="padding:5px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
+            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
+            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -274,5 +272,6 @@ The course will follow the approximate schedule below:
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> End of the course! </td>
+        <td style="padding:5px"> <font size="3"> </td>
     </tr>
 </table>
