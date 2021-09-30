@@ -34,7 +34,7 @@ fi
 # General parameters
 API="https://uppsala.instructure.com/api/v1/courses"
 PAGE=$(basename $MARKDOWN | sed 's|.md||g')
-HTML=$(basename $MARKDOWN | sed 's|.md|.html|g')
+HTML=$(basename $MARKDOWN | sed 's|.md|.html/g')
 
 # Get current branch and build GitHub address
 BRANCH=$(git branch | sed -n -e 's|^\* \(.*\)|\1|p')
