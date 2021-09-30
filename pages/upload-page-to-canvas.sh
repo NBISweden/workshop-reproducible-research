@@ -38,6 +38,8 @@ HTML=$(basename $MARKDOWN | sed 's|.md|.html|g')
 
 # Get current branch and build GitHub address
 BRANCH=$(git branch | sed -n -e 's|^\* \(.*\)|\1|p')
+git branch
+echo "$BRANCH"
 GITHUB="https:\/\/raw\.githubusercontent\.com\/NBISweden\/workshop-reproducible-research\/$BRANCH\/pages\/"
 
 # Get the appropriate course ID from the current branch
