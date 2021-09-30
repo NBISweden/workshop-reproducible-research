@@ -11,7 +11,6 @@ lectures/*/*/remark-css-0.0.1/default.css
 lectures/*/*/header-attrs-2.3/header-attrs.js
 
 # Various
-nextflow/work
 .snakemake
 .DS_Store
 
@@ -19,9 +18,10 @@ nextflow/work
 jupyter/report.html
 jupyter/summary.txt
 jupyter/.ipynb_checkpoints
-*/data
-*/intermediate
-*/results
+**/data
+**/intermediate
+**/results
+**/work
 rmarkdown/.R*
 rmarkdown/*html
 rmarkdown/*Rproj

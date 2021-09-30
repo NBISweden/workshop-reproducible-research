@@ -27,9 +27,9 @@ class: center, middle
 
 # R Markdown connects code with results
 
-<center>
 <br><br><br>
-<img src="../common-figures/reproducibility-overview.png" width=60%/>
+<center>
+<img src="../../pages/images/reproducibility_overview.png" width=60%/>
 </center>
 
 ---

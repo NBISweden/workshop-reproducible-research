@@ -296,3 +296,12 @@ trying out and showing existing notebooks rather than making new ones.
 > student, we encourage you to embrace this new development
 > wholeheartedly, for it will make your research better and make you into
 > a better scientist. And you will have more fun.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How notebooks can be used to generate summary statistics and plots using the 
+> results of a workflow run
+> - How to share notebooks via [nbviewer](https://nbviewer.jupyter.org) and 
+> [Binder](https://mybinder.org) 
+

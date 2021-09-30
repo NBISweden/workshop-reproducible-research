@@ -8,9 +8,91 @@ Here are some links to additional resources on Nextflow:
  * The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
  * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
  * Common [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html)
- * The [nf-core](https://nf-co.re/) pipeline collection
  * Nextflow training at [Seqera](https://seqera.io/training/)
 
+## Using containers in Nextflow
+
+Nextflow has built-in support for using both Docker and Singularity containers,
+either with a single container the workflow as a whole or separate containers
+for each individual process. The simplest way to do it is to have a single
+container for your entire workflow, in which case you simply run the workflow
+and specify the image you want to use, like so:
+
+```bash
+# Run with docker
+nextflow run main.nf -with-docker [image]
+
+# Run with Singularity
+nextflow run main.nf -with-singularity [image].sif
+```
+
+If you don't want to supply this at every execution, you can also add it
+directly to your configuration file:
+
+```bash
+# Docker configuration
+process.container = 'image'
+docker.enabled = true
+
+# Singularity configuration
+process.container = 'path/to/image.sif'
+singularity.enabled = true
+```
+
+If you instead would like to have each process use a different container you can
+use the `container` directive in your processes:
+
+```groovy
+process PROCESS_01 {
+    (...)
+    container: 'image_02'
+    (...)
+}
+
+process PROCESS_02 {
+    (...)
+    container: 'image_01'
+    (...)
+}
+```
+
+Regardless of which solution you go for, Nextflow will execute all the processes
+inside the specified container. In practice, this means that Nextflow will
+automatically wrap your processes and run them by executing the Docker or
+Singularity command with the image you have provided.
+
+## Using Conda in Nextflow
+
+While you can execute Nextflow inside Conda environments just like you would any
+other type of software, you can also use Conda with Nextflow in the same way as
+for Docker and Singularity above. You can either supply an `environment.yml`
+file, the path to a existing environment or the packages and their versions
+directly in the `conda` directive, like so:
+
+```groovy
+process PROCESS_01 {
+    (...)
+    conda: 'mrsa-environment.yml'
+    (...)
+}
+process PROCESS_02 {
+    (...)
+    conda: 'path/to/mrsa-env'
+    (...)
+}
+process PROCESS_03 {
+    (...)
+    conda: 'bioconda::bwa=0.7.17 bioconda::samtools=1.13'
+    (...)
+}
+```
+
+You can use either of the methods described above with your configuration file
+as well, here exemplified using an `environment.yml` file:
+
+```groovy
+process.conda = 'mrsa-environment.yml'
+```
 
 ## Running Nextflow on Uppmax
 
@@ -24,14 +106,14 @@ profiles {
     // Uppmax general profile
     uppmax {
         process {
-            executor = 'slurm'
-            clusterOptions = { '-A "account"' }
-            memory = { 6.GB * task.attempt }
-            cpus = { 1 * task.attempt }
-            time = { 10.h * task.attempt }
-            scratch = '$SNIC_TMP'
+            executor       = 'slurm'
+            clusterOptions = '-A "account"'
+            memory         = { 6.GB * task.attempt }
+            cpus           = { 1 * task.attempt }
+            time           = { 10.h * task.attempt }
+            scratch        = '$SNIC_TMP'
             errorStrategy  = 'retry'
-            maxRetries = 1
+            maxRetries     = 1
         }
     }
 }
@@ -48,16 +130,16 @@ locally.
 
 ## Advanced channel creation
 
-The input data shown in the MRSA example workflow is quite simple, but Nextflow
-channels can do much more than that. A common scenario in high-throughput
-sequencing is that you have pairs of reads for each sample. Nextflow has a
-special, built-in way to create channels for this data type: the `fromFilePairs`
-channel factory:
+The input data shown in the MRSA example workflow is not that complex, but
+Nextflow channels can do much more than that. A common scenario in
+high-throughput sequencing is that you have pairs of reads for each sample.
+Nextflow has a special, built-in way to create channels for this data type: the
+`fromFilePairs` channel factory:
 
 ```groovy
 Channel
-    .fromFilePairs( "data/*_R{1,2}.fastq.gz" )
-    .set( raw_reads )
+    .fromFilePairs ( "data/*_R{1,2}.fastq.gz" )
+    .set           { ch_raw_reads }
 ```
 
 This will create a channel containing all the reads in the `data/` directory in
@@ -68,9 +150,9 @@ together into a nested tuple looking like this:
 [sample, [data/sample_R1.fastq.gz, data/sample_R2.fastq.gz]]
 ```
 
-The first index of the tuple (`[0]`) thus contains the value `sample`, while the
-second index (`[1]`) contains another tuple with paths to both read files. This
-nested tuple can easily be passed into processes for *e.g.* read alignment, and
+The first index of the tuple (`[0]`) thus contains the value `sample`, while
+the second index (`[1]`) contains another tuple with paths to both read files.
+This nested tuple can be passed into processes for *e.g.* read alignment, and
 it makes the entire procedure of going from read pairs (*i.e.* two separate
 files, one sample) into a single alignment file (one file, one sample) very
 simple.
@@ -79,12 +161,12 @@ We can also do quite advanced things when creating channels, such as this:
 
 ```groovy
 Channel
-    .fromPath( params.metadata )
-    .splitCsv( sep: "\t", header: true )
-    .map{ row -> tuple("${row.sample_id}", "${row.treatment}") }
-    .filter{ it[1] != "DMSO" }
-    .unique()
-    .set { samples_and_treatments }
+    .fromPath ( params.metadata )
+    .splitCsv ( sep: "\t", header: true )
+    .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }
+    .filter   { it[1] != "DMSO" }
+    .unique   (  )
+    .set      { samples_and_treatments }
 ```
 
 That's a bit of a handful! But what does it do? The first line specifies that we
@@ -137,7 +219,7 @@ process index_fasta {
     tuple val(fasta), path(fasta_file)
 
     output:
-    path("${fasta_name}.idx")
+    path("${fasta_name}.idx"), emit: fasta
 
     script:
     fasta_name = fasta.substring(0, fasta.lastIndexOf("."))
@@ -150,6 +232,36 @@ process index_fasta {
 Here we have some command `index` that, for whatever reason, requires both the
 path to a FASTA file as well as the name of that file *without* the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
-bash: we can mix and match as we like. The first line of the `script` directive
-gets the name of the FASTA file without the extension by removing anything after
-the dot, while the second calls the `index` command like normal using bash.
+Bash, mixing and matching as we like. The first line of the `script` directive
+gets the name of the FASTA file without the extension by removing anything
+after the dot, while the second calls the `index` command like normal using
+bash.
+
+## The nf-core pipeline collection
+
+You may have heard of the [nf-core](https://nf-co.re/) pipeline collection
+previously, which is a large, collaborative bioinformatics community dedicated
+to building, developing and maintaining Nextflow workflows. In fact, if you have
+sequenced data at *e.g.* the National Genomics Infrastructure ([NGI](https://ngisweden.scilifelab.se/)),
+you can be sure that the data processing has been run using one of the nf-core
+pipelines! While the community only started in 2018 (with a [Nature Biotechnology](https://www.nature.com/articles/s41587-020-0439-x)
+paper in 2020), it already has over 30 production-ready pipelines with
+everything from genomics, transcriptomics, proteomics and metagenomics - and
+more being developed all the time.
+
+The nf-core pipelines all work in the same way, in that they have the same exact
+base for inputs, parameters and arguments, making them all highly similar to
+run. Since you've already learnt the basics of Nextflow in this course, you
+should now be able to also run the nf-core pipelines! It might be that you have
+a data type that you can analyse using one of the pipelines in nf-core, meaning
+you don't need to do anything other than find out what parameters you should run
+it with.
+
+Each pipeline comes with extensive documentation, test datasets that you can
+use to practice on, can be run on both HPCs like Uppmax, cloud services like
+AWS or locally on your own computer. All pipelines support both Conda and
+Docker/Singularity, and you can additionally run specific versions of the
+pipelines, allowing for full reproducibility of your analyses. If you want to
+check nf-core out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
+and see what's available! Who knows, you might even write your own nf-core
+pipeline in the future?

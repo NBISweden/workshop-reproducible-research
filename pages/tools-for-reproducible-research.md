@@ -96,12 +96,14 @@ Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
 
 You can find the course schedule at [this page](https://uppsala.instructure.com/courses/COURSE_ID/pages/schedule).
 
-# Travel information
+# Location
 
-This course round is given using Zoom, so there will be no need for travel or
-accommodations at this time.
+This course round is given using [Zoom](https://zoom.us), so there will be no
+need for travel or accommodations at this time. you can find the link to the
+course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics)
+section.
 
-# Pre-course material
+# Course material
 
 The [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
 page lists all the information you need before the course starts. The most
@@ -111,13 +113,10 @@ find the tutorials themselves (*i.e.* the content we will go through during the
 course) in the [modules](https://uppsala.instructure.com/courses/COURSE_ID/modules)
 page.
 
-# Lectures
-
 All of the lectures used in this course is available at the [lecture page](https://uppsala.instructure.com/courses/COURSE_ID/pages/lectures),
 while the source code used to create the lectures is available under the
 [lectures/](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
 directory on GitHub.
-
 
 # Teachers
 
@@ -125,3 +124,7 @@ directory on GitHub.
 * Verena Kutschera (course responsible)
 * Erik Fasterius (course responsible)
 * Tomas Larsson (teacher)
+
+# Contact
+
+To contact us, please send a mail to the follow address: [edu.trr@nbis.se](mailto:edu.trr@nbis.se).
