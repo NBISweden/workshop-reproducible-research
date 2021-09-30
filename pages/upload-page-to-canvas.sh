@@ -38,7 +38,7 @@ HTML=$(basename $MARKDOWN | sed 's|.md|.html|g')
 
 # Get current branch and build GitHub address
 BRANCH=$(git branch | sed -n -e 's|^\* \(.*\)|\1|p')
-GITHUB="https:\/\/raw\.githubusercontent\.com\/NBISweden\/workshop-reproducible-research\/$BRANCH\/pages\/"
+GITHUB="https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/$BRANCH/pages/"
 
 # Get the appropriate course ID from the current branch
 # (set to devel ID on feature branches for easier testing)
@@ -56,7 +56,7 @@ docker run --rm \
 
 # Add images from GitHub and course ID for links
 cat "$HTML" \
-    | sed "s|\(src=\"\)\(images\/\)|\1$GITHUB\2|g" \
+    | sed "s|\(src=\"\)\(images/\)|\1$GITHUB\2|g" \
     | sed "s|COURSE_ID|$COURSE_ID|g" \
     | sed "s|GITHUB_BRANCH|$BRANCH|g" \
     > tmp.html
