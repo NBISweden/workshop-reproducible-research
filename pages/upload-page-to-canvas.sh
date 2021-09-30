@@ -48,6 +48,7 @@ if [ "$COURSE_ID" == "" ]; then
 fi
 
 # Convert using Pandoc
+echo "Rendering $MARKDOWN ..."
 docker run --rm \
     --volume "`pwd`:/data" \
     --user `id -u`:`id -g` \

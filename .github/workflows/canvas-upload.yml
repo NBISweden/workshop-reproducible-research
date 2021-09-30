@@ -32,5 +32,6 @@ jobs:
       run: |
         for file in $(find pages -name '*.md');
         do
+          echo "$file"
           bash pages/upload-page-to-canvas.sh "$file" "$API_TOKEN"
         done
