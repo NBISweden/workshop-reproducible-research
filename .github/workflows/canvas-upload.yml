@@ -9,6 +9,7 @@ on:
     paths:
       - 'pages/*.md'
       - 'pages/*/*.md'
+      - 'pages/upload-page-to-canvas.sh'
     branches:
       - main
       - devel
