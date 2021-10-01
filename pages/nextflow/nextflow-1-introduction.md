@@ -86,7 +86,7 @@ to care about are the final output file paths.
 Snakemake uses a "pull"-**philosophy** similar to its inspiring predecessor
 [make](https://www.gnu.org/software/make/), meaning that you define a number of
 rules with inputs and outputs and then ask for the specific result you want,
-*i.e.* the final output files (usually defined in a `all` rule). Snakemake will
+*i.e.* the final output files (usually defined in an `all` rule). Snakemake will
 work backwards from the final outputs you desired and find whatever combination
 of inputs and rules it needs to give them to you. This means that you always
 know exactly which files are going to be created and manipulated in all steps of
@@ -95,7 +95,11 @@ works in the opposite way, *i.e.* with a "push"-philosophy: you define a number
 of processes with inputs and outputs, and then give the first inputs to
 Nextflow. It will run the first process using those inputs, pass them to the
 second process, then the third, and so on until it reaches the final outputs of
-the workflow.
+the workflow. This means you don't to define file paths to each process'
+input/output definitions like you do in Snakemake, only which files you want in
+the end. This can potentially remove some of the pitfalls and issues sometimes
+seen with *e.g.* wildcards in Snakemake, but it also front-loads some of the
+complexity to channel creation instead.
 
 The above means means that Nextflow doesn't actually know exactly which files
 are going to be created and manipulated during a run, which is both good and

@@ -66,15 +66,16 @@ to examine a process more carefully, simply navigate to its directory, *e.g.*
   the files using `ls -l`.
 
 You should see a number of things: the `multiqc.html` report, a `multiqc_data`
-directory and three symbolic links to files ending in `.zip`. Why are some files
-symbolic links, rather than normal files? This is because Nextflow runs each
-process in its own directory, using symbolic links for files coming from
-previously run processes. Think about the `RUN_MULTIQC` process: it takes the
-output from the `RUN_FASTQ` process (*i.e.* the compressed files) and runs the
-MultiQC software on them. The HTML report and the data directory are outputs of
-the `RUN_MULTIQC` process, so they are created here. If there was any downstream
-process that would use any of these files, they would be symbolically linked
-from here!
+directory and three symbolic links to files ending in `.zip`. Why are some
+files symbolic links, rather than normal files? This is because Nextflow runs
+each process in its own directory, using symbolic links for files coming from
+previously run processes. Let's think about the `RUN_MULTIQC` process: we
+haven't actually looked in detail at any process yet, but a spoiler is that it
+takes the output from the `RUN_FASTQ` process (*i.e.* the compressed files) and
+runs the MultiQC software on them. The HTML report and the data directory are
+outputs of the `RUN_MULTIQC` process, so they are created here. If there was
+any downstream process that would use any of these files, they would be
+symbolically linked from here!
 
 > **Nextflow logs** <br>
 > If you want to view the logs you can use `nextflow log <run name>` or look in

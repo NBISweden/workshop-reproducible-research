@@ -121,12 +121,19 @@ profiles {
 
 This will add a profile to your workflow, which you can access by running the
 workflow with `-profile uppmax`. You will have to edit the `"account"` part of
-the code above to correspond to your project account, but the rest you can leave
-as-is, unless you want to tinker with *e.g.* compute resource specifications. 
-That's all you need! Nextflow will take care of communications with SLURM (the 
-system used by Uppmax) and will send off jobs to the cluster for you, and 
-everything will look exactly the same way as if you were executing the pipeline 
-locally.
+the code above to correspond to your project account, but the rest you can
+leave as-is, unless you want to tinker with *e.g.* compute resource
+specifications. That's all you need! Nextflow will take care of communications
+with SLURM (the system used by Uppmax, specified by the `executor` line) and
+will send off jobs to the cluster for you, and everything will look exactly the
+same way as if you were executing the pipeline locally.
+
+The `memory`, `cpus` and `time` lines define the various resources Nextflow will
+use as well as how much to automatically increase them by if re-trying failed
+tasks; this, in turn, is specified by the `errorStrategy` and `maxRetries`
+variables. The `scratch` variable defines where each node's local storage is
+situated, which gives Nextflow the most optimal access to the Uppmax file system
+for temporary files.
 
 ## Advanced channel creation
 
