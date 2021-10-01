@@ -16,7 +16,19 @@ resultsdir = "results/"
 The first part enables more powerful functionality of Nextflow, including
 modular designs of pipelines (more on this later), while the second simply
 defines where the workflow's results should end up. Double slashes (`//`) are
-used as comments in Nextflow. The next part defines the workflow itself:
+used as comments in Nextflow. Let's see how we can change the final output
+directory of Nextflow!
+
+* Change the second line above to read `resultsdir = "new-results/"` instead and
+  re-run the workflow with `nextflow run main.nf -resume`.
+
+You should now see that we have a `new-results` directory containing all the
+workflow's results, identical to the previous ones, and Nextflow didn't even
+have to re-run anything! That's because Nextflow runs each process in its own
+directory inside `work/`, as previously mentioned, so all it needs to do is to
+put the final results in the `new-results/` directory instead.
+
+The next part defines the workflow itself:
 
 ```groovy
 workflow {
