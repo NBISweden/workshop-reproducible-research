@@ -37,6 +37,10 @@ them from top to bottom.
 
 ### Tags
 
+```groovy
+tag "${sra_id}"
+```
+
 The `tag` directive defines what should be shown during the execution of the
 process as it is run, *i.e.* the SRA ID in this case. This is useful for
 viewing the currently running tag (*i.e.* sample) for any given process at a
@@ -46,6 +50,11 @@ glance.
   pay extra attention to how the tags for the processes change.
 
 ### Publishing results
+
+```groovy
+publishDir "${resultsdir}/data/raw_internal",
+        mode: "copy"
+```
 
 The `publishDir` directive is used to define where the process' outputs should
 be placed, which is called "publishing" in this context. Remember that Nextflow
@@ -69,6 +78,11 @@ as for when we changed the `resultsdir` variable in the previous tutorial.
 
 ### Inputs
 
+```groovy
+input:
+val(sra_id)
+```
+
 Next comes the `input` directive. We first specify that the input is a value
 using `val()`, since it's coming from the `ch_sra_ids` channel we previously
 defined, and we name the input variable `sra_id`. The input for this particular
@@ -76,6 +90,11 @@ process is not that complex, but we'll look at something more complicated in a
 little while.
 
 ### Outputs
+
+```groovy
+output:
+tuple val(sra_id), path("${sra_id}.fastq.gz"), emit: sra_data
+```
 
 Then comes the `output` directive, which is defined as a `tuple`, *i.e.* having
 more than one entry. The output of this process is a combination of the
@@ -97,6 +116,20 @@ input.
 > for all processes and outputs in this material for clarity and consistency.
 
 ### Code and scripts
+
+```groovy
+script:
+"""
+fastq-dump ${sra_id} \
+    -X 25000 \
+    --readids \
+    --dumpbase \
+    --skip-technical \
+    --gzip \
+    -Z \
+    > ${sra_id}.fastq.gz
+"""
+```
 
 The last part of the process is the `script` directive, which works in the same
 way as for Snakemake: you either write something in bash itself or call some
