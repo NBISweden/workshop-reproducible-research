@@ -64,7 +64,8 @@ Notice that Nextflow didn't actually re-run a single process, even though we
 changed the `publishDir` directive? This is because we didn't actually change
 any functional code, just where the results should be published - Nextflow keeps
 track of this difference, so if we want to change to structure of our results
-directory that's easily done without having to re-run anything!
+directory that's easily done without having to re-run anything! This is the same
+as for when we changed the `resultsdir` variable in the previous tutorial.
 
 ### Inputs
 
