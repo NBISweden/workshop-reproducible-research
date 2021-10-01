@@ -105,9 +105,10 @@ entire output tuple to any downstream process that uses them.
 
 The `emit` directive is used to name the output for use in downstream processes:
 for example, another process might be called in the workflow definition like
-this: `DOWNSTREAM_PROCESS(GET_SRA_BY_ACCESSION.out.sra_data)`, which will then
+this: `RUN_FASTQC(GET_SRA_BY_ACCESSION.out.sra_data)`, which will then
 use the specific `sra_data` output of the `GET_SRA_BY_ACCESSION` process as
-input.
+input. To see more examples of this, look in the workflow definition at the top
+of the file (or the previous tutorial about workflows).
 
 > **Note** <br>
 > If a process only has a single output you can skip using the `emit` directive,
