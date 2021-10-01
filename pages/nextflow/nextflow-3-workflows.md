@@ -120,9 +120,50 @@ uses this operator to collect all the output from the `RUN_FASTQC` process; the
 `RUN_FASTQC` process will thus be run three times (one for each sample), while
 the `RUN_MULTIQC` process will only be run once.
 
+* Let's write a workflow of our own, using the already existing processes! Copy
+  the following paragraph into the bottom of the `main.nf` file:
+
+```groovy
+workflow MULTIQC {
+
+    // Workflow for running FastQC and MultiQC on MRSA data
+
+    // Define SRA input data channel
+    Channel
+        .fromList ( params.sra_id_list )
+        .set      { ch_sra_ids }
+
+    // Define the workflow up until the MultiQC process
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out.sra_data
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.zip.collect()
+    )
+}
+```
+
+Notice that it's exactly the same as the whole workflow above, except we only
+kept the processes up until running MultiQC. We also named the workflow
+`MULTIQC`, instead of having no name as above. The unnamed workflow is
+considered the "main" workflow and is executed by default, but we can run any
+other workflow using the `-entry <WORKFLOW>` flag.
+
+* Delete the previous results with `rm -r results/` and then run the new
+  workflow by executing `nextflow run main.nf -entry MULTIQC`.
+
+You should now see that only the processes defined in our MULTIQC workflow were
+executed. You may thus use this kind of structure to define sub-workflows that
+run only part of your analyses and subsequently string them together in whatever
+order you desire.
+
 > **Quick recap:** <br>
 > In this section we covered:
 >
 > - Defining channels for input data
 > - Defining parameters in a separate configuration file
 > - Defining workflows as groups of function-like processes with arguments
+> - Creating and executing sub-workflows
