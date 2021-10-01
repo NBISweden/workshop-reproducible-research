@@ -86,7 +86,7 @@ to care about are the final output file paths.
 Snakemake uses a "pull"-**philosophy** similar to its inspiring predecessor
 [make](https://www.gnu.org/software/make/), meaning that you define a number of
 rules with inputs and outputs and then ask for the specific result you want,
-*i.e.* the final output files (usually defined in a `all` rule). Snakemake will
+*i.e.* the final output files (usually defined in an `all` rule). Snakemake will
 work backwards from the final outputs you desired and find whatever combination
 of inputs and rules it needs to give them to you. This means that you always
 know exactly which files are going to be created and manipulated in all steps of
