@@ -72,10 +72,28 @@ image that you want to use on an HPC cluster such as Uppmax where you cannot use
 Docker. 
 
 Let's try to convert the Docker image for this course directly from DockerHub 
-using Singularity:
+using `singularity build`. 
+
+Now, depending on the system you are running on and the version of Singularity, 
+you may not have the option to build locally. However, Singularity has the 
+option to build images remotely. To do this, you need to:
+
+* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and 
+  create an account
+* Log in and find "Access Tokens" in the menu and create a new token
+* Copy the token
+* In your terminal, run `singularity remote login` and hit ENTER. You should be
+  asked to enter the token (API Key). Paste the copied token and hit ENTER. 
+  You should get a **API Key Verified!** message.
+
+> **Attention!** <br>
+> In case you are not asked to enter the API Key, you can try to run 
+> `singularity remote login SylabsCloud` instead.
+
+We can now try to build the MRSA Singularity image using the `--remote` flag:
 
 ```bash
-singularity pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
+singularity build --remote mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
 ```
 
 This should result in a file called `mrsa_proj.sif`. 
