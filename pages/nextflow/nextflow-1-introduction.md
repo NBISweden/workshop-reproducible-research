@@ -4,57 +4,120 @@ academic community. While Nextflow is based on the Groovy language, you don't
 need to know how to code Groovy to be able to write good Nextflow workflows,
 just like you don't need to know Python to write good Snakemake workflows.
 
-Nextflow is built from the ground-up to be portable, scalable, reproducible
-and usable in a platform-agnostic sense. This means that any pipeline you write
-in Nextflow can easily be run locally on your laptop, a computer cluster or
-a cloud service. You can also define the compute environment in which each task is
+Nextflow is built from the ground-up to be portable, scalable, reproducible and
+usable in a platform-agnostic sense. This means that any pipeline you write in
+Nextflow can be run locally on your laptop, a computer cluster or a cloud
+service. You can also define the compute environment in which each task is
 carried out, just like in Snakemake. Nextflow has a large community centered
-around it, including the [nf-core](https://nf-co.re/) curated collection of high
-quality pipelines used by *e.g.* the [National Genomics Infrastructure](https://ngisweden.scilifelab.se/).
+around it, including the [nf-core](https://nf-co.re/) curated collection of
+high quality pipelines used by *e.g.* the [National Genomics Infrastructure](https://ngisweden.scilifelab.se/).
 
 ## Differences between Nextflow and Snakemake
 
-There are some major differences in the philosophies behind Nextflow and
-Snakemake. First of all, everything in Snakemake is based on files, while Nextflow 
-uses data streams called *channels*. These channels allow you to not only work on
-files, but also on variables and other metadata. A common use of this is to work on
-a file containing data from a sample along with a variable containing its sample 
-name, which simplifies a lot of the coding. The flexibility of channels allows you 
-to do many different things in powerful ways, but a downside is that they can be
-complicated when you start working with them.
+There are several major differences between Snakemake and Nextflow, both in how
+they work and in their underlying philosophies, summarised by the following
+table:
 
-Snakemake uses a "pull"-philosophy similar to its inspiring predecessor
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
+        <td style="padding:5px"> <font size="3"> Working directory </td>
+        <td style="padding:5px"> <font size="3"> Each job in its own directory </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Philosophy</b> </td>
+        <td style="padding:5px"> <font size="3"> "Pull" </td>
+        <td style="padding:5px"> <font size="3"> "Push" </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Dry runs</b>  </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
+        <td style="padding:5px"> <font size="3"> No </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Track code changes</b> </td>
+        <td style="padding:5px"> <font size="3"> No </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
+    </tr>
+</table>
+
+Starting from the top with the most obvious and perhaps superficial difference:
+**language**. Snakemake is, as you know, based on Python, whereas Nextflow is
+based on Groovy (which is a superset of the Java language). You don't need to
+know Groovy to be able to use Nextflow, though, just as you don't really need to
+know Python to use Snakemake.
+
+Moving on to **data**: everything in Snakemake is a file, whereas Nextflow works
+on both files and arbitrary values and variables, stored in so-called
+*channels*. Channels are highly flexible streams of data that can be connected
+to a workflow's various inputs and outputs. A common use-case is, for example,
+define a channel to contain both sample data files and their corresponding
+sample names, which simplifies a lot of the coding. The flexibility of channels
+allows you to do many different things in powerful ways, but a downside is that
+they can be complicated when you first start working with them.
+
+In Snakemake, the entire workflow and each rule is **executed** in the working
+directory, while Nextflow executes each individual *process* (the equivalent of
+a rule in Snakemake) using an isolated environment in a directory of its own.
+This greatly simplifies testing and debugging, as you can always go into
+a process' directory and see exactly which files it has access to and which
+code was executed. This general structure means that you need to think less
+about full paths for all the workflow's in- and output files, as the locations
+of all the files are fully taken care of by Nextflow - the only thing you need
+to care about are the final output file paths.
+
+Snakemake uses a "pull"-**philosophy** similar to its inspiring predecessor
 [make](https://www.gnu.org/software/make/), meaning that you define a number of
 rules with inputs and outputs and then ask for the specific result you want,
-*i.e.* the final output files (usually defined in a `all` rule). Snakemake will
+*i.e.* the final output files (usually defined in an `all` rule). Snakemake will
 work backwards from the final outputs you desired and find whatever combination
 of inputs and rules it needs to give them to you. This means that you always
 know exactly which files are going to be created and manipulated in all steps of
-the workflow even before it is executed, which is a nice thing to know.
+the workflow even before it is executed, which is a nice thing to know. Nextflow
+works in the opposite way, *i.e.* with a "push"-philosophy: you define a number
+of processes with inputs and outputs, and then give the first inputs to
+Nextflow. It will run the first process using those inputs, pass them to the
+second process, then the third, and so on until it reaches the final outputs of
+the workflow. This means you don't to define file paths to each process'
+input/output definitions like you do in Snakemake, only which files you want in
+the end. This can potentially remove some of the pitfalls and issues sometimes
+seen with *e.g.* wildcards in Snakemake, but it also front-loads some of the
+complexity to channel creation instead.
 
-Nextflow works in the opposite way, *i.e.* with a "push"-philosophy: you define
-a number of *processes* with inputs and outputs (equivalent to rules in
-Snakemake), and then give the first inputs to Nextflow. It will run the first
-process using those inputs, pass them to the second process, then the third, and
-so on until it reaches the final outputs of the workflow. This means that
-Nextflow doesn't actually know exactly which files are going to be created and
-manipulated during a run, which is both good and bad. The bad means that you
-can't really do dry runs in Nextflow in the same simple manner as in Snakemake
-(there is, however, something similar called [stubs](https://github.com/nextflow-io/nextflow/blob/master/docs/process.rst#stub)).
-On the other hand, something good about this is that Nextflow handles 
-variable inputs and outputs very well, making dynamic analyses easy to work
-with, *e.g.* processes where you don't know the exact number of output files. A
-"push"-philosophy is also generally more intuitive for many people, although
-this is mostly relevant when learning.
+The above means means that Nextflow doesn't actually know exactly which files
+are going to be created and manipulated during a run, which is both good and
+bad. The bad means that you can't really do **dry runs** in Nextflow in the same
+simple manner as in Snakemake (there is, however, something similar called
+[stubs](https://github.com/nextflow-io/nextflow/blob/master/docs/process.rst#stub)).
+On the other hand, something good about this is that Nextflow handles variable
+inputs and outputs very well, making dynamic analyses easy to work with, *e.g.*
+processes where you don't know the exact number of output files.
 
-Another difference is that in Nextflow, every single process is run in its own,
-hidden directory in an isolated compute environment; only the files relevant to that
-process will be present in this directory. This greatly simplifies testing and
-debugging, as you can always go into a process' directory and see exactly which
-files it has access to and which code was executed. This general structure means
-that you need to think less about full paths for all the workflow's in- and output 
-files, as the locations of all the files are fully taken care of by Nextflow - 
-the only thing you need to care about are the final output file paths.
+Lastly, both Snakemake and Nextflow can automatically determine which rules or
+processes needs to be re-run when something has changed, but they do it slightly
+different ways. Snakemake only checks if any of the input files are newer than
+the output files, while Nextflow also **tracks code changes**. This means that
+if you update a script that is run on some unchanged data in Nextflow, it will
+re-run the corresponding process automatically; the same is not true for
+Snakemake, where you need to specify that you want to re-run from that specific
+rule (*i.e.* using `-R <rule>`).
 
 ## The aim of this tutorial
 
@@ -64,12 +127,12 @@ much up to personal preference and what you think is most important. We suggest
 that you try both and get a feel for them, and then decide which you like the
 most. The course material for Nextflow is, with this in mind, not as extensive
 as that for Snakemake. We have recreated the MRSA workflow from Snakemake in
-Nextflow and will, through it, give you an overview of how Nextflow does things.
-The idea is that you should have a rough idea of both Snakemake and Nextflow after
-the course, so that you may continue in what manner you think suits you the best.
+Nextflow and will, through it, give you an overview of how Nextflow does
+things. The idea is that you should have a rough idea of both Snakemake and
+Nextflow after the course, so that you may continue in what manner you think
+suits you the best.
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if you haven't
-done so already, then open up a terminal and go to
-`workshop-reproducible-research/tutorials/nextflow` and activate your
-`nextflow-env` Conda environment.
+done so already, then open up a terminal and go to `workshop-reproducible-research/tutorials/nextflow`
+and activate your `nextflow-env` Conda environment.

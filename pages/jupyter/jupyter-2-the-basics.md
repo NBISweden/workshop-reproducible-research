@@ -76,20 +76,63 @@ are only applicable when in command mode (blue frames). Most of them are also
 available from the menus. These shortcuts are also available from the **Help**
 menu in your notebook (there's even an option there to edit shortcuts).
 
-| Shortcut            | Effect                                   |
-|---------------------|------------------------------------------|
-| `enter`             | enter Edit mode                          |
-| `escape`            | enter Command mode                       |
-| `ctrl` + `enter`    | run the cell                             |
-| `shift` + `enter`   | run the cell and select the cell below   |
-| `alt` + `enter`     | run the cell and insert a new cell below |
-| `ctrl` + `s`        | save the notebook                        |
-| `tab`               | for code completion or indentation       |
-| `m` / `y`           | toggle between Markdown and Code cells   |
-| `d` - `d`           | delete a cell                            |
-| `a` / `b`           | insert cells above/below current cell    |
-| `x` / `c` / `v`     | cut/copy/paste cells                     |
-| `o`                 | toggle output of current cell            |
+<table class="table table-hover table-condensed" border=1; style="width:400px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px; text-align:center;"> <font size="3"><b> Shortcut </b></td>
+            <td style="padding:5px"> <font size="3"><b> Effect </b></td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `enter` </td>
+        <td style="padding:5px"> <font size="3"> enter Edit mode </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `escape` </td>
+        <td style="padding:5px"> <font size="3"> Enter Command mode </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `ctrl` </td>
+        <td style="padding:5px"> <font size="3"> Run the cell </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `shift` </td>
+        <td style="padding:5px"> <font size="3"> Run the cell and select the cell below </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `alt` </td>
+        <td style="padding:5px"> <font size="3"> Run the cell and insert a new cell below </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `ctrl` </td>
+        <td style="padding:5px"> <font size="3"> Save the notebook </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `tab` </td>
+        <td style="padding:5px"> <font size="3"> For code completion or indentation </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `m` </td>
+        <td style="padding:5px"> <font size="3"> Toggle between Markdown and Code cells </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `d` </td>
+        <td style="padding:5px"> <font size="3"> Delete a cell </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `a` </td>
+        <td style="padding:5px"> <font size="3"> Insert cells above/below current cell </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `x` </td>
+        <td style="padding:5px"> <font size="3"> Cut/copy/paste cells </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `o` </td>
+        <td style="padding:5px"> <font size="3"> Toggle output of current cell </td>
+    </tr>
+</table>
+
 
 ## Writing markdown
 

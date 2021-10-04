@@ -137,15 +137,56 @@ a tab-delimited file like this:
 snakemake a_b.txt -D > summary.tsv
 ```
 
-The contents of `summary.tsv` is shown in the table below (scroll horizontally
-to see the full table).
+The contents of `summary.tsv` is shown in the table below:
 
-| output_file   | date   | rule   | version   | log-file(s)   |  input-file(s)   | shellcmd   | status   | plan   |
-| --------------| ------ | ------ | --------- | ------------- | ---------------- | ---------- | -------- | ------ |
-| a_b.txt | Thu Nov 16 12:03:11 2017 | concatenate_files | - |  | a.upper.txt,b.upper.txt | cat a.upper.txt b.upper.txt > a_b.txt | rule implementation changed | no update |
-| a.upper.txt | Thu Nov 16 12:03:11 2017 | convert_to_upper_case | - |  | a.txt | tr [a-z] [A-Z] < a.txt > a.upper.txt | ok | no update |
-| b.upper.txt | Thu Nov 16 12:03:11 2017 | convert_to_upper_case | - |  | b.txt | tr [a-z] [A-Z] < b.txt > b.upper.txt | ok | no update |
-
+<table class="table table-hover table-condensed" border=1; style="margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"><b> output_file </b> </td>
+            <td style="padding:5px"> <font size="3"><b> date </b> </td>
+            <td style="padding:5px"> <font size="3"><b> rule </b> </td>
+            <td style="padding:5px"> <font size="3"><b> version </b> </td>
+            <td style="padding:5px"> <font size="3"><b> log-file(s) </b> </td>
+            <td style="padding:5px"> <font size="3"><b> input-file(s) </b> </td>
+            <td style="padding:5px"> <font size="3"><b> shellcmd </b> </td>
+            <td style="padding:5px"> <font size="3"><b> status </b> </td>
+            <td style="padding:5px"> <font size="3"><b> plan </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> a_b.txt </td>
+        <td style="padding:5px"> <font size="3"> Thu Nov 16 12:03:11 2017 </td>
+        <td style="padding:5px"> <font size="3"> concatenate_files </td>
+        <td style="padding:5px"> <font size="3"> - </td>
+        <td style="padding:5px"> <font size="3"> </td>
+        <td style="padding:5px"> <font size="3"> a.upper.txt,b.upper.txt </td>
+        <td style="padding:5px"> <font size="3"> cat a.upper.txt b.upper.txt > a_b.txt </td>
+        <td style="padding:5px"> <font size="3"> rule implementation changed </td>
+        <td style="padding:5px"> <font size="3"> no update </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> a.upper.txt</td>
+        <td style="padding:5px"> <font size="3"> Thu Nov 16 12:03:11 2017 </td>
+        <td style="padding:5px"> <font size="3"> convert_to_upper_case </td>
+        <td style="padding:5px"> <font size="3"> - </td>
+        <td style="padding:5px"> <font size="3"> </td>
+        <td style="padding:5px"> <font size="3"> a.txt </td>
+        <td style="padding:5px"> <font size="3"> tr [a-z] [A-Z] < a.txt > a.upper.txt </td>
+        <td style="padding:5px"> <font size="3"> ok </td>
+        <td style="padding:5px"> <font size="3"> no update  </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> b.upper.txt</td>
+        <td style="padding:5px"> <font size="3"> Thu Nov 16 12:03:11 2017 </td>
+        <td style="padding:5px"> <font size="3"> convert_to_upper_case </td>
+        <td style="padding:5px"> <font size="3"> - </td>
+        <td style="padding:5px"> <font size="3"> </td>
+        <td style="padding:5px"> <font size="3"> b.txt </td>
+        <td style="padding:5px"> <font size="3"> tr [a-z] [A-Z] < b.txt > b.upper.txt </td>
+        <td style="padding:5px"> <font size="3"> ok </td>
+        <td style="padding:5px"> <font size="3"> no update  </td>
+    </tr>
+</table>
 
 You can see in the second last column that the rule implementation for a_b.txt
 has changed. The last column shows if Snakemake plans to regenerate the files

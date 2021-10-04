@@ -9,13 +9,7 @@ on:
     paths:
       - 'pages/*.md'
       - 'pages/*/*.md'
-    branches:
-      - main
-      - devel
-  pull_request:
-    paths:
-      - 'pages/*.md'
-      - 'pages/*/*.md'
+      - 'pages/upload-page-to-canvas.sh'
     branches:
       - main
       - devel
@@ -32,5 +26,6 @@ jobs:
       run: |
         for file in $(find pages -name '*.md');
         do
+          echo "$file"
           bash pages/upload-page-to-canvas.sh "$file" "$API_TOKEN"
         done
