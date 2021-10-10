@@ -72,7 +72,9 @@ image that you want to use on an HPC cluster such as Uppmax where you cannot use
 Docker. 
 
 Let's try to convert the Docker image for this course directly from DockerHub 
-using `singularity build`. 
+using `singularity build`. (Note that there is also the 
+[singularity pull](https://sylabs.io/guides/3.4/user-guide/cli/singularity_pull.html)
+command, which should be more or less equivalent.)
 
 Now, depending on the system you are running on and the version of Singularity, 
 you may not have the option to build locally. However, Singularity has the 
