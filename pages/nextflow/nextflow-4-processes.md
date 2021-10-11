@@ -97,11 +97,13 @@ tuple val(sra_id), path("${sra_id}.fastq.gz"), emit: sra_data
 ```
 
 Then comes the `output` directive, which is defined as a `tuple`, *i.e.* having
-more than one entry. The output of this process is a combination of the
-sample name (from the `sra_id` value variable) and the FASTQ file containing the
-reads for that sample. Nextflow will look for files corresponding to the path
+more than one entry. The output of this process is a combination of the sample
+name (from the `sra_id` value variable) and the FASTQ file containing the reads
+for that sample; being able to define outputs as tuples means we can output
+*e.g.* sample names and their corresponding data files for easier downstream
+processing/analysis. Nextflow will look for files corresponding to the path
 defined here and output them to the `publishDir` directory, as well as pass the
-entire output tuple to any downstream process that uses them.
+entire output tuple to any downstream process that uses them. 
 
 The `emit` directive is used to name the output for use in downstream processes:
 for example, another process might be called in the workflow definition like
