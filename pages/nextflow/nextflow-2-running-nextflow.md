@@ -89,7 +89,8 @@ the workflow when you changed some input files or some of the code for its
 analyses, but you don't want to re-run the entire workflow from start to finish.
 Let's find out how this works in Nextflow!
 
-* Run the same `nextflow run main.nf` command again.
+* Go back to the root directory of the Nextflow tutorial and run the same
+  `nextflow run main.nf` command again.
 
 What happened here? Nextflow actually re-ran the entire workflow from scratch,
 even though we didn't change anything. This is the default behaviour of
