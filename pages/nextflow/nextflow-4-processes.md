@@ -140,14 +140,15 @@ external script you've defined elsewhere. When you contain some text in triple
 quotes inside the `script` directive you will run whatever code you write using
 bash, just like in Snakemake.
 
-Using Nextflow variables inside its Bash context works the same way as for
-Snakemake: `$nf_variable` (or with squiggly brackets: `${nf_variable}`). This
-clashes with Bash variables, however, which works exactly the same way (*e.g.*
-`$bash_variable` or `${bash_variable}`). This means that when we refer to a Bash
-variable in the Nextflow `script` bash context, we need to prepend the dollar
-sign with a backslash, like so: `\${bash_variable}`. In the
-`GET_SRA_BY_ACCESSION` process above we are using `${sra_id}`, which tells us
-that it is a Nextflow variable, which comes from the process input in this case.
+Using Nextflow variables inside its Bash context works similarly as for
+Snakemake, using *e.g.* `${nf_variable}`; in Snakemake, we were using
+`{snakemake_variable}`. For instance, in the `GET_SRA_BY_ACCESSION` process
+above we are using `${sra_id}`, which tells us that it is a Nextflow variable,
+which comes from the process input in this case. However, the `$` sign is also
+used in Bash to access the value of variables: `$bash_variable` and
+`${bash_variable}` works the same way. To refer to a Bash variable in the
+Nextflow script context, we need to prepend the dollar sign with a backslash,
+like so: `\${bash_variable}`.
 
 > **Using external scripts** <br>
 > While not used in this example, if you have an external script you can put it
