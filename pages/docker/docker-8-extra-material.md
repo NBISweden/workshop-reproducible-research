@@ -101,15 +101,13 @@ singularity build --remote mrsa_proj.sif docker://nbisweden/workshop-reproducibl
 This should result in a file called `mrsa_proj.sif`. 
 
 In the Docker image we included the code needed for the workflow in the
-`/course` directory of the image. These files are of course also available
-in the Singularity image. However, a Singularity image is read-only (unless
-using the sandbox feature), and this will be a problem if we try to run the
-workflow within the `/course` directory, since the workflow will produce
-files and Snakemake will create a `.snakemake` directory. 
-
-vide the files externally from our host system and
-simply use the Singularity image as the environment to execute the workflow
-in (i.e. all the software). 
+`/course` directory of the image. These files are of course also available in
+the Singularity image. However, a Singularity image is read-only (unless using
+the sandbox feature), and this will be a problem if we try to run the workflow
+within the `/course` directory, since the workflow will produce files and
+Snakemake will create a `.snakemake` directory.  Instead, we need to provide
+the files externally from our host system and simply use the Singularity image
+as the environment to execute the workflow in (*i.e.* all the software).
 
 In your current working directory (`workshop-reproducible-research/tutorials/docker/`) 
 the vital MRSA project files are already available (`Snakefile`, `config.yml`, 
