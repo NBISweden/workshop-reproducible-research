@@ -158,4 +158,4 @@ There is, however, another solution: using Singularity inside Docker. By
 creating a bare-bones, Linux-based Docker image with Singularity you can build
 Singularity images locally on non-Linux operating systems. This can be either
 from Singularity definition files or directly from already existing Docker
-images. You can read more about this at the following [GitHub repository](https://github.com/fasterius/singularity-in-docker).
+images. You can read more about this at the following [GitHub repository](https://github.com/kaczmarj/singularity-in-docker).
