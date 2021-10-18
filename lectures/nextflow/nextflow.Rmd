@@ -53,8 +53,10 @@ class: center, middle
 <br>
 
 ```{r Snakemake vs. Nextflow table, echo = FALSE}
-library("dplyr")
-library("kableExtra")
+suppressPackageStartupMessages({
+    library("dplyr")
+    library("kableExtra")
+})
 data <- data.frame(Snakemake = c("Python",
                                  "Everything is a file",
                                  "Working directory",
