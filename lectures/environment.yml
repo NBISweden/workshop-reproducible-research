@@ -27,5 +27,6 @@ dependencies:
     - r-kableextra=1.1.0
     - r-palmerpenguins=0.1.0
     - r-stringi=1.4.6
+    - r-tidyr=0.8.3
     - r-xaringan=0.15
     - r-webshot=0.5.2
