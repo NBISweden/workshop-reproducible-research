@@ -1,0 +1,165 @@
+---
+title: "Making reproducible workflows with Nextflow"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+---
+
+layout: true
+<div class="scilife-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+
+*Making reproducible workflows with*
+
+<img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png", width=75%>
+
+---
+
+# Nextflow features
+
+--
+
+* Based on .green[Groovy] and Java
+
+--
+
+* .green[Portable]
+
+--
+
+* .green[Scalable]
+
+--
+
+* .green[Platform-agnostic]
+
+--
+
+* Large, active .green[community]
+
+---
+
+# Differences between Snakemake and Nextflow
+
+<br>
+
+```{r Snakemake vs. Nextflow table, echo = FALSE}
+library("dplyr")
+library("kableExtra")
+data <- data.frame(Snakemake = c("Python",
+                                 "Everything is a file",
+                                 "Working directory",
+                                 "\"Pull\"",
+                                 "Yes",
+                                 "No"),
+                   Nextflow = c("Groovy",
+                                "Can use both files and values",
+                                "Each job in its own directory",
+                                "\"Push\"",
+                                "No",
+                                "Yes"))
+row.names(data) <- c("Language",
+                     "Data",
+                     "Execution",
+                     "Philosophy",
+                     "Dry-runs",
+                     "Track code changes")
+data %>%
+    kable() %>%
+    kable_styling(c("striped", "hover"), full_width = FALSE)
+```
+
+--
+
+* .green[Question]: But, which one is the *best?*
+
+--
+
+* .green[Answer]: Both - it's mostly up to personal preference!
+
+---
+
+# Anatomy of a Nextflow workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    Channel
+        .fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+        .set      { ch_sra_ids }
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.collect()
+    )
+}
+```
+
+--
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    input:
+    val(sra_id)
+
+    output:
+    tuple val(sra_id), path("${sra_id}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sra_id} > ${sra_id}.fastq.gz
+    """
+}
+```
+
+--
+
+```bash
+$ nextflow run main.nf
+```
+
+---
+
+# The aims of this tutorial
+
+--
+
+* Give a brief .green[overview] of how Nextflow works through a recreation of
+  the MRSA Snakemake workflow
+
+--
+
+* Show .green[similarities] and .green[differences] between Snakemake and
+  Nextflow
+
+--
+
+* Give you an opportunity to .green[try out both] Snakemake and Nextflow
+
+--
+
+* The Nextflow tutorial is shorter and less in-depth compared to the Snakemake
+  tutorial, given these aims
+
+---
+
+class: center, middle
+
+# Questions?
