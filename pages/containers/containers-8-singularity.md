@@ -70,7 +70,7 @@ Snakemake will create a `.snakemake` directory.  Instead, we need to provide
 the files externally from our host system and simply use the Singularity image
 as the environment to execute the workflow in (*i.e.* all the software).
 
-In your current working directory (`workshop-reproducible-research/tutorials/docker/`) 
+In your current working directory (`workshop-reproducible-research/tutorials/docker/`)
 the vital MRSA project files are already available (`Snakefile`, `config.yml`, 
 `code/header.tex` and `code/supplementary_material.Rmd`). 
 
