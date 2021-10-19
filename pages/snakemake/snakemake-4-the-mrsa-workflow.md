@@ -11,39 +11,20 @@ workflow to make it more flexible and reproducible!
 > one. If you get stuck at some point the final workflow after all the
 > modifications is available as `git/Snakefile`.
 
-This will require some more packages, so add the following lines to
-`environment.yml`.
-
-```yaml
-# For aggregating output from FastQC
-  - multiqc=1.7
-# For mapping reads to a genome
-  - bowtie2=2.3.5.1
-# For sorting the output from Bowtie2
-  - samtools=1.10
-# For generating a count table for further analysis
-  - htseq=0.11.2
-```
-
-You are probably already in your `snakemake_exercise` environment, otherwise
-activate it (use `conda info --envs` if you are unsure). You can update the
-current environment to contain the new packages like this:
-
-```bash
-conda env update -f environment.yml
-```
+You are probably already in your `snakemake-env` environment, otherwise
+activate it (use `conda info --envs` if you are unsure).
 
 > **Tip** <br>
 > Here we have one Conda environment for  executing the whole Snakemake
-> workflow. Snakemake also supports using explicit conda environments on
+> workflow. Snakemake also supports using explicit Conda environments on
 > a per-rule basis, by specifying something like `conda:
 > rule-specific-env.yml` in the rule definition and running Snakemake with
-> the `--use-conda` flag. The given rule will then be run in the conda
+> the `--use-conda` flag. The given rule will then be run in the Conda
 > environment specified in `rule-specific-env.yml` that will be created and
 > activated on the fly by Snakemake.
 
-Done! Let's start by generating the rule graph so that we get an overview of
-the workflow.
+Let's start by generating the rule graph so that we get an overview of the
+workflow.
 
 ```bash
 snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png

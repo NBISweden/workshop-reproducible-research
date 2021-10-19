@@ -1,36 +1,34 @@
-Take a look at the rule `generate_count_table` below. Since `input.annotation`
-is compressed, it is first unzipped to a temporary file. `htseq-count` then
-generates a temporary count table, which is finally prepended with a header
-containing the sample names. Lastly, the two temporary files are deleted.
+Take a look at the `index_genome` rule below:
 
 ```python
-rule generate_count_table:
+rule index_genome:
     """
-    Generate a count table using htseq-count.
+    Index a genome using Bowtie 2.
     """
     input:
-        bams=["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
-        annotation="data/raw_external/NCTC8325.gff3.gz"
+        "data/raw_external/NCTC8325.fa.gz"
     output:
-        "results/tables/counts.tsv"
+        "intermediate/NCTC8325.1.bt2",
+        "intermediate/NCTC8325.2.bt2",
+        "intermediate/NCTC8325.3.bt2",
+        "intermediate/NCTC8325.4.bt2",
+        "intermediate/NCTC8325.rev.1.bt2",
+        "intermediate/NCTC8325.rev.2.bt2"
     shell:
         """
-        # htseq-count cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input.annotation} > tempfile
+        # Bowtie2 cannot use .gz, so unzip to a temporary file first
+        gunzip -c {input} > tempfile
+        bowtie2-build tempfile intermediate/NCTC8325
 
-        # Save the count table as a temporary file and then prepend a header line
-        # with the sample names
-        htseq-count --format bam --type gene --idattr gene_id {input.bams} tempfile > tempfile2
-        echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
-
-        # Remove the temporary files
-        rm tempfile tempfile2
+        # Remove the temporary file
+        rm tempfile
         """
 ```
 
-There are a number of drawbacks with having files that aren't explicitly part
-of the workflow as input/output files to rules (as the two temporary files
-here).
+There is a temporary file here called `tempfile` which is the uncompressed
+version of the input, since Bowtie 2 cannot use compressed files. There are
+a number of drawbacks with having files that aren't explicitly part of the
+workflow as input/output files to rules:
 
 * Snakemake cannot clean up these files if the job fails, as it would do for
   normal output files.
@@ -67,10 +65,10 @@ rule some_rule:
 ```
 
 Try this out for the rules where we have to "manually" deal with files that
-aren't tracked by Snakemake (`multiqc`, `index_genome`,
-`generate_count_table`). Also remove the shell commands that remove temporary
-files from those rules, as they are no longer needed. Now rerun the workflow
-and validate that the temporary files don't show up in your working directory.
+aren't tracked by Snakemake (`multiqc`, `index_genome`). Also remove the shell
+commands that remove temporary files from those rules, as they are no longer
+needed. Now rerun the workflow and validate that the temporary files don't show
+up in your working directory.
 
 > **Tip** <br>
 > Some people use the shadow option for almost every rule and some never
