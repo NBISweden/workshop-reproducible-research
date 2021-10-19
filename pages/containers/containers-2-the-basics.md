@@ -10,6 +10,8 @@ same OS.
 > If you don't have root privileges you have to prepend all Docker commands
 > with `sudo`.
 
+## Downloading containers
+
 Docker containers typically run Linux, so let's start by downloading an image
 containing Ubuntu (a popular Linux distribution that is based on only
 open-source tools) through the command line.
@@ -41,13 +43,14 @@ REPOSITORY       TAG              IMAGE ID            CREATED             SIZE
 ubuntu           latest           d70eaf7277ea        3 weeks ago         72.9MB
 ```
 
+## Running containers
+
 We can now start a container running our image. We can refer to the image
 either by "REPOSITORY:TAG" ("latest" is the default so we can omit it) or
 "IMAGE ID". The syntax for `docker run` is `docker run [OPTIONS] IMAGE
 [COMMAND] [ARG...]`. Let's run the command `uname -a` to get some info about
-the operating system. First run on your own system (skip this if you're using
-Windows via the Windows 10 PowerShell, or use `systeminfo` which is the
-Windows equivalent):
+the operating system. First run on your own system (use `systeminfo` if you are
+on Windows):
 
 ```bash
 uname -a
@@ -74,6 +77,8 @@ Linux 24d063b5d877 5.4.39-linuxkit #1 SMP Fri May 8 23:03:06 UTC 2020 x86_64 x86
 
 And now I'm running on Linux! Try the same thing with `whoami`.
 
+## Running interactively
+
 So, seems we can execute arbitrary commands on Linux. Seems useful, but maybe
 a bit limited. We can also get an interactive terminal with the flags `-it`.
 
@@ -92,6 +97,8 @@ Here you can do whatever; install, run, remove stuff. It will still be within
 the container and never affect your host system. Now exit the container with
 `exit`.
 
+## Containers inside scripts
+
 Okay, so Docker lets us work in any OS in a quite convenient way. That would
 probably be useful on its own, but Docker is much more powerful than that. For
 example, let's look at the `shell` part of the `get_SRA_by_accession` rule in
@@ -106,11 +113,11 @@ shell:
 ```
 
 You may have seen that one can use containers through both Snakemake and
-Nextflow if you've gone through their tutorial's extra material, but we can also
-use containers directly inside scripts in a very simple way. Let's imagine we
-want to run the above command using containers instead. How would that look?
+Nextflow if you've gone through their tutorial's extra material, but we can
+also use containers directly inside scripts in a very simple way. Let's imagine
+we want to run the above command using containers instead. How would that look?
 It's quite simple, really: first we find a container image that has the
-`sra-tools` installed (within the `fastq-dump` command resides), and then simple
+`sra-tools` installed (within the `fastq-dump` command resides), and then
 prepend the command with `docker run <image>`. Look at the following Bash code:
 
 ```bash
