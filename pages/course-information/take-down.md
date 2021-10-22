@@ -80,11 +80,9 @@ instructions in the Conda section above.
 
 ## Docker
 
-If you've done the Docker tutorial **or if you've been running Docker for
-Windows** you have some cleaning up to do. Docker is infamous for quickly
-taking up huge amounts of space, and some maintenance is necessary every now
-and then. Here is how to uninstall Docker completely. Let's start by removing
-individual images and containers:
+Docker is infamous for quickly taking up huge amounts of space, and some
+maintenance is necessary every now and then. Here is how to uninstall Docker
+completely. Let's start by removing individual images and containers:
 
 ```bash
 # Remove unused images
