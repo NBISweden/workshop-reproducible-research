@@ -22,8 +22,8 @@ Singularity, unlike Docker, stores its images as a single file. A Singularity
 image file is self-contained (no shared layers) and can be moved around and 
 shared like any other file.
 
-While it is possible to define and build singularity images from scratch, in a
-manner similar to what you've already learned for Docker, that is not something
+While it is possible to define and build Singularity images from scratch, in a
+manner similar to what you've already learned for Docker, this is not something
 we will cover here (but feel free to read more about this in _e.g._ the 
 [Singularity docs](https://sylabs.io/guides/3.4/user-guide/quick_start.html#singularity-definition-files)).
 
@@ -33,9 +33,7 @@ image that you want to use on an HPC cluster such as Uppmax where you cannot use
 Docker. 
 
 Let's try to convert the Docker image for this course directly from DockerHub 
-using `singularity build`. (Note that there is also the 
-[singularity pull](https://sylabs.io/guides/3.4/user-guide/cli/singularity_pull.html)
-command, which should be equivalent.)
+using `singularity build`.
 
 Now, depending on the system you are running on and the version of Singularity, 
 you may not have the option to build locally. However, Singularity has the 
@@ -61,14 +59,21 @@ singularity build --remote mrsa_proj.sif docker://nbisweden/workshop-reproducibl
 
 This should result in a file called `mrsa_proj.sif`. 
 
+> **Note** <br>
+> In case you are having trouble with `singularity build`, you can try to use the 
+> [singularity pull](https://sylabs.io/guides/3.4/user-guide/cli/singularity_pull.html)
+> command instead to download and build the image by running
+> `singularity pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research`.
+
 In the Docker image we included the code needed for the workflow in the
 `/course` directory of the image. These files are of course also available in
 the Singularity image. However, a Singularity image is read-only (unless using
-the sandbox feature), and this will be a problem if we try to run the workflow
+the [sandbox](https://sylabs.io/guides/3.0/user-guide/build_a_container.html#creating-writable-sandbox-directories) 
+feature). This will be a problem if we try to run the workflow
 within the `/course` directory, since the workflow will produce files and
 Snakemake will create a `.snakemake` directory.  Instead, we need to provide
 the files externally from our host system and simply use the Singularity image
-as the environment to execute the workflow in (*i.e.* all the software).
+as the environment to execute the workflow in (*i.e.* all the software and dependencies).
 
 In your current working directory (`workshop-reproducible-research/tutorials/docker/`)
 the vital MRSA project files are already available (`Snakefile`, `config.yml`, 
@@ -86,7 +91,7 @@ This executes the default run command, which is
 `Dockerfile`). 
 
 > **Note** <br>
-> Note here that we have increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), 
+> We have increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), which is
 > needed to fully run through the workflow. In case the command fails, 
 > you can try to increase the RAM to e.g. 4096 MiB, or you can try to run the
 > command without the  `--vm-ram` parameter.
@@ -118,5 +123,13 @@ the container instead.
 There is, however, another solution: using Singularity inside Docker. By
 creating a bare-bones, Linux-based Docker image with Singularity you can build
 Singularity images locally on non-Linux operating systems. This can be either
-from Singularity definition files or directly from already existing Docker
+done from Singularity definition files or directly from already existing Docker
 images. You can read more about this at the following [GitHub repository](https://github.com/kaczmarj/singularity-in-docker).
+
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to convert Docker images to Singularity images.
+> - How to use `singularity run` for starting a container from an image.
+> - How to build a Singularity image using Singularity inside Docker.
