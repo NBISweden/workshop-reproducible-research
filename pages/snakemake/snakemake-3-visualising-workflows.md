@@ -171,7 +171,7 @@ The contents of `summary.tsv` is shown in the table below:
     </thead>
     <tr>
         <td style="padding:5px"> <font size="3"> a_b.txt </td>
-        <td style="padding:5px"> <font size="3"> Thu Nov 16 12:03:11 2017 </td>
+        <td style="padding:5px"> <font size="3"> Mon Oct 25 17:01:46 2021 </td>
         <td style="padding:5px"> <font size="3"> concatenate_files </td>
         <td style="padding:5px"> <font size="3"> - </td>
         <td style="padding:5px"> <font size="3"> </td>
@@ -182,7 +182,7 @@ The contents of `summary.tsv` is shown in the table below:
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> a.upper.txt</td>
-        <td style="padding:5px"> <font size="3"> Thu Nov 16 12:03:11 2017 </td>
+        <td style="padding:5px"> <font size="3"> Mon Oct 25 17:01:46 2021 </td>
         <td style="padding:5px"> <font size="3"> convert_to_upper_case </td>
         <td style="padding:5px"> <font size="3"> - </td>
         <td style="padding:5px"> <font size="3"> </td>
@@ -193,7 +193,7 @@ The contents of `summary.tsv` is shown in the table below:
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> b.upper.txt</td>
-        <td style="padding:5px"> <font size="3"> Thu Nov 16 12:03:11 2017 </td>
+        <td style="padding:5px"> <font size="3"> Mon Oct 25 17:01:46 2021 </td>
         <td style="padding:5px"> <font size="3"> convert_to_upper_case </td>
         <td style="padding:5px"> <font size="3"> - </td>
         <td style="padding:5px"> <font size="3"> </td>
