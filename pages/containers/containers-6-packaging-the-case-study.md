@@ -11,7 +11,7 @@ that contains all the work we've done so far.
 * We've written a [R Markdown document](r-markdown-6-the-mrsa-case-study) that
   takes the results from the Snakemake workflow and summarizes them in a report.
 
-The `workshop-reproducible-research/tutorials/docker` directory contains the 
+The `workshop-reproducible-research/tutorials/containers` directory contains the
 final versions of all the files we've generated in the other tutorials: 
 `environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and 
 `code/supplementary_material.Rmd`. The only difference compared to the other 

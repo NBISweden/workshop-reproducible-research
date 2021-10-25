@@ -66,16 +66,6 @@ docker exec -it my_container /bin/bash
 > Dockerfiles provide, such as easy distribution and efficient space usage
 > via layers.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to use `docker run` for starting a container and how the flags `-d`
->   and `--rm` work.
-> - How to use `docker container ls` for displaying information about the
->   containers.
-> - How to use `docker attach` and `docker exec` to interact with running
->   containers.
-
 ## Bind mounts
 
 There are obviously some advantages to isolating and running your data analysis
@@ -128,3 +118,14 @@ there. Now edit `run_qc.sh` **on your host system** to download, say, 12000
 reads instead of 15000. Then rerun the analysis with `bash run_qc.sh`. Tada!
 Validate that the resulting html reports look fine and then exit the container
 with `exit`.
+
+> **Quick recap** <br>
+> In this section we've learned:
+>
+> - How to use `docker run` for starting a container and how the flags `-d`
+>   and `--rm` work.
+> - How to use `docker container ls` for displaying information about the
+>   containers.
+> - How to use `docker attach` and `docker exec` to interact with running
+>   containers.
+> - How to use bind mounts to share data between the container and the host system.

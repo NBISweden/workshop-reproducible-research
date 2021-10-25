@@ -80,11 +80,29 @@ instructions in the Conda section above.
 
 ## Docker
 
-If you've done the Docker tutorial **or if you've been running Docker for
-Windows** you have some cleaning up to do. Docker is infamous for quickly
-taking up huge amounts of space, and some maintenance is necessary every now
-and then. Here is how to uninstall Docker completely. For instructions for how
-to remove individual images or containers, see the [Docker tutorial](docker-2-the-basics).
+Docker is infamous for quickly taking up huge amounts of space, and some
+maintenance is necessary every now and then. Here is how to uninstall Docker
+completely. Let's start by removing individual images and containers:
+
+```bash
+# Remove unused images
+docker image prune
+
+# Remove stopped containers
+docker container prune
+
+# Remove unused volumes (not used here, but included for reference)
+docker volume prune
+
+# Stop and remove ALL containers
+docker container rm $(docker container ls -a -q)
+
+# Remove ALL images
+docker image rm $(docker image ls -a -q)
+```
+
+Removing Docker itself works differently on the three operating systems, which
+is described below:
 
 #### macOS
 
@@ -124,5 +142,5 @@ its cache, which you may delete.
 
 #### Windows
 
-On Windows, you will additionally need to uninstall Git for Windows, VirtualBox, Vagrant and Vagrant Manager (see the 
-[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).
+On Windows, you will additionally need to uninstall Git for Windows, VirtualBox,
+Vagrant and Vagrant Manager (see the [Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).
