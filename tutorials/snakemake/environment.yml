@@ -10,7 +10,7 @@ dependencies:
   - multiqc=1.10.1
   - python=3.7.6
   - samtools=1.12
-  - snakemake-minimal=5.10.0
+  - snakemake-minimal=6.10.0
   - sra-tools=2.10.1
   - subread=2.0.1
   - tbb=2020.3
