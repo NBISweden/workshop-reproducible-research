@@ -57,34 +57,50 @@ happen if you run `snakemake -n -r a_b.txt` again?
 $ snakemake -n -r a_b.txt
 
 Building DAG of jobs...
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+concatenate_files            1              1              1
+convert_to_upper_case        1              1              1
+total                        2              1              1
+
+
+[Mon Oct 25 17:00:02 2021]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
-    jobid: 2
+    jobid: 1
     reason: Updated input files: a.txt
     wildcards: some_name=a
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
+
+[Mon Oct 25 17:00:02 2021]
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
     output: a_b.txt
     jobid: 0
     reason: Input files updated by another job: a.upper.txt
     wildcards: first=a, second=b
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
-Job counts:
-        count   jobs
-        1       concatenate_files
-        1       convert_to_upper_case
-        2
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+concatenate_files            1              1              1
+convert_to_upper_case        1              1              1
+total                        2              1              1
+
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
 </details>
 
 Were you correct? Also generate the job graph and compare to the one generated
 above. What's the difference? Now rerun without `-n` and validate that
-`a_b.txt` contains the new text. Note that Snakemake doesn't look at the
-contents of files when trying to determine what has changed, only at the
-timestamp for when they were last modified.
+`a_b.txt` contains the new text (don't forget to specify `-c 1`). Note that 
+Snakemake doesn't look at the contents of files when trying to determine what has 
+changed, only at the timestamp for when they were last modified.
 
 We've seen that Snakemake keeps track of if files in the workflow have changed,
 and automatically makes sure that any results depending on such files are
@@ -117,7 +133,7 @@ rule concatenate_files:
 
 If you now run the workflow as before you should get "Nothing to be done",
 because no files involved in the workflow have been changed. Instead we have to
-force Snakemake to rerun the rule by using the `-R`flag. Let's try a dry-run.
+force Snakemake to rerun the rule by using the `-R` flag. Let's try a dry-run.
 
 ```bash
 snakemake a_b.txt -r -n -R concatenate_files
@@ -134,7 +150,7 @@ of the rule, and by which commands). You can export this information to
 a tab-delimited file like this:
 
 ```bash
-snakemake a_b.txt -D > summary.tsv
+snakemake a_b.txt -c 1 -D > summary.tsv
 ```
 
 The contents of `summary.tsv` is shown in the table below:
@@ -201,11 +217,11 @@ which the rule implementation has changed, and then force Snakemake to
 regenerate these files with the `-R` flag.
 
 ```bash
-snakemake a_b.txt -R $(snakemake a_b.txt --list-code-changes)
+snakemake a_b.txt -c 1 -R $(snakemake a_b.txt --list-code-changes)
 ```
 
 Here the `$(snakemake a_b.txt --list-code-changes)` part outputs the files that
-are then used as targets for the `snakemake a_b.txt -R` part.
+are then used as targets for the `snakemake a_b.txt -c 1 -R` part.
 
 Clever, right? There are a bunch of these `--list-xxx-changes` flags that can
 help you keep track of your workflow. You can list all options with `snakemake

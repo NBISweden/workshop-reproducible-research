@@ -196,10 +196,10 @@ rule concatenate_files:
 
 We can now control which input files to use by the name of the file we ask
 Snakemake to generate. Run the workflow without the flag `-n` (or `--dry-run`)
-to execute both rules, providing one core with `--cores 1`:
+to execute both rules, providing one core with `-c 1` (or `--cores 1`):
 
 ```no-highlight
-$ snakemake a_b.txt --cores 1
+$ snakemake a_b.txt -c 1
 
 Building DAG of jobs...
 Using shell: /bin/bash
