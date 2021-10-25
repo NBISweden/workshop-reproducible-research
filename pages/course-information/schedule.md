@@ -215,8 +215,7 @@
         <td style="padding:5px"> <font size="3"> Containerization
              <font size="2"> <i> <br>
              - Introduction to containers <br>
-             - Practical tutorial: [Docker](docker-1-introduction) <br>
-             - Practical tutorial: [Singularity](singularity-1-introduction) </i>
+             - Practical tutorial: [Containers](containers-1-introduction) </i>
         </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
@@ -238,7 +237,7 @@
     </thead>
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Docker & Singularity </td>
+        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
         <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
     <tr>
     <tr>
@@ -248,7 +247,7 @@
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Docker & Singularity </td>
+        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
         <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
     </tr>
     <tr>
