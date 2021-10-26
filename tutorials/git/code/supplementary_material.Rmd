@@ -1,0 +1,128 @@
+---
+title: "Supplementary Material"
+output: html_document
+params:
+  counts_file: "results/tables/counts.tsv"
+  multiqc_file: "intermediate/multiqc_general_stats.txt"
+  rulegraph_file: "results/rulegraph.png"
+  SRR_IDs: "SRR935090 SRR935091 SRR935092"
+  GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
+---
+
+```{r Setup, include = FALSE}
+knitr::opts_knit$set(root.dir = normalizePath("../"))
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r Dependencies, include = FALSE}
+library("ggplot2")
+library("reshape2")
+library("pheatmap")
+library("rtracklayer")
+library("GEOquery")
+```
+
+```{r Read parameters, include = FALSE}
+counts_file <- params$counts_file
+multiqc_file <- params$multiqc_file
+rulegraph_file <- params$rulegraph_file
+SRR_IDs <- unlist(strsplit(params$SRR_IDs, " "))
+GSM_IDs <- unlist(strsplit(params$GSM_IDs, " "))
+```
+
+```{r Read data, include = FALSE}
+# Read count data
+counts <- read.delim(counts_file, skip = 1, header = FALSE, row.names = 1)
+sample_names <- t(read.delim(counts_file, nrow = 1, header = FALSE))
+colnames(counts) <- c("description", gsub(".*(SRR[0-9]*)\\..*", "\\1", sample_names))
+counts_other <- counts[grep("^__", rownames(counts)), ]
+rownames(counts_other) <- gsub("^__", "", rownames(counts_other))
+counts <- counts[grep("^__", rownames(counts), invert = TRUE), ]
+
+# Read metadata
+gse <- Meta(getGEO(GSM_IDs[1]))$series_id
+gse <- getGEO(gse, GSEMatrix = TRUE)
+gse <- as.data.frame(gse[[1]])
+gsm2srr <- data.frame(geo_accession = GSM_IDs, SRR = SRR_IDs)
+meta <- merge(x = gse, y = gsm2srr,
+              by.x = "geo_accession", by.y = "geo_accession")
+
+# Read FastQC data and update column names
+qc <- read.delim(multiqc_file)
+patterns <- c(".+percent_duplicates.*",
+              ".+percent_gc.*",
+              ".+avg_sequence_length.*",
+              ".+percent_fails.*",
+              ".+total_sequences.*")
+subs <- c("Percent duplicates", "Percent GC", "Avg sequence length",
+          "Percent fails", "Total sequences")
+for (i in 1:length(patterns)) {
+  colnames(qc) <- gsub(patterns[i], subs[i], colnames(qc))
+}
+meta <- merge(meta, qc, by.x = "SRR", by.y = "Sample")
+if (any(colnames(counts)[-1] != meta$SRR)) {
+    stop("Mismatching count and meta-data")
+}
+```
+
+# Supplementary Methods
+
+Here you might include a description of the methods used in obtaining and
+analysing the data before getting into this document, *e.g.* how sequencing data
+was aligned and counted.
+
+# Supplementary Tables and Figures
+
+```{r Sample info}
+columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
+sample_info <- meta[, columns]
+sample_info$characteristics_ch1.1 <- gsub("treatment: ", "", sample_info$characteristics_ch1.1)
+sample_info
+```
+
+```{r QC statistics}
+columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
+             "Percent fails", "Total sequences")
+qc_data <- meta[, columns]
+qc_data
+```
+
+```{r Counts barplot}
+count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_other[, -1])
+count_data <- melt(as.matrix(count_data),
+                   varnames   = c("Feature", "Sample"),
+                   value.name = "Reads")
+ggplot(count_data, aes(x = Sample, y = Reads, fill = Feature)) +
+    geom_bar(stat = "identity")
+```
+
+```{r Gene heatmap}
+cv_cutoff <- 1.2
+max_cutoff <- 5
+heatmap_data <-
+    counts[apply(counts[, -1], 1, function(x) sd(x) / mean(x)) > cv_cutoff &
+           apply(counts[, -1], 1, max) > max_cutoff, ]
+colnames(heatmap_data)[2:4] <- as.character(meta$title)
+labels_row <- paste0(rownames(heatmap_data), " (",
+                     substr(gsub("%2C", "", heatmap_data$description), 1, 50),
+                     ")")
+pheatmap(log10(heatmap_data[, -1] + 1),
+         fontsize_row = 8,
+         labels_row = labels_row)
+```
+
+## Reproducibility
+
+The code for reproducing this analysis is available in this [GitHub repo](https://github.com/NBISweden/workshop-reproducible-research/tree/master/docker).
+The repo contains:
+
+* A Snakemake workflow for running all analysis steps
+* A Conda environment file for installing all needed dependenciesx
+* A Docker file for running the analysis in a well-defined and isolated system
+
+The results in this supplementary were generated in the following R environment:
+
+```{r Session info}
+sessionInfo()
+```
+
