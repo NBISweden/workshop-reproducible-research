@@ -56,10 +56,6 @@ Snakemake has a number of options for marking files:
   updated, when the rule has finished. Typically used as "flag files" to
   enforce some rule execution order without real file dependencies.
 * `directory("...")`: The output is a directory rather than a file.
-* `dynamic("{some_wildcard}...")`: This one is a bit tricky. It's used when the
-  number of output files from a rule cannot be determined beforehand. A typical
-  use case could be if you run some clustering analysis and end up with one
-  file per cluster.
 
 > **Quick recap** <br>
 > In this section we've learned:
