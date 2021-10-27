@@ -9,7 +9,7 @@ workflow to make it more flexible and reproducible!
 > **Tip** <br>
 > This section will leave a little more up to you compared to the previous
 > one. If you get stuck at some point the final workflow after all the
-> modifications is available in `git/Snakefile`.
+> modifications is available in `tutorials/git/Snakefile`.
 
 You are probably already in your `snakemake-env` environment, otherwise
 activate it (use `conda info --envs` if you are unsure).
