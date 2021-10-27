@@ -169,7 +169,7 @@ rule generate_count_table:
     version: "1.0"
     shell:
         """
-        featureCounts -t exon -g Name -a {input.annotation} -o {output} {input.bams}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
         """
 
 rule make_supplementary:
