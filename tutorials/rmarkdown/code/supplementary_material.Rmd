@@ -87,14 +87,14 @@ was aligned and counted.
 columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
 sample_info <- meta[, columns]
 sample_info$characteristics_ch1.1 <- gsub("treatment: ", "", sample_info$characteristics_ch1.1)
-sample_info
+knitr::kable(sample_info)
 ```
 
 ```{r QC statistics}
 columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
              "Percent fails", "Total sequences")
 qc_data <- meta[, columns]
-qc_data
+knitr::kable(qc_data)
 ```
 
 ```{r Counts barplot}
