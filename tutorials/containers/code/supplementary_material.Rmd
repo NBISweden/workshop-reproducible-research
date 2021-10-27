@@ -25,6 +25,7 @@ library("GEOquery")
 
 ```{r Read parameters, include = FALSE}
 counts_file <- params$counts_file
+summary_file <- params$summary_file
 multiqc_file <- params$multiqc_file
 rulegraph_file <- params$rulegraph_file
 SRR_IDs <- unlist(strsplit(params$SRR_IDs, " "))
@@ -32,13 +33,13 @@ GSM_IDs <- unlist(strsplit(params$GSM_IDs, " "))
 ```
 
 ```{r Read data, include = FALSE}
-# Read count data
-counts <- read.delim(counts_file, skip = 1, header = FALSE, row.names = 1)
-sample_names <- t(read.delim(counts_file, nrow = 1, header = FALSE))
-colnames(counts) <- c("description", gsub(".*(SRR[0-9]*)\\..*", "\\1", sample_names))
-counts_other <- counts[grep("^__", rownames(counts)), ]
-rownames(counts_other) <- gsub("^__", "", rownames(counts_other))
-counts <- counts[grep("^__", rownames(counts), invert = TRUE), ]
+# Read counts:
+counts <- read.delim(counts_file, header=T, comment.char = "#", row.names=1)
+counts <- counts[, 5:ncol(counts)]
+colnames(counts) <- gsub(".*(SRR[0-9]+)\\..*", "\\1", colnames(counts))
+# Read summary file
+counts_other <- read.delim(summary_file, sep = "\t", header = T, row.names = 1)
+colnames(counts_other) <- gsub(".*(SRR[0-9]+)\\..*", "\\1", colnames(counts_other))
 
 # Read metadata
 gse <- Meta(getGEO(GSM_IDs[1]))$series_id
