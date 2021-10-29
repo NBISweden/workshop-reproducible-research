@@ -78,9 +78,11 @@ any downstream process that would use any of these files, they would be
 symbolically linked from here!
 
 > **Nextflow logs** <br>
-> If you want to view the logs you can use `nextflow log <run name>` or look in
-> the hidden file `.nextflow.log`. They are quite detailed and can greatly
-> facilitate debugging your workflow when you run into errors!
+> If you want to view the logs you can use  `nextflow log` to show a list of all
+> executed runs, `nextflow log <run name>` to show each task that was executed
+> for that run, or look in the hidden file `.nextflow.log` for details about the
+> latest run. They are quite detailed and can greatly facilitate debugging your
+> workflow when you run into errors!
 
 ## Re-running workflows
 
