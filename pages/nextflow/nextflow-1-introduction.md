@@ -95,7 +95,7 @@ works in the opposite way, *i.e.* with a "push"-philosophy: you define a number
 of processes with inputs and outputs, and then give the first inputs to
 Nextflow. It will run the first process using those inputs, pass them to the
 second process, then the third, and so on until it reaches the final outputs of
-the workflow. This means you don't to define file paths to each process'
+the workflow. This means you don't need to define file paths to each process'
 input/output definitions like you do in Snakemake, only which files you want in
 the end. This can potentially remove some of the pitfalls and issues sometimes
 seen with *e.g.* wildcards in Snakemake, but it also front-loads some of the
