@@ -1,4 +1,5 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
 In the previous section we downloaded a Docker image of Ubuntu and noticed that
 it was based on layers, each with a unique hash as id. An image in Docker is
 based on a number of read-only layers, where each layer contains the
@@ -22,10 +23,12 @@ Dockerfile in your project Git repository, since it allows other users to
 exactly replicate your project environment.
 
 We will be looking at an image called `Dockerfile_slim` and is located in your
-`docker` directory (where you should hopefully be standing already). We will now
+`containers` directory (where you should hopefully be standing already). We will now
 go through that file and discuss the different steps and what they do. After
 that we'll build the image and test it out. Lastly, we'll start from that image
 and make a new one to reproduce the results from the [Conda tutorial](conda-3-projects).
+
+## Understanding Dockerfiles
 
 Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile
 will typically result in one layer in the resulting image. The format for
@@ -207,6 +210,8 @@ for the user. If the purpose of your image is to accompany a publication then
 `CMD` could be to run the workflow that generates the paper figures from raw
 data.
 
+## Building from Dockerfiles
+
 Ok, so now we understand how a Dockerfile works. Constructing the image from
 the Dockerfile is really simple. Try it out now:
 
@@ -240,6 +245,8 @@ This name is how you will refer to the image later. Lastly, the `.` is the path
 to where the image should be build (`.` means the current directory). This had
 no real impact in this case, but matters if you want to import files. Validate
 with `docker image ls` that you can see your new image.
+
+## Creating your own Dockerfile
 
 Now it's time to make our own Dockerfile to reproduce the results from the
 [Conda tutorial](conda-3-projects). If you haven't done the tutorial,
@@ -303,3 +310,4 @@ Verify that the image was built using `docker image ls`.
 >   `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
 > - The importance of letting each layer in the Dockerfile be a "logical unit".
 > - How to use `docker build` to construct and tag an image from a Dockerfile.
+> - How to create your own Dockerfile.

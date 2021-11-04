@@ -26,7 +26,10 @@ You should now see that we have a `new-results` directory containing all the
 workflow's results, identical to the previous ones, and Nextflow didn't even
 have to re-run anything! That's because Nextflow runs each process in its own
 directory inside `work/`, as previously mentioned, so all it needs to do is to
-put the final results in the `new-results/` directory instead.
+put the final results in the `new-results/` directory instead. Before reading
+on, change the `resultsdir` parameter back to `results/` and remove the
+`new-results/` directory, so that we're back to how things were just a moment
+ago.
 
 The next part defines the workflow itself:
 

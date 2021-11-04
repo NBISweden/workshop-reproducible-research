@@ -13,10 +13,10 @@ Here are some links to additional resources on Nextflow:
 ## Using containers in Nextflow
 
 Nextflow has built-in support for using both Docker and Singularity containers,
-either with a single container the workflow as a whole or separate containers
-for each individual process. The simplest way to do it is to have a single
-container for your entire workflow, in which case you simply run the workflow
-and specify the image you want to use, like so:
+either with a single container for the workflow as a whole or separate
+containers for each individual process. The simplest way to do it is to have a
+single container for your entire workflow, in which case you simply run the
+workflow and specify the image you want to use, like so:
 
 ```bash
 # Run with docker

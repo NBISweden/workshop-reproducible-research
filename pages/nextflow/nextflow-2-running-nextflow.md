@@ -78,9 +78,11 @@ any downstream process that would use any of these files, they would be
 symbolically linked from here!
 
 > **Nextflow logs** <br>
-> If you want to view the logs you can use `nextflow log <run name>` or look in
-> the hidden file `.nextflow.log`. They are quite detailed and can greatly
-> facilitate debugging your workflow when you run into errors!
+> If you want to view the logs you can use  `nextflow log` to show a list of all
+> executed runs, `nextflow log <run name>` to show each task that was executed
+> for that run, or look in the hidden file `.nextflow.log` for details about the
+> latest run. They are quite detailed and can greatly facilitate debugging your
+> workflow when you run into errors!
 
 ## Re-running workflows
 
@@ -89,7 +91,8 @@ the workflow when you changed some input files or some of the code for its
 analyses, but you don't want to re-run the entire workflow from start to finish.
 Let's find out how this works in Nextflow!
 
-* Run the same `nextflow run main.nf` command again.
+* Go back to the root directory of the Nextflow tutorial and run the same
+  `nextflow run main.nf` command again.
 
 What happened here? Nextflow actually re-ran the entire workflow from scratch,
 even though we didn't change anything. This is the default behaviour of

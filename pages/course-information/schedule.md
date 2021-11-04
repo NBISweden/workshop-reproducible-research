@@ -75,7 +75,7 @@
              - Introduction to the package and environment manager Conda <br>
              - Practical tutorial: [Conda](conda-1-introduction) </i>
         </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -90,7 +90,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap up - Conda tutorial </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
@@ -100,7 +100,7 @@
              - Practical tutorial: [Snakemake](snakemake-1-introduction)
              </i>
         </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>
@@ -115,7 +115,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up day 2 </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
 </table>
 
@@ -145,7 +145,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up - Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
@@ -215,8 +215,7 @@
         <td style="padding:5px"> <font size="3"> Containerization
              <font size="2"> <i> <br>
              - Introduction to containers <br>
-             - Practical tutorial: [Docker](docker-1-introduction) <br>
-             - Practical tutorial: [Singularity](singularity-1-introduction) </i>
+             - Practical tutorial: [Containers](containers-1-introduction) </i>
         </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
@@ -238,7 +237,7 @@
     </thead>
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Docker & Singularity </td>
+        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
         <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
     <tr>
     <tr>
@@ -248,7 +247,7 @@
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Docker & Singularity </td>
+        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
         <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
     </tr>
     <tr>
@@ -259,7 +258,7 @@
              - How to implement these procedures on a day-to-day basis <br>
              - Practical tutorial: [Making projects reproducible](projects-1-introduction) <i>
         </td> 
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>

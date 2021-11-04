@@ -76,3 +76,31 @@ There's also a ending ruler.
 ***
 </details>
 ````
+
+## Tables
+
+Markdown tables is harder to get working with Canvas, so the simplest solution
+(relatively speaking) is to create HTML-tables to start with. The following is
+an example of a clear and sufficiently nice table:
+
+```html
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"><b> Header 1 </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Header 2 </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Header 3 </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> Entry 1 </td>
+        <td style="padding:5px"> <font size="3"> Entry 2 </td>
+        <td style="padding:5px"> <font size="3"> Entry 3 </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> Entry 4 </td>
+        <td style="padding:5px"> <font size="3"> Entry 5 </td>
+        <td style="padding:5px"> <font size="3"> Entry 6 </td>
+    </tr>
+</table>
+```

@@ -19,17 +19,17 @@ layout: true
 
 class: center, middle
 
-<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
+*Managing software environments with*
 
-Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
 
 ---
 
 class: center, middle
 
-*Managing software environments with*
+<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
+Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
 
 ---
 
@@ -78,7 +78,6 @@ Two common examples are
 
 --
 
-
 - .green[Anaconda]:
   - an installer for conda containing over 7,500 open-source packages
   - a cloud service where conda packages are hosted ([anaconda.org](https://anaconda.org))
@@ -86,48 +85,16 @@ Two common examples are
 
 --
 
-
 - .green[Miniconda]: an installer for conda containing only the most necessary packages to get started
 
 ---
 
 # Defining and sharing environments
 
---
 
-Define a conda environment in a YAML file:
-
-```yaml
-# --- environment.yml --- #
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - fastqc=0.11
-  - sra-tools=2.8
-  - snakemake=4.3.0
-  - multiqc=1.3
-  - bowtie2=2.3
-  - samtools=1.6
-
-
-# --- environment.yml --- #
-```
-
---
-
-Create an environment from the specifications in the YAML file:
-<br>`conda env create --name project_a -f environment.yml`
-
----
-
-# Defining and sharing environments
-
-
-Define a conda environment in a YAML file:
+Define a Conda environment in an `environment.yml` file:
 
 ```yaml
-# --- environment.yml --- #
 channels:
   - conda-forge
   - bioconda
@@ -140,26 +107,35 @@ dependencies:
   - samtools=1.6
   - htseq=0.9
   - graphviz=2.38.0
-# --- environment.yml --- #
 ```
 
+--
 
-Create an environment from the specifications in the YAML file:
-<br>`conda env create --name project_a -f environment.yml`
-
-
-Update an existing environment based on an environment file:
-<br>`conda env update -f environment.yml`
+```bash
+# Create a new environment from YAML
+$ conda env create --name project_a -f environment.yml
+```
 
 --
 
-Export existing environment as new yaml file (also includes dependencies):
-<br>`conda env export > environment_full.yml`
+```bash
+# Update an existing environment from YAML
+$ conda env update -f environment.yml
+```
 
 --
 
-Export explicit environment (for the same operating system):
-<br>`conda list --explicit > spec-file.txt`
+```bash
+# Export existing environment as new YAML file (including all dependencies)
+$ conda env export > environment-full.yml
+```
+
+--
+
+```bash
+# Export historical environment, i.e. packages listed in the original YAML
+$ conda env export --from-history > environment-history.yml
+```
 
 ---
 

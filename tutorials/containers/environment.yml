@@ -7,12 +7,12 @@ dependencies:
   - python=3.7.6
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=5.10.0
-  - multiqc=1.7
-  - bowtie2=2.3.5.1
+  - snakemake-minimal=6.10.0
+  - multiqc=1.10.1
+  - bowtie2=2.4.4
   - tbb=2020.3
   - samtools=1.10
-  - htseq=0.11.2
+  - subread=2.0.1
   - bedtools=2.29.2
   - wget=1.20.1
   - graphviz=2.42.3

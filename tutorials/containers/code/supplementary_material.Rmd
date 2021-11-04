@@ -11,7 +11,7 @@ params:
 ---
 
 ```{r Setup, include = FALSE}
-knitr::opts_knit$set(root.dir = "../")
+knitr::opts_knit$set(root.dir = normalizePath("../"))
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -25,29 +25,21 @@ library("GEOquery")
 
 ```{r Read parameters, include = FALSE}
 counts_file <- params$counts_file
-multiqc_file <- params$multiqc_file
 summary_file <- params$summary_file
+multiqc_file <- params$multiqc_file
 rulegraph_file <- params$rulegraph_file
 SRR_IDs <- unlist(strsplit(params$SRR_IDs, " "))
 GSM_IDs <- unlist(strsplit(params$GSM_IDs, " "))
 ```
 
 ```{r Read data, include = FALSE}
-# Read counts
-counts <- read.delim(counts_file,
-                     header       = TRUE,
-                     comment.char = "#",
-                     row.names    = 1)
+# Read counts:
+counts <- read.delim(counts_file, header=T, comment.char = "#", row.names=1)
 counts <- counts[, 5:ncol(counts)]
 colnames(counts) <- gsub(".*(SRR[0-9]+)\\..*", "\\1", colnames(counts))
-
-# Read count summary file
-counts_summary <- read.delim(summary_file,
-                             sep       = "\t",
-                             header    = TRUE,
-                             row.names = 1)
-colnames(counts_summary) <- gsub(".*(SRR[0-9]+)\\..*", "\\1",
-                                 colnames(counts_summary))
+# Read summary file
+counts_other <- read.delim(summary_file, sep = "\t", header = T, row.names = 1)
+colnames(counts_other) <- gsub(".*(SRR[0-9]+)\\..*", "\\1", colnames(counts_other))
 
 # Read metadata
 gse <- Meta(getGEO(GSM_IDs[1]))$series_id
@@ -87,18 +79,18 @@ was aligned and counted.
 columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
 sample_info <- meta[, columns]
 sample_info$characteristics_ch1.1 <- gsub("treatment: ", "", sample_info$characteristics_ch1.1)
-knitr::kable(sample_info)
+sample_info
 ```
 
 ```{r QC statistics}
 columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
              "Percent fails", "Total sequences")
 qc_data <- meta[, columns]
-knitr::kable(qc_data)
+qc_data
 ```
 
 ```{r Counts barplot}
-count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_summary[, -1])
+count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_other[, -1])
 count_data <- melt(as.matrix(count_data),
                    varnames   = c("Feature", "Sample"),
                    value.name = "Reads")
@@ -106,7 +98,7 @@ ggplot(count_data, aes(x = Sample, y = Reads, fill = Feature)) +
     geom_bar(stat = "identity")
 ```
 
-```{r Gene heatmap, fig.height = 14}
+```{r Gene heatmap}
 cv_cutoff <- 1.2
 max_cutoff <- 5
 heatmap_data <-
@@ -116,10 +108,9 @@ colnames(heatmap_data)[2:4] <- as.character(meta$title)
 labels_row <- paste0(rownames(heatmap_data), " (",
                      substr(gsub("%2C", "", heatmap_data$description), 1, 50),
                      ")")
-gg <- pheatmap(log10(heatmap_data[, -1] + 1),
-               fontsize_row = 8,
-               labels_row = labels_row)
-show(gg)
+pheatmap(log10(heatmap_data[, -1] + 1),
+         fontsize_row = 8,
+         labels_row = labels_row)
 ```
 
 ## Reproducibility
@@ -136,3 +127,4 @@ The results in this supplementary were generated in the following R environment:
 ```{r Session info}
 sessionInfo()
 ```
+

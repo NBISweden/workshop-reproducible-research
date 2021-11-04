@@ -142,7 +142,7 @@ rule sort_bam:
 
 rule generate_count_table:
     """
-    Generate a count table using htseq-count.
+    Generate a count table using featureCounts.
     """
     input:
         bams = ["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
@@ -151,7 +151,7 @@ rule generate_count_table:
         "results/tables/counts.tsv"
     shell:
         """
-        featureCounts -t exon -g Name -a {input.annotation} -o {output} {input.bams}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
         """
 
 rule generate_rulegraph:

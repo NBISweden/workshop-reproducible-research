@@ -66,25 +66,30 @@ you all available flags.
 $ snakemake -n -r -p a.upper.txt
 
 Building DAG of jobs...
-Job counts:
-	count	jobs
-	1	convert_to_upper_case
-	1
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+convert_to_upper_case        1              1              1
+total                        1              1              1
 
-[Thu Nov 19 13:31:30 2020]
+
+[Mon Oct 25 16:48:43 2021]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
     jobid: 0
     reason: Missing output files: a.upper.txt
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
 
         tr [a-z] [A-Z] < a.txt > a.upper.txt
+        
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+convert_to_upper_case        1              1              1
+total                        1              1              1
 
-Job counts:
-	count	jobs
-	1	convert_to_upper_case
-	1
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
@@ -105,7 +110,7 @@ $ snakemake -n -r -p b.upper.txt
 
 Building DAG of jobs...
 MissingRuleException:
-No rule to produce b.upper.txt (if you use input functions make sure that they do not raise unexpected exceptions)
+No rule to produce b.upper.txt (if you use input functions make sure that they don't raise unexpected exceptions).
 ```
 
 That didn't work well. We could copy the rule to make a similar one for
@@ -190,46 +195,60 @@ rule concatenate_files:
 </details>
 
 We can now control which input files to use by the name of the file we ask
-Snakemake to generate.
+Snakemake to generate. Run the workflow without the flag `-n` (or `--dry-run`)
+to execute both rules, providing one core with `-c 1` (or `--cores 1`):
 
 ```no-highlight
-$ snakemake a_b.txt
+$ snakemake a_b.txt -c 1
 
 Building DAG of jobs...
-Using shell: /usr/local/bin/bash
-Provided cores: 1
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
 Rules claiming more threads will be scaled down.
-Job counts:
-        count   jobs
-        1       concatenate_files
-        2       convert_to_upper_case
-        3
+Job stats:
+job                      count    min threads    max threads
+---------------------  -------  -------------  -------------
+concatenate_files            1              1              1
+convert_to_upper_case        2              1              1
+total                        3              1              1
 
+Select jobs to execute...
+
+[Mon Oct 25 16:51:52 2021]
 rule convert_to_upper_case:
     input: b.txt
     output: b.upper.txt
-    jobid: 1
+    jobid: 2
     wildcards: some_name=b
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
-Finished job 1.
-
+[Mon Oct 25 16:51:53 2021]
+Finished job 2.
 1 of 3 steps (33%) done
+Select jobs to execute...
 
+[Mon Oct 25 16:51:53 2021]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
-    jobid: 2
+    jobid: 1
     wildcards: some_name=a
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
-Finished job 2.
+[Mon Oct 25 16:51:53 2021]
+Finished job 1.
 2 of 3 steps (67%) done
+Select jobs to execute...
 
+[Mon Oct 25 16:51:53 2021]
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
     output: a_b.txt
     jobid: 0
-    wildcards: second=b, first=a
+    wildcards: first=a, second=b
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
+[Mon Oct 25 16:51:53 2021]
 Finished job 0.
 3 of 3 steps (100%) done
 ```
