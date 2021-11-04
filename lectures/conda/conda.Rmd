@@ -19,17 +19,17 @@ layout: true
 
 class: center, middle
 
-<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
+*Managing software environments with*
 
-Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
 
 ---
 
 class: center, middle
 
-*Managing software environments with*
+<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
+Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
 
 ---
 
