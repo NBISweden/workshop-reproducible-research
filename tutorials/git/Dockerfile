@@ -61,4 +61,4 @@ RUN echo -e "library(tinytex)\ntinytex::install_tinytex(dir='/usr/.TinyTeX')"| R
 # (Jupyter Notebook has to be separately installed in the container)
 EXPOSE 8888
 
-CMD snakemake -rp --configfile config.yml
+CMD snakemake -rp -c 1 --configfile config.yml

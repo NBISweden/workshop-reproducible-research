@@ -87,7 +87,7 @@ singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
 This executes the default run command, which is 
-`snakemake -rp --configfile config.yml` (as defined in the original 
+`snakemake -rp -c 1 --configfile config.yml` (as defined in the original 
 `Dockerfile`). 
 
 > **Note** <br>
