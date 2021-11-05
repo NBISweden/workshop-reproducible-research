@@ -211,8 +211,8 @@ Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
 ensure that the Conda steps were successful. Once you've successfully completed
-the above steps you can deactivate your Conda environment using `conda
-deactivate` and continue with the setup for the other tools.
+the above steps you can deactivate your Conda environment using `conda deactivate` 
+and continue with the setup for the other tools.
 
 > **Note** <br>
 > If you look inside `snakemake/environment.yml` you will see that we used the
@@ -225,10 +225,10 @@ deactivate` and continue with the setup for the other tools.
 ## Installing Nextflow
 
 We'll use Conda to install Nextflow as well: navigate to
-`workshop-reproducible-research` and create the Conda environment:
+`workshop-reproducible-research/tutorials` and create the Conda environment:
 
 ```bash
-conda env create -f tutorials/nextflow/environment.yml -n nextflow-env
+conda env create -f nextflow/environment.yml -n nextflow-env
 conda activate nextflow-env
 ```
 
@@ -273,7 +273,7 @@ tools.
 > run well directly on Windows and you may therefore want to install Windows 
 > versions of these software for this tutorial (if you haven't done so already). 
 > Conda is, however, the recommended way. If you're having issues with
-> graphical applications, please have a look at [this website](https://seanthegeek.net/234/> graphical-linux-applications-bash-ubuntu-windows/> );
+> graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
 > scroll down to the "Graphical applications".
 
 > **RStudio and Conda** <br>
