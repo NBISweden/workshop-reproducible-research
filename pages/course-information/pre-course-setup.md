@@ -375,11 +375,7 @@ verify that your installation was successful!
 
 ### macOS
 
-Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installation.html#mac).
-You can either choose to install Singularity via disk image file or via Vagrant.
-
-> **Attention!** <br>
-> When installing via disk image file, make sure you that 'Singularity networking' is checked during installation
+Please install Singularity by downloading and installing [this DMG file](http://repo.sylabs.io/desktop/singularity-desktop-0.0.1alpha.dmg) (Alpha Preview version).
 
 ### Linux
 
