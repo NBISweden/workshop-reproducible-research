@@ -390,9 +390,13 @@ Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installat
 Installing on Windows requires running Singularity through a Vagrant Box, which
 may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
-> **Note** <br>
+> **Notes** <br>
 > Last time we checked, the software "Vagrant Manager" was not available for download
 > but the installation of Singularity was successful even without it.
+> 
+> Version 6.1.28 of "Virtual box for Windows" may not work, please install version 6.1.26
+> from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1) in case you encounter
+> problems when trying to start the Vagrant VirtualBox.
 
 The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC
 like this:
