@@ -80,14 +80,14 @@ see. Let's try it out!
 ```markdown
 # A Git tutorial
 
-This repository contains tutorial information related to the **NBIS** course
+This repository contains tutorial information related to the **NBIS/ELIXIR** course
 *Tools for Reproducible Research*, specifically the session on using the `git`
 software for version control.
 
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://nbis-reproducible-research.readthedocs.io/en/latest/git/).
+[here](https://uppsala.instructure.com/courses/51980/pages/git-1-introduction?module_item_id=367079).
 ```
 
 * Add, commit and push these changes to GitHub.
@@ -106,8 +106,8 @@ text (surrounded by one asterisk), in-line code (surrounded by acute accents)
 and a link (link text inside square brackets followed by link address inside
 parentheses).
 
-It is important to add README-files to your repositories so that they are more
-documented and easily understood by others and, more likely, your future self.
+It is important to add README-files to your repositories so that they are better
+documented and more easily understood by others and, more likely, your future self.
 In fact, documentation is an important part of reproducible research! While the
 tools that you are introduced to by this course are all directly related to
 making science reproducible, you will *also* need good documentation. Make it
@@ -192,7 +192,7 @@ the original `git_tutorial` repository!
 
 * Let's say that we now want to change the `multiqc` software to an earlier
   version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.7` to `multiqc=1.2`; add and commit the change.
+  `multiqc=1.10.1` to `multiqc=1.7`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
@@ -232,7 +232,7 @@ will give you a short visual summary:
 ![](images/git_overview_remote.png){ width=600px }
 
 > **Quick recap** <br>
-> We have learnt the difference between local and remote copies of git
+> We have learned the difference between local and remote copies of git
 > repositories and how to sync them:
 >
 > - `git push` uploads commits to a remote repository
