@@ -63,7 +63,7 @@ are files in the directory that are not version tracked by git.
 >   workflow, that we'll go through in the [Snakemake tutorial](snakemake-1-introduction).
 > - The `Dockerfile` contains the recipe for making a Docker container for
 >   the analysis, which will be covered in detail in the
->   [Docker tutorial](docker-1-introduction).
+>   [Container tutorial](containers-1-introduction).
 
 > **Quick recap** <br>
 > We have used two `git` commands this far:
