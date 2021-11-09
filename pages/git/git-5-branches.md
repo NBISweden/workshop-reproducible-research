@@ -2,12 +2,12 @@ One of the most useful features of git is called *branching*. Branching allows
 you to diverge from the main line of work and edit or update your code and
 files (*e.g.* to test out a new analysis or some experimental feature) without
 affecting your main work. If the work you did in the branch turns out to be
-useful you can merge that back into your main branch. On the other hand, if the
+useful you can merge that back into your `main` branch. On the other hand, if the
 work didn't turn out as planned, you can simply delete the branch and continue
 where you left off in your main line of work. Another use case for branching is
 when you are working in a project with multiple people. Branching can be a way
 of compartmentalizing your team's work on different parts of the project and
-enables merging back into the main branch in a controlled fashion; we will
+enables merging back into the `main` branch in a controlled fashion; we will
 learn more about this in the section about working remotely.
 
 * Let's start trying out branching! We can see the current branch by running:
@@ -63,7 +63,7 @@ You can use the `diff` command for this:
 git diff main
 ```
 
-This shows the difference between the active branch (test_alignment) and main
+This shows the difference between the active branch (`test_alignment`) and `main`
 on a line-per-line basis. Do you see which lines have changed between
 `test_alignment` and `main` branches?
 
@@ -97,7 +97,7 @@ git merge test_alignment
 ```
 
 Run `git log --graph --all --oneline` again to see how the merge commit brings
-back the changes made in test_alignment to main.
+back the changes made in `test_alignment` to `main`.
 
 > **Tip** <br>
 > If working on different features or parts of an analysis on different
@@ -127,7 +127,7 @@ git branch -d test_alignment
 > branch that is always working (*i.e.* can successfully run all your code
 > and without known bugs) and develop new code on feature branches (one new
 > feature per branch). Feature branches are short-lived, meaning that they
-> are deleted once they are merged into main.
+> are deleted once they are merged into `main`.
 
 > **Quick recap** <br>
 > We have now learned how to divide our work into branches and how to manage
