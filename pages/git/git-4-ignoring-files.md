@@ -24,7 +24,7 @@ touch log.tmp
 touch .gitignore
 ```
 
-* Open the `.gitignore` file in an editor and add the following lines to it:
+* Open the `.gitignore` file in a text editor and add the following lines to it:
 
 ```
 # Ignore these directories:
@@ -38,7 +38,7 @@ intermediate/
 * Run `git status` again. Now there is no mention of the `results` and
   `intermediate` directories or the `log.tmp` file. Notice that we can use
   wildcards (\*) to ignore files with a given pattern, *e.g.* a specific
-  extension.
+  file extension.
 
 * Sometimes you want to ignore all files in a directory with one or two
   exceptions. For example, you don't want to track all your huge raw data files,
