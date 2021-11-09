@@ -13,8 +13,7 @@ and `.snakemake`, which contains the history of any Snakemake runs.
 Several of the tutorials use Conda for installing packages. This amounts to
 about 2.6 GB if you've done all the tutorials. If you plan on using Conda in
 the future you can remove just the packages, or you can remove everything
-including Conda itself. Note that this is not needed if you've done the
-tutorials on Windows using Docker (see the section on Docker below instead).
+including Conda itself. 
 
 In order to remove all your Conda environments, you first need to list them:
 
@@ -140,7 +139,19 @@ Singularity images are files that can simply be deleted. Singularity also
 creates a hidden directory `.singularity` in your home directory that contains
 its cache, which you may delete.
 
+#### Linux
+
+If you want to uninstall Singularity, its removal will depend on the installation 
+method you chose. Please refer to the 
+[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html?highlight=uninstall#install-on-linux) 
+to find out which tools and dependencies you need to uninstall.
+
+#### Mac
+
+The DMG file you downloaded to install Singularity Desktop on your Mac contains
+an uninstall tool that you can use.
+
 #### Windows
 
-On Windows, you will additionally need to uninstall Git for Windows, VirtualBox,
-Vagrant and Vagrant Manager (see the [Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).
+On Windows, you will need to uninstall Git for Windows, VirtualBox, Vagrant and 
+Vagrant Manager (see the [Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).
