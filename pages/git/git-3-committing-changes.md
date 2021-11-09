@@ -3,7 +3,7 @@ changes to a set of files. Preferably, the changes making out a commit should
 be related to something, *e.g.* a specific bug fix or a new feature.
 
 * Our first commit will be to add the copied files to the repository. Run the
-  following: (as suggested by `git status`):
+  following (as suggested by `git status`):
 
 ```bash
 git add Dockerfile Snakefile
@@ -73,7 +73,7 @@ Let's repeat this process by editing a file!
 
 * Run `git status`. It will tell you that there are modifications in one file
   (`environment.yml`) compared to the previous commit. This is nice! We don't
-  have to keep track of what files we have edited, git will do that for us.
+  have to keep track of which files we have edited, git will do that for us.
 
 * Run `git diff environment.yml`. This will show you the changes made to the
   file. A `-` means a deleted line, a `+` means an added line. There are also
@@ -181,7 +181,7 @@ git log
 > than 50 MB.
 
 > **Quick recap** <br>
-> We now added four important git commands to our repertoire:
+> We added four important git commands to our repertoire:
 >
 > * `git add` adds a file to the staging area
 > * `git commit` commits the changes we have staged
