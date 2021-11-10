@@ -1,20 +1,19 @@
 # Using containers in Snakemake
 
 Snakemake also supports defining a Singularity or Docker container for each
-rule (you will have time to work on the [Docker
-tutorial](docker-1-introduction) and the [Singularity
-tutorial](singularity-1-introduction) later during the course). Analogous to
-using a rule-specific Conda environment, specify `container:
-"docker://some-account/rule-specific-image"` in the rule definition. Instead of
-a link to a container image, it is also possible to provide the path to
-a `*.sif` file (= a Singularity file). When executing Snakemake, add the
-`--use-singularity` flag to the command line. For the given rule, a Singularity
-container will then be created from the image or Singularity file that is
-provided in the rule definition on the fly by Snakemake and the rule will be
-run in this container.
+rule (you will have time to work on the [Containers tutorial](containers-1-introduction) 
+later during the course). Analogous to using a rule-specific Conda environment, 
+specify `container: "docker://some-account/rule-specific-image"` in the rule 
+definition. Instead of a link to a container image, it is also possible to 
+provide the path to a `*.sif` file (= a Singularity file). When executing 
+Snakemake, add the `--use-singularity` flag to the command line. For the given 
+rule, a Singularity container will then be created from the image or Singularity 
+file that is provided in the rule definition on the fly by Snakemake and the 
+rule will be run in this container.
 
-You can find pre-made Singularity or Docker images for many tools on [https://biocontainers.pro/](https://biocontainers.pro/)
-(bioinformatics-specific) or on [https://hub.docker.com/](https://hub.docker.com/).
+You can find pre-made Singularity or Docker images for many tools on 
+[https://biocontainers.pro/](https://biocontainers.pro/) (bioinformatics-specific) 
+or on [https://hub.docker.com/](https://hub.docker.com/).
 
 Here is an example for a rule and its execution:
 
@@ -164,7 +163,7 @@ Finally, instead of specifying compute resources in the `resources` and
 `threads` directives, it is possible to set up the SLURM Profile by providing
 a `cluster.yaml` file. When you create the profile with cookiecutter and you
 are prompted for `cluster_config []:` enter the path to a `cluster.yaml` file,
-_e.g._: `cluster_config []: config/cluster.yaml`. Now you can control resource
+_e.g._: `cluster_config []: ../config/cluster.yaml`. Now you can control resource
 allocations for rules either using the `resources:` directive in each rule,
 _or_ by adding that information to the `config/cluster.yaml` file. If resources
 are found in both locations, the allocations in the `cluster.yaml` file will
