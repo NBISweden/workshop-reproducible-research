@@ -16,11 +16,10 @@ debugging). Last comes chunk options, separated by commas (in this case there is
 only one option: `echo = FALSE`).
 
 > **Note** <br>
-> Note that the code chunk name pressure has nothing to do with the code
-> plot(pressure). In the latter case, pressure is a default R dataframe that
-> is used in examples. The chunk name happened to be set to the string
-> pressure as well, but could just as well have been called something else,
-> *e.g.* "Plot pressure data".
+> The code chunk name pressure has nothing to do with the code `plot(pressure)`. 
+> In the latter case, pressure is a default R dataframe that is used in examples. 
+> The chunk name happened to be set to the string pressure as well, but could 
+> just as well have been called something else, *e.g.* "Plot pressure data".
 
 Below are listed some useful chunk options related to evaluating and displaying
 code chunks in the final file:
@@ -95,6 +94,7 @@ There are also some chunk options related to plots:
 | `fig.height = 9, fig.width = 6` | Set plot dimensions to 9x6 inches. (The default is 7x7.) |
 | `out.height = "10cm", out.width = "8cm"` | Scale plot to 10x8 cm in the final output file. |
 | `fig.cap = "This is a plot."` | Adds a figure caption.
+
 
 * Go back to your template R Markdown document in RStudio and locate the
   `pressure` code chunk.

@@ -38,7 +38,7 @@ Bullet list:
 A markdown document can be converted to other formats, such as HTML or PDF, for
 viewing in a browser or a PDF reader; the page you are reading right now is
 written in markdown. Markdown is somewhat ill-defined, and as a consequence of
-that there exists many implementations and extensions, although they share most
+that there exist many implementations and extensions, although they share most
 of the syntax. *R Markdown* is one such implementation/extension.
 
 R Markdown documents can be used both to save and execute code (with a focus on
@@ -58,8 +58,7 @@ If you want to read more, here are some useful resources:
 
 * A nice "Get Started" section, as a complement to this tutorial, is available
   at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
-* [R Markdown cheat sheet](
-  https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+* [R Markdown cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
   (also available from Help --> Cheatsheets in RStudio)
 * [R Markdown reference guide](
   https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
