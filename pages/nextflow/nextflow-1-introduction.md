@@ -68,7 +68,7 @@ Moving on to **data**: everything in Snakemake is a file, whereas Nextflow works
 on both files and arbitrary values and variables, stored in so-called
 *channels*. Channels are highly flexible streams of data that can be connected
 to a workflow's various inputs and outputs. A common use-case is, for example,
-define a channel to contain both sample data files and their corresponding
+to define a channel to contain both sample data files and their corresponding
 sample names, which simplifies a lot of the coding. The flexibility of channels
 allows you to do many different things in powerful ways, but a downside is that
 they can be complicated when you first start working with them.
@@ -95,7 +95,7 @@ works in the opposite way, *i.e.* with a "push"-philosophy: you define a number
 of processes with inputs and outputs, and then give the first inputs to
 Nextflow. It will run the first process using those inputs, pass them to the
 second process, then the third, and so on until it reaches the final outputs of
-the workflow. This means you don't need to define file paths to each process'
+the workflow. This means you don't define file paths to each process'
 input/output definitions like you do in Snakemake, only which files you want in
 the end. This can potentially remove some of the pitfalls and issues sometimes
 seen with *e.g.* wildcards in Snakemake, but it also front-loads some of the
@@ -111,23 +111,23 @@ inputs and outputs very well, making dynamic analyses easy to work with, *e.g.*
 processes where you don't know the exact number of output files.
 
 Lastly, both Snakemake and Nextflow can automatically determine which rules or
-processes needs to be re-run when something has changed, but they do it slightly
+processes need to be re-run when something has changed, but they do it in slightly
 different ways. Snakemake only checks if any of the input files are newer than
 the output files, while Nextflow also **tracks code changes**. This means that
 if you update a script that is run on some unchanged data in Nextflow, it will
 re-run the corresponding process automatically; the same is not true for
-Snakemake, where you need to specify that you want to re-run from that specific
-rule (*i.e.* using `-R <rule>`).
+Snakemake, where you need to specify that you want to re-run the workflow from 
+that specific rule (*i.e.* using `-R <rule>`).
 
 ## The aim of this tutorial
 
 With all that said, both Nextflow and Snakemake are excellent systems for
-workflow management, and you can do basically everything in either: it is very
-much up to personal preference and what you think is most important. We suggest
-that you try both and get a feel for them, and then decide which you like the
-most. The course material for Nextflow is, with this in mind, not as extensive
-as that for Snakemake. We have recreated the MRSA workflow from Snakemake in
-Nextflow and will, through it, give you an overview of how Nextflow does
+workflow management, and you can do basically everything in either: your choice 
+is very much up to your personal preference and what you think is most important. 
+We suggest that you try both and get a feel for them, and then decide which you 
+like the most. The course material for Nextflow is, with this in mind, not as 
+extensive as that for Snakemake. We have recreated the MRSA workflow from Snakemake 
+in Nextflow and will, through it, give you an overview of how Nextflow does
 things. The idea is that you should have a rough idea of both Snakemake and
 Nextflow after the course, so that you may continue in what manner you think
 suits you the best.

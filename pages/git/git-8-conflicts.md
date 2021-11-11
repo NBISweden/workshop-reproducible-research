@@ -98,15 +98,16 @@ dependencies:
   - python=3.7.6
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=5.10.0
+  - snakemake-minimal=6.10.0
 <<<<<<< HEAD
   - multiqc=1.6
 =======
   - multiqc=1.8
 >>>>>>> eb1bda9f9d089289e5bd82e15d36e34a88a04879
-  - bowtie2=2.2.4
+  - bowtie2=2.4.4
+  - tbb=2020.3
   - samtools=1.10
-  - htseq=0.11.2
+  - subread=2.0.1
   - bedtools=2.29.2
   - wget=1.20.1
   - graphviz=2.42.3
@@ -145,11 +146,12 @@ dependencies:
   - python=3.7.6
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=5.10.0
+  - snakemake-minimal=6.10.0
   - multiqc=1.6
-  - bowtie2=2.2.4
+  - bowtie2=2.4.4
+  - tbb=2020.3
   - samtools=1.10
-  - htseq=0.11.2
+  - subread=2.0.1
   - bedtools=2.29.2
   - wget=1.20.1
   - graphviz=2.42.3
@@ -187,7 +189,7 @@ git push
 ```
 
 * Go to GitHub in the browser and click the commit tracker again. You will see
-  a list of commits including where MultiQC was first changed to version `1.2`
+  a list of commits including where MultiQC was first changed to version `1.7`
   from our previous work, then to `1.8`, `1.6` and, finally, followed by a merge
   where the version was set to `1.6`.
 

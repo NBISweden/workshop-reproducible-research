@@ -123,7 +123,7 @@ brackets: `{{genome_id}}`.
 
 Lastly, we need to define somewhere which genome id we actually want to use.
 This needs to be done both in `align_to_genome` and `generate_count_table`.
-Do this by introducing a parameter in `config.yml` called "genome_id". See
+Do this by introducing a parameter in `config.yml` called `"genome_id"`. See
 below for an example for `align_to_genome`. Here the `substr` wildcard gets
 expanded from a list while `genome_id` gets expanded from the config file.
 

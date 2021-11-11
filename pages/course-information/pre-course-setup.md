@@ -211,8 +211,8 @@ Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
 ensure that the Conda steps were successful. Once you've successfully completed
-the above steps you can deactivate your Conda environment using `conda
-deactivate` and continue with the setup for the other tools.
+the above steps you can deactivate your Conda environment using `conda deactivate` 
+and continue with the setup for the other tools.
 
 > **Note** <br>
 > If you look inside `snakemake/environment.yml` you will see that we used the
@@ -225,10 +225,10 @@ deactivate` and continue with the setup for the other tools.
 ## Installing Nextflow
 
 We'll use Conda to install Nextflow as well: navigate to
-`workshop-reproducible-research` and create the Conda environment:
+`workshop-reproducible-research/tutorials` and create the Conda environment:
 
 ```bash
-conda env create -f tutorials/nextflow/environment.yml -n nextflow-env
+conda env create -f nextflow/environment.yml -n nextflow-env
 conda activate nextflow-env
 ```
 
@@ -273,7 +273,7 @@ tools.
 > run well directly on Windows and you may therefore want to install Windows 
 > versions of these software for this tutorial (if you haven't done so already). 
 > Conda is, however, the recommended way. If you're having issues with
-> graphical applications, please have a look at [this website](https://seanthegeek.net/234/> graphical-linux-applications-bash-ubuntu-windows/> );
+> graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
 > scroll down to the "Graphical applications".
 
 > **RStudio and Conda** <br>
@@ -375,12 +375,7 @@ verify that your installation was successful!
 
 ### macOS
 
-Download the Singularity Desktop DMG file from [here](https://sylabs.io/singularity-desktop-macos/)
-and follow the instructions. Note that this is a beta version and not all
-features are available yet.
-
-> **Attention!** <br>
-> Make sure you that 'Singularity networking' is checked during installation
+Please install Singularity by downloading and installing [this DMG file](http://repo.sylabs.io/desktop/singularity-desktop-0.0.1alpha.dmg) (Alpha Preview version).
 
 ### Linux
 
@@ -391,9 +386,13 @@ Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installat
 Installing on Windows requires running Singularity through a Vagrant Box, which
 may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
 
-> **Note** <br>
+> **Notes** <br>
 > Last time we checked, the software "Vagrant Manager" was not available for download
 > but the installation of Singularity was successful even without it.
+> 
+> Version 6.1.28 of "Virtual box for Windows" may not work, please install version 6.1.26
+> from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1) in case you encounter
+> problems when trying to start the Vagrant VirtualBox.
 
 The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC
 like this:

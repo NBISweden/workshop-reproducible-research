@@ -30,7 +30,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
         <td style="padding:5px"> <font size="3"> Break-out rooms and ice breaker session </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:30 </td>
@@ -49,7 +49,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Git tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -75,7 +75,7 @@
              - Introduction to the package and environment manager Conda <br>
              - Practical tutorial: [Conda](conda-1-introduction) </i>
         </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -85,12 +85,12 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Conda tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap up - Conda tutorial </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
@@ -100,7 +100,7 @@
              - Practical tutorial: [Snakemake](snakemake-1-introduction)
              </i>
         </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>
@@ -110,12 +110,12 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up day 2 </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
 </table>
 
@@ -131,7 +131,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -141,11 +141,11 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up - Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
@@ -164,7 +164,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -238,7 +238,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -248,7 +248,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
@@ -258,7 +258,7 @@
              - How to implement these procedures on a day-to-day basis <br>
              - Practical tutorial: [Making projects reproducible](projects-1-introduction) <i>
         </td> 
-        <td style="padding:5px"> <font size="3"> VK </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>
@@ -268,7 +268,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00  </td>
         <td style="padding:5px"> <font size="3"> ... continued: putting the pieces together </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS  </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL  </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -291,5 +291,9 @@ The above schedule is approximate; variations may occur.
     <tr>
         <td> <b> JS </b> </td>
         <td> John Sundh </td>
+    </tr>
+    <tr>
+        <td> <b> TL </b> </td>
+        <td> Tomas Larsson </td>
     </tr>
 </table>

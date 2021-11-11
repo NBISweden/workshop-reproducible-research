@@ -20,8 +20,7 @@ following order:
 4. Nextflow
 5. R Markdown
 6. Jupyter
-7. Docker
-8. Singularity
+7. Containers
 
 You will find the tutorials in the *Modules* section in the navigation menu.
 
@@ -78,6 +77,6 @@ The workflow itself will perform the following tasks:
 * Downloading the raw FASTQ data from the *Sequence Read Archive* (SRA)
 * Run some quality controls on the data using *FastQC* and *MultiQC*
 * Align the raw data to the genome and calculate the gene expression using
-  *HTSeq-count*
+  *featureCounts*
 * Produce supplementary materials using data from quality controls, gene
   expression and the workflow figure shown above
