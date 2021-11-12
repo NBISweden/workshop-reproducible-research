@@ -22,7 +22,7 @@ blueprints for the images. It is therefore good practice to have your
 Dockerfile in your project Git repository, since it allows other users to
 exactly replicate your project environment.
 
-We will be looking at an image called `Dockerfile_slim` and is located in your
+We will be looking at a Dockerfile called `Dockerfile_slim` that is located in your
 `containers` directory (where you should hopefully be standing already). We will now
 go through that file and discuss the different steps and what they do. After
 that we'll build the image and test it out. Lastly, we'll start from that image
