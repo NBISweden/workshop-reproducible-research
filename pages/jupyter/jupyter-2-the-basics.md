@@ -47,7 +47,7 @@ looking like this:
 > **Tip** <br>
 > If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
 > Uppmax) see the section in the 
-> [Extra material](#running-jupyter-notebooks-on-a-cluster)
+> [Extra material](jupyter-9-extra-material)
 
 Jupyter notebooks are made up of cells, and you are currently standing in
 the first cell in your notebook. The fact that it has a green border indicates
@@ -92,19 +92,19 @@ menu in your notebook (there's even an option there to edit shortcuts).
         <td style="padding:5px"> <font size="3"> Enter Command mode </td>
     </tr>
     <tr>
-        <td style="padding:5px; text-align:center;"> <font size="3"> `ctrl` </td>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `ctrl` - `enter`</td>
         <td style="padding:5px"> <font size="3"> Run the cell </td>
     </tr>
     <tr>
-        <td style="padding:5px; text-align:center;"> <font size="3"> `shift` </td>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `shift` - `enter`</td>
         <td style="padding:5px"> <font size="3"> Run the cell and select the cell below </td>
     </tr>
     <tr>
-        <td style="padding:5px; text-align:center;"> <font size="3"> `alt` </td>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `alt` - `enter`</td>
         <td style="padding:5px"> <font size="3"> Run the cell and insert a new cell below </td>
     </tr>
     <tr>
-        <td style="padding:5px; text-align:center;"> <font size="3"> `ctrl` </td>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `s`</td>
         <td style="padding:5px"> <font size="3"> Save the notebook </td>
     </tr>
     <tr>
@@ -112,20 +112,24 @@ menu in your notebook (there's even an option there to edit shortcuts).
         <td style="padding:5px"> <font size="3"> For code completion or indentation </td>
     </tr>
     <tr>
-        <td style="padding:5px; text-align:center;"> <font size="3"> `m` </td>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `m`, `y`</td>
         <td style="padding:5px"> <font size="3"> Toggle between Markdown and Code cells </td>
     </tr>
     <tr>
-        <td style="padding:5px; text-align:center;"> <font size="3"> `d` </td>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `d`- `d` </td>
         <td style="padding:5px"> <font size="3"> Delete a cell </td>
     </tr>
     <tr>
         <td style="padding:5px; text-align:center;"> <font size="3"> `a` </td>
-        <td style="padding:5px"> <font size="3"> Insert cells above/below current cell </td>
+        <td style="padding:5px"> <font size="3"> Insert cells above current cell </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `b` </td>
+        <td style="padding:5px"> <font size="3"> Insert cells below current cell </td>
     </tr>
     <tr>
         <td style="padding:5px; text-align:center;"> <font size="3"> `x` </td>
-        <td style="padding:5px"> <font size="3"> Cut/copy/paste cells </td>
+        <td style="padding:5px"> <font size="3"> Cut currently selected cells </td>
     </tr>
     <tr>
         <td style="padding:5px; text-align:center;"> <font size="3"> `o` </td>
@@ -217,7 +221,7 @@ in one cell and use it in the next. For example:
 
 ```python
 def print_me(str):
-  print(str)
+    print(str)
 ```
 
 ... and ...
@@ -230,7 +234,7 @@ Your notebook should now look something like this.
 
 > ![](images/jupyter_basic_update.png){ width=700px }
 
-The focus here is not on how to write Markdown or Python; you can make really
+The focus of this tutorial is not on how to write Markdown or Python; you can make really
 pretty notebooks with Markdown and you can code whatever you want with Python.
 Rather, we will focus on the Jupyter Notebook features that allow you to do
 a little more than that.
