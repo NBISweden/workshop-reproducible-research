@@ -36,6 +36,7 @@ def sine_curve(A, f, p):
     y = A*np.sin(x*f+p)
     # Plot the x and y values ('r-' specifies color and line style)
     plt.plot(x, y, color='red', linestyle="-")
+    plt.show()
 
 # Here we supply the sine_curve function to interactive, 
 # and set some limits on the input parameters
@@ -147,6 +148,7 @@ def sine_curve(A, f, p, color): ## <- add parameter here
     y = A*np.sin(x*f+p)
     # Plot the x and y values 
     plt.plot(x, y, color=color) ## <- Use color from widget here
+    plt.show()
 
 # Here we supply the sine_curve function to interactive, 
 # and set some limits on the input parameters
