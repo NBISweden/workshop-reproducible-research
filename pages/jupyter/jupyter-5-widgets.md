@@ -129,6 +129,9 @@ You'll need to update the `sine_curve` function and pass the new widget as
 an argument in the call to `interactive`. If you need help, see the code chunk
 below:
 
+<details>
+<summary> Click to show </summary>
+
 ```python
 # Import the interactive function from ipywidgets
 from ipywidgets import interactive
@@ -163,6 +166,8 @@ interactive_plot = interactive(sine_curve,
 # Display the widgets and the plot
 interactive_plot
 ```
+
+</details>
 
 > **Attention!** <br>
 > Note that you may have to close the color picker once you've made your 
