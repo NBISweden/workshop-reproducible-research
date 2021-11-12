@@ -1,7 +1,7 @@
 Magics constitute a simple command language that significantly extends the
 power of Jupyter notebooks. There are two types of magics:
 
-* **Line magics**: Commands that are prepended by "%", and whose arguments only
+* **Line magics**: Commands that are prepended by `%`, and whose arguments only
   extend to the end of the line.
 * **Cell magics**: Commands that start with `%%` and then applies to the whole
   cell. Must be written on the first line of a cell.
