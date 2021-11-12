@@ -34,6 +34,7 @@ jupyter notebook --config my_jupyter_config.py
 ```
 
 **On your local computer**
+
 * Forward port 8080 to the remote port on the Uppmax login node:
 
 ```bash
@@ -48,12 +49,12 @@ via your local browser.
 
 ## Integrating notebooks with Snakemake workflows
 
-In the [case study](#jupyter-and-the-case-study) section of this tutorial we
+In the [case study](jupyter-8-the-mrsa-case-study) section of this tutorial we
 created a Jupyter notebook that used output from a Snakemake workflow
 and produced some summary results and plots. Wouldn't it be nice if this was
 actually part of the workflow itself? To generate a HTML version of the notebook
 we can use what we learned in the section about 
-[Converting noteboks](#converting-notebooks). The command to execute the notebook
+[converting notebooks](jupyter-7-converting-notebooks). The command to execute the notebook
 and save it in HTML format in a file `results/supplementary.html` would be:
 
 ```bash
