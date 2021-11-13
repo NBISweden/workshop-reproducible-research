@@ -1,5 +1,5 @@
 Git is aware of all files within the repository. However, it is not uncommon to
-have files that we don't want git to track. For instance, our analysis might
+have files that we don't want Git to track. For instance, our analysis might
 produce several intermediate files and results. We typically don't track such
 files. Rather, we want to track the actual code and other related files (*e.g.*
 configuration files) that produce the intermediate and result files, given the
@@ -16,15 +16,15 @@ touch results/supplementary.pdf
 touch log.tmp
 ```
 
-* Run `git status`. You will see that git tells you that you have untracked
-  files. However, we don't want git to track these files anyway. To tell git
+* Run `git status`. You will see that Git tells you that you have untracked
+  files. However, we don't want Git to track these files anyway. To tell Git
   what files to ignore we use a file called `.gitignore`. Let's create it:
 
 ```bash
 touch .gitignore
 ```
 
-* Open the `.gitignore` file in an editor and add the following lines to it:
+* Open the `.gitignore` file in a text editor and add the following lines to it:
 
 ```
 # Ignore these directories:
@@ -38,7 +38,7 @@ intermediate/
 * Run `git status` again. Now there is no mention of the `results` and
   `intermediate` directories or the `log.tmp` file. Notice that we can use
   wildcards (\*) to ignore files with a given pattern, *e.g.* a specific
-  extension.
+  file extension.
 
 * Sometimes you want to ignore all files in a directory with one or two
   exceptions. For example, you don't want to track all your huge raw data files,
@@ -77,10 +77,10 @@ git commit -m "Add metadata file"
 > **Tip** <br>
 > It is common for certain programming languages or text editors to leave
 > *e.g.* swap files or hidden data files in the working directory, which you
-> don't want to track using git. Instead of manually adding these to every
+> don't want to track using Git. Instead of manually adding these to every
 > single project you have, you can use the `.gitignore_global` file, which
 > should be placed in your home directory. It works exactly like a normal
-> gitignore file, but is applied to all git repositories that you are using
+> gitignore file, but is applied to all Git repositories that you are using
 > on your machine. Some common file extensions that might be put in the
 > global gitignore are `.DS_Store` if you're working in R or `.swp` if you're
 > coding in vim.
@@ -88,7 +88,7 @@ git commit -m "Add metadata file"
 > **Quick recap** <br>
 > We now learned how to ignore certain files and directories:
 >
-> - The `.gitignore` file controls which files and directories git should
+> - The `.gitignore` file controls which files and directories Git should
 >   ignore, if any.
 > - Specific files can be excluded from ignored directories using the
 >   exclamation mark (`!`) prefix.

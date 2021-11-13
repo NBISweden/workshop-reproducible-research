@@ -28,7 +28,7 @@ conda info --envs
 
 The active environment will be marked with an asterisk.
 
-* To see the installed packages in the active environment, run:
+* To see the installed packages and their versions in the active environment, run:
 
 ```bash
 conda list
@@ -42,7 +42,7 @@ conda list
 fastqc --version
 ```
 
-* Did it work? Activate your project_a environment and run the `fastqc
+* Did it work? Activate your `project_a` environment and run the `fastqc
   --version` command again. Does it work now?
 
 Hopefully the FastQC software was not found in your base environment (unless

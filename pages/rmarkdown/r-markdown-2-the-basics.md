@@ -28,7 +28,7 @@ for the format. As you can see, there are essentially three types of components
 in an R Markdown document:
 
 1. Text (written in R Markdown)
-2. Code chunks (written in R or another [supported language](#r-markdown-and-other-languages))
+2. Code chunks (written in R or another [supported language](https://bookdown.org/yihui/rmarkdown/language-engines.html))
 3. The YAML header
 
 Let's dig deeper into each of these in the following sections! But first, just
@@ -37,7 +37,8 @@ the top of the text editor panel in RStudio. This will prompt you to save the
 Rmd file (do that), and generate the output file (an HTML file in this case).
 It will also open up a preview of this file for you.
 
-Some commonly used formatting written in markdown is shown below:
+Some commonly used formatting written in markdown is shown below, which you may
+recognize from the [Git tutorial](git-7-working-remotely):
 
 ```no-highlight
 # This is a heading

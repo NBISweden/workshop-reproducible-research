@@ -1,5 +1,5 @@
 So far we've only been working on files present on our own computer, *i.e.*
-locally. While git is an amazing tool for reproducibility even if you're
+locally. While Git is an amazing tool for reproducibility even if you're
 working alone, it really starts to shine in collaborative work. This entails
 working with *remote* repositories, *i.e.* repositories that are stored
 somewhere online; some of the most common places to store your repositories are
@@ -7,8 +7,8 @@ somewhere online; some of the most common places to store your repositories are
 [GitLab](https://about.gitlab.com/). GitHub is the most popular of these, and is
 what we'll be using for this tutorial.
 
-An important thing to keep in mind here is the difference between *git* (the
-version control system) and online hosting of *git repositories* (such as
+An important thing to keep in mind here is the difference between *Git* (the
+version control system) and online hosting of *Git repositories* (such as
 GitHub): the former is the core of keeping track of your code's history, while
 the latter is how to store and share that history with others.
 
@@ -46,7 +46,7 @@ git remote add origin https://github.com/user/git_tutorial.git
 ```
 
 * Run `git remote -v`. This will show you what remote location is connected to
-  your local git clone. The short name of the default remote is usually
+  your local Git clone. The short name of the default remote is usually
   "*origin*" by convention.
 
 * We have not yet synced the local and remote repositories, though, we've simply
@@ -57,7 +57,7 @@ git push origin main
 ```
 
 The `push` command sends our local history of the `main` branch to the same
-branch on the remote (`origin`). Our git repository is now stored on GitHub!
+branch on the remote (`origin`). Our Git repository is now stored on GitHub!
 
 * Run `git status`. This should tell you that *"Your branch is up-to-date with
   'origin/main'."*.
@@ -80,14 +80,14 @@ see. Let's try it out!
 ```markdown
 # A Git tutorial
 
-This repository contains tutorial information related to the **NBIS** course
+This repository contains tutorial information related to the **NBIS/ELIXIR** course
 *Tools for Reproducible Research*, specifically the session on using the `git`
 software for version control.
 
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://nbis-reproducible-research.readthedocs.io/en/latest/git/).
+[here](https://uppsala.instructure.com/courses/51980/pages/git-1-introduction?module_item_id=367079).
 ```
 
 * Add, commit and push these changes to GitHub.
@@ -106,8 +106,8 @@ text (surrounded by one asterisk), in-line code (surrounded by acute accents)
 and a link (link text inside square brackets followed by link address inside
 parentheses).
 
-It is important to add README-files to your repositories so that they are more
-documented and easily understood by others and, more likely, your future self.
+It is important to add README-files to your repositories so that they are better
+documented and more easily understood by others and, more likely, your future self.
 In fact, documentation is an important part of reproducible research! While the
 tools that you are introduced to by this course are all directly related to
 making science reproducible, you will *also* need good documentation. Make it
@@ -122,9 +122,9 @@ you so desire.
 > more about markdown [here](https://www.markdownguide.org/getting-started/).
 
 > **Quick recap** <br>
-> We learned how to connect local git repositories to remote locations such as
+> We learned how to connect local Git repositories to remote locations such as
 > GitHub and how to upload commits using `git push`. We also learned the
-> basics of *markdown* and how it can be used to document git repositories.
+> basics of *markdown* and how it can be used to document Git repositories.
 
 ## Browsing GitHub
 
@@ -175,7 +175,7 @@ from different computers, a computer cluster or a cloud service.
 
 * Let's pretend that you want to work on this repository from a different
   computer. First, create a different directory (*e.g.* `git_remote_tutorial`)
-  in a separate location that is not already tracked by git and `cd` into it.
+  in a separate location that is not already tracked by Git and `cd` into it.
   Now we can download the repository we just uploaded using the following:
 
 ```bash
@@ -187,12 +187,12 @@ the current directory, instead of creating a new directory with the same name as
 the remote repository. You will see that all your files are here, identical to
 the original `git_tutorial` repository!
 
-* Since you already gave the address to git when you cloned the repository, you
+* Since you already gave the address to Git when you cloned the repository, you
   don't have to add it manually as before. Verify this with `git remote -v`.
 
 * Let's say that we now want to change the `multiqc` software to an earlier
   version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.7` to `multiqc=1.2`; add and commit the change.
+  `multiqc=1.10.1` to `multiqc=1.7`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
@@ -200,7 +200,7 @@ the original `git_tutorial` repository!
 
 > **Tip** <br>
 > You always need to specify `git push origin main` by default, but you can
-> circumvent this by telling git that you always want to push to
+> circumvent this by telling Git that you always want to push to
 > `origin/main` when you're on your local `main` branch. To do this, use
 > the command `git branch --set-upstream-to origin/main`. Another way to
 > achieve the same effect is use the `--set-upstream` flag for the very first
@@ -232,7 +232,7 @@ will give you a short visual summary:
 ![](images/git_overview_remote.png){ width=600px }
 
 > **Quick recap** <br>
-> We have learnt the difference between local and remote copies of git
+> We have learned the difference between local and remote copies of git
 > repositories and how to sync them:
 >
 > - `git push` uploads commits to a remote repository
@@ -309,8 +309,8 @@ git push --tags
 * Go to the repository overview page on GitHub. You will see that the repository
   now has three tags! If you click on *Tags* you will be given an overview of
   the existing tags for your repository - if you click *Releases* you will see
-  more or less the same information. Confusing? Well, a *tag* is a git concept
-  while a *release* is a GitHub concept that is based on git tags. Releases add
+  more or less the same information. Confusing? Well, a *tag* is a Git concept
+  while a *release* is a GitHub concept that is based on Git tags. Releases add
   some extra features that can be useful for distributing software and are done
   manually from the repository's GitHub page.
 
@@ -319,9 +319,9 @@ git push --tags
 
 > ![](images/github_tags_list.png){ width=600px }
 
-Alternatively, git users who want to reproduce your analysis with the code used
+Alternatively, Git users who want to reproduce your analysis with the code used
 for the publication can clone the GitHub repository and then run `git checkout
 publication`.
 
 > **Quick recap** <br>
-> We learned how to push git tags to a remote by using the `--tags` flag.
+> We learned how to push Git tags to a remote by using the `--tags` flag.

@@ -1,8 +1,8 @@
 The following extra material contains some more advanced things you can do with
-git and the command line in general, which is not part of the main course
-materials. All the essential skills of git are covered by the previous
+Git and the command line in general, which is not part of the main course
+materials. All the essential skills of Git are covered by the previous
 sections; the material here should be considered tips and tricks from people
-who use git every day. You thus don't need to use these things unless you want
+who use Git every day. You thus don't need to use these things unless you want
 to, and you can even skip this part of the lesson if you like!
 
 ## Decorating your prompt
@@ -10,7 +10,7 @@ to, and you can even skip this part of the lesson if you like!
 When you are working on the command line interface (CLI), you will usually have
 some small pieces of information relating to your current directory, the name
 of the computer or host you're working on, and so forth. You've probably
-already seen your prompt while working with git throughout this lesson, but
+already seen your prompt while working with Git throughout this lesson, but
 here's an example of what one might look like:
 
 ```no-highlight
@@ -35,8 +35,8 @@ git_branch() {
 
 This function does a number of things:
 
-1. Ejects the error message from git if the current directory isn't a part of a
-   git repository into `/dev/null` (_i.e._ into nothing).
+1. Ejects the error message from Git if the current directory isn't a part of a
+   Git repository into `/dev/null` (_i.e._ into nothing).
 2. Find the current branch by searching for a line that starts with `*` (*i.e.*
    the current branch) using the command line program `sed`.
 3. Put the current branch into parentheses with a space before it.
@@ -47,14 +47,14 @@ We can then build our new prompt by adding this function into it:
 # The first part of the old prompt
 PS1='\h:\W \u'
 
-# Add the git branch
+# Add the Git branch
 PS1=$PS1'$(git_branch)'
 
 # Add the last part of the old prompt
 PS1=$PS1' \$'
 ```
 
-Now you should see the current git branch on your prompt! The only problem now
+Now you should see the current Git branch on your prompt! The only problem now
 is that this only works for your current session: once you restart your CLI
 you'll have to re-define your prompt again. This can be circumvented, though.
 What you need to do is to add the code defining your prompt into your so-called
@@ -64,7 +64,7 @@ file, so make sure you don't overwrite it!
 
 ## Bash aliases for git
 
-Some git commands are used over and over again when working with git, such as
+Some Git commands are used over and over again when working with git, such as
 `git status`. Some people like to have aliases (*i.e.* shortcuts) for these
 common commands. Here is a small list of such aliases that you may find useful
 or, even better, might inspire you to create your own! Add them to your

@@ -36,6 +36,7 @@ def sine_curve(A, f, p):
     y = A*np.sin(x*f+p)
     # Plot the x and y values ('r-' specifies color and line style)
     plt.plot(x, y, color='red', linestyle="-")
+    plt.show()
 
 # Here we supply the sine_curve function to interactive, 
 # and set some limits on the input parameters
@@ -128,6 +129,9 @@ You'll need to update the `sine_curve` function and pass the new widget as
 an argument in the call to `interactive`. If you need help, see the code chunk
 below:
 
+<details>
+<summary> Click to show </summary>
+
 ```python
 # Import the interactive function from ipywidgets
 from ipywidgets import interactive
@@ -147,6 +151,7 @@ def sine_curve(A, f, p, color): ## <- add parameter here
     y = A*np.sin(x*f+p)
     # Plot the x and y values 
     plt.plot(x, y, color=color) ## <- Use color from widget here
+    plt.show()
 
 # Here we supply the sine_curve function to interactive, 
 # and set some limits on the input parameters
@@ -161,6 +166,8 @@ interactive_plot = interactive(sine_curve,
 # Display the widgets and the plot
 interactive_plot
 ```
+
+</details>
 
 > **Attention!** <br>
 > Note that you may have to close the color picker once you've made your 

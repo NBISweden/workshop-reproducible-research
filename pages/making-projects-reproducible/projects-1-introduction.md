@@ -28,6 +28,16 @@ help and inspiration.
 > for this exercise short so that you have time to try out the tool while you
 > have the opportunity to get help.
 
+> **Reaching full reproducibility** <br>
+> Getting to a fully reproducible project is not the easiest thing, but if
+> you've done it once it'll be a lot easier! At that point, you'll find that not
+> only do you now reach an extremely high scientific standard, but you'll also
+> see how easy it is to work inside your projects! Adding additional analyses,
+> changing parameters, fixing things for review, *etc.* will all become much
+> easier for you. If you follow all of the points in the list at the top of this
+> page, you'll get there in no time!
+
+
 ## Your own project
 
 This is a great opportunity for you to try to implement the tools on one of
@@ -56,11 +66,3 @@ directory. The goal is to:
 2. Create a plot of the student experiences in some interesting way,
    implemented in the same workflow as above or using R Markdown / Jupyter
 
-> **Reaching full reproducibility** <br>
-> Getting to a fully reproducible project is not the easiest thing, but if
-> you've done it once it'll be a lot easier! At that point, you'll find that not
-> only do you now reach an extremely high scientific standard, but you'll also
-> see how easy it is to work inside your projects! Adding additional analyses,
-> changing parameters, fixing things for review, *etc.* will all become much
-> easier for you. If you follow all of the points in the list at the top of this
-> page, you'll get there in no time!

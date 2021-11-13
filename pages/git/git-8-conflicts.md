@@ -19,7 +19,7 @@ other. This could happen if a collaborator of yours committed a change and
 pushed it to GitHub. Let's create a conflict!
 
 * Move into your other local repository, `git_remote_tutorial`, which doesn't
-  have the new change. Run `git status`. Notice that git says: "*Your branch is
+  have the new change. Run `git status`. Notice that Git says: "*Your branch is
   up-to-date with 'origin/main'.*". We know that this is not true, but this
   local clone is not yet aware of the remote changes.
 
@@ -60,7 +60,7 @@ git fetch
 > one above). You can thus skip `fetch` and just do `pull` straight away, if
 > you prefer.
 
-* Now run `git status`. Unlike before, our local git clone now is aware of the
+* Now run `git status`. Unlike before, our local Git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
   lines: "*Your branch and 'origin/main' have diverged, and have 1 and
   1 different commit each, respectively.*".
@@ -98,15 +98,16 @@ dependencies:
   - python=3.7.6
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=5.10.0
+  - snakemake-minimal=6.10.0
 <<<<<<< HEAD
   - multiqc=1.6
 =======
   - multiqc=1.8
 >>>>>>> eb1bda9f9d089289e5bd82e15d36e34a88a04879
-  - bowtie2=2.2.4
+  - bowtie2=2.4.4
+  - tbb=2020.3
   - samtools=1.10
-  - htseq=0.11.2
+  - subread=2.0.1
   - bedtools=2.29.2
   - wget=1.20.1
   - graphviz=2.42.3
@@ -132,7 +133,7 @@ keep, or to change it to a third alternative.
 
 * Let's say that you are confident that it is better to run MultiQC 1.6 rather
   than 1.8. Edit the file so that it looks like you want it to, *i.e.* remove
-  the lines added by git and delete the line with `multiqc=1.8`. The final file
+  the lines added by Git and delete the line with `multiqc=1.8`. The final file
   should look like this:
 
 ```no-highlight
@@ -145,11 +146,12 @@ dependencies:
   - python=3.7.6
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=5.10.0
+  - snakemake-minimal=6.10.0
   - multiqc=1.6
-  - bowtie2=2.2.4
+  - bowtie2=2.4.4
+  - tbb=2020.3
   - samtools=1.10
-  - htseq=0.11.2
+  - subread=2.0.1
   - bedtools=2.29.2
   - wget=1.20.1
   - graphviz=2.42.3
@@ -187,7 +189,7 @@ git push
 ```
 
 * Go to GitHub in the browser and click the commit tracker again. You will see
-  a list of commits including where MultiQC was first changed to version `1.2`
+  a list of commits including where MultiQC was first changed to version `1.7`
   from our previous work, then to `1.8`, `1.6` and, finally, followed by a merge
   where the version was set to `1.6`.
 

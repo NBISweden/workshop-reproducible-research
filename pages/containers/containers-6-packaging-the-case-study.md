@@ -2,7 +2,7 @@ During these tutorials we have been working on a case study about the
 multiresistant bacteria MRSA. Here we will build and run a Docker container
 that contains all the work we've done so far.
 
-* We've [set up a GitHub repository](git-3-working-remotely) for version control
+* We've [set up a GitHub repository](git-7-working-remotely) for version control
   and for hosting our project.
 * We've defined a [Conda environment](conda-3-projects) that specifies the
   packages we're depending on in the project.

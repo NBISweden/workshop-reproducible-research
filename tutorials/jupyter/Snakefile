@@ -159,7 +159,7 @@ rule sort_bam:
 
 rule generate_count_table:
     """
-    Generate a count table using htseq-count.
+    Generate a count table using featureCounts.
     """
     input:
         bams=expand("intermediate/{sra_id}.sorted.bam", sra_id = config["sample_ids"]),
@@ -167,16 +167,9 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv"
     version: "1.0"
-    shadow: "minimal"
     shell:
         """
-        # htseq-count cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input.annotation} > tempfile
-
-        # Save the count table as a temporary file and then prepend a header line
-        # with the sample names
-        htseq-count --format bam --type gene --additional-attr description --idattr gene_id {input.bams} tempfile > tempfile2
-        echo '{input.bams}' | tr ' ' '\t' | cat - tempfile2 > {output}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
         """
 
 rule generate_rulegraph:

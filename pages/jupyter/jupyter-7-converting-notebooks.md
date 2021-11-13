@@ -14,7 +14,7 @@ jupyter nbconvert --to <FORMAT> notebook.ipynb
 Here `<FORMAT>` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
 `notebook`, `pdf`, `python`, `rst`, `script`, `slides`. Converting to some 
 output formats (*e.g.* PDF) may require you to install separate software such
-as [Pandoc](pandoc.org) or a **TeX** environment.
+as [Pandoc](https://pandoc.org/) or a **TeX** environment.
 
 Try converting the `Untitled.ipynb` notebook that you have been working on so
 far to HTML using `jupyter nbconvert`.

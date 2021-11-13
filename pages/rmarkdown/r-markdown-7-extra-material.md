@@ -1,4 +1,4 @@
-While the above tutorial teaches you all the basics of using R Markdown, there
+While the tutorial teaches you all the basics of using R Markdown, there
 is much more you can do with it, if you want to! Here we cover some extra
 material if you're curious to learn more, but we don't consider this to be
 a main part of the course.
@@ -17,9 +17,9 @@ devtools::session_info()
 ```
 ````
 
-## R Markdown and Snakemake
+## R Markdown and workflows
 
-Working with R Markdown in the context of a Snakemake workflow is something that
+Working with R Markdown in the context of a Snakemake or Nextflow workflow is something that
 is highly useful for reproducibility and quite easy to get going with. An
 important thing that you'll have to manage a bit more than usual is, however,
 the working directory of the R Markdown document, which is something you can do
@@ -47,13 +47,16 @@ rule report:
         """
 ```
 
+Doing it for Nextflow would look almost the same, except using Nextflow syntax
+and variables.
+
 ## R Markdown and other languages
 
 While R is the default and original language for any R Markdown document it
 supports several others, including Python, bash, SQL, JavaScript, to name a few.
 This means that you can actually get the reproducibility of R Markdown documents
 when coding in languages other than just R, if your language is one of the
-supported ones.
+[supported ones](https://bookdown.org/yihui/rmarkdown/language-engines.html).
 
 Two of the most important languages are Python and bash. While bash is supported
 out-of-the-box directly and only requires you to specify `bash` instead of `r` in
@@ -68,7 +71,7 @@ more about the R Markdown Python engine [here](https://rstudio.github.io/reticul
 This tutorial has been using HTML as the output format, as this is the most
 common format that many data analyses are using. Some reasons for this include
 not having to think about a page-layout (which is especially useful for
-documents with many figures/plots, which is common for data analyses documents),
+documents with many figures/plots, which is common for data analysis documents),
 simplified creation (*i.e.* not having to think about special LaTeX commands for
 PDF output) and fewer dependencies.
 
@@ -76,7 +79,7 @@ The PDF format has a lot going for it as well, however, such as being an
 end-point for journal articles, books and similar documents, as well as being
 much more powerful (meaning a steeper learning curve) than just HTML rendering:
 you can customise almost anything you can think of. Not that HTML output is
-lacking in options, it's just that LaTeX is simply more feature-rich.
+lacking in options, it's just that LaTeX is more feature-rich.
 
 Let's take an example: font sizes. This is something that is quite hard to do on
 a per-chunk basis in HTML, but easy in LaTeX. You can change the font size of
@@ -97,7 +100,7 @@ separate groups of figure captions, such as one group for main article figures
 and one group for supplementary figures - the same goes for tables, of course.
 
 R Markdown uses LaTeX behind the scenes to render PDF documents, but you miss
-some of the features that is inherent in LaTeX by going this route. There is,
+some of the features that are inherent in LaTeX by going this route. There is,
 thankfully, a different file format that you can use that more explicitly merges
 R Markdown and all the functionality of LaTeX, called [Sweave](https://rpubs.com/YaRrr/SweaveIntro).
 
@@ -111,13 +114,13 @@ There is simply a plethora of tweaks, variables and parameters that you can use
 for PDF rendering, but it can be quite overwhelming if you're just starting out.
 We recommend using HTML for most things, especially data analysis, but PDF
 certainly has its strengths - you could, for example, write a whole paper (and
-its supplementary material) in R Markdown with LaTeX *ONLY*, without using
-Microsoft Word or anything else! It doesn't get much more reproducible than
-that.
+its supplementary material) in R Markdown with LaTeX *only*, without using
+Microsoft Word or anything else - it doesn't get much more reproducible than
+that!
 
 ## Presentations in R Markdown
 
-R Markdown is not only for data analyses reports and papers, but you can also
+R Markdown is not only useful for data analysis reports and papers, but you can also
 create presentations with it! In fact, most of the presentations created for
 this course were done using R Markdown.
 
@@ -189,8 +192,8 @@ of Xaringan (which is itself a R Markdown-based presentation), as well as its
 that using R Markdown for presentations does take about the same time or
 slightly more compared to PowerPoint once you're used to it, but there's
 a learning curve - as with everything else. Anything related to actual code and
-presenting results it can be much quicker, however! A good exercise is to take
-one of the presentations you have given in the past (such as for a lab meeting,
-a journal club, *etc.*) and try to recreate that with R Markdown. Which method
-of creating presentations you prefer is, ultimately, up to you and what the
-your current end-goal is for the presentation.
+presenting results can be much quicker, however! A good exercise is to take one
+of the presentations you have given in the past (such as for a lab meeting, a
+journal club, *etc.*) and try to recreate that with R Markdown. Which method of
+creating presentations you prefer is, ultimately, up to you and what the your
+current end-goal is for the presentation.

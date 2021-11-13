@@ -2,11 +2,12 @@ All that we've done so far could quite easily be done in a simple shell script
 that takes the input files as parameters. Let's now take a look at some of the
 features where a WMS like Snakemake really adds value compared to a more
 straightforward approach. One such feature is the possibility to visualize your
-workflow. Snakemake can generate two types of graphs, one that show how the
+workflow. Snakemake can generate two types of graphs, one that shows how the
 rules are connected and one that shows how the jobs (*i.e.* an execution of
-a rule with some given inputs/outputs/settings) are connected. First we look at
-the rule graph. The following command will generate a rule graph in the dot
-language and pipe it to the program `dot`, which in turn will save
+a rule with some given inputs/outputs/settings) are connected. 
+
+First we look at the rule graph. The following command will generate a rule graph 
+in the dot language and pipe it to the program `dot`, which in turn will save
 a visualization of the graph as a PNG file (if you're having troubles displaying
 PNG files you could use SVG or JPG instead).
 
@@ -16,10 +17,11 @@ snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
 
 ![](images/rulegraph.svg)
 
-That looks simple enough, the output from the rule `convert_to_upper_case` will
-be used as input to the rule `concatenate_files`. For a more typical
-bioinformatics project it can look something like this when you include all the
-rules from processing of the raw data to generating figures for the paper.
+This looks simple enough, the output from the rule `convert_to_upper_case` will
+be used as input to the rule `concatenate_files`. 
+
+For a more typical bioinformatics project it can look something like this when you 
+include all the rules from processing of the raw data to generating figures for the paper.
 
 ![](images/rulegraph_complex.svg)
 
@@ -153,7 +155,7 @@ a tab-delimited file like this:
 snakemake a_b.txt -c 1 -D > summary.tsv
 ```
 
-The contents of `summary.tsv` is shown in the table below:
+The content of `summary.tsv` is shown in the table below:
 
 <table class="table table-hover table-condensed" border=1; style="margin-left:auto; margin-right:auto;">
     <thead style="background-color:#DAE7F1">
@@ -204,7 +206,7 @@ The contents of `summary.tsv` is shown in the table below:
     </tr>
 </table>
 
-You can see in the second last column that the rule implementation for a_b.txt
+You can see in the second last column that the rule implementation for `a_b.txt`
 has changed. The last column shows if Snakemake plans to regenerate the files
 when it's next executed. None of the files will be regenerated because
 Snakemake doesn't regenerate files by default if the rule implementation
@@ -232,14 +234,14 @@ You might wonder where Snakemake keeps track of all these things? It stores all
 information in a hidden subdirectory called `.snakemake`. This is convenient
 since it's easy to delete if you don't need it anymore and everything is
 contained in the project directory. Just be sure to add it to `.gitignore` so
-that you don't end up tracking it.
+that you don't end up tracking it with git.
 
 By now you should be familiar with the basic functionality of Snakemake, and
 you can build advanced workflows with only the features we have discussed here.
 There's a lot we haven't covered though, in particular when it comes to making
 your workflow more reusable. In the following section we will start with
 a workflow that is fully functional but not very flexible. We will then
-gradually improve on it, and at the same time showcase some Snakemake features
+gradually improve it, and at the same time showcase some Snakemake features
 we haven't discussed yet. Note that this can get a little complex at times, so
 if you felt that this section was a struggle then you could move on to one of
 the other tutorials instead.

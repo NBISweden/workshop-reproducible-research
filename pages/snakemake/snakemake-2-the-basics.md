@@ -13,8 +13,7 @@ echo "This is a.txt" > a.txt
 echo "This is b.txt" > b.txt
 ```
 
-Then open `Snakefile` in your favorite text editor (Vim is available if you're
-running this in the course Docker container). A Snakemake workflow is based on
+Then open `Snakefile` in your favorite text editor. A Snakemake workflow is based on
 rules which take some file(s) as input, performs some type of operation on
 them, and generate some file(s) as outputs. Here is a very simple rule that
 takes `a.txt` as an input and produces `a.upper.txt` as an output. Copy this
@@ -43,14 +42,14 @@ rule convert_to_upper_case:
 A rule has a name, here it's `convert_to_upper_case`. Make an effort to name
 your rules in a way that makes it easy to understand the purpose of the rule,
 as rule names are one of the main ways to interact with the workflow. The
-`shell` section contains the shell commands that will convert the text in the
-input file to upper case and send it to the output file. In the shell command
-string, we can refer to elements of the rule via curly brackets. Here, we refer
-to the output file by specifying `{output}` and to the input file by specifying
-`{input}`. If you're not very familiar with Bash, this particular command can
-be read like "send the contents of `a.txt` to the program `tr`, which will
-convert all characters in the set [a-z] to the corresponding character in the
-set [A-Z], and then send the output to `a.upper.txt`".
+`shell` section (or directive) contains the shell commands that will convert the 
+text in the input file to upper case and send it to the output file. In the shell 
+command string, we can refer to elements of the rule via curly brackets. Here, we 
+refer to the output file by specifying `{output}` and to the input file by 
+specifying `{input}`. If you're not very familiar with Bash, this particular 
+command can be read like "send the contents of `a.txt` to the program `tr`, which 
+will convert all characters in the set `[a-z]` to the corresponding character in 
+the set `[A-Z]`, and then send the output to `a.upper.txt`".
 
 Now let's run our first Snakemake workflow. When a workflow is executed
 Snakemake tries to generate a set of target files. Target files can be
@@ -93,7 +92,7 @@ total                        1              1              1
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
-You can see that Snakemake plans to run 1 job: the rule `convert_to_upper_case`
+You can see that Snakemake plans to run one job: the rule `convert_to_upper_case`
 with `a.txt` as input and `a.upper.txt` as output. The reason for doing this is
 that it's missing the file `a.upper.txt`. Now execute the workflow without the
 `-n` flag and check that the contents of `a.upper.txt` is as expected. Then try

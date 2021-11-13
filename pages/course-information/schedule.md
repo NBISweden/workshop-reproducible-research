@@ -30,7 +30,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
         <td style="padding:5px"> <font size="3"> Break-out rooms and ice breaker session </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:30 </td>
@@ -49,7 +49,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Git tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -85,7 +85,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Conda tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
@@ -110,7 +110,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -131,7 +131,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -141,7 +141,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up - Snakemake tutorial </td>
@@ -164,7 +164,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -238,7 +238,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -248,7 +248,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
@@ -268,7 +268,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00  </td>
         <td style="padding:5px"> <font size="3"> ... continued: putting the pieces together </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS  </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL  </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -291,5 +291,9 @@ The above schedule is approximate; variations may occur.
     <tr>
         <td> <b> JS </b> </td>
         <td> John Sundh </td>
+    </tr>
+    <tr>
+        <td> <b> TL </b> </td>
+        <td> Tomas Larsson </td>
     </tr>
 </table>

@@ -107,7 +107,7 @@ be executed three times.
 > workflow definition above. Nextflow doesn't care at all about whitespace, so
 > go ahead and use it in whatever manner you think is easiest to read and work
 > with! The style chosen here (including the choice to use UPPERCASE for all
-> processes) is based on [nf-core](https://nf-co.re://nf-co.re/).
+> processes) is based on [nf-core](https://nf-co.re).
 
 What follows are the remaining processes and their respective input arguments.
 You can see that we can take the output from one process and use it as the

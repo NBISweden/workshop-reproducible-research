@@ -49,23 +49,6 @@ docker run -d --rm --name my_container my_docker_conda
 docker exec -it my_container /bin/bash
 ```
 
-> **Tip** <br>
-> Sometimes you would like to enter a stopped container. It's not a common
-> use case, but it's included here for those of you who are doing these
-> tutorials on Windows using Docker. Inadvertently shutting down your
-> container can result in loss of a lot of work if you're not able to restart
-> it. If you were to use `docker start` it would rerun the command set by
-> `CMD`, which may not be what you want. Instead we use `docker commit
-> container_name new_image_name` to convert the container `container_name` to
-> the image `new_image_name`. We can then start a new container in that image
-> as we normally would with `docker run -it --rm new_image_name /bin/bash`.
-> Confusing, right? In theory, this would allow you to bypass using
-> Dockerfiles and instead generate your image by entering an empty container
-> in interactive mode, install everything there, and then commit as a new
-> image. However, by doing this you would lose many of the advantages that
-> Dockerfiles provide, such as easy distribution and efficient space usage
-> via layers.
-
 ## Bind mounts
 
 There are obviously some advantages to isolating and running your data analysis
@@ -77,7 +60,7 @@ it will appear in the mounted directory on your host system.
 
 > **Tip** <br>
 > Docker also has a more advanced way of data storage called
-> [volumes](https://docs.docker.com/engine/admin/volumes/). Volumes provide
+> [volumes](https://docs.docker.com/storage/volumes/). Volumes provide
 > added flexibility and are independent of the host machine's filesystem
 > having a specific directory structure available. They are particularly
 > useful when you want to share data *between* containers.

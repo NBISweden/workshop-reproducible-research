@@ -5,6 +5,70 @@ section: the material here should be considered tips and tricks from people who
 use Conda as part of their daily work. You thus don't need to use these things
 unless you want to, and you can even skip this part of the lesson if you like!
 
+## Configuring Conda
+
+The behaviour of your Conda installation can be changed using an optional
+configuration file `.condarc`. On a fresh Conda install no such file is
+included but it's created in your home directory as `~/.condarc` the first time
+you run `conda config`.
+
+You can edit the `.condarc` file either using a text editor or by way of the
+`conda config` command. To list all config parameters and their settings run:
+
+```bash
+conda config --show
+```
+
+Similar to Conda environment files, the configuration file is in yml syntax.
+This means that the config file is structured in the form of `key:value` pairs
+where the `key` is the name of the config parameter (*e.g.* `auto_update_conda`)
+and the `value` is the parameter setting (*e.g.* `True`).
+
+Adding the name of a config parameter to `conda config --show` will show only
+that parameter, *e.g.* `conda config --show channels`.
+
+You can change parameters with the `--set`, `--add`, `--append` and `--remove`
+flags to `conda config`.
+
+If you for example want to enable the 'Always yes' behaviour which makes Conda
+automatically choose the `yes` option, such as when installing, you can run:
+
+```bash
+conda config --set always_yes True
+```
+
+To see details about a config parameter you can run `conda config --describe
+parameter`. Try running it on the `channels` parameter:
+
+```bash
+conda config --describe channels
+```
+
+In the beginning of this tutorial we added Conda channels to the `.condarc`
+file using `conda config --add channels`. To remove one of the channels from
+the configuration file you can run:
+
+```bash
+conda config --remove channels conda-forge
+```
+
+Check your `.condarc` file to see the change. To add the *conda-forge* channel
+back to the top of the `channels` simply run:
+
+```bash
+conda config --add channels conda-forge
+```
+
+To completely remove a parameter and all its values run:
+
+```bash
+conda config --remove-key parameter
+```
+
+For a list of Conda configuration parameters see the
+[Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
+page.
+
 ## Managing Python versions
 
 With Conda it's possible to keep several different versions of Python on your
@@ -78,70 +142,6 @@ py35` / `conda activate py27`.
 > *and* you don't explicitly install the `python` package then that new
 > environment will use the Python version installed in your base Conda
 > environment.
-
-## Configuring Conda
-
-The behaviour of your Conda installation can be changed using an optional
-configuration file `.condarc`. On a fresh Conda install no such file is
-included but it's created in your home directory as `~/.condarc` the first time
-you run `conda config`.
-
-You can edit the `.condarc` file either using a text editor or by way of the
-`conda config` command. To list all config parameters and their settings run:
-
-```bash
-conda config --show
-```
-
-Similar to Conda environment files, the configuration file is in yml syntax.
-This means that the config file is structured in the form of `key:value` pairs
-where the `key` is the name of the config parameter (*e.g.* `auto_update_conda`)
-and the `value` is the parameter setting (*e.g.* `True`).
-
-Adding the name of a config parameter to `conda config --show` will show only
-that parameter, *e.g.* `conda config --show channels`.
-
-You can change parameters with the `--set`, `--add`, `--append` and `--remove`
-flags to `conda config`.
-
-If you for example want to enable the 'Always yes' behaviour which makes Conda
-automatically choose the `yes` option, such as when installing, you can run:
-
-```bash
-conda config --set always_yes True
-```
-
-To see details about a config parameter you can run `conda config --describe
-parameter`. Try running it on the `channels` parameter:
-
-```bash
-conda config --describe channels
-```
-
-In the beginning of this tutorial we added Conda channels to the `.condarc`
-file using `conda config --add channels`. To remove one of the channels from
-the configuration file you can run:
-
-```bash
-conda config --remove channels conda-forge
-```
-
-Check your `.condarc` file to see the change. To add the *conda-forge* channel
-back to the top of the `channels` simply run:
-
-```bash
-conda config --add channels conda-forge
-```
-
-To completely remove a parameter and all its values run:
-
-```bash
-conda config --remove-key parameter
-```
-
-For a list of Conda configuration parameters see the
-[Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
-page.
 
 ## Decorating your prompt
 

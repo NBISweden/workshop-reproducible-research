@@ -44,7 +44,7 @@ done so already. Then open up a terminal and go to
 >
 > - Jupyter: a project to develop open-source software, open-standards, and
 >   services for interactive computing across dozens of programming
->   languages. Lives at [jupyter.org](jupyter.org).
+>   languages. Lives at [jupyter.org](https://jupyter.org).
 > - Jupyter Notebook: A web application that you use for creating and
 >   managing notebooks. One of the outputs of the Jupyter project.
 > - Jupyter notebook: The actual `.ipynb` file that constitutes your
