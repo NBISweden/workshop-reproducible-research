@@ -73,7 +73,7 @@ id_df = pd.DataFrame(data=GSM_IDs, index=SRR_IDs, columns=["geo_accession"])
 geo_df = get_geodata(GEO_ID)
 name_df = pd.merge(id_df, geo_df, left_on="geo_accession", right_index=True)
 # Create a dictionary to rename sample ids in downstream plots
-name_dict = name_df.to_dict() 
+name_dict = name_df.to_dict()
 ```
 
 Run the cell and take a look at the contents of the `name_df` dataframe (_e.g._
@@ -113,13 +113,13 @@ you can see the dataframe shows genes as rows while the columns shows various
 information such as start and stop, strand and length of the genes. The last
 three columns contain counts of the genes in each of the samples. 
 
-If you have a look at the `counts_summary` dataframe you will see read 
-statistics from the read assignment step, showing number of reads that could be
-properly assigned as well as number of reads that could not be assigned to genes
-for various reasons.
+If you have a look at the `counts_summary` dataframe you will see statistics 
+from the read assignment step, showing number of reads that could be properly 
+assigned as well as number of reads that could not be assigned to genes for 
+various reasons.
 
-Now let's generate a barplot of the summary statistics. We'll remove rows that
-have only zero values, then plot the remaining categories.
+Now let's generate a barplot of the summary statistics. Before we plot, we'll
+remove rows that have only zero values:
 
 ```python
 # Remove rows with only zero values
@@ -129,9 +129,8 @@ summary_plot_data = counts_summary.loc[counts_summary.sum(axis=1)>0]
 Now for the plotting:
 
 ```python
-# Set color palette to 'husl', with number of colors corresponding to categories
-# in the count_data
-colors = sns.color_palette("husl", n_colors=summary_plot_data.shape[1])
+# Set color palette to 'Set2'
+colors = sns.color_palette("Set2")
 # Create a stacked barplot
 ax = summary_plot_data.T.plot(kind="bar", stacked=True, color=colors)
 # Move legend and set legend title
@@ -149,7 +148,7 @@ count_data = counts.loc[:, SRR_IDs]
 heatmap_data = count_data.loc[(count_data.std(axis=1).div(count_data.mean(axis=1))>1.2)&(count_data.max(axis=1)>5)]
 ```
 
-For the final plot we'll replace the SRR ids with the title of samples
+We'll also replace the SRR ids with the title of samples
 used in the study, using the `name_dict` dictionary created further up in the 
 notebook:
 
