@@ -1,4 +1,4 @@
-One of the most useful features of git is called *branching*. Branching allows
+One of the most useful features of Git is called *branching*. Branching allows
 you to diverge from the main line of work and edit or update your code and
 files (*e.g.* to test out a new analysis or some experimental feature) without
 affecting your main work. If the work you did in the branch turns out to be

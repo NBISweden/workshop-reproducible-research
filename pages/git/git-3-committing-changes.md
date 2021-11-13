@@ -51,7 +51,7 @@ what the commit contains.
 > a period, and uses imperative mood (Add!). It is possible to add
 > a descriptive body text as well, as hinted by the points above. This is
 > easiest done in a text editor. If you run `git commit` without the `-m`
-> flag, git will open the default terminal text editor (which can be
+> flag, Git will open the default terminal text editor (which can be
 > configured with the `core.editor` variable) where you can write a longer
 > commit message and body. If you want to read more about the motivation for
 > these points, please see [this website](https://chris.beams.io/posts/git-commit/).
@@ -73,7 +73,7 @@ Let's repeat this process by editing a file!
 
 * Run `git status`. It will tell you that there are modifications in one file
   (`environment.yml`) compared to the previous commit. This is nice! We don't
-  have to keep track of which files we have edited, git will do that for us.
+  have to keep track of which files we have edited, Git will do that for us.
 
 * Run `git diff environment.yml`. This will show you the changes made to the
   file. A `-` means a deleted line, a `+` means an added line. There are also
@@ -116,7 +116,7 @@ considered experimental, you are very welcome to use `git restore` instead
 of `git reset` to unstage the file above!
 
 * Run `git status` again. See that now only `config.yml` is staged for being
-  committed, whereas the changes in `environment.yml` are tracked by git, but
+  committed, whereas the changes in `environment.yml` are tracked by Git, but
   not ready to be committed.
 
 * Commit the changes in `config.yml`:
@@ -148,7 +148,7 @@ history and version tracking you will have of your files.
 rm Dockerfile
 ```
 
-* Run `git status`. As you can see, git tells us that the file is deleted, but
+* Run `git status`. As you can see, Git tells us that the file is deleted, but
   that the deletion is not committed. In the same way as we commit edits to
   files, we need to commit a deletion of a file:
 
@@ -181,7 +181,7 @@ git log
 > than 50 MB.
 
 > **Quick recap** <br>
-> We added four important git commands to our repertoire:
+> We added four important Git commands to our repertoire:
 >
 > * `git add` adds a file to the staging area
 > * `git commit` commits the changes we have staged

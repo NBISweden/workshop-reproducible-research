@@ -1,13 +1,13 @@
-In order to create a new git repository, we first need a directory to track.
+In order to create a new Git repository, we first need a directory to track.
 For this tutorial, go ahead and create a directory called `git_tutorial`, then
 navigate into it.
 
 > **Attention!** <br>
 > The directory should *not* be within the `workshop-reproducible-research`
-> directory, since this is itself a git-tracked directory.
+> directory, since this is itself a Git-tracked directory.
 
 Once we are inside the desired directory, we can *initialise*
-git with the following command:
+Git with the following command:
 
 ```bash
 git init
@@ -25,17 +25,17 @@ nothing to commit (create/copy files and use "git add" to track)
 ```
 
 > **Tip** <br>
-> If you try to run `git status` in a non-git directory, it will say
-> that it is *not a git repository*. The way this works is that git
-> adds a hidden directory `.git/` in the root of a git tracked
+> If you try to run `git status` in a non-Git directory, it will say
+> that it is *not a git repository*. The way this works is that Git
+> adds a hidden directory `.git/` in the root of a Git tracked
 > directory (run `ls -a` to see it). This hidden directory contains
-> all information and settings git needs in order to run and version
-> track your files. This also means that your git-tracked directory
+> all information and settings Git needs in order to run and version
+> track your files. This also means that your Git-tracked directory
 > is self-contained, *i.e.* you can simply delete it and everything that
-> has to do with git in connection to that directory will be gone.
+> has to do with Git in connection to that directory will be gone.
 
 The text `nothing to commit (create/copy files and use "git add" to track)`
-tells us that while we are inside a directory that git is currently tracking,
+tells us that while we are inside a directory that Git is currently tracking,
 there are currently no files being tracked; let's add some!
 
 Copy the following files from the `workshop-reproducible-research/tutorials/git`
@@ -47,7 +47,7 @@ directory into your `git_tutorial` directory:
 * `environment.yml`
 
 Once you have done that, run `git status` again. It will tell you that there
-are files in the directory that are not version tracked by git.
+are files in the directory that are not version tracked by Git.
 
 > **Note** <br>
 > For the purpose of this tutorial, the exact contents of the files you just
@@ -68,7 +68,7 @@ are files in the directory that are not version tracked by git.
 > **Quick recap** <br>
 > We have used two `git` commands this far:
 >
-> - `git init` tells git to track the current directory.
+> - `git init` tells Git to track the current directory.
 > - `git status` is a command you should use *a lot*. It will tell you,
->   amongst other things, the status of your git clone in relation to the
+>   amongst other things, the status of your Git clone in relation to the
 >   online remote repository.
