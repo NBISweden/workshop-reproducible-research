@@ -18,10 +18,8 @@ relevant for reproducible research are:
 * When publishing, package your analyses in a container image and let it
   accompany the article. This way interested readers can reproduce your analysis
   at the push of a button.
-
 * Packaging your analysis in a container enables you to develop on *e.g.* your
   laptop and seamlessly move to cluster or cloud to run the actual analysis.
-
 * Say that you are collaborating on a project and you are using Mac while your
   collaborator is using Windows. You can then set up a container image specific
   for your project to ensure that you are working in an identical environment.
