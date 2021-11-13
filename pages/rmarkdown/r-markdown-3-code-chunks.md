@@ -89,12 +89,26 @@ summary(cars)
 
 There are also some chunk options related to plots:
 
-| Chunk option | Effect |
-|------|-------|
-| `fig.height = 9, fig.width = 6` | Set plot dimensions to 9x6 inches. (The default is 7x7.) |
-| `out.height = "10cm", out.width = "8cm"` | Scale plot to 10x8 cm in the final output file. |
-| `fig.cap = "This is a plot."` | Adds a figure caption.
-
+<table class="table table-hover table-condensed" border=1; style="width:725px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px; width:300px; text-align:center;"> <font size="3"><b> Chunk option </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Effect </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px; vertical-align:middle; text-align:center;"> <font size="3"> `fig.height = 9, fig.width = 6` </td>
+        <td style="padding:5px"> <font size="3"> Set plot dimensions to 9x6 inches (the default is 7x7.) </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; vertical-align:middle; text-align:center;"> <font size="3"> `out.height = "10cm", out.width = "8cm"` </td>
+        <td style="padding:5px"> <font size="3"> Scale plot to 10x8 cm in the final output file. </td>
+    </tr>
+    <tr>
+        <td style="padding:5px; vertical-align:middle; text-align:center;"> <font size="3"> `fig.cap = "This is a plot."` </td>
+        <td style="padding:5px"> <font size="3"> Add a figure caption. </td>
+    </tr>
+</table>
 
 * Go back to your template R Markdown document in RStudio and locate the
   `pressure` code chunk.
