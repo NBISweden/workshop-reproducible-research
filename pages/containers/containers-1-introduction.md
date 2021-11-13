@@ -7,8 +7,8 @@ software or code functions in exactly the same way regardless of where it's
 executed. Containers are in many ways similar to virtual machines but more
 lightweight. Rather than starting up a whole new operating system, containers
 can use the same kernel (usually Linux) as the system that they're running on.
-This makes them much faster and smaller compared to virtual machines. While this
-might sound a bit technical, actually using containers is quite easy, fun and
+This makes them much faster and smaller compared to virtual machines. While
+this might sound a bit technical, actually using containers is quite smooth and
 very powerful.
 
 Containers have also proven to be a very good solution for packaging, running
