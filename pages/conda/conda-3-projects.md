@@ -109,12 +109,13 @@ afterwards, ensuring future reproducibility.
 There is one command that can make this easier: `conda env export`. This allows
 you to export a list of the packages you've already installed, including their
 specific versions, meaning you can easily add them after the fact to your
-environment file. Even better, if you use the `--from-history` flag, you'll get
-a list of only the packages you specified originally in your environment file!
-This way, you can start with an environment file with just the packages you need
-(without version), allow Conda to solve the dependency tree and install the most
-up-to-date version possible, and then add the resulting version back in to the
-environment file using the export command!
+environment file. If you use the `--no-builds` flag, you'll get a list of the
+packages minus their OS-specific build specifications, which is more useful for
+making the environment portable across systems. This way, you can start with an
+environment file with just the packages you need (without version), allow Conda
+to solve the dependency tree and install the most up-to-date version possible,
+and then add the resulting version back in to the environment file using the
+`export` command!
 
 > **Quick recap** <br>
 > In this section we've learned:
