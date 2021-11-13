@@ -37,7 +37,8 @@ the top of the text editor panel in RStudio. This will prompt you to save the
 Rmd file (do that), and generate the output file (an HTML file in this case).
 It will also open up a preview of this file for you.
 
-Some commonly used formatting written in markdown is shown below:
+Some commonly used formatting written in markdown is shown below, which you may
+recognize from the [Git tutorial](git-7-working-remotely):
 
 ```no-highlight
 # This is a heading
