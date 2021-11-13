@@ -53,7 +53,7 @@ While R is the default and original language for any R Markdown document it
 supports several others, including Python, bash, SQL, JavaScript, to name a few.
 This means that you can actually get the reproducibility of R Markdown documents
 when coding in languages other than just R, if your language is one of the
-supported ones.
+[supported ones](https://bookdown.org/yihui/rmarkdown/language-engines.html).
 
 Two of the most important languages are Python and bash. While bash is supported
 out-of-the-box directly and only requires you to specify `bash` instead of `r` in

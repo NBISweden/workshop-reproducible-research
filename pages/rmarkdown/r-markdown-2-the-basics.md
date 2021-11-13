@@ -28,7 +28,7 @@ for the format. As you can see, there are essentially three types of components
 in an R Markdown document:
 
 1. Text (written in R Markdown)
-2. Code chunks (written in R or another [supported language](#r-markdown-and-other-languages))
+2. Code chunks (written in R or another [supported language](https://bookdown.org/yihui/rmarkdown/language-engines.html))
 3. The YAML header
 
 Let's dig deeper into each of these in the following sections! But first, just
