@@ -25,8 +25,8 @@ You will see that the notebook contains only a little markdown text and a code
 cell with a function `get_geodata`. We'll start by adding a cell with some 
 import statements. 
 
-Create a new cell after the `get_geodata` function but 
-**before** the Reproducibility section and add the following to it:
+Run the cell with the `get_geodata` function and add a new cell directly after 
+it. Then add the following to the new cell:
 
 ```python
 import pandas as pd
@@ -42,8 +42,8 @@ Python modules.
 Also add:
 
 ```python
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('pdf', 'svg')
+import matplotlib_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'svg')
 ```
 
 to set high-quality output for plots.
@@ -54,6 +54,7 @@ In the next cell we'll define some parameters to use for the notebook:
 
 ```python
 counts_file="results/tables/counts.tsv"
+summary_file="results/tables/counts.tsv.summary"
 multiqc_file="intermediate/multiqc_general_stats.txt"
 rulegraph_file="results/rulegraph.png"
 SRR_IDs=["SRR935090","SRR935091","SRR935092"]
@@ -75,8 +76,8 @@ name_df = pd.merge(id_df, geo_df, left_on="geo_accession", right_index=True)
 name_dict = name_df.to_dict() 
 ```
 
-Take a look at the contents of the `name_df` dataframe (_e.g._ run a cell with 
-that variable only to output it below the cell).
+Run the cell and take a look at the contents of the `name_df` dataframe (_e.g._
+run a cell with that variable only to output it below the cell).
 
 Now we'll load some statistics from the QC part of the workflow, specifically
 the 'general_stats' file from `multiqc`. Add the following to a new cell and run
@@ -95,42 +96,34 @@ with spaces. Finally the table is merged with the information obtained in the
 step above and output to show summary statistics from the QC stage.
 
 Next it's time to start loading gene count results from the workflow. Start by 
-reading the counts file, and edit the columns and index:
+reading the counts and summary results, then edit the columns and index:
 
 ```python
 # Read count data
-counts = pd.read_csv(counts_file, sep="\t", header=0)
+counts = pd.read_csv(counts_file, sep="\t", header=0, comment="#", index_col=0)
+# Read summary data
+counts_summary = pd.read_csv(summary_file, sep="\t", index_col=0)
 # Rename columns to extract SRR ids
 counts.rename(columns = lambda x: x.split("/")[-1].replace(".sorted.bam",""), inplace=True)
-# Set index to gene ids
-gene_names = dict(zip([x[0] for x in counts.index], [x[1] for x in counts.index]))
-counts.index = [x[0] for x in counts.index]
+counts_summary.rename(columns = lambda x: x.split("/")[-1].replace(".sorted.bam",""), inplace=True)
 ```
 
 Take a look at the `counts` dataframe to get an idea of the data structure. As
-you can see the dataframe shows read counts for genes (rows) in each sample 
-(columns). 
+you can see the dataframe shows genes as rows while the columns shows various
+information such as start and stop, strand and length of the genes. The last
+three columns contain counts of the genes in each of the samples. 
 
-The last few rows that are prefixed with '\_\_' correspond to summary
-statistics output from `htseq-count` for unassigned reads. We'll extract 
-these lines from the dataframe for downstream visualization:
+If you have a look at the `counts_summary` dataframe you will see read 
+statistics from the read assignment step, showing number of reads that could be
+properly assigned as well as number of reads that could not be assigned to genes
+for various reasons.
 
-```python
-# Extract stats from htseq starting with "__"
-counts_other = counts.loc[counts.index.str.startswith("__")]
-counts_other = counts_other.rename(index=lambda x: x.lstrip("_"))
-# Drop the "__" lines from counts
-counts = counts.drop(counts.loc[counts.index.str.startswith("__")].index)
-```
-
-Now let's generate a barplot showing number of reads assigned to genes as well
-as reads unassigned for various reasons. First we sum up all assigned reads per 
-sample and merge it with the unassigned stats from the previous step:
+Now let's generate a barplot of the summary statistics. We'll remove rows that
+have only zero values, then plot the remaining categories.
 
 ```python
-# Sum counts in 'genes' and merge with 'other' categories
-count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
-count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
+# Remove rows with only zero values
+summary_plot_data = counts_summary.loc[counts_summary.sum(axis=1)>0]
 ```
 
 Now for the plotting:
@@ -138,28 +131,30 @@ Now for the plotting:
 ```python
 # Set color palette to 'husl', with number of colors corresponding to categories
 # in the count_data
-colors = sns.color_palette("husl", n_colors=count_data.shape[1])
+colors = sns.color_palette("husl", n_colors=summary_plot_data.shape[1])
 # Create a stacked barplot
-ax = count_data.plot(kind="bar", stacked=True, color=colors)
+ax = summary_plot_data.T.plot(kind="bar", stacked=True, color=colors)
 # Move legend and set legend title
-ax.legend(bbox_to_anchor=(1,1), title="Feature");
+ax.legend(bbox_to_anchor=(1,1), title="Category");
 ```
 
 The final plot will be a heatmap of gene counts for a subset of the genes. We'll
 select genes whose standard deviation/mean count across samples is greater than 
-1.2, **and** have a maximum of at least 5 reads in 1 or more sample:
+1.5, **and** have a maximum of at least 5 reads in 1 or more sample:
 
 ```python
-heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
+# Slice the dataframe to only sample counts
+count_data = counts.loc[:, SRR_IDs]
+# Filter to genes with std/mean > 1.2 and with a max of at least 5
+heatmap_data = count_data.loc[(count_data.std(axis=1).div(count_data.mean(axis=1))>1.2)&(count_data.max(axis=1)>5)]
 ```
 
-In order to make the heatmap more informative we'll also add gene names to the
-rows of the heatmap data, and replace the SRR ids with the title of samples
-used in the study:
+For the final plot we'll replace the SRR ids with the title of samples
+used in the study, using the `name_dict` dictionary created further up in the 
+notebook:
 
 ```python
-heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
-heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
+heatmap_data = heatmap_data.rename(columns = name_dict['title'])
 ```
 
 Now let's plot the heatmap. We'll log-transform the counts, set color scale 
@@ -170,7 +165,7 @@ clustering:
 with sns.plotting_context("notebook", font_scale=0.7):
     ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
                         method="complete", yticklabels=True, linewidth=.5,
-                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
+                        cbar_pos=(.7, .85, .05, .1), figsize=(3,9))
     plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
 ```
 
@@ -219,7 +214,7 @@ quite yet.
 
 Say your notebook isn't on Github/Bitbucket. All hope isn't lost there.
 Jupyter.org provides a neat functionality called *nbviewer*, where you can
-past an URL to any notebook and they will render it for you. Go to
+paste a URL to any notebook and they will render it for you. Go to
 [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try
 this out with our notebook.
 
@@ -258,7 +253,7 @@ Then press "launch".
 
 ![](images/binder.png){ width=700px }
 
-What will happen now it that:
+What will happen now is that:
 
 * Binder detects the `environment.yml` file in the root of the repo.
   Binder then builds a _Docker image_ based on the file. This might take
