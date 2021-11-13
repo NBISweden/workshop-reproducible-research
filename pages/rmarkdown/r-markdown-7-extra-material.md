@@ -79,7 +79,7 @@ The PDF format has a lot going for it as well, however, such as being an
 end-point for journal articles, books and similar documents, as well as being
 much more powerful (meaning a steeper learning curve) than just HTML rendering:
 you can customise almost anything you can think of. Not that HTML output is
-lacking in options, it's just that LaTeX is simply more feature-rich.
+lacking in options, it's just that LaTeX is more feature-rich.
 
 Let's take an example: font sizes. This is something that is quite hard to do on
 a per-chunk basis in HTML, but easy in LaTeX. You can change the font size of
@@ -115,8 +115,8 @@ for PDF rendering, but it can be quite overwhelming if you're just starting out.
 We recommend using HTML for most things, especially data analysis, but PDF
 certainly has its strengths - you could, for example, write a whole paper (and
 its supplementary material) in R Markdown with LaTeX *only*, without using
-Microsoft Word or anything else! It doesn't get much more reproducible than
-that.
+Microsoft Word or anything else - it doesn't get much more reproducible than
+that!
 
 ## Presentations in R Markdown
 
@@ -192,8 +192,8 @@ of Xaringan (which is itself a R Markdown-based presentation), as well as its
 that using R Markdown for presentations does take about the same time or
 slightly more compared to PowerPoint once you're used to it, but there's
 a learning curve - as with everything else. Anything related to actual code and
-presenting results it can be much quicker, however! A good exercise is to take
-one of the presentations you have given in the past (such as for a lab meeting,
-a journal club, *etc.*) and try to recreate that with R Markdown. Which method
-of creating presentations you prefer is, ultimately, up to you and what the
-your current end-goal is for the presentation.
+presenting results can be much quicker, however! A good exercise is to take one
+of the presentations you have given in the past (such as for a lab meeting, a
+journal club, *etc.*) and try to recreate that with R Markdown. Which method of
+creating presentations you prefer is, ultimately, up to you and what the your
+current end-goal is for the presentation.
