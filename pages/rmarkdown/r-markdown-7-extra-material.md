@@ -17,9 +17,9 @@ devtools::session_info()
 ```
 ````
 
-## R Markdown and Snakemake
+## R Markdown and workflows
 
-Working with R Markdown in the context of a Snakemake workflow is something that
+Working with R Markdown in the context of a Snakemake or Nextflow workflow is something that
 is highly useful for reproducibility and quite easy to get going with. An
 important thing that you'll have to manage a bit more than usual is, however,
 the working directory of the R Markdown document, which is something you can do
@@ -46,6 +46,9 @@ rule report:
                                       output_file = "{output.html}")'
         """
 ```
+
+Doing it for Nextflow would look almost the same, except using Nextflow syntax
+and variables.
 
 ## R Markdown and other languages
 
