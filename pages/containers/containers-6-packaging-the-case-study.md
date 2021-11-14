@@ -18,8 +18,7 @@ final versions of all the files we've generated in the other tutorials:
 tutorials is that we have also included the rendering of the Supplementary 
 Material HTML file into the Snakemake workflow as the rule `make_supplementary`. 
 Running all of these steps will take some time to execute (around 20 minutes 
-or so), in particular if you're on a slow internet connection, and result in 
-a 3.75 GB image.
+or so), in particular if you're on a slow internet connection.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
