@@ -41,18 +41,16 @@ written in markdown. Markdown is somewhat ill-defined, and as a consequence of
 that there exist many implementations and extensions, although they share most
 of the syntax. *R Markdown* is one such implementation/extension.
 
-R Markdown documents can be used both to save and execute code (with a focus on
-R) and to generate reports in various formats. This is done by mixing markdown
-(as in the example above), and so-called code chunks in the same document. The
-code itself, as well as the output it generates, can be included in the final
-report.
+R Markdown documents can be used both to save and execute code and to generate
+reports in various formats. This is done by mixing markdown (as in the example
+above), and so-called code chunks in the same document. The code itself, as
+well as the output it generates, can be included in the final report.
 
 R Markdown makes your analysis more reproducible by connecting your code,
 figures and descriptive text. You can use it to make reproducible reports,
 rather than *e.g.* copy-pasting figures into a Word document. You can also use
 it as a notebook, in the same way as lab notebooks are used in a wet lab
-setting (or as we us a Jupyter notebook in the
-[tutorial](jupyter-1-introduction)).
+setting (or as we utilise Jupyter notebooks in the tutorial after this one).
 
 If you want to read more, here are some useful resources:
 

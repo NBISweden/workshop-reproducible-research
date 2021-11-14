@@ -154,7 +154,7 @@ like so: `\${bash_variable}`.
 > While not used in this example, if you have an external script you can put it
 > in a `bin/` directory in the same directory as the `main.nf` file, which will
 > automatically give all processes access to that script without you needing to
-> specify its absolute path - convenient!
+> specify its absolute path.
 
 ### A more complicated process
 

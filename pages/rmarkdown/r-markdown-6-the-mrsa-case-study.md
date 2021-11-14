@@ -211,12 +211,11 @@ out.height = "11cm"
 
 > **Note** <br>
 > It is definitely possible to render R Markdown documents as part of
-> a Snakemake workflow. This is something we do for the final version of the
-> MRSA project (in the Containers tutorial). In such cases it is advisable to
-> manage the installation of R and required R packages through your conda
-> environment file and use the `rmarkdown::render()` command from the shell
-> section of your Snakemake rule (see the Snakefile in `tutorials/containers/` 
-> for an example).
+> a Snakemake or Nextflow workflow. This is something we do for the final
+> version of the MRSA project (in the Containers tutorial). In such cases it is
+> advisable to manage the installation of R and required R packages through
+> your conda environment file and use the `rmarkdown::render()` command from
+> the shell section of your Snakemake rule or Nexflow process.
 
 > **Quick recap** <br>
 > In this section you learned some additional details for making nice

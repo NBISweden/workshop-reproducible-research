@@ -28,7 +28,7 @@ executor >  local (17)
 The first few lines are information about this particular run, including the
 Nextflow version used, which workflow definition file was used, a randomly
 generated run name (an adjective and a scientist), the revision number as well
-as the executor used (local, in this case).
+as how the run was executed (locally, in this case).
 
 What follows next is a list of all the various processes for this particular
 workflow. Just like Snakemake, the order does not necessarily reflect the order

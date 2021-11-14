@@ -19,7 +19,7 @@ other. This could happen if a collaborator of yours committed a change and
 pushed it to GitHub. Let's create a conflict!
 
 * Move into your other local repository, `git_remote_tutorial`, which doesn't
-  have the new change. Run `git status`. Notice that git says: "*Your branch is
+  have the new change. Run `git status`. Notice that Git says: "*Your branch is
   up-to-date with 'origin/main'.*". We know that this is not true, but this
   local clone is not yet aware of the remote changes.
 
@@ -60,7 +60,7 @@ git fetch
 > one above). You can thus skip `fetch` and just do `pull` straight away, if
 > you prefer.
 
-* Now run `git status`. Unlike before, our local git clone now is aware of the
+* Now run `git status`. Unlike before, our local Git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
   lines: "*Your branch and 'origin/main' have diverged, and have 1 and
   1 different commit each, respectively.*".
@@ -133,7 +133,7 @@ keep, or to change it to a third alternative.
 
 * Let's say that you are confident that it is better to run MultiQC 1.6 rather
   than 1.8. Edit the file so that it looks like you want it to, *i.e.* remove
-  the lines added by git and delete the line with `multiqc=1.8`. The final file
+  the lines added by Git and delete the line with `multiqc=1.8`. The final file
   should look like this:
 
 ```no-highlight
