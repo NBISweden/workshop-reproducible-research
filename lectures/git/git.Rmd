@@ -32,7 +32,7 @@ class: center, middle
 
 --
 
-* Keeps a .green[complete history] the changes you make to your files
+* Keeps a .green[complete history] of the changes you make to your files
 
 --
 
@@ -106,7 +106,7 @@ class: center, middle
 
 # Git is highly versatile
 
-* Ensures .green[reproducibility] of your analyses, regardless whether you’ve
+* Ensures .green[reproducibility] of your analyses, regardless of whether you’ve
   made additional changes to your code after the analysis is run
 
 --
