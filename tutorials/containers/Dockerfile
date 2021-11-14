@@ -5,6 +5,7 @@ MAINTAINER "John Sundh" john.sundh@scilifelab.se
 
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
+
 # Set workdir
 WORKDIR /course
 
@@ -31,7 +32,6 @@ RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64
     echo ". /usr/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-
 # Add conda to PATH and set locale
 ENV PATH="/usr/miniconda3/bin:${PATH}"
 ENV LC_ALL en_US.UTF-8
@@ -42,24 +42,16 @@ COPY environment.yml Snakefile config.yml ./
 COPY code ./code/
 
 # Install conda environment
-RUN conda config --add channels bioconda && \
-    conda config --add channels conda-forge && \
-    conda env update -n base -f environment.yml && \
-    conda clean --all
-
-# Install jupyter and nb_conda
-RUN conda install -c conda-forge jupyter nb_conda && \
-    conda clean --all
-
-# Install TinyTeX
-ENV PATH="/usr/.TinyTeX/bin/x86_64-linux:${PATH}"
-RUN echo -e "library(tinytex)\ntinytex::install_tinytex(dir='/usr/.TinyTeX')"| R --vanilla - && \
-    tlmgr path add && \
-    tlmgr update --self && \
-    tlmgr install float grffile xcolor mdwtools epstopdf-pkg
+# Configure Conda channels and install Mamba
+RUN conda config --add channels bioconda \
+    && conda config --add channels conda-forge \
+    && conda config --set channel_priority strict \
+    && conda install mamba \
+    && conda env update -n base -f environment.yml \
+    && conda install -c conda-forge jupyter \
+    && conda clean --all
 
 # Open port for running Jupyter Notebook
-# (Jupyter Notebook has to be separately installed in the container)
 EXPOSE 8888
 
 CMD snakemake -rp -c 1 --configfile config.yml
