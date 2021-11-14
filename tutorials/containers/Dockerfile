@@ -45,10 +45,9 @@ COPY code ./code/
 # Configure Conda channels and install Mamba
 RUN conda config --add channels bioconda \
     && conda config --add channels conda-forge \
-    && conda config --set channel_priority strict \
     && conda install mamba \
-    && conda env update -n base -f environment.yml \
-    && conda install -c conda-forge jupyter \
+    && mamba env update -n base -f environment.yml \
+    && mamba install -c conda-forge jupyter \
     && conda clean --all
 
 # Open port for running Jupyter Notebook
