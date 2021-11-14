@@ -98,7 +98,7 @@ qc_data
 ```
 
 ```{r Counts barplot}
-count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_summary[, -1])
+count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_summary)
 count_data <- melt(as.matrix(count_data),
                    varnames   = c("Feature", "Sample"),
                    value.name = "Reads")
