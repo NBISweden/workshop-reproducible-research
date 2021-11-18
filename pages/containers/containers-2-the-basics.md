@@ -123,7 +123,7 @@ prepend the command with `docker run <image>`. Look at the following Bash code:
 ```bash
 docker run quay.io/biocontainers/sra-tools:2.9.6--hf484d3e_0 \
     fastq-dump SRR935090 -X 25000 --readids \
-        --dumpbase --skipt-technical --gzip -Z > SRR935090.fastq.gz
+        --dumpbase --skip-technical --gzip -Z > SRR935090.fastq.gz
 ```
 
 Docker will automatically download the container image and subsequently run the
