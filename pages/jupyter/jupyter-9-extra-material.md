@@ -6,43 +6,48 @@
 ssh <your-user-name>@rackham1.uppmax.uu.se
 ```
 
-* Create/activate a conda environment containing `jupyter` then run `python` to 
-  start a Python console. Type:
+* Create/activate a conda environment containing `jupyter` then run:
 
-```python
-import IPython.lib
-IPython.lib.passwd()
+```
+jupyter notebook 
 ```
 
-* Enter some password and then copy the line starting with `'sha1:'`
-* Create a config file named _e.g._ `my_jupyter_config.py` and add this to it:
-
-```python
-c = get_config()
-# Notebook config
-#c.NotebookApp.certfile = u''
-c.NotebookApp.ip = 'localhost'
-c.NotebookApp.open_browser = False
-c.NotebookApp.password = u'sha1:...' #<-- Update with your 'sha1:' string here
-c.NotebookApp.port = 9990
+When the Jupyter server starts up you should see something resembling:
+```
+[I 11:00:00.000 NotebookApp] Serving notebooks from local directory: <path-to-your-local-dir>
+[I 11:00:00.000 NotebookApp] Jupyter Notebook 6.4.6 is running at:
+[I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+[I 11:00:00.000 NotebookApp]  or http://127.0.0.1:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+[I 11:00:00.000 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 ```
 
-* Save the file and then start the jupyter server on Uppmax with:
-
-```bash
-jupyter notebook --config my_jupyter_config.py
+Now a Jupyter notebook server is running on the Uppmax end. The line that says:
 ```
+[I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+```
+
+contains information on the port used on the server side (8889 in this case) and
+the token required to use the server (`357d65100058efa40a0641fce7005addcff339876c5e8000`).
+
+Next step is to use this information to login to the server from your local 
+computer.  
 
 **On your local computer**
 
-* Forward port 8080 to the remote port on the Uppmax login node:
+In a terminal, run the following command to start port forwarding of 
+port 8080 on your local computer to the remote port on the Uppmax side. Replace 
+<remote-port> with the port given when you started the server on Uppmax. Also 
+replace <your-user-name> with your user name on Uppmax.
 
 ```bash
-ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.se
+ssh -N -L localhost:8080:localhost:<remote-port> <your-user-name>@rackham1.uppmax.uu.se
 ```
 
-* Connect to the jupyter server by opening `localhost:8080` in your browser. 
-  You should be prompted for the password you generated.
+As long as this process is running the port forwarding is running. To disable it
+simply interrupt it with `CTRL + C`.
+
+Connect to the jupyter server by opening `localhost:8080` in your browser. When
+prompted, paste the token you got when starting the server on Uppmax. 
 
 You are now (hopefully) accessing the jupyter server that's running on Uppmax, 
 via your local browser.
