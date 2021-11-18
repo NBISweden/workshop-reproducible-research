@@ -59,6 +59,13 @@ files you will need for completing the tutorials as follows. First, `cd` into
 a directory on your computer (or create one) where it makes sense to download
 the course directory.
 
+> **Tip** <br>
+> You can find the directory where the Linux distribution is storing all its
+> files by typing `explorer.exe .`. This will launch the Windows File Explorer
+> showing the current Linux directory.
+> Alternatively, you can find the Windows C drive from within the bash shell 
+> Linux terminal by navigating to `/mnt/c/`.
+
 ```bash
 cd /path/to/your/directory
 git clone https://github.com/NBISweden/workshop-reproducible-research.git
@@ -67,11 +74,6 @@ cd workshop-reproducible-research
 
 Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two,
 with no alternative for Windows), please follow the Linux instructions.
-
-> **Tip** <br>
-> You can find the directory where the Linux distribution is storing all its
-> files by typing `explorer.exe .`. This will launch the Windows File Explorer
-> showing the current Linux directory.
 
 > **Tip** <br>
 > If you want to revisit the material from an older instance of this course,

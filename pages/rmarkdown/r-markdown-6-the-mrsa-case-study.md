@@ -191,8 +191,15 @@ out.height = "22cm"`. Knit and check the results. Does it look better now?
   the Supplementary Tables and Figures section containing this code:
 
 ```r
-knitr::include_graphics(rulegraph_file)
+knitr::include_graphics(normalizePath(rulegraph_file))
 ```
+
+> **Knitr paths** <br>
+> Just like for R Markdown paths in general, Knitr needs everything to be
+> relative to the directory in which the `.Rmd` file is situated. Just like
+> setting the `root.dir` chunk option can help with this for the overall
+> rendering, the `normalizePath()` function is needed when using
+> `include_graphics()` for adding images with Knitr.
 
 * Also, add the chunk options:
 
