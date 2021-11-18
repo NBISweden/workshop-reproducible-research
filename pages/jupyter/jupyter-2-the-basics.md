@@ -4,10 +4,10 @@ browser. But first you have to start the Jupyter Notebook server.
 
 ```no-highlight
 $ jupyter notebook --allow-root
-[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/Documents/projects/workshop-reproducible-research/tutorials/jupyter
+[I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/workshop-reproducible-research/tutorials/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
-[I 18:02:26.723 NotebookApp] http://localhost:8888/?token=e03f10ccb40efc3c6154358593c410a139b76acf2cae785c
+[I 18:02:26.723 NotebookApp] http://localhost:8888/?token=e03f10ccb40efc3c6154358593c410a139b76acf2cae000
 [I 18:02:26.723 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 [C 18:02:26.724 NotebookApp]
 
@@ -39,7 +39,7 @@ Finally, the Nbextensions tab shows a list of configurable notebook extensions
 that you can use to add functionality to your notebook (as we'll see below).
 
 Let's start by creating an empty notebook by selecting the Files tab and
-clicking New > Notebook > Python 3. This will open up a new tab or window 
+clicking New > Python 3. This will open up a new tab or window 
 looking like this:
 
 > ![](images/jupyter_empty_nb.png){ width=700px }
