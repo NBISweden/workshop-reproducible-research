@@ -140,14 +140,14 @@ class: center, middle
 
 # Presentations with R Markdown
 
-```{r Plot, dpi = 150, fig.width = 14, fig.height = 6.5, warning = FALSE}
+```{r Plot, dpi = 150, fig.width = 10, fig.height = 4.5, warning = FALSE}
 library("ggplot2")
 library("palmerpenguins")
 data(penguins, package = "palmerpenguins")
 ggplot(penguins, aes(x      = bill_length_mm,
                      y      = body_mass_g,
                      colour = species)) +
-    geom_point(size = 4) +
+    geom_point(size = 2) +
     theme_bw() +
     labs(x = "Bill length (mm)",
          y = "Body mass (g)") +
