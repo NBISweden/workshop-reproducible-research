@@ -44,7 +44,7 @@ ssh -N -f -L localhost:8080:localhost:9990 <your-user-name>@rackham1.uppmax.uu.s
 * Connect to the jupyter server by opening `localhost:8080` in your browser. 
   You should be prompted for the password you generated.
 
-You are now (hopefully) accessing the jupyter server that's running on Upmmax, 
+You are now (hopefully) accessing the jupyter server that's running on Uppmax, 
 via your local browser.
 
 ## Integrating notebooks with Snakemake workflows
