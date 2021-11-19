@@ -30,17 +30,21 @@ class: center, middle
 # Putting it all together
 
 
-1. .green[Lecture]: Summary of the week & how to put all the tools and procedures together
+1. .green[Lecture]<br>
+   Summary of the week & how to put all the tools and procedures together
 
-2. .green[Q&A]: How to implement these procedures on a day-to-day basis
+2. .green[Q&A]<br>
+   How to implement these procedures on a day-to-day basis
 
-3. .green[Project]: Time for you to apply the tools on one of your own research projects
+3. .green[Project]<br>
+   Time for you to apply the tools on one of your own research projects
 
 ---
 
 class: center, middle
 
-Take control of your research project by making its different components reproducible
+Take control of your research project <br>
+by making its different components reproducible
 
 <img src="../../pages/images/reproducibility_overview.png" style="width:50%;"/>
 
@@ -48,7 +52,7 @@ Take control of your research project by making its different components reprodu
 
 class: center, middle
 
-By moving towards a reproducible way of working you will quickly realize that you at the same time make your own life a lot easier! 
+By working reproducibly you will also make your life a lot easier!
 
 <img src="whats_in_it_for_me.png" style="width:50%;"/>
 
@@ -61,8 +65,7 @@ By moving towards a reproducible way of working you will quickly realize that yo
 * How to use the version control system .green[Git] to track changes to code
 * How to use the package and environment manager .green[Conda]
 * How to use the workflow managers .green[Snakemake] and .green[Nextflow]
-* How to use .green[R Markdown] to generate automated reports
-* How to use .green[Jupyter] notebooks to document your analysis
+* How to use .green[R Markdown] and .green[Jupyter] to generate automated reports and to document your analyses
 * How to use .green[Docker] and .green[Singularity] to distribute containerized
   computational environments
 
@@ -107,7 +110,10 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Don't create different versions of the input data - write a .green[script], .green[R Markdown] document, .green[Jupyter] notebook or a .green[Snakemake] workflow if you need to preprocess your input data so that the steps can be recreated
+* Don't create different versions of the input data - write a .green[script],
+  .green[R Markdown] document, .green[Jupyter] notebook or a .green[Snakemake]
+  / .green[Nextflow] workflow if you need to pre-process your input data so that
+  the steps can be recreated
 
 --
 
@@ -123,11 +129,14 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Avoid generating files .green[interactively] or doing things .green[by hand] - there is no way to track how they were made
+* Avoid generating files .green[interactively] or doing things .green[by hand]
+  - there is no way to track how they were made
 
 --
 
-* Write .green[scripts], .green[R Markdown] documents, .green[Jupyter] notebooks or .green[Snakemake] workflows for reproducible results to connect raw data to final results
+* Write .green[scripts], .green[R Markdown] documents, .green[Jupyter]
+  notebooks or .green[Snakemake] / .green[Nextflow] workflows for reproducible
+  results to connect raw data to final results
 
 --
 
@@ -180,28 +189,9 @@ Are you going to change your way of working? If yes, how?
 
 ---
 
-# Options for reproducing a research project
-
-.pull-left[
-[Example video](https://drive.google.com/file/d/1lXHlDdseHTe2Pb1JaCIhqDS7odTCVyRC/view?usp=sharing): 
-
-Pulling the Docker image for the case study from an online repository and running the workflow in a container
-
-]
-
-.pull-right[
-<img src="https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/devel/pages/images/rulegraph_mrsa_intro.svg" style="width:100%;"/>
-]
-
----
-
 # What is reasonable for your project?
 
-.pull-left[<img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/>
-
-   
-
-]
+.pull-left[<img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/>]
 
 ---
 
@@ -221,7 +211,7 @@ Connect your results with the code:
 * Use .green[R Markdown] documents or .green[Jupyter] notebooks
 
 Take another step:
-* Convert your code into a .green[Snakemake] workflow
+* Convert your code into a .green[Snakemake] / .green[Nextflow] workflow
 
 ]
 
