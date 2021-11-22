@@ -8,8 +8,6 @@ on:
       - 'lectures/*/*.Rmd'
       - 'lectures/*/*.ipynb'
       - '.github/workflows/lectures.yml'
-    branches:
-      - main
   pull_request:
     paths:
       - 'lectures/*/*.Rmd'
