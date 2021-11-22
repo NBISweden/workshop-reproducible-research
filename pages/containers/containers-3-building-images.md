@@ -286,9 +286,9 @@ can take a look at an example below:
 
 ```no-highlight
 FROM my_docker_image:latest
-RUN conda config --add channels bioconda && \
-    conda config --add channels conda-forge && \
-    conda install -n base fastqc=0.11.9 sra-tools=2.10.1
+RUN mamba config --add channels bioconda && \
+    mamba config --add channels conda-forge && \
+    mamba install -n base fastqc=0.11.9 sra-tools=2.10.1
 COPY run_qc.sh .
 CMD bash run_qc.sh
 ```
