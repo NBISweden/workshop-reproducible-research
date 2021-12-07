@@ -111,12 +111,14 @@ combine it with R Markdown. These files use the `.Rnw` extension rather than
 and ending with `@`.
 
 There is simply a plethora of tweaks, variables and parameters that you can use
-for PDF rendering, but it can be quite overwhelming if you're just starting out.
-We recommend using HTML for most things, especially data analysis, but PDF
+for PDF rendering, but it can be quite overwhelming if you're just starting
+out. We recommend using HTML for most things, especially data analysis, but PDF
 certainly has its strengths - you could, for example, write a whole paper (and
 its supplementary material) in R Markdown with LaTeX *only*, without using
 Microsoft Word or anything else - it doesn't get much more reproducible than
-that!
+that! In fact, there are several publication-ready templates on a per-journal
+basis in the package [`rticles`](https://github.com/rstudio/rticles), which can
+greatly facilitate this process!
 
 ## Presentations in R Markdown
 
