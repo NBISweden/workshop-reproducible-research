@@ -280,16 +280,17 @@ tools.
 
 > **RStudio and Conda** <br>
 > In some cases RStudio doesn't play well with Conda due to differing
-> libpaths. To fix this, first check the available library path by
-> `.libPaths()` to make sure that it points to a path within your Conda
-> environment. It might be that `.libPaths()` shows multiple library paths, in
-> which case R packages will be searched for by R in all these locations.
-> This means that your R session will not be completely isolated in your Conda
-> environment and that something that works for you might not work for
-> someone else using the same Conda environment, simply because you had
-> additional packages installed in the second library location. One way to
-> force R to just use the conda library path is to add a `.Renviron` file to
-> the directory where you start R with these lines:
+> libpaths. The first and simplest thing to try is to always start RStudio from
+> the command line (`rstudio &`). If you're still having issues, check the
+> available library path by `.libPaths()` to make sure that it points to a path
+> within your Conda environment. It might be that `.libPaths()` shows multiple
+> library paths, in which case R packages will be searched for by R in all these
+> locations. This means that your R session will not be completely isolated in
+> your Conda environment and that something that works for you might not work
+> for someone else using the same Conda environment, simply because you had
+> additional packages installed in the second library location. One way to force
+> R to just use the conda library path is to add a `.Renviron` file to the
+> directory where you start R with these lines:
 
     ```
     R_LIBS_USER=""
