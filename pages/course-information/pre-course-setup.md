@@ -25,13 +25,13 @@ cd workshop-reproducible-research
 
 > **Tip** <br>
 > If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, e.g. 
-> `git checkout tags/course_1905`. To list all available tags, use `git tag`. 
-> Run this command after you have `cd` into `workshop-reproducible-research` 
-> as described above. If you do that, you probably also want to view the 
-> same older version of this website. Until spring 2021, the website was 
-> hosted at https://nbis-reproducible-research.readthedocs.io. 
-> Locate the version box in the bottom right corner of the website and 
+> you can do that using `git checkout tags/<tag-name>`, e.g.
+> `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+> Run this command after you have `cd` into `workshop-reproducible-research`
+> as described above. If you do that, you probably also want to view the
+> same older version of this website. Until spring 2021, the website was
+> hosted at https://nbis-reproducible-research.readthedocs.io.
+> Locate the version box in the bottom right corner of the website and
 > select the corresponding version.
 
 ## Setup for Windows users
@@ -63,7 +63,7 @@ the course directory.
 > You can find the directory where the Linux distribution is storing all its
 > files by typing `explorer.exe .`. This will launch the Windows File Explorer
 > showing the current Linux directory.
-> Alternatively, you can find the Windows C drive from within the bash shell 
+> Alternatively, you can find the Windows C drive from within the bash shell
 > Linux terminal by navigating to `/mnt/c/`.
 
 ```bash
@@ -80,10 +80,10 @@ with no alternative for Windows), please follow the Linux instructions.
 > you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
 > tags/course_1905`. To list all available tags, use `git tag`. Run this
 > command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the 
-> same older version of this website. Until spring 2021, the website was 
+> described above. If you do that, you probably also want to view the
+> same older version of this website. Until spring 2021, the website was
 > hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
-> Locate the version box in the bottom right corner of the website and 
+> Locate the version box in the bottom right corner of the website and
 > select the corresponding version.
 
 ## Installing Git
@@ -126,14 +126,14 @@ below for more information.
 > **The default branch name** <br>
 > The default branch name for Git and many of the online resources for hosting
 > Git repositories has traditionally been `master`, which historically comes
-> from the "master/slave" repositories of 
+> from the "master/slave" repositories of
 > [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-> This has been heavily discussed and in 2020 the decision was made by  many 
+> This has been heavily discussed and in 2020 the decision was made by  many
 > ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
 > to start using `main` instead. Any repository created with GitHub uses this
 > new naming scheme since October of 2020, and Git itself is currently
 > discussing implementing a similar change. Git did, however, introduce the
-> ability to set the default branch name when using `git init` in 
+> ability to set the default branch name when using `git init` in
 > [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
 > instead of using a hard-coded `master`. We at NBIS want to be a part of this
 > change, so we have chosen to use `main` for this course.
@@ -177,12 +177,12 @@ conda --version
 ```
 
 > **Different Condas** <br>
-> There are three Conda-related things you may have encountered: the first is 
-> Conda, the package and environment manager we've been talking about so far. 
-> Second is *Miniconda*, which is the installer for Conda. The third is 
-> *Anaconda*, which is a distribution of not only Conda, but also over 150 
-> scientific Python packages. It's generally better to stick with only Conda, 
-> *i.e.* installing with Miniconda, rather than installing 3 GB worth of 
+> There are three Conda-related things you may have encountered: the first is
+> *Conda*, the package and environment manager we've been talking about so far.
+> Second is *Miniconda*, which is the installer for Conda. The third is
+> *Anaconda*, which is a distribution of not only Conda, but also over 150
+> scientific Python packages. It's generally better to stick with only Conda,
+> *i.e.* installing with Miniconda, rather than installing 3 GB worth of
 > packages you may not even use.
 
 ### Configuring Conda
@@ -213,7 +213,7 @@ Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
 ensure that the Conda steps were successful. Once you've successfully completed
-the above steps you can deactivate your Conda environment using `conda deactivate` 
+the above steps you can deactivate your Conda environment using `conda deactivate`
 and continue with the setup for the other tools.
 
 > **Note** <br>
@@ -271,9 +271,9 @@ environment using `conda deactivate` and continue with the setup for the other
 tools.
 
 > **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Conda, both 
-> run well directly on Windows and you may therefore want to install Windows 
-> versions of these software for this tutorial (if you haven't done so already). 
+> In case you are having trouble installing R and RStudio using Conda, both
+> run well directly on Windows and you may therefore want to install Windows
+> versions of these software for this tutorial (if you haven't done so already).
 > Conda is, however, the recommended way. If you're having issues with
 > graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
 > scroll down to the "Graphical applications".
@@ -281,7 +281,7 @@ tools.
 > **RStudio and Conda** <br>
 > In some cases RStudio doesn't play well with Conda due to differing
 > libpaths. To fix this, first check the available library path by
-> `.libPaths()` to make sure that it points to a path within your conda
+> `.libPaths()` to make sure that it points to a path within your Conda
 > environment. It might be that `.libPaths()` shows multiple library paths, in
 > which case R packages will be searched for by R in all these locations.
 > This means that your R session will not be completely isolated in your Conda
@@ -303,7 +303,7 @@ tools.
 ## Installing Jupyter
 
 Let's continue using Conda for installing software, since it's so convenient to
-do so! Move in the tutorials directory (`workshop-reproducible-research/tutorials`), 
+do so! Move in the tutorials directory (`workshop-reproducible-research/tutorials`),
 create a Conda environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
 
@@ -343,7 +343,7 @@ the steps are the same. Please follow the instructions for your distribution on
 > **Tip** <br>
 > As mentioned before, Docker needs to run as root. You can achieve this by
 > prepending all Docker commands with `sudo`. This is the approach that we
-> will take in this tutorial, since the set up becomes a little simpler that way. 
+> will take in this tutorial, since the set up becomes a little simpler that way.
 > If you plan on continuing using Docker you can get rid of this by adding your
 > user to the group `docker`. Here are instructions for how to do this:
 > [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
@@ -352,7 +352,7 @@ the steps are the same. Please follow the instructions for your distribution on
 
 In order to run Docker on Windows your computer must support *Hardware
 Virtualization Technology* and virtualization must be enabled. This is
-typically done in BIOS. Setting this is outside the scope of this tutorial, 
+typically done in BIOS. Setting this is outside the scope of this tutorial,
 so we'll simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
@@ -391,7 +391,7 @@ may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/i
 > **Notes** <br>
 > Last time we checked, the software "Vagrant Manager" was not available for download
 > but the installation of Singularity was successful even without it.
-> 
+>
 > Version 6.1.28 of "Virtual box for Windows" may not work, please install version 6.1.26
 > from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1) in case you encounter
 > problems when trying to start the Vagrant VirtualBox.
@@ -404,7 +404,7 @@ like this:
 * Type `vagrant up` and once this has finished, verify that the Vagrant
   VirtualBox is running with `vagrant status`
 * Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
-* The first time you open the Vagrant VirtualBox like this, you will have to 
-  download the course material to obtain a copy for the Singularity tutorial 
-  within the Vagrant VirtualBox by typing 
+* The first time you open the Vagrant VirtualBox like this, you will have to
+  download the course material to obtain a copy for the Singularity tutorial
+  within the Vagrant VirtualBox by typing
   `git clone https://github.com/NBISweden/workshop-reproducible-research.git`
