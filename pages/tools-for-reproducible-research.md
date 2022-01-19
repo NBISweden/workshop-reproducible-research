@@ -124,8 +124,8 @@ directory on GitHub.
 # Teachers
 
 * John Sundh (course responsible)
-* Verena Kutschera (course responsible)
 * Erik Fasterius (course responsible)
+* Verena Kutschera (teacher)
 * Tomas Larsson (teacher)
 
 # Contact

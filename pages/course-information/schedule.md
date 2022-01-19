@@ -257,7 +257,7 @@
              - How to put all the tools and procedures together <br>
              - How to implement these procedures on a day-to-day basis <br>
              - Practical tutorial: [Making projects reproducible](projects-1-introduction) <i>
-        </td> 
+        </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
