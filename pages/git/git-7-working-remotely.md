@@ -12,7 +12,7 @@ version control system) and online hosting of *Git repositories* (such as
 GitHub): the former is the core of keeping track of your code's history, while
 the latter is how to store and share that history with others.
 
-## Create an account at GitHub
+## GitHub setup
 
 If you have not done so already, go to [github.com](https://github.com/join)
 and create an account. You can also create an account on another online hosting
@@ -21,6 +21,39 @@ service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
 examples from GitHub (as that is the most popular platform with the most
 extensive features), but the same thing can be done on alternative services,
 although the exact menu structure and link placements differ a bit.
+
+GitHub use to allow the use of the simple but relatively insecure password
+authentication, but this is no longer the case - using SSH keys is favoured
+instead. Exactly what these are is not necessary to get them working, but we
+encourage you to read the box below to learn more about them! GitHub has
+excellent, platform-specific instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+SSH keys to your account, so please use them before moving on!
+
+> **SSH keys and authentication** <br>
+> Using SSH (Secure Shell) for authentication basically entails setting up a
+> pair of keys: one private and one public. You keep the private key on your
+> local computer and give the public key to anywhere you want to be able to
+> connect to, *e.g.* GitHub. The public key can be used to encrypt messages that
+> *only* the corresponding private key can decrypt. A simplified description of
+> how SSH authentication works goes like this:
+>
+> 1. The client (*i.e.* the local computer) sends the ID of the SSH key pair it
+>    would like to use for authentication to the server (*e.g.* GitHub)
+> 2. If that ID is found, the server generates a random number and encrypts this
+>    with the public key and sends it back to the client
+> 3. The client decrypts the random number with the private key and sends it
+>    back to the server
+>
+> Notice that the private key always remains on the client's side and is never
+> transferred over the connection; the ability to decrypt messages encrypted
+> with the public key is enough to ascertain the client's authenticity. This is
+> in contrast with using passwords, which are themselves send across a
+> connection (albeit encrypted). It is also important to note that even though
+> the keys come in pairs it is impossible to derive the private key from the
+> public key. If you want to read more details about how SSH authentication work
+> you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
+> which has more in-depth information than we provide here.
 
 ## Create a remote repository
 
