@@ -162,6 +162,12 @@ rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 > to simply run `conda update conda` and subsequently `conda init`, and skip
 > the installation instructions below.
 
+> **Apple M1 Chips**
+> If you have a newer Apple computer with an M1 chip, make sure you have
+> installed [Rosetta](https://support.apple.com/en-us/HT211861) before you run
+> the installer. If you want want to more fully utilise the new architecture,
+head over to [Miniforge](https://github.com/conda-forge/miniforge#miniforge3)!
+
 The installer will ask you questions during the installation:
 
 - Do you accept the license terms? (Yes)
