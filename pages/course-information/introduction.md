@@ -63,7 +63,7 @@ To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in
 The graph below shows the different steps of the analysis that are included in
 this project:
 
-![](images/rulegraph_mrsa_intro.svg){ width=400px }
+![](images/mrsa-overview.png){ width=400px }
 
 The input files are:
 
