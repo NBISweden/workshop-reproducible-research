@@ -22,11 +22,12 @@ examples from GitHub (as that is the most popular platform with the most
 extensive features), but the same thing can be done on alternative services,
 although the exact menu structure and link placements differ a bit.
 
-GitHub use to allow the use of the simple but relatively insecure password
-authentication, but this is no longer the case - using SSH keys is favoured
-instead. Exactly what these are is not necessary to get them working, but we
-encourage you to read the box below to learn more about them! GitHub has
-excellent, platform-specific instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+Any upload to and from GitHub requires you to authenticate yourself. GitHub
+used to allow authentication with your account and password, but this is no
+longer the case - using SSH keys is favoured instead. Exactly what these are is
+not necessary to get them working, but we encourage you to read the box below
+to learn more about them! GitHub has excellent, platform-specific instructions
+both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please use them before moving on!
 
