@@ -333,13 +333,14 @@ type `docker --version` to verify that the installation was successful!
 
 ### macOS
 
-Go to [docker.com]( https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
-and select "Get Docker for Mac (Stable)". This will download a `dmg` file. Click
-on it once it's done to start the installation. This will open up a window
-where you can drag the Docker.app to Applications. Close the window and click
-the Docker app from the Applications menu. Now it's basically just to click
-"next" a couple of times and we should be good to go. You can find the Docker
-icon in the menu bar in the upper right part of the screen.
+Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
+and select download option that is suitable for your computer's architecture
+(*i.e.* if you have an Intel chip or a newer Apple M1 chip). This will download
+a `dmg` file - click on it when it's done to start the installation. This will
+open up a window where you can drag the Docker.app to Applications. Close the
+window and click the Docker app from the Applications menu. Now it's basically
+just to click "next" a couple of times and we should be good to go. You can
+find the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
