@@ -46,10 +46,9 @@ COURSE_ID=$(grep $BRANCH pages/.course_id | cut -f2 -d ':')
 if [ "$COURSE_ID" == "" ]; then
     COURSE_ID=54324
 fi
-echo "Uploading to course ID $COURSE_ID"
 
 # Convert using Pandoc
-echo "Rendering $MARKDOWN ..."
+echo "Rendering \`$MARKDOWN\` ..."
 docker run --rm \
     --volume "`pwd`:/data" \
     --user `id -u`:`id -g` \
@@ -67,7 +66,7 @@ mv tmp2.html "$HTML"
 rm tmp.html
 
 # Create or update page curl PUT
-echo "Uploading \`$HTML\` ..."
+echo "Uploading \`$HTML\` to course ID $COURSE_ID ..."
 curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
     --header "Authorization: Bearer $TOKEN" \
