@@ -69,7 +69,7 @@ rm tmp.html
 echo "Uploading \`$HTML\` to course ID $COURSE_ID ..."
 curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
-    --header "Authorization: Bearer TOKEN" \
+    --header "Authorization: Bearer $TOKEN" \
     --data-urlencode wiki_page[body]="$(cat $HTML)" \
     --silent \
     --show-error \
