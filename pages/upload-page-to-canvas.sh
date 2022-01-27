@@ -71,8 +71,7 @@ curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
     --header "Authorization: Bearer $TOKEN" \
     --data-urlencode wiki_page[body]="$(cat $HTML)" \
-    --silent --show-error \
-    > /dev/null
+    --silent --show-error
 
 # Delete rendered HTML
 rm $HTML
