@@ -69,9 +69,20 @@ rm tmp.html
 echo "Uploading \`$HTML\` to course ID $COURSE_ID ..."
 curl -X PUT \
     "$API/$COURSE_ID/pages/$PAGE" \
-    --header "Authorization: Bearer $TOKEN" \
+    --header "Authorization: Bearer TOKEN" \
     --data-urlencode wiki_page[body]="$(cat $HTML)" \
-    --silent --show-error
+    --silent \
+    --show-error \
+    --fail \
+    --output /dev/null
 
-# Delete rendered HTML
+# Store curl exit code
+CURL_EXIT_CODE=$?
+
+# Remove rendered HTML page
 rm $HTML
+
+# Exit with curl exit code
+if [ $CURL_EXIT_CODE != 0 ]; then
+    exit $CURL_EXIT_CODE
+fi
