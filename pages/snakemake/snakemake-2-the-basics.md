@@ -39,8 +39,9 @@ rule convert_to_upper_case:
 > two for a more compact look. Don't use tabs (unless your editor
 > automatically converts them to spaces).
 
-A rule has a name, here it's `convert_to_upper_case`. Make an effort to name
-your rules in a way that makes it easy to understand the purpose of the rule,
+Rules can be given names, here it's `convert_to_upper_case`. While rule names 
+are not strictly necessary we encourage you to use them and to make an effort to 
+name your rules in a way that makes it easy to understand the purpose of the rule,
 as rule names are one of the main ways to interact with the workflow. The
 `shell` section (or directive) contains the shell commands that will convert the 
 text in the input file to upper case and send it to the output file. In the shell 
