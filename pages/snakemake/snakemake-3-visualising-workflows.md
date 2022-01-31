@@ -215,8 +215,19 @@ was done automatically, but it would be very computationally expensive and
 cumbersome if you had to rerun your whole workflow every time you fix
 a spelling mistake in a comment somewhere. So, it's up to us to look at the
 summary table and rerun things as needed. You can get a list of the files for
-which the rule implementation has changed, and then force Snakemake to
-regenerate these files with the `-R` flag.
+which the rule implementation has changed using the `--list-code-changes` flag:
+
+```bash
+snakemake a_b.txt --list-code-changes
+```
+
+You should see the `a_b.txt` file printed to the terminal, meaning that Snakemake
+has identified changes to the implementation of the `concatenate_files` rule 
+which produces the `a_b.txt` file. Note that only changes to the `shell`, `run`, 
+`notebook` or `script` directives are tracked by `--list-code-changes`. 
+
+We can then force Snakemake to regenerate the files that depend on the updated 
+rules with the `-R` flag:
 
 ```bash
 snakemake a_b.txt -c 1 -R $(snakemake a_b.txt --list-code-changes)
