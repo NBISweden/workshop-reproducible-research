@@ -57,13 +57,15 @@ Snakemake tries to generate a set of target files. Target files can be
 specified via the command line (or, as you will see later, in several other
 ways). Here we ask Snakemake to make the file `a.upper.txt`. It's good practice
 to first run with the flag `-n`(or `--dry-run`), which will show what Snakemake
-plans to do without actually running anything. You can also use the flag `-p`,
-for showing the shell commands that it will execute, and the flag `-r` for
-showing the reason for running a specific rule. `snakemake --help` will show
-you all available flags.
+plans to do without actually running anything, and you also need to specify
+how many cores to be used for the workflow with `--cores` or `-c`. For now, you
+only need 1 so set `-c 1`. You can also use the flag `-p`, for showing the 
+shell commands that it will execute, and the flag `-r` for showing the reason 
+for running a specific rule. `snakemake --help` will show you all available 
+flags.
 
 ```no-highlight
-$ snakemake -n -r -p a.upper.txt
+$ snakemake -n -c 1 -r -p a.upper.txt
 
 Building DAG of jobs...
 Job stats:
@@ -106,7 +108,7 @@ get back to this shortly.
 What if we ask Snakemake to generate the file `b.upper.txt`?
 
 ```no-highlight
-$ snakemake -n -r -p b.upper.txt
+$ snakemake -n -c 1 -r -p b.upper.txt
 
 Building DAG of jobs...
 MissingRuleException:
