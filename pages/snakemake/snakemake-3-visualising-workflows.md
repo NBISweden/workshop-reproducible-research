@@ -264,4 +264,4 @@ the other tutorials instead.
 >   graphs, respectively.
 > - How to force Snakemake to rerun relevant parts of the workflow after
 >   there have been changes.
-> - How logging in Snakemake works.
+> - How Snakemake tracks changes to files and code in a workflow
