@@ -77,8 +77,8 @@ flag to trigger a rerun.
 The parameter values we set in the `params` section don't have to be static,
 they can be any Python expression. In particular, Snakemake provides a global
 dictionary of configuration parameters called `config`. Let's modify
-`get_SRA_by_accession` to look something like this in order to access the
-elements of this dictionary:
+`get_SRA_by_accession` to look something like this in order to make use of this 
+dictionary:
 
 ```python
 rule get_SRA_by_accession:
@@ -96,19 +96,23 @@ rule get_SRA_by_accession:
         """
 ```
 
-The `config` variable is just a normal Python dictionary, but it has the
-special feature that we can change the parameter values from the command line
-by using the `snakemake --config KEY=VALUE` syntax. Try this out for yourself.
+Note that Snakemake now expects there to be a key named `max_reads` in the config 
+dictionary. If we don't populate the dictionary somehow the dictionary will be 
+empty so if you were to run the workflow now it would trigger a `KeyError` (try 
+running `snakemake -s snakefile_mrsa.smk -n` to see for yourself). 
+In order to populate the config dictionary with data for the workflow we could 
+use the `snakemake --config KEY=VALUE` syntax directly from the command line.
+However, from a reproducibility perspective, it's not optimal to set parameters 
+from the command line, since it's difficult to keep track of which parameter 
+values that were used. 
 
-From a reproducibility perspective, it's not optimal to set parameters from the
-command line, since it's difficult to keep track of which parameter values that
-were used. A much better alternative is to use the `--configfile FILE` option.
-Here we can collect all the project-specific settings, sample ids, and so on in
-one file. This also enables us to write the Snakefile in a more general manner
-so that it can be better reused between projects. Like several other files used
-in these tutorials, this file should be in [yaml
-format](https://en.wikipedia.org/wiki/YAML). Create the file below and save it
-as `config.yml`.
+A much better alternative is to use the `--configfile FILE` option to supply a 
+configuration file to Snakemake. In this file we can collect all the 
+project-specific settings, sample ids and so on. This also enables us to write 
+the Snakefile in a more general manner so that it can be better reused between 
+projects. Like several other files used in these tutorials, this file should be 
+in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and 
+save it as `config.yml`.
 
 ```yaml
 max_reads: 25000
@@ -120,7 +124,9 @@ to form the `config` dictionary. If you want to overwrite a parameter value,
 
 > **Tip** <br>
 > Rather than supplying the config file from the command line you could also
-> add the line `configfile: "config.yml"` to the top of your Snakefile.
+> add the line `configfile: "config.yml"` to the top of your Snakefile. Keep in 
+> mind that with such a setup Snakemake will complain if the `config.yml` is not
+> present.
 
 > **Quick recap** <br>
 > In this section we've learned:
