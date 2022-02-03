@@ -21,10 +21,12 @@ rule some_rule:
 We run most of the programs with default settings in our workflow. However,
 there is one parameter in the rule `get_SRA_by_accession` that we use for
 determining how many reads we want to retrieve from SRA for each sample 
-(`-X 25000`). Change in this rule to use the parameter `max_reads` instead, set the
-value to 20000, and run through the workflow. Remember that Snakemake doesn't
-automatically rerun rules after parameter changes, so you have to trigger the
-execution of `get_SRA_by_accession` with `-R`.
+(`-X 25000`). Change in this rule to use the parameter `max_reads` instead and 
+set the value to 20000. If you need help, click to show the solution below.
+
+<details>
+<summary> Click to show </summary>
+
 
 ```python
 rule get_SRA_by_accession:
@@ -33,12 +35,44 @@ rule get_SRA_by_accession:
     """
     output:
         "data/raw_internal/{sra_id}.fastq.gz"
+    params:
+        max_reads = 20000
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X 25000 --readids \
+        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
         """
 ```
+
+</details>
+
+Now run through the workflow. Remember that Snakemake doesn't automatically 
+rerun rules after parameter changes so you have to trigger the rerun manually 
+somehow. You can either do it by targeting the rule directly with 
+`-R get_SRA_by_accession`, but since we changed the how the `get_SRA_by_accession` 
+rule is executed (by adding `{params.max_reads}` to the `shell:` directive) we 
+can also use the flag `--list-code-changes` like we did in 
+[part 3](snakemake-3-visualising-workflows) of this tutorial to list the output
+files for which the rule implementation has changed:
+
+```bash
+snakemake -s snakefile_mrsa.smk -c 1 -R $(snakemake -s snakefile_mrsa.smk --list-code-changes)
+```
+
+There's also another `--list-...` flag we could use here. Take a look at 
+available flags with `snakemake --help`, can you figure out which one?
+
+<details>
+<summary> Click to show </summary>
+
+```bash
+snakemake -s snakefile_mrsa.smk -c 1 -R $(snakemake -s snakefile_mrsa.smk --list-params-changes)
+```
+
+Because we added a parameter `max_reads` we could also use the `--list-params-changes` 
+flag to trigger a rerun.
+
+</details>
 
 The parameter values we set in the `params` section don't have to be static,
 they can be any Python expression. In particular, Snakemake provides a global
