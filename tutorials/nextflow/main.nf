@@ -3,34 +3,29 @@
 // Enable DSL2 for more powerful functionality
 nextflow.enable.dsl = 2
 
-// Define where results should end up
-resultsdir = "results/"
-
 workflow {
 
     // Workflow for generating count data for the MRSA case study
 
     // Define SRA input data channel
-    Channel
-        .fromList ( params.sra_id_list )
-        .set      { ch_sra_ids }
+    ch_sra_ids = Channel.fromList( ["SRR935090", "SRR935091", "SRR935092"] )
 
     // Define the workflow
     GET_SRA_BY_ACCESSION (
         ch_sra_ids
     )
     RUN_FASTQC (
-        GET_SRA_BY_ACCESSION.out.sra_data
+        GET_SRA_BY_ACCESSION.out
     )
     RUN_MULTIQC (
-        RUN_FASTQC.out.zip.collect()
+        RUN_FASTQC.out[1].collect()
     )
     GET_GENOME_FASTA ()
     INDEX_GENOME (
         GET_GENOME_FASTA.out.fasta
     )
     ALIGN_TO_GENOME (
-        GET_SRA_BY_ACCESSION.out.sra_data,
+        GET_SRA_BY_ACCESSION.out,
         INDEX_GENOME.out.index
     )
     SORT_BAM (
@@ -49,14 +44,14 @@ process GET_SRA_BY_ACCESSION {
     // accession number.
 
     tag "${sra_id}"
-    publishDir "${resultsdir}/data/raw_internal",
+    publishDir "results/data/raw_internal",
         mode: "copy"
 
     input:
     val(sra_id)
 
     output:
-    tuple val(sra_id), path("${sra_id}.fastq.gz"), emit: sra_data
+    tuple val(sra_id), path("*.fastq.gz")
 
     script:
     """
@@ -76,19 +71,14 @@ process RUN_FASTQC {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/results/",
-        pattern: "*.html",
-        mode: "copy"
-    publishDir "${resultsdir}/intermediate",
-        pattern: "*.zip",
-        mode: "copy"
+    publishDir "results/", mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
 
     output:
-    path("*.html"), emit: html
-    path("*.zip"), emit: zip
+    path("*.html")
+    path("*.zip")
 
     script:
     """
@@ -101,10 +91,10 @@ process RUN_MULTIQC {
 
     // Aggregate all FastQC reports into a MultiQC report.
 
-    publishDir "${resultsdir}/results",
+    publishDir "results/results",
         pattern: "*.html",
         mode: "copy"
-    publishDir "${resultsdir}/intermediate",
+    publishDir "results/intermediate",
         pattern: "*.txt",
         mode: "copy"
 
@@ -126,7 +116,7 @@ process GET_GENOME_FASTA {
 
     // Retrieve the sequence in fasta format for a genome.
 
-    publishDir "${resultsdir}/data/raw_external",
+    publishDir "results/data/raw_external",
         mode: "copy"
 
     output:
@@ -142,7 +132,7 @@ process GET_GENOME_GFF3 {
 
     // Retrieve annotation in gff3 format for a genome.
 
-    publishDir "${resultsdir}/data/raw_external",
+    publishDir "results/data/raw_external",
         mode: "copy"
 
     output:
@@ -158,7 +148,7 @@ process INDEX_GENOME {
 
     // Index a genome using Bowtie 2.
 
-    publishDir "${resultsdir}/intermediate/",
+    publishDir "results/intermediate/",
         mode: "copy"
 
     input:
@@ -180,7 +170,7 @@ process ALIGN_TO_GENOME {
     // Align a fastq file to a genome index using Bowtie 2.
 
     tag "${sample}"
-    publishDir "${resultsdir}/intermediate/",
+    publishDir "results/intermediate/",
         mode: "copy"
 
     input:
@@ -201,7 +191,7 @@ process SORT_BAM {
     // Sort a bam file.
 
     tag "${sample}"
-    publishDir "${resultsdir}/intermediate/",
+    publishDir "results/intermediate/",
         mode: "copy"
 
     input:
@@ -220,7 +210,7 @@ process GENERATE_COUNTS_TABLE {
 
     // Generate a count table using featureCounts.
 
-    publishDir "${resultsdir}/results/tables",
+    publishDir "results/results/tables",
         mode: "copy"
 
     input:
