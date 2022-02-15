@@ -53,6 +53,13 @@ some of the newer and more powerful features of Nextflow. The next part is the
 workflow definition, while the last is a *process*, equivalent to Snakemake's
 rules. Let's go through the last two in more detail!
 
+> **Nextflow and whitespace** <br>
+> Unlike Snakemake, Nextflow is not indentation-sensitive. In fact, Nextflow
+> doesn't care at all about whitespace, so go ahead and use it in whatever
+> manner you think is easiest to read and work with! Do keep in mind that
+> indentations and other types of whitespace *does* improve readability, so it's
+> generally not a good idea to forego it entirely, even though you can.
+
 ## Process definitions
 
 There are quite a few similarities between Snakemake's rules and Nextflow's

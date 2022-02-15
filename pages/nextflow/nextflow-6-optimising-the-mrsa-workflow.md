@@ -100,12 +100,6 @@ the file `subworkflow.nf` can be loaded into a `main.nf` file like so:
 include { SUBWORKFLOW } from "./subworkflow.nf"
 ```
 
-> **Nextflow and whitespace** <br>
-> By now you might have noticed that whitespace is used in different ways
-> throughout these tutorials. Nextflow doesn't care at all about whitespace, so
-> go ahead and use it in whatever manner you think is easiest to read and work
-> with!
-
 If you have a complex workflow with several subworkflows you might thus store
 them in a separate directory, *e.g.* `subworkflows`. This allows you to have
 fine-grained control over the general architecture of your Nextflow workflows,
