@@ -56,7 +56,7 @@ configuration file, rather than on the command line!
 * Add another parameter for the input SRA IDs and execute your workflow to check
   that it worked.
 
-# More configuration
+# Other configuration scopes
 
 There are lots of things that you might want to add to you configuration, not
 just parameters! The workflow *manifest*, for example, which might look like
