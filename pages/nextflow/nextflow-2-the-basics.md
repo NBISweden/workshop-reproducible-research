@@ -63,7 +63,7 @@ rules. Let's go through the last two in more detail!
 > indentations and other types of whitespace *does* improve readability, so it's
 > generally not a good idea to forego it entirely, even though you can.
 
-## Process definitions
+# Process definitions
 
 There are quite a few similarities between Snakemake's rules and Nextflow's
 processes, which can be seen by just a cursory glance. We have both `input`,
@@ -91,7 +91,7 @@ default).
 Now that we know the basics of processes, let's move on to the workflow
 definition!
 
-## Workflow definitions
+# Workflow definitions
 
 The workflow definition here has two parts, each doing an important job for any
 Nextflow workflow. The first part defines a *channel*, which is an asynchronous
@@ -110,7 +110,7 @@ through our workflow, *i.e.* the various processes we want to run on the inputs
 stored in the channel. This is exactly what we do in the second part: we call
 our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input argument.
 
-## Executing workflows
+# Executing workflows
 
 Let's try running the workflow we just created!
 
@@ -170,7 +170,7 @@ Snakemake to give us a final output we know it can create - *pull*.
 
 * Run your workflow and make sure it works before you move on.
 
-## Files and sample names
+# Files and sample names
 
 Having to manually change inputs and outputs like you just did is not really
 ideal, is it? Hard-coding things is rarely good, so let's try to change that.
@@ -220,7 +220,7 @@ variable. All that's left now is to change the input to our pipeline!
   `.fromPath(["a.txt", "b.txt"])` and try running the pipeline. Make sure it
   works before you move on!
 
-## Adding more processes
+# Adding more processes
 
 It's time to add more processes to our workflow! Here is where the differences
 between Snakemake and Nextflow become more apparent: at this stage in our
