@@ -1,14 +1,13 @@
-The tutorial for Nextflow has intentionally been quite short, but there are many
-more things you can do with it than what were covered here. If you are interested 
-to learn more details about Nextflow, we will briefly show some of its features
-in this section.
-
-Here are some links to additional resources on Nextflow:
+There are many more things you can do with Nextflow than what were covered
+here. If you are interested to learn more details about Nextflow, we will
+briefly show some of its advanced features in this section. But first, here are
+some links to additional resources on Nextflow:
 
  * The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
  * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
  * Common [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html)
  * Nextflow training at [Seqera](https://seqera.io/training/)
+ * A work-in-progress [Nextflow Carpentry course](https://carpentries-incubator.github.io/workflows-nextflow/index.html)
 
 ## Using containers in Nextflow
 
@@ -45,13 +44,13 @@ use the `container` directive in your processes:
 ```groovy
 process PROCESS_01 {
     (...)
-    container: 'image_02'
+    container: 'image_01'
     (...)
 }
 
 process PROCESS_02 {
     (...)
-    container: 'image_01'
+    container: 'image_02'
     (...)
 }
 ```
