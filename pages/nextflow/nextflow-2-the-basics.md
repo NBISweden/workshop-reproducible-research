@@ -53,6 +53,9 @@ some of the newer and more powerful features of Nextflow. The next part is the
 workflow definition, while the last is a *process*, equivalent to Snakemake's
 rules. Let's go through the last two in more detail!
 
+> **Nextflow comments** <br>
+> Double-slashes (`//`) are used for comments in Nextflow.
+
 > **Nextflow and whitespace** <br>
 > Unlike Snakemake, Nextflow is not indentation-sensitive. In fact, Nextflow
 > doesn't care at all about whitespace, so go ahead and use it in whatever
@@ -142,7 +145,10 @@ run. We then get the process and its name. Lastly, we get how many instances of
 each process are currently being and have been run. Here we only have the one
 process, of course, but this will soon change.
 
-* Let's explore the working directory! Change into whatever directory is
+* Let's check that everything worked: type `ls results/` and see that it
+  contains the output we expected.
+
+* Let's explore the working directory: change into whatever directory is
   specified by the process ID (your equivalent to `work/32/9124a1[...]`).
 
 What do you see when you list the contents of this directory? You should,
@@ -151,7 +157,7 @@ this file, plus a normal file `a.upper.txt`, which is the output of the process
 that was run in this directory. While it seems cumbersome to manually move into
 these work directories it is something you only do when debugging errors in your
 workflow, and Nextflow has some tricks to make this process a lot easier - more
-on this late.
+on this later.
 
 So, how does this all work? Well, we have three components: a set of inputs, a
 set of processes and a workflow that defines which processes should be run. We
