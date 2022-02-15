@@ -68,11 +68,24 @@ your workflow, but if you mess with `work` you'll lose, well... work!
 
 # Logs
 
-If you want to view the logs you can use `nextflow log` to show a list of all
-executed runs, `nextflow log <run name>` to show each task that was executed for
-that run, or look in the hidden file `.nextflow.log` for details about the
-latest run. They are quite detailed and can greatly facilitate debugging your
-workflow when you run into errors!
+Nextflow keeps a log of all the workflows that have been executed. Let's check
+it out!
+
+* Type `nextflow log` to get a list of all the executions.
+
+Here we get information about when the workflow was executed, how long it ran,
+its run name, whether it succeeded or not and what command was used to run it.
+You can also use `nextflow log <run name>` to show each task that was executed
+for that run. We can, however, get even more detailed information about the
+latest run by looking into the `.nextflow.log` file!
+
+* Look into the latest log by typing `less .nextflow.log`.
+
+You'll be greeting by a wealth of debugging information, which may even seem a
+bit overkill at this point! This level of detail is, however, quite useful for
+advanced debugging - but we'll get to debugging more later. Regardless, these
+different types of logs are quite useful both as a history of what you've
+attempted and as an additional help when you run into errors!
 
 > **Quick recap** <br>
 > In this section we've learnt:
