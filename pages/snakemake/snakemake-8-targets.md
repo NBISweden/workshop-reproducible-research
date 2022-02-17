@@ -28,18 +28,19 @@ rule align_to_genome:
 Here we have seven inputs; the fastq file with the reads and six files with
 similar file names from the Bowtie 2 genome indexing. We can try to tidy this
 up by using a Python expression to generate a list of these files instead. If
-you're familiar with Python you could do this with list comprehensions like
-this:
+you're familiar with Python you could do this with 
+[list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+like this:
 
 ```python
 input:
     "data/raw_internal/{sra_id}.fastq.gz",
-    ["intermediate/NCTC8325.{my_substr}.bt2".format(my_substr=substr) for
-        substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
+    [f"intermediate/NCTC8325.{my_substr}.bt2" for
+        my_substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
 ```
 
 This will take the elements of the list of substrings one by one, and insert
-that element in the place of `{my_substring}`. Since this type of aggregating
+that element in the place of `{my_substr}`. Since this type of aggregating
 rules are quite common, Snakemake also has a more compact way of achieving the
 same thing.
 
