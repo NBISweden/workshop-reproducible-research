@@ -74,7 +74,7 @@ input:
     expand("intermediate/{sample}_fastqc.zip", sample = SAMPLES)
 ```
 
-Much better!
+See if you can update the `generate_count_table` rule in the same manner!
 
 > **Quick recap** <br>
 > In this section we've learned:
