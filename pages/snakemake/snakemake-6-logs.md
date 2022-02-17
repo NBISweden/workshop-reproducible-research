@@ -44,7 +44,35 @@ don't end up with identical names for different samples.
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
 standard out, some to standard error and some let us specify a log file via
-a flag. To save some time you can use the info below.
+a flag. 
+
+For example, in the `align_to_genome` rule, it could look like this (bowtie2 
+writes log info to standard error):
+
+```python
+rule align_to_genome:
+    """
+    Align a fastq file to a genome index using Bowtie 2.
+    """
+    input:
+        "data/raw_internal/{sra_id}.fastq.gz",
+        "intermediate/NCTC8325.1.bt2",
+        "intermediate/NCTC8325.2.bt2",
+        "intermediate/NCTC8325.3.bt2",
+        "intermediate/NCTC8325.4.bt2",
+        "intermediate/NCTC8325.rev.1.bt2",
+        "intermediate/NCTC8325.rev.2.bt2"
+    output:
+        "intermediate/{sra_id,\w+}.bam"
+    log:
+        "results/logs/align_to_genome/{sra_id}.log"
+    shell:
+        """
+        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output} 2>{log}
+        """
+```
+
+To save some time you can use the info below.
 
 ```bash
 # Wget has a -o flag for specifying the log file
@@ -55,9 +83,6 @@ multiqc -n output_file input_files 2> {log}
 
 # Bowtie2-build redirects to standard out so we use ">"
 bowtie2-build input_file index_dir > {log}
-
-# Bowtie2 writes main output to standard out and the log info to standard error
-bowtie2 -x index_dir -U input_file > output_file 2> {log}
 ```
 
 Now rerun the whole workflow by using the `-F` flag. Do the logs contain what
