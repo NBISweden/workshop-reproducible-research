@@ -67,7 +67,14 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 ```
 
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
-the sample ids. Much better!
+the sample ids. For the `multiqc` rule it could look like this:
+
+```python
+input:
+    expand("intermediate/{sample}_fastqc.zip", sample = SAMPLES)
+```
+
+Much better!
 
 > **Quick recap** <br>
 > In this section we've learned:
