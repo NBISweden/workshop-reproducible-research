@@ -1,16 +1,15 @@
-The tutorial for Nextflow has intentionally been quite short, but there are many
-more things you can do with it than what were covered here. If you are interested 
-to learn more details about Nextflow, we will briefly show some of its features
-in this section.
-
-Here are some links to additional resources on Nextflow:
+There are many more things you can do with Nextflow than what were covered
+here. If you are interested to learn more details about Nextflow, we will
+briefly show some of its advanced features in this section. But first, here are
+some links to additional resources on Nextflow:
 
  * The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
  * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
  * Common [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html)
  * Nextflow training at [Seqera](https://seqera.io/training/)
+ * A work-in-progress [Nextflow Carpentry course](https://carpentries-incubator.github.io/workflows-nextflow/index.html)
 
-## Using containers in Nextflow
+# Using containers in Nextflow
 
 Nextflow has built-in support for using both Docker and Singularity containers,
 either with a single container for the workflow as a whole or separate
@@ -45,13 +44,13 @@ use the `container` directive in your processes:
 ```groovy
 process PROCESS_01 {
     (...)
-    container: 'image_02'
+    container: 'image_01'
     (...)
 }
 
 process PROCESS_02 {
     (...)
-    container: 'image_01'
+    container: 'image_02'
     (...)
 }
 ```
@@ -61,7 +60,7 @@ inside the specified container. In practice, this means that Nextflow will
 automatically wrap your processes and run them by executing the Docker or
 Singularity command with the image you have provided.
 
-## Using Conda in Nextflow
+# Using Conda in Nextflow
 
 While you can execute Nextflow inside Conda environments just like you would any
 other type of software, you can also use Conda with Nextflow in the same way as
@@ -94,7 +93,7 @@ as well, here exemplified using an `environment.yml` file:
 process.conda = 'mrsa-environment.yml'
 ```
 
-## Running Nextflow on Uppmax
+# Running Nextflow on Uppmax
 
 A lot of researchers in Sweden are using the Uppmax computer cluster in Uppsala,
 which is easily handled by Nextflow. What you need to do is to add the following
@@ -135,7 +134,7 @@ variables. The `scratch` variable defines where each node's local storage is
 situated, which gives Nextflow the most optimal access to the Uppmax file system
 for temporary files.
 
-## Advanced channel creation
+# Advanced channel creation
 
 The input data shown in the MRSA example workflow is not that complex, but
 Nextflow channels can do much more than that. A common scenario in
@@ -212,7 +211,7 @@ in a simple way. While this toy example is probably too complicated for a lot of
 projects, at least you know that there are many things you can do in regards to
 input data complexity with Nextflow!
 
-## Using Groovy in processes
+# Using Groovy in processes
 
 You don't have to use bash or external scripts inside your processes all the
 time unless you want to: Nextflow can use Groovy in the same way that Snakemake
@@ -244,7 +243,7 @@ gets the name of the FASTA file without the extension by removing anything
 after the dot, while the second calls the `index` command like normal using
 bash.
 
-## The nf-core pipeline collection
+# The nf-core pipeline collection
 
 You may have heard of the [nf-core](https://nf-co.re/) pipeline collection
 previously, which is a large, collaborative bioinformatics community dedicated
