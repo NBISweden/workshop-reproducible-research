@@ -41,14 +41,15 @@ workflow as input/output files to rules:
 All of these issues can be dealt with by using the `shadow` option for a rule.
 The shadow option results in that each execution of the rule is run in an
 isolated temporary directory (located in `.snakemake/shadow/` by default).
-There are a few options for `shadow`. The most simple is `shadow: "minimal"`,
-which means that the rule is executed in an empty directory that the input
-files to the rule have been symlinked into. For the rule below, that means that
-the only file available would be `input.txt`. The shell commands would generate
-the files `some_other_junk_file` and `output.txt`. Lastly, Snakemake will move
-the output file (`output.txt`) to its "real" location and remove the whole
-shadow directory. We therefore never have to think about manually removing
-`some_other_junk_file`.
+There are a few options for `shadow` (for the full list of these options see
+the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
+The most simple is `shadow: "minimal"`, which means that the rule is executed in
+an empty directory that the input files to the rule have been symlinked into. 
+For the rule below, that means that the only file available would be `input.txt`. 
+The shell commands would generate the files `some_other_junk_file` and 
+`output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its 
+"real" location and remove the whole shadow directory. We therefore never have 
+to think about manually removing `some_other_junk_file`.
 
 ```python
 rule some_rule:
