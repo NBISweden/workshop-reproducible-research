@@ -75,7 +75,7 @@ rule get_genome_fasta:
         """
 ```
 
-We don't want the hardcoded genome id, so replace that with a wildcard, say
+We don't want the hardcoded genome id `NCTC8325`, so replace that with a wildcard, say
 `{genome_id}`. In general, we want the rules as far downstream as possible in
 the workflow to be the ones that determine what the wildcards should resolve
 to. In our case this is `align_to_genome`. You can think of it like the rule
@@ -84,17 +84,23 @@ determine how it can use all the available rules to generate it. Here we say "I
 need this genome index to align my sample to" and it's up to Snakemake to
 determine how to download and build the index.
 
-We're almost done, but there is one more tricky thing left. Take a look below
-at the `params` section. Here we have defined a function to generate the
-parameter `fasta_path`. This is what's called an anonymous function, or lambda
-expression, but any normal function would work as well. What happens is that
-the function takes the `wildcards` object as its only argument. This object
-allows access to the wildcards values via attributes (here
-`wildcards.genome_id`). The function will then look in the nested `config`
-dictionary and return the value of the fasta path for the key
-`wildcards.genome_id`. Neat!
+We're almost done, but there's one more thing we need to do to make the 
+`align_to_genome` rule work properly with the `{genome_id}` wildcard. We need to
+supply the remote path to the fasta file for a given genome id. Because we've 
+added this information to the config file we just need to pass it to the rule in
+some way.
+
+Take a look below at the `params` section. Here we have defined a function to 
+return the parameter `fasta_path`. What happens is that the function takes 
+the `wildcards` object as its only argument. This object allows access to the 
+wildcards values via attributes (here `wildcards.genome_id`). The function will 
+then look in the nested `config` dictionary and return the value of the fasta 
+path for the key `wildcards.genome_id`.
 
 ```python
+def get_fasta_path(wildcards):
+    return config["genomes"][wildcards.genome_id]["fasta"
+
 rule get_genome_fasta:
     """
     Retrieve the sequence in fasta format for a genome.
@@ -102,7 +108,7 @@ rule get_genome_fasta:
     output:
         "data/raw_external/{genome_id}.fa.gz"
     params:
-        fasta_path = lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
+        fasta_path = get_fasta_path
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
     shell:
