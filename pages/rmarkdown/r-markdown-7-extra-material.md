@@ -3,6 +3,17 @@ is much more you can do with it, if you want to! Here we cover some extra
 material if you're curious to learn more, but we don't consider this to be
 a main part of the course.
 
+If you want to read more about R Markdown in general, here are some useful
+resources:
+
+* A nice "Get Started" section, as a complement to this tutorial, is available
+  at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
+* [R Markdown cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
+  (also available from Help --> Cheatsheets in RStudio)
+* [R Markdown reference guide](
+  https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+  (also available from Help --> Cheatsheets in RStudio)
+
 ## A nicer session info
 
 While the default `sessionInfo()` command is highly useful for ending your

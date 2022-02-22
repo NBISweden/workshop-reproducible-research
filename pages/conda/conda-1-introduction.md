@@ -35,6 +35,6 @@ This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if, you haven't
 done so already. Then open up a terminal and go to
 `workshop-reproducible-research/tutorials/conda`. Instructions below assume
-that you are standing in `workshop-reproducible-research/tutorials/conda/` unless 
-otherwise specified (*e.g.* if it says "create a file", it means save it in 
-`workshop-reproducible-research/tutorials/conda/`).
+that you are standing in `workshop-reproducible-research/tutorials/conda/`
+unless otherwise specified (*e.g.* if it says "create a file", it means save it
+in `workshop-reproducible-research/tutorials/conda/`).

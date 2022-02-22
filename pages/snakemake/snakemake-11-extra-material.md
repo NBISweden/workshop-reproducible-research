@@ -1,18 +1,28 @@
+If you want to read more about Snakemake in general you can find several
+resources here:
+
+* The Snakemake documentation is available on [readthedocs](
+  https://snakemake.readthedocs.io/en/stable/#).
+* Here is another (quite in-depth) [tutorial](
+  https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
+* If you have questions, check out [stack overflow](
+  https://stackoverflow.com/questions/tagged/snakemake).
+
 # Using containers in Snakemake
 
 Snakemake also supports defining a Singularity or Docker container for each
-rule (you will have time to work on the [Containers tutorial](containers-1-introduction) 
-later during the course). Analogous to using a rule-specific Conda environment, 
-specify `container: "docker://some-account/rule-specific-image"` in the rule 
-definition. Instead of a link to a container image, it is also possible to 
-provide the path to a `*.sif` file (= a Singularity file). When executing 
-Snakemake, add the `--use-singularity` flag to the command line. For the given 
-rule, a Singularity container will then be created from the image or Singularity 
-file that is provided in the rule definition on the fly by Snakemake and the 
+rule (you will have time to work on the [Containers tutorial](containers-1-introduction)
+later during the course). Analogous to using a rule-specific Conda environment,
+specify `container: "docker://some-account/rule-specific-image"` in the rule
+definition. Instead of a link to a container image, it is also possible to
+provide the path to a `*.sif` file (= a Singularity file). When executing
+Snakemake, add the `--use-singularity` flag to the command line. For the given
+rule, a Singularity container will then be created from the image or Singularity
+file that is provided in the rule definition on the fly by Snakemake and the
 rule will be run in this container.
 
-You can find pre-made Singularity or Docker images for many tools on 
-[https://biocontainers.pro/](https://biocontainers.pro/) (bioinformatics-specific) 
+You can find pre-made Singularity or Docker images for many tools on
+[https://biocontainers.pro/](https://biocontainers.pro/) (bioinformatics-specific)
 or on [https://hub.docker.com/](https://hub.docker.com/).
 
 Here is an example for a rule and its execution:
@@ -55,10 +65,10 @@ where Singularity is pre-installed.
 # Running Snakemake workflows on UPPMAX
 
 There are several options to execute Snakemake workflows on UPPMAX (a HPC
-cluster with the SLURM workload manager). In any case, we highly recommend to use
-a session manager like `tmux` or `screen` so that you can run your workflow in a
-session in the background while doing other things on the cluster or even logging
-out of the cluster.
+cluster with the SLURM workload manager). In any case, we highly recommend to
+use a session manager like `tmux` or `screen` so that you can run your workflow
+in a session in the background while doing other things on the cluster or even
+logging out of the cluster.
 
 ### Run your workflow in an interactive job
 
@@ -116,12 +126,12 @@ allowed to send to SLURM at the same time.
 
 ### SLURM Profile
 
-In future Snakemake versions, the cluster configuration will be replaced
-by so-called Profiles. The SLURM Profile needs to be set up with the software
-[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via Conda).
-During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm) setup,
-you will be asked for several values for your Profile, e.g. for a Profile name
-or your compute project account ID.
+In future Snakemake versions, the cluster configuration will be replaced by
+so-called Profiles. The SLURM Profile needs to be set up with the software
+[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via
+Conda). During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm)
+setup, you will be asked for several values for your Profile, e.g. for a
+Profile name or your compute project account ID.
 
 Rule-specific resources can be defined in each rule via the `resources: `
 directive, for example:
@@ -160,14 +170,14 @@ In this example, the rule will ask for 360 minutes on the first attempt,
 for 2*360 minutes on the second attempt, etc.
 
 Finally, instead of specifying compute resources in the `resources` and
-`threads` directives, it is possible to set up the SLURM Profile by providing
-a `cluster.yaml` file. When you create the profile with cookiecutter and you
-are prompted for `cluster_config []:` enter the path to a `cluster.yaml` file,
-_e.g._: `cluster_config []: ../config/cluster.yaml`. Now you can control resource
-allocations for rules either using the `resources:` directive in each rule,
-_or_ by adding that information to the `config/cluster.yaml` file. If resources
-are found in both locations, the allocations in the `cluster.yaml` file will
-take precedence.
+`threads` directives, it is possible to set up the SLURM Profile by providing a
+`cluster.yaml` file. When you create the profile with cookiecutter and you are
+prompted for `cluster_config []:` enter the path to a `cluster.yaml` file,
+_e.g._: `cluster_config []: ../config/cluster.yaml`. Now you can control
+resource allocations for rules either using the `resources:` directive in each
+rule, _or_ by adding that information to the `config/cluster.yaml` file. If
+resources are found in both locations, the allocations in the `cluster.yaml`
+file will take precedence.
 
 With this setup you can start the workflow with your SLURM Profile as follows
 from within a `tmux` or `screen` session:
