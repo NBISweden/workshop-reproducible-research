@@ -72,16 +72,19 @@ rule multiqc:
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
         """
 
+def get_fasta_path(wildcards):
+    return config["genomes"][wildcards.genome_id]["fasta"
+
 rule get_genome_fasta:
     """
     Retrieve the sequence in fasta format for a genome.
     """
     output:
         "data/raw_external/{genome_id}.fa.gz"
-    params:
-        fasta_path = lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
+    params:
+        fasta_path = get_fasta_path
     version: "1.0"
     shell:
         """
