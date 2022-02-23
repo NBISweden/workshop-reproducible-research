@@ -34,12 +34,12 @@ rule get_SRA_by_accession:
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
     """
     output:
-        "data/raw_internal/{sra_id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     params:
         max_reads = 20000
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
+        fastq-dump {wildcards.sample_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
         """
 ```
@@ -86,12 +86,12 @@ rule get_SRA_by_accession:
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
     """
     output:
-        "data/raw_internal/{sra_id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     params:
         max_reads = config["max_reads"]
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
+        fastq-dump {wildcards.sample_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
         """
 ```
