@@ -91,6 +91,9 @@ rule get_genome_fasta:
         wget {params.fasta_path} -O {output} -o {log}
         """
 
+def get_gff_path(wildcards):
+    return config["genomes"][wildcards.genome_id]["gff3"]
+
 rule get_genome_gff3:
     """
     Retrieve annotation in gff3 format for a genome.
@@ -100,7 +103,7 @@ rule get_genome_gff3:
     log:
         "results/logs/get_genome_gff3/{genome_id}.log"
     params:
-        gff3_path = lambda wildcards: config["genomes"][wildcards.genome_id]["gff3"]
+        gff3_path = get_gff_path
     version: "1.0"
     shell:
         """
