@@ -27,18 +27,18 @@ rule fastqc:
     Run FastQC on a FASTQ file.
     """
     input:
-        "data/raw_internal/{id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     output:
-        "results/{id}_fastqc.html",
-        "intermediate/{id}_fastqc.zip"
+        "results/{sample_id}_fastqc.html",
+        "intermediate/{sample_id}_fastqc.zip"
     shell:
         """
         # Run fastQC and save the output to the current directory
         fastqc {input} -q -o .
 
         # Move the files which are used in the workflow
-        mv {wildcards.id}_fastqc.html {output[0]}
-        mv {wildcards.id}_fastqc.zip {output[1]}
+        mv {wildcards.sample_id}_fastqc.html {output[0]}
+        mv {wildcards.sample_id}_fastqc.zip {output[1]}
         """
 
 rule multiqc:
