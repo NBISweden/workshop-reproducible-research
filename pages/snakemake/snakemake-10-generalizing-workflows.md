@@ -107,17 +107,22 @@ rule get_genome_fasta:
     """
     output:
         "data/raw_external/{genome_id}.fa.gz"
-    params:
-        fasta_path = get_fasta_path
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
+    params:
+        fasta_path = get_fasta_path
     shell:
         """
         wget {params.fasta_path} -O {output} -o {log}
         """
 ```
 
-Now change in `get_genome_gff3` in the same way.
+Note that this will only work if the `{genome_id}` wildcard can be resolved to
+something defined in the config (currently `NCTC8325` or `ST398`). If you try to
+generate a fasta file for a genome id not defined in the config Snakemake will 
+complain, even at the dry-run stage.
+
+Now change the `get_genome_gff3` rule in a similar manner.
 
 Also change in `index_genome` to use a wildcard rather than a hardcoded genome
 id. Here you will run into a complication if you have followed the previous
