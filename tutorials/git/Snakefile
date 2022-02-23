@@ -20,13 +20,13 @@ rule get_SRA_by_accession:
     max_reads: Maximal number of reads to download for each sample.
     """
     output:
-        "data/raw_internal/{sra_id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     params:
         max_reads = config["max_reads"]
     version: "1.0"
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X {params.max_reads} --readids \
+        fastq-dump {wildcards.sample_id} -X {params.max_reads} --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
         """
 
@@ -35,10 +35,10 @@ rule fastqc:
     Run FastQC on a FASTQ file.
     """
     input:
-        "data/raw_internal/{id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     output:
-        "results/{id}_fastqc.html",
-        "intermediate/{id}_fastqc.zip"
+        "results/{sample_id}_fastqc.html",
+        "intermediate/{sample_id}_fastqc.zip"
     version: "1.0"
     shadow: "minimal"
     shell:
@@ -47,8 +47,8 @@ rule fastqc:
         fastqc {input} -q -o .
 
         # Move the files which are used in the workflow
-        mv {wildcards.id}_fastqc.html {output[0]}
-        mv {wildcards.id}_fastqc.zip {output[1]}
+        mv {wildcards.sample_id}_fastqc.html {output[0]}
+        mv {wildcards.sample_id}_fastqc.zip {output[1]}
         """
 
 rule multiqc:
@@ -56,7 +56,7 @@ rule multiqc:
     Aggregate all FastQC reports into a MultiQC report.
     """
     input:
-        expand("intermediate/{id}_fastqc.zip", id = config["sample_ids"])
+        expand("intermediate/{sample_id}_fastqc.zip", sample_id = config["sample_ids"])
     output:
         html = "results/multiqc.html",
         stats = "intermediate/multiqc_general_stats.txt"
@@ -73,7 +73,7 @@ rule multiqc:
         """
 
 def get_fasta_path(wildcards):
-    return config["genomes"][wildcards.genome_id]["fasta"
+    return config["genomes"][wildcards.genome_id]["fasta"]
 
 rule get_genome_fasta:
     """
@@ -165,7 +165,7 @@ rule generate_count_table:
     Generate a count table using featureCounts.
     """
     input:
-        bams=expand("intermediate/{sra_id}.sorted.bam", sra_id = config["sample_ids"]),
+        bams=expand("intermediate/{sample_id}.sorted.bam", sample_id = config["sample_ids"]),
         annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     output:
         "results/tables/counts.tsv"
