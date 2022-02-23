@@ -173,7 +173,8 @@ rule generate_count_table:
         bams=expand("intermediate/{sample_id}.sorted.bam", sample_id = config["sample_ids"]),
         annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     output:
-        "results/tables/counts.tsv"
+        "results/tables/counts.tsv",
+        "results/tables/counts.tsv.summary"
     version: "1.0"
     shell:
         """
