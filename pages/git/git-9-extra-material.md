@@ -5,6 +5,14 @@ sections; the material here should be considered tips and tricks from people
 who use Git every day. You thus don't need to use these things unless you want
 to, and you can even skip this part of the lesson if you like!
 
+If you are interested in learning more about Git in general, here are some
+reading tips for you:
+
+* [Git cheat-sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+* [A simple Git guide](http://rogerdudler.github.io/git-guide/)
+* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
+* [Git reference manual](https://book.git-scm.com/docs)
+
 ## Decorating your prompt
 
 When you are working on the command line interface (CLI), you will usually have

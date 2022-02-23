@@ -1,3 +1,13 @@
+Here are some useful resources if you want to read more about Jupyter in
+general:
+
+* The [Jupyter project site](http://jupyter.org) contains a lot of information
+  and inspiration.
+* The [Jupyter Notebook documentation](
+  https://jupyter-notebook.readthedocs.io/en/stable/).
+* A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
+  widgets for creating interactive notebooks.
+
 ## Running jupyter notebooks on a cluster
 
 * Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:

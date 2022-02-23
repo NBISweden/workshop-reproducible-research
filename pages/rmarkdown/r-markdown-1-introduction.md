@@ -52,16 +52,6 @@ rather than *e.g.* copy-pasting figures into a Word document. You can also use
 it as a notebook, in the same way as lab notebooks are used in a wet lab
 setting (or as we utilise Jupyter notebooks in the tutorial after this one).
 
-If you want to read more, here are some useful resources:
-
-* A nice "Get Started" section, as a complement to this tutorial, is available
-  at [RStudio.com](http://rmarkdown.rstudio.com/lesson-1.html).
-* [R Markdown cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)
-  (also available from Help --> Cheatsheets in RStudio)
-* [R Markdown reference guide](
-  https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-  (also available from Help --> Cheatsheets in RStudio)
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if you haven't
 done so already. Place yourself in the `workshop-reproducible-research/tutorials/rmarkdown/`

@@ -25,14 +25,7 @@ use RStudio. Some reasons to use Jupyter include:
   interactive way that makes them very appealing for sharing with others.
 
 As always, the best way is to try it out yourself and decide what to use it
-for! Here are some useful resources if you want to read more:
-
-* The [Jupyter project site](http://jupyter.org) contains a lot of information
-  and inspiration.
-* The [Jupyter Notebook documentation](
-  https://jupyter-notebook.readthedocs.io/en/stable/).
-* A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
-  widgets for creating interactive notebooks.
+for!
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if you haven't

@@ -29,15 +29,6 @@ possible to ensure that there is a consistent "paper trail" from raw data to
 final results. Snakemake also has features that allow you to package and
 distribute the workflow, and any files it involves, once it's done.
 
-If you want to read more, you can find several resources here:
-
-* The Snakemake documentation is available on [readthedocs](
-  https://snakemake.readthedocs.io/en/stable/#).
-* Here is another (quite in-depth) [tutorial](
-  https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
-* If you have questions, check out [stack overflow](
-  https://stackoverflow.com/questions/tagged/snakemake).
-
 This tutorial depends on files from the course GitHub repo. Take a look at the
 [setup](pre-course-setup) for instructions on how to set it up if you haven't
 done so already, then open up a terminal and go to

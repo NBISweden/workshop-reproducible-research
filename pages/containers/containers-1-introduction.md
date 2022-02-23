@@ -13,7 +13,7 @@ very powerful.
 
 Containers have also proven to be a very good solution for packaging, running
 and distributing scientific data analyses. Some applications of containers
-relevant for reproducible research are: 
+relevant for reproducible research are:
 
 * When publishing, package your analyses in a container image and let it
   accompany the article. This way interested readers can reproduce your analysis
@@ -30,17 +30,11 @@ rapidly becoming widely used in scientific research. Another container-based
 technology is *Singularity*, which was developed to work well in computer
 cluster environments, such as Uppmax. We will cover both Docker and Singularity
 in this course, but the focus will be be on the former (since that is the most
-widely used and runs on all three operating systems). 
-
-If you want to read more about Docker you can check out these resources:
-
-* A "Get started with Docker" at [docker.com](https://docs.docker.com/get-started/).
-* An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using
-  Docker for reproducible research.
+widely used and runs on all three operating systems).
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](pre-course-setup) for instructions on how to install Docker if you 
-haven't done so already, then open up a terminal and go to 
+[setup](pre-course-setup) for instructions on how to install Docker if you
+haven't done so already, then open up a terminal and go to
 `workshop-reproducible-research/tutorials/containers`.
 
 > **Attention!** <br>

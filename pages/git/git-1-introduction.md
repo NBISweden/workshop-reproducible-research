@@ -40,14 +40,8 @@ There are many benefits of using Git in your research project:
 These tutorials will walk you through the basics of using Git as a tool for
 reproducible research. The things covered in these tutorials are what you will
 be using most of the time in your day-to-day work with Git, but Git has many
-more advanced features that might be of use to you. If you are interested in
-learning more about these things, here are some reading tips for you:
-
-* [Git cheat-sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-* [A simple Git guide](http://rogerdudler.github.io/git-guide/)
-* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
-* [Git reference manual](https://book.git-scm.com/docs)
+more advanced features that might be of use to you.
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](pre-course-setup) for instructions on how to set it up if you haven't 
+[setup](pre-course-setup) for instructions on how to set it up if you haven't
 done so already.
