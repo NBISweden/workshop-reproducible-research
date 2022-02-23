@@ -132,11 +132,14 @@ instructions and use the `expand()` expression. We want the list to expand to
 `genome_id` wildcard from being expanded we have to "mask" it with double curly
 brackets: `{{genome_id}}`.
 
-Lastly, we need to define somewhere which genome id we actually want to use.
-This needs to be done both in `align_to_genome` and `generate_count_table`.
-Do this by introducing a parameter in `config.yml` called `"genome_id"`. See
-below for an example for `align_to_genome`. Here the `substr` wildcard gets
-expanded from a list while `genome_id` gets expanded from the config file.
+The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can now 
+download and index *any genome* as long as we provide valid links in the config
+file. However, we need to define somewhere which genome id we actually want to use
+when running the workflow. This needs to be done both in `align_to_genome` and 
+`generate_count_table`. Do this by introducing a parameter in `config.yml` 
+called `"genome_id"`. See below for an example for `align_to_genome`. Here the 
+`substr` wildcard gets expanded from a list while `genome_id` gets expanded from 
+the config file.
 
 ```python
 output:
