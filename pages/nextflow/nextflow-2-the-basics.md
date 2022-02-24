@@ -124,7 +124,7 @@ This will make Nextflow run the workflow specified in your `main.nf` file. You
 should see something along these lines:
 
 ```no-highlight
-N E X T F L O W  ~  version 21.10.4
+N E X T F L O W  ~  version 21.04.0
 Launching `./main.nf` [mad_legentil] - revision: 87f0c253ed
 executor >  local (1)
 [32/9124a1] process > CONVERT_TO_UPPER_CASE (1) [100%] 1 of 1 ✔
