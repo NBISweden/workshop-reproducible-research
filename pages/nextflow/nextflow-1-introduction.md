@@ -99,7 +99,7 @@ Nextflow. It will run the first process using those inputs, pass them to the
 second process, then the third, and so on until it reaches the final outputs of
 the workflow. This means you don't define file paths to each process'
 input/output definitions like you do in Snakemake, only which files you want in
-the end. This can potentially remove some of the pitfalls and issues sometimes
+the end. This can potentially remove some pitfalls and issues sometimes
 seen with *e.g.* wildcards in Snakemake, but it also front-loads some of the
 complexity to channel creation instead.
 
