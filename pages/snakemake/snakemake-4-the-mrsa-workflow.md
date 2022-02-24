@@ -15,7 +15,7 @@ You are probably already in your `snakemake-env` environment, otherwise
 activate it (use `conda info --envs` if you are unsure).
 
 > **Tip** <br>
-> Here we have one Conda environment for  executing the whole Snakemake
+> Here we have one Conda environment for executing the whole Snakemake
 > workflow. Snakemake also supports using explicit Conda environments on
 > a per-rule basis, by specifying something like `conda:
 > rule-specific-env.yml` in the rule definition and running Snakemake with
@@ -36,7 +36,7 @@ workflow to run. We didn't need to do that before since `Snakefile` is the
 default name. The second is that we don't define a target. In the toy example
 we used `a_b.txt` as a target, and the wildcards were resolved based on that.
 How come that we don't need to do that here? It turns out that by default
-Snakemake targets the first rule in a workflow. By convention we call this rule
+Snakemake targets the first rule in a workflow. By convention, we call this rule
 `all` and let it serve as a rule for aggregating the main outputs of the
 workflow.
 

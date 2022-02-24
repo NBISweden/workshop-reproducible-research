@@ -126,12 +126,15 @@ allowed to send to SLURM at the same time.
 
 ### SLURM Profile
 
-In future Snakemake versions, the cluster configuration will be replaced by
-so-called Profiles. The SLURM Profile needs to be set up with the software
-[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via
-Conda). During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm)
-setup, you will be asked for several values for your Profile, e.g. for a
-Profile name or your compute project account ID.
+In future Snakemake versions, the cluster configuration will be replaced
+by so-called Profiles. However, at the moment these two functionalities co-exist
+in Snakemake.
+
+The SLURM Profile needs to be set up with the software
+[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via Conda).
+During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm) setup,
+you will be asked for several values for your Profile, e.g. for a Profile name
+or your compute project account ID.
 
 Rule-specific resources can be defined in each rule via the `resources: `
 directive, for example:

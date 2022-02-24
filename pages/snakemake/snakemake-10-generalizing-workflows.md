@@ -75,7 +75,7 @@ rule get_genome_fasta:
         """
 ```
 
-We don't want the hardcoded genome id, so replace that with a wildcard, say
+We don't want the hardcoded genome id `NCTC8325`, so replace that with a wildcard, say
 `{genome_id}`. In general, we want the rules as far downstream as possible in
 the workflow to be the ones that determine what the wildcards should resolve
 to. In our case this is `align_to_genome`. You can think of it like the rule
@@ -84,34 +84,45 @@ determine how it can use all the available rules to generate it. Here we say "I
 need this genome index to align my sample to" and it's up to Snakemake to
 determine how to download and build the index.
 
-We're almost done, but there is one more tricky thing left. Take a look below
-at the `params` section. Here we have defined a function to generate the
-parameter `fasta_path`. This is what's called an anonymous function, or lambda
-expression, but any normal function would work as well. What happens is that
-the function takes the `wildcards` object as its only argument. This object
-allows access to the wildcards values via attributes (here
-`wildcards.genome_id`). The function will then look in the nested `config`
-dictionary and return the value of the fasta path for the key
-`wildcards.genome_id`. Neat!
+We're almost done, but there's one more thing we need to do to make the 
+`align_to_genome` rule work properly with the `{genome_id}` wildcard. We need to
+supply the remote path to the fasta file for a given genome id. Because we've 
+added this information to the config file we just need to pass it to the rule in
+some way.
+
+Take a look below at the `params` section. Here we have defined a function to 
+return the parameter `fasta_path`. What happens is that the function takes 
+the `wildcards` object as its only argument. This object allows access to the 
+wildcards values via attributes (here `wildcards.genome_id`). The function will 
+then look in the nested `config` dictionary and return the value of the fasta 
+path for the key `wildcards.genome_id`.
 
 ```python
+def get_fasta_path(wildcards):
+    return config["genomes"][wildcards.genome_id]["fasta"
+
 rule get_genome_fasta:
     """
     Retrieve the sequence in fasta format for a genome.
     """
     output:
         "data/raw_external/{genome_id}.fa.gz"
-    params:
-        fasta_path = lambda wildcards: config["genomes"][wildcards.genome_id]["fasta"]
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
+    params:
+        fasta_path = get_fasta_path
     shell:
         """
         wget {params.fasta_path} -O {output} -o {log}
         """
 ```
 
-Now change in `get_genome_gff3` in the same way.
+Note that this will only work if the `{genome_id}` wildcard can be resolved to
+something defined in the config (currently `NCTC8325` or `ST398`). If you try to
+generate a fasta file for a genome id not defined in the config Snakemake will 
+complain, even at the dry-run stage.
+
+Now change the `get_genome_gff3` rule in a similar manner.
 
 Also change in `index_genome` to use a wildcard rather than a hardcoded genome
 id. Here you will run into a complication if you have followed the previous
@@ -121,11 +132,14 @@ instructions and use the `expand()` expression. We want the list to expand to
 `genome_id` wildcard from being expanded we have to "mask" it with double curly
 brackets: `{{genome_id}}`.
 
-Lastly, we need to define somewhere which genome id we actually want to use.
-This needs to be done both in `align_to_genome` and `generate_count_table`.
-Do this by introducing a parameter in `config.yml` called `"genome_id"`. See
-below for an example for `align_to_genome`. Here the `substr` wildcard gets
-expanded from a list while `genome_id` gets expanded from the config file.
+The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can now 
+download and index *any genome* as long as we provide valid links in the config
+file. However, we need to define somewhere which genome id we actually want to use
+when running the workflow. This needs to be done both in `align_to_genome` and 
+`generate_count_table`. Do this by introducing a parameter in `config.yml` 
+called `"genome_id"`. See below for an example for `align_to_genome`. Here the 
+`substr` wildcard gets expanded from a list while `genome_id` gets expanded from 
+the config file.
 
 ```python
 output:
