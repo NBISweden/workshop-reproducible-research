@@ -1,8 +1,6 @@
 [Nextflow](https://www.nextflow.io/) is another *workflow management system*,
 and is (along with Snakemake) one of the most common such systems within the
-academic community. While Nextflow is based on the Groovy language, you don't
-need to know how to code Groovy to be able to write good Nextflow workflows,
-just like you don't need to know Python to write good Snakemake workflows.
+academic community.
 
 Nextflow is built from the ground-up to be portable, scalable, reproducible and
 usable in a platform-agnostic sense. This means that any pipeline you write in
