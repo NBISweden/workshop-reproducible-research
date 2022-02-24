@@ -46,12 +46,12 @@ process CONVERT_TO_UPPER_CASE {
 ```
 
 This looks a bit more complicated than the single rule we had in the Snakemake
-tutorial for the same workflow, but there are reasons for that that we'll
-explain in a moment. Here we have three separate parts. The first part enables
-the DSL2 (*Domain Specific Language 2*) functionality, and is required to use
-some of the newer and more powerful features of Nextflow. The next part is the
-workflow definition, while the last is a *process*, equivalent to Snakemake's
-rules. Let's go through the last two in more detail!
+tutorial for the same workflow, but there are reasons for that as we'll see in a
+moment. Here we have three separate parts. The first part enables the DSL2 
+(*Domain Specific Language 2*) functionality, and is required to use some of the
+newer and more powerful features of Nextflow. The next part is the workflow 
+definition, while the last is a *process*, equivalent to Snakemake's rules. 
+Let's go through the last two in more detail!
 
 > **Nextflow comments** <br>
 > Double-slashes (`//`) are used for comments in Nextflow.
