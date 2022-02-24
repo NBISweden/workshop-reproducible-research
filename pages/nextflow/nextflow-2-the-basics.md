@@ -246,7 +246,7 @@ what's inside them: you can do this using the `view()` operator.
 * Add the following to your workflow definition (on a new line) and execute the
   workflow: `ch_input.view()`. What do you see?
 
-* Do the same for the (1) raw and (2) collected output of the `CONVERT_TO_UPPER`
+* Do the same for the (1) raw and (2) collected output of the `CONVERT_TO_UPPER_CASE`
   process. How are they different?
 
 * Copy the following code as a new process into your workflow:
