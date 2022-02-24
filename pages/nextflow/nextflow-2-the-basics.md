@@ -165,8 +165,8 @@ tell Nextflow to *push* the inputs through the entire workflow, so to speak.
 This is the opposite of Snakemake, where we define a workflow and then ask
 Snakemake to give us a final output we know it can create - *pull*.
 
-* Now it's your turn! Move back to the workflow root and change the it to use
-  the `b.txt` input file and give you the `b.upper.txt` instead.
+* Now it's your turn! Move back to the workflow root and make it use the `b.txt`
+  input file and give you the `b.upper.txt` instead.
 
 * Run your workflow and make sure it works before you move on.
 
