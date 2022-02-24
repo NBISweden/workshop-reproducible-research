@@ -82,7 +82,7 @@ declared? The `output` is an explicit string (*i.e* surrounded by quotes), while
 the input is a variable named `file`. The reason for this is that processes are
 like functions, meaning they can have have varying inputs (and arguments in
 general). There is one part of the process definition that has no equivalent in
-Snakemake, and that is the `publishDir` directive. What this does is tell
+Snakemake, and that is the `publishDir` directive. This tells
 Nextflow where the output of the process should be stored when it is finished;
 setting `mode` to `"copy"` just means that we want to copy the output files to
 the publishing directory, rather than using a symbolic link (which is the
