@@ -240,15 +240,6 @@ output of a particular channel. The `collect()` operator, on the other hand,
 operation: a stream with several files (*many*) is merged into a lone list of
 files (*one*).
 
-As our channels become more complicated it is useful to actually check out
-what's inside them: you can do this using the `view()` operator.
-
-* Add the following to your workflow definition (on a new line) and execute the
-  workflow: `ch_input.view()`. What do you see?
-
-* Do the same for the (1) raw and (2) collected output of the `CONVERT_TO_UPPER_CASE`
-  process. How are they different?
-
 * Copy the following code as a new process into your workflow:
 
 ```nextflow
@@ -286,6 +277,15 @@ CONCATENATE_FILES( CONVERT_TO_UPPER_CASE.out.collect() )
 Run your workflow again and check the `results/` directory. At this point you
 should have three symbolic links there: `a.upper.txt`, `b.upper.txt` and
 `a_b.txt`.
+
+As our channels become more complicated it is useful to actually check out
+what's inside them: you can do this using the `view()` operator.
+
+* Add the following to your workflow definition (on a new line) and execute the
+  workflow: `ch_input.view()`. What do you see?
+
+* Do the same for the (1) raw and (2) collected output of the `CONVERT_TO_UPPER_CASE`
+  process. How are they different?
 
 > **Quick recap** <br>
 > In this section we've learnt:
