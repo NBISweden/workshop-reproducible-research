@@ -174,7 +174,7 @@ Snakemake to give us a final output we know it can create - *pull*.
 
 Having to manually change inputs and outputs like you just did is not really
 ideal, is it? Hard-coding things is rarely good, so let's try to change that.
-What we need is a way to use the sample name for each input file, something that
+What we need is a way to use the same name for each input file, something that
 does something similar to *wildcards* in Snakemake. Here is where one of the
 features of Nextflow really shines: being able to parse values *alongside* files
 in channels!
