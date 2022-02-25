@@ -109,7 +109,7 @@ RUN_MULTIQC (
 ```
 
 We already know about `.out` and `.collect()`, but we have something new here:
-the `RUN_MULTIQC` process is taken the second entry of the output from the
+the `RUN_MULTIQC` process is taking the second entry of the output from the
 `RUN_FASTQC` process - `[1]` is the second entry, as Groovy is zero-based (the
 first entry is `[0]`).
 
