@@ -129,8 +129,28 @@ use `.out.text` instead. This is not only clearer in that we can infer more
 information about an output called `text` rather than just `[1]`, but it is also
 more robust and less error-prone.
 
-* Your turn! Add named outputs to the `RUN_FASTQC` process and make
-  `RUN_MULTIQC` use those outputs. Check if it works by executing the workflow.
+Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC` 
+use those outputs. You'll have to change both in the output section of the 
+`RUN_FASTQC` process, and in the workflow definition section for `RUN_MULTIQC`.
+If you need help, see the hint below.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+    // Workflow definition for RUN_MULTIQC
+    RUN_MULTIQC (
+        RUN_FASTQC.out.zip.collect()
+
+    // Output section of RUN_FASTC
+    output:
+        path("*.html"), emit: html
+        path("*.zip"), emit: zip
+```
+
+</details>
+
+Check if it works by executing the workflow.
 
 # Advanced publishing
 
