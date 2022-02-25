@@ -42,7 +42,7 @@ Now you can see that Nextflow didn't actually re-run anything. The `-resume`
 flag instructed Nextflow to use the cached results from the previous run!
 
 As mentioned in the introduction, how Nextflow re-runs its processes is slightly
-different than Snakemake, in that Snakemake only checks if the inputs are newer
+different from Snakemake, in that Snakemake only checks if the inputs are newer
 than the outputs, whereas Nextflow also checks if any of the code or scripts
 have changed. This means that when you change the script section of a Snakemake
 rule (or an external script it calls) you need to run with the `-R <rule>` flag
