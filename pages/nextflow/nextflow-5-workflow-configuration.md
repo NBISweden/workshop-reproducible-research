@@ -35,10 +35,11 @@ automatically by Nextflow (to supply a config file with another name use
   Run your workflow to see if it worked.
 
 > **Tip** <br>
-> Instead of manually changing all of the hard-coded directories in your
+> Instead of manually changing all the hard-coded directories in your
 > workflow you can use the following little `sed` command, which will do it for
 > you: `sed 's/\"results\//\"${params.resultsdir}\//g' main.nf > tmp; mv tmp
-> main.nf`.
+> main.nf`. In case you used a parameter name other than 'resultsdir' update the 
+> command accordingly.
 
 # Command line parameters
 
