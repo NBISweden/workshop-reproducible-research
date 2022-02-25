@@ -74,9 +74,9 @@ it out!
 
 Here we get information about when the workflow was executed, how long it ran,
 its run name, whether it succeeded or not and what command was used to run it.
-You can also use `nextflow log <run name>` to show each task that was executed
-for that run. We can, however, get even more detailed information about the
-latest run by looking into the `.nextflow.log` file!
+You can also use `nextflow log <run name>` to show the work subfolder of each 
+task that was executed for that run. We can, however, get even more detailed 
+information about the latest run by looking into the `.nextflow.log` file!
 
 * Look into the latest log by typing `less .nextflow.log`.
 
