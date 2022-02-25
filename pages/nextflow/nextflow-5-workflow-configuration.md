@@ -37,14 +37,14 @@ automatically by Nextflow (to supply a config file with another name use
 > **Tip** <br>
 > Instead of manually changing all the hard-coded directories in your
 > workflow you can use the following little `sed` command, which will do it for
-> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main.nf > tmp; mv tmp
-> main.nf`. In case you used a parameter name other than 'resultsdir' update the 
+> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv tmp
+> main_mrsa.nf`. In case you used a parameter name other than 'resultsdir' update the 
 > command accordingly.
 
 # Command line parameters
 
 Parameters can be changed on-the-fly when executing workflows like so: `nextflow
-run main.nf --parameter_name some_value`
+run main_mrsa.nf --parameter_name some_value`
 
 * Run your workflow using the parameter you previously created, but pick
   something other than the default value!
