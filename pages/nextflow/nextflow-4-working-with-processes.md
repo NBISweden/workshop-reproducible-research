@@ -243,7 +243,7 @@ reported by Nextflow and inspecting the specific subdirectory in question.
 
 > **A note about Bash** <br>
 > If you are using Bash variables inside the `script` directive you have to be
-> careful to prepend the with a backslash, *e.g.* `\${BASH_VARIABLE}`. This is
+> careful to prepend it with a backslash, *e.g.* `\${BASH_VARIABLE}`. This is
 > because the dollar-sign is used by Nextflow, so you have to tell Nextflow
 > explicitly when you're using a Bash variable. This is a common source of
 > errors when using Bash variables, so keeping it in mind can save you some
