@@ -25,7 +25,7 @@ executor >  local (17)
 
 Have you noticed that there are SRA IDs after some of the processes? Well, if
 you look at which processes show these SRA IDs you might see that it's only
-those processes that are executing three times, *i.e.* once per SRA ID. This
+those processes that are executed three times, *i.e.* once per SRA ID. This
 doesn't happen automatically, however, and comes from something called *tags*.
 Let's look at the `GET_SRA_BY_ACCESSION` process:
 
