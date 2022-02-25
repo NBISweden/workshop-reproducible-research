@@ -10,7 +10,7 @@ One of the things that allow generalisability of Nextflow workflows is
 *parameters*, which hold information and values that can be changed directly on
 the command-line at the time of execution. One use of parameters in our MRSA
 workflow is to remove the hard-coded `results` output directory, for example.
-Parameters can be written on the following form:
+Parameters can be written in the following form:
 
 ```nextflow
 params {
@@ -29,7 +29,7 @@ file is `nextflow.config`.
   directory.
 
 * Use your newly created parameter in the `publishDir` directory of a process
-  (it'll be on the form of `${params.resultsdir}/some/other/path`, for example).
+  (it'll be in the form of `${params.resultsdir}/some/other/path`, for example).
   Run your workflow to see if it worked.
 
 > **Tip** <br>
