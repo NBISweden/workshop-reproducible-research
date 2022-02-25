@@ -9,7 +9,7 @@ executed and what you can get from them.
 Let's start with running the workflow plus getting some reports and
 visualisation while we're at it!
 
-* Run the workflow using the following command: `nextflow run main.nf
+* Run the workflow using the following command: `nextflow run main_mrsa.nf
   -with-report -with-timeline -with-dag dag.png`.
 
 After successful executing, you will find three more files in your current
@@ -30,13 +30,13 @@ the workflow when you changed some input files or some of the code for its
 analyses, but you don't want to re-run the entire workflow from start to finish.
 Let’s find out how this works in Nextflow!
 
-* Run the same `nextflow run main.nf` command again.
+* Run the same `nextflow run main_mrsa.nf` command again.
 
 What happened here? Nextflow actually re-ran the entire workflow from scratch,
 even though we didn't change anything. This is the default behaviour of
 Nextflow.
 
-* Let’s try that again: `run nextflow run main.nf -resume` instead.
+* Let’s try that again: `run nextflow run main_mrsa.nf -resume` instead.
 
 Now you can see that Nextflow didn't actually re-run anything, but used the
 cached results from the previous run by supplying the `-resume` flag to the
