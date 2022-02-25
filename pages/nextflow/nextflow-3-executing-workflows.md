@@ -1,5 +1,5 @@
 It's time to start working with a more realistic workflow using the MRSA case
-study of this course! We've created a bare-bones version of this pipeline with,
+study of this course! We've created a bare-bones version of this pipeline,
 but we'll work our way through it as we go along and learn more about Nextflow's
 features and functionality. We'll begin with some specifics of how workflows are
 executed and what you can get from them.
