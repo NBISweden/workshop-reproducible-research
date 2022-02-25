@@ -1,4 +1,4 @@
-We've so far been working with a relatively non-generalised work: it's got
+We've so far been working with a relatively non-generalised workflow: it's got
 hard-coded inputs, paths and genome references. This is perfectly fine for a
 project that is purely aimed at getting reproducible results (which is the full
 extent of what you want in a lot of cases), but it can be made a lot more
