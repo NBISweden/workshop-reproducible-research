@@ -80,7 +80,7 @@ latest run by looking into the `.nextflow.log` file!
 
 * Look into the latest log by typing `less .nextflow.log`.
 
-You'll be greeting by a wealth of debugging information, which may even seem a
+You'll be greeted by a wealth of debugging information, which may even seem a
 bit overkill at this point! This level of detail is, however, quite useful for
 advanced debugging - but we'll get to debugging more later. Regardless, these
 different types of logs are quite useful both as a history of what you've
