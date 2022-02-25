@@ -52,7 +52,7 @@ track of code changes for you.
 * Remove the `results` directory and re-run the workflow again using the
   `-resume` flag.
 
-We removed all of the results we used before, but we still managed to resume the
+We removed all the results we used before, but we still managed to resume the
 workflow and use its cache - how come? Remember that Nextflow uses the `work`
 directory to run all of its tasks, while the `results` directory is just where
 we have chosen to publish our outputs. We can thus delete the `results`
