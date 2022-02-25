@@ -38,9 +38,8 @@ Nextflow.
 
 * Let’s try that again: `nextflow run main_mrsa.nf -resume` instead.
 
-Now you can see that Nextflow didn't actually re-run anything, but used the
-cached results from the previous run by supplying the `-resume` flag to the
-command!
+Now you can see that Nextflow didn't actually re-run anything. The `-resume` 
+flag instructed Nextflow to use the cached results from the previous run!
 
 As mentioned in the introduction, how Nextflow re-runs its processes is slightly
 different than Snakemake, in that Snakemake only checks if the inputs are newer
