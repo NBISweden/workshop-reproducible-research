@@ -36,7 +36,7 @@ What happened here? Nextflow actually re-ran the entire workflow from scratch,
 even though we didn't change anything. This is the default behaviour of
 Nextflow.
 
-* Let’s try that again: `run nextflow run main_mrsa.nf -resume` instead.
+* Let’s try that again: `nextflow run main_mrsa.nf -resume` instead.
 
 Now you can see that Nextflow didn't actually re-run anything, but used the
 cached results from the previous run by supplying the `-resume` flag to the
