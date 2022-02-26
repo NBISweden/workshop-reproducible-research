@@ -86,4 +86,4 @@ you might want to use - read more about them [in the documentation](https://www.
 >
 > * How to create parameters in a configuration file
 > * How to specify parameters on the command line
-> * How to add  workflow manifest and other configuration scopes
+> * How to add workflow manifest and other configuration scopes
