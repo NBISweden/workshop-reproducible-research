@@ -103,7 +103,7 @@ include { SUBWORKFLOW } from "./subworkflow.nf"
 If you have a complex workflow with several subworkflows you might thus store
 them in a separate directory, *e.g.* `subworkflows`. This allows you to have
 fine-grained control over the general architecture of your Nextflow workflows,
-organising them in a manner that is easily to code and maintain.
+organising them in a manner that is easy to code and maintain.
 
 * Now it's your turn! Separate the `RUN_FASTQC` and `RUN_MULTIQC` processes out
   of the main workflow and into a subworkflow. Check below if you're having
