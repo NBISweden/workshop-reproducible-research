@@ -75,9 +75,16 @@ it out!
 
 Here we get information about when the workflow was executed, how long it ran,
 its run name, whether it succeeded or not and what command was used to run it.
-You can also use `nextflow log <run name>` to show each task that was executed
-for that run. We can, however, get even more detailed information about the
-latest run by looking into the `.nextflow.log` file!
+You can also use `nextflow log <run name>` to show each task's directory that
+was executed for that run. You can also supply the `-f` (or `-fields`) flag
+along with additional fields to show.
+
+* Run `nextflow log <run name> -f hash,name,exit,status`
+
+This shows us not only the beginning of each task's working directory, but also
+its name, exit code and status (*i.e.* if it completed successfully or failed in
+some manner). We can also get even more detailed information about the latest
+run by looking into the `.nextflow.log` file!
 
 * Look into the latest log by typing `less .nextflow.log`.
 
