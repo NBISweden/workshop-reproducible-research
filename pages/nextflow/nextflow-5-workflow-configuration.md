@@ -14,9 +14,9 @@ Parameters can be written on the following form:
 
 ```nextflow
 params {
-    parameter_1 = "some/data/path"
-    parameter_2 = 42
-    parameter_3 = ["a", "list", "of", "strings"]
+    parameter_1 = "some/data/path"      // A string parameter
+    parameter_2 = 42                    // A value parameter
+    parameter_3 = ["a", "b", "c", "d"]  // A list parameter
 }
 ```
 
