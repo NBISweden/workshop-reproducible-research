@@ -236,7 +236,7 @@ process index_fasta {
 ```
 
 Here we have some command `index` that, for whatever reason, requires both the
-path to a FASTA file as well as the name of that file *without* the `.fasta`
+path to a FASTA file and the name of that file *without* the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
 Bash, mixing and matching as we like. The first line of the `script` directive
 gets the name of the FASTA file without the extension by removing anything
