@@ -83,7 +83,15 @@ along with additional fields to show.
 
 This shows us not only the beginning of each task's working directory, but also
 its name, exit code and status (*i.e.* if it completed successfully or failed in
-some manner). We can also get even more detailed information about the latest
+some manner).
+
+> **Listing fields** <br>
+> If you want to see a complete list of all the fields you might explore using
+> the log, just type `nextflow log -l` or `nextflow log -list-fields`. This is
+> highly useful for debugging when there's some specific information about a run
+> you're particularly interested in!
+
+We can also get even more detailed information about the latest
 run by looking into the `.nextflow.log` file!
 
 * Look into the latest log by typing `less .nextflow.log`.
