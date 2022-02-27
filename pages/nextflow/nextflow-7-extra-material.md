@@ -208,7 +208,7 @@ Given the channel creation strategy above, we would get the following result:
 In this way, you can perform complex operations on input files or input metadata
 and send the resulting channels and their content to your downstream processes
 in a simple way. While this toy example is probably too complicated for a lot of
-projects, at least you know that there are many things you can do in regards to
+projects, at least you know that there are many things you can do in regard to
 input data complexity with Nextflow!
 
 # Using Groovy in processes
