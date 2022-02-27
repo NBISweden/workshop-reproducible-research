@@ -168,10 +168,11 @@ output, but not publish said output. How do we do this? Just remove the
 corresponding `publishDir` directive!
 
 The MRSA workflow we've made here was refactored directly from its original
-Snakemake version, which means that its output structure is not fully taking
-advantage of some of Nextflow's functionality. The compressed output we've
-already talked about above is, for example, put in the `results/intermediate/`
-directory. This is required for Snakemake, but not so for Nextflow.
+version in the Snakemake tutorial of this course, which means that its output
+structure is not fully taking advantage of some of Nextflow's functionality.
+The compressed output we've already talked about above is, for example, put in
+the `results/intermediate/` directory. This is required for Snakemake, but not
+so for Nextflow.
 
 * See if you can find any other processes in the current implementation of the
   MRSA workflow that you could optimise like this!
