@@ -15,10 +15,10 @@ rule get_SRA_by_accession:
     Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
     """
     output:
-        "data/raw_internal/{sra_id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     shell:
         """
-        fastq-dump {wildcards.sra_id} -X 25000 --readids \
+        fastq-dump {wildcards.sample_id} -X 25000 --readids \
             --dumpbase --skip-technical --gzip -Z > {output}
         """
 
@@ -27,18 +27,18 @@ rule fastqc:
     Run FastQC on a FASTQ file.
     """
     input:
-        "data/raw_internal/{id}.fastq.gz"
+        "data/raw_internal/{sample_id}.fastq.gz"
     output:
-        "results/{id}_fastqc.html",
-        "intermediate/{id}_fastqc.zip"
+        "results/{sample_id}_fastqc.html",
+        "intermediate/{sample_id}_fastqc.zip"
     shell:
         """
         # Run fastQC and save the output to the current directory
         fastqc {input} -q -o .
 
         # Move the files which are used in the workflow
-        mv {wildcards.id}_fastqc.html {output[0]}
-        mv {wildcards.id}_fastqc.zip {output[1]}
+        mv {wildcards.sample_id}_fastqc.html {output[0]}
+        mv {wildcards.sample_id}_fastqc.zip {output[1]}
         """
 
 rule multiqc:
@@ -113,7 +113,7 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     input:
-        "data/raw_internal/{sra_id}.fastq.gz",
+        "data/raw_internal/{sample_id}.fastq.gz",
         "intermediate/NCTC8325.1.bt2",
         "intermediate/NCTC8325.2.bt2",
         "intermediate/NCTC8325.3.bt2",
@@ -121,7 +121,7 @@ rule align_to_genome:
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
     output:
-        "intermediate/{sra_id,\w+}.bam"
+        "intermediate/{sample_id,\w+}.bam"
     shell:
         """
         bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
@@ -132,9 +132,9 @@ rule sort_bam:
     Sort a bam file.
     """
     input:
-        "intermediate/{sra_id}.bam"
+        "intermediate/{sample_id}.bam"
     output:
-        "intermediate/{sra_id}.sorted.bam"
+        "intermediate/{sample_id}.sorted.bam"
     shell:
         """
         samtools sort {input} > {output}

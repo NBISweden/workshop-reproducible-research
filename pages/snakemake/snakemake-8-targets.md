@@ -10,7 +10,7 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     input:
-        "data/raw_internal/{sra_id}.fastq.gz",
+        "data/raw_internal/{sample_id}.fastq.gz",
         "intermediate/NCTC8325.1.bt2",
         "intermediate/NCTC8325.2.bt2",
         "intermediate/NCTC8325.3.bt2",
@@ -18,7 +18,7 @@ rule align_to_genome:
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
     output:
-        "intermediate/{sra_id,\w+}.bam"
+        "intermediate/{sample_id,\w+}.bam"
     shell:
         """
         bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
@@ -28,24 +28,25 @@ rule align_to_genome:
 Here we have seven inputs; the fastq file with the reads and six files with
 similar file names from the Bowtie 2 genome indexing. We can try to tidy this
 up by using a Python expression to generate a list of these files instead. If
-you're familiar with Python you could do this with list comprehensions like
-this:
+you're familiar with Python you could do this with 
+[list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+like this:
 
 ```python
 input:
-    "data/raw_internal/{sra_id}.fastq.gz",
-    ["intermediate/NCTC8325.{my_substr}.bt2".format(my_substr=substr) for
-        substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
+    "data/raw_internal/{sample_id}.fastq.gz",
+    [f"intermediate/NCTC8325.{my_substr}.bt2" for
+        my_substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
 ```
 
 This will take the elements of the list of substrings one by one, and insert
-that element in the place of `{my_substring}`. Since this type of aggregating
+that element in the place of `{my_substr}`. Since this type of aggregating
 rules are quite common, Snakemake also has a more compact way of achieving the
 same thing.
 
 ```python
 input:
-    "data/raw_internal/{sra_id}.fastq.gz",
+    "data/raw_internal/{sample_id}.fastq.gz",
     expand("intermediate/NCTC8325.{my_substr}.bt2",
            my_substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
@@ -66,7 +67,14 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 ```
 
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
-the sample ids. Much better!
+the sample ids. For the `multiqc` rule it could look like this:
+
+```python
+input:
+    expand("intermediate/{sample_id}_fastqc.zip", sample_id = SAMPLES)
+```
+
+See if you can update the `generate_count_table` rule in the same manner!
 
 > **Quick recap** <br>
 > In this section we've learned:

@@ -7,7 +7,7 @@ output from `align_to_genome` is a bam file, which contains information about
 all the reads for a sample and where they map in the genome. For downstream
 processing we need this file to be sorted by genome coordinates. This is what
 the rule `sort_bam` is for. We therefore end up with both
-`intermediate/{sra_id}.bam` and `intermediate/{sra_id}.sorted.bam`.
+`intermediate/{sample_id}.bam` and `intermediate/{sample_id}.sorted.bam`.
 
 In Snakemake we can mark an output file as temporary like this:
 
@@ -27,7 +27,7 @@ rule sort_bam:
     input: intermediate/SRR935090.bam
     output: intermediate/SRR935090.sorted.bam
     jobid: 2
-    wildcards: sra_id=SRR935090
+    wildcards: sample_id=SRR935090
 
 Removing temporary output file intermediate/SRR935090.bam.
 Finished job 2.

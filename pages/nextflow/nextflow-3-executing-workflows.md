@@ -1,8 +1,52 @@
 It's time to start working with a more realistic workflow using the MRSA case
-study of this course! We've created a bare-bones version of this pipeline,
-but we'll work our way through it as we go along and learn more about Nextflow's
-features and functionality. We'll begin with some specifics of how workflows are
-executed and what you can get from them.
+study of this course! We've created a bare-bones version of this pipeline with,
+but we'll work our way through it as we go along and learn more about
+Nextflow's features and functionality. The MRSA workflow looks like this:
+
+```nextflow
+workflow {
+
+    // Workflow for generating count data for the MRSA case study
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out[1].collect()
+    )
+    GET_GENOME_FASTA ()
+    INDEX_GENOME (
+        GET_GENOME_FASTA.out.fasta
+    )
+    ALIGN_TO_GENOME (
+        GET_SRA_BY_ACCESSION.out,
+        INDEX_GENOME.out.index
+    )
+    SORT_BAM (
+        ALIGN_TO_GENOME.out.bam
+    )
+    GET_GENOME_GFF3 ()
+    GENERATE_COUNTS_TABLE (
+        SORT_BAM.out.bam.collect(),
+        GET_GENOME_GFF3.out.gff
+    )
+}
+```
+
+The workflow has one input channel named `ch_sra_ids`, which is a list of SRA
+IDs (*i.e.* a list of strings). We then define the processes to be executed by
+this workflow, nine in total. The first process (`GET_SRA_BY_ACCESSION`) takes
+the `ch_sra_ids` channel as input, while the rest of the processes takes the
+output of previous processes as input. Before we go into more detail regarding
+the ins-and-outs of this workflow, let's start with some specifics of how
+workflows are executed and what you can get from them.
 
 # Reports and visualisations
 
@@ -74,9 +118,24 @@ it out!
 
 Here we get information about when the workflow was executed, how long it ran,
 its run name, whether it succeeded or not and what command was used to run it.
-You can also use `nextflow log <run name>` to show the work subfolder of each 
-task that was executed for that run. We can, however, get even more detailed 
-information about the latest run by looking into the `.nextflow.log` file!
+You can also use `nextflow log <run name>` to show each task's directory that
+was executed for that run. You can also supply the `-f` (or `-fields`) flag
+along with additional fields to show.
+
+* Run `nextflow log <run name> -f hash,name,exit,status`
+
+This shows us not only the beginning of each task's working directory, but also
+its name, exit code and status (*i.e.* if it completed successfully or failed in
+some manner).
+
+> **Listing fields** <br>
+> If you want to see a complete list of all the fields you might explore using
+> the log, just type `nextflow log -l` or `nextflow log -list-fields`. This is
+> highly useful for debugging when there's some specific information about a run
+> you're particularly interested in!
+
+We can also get even more detailed information about the latest
+run by looking into the `.nextflow.log` file!
 
 * Look into the latest log by typing `less .nextflow.log`.
 

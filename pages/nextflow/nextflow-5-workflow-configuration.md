@@ -14,9 +14,9 @@ Parameters can be written in the following form:
 
 ```nextflow
 params {
-    parameter_1 = "some/data/path"
-    parameter_2 = 42
-    parameter_3 = ["a", "list", "of", "strings"]
+    parameter_1 = "some/data/path"      // A string parameter
+    parameter_2 = 42                    // A value parameter
+    parameter_3 = ["a", "b", "c", "d"]  // A list parameter
 }
 ```
 
@@ -56,8 +56,82 @@ software parameters, for example: `nextflow run main.nf --important_param value1
 the same workflow. You can, of course, also change parameters directly in the
 configuration file, rather than on the command line!
 
+# Configuring inputs
+
+Remember the input for the MRSA workflow, the `ch_sra_ids` channel? This input
+is also hard-coded inside the `main_mrsa.nf` file. This could also be made into a
+parameter!
+
 * Add another parameter for the input SRA IDs and execute your workflow to check
   that it worked.
+
+Using lists for parameters has its problems, though, as you won't be able to
+change it on the command line, since the command line doesn't know about Groovy
+lists. There are several other ways of specifying inputs in a command
+line-friendly way, however, one of which is to use *sample sheets*. Instead of
+specifying samples directly in the command line, you specify a file that lists
+the input samples instead; this is the standard that is used in *e.g.* [nf-core
+pipelines](https://nf-co.re/). Such a sample sheet for the MRSA workflow might
+be stored in *e.g.* `input.csv` and look like this:
+
+```no-highlight
+SRR935090
+SRR935091
+SRR935092
+```
+
+Reading input for a CSV file can be done simply by combining the `.fromPath()`
+channel factory (specifying which file should be read) and the `.splitCsv()`
+operator (splitting the rows to read each entry). Let's see if we can make it
+work!
+
+* Create the `input.csv` file with the above shown content.
+
+* Change the definition of the `ch_sra_ids` channel to take the value of a new
+  parameter of your choice, defined in the configuration file.
+
+* Add the `.splitCsv()` operator to the end of the channel definition, so that
+  the input is read from the file contents.
+
+You should now have a more generalised input to your workflow! Try to run it to
+make sure it works - look below if you need some help.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+// Channel definition
+ch_sra_ids = Channel.fromPath( params.sra_ids ).splitCsv()
+
+// Configuration file
+sra_ids = "input.csv"
+```
+
+</details>
+
+By specifying inputs from sample sheets like this we can easily change inputs of
+a workflow execution just by creating another sample sheet. This is highly
+useful when you want to run just a single sample for *e.g.* testing a workflow,
+or when you want to keep track of all the different inputs you've used
+historically. Sample sheets are also useful for keeping other metadata, such as
+custom sample names, sample groups, location of files, *etc.* For example:
+
+```no-hightlight
+sample-1,case,data/sample-1.fastq.gz
+sample-2,ctrl,data/sample-2.fastq.gz
+sample-3,case,data/sample-3.fastq.gz
+sample-4,ctrl,data/sample-4.fastq.gz
+```
+
+Here we have not only names and file paths but also to which group each sample
+belongs, *i.e.* case or control. Such metadata can be highly useful for more
+advanced workflows to use in downstream analyses, such as differential gene
+expression!
+
+> **Input file formatting** <br>
+> The input file may also have headers, in which case you need to add `header:
+> true` to the `.splitCsv()` call. You can also read *e.g.* tab-separated files
+> by using the `sep` field: `.splitCsv(sep: "\t")`.
 
 # Other configuration scopes
 
