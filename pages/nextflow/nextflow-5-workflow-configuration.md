@@ -10,7 +10,7 @@ One of the things that allow generalisability of Nextflow workflows is
 *parameters*, which hold information and values that can be changed directly on
 the command-line at the time of execution. One use of parameters in our MRSA
 workflow is to remove the hard-coded `results` output directory, for example.
-Parameters can be written on the follow form:
+Parameters can be written on the following form:
 
 ```nextflow
 params {
