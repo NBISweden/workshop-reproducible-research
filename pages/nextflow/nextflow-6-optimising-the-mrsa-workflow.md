@@ -91,7 +91,7 @@ unless the `-entry` flag is specified, like so:
 nextflow run main.nf -entry SUBWORKFLOW
 ```
 
-This will run the first workflow, but nothing else. You can also store
+This will run the workflow named `SUBWORKFLOW`, but nothing else. You can also store
 subworkflows in separate files, so that everything doesn't have to be crammed
 into a single `main.nf` file. A subworkflow named `SUBWORKFLOW` contained in
 the file `subworkflow.nf` can be loaded into a `main.nf` file like so:
