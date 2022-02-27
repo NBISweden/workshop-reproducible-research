@@ -65,7 +65,7 @@ Singularity command with the image you have provided.
 While you can execute Nextflow inside Conda environments just like you would any
 other type of software, you can also use Conda with Nextflow in the same way as
 for Docker and Singularity above. You can either supply an `environment.yml`
-file, the path to a existing environment or the packages and their versions
+file, the path to an existing environment or the packages and their versions
 directly in the `conda` directive, like so:
 
 ```groovy
