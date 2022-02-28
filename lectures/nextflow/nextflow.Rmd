@@ -40,6 +40,27 @@ class: center, middle
 
 ---
 
+# Concepts and nomenclature
+
+<p style="text-align:center">
+<img src="https://seqera.io/training/img/channel-process.png", width=75%>
+</p>
+
+--
+
+* .green[Channels] contain data, *e.g.* input files
+
+--
+
+* .green[Processes] run some kind of code, *e.g.* a script or a command-line
+  program
+
+--
+
+* .green[Tasks] are instances of a process, one per process input
+
+---
+
 # Anatomy of a Nextflow workflow
 
 ```groovy
