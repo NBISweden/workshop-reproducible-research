@@ -61,51 +61,117 @@ class: center, middle
 
 ---
 
-# Anatomy of a Nextflow workflow
-
-```groovy
-workflow {
-
-    // Define SRA input data channel
-    Channel
-        .fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
-        .set      { ch_sra_ids }
-
-    // Define the workflow
-    GET_SRA_BY_ACCESSION (
-        ch_sra_ids
-    )
-    RUN_FASTQC (
-        GET_SRA_BY_ACCESSION.out
-    )
-    RUN_MULTIQC (
-        RUN_FASTQC.out.collect()
-    )
-}
-```
-
---
+# Anatomy of a process
 
 ```groovy
 process GET_SRA_BY_ACCESSION {
 
     input:
-    val(sra_id)
+    val(sample)
 
     output:
-    tuple val(sra_id), path("${sra_id}.fastq.gz")
+    path("${sample}.fastq.gz")
 
     script:
     """
-    fastq-dump ${sra_id} > ${sra_id}.fastq.gz
+    fastq-dump ${sample} > ${sample}.fastq.gz
     """
 }
 ```
 
---
+---
 
-```bash
-$ nextflow run main.nf
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    conda 'sra-tools=2.11.0'
+    container 'ncbi/sra-tools:2.11.0'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    conda 'sra-tools=2.11.0'
+    container 'ncbi/sra-tools:2.11.0'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} -X {params.depth} > ${sample}.fastq.gz
+    """
+}
 ```
 
 ---
