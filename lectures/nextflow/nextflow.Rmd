@@ -236,6 +236,51 @@ workflow {
 
 ---
 
+# Executing Nextflow
+
+```bash
+# Execute a workflow
+$ nextflow run main.nf
+```
+
+--
+
+```bash
+# Re-run using cached results
+$ nextflow run main.nf -resume
+```
+
+--
+
+```bash
+# Execute with a specific configuration file
+$ nextflow run main.nf -c nextflow.config
+```
+
+--
+
+```bash
+# Supply a custom parameter
+$ nextflow run main.nf --my_param "my value"
+```
+
+--
+
+```bash
+# Use Docker or Singularity
+$ nextflow run main.nf -with-docker
+$ nextflow run main.nf -with-singularity
+```
+
+--
+
+```bash
+# Use a pre-defined configuration profile
+$ nextflow run main.nf -profile uppmax
+```
+
+---
+
 # Differences between Snakemake and Nextflow
 
 <br>
