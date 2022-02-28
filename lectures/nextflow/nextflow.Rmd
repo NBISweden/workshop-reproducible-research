@@ -176,6 +176,66 @@ process GET_SRA_BY_ACCESSION {
 
 ---
 
+# Anatomy of a workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+}
+```
+
+---
+
+# Anatomy of a workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+}
+```
+
+---
+
+# Anatomy of a workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.collect()
+    )
+}
+```
+
+---
+
 # Differences between Snakemake and Nextflow
 
 <br>
