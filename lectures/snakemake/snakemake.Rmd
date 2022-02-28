@@ -97,6 +97,7 @@ GNU Make
 # Example: sequence trimming
 
 Using a bash-script:
+
 ```bash
 for sample in *.fastq
 do  
@@ -114,6 +115,7 @@ done
 ```
 
 ---
+
 # Example: sequence trimming
 
 Using snakemake rules:
