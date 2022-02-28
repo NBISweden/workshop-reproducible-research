@@ -26,25 +26,17 @@ class: center, middle
 
 # Nextflow features
 
---
-
-* Based on .green[Groovy] and Java
-
---
+* .green[Generalisable]
 
 * .green[Portable]
 
---
-
 * .green[Scalable]
-
---
 
 * .green[Platform-agnostic]
 
---
+* Based on .green[Groovy] and Java
 
-* Large, active .green[community]
+* Large active community in *e.g.* .green[nf-core]
 
 ---
 
