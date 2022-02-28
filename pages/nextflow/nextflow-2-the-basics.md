@@ -1,6 +1,6 @@
 We'll start by creating a very simple workflow from scratch, to show how
-Nextflow works. The workflow will be the same as in the Snakemake tutorial: it
-will take two input files and convert them to UPPERCASE letters.
+Nextflow works: it will take two input files and convert them to UPPERCASE
+letters.
 
 * Start by running the following commands:
 
@@ -11,7 +11,7 @@ echo "This is b.txt" > b.txt
 ```
 
 Open the `main.nf` file with an editor of your choice. This is the main workflow
-file used in Nextflow, analogous to the `Snakefile` in Snakemake.
+file used in Nextflow, where workflows and their processes are defined.
 
 * Copy the following code into your `main.nf` file:
 
@@ -45,44 +45,43 @@ process CONVERT_TO_UPPER_CASE {
 }
 ```
 
-This looks a bit more complicated than the single rule we had in the Snakemake
-tutorial for the same workflow, but there are reasons for that as we'll see in a
-moment. Here we have three separate parts. The first part enables the DSL2 
-(*Domain Specific Language 2*) functionality, and is required to use some of the
-newer and more powerful features of Nextflow. The next part is the workflow 
-definition, while the last is a *process*, equivalent to Snakemake's rules. 
-Let's go through the last two in more detail!
+Here we have three separate parts. The first part enables the DSL2 (*Domain
+Specific Language 2*) functionality, and is required to use some of the newer
+and more powerful features of Nextflow. The next part is the *workflow
+definition*, while the last is a *process*. Let's go through the last two in
+more detail!
 
 > **Nextflow comments** <br>
 > Double-slashes (`//`) are used for comments in Nextflow.
 
 > **Nextflow and whitespace** <br>
-> Unlike Snakemake, Nextflow is not indentation-sensitive. In fact, Nextflow
-> doesn't care at all about whitespace, so go ahead and use it in whatever
-> manner you think is easiest to read and work with! Do keep in mind that
-> indentations and other types of whitespace *does* improve readability, so it's
-> generally not a good idea to forego it entirely, even though you can.
+> Nextflow is not indentation-sensitive. In fact, Nextflow doesn't care at all
+> about whitespace, so go ahead and use it in whatever manner you think is
+> easiest to read and work with! Do keep in mind that indentations and other
+> types of whitespace *does* improve readability, so it's generally not a good
+> idea to forego it entirely, even though you can.
 
 # Process definitions
 
-There are quite a few similarities between Snakemake's rules and Nextflow's
-processes, which can be seen by just a cursory glance. We have both `input`,
-`output` and `script` (`shell` in Snakemake) parts, for example, and we
-similarly have named processes (here `CONVERT_TO_UPPER_CASE`). The `script` part
-is what will be executed when the process is run, exactly as in Snakemake, but
-the `input` and `output` parts are slightly different.
+Looking at the process, we can see several parts. The process block starts with
+its name, in this case `CONVERT_TO_UPPER_CASE`, followed by several sections:
+`publishDir`, `input`, `output` and `script`.
 
 > **Naming processes** <br>
 > A process can be named anything you like, but there exists a commonly used
 > convention to use UPPERCASE letters for processes. You do not have to follow
 > this if you don't want, but we do so here.
 
-Notice that there is a difference between how the inputs and outputs are
-declared? The `output` is an explicit string (*i.e* surrounded by quotes), while
-the input is a variable named `file`. The reason for this is that processes are
-like functions, meaning they can have have varying inputs (and arguments in
-general). There is one part of the process definition that has no equivalent in
-Snakemake, and that is the `publishDir` directive. This tells
+Let's ignore the first for now and focus on the last three. The `input` and
+`output` sections are exactly what they sound like: inputs and outputs for this
+specific process. Notice that there is a difference between how the inputs and
+outputs are declared? The `output` is an explicit string (*i.e* surrounded by
+quotes), while the input is a variable named `file`. The reason for this is that
+processes are like functions, meaning they can have have varying inputs (and
+arguments in general). We'll get back to exactly how this works in just a
+moment.
+
+Let's move on to the first section: `publishDir`. What this does is tell
 Nextflow where the output of the process should be stored when it is finished;
 setting `mode` to `"copy"` just means that we want to copy the output files to
 the publishing directory, rather than using a symbolic link (which is the
@@ -136,14 +135,14 @@ generated run name (an adjective and a scientist), the revision number as well
 as how the run was executed (locally, in this case).
 
 What follows next is a list of all the various processes for this particular
-workflow. Just like Snakemake, the order does not necessarily reflect the order
-of execution (depending on each process’ input and output dependencies), but
-they are in the order they were defined in the workflow file - there's only the
-one process here, of course. The first part (*e.g* `[32/9124a1]`) is the process
-ID, which is also the first part of the subdirectory in which the process is
-run. We then get the process and its name. Lastly, we get how many instances of
-each process are currently being and have been run. Here we only have the one
-process, of course, but this will soon change.
+workflow. The order does not necessarily reflect the order of execution
+(depending on each process’ input and output dependencies), but they are in the
+order they were defined in the workflow file - there's only the one process
+here, of course. The first part (*e.g* `[32/9124a1]`) is the process ID, which
+is also the first part of the subdirectory in which the process is run. We then
+get the process and its name. Lastly, we get how many instances of each process
+are currently being and have been run. Here we only have the one process, of
+course, but this will soon change.
 
 * Let's check that everything worked: type `ls results/` and see that it
   contains the output we expected.
@@ -162,8 +161,6 @@ on this later.
 So, how does this all work? Well, we have three components: a set of inputs, a
 set of processes and a workflow that defines which processes should be run. We
 tell Nextflow to *push* the inputs through the entire workflow, so to speak.
-This is the opposite of Snakemake, where we define a workflow and then ask
-Snakemake to give us a final output we know it can create - *pull*.
 
 * Now it's your turn! Move back to the workflow root and make it use the `b.txt`
   input file and give you the `b.upper.txt` instead.
@@ -174,10 +171,9 @@ Snakemake to give us a final output we know it can create - *pull*.
 
 Having to manually change inputs and outputs like you just did is not really
 ideal, is it? Hard-coding things is rarely good, so let's try to change that.
-What we need is a way to use the same name for each input file, something that
-does something similar to *wildcards* in Snakemake. Here is where one of the
-features of Nextflow really shines: being able to parse values *alongside* files
-in channels!
+What we need is a way to use the sample name for each input file. Here is where
+one of the features of Nextflow really shines: being able to parse values
+*alongside* files in channels!
 
 * Change the channel definition to the following:
 
@@ -222,13 +218,9 @@ variable. All that's left now is to change the input to our pipeline!
 
 # Adding more processes
 
-It's time to add more processes to our workflow! Here is where the differences
-between Snakemake and Nextflow become more apparent: at this stage in our
-Snakemake workflow we'd have two files `a.upper.txt` and `b.upper.txt` stored in
-explicit directories (as specified by the pipeline). This is not the case for
-Nextflow: here we have a *channel* that contains those same files, but we don't
-have to care about their location. The next part of the workflow, if you recall,
-is a step that concatenates the content of all the UPPERCASE files.
+It's time to add more processes to our workflow! We have the two files
+`a.upper.txt` and `b.upper.txt`; the next part of the workflow is a step
+that concatenates the content of all these UPPERCASE files.
 
 We already have a channel containing the two files we need: the output of the
 `CONVERT_TO_UPPER_CASE` process. We can use this output as input to a new

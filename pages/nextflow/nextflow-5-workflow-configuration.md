@@ -109,12 +109,13 @@ sra_ids = "input.csv"
 
 </details>
 
-By specifying inputs from sample sheets like this we can easily change inputs of
-a workflow execution just by creating another sample sheet. This is highly
-useful when you want to run just a single sample for *e.g.* testing a workflow,
-or when you want to keep track of all the different inputs you've used
-historically. Sample sheets are also useful for keeping other metadata, such as
-custom sample names, sample groups, location of files, *etc.* For example:
+By specifying inputs from sample sheets like this we can easily change inputs
+of a workflow execution just by creating another sample sheet and specifying
+*e.g.* `--sra_ids input-2.csv` on the command line. This is highly useful when
+you want to run just a single sample for *e.g.* testing a workflow, or when you
+want to keep track of all the different inputs you've used historically. Sample
+sheets are also useful for keeping other metadata, such as custom sample names,
+sample groups, location of files, *etc.* For example:
 
 ```no-hightlight
 sample-1,case,data/sample-1.fastq.gz

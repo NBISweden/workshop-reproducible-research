@@ -214,8 +214,8 @@ input data complexity with Nextflow!
 # Using Groovy in processes
 
 You don't have to use bash or external scripts inside your processes all the
-time unless you want to: Nextflow can use Groovy in the same way that Snakemake
-uses Python. For example, look at this process:
+time unless you want to: Nextflow is based on Groovy, which allows you to use
+both Groovy and Bash in the same process. For example, have a look at this:
 
 ```groovy
 process index_fasta {
