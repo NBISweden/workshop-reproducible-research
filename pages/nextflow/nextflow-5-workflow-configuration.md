@@ -1,4 +1,4 @@
-We've so far been working with a relatively non-generalised work: it's got
+We've so far been working with a relatively non-generalised workflow: it's got
 hard-coded inputs, paths and genome references. This is perfectly fine for a
 project that is purely aimed at getting reproducible results (which is the full
 extent of what you want in a lot of cases), but it can be made a lot more
@@ -10,7 +10,7 @@ One of the things that allow generalisability of Nextflow workflows is
 *parameters*, which hold information and values that can be changed directly on
 the command-line at the time of execution. One use of parameters in our MRSA
 workflow is to remove the hard-coded `results` output directory, for example.
-Parameters can be written on the following form:
+Parameters can be written in the following form:
 
 ```nextflow
 params {
@@ -22,26 +22,29 @@ params {
 
 You would then refer to these parameters using *e.g.* `params.parameter_1`
 anywhere you need to in the workflow. The parameters are not put into the
-`main.nf` file, but rather into a *configuration file*. The default name of this
-file is `nextflow.config`.
+`main_mrsa.nf` file, but rather into a *configuration file*. The default name of this
+file is `nextflow.config` and if such a file is present it will be used 
+automatically by Nextflow (to supply a config file with another name use 
+`nextflow -c <path-to-config-file> run main_mrsa.nf`)
 
 * Create a configuration file and add a parameter for the `results` output
   directory.
 
 * Use your newly created parameter in the `publishDir` directory of a process
-  (it'll be on the form of `${params.resultsdir}/some/other/path`, for example).
+  (it'll be in the form of `${params.resultsdir}/some/other/path`, for example).
   Run your workflow to see if it worked.
 
 > **Tip** <br>
-> Instead of manually changing all of the hard-coded directories in your
+> Instead of manually changing all the hard-coded directories in your
 > workflow you can use the following little `sed` command, which will do it for
-> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main.nf > tmp; mv tmp
-> main.nf`.
+> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv tmp
+> main_mrsa.nf`. In case you used a parameter name other than 'resultsdir' update the 
+> command accordingly.
 
 # Command line parameters
 
 Parameters can be changed on-the-fly when executing workflows like so: `nextflow
-run main.nf --parameter_name some_value`
+run main_mrsa.nf --parameter_name some_value`
 
 * Run your workflow using the parameter you previously created, but pick
   something other than the default value!
@@ -56,7 +59,7 @@ configuration file, rather than on the command line!
 # Configuring inputs
 
 Remember the input for the MRSA workflow, the `ch_sra_ids` channel? This input
-is also hard-coded inside the `main.nf` file. This could also be made into a
+is also hard-coded inside the `main_mrsa.nf` file. This could also be made into a
 parameter!
 
 * Add another parameter for the input SRA IDs and execute your workflow to check
@@ -106,12 +109,13 @@ sra_ids = "input.csv"
 
 </details>
 
-By specifying inputs from sample sheets like this we can easily change inputs of
-a workflow execution just by creating another sample sheet. This is highly
-useful when you want to run just a single sample for *e.g.* testing a workflow,
-or when you want to keep track of all the different inputs you've used
-historically. Sample sheets are also useful for keeping other metadata, such as
-custom sample names, sample groups, location of files, *etc.* For example:
+By specifying inputs from sample sheets like this we can easily change inputs
+of a workflow execution just by creating another sample sheet and specifying
+*e.g.* `--sra_ids input-2.csv` on the command line. This is highly useful when
+you want to run just a single sample for *e.g.* testing a workflow, or when you
+want to keep track of all the different inputs you've used historically. Sample
+sheets are also useful for keeping other metadata, such as custom sample names,
+sample groups, location of files, *etc.* For example:
 
 ```no-hightlight
 sample-1,case,data/sample-1.fastq.gz
@@ -157,4 +161,4 @@ you might want to use - read more about them [in the documentation](https://www.
 >
 > * How to create parameters in a configuration file
 > * How to specify parameters on the command line
-> * How to add  workflow manifest and other configuration scopes
+> * How to add workflow manifest and other configuration scopes

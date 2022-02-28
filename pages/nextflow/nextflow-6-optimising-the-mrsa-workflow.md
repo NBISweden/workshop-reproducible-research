@@ -1,15 +1,16 @@
 We just added several parameters and configurations to our MRSA workflow, but
 we didn't do anything about the reference genomes: those are still hard-coded.
 How come? Well, the current MRSA workflow is, in fact, not very well-optimised
-for Nextflow at all, being a refactor from the Snakemake workflow. All of the
-processes are basically unchanged, excluding some minor alterations.
+for Nextflow at all, being a refactor from the Snakemake tutorial of this
+course.
 
+All of the processes are basically unchanged, excluding some minor alterations.
 For example, the `run_fastqc` rule in Snakemake used the `-o` flag to specify
 that the results should be in the current directory, followed by moving the
 output files to their respective output directory. The first part is not needed
 in Nextflow (as everything is run in its own subdirectory), and the second part
-is done by the `publishDir` directive. These are just minor alterations, though,
-but we can do much more if we fully utilise Nextflow's features!
+is done by the `publishDir` directive. These are just minor alterations,
+though, but we can do much more if we fully utilise Nextflow's features!
 
 # Remote files
 
@@ -91,7 +92,7 @@ unless the `-entry` flag is specified, like so:
 nextflow run main.nf -entry SUBWORKFLOW
 ```
 
-This will run the first workflow, but nothing else. You can also store
+This will run the workflow named `SUBWORKFLOW`, but nothing else. You can also store
 subworkflows in separate files, so that everything doesn't have to be crammed
 into a single `main.nf` file. A subworkflow named `SUBWORKFLOW` contained in
 the file `subworkflow.nf` can be loaded into a `main.nf` file like so:
@@ -103,7 +104,7 @@ include { SUBWORKFLOW } from "./subworkflow.nf"
 If you have a complex workflow with several subworkflows you might thus store
 them in a separate directory, *e.g.* `subworkflows`. This allows you to have
 fine-grained control over the general architecture of your Nextflow workflows,
-organising them in a manner that is easily to code and maintain.
+organising them in a manner that is easy to code and maintain.
 
 * Now it's your turn! Separate the `RUN_FASTQC` and `RUN_MULTIQC` processes out
   of the main workflow and into a subworkflow. Check below if you're having

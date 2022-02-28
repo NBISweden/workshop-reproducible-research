@@ -25,7 +25,7 @@ executor >  local (17)
 
 Have you noticed that there are SRA IDs after some of the processes? Well, if
 you look at which processes show these SRA IDs you might see that it's only
-those processes that are executing three times, *i.e.* once per SRA ID. This
+those processes that are executed three times, *i.e.* once per SRA ID. This
 doesn't happen automatically, however, and comes from something called *tags*.
 Let's look at the `GET_SRA_BY_ACCESSION` process:
 
@@ -109,7 +109,7 @@ RUN_MULTIQC (
 ```
 
 We already know about `.out` and `.collect()`, but we have something new here:
-the `RUN_MULTIQC` process is taken the second entry of the output from the
+the `RUN_MULTIQC` process is taking the second entry of the output from the
 `RUN_FASTQC` process - `[1]` is the second entry, as Groovy is zero-based (the
 first entry is `[0]`).
 
@@ -129,8 +129,28 @@ use `.out.text` instead. This is not only clearer in that we can infer more
 information about an output called `text` rather than just `[1]`, but it is also
 more robust and less error-prone.
 
-* Your turn! Add named outputs to the `RUN_FASTQC` process and make
-  `RUN_MULTIQC` use those outputs. Check if it works by executing the workflow.
+Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC` 
+use those outputs. You'll have to change both in the output section of the 
+`RUN_FASTQC` process, and in the workflow definition section for `RUN_MULTIQC`.
+If you need help, see the hint below.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+    // Workflow definition for RUN_MULTIQC
+    RUN_MULTIQC (
+        RUN_FASTQC.out.zip.collect()
+
+    // Output section of RUN_FASTC
+    output:
+        path("*.html"), emit: html
+        path("*.zip"), emit: zip
+```
+
+</details>
+
+Check if it works by executing the workflow.
 
 # Advanced publishing
 
@@ -168,10 +188,11 @@ output, but not publish said output. How do we do this? Just remove the
 corresponding `publishDir` directive!
 
 The MRSA workflow we've made here was refactored directly from its original
-Snakemake version, which means that its output structure is not fully taking
-advantage of some of Nextflow's functionality. The compressed output we've
-already talked about above is, for example, put in the `results/intermediate/`
-directory. This is required for Snakemake, but not so for Nextflow.
+version in the Snakemake tutorial of this course, which means that its output
+structure is not fully taking advantage of some of Nextflow's functionality.
+The compressed output we've already talked about above is, for example, put in
+the `results/intermediate/` directory. This is required for Snakemake, but not
+so for Nextflow.
 
 * See if you can find any other processes in the current implementation of the
   MRSA workflow that you could optimise like this!
@@ -223,7 +244,7 @@ reported by Nextflow and inspecting the specific subdirectory in question.
 
 > **A note about Bash** <br>
 > If you are using Bash variables inside the `script` directive you have to be
-> careful to prepend the with a backslash, *e.g.* `\${BASH_VARIABLE}`. This is
+> careful to prepend it with a backslash, *e.g.* `\${BASH_VARIABLE}`. This is
 > because the dollar-sign is used by Nextflow, so you have to tell Nextflow
 > explicitly when you're using a Bash variable. This is a common source of
 > errors when using Bash variables, so keeping it in mind can save you some

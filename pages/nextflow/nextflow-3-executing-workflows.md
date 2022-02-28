@@ -53,7 +53,7 @@ workflows are executed and what you can get from them.
 Let's start with running the workflow plus getting some reports and
 visualisation while we're at it!
 
-* Run the workflow using the following command: `nextflow run main.nf
+* Run the workflow using the following command: `nextflow run main_mrsa.nf
   -with-report -with-timeline -with-dag dag.png`.
 
 After successful executing, you will find three more files in your current
@@ -69,35 +69,31 @@ picking which ones are important or interesting to you - or don’t include any!
 
 # Re-running workflows
 
-Just like in Snakemake, something you often want to do in Nextflow is to re-run
-the workflow when you changed some input files or some of the code for its
-analyses, but you don't want to re-run the entire workflow from start to finish.
-Let’s find out how this works in Nextflow!
+Something you often want to do in Nextflow (or any WMS for that matter) is to
+re-run the workflow when you changed some input files or some of the code for
+its analyses, but you don't want to re-run the entire workflow from start to
+finish. Let’s find out how this works in Nextflow!
 
-* Run the same `nextflow run main.nf` command again.
+* Run the same `nextflow run main_mrsa.nf` command again.
 
 What happened here? Nextflow actually re-ran the entire workflow from scratch,
 even though we didn't change anything. This is the default behaviour of
 Nextflow.
 
-* Let’s try that again: `run nextflow run main.nf -resume` instead.
+* Let’s try that again: `nextflow run main_mrsa.nf -resume` instead.
 
-Now you can see that Nextflow didn't actually re-run anything, but used the
-cached results from the previous run by supplying the `-resume` flag to the
-command!
+Now you can see that Nextflow didn't actually re-run anything. The `-resume`
+flag instructed Nextflow to use the cached results from the previous run!
 
-As mentioned in the introduction, how Nextflow re-runs its processes is slightly
-different than Snakemake, in that Snakemake only checks if the inputs are newer
-than the outputs, whereas Nextflow also checks if any of the code or scripts
-have changed. This means that when you change the script section of a Snakemake
-rule (or an external script it calls) you need to run with the `-R <rule>` flag
-in order to re-run with the new changes, whereas Nextflow automatically keeps
-track of code changes for you.
+Nextflow automatically keeps track of not only changes to input files, but also
+changes to code, process definitions and scripts. You can thus change anything
+relating to your workflow and just re-run with the `-resume` flag and be sure
+that only processes relevant to your changes are executed again!
 
 * Remove the `results` directory and re-run the workflow again using the
   `-resume` flag.
 
-We removed all of the results we used before, but we still managed to resume the
+We removed all the results we used before, but we still managed to resume the
 workflow and use its cache - how come? Remember that Nextflow uses the `work`
 directory to run all of its tasks, while the `results` directory is just where
 we have chosen to publish our outputs. We can thus delete the `results`
@@ -140,11 +136,10 @@ run by looking into the `.nextflow.log` file!
 
 * Look into the latest log by typing `less .nextflow.log`.
 
-You'll be greeting by a wealth of debugging information, which may even seem a
-bit overkill at this point! This level of detail is, however, quite useful for
-advanced debugging - but we'll get to debugging more later. Regardless, these
-different types of logs are quite useful both as a history of what you've
-attempted and as an additional help when you run into errors!
+You'll be greeted by a wealth of debugging information, which may even seem a
+bit overkill at this point! This level of detail is, however, quite useful both
+as a history of what you've attempted and as an additional help when you run 
+into errors! Also, it helps with advanced debugging - which we'll get into later.
 
 > **Quick recap** <br>
 > In this section we've learnt:

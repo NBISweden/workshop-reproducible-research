@@ -65,7 +65,7 @@ Singularity command with the image you have provided.
 While you can execute Nextflow inside Conda environments just like you would any
 other type of software, you can also use Conda with Nextflow in the same way as
 for Docker and Singularity above. You can either supply an `environment.yml`
-file, the path to a existing environment or the packages and their versions
+file, the path to an existing environment or the packages and their versions
 directly in the `conda` directive, like so:
 
 ```groovy
@@ -208,14 +208,14 @@ Given the channel creation strategy above, we would get the following result:
 In this way, you can perform complex operations on input files or input metadata
 and send the resulting channels and their content to your downstream processes
 in a simple way. While this toy example is probably too complicated for a lot of
-projects, at least you know that there are many things you can do in regards to
+projects, at least you know that there are many things you can do in regard to
 input data complexity with Nextflow!
 
 # Using Groovy in processes
 
 You don't have to use bash or external scripts inside your processes all the
-time unless you want to: Nextflow can use Groovy in the same way that Snakemake
-uses Python. For example, look at this process:
+time unless you want to: Nextflow is based on Groovy, which allows you to use
+both Groovy and Bash in the same process. For example, have a look at this:
 
 ```groovy
 process index_fasta {
@@ -236,7 +236,7 @@ process index_fasta {
 ```
 
 Here we have some command `index` that, for whatever reason, requires both the
-path to a FASTA file as well as the name of that file *without* the `.fasta`
+path to a FASTA file and the name of that file *without* the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
 Bash, mixing and matching as we like. The first line of the `script` directive
 gets the name of the FASTA file without the extension by removing anything

@@ -48,48 +48,6 @@ class: center, middle
 
 ---
 
-# Differences between Snakemake and Nextflow
-
-<br>
-
-```{r Snakemake vs. Nextflow table, echo = FALSE}
-suppressPackageStartupMessages({
-    library("dplyr")
-    library("kableExtra")
-})
-data <- data.frame(Snakemake = c("Python",
-                                 "Everything is a file",
-                                 "Working directory",
-                                 "\"Pull\"",
-                                 "Yes",
-                                 "No"),
-                   Nextflow = c("Groovy",
-                                "Can use both files and values",
-                                "Each job in its own directory",
-                                "\"Push\"",
-                                "No",
-                                "Yes"))
-row.names(data) <- c("Language",
-                     "Data",
-                     "Execution",
-                     "Philosophy",
-                     "Dry-runs",
-                     "Track code changes")
-data %>%
-    kable() %>%
-    kable_styling(c("striped", "hover"), full_width = FALSE)
-```
-
---
-
-* .green[Question]: But, which one is the *best?*
-
---
-
-* .green[Answer]: Both - it's mostly up to personal preference!
-
----
-
 # Anatomy of a Nextflow workflow
 
 ```groovy
@@ -139,29 +97,333 @@ $ nextflow run main.nf
 
 ---
 
-# The aims of this tutorial
+# Differences between Snakemake and Nextflow
+
+<br>
+
+```{r Snakemake vs. Nextflow table, echo = FALSE}
+suppressPackageStartupMessages({
+    library("dplyr")
+    library("kableExtra")
+})
+data <- data.frame(Snakemake = c("Python",
+                                 "Everything is a file",
+                                 "Working directory",
+                                 "\"Pull\"",
+                                 "Yes",
+                                 "No"),
+                   Nextflow = c("Groovy",
+                                "Can use both files and values",
+                                "Each job in its own directory",
+                                "\"Push\"",
+                                "No",
+                                "Yes"))
+row.names(data) <- c("Language",
+                     "Data",
+                     "Execution",
+                     "Philosophy",
+                     "Dry-runs",
+                     "Track code changes")
+data %>%
+    kable() %>%
+    kable_styling(c("striped", "hover"), full_width = FALSE)
+```
 
 --
 
-* Give a brief .green[overview] of how Nextflow works through a recreation of
-  the MRSA Snakemake workflow
+* .green[Question]: But, which one is the *best?*
 
 --
 
-* Show .green[similarities] and .green[differences] between Snakemake and
-  Nextflow
-
---
-
-* Give you an opportunity to .green[try out both] Snakemake and Nextflow
-
---
-
-* The Nextflow tutorial is shorter and less in-depth compared to the Snakemake
-  tutorial, given these aims
+* .green[Answer]: Both - it's mostly up to personal preference!
 
 ---
 
-class: center, middle
+# Differences between Nextflow and Snakemake
+
+--
+
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+    </tr>
+</table>
+
+???
+
+Starting from the top with the most obvious and perhaps superficial difference:
+**language**. Snakemake is, as you know, based on Python, whereas Nextflow is
+based on Groovy (which is a superset of the Java language). You don't need to
+know Groovy to be able to use Nextflow though, just as you don't really need to
+know Python to use Snakemake.
+
+---
+
+# Differences between Nextflow and Snakemake
+
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+    </tr>
+</table>
+
+???
+
+Moving on to **data**: Input and output in Snakemake are files, whereas
+Nextflow uses objects, which can be files, environment variables, or arbitrary
+data structures, transmitted through so-called *channels*. Channels are
+asynchronous first-in-first-out streams of data that connect a workflow's
+various inputs and outputs. A common use-case is, for example, to define
+a channel which passes objects containing both sample data files and their
+corresponding sample names, which can simplify coding. Nextflow also defines
+channel operators; functions that allow you to manipulate channel contents in
+powerful ways, although they can be tricky to use when you first start working
+with them.
+
+---
+
+# Differences between Nextflow and Snakemake
+
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
+        <td style="padding:5px"> <font size="3"> Each task is isolated in it's own directory </td>
+        <td style="padding:5px"> <font size="3"> Working directory </td>
+    </tr>
+</table>
+
+???
+
+In Snakemake, the entire workflow and each rule is **executed** in the working
+directory, while Nextflow executes each individual *task* (an instance of
+a *process* - the equivalent of a rule in Snakemake) within an isolated
+environment in a directory of its own. This greatly simplifies testing and
+debugging, as you can always go into a process' directory and see exactly which
+files it has access to and which code was executed. This general structure
+means that you need to think less about full paths for all the workflow's in-
+and output files, as the locations of all the files are fully taken care of by
+Nextflow - the only thing you need to care about are the final output file
+paths.
+
+In Snakemake, the entire workflow and each rule is **executed** in the working
+directory, while Nextflow executes each individual *task* (an instance of
+a *process* - the equivalent of a rule in Snakemake) within an isolated
+environment in a directory of its own. This greatly simplifies testing and
+debugging, as you can always go into a process' directory and see exactly which
+files it has access to and which code was executed. This general structure
+means that you need to think less about full paths for all the workflow's in-
+and output files, as the locations of all the files are fully taken care of by
+Nextflow - the only thing you need to care about are the final output file
+paths.
+
+---
+
+# Differences between Nextflow and Snakemake
+
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
+        <td style="padding:5px"> <font size="3"> Each task is isolated in it's own directory </td>
+        <td style="padding:5px"> <font size="3"> Working directory </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Philosophy</b> </td>
+        <td style="padding:5px"> <font size="3"> "Push" </td>
+        <td style="padding:5px"> <font size="3"> "Pull" </td>
+    </tr>
+</table>
+
+???
+
+Snakemake uses a "pull"-**philosophy** similar to its inspiring predecessor
+[make](https://www.gnu.org/software/make/), meaning that you define a number of
+rules with inputs and outputs and then ask for the specific result you want,
+*i.e.* the final output files (usually defined in an `all` rule). Snakemake will
+work backwards from the final outputs you desired and find whatever combination
+of inputs and rules it needs to give them to you. This means that you always
+know exactly which files are going to be created and manipulated in all steps of
+the workflow even before it is executed, which is a nice thing to know. Nextflow
+works in the opposite way, *i.e.* with a "push"-philosophy: you define a number
+of processes with inputs and outputs, and then give the first inputs to
+Nextflow. It will run the first process using those inputs, pass them to the
+second process, then the third, and so on until it reaches the final outputs of
+the workflow. This means you don't define file paths to each process'
+input/output definitions like you do in Snakemake, only which files you want in
+the end. This can potentially remove some of the pitfalls and issues sometimes
+seen with *e.g.* wildcards in Snakemake, but it also front-loads some of the
+complexity to channel creation instead.
+
+---
+
+# Differences between Nextflow and Snakemake
+
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
+        <td style="padding:5px"> <font size="3"> Each task is isolated in it's own directory </td>
+        <td style="padding:5px"> <font size="3"> Working directory </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Philosophy</b> </td>
+        <td style="padding:5px"> <font size="3"> "Push" </td>
+        <td style="padding:5px"> <font size="3"> "Pull" </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Dry runs</b>  </td>
+        <td style="padding:5px"> <font size="3"> No </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
+    </tr>
+</table>
+
+???
+
+The philosophy above means that Nextflow doesn't know exactly which files
+are going to be created and manipulated during a run, which is both good and
+bad. The bad means that you can't really do **dry runs** in Nextflow in the same
+simple manner as in Snakemake (there is, however, something similar called
+[stubs](https://github.com/nextflow-io/nextflow/blob/master/docs/process.rst#stub)).
+On the other hand, something good about this is that Nextflow handles variable
+inputs and outputs very well, making dynamic analyses easy to work with, *e.g.*
+processes where you don't know the exact number of output files.
+
+---
+
+# Differences between Nextflow and Snakemake
+
+<table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
+    <thead style="background-color:#DAE7F1">
+        <tr>
+            <td style="padding:5px"> <font size="3"></td>
+            <td style="padding:5px"> <font size="3"><b> Nextflow </b> </td>
+            <td style="padding:5px"> <font size="3"><b> Snakemake </b> </td>
+        </tr>
+    </thead>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Language</b> </td>
+        <td style="padding:5px"> <font size="3"> Groovy </td>
+        <td style="padding:5px"> <font size="3"> Python </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Data</b> </td>
+        <td style="padding:5px"> <font size="3"> Can use both files and values </td>
+        <td style="padding:5px"> <font size="3"> Everything is a file </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Execution</b> </td>
+        <td style="padding:5px"> <font size="3"> Each task is isolated in it's own directory </td>
+        <td style="padding:5px"> <font size="3"> Working directory </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Philosophy</b> </td>
+        <td style="padding:5px"> <font size="3"> "Push" </td>
+        <td style="padding:5px"> <font size="3"> "Pull" </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Dry runs</b>  </td>
+        <td style="padding:5px"> <font size="3"> No </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> <b>Track code changes</b> </td>
+        <td style="padding:5px"> <font size="3"> Yes </td>
+        <td style="padding:5px"> <font size="3"> No </td>
+    </tr>
+</table>
+
+???
+
+Lastly, both Snakemake and Nextflow can automatically determine which rules or
+processes need to be re-run when something has changed, but they do it in
+slightly different ways. Snakemake only checks if any of the input files are
+newer than the output files, while Nextflow also **tracks code updates, changes
+of software environment, and changes in input values**. This means that if you
+update a script that is run on some unchanged data in Nextflow, it will re-run
+the corresponding process automatically; the same is not true for Snakemake,
+where you need to specify that you want to re-run the workflow from that
+specific rule (*i.e.* using `-R <rule>`).
+
+With all that said, both Nextflow and Snakemake are excellent systems for
+workflow management, and you can do basically everything in either: your choice
+is very much up to your personal preference and what you think is most
+important. We suggest that you try both and get a feel for them, and then
+decide which you like the most. The idea is that you should have a rough idea
+of both Snakemake and Nextflow after the course, so that you may continue in
+what manner you think suits you the best.
+
+---
 
 # Questions?
