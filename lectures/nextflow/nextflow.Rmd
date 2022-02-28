@@ -323,4 +323,6 @@ data %>%
 
 ---
 
+class: center, middle
+
 # Questions?
