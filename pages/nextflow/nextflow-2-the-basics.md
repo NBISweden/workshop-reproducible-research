@@ -108,7 +108,8 @@ can read this as *"create the channel `ch_input` and fill it with the file
 What can we do with these channels, then? The idea is that we put the channel
 through our workflow, *i.e.* the various processes we want to run on the inputs
 stored in the channel. This is exactly what we do in the second part: we call
-our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input argument.
+our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input argument - this
+is very similar to functional programming.
 
 # Executing workflows
 
