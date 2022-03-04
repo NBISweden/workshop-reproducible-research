@@ -61,35 +61,6 @@ more detail!
 > types of whitespace *does* improve readability, so it's generally not a good
 > idea to forego it entirely, even though you can.
 
-# Process definitions
-
-Looking at the process, we can see several parts. The process block starts with
-its name, in this case `CONVERT_TO_UPPER_CASE`, followed by several sections:
-`publishDir`, `input`, `output` and `script`.
-
-> **Naming processes** <br>
-> A process can be named anything you like, but there exists a commonly used
-> convention to use UPPERCASE letters for processes. You do not have to follow
-> this if you don't want, but we do so here.
-
-Let's ignore the first for now and focus on the last three. The `input` and
-`output` sections are exactly what they sound like: inputs and outputs for this
-specific process. Notice that there is a difference between how the inputs and
-outputs are declared? The `output` is an explicit string (*i.e* surrounded by
-quotes), while the input is a variable named `file`. The reason for this is that
-processes are like functions, meaning they can have have varying inputs (and
-arguments in general). We'll get back to exactly how this works in just a
-moment.
-
-Let's move on to the first section: `publishDir`. What this does is tell
-Nextflow where the output of the process should be stored when it is finished;
-setting `mode` to `"copy"` just means that we want to copy the output files to
-the publishing directory, rather than using a symbolic link (which is the
-default).
-
-Now that we know the basics of processes, let's move on to the workflow
-definition!
-
 # Workflow definitions
 
 The workflow definition here has two parts, each doing an important job for any
@@ -110,6 +81,36 @@ through our workflow, *i.e.* the various processes we want to run on the inputs
 stored in the channel. This is exactly what we do in the second part: we call
 our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input argument - this
 is very similar to functional programming.
+
+This is our entire workflow, for now: the creation of a channel followed by
+using the contents of that channel as input to a single process. Let's look at
+how processes themselves are defined!
+
+# Process definitions
+
+Looking at the process in the code above, we can see several parts. The process
+block starts with its name, in this case `CONVERT_TO_UPPER_CASE`, followed by
+several sections: `publishDir`, `input`, `output` and `script`.
+
+> **Naming processes** <br>
+> A process can be named anything you like, but there exists a commonly used
+> convention to use UPPERCASE letters for processes. You do not have to follow
+> this if you don't want, but we do so here.
+
+Let's ignore the first for now and focus on the last three. The `input` and
+`output` sections are exactly what they sound like: inputs and outputs for this
+specific process. Notice that there is a difference between how the inputs and
+outputs are declared? The `output` is an explicit string (*i.e* surrounded by
+quotes), while the input is a variable named `file`. The reason for this is that
+processes are like functions, meaning they can have have varying inputs (and
+arguments in general). We'll get back to exactly how this works in just a
+moment.
+
+Let's move on to the first section: `publishDir`. What this does is tell
+Nextflow where the output of the process should be stored when it is finished;
+setting `mode` to `"copy"` just means that we want to copy the output files to
+the publishing directory, rather than using a symbolic link (which is the
+default).
 
 # Executing workflows
 
