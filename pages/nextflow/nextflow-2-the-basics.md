@@ -274,8 +274,7 @@ process CONCATENATE_FILES {
 ```
 
 Run your workflow again and check the `results/` directory. At this point you
-should have three symbolic links there: `a.upper.txt`, `b.upper.txt` and
-`a_b.txt`.
+should have three files there: `a.upper.txt`, `b.upper.txt` and `a_b.txt`.
 
 As our channels become more complicated it is useful to actually check out
 what's inside them: you can do this using the `view()` operator.
