@@ -278,14 +278,21 @@ should have three files there: `a.upper.txt`, `b.upper.txt` and `concat.txt`.
 
 * Inspect the contents of `concat.txt` - do you see everything as you expected?
 
+# Viewing channel contents
+
 As our channels become more complicated it is useful to actually check out
-what's inside them: you can do this using the `view()` operator.
+what's inside them: you can do this using the `.view()` operator.
 
 * Add the following to your workflow definition (on a new line) and execute the
   workflow: `ch_input.view()`. What do you see?
 
-* Do the same for the (1) raw and (2) collected output of the `CONVERT_TO_UPPER_CASE`
+It can be quite useful to inspect channel contents like this when you are
+developing workflows, especially if you are working with tuples, maps and any
+transforming operators in general.
+
+* Check the channel contents of the (1) raw and (2) collected output of the `CONVERT_TO_UPPER_CASE`
   process. How are they different?
+
 
 > **Quick recap** <br>
 > In this section we've learnt:
@@ -295,3 +302,4 @@ what's inside them: you can do this using the `view()` operator.
 > * How to execute workflows
 > * How to explore Nextflow's `work` directory
 > * How to generalize workflows
+> * How to view channel contents
