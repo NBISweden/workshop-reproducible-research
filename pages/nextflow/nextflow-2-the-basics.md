@@ -96,8 +96,9 @@ The workflow definition here has two parts, each doing an important job for any
 Nextflow workflow. The first part defines a *channel*, which is an asynchronous
 first-in-first-out stream of data that connect a workflow's various inputs and
 outputs. In this particular case, we define a `Channel` using the `.fromPath`
-operator on the specific file path `a.txt` and name the channel `ch_input`. This
-means that `ch_input` contains a stream with the file `a.txt`.
+operator on the specific file path `a.txt` and name the channel `ch_input`. You
+can read this as *"create the channel `ch_input` and fill it with the file
+`a.txt`"*.
 
 > **Naming channels** <br>
 > A channel can be named anything you like, but it is good practice to prepend
