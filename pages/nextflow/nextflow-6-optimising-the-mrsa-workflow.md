@@ -130,7 +130,7 @@ workflow RUN_QC {
         fastq
     )
     RUN_MULTIQC (
-        RUN_FASTQC.out[1].collect()
+        RUN_FASTQC.out.zip.collect()
     )
 }
 ```
