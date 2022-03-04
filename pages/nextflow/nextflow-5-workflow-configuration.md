@@ -59,8 +59,8 @@ configuration file, rather than on the command line!
 # Configuring inputs
 
 Remember the input for the MRSA workflow, the `ch_sra_ids` channel? This input
-is also hard-coded inside the `main_mrsa.nf` file. This could also be made into a
-parameter!
+is also hard-coded inside the `main_mrsa.nf` file. This could also be made into
+a parameter!
 
 * Add another parameter for the input SRA IDs and execute your workflow to check
   that it worked.
@@ -127,7 +127,14 @@ sample-4,ctrl,data/sample-4.fastq.gz
 Here we have not only names and file paths but also to which group each sample
 belongs, *i.e.* case or control. Such metadata can be highly useful for more
 advanced workflows to use in downstream analyses, such as differential gene
-expression!
+expression! We could create a tuple based on this metadata like so:
+
+```nextflow
+ch_input = Channel
+    .fromPath("metadata.csv")
+    .splitCsv()
+    .map{ row -> tuple(row[0, row[1], row[2]]) }
+```
 
 > **Input file formatting** <br>
 > The input file may also have headers, in which case you need to add `header:
