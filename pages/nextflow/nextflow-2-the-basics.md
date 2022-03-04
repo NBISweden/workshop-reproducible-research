@@ -227,16 +227,16 @@ that concatenates the content of all these UPPERCASE files.
 
 We already have a channel containing the two files we need: the output of the
 `CONVERT_TO_UPPER_CASE` process. We can use this output as input to a new
-process by using the syntax: `CONVERT_TO_UPPER_CASE.out.collect()`. There are 
-two new things here, the first of which is the `.out` attribute. As you might 
-imagine, this refers to the output of a particular channel. The `collect()` 
-operator, on the other hand, *collects* all the outputs into a single entry. 
-This is a *many-to-one* type of operation: a stream with several files (*many*) 
+process by using the syntax: `CONVERT_TO_UPPER_CASE.out.collect()`. There are
+two new things here, the first of which is the `.out` attribute. As you might
+imagine, this refers to the output of a particular channel. The `collect()`
+operator, on the other hand, *collects* all the outputs into a single entry.
+This is a *many-to-one* type of operation: a stream with several files (*many*)
 is merged into a lone list of files (*one*).
 
-Let's put this in use by adding a new process to the workflow definition. We'll 
+Let's put this in use by adding a new process to the workflow definition. We'll
 call this process `CONCATENATE_FILES` and it will take the output from `CONVERT_TO_UPPER_CASE`
-as input, using the `.out` attribute and `collect()` operator. 
+as input, using the `.out` attribute and `collect()` operator.
 
 * Add a line to your workflow definition for this new process with the
   appropriate input - click below if you're having trouble.
@@ -251,7 +251,7 @@ CONCATENATE_FILES( CONVERT_TO_UPPER_CASE.out.collect() )
 </details>
 
 
-Now all we have to do is define the actual `CONCATENATE_FILES` process in the 
+Now all we have to do is define the actual `CONCATENATE_FILES` process in the
 process definition section.
 
 * Copy the following code as a new process into your workflow:
