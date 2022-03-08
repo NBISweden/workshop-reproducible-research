@@ -145,7 +145,7 @@ If you need help, see the hint below.
     // Output section of RUN_FASTC
     output:
         path("*.html"), emit: html
-        path("*.zip"), emit: zip
+        path("*.zip"),  emit: zip
 ```
 
 </details>

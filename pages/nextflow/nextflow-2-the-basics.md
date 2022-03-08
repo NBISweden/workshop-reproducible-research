@@ -134,8 +134,8 @@ executor >  local (1)
 
 The first few lines are information about this particular run, including the
 Nextflow version used, which workflow definition file was used, a randomly
-generated run name (an adjective and a scientist), the revision number as well
-as how the run was executed (locally, in this case).
+generated run name (an adjective and a scientist), the revision ID as well
+as how the run was executed (locally, in this case).  
 
 What follows next is a list of all the various processes for this particular
 workflow. The order does not necessarily reflect the order of execution
@@ -187,7 +187,7 @@ ch_input = Channel
 ```
 
 Okay, so what does that do, exactly? Well, the added line containing the
-`.map{}` statement changes the input stream to be `[name, file]` instead of just
+`.map{}` operator changes the input stream to be `[name, file]` instead of just
 `[file]` - we get the name from the *base name* of the file itself, *i.e.* the
 file without extension or directory. We now have to change the process itself to
 make use of this new information contained in the `ch_input` channel.
@@ -229,14 +229,14 @@ We already have a channel containing the two files we need: the output of the
 `CONVERT_TO_UPPER_CASE` process. We can use this output as input to a new
 process by using the syntax: `CONVERT_TO_UPPER_CASE.out.collect()`. There are
 two new things here, the first of which is the `.out` attribute. As you might
-imagine, this refers to the output of a particular channel. The `collect()`
+imagine, this refers to the output of a particular process. The `.collect()`
 operator, on the other hand, *collects* all the outputs into a single entry.
 This is a *many-to-one* type of operation: a stream with several files (*many*)
 is merged into a lone list of files (*one*).
 
 Let's put this in use by adding a new process to the workflow definition. We'll
 call this process `CONCATENATE_FILES` and it will take the output from `CONVERT_TO_UPPER_CASE`
-as input, using the `.out` attribute and `collect()` operator.
+as input, using the `.out` attribute and `.collect()` operator.
 
 * Add a line to your workflow definition for this new process with the
   appropriate input - click below if you're having trouble.
