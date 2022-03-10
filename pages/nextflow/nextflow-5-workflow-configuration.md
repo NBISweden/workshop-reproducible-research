@@ -22,9 +22,9 @@ params {
 
 You would then refer to these parameters using *e.g.* `params.parameter_1`
 anywhere you need to in the workflow. The parameters are not put into the
-`main_mrsa.nf` file, but rather into a *configuration file*. The default name of this
-file is `nextflow.config` and if such a file is present it will be used 
-automatically by Nextflow (to supply a config file with another name use 
+`main_mrsa.nf` file, but rather into a *configuration file*. The default name
+of this file is `nextflow.config` and if such a file is present it will be used
+automatically by Nextflow (to supply a config file with another name use
 `nextflow -c <path-to-config-file> run main_mrsa.nf`)
 
 * Create a configuration file and add a parameter for the `results` output
@@ -37,9 +37,9 @@ automatically by Nextflow (to supply a config file with another name use
 > **Tip** <br>
 > Instead of manually changing all the hard-coded directories in your
 > workflow you can use the following little `sed` command, which will do it for
-> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv tmp
-> main_mrsa.nf`. In case you used a parameter name other than 'resultsdir' update the 
-> command accordingly.
+> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv
+> tmp main_mrsa.nf`. In case you used a parameter name other than `resultsdir`
+> update the command accordingly.
 
 # Command line parameters
 
