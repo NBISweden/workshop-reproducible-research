@@ -51,7 +51,7 @@ INDEX_GENOME (
 
 If we want to get real detailed we can also change the hard-coded "NCT8325"
 naming in *e.g.* the `INDEX_GENOME` process and put that in another parameter,
-or just grab the `baseName()` from the channel and make a `[name, file]` tuple
+or just grab the `baseName()` from the channel and make a `[prefix, file]` tuple
 using the `map{}` operator like we did previously.
 
 # Subworkflows
@@ -93,10 +93,11 @@ unless the `-entry` flag is specified, like so:
 nextflow run main.nf -entry SUBWORKFLOW
 ```
 
-This will run the workflow named `SUBWORKFLOW`, but nothing else. You can also store
-subworkflows in separate files, so that everything doesn't have to be crammed
-into a single `main.nf` file. A subworkflow named `SUBWORKFLOW` contained in
-the file `subworkflow.nf` can be loaded into a `main.nf` file like so:
+This will run the workflow named `SUBWORKFLOW`, but nothing else. You can also
+store subworkflows in separate files, so that everything doesn't have to be
+crammed into a single `main.nf` file. A subworkflow named `SUBWORKFLOW`
+contained in the file `subworkflow.nf` can be loaded into a `main.nf` file like
+so:
 
 ```nextflow
 include { SUBWORKFLOW } from "./subworkflow.nf"
