@@ -67,18 +67,18 @@ The workflow definition here has two parts, each doing an important job for any
 Nextflow workflow. The first part defines a *channel*, which is an asynchronous
 first-in-first-out stream of data that connect a workflow's various inputs and
 outputs. In this particular case, we define a `Channel` using the `.fromPath`
-operator on the specific file path `a.txt` and name the channel `ch_input`. You
-can read this as *"create the channel `ch_input` and fill it with the file
-`a.txt`"*.
+channel factory on the specific file path `a.txt`, and name the channel `ch_input`. You
+can read this as *"create the channel `ch_input` and send the file
+`a.txt` into it"*.
 
 > **Naming channels** <br>
 > A channel can be named anything you like, but it is good practice to prepend
 > them with `ch_`, as that makes it clear which variables are channels and which
 > are just normal variables.
 
-What can we do with these channels, then? The idea is that we put the channel
-through our workflow, *i.e.* the various processes we want to run on the inputs
-stored in the channel. This is exactly what we do in the second part: we call
+How do we use these channels then? Channels pass data to and from processes
+through our workflow. By providing channels as arguments to processes, we describe
+how we want data to flow. This is exactly what we do in the second part: we call
 our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input argument - this
 is very similar to functional programming.
 
@@ -93,20 +93,23 @@ block starts with its name, in this case `CONVERT_TO_UPPER_CASE`, followed by
 several sections: `publishDir`, `input`, `output` and `script`.
 
 > **Naming processes** <br>
-> A process can be named anything you like, but there exists a commonly used
-> convention to use UPPERCASE letters for processes. You do not have to follow
-> this if you don't want, but we do so here.
+> A process can be named using any case, but a commonly used convention is to use 
+> UPPERCASE letters for processes to visually distinguish them in the workflow. 
+> You do not have to follow this if you don't want to, but we do so here.
 
-Let's ignore the first for now and focus on the last three. The `input` and
-`output` sections are exactly what they sound like: inputs and outputs for this
-specific process. Notice that there is a difference between how the inputs and
+Let's ignore the first section for now and focus on the last three. The `input` and
+`output` sections describe the data expected to come through the channel for this
+specific process. Each line of `input` describes the data expected for each process
+argument, in the order used in the workflow. In this case, `CONVERT_TO_UPPER_CASE`
+expects a single channel (one line of input), and expects the data to be filenames
+(of type `path`). Notice that there is a difference between how the inputs and
 outputs are declared? The `output` is an explicit string (*i.e* surrounded by
-quotes), while the input is a variable named `file`. The reason for this is that
-processes are like functions, meaning they can have have varying inputs (and
-arguments in general). We'll get back to exactly how this works in just a
-moment.
+quotes), while the input is a variable named `file`. This means inputs can be
+referenced in the process without naming the data explicitly, unlike the output
+where the name needs to be explicit. We'll get back to exactly how 
+this works in just a moment.
 
-Let's move on to the first section: `publishDir`. What this does is tell
+Let's move on to the first section: `publishDir`. This tells
 Nextflow where the output of the process should be stored when it is finished;
 setting `mode` to `"copy"` just means that we want to copy the output files to
 the publishing directory, rather than using a symbolic link (which is the
@@ -135,17 +138,18 @@ executor >  local (1)
 The first few lines are information about this particular run, including the
 Nextflow version used, which workflow definition file was used, a randomly
 generated run name (an adjective and a scientist), the revision ID as well
-as how the run was executed (locally, in this case).  
+as where the processes were executed (locally, in this case).
 
 What follows next is a list of all the various processes for this particular
 workflow. The order does not necessarily reflect the order of execution
 (depending on each process’ input and output dependencies), but they are in the
 order they were defined in the workflow file - there's only the one process
 here, of course. The first part (*e.g* `[32/9124a1]`) is the process ID, which
-is also the first part of the subdirectory in which the process is run. We then
-get the process and its name. Lastly, we get how many instances of each process
-are currently being and have been run. Here we only have the one process, of
-course, but this will soon change.
+is also the first part of the subdirectory in which the process is run (before
+the outputs are transferred to the publish directory). We then get the process
+and its name. Lastly, we get how many instances of each process are currently
+being and have been run. Here we only have the one process, of course, but this
+will soon change.
 
 * Let's check that everything worked: type `ls results/` and see that it
   contains the output we expected.
@@ -165,32 +169,33 @@ So, how does this all work? Well, we have three components: a set of inputs, a
 set of processes and a workflow that defines which processes should be run. We
 tell Nextflow to *push* the inputs through the entire workflow, so to speak.
 
-* Now it's your turn! Move back to the workflow root and make it use the `b.txt`
-  input file and give you the `b.upper.txt` instead.
+* Now it's your turn! Move back to the workflow root and make it use only the
+  `b.txt` input file and give you the `b.upper.txt` instead.
 
 * Run your workflow and make sure it works before you move on.
 
 # Files and sample names
 
 Having to manually change inputs and outputs like you just did is not really
-ideal, is it? Hard-coding things is rarely good, so let's try to change that.
-What we need is a way to use the sample name for each input file. Here is where
-one of the features of Nextflow really shines: being able to parse values
-*alongside* files in channels!
+ideal, is it? Hard-coding outputs is rarely good, so let's try to change that.
+One powerful feature of Nextflow is that it can handle complex data structures
+as input, and not only filenames. One strategy we can follow is to create
+a prefix for our output and pass it together with the filename.
 
 * Change the channel definition to the following:
 
 ```nextflow
 ch_input = Channel
     .fromPath("a.txt")
-    .map{file -> tuple(file.getBaseName(), file)}
+    .map{ file -> tuple(file.getBaseName(), file) }
 ```
 
 Okay, so what does that do, exactly? Well, the added line containing the
-`.map{}` operator changes the input stream to be `[name, file]` instead of just
-`[file]` - we get the name from the *base name* of the file itself, *i.e.* the
-file without extension or directory. We now have to change the process itself to
-make use of this new information contained in the `ch_input` channel.
+`.map{}` statement changes the data stream to be `[prefix, file]` instead of
+just `[file]` - we generate the prefix from the *base name* of the file itself,
+*i.e.* the file without extension or directory. We now have to change the
+process itself to make use of this new information contained in the `ch_input`
+channel.
 
 * Change the process definition to the following:
 
@@ -199,20 +204,20 @@ process CONVERT_TO_UPPER_CASE {
     publishDir "results/", mode: "copy"
 
     input:
-    tuple val(sample), path(file)
+    tuple val(prefix), path(file)
 
     output:
-    path("${sample}.upper.txt")
+    path("${prefix}.upper.txt")
 
     script:
     """
-    tr [a-z] [A-Z] < ${file} > ${sample}.upper.txt
+    tr [a-z] [A-Z] < ${file} > ${prefix}.upper.txt
     """
 }
 ```
 
 Notice how the input now is aware that we're passing a *tuple* as input, which
-allows us to use both the `file` variable (as before) and the new `sample`
+allows us to use both the `file` variable (as before) and the new `prefix`
 variable. All that's left now is to change the input to our pipeline!
 
 * Change the channel definition line from `.fromPath("a.txt")` to
@@ -226,17 +231,17 @@ It's time to add more processes to our workflow! We have the two files
 that concatenates the content of all these UPPERCASE files.
 
 We already have a channel containing the two files we need: the output of the
-`CONVERT_TO_UPPER_CASE` process. We can use this output as input to a new
-process by using the syntax: `CONVERT_TO_UPPER_CASE.out.collect()`. There are
-two new things here, the first of which is the `.out` attribute. As you might
-imagine, this refers to the output of a particular process. The `.collect()`
-operator, on the other hand, *collects* all the outputs into a single entry.
-This is a *many-to-one* type of operation: a stream with several files (*many*)
-is merged into a lone list of files (*one*).
+`CONVERT_TO_UPPER_CASE` process called `CONVERT_TO_UPPER_CASE.out`. We can use
+this output as input to a new process using the syntax:
+`CONVERT_TO_UPPER_CASE.out.collect()`. The `collect()` operator, groups all the
+outputs in the channel into a single data object for the next process. This is
+a *many-to-one* type of operation: a stream with several files (*many*) is
+merged into a lone list of files (*one*). If `collect()` was not used, the next
+process would try to run a task for each file in the output channel.
 
 Let's put this in use by adding a new process to the workflow definition. We'll
-call this process `CONCATENATE_FILES` and it will take the output from `CONVERT_TO_UPPER_CASE`
-as input, using the `.out` attribute and `.collect()` operator.
+call this process `CONCATENATE_FILES` and it will take the output from
+`CONVERT_TO_UPPER_CASE` as input, grouped using the `collect()` operator.
 
 * Add a line to your workflow definition for this new process with the
   appropriate input - click below if you're having trouble.
@@ -278,6 +283,12 @@ should have three files there: `a.upper.txt`, `b.upper.txt` and `concat.txt`.
 
 * Inspect the contents of `concat.txt` - do you see everything as you expected?
 
+Note the use of `path(files)` as input. Although we pass a list of files as
+input, the list is considered a single object, and so the `files` variable
+references a list. Each file in that list can be individually accessed using an
+index e.g. `${files[0]}`, or as we do here, use the variable without an index
+to list all the input files.
+
 # Viewing channel contents
 
 As our channels become more complicated it is useful to actually check out
@@ -290,9 +301,8 @@ It can be quite useful to inspect channel contents like this when you are
 developing workflows, especially if you are working with tuples, maps and any
 transforming operators in general.
 
-* Check the channel contents of the (1) raw and (2) collected output of the `CONVERT_TO_UPPER_CASE`
-  process. How are they different?
-
+* Check the channel contents of the (1) raw and (2) collected output of the
+  `CONVERT_TO_UPPER_CASE` process. How are they different?
 
 > **Quick recap** <br>
 > In this section we've learnt:
