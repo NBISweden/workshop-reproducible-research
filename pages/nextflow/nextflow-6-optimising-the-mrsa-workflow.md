@@ -52,7 +52,39 @@ INDEX_GENOME (
 If we want to get real detailed we can also change the hard-coded "NCT8325"
 naming in *e.g.* the `INDEX_GENOME` process and put that in another parameter,
 or just grab the `baseName()` from the channel and make a `[prefix, file]` tuple
-using the `map{}` operator like we did previously.
+using the `map{}` operator like we did previously; check below if you're
+curious of how this could be done.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+// Channel definition
+ch_genome_fasta = Channel
+    .fromPath( ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz )
+    .map{ file -> tuple(file.getBaseName(), file) }
+
+// INDEX_GENOME process definition
+process INDEX_GENOME {
+
+    publishDir "results/intermediate/",
+        mode: "copy"
+
+    input:
+    tuple val(fasta_name), path(fasta)
+
+    output:
+    path("*.b2t"), emit: index
+
+    script:
+    """
+    # Bowtie2 cannot use .gz, so unzip to a temporary file first
+    gunzip -c ${fasta} > tempfile
+    bowtie2-build tempfile ${fasta_name}
+    """
+```
+
+</details>
 
 # Subworkflows
 
