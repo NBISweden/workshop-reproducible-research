@@ -137,7 +137,7 @@ executor >  local (1)
 
 The first few lines are information about this particular run, including the
 Nextflow version used, which workflow definition file was used, a randomly
-generated run name (an adjective and a scientist), the revision number as well
+generated run name (an adjective and a scientist), the revision ID as well
 as where the processes were executed (locally, in this case).
 
 What follows next is a list of all the various processes for this particular
