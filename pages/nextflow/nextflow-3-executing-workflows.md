@@ -160,4 +160,5 @@ into errors! Also, it helps with advanced debugging - which we'll get into later
 >
 > * How to get automatic reports and visualisations
 > * How to re-run workflows
+> * How to clean the Nextflow cache
 > * How to check the Nextflow logs
