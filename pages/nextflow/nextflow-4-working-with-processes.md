@@ -69,6 +69,8 @@ processes which are only run once.
 * Remove the `tag` directive from the `GET_SRA_BY_ACCESSION` process and run the
   workflow again. No more SRA IDs!
 
+* Add the `tag` directive back in before you move on.
+
 # Named outputs
 
 Let's move on to the next process! It looks like this:
