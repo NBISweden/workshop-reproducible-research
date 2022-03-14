@@ -148,7 +148,7 @@ here, of course. The first part (*e.g* `[32/9124a1]`) is the process ID, which
 is also the first part of the subdirectory in which the process is run (before
 the outputs are transferred to the publish directory). We then get the process
 and its name. Lastly, we get how many instances of each process are currently
-being and have been run. Here we only have the one process, of course, but this
+running or have finished. Here we only have the one process, of course, but this
 will soon change.
 
 * Let's check that everything worked: type `ls results/` and see that it
