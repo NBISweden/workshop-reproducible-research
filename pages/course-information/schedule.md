@@ -10,7 +10,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> Setting up </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS </td>
+        <td style="padding:5px"> <font size="3"> EF, JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:00 </td>
@@ -30,7 +30,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
         <td style="padding:5px"> <font size="3"> Break-out rooms and ice breaker session </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, EP </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:30 </td>
@@ -49,7 +49,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Git tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, EP </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -285,15 +285,19 @@ The above schedule is approximate; variations may occur.
         <td> Erik Fasterius </td>
     </tr>
     <tr>
-        <td> <b> VK </b> </td>
-        <td> Verena Kutschera </td>
-    </tr>
-    <tr>
         <td> <b> JS </b> </td>
         <td> John Sundh </td>
     </tr>
     <tr>
+        <td> <b> VK </b> </td>
+        <td> Verena Kutschera </td>
+    </tr>
+    <tr>
         <td> <b> TL </b> </td>
         <td> Tomas Larsson </td>
+    </tr>
+    <tr>
+        <td> <b> EP </b> </td>
+        <td> Estelle Proux-Wéra </td>
     </tr>
 </table>
