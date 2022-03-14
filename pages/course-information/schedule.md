@@ -89,7 +89,7 @@
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
-        <td style="padding:5px"> <font size="3"> Wrap up - Conda tutorial </td>
+        <td style="padding:5px"> <font size="3"> Wrap up: Conda tutorial </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
@@ -144,7 +144,7 @@
         <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
-        <td style="padding:5px"> <font size="3"> Wrap-up - Snakemake tutorial </td>
+        <td style="padding:5px"> <font size="3"> Wrap-up: Snakemake tutorial </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
@@ -184,6 +184,21 @@
     </thead>
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
+        <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
+        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+    <tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> 10:00 </td>
+        <td style="padding:5px"> <font size="3"> Wrap-up: Nextflow tutorial </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
+    <tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> 10:15 </td>
+        <td style="padding:5px"> <font size="3"> Break </td>
+        <td style="padding:5px"> <font size="3"> </td>
+    </tr>
+    <tr>
+        <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
              <font size="2"><i><br>
              - Introduction to R Markdown<br>
@@ -192,30 +207,16 @@
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
-        <td style="padding:5px"> <font size="3"> 10:30 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:45 </td>
-        <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
-             <font size="2"><i><br>
-             - Introduction to Jypyter <br>
-             - Practical tutorial: [Jupyter](jupyter-1-introduction) <br>
-        </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:15 </td>
+        <td style="padding:5px"> <font size="3"> 12:00 </td>
         <td style="padding:5px"> <font size="3"> Lunch </td>
         <td style="padding:5px"> <font size="3"> </td>
     </tr>
     <tr>
-        <td style="padding:5px"> <font size="3"> 13:15 </td>
-        <td style="padding:5px"> <font size="3"> Containerization
-             <font size="2"> <i> <br>
-             - Introduction to containers <br>
-             - Practical tutorial: [Containers](containers-1-introduction) </i>
+        <td style="padding:5px"> <font size="3"> 13:00 </td>
+        <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
+             <font size="2"><i><br>
+             - Introduction to Jypyter <br>
+             - Practical tutorial: [Jupyter](jupyter-1-introduction) <br>
         </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
@@ -237,43 +238,41 @@
     </thead>
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> Containerization
+             <font size="2"><i><br>
+             - Introduction to containers <br>
+             - Practical tutorial: [Containers](containers-1-introduction) <br>
+        </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     <tr>
     <tr>
-        <td style="padding:5px"> <font size="3"> 10:15 </td>
+        <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> Break </td>
         <td style="padding:5px"> <font size="3"> </td>
     </tr>
     <tr>
-        <td style="padding:5px"> <font size="3"> 10:30 </td>
+        <td style="padding:5px"> <font size="3"> 10:45 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
         <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
     </tr>
     <tr>
-        <td style="padding:5px"> <font size="3"> 11:00 </td>
-        <td style="padding:5px"> <font size="3"> Putting the pieces together
-             <font size="2"> <i> <br>
-             - How to put all the tools and procedures together <br>
-             - How to implement these procedures on a day-to-day basis <br>
-             - Practical tutorial: [Making projects reproducible](projects-1-introduction) <i>
-        </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:00 </td>
+        <td style="padding:5px"> <font size="3"> 12:15 </td>
         <td style="padding:5px"> <font size="3"> Lunch </td>
         <td style="padding:5px"> <font size="3"> </td>
     </tr>
     <tr>
-        <td style="padding:5px"> <font size="3"> 13:00  </td>
-        <td style="padding:5px"> <font size="3"> ... continued: putting the pieces together </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL  </td>
+        <td style="padding:5px"> <font size="3"> 13:15 </td>
+        <td style="padding:5px"> <font size="3"> Putting the pieces together
+             <font size="2"> <i> <br>
+             - How to put all the tools and procedures together <br>
+             - How to implement these procedures on a day-to-day basis <br>
+        </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> End of the course! </td>
-        <td style="padding:5px"> <font size="3"> </td>
+        <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
 </table>
 
