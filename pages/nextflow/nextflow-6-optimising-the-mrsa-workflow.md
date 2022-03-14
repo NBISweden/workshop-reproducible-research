@@ -49,9 +49,9 @@ INDEX_GENOME (
 
 </details>
 
-If we want to get real detailed we can also change the hard-coded "NCT8325"
+If we want to get detailed we can also change the hard-coded "NCT8325"
 naming in *e.g.* the `INDEX_GENOME` process and put that in another parameter,
-or just grab the `baseName()` from the channel and make a `[prefix, file]` tuple
+or grab the `baseName()` from the channel and make a `[prefix, file]` tuple
 using the `map{}` operator like we did previously; check below if you're
 curious of how this could be done.
 
@@ -114,7 +114,7 @@ workflow SUBWORKFLOW {
 
 Here we have an unnamed, main workflow like before, plus a named subworkflow.
 A workflow can have inputs specified by the `take` directive, which is
-basically the equivalent of process `input` for workflows. The `main` part is
+the equivalent of process `input` for workflows. The `main` part is
 the workflow body, which contains how to run which processes in which order.
 The last part, `emit`, also works the same as for processes, in that we name
 the different outputs of the workflow so that we may use them in other
@@ -138,7 +138,8 @@ include { SUBWORKFLOW } from "./subworkflow.nf"
 If you have a complex workflow with several subworkflows you might thus store
 them in a separate directory, *e.g.* `subworkflows`. This allows you to have
 fine-grained control over the general architecture of your Nextflow workflows,
-organising them in a manner that is easy to code and maintain.
+organising them in a manner that is easy to code and maintain. A `process`
+can also be treated in the same manner, and defined separately in another file.
 
 * Now it's your turn! Separate the `RUN_FASTQC` and `RUN_MULTIQC` processes out
   of the main workflow and into a subworkflow. Check below if you're having
