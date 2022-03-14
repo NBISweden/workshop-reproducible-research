@@ -90,8 +90,9 @@ process INDEX_GENOME {
 
 The DSL2 allows highly modular workflow design, where a workflow may contain
 multiple *subworkflows*. A subworkflow is just like a normal workflow, but it
-can be called inside other workflows, similar to a process. Let's take a look at
-a toy example:
+can be called inside other workflows, similar to a process. There is thus no
+special difference between a subworkflow and a workflow; the only difference is
+how you use them in practice. Let's take a look at a toy example:
 
 ```nextflow
 workflow {
