@@ -33,20 +33,25 @@ class: center, middle
 .HUGE[The teachers]
 
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:150px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:150px" hspace=40/>
     <p>John Sundh</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:150px" hspace=20/>
+    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:150px" hspace=40/>
+    <p>Erik Fasterius</p>
+</div>
+<br>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:150px" hspace=40/>
     <p>Verena Kutschera</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:150px" hspace=20/>
-    <p>Erik Fasterius</p>
+    <img src="https://nbis.se/assets/img/staff/tomas-larsson.png" style="height:150px" hspace=40/>
+    <p>Tomas Larsson</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/tomas-larsson.png" style="height:150px" hspace=20/>
-    <p>Tomas Larsson</p>
+    <img src="https://nbis.se/assets/img/staff/estelle-proux-wera.jpg" style="height:150px" hspace=40/>
+    <p>Estelle Proux-Wéra</p>
 </div>
 
 ---
