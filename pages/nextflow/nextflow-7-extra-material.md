@@ -1,4 +1,4 @@
-There are many more things you can do with Nextflow than what were covered
+There are many more things you can do with Nextflow than covered
 here. If you are interested to learn more details about Nextflow, we will
 briefly show some of its advanced features in this section. But first, here are
 some links to additional resources on Nextflow:
@@ -9,10 +9,11 @@ some links to additional resources on Nextflow:
  * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
  * Nextflow training at [Seqera](https://seqera.io/training/)
  * A work-in-progress [Nextflow Carpentry course](https://carpentries-incubator.github.io/workflows-nextflow/index.html)
+ * Community help from [Nextflow's Slack channel](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg)
 
 # Using containers in Nextflow
 
-Nextflow has built-in support for using both Docker and Singularity containers,
+Nextflow has built-in support for using both Docker and Singularity containers (and others too),
 either with a single container for the workflow as a whole or separate
 containers for each individual process. The simplest way to do it is to have a
 single container for your entire workflow, in which case you simply run the
@@ -105,9 +106,12 @@ profiles {
 
     // Uppmax general profile
     uppmax {
+        params{
+            account        = null
+        }
         process {
             executor       = 'slurm'
-            clusterOptions = '-A "account"'
+            clusterOptions = "-A '${params.account}'"
             memory         = { 6.GB * task.attempt }
             cpus           = { 1 * task.attempt }
             time           = { 10.h * task.attempt }
@@ -120,8 +124,8 @@ profiles {
 ```
 
 This will add a profile to your workflow, which you can access by running the
-workflow with `-profile uppmax`. You will have to edit the `"account"` part of
-the code above to correspond to your project account, but the rest you can
+workflow with `-profile uppmax`. You will also have to supply an extra parameter 
+`account` which corresponds to your SNIC project account, but the rest you can
 leave as-is, unless you want to tinker with *e.g.* compute resource
 specifications. That's all you need! Nextflow will take care of communications
 with SLURM (the system used by Uppmax, specified by the `executor` line) and
@@ -157,21 +161,22 @@ together into a nested tuple looking like this:
 [sample, [data/sample_R1.fastq.gz, data/sample_R2.fastq.gz]]
 ```
 
-The first index of the tuple (`[0]`) thus contains the value `sample`, while
-the second index (`[1]`) contains another tuple with paths to both read files.
+The first element of the tuple (`[0]`) thus contains the value `sample`, while
+the second element (`[1]`) contains another tuple with paths to both read files.
 This nested tuple can be passed into processes for *e.g.* read alignment, and
 it makes the entire procedure of going from read pairs (*i.e.* two separate
 files, one sample) into a single alignment file (one file, one sample) very
-simple.
+simple. For more methods of reading in data see the Nextflow documentation on
+[Channel Factories](https://www.nextflow.io/docs/latest/channel.html#channel-factory).
 
-We can also do quite advanced things when creating channels, such as this:
+We can also do quite advanced things to manipuate data in channels, such as this:
 
 ```groovy
 Channel
     .fromPath ( params.metadata )
     .splitCsv ( sep: "\t", header: true )
     .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }
-    .filter   { it[1] != "DMSO" }
+    .filter   { id, treatment -> treatment != "DMSO" }
     .unique   (  )
     .set      { samples_and_treatments }
 ```
@@ -182,7 +187,7 @@ the second line actually reads that data using tab as delimiter, including a
 header. The `map` operator takes each entire row and subsets it to only two
 columns: the `sample_id` and `treatment` columns. This subset is stored as a
 tuple. The `filter` operator is then used to remove any tuples where the second
-entry is equal to the string `"DMSO"` (*i.e.* untreated cells, in this example).
+entry, `treatment`, is not equal to the string `"DMSO"` (*i.e.* untreated cells, in this example).
 We then only take the unique tuples and set the results as the new channel
 `samples_and_treatments`. Let's say that this is the metadata we're reading:
 
@@ -207,10 +212,11 @@ Given the channel creation strategy above, we would get the following result:
 ```
 
 In this way, you can perform complex operations on input files or input metadata
-and send the resulting channels and their content to your downstream processes
-in a simple way. While this toy example is probably too complicated for a lot of
-projects, at least you know that there are many things you can do in regard to
-input data complexity with Nextflow!
+and send the resulting content to your downstream processes
+in a simple way. Composing data manipuations in Nextflow like this can be half 
+the fun of writing the workflow. Check out Nextflow's documentation on 
+[Channel operators](https://www.nextflow.io/docs/latest/operator.html) to
+see the full list of channel operations at your disposal. 
 
 # Using Groovy in processes
 
