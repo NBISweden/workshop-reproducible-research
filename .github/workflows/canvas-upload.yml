@@ -25,7 +25,7 @@ jobs:
         API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
       run: |
         docker pull pandoc/latex
-        for file in $(find pages -name '*.md');
+        for FILE in $(find pages -name '*.md' ! -name "README.md");
         do
-          bash pages/upload-page-to-canvas.sh "$file" "$API_TOKEN"
+          bash pages/upload-page-to-canvas.sh "$FILE" "$API_TOKEN"
         done
