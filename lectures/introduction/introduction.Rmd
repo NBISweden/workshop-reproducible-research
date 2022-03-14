@@ -83,12 +83,14 @@ high-impact psychology journals.<sup>1</sup>
 
 About one-half to two-thirds of the original findings could not be observed in
 the replication study.
+
+<br> <br> <br> <br> <br> <br> <br>
+.tiny[<sup>1</sup> *"Estimating the reproducibility of psychological science". Science. 349*]
 ]
 
 .pull-right[
-<img src="https://www.science.org/cms/10.1126/science.aac4716/asset/777e71c4-b815-428a-b41c-b4d63ef7a747/assets/graphic/349_aac4716_fa.jpeg"/>
+<img src="https://www.science.org/cms/10.1126/science.aac4716/asset/82f22975-91c8-4779-865b-6ed0650601cd/assets/graphic/349_aac4716_fa.jpeg"/>
 <br>
-.tiny[<sup>1</sup> "Estimating the reproducibility of psychological science". Science. 349]
 ]
 
 ---
@@ -97,14 +99,15 @@ the replication study.
 
 .pull-left[
 <img src="https://www.nature.com/news/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height="400"/>
+
+<br>
+.tiny[<sup>2</sup> *"1,500 scientists lift the lid on reproducibility", Nature. 533: 452–454*]
 ]
 
 .pull-right[
 A survey in Nature revealed that irreproducible experiments are a problem
-across all domains of science.<sup>1</sup>
+across all domains of science.<sup>2</sup>
 ]
-
-.tiny[<sup>1</sup> "1,500 scientists lift the lid on reproducibility", Nature. 533: 452–454]
 
 ---
 
@@ -117,23 +120,23 @@ across all domains of science.<sup>1</sup>
 .pull-right[
 Medicine is among the most affected research fields. A study in Nature found
 that 47 out of 53 medical research papers focused on cancer research were
-irreproducible.<sup>2</sup>
+irreproducible.<sup>3</sup>
 
 <br>
 Common features were failure to show all the data and inappropriate use of
 statistical tests.
 ]
 
-.tiny[<sup>2</sup> Begley, C. G.; Ellis, L. M. (2012). "Drug development: Raise standards for preclinical cancer research". Nature. 483 (7391): 531–533]
+<br><br><br><br>
+
+.tiny[<sup>3</sup> *"Drug development: Raise standards for preclinical cancer research". Nature. 483 (7391): 531–533*]
 
 ---
 
 # Why all the talk about reproducible research?
 
 *Replication of data analyses in 18 articles on microarray-based gene
-expression profiling published in Nature Genetics in 2005–2006:*
-
-.tiny[Adopted from Ioannidis *et al.* "Repeatability of published microarray gene expression analyses", Nature Genetics 41 (2009) doi:10.1038/ng.295]
+expression profiling published in Nature Genetics in 2005–2006 <sup>4</sup>:*
 
 ```{r Load packages and define blank ggplot theme}
 # Load packages and create a basic minimal ggplot theme for downstream re-use
@@ -187,14 +190,14 @@ ggplot(ioannidis_1, aes(x    = "",
     guides(fill = guide_legend(reverse = TRUE))
 ```
 
+.tiny[<sup>4</sup> Adopted from Ioannidis *et al.* (2009) *"Repeatability of published microarray gene expression analyses", Nature Genetics 41, doi:10.1038/ng.295*]
+
 ---
 
 # Why all the talk about reproducible research?
 
 *Replication of data analyses in 18 articles on microarray-based gene
-expression profiling published in Nature Genetics in 2005–2006:*
-
-.tiny[Adopted from Ioannidis *et al.* "Repeatability of published microarray gene expression analyses", Nature Genetics 41 (2009) doi:10.1038/ng.295]
+expression profiling published in Nature Genetics in 2005–2006 <sup>4</sup>:*
 
 ```{r Plot the second Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
 pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
@@ -214,14 +217,16 @@ ggplot(ioannidis_2, aes(x    = "",
           plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
 ```
 
+.tiny[<sup>4</sup> Adopted from Ioannidis *et al.* (2009) *"Repeatability of published microarray gene expression analyses", Nature Genetics 41, doi:10.1038/ng.295*]
+
 ---
 
 # Reproducibility is rarer than you think
 
 The results of only 26% out of 204 randomly selected papers in the journal
-*Science* could be reproduced.<sup>1</sup>
+*Science* could be reproduced.<sup>5</sup>
 
-.tiny[<sup>1</sup> Stodden et. al (2018). "An empirical analysis of journal policy effectiveness for computational reproducibility". PNAS. 115 (11): 2584-2589]
+.tiny[<sup>5</sup> *Stodden et. al (2018). "An empirical analysis of journal policy effectiveness for computational reproducibility". PNAS. 115 (11): 2584-2589*]
 
 --
 
@@ -449,7 +454,7 @@ There are many so-called excuses not to work reproducibly:
 --
 
 ## .green[During] the project
-* Easier to rerun analyses and generate results after updating data, tools,
+* Easier to re-run analyses and generate results after updating data, tools,
   parameters, *etc.*
 * Closer interaction between collaborators
 * Much of the manuscript "writes itself"
@@ -465,5 +470,5 @@ There are many so-called excuses not to work reproducibly:
 
 class: center, middle
 
-# Questions so far?
+# Questions?
 
