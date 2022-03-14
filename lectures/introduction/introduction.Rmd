@@ -64,11 +64,9 @@ class: center, middle
 
 * How to use the package and environment manager .green[Conda]
 
-* How to use the workflow manager .green[Snakemake]
+* How to use the workflow managers .green[Snakemake] and .green[Nextflow]
 
-* How to use .green[R Markdown] to generate automated reports
-
-* How to use .green[Jupyter] notebooks to document your analysis
+* How to generate automated reports using .green[R Markdown] and .green[Jupyter]
 
 * How to use .green[Docker] and .green[Singularity] to distribute containerized
   computational environments
