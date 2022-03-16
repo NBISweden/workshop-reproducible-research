@@ -21,8 +21,8 @@ params {
 ```
 
 You would then refer to these parameters using *e.g.* `params.parameter_1`
-anywhere you need to in the workflow. The parameters are not put into the
-`main_mrsa.nf` file, but rather into a *configuration file*. The default name
+anywhere you need to in the workflow. Although parameters can be defined in
+`main_mrsa.nf`, it is preferable to define them in a separate *configuration file*. The default name
 of this file is `nextflow.config` and if such a file is present it will be used
 automatically by Nextflow (to supply a config file with another name use
 `nextflow -c <path-to-config-file> run main_mrsa.nf`)
@@ -43,18 +43,21 @@ automatically by Nextflow (to supply a config file with another name use
 
 # Command line parameters
 
-Parameters can be changed on-the-fly when executing workflows like so: `nextflow
-run main_mrsa.nf --parameter_name some_value`
+Workflow parameters can be assigned on the command-line by executing workflows like 
+so: `nextflow run main_mrsa.nf --parameter_name 'some_value'`. The workflow parameter `parameter_name`,
+is prefixed by a double dash `--` to tell Nextflow this is a parameter to the workflow (a single dash
+is a parameter to Nextflow, e.g. `-resume`). The value is also quoted (this is important for parameters
+that take file paths as values).
 
 * Run your workflow using the parameter you previously created, but pick
   something other than the default value!
 
 You should now have a new directory containing all the results! This is highly
 useful if you want to keep track of separate runs of a workflow with different
-software parameters, for example: `nextflow run main.nf --important_param value1
---resultsdir value1`, or simply want to keep the results of separate versions of
-the same workflow. You can, of course, also change parameters directly in the
-configuration file, rather than on the command line!
+software parameters, for example: `nextflow run main.nf --important_param 'value1'
+--resultsdir 'value1'`, or simply want to keep the results of separate versions of
+the same workflow. You can also change parameters by using the `-params-file` option
+or by using another configuration file (and using `-c`), rather than on the command line!
 
 # Configuring inputs
 
@@ -65,10 +68,10 @@ a parameter!
 * Add another parameter for the input SRA IDs and execute your workflow to check
   that it worked.
 
-Using lists for parameters has its problems, though, as you won't be able to
+Using lists for parameters has its problems though, as you won't be able to
 change it on the command line, since the command line doesn't know about Groovy
 lists. There are several other ways of specifying inputs in a command
-line-friendly way, however, one of which is to use *sample sheets*. Instead of
+line-friendly way, one of which is to use *sample sheets*. Instead of
 specifying samples directly in the command line, you specify a file that lists
 the input samples instead; this is the standard that is used in *e.g.* [nf-core
 pipelines](https://nf-co.re/). Such a sample sheet for the MRSA workflow might
@@ -80,7 +83,7 @@ SRR935091
 SRR935092
 ```
 
-Reading input for a CSV file can be done simply by combining the `.fromPath()`
+Reading input from a CSV file can be done by combining the `.fromPath()`
 channel factory (specifying which file should be read) and the `.splitCsv()`
 operator (splitting the rows to read each entry). Let's see if we can make it
 work!
@@ -109,10 +112,10 @@ sra_ids = "input.csv"
 
 </details>
 
-By specifying inputs from sample sheets like this we can easily change inputs
-of a workflow execution just by creating another sample sheet and specifying
-*e.g.* `--sra_ids input-2.csv` on the command line. This is highly useful when
-you want to run just a single sample for *e.g.* testing a workflow, or when you
+By specifying inputs from sample sheets like this we can change inputs
+of a workflow execution by creating another sample sheet and specifying
+*e.g.*, `--sra_ids input-2.csv` on the command line. This is highly useful when
+you want to run a single sample *e.g.*, when testing a workflow, or when you
 want to keep track of all the different inputs you've used historically. Sample
 sheets are also useful for keeping other metadata, such as custom sample names,
 sample groups, location of files, *etc.* For example:
@@ -132,18 +135,19 @@ expression! We could create a tuple based on this metadata like so:
 ```nextflow
 ch_input = Channel
     .fromPath("metadata.csv")
-    .splitCsv()
-    .map{ row -> tuple(row[0, row[1], row[2]]) }
+    .splitCsv(header: ['id', 'group', 'fastq'])
+    .view { row -> "${row.id} is in ${row.group} group and is located at ${row.fastq}" }
 ```
 
 > **Input file formatting** <br>
-> The input file may also have headers, in which case you need to add `header:
-> true` to the `.splitCsv()` call. You can also read *e.g.* tab-separated files
+> The input file may also have headers, in which case you can use `header:
+> true` to use the column headers defined in the file. 
+> You can also read *e.g.* tab-separated files
 > by using the `sep` field: `.splitCsv(sep: "\t")`.
 
 # Other configuration scopes
 
-There are lots of things that you might want to add to you configuration, not
+There are lots of things that you might want to add to your configuration, not
 just parameters! The workflow *manifest*, for example, which might look like
 this:
 

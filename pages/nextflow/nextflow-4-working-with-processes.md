@@ -66,10 +66,10 @@ sample is being processed) but also for debugging or finding problematic samples
 in case of errors or odd output. There is, naturally, no need to use tags for
 processes which are only run once.
 
-* Remove the `tag` directive from the `GET_SRA_BY_ACCESSION` process and run the
+* Comment out (prefix with `//`) the `tag` directive from the `GET_SRA_BY_ACCESSION` process and run the
   workflow again. No more SRA IDs!
 
-* Add the `tag` directive back in before you move on.
+* Uncomment the `tag` directive before you move on.
 
 # Named outputs
 
@@ -98,7 +98,7 @@ process RUN_FASTQC {
 }
 ```
 
-Here is a process with two outputs! One contains all the `.html` files, while
+Here is a process with two output channels! One contains all the `.html` files, while
 the other contains all the `.zip` files. How is this handled in the workflow
 definition of downstream processes that use the outputs? The `RUN_MULTIQC`
 process uses this output, and its part in the workflow definition looks like
@@ -111,11 +111,11 @@ RUN_MULTIQC (
 ```
 
 We already know about `.out` and `.collect()`, but we have something new here:
-the `RUN_MULTIQC` process is taking the second entry of the output from the
-`RUN_FASTQC` process - `[1]` is the second entry, as Groovy is zero-based (the
-first entry is `[0]`).
+the `RUN_MULTIQC` process is taking the second channel of the output from the
+`RUN_FASTQC` process - `[1]` is the index for the second channel, as Groovy is 
+zero-based (the first channel is indexed by `[0]`).
 
-Okay, that's not too complicated. This comes with some issues, however. What if
+This comes with some issues, however. What if
 we accidentally changed the order of the outputs in the rule, or added a new
 one? Using positions like this is easy to mess up, but there is a better
 solution: named outputs! This can be achieved by adding the `emit` option for
@@ -127,13 +127,13 @@ path(*.txt), emit: text
 ```
 
 Instead of referring to the output by its position in an array as previously, we
-use `.out.text` instead. This is not only clearer in that we can infer more
-information about an output called `text` rather than just `[1]`, but it is also
-more robust and less error-prone.
+refer to the channel with a label we choose (`.out.text`) instead. This benefits us in that 
+we can infer more information about channel contents called `text` rather than `[1]`, 
+and it is also allows us to be less error-prone when rewriting parts of a workflow.
 
 Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC` 
-use those outputs. You'll have to change both in the output section of the 
-`RUN_FASTQC` process, and in the workflow definition section for `RUN_MULTIQC`.
+use those outputs. You'll have to change both the output section of the 
+`RUN_FASTQC` process, and the workflow definition section for `RUN_MULTIQC`.
 If you need help, see the hint below.
 
 <details>
@@ -159,22 +159,22 @@ Check if it works by executing the workflow.
 So far we've only used the `publishDir` directive in a very simple way:
 specifying a directory and the `mode` to use when publishing (to copy the files
 rather than symbolically link them). There are more things you can do, however,
-especially for processes with more than one output. Take the `RUN_FASTQC`
-process, for example. We have two outputs: HTML files that are meant to be read
-by a human, and compressed `.zip` files that are only used by downstream
-processes. We can actually publish such outputs in separate directories, like
-so:
+especially for processes with more than one output. For example, we
+can publish outputs in separate directories, like so:
 
 ```nextflow
-publishDir "results/text/",
-    pattern: "*.txt",
+publishDir "results/tables/",
+    pattern: "*.tsv",
+    mode: "copy"
+publishDir "results/logs",
+    pattern: "*.log",
     mode: "copy"
 ```
 
-The above example is for some hypothetical process that outputs, among other
-things, `.txt` files. These text files are placed in the `results/text/`
-directory using the `pattern` option. The `publishDir` directive can be used
-multiple times in a single process, one for each pattern that is desired.
+In this example, `*.tsv` files are copied to the folder `results/tables/`,
+while `*.log` files are copied to the folder `results/logs`. The 
+`publishDir` directive can be used multiple times in a single process, allowing
+one to separate output as above, or publish the same output to multiple folders.
 
 * Edit the `RUN_FASTQC` process to place the HTML and compressed files in
   separate directories. Remove the `results` directory and re-run the workflow
@@ -229,7 +229,7 @@ of some kind. We can thus infer that the command (1) worked, (2) failed to give
 us the output expected by Nextflow. Thankfully, Nextflow graciously prints the
 work directory for us so that we may check out what happened in more detail.
 
-* Copy the working directory path, `cd` into it and list the its contents using
+* Copy the working directory path, `cd` into it and list its contents using
   `ls`.
 
 You might already have spotted the error in the message above! The error we
