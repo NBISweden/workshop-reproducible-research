@@ -136,14 +136,13 @@ expression! We could create a tuple based on this metadata like so:
 ch_input = Channel
     .fromPath("metadata.csv")
     .splitCsv(header: ['id', 'group', 'fastq'])
-    .view { row -> "${row.id} is in ${row.group} group and is located at ${row.fastq}" }
+    .view()
 ```
 
 > **Input file formatting** <br>
 > The input file may also have headers, in which case you can use `header:
-> true` to use the column headers defined in the file. 
-> You can also read *e.g.* tab-separated files
-> by using the `sep` field: `.splitCsv(sep: "\t")`.
+> true` to use the column headers defined in the file. You can also read *e.g.*
+> tab-separated files by using the `sep` field: `.splitCsv(sep: "\t")`.
 
 # Other configuration scopes
 
