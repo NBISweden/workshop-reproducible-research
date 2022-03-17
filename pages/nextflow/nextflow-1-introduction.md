@@ -1,4 +1,4 @@
-[Nextflow](https://www.nextflow.io/) is a *workflow management system* (WMS),
+[Nextflow](https://www.nextflow.io/) is a *workflow management system* (WfMS),
 and is one of the most common such systems within the bioinformatic and
 academic communities. These systems are important for scientific
 reproducibility in that they greatly facilitate keeping track of which files

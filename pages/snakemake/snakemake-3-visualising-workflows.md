@@ -1,12 +1,12 @@
 All that we've done so far could quite easily be done in a simple shell script
 that takes the input files as parameters. Let's now take a look at some of the
-features where a WMS like Snakemake really adds value compared to a more
+features where a WfMS like Snakemake really adds value compared to a more
 straightforward approach. One such feature is the possibility to visualize your
 workflow. Snakemake can generate two types of graphs, one that shows how the
 rules are connected and one that shows how the jobs (*i.e.* an execution of
-a rule with some given inputs/outputs/settings) are connected. 
+a rule with some given inputs/outputs/settings) are connected.
 
-First we look at the rule graph. The following command will generate a rule graph 
+First we look at the rule graph. The following command will generate a rule graph
 in the dot language and pipe it to the program `dot`, which in turn will save
 a visualization of the graph as a PNG file (if you're having troubles displaying
 PNG files you could use SVG or JPG instead).
@@ -18,15 +18,15 @@ snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
 ![](images/rulegraph.svg)
 
 This looks simple enough, the output from the rule `convert_to_upper_case` will
-be used as input to the rule `concatenate_files`. 
+be used as input to the rule `concatenate_files`.
 
-For a more typical bioinformatics project it can look something like this when you 
+For a more typical bioinformatics project it can look something like this when you
 include all the rules from processing of the raw data to generating figures for the paper.
 
 ![](images/rulegraph_complex.svg)
 
 While saying that it's easy to read might be a bit of a stretch, it definitely
-gives you a better overview of the project than you would have without a WMS.
+gives you a better overview of the project than you would have without a WfMS.
 
 The second type of graph is based on the jobs, and looks like this for our
 little workflow (use `--dag` instead of `--rulegraph`).
@@ -45,7 +45,7 @@ way of indicating that this rule doesn't need to be rerun in order to generate
 that there is nothing to be done.
 
 
-We've discussed before that one of the main purposes of using a WMS is that it
+We've discussed before that one of the main purposes of using a WfMS is that it
 automatically makes sure that everything is up to date. This is done by
 recursively checking that outputs are always newer than inputs for all the
 rules involved in the generation of your target files. Now try to change the
@@ -100,8 +100,8 @@ This was a dry-run (flag -n). The order of jobs does not reflect the order of ex
 
 Were you correct? Also generate the job graph and compare to the one generated
 above. What's the difference? Now rerun without `-n` and validate that
-`a_b.txt` contains the new text (don't forget to specify `-c 1`). Note that 
-Snakemake doesn't look at the contents of files when trying to determine what has 
+`a_b.txt` contains the new text (don't forget to specify `-c 1`). Note that
+Snakemake doesn't look at the contents of files when trying to determine what has
 changed, only at the timestamp for when they were last modified.
 
 We've seen that Snakemake keeps track of if files in the workflow have changed,
@@ -222,11 +222,11 @@ snakemake a_b.txt --list-code-changes
 ```
 
 You should see the `a_b.txt` file printed to the terminal, meaning that Snakemake
-has identified changes to the implementation of the `concatenate_files` rule 
-which produces the `a_b.txt` file. Note that only changes to the `shell`, `run`, 
-`notebook` or `script` directives are tracked by `--list-code-changes`. 
+has identified changes to the implementation of the `concatenate_files` rule
+which produces the `a_b.txt` file. Note that only changes to the `shell`, `run`,
+`notebook` or `script` directives are tracked by `--list-code-changes`.
 
-We can then force Snakemake to regenerate the files that depend on the updated 
+We can then force Snakemake to regenerate the files that depend on the updated
 rules with the `-R` flag:
 
 ```bash
