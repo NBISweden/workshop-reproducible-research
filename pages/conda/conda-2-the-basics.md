@@ -1,6 +1,8 @@
 Let's assume that you are just about to start a new exciting research project
 called *Project A*.
 
+# Creating Conda environments
+
 * Let's make our first Conda environment:
 
 ```bash
@@ -28,7 +30,8 @@ conda info --envs
 
 The active environment will be marked with an asterisk.
 
-* To see the installed packages and their versions in the active environment, run:
+* To see the installed packages and their versions in the active environment,
+  run:
 
 ```bash
 conda list
@@ -48,6 +51,8 @@ fastqc --version
 Hopefully the FastQC software was not found in your base environment (unless
 you had installed it previously), but worked once your environment was
 activated.
+
+# Adding more packages
 
 * Now, let's add another package (*SRA-Tools*) to our environment using `conda
   install`. Make sure that `project_a` is the active environment first.
@@ -72,7 +77,7 @@ conda install -c bioconda sra-tools=2.7.0
 
 Read the information that Conda displays in the terminal. It probably asks if
 you want to downgrade the initial SRA-Tools installation to the one specified
-here (2.7.0 in the example). You can only have one version of a given package
+here (`2.7.0` in the example). You can only have one version of a given package
 in a given environment.
 
 Let's assume that you will have sequencing data in your Project A, and want to
@@ -84,7 +89,7 @@ use the latest Bowtie2 software to align your reads.
   environment.
 
 Let's further assume that you have an old project (called *Project Old*) where
-you know you used Bowtie2 v2.2.5. You just got back reviewer comments and they
+you know you used Bowtie2 `2.2.5`. You just got back reviewer comments and they
 want you to include some alignment statistics. Unfortunately, you haven't saved
 that information so you will have to rerun the alignment. Now, it is essential
 that you use the same version of Bowtie that your results are based on,
@@ -102,6 +107,8 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 * List your environments (do you remember the command?).
 * Activate `project_old` and check the Bowtie2 version (`bowtie2 --version`).
 * Activate `project_a` again and check the Bowtie2 version.
+
+# Removing packages
 
 Now let's try to remove an installed package from the active environment:
 

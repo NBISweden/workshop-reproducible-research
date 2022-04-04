@@ -15,6 +15,8 @@ In this Conda tutorial, all code for the analysis is available in the script
 `code/run_qc.sh`. This code will download the raw FASTQ-files and subsequently
 run quality control on these using the FastQC software.
 
+# Working with environments
+
 We will start by making a Conda YAML-file that contains the required packages to
 perform these two steps. Later in the course, you will update the Conda
 YAML-file with more packages, as the analysis workflow is expanded.
@@ -54,6 +56,7 @@ conda env create -n project_mrsa -f environment.yml
 > environment will be installed in the default `miniconda3/envs/` directory.
 
 * Activate the environment!
+
 * Now we can run the code for the MRSA project found in `code/run_qc.sh`,
   either by running `bash code/run_qc.sh` or by opening the `run_qc.sh` file
   and executing each line in the terminal one by one. Do this!
@@ -95,6 +98,8 @@ Note that all that was needed to carry out the analysis and generate these
 files and results was `environment.yml` (that we used to create a Conda
 environment with the required packages) and the analysis code in
 `code/run_qc.sh`.
+
+# Keeping track of dependencies
 
 Projects can often be quite large and require lots of dependencies; it can feel
 daunting to try to capture all of that in a single Conda environment, especially
