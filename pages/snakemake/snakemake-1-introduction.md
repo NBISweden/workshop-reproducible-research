@@ -1,6 +1,6 @@
-A *workflow management system* (WMS) is a piece of software that sets up,
+A *workflow management system* (WfMS) is a piece of software that sets up,
 performs and monitors a defined sequence of computational tasks (*i.e.* "a
-workflow"). Snakemake is a WMS that was developed in the bioinformatics
+workflow"). Snakemake is a WfMS that was developed in the bioinformatics
 community, and as such it has a number of features that make it particularly
 well-suited for creating reproducible and scalable data analyses.
 
@@ -23,7 +23,7 @@ files. It's also a good fit for a scientific research setting, where the exact
 specifications of the final workflow aren't always known at the beginning of
 a project.
 
-Lastly, a WMS is a very important tool for making your analyses reproducible.
+Lastly, a WfMS is a very important tool for making your analyses reproducible.
 By keeping track of when each file was generated, and by which operation, it is
 possible to ensure that there is a consistent "paper trail" from raw data to
 final results. Snakemake also has features that allow you to package and

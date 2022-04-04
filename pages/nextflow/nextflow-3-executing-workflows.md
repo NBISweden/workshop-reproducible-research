@@ -69,7 +69,7 @@ picking which ones are important or interesting to you - or don’t include any!
 
 # Re-running workflows
 
-Something you often want to do in Nextflow (or any WMS for that matter) is to
+Something you often want to do in Nextflow (or any WfMS for that matter) is to
 re-run the workflow when you changed some input files or some of the code for
 its analyses, but you don't want to re-run the entire workflow from start to
 finish. Let’s find out how this works in Nextflow!
@@ -93,14 +93,14 @@ that only processes relevant to your changes are executed again!
 * Use `tree work` to list the contents of the work directory.
 
 Because Nextflow keeps track of all the runs, we've now got two sets of files
-in the work directory. One set from the first run, and another from the second run. This
-can take up valuable space, so let's clean that up.
+in the work directory. One set from the first run, and another from the second
+run. This can take up valuable space, so let's clean that up.
 
 * Use `nextflow clean -n -before <run_name>` to show which work directories
 will be cleaned up. Then delete those directories by changing `-n` to `-f`.
 
 Nextflow's `clean` subcommand can be used to clean up failed tasks and unused
-processes. Use `nextflow help clean` to see other options for cleaning. 
+processes. Use `nextflow help clean` to see other options for cleaning.
 This is the preferred way to clean up the working directory.
 
 * Remove the `results` directory and re-run the workflow again using the
@@ -110,7 +110,7 @@ We removed all the results we used before, but we still managed to resume the
 workflow and use its cache - how come? Remember that Nextflow uses the `work`
 directory to run all of its tasks, while the `results` directory is just where
 we have chosen to publish our outputs. We can thus delete the `results`
-directory as often as we like (a necessity when output filenames are changed) 
+directory as often as we like (a necessity when output filenames are changed)
 and still get everything back without having to re-run
 anything. If we were to delete the `work` directory, however...
 
@@ -152,7 +152,7 @@ run by looking into the `.nextflow.log` file!
 
 You'll be greeted by a wealth of debugging information, which may even seem a
 bit overkill at this point! This level of detail is, however, quite useful both
-as a history of what you've attempted and as an additional help when you run 
+as a history of what you've attempted and as an additional help when you run
 into errors! Also, it helps with advanced debugging - which we'll get into later.
 
 > **Quick recap** <br>
