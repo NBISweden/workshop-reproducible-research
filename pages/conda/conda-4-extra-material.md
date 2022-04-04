@@ -19,7 +19,7 @@ You can edit the `.condarc` file either using a text editor or by way of the
 conda config --show
 ```
 
-Similar to Conda environment files, the configuration file is in yml syntax.
+Similar to Conda environment files, the configuration file is in YAML syntax.
 This means that the config file is structured in the form of `key:value` pairs
 where the `key` is the name of the config parameter (*e.g.* `auto_update_conda`)
 and the `value` is the parameter setting (*e.g.* `True`).

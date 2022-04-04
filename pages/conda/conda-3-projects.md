@@ -1,24 +1,25 @@
 We have up until now specified which Conda packages to install directly on the
 command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use an *environment file* (in [yml format](https://en.wikipedia.org/wiki/YAML))
+reproducibility, it is better to use an *environment file* (in [YAML format](https://en.wikipedia.org/wiki/YAML))
 that specifies the packages, versions and channels needed to create the
 environment for a project.
 
 Throughout these tutorials we will use a case study where we analyze an RNA-seq
 experiment with the multiresistant bacteria MRSA (see [intro](introduction)).
-You will now start to make a Conda yml file for this MRSA project. The file will
-contain a list of the software and versions needed to execute the analysis code.
+You will now start to make a Conda YAML file for this MRSA project. The file
+will contain a list of the software and versions needed to execute the analysis
+code.
 
 In this Conda tutorial, all code for the analysis is available in the script
 `code/run_qc.sh`. This code will download the raw FASTQ-files and subsequently
 run quality control on these using the FastQC software.
 
-We will start by making a Conda yml-file that contains the required packages to
-perform these two steps. Later in the course, you will update the Conda yml-file
-with more packages, as the analysis workflow is expanded.
+We will start by making a Conda YAML-file that contains the required packages to
+perform these two steps. Later in the course, you will update the Conda
+YAML-file with more packages, as the analysis workflow is expanded.
 
-* Let's get going! Make a yml file called `environment.yml` looking like
+* Let's get going! Make a YAML file called `environment.yml` looking like
   this, and save it in the current directory (which should be
   `workshop-reproducible-research/tutorials/conda`):
 
@@ -31,7 +32,7 @@ dependencies:
 - sra-tools=2.10.1
 ```
 
-* Now, make a new Conda environment from the yml file (note that here the
+* Now, make a new Conda environment from the YAML file (note that here the
   command is `conda env create` as opposed to `conda create` that we used
   above):
 
@@ -120,7 +121,7 @@ and then add the resulting version back in to the environment file using the
 > **Quick recap** <br>
 > In this section we've learned:
 >
-> - How to define our Conda environment using a yml-file.
-> - How to use `conda env create` to make a new environment from a yml-file.
+> - How to define our Conda environment using a YAML-file.
+> - How to use `conda env create` to make a new environment from a YAML-file.
 > - How to use `conda env export` to get a list of installed packages.
 > - How to work with Conda in a project-like setting.
