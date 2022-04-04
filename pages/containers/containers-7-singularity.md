@@ -18,44 +18,45 @@ If you want to read more, here are some additional resources:
 
 ### Converting Docker images to Singularity files
 
-Singularity, unlike Docker, stores images as single files. A Singularity 
-image file is self-contained (no shared layers) and can be moved around and 
+Singularity, unlike Docker, stores images as single files. A Singularity
+image file is self-contained (no shared layers) and can be moved around and
 shared like any other file.
 
 While it is possible to define and build Singularity images from scratch, in a
 manner similar to what you've already learned for Docker, this is not something
-we will cover here (but feel free to read more about this in _e.g._ the 
+we will cover here (but feel free to read more about this in _e.g._ the
 [Singularity docs](https://sylabs.io/guides/master/user-guide/definition_files.html)).
 
-Instead, we will take advantage of the fact that Singularity can convert Docker 
-images to the Singularity Image Format (SIF). This is great if there's a Docker 
-image that you want to use on an HPC cluster such as Uppmax where you cannot use 
-Docker. 
+Instead, we will take advantage of the fact that Singularity can convert Docker
+images to the Singularity Image Format (SIF). This is great if there's a Docker
+image that you want to use on an HPC cluster such as Uppmax where you cannot use
+Docker.
 
-Let's try to convert the Docker image for this course directly from DockerHub 
+Let's try to convert the Docker image for this course directly from DockerHub
 using `singularity pull`:
 
 ```bash
 singularity pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
 ```
 
-This should result in a file called `mrsa_proj.sif`. 
+This should result in a file called `mrsa_proj.sif`.
 
 ### Running a singularity image
 
 In the Docker image we included the code needed for the workflow in the
 `/course` directory of the image. These files are of course also available in
 the Singularity image. However, a Singularity image is read-only (unless using
-the [sandbox](https://sylabs.io/guides/master/user-guide/build_a_container.html#creating-writable-sandbox-directories) 
+the [sandbox](https://sylabs.io/guides/master/user-guide/build_a_container.html#creating-writable-sandbox-directories)
 feature). This will be a problem if we try to run the workflow
 within the `/course` directory, since the workflow will produce files and
 Snakemake will create a `.snakemake` directory.  Instead, we need to provide
 the files externally from our host system and simply use the Singularity image
-as the environment to execute the workflow in (*i.e.* all the software and dependencies).
+as the environment to execute the workflow in (*i.e.* all the software and
+dependencies).
 
 In your current working directory (`workshop-reproducible-research/tutorials/containers/`)
-the vital MRSA project files are already available (`Snakefile`, `config.yml`, 
-`code/header.tex` and `code/supplementary_material.Rmd`). 
+the vital MRSA project files are already available (`Snakefile`, `config.yml`,
+`code/header.tex` and `code/supplementary_material.Rmd`).
 
 Since Singularity bind mounts the current working directory we can simply
 execute the workflow and generate the output files using:
@@ -64,20 +65,20 @@ execute the workflow and generate the output files using:
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is 
-`snakemake -rp -c 1 --configfile config.yml` (as defined in the original 
-`Dockerfile`). 
+This executes the default run command, which is
+`snakemake -rp -c 1 --configfile config.yml` (as defined in the original
+`Dockerfile`).
 
 > **Note** <br>
-> In case the `singularity run` command above fails you can try to allocate 
+> In case the `singularity run` command above fails you can try to allocate
 > more RAM to it by adding `--vm-ram 2048` to the `singularity run` command.
-> This will allocate 2048 MiB of RAM which may be needed to complete the 
+> This will allocate 2048 MiB of RAM which may be needed to complete the
 > workflow.
 
-The previous step in this tutorial included running the `run_qc.sh` script, 
-so that part of the workflow has already been run and Snakemake will continue 
-from that automatically without redoing anything. Once completed you should 
-see a bunch of directories and files generated in your current working 
+The previous step in this tutorial included running the `run_qc.sh` script,
+so that part of the workflow has already been run and Snakemake will continue
+from that automatically without redoing anything. Once completed you should
+see a bunch of directories and files generated in your current working
 directory, including the `results/` directory containing the final HTML report.
 
 ## Containers at different platforms
@@ -91,11 +92,11 @@ is the only solution. You can only run Singularity images there, however, not
 *build* them...
 
 So, how do you get a Singularity image for use on Uppmax if you can't build it
-either locally or on Uppmax? While it's possible to do remote builds (via the 
-`--remote` flag), in our experience this functionality is not stable and for a 
-lot of cases it won't help. Since most researchers will want to work in private 
+either locally or on Uppmax? While it's possible to do remote builds (via the
+`--remote` flag), in our experience this functionality is not stable and for a
+lot of cases it won't help. Since most researchers will want to work in private
 Git repositories they can't supply their Conda `environment.yml` file to remote
-builds (which only works for public repositories), which means that you’ll have 
+builds (which only works for public repositories), which means that you’ll have
 to specify packages manually inside the container instead.
 
 There is, however, another solution: using Singularity inside Docker. By
