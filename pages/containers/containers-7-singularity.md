@@ -16,6 +16,11 @@ If you want to read more, here are some additional resources:
 * [Uppmax Singularity user guide](
   https://www.uppmax.uu.se/support/user-guides/singularity-user-guide/)
 
+> **Singularity and Apptainer** <br>
+> Singularity has very recently been renamed to *Apptainer*, but we have opted
+> to stick with the original name in the material for now, while the change is
+> still being adopted by the community and various documentation online.
+
 ### Converting Docker images to Singularity files
 
 Singularity, unlike Docker, stores images as single files. A Singularity
