@@ -133,23 +133,63 @@ rule concatenate_files:
 > it should read from standard input). Lastly, the output from `cat` is sent
 > to `{output}`.
 
-If you now run the workflow as before you should get "Nothing to be done",
-because no files involved in the workflow have been changed. Instead we have to
-force Snakemake to rerun the rule by using the `-R` flag. Let's try a dry-run.
-
+If you now run the workflow as before you should see:
 ```bash
-snakemake a_b.txt -r -n -R concatenate_files
+"Nothing to be done" (all requested files are present and up to date).
 ```
 
-Note that the reason for the job is now "Forced execution". You can target
-files as well as rules, so you would get the same result with `-R a_b.txt`.
+because no files involved in the workflow have been changed. But there's 
+also a warning that Snakemake has detected a change in the code used to generate 
+output files in the workflow, and is suggesting different ways to address this:
+
+```bash
+The code used to generate one or several output files has changed:
+    To inspect which output files have changes, run 'snakemake --list-code-changes'.
+    To trigger a re-run, use 'snakemake -R $(snakemake --list-code-changes)'.
+```
+
+The first suggestion is to use the `--list-code-changes` flag. This will list 
+the files for which the rule implementation has changed. Try it by running:
+
+```bash
+snakemake a_b.txt --list-code-changes
+```
+
+You should see `a_b.txt` printed to the terminal, meaning that Snakemake has 
+identified changes to the `concatenate_files` rule which produces the `a_b.txt` 
+file.
+
+The second suggestion involves triggering a re-run with the `-R` flag which 
+will force re-creation of the given file (or rule). Try it out by running:
+
+```bash
+snakemake a_b.txt -n -r -R $(snakemake a_b.txt --list-code-changes)
+```
+
+Here the file to re-create is, as we just saw, given by the 
+`$(snakemake a_b.txt --list-code-changes)` part, which is then used as a target 
+for the `snakemake a_b.txt -n -r -R` part. Enclosing the command inside `$(...)`
+is called "command substitution" and is a way to store the output of a command 
+inside a variable, here done on the fly together with the snakemake run. You 
+would have gotten the same result by first using `--list-code-changes` to get the
+file name, then the `-R` flag to target that file for re-creation (_e.g._
+`-R a_b.txt` or `-R concatenate_files`). However, using command substitution 
+saves you that extra step.
+
+There are a bunch of these `--list-xxx-changes` flags that can
+help you keep track of your workflow. You can list all options with `snakemake
+--help`. 
+
 Whenever you've made changes to a rule that will affect the output it's good
-practice to force re-execution like this. Still, there can be situations where
-you don't know if any rules have been changed. Maybe several people collaborate
-on the same workflow but are using it on different files, for example. Snakemake
-keeps track of how all files were generated (when, by which rule, which version
-of the rule, and by which commands). You can export this information to
-a tab-delimited file like this:
+practice to force re-execution like this. As of version 7.0.0 (2022-02-23), 
+Snakemake warns you if there have been changes to the workflow, as we just saw 
+above. This is a very helpful feature, especially in cases where several people 
+collaborate on the same workflow but are using it on different files, for 
+example. 
+
+You can also export information on how all files were generated (when, by which 
+rule, which version of the rule, and by which commands) to a tab-delimited file 
+like this:
 
 ```bash
 snakemake a_b.txt -c 1 -D > summary.tsv
@@ -214,32 +254,7 @@ changes. From a reproducibility perspective maybe it would be better if this
 was done automatically, but it would be very computationally expensive and
 cumbersome if you had to rerun your whole workflow every time you fix
 a spelling mistake in a comment somewhere. So, it's up to us to look at the
-summary table and rerun things as needed. You can get a list of the files for
-which the rule implementation has changed using the `--list-code-changes` flag:
-
-```bash
-snakemake a_b.txt --list-code-changes
-```
-
-You should see the `a_b.txt` file printed to the terminal, meaning that Snakemake
-has identified changes to the implementation of the `concatenate_files` rule
-which produces the `a_b.txt` file. Note that only changes to the `shell`, `run`,
-`notebook` or `script` directives are tracked by `--list-code-changes`.
-
-We can then force Snakemake to regenerate the files that depend on the updated
-rules with the `-R` flag:
-
-```bash
-snakemake a_b.txt -c 1 -R $(snakemake a_b.txt --list-code-changes)
-```
-
-Here the `$(snakemake a_b.txt --list-code-changes)` part outputs the files that
-are then used as targets for the `snakemake a_b.txt -c 1 -R` part.
-
-Clever, right? There are a bunch of these `--list-xxx-changes` flags that can
-help you keep track of your workflow. You can list all options with `snakemake
---help`. Run with the `-D` flag again to make sure that the summary table now
-looks like expected.
+summary table and rerun things as needed.
 
 You might wonder where Snakemake keeps track of all these things? It stores all
 information in a hidden subdirectory called `.snakemake`. This is convenient
