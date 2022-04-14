@@ -37,9 +37,10 @@ interesting output.
   probably the most important log to save.
 
 Now add a log file to some or all of the rules above. A good place to save them
-to would be `results/logs/rule_name/`. Be sure to include any wildcards used in
-the rule in the job name as well, *e.g.* `{some_wildcard}.log`, so that you
-don't end up with identical names for different samples.
+to would be `results/logs/rule_name/`. In order to avoid that multiple jobs 
+write to the same files Snakemake requires that all output and log files contain 
+the same wildcards, so be sure to include any wildcards used in the rule in the 
+log name as well, *e.g.* `{some_wildcard}.log`. 
 
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
