@@ -40,11 +40,12 @@ solution is probably to make three parameters to hold these values, say
 a somewhat more complex but very useful alternative. We want to construct
 a dictionary where something that will be a wildcard in the workflow is the key
 and the troublesome name is the value. An example might make this clearer (this
-is also in `config.yml`). This is a nested dictionary where "genomes" is a key
-with another dictionary as value, which in turn has genome ids as keys and so
-on. The idea is that we have a wildcard in the workflow that takes the id of
-a genome as value (either "NCTC8325" or "ST398" in this case). The fasta and
-gff3 paths can then be retrieved based on the value of the wildcard.
+is also in `config.yml` in the finished version of the workflow under 
+`tutorials/git/`). This is a nested dictionary where "genomes" is a keywith 
+another dictionary as value, which in turn has genome ids as keys and so on. The
+idea is that we have a wildcard in the workflow that takes the id of a genome as
+value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can 
+then be retrieved based on the value of the wildcard.
 
 ```yaml
 genomes:
@@ -76,13 +77,14 @@ rule get_genome_fasta:
 ```
 
 We don't want the hardcoded genome id `NCTC8325`, so replace that with a wildcard, say
-`{genome_id}`. In general, we want the rules as far downstream as possible in
-the workflow to be the ones that determine what the wildcards should resolve
-to. In our case this is `align_to_genome`. You can think of it like the rule
-that really "needs" the file asks for it, and then it's up to Snakemake to
-determine how it can use all the available rules to generate it. Here we say "I
-need this genome index to align my sample to" and it's up to Snakemake to
-determine how to download and build the index.
+`{genome_id}` (remember to add the wildcard to the `log:` directive as well). In
+general, we want the rules as far downstream as possible in the workflow to be 
+the ones that determine what the wildcards should resolve to. In our case this 
+is `align_to_genome`. You can think of it like the rule that really "needs" the 
+file asks for it, and then it's up to Snakemake to determine how it can use all 
+the available rules to generate it. Here we say "I need this genome index to 
+align my sample to" and it's up to Snakemake to determine how to download and 
+build the index.
 
 We're almost done, but there's one more thing we need to do to make the 
 `align_to_genome` rule work properly with the `{genome_id}` wildcard. We need to
@@ -99,7 +101,7 @@ path for the key `wildcards.genome_id`.
 
 ```python
 def get_fasta_path(wildcards):
-    return config["genomes"][wildcards.genome_id]["fasta"
+    return config["genomes"][wildcards.genome_id]["fasta"]
 
 rule get_genome_fasta:
     """
