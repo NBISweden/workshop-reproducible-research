@@ -136,20 +136,24 @@ rule align_to_genome:
     """
     input:
         fastq = "data/raw_internal/{sample_id}.fastq.gz",
-        index = expand("intermediate/{genome_id}.{n}.bt2", genome_id = config["genome_id"], n = ["1","2","3","4"]),
-        index_rev = expand("intermediate/{genome_id}.rev.{n}.bt2", genome_id = config["genome_id"], n = ["1","2"])
+        index = expand("intermediate/{genome_id}.{substr}.bt2",
+            genome_id=config["genome_id"],
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"])
     output:
         # Here the sample_id wildcard is constrained with \w+ to match only
         # 'word characters', i.e. letters, numbers and underscore
         temp("intermediate/{sample_id,\w+}.bam")
     log:
-        expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log", genome_id = config["genome_id"])
+        expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log",
+            genome_id = config["genome_id"])
     version: "1.0"
-    run:
+    shell:
+        """
         # This gives the base name for the genome index, i.e. "intermediate/some_id"
         # rather than "intermediate/some_id.*.bt2"
-        indexBase = input.index[0].replace('.1.bt2','')
-        shell("bowtie2 -x " + indexBase + " -U {input.fastq} > {output} 2> {log}")
+        indexBase=$(echo {input.index[0]} | sed 's/.1.bt2//g')
+        bowtie2 -x $indexBase -U {input.fastq} > {output} 2> {log}
+        """
 
 rule sort_bam:
     """
