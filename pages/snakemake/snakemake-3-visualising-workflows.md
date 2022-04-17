@@ -107,7 +107,7 @@ changed, only at the timestamp for when they were last modified.
 We've seen that Snakemake keeps track of if files in the workflow have changed,
 and automatically makes sure that any results depending on such files are
 regenerated. What about if the rules themselves are changed? It turns out that
-there are multiple ways to do this, but the most straightforward is to manually
+there are multiple ways to deal with this, but the most straightforward is to manually
 specify that you want to rerun a rule (and thereby also all the steps between
 that rule and your target). Let's say that we want to modify the rule
 `concatenate_files` to also include which files were concatenated.
