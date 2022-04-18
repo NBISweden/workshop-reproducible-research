@@ -8,17 +8,15 @@ rule index_genome:
     input:
         "data/raw_external/NCTC8325.fa.gz"
     output:
-        "intermediate/NCTC8325.1.bt2",
-        "intermediate/NCTC8325.2.bt2",
-        "intermediate/NCTC8325.3.bt2",
-        "intermediate/NCTC8325.4.bt2",
-        "intermediate/NCTC8325.rev.1.bt2",
-        "intermediate/NCTC8325.rev.2.bt2"
+        index = expand("intermediate/NCTC8325.{substr}.bt2",
+           substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+    log:
+        "results/logs/index_genome/NCTC8325.log"
     shell:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
         gunzip -c {input} > tempfile
-        bowtie2-build tempfile intermediate/NCTC8325
+        bowtie2-build tempfile intermediate/NCTC8325 >{log}
 
         # Remove the temporary file
         rm tempfile
