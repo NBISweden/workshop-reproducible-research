@@ -18,8 +18,7 @@ analysis workflow, we need the config file to:
 > in a tip above).
 
 The first point is straightforward; rather than using `SAMPLES = ["..."]` in
-the Snakefile we define it as a parameter in `config.yml`. Do a dry-run
-afterwards to make sure that everything works as expected. You can either add
+the Snakefile we define it as a parameter in `config.yml`. You can either add
 it as a list similar to the way it was expressed before by adding
  `SAMPLES: ["..."]` to `config.yml`, or you can use this yaml notation:
 
@@ -29,6 +28,16 @@ sample_ids:
 - SRR935091
 - SRR935092
 ```
+
+You also have to change the workflow to reference `config["sample_ids"]` (if 
+using the latter example) instead of `SAMPLES`, as in:
+
+```bash
+expand("intermediate/{sample_id}_fastqc.zip",
+            sample_id = config["sample_ids"])
+```
+
+Do a dry-run afterwards to make sure that everything works as expected.
 
 The second point is trickier. Writing workflows in Snakemake is quite
 straightforward when the logic of the workflow is reflected in the file names,
@@ -41,7 +50,7 @@ a somewhat more complex but very useful alternative. We want to construct
 a dictionary where something that will be a wildcard in the workflow is the key
 and the troublesome name is the value. An example might make this clearer (this
 is also in `config.yml` in the finished version of the workflow under 
-`tutorials/git/`). This is a nested dictionary where "genomes" is a keywith 
+`tutorials/git/`). This is a nested dictionary where "genomes" is a key with 
 another dictionary as value, which in turn has genome ids as keys and so on. The
 idea is that we have a wildcard in the workflow that takes the id of a genome as
 value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can 
