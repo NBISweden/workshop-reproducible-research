@@ -117,8 +117,7 @@ rule index_genome:
     input:
         "data/raw_external/{genome_id}.fa.gz"
     output:
-        expand("intermediate/{{genome_id}}.{n}.bt2", n = ["1","2","3","4"]),
-        expand("intermediate/{{genome_id}}.rev.{n}.bt2", n = ["1","2"])
+        expand("intermediate/{{genome_id}}.{n}.bt2", n = ["1","2","3","4","rev.1","rev.2"])
     log:
         "results/logs/index_genome/{genome_id}.log"
     version: "1.0"
@@ -179,10 +178,12 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv",
         "results/tables/counts.tsv.summary"
+    log:
+        "results/logs/generate_count_table.log"
     version: "1.0"
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
         """
 
 rule make_supplementary:
@@ -196,6 +197,8 @@ rule make_supplementary:
         rulegraph = "results/rulegraph.png"
     output:
         "results/supplementary.html"
+    log:
+        "results/logs/make_supplementary.log"
     params:
         SRR_IDs = config["sample_ids"],
         GSM_IDs = config["sample_ids_geo"],
@@ -212,7 +215,7 @@ rule make_supplementary:
                               SRR_IDs="{params.SRR_IDs}", \
                               GSM_IDs="{params.GSM_IDs}", \
                               GSE_ID="{params.GSE_ID}"))' \
-        | R --vanilla
+        | R --vanilla > {log} 2>&1
         """
 
 rule generate_rulegraph:
