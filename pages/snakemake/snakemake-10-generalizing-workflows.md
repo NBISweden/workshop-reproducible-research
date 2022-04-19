@@ -85,28 +85,36 @@ rule get_genome_fasta:
         """
 ```
 
-We don't want the hardcoded genome id `NCTC8325`, so replace that with a wildcard, say
-`{genome_id}` (remember to add the wildcard to the `log:` directive as well). In
-general, we want the rules as far downstream as possible in the workflow to be 
-the ones that determine what the wildcards should resolve to. In our case this 
-is `align_to_genome`. You can think of it like the rule that really "needs" the 
-file asks for it, and then it's up to Snakemake to determine how it can use all 
-the available rules to generate it. Here we say "I need this genome index to 
-align my sample to" and it's up to Snakemake to determine how to download and 
-build the index.
+We don't want the hardcoded genome id `NCTC8325`, so replace that with a 
+wildcard, say `{genome_id}` (remember to add the wildcard to the `log:` 
+directive as well). 
 
-We're almost done, but there's one more thing we need to do to make the 
-`align_to_genome` rule work properly with the `{genome_id}` wildcard. We need to
-supply the remote path to the fasta file for a given genome id. Because we've 
-added this information to the config file we just need to pass it to the rule in
-some way.
+Also change in `index_genome` to use a wildcard rather than a hardcoded genome
+id. Here you will run into a complication if you have followed the previous
+instructions and use the `expand()` expression. We want the list to expand to
+`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
+*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the
+`genome_id` wildcard from being expanded we have to "mask" it with double curly
+brackets: `{{genome_id}}`. In addition, we need to replace the hardcoded 
+`intermediate/NCTC8325` in the shell directive of the rule with the genome id 
+wildcard. Inside the shell directive the wildcard object is accessed with this 
+syntax: `{wildcards.genome_id}`, so the bowtie2-build command should be:
 
-Take a look below at the `params` section. Here we have defined a function to 
-return the parameter `fasta_path`. What happens is that the function takes 
-the `wildcards` object as its only argument. This object allows access to the 
-wildcards values via attributes (here `wildcards.genome_id`). The function will 
-then look in the nested `config` dictionary and return the value of the fasta 
-path for the key `wildcards.genome_id`.
+```bash
+bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+```
+
+We now need to supply the remote paths to the fasta and gff files for a given 
+genome id. Because we've added this information to the config file we just need 
+to pass it to the rule in some way.
+
+Take a look at the code and `get_genome_fasta` rule below. Here we have defined 
+a function called `get_fasta_path` which takes the `wildcards` object as its 
+only argument. This object allows access to the wildcards values via attributes 
+(here `wildcards.genome_id`). The function will then look in the nested `config` 
+dictionary and return the value of the fasta path for the key 
+`wildcards.genome_id`. In the rule this path is stored in the `fasta_path` param
+value and is made available to `wget` in the shell directive. 
 
 ```python
 def get_fasta_path(wildcards):
@@ -135,22 +143,18 @@ complain, even at the dry-run stage.
 
 Now change the `get_genome_gff3` rule in a similar manner.
 
-Also change in `index_genome` to use a wildcard rather than a hardcoded genome
-id. Here you will run into a complication if you have followed the previous
-instructions and use the `expand()` expression. We want the list to expand to
-`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
-*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the
-`genome_id` wildcard from being expanded we have to "mask" it with double curly
-brackets: `{{genome_id}}`.
-
 The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can now 
 download and index *any genome* as long as we provide valid links in the config
-file. However, we need to define somewhere which genome id we actually want to use
-when running the workflow. This needs to be done both in `align_to_genome` and 
+file. 
+
+However, we need to define somewhere which genome id we actually want to use
+when running the workflow. This needs to be done both in `align_to_genome` and
 `generate_count_table`. Do this by introducing a parameter in `config.yml` 
-called `"genome_id"`. See below for an example for `align_to_genome`. Here the 
-`substr` wildcard gets expanded from a list while `genome_id` gets expanded from 
-the config file.
+called `"genome_id"` (you can set it to either `NCTC8325` or `ST398`). 
+
+Now we can resolve the `genome_id` wildcard from the config. See below for an 
+example for `align_to_genome`. Here the `substr` wildcard gets expanded from a 
+list while `genome_id` gets expanded from the config file.
 
 ```python
 input:
@@ -158,6 +162,17 @@ input:
            genome_id = config["genome_id"],
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
+
+Also change the hardcoded genome id in the `generate_count_table` input in a 
+similar manner.
+
+In general, we want the rules as far downstream as possible in the workflow to 
+be the ones that determine what the wildcards should resolve to. In our case 
+this is `align_to_genome` and `generate_count_table`. You can think of it like 
+the rule that really "needs" the file asks for it, and then it's up to Snakemake
+to determine how it can use all the available rules to generate it. Here the 
+`align_to_genome` rule says "I need this genome index to align my sample to" and
+then it's up to Snakemake to determine how to download and build the index.
 
 One last thing is to change the hardcoded `NCTC8325` in the `shell:` directive
 of `align_to_genome`. Because bowtie expects the index name without the `*.bt2` 
