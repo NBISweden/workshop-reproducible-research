@@ -46,33 +46,19 @@ rule get_SRA_by_accession:
 
 </details>
 
-Now run through the workflow. Remember that Snakemake doesn't automatically 
-rerun rules after parameter changes so you have to trigger the rerun manually 
-somehow. You can either do it by targeting the rule directly with 
-`-R get_SRA_by_accession`, but since we changed the how the `get_SRA_by_accession` 
-rule is executed (by adding `{params.max_reads}` to the `shell:` directive) we 
-can also use the flag `--list-code-changes` like we did in 
-[part 3](snakemake-3-visualising-workflows) of this tutorial to list the output
-files for which the rule implementation has changed:
+Now run through the workflow. Again you should get a warning about changes to 
+the workflow, this time both to the code (inside the `shell:` directive) and 
+to the parameters. Since Snakemake doesn't automatically rerun rules after these 
+types of changes you have to trigger the rerun manually somehow. As you may 
+remember from [part 3](snakemake-3-visualising-workflows) of this tutorial, 
+you can either do that by targeting the rule directly with `-R get_SRA_by_accession` 
+or by using command substitution on the fly with `-R $(snakemake -s snakefile_mrsa.smk --list-code-changes)`.
 
 ```bash
 snakemake -s snakefile_mrsa.smk -c 1 -R $(snakemake -s snakefile_mrsa.smk --list-code-changes)
 ```
 
-There's also another `--list-...` flag we could use here. Take a look at 
-available flags with `snakemake --help`, can you figure out which one?
-
-<details>
-<summary> Click to show </summary>
-
-```bash
-snakemake -s snakefile_mrsa.smk -c 1 -R $(snakemake -s snakefile_mrsa.smk --list-params-changes)
-```
-
-Because we added a parameter `max_reads` we could also use the `--list-params-changes` 
-flag to trigger a rerun.
-
-</details>
+Can you spot the other `--list-...` flag we could use here?
 
 The parameter values we set in the `params` section don't have to be static,
 they can be any Python expression. In particular, Snakemake provides a global
@@ -120,7 +106,8 @@ max_reads: 25000
 
 If we now run Snakemake with `--configfile config.yml`, it will parse this file
 to form the `config` dictionary. If you want to overwrite a parameter value,
-*e.g.* for testing, you can still use the `--config` flag.
+*e.g.* for testing, you can still use the `--config KEY=VALUE` flag, as in 
+`--config max_reads=1000`.
 
 > **Tip** <br>
 > Rather than supplying the config file from the command line you could also

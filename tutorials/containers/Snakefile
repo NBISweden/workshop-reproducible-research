@@ -117,8 +117,7 @@ rule index_genome:
     input:
         "data/raw_external/{genome_id}.fa.gz"
     output:
-        expand("intermediate/{{genome_id}}.{n}.bt2", n = ["1","2","3","4"]),
-        expand("intermediate/{{genome_id}}.rev.{n}.bt2", n = ["1","2"])
+        expand("intermediate/{{genome_id}}.{n}.bt2", n = ["1","2","3","4","rev.1","rev.2"])
     log:
         "results/logs/index_genome/{genome_id}.log"
     version: "1.0"
@@ -136,20 +135,24 @@ rule align_to_genome:
     """
     input:
         fastq = "data/raw_internal/{sample_id}.fastq.gz",
-        index = expand("intermediate/{genome_id}.{n}.bt2", genome_id = config["genome_id"], n = ["1","2","3","4"]),
-        index_rev = expand("intermediate/{genome_id}.rev.{n}.bt2", genome_id = config["genome_id"], n = ["1","2"])
+        index = expand("intermediate/{genome_id}.{substr}.bt2",
+            genome_id=config["genome_id"],
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"])
     output:
         # Here the sample_id wildcard is constrained with \w+ to match only
         # 'word characters', i.e. letters, numbers and underscore
         temp("intermediate/{sample_id,\w+}.bam")
     log:
-        expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log", genome_id = config["genome_id"])
+        expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log",
+            genome_id = config["genome_id"])
     version: "1.0"
-    run:
+    shell:
+        """
         # This gives the base name for the genome index, i.e. "intermediate/some_id"
         # rather than "intermediate/some_id.*.bt2"
-        indexBase = input.index[0].replace('.1.bt2','')
-        shell("bowtie2 -x " + indexBase + " -U {input.fastq} > {output} 2> {log}")
+        indexBase=$(echo {input.index[0]} | sed 's/.1.bt2//g')
+        bowtie2 -x $indexBase -U {input.fastq} > {output} 2> {log}
+        """
 
 rule sort_bam:
     """
@@ -175,10 +178,12 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv",
         "results/tables/counts.tsv.summary"
+    log:
+        "results/logs/generate_count_table.log"
     version: "1.0"
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
         """
 
 rule make_supplementary:
@@ -192,9 +197,12 @@ rule make_supplementary:
         rulegraph = "results/rulegraph.png"
     output:
         "results/supplementary.html"
+    log:
+        "results/logs/make_supplementary.log"
     params:
         SRR_IDs = config["sample_ids"],
-        GSM_IDs = config["sample_ids_geo"]
+        GSM_IDs = config["sample_ids_geo"],
+        GSE_ID = config["series_id_geo"]
     shell:
         """
         echo 'rmarkdown::render("code/supplementary_material.Rmd", \
@@ -205,8 +213,9 @@ rule make_supplementary:
                               summary_file="{input.summary_file}", \
                               rulegraph_file="{input.rulegraph}", \
                               SRR_IDs="{params.SRR_IDs}", \
-                              GSM_IDs="{params.GSM_IDs}"))' \
-        | R --vanilla
+                              GSM_IDs="{params.GSM_IDs}", \
+                              GSE_ID="{params.GSE_ID}"))' \
+        | R --vanilla > {log} 2>&1
         """
 
 rule generate_rulegraph:

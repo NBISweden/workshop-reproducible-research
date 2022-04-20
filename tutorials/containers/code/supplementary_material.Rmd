@@ -8,6 +8,7 @@ params:
   rulegraph_file: ""
   SRR_IDs: ""
   GSM_IDs: ""
+  GSE_ID: ""
 ---
 
 ```{r Setup, include = FALSE}
@@ -30,6 +31,7 @@ summary_file <- params$summary_file
 rulegraph_file <- params$rulegraph_file
 SRR_IDs <- unlist(strsplit(params$SRR_IDs, " "))
 GSM_IDs <- unlist(strsplit(params$GSM_IDs, " "))
+GSE_ID <- params$GSE_ID
 ```
 
 ```{r Read data, include = FALSE}
@@ -50,8 +52,7 @@ colnames(counts_summary) <- gsub(".*(SRR[0-9]+)\\..*", "\\1",
                                  colnames(counts_summary))
 
 # Read metadata
-gse <- Meta(getGEO(GSM_IDs[1]))$series_id
-gse <- getGEO(gse, GSEMatrix = TRUE)
+gse <- getGEO(GSE_ID, GSEMatrix = TRUE)
 gse <- as.data.frame(gse[[1]])
 gsm2srr <- data.frame(geo_accession = GSM_IDs, SRR = SRR_IDs)
 meta <- merge(x = gse, y = gsm2srr,

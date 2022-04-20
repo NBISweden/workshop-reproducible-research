@@ -34,21 +34,21 @@ like this:
 
 ```python
 input:
-    "data/raw_internal/{sample_id}.fastq.gz",
-    [f"intermediate/NCTC8325.{my_substr}.bt2" for
-        my_substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
+    fastq = "data/raw_internal/{sample_id}.fastq.gz",
+    index = [f"intermediate/NCTC8325.{substr}.bt2" for
+        substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
 ```
 
 This will take the elements of the list of substrings one by one, and insert
-that element in the place of `{my_substr}`. Since this type of aggregating
+that element in the place of `{substr}`. Since this type of aggregating
 rules are quite common, Snakemake also has a more compact way of achieving the
 same thing.
 
 ```python
 input:
-    "data/raw_internal/{sample_id}.fastq.gz",
-    expand("intermediate/NCTC8325.{my_substr}.bt2",
-           my_substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+    fastq = "data/raw_internal/{sample_id}.fastq.gz",
+    index = expand("intermediate/NCTC8325.{substr}.bt2",
+           substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
 Now change in the rules `index_genome` and `align_to_genome` to use the

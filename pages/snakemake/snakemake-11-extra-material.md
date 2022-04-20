@@ -33,7 +33,7 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     input:
-        "data/raw_internal/{sra_id}.fastq.gz",
+        "data/raw_internal/{sample_id}.fastq.gz",
         "intermediate/NCTC8325.1.bt2",
         "intermediate/NCTC8325.2.bt2",
         "intermediate/NCTC8325.3.bt2",
@@ -41,7 +41,7 @@ rule align_to_genome:
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
     output:
-        "intermediate/{sra_id,\w+}.bam"
+        "intermediate/{sample_id,\w+}.bam"
     container: "docker://quay.io/biocontainers/bowtie2:2.3.4.1--py35h2d50403_1"
     shell:
         """
