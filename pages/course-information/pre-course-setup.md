@@ -222,14 +222,6 @@ ensure that the Conda steps were successful. Once you've successfully completed
 the above steps you can deactivate your Conda environment using `conda deactivate`
 and continue with the setup for the other tools.
 
-> **Note** <br>
-> If you look inside `snakemake/environment.yml` you will see that we used the
-> package `snakemake-minimal`. This is a slimmed down version that lack some
-> features, in particular relating to cloud computing and interacting with
-> remote providers such as Google Drive or Dropbox. This was done to speed up
-> the installation process. Use the normal `snakemake` package if you need
-> those features.
-
 ## Installing Nextflow
 
 We'll use Conda to install Nextflow as well: navigate to
