@@ -123,6 +123,7 @@ directory on GitHub.
 * Erik Fasterius (course responsible)
 * Verena Kutschera (teacher)
 * Tomas Larsson (teacher)
+* Estelle Proux-Wéra (teacher)
 
 # Contact
 
