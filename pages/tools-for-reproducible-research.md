@@ -98,13 +98,9 @@ You can find the course schedule at [this page](https://uppsala.instructure.com/
 
 # Location
 
-It is not yet decided whether this course round will be given on-site or online,
-and will be decided later as the Covid-19 situation changes.
-
-<!-- This course round is given using [Zoom](https://zoom.us), so there will be no -->
-<!-- need for travel or accommodations at this time. you can find the link to the -->
-<!-- course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics) -->
-<!-- section. -->
+This course round is given using [Zoom](https://zoom.us). You can find the link to the
+course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics)
+section.
 
 # Course material
 
