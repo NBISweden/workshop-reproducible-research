@@ -377,16 +377,15 @@ verify that your installation was successful!
 
 ### macOS
 
-Please install Singularity by downloading and installing [this DMG file](http://repo.sylabs.io/desktop/singularity-desktop-0.0.1alpha.dmg) (Alpha Preview version).
+Please follow the Mac-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
 
 ### Linux
 
-Follow the instructions [here](https://sylabs.io/guides/3.4/user-guide/installation.html#distribution-packages-of-singularity).
+Follow the Linux-specific instruction at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-linux).
 
 ### Windows
 
-Installing on Windows requires running Singularity through a Vagrant Box, which
-may be tricky. See [instructions here](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac).
+Please follow the Windows-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
 
 > **Notes** <br>
 > Last time we checked, the software "Vagrant Manager" was not available for download
