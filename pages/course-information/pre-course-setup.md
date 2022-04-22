@@ -375,6 +375,20 @@ Installation of Singularity depends, again, on your operating system. When you
 have finished, regardless of your OS, please type `singularity --version` to
 verify that your installation was successful!
 
+Both Mac and Windows utilise Vagrant, for which the information in the box
+below may help you.
+
+> **Vagrant and VirtualBox** <br>
+> The Vagrant VirtualBox with Singularity can be started like this:
+>
+> - Move into the folder `vm-singularity` where you installed Singularity.
+> - Type `vagrant up` and once this has finished, verify that the Vagrant
+>   VirtualBox is running with `vagrant status`.
+> - Now, type `vagrant ssh`, which will open the Vagrant VirtualBox.
+> - The first time you open the Vagrant VirtualBox like this, you will have to
+>   download the course material to obtain a copy for the Singularity tutorial
+>   within the Vagrant VirtualBox by typing `git clone https://github.com/NBISweden/workshop-reproducible-research.git`.
+
 ### macOS
 
 Please follow the Mac-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
@@ -388,22 +402,9 @@ Follow the Linux-specific instruction at the [Singularity website](https://sylab
 Please follow the Windows-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
 
 > **Notes** <br>
-> Last time we checked, the software "Vagrant Manager" was not available for download
-> but the installation of Singularity was successful even without it.
+> Last time we checked, the software "Vagrant Manager" was not available for
+> download but the installation of Singularity was successful even without it.
 >
-> Version 6.1.28 of "Virtual box for Windows" may not work, please install version 6.1.26
-> from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1) in case you encounter
-> problems when trying to start the Vagrant VirtualBox.
-
-The Vagrant VirtualBox with Singularity can be started on your Windows 10 PC
-like this:
-
-* Open the Git Bash and move with `cd` into the folder `vm-singularity` where
-  you installed Singularity
-* Type `vagrant up` and once this has finished, verify that the Vagrant
-  VirtualBox is running with `vagrant status`
-* Now, type `vagrant ssh`, which will open the Vagrant VirtualBox
-* The first time you open the Vagrant VirtualBox like this, you will have to
-  download the course material to obtain a copy for the Singularity tutorial
-  within the Vagrant VirtualBox by typing
-  `git clone https://github.com/NBISweden/workshop-reproducible-research.git`
+> Version 6.1.28 of "Virtual box for Windows" may not work, please install
+> version 6.1.26 from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1)
+> in case you encounter problems when trying to start the Vagrant VirtualBox.
