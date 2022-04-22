@@ -22,8 +22,8 @@ dependencies:
   - r-stringi=1.7.6
   - r-pheatmap=1.0.12
   - r-rmarkdown=2.13
-  - r-r.utils-2.11.0
-  - bioconductor-rtracklayer=1.46.0
-  - bioconductor-geoquery=2.54.0
+  - r-r.utils=2.11.0
+  - bioconductor-rtracklayer=1.54.0
+  - bioconductor-geoquery=2.62.0
   - xorg-libxrender
   - xorg-libxpm
