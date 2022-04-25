@@ -18,6 +18,11 @@ git branch
 
 This tells us that there is only the `main` branch at the moment.
 
+> **Main and Master** <br>
+> If your branch is called `master` instead of `main` that's perfectly fine as
+> well, but do check out the Git section of the [pre-course setup](pre-course-setup)
+> for more details about the choice of default branch names.
+
 * Let's make a new branch:
 
 ```bash
