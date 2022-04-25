@@ -44,8 +44,7 @@ set of parameters on the sequence alignment step of the case study project.
   looks like this (add the `--very-sensitive-local` option):
 
 ```bash
-shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} \
-    > {output} 2> {log}")
+bowtie2 --very-sensitive-local -x $indexBase -U {input.fastq} > {output} 2> {log}
 ```
 
 * Add and commit the change!
