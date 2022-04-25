@@ -27,20 +27,6 @@ class: center, middle
 
 ---
 
-# Putting it all together
-
-
-1. .green[Lecture]<br>
-   Summary of the week & how to put all the tools and procedures together
-
-2. .green[Q&A]<br>
-   How to implement these procedures on a day-to-day basis
-
-3. .green[Project]<br>
-   Time for you to apply the tools on one of your own research projects
-
----
-
 class: center, middle
 
 Take control of your research project <br>
@@ -83,7 +69,7 @@ By working reproducibly you will also make your life a lot easier!
 
 --
 
-* Many software support the “project way of working”, e.g. .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
+* Many software support the “project way of working”, *e.g.* .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
 
 --
 
@@ -93,7 +79,7 @@ By working reproducibly you will also make your life a lot easier!
 
 # Everything can be a project
 
-Project directory templates, e.g. NBIS project template:
+Project directory templates, *e.g.* NBIS project template:
 
 .center[<img src="NBISweden_project_template.png" style="width:60%;"/>]
 
@@ -130,6 +116,7 @@ Project directory templates, e.g. NBIS project template:
 --
 
 * Avoid generating files .green[interactively] or doing things .green[by hand]
+
   - there is no way to track how they were made
 
 --
@@ -140,62 +127,13 @@ Project directory templates, e.g. NBIS project template:
 
 --
 
-* Keep the .green[parameters] separate (e.g. at top of file or in a separate configuration file)
-
----
-
-class: center, middle
-
-# Discuss in your groups
-
-Which of these advices are most relevant to your work?
-
-Are you going to change your way of working? If yes, how?
-
----
-
-# Options for reproducing a research project
-
-<img src="my_project_repo.png" style="width:75%;"/>
-
-.small[www.bitbucket.org]
-
----
-
-# Options for reproducing a research project
-
-<img src="my_project_repo_2.png" style="width:75%;"/>
-
----
-
-# Options for reproducing a research project
-
-<img src="my_project_repo_2.png" style="width:75%;"/>
-
-
-* .green[Git] clone and run code or workflow
-
---
-
-* .green[Git] clone, create .green[Conda] env, and run code or workflow
-
---
-
-* .green[Git] clone, .green[Docker] build, and run code or workflow in container
-
---
-
-* .green[Docker] pull (from online repository) and run code or workflow in container
+* Keep the .green[parameters] separate (*e.g.* at top of file or in a separate configuration file)
 
 ---
 
 # What is reasonable for your project?
 
-.pull-left[<img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/>]
-
----
-
-# What is reasonable for your project?
+--
 
 .pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
 
@@ -234,7 +172,7 @@ Take another step:
 Use .green[Git] for version controlling and collaboration:
 * Create one .green[Git] repository per project
 * Track your changes with .green[Git]
-* Publish your code along with your results on <a href="https://github.com" .green[GitHub] </a> or <a href="https://bitbucket.org" .green[BitBucket] </a>
+* Publish your code along with your results on *e.g.* <a href="https://github.com" .green[GitHub] </a>
 
 ]
 
@@ -282,20 +220,9 @@ Manage your depencencies:
 .pull-right[
 
 Completely recreate the compute system:
-* Consider packaging your project in a .green[Docker] or .green[Singularity] container
+* Consider packaging your project inside a or together with a .green[Docker] or .green[Singularity] container
 
 ]
-
----
-
-class: center, middle
-
-# Discuss in your groups
-
-Which of the suggested ambition levels seems most reasonable for your work?
-
-Are you going to use one of the suggested combinations of tools in your research? 
-Or are you planning to use a different combination?
 
 ---
 
@@ -309,13 +236,15 @@ Or are you planning to use a different combination?
 * **Mercurial** – Distributed model just like Git, close to sourceforge.
 * **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
 
---
+---
+
+# Alternatives
 
 .green[Environment / package managers]
 
 * **Conda** – General purpose environment and package manager. Community-hosted collections of tools at bioconda or conda-forge.
 * **Pip** – Package manager for Python, has a large repository at pypi.
-* **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with e.g. update notifications better.
+* **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with *e.g.* update notifications better.
 * **Virtualenv** – Environment manager used to set up semi-isolated python environments.
 
 ---
@@ -368,10 +297,3 @@ Any questions related to reproducible research tools and concepts? Talk to an NB
 * Online (.green[zoom])
 * Every .green[Tuesday, 14.00-15.00] (except public holidays)
 * Check .green[www.nbis.se/events] for zoom link and more info
-
----
-
-class: center, middle
-
-# Q&A: How to implement these procedures on a day-to-day basis
-
