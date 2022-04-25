@@ -2,13 +2,13 @@ One of the most useful features of Git is called *branching*. Branching allows
 you to diverge from the main line of work and edit or update your code and
 files (*e.g.* to test out a new analysis or some experimental feature) without
 affecting your main work. If the work you did in the branch turns out to be
-useful you can merge that back into your `main` branch. On the other hand, if the
-work didn't turn out as planned, you can simply delete the branch and continue
-where you left off in your main line of work. Another use case for branching is
-when you are working in a project with multiple people. Branching can be a way
-of compartmentalizing your team's work on different parts of the project and
-enables merging back into the `main` branch in a controlled fashion; we will
-learn more about this in the section about working remotely.
+useful you can merge that back into your `main` branch. On the other hand, if
+the work didn't turn out as planned, you can simply delete the branch and
+continue where you left off in your main line of work. Another use case for
+branching is when you are working in a project with multiple people. Branching
+can be a way of compartmentalizing your team's work on different parts of the
+project and enables merging back into the `main` branch in a controlled
+fashion; we will learn more about this in the section about working remotely.
 
 * Let's start trying out branching! We can see the current branch by running:
 
@@ -63,8 +63,8 @@ You can use the `diff` command for this:
 git diff main
 ```
 
-This shows the difference between the active branch (`test_alignment`) and `main`
-on a line-per-line basis. Do you see which lines have changed between
+This shows the difference between the active branch (`test_alignment`) and
+`main` on a line-per-line basis. Do you see which lines have changed between
 `test_alignment` and `main` branches?
 
 > **Tip** <br>

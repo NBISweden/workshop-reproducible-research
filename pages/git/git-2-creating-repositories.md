@@ -56,7 +56,7 @@ are files in the directory that are not version tracked by Git.
 > [introduction to the tutorials](introduction). The details of what
 > these files do are described in their respective sessions later in the
 > course, but we provide a brief overview here:
-> 
+>
 > - The `environment.yml` file contains the Conda environment with all the
 >   software used in the analysis (see the [Conda tutorial](conda-1-introduction)).
 > - The `Snakefile` and `config.yml` are both used to define the Snakemake
