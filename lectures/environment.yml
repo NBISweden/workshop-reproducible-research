@@ -19,6 +19,7 @@ dependencies:
     - seaborn=0.10
     - rpy2=3.1
     - pyppeteer=0.2.2
+    - jinja2<=3.0.3
 
     # R and Xaringan
     - phantomjs=2.1.1
