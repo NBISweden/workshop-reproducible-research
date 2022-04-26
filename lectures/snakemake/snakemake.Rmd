@@ -1,5 +1,5 @@
 ---
-title: "Managing your data"
+title: "Snakemake workflow manager"
 subtitle: "Tools for Reproducible Research NBIS course"
 output:
   xaringan::moon_reader:
@@ -233,6 +233,7 @@ than downstream files, so it reruns the necessary rules.
 <img src="dag1.png", width=100%>
 
 `$ touch intermediate/NCTC8325.1.bt2`
+
 `$ snakemake supplementary.pdf`
 
 ]
