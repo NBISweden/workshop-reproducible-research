@@ -58,7 +58,7 @@ SSH keys to your account, so please use them before moving on!
 
 ## Create a remote repository
 
-Log in to your GitHub account and press the *New* button on the left:
+Log in to your GitHub account and press the *New* button:
 
 * Make sure you are listed as the owner
 * Add a repository name, *e.g.* `git_tutorial`

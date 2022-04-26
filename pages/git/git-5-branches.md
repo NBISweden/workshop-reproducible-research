@@ -2,13 +2,13 @@ One of the most useful features of Git is called *branching*. Branching allows
 you to diverge from the main line of work and edit or update your code and
 files (*e.g.* to test out a new analysis or some experimental feature) without
 affecting your main work. If the work you did in the branch turns out to be
-useful you can merge that back into your `main` branch. On the other hand, if the
-work didn't turn out as planned, you can simply delete the branch and continue
-where you left off in your main line of work. Another use case for branching is
-when you are working in a project with multiple people. Branching can be a way
-of compartmentalizing your team's work on different parts of the project and
-enables merging back into the `main` branch in a controlled fashion; we will
-learn more about this in the section about working remotely.
+useful you can merge that back into your `main` branch. On the other hand, if
+the work didn't turn out as planned, you can simply delete the branch and
+continue where you left off in your main line of work. Another use case for
+branching is when you are working in a project with multiple people. Branching
+can be a way of compartmentalizing your team's work on different parts of the
+project and enables merging back into the `main` branch in a controlled
+fashion; we will learn more about this in the section about working remotely.
 
 * Let's start trying out branching! We can see the current branch by running:
 
@@ -17,6 +17,11 @@ git branch
 ```
 
 This tells us that there is only the `main` branch at the moment.
+
+> **Main and Master** <br>
+> If your branch is called `master` instead of `main` that's perfectly fine as
+> well, but do check out the Git section of the [pre-course setup](pre-course-setup)
+> for more details about the choice of default branch names.
 
 * Let's make a new branch:
 
@@ -44,8 +49,7 @@ set of parameters on the sequence alignment step of the case study project.
   looks like this (add the `--very-sensitive-local` option):
 
 ```bash
-shell("bowtie2 --very-sensitive-local -x " + indexBase + " -U {input.fastq} \
-    > {output} 2> {log}")
+bowtie2 --very-sensitive-local -x $indexBase -U {input.fastq} > {output} 2> {log}
 ```
 
 * Add and commit the change!
@@ -63,8 +67,8 @@ You can use the `diff` command for this:
 git diff main
 ```
 
-This shows the difference between the active branch (`test_alignment`) and `main`
-on a line-per-line basis. Do you see which lines have changed between
+This shows the difference between the active branch (`test_alignment`) and
+`main` on a line-per-line basis. Do you see which lines have changed between
 `test_alignment` and `main` branches?
 
 > **Tip** <br>
