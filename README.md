@@ -1,6 +1,6 @@
 # Tools for Reproducible Research
 
-[![CC BY 4.0][cc-by-shield]][cc-by] [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)][gitpod]
+[![CC BY 4.0][cc-by-shield]][cc-by] [![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-FFB45B?logo=gitpod)][gitpod]
 
 This repo contains files used in the tutorials in the NBIS / ELIXIR *Tools for
 Reproducible Research* course. The course itself lives in [Canvas](https://uppsala.instructure.com/courses),
