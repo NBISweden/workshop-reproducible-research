@@ -70,18 +70,22 @@ Log in to your GitHub account and press the *New* button:
 You will now be redirected to the repository page which will list several ways
 for you to start adding content (files) to the repository. What we will do is to
 connect the local repository we've been working on so far to the remote GitHub
-server:
+server using SSH:
 
-* Add a remote address to your local repository (make sure you change `user` to
-  your GitHub username and `git_tutorial` to your repository name):
+* Add a remote SSH address to your local repository (make sure you change
+  `user` to your GitHub username and `git_tutorial` to your repository name):
 
 ```bash
-git remote add origin https://github.com/user/git_tutorial.git
+git remote add origin git@github.com/user/git_tutorial.git
 ```
 
 * Run `git remote -v`. This will show you what remote location is connected to
   your local Git clone. The short name of the default remote is usually
   "*origin*" by convention.
+
+> **Note** <br>
+> Make sure you've used an SSH address (*i.e.* starting with `git@github.com/`
+> rather than an HTTPS address (starting with `https://github.com/`)!
 
 * We have not yet synced the local and remote repositories, though, we've simply
   connected them. Let's sync them now:
