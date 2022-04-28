@@ -1,9 +1,14 @@
 One thing that sets Jupyter Notebook apart from what you might be used to is
 that it's a web application, *i.e.* you edit and run your code from your
-browser. But first you have to start the Jupyter Notebook server.
+browser. But first you have to start the Jupyter Notebook server:
+
+```bash
+jupyter notebook --allow-root
+```
+
+You should see something similar to this printed to your terminal:
 
 ```no-highlight
-$ jupyter notebook --allow-root
 [I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/workshop-reproducible-research/tutorials/jupyter
 [I 18:02:26.723 NotebookApp] 0 active kernels
 [I 18:02:26.723 NotebookApp] The Jupyter Notebook is running at:
