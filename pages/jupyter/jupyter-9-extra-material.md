@@ -86,6 +86,7 @@ find an example in the code chunk below:
 rule make_supplementary:
     input:
         counts = "results/tables/counts.tsv",
+        summary = "results/tables/counts.tsv.summary",
         multiqc_file = "intermediate/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     output:
@@ -151,6 +152,7 @@ version of the notebook using the `log: notebook=` directive:
 rule make_supplementary_plots:
     input:
         counts = "results/tables/counts.tsv",
+        summary = "results/tables/counts.tsv.summary",
         multiqc = "intermediate/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     output:
@@ -167,6 +169,7 @@ defined notebook parameters edit the code so that it looks like this:
 
 ```python
 counts_file=snakemake.input.counts
+summary_file=snakemake.input.summary
 multiqc_file=snakemake.input.multiqc
 rulegraph_file=snakemake.input.rulegraph
 
@@ -209,25 +212,23 @@ to save the plots to the output files. First, edit the cell that generates the
 barplot so that it looks like this:
 
 ```python
-count_data = pd.DataFrame(counts.sum(), columns = ["genes"])
-count_data = pd.merge(count_data, counts_other.T, left_index=True, right_index=True)
-
-colors = sns.color_palette("husl", n_colors=count_data.shape[1])
-ax = count_data.plot(kind="bar", stacked=True, color=colors)
-ax.legend(bbox_to_anchor=(1,1), title="Feature");
+# Create a stacked barplot
+ax = summary_plot_data.T.plot(kind="bar", stacked=True, color=colors)
+# Move legend and set legend title
+ax.legend(bbox_to_anchor=(1,1), title="Category");
 plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight") ## <-- Add this line!
 ```
 
 Finally, edit the cell that generates the heatmap so that it looks like this:
 
 ```python
-heatmap_data = counts.loc[(counts.std(axis=1).div(counts.mean(axis=1))>1.2)&(counts.max(axis=1)>5)]
-heatmap_data = heatmap_data.rename(index=lambda x: f"{x} ({gene_names[x]})")
-heatmap_data.rename(columns = lambda x: name_dict['title'][x], inplace=True)
+count_data = counts.loc[:, SRR_IDs]
+heatmap_data = count_data.loc[(count_data.std(axis=1).div(count_data.mean(axis=1))>1.2)&(count_data.max(axis=1)>5)]
+heatmap_data = heatmap_data.rename(columns = name_dict['title'])
 with sns.plotting_context("notebook", font_scale=0.7):
     ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
                         method="complete", yticklabels=True, linewidth=.5,
-                        cbar_pos=(0.2, .8, 0.02, 0.15), figsize=(8,6))
+                        cbar_pos=(.7, .85, .05, .1), figsize=(3,9))
     plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
     plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight") ## <-- Add this line!
 ```
