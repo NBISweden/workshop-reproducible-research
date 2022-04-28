@@ -78,23 +78,26 @@ pipelines](https://nf-co.re/). Such a sample sheet for the MRSA workflow might
 be stored in *e.g.* `input.csv` and look like this:
 
 ```no-highlight
+sra_id
 SRR935090
 SRR935091
 SRR935092
 ```
 
-Reading input from a CSV file can be done by combining the `.fromPath()`
-channel factory (specifying which file should be read) and the `.splitCsv()`
-operator (splitting the rows to read each entry). Let's see if we can make it
-work!
+Reading input from a CSV file can be done by combining the `.splitCsv` channel
+factory (splitting the rows to read each entry) and the `.map` operator
+(defining which columns should be used). Let's see if we can make it work!
 
 * Create the `input.csv` file with the above shown content.
 
 * Change the definition of the `ch_sra_ids` channel to take the value of a new
   parameter of your choice, defined in the configuration file.
 
-* Add the `.splitCsv()` operator to the end of the channel definition, so that
-  the input is read from the file contents.
+* Add the `.splitCsv(header: true)` operator to the end of the channel
+  definition, so that the input is read from the file contents.
+
+* Add the `.map{row -> row.sra_id}` operator, which specifies that each row
+  should contain the `sra_id` column, but no other columns.
 
 You should now have a more generalised input to your workflow! Try to run it to
 make sure it works - look below if you need some help.
@@ -104,7 +107,10 @@ make sure it works - look below if you need some help.
 
 ```nextflow
 // Channel definition
-ch_sra_ids = Channel.fromPath( params.sra_ids ).splitCsv()
+ch_sra_ids = Channel
+    .fromPath ( params.sra_ids )
+    .splitCsv ( header: true )
+    .map      { row -> row.sra_id }
 
 // Configuration file
 sra_ids = "input.csv"
