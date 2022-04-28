@@ -22,6 +22,12 @@ You should see something similar to this printed to your terminal:
 [I 18:02:27.209 NotebookApp] Accepting one-time-token-authenticated connection from ::1
 ```
 
+> **A note for Windows users** <br>
+> If you see the error message `Start : This command cannot be run due to the 
+> error: The system cannot find the file specified. ...` then try starting 
+> jupyter with `jupyter notebook --no-browser` then copy the URL given into the
+> browser directly.
+
 Jupyter Notebook probably opened up a web browser for you automatically,
 otherwise go to the address specified in the message in the terminal. Note that
 the server is running locally (as `http://localhost:8888`) so this does not
