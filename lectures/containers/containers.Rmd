@@ -5,7 +5,7 @@ output:
   xaringan::moon_reader:
       self-contained: true
       seal: false
-      css: ["default", "template.css"]
+      css: ["default", "../template.css"]
       nature:
           slideNumberFormat: ""
 ---
@@ -21,13 +21,13 @@ class: center, middle
 *Making self-contained, distributable projects with*
 
 .pull-left[
-<img src="https://www.docker.com/sites/default/files/mono-vertical.png" style="width:50%;"/>
+<img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" style="width:75%;"/>
 <br>
 
 ]
 
 .pull-right[
-<img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" style="width:45%;"/>
+<img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" style="width:50%;"/>
 <br>
 Singularity
 ]
@@ -48,7 +48,7 @@ Docker containers can be used to allow others to reproduce a complete analysis:
 
 .small[(click [here](https://github.com/metagenomics/2015-biogas-cebitec/blob/master/Dockerfile) to see the Dockerfile)]
 
-```
+```bash
 docker run metagenomics/2015-biogas-cebitec
 ```
 
@@ -64,7 +64,24 @@ Docker can also be used to define software environments and settings for benchma
 
 >... we defined standards for submitting the software itself, along with parameter settings and required databases and implemented them in Docker container templates...
 
-.small[Sczyrba *et al* Nature Methods (2017) 14:1063–1071, [doi.org/10.1038/nmeth.4458](https://doi.org/10.1038/nmeth.4458)]
+.small[
+Sczyrba *et al* Nature Methods (2017) 14:1063–1071, [doi.org/10.1038/nmeth.4458](https://doi.org/10.1038/nmeth.4458)
+]
+
+---
+
+# Docker in lifescience
+
+Docker can also be used to define software environments and settings for benchmarking studies
+
+[2nd CAMI Challenge](https://www.microbiome-cosi.org/cami/cami/cami2)
+
+> For reproducibility, participants could submit a Docker container containing the complete workflow, a bioconda script or a software repository with detailed installation instructions...
+
+.small[
+Meyer *et al* Nature Methods (2022) 19:429-440,
+[https://doi.org/10.1038/s41592-022-01431-4](https://doi.org/10.1038/s41592-022-01431-4)
+]
 
 ---
 
@@ -98,7 +115,7 @@ Example: Use a different OS
 
 .pull-left[
 
-.tiny[Check OS on local machine]
+.small[Check OS on local machine]
 
 ```bash
 $ uname -a
@@ -108,7 +125,7 @@ Tue Jan 12 22:13:05 PST 2021; \
 root:xnu-6153.141.16~1/RELEASE_X86_64 x86_64
 ```
 
-.tiny[Pull Ubuntu (Linux) image]
+.small[Pull Ubuntu (Linux) image]
 
 ```bash
 $ docker pull ubuntu:16.04
@@ -119,7 +136,7 @@ Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
 Status: Downloaded newer image for ubuntu:16.04
 ```
 
-.tiny[Run a container and check OS version]
+.small[Run a container and check OS version]
 
 ```bash
 $ docker run -it ubuntu:16.04
@@ -234,11 +251,11 @@ my_image snakemake report.pdf
 ---
 # What is Singularity?
 
-<img src="https://sylabs.io/guides/3.7/user-guide/_static/logo.png" style="width:10%;"/>
+<img src="https://sylabs.io/guides/latest/user-guide/_static/logo.png" style="width:25%;"/>
 
 an open source container platform suitable for HPC clusters
 
-[https://sylabs.io/guides/3.7/user-guide/](https://sylabs.io/guides/3.7/user-guide/)
+[https://sylabs.io/guides/latest/user-guide/](https://sylabs.io/guides/latest/user-guide/)
 
 >Singularity was created to run complex applications on HPC clusters in a simple, portable, and reproducible way.
 
@@ -246,7 +263,7 @@ an open source container platform suitable for HPC clusters
 
 # Docker vs. Singularity
 
-| <img src="https://www.docker.com/sites/default/files/mono-vertical.png" style="width:25%;"/> | <img src="https://sylabs.io/guides/3.7/user-guide/_static/logo.png" style="width:25%;"/> |
+| <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" style="width:25%;"/> | <img src="https://sylabs.io/guides/latest/user-guide/_static/logo.png" style="width:50%;"/> |
 | ------ | ----------- |
 | runs as a daemon process with superuser privileges | runs as regular user |
 | images stored centrally | image files that you can move around. No layers! |

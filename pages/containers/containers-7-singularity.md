@@ -74,12 +74,6 @@ This executes the default run command, which is
 `snakemake -rp -c 1 --configfile config.yml` (as defined in the original
 `Dockerfile`).
 
-> **Note** <br>
-> In case the `singularity run` command above fails you can try to allocate
-> more RAM to it by adding `--vm-ram 2048` to the `singularity run` command.
-> This will allocate 2048 MiB of RAM which may be needed to complete the
-> workflow.
-
 The previous step in this tutorial included running the `run_qc.sh` script,
 so that part of the workflow has already been run and Snakemake will continue
 from that automatically without redoing anything. Once completed you should
