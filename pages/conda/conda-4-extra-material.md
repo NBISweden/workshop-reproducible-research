@@ -186,3 +186,20 @@ Some programmers like to have aliases (_i.e._ shortcuts) for common commands.
 Two aliases that might be usefol for you are `alias coac='conda activate'` and
 `alias code='conda deactivate'`. Don't forget to add them to your
 `~/.bash_profile` if you want to use them!
+
+## Rolling back to an earlier version of the environment
+
+Conda keeps a history of the changes to an environment. You can see 
+revisions to an environment by using:
+
+```bash
+conda list --revisions
+```
+
+which shows each revision (numbered) and what's installed.
+
+You can revert back to particular revision using:
+
+```bash
+conda install --revision 5
+```
