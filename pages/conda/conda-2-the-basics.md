@@ -37,6 +37,16 @@ The active environment will be marked with an asterisk.
 conda list
 ```
 
+* To save the installed packages to a file, run:
+
+```bash
+conda env export --from-history > environment.yml
+```
+
+where `--from-history` only reports the packages requested to be installed 
+and not additional dependancies. A caveat is that if no version was 
+originally specified, then it is not included in the export file either.
+
 * Now, deactivate the environment by running `conda deactivate`.
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
