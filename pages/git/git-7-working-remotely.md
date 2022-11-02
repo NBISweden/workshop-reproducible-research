@@ -24,10 +24,10 @@ although the exact menu structure and link placements differ a bit.
 
 Any upload to and from GitHub requires you to authenticate yourself. GitHub
 used to allow authentication with your account and password, but this is no
-longer the case - using SSH keys is favoured instead. Exactly what these are is
-not necessary to get them working, but we encourage you to read the box below
-to learn more about them! GitHub has excellent, platform-specific instructions
-both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+longer the case - using SSH keys is favoured instead. Knowing exactly what these
+are is not necessary to get them working, but we encourage you to read the box 
+below to learn more about them! GitHub has excellent, platform-specific 
+instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please use them before moving on!
 
@@ -49,7 +49,7 @@ SSH keys to your account, so please use them before moving on!
 > Notice that the private key always remains on the client's side and is never
 > transferred over the connection; the ability to decrypt messages encrypted
 > with the public key is enough to ascertain the client's authenticity. This is
-> in contrast with using passwords, which are themselves send across a
+> in contrast with using passwords, which are themselves sent across a
 > connection (albeit encrypted). It is also important to note that even though
 > the keys come in pairs it is impossible to derive the private key from the
 > public key. If you want to read more details about how SSH authentication work
@@ -76,7 +76,7 @@ server using SSH:
   `user` to your GitHub username and `git_tutorial` to your repository name):
 
 ```bash
-git remote add origin git@github.com/user/git_tutorial.git
+git remote add origin git@github.com:user/git_tutorial.git
 ```
 
 * Run `git remote -v`. This will show you what remote location is connected to
@@ -84,8 +84,8 @@ git remote add origin git@github.com/user/git_tutorial.git
   "*origin*" by convention.
 
 > **Note** <br>
-> Make sure you've used an SSH address (*i.e.* starting with `git@github.com/`
-> rather than an HTTPS address (starting with `https://github.com/`)!
+> Make sure you've used an SSH address (*i.e.* starting with `git@github.com`
+> rather than an HTTPS address (starting with `https://github.com`)!
 
 * We have not yet synced the local and remote repositories, though, we've simply
   connected them. Let's sync them now:
@@ -125,7 +125,7 @@ software for version control.
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://uppsala.instructure.com/courses/51980/pages/git-1-introduction?module_item_id=367079).
+[here](https://uppsala.instructure.com/courses/73110/pages/git-1-introduction?module_item_id=367079).
 ```
 
 * Add, commit and push these changes to GitHub.
@@ -294,8 +294,7 @@ move back into that directory.
   bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
-shell("bowtie2 --very-sensitive-local --trim5 5 -x " + indexBase + " \
-    -U {input.fastq} > {output} 2> {log}")
+bowtie2 --trim5 5 --very-sensitive-local -x $indexBase -U {input.fastq} > {output} 2> {log}
 ```
 
 * Add and commit the change to your local repository.
