@@ -97,8 +97,20 @@ git push origin main
 The `push` command sends our local history of the `main` branch to the same
 branch on the remote (`origin`). Our Git repository is now stored on GitHub!
 
-* Run `git status`. This should tell you that *"Your branch is up-to-date with
-  'origin/main'."*.
+* Run `git status`. This should tell you that:
+
+```bash
+On branch main
+nothing to commit, working tree clean
+```
+
+You always need to specify `git push origin main` by default, but you can 
+circumvent this by telling Git that you always want to push to
+`origin/main` when you're on your local `main` branch. To do this, use
+the command `git branch --set-upstream-to origin/main`. Try it out now.
+
+* Now run `git-status` again. You should see that now git additionally tells you
+that your local branch is up to date with the remote branch.
 
 If you go to the repository's GitHub page you should now be able to see all your
 files and your code there! It should look something like this:
@@ -217,7 +229,7 @@ from different computers, a computer cluster or a cloud service.
   Now we can download the repository we just uploaded using the following:
 
 ```bash
-git clone https://user@github.com/user/git_tutorial.git .
+git clone git@github.com:user/git_tutorial.git .
 ```
 
 Notice the dot at the end of the command above, which will put the clone into
@@ -230,19 +242,11 @@ the original `git_tutorial` repository!
 
 * Let's say that we now want to change the `multiqc` software to an earlier
   version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.10.1` to `multiqc=1.7`; add and commit the change.
+  `multiqc=1.12` to `multiqc=1.7`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
   effect.
-
-> **Tip** <br>
-> You always need to specify `git push origin main` by default, but you can
-> circumvent this by telling Git that you always want to push to
-> `origin/main` when you're on your local `main` branch. To do this, use
-> the command `git branch --set-upstream-to origin/main`. Another way to
-> achieve the same effect is use the `--set-upstream` flag for the very first
-> push.
 
 Since we have now updated the remote repository with code that came from the
 second local repository, the first local repository is now outdated. We thus
