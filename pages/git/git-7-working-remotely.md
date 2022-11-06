@@ -107,7 +107,7 @@ nothing to commit, working tree clean
 You always need to specify `git push origin main` by default, but you can 
 circumvent this by telling Git that you always want to push to
 `origin/main` when you're on your local `main` branch. To do this, use
-the command `git branch --set-upstream-to origin/main`. Try it out now.
+the command `git branch --set-upstream-to origin/main`. **Try it out now**.
 
 * Now run `git-status` again. You should see that now git additionally tells you
 that your local branch is up to date with the remote branch.
@@ -231,6 +231,8 @@ from different computers, a computer cluster or a cloud service.
 ```bash
 git clone git@github.com:user/git_tutorial.git .
 ```
+
+Again, make sure to replace `user` with your GitHub user name.
 
 Notice the dot at the end of the command above, which will put the clone into
 the current directory, instead of creating a new directory with the same name as

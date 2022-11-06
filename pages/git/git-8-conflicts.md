@@ -76,10 +76,10 @@ git diff origin/main
   up to sync with the remote:
 
 ```bash
-git pull origin main
+git merge
 ```
 
-Unsurprisingly, the `git pull` command resulted in a conflict. Git tells us
+Unsurprisingly, the `git merge` command resulted in a conflict. Git tells us
 about this and suggests that we should fix the conflicts and commit that.
 
 * As always, run `git status` to get an overview: you will see that you have
@@ -95,41 +95,40 @@ channels:
   - main
   - r
 dependencies:
-  - python=3.7.6
+  - python=3.9.12
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=6.10.0
+  - snakemake=7.3.8
 <<<<<<< HEAD
   - multiqc=1.6
 =======
   - multiqc=1.8
->>>>>>> eb1bda9f9d089289e5bd82e15d36e34a88a04879
-  - bowtie2=2.4.4
-  - tbb=2020.3
-  - samtools=1.10
+>>>>>>> refs/remotes/origin/main
+  - bowtie2=2.4.5
+  - tbb=2020.2
+  - samtools=1.15.1
   - subread=2.0.1
   - bedtools=2.29.2
-  - wget=1.20.1
-  - graphviz=2.42.3
-  - r-base=3.6.2
-  - r-ggplot2=3.2.1
-  - r-reshape2=1.4.3
-  - r-stringi=1.4.5
+  - wget=1.20.3
+  - graphviz=3.0.0
+  - r-base=4.1.3
+  - r-ggplot2=3.3.5
+  - r-reshape2=1.4.4
+  - r-stringi=1.7.6
   - r-pheatmap=1.0.12
-  - r-rmarkdown=2.1
-  - bioconductor-rtracklayer=1.46.0
-  - bioconductor-geoquery=2.54.0
+  - r-rmarkdown=2.13
+  - r-r.utils=2.11.0
+  - bioconductor-rtracklayer=1.54.0
+  - bioconductor-geoquery=2.62.0
   - xorg-libxrender
   - xorg-libxpm
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
-part between `=======` and `>>>>>>> eb1bda9f9d089289e5bd82e15d36e34a88a04879` is
-the one added to the remote and which caused the conflict when you tried to pull
-those changes to your local repository. The long sequence of characters is the
-commit ID (the first 7 are displayed on GitHub under *Commits*), which will be
-different for your repository. It is now up to you to decide which version to
-keep, or to change it to a third alternative.
+part between `=======` and `>>>>>>> refs/remotes/origin/main` is
+the one added to the remote and which caused the conflict when you tried to merge
+those changes to your local repository. It is now up to you to decide which 
+version to keep, or to change it to a third alternative.
 
 * Let's say that you are confident that it is better to run MultiQC 1.6 rather
   than 1.8. Edit the file so that it looks like you want it to, *i.e.* remove
@@ -143,26 +142,27 @@ channels:
   - main
   - r
 dependencies:
-  - python=3.7.6
+  - python=3.9.12
   - fastqc=0.11.9
   - sra-tools=2.10.1
-  - snakemake-minimal=6.10.0
+  - snakemake=7.3.8
   - multiqc=1.6
-  - bowtie2=2.4.4
-  - tbb=2020.3
-  - samtools=1.10
+  - bowtie2=2.4.5
+  - tbb=2020.2
+  - samtools=1.15.1
   - subread=2.0.1
   - bedtools=2.29.2
-  - wget=1.20.1
-  - graphviz=2.42.3
-  - r-base=3.6.2
-  - r-ggplot2=3.2.1
-  - r-reshape2=1.4.3
-  - r-stringi=1.4.5
+  - wget=1.20.3
+  - graphviz=3.0.0
+  - r-base=4.1.3
+  - r-ggplot2=3.3.5
+  - r-reshape2=1.4.4
+  - r-stringi=1.7.6
   - r-pheatmap=1.0.12
-  - r-rmarkdown=2.1
-  - bioconductor-rtracklayer=1.46.0
-  - bioconductor-geoquery=2.54.0
+  - r-rmarkdown=2.13
+  - r-r.utils=2.11.0
+  - bioconductor-rtracklayer=1.54.0
+  - bioconductor-geoquery=2.62.0
   - xorg-libxrender
   - xorg-libxpm
 ```
