@@ -16,15 +16,15 @@ echo "This is b.txt" > b.txt
 Then open `Snakefile` in your favorite text editor. A Snakemake workflow is based on
 rules which take some file(s) as input, performs some type of operation on
 them, and generate some file(s) as outputs. Here is a very simple rule that
-takes `a.txt` as an input and produces `a.upper.txt` as an output. Copy this
-rule to your `Snakefile` and save it.
+produces `a.upper.txt` as an output, using `a.txt` as input. Copy this rule to 
+your `Snakefile` and save it.
 
 ```python
 rule convert_to_upper_case:
-    input:
-        "a.txt"
     output:
         "a.upper.txt"
+    input:
+        "a.txt"
     shell:
         """
         tr [a-z] [A-Z] < {input} > {output}
@@ -56,7 +56,7 @@ Now let's run our first Snakemake workflow. When a workflow is executed
 Snakemake tries to generate a set of target files. Target files can be
 specified via the command line (or, as you will see later, in several other
 ways). Here we ask Snakemake to make the file `a.upper.txt`. It's good practice
-to first run with the flag `-n`(or `--dry-run`), which will show what Snakemake
+to first run with the flag `-n` (or `--dry-run`), which will show what Snakemake
 plans to do without actually running anything, and you also need to specify
 how many cores to be used for the workflow with `--cores` or `-c`. For now, you
 only need 1 so set `-c 1`. You can also use the flag `-p`, for showing the 
@@ -100,10 +100,9 @@ with `a.txt` as input and `a.upper.txt` as output. The reason for doing this is
 that it's missing the file `a.upper.txt`. Now execute the workflow without the
 `-n` flag and check that the contents of `a.upper.txt` is as expected. Then try
 running the same command again. What do you see? It turns out that Snakemake
-only reruns jobs if **one of the input files is newer than one of the output
-files, or if one of the input files will be updated by another job**. This is
-how Snakemake ensures that everything in the workflow is up to date. We will
-get back to this shortly.
+only reruns jobs if there have been changes to either **the input files, or the 
+workflow itself**. This is how Snakemake ensures that everything in the 
+workflow is up to date. We will get back to this shortly.
 
 What if we ask Snakemake to generate the file `b.upper.txt`?
 
@@ -183,11 +182,11 @@ rename the rule to `concatenate_files` to reflect its new more general use.
 
 ```python
 rule concatenate_files:
+    output:
+        "{first}_{second}.txt"    
     input:
         "{first}.upper.txt",
         "{second}.upper.txt"
-    output:
-        "{first}_{second}.txt"
     shell:
         """
         cat {input[0]} {input[1]} > {output}
