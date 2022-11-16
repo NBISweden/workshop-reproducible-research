@@ -77,7 +77,7 @@ This shows the difference between the active branch (`test_alignment`) and
 
 > **Note** <br>
 > Git is constantly evolving, along with some of its commands. While the
-> `checkout` is quite versatile (it's used for more than just switching
+> `checkout` command is quite versatile (it's used for more than just switching
 > branches), this versatility can sometimes be confusing. The Git team thus
 > added a new command, `git switch`, that can be used instead. This command is
 > still experimental, however, so we have opted to stick with `checkout` for

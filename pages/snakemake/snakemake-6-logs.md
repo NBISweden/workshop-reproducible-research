@@ -10,9 +10,9 @@ this. Just as we define `input` and `output` in a rule we can also define
 
 ```python
 rule some_rule:
-    input:
-        "..."
     output:
+        "..."
+    input:
         "..."
     log:
         "..."
@@ -55,6 +55,8 @@ rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
     """
+    output:
+        "intermediate/{sample_id,\w+}.bam"
     input:
         "data/raw_internal/{sample_id}.fastq.gz",
         "intermediate/NCTC8325.1.bt2",
@@ -63,8 +65,6 @@ rule align_to_genome:
         "intermediate/NCTC8325.4.bt2",
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
-    output:
-        "intermediate/{sample_id,\w+}.bam"
     log:
         "results/logs/align_to_genome/{sample_id}.log"
     shell:
@@ -86,9 +86,9 @@ multiqc -n output_file input_files 2> {log}
 bowtie2-build input_file index_dir > {log}
 ```
 
-Now rerun the whole workflow by using the `-F` flag. Do the logs contain what
-they should? Note how much easier it is to follow the progression of the
-workflow when the rules write to logs instead of to the terminal. 
+Now rerun the whole workflow. Do the logs contain what they should? Note how 
+much easier it is to follow the progression of the workflow when the rules write
+to logs instead of to the terminal. 
 
 > **Tip** <br>
 > If you have a rule with a shell directive in which several commands are run 

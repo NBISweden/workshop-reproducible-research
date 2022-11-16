@@ -31,7 +31,7 @@ channels:
 - bioconda
 dependencies:
 - fastqc=0.11.9
-- sra-tools=2.10.1
+- sra-tools=2.11.0
 ```
 
 * Now, make a new Conda environment from the YAML file (note that here the
@@ -156,11 +156,10 @@ So, how do you get Mamba? Funnily enough, the easiest way to install it is (of
 course) using Conda! Just run `conda install -n base -c conda-forge mamba`,
 which will install Mamba in your `base` Conda environment. Mamba works almost
 exactly the same as Conda, meaning that all you need to do is to stop using
-`conda command` and instead use `mamba command` - simple! There are only
-a few exceptions to this, the two major ones beings activating and deactivating
-environments: you still have to use `conda activate` and `conda deactivate`. So
-transitioning into using Mamba is actually quite easy - enjoy your shorter
-execution times!
+`conda command` and instead use `mamba command` - simple! Be aware though that
+in order to use `mamba activate` and `mamba deactivate` you first need to run
+`mamba init`. So transitioning into using Mamba is actually quite easy - enjoy 
+your shorter execution times!
 
 > **Quick recap** <br>
 > In this section we've learned:

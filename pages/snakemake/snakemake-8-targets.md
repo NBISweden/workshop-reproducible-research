@@ -9,6 +9,8 @@ rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
     """
+    output:
+        "intermediate/{sample_id,\w+}.bam"
     input:
         "data/raw_internal/{sample_id}.fastq.gz",
         "intermediate/NCTC8325.1.bt2",
@@ -17,8 +19,6 @@ rule align_to_genome:
         "intermediate/NCTC8325.4.bt2",
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
-    output:
-        "intermediate/{sample_id,\w+}.bam"
     shell:
         """
         bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}

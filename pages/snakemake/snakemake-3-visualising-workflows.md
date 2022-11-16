@@ -2,9 +2,10 @@ All that we've done so far could quite easily be done in a simple shell script
 that takes the input files as parameters. Let's now take a look at some of the
 features where a WfMS like Snakemake really adds value compared to a more
 straightforward approach. One such feature is the possibility to visualize your
-workflow. Snakemake can generate two types of graphs, one that shows how the
-rules are connected and one that shows how the jobs (*i.e.* an execution of
-a rule with some given inputs/outputs/settings) are connected.
+workflow. Snakemake can generate three types of graphs, one that shows how the
+rules are connected, one that shows how the jobs (*i.e.* an execution of
+a rule with some given inputs/outputs/settings) are connected, and finally one
+that shows rules with their respective input/output files.
 
 First we look at the rule graph. The following command will generate a rule graph
 in the dot language and pipe it to the program `dot`, which in turn will save
@@ -107,18 +108,18 @@ changed, only at the timestamp for when they were last modified.
 We've seen that Snakemake keeps track of if files in the workflow have changed,
 and automatically makes sure that any results depending on such files are
 regenerated. What about if the rules themselves are changed? It turns out that
-there are multiple ways to deal with this, but the most straightforward is to manually
-specify that you want to rerun a rule (and thereby also all the steps between
-that rule and your target). Let's say that we want to modify the rule
-`concatenate_files` to also include which files were concatenated.
+since version 7.8.0 Snakemake keeps track of this automatically. 
+
+Let's say that we want to modify the rule `concatenate_files` to also include 
+which files were concatenated.
 
 ```python
 rule concatenate_files:
+    output:
+        "{first}_{second}.txt"
     input:
         "{first}.upper.txt",
         "{second}.upper.txt"
-    output:
-        "{first}_{second}.txt"
     shell:
         """
         echo 'Concatenating {input}' | cat - {input[0]} {input[1]} > {output}
@@ -135,57 +136,30 @@ rule concatenate_files:
 
 If you now run the workflow as before you should see:
 ```bash
-"Nothing to be done" (all requested files are present and up to date).
+rule concatenate_files:
+    input: a.upper.txt, b.upper.txt
+    output: a_b.txt
+    jobid: 0
+    reason: Code has changed since last execution
+    wildcards: first=a, second=b
 ```
 
-because no files involved in the workflow have been changed. But there's 
-also a warning that Snakemake has detected a change in the code used to generate 
-output files in the workflow, and is suggesting different ways to address this:
+because although no files involved in the workflow have been changed, Snakemake
+recognizes that the workflow code itself has been modified and this triggers
+a re-run.
 
-```bash
-The code used to generate one or several output files has changed:
-    To inspect which output files have changes, run 'snakemake --list-code-changes'.
-    To trigger a re-run, use 'snakemake -R $(snakemake --list-code-changes)'.
-```
+Snakemake is aware of changes to four categories of such "rerun-triggers": 
+"input" (changes to rule input files), "params" (changes to the rule `params` section),
+"software-env" (changes to conda environment files specified by the `conda:` 
+directive) and "code" (changes to code in the `shell:`, `run:`, `script:` and 
+`notebook:` directives). 
 
-The first suggestion is to use the `--list-code-changes` flag. This will list 
-the files for which the rule implementation has changed. Try it by running:
-
-```bash
-snakemake a_b.txt --list-code-changes
-```
-
-You should see `a_b.txt` printed to the terminal, meaning that Snakemake has 
-identified changes to the `concatenate_files` rule which produces the `a_b.txt` 
-file.
-
-The second suggestion involves triggering a re-run with the `-R` flag which 
-will force re-creation of the given file (or rule). Try it out by running:
-
-```bash
-snakemake a_b.txt -n -r -R $(snakemake a_b.txt --list-code-changes)
-```
-
-Here the file to re-create is, as we just saw, given by the 
-`$(snakemake a_b.txt --list-code-changes)` part, which is then used as a target 
-for the `snakemake a_b.txt -n -r -R` part. Enclosing the command inside `$(...)`
-is called "command substitution" and is a way to store the output of a command 
-inside a variable, here done on the fly together with the snakemake run. You 
-would have gotten the same result by first using `--list-code-changes` to get the
-file name, then the `-R` flag to target that file for re-creation (_e.g._
-`-R a_b.txt` or `-R concatenate_files`). However, using command substitution 
-saves you that extra step.
-
-There are a bunch of these `--list-xxx-changes` flags that can
-help you keep track of your workflow. You can list all options with `snakemake
---help`. 
-
-Whenever you've made changes to a rule that will affect the output it's good
-practice to force re-execution like this. As of version 7.0.0 (2022-02-23), 
-Snakemake warns you if there have been changes to the workflow, as we just saw 
-above. This is a very helpful feature, especially in cases where several people 
-collaborate on the same workflow but are using it on different files, for 
-example. 
+Prior to version 7.8.0, only changes to the modification time of input files would
+trigger automatic re-runs. To run Snakemake with this previous behaviour you 
+can use the setting `--rerun-triggers mtime` at the command line. 
+Change the `shell:` section of the `concatenate_files` rule back to the previous
+version, then try running: `snakemake -n -r a_b.txt --rerun-triggers mtime` and 
+you should again see `Nothing to be done (all requested files are present and up to date).`
 
 You can also export information on how all files were generated (when, by which 
 rule, which version of the rule, and by which commands) to a tab-delimited file 
@@ -220,7 +194,7 @@ The content of `summary.tsv` is shown in the table below:
         <td style="padding:5px"> <font size="3"> a.upper.txt,b.upper.txt </td>
         <td style="padding:5px"> <font size="3"> cat a.upper.txt b.upper.txt > a_b.txt </td>
         <td style="padding:5px"> <font size="3"> rule implementation changed </td>
-        <td style="padding:5px"> <font size="3"> no update </td>
+        <td style="padding:5px"> <font size="3"> update pending </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> a.upper.txt</td>
@@ -248,13 +222,9 @@ The content of `summary.tsv` is shown in the table below:
 
 You can see in the second last column that the rule implementation for `a_b.txt`
 has changed. The last column shows if Snakemake plans to regenerate the files
-when it's next executed. None of the files will be regenerated because
-Snakemake doesn't regenerate files by default if the rule implementation
-changes. From a reproducibility perspective maybe it would be better if this
-was done automatically, but it would be very computationally expensive and
-cumbersome if you had to rerun your whole workflow every time you fix
-a spelling mistake in a comment somewhere. So, it's up to us to look at the
-summary table and rerun things as needed.
+when it's next executed. You can see that for the `concatenate_files` the plan
+is `update pending` because we generated the summary with the default behaviour 
+of using all rerun-triggers. 
 
 You might wonder where Snakemake keeps track of all these things? It stores all
 information in a hidden subdirectory called `.snakemake`. This is convenient
@@ -277,6 +247,6 @@ the other tutorials instead.
 >
 > - How to use `--dag` and `--rulegraph` for visualizing the job and rule
 >   graphs, respectively.
-> - How to force Snakemake to rerun relevant parts of the workflow after
+> - How Snakemake reruns relevant parts of the workflow after
 >   there have been changes.
 > - How Snakemake tracks changes to files and code in a workflow

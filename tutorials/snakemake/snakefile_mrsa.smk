@@ -26,11 +26,11 @@ rule fastqc:
     """
     Run FastQC on a FASTQ file.
     """
-    input:
-        "data/raw_internal/{sample_id}.fastq.gz"
     output:
         "results/{sample_id}_fastqc.html",
         "intermediate/{sample_id}_fastqc.zip"
+    input:
+        "data/raw_internal/{sample_id}.fastq.gz"
     shell:
         """
         # Run fastQC and save the output to the current directory
@@ -45,13 +45,13 @@ rule multiqc:
     """
     Aggregate all FastQC reports into a MultiQC report.
     """
+    output:
+        html = "results/multiqc.html",
+        stats = "intermediate/multiqc_general_stats.txt"
     input:
         "intermediate/SRR935090_fastqc.zip",
         "intermediate/SRR935091_fastqc.zip",
         "intermediate/SRR935092_fastqc.zip"
-    output:
-        html = "results/multiqc.html",
-        stats = "intermediate/multiqc_general_stats.txt"
     shell:
         """
         # Run multiQC and keep the html report
@@ -89,8 +89,6 @@ rule index_genome:
     """
     Index a genome using Bowtie 2.
     """
-    input:
-        "data/raw_external/NCTC8325.fa.gz"
     output:
         "intermediate/NCTC8325.1.bt2",
         "intermediate/NCTC8325.2.bt2",
@@ -98,6 +96,8 @@ rule index_genome:
         "intermediate/NCTC8325.4.bt2",
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
+    input:
+        "data/raw_external/NCTC8325.fa.gz"
     shell:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
@@ -112,6 +112,8 @@ rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
     """
+    output:
+        "intermediate/{sample_id,\w+}.bam"
     input:
         "data/raw_internal/{sample_id}.fastq.gz",
         "intermediate/NCTC8325.1.bt2",
@@ -120,8 +122,6 @@ rule align_to_genome:
         "intermediate/NCTC8325.4.bt2",
         "intermediate/NCTC8325.rev.1.bt2",
         "intermediate/NCTC8325.rev.2.bt2"
-    output:
-        "intermediate/{sample_id,\w+}.bam"
     shell:
         """
         bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
@@ -131,10 +131,10 @@ rule sort_bam:
     """
     Sort a bam file.
     """
-    input:
-        "intermediate/{sample_id}.bam"
     output:
         "intermediate/{sample_id}.sorted.bam"
+    input:
+        "intermediate/{sample_id}.bam"
     shell:
         """
         samtools sort {input} > {output}
@@ -144,11 +144,11 @@ rule generate_count_table:
     """
     Generate a count table using featureCounts.
     """
+    output:
+        "results/tables/counts.tsv"
     input:
         bams = ["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
         annotation = "data/raw_external/NCTC8325.gff3.gz"
-    output:
-        "results/tables/counts.tsv"
     shell:
         """
         featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}

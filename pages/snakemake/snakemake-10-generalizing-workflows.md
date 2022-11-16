@@ -15,7 +15,7 @@ analysis workflow, we need the config file to:
 > `--config max_reads=0` with `--configfile=config.yml` in the shell
 > command of that rule in the Snakefile, or by adding
 > `configfile: "config.yml"` to the top of the Snakefile (as mentioned
-> in a tip above).
+> in a previous tip).
 
 The first point is straightforward; rather than using `SAMPLES = ["..."]` in
 the Snakefile we define it as a parameter in `config.yml`. You can either add
@@ -65,6 +65,8 @@ genomes:
     fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection//staphylococcus_aureus_subsp_aureus_st398/dna/Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.dna.toplevel.fa.gz
     gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_st398//Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.37.gff3.gz
 ```
+
+Go ahead and add the section above to `config.yml`. 
 
 Let's now look at how to do the mapping from genome id to fasta path in the
 rule `get_genome_fasta`. This is how the rule currently looks (if you have
@@ -175,21 +177,16 @@ to determine how it can use all the available rules to generate it. Here the
 then it's up to Snakemake to determine how to download and build the index.
 
 One last thing is to change the hardcoded `NCTC8325` in the `shell:` directive
-of `align_to_genome`. Because bowtie expects the index name without the `*.bt2` 
-suffix we have to add one extra line of code that will strip the suffix and store
-the index name in a new variable, like so:
+of `align_to_genome`. Bowtie2 expects the index name supplied with the `-x` flag
+to be without the ".*.bt2" suffix so we can't use `-x {input.index}`. Instead 
+we'll insert the genome_id directly from the config like this:
 
 ```bash
 shell:
     """  
-    indexBase=$(echo {input.index[0]} | sed 's/.1.bt2//g')
-    bowtie2 -x $indexBase -U {input.fastq} > {output} 2> {log}
+    bowtie2 -x intermediate/{config[genome_id]} -U {input[0]} > {output} 2>{log}
     """
 ```
-
-Here we use command substitution to pass the first index file to the `sed` 
-command which strips the `.1.bt2` suffix. This is stored in a variable `indexBase`
-which is then passed to bowtie2 in the following line.
 
 > **Summary** <br>
 > Well done! You now have a complete Snakemake workflow with a number of
