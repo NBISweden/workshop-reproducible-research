@@ -126,15 +126,22 @@ allowed to send to SLURM at the same time.
 
 ### SLURM Profile
 
-In future Snakemake versions, the cluster configuration will be replaced
-by so-called Profiles. However, at the moment these two functionalities co-exist
-in Snakemake.
+The cluster configuration is actually marked as "deprecated" but still exists
+side-by-side with the thought to be replacement: [profiles](https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles).
+Snakemake profiles can be used to define several options, allowing you to quickly
+adapt a workflow to different use-cases or to different environments. One such
+convenient profile is the [SLURM profile](https://github.com/Snakemake-Profiles/slurm)
+developed to make a workflow make efficient use of the SLURM workload manager
+that is used _e.g._ on Uppmax.
 
 The SLURM Profile needs to be set up with the software
-[cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/) (available via Conda).
-During the [SLURM Profile](https://github.com/Snakemake-Profiles/slurm) setup,
-you will be asked for several values for your Profile, e.g. for a Profile name
-or your compute project account ID.
+[cookiecutter](https://cookiecutter.readthedocs.io/) which you can install with
+conda: `conda install -c conda-forge cookiecutter`.
+
+During the [setup](https://github.com/Snakemake-Profiles/slurm#quickstart) of 
+the profile you will be asked for several values for your Profile. To configure
+the profile to use your account id see [Example 1: project setup to use specific slurm account](https://github.com/Snakemake-Profiles/slurm#example-1-project-setup-to-use-specific-slurm-account)
+at the profile repository.
 
 Rule-specific resources can be defined in each rule via the `resources: `
 directive, for example:
@@ -159,28 +166,6 @@ Any rule for which runtime is specified in the `resources` directive will be
 submitted as one job to the SLURM queue with runtime as the allocated time.
 Similarly, the number specified in the `threads` directive will be used as the
 number of allocated cores.
-
-You can even specify if rules should be resubmitted to the SLURM queue,
-asking for more resources on subsequent attempts. Do this by modifying the
-`resources` directive with _e.g._:
-
-```python
-    resources:
-        runtime = lambda wildcards, attempt: attempt*360
-```
-
-In this example, the rule will ask for 360 minutes on the first attempt,
-for 2*360 minutes on the second attempt, etc.
-
-Finally, instead of specifying compute resources in the `resources` and
-`threads` directives, it is possible to set up the SLURM Profile by providing a
-`cluster.yaml` file. When you create the profile with cookiecutter and you are
-prompted for `cluster_config []:` enter the path to a `cluster.yaml` file,
-_e.g._: `cluster_config []: ../config/cluster.yaml`. Now you can control
-resource allocations for rules either using the `resources:` directive in each
-rule, _or_ by adding that information to the `config/cluster.yaml` file. If
-resources are found in both locations, the allocations in the `cluster.yaml`
-file will take precedence.
 
 With this setup you can start the workflow with your SLURM Profile as follows
 from within a `tmux` or `screen` session:
