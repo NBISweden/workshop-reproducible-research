@@ -24,10 +24,10 @@ although the exact menu structure and link placements differ a bit.
 
 Any upload to and from GitHub requires you to authenticate yourself. GitHub
 used to allow authentication with your account and password, but this is no
-longer the case - using SSH keys is favoured instead. Exactly what these are is
-not necessary to get them working, but we encourage you to read the box below
-to learn more about them! GitHub has excellent, platform-specific instructions
-both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+longer the case - using SSH keys is favoured instead. Knowing exactly what these
+are is not necessary to get them working, but we encourage you to read the box 
+below to learn more about them! GitHub has excellent, platform-specific 
+instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please use them before moving on!
 
@@ -49,7 +49,7 @@ SSH keys to your account, so please use them before moving on!
 > Notice that the private key always remains on the client's side and is never
 > transferred over the connection; the ability to decrypt messages encrypted
 > with the public key is enough to ascertain the client's authenticity. This is
-> in contrast with using passwords, which are themselves send across a
+> in contrast with using passwords, which are themselves sent across a
 > connection (albeit encrypted). It is also important to note that even though
 > the keys come in pairs it is impossible to derive the private key from the
 > public key. If you want to read more details about how SSH authentication work
@@ -76,7 +76,7 @@ server using SSH:
   `user` to your GitHub username and `git_tutorial` to your repository name):
 
 ```bash
-git remote add origin git@github.com/user/git_tutorial.git
+git remote add origin git@github.com:user/git_tutorial.git
 ```
 
 * Run `git remote -v`. This will show you what remote location is connected to
@@ -84,8 +84,8 @@ git remote add origin git@github.com/user/git_tutorial.git
   "*origin*" by convention.
 
 > **Note** <br>
-> Make sure you've used an SSH address (*i.e.* starting with `git@github.com/`
-> rather than an HTTPS address (starting with `https://github.com/`)!
+> Make sure you've used an SSH address (*i.e.* starting with `git@github.com`
+> rather than an HTTPS address (starting with `https://github.com`)!
 
 * We have not yet synced the local and remote repositories, though, we've simply
   connected them. Let's sync them now:
@@ -97,8 +97,20 @@ git push origin main
 The `push` command sends our local history of the `main` branch to the same
 branch on the remote (`origin`). Our Git repository is now stored on GitHub!
 
-* Run `git status`. This should tell you that *"Your branch is up-to-date with
-  'origin/main'."*.
+* Run `git status`. This should tell you that:
+
+```bash
+On branch main
+nothing to commit, working tree clean
+```
+
+You always need to specify `git push origin main` by default, but you can 
+circumvent this by telling Git that you always want to push to
+`origin/main` when you're on your local `main` branch. To do this, use
+the command `git branch --set-upstream-to origin/main`. **Try it out now**.
+
+* Now run `git-status` again. You should see that now git additionally tells you
+that your local branch is up to date with the remote branch.
 
 If you go to the repository's GitHub page you should now be able to see all your
 files and your code there! It should look something like this:
@@ -125,7 +137,7 @@ software for version control.
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://uppsala.instructure.com/courses/51980/pages/git-1-introduction?module_item_id=367079).
+[here](https://uppsala.instructure.com/courses/73110/pages/git-1-introduction?module_item_id=367079).
 ```
 
 * Add, commit and push these changes to GitHub.
@@ -217,8 +229,10 @@ from different computers, a computer cluster or a cloud service.
   Now we can download the repository we just uploaded using the following:
 
 ```bash
-git clone https://user@github.com/user/git_tutorial.git .
+git clone git@github.com:user/git_tutorial.git .
 ```
+
+Again, make sure to replace `user` with your GitHub user name.
 
 Notice the dot at the end of the command above, which will put the clone into
 the current directory, instead of creating a new directory with the same name as
@@ -230,19 +244,11 @@ the original `git_tutorial` repository!
 
 * Let's say that we now want to change the `multiqc` software to an earlier
   version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.10.1` to `multiqc=1.7`; add and commit the change.
+  `multiqc=1.12` to `multiqc=1.7`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
   effect.
-
-> **Tip** <br>
-> You always need to specify `git push origin main` by default, but you can
-> circumvent this by telling Git that you always want to push to
-> `origin/main` when you're on your local `main` branch. To do this, use
-> the command `git branch --set-upstream-to origin/main`. Another way to
-> achieve the same effect is use the `--set-upstream` flag for the very first
-> push.
 
 Since we have now updated the remote repository with code that came from the
 second local repository, the first local repository is now outdated. We thus
@@ -294,8 +300,7 @@ move back into that directory.
   bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
-shell("bowtie2 --very-sensitive-local --trim5 5 -x " + indexBase + " \
-    -U {input.fastq} > {output} 2> {log}")
+bowtie2 --trim5 5 --very-sensitive-local -x $indexBase -U {input.fastq} > {output} 2> {log}
 ```
 
 * Add and commit the change to your local repository.

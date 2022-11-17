@@ -79,7 +79,7 @@ Let's repeat this process by editing a file!
   file. A `-` means a deleted line, a `+` means an added line. There are also
   shown a few lines before and after the changes, to put them in context.
 
-* Let's edit another file! Open `config.yml`and change the line `genome_id:
+* Let's edit another file! Open `config.yml` and change the line `genome_id:
   NCTC8325` to `genome_id: ST398`. Run `git status`. Run `git diff`. If we
   don't specify a file, it will show all changes made in any file, compared to
   the previous commit. Do you see your changes?
@@ -96,7 +96,7 @@ ready to be committed.
 
 But wait a minute! Shouldn't each commit optimally be a conceptual unit of
 change? Here we have one change to the genome ID used for an analysis and one
-change a where another software version is specified: these should probably be
+change where another software version is specified: these should probably be
 separate. We thus want to make two commits, one for each change.
 
 * Let's remove `environment.yml` from the staging area. `git status` tells us

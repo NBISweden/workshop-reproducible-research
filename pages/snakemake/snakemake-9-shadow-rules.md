@@ -5,11 +5,11 @@ rule index_genome:
     """
     Index a genome using Bowtie 2.
     """
-    input:
-        "data/raw_external/NCTC8325.fa.gz"
     output:
         index = expand("intermediate/NCTC8325.{substr}.bt2",
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+    input:
+        "data/raw_external/NCTC8325.fa.gz"
     log:
         "results/logs/index_genome/NCTC8325.log"
     shell:
@@ -51,10 +51,10 @@ to think about manually removing `some_other_junk_file`.
 
 ```python
 rule some_rule:
-    input:
-        "input.txt"
     output:
         "output.txt"
+    input:
+        "input.txt"
     shadow: "minimal"
     shell:
         """

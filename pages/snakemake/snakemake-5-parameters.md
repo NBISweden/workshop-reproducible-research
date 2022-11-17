@@ -6,9 +6,9 @@ keyword.
 
 ```python
 rule some_rule:
-    input:
-        "..."
     output:
+        "..."
+    input:
         "..."
     params:
         cutoff=2.5
@@ -46,19 +46,9 @@ rule get_SRA_by_accession:
 
 </details>
 
-Now run through the workflow. Again you should get a warning about changes to 
-the workflow, this time both to the code (inside the `shell:` directive) and 
-to the parameters. Since Snakemake doesn't automatically rerun rules after these 
-types of changes you have to trigger the rerun manually somehow. As you may 
-remember from [part 3](snakemake-3-visualising-workflows) of this tutorial, 
-you can either do that by targeting the rule directly with `-R get_SRA_by_accession` 
-or by using command substitution on the fly with `-R $(snakemake -s snakefile_mrsa.smk --list-code-changes)`.
-
-```bash
-snakemake -s snakefile_mrsa.smk -c 1 -R $(snakemake -s snakefile_mrsa.smk --list-code-changes)
-```
-
-Can you spot the other `--list-...` flag we could use here?
+Now run through the workflow. Because there's been changes to the `get_SRA_by_accession`
+rule this will trigger a re-run of the rule for all three accessions. In addition
+all downstream rules that depend on output from `get_SRA_by_accession` are re-run. 
 
 The parameter values we set in the `params` section don't have to be static,
 they can be any Python expression. In particular, Snakemake provides a global
@@ -112,8 +102,8 @@ to form the `config` dictionary. If you want to overwrite a parameter value,
 > **Tip** <br>
 > Rather than supplying the config file from the command line you could also
 > add the line `configfile: "config.yml"` to the top of your Snakefile. Keep in 
-> mind that with such a setup Snakemake will complain if the `config.yml` is not
-> present.
+> mind that with such a setup Snakemake will complain if the file `config.yml` 
+> is not present.
 
 > **Quick recap** <br>
 > In this section we've learned:
