@@ -50,6 +50,11 @@ RUN conda config --add channels bioconda \
     && mamba install -c conda-forge jupyter \
     && conda clean --all
 
+# Install sra-tools
+RUN curl --output sratoolkit.tar.gz https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz \
+    && mkdir tmp_out && tar --wildcards -C tmp_out -zxvf sratoolkit.tar.gz */bin/* && cp -r tmp_out/*/bin/* $CONDA_PREFIX/bin/ \
+    && rm -r sratoolkit.tar.gz tmp_out/
+
 # Open port for running Jupyter Notebook
 EXPOSE 8888
 
