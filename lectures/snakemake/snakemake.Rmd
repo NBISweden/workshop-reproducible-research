@@ -123,14 +123,14 @@ Using snakemake rules:
 
 ```python
 rule trim_fastq:
-    input: "{prefix}.fastq"
     output: temp("{prefix}.trimmed.fastq")
+    input: "{prefix}.fastq"
     shell:
         "seqtk trimfq -b 5 -e 10 {input} > {output}"
 
 rule gzip:
-    input: "{prefix}.trimmed.fastq"
     output: "{prefix}.trimmed.fastq.gz"
+    input: "{prefix}.trimmed.fastq"
     shell:
         "gzip -c {input} > {output}"
 ```
@@ -244,8 +244,8 @@ than downstream files, so it reruns the necessary rules.
 
 ``` python
 rule trim_fastq:
-    input: "{prefix}.fastq"
     output: temp("{prefix}.trimmed.fastq")
+    input: "{prefix}.fastq"
     log: "logs/{prefix}.trim_fastq.log"
 ```
 
@@ -255,8 +255,8 @@ rule trim_fastq:
 
 ``` python
 rule trim_fastq:
-    input: "{prefix}.fastq"
     output: temp("{prefix}.trimmed.fastq")
+    input: "{prefix}.fastq"
     log: "logs/{prefix}.trim_fastq.log"
 
     shell:
@@ -272,8 +272,8 @@ rule trim_fastq:
 
 ``` python
 rule trim_fastq:
-    input: "{prefix}.fastq"
     output: temp("{prefix}.trimmed.fastq")
+    input: "{prefix}.fastq"
     log: "logs/{prefix}.trim_fastq.log"
 
     # rule settings
@@ -295,8 +295,8 @@ rule trim_fastq:
 
 ``` python
 rule trim_fastq:
-    input: "{prefix}.fastq"
     output: temp("{prefix}.trimmed.fastq")
+    input: "{prefix}.fastq"
     log: "logs/{prefix}.trim_fastq.log"
 
     # rule settings
@@ -322,8 +322,8 @@ rule trim_fastq:
 
 ``` python
 rule trim_fastq:
-    input: "{prefix}.fastq"
     output: temp("{prefix}.trimmed.fastq")
+    input: "{prefix}.fastq"
     log: "logs/{prefix}.trim_fastq.log"
 
     # rule settings
