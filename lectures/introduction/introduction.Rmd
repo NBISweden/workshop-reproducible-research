@@ -33,25 +33,33 @@ class: center, middle
 .HUGE[The teachers]
 
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:150px" hspace=40/>
-    <p>John Sundh</p>
+    <img src="https://nbis.se/assets/img/staff/john-sundh.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">John Sundh</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:150px" hspace=40/>
-    <p>Erik Fasterius</p>
+    <img src="https://nbis.se/assets/img/staff/erik-fasterius.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Erik Fasterius</p>
+</div>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Verena Kutschera</p>
+</div>
+<div class="image-with-text">
+    <img src="https://nbis.se/assets/img/staff/tomas-larsson.png" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Tomas Larsson</p>
 </div>
 <br>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/verena-kutschera.jpg" style="height:150px" hspace=40/>
-    <p>Verena Kutschera</p>
+    <img src="https://nbis.se/assets/img/staff/estelle-proux-wera.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Estelle Proux-Wéra</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/tomas-larsson.png" style="height:150px" hspace=40/>
-    <p>Tomas Larsson</p>
+    <img src="https://nbis.se/assets/img/staff/lokeshwaran-manoharan.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Lokesh Manoharan</p>
 </div>
 <div class="image-with-text">
-    <img src="https://nbis.se/assets/img/staff/estelle-proux-wera.jpg" style="height:150px" hspace=40/>
-    <p>Estelle Proux-Wéra</p>
+    <img src="https://nbis.se/assets/img/staff/jakub-westholm.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Jakub Westholm</p>
 </div>
 
 ---
