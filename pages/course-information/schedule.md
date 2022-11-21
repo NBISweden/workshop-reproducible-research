@@ -10,7 +10,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> Setting up </td>
-        <td style="padding:5px"> <font size="3"> EF, JS </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:00 </td>
@@ -30,16 +30,16 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
         <td style="padding:5px"> <font size="3"> Break-out rooms and ice breaker session </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, EP </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:30 </td>
         <td style="padding:5px"> <font size="3"> Distributing and version tracking your code
              <font size="2"><i><br>
                - Introduction to version control and Git <br>
-               - Practical tutorial: [Git](git-1-introduction) <br>
+               - Practical tutorial: Git <br>
         </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>
@@ -49,12 +49,12 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Git tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, EP </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up day 1 </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
 </table>
 
@@ -73,9 +73,9 @@
         <td style="padding:5px"> <font size="3"> Master your dependencies - environments and reproducibility
              <font size="2"><i><br>
              - Introduction to the package and environment manager Conda <br>
-             - Practical tutorial: [Conda](conda-1-introduction) </i>
+             - Practical tutorial: Conda </i>
         </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -85,19 +85,19 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Conda tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, EP, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap up: Conda tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:15 </td>
         <td style="padding:5px"> <font size="3"> Organize your analysis using workflow managers
              <font size="2"> <i><br>
              - Introduction to Snakemake <br>
-             - Practical tutorial: [Snakemake](snakemake-1-introduction)
+             - Practical tutorial: Snakemake
              </i>
         </td>
         <td style="padding:5px"> <font size="3"> JS </td>
@@ -110,7 +110,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -131,7 +131,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:15 </td>
@@ -141,7 +141,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     <tr>
         <td style="padding:5px"> <font size="3"> 11:00 </td>
         <td style="padding:5px"> <font size="3"> Wrap-up: Snakemake tutorial </td>
@@ -152,7 +152,7 @@
         <td style="padding:5px"> <font size="3"> Organize your analysis using workflow managers
              <font size="2"><i><br>
              - Introduction to Nextflow <br>
-             - Practical tutorial: [Nextflow](nextflow-1-introduction) </i>
+             - Practical tutorial: Nextflow </i>
         </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
@@ -164,7 +164,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL, EF </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
@@ -185,7 +185,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL, EF </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 10:00 </td>
@@ -202,9 +202,9 @@
         <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
              <font size="2"><i><br>
              - Introduction to R Markdown<br>
-             - Practical tutorial: [R Markdown](r-markdown-1-introduction) </i>
+             - Practical tutorial: R Markdown </i>
         </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>
@@ -216,7 +216,7 @@
         <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
              <font size="2"><i><br>
              - Introduction to Jypyter <br>
-             - Practical tutorial: [Jupyter](jupyter-1-introduction) <br>
+             - Practical tutorial: Jupyter <br>
         </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
@@ -241,7 +241,7 @@
         <td style="padding:5px"> <font size="3"> Containerization
              <font size="2"><i><br>
              - Introduction to containers <br>
-             - Practical tutorial: [Containers](containers-1-introduction) <br>
+             - Practical tutorial: Containers <br>
         </td>
         <td style="padding:5px"> <font size="3"> JS </td>
     <tr>
@@ -253,7 +253,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 10:45 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> EF, VK, JS, TL </td>
+        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 12:15 </td>
@@ -267,12 +267,12 @@
              - How to put all the tools and procedures together <br>
              - How to implement these procedures on a day-to-day basis <br>
         </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> End of the course! </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
+        <td style="padding:5px"> <font size="3"> JS </td>
     </tr>
 </table>
 
@@ -294,6 +294,14 @@ The above schedule is approximate; variations may occur.
     <tr>
         <td> <b> TL </b> </td>
         <td> Tomas Larsson </td>
+    </tr>
+    <tr>
+        <td> <b> JW </b> </td>
+        <td> Jakub Westholm </td>
+    </tr>
+    <tr>
+        <td> <b> LM </b> </td>
+        <td> Lokesh Manoharan </td>
     </tr>
     <tr>
         <td> <b> EP </b> </td>
