@@ -140,24 +140,12 @@ Snakefile         workflow file used by snakemake
 
 # There are many ways to organize a project
 
-Another example: <a href="https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow" .green[snakemake-workflows/template] </a>
+Another example: <a href="https://github.com/snakemake-workflows/snakemake-workflow-template" .green[snakemake-workflows/template] </a>
 
 .small[
 ```bash
 config/
-  - config.yaml
-  - samples.tsv
-resources/
-results/
-  - logs/
-  - plots/
-  - tables/
 workflow/
-  - envs/
-  - report/
-  - rules/
-  - schemas/
-  - scripts/
   Snakefile
 LICENSE
 README.md
