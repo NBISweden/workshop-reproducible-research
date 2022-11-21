@@ -139,6 +139,27 @@ $ conda env export --from-history > environment-history.yml
 
 ---
 
+# Mamba vs. Conda
+
+<img src="https://mamba.readthedocs.io/en/latest/_static/logo.png" style="width:25%;padding: 15px 15px 15px 15px;">
+
+In short: Mamba is a faster implementation of conda.
+
+- Install mamba with conda: `conda install mamba -n base -c conda-forge`
+
+or see the [documentation](https://mamba.readthedocs.io/en/latest/installation.html) for how to do a fresh install.
+
+- Simply replace `conda` with `mamba` on the command line:
+
+```bash
+mamba env create --name project_a -f environment.yml
+mamba env update -f environment.yml
+mamba env export > environment-full.yml
+mamba env export --from-history > environment-history.yml
+```
+
+---
+
 class: center, middle
 
 # Questions?
