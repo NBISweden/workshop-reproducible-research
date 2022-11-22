@@ -54,6 +54,12 @@ resources:
 - [Installing and using Linux Bash on Windows](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
 - [Installing Linux Bash on Windows](https://itsfoss.com/install-bash-on-windows/)
 
+> **Note** <br>
+> If you run into error messages when trying to download files through the Linux
+> shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
+> nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
+> then add `nameserver 8.8.8.8` to the bottom of the file and save it.
+
 Open a bash shell Linux terminal and clone the GitHub repository containing all
 files you will need for completing the tutorials as follows. First, `cd` into
 a directory on your computer (or create one) where it makes sense to download
