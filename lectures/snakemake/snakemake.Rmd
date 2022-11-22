@@ -120,7 +120,6 @@ done
 
 Using snakemake rules:
 
-
 ```python
 rule trim_fastq:
     output: temp("{prefix}.trimmed.fastq")
@@ -140,19 +139,19 @@ rule gzip:
 # Example: sequence trimming
 
 Using snakemake rules:
-
+.small[
 ``` bash
-$ snakemake {a,b}.trimmed.fastq.gz
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
 ```
-
+]
 ---
 
 # Example: sequence trimming
 
 Using snakemake rules:
-
+.small[
 ``` bash
-$ snakemake {a,b}.trimmed.fastq.gz
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
@@ -174,19 +173,17 @@ rule gzip:
 Removing temporary output file a.trimmed.fastq.
 2 of 4 steps (50%) done
 ```
-
+]
 ---
 
 # Example: sequence trimming
 
 Using snakemake rules:
-
+.small[
 ``` bash
-$ snakemake {a,b}.trimmed.fastq.gz
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
 ```
-
 ...
-
 ``` bash
 rule trim_fastq:
     input: b.fastq
@@ -201,7 +198,7 @@ rule gzip:
 Removing temporary output file b.trimmed.fastq.
 4 of 4 steps (100%) done
 ```
-
+]
 ---
 
 # Piecing the rules together
@@ -231,28 +228,29 @@ than downstream files, so it reruns the necessary rules.
 
 .pull-right[
 <img src="dag1.png", width=100%>
-
-`$ touch intermediate/NCTC8325.1.bt2`
-
-`$ snakemake supplementary.pdf`
-
+.small[
+```bash
+$ touch intermediate/NCTC8325.1.bt2
+$ snakemake supplementary.pdf
+```
+]
 ]
 
 ---
 
 # Anatomy of a Snakemake rule
-
+.small[
 ``` python
 rule trim_fastq:
     output: temp("{prefix}.trimmed.fastq")
     input: "{prefix}.fastq"
     log: "logs/{prefix}.trim_fastq.log"
 ```
-
+]
 ---
 
 # Anatomy of a Snakemake rule
-
+.small[
 ``` python
 rule trim_fastq:
     output: temp("{prefix}.trimmed.fastq")
@@ -265,11 +263,11 @@ rule trim_fastq:
                     2> {log}
         """
 ```
-
+]
 ---
 
 # Anatomy of a Snakemake rule
-
+.small[
 ``` python
 rule trim_fastq:
     output: temp("{prefix}.trimmed.fastq")
@@ -288,11 +286,11 @@ rule trim_fastq:
                    2> {log}
       """
 ```
-
+]
 ---
 
 # Anatomy of a Snakemake rule
-
+.small[
 ``` python
 rule trim_fastq:
     output: temp("{prefix}.trimmed.fastq")
@@ -315,11 +313,12 @@ rule trim_fastq:
                    2> {log}
       """
 ```
-
+]
 ---
 
 # Anatomy of a Snakemake rule
 
+.small[
 ``` python
 rule trim_fastq:
     output: temp("{prefix}.trimmed.fastq")
@@ -346,7 +345,7 @@ rule trim_fastq:
                    2> {log}
       """
 ```
-
+]
 ---
 
 # Snakemake commandline
