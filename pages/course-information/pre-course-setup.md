@@ -61,7 +61,7 @@ resources:
 > then add `nameserver 8.8.8.8` to the bottom of the file and save it.
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
-files you will need for completing the tutorials as follows. First, `cd` into
+files you will need for completing the tutorials as follows. First, `cd` into
 a directory on your computer (or create one) where it makes sense to download
 the course directory.
 
