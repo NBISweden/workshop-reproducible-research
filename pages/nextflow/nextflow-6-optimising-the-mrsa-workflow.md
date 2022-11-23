@@ -61,7 +61,7 @@ curious of how this could be done.
 ```nextflow
 // Channel definition
 ch_genome_fasta = Channel
-    .fromPath( ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz )
+    .fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
     .map{ file -> tuple(file.getBaseName(), file) }
 
 // INDEX_GENOME process definition
@@ -82,6 +82,7 @@ process INDEX_GENOME {
     gunzip -c ${fasta} > tempfile
     bowtie2-build tempfile ${fasta_name}
     """
+}
 ```
 
 </details>
