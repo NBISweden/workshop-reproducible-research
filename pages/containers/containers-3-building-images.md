@@ -219,6 +219,10 @@ the Dockerfile is really simple. Try it out now:
 docker build -f Dockerfile_slim -t my_docker_image .
 ```
 
+> **Important** <br>
+> If your computer is a MAC with the M1 chip, you may have to add 
+> `--platform linux/x86_64` to the `docker build` command.
+
 This should result in something similar to this:
 
 ```
