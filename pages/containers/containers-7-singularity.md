@@ -37,6 +37,13 @@ images to the Singularity Image Format (SIF). This is great if there's a Docker
 image that you want to use on an HPC cluster such as Uppmax where you cannot use
 Docker.
 
+> **Tip!** <br>
+> If you are running singularity through Vagrant VirtualBox you may have to
+> set the temporary directory that Singularity uses during pull/build commands
+> to something with more disk space. First run `mkdir ~/tmp` to create a tmp 
+> directory inside the home folder of the VirtualBox, then 
+> `export SINGULARITY_TMPDIR="~/tmp"`.
+
 Let's try to convert the Docker image for this course directly from DockerHub
 using `singularity pull`:
 
@@ -67,7 +74,7 @@ Since Singularity bind mounts the current working directory we can simply
 execute the workflow and generate the output files using:
 
 ```bash
-singularity run --vm-ram 2048 mrsa_proj.sif
+singularity run mrsa_proj.sif
 ```
 
 This executes the default run command, which is
