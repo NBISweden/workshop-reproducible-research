@@ -17,9 +17,10 @@ Tools for Reproducible Research course
 
 ## Foreword
 
+The course itself lives [here](https://Juke34.github.io/workshop-reproducible-research),
+where you can find all the relevant information.  
 This work is based on the NBIS / ELIXIR course *Tools for
-Reproducible Research* course. The course itself lives [here](https://Juke34.github.io/workshop-reproducible-research),
-where you can find all the relevant information.
+Reproducible Research* course. 
 
 
 ## Installation
