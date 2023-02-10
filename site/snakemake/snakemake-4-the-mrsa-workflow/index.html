@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/snakemake/snakemake-4-the-mrsa-workflow/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>The MRSA Workflow - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../snakemake-3-visualising-workflows/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../snakemake-3-visualising-workflows/" class="btn btn-sm btn-link">
+			Visualising workflow
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../snakemake-5-parameters/" class="btn btn-sm btn-link">
+			Parameters
+		</a>
+		<a href="../snakemake-5-parameters/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>As you might remember from the <a href="introduction">intro</a>, we are attempting to
+understand how lytic bacteriophages can be used as a future therapy for the
+multiresistant bacteria MRSA (methicillin-resistant <em>Staphylococcus aureus</em>).
+In order to do this we have performed RNA-seq of three strains, one test and
+two controls. We have already set up a draft Snakemake workflow for the RNA-seq
+analysis and it seems to be running nicely. It's now up to you to modify this
+workflow to make it more flexible and reproducible!</p>
+<blockquote>
+<p><strong>Tip</strong> <br>
+This section will leave a little more up to you compared to the previous
+one. If you get stuck at some point the final workflow after all the
+modifications is available in <code>tutorials/git/Snakefile</code>.</p>
+</blockquote>
+<p>You are probably already in your <code>snakemake-env</code> environment, otherwise
+activate it (use <code>conda info --envs</code> if you are unsure).</p>
+<blockquote>
+<p><strong>Tip</strong> <br>
+Here we have one Conda environment for executing the whole Snakemake
+workflow. Snakemake also supports using explicit Conda environments on
+a per-rule basis, by specifying something like <code>conda:
+rule-specific-env.yml</code> in the rule definition and running Snakemake with
+the <code>--use-conda</code> flag. The given rule will then be run in the Conda
+environment specified in <code>rule-specific-env.yml</code> that will be created and
+activated on the fly by Snakemake.</p>
+</blockquote>
+<p>Let's start by generating the rule graph so that we get an overview of the
+workflow.</p>
+<pre><code class="language-bash">snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png &gt; rulegraph_mrsa.png
+</code></pre>
+<p>There are two differences in this command compared to the one we've used
+before. The first is that we're using the <code>-s</code> flag to specify which Snakemake
+workflow to run. We didn't need to do that before since <code>Snakefile</code> is the
+default name. The second is that we don't define a target. In the toy example
+we used <code>a_b.txt</code> as a target, and the wildcards were resolved based on that.
+How come that we don't need to do that here? It turns out that by default
+Snakemake targets the first rule in a workflow. By convention, we call this rule
+<code>all</code> and let it serve as a rule for aggregating the main outputs of the
+workflow.</p>
+<p><img alt="" src="images/rulegraph_mrsa.svg" /></p>
+<p>Now take some time and look through the workflow file and try to understand how
+the rules fit together. Use the rule graph as aid. The rules represent a quite
+standard, although somewhat simplified, workflow for RNA-seq analysis. If you
+are unfamiliar with the purpose of the different operations (index genome,
+FastQC and so on), then take a look at the <a href="introduction">intro</a>.</p>
+<p>Also generate the job graph in the same manner. Here you can see that three
+samples will be downloaded from SRA (Sequence Read Archive); SRR935090,
+SRR935091, and SRR935092. Those will then be quality controlled with FastQC and
+aligned to a genome. The QC output will be aggregated with MultiQC and the
+alignments will be used to generate a count table, <em>i.e.</em> a table that shows
+how many reads map to each gene for each sample. This count table is then what
+the downstream analysis will be based on.</p>
+<p><img alt="" src="images/dag_mrsa.svg" /></p>
+<p>Now try to run the whole workflow. Hopefully you see something like this.</p>
+<pre><code class="language-no-highlight">Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count    min threads    max threads
+--------------------  -------  -------------  -------------
+align_to_genome             3              1              1
+all                         1              1              1
+fastqc                      3              1              1
+generate_count_table        1              1              1
+generate_rulegraph          1              1              1
+get_SRA_by_accession        3              1              1
+get_genome_fasta            1              1              1
+get_genome_gff3             1              1              1
+index_genome                1              1              1
+multiqc                     1              1              1
+sort_bam                    3              1              1
+total                      19              1              1
+
+Select jobs to execute...
+
+[Mon Oct 25 17:13:47 2021]
+rule get_genome_fasta:
+    output: data/raw_external/NCTC8325.fa.gz
+    jobid: 6
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
+
+--2021-10-25 17:13:48--  ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
+           =&gt; ‘data/raw_external/NCTC8325.fa.gz’
+Resolving ftp.ensemblgenomes.org (ftp.ensemblgenomes.org)... 193.62.197.75
+Connecting to ftp.ensemblgenomes.org (ftp.ensemblgenomes.org)|193.62.197.75|:21... connected.
+Logging in as anonymous ... Logged in!
+==&gt; SYST ... done.    ==&gt; PWD ... done.
+.
+.
+[lots of stuff]
+.
+.
+localrule all:
+    input: results/tables/counts.tsv, results/multiqc.html, results/rulegraph.png
+    jobid: 0
+    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
+
+[Mon Oct 25 17:14:38 2021]
+Finished job 0.
+19 of 19 steps (100%) done
+</code></pre>
+<p>After everything is done, the workflow will have resulted in a bunch of files
+in the directories <code>data</code>, <code>intermediate</code> and <code>results</code>. Take some time to look
+through the structure, in particular the quality control reports in <code>results</code>
+and the count table in <code>results/tables</code>.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+In this section we've learned:</p>
+<ul>
+<li>How the MRSA workflow looks.</li>
+<li>How to run the MRSA workflow.</li>
+<li>Which output files the MRSA workflow produces.</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../snakemake-3-visualising-workflows/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../snakemake-3-visualising-workflows/" class="btn btn-sm btn-link">
+			Visualising workflow
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../snakemake-5-parameters/" class="btn btn-sm btn-link">
+			Parameters
+		</a>
+		<a href="../snakemake-5-parameters/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/snakemake/snakemake-4-the-mrsa-workflow.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

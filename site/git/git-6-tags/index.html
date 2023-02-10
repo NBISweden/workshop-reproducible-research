@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/git/git-6-tags/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Tagging commits - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../git-5-branches/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../git-5-branches/" class="btn btn-sm btn-link">
+			Branching and merging
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../git-7-working-remotely/" class="btn btn-sm btn-link">
+			Working remotly
+		</a>
+		<a href="../git-7-working-remotely/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>Git allows us to <em>tag</em> commits, <em>i.e.</em> give names to specific points in the
+history of our project. This can be particularly important for reproducible
+research, but also for development projects that want to highlight specific
+versions of a software. A tag can be, for example, the version of the repository
+that was used for the manuscript submission, the version used during
+resubmission, and, most importantly, the version used for the final publication.
+The first two examples are mainly useful internally, but the latter is essential
+for other researchers to be able to rerun your published analysis.</p>
+<ul>
+<li>Let's assume that the status of the repository as it is now is ready for
+  a submission to a journal. It may for example contain the scripts that were
+  used to generate the manuscript figures. Let's add a tag:</li>
+</ul>
+<pre><code class="language-bash">git tag &quot;submission1&quot;
+</code></pre>
+<ul>
+<li>We can now list all the tags available in the current repository:</li>
+</ul>
+<pre><code class="language-bash">git tag
+</code></pre>
+<blockquote>
+<p><strong>Tip</strong> <br>
+You can use the flag <code>-a</code> or <code>--annotate</code> to give more detailed information
+about a specific tag, similar to a commit message. This can be quite useful
+when there are many changes that happened, in that it allows you to
+summarise them. You can, for example, do <code>git tag -a submission1 -m
+"Annotation for tag submission1"</code> to write the annotation along with the
+command (similar to the <code>-m</code> flag for committing) or just <code>git tag -a
+submission1</code> to write the annotation with your default editor. To list all
+your tags along with their annotations you can use <em>e.g.</em> <code>git tag -n10</code>
+(which will list the first 10 lines of each tag's annotation).</p>
+</blockquote>
+<ul>
+<li>Let's assume we now got comments from the reviewers, and by fixing
+  those we had to update our code. Open <code>config.yml</code> and change the line
+  <code>max_reads: 25000</code> to <code>max_reads: 50000</code>. Commit and tag the changes:</li>
+</ul>
+<pre><code class="language-bash">git add config.yml
+git commit -m &quot;Increase number of reads&quot;
+git tag &quot;revision1&quot;
+</code></pre>
+<ul>
+<li>Now let's say that the reviewers were happy and the manuscript was
+  accepted for publication. Let's immediately add a tag:</li>
+</ul>
+<pre><code class="language-bash">git tag &quot;publication&quot;
+</code></pre>
+<ul>
+<li>A good thing about using tags is that you can easily switch between versions
+  of your code. Let's move to the first submission version:</li>
+</ul>
+<pre><code class="language-bash">git checkout submission1
+</code></pre>
+<ul>
+<li>Open <code>config.yml</code> and note that the <code>max_reads</code> variable is <code>25000</code>! To go
+  back to the latest version, run:</li>
+</ul>
+<pre><code class="language-bash">git checkout main
+</code></pre>
+<ul>
+<li>Open <code>config.yml</code> and see that the value is now <code>50000</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Tip</strong> <br>
+You can also see the difference between tags in the same way as for
+branches and commits using <em>e.g.</em> <code>git diff &lt;tag1&gt; &lt;tag2&gt;</code>.</p>
+</blockquote>
+<p>At this point could run <code>git log --oneline --decorate</code> to get a condensed
+commit history, where you should also be able to see the tagged commits.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+We have now learned how to tag important commits:</p>
+<ul>
+<li><code>git tag</code> adds a tag to a commit.</li>
+<li><code>git checkout</code> moves between tags in a similar fashion as between
+  branches.</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../git-5-branches/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../git-5-branches/" class="btn btn-sm btn-link">
+			Branching and merging
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../git-7-working-remotely/" class="btn btn-sm btn-link">
+			Working remotly
+		</a>
+		<a href="../git-7-working-remotely/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/git/git-6-tags.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

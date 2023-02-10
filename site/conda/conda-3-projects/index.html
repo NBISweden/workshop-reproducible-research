@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/conda/conda-3-projects/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Projects - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Working with environments", url: "#_top", children: [
+				]},
+				{title: "Keeping track of dependencies", url: "#keeping-track-of-dependencies", children: [
+				]},
+				{title: "Optimising for speed", url: "#optimising-for-speed", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../conda-2-the-basics/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../conda-2-the-basics/" class="btn btn-sm btn-link">
+			The basics
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../conda-4-extra-material/" class="btn btn-sm btn-link">
+			Extra material
+		</a>
+		<a href="../conda-4-extra-material/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>We have up until now specified which Conda packages to install directly on the
+command line using the <code>conda create</code> and <code>conda install</code> commands. For working
+in projects this is not the recommended way. Instead, for increased control and
+reproducibility, it is better to use an <em>environment file</em> (in <a href="https://en.wikipedia.org/wiki/YAML">YAML format</a>)
+that specifies the packages, versions and channels needed to create the
+environment for a project.</p>
+<p>Throughout these tutorials we will use a case study where we analyze an RNA-seq
+experiment with the multiresistant bacteria MRSA (see <a href="introduction">intro</a>).
+You will now start to make a Conda YAML file for this MRSA project. The file
+will contain a list of the software and versions needed to execute the analysis
+code.</p>
+<p>In this Conda tutorial, all code for the analysis is available in the script
+<code>code/run_qc.sh</code>. This code will download the raw FASTQ-files and subsequently
+run quality control on these using the FastQC software.</p>
+<h1 id="working-with-environments">Working with environments<a class="headerlink" href="#working-with-environments" title="Permanent link">#</a></h1>
+<p>We will start by making a Conda YAML-file that contains the required packages to
+perform these two steps. Later in the course, you will update the Conda
+YAML-file with more packages, as the analysis workflow is expanded.</p>
+<ul>
+<li>Let's get going! Make a YAML file called <code>environment.yml</code> looking like
+  this, and save it in the current directory (which should be
+  <code>workshop-reproducible-research/tutorials/conda</code>):</li>
+</ul>
+<pre><code class="language-yml">channels:
+- conda-forge
+- bioconda
+dependencies:
+- fastqc=0.11.9
+- sra-tools=2.11.0
+</code></pre>
+<ul>
+<li>Now, make a new Conda environment from the YAML file (note that here the
+  command is <code>conda env create</code> as opposed to <code>conda create</code> that we used
+  above):</li>
+</ul>
+<pre><code class="language-bash">conda env create -n project_mrsa -f environment.yml
+</code></pre>
+<blockquote>
+<p><strong>Tip</strong> <br>
+You can also specify exactly which channel a package should come from
+inside the environment file, using the <code>channel::package=version</code>
+syntax.</p>
+<p><strong>Tip</strong> <br>
+Instead of the <code>-n</code> flag you can use the <code>-p</code> flag to set the full path to
+where the Conda environment should be installed. In that way you can
+contain the Conda environment inside the project directory, which does make
+sense from a reproducibility perspective, and makes it easier to keep track
+of what environment belongs to what project. If you don't specify <code>-p</code> the
+environment will be installed in the default <code>miniconda3/envs/</code> directory.</p>
+</blockquote>
+<ul>
+<li>
+<p>Activate the environment!</p>
+</li>
+<li>
+<p>Now we can run the code for the MRSA project found in <code>code/run_qc.sh</code>,
+  either by running <code>bash code/run_qc.sh</code> or by opening the <code>run_qc.sh</code> file
+  and executing each line in the terminal one by one. Do this!</p>
+</li>
+</ul>
+<p>This should download the project FASTQ files and run FastQC on them (as
+mentioned above).</p>
+<ul>
+<li>Check your directory contents (<code>ls -Rlh</code>, or in your file browser). It should
+  now have the following structure:</li>
+</ul>
+<pre><code class="language-no-highlight">   conda/
+    |
+    |- code/
+    |   |- run_qc.sh
+    |
+    |- data/
+    |   |- raw_internal/
+    |       |- SRR935090.fastq.gz
+    |       |- SRR935091.fastq.gz
+    |       |- SRR935092.fastq.gz
+    |
+    |- intermediate/
+    |   |- fastqc/
+    |       |- SRR935090_fastqc.zip
+    |       |- SRR935091_fastqc.zip
+    |       |- SRR935092_fastqc.zip
+    |
+    |- results/
+    |   |- fastqc/
+    |       |- SRR935090_fastqc.html
+    |       |- SRR935091_fastqc.html
+    |       |- SRR935092_fastqc.html
+    |
+    |- environment.yml
+</code></pre>
+<p>Note that all that was needed to carry out the analysis and generate these
+files and results was <code>environment.yml</code> (that we used to create a Conda
+environment with the required packages) and the analysis code in
+<code>code/run_qc.sh</code>.</p>
+<h1 id="keeping-track-of-dependencies">Keeping track of dependencies<a class="headerlink" href="#keeping-track-of-dependencies" title="Permanent link">#</a></h1>
+<p>Projects can often be quite large and require lots of dependencies; it can feel
+daunting to try to capture all of that in a single Conda environment, especially
+when you consider potential incompatibilities that may arise. It can therefore
+be a good idea to start new projects with an environment file with each package
+you know that you will need to use, but without specifying exact versions
+(except for those packages where you <em>know</em> you need a specific version). Conda
+will then try to get the latest compatible versions of all the specified
+software, making the start-up and installation part of new projects easier. You
+can then add the versions that were installed to your environment file
+afterwards, ensuring future reproducibility.</p>
+<p>There is one command that can make this easier: <code>conda env export</code>. This allows
+you to export a list of the packages you've already installed, including their
+specific versions, meaning you can easily add them after the fact to your
+environment file. If you use the <code>--no-builds</code> flag, you'll get a list of the
+packages minus their OS-specific build specifications, which is more useful for
+making the environment portable across systems. This way, you can start with an
+environment file with just the packages you need (without version), allow Conda
+to solve the dependency tree and install the most up-to-date version possible,
+and then add the resulting version back in to the environment file using the
+<code>export</code> command!</p>
+<h1 id="optimising-for-speed">Optimising for speed<a class="headerlink" href="#optimising-for-speed" title="Permanent link">#</a></h1>
+<p>One of the greatest strengths of Conda is, unfortunately, also its greatest
+weakness in its current implementation: the availability of a frankly enormous
+number of packages and versions. This means that the search space for the
+dependency hierarchy of any given Conda environment can become equally enormous,
+leading to a (at times) ridiculous execution time for the dependency solver. It
+is not uncommon to find yourself waiting for minutes for Conda to solve
+a dependency hierarchy, sometimes even into the double digits. How can this be
+circumvented?</p>
+<p>Firstly, it is useful to specify as many of the <code>major.minor.patch</code> version
+numbers as possible when defining your environment: this drastically reduces the
+search space that Conda needs to go through. This is not always possible,
+though. For example, we mentioned in the end of the <em>Environments in projects</em>
+section that you might want to start out new projects without version
+specifications for most packages, which means that the search space is going to
+be large. Here is where another software comes into play: <em>Mamba</em>.</p>
+<p>The <a href="https://github.com/mamba-org/mamba">Mamba package manager</a> is built on-top
+of Conda with some changes and additions that greatly speed up the execution
+time. First of all, core parts of Mamba are written in C++ instead of Python,
+like the original Conda. Secondly, it uses a different dependency solver
+algorithm which is much faster than the one Conda uses. Lastly, it allows for
+parallel downloading of repository data and package files with multi-threading.
+All in all, these changes mean that Mamba is (currently) simply a better
+version of Conda. Hopefully these changes will be incorporated into the Conda
+core at some point in the future!</p>
+<p>So, how do you get Mamba? Funnily enough, the easiest way to install it is (of
+course) using Conda! Just run <code>conda install -n base -c conda-forge mamba</code>,
+which will install Mamba in your <code>base</code> Conda environment. Mamba works almost
+exactly the same as Conda, meaning that all you need to do is to stop using
+<code>conda command</code> and instead use <code>mamba command</code> - simple! Be aware though that
+in order to use <code>mamba activate</code> and <code>mamba deactivate</code> you first need to run
+<code>mamba init</code>. So transitioning into using Mamba is actually quite easy - enjoy 
+your shorter execution times!</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+In this section we've learned:</p>
+<ul>
+<li>How to define our Conda environment using a YAML-file.</li>
+<li>How to use <code>conda env create</code> to make a new environment from a YAML-file.</li>
+<li>How to use <code>conda env export</code> to get a list of installed packages.</li>
+<li>How to work with Conda in a project-like setting.</li>
+<li>How to optimise Conda for speed.</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../conda-2-the-basics/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../conda-2-the-basics/" class="btn btn-sm btn-link">
+			The basics
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../conda-4-extra-material/" class="btn btn-sm btn-link">
+			Extra material
+		</a>
+		<a href="../conda-4-extra-material/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/conda/conda-3-projects.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

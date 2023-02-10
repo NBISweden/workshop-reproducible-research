@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/containers/containers-6-packaging-the-case-study/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Packaging the case study - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../containers-5-sharing-images/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../containers-5-sharing-images/" class="btn btn-sm btn-link">
+			Distributing your images
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../containers-7-singularity/" class="btn btn-sm btn-link">
+			Singularity
+		</a>
+		<a href="../containers-7-singularity/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>During these tutorials we have been working on a case study about the
+multiresistant bacteria MRSA. Here we will build and run a Docker container
+that contains all the work we've done so far.</p>
+<ul>
+<li>We've <a href="git-7-working-remotely">set up a GitHub repository</a> for version control
+  and for hosting our project.</li>
+<li>We've defined a <a href="conda-3-projects">Conda environment</a> that specifies the
+  packages we're depending on in the project.</li>
+<li>We've constructed a <a href="snakemake-10-generalizing-workflows">Snakemake workflow</a>
+  that performs the data analysis and keeps track of files and parameters.</li>
+<li>We've written a <a href="r-markdown-6-the-mrsa-case-study">R Markdown document</a> that
+  takes the results from the Snakemake workflow and summarizes them in a report.</li>
+</ul>
+<p>The <code>workshop-reproducible-research/tutorials/containers</code> directory contains the
+final versions of all the files we've generated in the other tutorials: 
+<code>environment.yml</code>, <code>Snakefile</code>, <code>config.yml</code>, <code>code/header.tex</code>, and 
+<code>code/supplementary_material.Rmd</code>. The only difference compared to the other 
+tutorials is that we have also included the rendering of the Supplementary 
+Material HTML file into the Snakemake workflow as the rule <code>make_supplementary</code>. 
+Running all of these steps will take some time to execute (around 20 minutes 
+or so), in particular if you're on a slow internet connection.</p>
+<p>Now take a look at <code>Dockerfile</code>. Everything should look quite familiar to you,
+since it's basically the same steps as in the image we constructed in the
+previous section, although some sections have been moved around. The main
+difference is that we add the project files needed for executing the workflow
+(mentioned in the previous paragraph), and install the conda packages listed in
+<code>environment.yml</code>. If you look at the <code>CMD</code> command you can see that it will
+run the whole Snakemake workflow by default.</p>
+<p>Now run <code>docker build</code> as before, tag the image with <code>my_docker_project</code>:</p>
+<pre><code class="language-bash">docker build -t my_docker_project -f Dockerfile .
+</code></pre>
+<p>Go get a coffee while the image builds (or
+you could use <code>docker pull nbisweden/workshop-reproducible-research</code> which
+will download the same image).</p>
+<p>Validate with <code>docker image ls</code>. Now all that remains is to run the whole thing
+with <code>docker run</code>. We just want to get the results, so mount the directory
+<code>/course/results/</code> to, say, <code>mrsa_results</code> in your current directory.</p>
+<p>Well done! You now have an image that allows anyone to exactly reproduce your
+analysis workflow (if you first <code>docker push</code> to Dockerhub that is).</p>
+<blockquote>
+<p><strong>Tip</strong> <br>
+If you've done the <a href="jupyter-1-introduction">Jupyter tutorial</a>, you know that
+Jupyter Notebook runs as a web server. This makes it very well suited for
+running in a Docker container, since we can just expose the port Jupyter
+Notebook uses and redirect it to one of our own. You can then work with the
+notebooks in your browser just as you've done before, while it's actually
+running in the container. This means you could package your data, scripts
+and environment in a Docker image that also runs a Jupyter Notebook server.
+If you make this image available, say on Dockerhub, other researchers could
+then download it and interact with your data/code via the fancy interactive
+Jupyter notebooks that you have prepared for them. We haven't made any
+fancy notebooks for you, but we <em>have</em> set up a Jupyter Notebook server.
+Try it out if you want to (replace the image name with your version if
+you've built it yourself):</p>
+<p><code>bash
+docker run -it -p 8888:8888 nbisweden/workshop-reproducible-research \
+    jupyter notebook  --ip=0.0.0.0 --allow-root</code></p>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../containers-5-sharing-images/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../containers-5-sharing-images/" class="btn btn-sm btn-link">
+			Distributing your images
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../containers-7-singularity/" class="btn btn-sm btn-link">
+			Singularity
+		</a>
+		<a href="../containers-7-singularity/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/containers/containers-6-packaging-the-case-study.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/git/git-2-creating-repositories/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Creating a git repository - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../git-1-introduction/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../git-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../git-3-committing-changes/" class="btn btn-sm btn-link">
+			Committing changes
+		</a>
+		<a href="../git-3-committing-changes/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>In order to create a new Git repository, we first need a directory to track.
+For this tutorial, go ahead and create a directory called <code>git_tutorial</code>, then
+navigate into it.</p>
+<blockquote>
+<p><strong>Attention!</strong> <br>
+The directory should <em>not</em> be within the <code>workshop-reproducible-research</code>
+directory, since this is itself a Git-tracked directory.</p>
+</blockquote>
+<p>Once we are inside the desired directory, we can <em>initialise</em>
+Git with the following command:</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<p>The directory is now a version-tracked directory. How can you know? Run the
+command <code>git status</code>, which will probably return something like this:</p>
+<pre><code class="language-no-highlight">On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use &quot;git add&quot; to track)
+</code></pre>
+<blockquote>
+<p><strong>Tip</strong> <br>
+If you try to run <code>git status</code> in a non-Git directory, it will say
+that it is <em>not a git repository</em>. The way this works is that Git
+adds a hidden directory <code>.git/</code> in the root of a Git tracked
+directory (run <code>ls -a</code> to see it). This hidden directory contains
+all information and settings Git needs in order to run and version
+track your files. This also means that your Git-tracked directory
+is self-contained, <em>i.e.</em> you can simply delete it and everything that
+has to do with Git in connection to that directory will be gone.</p>
+</blockquote>
+<p>The text <code>nothing to commit (create/copy files and use "git add" to track)</code>
+tells us that while we are inside a directory that Git is currently tracking,
+there are currently no files being tracked; let's add some!</p>
+<p>Copy the following files from the <code>workshop-reproducible-research/tutorials/git</code>
+directory into your <code>git_tutorial</code> directory:</p>
+<ul>
+<li><code>Dockerfile</code></li>
+<li><code>Snakefile</code></li>
+<li><code>config.yml</code></li>
+<li><code>environment.yml</code></li>
+</ul>
+<p>Once you have done that, run <code>git status</code> again. It will tell you that there
+are files in the directory that are not version tracked by Git.</p>
+<blockquote>
+<p><strong>Note</strong> <br>
+For the purpose of this tutorial, the exact contents of the files you just
+copied are not important. But you will probably recognize many of them, as
+they are all files used in the MRSA case study described in the
+<a href="introduction">introduction to the tutorials</a>. The details of what
+these files do are described in their respective sessions later in the
+course, but we provide a brief overview here:</p>
+<ul>
+<li>The <code>environment.yml</code> file contains the Conda environment with all the
+  software used in the analysis (see the <a href="conda-1-introduction">Conda tutorial</a>).</li>
+<li>The <code>Snakefile</code> and <code>config.yml</code> are both used to define the Snakemake
+  workflow, that we'll go through in the <a href="snakemake-1-introduction">Snakemake tutorial</a>.</li>
+<li>The <code>Dockerfile</code> contains the recipe for making a Docker container for
+  the analysis, which will be covered in detail in the
+  <a href="containers-1-introduction">Container tutorial</a>.</li>
+</ul>
+<p><strong>Quick recap</strong> <br>
+We have used two <code>git</code> commands this far:</p>
+<ul>
+<li><code>git init</code> tells Git to track the current directory.</li>
+<li><code>git status</code> is a command you should use <em>a lot</em>. It will tell you,
+  amongst other things, the status of your Git clone in relation to the
+  online remote repository.</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../git-1-introduction/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../git-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../git-3-committing-changes/" class="btn btn-sm btn-link">
+			Committing changes
+		</a>
+		<a href="../git-3-committing-changes/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/git/git-2-creating-repositories.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

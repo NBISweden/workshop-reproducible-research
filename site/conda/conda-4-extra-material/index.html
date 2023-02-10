@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/conda/conda-4-extra-material/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Extra material - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Configuring Conda", url: "#_top", children: [
+				]},
+				{title: "Managing Python versions", url: "#managing-python-versions", children: [
+						
+				{title: "Your current Python installation", url: "#_top", children: [
+				]},
+				{title: "Different Python versions", url: "#different-python-versions", children: [
+				]},
+				]},
+				{title: "Decorating your prompt", url: "#decorating-your-prompt", children: [
+				]},
+				{title: "Bash aliases for conda", url: "#bash-aliases-for-conda", children: [
+				]},
+				{title: "Rolling back to an earlier version of the environment", url: "#rolling-back-to-an-earlier-version-of-the-environment", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../conda-3-projects/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../conda-3-projects/" class="btn btn-sm btn-link">
+			Projects
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../snakemake/snakemake-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../snakemake/snakemake-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>The following extra material contains some more advanced things you can do with
+Conda and the command line in general, which is not part of the main course
+materials. All the essential skills of Conda are covered by the previous
+section: the material here should be considered tips and tricks from people who
+use Conda as part of their daily work. You thus don't need to use these things
+unless you want to, and you can even skip this part of the lesson if you like!</p>
+<h2 id="configuring-conda">Configuring Conda<a class="headerlink" href="#configuring-conda" title="Permanent link">#</a></h2>
+<p>The behaviour of your Conda installation can be changed using an optional
+configuration file <code>.condarc</code>. On a fresh Conda install no such file is
+included but it's created in your home directory as <code>~/.condarc</code> the first time
+you run <code>conda config</code>.</p>
+<p>You can edit the <code>.condarc</code> file either using a text editor or by way of the
+<code>conda config</code> command. To list all config parameters and their settings run:</p>
+<pre><code class="language-bash">conda config --show
+</code></pre>
+<p>Similar to Conda environment files, the configuration file is in YAML syntax.
+This means that the config file is structured in the form of <code>key:value</code> pairs
+where the <code>key</code> is the name of the config parameter (<em>e.g.</em> <code>auto_update_conda</code>)
+and the <code>value</code> is the parameter setting (<em>e.g.</em> <code>True</code>).</p>
+<p>Adding the name of a config parameter to <code>conda config --show</code> will show only
+that parameter, <em>e.g.</em> <code>conda config --show channels</code>.</p>
+<p>You can change parameters with the <code>--set</code>, <code>--add</code>, <code>--append</code> and <code>--remove</code>
+flags to <code>conda config</code>.</p>
+<p>If you for example want to enable the 'Always yes' behaviour which makes Conda
+automatically choose the <code>yes</code> option, such as when installing, you can run:</p>
+<pre><code class="language-bash">conda config --set always_yes True
+</code></pre>
+<p>To see details about a config parameter you can run <code>conda config --describe
+parameter</code>. Try running it on the <code>channels</code> parameter:</p>
+<pre><code class="language-bash">conda config --describe channels
+</code></pre>
+<p>In the beginning of this tutorial we added Conda channels to the <code>.condarc</code>
+file using <code>conda config --add channels</code>. To remove one of the channels from
+the configuration file you can run:</p>
+<pre><code class="language-bash">conda config --remove channels conda-forge
+</code></pre>
+<p>Check your <code>.condarc</code> file to see the change. To add the <em>conda-forge</em> channel
+back to the top of the <code>channels</code> simply run:</p>
+<pre><code class="language-bash">conda config --add channels conda-forge
+</code></pre>
+<p>To completely remove a parameter and all its values run:</p>
+<pre><code class="language-bash">conda config --remove-key parameter
+</code></pre>
+<p>For a list of Conda configuration parameters see the
+<a href="https://docs.conda.io/projects/conda/en/latest/configuration.html">Conda configuration</a>
+page.</p>
+<h2 id="managing-python-versions">Managing Python versions<a class="headerlink" href="#managing-python-versions" title="Permanent link">#</a></h2>
+<p>With Conda it's possible to keep several different versions of Python on your
+computer at the same time, and switching between these versions is very easy.
+However, a single Conda environment can only contain one version of Python.</p>
+<h3 id="your-current-python-installation">Your current Python installation<a class="headerlink" href="#your-current-python-installation" title="Permanent link">#</a></h3>
+<p>The Conda base environment has its own version of Python installed.
+When you open a terminal (after having installed Conda on your system) this base
+environment is activated by default (as evidenced by <code>(base)</code> prepended to your
+prompt). You can check what Python version is installed in this environment by
+running <code>python --version</code>. To see the exact path to the Python executable type
+<code>which python</code>.</p>
+<p>In addition to this your computer may already have Python installed in a
+separate (system-wide) location outside of the Conda installation. To see if
+that is the case type <code>conda deactivate</code> until your prompt is not prepended
+with a Conda environment name. Then type <code>which python</code>. If a path was printed
+to the terminal (<em>e.g.</em> <code>/usr/bin/python</code>) that means some Python version is
+already installed in that location. Check what version it is by typing <code>python
+--version</code>.</p>
+<p>Now activate the base Conda environment again by typing <code>conda activate</code> (or
+the equivalent <code>conda activate base</code>) then check the Python installation path
+and version using <code>which</code> and <code>python --version</code> as above. See the difference?
+When you activate a Conda environment your <code>$PATH</code> variable is updated so that
+when you call <code>python</code> (or any other program) the system first searches the
+directory of the currently active environment.</p>
+<h3 id="different-python-versions">Different Python versions<a class="headerlink" href="#different-python-versions" title="Permanent link">#</a></h3>
+<p>When you create a new Conda environment you can choose to install a specific
+version of Python in that environment as well. As an example, create an
+environment containing Python version <code>3.5</code> by running:</p>
+<pre><code class="language-bash">conda create -n py35 python=3.5
+</code></pre>
+<p>Here we name the environment <code>py35</code> but you can choose whatever name you want.</p>
+<p>To activate the environment run:</p>
+<pre><code class="language-bash">conda activate py35
+</code></pre>
+<p>You now have a completely separate environment with its own Python version.</p>
+<p>Let's say you instead want an environment with Python version <code>2.7</code> installed.
+You may for instance want to run scripts or packages that were written for
+Python 2.x and are thus incompatible with Python 3.x. Simply create the new
+Conda environment with:</p>
+<pre><code class="language-bash">conda create -n py27 python=2.7
+</code></pre>
+<p>Activate this environment with:</p>
+<pre><code class="language-bash">conda activate py27
+</code></pre>
+<p>Now, switching between Python versions is as easy as typing <code>conda activate
+py35</code> / <code>conda activate py27</code>.</p>
+<blockquote>
+<p><strong>Note</strong><br>
+If you create an environment where none of the packages require Python,
+<em>and</em> you don't explicitly install the <code>python</code> package then that new
+environment will use the Python version installed in your base Conda
+environment.</p>
+</blockquote>
+<h2 id="decorating-your-prompt">Decorating your prompt<a class="headerlink" href="#decorating-your-prompt" title="Permanent link">#</a></h2>
+<p>By default, Conda adds the name of the currently activated environment to the
+end of your command line prompt. This is a good thing, as it makes it easier to
+keep track of what environment and packages you have access to. The way this is
+done in the default implementation becomes an issue when using absolute paths
+for environments (specifying <code>conda env create -p path/to/environment</code>,
+though, as the entire path will be added to the prompt. This can take up a lot
+of unnecessary space, but can be solved in a number of ways.</p>
+<p>The most straightforward way to solve this is to change the Conda configuration
+file, specifically the settings of the <code>env_prompt</code> configuration value which
+determines how Conda modifies your command line prompt. For more information
+about this setting you can run <code>conda config --describe env_prompt</code> and to see
+your current setting you can run <code>conda config --show env_prompt</code>.</p>
+<p>By default <code>env_prompt</code> is set to <code>({default_env})</code> which modifies your prompt
+with the active environment name if it was installed using the <code>-n</code> flag or if
+the environment folder has a parent folder named <code>envs/</code>. Otherwise the full
+environment path (<em>i.e.</em> the 'prefix') is displayed.</p>
+<p>If you instead set env_prompt to <code>({name})</code> Conda will modify your prompt with
+the folder name of the active environment. You can change the setting by
+running <code>conda config --set env_prompt '({name}) '</code></p>
+<p>If you wish to keep the <code>({default_env})</code> behaviour, or just don't want to
+change your Conda config, an alternative is to keep Conda environment folders
+within a parent folder called <code>envs/</code>. This will make Conda only add the folder
+name of the Conda environment to your prompt when you activate it.</p>
+<p>As an example, say you have a project called <em>project_a</em> with the project path
+<code>~/myprojects/project_a</code>. You could then install the environment for <em>project_a</em>
+into a folder <code>~/myprojects/project_a/envs/project_a_environment</code>. Activating
+the environment by pointing Conda to it (<em>e.g.</em>
+<code>conda activate ~/myprojects/project_a/envs/project_a_environment</code>) will only
+cause your prompt to be modified with <em>project_a_environment</em>.</p>
+<h2 id="bash-aliases-for-conda">Bash aliases for conda<a class="headerlink" href="#bash-aliases-for-conda" title="Permanent link">#</a></h2>
+<p>Some programmers like to have aliases (<em>i.e.</em> shortcuts) for common commands.
+Two aliases that might be usefol for you are <code>alias coac='conda activate'</code> and
+<code>alias code='conda deactivate'</code>. Don't forget to add them to your
+<code>~/.bash_profile</code> if you want to use them!</p>
+<h2 id="rolling-back-to-an-earlier-version-of-the-environment">Rolling back to an earlier version of the environment<a class="headerlink" href="#rolling-back-to-an-earlier-version-of-the-environment" title="Permanent link">#</a></h2>
+<p>Conda keeps a history of the changes to an environment. You can see 
+revisions to an environment by using:</p>
+<pre><code class="language-bash">conda list --revisions
+</code></pre>
+<p>which shows each revision (numbered) and what's installed.</p>
+<p>You can revert back to particular revision using:</p>
+<pre><code class="language-bash">conda install --revision 5
+</code></pre>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../conda-3-projects/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../conda-3-projects/" class="btn btn-sm btn-link">
+			Projects
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../snakemake/snakemake-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../snakemake/snakemake-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/conda/conda-4-extra-material.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/project/project/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Making a project reproducible - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Putting everything together", url: "#_top", children: [
+						
+				{title: "Your own project", url: "#_top", children: [
+				]},
+				{title: "Alternative: student experience project", url: "#alternative-student-experience-project", children: [
+				]},
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../../containers/containers-8-extra-material/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../../containers/containers-8-extra-material/" class="btn btn-sm btn-link">
+			Extra material
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../take_down/" class="btn btn-sm btn-link">
+			Take down
+		</a>
+		<a href="../../take_down/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<h1 id="putting-everything-together">Putting everything together<a class="headerlink" href="#putting-everything-together" title="Permanent link">#</a></h1>
+<p>It is time to try to set up a project from scratch and use the different
+tools that we have covered during the course together! This exercise is very
+open-ended and you have free hands to try out a bit of what you want. But you
+should aim to use what you've learned to do the following:</p>
+<ol>
+<li>
+<p>Create a new git repository for the project (either on BitBucket or GitHub)</p>
+</li>
+<li>
+<p>Add a README file which should contain the required information on how to
+   run the project</p>
+</li>
+<li>
+<p>Create a Conda <code>environment.yml</code> file with the required dependencies</p>
+</li>
+<li>
+<p>Create a R Markdown or Jupyter notebook to run your code</p>
+</li>
+<li>
+<p>Alternatively, create a <code>Snakefile</code> to run your code as a workflow and use a <code>config.yml</code> file 
+   to add settings to the workflow</p>
+</li>
+<li>
+<p>Use git to continuously commit changes to the repository</p>
+</li>
+<li>
+<p>Possibly make a Docker or Singularity image for your project</p>
+</li>
+</ol>
+<p>This is not a small task and may seem overwhelming! Don't worry if you feel
+lost or if the task seems daunting. To get the most out of the exercise, take
+one step at a time and go back to the previous tutorials for help and
+inspiration. The goal is not necessarily for you to finish the whole exercise,
+but to really think about each step and how it all fits together in practice.</p>
+<div class="admonition note">
+<p class="admonition-title">Recommendation</p>
+<p>We recommend to start with git, Conda and a notebook, as we would see these as
+the core tools to make a research project reproducible. We suggest to keep the 
+analysis for this exercise short so that you have time to try out the different 
+tools together while you have the opportunity to ask for help.</p>
+</div>
+<h2 id="your-own-project">Your own project<a class="headerlink" href="#your-own-project" title="Permanent link">#</a></h2>
+<p>This is a great opportunity for you to try to implement these methods on one 
+of your current research projects. It is of course up to you which tools to 
+include in making your research project reproducible, but we suggest to aim 
+for at least git and Conda. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If your analysis project contains computationally intense steps it may be
+good to scale them down for the sake of the exercise. You might, for
+example, subset your raw data to only contain a minuscule part of its
+original size. You can then test your implementation on the subset and only
+run it on the whole dataset once everything works to your satisfaction.</p>
+</div>
+<h2 id="alternative-student-experience-project">Alternative: student experience project<a class="headerlink" href="#alternative-student-experience-project" title="Permanent link">#</a></h2>
+<p>If you don't want to use a project you're currently working on we have
+a suggestion for a small-scale project for you. The idea is to analyze
+students' experiences at this Reproducible Research course. For this you will
+use responses from students to the registration form for the course. Below
+you'll find links to files in <code>*.csv</code> format with answers from 3 course instances:</p>
+<p>2018-11<br>
+<font size="2">https://docs.google.com/spreadsheets/d/1yLcJL-rIAO51wWCPrAdSqZvCJswTqTSt4cFFe_eTjlQ/export?format=csv</font><br>
+2019-05<br>
+<font size="2">
+https://docs.google.com/spreadsheets/d/1mBp857raqQk32xGnQHd6Ys8oZALgf6KaFehfdwqM53s/export?format=csv</font><br>
+2019-11<br>
+<font size="2">
+https://docs.google.com/spreadsheets/d/1aLGpS9WKvmYRnsdmvvgX_4j9hyjzJdJCkkQdqWq-uvw/export?format=csv</font></p>
+<p>The goal here is to create a Snakemake workflow, which contains the following:</p>
+<ol>
+<li>
+<p>Has a rule that downloads the <code>csv</code> files (making use of a <code>config.yml</code> file
+   to pass the URLs and file names)</p>
+</li>
+<li>
+<p>Has a rule that cleans the files (making use of <code>wildcards</code> so that the same
+   rule can be run on each file)</p>
+</li>
+<li>
+<p>The final step is to plot the student experience in some way</p>
+</li>
+</ol>
+<div class="admonition attention">
+<p class="admonition-title">Remember to</p>
+<ul>
+<li>Keep everything versioned controlled with <code>git</code></li>
+<li>Add information to the <code>README</code> file so others know how to re-run 
+  the project</li>
+<li>Add required software to the Conda <code>environment.yml</code> file</li>
+</ul>
+</div>
+<h3 id="inspiration-and-tips-for-the-student-experience-workflow">Inspiration and tips for the student experience workflow<a class="headerlink" href="#inspiration-and-tips-for-the-student-experience-workflow" title="Permanent link">#</a></h3>
+<p>The first two steps should be part of the Snakemake workflow. If you need some help
+with the cleaning step, see below for a Python script that you can save to a file
+and run in the second Snakemake rule.</p>
+<p>??? note "Click to show a script for cleaning column names"
+    The script (<em>e.g.</em> <code>clean_csv.py</code>):</p>
+<pre><code>```python
+#!/usr/bin/env python
+import pandas as pd
+from argparse import ArgumentParser
+
+def main(args):
+    df = pd.read_csv(args.input, header=0)
+    df.rename(columns=lambda x: x.split("[")[-1].rstrip("]"), inplace=True)
+    df.rename(columns={'R Markdown': 'RMarkdown'}, inplace=True)
+    df.to_csv(args.output, index=False)
+
+if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser.add_argument("input", type=str,
+                        help="Input csv file")
+    parser.add_argument("output", type=str,
+                        help="Output csv file cleaned")
+    args = parser.parse_args()
+    main(args)
+```
+
+Command to execute the script:
+
+```
+python clean_csv.py input_file.csv output_file.csv
+```
+</code></pre>
+<p>The third step is really up to you how to implement. You could:</p>
+<ul>
+<li>Include the plotting in the workflow using an RMarkdown document that
+  gets rendered into a report</li>
+<li>Have a script that produces separate figures (<em>e.g.</em> <code>png</code> files)</li>
+<li>Create a jupyter notebook that reads the cleaned output from the workflow
+  and generates some plot or does other additional analyses</li>
+</ul>
+<p>If you need some help/inspiration with plotting the results, click below
+to see an example Python script that you can save to file and run with
+the cleaned files as input.</p>
+<p>??? note "Click to show a script for plotting the student experience"
+    The script (<em>e.g.</em> <code>plot.py</code>):</p>
+<pre><code>```python
+#!/usr/bin/env python
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+mpl.use('agg')
+import pandas as pd
+import seaborn as sns
+import numpy as np
+from argparse import ArgumentParser
+
+def read_files(files):
+    """Reads experience counts and concatenates into one dataframe"""
+    df = pd.DataFrame()
+    for i, f in enumerate(files):
+        # Extract date
+        d = f.split(".")[0]
+        _df = pd.read_csv(f, sep=",", header=0)
+        # Assign date
+        _df = _df.assign(Date=pd.Series([d]*len(_df), index=_df.index))
+        if i==0:
+            df = _df.copy()
+        else:
+            df = pd.concat([df,_df], sort=True)
+    return df.reset_index().drop("index",axis=1).fillna(0)
+
+def count_experience(df, normalize=False):
+    """Generates long format dataframe of counts"""
+    df_l = pd.DataFrame()
+    for software in df.columns:
+        if software=="Date":
+            continue
+        # Groupby software and count
+        _df = df.groupby(["Date",software]).count().iloc[:,0].reset_index()
+        _df.columns = ["Date","Experience","Count"]
+        _df = _df.assign(Software=pd.Series([software]*len(_df),
+            index=_df.index))
+        if normalize:
+            _df = pd.merge(_df.groupby("Date").sum().rename(columns={'Count':'Tot'}),_df, left_index=True, right_on="Date")
+            _df.Count = _df.Count.div(_df.Tot)*100
+            _df.rename(columns={'Count': '%'}, inplace=True)
+        df_l = pd.concat([df_l, _df], sort=True)
+    df_l.loc[df_l.Experience==0,"Experience"] = np.nan
+    return df_l
+
+
+def plot_catplot(df, outdir, figname, y, palette="Blues"):
+    """Plot barplots of user experience per software"""
+    ax = sns.catplot(data=df, x="Date", col="Software", col_wrap=3, y=y,
+        hue="Experience", height=2.8,
+                     kind="bar",
+                     hue_order=["Never heard of it",
+                                "Heard of it but haven't used it",
+                                "Tried it once or twice", "Use it"],
+                     col_order=["Conda", "Git", "Snakemake", "Jupyter",
+                                "RMarkdown", "Docker", "Singularity"],
+                     palette=palette)
+    ax.set_titles("{col_name}")
+    plt.savefig("{}/{}".format(outdir, figname), bbox_to_inches="tight",
+        dpi=300)
+    plt.close()
+
+def plot_barplot(df, outdir, figname, x):
+    """Plot a barplot summarizing user experience over all software"""
+    ax = sns.barplot(data=df, hue="Date", y="Experience", x=x, errwidth=.5,
+                order=["Never heard of it",
+                       "Heard of it but haven't used it",
+                       "Tried it once or twice", "Use it"])
+    plt.savefig("{}/{}".format(outdir, figname), bbox_inches="tight",
+        dpi=300)
+    plt.close()
+
+def main(args):
+    # Read all csv files
+    df = read_files(args.files)
+    # Count experience
+    df_l = count_experience(df)
+    # Count and normalize experience
+    df_lp = count_experience(df, normalize=True)
+    # Plot catplot of student experience
+    plot_catplot(df_l, args.outdir, "exp_counts.png", y="Count")
+    # Plot catplot of student experience in %
+    plot_catplot(df_lp, args.outdir, "exp_percent.png", y="%",
+                 palette="Reds")
+    # Plot barplot of experience
+    plot_barplot(df_lp, args.outdir, "exp_barplot.png", x="%")
+
+if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser.add_argument("files", nargs="+",
+        help="CSV files with student experience to produce plots for")
+    parser.add_argument("--outdir", type=str, default=".",
+        help="Output directory for plots (defaults to current directory)")
+    args = parser.parse_args()
+    main(args)
+```
+
+Command to execute the script:
+
+```
+python plot.py file1.csv file2.csv file3.csv --outdir results/
+```
+</code></pre>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../../containers/containers-8-extra-material/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../../containers/containers-8-extra-material/" class="btn btn-sm btn-link">
+			Extra material
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../take_down/" class="btn btn-sm btn-link">
+			Take down
+		</a>
+		<a href="../../take_down/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/project/project.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

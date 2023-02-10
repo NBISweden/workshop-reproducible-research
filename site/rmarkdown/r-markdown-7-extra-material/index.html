@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/rmarkdown/r-markdown-7-extra-material/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Extra materiel - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "A nicer session info", url: "#_top", children: [
+				]},
+				{title: "R Markdown and workflows", url: "#r-markdown-and-workflows", children: [
+				]},
+				{title: "R Markdown and other languages", url: "#r-markdown-and-other-languages", children: [
+				]},
+				{title: "R Markdown and LaTeX", url: "#r-markdown-and-latex", children: [
+				]},
+				{title: "Presentations in R Markdown", url: "#presentations-in-r-markdown", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../r-markdown-6-the-mrsa-case-study/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../r-markdown-6-the-mrsa-case-study/" class="btn btn-sm btn-link">
+			The MRSA case study
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../jupyter/jupyter-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../jupyter/jupyter-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>While the tutorial teaches you all the basics of using R Markdown, there
+is much more you can do with it, if you want to! Here we cover some extra
+material if you're curious to learn more, but we don't consider this to be
+a main part of the course.</p>
+<p>If you want to read more about R Markdown in general, here are some useful
+resources:</p>
+<ul>
+<li>A nice "Get Started" section, as a complement to this tutorial, is available
+  at <a href="http://rmarkdown.rstudio.com/lesson-1.html">RStudio.com</a>.</li>
+<li><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf">R Markdown cheat sheet</a>
+  (also available from Help --&gt; Cheatsheets in RStudio)</li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown reference guide</a>
+  (also available from Help --&gt; Cheatsheets in RStudio)</li>
+</ul>
+<h2 id="a-nicer-session-info">A nicer session info<a class="headerlink" href="#a-nicer-session-info" title="Permanent link">#</a></h2>
+<p>While the default <code>sessionInfo()</code> command is highly useful for ending your
+report with all the packages and their respective versions, it can be a bit hard
+to read. There is, however, another version of the same command, which you can
+find in the <code>devtools</code> package. By combining this command with the <code>markup</code>
+result format you can get a more nicely formatted session information:</p>
+<pre><code>```{r Session info, echo = FALSE, results = &quot;markup&quot;}
+devtools::session_info()
+```
+</code></pre>
+<h2 id="r-markdown-and-workflows">R Markdown and workflows<a class="headerlink" href="#r-markdown-and-workflows" title="Permanent link">#</a></h2>
+<p>Working with R Markdown in the context of a Snakemake or Nextflow workflow is something that
+is highly useful for reproducibility and quite easy to get going with. An
+important thing that you'll have to manage a bit more than usual is, however,
+the working directory of the R Markdown document, which is something you can do
+with parameters, the <code>root_directory</code>, <code>output_dir</code> and <code>output_file</code> special
+variables. The following is a simple example of how you can write a Snakemake
+rule for R Markdown:</p>
+<pre><code class="language-python">rule report:
+    input:
+        report = &quot;report.Rmd&quot;
+    output:
+        html = &quot;results/report.html&quot;
+    params:
+        outdir = &quot;results&quot;
+    shell:
+        &quot;&quot;&quot;
+        Rscript -e 'parameters &lt;- list(root_directory = getwd(),
+                                       parameter_a    = &quot;first&quot;,
+                                       parameter_b    = 10);
+                    rmarkdown::render(&quot;{input.report}&quot;,
+                                      params      = parameters,
+                                      output_dir  = &quot;{params.outdir}&quot;,
+                                      output_file = &quot;{output.html}&quot;)'
+        &quot;&quot;&quot;
+</code></pre>
+<p>Doing it for Nextflow would look almost the same, except using Nextflow syntax
+and variables.</p>
+<h2 id="r-markdown-and-other-languages">R Markdown and other languages<a class="headerlink" href="#r-markdown-and-other-languages" title="Permanent link">#</a></h2>
+<p>While R is the default and original language for any R Markdown document it
+supports several others, including Python, bash, SQL, JavaScript, to name a few.
+This means that you can actually get the reproducibility of R Markdown documents
+when coding in languages other than just R, if your language is one of the
+<a href="https://bookdown.org/yihui/rmarkdown/language-engines.html">supported ones</a>.</p>
+<p>Two of the most important languages are Python and bash. While bash is supported
+out-of-the-box directly and only requires you to specify <code>bash</code> instead of <code>r</code> in
+the start of the code chunk, Python will additionally require you to have
+installed the <code>reticulate</code> package. Not only does this allow you to code in
+Python directly in your in R Markdown document, but the objects and variables you use in one
+language/chunk will actually be available for the other language! You can read
+more about the R Markdown Python engine <a href="https://rstudio.github.io/reticulate/articles/r_markdown.html">here</a>.</p>
+<h2 id="r-markdown-and-latex">R Markdown and LaTeX<a class="headerlink" href="#r-markdown-and-latex" title="Permanent link">#</a></h2>
+<p>This tutorial has been using HTML as the output format, as this is the most
+common format that many data analyses are using. Some reasons for this include
+not having to think about a page-layout (which is especially useful for
+documents with many figures/plots, which is common for data analysis documents),
+simplified creation (<em>i.e.</em> not having to think about special LaTeX commands for
+PDF output) and fewer dependencies.</p>
+<p>The PDF format has a lot going for it as well, however, such as being an
+end-point for journal articles, books and similar documents, as well as being
+much more powerful (meaning a steeper learning curve) than just HTML rendering:
+you can customise almost anything you can think of. Not that HTML output is
+lacking in options, it's just that LaTeX is more feature-rich.</p>
+<p>Let's take an example: font sizes. This is something that is quite hard to do on
+a per-chunk basis in HTML, but easy in LaTeX. You can change the font size of
+all HTML chunks by using a custom CSS template, for instance, but in LaTeX you
+can just set the font size to something before and after a chunk, like so:</p>
+<pre><code>\footnotesize
+```{r Count to 3}
+seq_len(3)
+```
+\normalsize
+</code></pre>
+<p>You could also do automatic figure captions using the LaTeX engine, meaning you
+won't have to add "Figure X" to each caption manually. You can even have
+separate groups of figure captions, such as one group for main article figures
+and one group for supplementary figures - the same goes for tables, of course.</p>
+<p>R Markdown uses LaTeX behind the scenes to render PDF documents, but you miss
+some of the features that are inherent in LaTeX by going this route. There is,
+thankfully, a different file format that you can use that more explicitly merges
+R Markdown and all the functionality of LaTeX, called <a href="https://rpubs.com/YaRrr/SweaveIntro">Sweave</a>.</p>
+<p>Sweave allows you to use any LaTeX command you want outside of R code chunks,
+which is awesome for those of you who are already using LaTeX and want to
+combine it with R Markdown. These files use the <code>.Rnw</code> extension rather than
+<code>.Rmd</code>, with some additional changes, such as code chunks starting with <code>&lt;&lt;&gt;&gt;=</code>
+and ending with <code>@</code>.</p>
+<p>There is simply a plethora of tweaks, variables and parameters that you can use
+for PDF rendering, but it can be quite overwhelming if you're just starting
+out. We recommend using HTML for most things, especially data analysis, but PDF
+certainly has its strengths - you could, for example, write a whole paper (and
+its supplementary material) in R Markdown with LaTeX <em>only</em>, without using
+Microsoft Word or anything else - it doesn't get much more reproducible than
+that! In fact, there are several publication-ready templates on a per-journal
+basis in the package <a href="https://github.com/rstudio/rticles"><code>rticles</code></a>, which can
+greatly facilitate this process!</p>
+<h2 id="presentations-in-r-markdown">Presentations in R Markdown<a class="headerlink" href="#presentations-in-r-markdown" title="Permanent link">#</a></h2>
+<p>R Markdown is not only useful for data analysis reports and papers, but you can also
+create presentations with it! In fact, most of the presentations created for
+this course were done using R Markdown.</p>
+<p>A major difference between presentations in R Markdown and <em>e.g.</em> Microsoft
+PowerPoint is the same as between any Markdown document (or LaTeX, for that
+matter) and the more common Microsoft Word: the more usual Microsoft software is
+"what you see is what you get", while Markdown/LaTeX doesn't show you the actual
+output until you've rendered it. This difference is more pronounced when it
+comes to presentations, as they are more visually heavy.</p>
+<p>In essence, a R Markdown presentation works the same way as for a R Markdown
+report, except some different formatting and output specifications. There are
+a number of output formats you can use, but the one we've used for this course
+(for no other reason than that we like it) is <a href="https://github.com/yihui/xaringan">Xaringan</a>.
+You can install it from Conda (<code>r-xaringan</code>) like any other package and then
+specify the output format as <code>xaringan::moon_reader</code> in your YAML header.
+Slides are separated using three dashes (<code>---</code>) while two dashes (<code>--</code>) signify
+slide elements that should appear on-click.</p>
+<p>Here is a bare-bones example of a R Markdown presentation using Xaringan:</p>
+<pre><code>---
+title: &quot;A R Markdown presentation&quot;
+output: xaringan::moon_reader
+---
+
+# R Markdown presentations
+
+You can write text like normal, including all the normal Markdown formatting
+such as *italics* or **bold**.
+
+--
+
+Anything can be separated into on-click appearance using double dashes.
+
+## Sub-headers work fine as well
+
+Just remember to separate your slides with three dashes!
+
+---
+
+# Use code chunks just like normal
+
+This is especially useful for presentations of data analyses, since you don't
+have to have a separate R Markdown or script to create the tables/figures and
+then copy/paste them into a PowerPoint!
+
+```{r, fig.height = 5, fig.width = 5, fig.align = &quot;center&quot;}
+data(cars)
+plot(cars)
+```
+</code></pre>
+<p>Having said that, presentations is R Markdown can do <em>most</em> things that
+PowerPoint can do, but it'll take some more effort. Getting something to look
+like you want in a WYSIWYG-editor like PowerPoint is easier, since you're seeing
+the output as you're making it, but it'll take more experimentation in
+R Markdown. You can, however, automate a lot of things, such as by using CSS
+templates that apply to each slide (including things such as font styles,
+header, footers, and more) or like the above mentioned benefit of having both
+code and its results already in your presentation without having to muck about
+with copying and pasting figures and tables to a separate presentation.</p>
+<p>For inspiration, we suggest you go to the <code>lectures/</code> directory of the course
+Git repository. You should also have a look at the <a href="https://slides.yihui.org/xaringan/#1">official documentation</a>
+of Xaringan (which is itself a R Markdown-based presentation), as well as its
+<a href="https://rmarkdown.rstudio.com/lesson-11.html">several alternatives</a>. We find
+that using R Markdown for presentations does take about the same time or
+slightly more compared to PowerPoint once you're used to it, but there's
+a learning curve - as with everything else. Anything related to actual code and
+presenting results can be much quicker, however! A good exercise is to take one
+of the presentations you have given in the past (such as for a lab meeting, a
+journal club, <em>etc.</em>) and try to recreate that with R Markdown. Which method of
+creating presentations you prefer is, ultimately, up to you and what the your
+current end-goal is for the presentation.</p>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../r-markdown-6-the-mrsa-case-study/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../r-markdown-6-the-mrsa-case-study/" class="btn btn-sm btn-link">
+			The MRSA case study
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../jupyter/jupyter-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../jupyter/jupyter-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/rmarkdown/r-markdown-7-extra-material.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

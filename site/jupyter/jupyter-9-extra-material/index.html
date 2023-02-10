@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/jupyter/jupyter-9-extra-material/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Extra material - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Running jupyter notebooks on a cluster", url: "#_top", children: [
+				]},
+				{title: "Integrating notebooks with Snakemake workflows", url: "#integrating-notebooks-with-snakemake-workflows", children: [
+				]},
+				{title: "More integrations", url: "#more-integrations", children: [
+				]},
+				{title: "Presentations with Jupyter", url: "#presentations-with-jupyter", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../jupyter-8-the-mrsa-case-study/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../jupyter-8-the-mrsa-case-study/" class="btn btn-sm btn-link">
+			The MRSA case study
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../containers/containers-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../containers/containers-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>Here are some useful resources if you want to read more about Jupyter in
+general:</p>
+<ul>
+<li>The <a href="http://jupyter.org">Jupyter project site</a> contains a lot of information
+  and inspiration.</li>
+<li>The <a href="https://jupyter-notebook.readthedocs.io/en/stable/">Jupyter Notebook documentation</a>.</li>
+<li>A <a href="http://ipywidgets.readthedocs.io/en/stable/index.html">guide</a> to using
+  widgets for creating interactive notebooks.</li>
+</ul>
+<h2 id="running-jupyter-notebooks-on-a-cluster">Running jupyter notebooks on a cluster<a class="headerlink" href="#running-jupyter-notebooks-on-a-cluster" title="Permanent link">#</a></h2>
+<ul>
+<li>Login to Uppmax, making sure to use a specific login node, <em>e.g.</em> <code>rackham1</code>:</li>
+</ul>
+<pre><code>ssh &lt;your-user-name&gt;@rackham1.uppmax.uu.se
+</code></pre>
+<ul>
+<li>Create/activate a conda environment containing <code>jupyter</code> then run:</li>
+</ul>
+<pre><code>jupyter notebook 
+</code></pre>
+<p>When the Jupyter server starts up you should see something resembling:</p>
+<pre><code>[I 11:00:00.000 NotebookApp] Serving notebooks from local directory: &lt;path-to-your-local-dir&gt;
+[I 11:00:00.000 NotebookApp] Jupyter Notebook 6.4.6 is running at:
+[I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+[I 11:00:00.000 NotebookApp]  or http://127.0.0.1:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+[I 11:00:00.000 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+</code></pre>
+<p>Now a Jupyter notebook server is running on the Uppmax end. The line that says:</p>
+<pre><code>[I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+</code></pre>
+<p>contains information on the port used on the server side (8889 in this case) and
+the token required to use the server (<code>357d65100058efa40a0641fce7005addcff339876c5e8000</code>).</p>
+<p>Next step is to use this information to login to the server from your local 
+computer.  </p>
+<p><strong>On your local computer</strong></p>
+<p>In a terminal, run the following command to start port forwarding of 
+port 8080 on your local computer to the remote port on the Uppmax side. Replace 
+<remote-port> with the port given when you started the server on Uppmax. Also 
+replace <your-user-name> with your user name on Uppmax.</p>
+<pre><code class="language-bash">ssh -N -L localhost:8080:localhost:&lt;remote-port&gt; &lt;your-user-name&gt;@rackham1.uppmax.uu.se
+</code></pre>
+<p>As long as this process is running the port forwarding is running. To disable it
+simply interrupt it with <code>CTRL + C</code>.</p>
+<p>Connect to the jupyter server by opening <code>localhost:8080</code> in your browser. When
+prompted, paste the token you got when starting the server on Uppmax. </p>
+<p>You are now (hopefully) accessing the jupyter server that's running on Uppmax, 
+via your local browser.</p>
+<h2 id="integrating-notebooks-with-snakemake-workflows">Integrating notebooks with Snakemake workflows<a class="headerlink" href="#integrating-notebooks-with-snakemake-workflows" title="Permanent link">#</a></h2>
+<p>In the <a href="jupyter-8-the-mrsa-case-study">case study</a> section of this tutorial we
+created a Jupyter notebook that used output from a Snakemake workflow
+and produced some summary results and plots. Wouldn't it be nice if this was
+actually part of the workflow itself? To generate a HTML version of the notebook
+we can use what we learned in the section about 
+<a href="jupyter-7-converting-notebooks">converting notebooks</a>. The command to execute the notebook
+and save it in HTML format in a file <code>results/supplementary.html</code> would be:</p>
+<pre><code class="language-bash">jupyter nbconvert --to HTML --output-dir results --output supplementary.html --execute supplementary_material.ipynb
+</code></pre>
+<p>This command could be used in a rule, <em>e.g.</em> <code>make_supplementary</code>, the input of 
+which would be <code>results/tables/counts.tsv</code>, <code>intermediate/multiqc_general_stats.txt</code>, 
+and <code>results/rulegraph.png</code>. See if you can work out how to implement such a 
+rule at the end of the <code>Snakefile</code> found in the <code>jupyter/</code> directory. You can
+find an example in the code chunk below:</p>
+<pre><code class="language-python">rule make_supplementary:
+    input:
+        counts = &quot;results/tables/counts.tsv&quot;,
+        summary = &quot;results/tables/counts.tsv.summary&quot;,
+        multiqc_file = &quot;intermediate/multiqc_general_stats.txt&quot;,
+        rulegraph = &quot;results/rulegraph.png&quot;
+    output:
+        &quot;results/supplementary.html&quot;
+    params:
+        base = lambda wildcards, output: os.path.basename(output[0]),
+        dir = lambda wildcards, output: os.path.dirname(output[0])
+    shell:
+        &quot;&quot;&quot;
+        jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
+            --execute supplementary_material.ipynb
+        &quot;&quot;&quot;
+</code></pre>
+<blockquote>
+<p><strong>Note</strong> <br>
+The Conda enivronment for the jupyter tutorial does not contain packages
+required to run the full snakemake workflow. So if you wish to test jupyter
+integration fully you should update the conda environment by running 
+<code>conda install snakemake-minimal fastqc sra-tools multiqc bowtie2 tbb 
+samtools htseq bedtools wget graphviz</code></p>
+</blockquote>
+<h2 id="more-integrations">More integrations<a class="headerlink" href="#more-integrations" title="Permanent link">#</a></h2>
+<p>Snakemake actually supports the execution of notebooks via the <code>notebook:</code> 
+rules directive. See more about Jupyter integration in the 
+<a href="https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration">snakemake docs</a>.
+In the <code>notebook:</code> directive of such a rule you specify the path to a jupyter 
+notebook (relative to the Snakefile) which is then executed when 
+the rule is run. </p>
+<p>So how is this useful? </p>
+<p>In the notebook itself this gives you access to a <code>snakemake</code> object 
+containing information about <strong>input</strong> and <strong>output</strong> files for the rule via 
+<code>snakemake.input</code> and <code>snakemake.output</code>. Similarly, you can access rule 
+<strong>wildcards</strong> with <code>snakemake.wildcards</code>, <strong>params</strong> with <code>snakemake.params</code>, 
+and <strong>config</strong> settings with <code>snakemake.config</code>.</p>
+<p>When snakemake runs the rule with the <code>notebook:</code> directive <code>jupyter-nbconvert</code> 
+is used to execute the notebook. No HTML output is generated here but it is 
+possible to store a version of the notebook in its final processed form by 
+adding the following to the rule:</p>
+<pre><code class="language-python">log:
+    notebook=&quot;&lt;path&gt;/&lt;to&gt;/&lt;processed&gt;/&lt;notebook.ipynb&gt;&quot;
+</code></pre>
+<p>Because you won't get the notebook in full HTML glory, this type of 
+integration is better suited if you want to use a notebook to generate figures 
+and store these in local files (<em>e.g.</em> pdf/svg/png formats). </p>
+<p>We'll use the <code>supplementary_material.ipynb</code> notebook as an example! Let's say
+that instead of exporting the entire notebook to HTML we want a rule that 
+outputs pdf versions of the barplot and heatmap figures we created.</p>
+<p>Let's start by setting up the rule. For simplicity we'll use the same input as
+when we edited the notebook in the first place. The output will be 
+<code>results/barplot.pdf</code> and <code>results/heatmap.pdf</code>. Let's also output a finalized 
+version of the notebook using the <code>log: notebook=</code> directive:</p>
+<pre><code class="language-python">rule make_supplementary_plots:
+    input:
+        counts = &quot;results/tables/counts.tsv&quot;,
+        summary = &quot;results/tables/counts.tsv.summary&quot;,
+        multiqc = &quot;intermediate/multiqc_general_stats.txt&quot;,
+        rulegraph = &quot;results/rulegraph.png&quot;
+    output:
+        barplot = &quot;results/barplot.pdf&quot;,
+        heatmap = &quot;results/heatmap.pdf&quot;
+    log:
+        notebook = &quot;results/supplementary.ipynb&quot;
+</code></pre>
+<p>The notebook will now have access to <code>snakemake.input.counts</code>, 
+<code>snakemake.output.barplot</code> and <code>snakemake.output.heatmap</code> when executed from
+within the workflow. Let's go ahead and edit the notebook! In the cell where we
+defined notebook parameters edit the code so that it looks like this:</p>
+<pre><code class="language-python">counts_file=snakemake.input.counts
+summary_file=snakemake.input.summary
+multiqc_file=snakemake.input.multiqc
+rulegraph_file=snakemake.input.rulegraph
+
+SRR_IDs=snakemake.params.SRR_IDs
+GSM_IDs=snakemake.params.GSM_IDs
+GEO_ID=snakemake.params.GEO_ID
+</code></pre>
+<p>Notice that we set the <code>SRR_IDs</code>, <code>GSM_IDs</code> and <code>GEO_ID</code> variables using 
+variables in <code>snakemake.params</code>? However, we haven't defined these in our rule 
+yet so let's go ahead and do that now. Add the <code>params</code> section so that the 
+<code>make_supplementary_plots</code> in the Snakefile looks like this:</p>
+<pre><code class="language-python">rule make_supplementary_plots:
+    input:
+        counts = &quot;results/tables/counts.tsv&quot;,
+        multiqc = &quot;intermediate/multiqc_general_stats.txt&quot;,
+        rulegraph = &quot;results/rulegraph.png&quot;
+    output:
+        barplot = &quot;results/barplot.pdf&quot;,
+        heatmap = &quot;results/heatmap.pdf&quot;
+    log:
+        notebook = &quot;results/supplementary.ipynb&quot;
+    params:
+        SRR_IDs = [&quot;SRR935090&quot;,&quot;SRR935091&quot;,&quot;SRR935092&quot;],
+        GSM_IDs = [&quot;GSM1186459&quot;, &quot;GSM1186460&quot;, &quot;GSM1186461&quot;],
+        GEO_ID = &quot;GSE48896&quot;
+    notebook: &quot;supplementary_material.ipynb&quot;
+</code></pre>
+<blockquote>
+<p><strong>Tip</strong> <br>
+One way to further generalize this rule could be to define the SRR_IDs, GSM_IDs
+and GEO_ID parameters in a config file instead, in which case they would be 
+directly accessible from within the notebook using <code>snakemake.config['SRR_IDs']</code>
+etc.</p>
+</blockquote>
+<p>Now the rule contains everything needed, but we still need to edit the notebook
+to save the plots to the output files. First, edit the cell that generates the 
+barplot so that it looks like this:</p>
+<pre><code class="language-python"># Create a stacked barplot
+ax = summary_plot_data.T.plot(kind=&quot;bar&quot;, stacked=True, color=colors)
+# Move legend and set legend title
+ax.legend(bbox_to_anchor=(1,1), title=&quot;Category&quot;);
+plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches=&quot;tight&quot;) ## &lt;-- Add this line!
+</code></pre>
+<p>Finally, edit the cell that generates the heatmap so that it looks like this:</p>
+<pre><code class="language-python">count_data = counts.loc[:, SRR_IDs]
+heatmap_data = count_data.loc[(count_data.std(axis=1).div(count_data.mean(axis=1))&gt;1.2)&amp;(count_data.max(axis=1)&gt;5)]
+heatmap_data = heatmap_data.rename(columns = name_dict['title'])
+with sns.plotting_context(&quot;notebook&quot;, font_scale=0.7):
+    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap=&quot;RdYlBu_r&quot;, 
+                        method=&quot;complete&quot;, yticklabels=True, linewidth=.5,
+                        cbar_pos=(.7, .85, .05, .1), figsize=(3,9))
+    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
+    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches=&quot;tight&quot;) ## &lt;-- Add this line!
+</code></pre>
+<p>Now you can run the following to generate the plots:</p>
+<pre><code class="language-bash">snakemake -j 1 make_supplementary_plots
+</code></pre>
+<h2 id="presentations-with-jupyter">Presentations with Jupyter<a class="headerlink" href="#presentations-with-jupyter" title="Permanent link">#</a></h2>
+<p>As if all the above wasn't enough you can also create presentations/slideshows
+with Jupyter! Simply use conda to install the 
+<a href="https://rise.readthedocs.io/en/stable/">RISE</a> extension to your jupyter 
+environment:</p>
+<pre><code class="language-bash">conda install -c conda-forge rise
+</code></pre>
+<p>then open up a notebook of your choice. In the menu click <strong>View</strong> -&gt; <strong>Cell 
+Toolbar</strong> -&gt; <strong>Slideshow</strong>. Now every cell will have a drop-down in the upper
+right corner allowing you to set the cell type:</p>
+<ul>
+<li><strong>Slide</strong>: a regular slide</li>
+<li><strong>Sub-Slide</strong>: a regular slide that will be displayed <em>below</em> the previous</li>
+<li><strong>Fragment</strong>: these cells split up slides so that content (fragments) are 
+  added only when you press Space</li>
+<li><strong>Skip</strong>: these cells will not appear in the presentation</li>
+<li><strong>Notes</strong>: these cells act as notes, shown in the speaker view but not in the 
+  main view</li>
+</ul>
+<p>The presentation can be run directly from the notebook by clicking the
+'Enter/Exit RISE Slideshow' button (looks like a bar chart) in the toolbar, or
+by using the keyboard shortcut <code>Alt-r</code>. Running it directly from a notebook
+means you can also edit and run cells during your presentation. The downside is
+that the presentation is not as portable because it may rely on certain software
+packages that other people are not comfortable with installing.</p>
+<p>You can also export the notebook to an HTML-file with <code>jupyter nbconvert 
+--execute --to SLIDES &lt;your-notebook.ipynb&gt;</code>. The resulting file, with the 
+slideshow functionality included, can be opened in any browser. However, in 
+this format you cannot run/edit cells.</p>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../jupyter-8-the-mrsa-case-study/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../jupyter-8-the-mrsa-case-study/" class="btn btn-sm btn-link">
+			The MRSA case study
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../containers/containers-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../containers/containers-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/jupyter/jupyter-9-extra-material.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

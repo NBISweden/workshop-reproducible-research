@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/git/git-7-working-remotely/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Working remotly - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "GitHub setup", url: "#_top", children: [
+				]},
+				{title: "Create a remote repository", url: "#create-a-remote-repository", children: [
+				]},
+				{title: "Browsing GitHub", url: "#browsing-github", children: [
+				]},
+				{title: "Working with remote repositories", url: "#working-with-remote-repositories", children: [
+				]},
+				{title: "Remote branches", url: "#remote-branches", children: [
+				]},
+				{title: "Sharing tags", url: "#sharing-tags", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../git-6-tags/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../git-6-tags/" class="btn btn-sm btn-link">
+			Tagging commits
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../git-8-conflicts/" class="btn btn-sm btn-link">
+			Conflict
+		</a>
+		<a href="../git-8-conflicts/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>So far we've only been working on files present on our own computer, <em>i.e.</em>
+locally. While Git is an amazing tool for reproducibility even if you're
+working alone, it really starts to shine in collaborative work. This entails
+working with <em>remote</em> repositories, <em>i.e.</em> repositories that are stored
+somewhere online; some of the most common places to store your repositories are
+<a href="https://github.com">GitHub</a>, <a href="https://bitbucket.org">BitBucket</a> and
+<a href="https://about.gitlab.com/">GitLab</a>. GitHub is the most popular of these, and is
+what we'll be using for this tutorial.</p>
+<p>An important thing to keep in mind here is the difference between <em>Git</em> (the
+version control system) and online hosting of <em>Git repositories</em> (such as
+GitHub): the former is the core of keeping track of your code's history, while
+the latter is how to store and share that history with others.</p>
+<h2 id="github-setup">GitHub setup<a class="headerlink" href="#github-setup" title="Permanent link">#</a></h2>
+<p>If you have not done so already, go to <a href="https://github.com/join">github.com</a>
+and create an account. You can also create an account on another online hosting
+service for version control, <em>e.g.</em> <a href="https://bitbucket.org">Bitbucket</a> or
+<a href="https://about.gitlab.com/">GitLab</a>. The exercises below are written with
+examples from GitHub (as that is the most popular platform with the most
+extensive features), but the same thing can be done on alternative services,
+although the exact menu structure and link placements differ a bit.</p>
+<p>Any upload to and from GitHub requires you to authenticate yourself. GitHub
+used to allow authentication with your account and password, but this is no
+longer the case - using SSH keys is favoured instead. Knowing exactly what these
+are is not necessary to get them working, but we encourage you to read the box 
+below to learn more about them! GitHub has excellent, platform-specific 
+instructions both on how to <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">generate</a>
+and <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">add</a>
+SSH keys to your account, so please use them before moving on!</p>
+<blockquote>
+<p><strong>SSH keys and authentication</strong> <br>
+Using SSH (Secure Shell) for authentication basically entails setting up a
+pair of keys: one private and one public. You keep the private key on your
+local computer and give the public key to anywhere you want to be able to
+connect to, <em>e.g.</em> GitHub. The public key can be used to encrypt messages that
+<em>only</em> the corresponding private key can decrypt. A simplified description of
+how SSH authentication works goes like this:</p>
+<ol>
+<li>The client (<em>i.e.</em> the local computer) sends the ID of the SSH key pair it
+   would like to use for authentication to the server (<em>e.g.</em> GitHub)</li>
+<li>If that ID is found, the server generates a random number and encrypts this
+   with the public key and sends it back to the client</li>
+<li>The client decrypts the random number with the private key and sends it
+   back to the server</li>
+</ol>
+<p>Notice that the private key always remains on the client's side and is never
+transferred over the connection; the ability to decrypt messages encrypted
+with the public key is enough to ascertain the client's authenticity. This is
+in contrast with using passwords, which are themselves sent across a
+connection (albeit encrypted). It is also important to note that even though
+the keys come in pairs it is impossible to derive the private key from the
+public key. If you want to read more details about how SSH authentication work
+you can check out <a href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">this website</a>,
+which has more in-depth information than we provide here.</p>
+</blockquote>
+<h2 id="create-a-remote-repository">Create a remote repository<a class="headerlink" href="#create-a-remote-repository" title="Permanent link">#</a></h2>
+<p>Log in to your GitHub account and press the <em>New</em> button:</p>
+<ul>
+<li>Make sure you are listed as the owner</li>
+<li>Add a repository name, <em>e.g.</em> <code>git_tutorial</code></li>
+<li>You can keep the repo private or make it public, as you wish</li>
+<li>Skip including a README, a <code>.gitignore</code> and licence</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/github_new_repo.png" />{ width=600px }</p>
+</blockquote>
+<p>You will now be redirected to the repository page which will list several ways
+for you to start adding content (files) to the repository. What we will do is to
+connect the local repository we've been working on so far to the remote GitHub
+server using SSH:</p>
+<ul>
+<li>Add a remote SSH address to your local repository (make sure you change
+  <code>user</code> to your GitHub username and <code>git_tutorial</code> to your repository name):</li>
+</ul>
+<pre><code class="language-bash">git remote add origin git@github.com:user/git_tutorial.git
+</code></pre>
+<ul>
+<li>Run <code>git remote -v</code>. This will show you what remote location is connected to
+  your local Git clone. The short name of the default remote is usually
+  "<em>origin</em>" by convention.</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong> <br>
+Make sure you've used an SSH address (<em>i.e.</em> starting with <code>git@github.com</code>
+rather than an HTTPS address (starting with <code>https://github.com</code>)!</p>
+</blockquote>
+<ul>
+<li>We have not yet synced the local and remote repositories, though, we've simply
+  connected them. Let's sync them now:</li>
+</ul>
+<pre><code class="language-bash">git push origin main
+</code></pre>
+<p>The <code>push</code> command sends our local history of the <code>main</code> branch to the same
+branch on the remote (<code>origin</code>). Our Git repository is now stored on GitHub!</p>
+<ul>
+<li>Run <code>git status</code>. This should tell you that:</li>
+</ul>
+<pre><code class="language-bash">On branch main
+nothing to commit, working tree clean
+</code></pre>
+<p>You always need to specify <code>git push origin main</code> by default, but you can 
+circumvent this by telling Git that you always want to push to
+<code>origin/main</code> when you're on your local <code>main</code> branch. To do this, use
+the command <code>git branch --set-upstream-to origin/main</code>. <strong>Try it out now</strong>.</p>
+<ul>
+<li>Now run <code>git-status</code> again. You should see that now git additionally tells you
+that your local branch is up to date with the remote branch.</li>
+</ul>
+<p>If you go to the repository's GitHub page you should now be able to see all your
+files and your code there! It should look something like this:</p>
+<blockquote>
+<p><img alt="" src="images/github_repo_overview.png" />{ width=600px }</p>
+</blockquote>
+<p>You can see a lot of things there, such as each file and the latest commit that
+changed them, the repository's branches and a message from GitHub at the bottom:
+<em>"Help people interested in this repository understand your project by adding
+a README."</em> This refers to GitHub's built-in functionality of automatically
+rendering any <em>markdown</em> document named <code>README</code> or <code>README.md</code> in the
+repository's root directory and displaying it along with what you can already
+see. Let's try it out!</p>
+<ul>
+<li>Let's create a <code>README.md</code> file and fill it with the following text:</li>
+</ul>
+<pre><code class="language-markdown"># A Git tutorial
+
+This repository contains tutorial information related to the **NBIS/ELIXIR** course
+*Tools for Reproducible Research*, specifically the session on using the `git`
+software for version control.
+
+## Links
+
+You can find the latest stable version of the Git tutorial for the course
+[here](https://uppsala.instructure.com/courses/73110/pages/git-1-introduction?module_item_id=367079).
+</code></pre>
+<ul>
+<li>Add, commit and push these changes to GitHub.</li>
+</ul>
+<pre><code class="language-bash">git add README.md
+git commit -m &quot;Add README.md&quot;
+git push origin main
+</code></pre>
+<p>You should now be able to see the rendered markdown document, which looks a bit
+different from the text you copied in from above. Note that there are two
+different header levels, which come from the number of hash signs (<code>#</code>) used.
+You can also see bold text (which was surrounded by two asterisks), italic
+text (surrounded by one asterisk), in-line code (surrounded by acute accents)
+and a link (link text inside square brackets followed by link address inside
+parentheses).</p>
+<p>It is important to add README-files to your repositories so that they are better
+documented and more easily understood by others and, more likely, your future self.
+In fact, documentation is an important part of reproducible research! While the
+tools that you are introduced to by this course are all directly related to
+making science reproducible, you will <em>also</em> need good documentation. Make it
+a habit of always adding README-files for your repositories, fully explaining
+the ideas and rationale behind the project. You can even add README-files to
+sub-directories as well, giving you the opportunity to go more in-depth where
+you so desire.</p>
+<blockquote>
+<p><strong>Tip</strong> <br>
+There are a lot more things you can do with markdown than what we show here.
+Indeed, this entire course is mostly written in markdown! You can read
+more about markdown <a href="https://www.markdownguide.org/getting-started/">here</a>.</p>
+<p><strong>Quick recap</strong> <br>
+We learned how to connect local Git repositories to remote locations such as
+GitHub and how to upload commits using <code>git push</code>. We also learned the
+basics of <em>markdown</em> and how it can be used to document Git repositories.</p>
+</blockquote>
+<h2 id="browsing-github">Browsing GitHub<a class="headerlink" href="#browsing-github" title="Permanent link">#</a></h2>
+<p>GitHub and the rest of the websites that offer remote hosting of git
+repositories all have numerous features, which can be somewhat difficult to
+navigate in the beginning. We here go through some of the basics of what you can
+do with GitHub.</p>
+<ul>
+<li>Go to your GitHub repository in your browser again and click on <em>Code</em> to the
+  left. Click on <code>config.yml</code>. You will see the contents of the file. Notice
+  that it is the latest version, where we previously changed the <code>genome_id</code>
+  variable:</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/github_config_yml.png" />{ width=600px }</p>
+</blockquote>
+<ul>
+<li>Click on <em>History</em>. You will see an overview of the commits involving changes
+  made to this file:</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/github_config_yml_history.png" />{ width=600px }</p>
+</blockquote>
+<ul>
+<li>Click on the <code>Change to ST398 for alignment</code> commit. You will see the changes
+  made to <code>config.yml</code> file compared to the previous commit.</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/github_config_yml_diff.png" />{ width=600px }</p>
+</blockquote>
+<ul>
+<li>Go back to the repository's main page and click on the commit tracker on the
+  right above the list of files, which will give you an overview of all commits
+  made. Clicking on a specific commit lets you see the changes introduced by
+  that commit. Click on the commit that was the initial commit, where we added
+  all the files.</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/github_initial_commit.png" />{ width=600px }</p>
+</blockquote>
+<p>You will now see the files as they were when we first added them. Specifically
+you can see that the <code>Dockerfile</code> is back, even though we deleted it! Click on
+the <em>Code</em> tab to the left to return to the overview of the latest repository
+version.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+We learned some of the most important features of the GitHub interface and
+how repositories can be viewed online.</p>
+</blockquote>
+<h2 id="working-with-remote-repositories">Working with remote repositories<a class="headerlink" href="#working-with-remote-repositories" title="Permanent link">#</a></h2>
+<p>While remote repositories are extremely useful as backups and for collaborating
+with others, that's not their only use: remotes also help when you are working
+from different computers, a computer cluster or a cloud service.</p>
+<ul>
+<li>Let's pretend that you want to work on this repository from a different
+  computer. First, create a different directory (<em>e.g.</em> <code>git_remote_tutorial</code>)
+  in a separate location that is not already tracked by Git and <code>cd</code> into it.
+  Now we can download the repository we just uploaded using the following:</li>
+</ul>
+<pre><code class="language-bash">git clone git@github.com:user/git_tutorial.git .
+</code></pre>
+<p>Again, make sure to replace <code>user</code> with your GitHub user name.</p>
+<p>Notice the dot at the end of the command above, which will put the clone into
+the current directory, instead of creating a new directory with the same name as
+the remote repository. You will see that all your files are here, identical to
+the original <code>git_tutorial</code> repository!</p>
+<ul>
+<li>
+<p>Since you already gave the address to Git when you cloned the repository, you
+  don't have to add it manually as before. Verify this with <code>git remote -v</code>.</p>
+</li>
+<li>
+<p>Let's say that we now want to change the <code>multiqc</code> software to an earlier
+  version: open the <code>environment.yml</code> file in the second local repo and change
+  <code>multiqc=1.12</code> to <code>multiqc=1.7</code>; add and commit the change.</p>
+</li>
+<li>
+<p>We can now use <code>push</code> again to sync our remote repository with the new local
+  changes. Refresh your web page again and see that the changes have taken
+  effect.</p>
+</li>
+</ul>
+<p>Since we have now updated the remote repository with code that came from the
+second local repository, the first local repository is now outdated. We thus
+need to update the first local repo with the new changes. This can be done with
+the <code>pull</code> command.</p>
+<ul>
+<li>
+<p><code>cd</code> back into the first local repository (<em>e.g.</em> <code>git_tutorial</code>) and run the
+  <code>git pull</code> command. This will download the newest changes from the remote
+  repository and merge them locally automatically.</p>
+</li>
+<li>
+<p>Check that everything is up-to-date with <code>git status</code>.</p>
+</li>
+</ul>
+<p>Another command is <code>git fetch</code>, which will download remote changes <em>without</em>
+merging them. This can be useful when you want to see if there are any remote
+changes that you <em>may</em> want to merge, without actually doing it, such as in
+a collaborative setting. In fact, <code>git pull</code> in its default mode is just
+a shorthand for <code>git fetch</code> followed by <code>git merge FETCH_HEAD</code> (where
+<code>FETCH_HEAD</code> points to the tip of the branch that was just fetched).</p>
+<p>That's quite a few concepts and commands you've just learnt! It can be a bit
+hard to keep track of everything and the connections between local and remote
+Git repositories and how you work with them, but hopefully the following figure
+will give you a short visual summary:</p>
+<p><img alt="" src="images/git_overview_remote.png" />{ width=600px }</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+We have learned the difference between local and remote copies of git
+repositories and how to sync them:</p>
+<ul>
+<li><code>git push</code> uploads commits to a remote repository</li>
+<li><code>git pull</code> downloads commits from a remote repository and merges them
+  to the local branch</li>
+<li><code>git fetch</code> downloads commits from a remote repository without merging
+  them to the local branch</li>
+<li><code>git clone</code> makes a local copy of a remote repository</li>
+</ul>
+</blockquote>
+<h2 id="remote-branches">Remote branches<a class="headerlink" href="#remote-branches" title="Permanent link">#</a></h2>
+<p>Remote branches work much in the same way a local branches, but you have to
+push them separately; you might have noticed that GitHub only listed our
+repository as having one branch (you can see this by going to the <em>Code</em> tab).
+This is because we only pushed our <code>main</code> branch to the remote. Let's create
+a new local branch and add some changes that we'll push as a separate branch to
+our remote - you should do this in the original <code>git_tutorial</code> repository, so
+move back into that directory.</p>
+<ul>
+<li>Create a new branch named <code>trimming</code> and add the <code>--trim5 5</code> flag to the
+  bowtie2-command part of the <code>Snakefile</code>, which should now look like this:</li>
+</ul>
+<pre><code class="language-bash">bowtie2 --trim5 5 --very-sensitive-local -x $indexBase -U {input.fastq} &gt; {output} 2&gt; {log}
+</code></pre>
+<ul>
+<li>
+<p>Add and commit the change to your local repository.</p>
+</li>
+<li>
+<p>Instead of doing what we previously did, <em>i.e.</em> merge the <code>trimming</code> branch
+  into the <code>main</code> branch, we'll push <code>trimming</code> straight to our remote:</p>
+</li>
+</ul>
+<pre><code class="language-bash">git push origin trimming
+</code></pre>
+<ul>
+<li>Go the repository at GitHub and see if the new branch has appeared. Just above
+  the file listing click the <em>Branch</em> drop-down and select the new branch to
+  view it. Can you see the difference in the <code>Snakefile</code> depending on which
+  branch you choose?</li>
+</ul>
+<p>We now have two branches both locally and remotely: <code>main</code> and <code>trimming</code>. We
+can continue working on our <code>trimming</code> branch until we're satisfied (all the
+while pushing to the remote branch with the same name), at which point we want
+to merge it into <code>main</code>.</p>
+<ul>
+<li>
+<p>Checkout your local <code>main</code> branch and merge it with the <code>trimming</code> branch.</p>
+</li>
+<li>
+<p>Push your <code>main</code> branch to your remote and subsequently delete your local
+  <code>trimming</code> branch.</p>
+</li>
+</ul>
+<p>The above command only deleted the local branch. If you want to remove the
+branch from the remote repository as well, run:</p>
+<pre><code class="language-bash">git push origin --delete trimming
+</code></pre>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+We learned how to push local branches to a remote with <code>git push origin
+&lt;branch&gt;</code> and how to delete remote branches with <code>git push origin --delete
+&lt;branch&gt;</code>.</p>
+</blockquote>
+<h2 id="sharing-tags">Sharing tags<a class="headerlink" href="#sharing-tags" title="Permanent link">#</a></h2>
+<p>Your local repository tags are not included when you do a normal push. To push
+tags to the remote you need to supply the <code>--tags</code> flag to the <code>git push</code>
+command:</p>
+<pre><code class="language-bash">git push --tags
+</code></pre>
+<ul>
+<li>
+<p>Go to the repository overview page on GitHub. You will see that the repository
+  now has three tags! If you click on <em>Tags</em> you will be given an overview of
+  the existing tags for your repository - if you click <em>Releases</em> you will see
+  more or less the same information. Confusing? Well, a <em>tag</em> is a Git concept
+  while a <em>release</em> is a GitHub concept that is based on Git tags. Releases add
+  some extra features that can be useful for distributing software and are done
+  manually from the repository's GitHub page.</p>
+</li>
+<li>
+<p>Click on one of the tags. Here users can download a compressed file
+  containing the repository at the version specified by the tags.</p>
+</li>
+</ul>
+<blockquote>
+<p><img alt="" src="images/github_tags_list.png" />{ width=600px }</p>
+</blockquote>
+<p>Alternatively, Git users who want to reproduce your analysis with the code used
+for the publication can clone the GitHub repository and then run <code>git checkout
+publication</code>.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+We learned how to push Git tags to a remote by using the <code>--tags</code> flag.</p>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../git-6-tags/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../git-6-tags/" class="btn btn-sm btn-link">
+			Tagging commits
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../git-8-conflicts/" class="btn btn-sm btn-link">
+			Conflict
+		</a>
+		<a href="../git-8-conflicts/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/git/git-7-working-remotely.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

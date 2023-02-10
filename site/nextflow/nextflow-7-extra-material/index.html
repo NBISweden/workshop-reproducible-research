@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/nextflow/nextflow-7-extra-material/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Extra materiel - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Using containers in Nextflow", url: "#_top", children: [
+				]},
+				{title: "Using Conda in Nextflow", url: "#using-conda-in-nextflow", children: [
+				]},
+				{title: "Running Nextflow on Uppmax", url: "#running-nextflow-on-uppmax", children: [
+				]},
+				{title: "Advanced channel creation", url: "#advanced-channel-creation", children: [
+				]},
+				{title: "Using Groovy in processes", url: "#using-groovy-in-processes", children: [
+				]},
+				{title: "The nf-core pipeline collection", url: "#the-nf-core-pipeline-collection", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../nextflow-6-optimising-the-mrsa-workflow/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../nextflow-6-optimising-the-mrsa-workflow/" class="btn btn-sm btn-link">
+			The MRSA Workflow
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../rmarkdown/r-markdown-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../rmarkdown/r-markdown-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>There are many more things you can do with Nextflow than covered
+here. If you are interested to learn more details about Nextflow, we will
+briefly show some of its advanced features in this section. But first, here are
+some links to additional resources on Nextflow:</p>
+<ul>
+<li><a href="http://nextflow-io.github.io/patterns/index.html">Nextflow patterns</a> that
+   can help with common operations and concepts</li>
+<li>The Nextflow <a href="https://www.nextflow.io/docs/latest/index.html">documentation</a></li>
+<li><a href="https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html">Learning Nextflow in 2020</a></li>
+<li>Nextflow training at <a href="https://seqera.io/training/">Seqera</a></li>
+<li>A work-in-progress <a href="https://carpentries-incubator.github.io/workflows-nextflow/index.html">Nextflow Carpentry course</a></li>
+<li>Community help from <a href="https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg">Nextflow's Slack channel</a></li>
+</ul>
+<h1 id="using-containers-in-nextflow">Using containers in Nextflow<a class="headerlink" href="#using-containers-in-nextflow" title="Permanent link">#</a></h1>
+<p>Nextflow has built-in support for using both Docker and Singularity containers (and others too),
+either with a single container for the workflow as a whole or separate
+containers for each individual process. The simplest way to do it is to have a
+single container for your entire workflow, in which case you simply run the
+workflow and specify the image you want to use, like so:</p>
+<pre><code class="language-bash"># Run with docker
+nextflow run main.nf -with-docker [image]
+
+# Run with Singularity
+nextflow run main.nf -with-singularity [image].sif
+</code></pre>
+<p>If you don't want to supply this at every execution, you can also add it
+directly to your configuration file:</p>
+<pre><code class="language-bash"># Docker configuration
+process.container = 'image'
+docker.enabled = true
+
+# Singularity configuration
+process.container = 'path/to/image.sif'
+singularity.enabled = true
+</code></pre>
+<p>If you instead would like to have each process use a different container you can
+use the <code>container</code> directive in your processes:</p>
+<pre><code class="language-groovy">process PROCESS_01 {
+    (...)
+    container: 'image_01'
+    (...)
+}
+
+process PROCESS_02 {
+    (...)
+    container: 'image_02'
+    (...)
+}
+</code></pre>
+<p>Regardless of which solution you go for, Nextflow will execute all the processes
+inside the specified container. In practice, this means that Nextflow will
+automatically wrap your processes and run them by executing the Docker or
+Singularity command with the image you have provided.</p>
+<h1 id="using-conda-in-nextflow">Using Conda in Nextflow<a class="headerlink" href="#using-conda-in-nextflow" title="Permanent link">#</a></h1>
+<p>While you can execute Nextflow inside Conda environments just like you would any
+other type of software, you can also use Conda with Nextflow in the same way as
+for Docker and Singularity above. You can either supply an <code>environment.yml</code>
+file, the path to an existing environment or the packages and their versions
+directly in the <code>conda</code> directive, like so:</p>
+<pre><code class="language-groovy">process PROCESS_01 {
+    (...)
+    conda: 'mrsa-environment.yml'
+    (...)
+}
+process PROCESS_02 {
+    (...)
+    conda: 'path/to/mrsa-env'
+    (...)
+}
+process PROCESS_03 {
+    (...)
+    conda: 'bioconda::bwa=0.7.17 bioconda::samtools=1.13'
+    (...)
+}
+</code></pre>
+<p>You can use either of the methods described above with your configuration file
+as well, here exemplified using an <code>environment.yml</code> file:</p>
+<pre><code class="language-groovy">process.conda = 'mrsa-environment.yml'
+</code></pre>
+<h1 id="running-nextflow-on-uppmax">Running Nextflow on Uppmax<a class="headerlink" href="#running-nextflow-on-uppmax" title="Permanent link">#</a></h1>
+<p>A lot of researchers in Sweden are using the Uppmax computer cluster in Uppsala,
+which is easily handled by Nextflow. What you need to do is to add the following
+<em>profile</em> to your <code>nextflow.config</code> file:</p>
+<pre><code>profiles {
+
+    // Uppmax general profile
+    uppmax {
+        params{
+            account        = null
+        }
+        process {
+            executor       = 'slurm'
+            clusterOptions = &quot;-A '${params.account}'&quot;
+            memory         = { 6.GB * task.attempt }
+            cpus           = { 1 * task.attempt }
+            time           = { 10.h * task.attempt }
+            scratch        = '$SNIC_TMP'
+            errorStrategy  = 'retry'
+            maxRetries     = 1
+        }
+    }
+}
+</code></pre>
+<p>This will add a profile to your workflow, which you can access by running the
+workflow with <code>-profile uppmax</code>. You will also have to supply an extra parameter 
+<code>account</code> which corresponds to your SNIC project account, but the rest you can
+leave as-is, unless you want to tinker with <em>e.g.</em> compute resource
+specifications. That's all you need! Nextflow will take care of communications
+with SLURM (the system used by Uppmax, specified by the <code>executor</code> line) and
+will send off jobs to the cluster for you, and everything will look exactly the
+same way as if you were executing the pipeline locally.</p>
+<p>The <code>memory</code>, <code>cpus</code> and <code>time</code> lines define the various resources Nextflow will
+use as well as how much to automatically increase them by if re-trying failed
+tasks; this, in turn, is specified by the <code>errorStrategy</code> and <code>maxRetries</code>
+variables. The <code>scratch</code> variable defines where each node's local storage is
+situated, which gives Nextflow the most optimal access to the Uppmax file system
+for temporary files.</p>
+<h1 id="advanced-channel-creation">Advanced channel creation<a class="headerlink" href="#advanced-channel-creation" title="Permanent link">#</a></h1>
+<p>The input data shown in the MRSA example workflow is not that complex, but
+Nextflow channels can do much more than that. A common scenario in
+high-throughput sequencing is that you have pairs of reads for each sample.
+Nextflow has a special, built-in way to create channels for this data type: the
+<code>fromFilePairs</code> channel factory:</p>
+<pre><code class="language-groovy">Channel
+    .fromFilePairs ( &quot;data/*_R{1,2}.fastq.gz&quot; )
+    .set           { ch_raw_reads }
+</code></pre>
+<p>This will create a channel containing all the reads in the <code>data/</code> directory in
+the format <code>&lt;sample&gt;_R1.fastq.gz</code> and <code>&lt;sample&gt;_R2.fastq.gz</code> and will pair them
+together into a nested tuple looking like this:</p>
+<pre><code class="language-groovy">[sample, [data/sample_R1.fastq.gz, data/sample_R2.fastq.gz]]
+</code></pre>
+<p>The first element of the tuple (<code>[0]</code>) thus contains the value <code>sample</code>, while
+the second element (<code>[1]</code>) contains another tuple with paths to both read files.
+This nested tuple can be passed into processes for <em>e.g.</em> read alignment, and
+it makes the entire procedure of going from read pairs (<em>i.e.</em> two separate
+files, one sample) into a single alignment file (one file, one sample) very
+simple. For more methods of reading in data see the Nextflow documentation on
+<a href="https://www.nextflow.io/docs/latest/channel.html#channel-factory">Channel Factories</a>.</p>
+<p>We can also do quite advanced things to manipuate data in channels, such as this:</p>
+<pre><code class="language-groovy">Channel
+    .fromPath ( params.metadata )
+    .splitCsv ( sep: &quot;\t&quot;, header: true )
+    .map      { row -&gt; tuple(&quot;${row.sample_id}&quot;, &quot;${row.treatment}&quot;) }
+    .filter   { id, treatment -&gt; treatment != &quot;DMSO&quot; }
+    .unique   (  )
+    .set      { samples_and_treatments }
+</code></pre>
+<p>That's a bit of a handful! But what does it do? The first line specifies that we
+want to read some data from a file specified by the <code>metadata</code> parameter, and
+the second line actually reads that data using tab as delimiter, including a
+header. The <code>map</code> operator takes each entire row and subsets it to only two
+columns: the <code>sample_id</code> and <code>treatment</code> columns. This subset is stored as a
+tuple. The <code>filter</code> operator is then used to remove any tuples where the second
+entry, <code>treatment</code>, is not equal to the string <code>"DMSO"</code> (<em>i.e.</em> untreated cells, in this example).
+We then only take the unique tuples and set the results as the new channel
+<code>samples_and_treatments</code>. Let's say that this is the metadata we're reading:</p>
+<pre><code class="language-no-highlight">sample_id     dose    group     treatment
+sample_1      0.1     control   DMSO
+sample_1      1.0     control   DMSO
+sample_1      2.0     control   DMSO
+sample_2      0.1     case      vorinostat
+sample_2      1.0     case      vorinostat
+sample_2      2.0     case      vorinostat 
+sample_3      0.1     case      fulvestrant
+sample_3      1.0     case      fulvestrant
+sample_3      2.0     case      fulvestrant
+</code></pre>
+<p>Given the channel creation strategy above, we would get the following result:</p>
+<pre><code class="language-no-highlight">[sample_2, vorinostat]
+[sample_3, fulvestrant]
+</code></pre>
+<p>In this way, you can perform complex operations on input files or input metadata
+and send the resulting content to your downstream processes
+in a simple way. Composing data manipuations in Nextflow like this can be half 
+the fun of writing the workflow. Check out Nextflow's documentation on 
+<a href="https://www.nextflow.io/docs/latest/operator.html">Channel operators</a> to
+see the full list of channel operations at your disposal. </p>
+<h1 id="using-groovy-in-processes">Using Groovy in processes<a class="headerlink" href="#using-groovy-in-processes" title="Permanent link">#</a></h1>
+<p>You don't have to use bash or external scripts inside your processes all the
+time unless you want to: Nextflow is based on Groovy, which allows you to use
+both Groovy and Bash in the same process. For example, have a look at this:</p>
+<pre><code class="language-groovy">process index_fasta {
+    tag &quot;${fasta_name}&quot;
+
+    input:
+    tuple val(fasta), path(fasta_file)
+
+    output:
+    path(&quot;${fasta_name}.idx&quot;), emit: fasta
+
+    script:
+    fasta_name = fasta.substring(0, fasta.lastIndexOf(&quot;.&quot;))
+    &quot;&quot;&quot;
+    index --ref ${fasta_file},${fasta_name}
+    &quot;&quot;&quot;
+}
+</code></pre>
+<p>Here we have some command <code>index</code> that, for whatever reason, requires both the
+path to a FASTA file and the name of that file <em>without</em> the <code>.fasta</code>
+extension. We can use Groovy in the <code>script</code> directive together with normal
+Bash, mixing and matching as we like. The first line of the <code>script</code> directive
+gets the name of the FASTA file without the extension by removing anything
+after the dot, while the second calls the <code>index</code> command like normal using
+bash.</p>
+<h1 id="the-nf-core-pipeline-collection">The nf-core pipeline collection<a class="headerlink" href="#the-nf-core-pipeline-collection" title="Permanent link">#</a></h1>
+<p>You may have heard of the <a href="https://nf-co.re/">nf-core</a> pipeline collection
+previously, which is a large, collaborative bioinformatics community dedicated
+to building, developing and maintaining Nextflow workflows. In fact, if you have
+sequenced data at <em>e.g.</em> the National Genomics Infrastructure (<a href="https://ngisweden.scilifelab.se/">NGI</a>),
+you can be sure that the data processing has been run using one of the nf-core
+pipelines! While the community only started in 2018 (with a <a href="https://www.nature.com/articles/s41587-020-0439-x">Nature Biotechnology</a>
+paper in 2020), it already has over 30 production-ready pipelines with
+everything from genomics, transcriptomics, proteomics and metagenomics - and
+more being developed all the time.</p>
+<p>The nf-core pipelines all work in the same way, in that they have the same exact
+base for inputs, parameters and arguments, making them all highly similar to
+run. Since you've already learnt the basics of Nextflow in this course, you
+should now be able to also run the nf-core pipelines! It might be that you have
+a data type that you can analyse using one of the pipelines in nf-core, meaning
+you don't need to do anything other than find out what parameters you should run
+it with.</p>
+<p>Each pipeline comes with extensive documentation, test datasets that you can
+use to practice on, can be run on both HPCs like Uppmax, cloud services like
+AWS or locally on your own computer. All pipelines support both Conda and
+Docker/Singularity, and you can additionally run specific versions of the
+pipelines, allowing for full reproducibility of your analyses. If you want to
+check nf-core out, simply head over to their <a href="https://nf-co.re/pipelines">list of pipelines</a>
+and see what's available! Who knows, you might even write your own nf-core
+pipeline in the future?</p>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../nextflow-6-optimising-the-mrsa-workflow/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../nextflow-6-optimising-the-mrsa-workflow/" class="btn btn-sm btn-link">
+			The MRSA Workflow
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../../rmarkdown/r-markdown-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+		<a href="../../rmarkdown/r-markdown-1-introduction/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/nextflow/nextflow-7-extra-material.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

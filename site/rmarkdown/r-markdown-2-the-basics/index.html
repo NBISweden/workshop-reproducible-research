@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/rmarkdown/r-markdown-2-the-basics/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>The basics - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../r-markdown-1-introduction/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../r-markdown-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../r-markdown-3-code-chunks/" class="btn btn-sm btn-link">
+			Code chunks
+		</a>
+		<a href="../r-markdown-3-code-chunks/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>Let's begin with starting RStudio and opening a new file (<em>File</em> --&gt; <em>New File</em>
+--&gt; <em>R Markdown</em>). If you're using Conda you should have all the packages
+needed, but install anything that RStudio prompts you to. In the window that
+opens, select <em>Document and HTML</em> (which should be the default), and click <em>Ok</em>.
+This will open a template R Markdown document for you. On the top is a so called
+YAML header:</p>
+<pre><code class="language-yaml">---
+title: &quot;Untitled&quot;
+output:
+    html_document:
+        toc: true
+---
+</code></pre>
+<blockquote>
+<p><strong>Attention!</strong> <br>
+The header might look slightly different depending on your version of
+RStudio. If so, replace the default with the header above.</p>
+</blockquote>
+<p>Here we can specify settings for the document, like the title and the output
+format.</p>
+<ul>
+<li>Change the title to <code>My first R Markdown document</code></li>
+</ul>
+<p>Now, read through the rest of the template R Markdown document to get a feeling
+for the format. As you can see, there are essentially three types of components
+in an R Markdown document:</p>
+<ol>
+<li>Text (written in R Markdown)</li>
+<li>Code chunks (written in R or another <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html">supported language</a>)</li>
+<li>The YAML header</li>
+</ol>
+<p>Let's dig deeper into each of these in the following sections! But first, just
+to get the flavor for things to come: press the little <em>Knit</em>-button located at
+the top of the text editor panel in RStudio. This will prompt you to save the
+Rmd file (do that), and generate the output file (an HTML file in this case).
+It will also open up a preview of this file for you.</p>
+<p>Some commonly used formatting written in markdown is shown below, which you may
+recognize from the <a href="git-7-working-remotely">Git tutorial</a>:</p>
+<pre><code class="language-no-highlight"># This is a heading
+
+This is a paragraph.
+This line-break will not appear in the output file.\
+But this will (since the previous line ends with a backslash).
+
+This is a new paragraph.
+
+## This is a sub-heading
+
+This is **bold text**, this is *italic text*, this is `monospaced text`,
+and this is [a link](http://rmarkdown.rstudio.com/lesson-1.html).
+
+An important feature of R Markdown is that you are allowed to use R code
+inline to generate text by enclosing it with `r `. As an example: 112/67 is
+equal to `r round(112/67, 2)`. You can also use multiple commands like this:
+I like `r fruits &lt;- c(&quot;apples&quot;,&quot;bananas&quot;); paste(fruits, collapse = &quot; and &quot;)`!
+</code></pre>
+<p>The above markdown would generate something like this:</p>
+<blockquote>
+<p><img alt="" src="images/markdown_example.png" />{ width=600px }</p>
+</blockquote>
+<p>Instead of reiterating information here, take a look on the first page (only
+the first page!) of this <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a>.
+This will show you how to write more stuff in markdown and how it will be
+displayed once the markdown document is converted to an output file (<em>e.g.</em>
+HTML or PDF). An even more complete guide is available
+<a href="http://rmarkdown.rstudio.com/authoring_pandoc_markdown.html">here</a>.</p>
+<ul>
+<li>Try out some of the markdown described above (and in the links) in your
+  template R Markdown document! Press <em>Knit</em> to see the effect of your changes.
+  Don't worry about the code chunks just yet, we'll come to that in a second.</li>
+</ul>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+In this section you learned and tried out some of the basic markdown
+syntax.</p>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../r-markdown-1-introduction/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../r-markdown-1-introduction/" class="btn btn-sm btn-link">
+			Introduction
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../r-markdown-3-code-chunks/" class="btn btn-sm btn-link">
+			Code chunks
+		</a>
+		<a href="../r-markdown-3-code-chunks/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/rmarkdown/r-markdown-2-the-basics.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

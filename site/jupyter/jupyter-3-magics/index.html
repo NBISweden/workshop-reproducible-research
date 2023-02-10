@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/jupyter/jupyter-3-magics/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Magics - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../jupyter-2-the-basics/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../jupyter-2-the-basics/" class="btn btn-sm btn-link">
+			The basics
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../jupyter-4-plotting/" class="btn btn-sm btn-link">
+			Plotting
+		</a>
+		<a href="../jupyter-4-plotting/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<p>Magics constitute a simple command language that significantly extends the
+power of Jupyter notebooks. There are two types of magics:</p>
+<ul>
+<li><strong>Line magics</strong>: Commands that are prepended by <code>%</code>, and whose arguments only
+  extend to the end of the line.</li>
+<li><strong>Cell magics</strong>: Commands that start with <code>%%</code> and then applies to the whole
+  cell. Must be written on the first line of a cell.</li>
+</ul>
+<p>Now list all available magics with <code>%lsmagic</code> (which itself is a magic). You
+add a question mark to a magic to show the help (<em>e.g.</em> <code>%lsmagic?</code>). Some of
+them act as shortcuts for commonly used shell commands (<code>%ls</code>, <code>%cp</code>, <code>%cat</code>,
+..). Others are useful for debugging and optimizing your code (<code>%timeit</code>,
+<code>%debug</code>, <code>%prun</code>, ..). For more information see the 
+<a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">magics documentation</a>.</p>
+<p>A very useful magic, in particular when using shell commands a lot in your
+work, is <code>%%capture</code>. This will capture the stdout/stderr of any code cell and
+store them in a Python object. Run <code>%%capture?</code> to display the help and try to
+understand how it works. Try it out with either some Python code, other magics
+or shell commands. Here is an example of how you can make it work:</p>
+<pre><code class="language-no-highlight">%%capture output
+%%bash
+echo &quot;Print to stdout&quot;
+echo &quot;Print to stderr&quot; &gt;&amp;2
+</code></pre>
+<p>... and in another cell:</p>
+<pre><code class="language-python">print(&quot;stdout:&quot; + output.stdout)
+print(&quot;stderr:&quot; + output.stderr)
+</code></pre>
+<blockquote>
+<p><strong>Tip</strong> <br>
+You can capture the output of some magics directly like this: <code>my_dir = %pwd</code>.</p>
+</blockquote>
+<p>The <code>%%script</code> magic is used for specifying a program (bash, perl, ruby, ..)
+with which to run the code (similar to a shebang). For some languages it's
+possible to use these shortcuts:</p>
+<ul>
+<li><code>%%ruby</code></li>
+<li><code>%%perl</code></li>
+<li><code>%%bash</code></li>
+<li><code>%%html</code></li>
+<li><code>%%latex</code></li>
+<li><code>%%R</code> (here you have to first install the rpy2 extension, for example with
+  Conda, and then load with <code>%load_ext rpy2.ipython</code>)</li>
+</ul>
+<p>Try this out if you know any of the languages above. Otherwise you can always
+try to print the quadratic formula with LaTeX!</p>
+<pre><code class="language-no-highlight">\begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} &amp; {{\rm{when}}} &amp; {ax^2 + bx + c = 0} \\ \end{array}
+</code></pre>
+<p>Another useful magic is <code>%precision</code> which sets the floating point precision 
+in the notebook. As a quick example, add the following to a cell and run it:</p>
+<pre><code class="language-python">float(100/3)
+</code></pre>
+<p>Next set the precision to 4 decimal points by running a cell with:</p>
+<pre><code>%precision 4
+</code></pre>
+<p>Now run the cell with <code>float(100/3)</code> again to see the difference.</p>
+<p>Running <code>%precision</code> without additional arguments will restore the default.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+In this section we've learned:</p>
+<ul>
+<li>The basics of Jupyter magics and the difference between line magics and cell
+magics</li>
+<li>How to capture and use output from notebook cells with <code>%%capture</code></li>
+<li>How to use magics to run non-Python code in notebooks</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../jupyter-2-the-basics/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../jupyter-2-the-basics/" class="btn btn-sm btn-link">
+			The basics
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../jupyter-4-plotting/" class="btn btn-sm btn-link">
+			Plotting
+		</a>
+		<a href="../jupyter-4-plotting/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/jupyter/jupyter-3-magics.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

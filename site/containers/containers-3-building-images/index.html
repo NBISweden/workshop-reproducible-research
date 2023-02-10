@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/containers/containers-3-building-images/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Building a Docker image - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Understanding Dockerfiles", url: "#_top", children: [
+				]},
+				{title: "Building from Dockerfiles", url: "#building-from-dockerfiles", children: [
+				]},
+				{title: "Creating your own Dockerfile", url: "#creating-your-own-dockerfile", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../containers-2-the-basics/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../containers-2-the-basics/" class="btn btn-sm btn-link">
+			The basics
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../containers-4-managing-containers/" class="btn btn-sm btn-link">
+			Managing containers
+		</a>
+		<a href="../containers-4-managing-containers/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+<p>In the previous section we downloaded a Docker image of Ubuntu and noticed that
+it was based on layers, each with a unique hash as id. An image in Docker is
+based on a number of read-only layers, where each layer contains the
+differences to the previous layers. If you've done the <a href="git-1-introduction">Git tutorial</a>
+this might remind you of how a Git commit contains the difference to the
+previous commit. The great thing about this is that we can start from one base
+layer, say containing an operating system and some utility programs, and then
+generate many new images based on this, say 10 different project-specific
+images. The total space requirements would then only be $base+\sum_{i=1}^{10}(specific_{i})$
+rather than $\sum_{i=1}^{10}(base+specific_{i})$. For example, Bioconda (see the
+<a href="conda-1-introduction">Conda tutorial</a>) has one base image and then
+one individual layer for each of the more than 3000 packages available in
+Bioconda.</p>
+<p>Docker provides a convenient way to describe how to go from a base image to the
+image we want by using a "Dockerfile". This is a simple text file containing
+the instructions for how to generate each layer. Docker images are typically
+quite large, often several GBs, while Dockerfiles are small and serve as
+blueprints for the images. It is therefore good practice to have your
+Dockerfile in your project Git repository, since it allows other users to
+exactly replicate your project environment.</p>
+<p>We will be looking at a Dockerfile called <code>Dockerfile_slim</code> that is located in your
+<code>containers</code> directory (where you should hopefully be standing already). We will now
+go through that file and discuss the different steps and what they do. After
+that we'll build the image and test it out. Lastly, we'll start from that image
+and make a new one to reproduce the results from the <a href="conda-3-projects">Conda tutorial</a>.</p>
+<h2 id="understanding-dockerfiles">Understanding Dockerfiles<a class="headerlink" href="#understanding-dockerfiles" title="Permanent link">#</a></h2>
+<p>Here are the first few lines of <code>Dockerfile_slim</code>. Each line in the Dockerfile
+will typically result in one layer in the resulting image. The format for
+Dockerfiles is <code>INSTRUCTION arguments</code>. A full specification of the format,
+together with best practices, can be found
+<a href="https://docs.docker.com/engine/reference/builder/">here</a>.</p>
+<pre><code class="language-no-highlight">FROM ubuntu:16.04
+
+LABEL description = &quot;Minimal image for the NBIS reproducible research course.&quot;
+MAINTAINER &quot;John Sundh&quot; john.sundh@scilifelab.se
+</code></pre>
+<p>Here we use the instructions <code>FROM</code>, <code>LABEL</code> and <code>MAINTAINER</code>. The important
+one is <code>FROM</code>, which specifies the base image our image should start from. In
+this case we want it to be Ubuntu 16.04, which is one of the <a href="https://hub.docker.com/explore/">official
+repositories</a>. There are many roads to Rome
+when it comes to choosing the best image to start from. Say you want to run
+RStudio in a Conda environment through a Jupyter notebook. You could then start
+from one of the <a href="https://github.com/rocker-org/rocker">rocker images</a> for R,
+a <a href="https://hub.docker.com/r/continuumio/miniconda/">Miniconda image</a>, or
+a <a href="https://hub.docker.com/r/jupyter/">Jupyter image</a>. Or you just start from
+one of the low-level official images and set up everything from scratch.
+<code>LABEL</code> and <code>MAINTAINER</code> is just meta-data that can be used for organizing your
+various Docker components.</p>
+<p>Let's take a look at the next section of the Dockerfile.</p>
+<pre><code class="language-no-highlight"># Use bash as shell
+SHELL [&quot;/bin/bash&quot;, &quot;-c&quot;]
+
+# Set workdir
+WORKDIR /course
+</code></pre>
+<p><code>SHELL</code> simply sets which shell to use. <code>WORKDIR</code> determines the directory the
+container should start in. The next few lines introduce the important <code>RUN</code>
+instruction, which is used for executing shell commands:</p>
+<pre><code class="language-no-highlight"># Install necessary tools
+RUN apt-get update &amp;&amp; \
+    apt-get install -y --no-install-recommends bzip2 \
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim \
+                                               unzip \
+                                               wget \
+    &amp;&amp; apt-get clean
+
+# Install Miniconda and add to PATH
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O &amp;&amp; \
+    bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/ &amp;&amp; \
+    rm Miniconda3-4.7.12.1-Linux-x86_64.sh &amp;&amp; \
+    /usr/miniconda3/bin/conda clean -tipsy &amp;&amp; \
+    ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh &amp;&amp; \
+    echo &quot;. /usr/miniconda3/etc/profile.d/conda.sh&quot; &gt;&gt; ~/.bashrc &amp;&amp; \
+    echo &quot;conda activate base&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<p>As a general rule, you want each layer in an image to be a "logical unit". For
+example, if you want to install a program the <code>RUN</code> command should both
+retrieve the program, install it and perform any necessary clean up. This is
+due to how layers work and how Docker decides what needs to be rerun between
+builds. The first command uses Ubuntu's package manager APT to install some
+packages (similar to how we've previously used Conda). Say that the first
+command was split into two instead:</p>
+<pre><code class="language-no-highlight"># Update apt-get
+RUN apt-get update
+
+# Install packages
+RUN apt-get install -y --no-install-recommends bzip2 \
+                                               ca-certificates \
+                                               curl \
+                                               fontconfig \
+                                               git \
+                                               language-pack-en \
+                                               tzdata \
+                                               vim \
+                                               unzip \
+                                               wget
+
+# Clear the local repository of retrieved package files
+RUN apt-get clean
+</code></pre>
+<p>The first command will update the apt-get package lists and the second will
+install the packages <code>bzip2</code>, <code>ca-certificates</code>, <code>curl</code>, <code>fontconfig</code>, <code>git</code>,
+<code>language-pack-en</code>, <code>tzdata</code>, <code>vim</code>, <code>unzip</code> and <code>wget</code>. Say that you build this
+image now, and then in a month's time you realize that you would have liked a
+Swedish language pack instead of an English. You change to <code>language-pack-sv</code>
+and rebuild the image. Docker detects that there is no layer with the new
+list of packages and reruns the second <code>RUN</code> command. <em>However, there is no
+way for Docker to know that it should also update the apt-get package lists</em>.
+You therefore risk to end up with old versions of packages and, even worse,
+the versions would depend on when the previous version of the image was first
+built.</p>
+<p>The next <code>RUN</code> command retrieves and installs Miniconda3. Let's see what would
+happen if we had that as separate commands instead.</p>
+<pre><code class="language-no-highlight"># Download Miniconda3
+RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
+
+# Install it
+RUN bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/
+
+# Remove the downloaded installation file
+RUN rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+
+# Remove unused packages and caches
+RUN /usr/miniconda3/bin/conda clean -tipsy
+
+# Permanently enable the Conda command
+RUN ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+RUN echo &quot;. /usr/miniconda3/etc/profile.d/conda.sh&quot; &gt;&gt; ~/.bashrc
+
+# Add the base environment permanently to PATH
+RUN echo &quot;conda activate base&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<p>Remember that each layer contains the difference compared to the previous
+layer? What will happen here is that the first command adds the installation
+file and the second will unpack the file and install the software. The third
+layer will say "the installation file should no longer exist on the file
+system". However, the file will still remain in the image since the image is
+constructed layer-by-layer bottom-up. This results in unnecessarily many layers
+and bloated images. Line four is cleaning up conda to free up space, and the
+next two lines are there to make the Conda command available in the shell.
+The last command adds a code snippet to the bash startup file which
+automatically activates the Conda base environment in the container.</p>
+<pre><code class="language-no-highlight"># Add conda to PATH and set locale
+ENV PATH=&quot;/usr/miniconda3/bin:${PATH}&quot;
+ENV LC_ALL en_US.UTF-8
+ENV LC_LANG en_US.UTF-8
+</code></pre>
+<p>Here we use the new instruction <code>ENV</code>. The first command adds <code>conda</code> to the
+path, so we can write <code>conda install</code> instead of <code>/usr/miniconda3/bin/conda install</code>.
+The next two commands set an UTF-8 character encoding so that we can use
+weird characters (and a bunch of other things).</p>
+<pre><code class="language-no-highlight"># Configure Conda channels and install Mamba
+RUN conda config --add channels bioconda \
+    &amp;&amp; conda config --add channels conda-forge \
+    &amp;&amp; conda config --set channel_priority strict \
+    &amp;&amp; conda install mamba \
+    &amp;&amp; mamba clean --all
+</code></pre>
+<p>Here we just configure Conda and install Mamba, for quicker installations of
+any subsequent Conda packages we might want to do.</p>
+<pre><code class="language-no-highlight"># Open port for running Jupyter Notebook
+EXPOSE 8888
+
+# Start Bash shell by default
+CMD /bin/bash
+</code></pre>
+<p><code>EXPOSE</code> opens up the port 8888, so that we can later run a Jupyter Notebook
+server on that port. <code>CMD</code> is an interesting instruction. It sets what a
+container should run when nothing else is specified. It can be used for example
+for printing some information on how to use the image or, as here, start a shell
+for the user. If the purpose of your image is to accompany a publication then
+<code>CMD</code> could be to run the workflow that generates the paper figures from raw
+data.</p>
+<h2 id="building-from-dockerfiles">Building from Dockerfiles<a class="headerlink" href="#building-from-dockerfiles" title="Permanent link">#</a></h2>
+<p>Ok, so now we understand how a Dockerfile works. Constructing the image from
+the Dockerfile is really simple. Try it out now:</p>
+<pre><code class="language-bash">docker build -f Dockerfile_slim -t my_docker_image .
+</code></pre>
+<p>This should result in something similar to this:</p>
+<pre><code>=&gt; [internal] load build definition from Dockerfile_slim
+=&gt; =&gt; transferring dockerfile: 1.88kB
+=&gt; [internal] load .dockerignore
+=&gt; =&gt; transferring context: 2B
+=&gt; [internal] load metadata for docker.io/library/ubuntu:16.04
+=&gt; [auth] library/ubuntu:pull token for registry-1.docker.io
+=&gt; [1/5] FROM docker.io/library/ubuntu:16.04@sha256:bb84bbf2ff36d46acaf0bb0c6bcb33dae64cd93cba8652d74c9aaf438fada438
+=&gt; CACHED [2/5] WORKDIR /course
+=&gt; CACHED [3/5] RUN apt-get update &amp;&amp;     apt-get install -y --no-install-recommends bzip2                                                ca-certificates
+=&gt; CACHED [4/5] RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O &amp;&amp;   h Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3
+=&gt; CACHED [5/5] RUN conda config --add channels bioconda     &amp;&amp; conda config --add channels conda-forge     &amp;&amp; conda config --set channel_priority strict     &amp;&amp; conda instal
+=&gt; exporting to image
+=&gt; =&gt; exporting layers
+=&gt; =&gt; writing image sha256:d14301f829d4554816df54ace927ec0aaad4a994e028371455f7a18a370f6af9
+=&gt; =&gt; naming to docker.io/library/my_docker_image
+</code></pre>
+<p>Exactly how the output looks depends on which version of Docker you are using.
+The <code>-f</code> flag sets which Dockerfile to use and <code>-t</code> tags the image with a name.
+This name is how you will refer to the image later. Lastly, the <code>.</code> is the path
+to where the image should be build (<code>.</code> means the current directory). This had
+no real impact in this case, but matters if you want to import files. Validate
+with <code>docker image ls</code> that you can see your new image.</p>
+<h2 id="creating-your-own-dockerfile">Creating your own Dockerfile<a class="headerlink" href="#creating-your-own-dockerfile" title="Permanent link">#</a></h2>
+<p>Now it's time to make our own Dockerfile to reproduce the results from the
+<a href="conda-3-projects">Conda tutorial</a>. If you haven't done the tutorial,
+it boils down to creating a Conda environment file, setting up that
+environment, downloading three RNA-seq data files, and running FastQC on those
+files. We will later package and run the whole RNA-seq workflow in a Docker
+container, but for now we keep it simple to reduce the size and time required.</p>
+<p>The Conda tutorial uses a shell script, <code>run_qc.sh</code>, for downloading and
+running the analysis. A copy of this file should also be available in your
+current directory. If we want to use the same script we need to include it in
+the image. So, this is what we need to do:</p>
+<ol>
+<li>
+<p>Create the file <code>Dockerfile_conda</code>.</p>
+</li>
+<li>
+<p>Set <code>FROM</code> to the image we just built.</p>
+</li>
+<li>
+<p>Install the required packages with Conda. We could do this by adding
+   <code>environment.yml</code> from the Conda tutorial, but here we do it directly as
+   <code>RUN</code> commands. We need to add the conda-forge and bioconda channels with
+   <code>conda config --add channels &lt;channel_name&gt;</code> and install <code>fastqc=0.11.9</code> and
+   <code>sra-tools=2.10.1</code> with <code>conda install</code>. The packages will be installed to
+   the default environment named <code>base</code> inside the container.</p>
+</li>
+<li>
+<p>Add <code>run_qc.sh</code> to the image by using the <code>COPY</code> instruction. The syntax is
+   <code>COPY source target</code>, so in our case simply <code>COPY run_qc.sh .</code> to copy to
+   the work directory in the image.</p>
+</li>
+<li>
+<p>Set the default command for the image to <code>bash run_qc.sh</code>, which will
+   execute the shell script.</p>
+</li>
+</ol>
+<p>Try to add required lines to <code>Dockerfile_conda</code>. If it seems overwhelming you
+can take a look at an example below:</p>
+<details>
+<summary> Click to show </summary>
+
+
+<pre><code class="language-no-highlight">FROM my_docker_image:latest
+RUN conda config --add channels bioconda &amp;&amp; \
+    conda config --add channels conda-forge &amp;&amp; \
+    mamba install -n base fastqc=0.11.9 sra-tools=2.10.1
+COPY run_qc.sh .
+CMD bash run_qc.sh
+</code></pre>
+
+
+</details>
+
+<p>Build the image and tag it <code>my_docker_conda</code>:</p>
+<pre><code class="language-bash">docker build -t my_docker_conda -f Dockerfile_conda .
+</code></pre>
+<p>Verify that the image was built using <code>docker image ls</code>.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+In this section we've learned:</p>
+<ul>
+<li>How the keywords <code>FROM</code>, <code>LABEL</code>, <code>MAINTAINER</code>, <code>RUN</code>, <code>ENV</code>, <code>SHELL</code>,
+  <code>WORKDIR</code>, and <code>CMD</code> can be used when writing a Dockerfile.</li>
+<li>The importance of letting each layer in the Dockerfile be a "logical unit".</li>
+<li>How to use <code>docker build</code> to construct and tag an image from a Dockerfile.</li>
+<li>How to create your own Dockerfile.</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../containers-2-the-basics/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../containers-2-the-basics/" class="btn btn-sm btn-link">
+			The basics
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../containers-4-managing-containers/" class="btn btn-sm btn-link">
+			Managing containers
+		</a>
+		<a href="../containers-4-managing-containers/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/containers/containers-3-building-images.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

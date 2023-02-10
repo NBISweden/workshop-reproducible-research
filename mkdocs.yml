@@ -1,0 +1,117 @@
+site_name: 'Bioinformatics Workshop on Tools for Reproducible Research'
+site_author: 'Jacques Dainat et al.'
+site_url: 'https://Juke34.github.io/workshop-reproducible-research'
+
+repo_name: 'workshop-reproducible-research'
+repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
+
+# Set folder that contains all the docs
+docs_dir: pages/
+
+theme:
+    name: 'custommill'
+    main_color: '#546e7a'
+
+    static_templates: [404.html, index.html, css/base.css]
+    search_index_only: true
+    include_search_page: true
+    home: usage
+  #  main_color: "#bb0000"
+    gray: "#d0d0d0"
+    lighter_gray: "#eeeeee"
+    date_time_format: "%Y-%m-%d %H:%M:%S %Z"
+    toc_depth: 2
+
+# page tree
+nav:
+    - Home: home.md
+    - Practicalities:
+        - Schedule: course-information/schedule.md
+        - Location: course-information/location.md
+        - Lectures: course-information/lectures.md
+        - Setup: course-information/pre-course-setup.md
+    - Tutorials:
+        - Introduction: introduction/introduction.md
+        - Git:
+          - Introduction: git/git-1-introduction.md
+          - Creating a git repository: git/git-2-creating-repositories.md
+          - Committing changes: git/git-3-committing-changes.md
+          - Ignoring files: git/git-4-ignoring-files.md
+          - Branching and merging: git/git-5-branches.md
+          - Tagging commits: git/git-6-tags.md
+          - Working remotly: git/git-7-working-remotely.md
+          - Conflict: git/git-8-conflicts.md
+          - Extra material: git/git-9-extra-material.md
+        - Conda:
+          - Introduction: conda/conda-1-introduction.md
+          - The basics: conda/conda-2-the-basics.md
+          - Projects: conda/conda-3-projects.md
+          - Extra material: conda/conda-4-extra-material.md
+        - Snakemake:
+          - Introduction: snakemake/snakemake-1-introduction.md
+          - The basics: snakemake/snakemake-2-the-basics.md
+          - Visualising workflow: snakemake/snakemake-3-visualising-workflows.md
+          - The MRSA Workflow: snakemake/snakemake-4-the-mrsa-workflow.md
+          - Parameters: snakemake/snakemake-5-parameters.md
+          - Logs: snakemake/snakemake-6-logs.md
+          - Temporary files: snakemake/snakemake-7-temporary-files.md
+          - Targets: snakemake/snakemake-8-targets.md
+          - Shadow rules: snakemake/snakemake-9-shadow-rules.md
+          - Generalizing workflows: snakemake/snakemake-10-generalizing-workflows.md
+          - Extra materiel: snakemake/snakemake-11-extra-material.md
+        - Nextflow:
+          - Introduction: nextflow/nextflow-1-introduction.md
+          - The basics: nextflow/nextflow-2-the-basics.md
+          - Running Nextflow: nextflow/nextflow-3-executing-workflows.md
+          - Processes: nextflow/nextflow-4-working-with-processes.md
+          - Configuration: nextflow/nextflow-5-workflow-configuration.md
+          - The MRSA Workflow: nextflow/nextflow-6-optimising-the-mrsa-workflow.md
+          - Extra materiel: nextflow/nextflow-7-extra-material.md
+        - R Markdown:
+          - Introduction: rmarkdown/r-markdown-1-introduction.md
+          - The basics: rmarkdown/r-markdown-2-the-basics.md
+          - Code chunks: rmarkdown/r-markdown-3-code-chunks.md
+          - The YAML header: rmarkdown/r-markdown-4-the-yaml-header.md
+          - Rendering: rmarkdown/r-markdown-5-rendering.md
+          - The MRSA case study: rmarkdown/r-markdown-6-the-mrsa-case-study.md
+          - Extra materiel: rmarkdown/r-markdown-7-extra-material.md
+        - Jupyter:
+          - Introduction: jupyter/jupyter-1-introduction.md
+          - The basics: jupyter/jupyter-2-the-basics.md
+          - Magics: jupyter/jupyter-3-magics.md
+          - Plotting: jupyter/jupyter-4-plotting.md
+          - Widgets: jupyter/jupyter-5-widgets.md
+          - Extensions: jupyter/jupyter-6-extensions.md
+          - Converting notebooks: jupyter/jupyter-7-converting-notebooks.md
+          - The MRSA case study: jupyter/jupyter-8-the-mrsa-case-study.md
+          - Extra material: jupyter/jupyter-9-extra-material.md
+        - Containers:
+          - Introduction: containers/containers-1-introduction.md
+          - The basics: containers/containers-2-the-basics.md
+          - Building a Docker image: containers/containers-3-building-images.md
+          - Managing containers: containers/containers-4-managing-containers.md
+          - Distributing your images: containers/containers-5-sharing-images.md
+          - Packaging the case study: containers/containers-6-packaging-the-case-study.md
+          - Singularity: containers/containers-7-singularity.md
+          - Extra material: containers/containers-8-extra-material.md
+        - 'Making a project reproducible': 'project/project.md'
+        - 'Take down': 'take_down.md'
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.tabbed
+  - toc:
+      permalink: '#'
+
+plugins:
+  - search
+
+extra:
+  history_buttons: false
+#  version: v1.3.0
+  nav_links:
+    - icon: github
+      icon_type: brand
+      text: Jacques Dainat
+      url: 'https://github.com/Juke34'

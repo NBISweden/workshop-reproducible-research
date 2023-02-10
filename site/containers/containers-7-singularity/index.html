@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<meta name="author" content="Jacques Dainat et al.">
+		<link rel="canonical" href="https://Juke34.github.io/workshop-reproducible-research/containers/containers-7-singularity/">
+		<link rel="shortcut icon" href="../../img/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Singularity - Bioinformatics Workshop on Tools for Reproducible Research</title>
+		<link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome-5.12.2-all.min.css" rel="stylesheet">
+		<link href="../../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/highlight-github.css">
+		<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		
+		<script>
+			var base_url = '../..';
+			var home_url = '../../usage';
+			var is_outer_page = false;
+			
+			var pageToc = [
+				{title: "Singularity as an alternative container tool", url: "#_top", children: [
+						
+				{title: "Converting Docker images to Singularity files", url: "#_top", children: [
+				]},
+				{title: "Running a singularity image", url: "#running-a-singularity-image", children: [
+				]},
+				]},
+				{title: "Containers at different platforms", url: "#containers-at-different-platforms", children: [
+				]},
+			];
+
+		</script>
+		<script src="../../js/base.js"></script> 
+	</head>
+
+	<body class="inner-page">
+		
+
+		<div class="container-fluid wm-page-content">
+			<a name="_top" aria-hidden="true"></a>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../containers-6-packaging-the-case-study/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../containers-6-packaging-the-case-study/" class="btn btn-sm btn-link">
+			Packaging the case study
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../containers-8-extra-material/" class="btn btn-sm btn-link">
+			Extra material
+		</a>
+		<a href="../containers-8-extra-material/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			
+
+			<h2 id="singularity-as-an-alternative-container-tool">Singularity as an alternative container tool<a class="headerlink" href="#singularity-as-an-alternative-container-tool" title="Permanent link">#</a></h2>
+<p>Singularity is a container software alternative to Docker. It was originally
+developed by researchers at Lawrence Berkeley National Laboratory with focus on
+security, scientific software, and HPC clusters. One of the ways in which
+Singularity is more suitable for HPC is that it very actively restricts
+permissions so that you do not gain access to additional resources while inside
+the container.</p>
+<p>Here we give a brief introduction to Singularity and specifically how it can be
+used on HPC clusters such as Uppmax.</p>
+<p>If you want to read more, here are some additional resources:</p>
+<ul>
+<li><a href="https://sylabs.io/guides/master/user-guide/">Singularity docs</a></li>
+<li><a href="https://www.uppmax.uu.se/support/user-guides/singularity-user-guide/">Uppmax Singularity user guide</a></li>
+</ul>
+<blockquote>
+<p><strong>Singularity and Apptainer</strong> <br>
+Singularity has very recently been renamed to <em>Apptainer</em>, but we have opted
+to stick with the original name in the material for now, while the change is
+still being adopted by the community and various documentation online.</p>
+</blockquote>
+<h3 id="converting-docker-images-to-singularity-files">Converting Docker images to Singularity files<a class="headerlink" href="#converting-docker-images-to-singularity-files" title="Permanent link">#</a></h3>
+<p>Singularity, unlike Docker, stores images as single files. A Singularity
+image file is self-contained (no shared layers) and can be moved around and
+shared like any other file.</p>
+<p>While it is possible to define and build Singularity images from scratch, in a
+manner similar to what you've already learned for Docker, this is not something
+we will cover here (but feel free to read more about this in <em>e.g.</em> the
+<a href="https://sylabs.io/guides/master/user-guide/definition_files.html">Singularity docs</a>).</p>
+<p>Instead, we will take advantage of the fact that Singularity can convert Docker
+images to the Singularity Image Format (SIF). This is great if there's a Docker
+image that you want to use on an HPC cluster such as Uppmax where you cannot use
+Docker.</p>
+<blockquote>
+<p><strong>Tip!</strong> <br>
+If you are running singularity through Vagrant VirtualBox you may have to
+set the temporary directory that Singularity uses during pull/build commands
+to something with more disk space. First run <code>mkdir ~/tmp</code> to create a tmp 
+directory inside the home folder of the VirtualBox, then 
+<code>export SINGULARITY_TMPDIR="~/tmp"</code>.</p>
+</blockquote>
+<p>Let's try to convert the Docker image for this course directly from DockerHub
+using <code>singularity pull</code>:</p>
+<pre><code class="language-bash">singularity pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
+</code></pre>
+<p>This should result in a file called <code>mrsa_proj.sif</code>.</p>
+<h3 id="running-a-singularity-image">Running a singularity image<a class="headerlink" href="#running-a-singularity-image" title="Permanent link">#</a></h3>
+<p>In the Docker image we included the code needed for the workflow in the
+<code>/course</code> directory of the image. These files are of course also available in
+the Singularity image. However, a Singularity image is read-only (unless using
+the <a href="https://sylabs.io/guides/master/user-guide/build_a_container.html#creating-writable-sandbox-directories">sandbox</a>
+feature). This will be a problem if we try to run the workflow
+within the <code>/course</code> directory, since the workflow will produce files and
+Snakemake will create a <code>.snakemake</code> directory.  Instead, we need to provide
+the files externally from our host system and simply use the Singularity image
+as the environment to execute the workflow in (<em>i.e.</em> all the software and
+dependencies).</p>
+<p>In your current working directory (<code>workshop-reproducible-research/tutorials/containers/</code>)
+the vital MRSA project files are already available (<code>Snakefile</code>, <code>config.yml</code>,
+<code>code/header.tex</code> and <code>code/supplementary_material.Rmd</code>).</p>
+<p>Since Singularity bind mounts the current working directory we can simply
+execute the workflow and generate the output files using:</p>
+<pre><code class="language-bash">singularity run mrsa_proj.sif
+</code></pre>
+<p>This executes the default run command, which is
+<code>snakemake -rp -c 1 --configfile config.yml</code> (as defined in the original
+<code>Dockerfile</code>).</p>
+<p>The previous step in this tutorial included running the <code>run_qc.sh</code> script,
+so that part of the workflow has already been run and Snakemake will continue
+from that automatically without redoing anything. Once completed you should
+see a bunch of directories and files generated in your current working
+directory, including the <code>results/</code> directory containing the final HTML report.</p>
+<h2 id="containers-at-different-platforms">Containers at different platforms<a class="headerlink" href="#containers-at-different-platforms" title="Permanent link">#</a></h2>
+<p>A common problem with Singularity is that you can only create local builds if
+you are working on a Linux system, as local builds for MacOS and Windows are
+currently not supported. This means that you might favour using Docker instead
+of Singularity, but what happens when you need to use a HPC cluster such as
+Uppmax? Docker won't work there, as it requires root privileges, so Singularity
+is the only solution. You can only run Singularity images there, however, not
+<em>build</em> them...</p>
+<p>So, how do you get a Singularity image for use on Uppmax if you can't build it
+either locally or on Uppmax? While it's possible to do remote builds (via the
+<code>--remote</code> flag), in our experience this functionality is not stable and for a
+lot of cases it won't help. Since most researchers will want to work in private
+Git repositories they can't supply their Conda <code>environment.yml</code> file to remote
+builds (which only works for public repositories), which means that you’ll have
+to specify packages manually inside the container instead.</p>
+<p>There is, however, another solution: using Singularity inside Docker. By
+creating a bare-bones, Linux-based Docker image with Singularity you can build
+Singularity images locally on non-Linux operating systems. This can be either
+done from Singularity definition files or directly from already existing Docker
+images. You can read more about this at the following <a href="https://github.com/kaczmarj/singularity-in-docker">GitHub repository</a>.</p>
+<blockquote>
+<p><strong>Quick recap</strong> <br>
+In this section we've learned:</p>
+<ul>
+<li>How to convert Docker images to Singularity images.</li>
+<li>How to use <code>singularity run</code> for starting a container from an image.</li>
+<li>How to build a Singularity image using Singularity inside Docker.</li>
+</ul>
+</blockquote>
+
+			<br>
+			
+
+
+
+
+
+
+<div class="row pt-2 pb-4">
+	<div class="col-sm text-center text-sm-left">
+		<a href="../containers-6-packaging-the-case-study/" class="btn btn-sm btn-outline-dark">
+			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			Previous
+		</a>
+		<a href="../containers-6-packaging-the-case-study/" class="btn btn-sm btn-link">
+			Packaging the case study
+		</a>
+	</div>
+	
+
+	
+	<div class="col-sm text-center text-sm-right">
+		<a href="../containers-8-extra-material/" class="btn btn-sm btn-link">
+			Extra material
+		</a>
+		<a href="../containers-8-extra-material/" class="btn btn-sm btn-outline-dark">
+			Next
+			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		</a>
+	</div>
+	
+</div>
+
+			<br>
+		</div>
+
+		<footer class="container-fluid wm-page-content text-center small">
+			<p>
+			<a href="https://github.com/Juke34/workshop-reproducible-research/edit/master/docs/containers/containers-7-singularity.md" target="_blank">Edit on workshop-reproducible-research</a>
+			</p>
+			<details>
+				<summary>
+					Documentation built with <a href="http://www.mkdocs.org/" target="_blank">MkDocs</a> using  <a href="https://github.com/Siphalor/mkdocs-custommill" target="_blank">CustomMill</a>.
+				</summary>
+				<h6 class="mt-2">Additional Licenses</h6>
+				<ul><li>
+						CustomMill is based on the <a href="https://github.com/gristlabs/mkdocs-windmill" target="_blank">Windmill</a> theme by Grist Labs, licensed under the <a href="https://github.com/gristlabs/mkdocs-windmill/blob/master/LICENSE" target="_blank">MIT License</a>
+					</li>
+					<li>
+						CustomMill includes <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> version 5.1.3. This is available under the <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT License</a>.
+					</li>
+					<li>
+						Syntax highlighting is implemented via <a href="https://highlightjs.org" target="_blank">highlight.js</a> licensed under the BSD 3-Clause License and the included github styling made by Vasily Polovnyov.
+					</li>
+					<li>
+						Icons on this site are from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> which is licensed under the <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome Free License</a>.
+					</li></ul>
+				<p>Built at 2023-02-10 16:41:13 UTC</p>
+			</details>
+		</footer>
+
+		
+	</body>
+</html>

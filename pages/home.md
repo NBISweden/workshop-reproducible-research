@@ -6,15 +6,11 @@
 
 <img src="https://www.svgrepo.com/show/305241/github.svg"
     width="20" height="20"/>
-    [GitHub repository]( https://github.com/NBISweden/workshop-reproducible-research/)
+    [GitHub repository]( https://github.com/Juke34/workshop-reproducible-research/)
 
 <img src="https://www.svgrepo.com/show/20800/event-date-and-time-symbol.svg"
     width="20" height="20"/>
-    25 - 29 April, 2022
-
-<img src="https://www.svgrepo.com/show/4199/placeholder-on-a-map.svg"
-    width="20" height="20"/>
-    [Zoom](https://zoom.us)
+    6 - 9 Juin, 2023
 
 One of the key principles of proper scientific procedure is the act of
 repeating an experiment or analysis and being able to reach similar
@@ -94,37 +90,33 @@ Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
 
 # Schedule
 
-You can find the course schedule at [this page](https://uppsala.instructure.com/courses/COURSE_ID/pages/schedule).
+You can find the course schedule at [this page](https://pages/schedule).
 
 # Location
 
-This course round is given using [Zoom](https://zoom.us). You can find the link to the
-course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics)
-section.
+This course round is given on site.
 
 # Course material
 
-The [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
+The [pre-course setup](https://pages/pre-course-setup)
 page lists all the information you need before the course starts. The most
 important part is the installation and setup of all the tools used in the
 course, so make sure you've gone through it all for the course start. You can
 find the tutorials themselves (*i.e.* the content we will go through during the
-course) in the [modules](https://uppsala.instructure.com/courses/COURSE_ID/modules)
+course) in the [modules](https://modules)
 page.
 
-All of the lectures used in this course is available at the [lecture page](https://uppsala.instructure.com/courses/COURSE_ID/pages/lectures),
-while the source code used to create the lectures is available under the
-[lectures/](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
+All of the lectures used in this course is available under the
+[lectures/](https://github.com/Juke34/workshop-reproducible-research/tree/main/lectures)
 directory on GitHub.
 
 # Teachers
 
-* John Sundh (course responsible)
-* Erik Fasterius (course responsible)
-* Verena Kutschera (teacher)
-* Tomas Larsson (teacher)
-* Estelle Proux-Wéra (teacher)
+* Jacques Dainat (course responsible)
+* Thomas Denecker (course responsible)
+* Aurore Comte (teacher)
+* Julie ORJUELA (teacher)
 
 # Contact
 
-To contact us, please send a mail to the follow address: [edu.trr@nbis.se](mailto:edu.trr@nbis.se).
+To contact us, please send a mail to the follow address: [xxx@xxx.fr](mailto:xxx@xxx.fr).
