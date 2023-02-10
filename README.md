@@ -5,7 +5,7 @@
 ---------------------------
 Tools for Reproducible Research course
 
-<img src="doc/img/IRD.png" width="300" height="100" /> <img src="doc/img/MIVEGEC.png" width="150" height="100" />
+<img src="images/IRD.png" width="300" height="100" /> <img src="images/MIVEGEC.png" width="150" height="100" />
 
 ## Table of Contents
 
@@ -61,7 +61,7 @@ For the custommill theme:
 ##  Acknowledgement
 
  * NBIS - This work is based on the NBIS / ELIXIR course *Tools for Reproducible Research* course that can be find [here](https://github.com/NBISweden/workshop-reproducible-research).
- [<img align="right" src="docs/img/NBIS.png" width="200" height="100" />](https://nbis.se)
+ [<img align="right" src="images/NBIS.png" width="200" height="100" />](https://nbis.se)
  * @jhayer and @HadrienG about help in use and rendering with mkdocs and other features.
  * All contributors
 
@@ -71,4 +71,3 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
-
