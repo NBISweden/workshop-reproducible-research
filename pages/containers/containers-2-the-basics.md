@@ -101,14 +101,13 @@ the container and never affect your host system. Now exit the container with
 
 Okay, so Docker lets us work in any OS in a quite convenient way. That would
 probably be useful on its own, but Docker is much more powerful than that. For
-example, let's look at the `shell` part of the `get_SRA_by_accession` rule in
+example, let's look at the `shell` part of the `index_genome` rule in
 the Snakemake workflow for the MRSA case study:
 
 ```python
 shell:
     """
-    fastq-dump {wildcards.sra_id} -X 25000 --readids \
-        --dumpbase --skip-technical --gzip -Z > {output}
+    bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
     """
 ```
 
@@ -116,19 +115,27 @@ You may have seen that one can use containers through both Snakemake and
 Nextflow if you've gone through their tutorial's extra material, but we can
 also use containers directly inside scripts in a very simple way. Let's imagine
 we want to run the above command using containers instead. How would that look?
-It's quite simple, really: first we find a container image that has the
-`sra-tools` installed (within the `fastq-dump` command resides), and then
-prepend the command with `docker run <image>`. Look at the following Bash code:
+It's quite simple, really: first we find a container image that has `bowtie2`
+installed, and then prepend the command with `docker run <image>`. 
+
+First of all we need to download the genome to index though, so run:
+```bash
+curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
+gunzip -c NCTC8325.fa.gz > tempfile
+```
+
+to download and prepare the input for bowtie2.
+
+Now try running the following Bash code:
 
 ```bash
-docker run quay.io/biocontainers/sra-tools:2.9.6--hf484d3e_0 \
-    fastq-dump SRR935090 -X 25000 --readids \
-        --dumpbase --skip-technical --gzip -Z > SRR935090.fastq.gz
+docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.0--py310h8d7afc0_0 bowtie2-build /analysis/tempfile /analysis/NCTC8325
 ```
 
 Docker will automatically download the container image and subsequently run the
-command, yielding exactly the same FASTQ file as before! All we did was prepend
-the command with `docker run <image>`, and Docker took care of the rest.
+command! Here we're using `-v $(pwd):/analysis` to mount the current directory
+inside the container in order to make the `tempfile` input available to bowtie2.
+More on these so called "Bind mounts" in Section 4 of this tutorial.
 
 > **Quick recap** <br>
 > In this section we've learned:

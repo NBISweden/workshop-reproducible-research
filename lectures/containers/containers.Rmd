@@ -260,6 +260,15 @@ an open source container platform suitable for HPC clusters
 >Singularity was created to run complex applications on HPC clusters in a simple, portable, and reproducible way.
 
 ---
+# What is Apptainer?
+
+<img src="http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png" style="width:100%;"/>
+
+In 2021 Singularity joined the Linux Foundation and became Apptainer.
+
+The company Sylabs still maintains **Singularity**
+
+---
 
 # Docker vs. Singularity
 
