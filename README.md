@@ -43,7 +43,7 @@ For the pymdown extensions:
 ### Mkdocs commands for testing and building the website
 
 
-* `mkdocs serve` - Start the live-reloading docs server, to test the site locally.
+* `mkdocs serve` - Start the live-reloading docs server, to test the site locally (http://127.0.0.1:8000/).
 * `mkdocs gh-deploy` - Deploys the site on github pages.
 
 * `mkdocs build` - Build the documentation site.
@@ -54,9 +54,10 @@ For the pymdown extensions:
 ### Project layout
 
     mkdocs.yml    # The configuration file.
-    docs/
-        usage.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+    pages/
+        home.md  # The documentation homepage.
+        images   # Images used in the course materials
+        ...      # Other markdown pages, images and other files.
 
 ### Welcome to MkDocs
 

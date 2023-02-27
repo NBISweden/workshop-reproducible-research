@@ -7,7 +7,6 @@
 <img src="https://www.svgrepo.com/show/305241/github.svg"
     width="20" height="20"/>
     [GitHub repository]( https://github.com/Juke34/workshop-reproducible-research/)
-
 <img src="https://www.svgrepo.com/show/20800/event-date-and-time-symbol.svg"
     width="20" height="20"/>
     6 - 9 Juin, 2023
@@ -61,13 +60,10 @@ At the end of the course, students should be able to:
 
 # Application
 
-This is an NBIS / Elixir course. The course is open for PhD students, postdocs,
-group leaders and core facility staff. International applications are welcome,
-but we will give approximately half of the participant slots to applicants from
-Swedish universities, due to the national role NBIS plays in Sweden. This
-online training event has no fee. However, if you confirm your participation
-but do not do so (no-show) you will be invoiced 2,000 SEK. Please note that NBIS
-cannot invoice individuals.
+This is an {{config.extra.institute}} course. The course is open for PhD students, postdocs,
+group leaders and core facility staff related to the {{config.extra.institute}} Platform (IRD,
+CIRAD, INRAE and the Alliance Bioversity international-CIAT). This training
+event has no fee.
 
 The only entry requirements for this course is a basic knowledge of Unix systems
 (*i.e.* being able to work on the command line) as well as at least a basic
@@ -76,47 +72,46 @@ knowledge of either R or Python.
 Due to limited space the course can accommodate maximum of 20 participants. If
 we receive more applications, participants will be selected based on several
 criteria. Selection criteria include correct entry requirements, motivation to
-attend the course as well as gender and geographical balance.
+attend the course. We also take in consideration a balance between the different
+institute and department.
 
-Please note that NBIS training events do not provide any formal university
+Please note that {{config.extra.institute}} training events do not provide any formal university
 credits. The training content is estimated to correspond to a certain number of
 credits, however the estimated credits are just guidelines. If formal credits
 are crucial, the student needs to confer with the home department before
 submitting a course application in order to establish whether the course is
 valid for formal credits or not.
 
-By accepting to participate in the course, you agree to follow the [NBIS
-Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
+By accepting to participate in the course, you agree to follow the [Code of Conduct](course-information/code-of-conduct.md).
 
 # Schedule
 
-You can find the course schedule at [this page](https://pages/schedule).
+You can find the course schedule at [this page](course-information/schedule.md).
 
 # Location
 
-This course round is given on site.
+This course round is given on site. More information can be found at [this page](course-information/location.md).
 
 # Course material
 
-The [pre-course setup](https://pages/pre-course-setup)
+The [pre-course setup](course-information/pre-course-setup.md)
 page lists all the information you need before the course starts. The most
 important part is the installation and setup of all the tools used in the
-course, so make sure you've gone through it all for the course start. You can
-find the tutorials themselves (*i.e.* the content we will go through during the
-course) in the [modules](https://modules)
-page.
+course, so make sure you've gone through it all for the course start.
 
 All of the lectures used in this course is available under the
-[lectures/](https://github.com/Juke34/workshop-reproducible-research/tree/main/lectures)
+[lectures/]({{config.extra.repo}}/tree/main/lectures)
 directory on GitHub.
 
 # Teachers
 
 * Jacques Dainat (course responsible)
-* Thomas Denecker (course responsible)
+* Thomas Denecker (teacher)
 * Aurore Comte (teacher)
+* Gautier Sarah (teacher)
 * Julie ORJUELA (teacher)
+* nicolas fernandez (teacher)
 
 # Contact
 
-To contact us, please send a mail to the follow address: [xxx@xxx.fr](mailto:xxx@xxx.fr).
+To contact us, please send a mail using the contact form available [here](https://www.southgreen.fr/contact).

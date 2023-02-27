@@ -29,3 +29,6 @@ snakemake/*txt
 snakemake/*png
 snakemake/*tsv
 .Rproj.user
+
+#compiled site
+site

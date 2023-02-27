@@ -2,7 +2,7 @@ Welcome to the tutorials! Here we will learn how to make a computational
 research project reproducible using several different tools, described in the
 figure below:
 
-![](images/reproducibility_overview_with_logos.png){ width=700px }
+![](images/reproducibility_overview_with_logos.png){: style="width:700px"}
 
 The figure above gives an overview of the different parts of computational
 reproducibility (data, code, workflow and environment), as well as the various
@@ -24,15 +24,15 @@ following order:
 
 You will find the tutorials in the *Modules* section in the navigation menu.
 
-Please make sure to carefully follow the [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup) 
-to install the tools and download the course material before starting with any of the 
-tutorials. These will create quite a lot of files on your computer, some of which 
-will actually take up a bit of storage space too. In order to remove any traces of 
-these after completing the tutorials, please refer to the 
+Please make sure to carefully follow the [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
+to install the tools and download the course material before starting with any of the
+tutorials. These will create quite a lot of files on your computer, some of which
+will actually take up a bit of storage space too. In order to remove any traces of
+these after completing the tutorials, please refer to the
 [Take down section](https://uppsala.instructure.com/courses/COURSE_ID/pages/take-down).
 
 Before going into the tutorials themselves, we first describe the case study
-from which the example data comes from. 
+from which the example data comes from.
 
 # The case study
 
@@ -63,7 +63,7 @@ To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in
 The graph below shows the different steps of the analysis that are included in
 this project:
 
-![](images/mrsa-overview.png){ width=400px }
+![](images/mrsa-overview.png){: style="width:400px"}
 
 The input files are:
 

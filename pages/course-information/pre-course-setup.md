@@ -23,16 +23,16 @@ git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
 
-> **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, e.g.
-> `git checkout tags/course_1905`. To list all available tags, use `git tag`.
-> Run this command after you have `cd` into `workshop-reproducible-research`
-> as described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io.
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
+!!! tip
+    If you want to revisit the material from an older instance of this course,
+    you can do that using `git checkout tags/<tag-name>`, e.g.
+    `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+    Run this command after you have `cd` into `workshop-reproducible-research`
+    as described above. If you do that, you probably also want to view the
+    same older version of this website. Until spring 2021, the website was
+    hosted at https://nbis-reproducible-research.readthedocs.io.
+    Locate the version box in the bottom right corner of the website and
+    select the corresponding version.
 
 ## Setup for Windows users
 
@@ -54,23 +54,25 @@ resources:
 - [Installing and using Linux Bash on Windows](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
 - [Installing Linux Bash on Windows](https://itsfoss.com/install-bash-on-windows/)
 
-> **Note** <br>
-> If you run into error messages when trying to download files through the Linux
-> shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
-> nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
-> then add `nameserver 8.8.8.8` to the bottom of the file and save it.
+!!! note
+
+    If you run into error messages when trying to download files through the Linux
+    shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
+    nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
+    then add `nameserver 8.8.8.8` to the bottom of the file and save it.
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
 files you will need for completing the tutorials as follows. First, `cd` into
 a directory on your computer (or create one) where it makes sense to download
 the course directory.
 
-> **Tip** <br>
-> You can find the directory where the Linux distribution is storing all its
-> files by typing `explorer.exe .`. This will launch the Windows File Explorer
-> showing the current Linux directory.
-> Alternatively, you can find the Windows C drive from within the bash shell
-> Linux terminal by navigating to `/mnt/c/`.
+!!! tip
+
+    You can find the directory where the Linux distribution is storing all its
+    files by typing `explorer.exe .`. This will launch the Windows File Explorer
+    showing the current Linux directory.
+    Alternatively, you can find the Windows C drive from within the bash shell
+    Linux terminal by navigating to `/mnt/c/`.
 
 ```bash
 cd /path/to/your/directory
@@ -81,16 +83,17 @@ cd workshop-reproducible-research
 Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two,
 with no alternative for Windows), please follow the Linux instructions.
 
-> **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-> tags/course_1905`. To list all available tags, use `git tag`. Run this
-> command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
+!!! tip
+
+    If you want to revisit the material from an older instance of this course,
+    you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+    tags/course_1905`. To list all available tags, use `git tag`. Run this
+    command after you have `cd` into `workshop-reproducible-research` as
+    described above. If you do that, you probably also want to view the
+    same older version of this website. Until spring 2021, the website was
+    hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
+    Locate the version box in the bottom right corner of the website and
+    select the corresponding version.
 
 ## Installing Git
 
@@ -111,12 +114,13 @@ git config --global user.name "Mona Lisa"
 git config --global user.email "mona_lisa@gmail.com"
 ```
 
-> **Tip** <br>
-> If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
-> and thereby several different usernames, you can configure git on
-> a per-repository level. Change directory into the relevant local git
-> repository and run `git config user.name "Mona Lisa"`. This will set the
-> default username for that repository only.
+!!! tip
+
+    If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
+    and thereby several different usernames, you can configure git on
+    a per-repository level. Change directory into the relevant local git
+    repository and run `git config user.name "Mona Lisa"`. This will set the
+    default username for that repository only.
 
 You will also need to configure the default branch name to be `main` instead of
 `master`:
@@ -129,20 +133,21 @@ The short version of why you need to do this is that GitHub uses `main` as the
 default branch while Git itself is still using `master`; please read the box
 below for more information.
 
-> **The default branch name** <br>
-> The default branch name for Git and many of the online resources for hosting
-> Git repositories has traditionally been `master`, which historically comes
-> from the "master/slave" repositories of
-> [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-> This has been heavily discussed and in 2020 the decision was made by  many
-> ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
-> to start using `main` instead. Any repository created with GitHub uses this
-> new naming scheme since October of 2020, and Git itself is currently
-> discussing implementing a similar change. Git did, however, introduce the
-> ability to set the default branch name when using `git init` in
-> [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
-> instead of using a hard-coded `master`. We at NBIS want to be a part of this
-> change, so we have chosen to use `main` for this course.
+!!! note
+
+    The default branch name for Git and many of the online resources for hosting
+    Git repositories has traditionally been `master`, which historically comes
+    from the "master/slave" repositories of
+    [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
+    This has been heavily discussed and in 2020 the decision was made by  many
+    ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+    to start using `main` instead. Any repository created with GitHub uses this
+    new naming scheme since October of 2020, and Git itself is currently
+    discussing implementing a similar change. Git did, however, introduce the
+    ability to set the default branch name when using `git init` in
+    [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
+    instead of using a hard-coded `master`. We at NBIS want to be a part of this
+    change, so we have chosen to use `main` for this course.
 
 ## Installing Conda
 
@@ -163,16 +168,17 @@ bash Miniconda3-4.7.12.1-Linux-x86_64.sh
 rm Miniconda3-4.7.12.1-Linux-x86_64.sh
 ```
 
-> **Attention!** <br>
-> If you already have installed Conda but want to update, you should be able
-> to simply run `conda update conda` and subsequently `conda init`, and skip
-> the installation instructions below.
+!!! warning
 
-> **Apple M1 Chips** <br>
-> If you have a newer Apple computer with an M1 chip, make sure you have
-> installed [Rosetta](https://support.apple.com/en-us/HT211861) before you run
-> the installer. If you want to more fully utilise the new architecture,
-head over to [Miniforge](https://github.com/conda-forge/miniforge#miniforge3)!
+    If you already have installed Conda but want to update, you should be able
+    to simply run `conda update conda` and subsequently `conda init`, and skip
+    the installation instructions below.
+
+!!! warning
+    If you have a newer Apple computer with an M1 chip, make sure you have
+    installed [Rosetta](https://support.apple.com/en-us/HT211861) before you run
+    the installer. If you want to more fully utilise the new architecture,
+    head over to [Miniforge](https://github.com/conda-forge/miniforge#miniforge3)!
 
 The installer will ask you questions during the installation:
 
@@ -224,8 +230,8 @@ conda activate snakemake-env
 Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Conda steps were successful. Once you've successfully completed 
-the above steps you can deactivate your Conda environment using `conda deactivate` 
+ensure that the Conda steps were successful. Once you've successfully completed
+the above steps you can deactivate your Conda environment using `conda deactivate`
 and continue with the setup for the other tools.
 
 ## Installing Nextflow

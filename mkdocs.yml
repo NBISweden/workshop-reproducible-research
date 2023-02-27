@@ -1,26 +1,61 @@
 site_name: 'Bioinformatics Workshop on Tools for Reproducible Research'
 site_author: 'Jacques Dainat et al.'
-site_url: 'https://Juke34.github.io/workshop-reproducible-research'
+#site_url: 'https://Juke34.github.io/workshop-reproducible-research'
+site_url: 'http://127.0.0.1:8000/'
 
 repo_name: 'workshop-reproducible-research'
-repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
+repo_url: 'http://127.0.0.1:8000'
+#repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
 
 # Set folder that contains all the docs
 docs_dir: pages/
 
 theme:
-    name: 'custommill'
-    main_color: '#546e7a'
+  name: material
+  static_templates: [404.html, index.html, css/base.css]
+  search_index_only: true
+  include_search_page: true
+  home: home
+  toc_depth: 2
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+  # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.prune
+    #- navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - toc.integrate # remove table of content on the right side
 
-    static_templates: [404.html, index.html, css/base.css]
-    search_index_only: true
-    include_search_page: true
-    home: usage
-  #  main_color: "#bb0000"
-    gray: "#d0d0d0"
-    lighter_gray: "#eeeeee"
-    date_time_format: "%Y-%m-%d %H:%M:%S %Z"
-    toc_depth: 2
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
 
 # page tree
 nav:
@@ -100,18 +135,28 @@ nav:
 
 markdown_extensions:
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.tabbed
+  - attr_list
+  - tables
+
   - toc:
       permalink: '#'
 
 plugins:
   - search
+  - macros
 
 extra:
   history_buttons: false
+  institute: SouthGreen
+  repo: https://github.com/Juke34/workshop-reproducible-research
 #  version: v1.3.0
   nav_links:
     - icon: github
       icon_type: brand
       text: Jacques Dainat
       url: 'https://github.com/Juke34'
+hide:
+  - navigation

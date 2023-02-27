@@ -10,7 +10,7 @@ Now list all available magics with `%lsmagic` (which itself is a magic). You
 add a question mark to a magic to show the help (*e.g.* `%lsmagic?`). Some of
 them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`,
 ..). Others are useful for debugging and optimizing your code (`%timeit`,
-`%debug`, `%prun`, ..). For more information see the 
+`%debug`, `%prun`, ..). For more information see the
 [magics documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html).
 
 A very useful magic, in particular when using shell commands a lot in your
@@ -55,7 +55,7 @@ try to print the quadratic formula with LaTeX!
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
-Another useful magic is `%precision` which sets the floating point precision 
+Another useful magic is `%precision` which sets the floating point precision
 in the notebook. As a quick example, add the following to a cell and run it:
 
 ```python
