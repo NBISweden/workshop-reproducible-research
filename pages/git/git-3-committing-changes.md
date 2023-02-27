@@ -106,14 +106,14 @@ separate. We thus want to make two commits, one for each change.
 git reset HEAD environment.yml
 ```
 
-> **Note** <br>
-> Maybe you didn't see the same message as indicated above? Is Git telling you
-> to use a `git restore` instead? This is another one of Git's newer and
-experimental commands, which aims to remove some confusion about what
-commands do what (as many have multiple functions). While we have opted to
-stick with the old and stable commands until the new commands are no longer
-considered experimental, you are very welcome to use `git restore` instead
-of `git reset` to unstage the file above!
+!!! Note
+    Maybe you didn't see the same message as indicated above? Is Git telling you
+    to use a `git restore` instead? This is another one of Git's newer and
+    experimental commands, which aims to remove some confusion about what
+    commands do what (as many have multiple functions). While we have opted to
+    stick with the old and stable commands until the new commands are no longer
+    considered experimental, you are very welcome to use `git restore` instead
+    of `git reset` to unstage the file above!
 
 * Run `git status` again. See that now only `config.yml` is staged for being
   committed, whereas the changes in `environment.yml` are tracked by Git, but
@@ -170,20 +170,20 @@ operations in one step.
 git log
 ```
 
-> **Tip** <br>
-> Since Git keeps track of changes in text, *e.g.* code and text-based
-> documentation, there are some files which you should *not* commit. Examples
-> of such files are file formats that are not text-based, *e.g.* Microsoft
-> Word/Excel files or PDFs - although one might sometimes want to track one of
-> these files regardless, such as when you have a static PDF report you
-> received from a sequencing platform that's never going to change. Other
-> files you shouldn't track are vary large text files, *e.g.* those larger
-> than 50 MB.
+!!! Tip
+    Since Git keeps track of changes in text, *e.g.* code and text-based
+    documentation, there are some files which you should *not* commit. Examples
+    of such files are file formats that are not text-based, *e.g.* Microsoft
+    Word/Excel files or PDFs - although one might sometimes want to track one of
+    these files regardless, such as when you have a static PDF report you
+    received from a sequencing platform that's never going to change. Other
+    files you shouldn't track are vary large text files, *e.g.* those larger
+    than 50 MB.
 
-> **Quick recap** <br>
-> We added four important Git commands to our repertoire:
->
-> * `git add` adds a file to the staging area
-> * `git commit` commits the changes we have staged
-> * `git rm` is shorthand for `rm <file>; git add <file>`
-> * `git log` shows us the commit history
+!!! Success "Quick recap"
+    We added four important Git commands to our repertoire:
+    
+    * `git add` adds a file to the staging area
+    * `git commit` commits the changes we have staged
+    * `git rm` is shorthand for `rm <file>; git add <file>`
+    * `git log` shows us the commit history

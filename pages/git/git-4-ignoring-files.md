@@ -74,23 +74,23 @@ git add data/metadata.txt
 git commit -m "Add metadata file"
 ```
 
-> **Tip** <br>
-> It is common for certain programming languages or text editors to leave
-> *e.g.* swap files or hidden data files in the working directory, which you
-> don't want to track using Git. Instead of manually adding these to every
-> single project you have, you can use the `.gitignore_global` file, which
-> should be placed in your home directory. It works exactly like a normal
-> gitignore file, but is applied to all Git repositories that you are using
-> on your machine. Some common file extensions that might be put in the
-> global gitignore are `.DS_Store` if you're working in R or `.swp` if you're
-> coding in vim.
-> To configure git to use the `.gitignore_global` file you can run
-> `git config --global core.excludesfile ~/.gitignore_global`.
+!!! Tip
+    It is common for certain programming languages or text editors to leave
+    *e.g.* swap files or hidden data files in the working directory, which you
+    don't want to track using Git. Instead of manually adding these to every
+    single project you have, you can use the `.gitignore_global` file, which
+    should be placed in your home directory. It works exactly like a normal
+    gitignore file, but is applied to all Git repositories that you are using
+    on your machine. Some common file extensions that might be put in the
+    global gitignore are `.DS_Store` if you're working in R or `.swp` if you're
+    coding in vim.
+    To configure git to use the `.gitignore_global` file you can run
+    `git config --global core.excludesfile ~/.gitignore_global`.
 
-> **Quick recap** <br>
-> We now learned how to ignore certain files and directories:
->
-> - The `.gitignore` file controls which files and directories Git should
->   ignore, if any.
-> - Specific files can be excluded from ignored directories using the
->   exclamation mark (`!`) prefix.
+!!! Success "Quick recap"
+    We now learned how to ignore certain files and directories:
+
+    - The `.gitignore` file controls which files and directories Git should
+    ignore, if any.
+    - Specific files can be excluded from ignored directories using the
+    exclamation mark (`!`) prefix.

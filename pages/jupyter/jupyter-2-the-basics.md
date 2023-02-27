@@ -23,8 +23,8 @@ You should see something similar to this printed to your terminal:
 ```
 
 > **A note for Windows users** <br>
-> If you see the error message `Start : This command cannot be run due to the 
-> error: The system cannot find the file specified. ...` then try starting 
+> If you see the error message `Start : This command cannot be run due to the
+> error: The system cannot find the file specified. ...` then try starting
 > jupyter with `jupyter notebook --no-browser` then copy the URL given into the
 > browser directly.
 
@@ -44,21 +44,21 @@ you won't lose any work if you shut down the server.
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
-The Running tab keeps track of all your processes. The third tab, Clusters, is 
+The Running tab keeps track of all your processes. The third tab, Clusters, is
 used for parallel computing and won't be discussed further in this tutorial.
 Finally, the Nbextensions tab shows a list of configurable notebook extensions
 that you can use to add functionality to your notebook (as we'll see below).
 
 Let's start by creating an empty notebook by selecting the Files tab and
-clicking New > Python 3. This will open up a new tab or window 
+clicking New > Python 3. This will open up a new tab or window
 looking like this:
 
 > ![](images/jupyter_empty_nb.png){ width=700px }
 
-> **Tip** <br>
-> If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
-> Uppmax) see the section in the 
-> [Extra material](jupyter-9-extra-material)
+!!! Tip
+    If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
+    Uppmax) see the section in the
+    [Extra material](jupyter-9-extra-material)
 
 Jupyter notebooks are made up of cells, and you are currently standing in
 the first cell in your notebook. The fact that it has a green border indicates
@@ -151,12 +151,12 @@ menu in your notebook (there's even an option there to edit shortcuts).
 
 ## Writing markdown
 
-Let's use our first cell to create a header. Change the format from 
-Code to Markdown using the drop-down list in the Notebook Toolbar, or by 
-pressing the `m` key when in command mode. Double click on 
-the cell, or hit `enter` to enter editing mode (green frame) and input 
-"# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
-`ctrl`-`enter`. 
+Let's use our first cell to create a header. Change the format from
+Code to Markdown using the drop-down list in the Notebook Toolbar, or by
+pressing the `m` key when in command mode. Double click on
+the cell, or hit `enter` to enter editing mode (green frame) and input
+"# My notebook" ("#" is used in Markdown for header 1). Run the cell with
+`ctrl`-`enter`.
 
 Tada!
 
@@ -164,7 +164,7 @@ Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
 
 Below are some examples of what you can do in markdown. Paste all or parts
-of it into one or more cells in your notebook to see how it renders. Make 
+of it into one or more cells in your notebook to see how it renders. Make
 sure you set the cell type to Markdown.
 
 ```
@@ -185,9 +185,9 @@ Sections can be separated by horizontal lines.
 
 Blockquotes can be added, for instance to insert a Monty Python quote:
 
-    Spam! 
-    Spam! 
-    Spam! 
+    Spam!
+    Spam!
+    Spam!
     Spam!
 
 See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html) for more information.    
@@ -212,10 +212,10 @@ tools.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
-will already have it available. We can be a little meta and do this from within 
-the notebook itself. We do it by running some shell commands in the third code 
-cell instead of Python code. This very handy functionality is possible by 
-prepending the command with `!`. Try `!ls` to list the files in the current 
+will already have it available. We can be a little meta and do this from within
+the notebook itself. We do it by running some shell commands in the third code
+cell instead of Python code. This very handy functionality is possible by
+prepending the command with `!`. Try `!ls` to list the files in the current
 directory.
 
 Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
@@ -250,12 +250,12 @@ pretty notebooks with Markdown and you can code whatever you want with Python.
 Rather, we will focus on the Jupyter Notebook features that allow you to do
 a little more than that.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - That a Jupyter notebook consists of a series of cells, and that they can
->   be either markdown or code cells.
-> - That we execute the code in a code cell with the kernel that we chose
->   when opening the notebook.
-> - We can run shell commands by prepending them with `!`.
-> - A Jupyter notebook is simply a text file in JSON format.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - That a Jupyter notebook consists of a series of cells, and that they can
+    be either markdown or code cells.
+    - That we execute the code in a code cell with the kernel that we chose
+    when opening the notebook.
+    - We can run shell commands by prepending them with `!`.
+    - A Jupyter notebook is simply a text file in JSON format.

@@ -21,16 +21,16 @@ git tag "submission1"
 git tag
 ```
 
-> **Tip** <br>
-> You can use the flag `-a` or `--annotate` to give more detailed information
-> about a specific tag, similar to a commit message. This can be quite useful
-> when there are many changes that happened, in that it allows you to
-> summarise them. You can, for example, do `git tag -a submission1 -m
-> "Annotation for tag submission1"` to write the annotation along with the
-> command (similar to the `-m` flag for committing) or just `git tag -a
-> submission1` to write the annotation with your default editor. To list all
-> your tags along with their annotations you can use *e.g.* `git tag -n10`
-> (which will list the first 10 lines of each tag's annotation).
+!!! Tip
+    You can use the flag `-a` or `--annotate` to give more detailed information
+    about a specific tag, similar to a commit message. This can be quite useful
+    when there are many changes that happened, in that it allows you to
+    summarise them. You can, for example, do `git tag -a submission1 -m
+    "Annotation for tag submission1"` to write the annotation along with the
+    command (similar to the `-m` flag for committing) or just `git tag -a
+    submission1` to write the annotation with your default editor. To list all
+    your tags along with their annotations you can use *e.g.* `git tag -n10`
+    (which will list the first 10 lines of each tag's annotation).
 
 * Let's assume we now got comments from the reviewers, and by fixing
   those we had to update our code. Open `config.yml` and change the line
@@ -65,16 +65,16 @@ git checkout main
 
 * Open `config.yml` and see that the value is now `50000`.
 
-> **Tip** <br>
-> You can also see the difference between tags in the same way as for
-> branches and commits using *e.g.* `git diff <tag1> <tag2>`.
+!!! Tip
+    You can also see the difference between tags in the same way as for
+    branches and commits using *e.g.* `git diff <tag1> <tag2>`.
 
 At this point could run `git log --oneline --decorate` to get a condensed
 commit history, where you should also be able to see the tagged commits.
 
-> **Quick recap** <br>
-> We have now learned how to tag important commits:
->
-> - `git tag` adds a tag to a commit.
-> - `git checkout` moves between tags in a similar fashion as between
->   branches.
+!!! Success "Quick recap"
+    We have now learned how to tag important commits:
+
+    - `git tag` adds a tag to a commit.
+    - `git checkout` moves between tags in a similar fashion as between
+    branches.

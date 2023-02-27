@@ -18,16 +18,16 @@ are:
 
 Before you start:
 
-* Make sure that your working directory in R is `workshop-reproducible-research/tutorials/rmarkdown` 
+* Make sure that your working directory in R is `workshop-reproducible-research/tutorials/rmarkdown`
   in the course directory (Session > Set Working Directory).
 * Open the file `code/supplementary_material.Rmd`.
 
-> **Note** <br>
-> In this tutorial we have used Conda to install all the R packages we need,
-> so that you get to practice how you can actually do this in projects of your
-> own. You can, however, install things using `install.packages()` or
-> `BiocManager::install()` as well, even though this makes it both less
-> reproducible and more complicated in most cases.
+!!! Note
+    In this tutorial we have used Conda to install all the R packages we need,
+    so that you get to practice how you can actually do this in projects of your
+    own. You can, however, install things using `install.packages()` or
+    `BiocManager::install()` as well, even though this makes it both less
+    reproducible and more complicated in most cases.
 
 ## Overview
 
@@ -61,9 +61,9 @@ author: John Doe, Joan Dough, Jan Doh, Dyon Do
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ```
 
-> **Tip** <br>
-> Make it a practice to keep track of all input files and add them as
-> parameters rather than hard-coding them later in the R code.
+!!! Tip
+    Make it a practice to keep track of all input files and add them as
+    parameters rather than hard-coding them later in the R code.
 
 Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks.
 They 1) load the required packages, 2) read the parameters and store them in
@@ -216,16 +216,16 @@ out.height = "11cm"
 
 * Knit and check the results.
 
-> **Note** <br>
-> It is definitely possible to render R Markdown documents as part of
-> a Snakemake or Nextflow workflow. This is something we do for the final
-> version of the MRSA project (in the Containers tutorial). In such cases it is
-> advisable to manage the installation of R and required R packages through
-> your conda environment file and use the `rmarkdown::render()` command from
-> the shell section of your Snakemake rule or Nexflow process.
+!!! Note
+    It is definitely possible to render R Markdown documents as part of
+    a Snakemake or Nextflow workflow. This is something we do for the final
+    version of the MRSA project (in the Containers tutorial). In such cases it is
+    advisable to manage the installation of R and required R packages through
+    your conda environment file and use the `rmarkdown::render()` command from
+    the shell section of your Snakemake rule or Nexflow process.
 
-> **Quick recap** <br>
-> In this section you learned some additional details for making nice
-> R Markdown reports in a reproducible research project setting, including
-> setting the root directory, adding tables as well as setting figure and
-> table captions.
+!!! Success "Quick recap"
+    In this section you learned some additional details for making nice
+    R Markdown reports in a reproducible research project setting, including
+    setting the root directory, adding tables as well as setting figure and
+    table captions.

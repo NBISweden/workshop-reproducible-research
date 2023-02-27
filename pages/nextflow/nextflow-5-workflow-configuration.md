@@ -34,16 +34,16 @@ automatically by Nextflow (to supply a config file with another name use
   (it'll be in the form of `${params.resultsdir}/some/other/path`, for example).
   Run your workflow to see if it worked.
 
-> **Tip** <br>
-> Instead of manually changing all the hard-coded directories in your
-> workflow you can use the following little `sed` command, which will do it for
-> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv
-> tmp main_mrsa.nf`. In case you used a parameter name other than `resultsdir`
-> update the command accordingly.
+!!! Tip
+    Instead of manually changing all the hard-coded directories in your
+    workflow you can use the following little `sed` command, which will do it for
+    you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv
+    tmp main_mrsa.nf`. In case you used a parameter name other than `resultsdir`
+    update the command accordingly.
 
 # Command line parameters
 
-Workflow parameters can be assigned on the command-line by executing workflows like 
+Workflow parameters can be assigned on the command-line by executing workflows like
 so: `nextflow run main_mrsa.nf --parameter_name 'some_value'`. The workflow parameter `parameter_name`,
 is prefixed by a double dash `--` to tell Nextflow this is a parameter to the workflow (a single dash
 is a parameter to Nextflow, e.g. `-resume`). The value is also quoted (this is important for parameters
@@ -172,9 +172,9 @@ The manifest is useful when you're publishing or sharing the workflow through
 *e.g.* GitHub or similar. There are many more such configuration *scopes* that
 you might want to use - read more about them [in the documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes).
 
-> **Quick recap** <br>
-> In this section we learnt:
->
-> * How to create parameters in a configuration file
-> * How to specify parameters on the command line
-> * How to add workflow manifest and other configuration scopes
+!!! Success "Quick recap"
+    In this section we learnt:
+
+    * How to create parameters in a configuration file
+    * How to specify parameters on the command line
+    * How to add workflow manifest and other configuration scopes

@@ -37,12 +37,12 @@ images to the Singularity Image Format (SIF). This is great if there's a Docker
 image that you want to use on an HPC cluster such as Uppmax where you cannot use
 Docker.
 
-> **Tip!** <br>
-> If you are running singularity through Vagrant VirtualBox you may have to
-> set the temporary directory that Singularity uses during pull/build commands
-> to something with more disk space. First run `mkdir ~/tmp` to create a tmp 
-> directory inside the home folder of the VirtualBox, then 
-> `export SINGULARITY_TMPDIR="~/tmp"`.
+!!! Tip
+    If you are running singularity through Vagrant VirtualBox you may have to
+    set the temporary directory that Singularity uses during pull/build commands
+    to something with more disk space. First run `mkdir ~/tmp` to create a tmp
+    directory inside the home folder of the VirtualBox, then
+    `export SINGULARITY_TMPDIR="~/tmp"`.
 
 Let's try to convert the Docker image for this course directly from DockerHub
 using `singularity pull`:
@@ -112,9 +112,9 @@ done from Singularity definition files or directly from already existing Docker
 images. You can read more about this at the following [GitHub repository](https://github.com/kaczmarj/singularity-in-docker).
 
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to convert Docker images to Singularity images.
-> - How to use `singularity run` for starting a container from an image.
-> - How to build a Singularity image using Singularity inside Docker.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How to convert Docker images to Singularity images.
+    - How to use `singularity run` for starting a container from an image.
+    - How to build a Singularity image using Singularity inside Docker.

@@ -38,9 +38,9 @@ git branch test_alignment
 git checkout test_alignment
 ```
 
-> **Tip** <br>
-> You can create and checkout a new branch in one line with `git checkout -b
-> branch_name`.
+!!! Tip
+    You can create and checkout a new branch in one line with `git checkout -b
+    branch_name`.
 
 Let's add some changes to our new branch! We'll use this to try out a different
 set of parameters on the sequence alignment step of the case study project.
@@ -71,17 +71,17 @@ This shows the difference between the active branch (`test_alignment`) and
 `main` on a line-per-line basis. Do you see which lines have changed between
 `test_alignment` and `main` branches?
 
-> **Tip** <br>
-> We can also add the `--color-words` flag to `git diff`, which instead
-> displays the difference on a word-per-word basis rather than line-per-line.
+!!! Tip
+    We can also add the `--color-words` flag to `git diff`, which instead
+    displays the difference on a word-per-word basis rather than line-per-line.
 
-> **Note** <br>
-> Git is constantly evolving, along with some of its commands. While the
-> `checkout` command is quite versatile (it's used for more than just switching
-> branches), this versatility can sometimes be confusing. The Git team thus
-> added a new command, `git switch`, that can be used instead. This command is
-> still experimental, however, so we have opted to stick with `checkout` for
-> the course - for now.
+!!! Note
+    Git is constantly evolving, along with some of its commands. While the
+    `checkout` command is quite versatile (it's used for more than just switching
+    branches), this versatility can sometimes be confusing. The Git team thus
+    added a new command, `git switch`, that can be used instead. This command is
+    still experimental, however, so we have opted to stick with `checkout` for
+    the course - for now.
 
 Now, let's assume that we have tested our code and the alignment analysis is run
 successfully with our new parameters. We thus want to merge our work into the
@@ -103,13 +103,13 @@ git merge test_alignment
 Run `git log --graph --all --oneline` again to see how the merge commit brings
 back the changes made in `test_alignment` to `main`.
 
-> **Tip** <br>
-> If working on different features or parts of an analysis on different
-> branches, and at the same time maintaining a working `main` branch for the
-> stable code, it is convenient to periodically merge the changes made to
-> `main` into relevant branches (*i.e.* the opposite to what we did above).
-> That way, you keep your experimental branches up-to-date with the newest
-> changes and make them easier to merge into `main` when time comes.
+!!! Tip
+    If working on different features or parts of an analysis on different
+    branches, and at the same time maintaining a working `main` branch for the
+    stable code, it is convenient to periodically merge the changes made to
+    `main` into relevant branches (*i.e.* the opposite to what we did above).
+    That way, you keep your experimental branches up-to-date with the newest
+    changes and make them easier to merge into `main` when time comes.
 
 * If we do not want to do more work in `test_alignment` we can delete that
   branch:
@@ -122,22 +122,22 @@ git branch -d test_alignment
   the graph history are still there? A branch is simply a pointer to a
   specific commit, and that pointer has been removed.
 
-> **Tip** <br>
-> There are many types of so-called "branching models", each with varying
-> degrees of complexity depending on the developer's needs and the number of
-> collaborators. While there certainly isn't a single branching model that
-> can be considered to be the "best", it is very often most useful to keep it
-> simple. An example of a simple and functional model is to have a `main`
-> branch that is always working (*i.e.* can successfully run all your code
-> and without known bugs) and develop new code on feature branches (one new
-> feature per branch). Feature branches are short-lived, meaning that they
-> are deleted once they are merged into `main`.
+!!! Tip
+    There are many types of so-called "branching models", each with varying
+    degrees of complexity depending on the developer's needs and the number of
+    collaborators. While there certainly isn't a single branching model that
+    can be considered to be the "best", it is very often most useful to keep it
+    simple. An example of a simple and functional model is to have a `main`
+    branch that is always working (*i.e.* can successfully run all your code
+    and without known bugs) and develop new code on feature branches (one new
+    feature per branch). Feature branches are short-lived, meaning that they
+    are deleted once they are merged into `main`.
 
-> **Quick recap** <br>
-> We have now learned how to divide our work into branches and how to manage
-> them:
->
-> - `git branch <branch>` creates a new branch.
-> - `git checkout <branch>` moves the repository to the state in which the
->   specified branch is currently in.
-> - `git merge <branch>` merges the specified branch into the current one.
+!!! Success "Quick recap"
+    We have now learned how to divide our work into branches and how to manage
+    them:
+
+    - `git branch <branch>` creates a new branch.
+    - `git checkout <branch>` moves the repository to the state in which the
+    specified branch is currently in.
+    - `git merge <branch>` merges the specified branch into the current one.

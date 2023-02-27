@@ -352,13 +352,13 @@ How to install Docker differs a bit depending on your Linux distribution, but
 the steps are the same. Please follow the instructions for your distribution on
 [https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
 
-> **Tip** <br>
-> As mentioned before, Docker needs to run as root. You can achieve this by
-> prepending all Docker commands with `sudo`. This is the approach that we
-> will take in this tutorial, since the set up becomes a little simpler that way.
-> If you plan on continuing using Docker you can get rid of this by adding your
-> user to the group `docker`. Here are instructions for how to do this:
-> [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
+!!! Tip
+    As mentioned before, Docker needs to run as root. You can achieve this by
+    prepending all Docker commands with `sudo`. This is the approach that we
+    will take in this tutorial, since the set up becomes a little simpler that way.
+    If you plan on continuing using Docker you can get rid of this by adding your
+    user to the group `docker`. Here are instructions for how to do this:
+    [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
 
 ### Windows
 
@@ -413,13 +413,13 @@ Follow the Linux-specific instruction at the [Singularity website](https://sylab
 
 Please follow the Windows-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
 
-> **Notes** <br>
-> Last time we checked, the software "Vagrant Manager" was not available for
-> download but the installation of Singularity was successful even without it.
->
-> Version 6.1.28 of "Virtual box for Windows" may not work, please install
-> version 6.1.26 from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1)
-> in case you encounter problems when trying to start the Vagrant VirtualBox.
+!!! Notes
+    Last time we checked, the software "Vagrant Manager" was not available for
+    download but the installation of Singularity was successful even without it.
+
+    Version 6.1.28 of "Virtual box for Windows" may not work, please install
+    version 6.1.26 from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1)
+    in case you encounter problems when trying to start the Vagrant VirtualBox.
 
 ## Testing sra-tools
 On some computers we've found that the package `sra-tools` which is used in the

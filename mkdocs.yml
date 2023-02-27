@@ -16,7 +16,6 @@ theme:
   search_index_only: true
   include_search_page: true
   home: home
-  toc_depth: 2
   features:
     - announce.dismiss
     - content.action.edit
@@ -25,13 +24,13 @@ theme:
     - content.code.copy
   # - content.tabs.link
     - content.tooltips
-    # - header.autohide
+    - header.autohide
     # - navigation.expand
     - navigation.footer
     - navigation.indexes
     # - navigation.instant
     # - navigation.prune
-    #- navigation.sections
+    # - navigation.sections # collapse subsections
     - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top

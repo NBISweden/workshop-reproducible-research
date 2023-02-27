@@ -12,10 +12,10 @@ collection of container images with the same name but different tags, *i.e.*
 versions. For example, `ubuntu:latest` or `ubuntu:20.04`. Repositories are
 stored in registries.
 
-> **Note** <br>
-> Remember that we now have some clashing nomenclature between Git repositories
-> (which we covered in the Git tutorial) and container repositories, so be aware
-> of which one you're talking about!
+!!! Note
+    Remember that we now have some clashing nomenclature between Git repositories
+    (which we covered in the Git tutorial) and container repositories, so be aware
+    of which one you're talking about!
 
 There are many registries out there, but here are some that might be of interest
 to you who are taking this course:
@@ -49,20 +49,20 @@ important that it's the correct version of the image. You can do this by adding
 a tag to the name like this `docker build -t
 your_dockerhub_id/image_name:tag_name`.
 
-> **Tip** <br>
-> On Docker Hub it is also possible to link to your Bitbucket or GitHub
-> account and select repositories from which you want to automatically build
-> and distribute Docker images. The Docker Hub servers will then build an
-> image from the Dockerfile in your Git repository and make it available for
-> download using `docker pull`. That way, you don't have to bother manually
-> building and pushing using `docker push`. The GitHub repository for this
-> course is linked to Docker Hub and the Docker images are built automatically
-> from `Dockerfile` and `Dockerfile_slim`, triggered by changes made to the
-> GitHub repository. You can take a look at the course on Docker Hub
-> [here](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
+!!! Tip
+    On Docker Hub it is also possible to link to your Bitbucket or GitHub
+    account and select repositories from which you want to automatically build
+    and distribute Docker images. The Docker Hub servers will then build an
+    image from the Dockerfile in your Git repository and make it available for
+    download using `docker pull`. That way, you don't have to bother manually
+    building and pushing using `docker push`. The GitHub repository for this
+    course is linked to Docker Hub and the Docker images are built automatically
+    from `Dockerfile` and `Dockerfile_slim`, triggered by changes made to the
+    GitHub repository. You can take a look at the course on Docker Hub
+    [here](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How container registries and repositories work
-> - How to use Docker Hub to share Docker images
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How container registries and repositories work
+    - How to use Docker Hub to share Docker images

@@ -25,8 +25,8 @@ although the exact menu structure and link placements differ a bit.
 Any upload to and from GitHub requires you to authenticate yourself. GitHub
 used to allow authentication with your account and password, but this is no
 longer the case - using SSH keys is favoured instead. Knowing exactly what these
-are is not necessary to get them working, but we encourage you to read the box 
-below to learn more about them! GitHub has excellent, platform-specific 
+are is not necessary to get them working, but we encourage you to read the box
+below to learn more about them! GitHub has excellent, platform-specific
 instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please use them before moving on!
@@ -83,9 +83,9 @@ git remote add origin git@github.com:user/git_tutorial.git
   your local Git clone. The short name of the default remote is usually
   "*origin*" by convention.
 
-> **Note** <br>
-> Make sure you've used an SSH address (*i.e.* starting with `git@github.com`
-> rather than an HTTPS address (starting with `https://github.com`)!
+!!! Note
+    Make sure you've used an SSH address (*i.e.* starting with `git@github.com`
+    rather than an HTTPS address (starting with `https://github.com`)!
 
 * We have not yet synced the local and remote repositories, though, we've simply
   connected them. Let's sync them now:
@@ -104,7 +104,7 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-You always need to specify `git push origin main` by default, but you can 
+You always need to specify `git push origin main` by default, but you can
 circumvent this by telling Git that you always want to push to
 `origin/main` when you're on your local `main` branch. To do this, use
 the command `git branch --set-upstream-to origin/main`. **Try it out now**.
@@ -166,15 +166,15 @@ the ideas and rationale behind the project. You can even add README-files to
 sub-directories as well, giving you the opportunity to go more in-depth where
 you so desire.
 
-> **Tip** <br>
-> There are a lot more things you can do with markdown than what we show here.
-> Indeed, this entire course is mostly written in markdown! You can read
-> more about markdown [here](https://www.markdownguide.org/getting-started/).
+!!! Tip
+    There are a lot more things you can do with markdown than what we show here.
+    Indeed, this entire course is mostly written in markdown! You can read
+    more about markdown [here](https://www.markdownguide.org/getting-started/).
 
-> **Quick recap** <br>
-> We learned how to connect local Git repositories to remote locations such as
-> GitHub and how to upload commits using `git push`. We also learned the
-> basics of *markdown* and how it can be used to document Git repositories.
+!!! Success "Quick recap"
+    We learned how to connect local Git repositories to remote locations such as
+    GitHub and how to upload commits using `git push`. We also learned the
+    basics of *markdown* and how it can be used to document Git repositories.
 
 ## Browsing GitHub
 
@@ -213,9 +213,9 @@ you can see that the `Dockerfile` is back, even though we deleted it! Click on
 the *Code* tab to the left to return to the overview of the latest repository
 version.
 
-> **Quick recap** <br>
-> We learned some of the most important features of the GitHub interface and
-> how repositories can be viewed online.
+!!! Success "Quick recap"
+    We learned some of the most important features of the GitHub interface and
+    how repositories can be viewed online.
 
 ## Working with remote repositories
 
@@ -275,16 +275,16 @@ will give you a short visual summary:
 
 ![](images/git_overview_remote.png){ width=600px }
 
-> **Quick recap** <br>
-> We have learned the difference between local and remote copies of git
-> repositories and how to sync them:
->
-> - `git push` uploads commits to a remote repository
-> - `git pull` downloads commits from a remote repository and merges them
->   to the local branch
-> - `git fetch` downloads commits from a remote repository without merging
->   them to the local branch
-> - `git clone` makes a local copy of a remote repository
+!!! Success "Quick recap"
+    We have learned the difference between local and remote copies of git
+    repositories and how to sync them:
+
+    - `git push` uploads commits to a remote repository
+    - `git pull` downloads commits from a remote repository and merges them
+    to the local branch
+    - `git fetch` downloads commits from a remote repository without merging
+    them to the local branch
+    - `git clone` makes a local copy of a remote repository
 
 ## Remote branches
 
@@ -334,10 +334,10 @@ branch from the remote repository as well, run:
 git push origin --delete trimming
 ```
 
-> **Quick recap** <br>
-> We learned how to push local branches to a remote with `git push origin
-> <branch>` and how to delete remote branches with `git push origin --delete
-> <branch>`.
+!!! Success "Quick recap"
+    We learned how to push local branches to a remote with `git push origin
+    <branch>` and how to delete remote branches with `git push origin --delete
+    <branch>`.
 
 ## Sharing tags
 
@@ -366,5 +366,5 @@ Alternatively, Git users who want to reproduce your analysis with the code used
 for the publication can clone the GitHub repository and then run `git checkout
 publication`.
 
-> **Quick recap** <br>
-> We learned how to push Git tags to a remote by using the `--tags` flag.
+!!! Success "Quick recap"
+    We learned how to push Git tags to a remote by using the `--tags` flag.

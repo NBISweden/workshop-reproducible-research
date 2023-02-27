@@ -12,12 +12,12 @@ that contains all the work we've done so far.
   takes the results from the Snakemake workflow and summarizes them in a report.
 
 The `workshop-reproducible-research/tutorials/containers` directory contains the
-final versions of all the files we've generated in the other tutorials: 
-`environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and 
-`code/supplementary_material.Rmd`. The only difference compared to the other 
-tutorials is that we have also included the rendering of the Supplementary 
-Material HTML file into the Snakemake workflow as the rule `make_supplementary`. 
-Running all of these steps will take some time to execute (around 20 minutes 
+final versions of all the files we've generated in the other tutorials:
+`environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and
+`code/supplementary_material.Rmd`. The only difference compared to the other
+tutorials is that we have also included the rendering of the Supplementary
+Material HTML file into the Snakemake workflow as the rule `make_supplementary`.
+Running all of these steps will take some time to execute (around 20 minutes
 or so), in particular if you're on a slow internet connection.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
@@ -45,22 +45,22 @@ with `docker run`. We just want to get the results, so mount the directory
 Well done! You now have an image that allows anyone to exactly reproduce your
 analysis workflow (if you first `docker push` to Dockerhub that is).
 
-> **Tip** <br>
-> If you've done the [Jupyter tutorial](jupyter-1-introduction), you know that
-> Jupyter Notebook runs as a web server. This makes it very well suited for
-> running in a Docker container, since we can just expose the port Jupyter
-> Notebook uses and redirect it to one of our own. You can then work with the
-> notebooks in your browser just as you've done before, while it's actually
-> running in the container. This means you could package your data, scripts
-> and environment in a Docker image that also runs a Jupyter Notebook server.
-> If you make this image available, say on Dockerhub, other researchers could
-> then download it and interact with your data/code via the fancy interactive
-> Jupyter notebooks that you have prepared for them. We haven't made any
-> fancy notebooks for you, but we *have* set up a Jupyter Notebook server.
-> Try it out if you want to (replace the image name with your version if
-> you've built it yourself):
-> 
-> ```bash
-> docker run -it -p 8888:8888 nbisweden/workshop-reproducible-research \
->     jupyter notebook  --ip=0.0.0.0 --allow-root
-> ```
+!!! Tip
+    If you've done the [Jupyter tutorial](jupyter-1-introduction), you know that
+    Jupyter Notebook runs as a web server. This makes it very well suited for
+    running in a Docker container, since we can just expose the port Jupyter
+    Notebook uses and redirect it to one of our own. You can then work with the
+    notebooks in your browser just as you've done before, while it's actually
+    running in the container. This means you could package your data, scripts
+    and environment in a Docker image that also runs a Jupyter Notebook server.
+    If you make this image available, say on Dockerhub, other researchers could
+    then download it and interact with your data/code via the fancy interactive
+    Jupyter notebooks that you have prepared for them. We haven't made any
+    fancy notebooks for you, but we *have* set up a Jupyter Notebook server.
+    Try it out if you want to (replace the image name with your version if
+    you've built it yourself):
+
+    ```bash
+    docker run -it -p 8888:8888 nbisweden/workshop-reproducible-research \
+    jupyter notebook  --ip=0.0.0.0 --allow-root
+    ```

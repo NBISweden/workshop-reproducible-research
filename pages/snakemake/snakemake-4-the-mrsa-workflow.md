@@ -6,22 +6,22 @@ two controls. We have already set up a draft Snakemake workflow for the RNA-seq
 analysis and it seems to be running nicely. It's now up to you to modify this
 workflow to make it more flexible and reproducible!
 
-> **Tip** <br>
-> This section will leave a little more up to you compared to the previous
-> one. If you get stuck at some point the final workflow after all the
-> modifications is available in `tutorials/git/Snakefile`.
+!!! Tip
+    This section will leave a little more up to you compared to the previous
+    one. If you get stuck at some point the final workflow after all the
+    modifications is available in `tutorials/git/Snakefile`.
 
 You are probably already in your `snakemake-env` environment, otherwise
 activate it (use `conda info --envs` if you are unsure).
 
-> **Tip** <br>
-> Here we have one Conda environment for executing the whole Snakemake
-> workflow. Snakemake also supports using explicit Conda environments on
-> a per-rule basis, by specifying something like `conda:
-> rule-specific-env.yml` in the rule definition and running Snakemake with
-> the `--use-conda` flag. The given rule will then be run in the Conda
-> environment specified in `rule-specific-env.yml` that will be created and
-> activated on the fly by Snakemake.
+!!! Tip
+    Here we have one Conda environment for executing the whole Snakemake
+    workflow. Snakemake also supports using explicit Conda environments on
+    a per-rule basis, by specifying something like `conda:
+    rule-specific-env.yml` in the rule definition and running Snakemake with
+    the `--use-conda` flag. The given rule will then be run in the Conda
+    environment specified in `rule-specific-env.yml` that will be created and
+    activated on the fly by Snakemake.
 
 Let's start by generating the rule graph so that we get an overview of the
 workflow.
@@ -115,9 +115,9 @@ in the directories `data`, `intermediate` and `results`. Take some time to look
 through the structure, in particular the quality control reports in `results`
 and the count table in `results/tables`.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How the MRSA workflow looks.
-> - How to run the MRSA workflow.
-> - Which output files the MRSA workflow produces.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How the MRSA workflow looks.
+    - How to run the MRSA workflow.
+    - Which output files the MRSA workflow produces.

@@ -16,7 +16,7 @@ echo "This is b.txt" > b.txt
 Then open `Snakefile` in your favorite text editor. A Snakemake workflow is based on
 rules which take some file(s) as input, performs some type of operation on
 them, and generate some file(s) as outputs. Here is a very simple rule that
-produces `a.upper.txt` as an output, using `a.txt` as input. Copy this rule to 
+produces `a.upper.txt` as an output, using `a.txt` as input. Copy this rule to
 your `Snakefile` and save it.
 
 ```python
@@ -39,17 +39,17 @@ rule convert_to_upper_case:
 > two for a more compact look. Don't use tabs (unless your editor
 > automatically converts them to spaces).
 
-Rules can be given names, here it's `convert_to_upper_case`. While rule names 
-are not strictly necessary we encourage you to use them and to make an effort to 
+Rules can be given names, here it's `convert_to_upper_case`. While rule names
+are not strictly necessary we encourage you to use them and to make an effort to
 name your rules in a way that makes it easy to understand the purpose of the rule,
 as rule names are one of the main ways to interact with the workflow. The
-`shell` section (or directive) contains the shell commands that will convert the 
-text in the input file to upper case and send it to the output file. In the shell 
-command string, we can refer to elements of the rule via curly brackets. Here, we 
-refer to the output file by specifying `{output}` and to the input file by 
-specifying `{input}`. If you're not very familiar with Bash, this particular 
-command can be read like "send the contents of `a.txt` to the program `tr`, which 
-will convert all characters in the set `[a-z]` to the corresponding character in 
+`shell` section (or directive) contains the shell commands that will convert the
+text in the input file to upper case and send it to the output file. In the shell
+command string, we can refer to elements of the rule via curly brackets. Here, we
+refer to the output file by specifying `{output}` and to the input file by
+specifying `{input}`. If you're not very familiar with Bash, this particular
+command can be read like "send the contents of `a.txt` to the program `tr`, which
+will convert all characters in the set `[a-z]` to the corresponding character in
 the set `[A-Z]`, and then send the output to `a.upper.txt`".
 
 Now let's run our first Snakemake workflow. When a workflow is executed
@@ -59,9 +59,9 @@ ways). Here we ask Snakemake to make the file `a.upper.txt`. It's good practice
 to first run with the flag `-n` (or `--dry-run`), which will show what Snakemake
 plans to do without actually running anything, and you also need to specify
 how many cores to be used for the workflow with `--cores` or `-c`. For now, you
-only need 1 so set `-c 1`. You can also use the flag `-p`, for showing the 
-shell commands that it will execute, and the flag `-r` for showing the reason 
-for running a specific rule. `snakemake --help` will show you all available 
+only need 1 so set `-c 1`. You can also use the flag `-p`, for showing the
+shell commands that it will execute, and the flag `-r` for showing the reason
+for running a specific rule. `snakemake --help` will show you all available
 flags.
 
 ```no-highlight
@@ -85,7 +85,7 @@ rule convert_to_upper_case:
 
 
         tr [a-z] [A-Z] < a.txt > a.upper.txt
-        
+
 Job stats:
 job                      count    min threads    max threads
 ---------------------  -------  -------------  -------------
@@ -100,8 +100,8 @@ with `a.txt` as input and `a.upper.txt` as output. The reason for doing this is
 that it's missing the file `a.upper.txt`. Now execute the workflow without the
 `-n` flag and check that the contents of `a.upper.txt` is as expected. Then try
 running the same command again. What do you see? It turns out that Snakemake
-only reruns jobs if there have been changes to either **the input files, or the 
-workflow itself**. This is how Snakemake ensures that everything in the 
+only reruns jobs if there have been changes to either **the input files, or the
+workflow itself**. This is how Snakemake ensures that everything in the
 workflow is up to date. We will get back to this shortly.
 
 What if we ask Snakemake to generate the file `b.upper.txt`?
@@ -162,8 +162,8 @@ shell:
 > Snakemake workflows. The parser will complain, but sometimes the error
 > message can be difficult to interpret.
 
-Now try to construct this rule yourself and name it `concatenate_a_and_b`. 
-The syntax for concatenating two files in Bash is 
+Now try to construct this rule yourself and name it `concatenate_a_and_b`.
+The syntax for concatenating two files in Bash is
 `cat first_file.txt second_file.txt > output_file.txt`. Call the output `c.txt`.
 Run the workflow in Snakemake and validate that the output looks as expected.
 
@@ -256,14 +256,14 @@ Finished job 0.
 
 Neat!
 
-> **Tip** <br>
-> You can name a file whatever you want in a Snakemake workflow, but you will
-> find that everything falls into place much nicer if the filename reflects
-> the file's path through the workflow, *e.g.* `sample_a.trimmed.deduplicated.sorted.bam`.
+!!! Tip
+    You can name a file whatever you want in a Snakemake workflow, but you will
+    find that everything falls into place much nicer if the filename reflects
+    the file's path through the workflow, *e.g.* `sample_a.trimmed.deduplicated.sorted.bam`.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How a simple Snakemake rule looks.
-> - How to define target files when executing a workflow.
-> - How to use named wildcards for writing generic and flexible rules.
+!!! Success "Quick recap"
+    In this section we've learned:
+    
+    - How a simple Snakemake rule looks.
+    - How to define target files when executing a workflow.
+    - How to use named wildcards for writing generic and flexible rules.

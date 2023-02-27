@@ -42,18 +42,18 @@ dependencies:
 conda env create -n project_mrsa -f environment.yml
 ```
 
-> **Tip** <br>
-> You can also specify exactly which channel a package should come from
-> inside the environment file, using the `channel::package=version`
-> syntax.
+!!! Tip
+    You can also specify exactly which channel a package should come from
+    inside the environment file, using the `channel::package=version`
+    syntax.
 
-> **Tip** <br>
-> Instead of the `-n` flag you can use the `-p` flag to set the full path to
-> where the Conda environment should be installed. In that way you can
-> contain the Conda environment inside the project directory, which does make
-> sense from a reproducibility perspective, and makes it easier to keep track
-> of what environment belongs to what project. If you don't specify `-p` the
-> environment will be installed in the default `miniconda3/envs/` directory.
+!!! Tip
+    Instead of the `-n` flag you can use the `-p` flag to set the full path to
+    where the Conda environment should be installed. In that way you can
+    contain the Conda environment inside the project directory, which does make
+    sense from a reproducibility perspective, and makes it easier to keep track
+    of what environment belongs to what project. If you don't specify `-p` the
+    environment will be installed in the default `miniconda3/envs/` directory.
 
 * Activate the environment!
 
@@ -158,7 +158,7 @@ which will install Mamba in your `base` Conda environment. Mamba works almost
 exactly the same as Conda, meaning that all you need to do is to stop using
 `conda command` and instead use `mamba command` - simple! Be aware though that
 in order to use `mamba activate` and `mamba deactivate` you first need to run
-`mamba init`. So transitioning into using Mamba is actually quite easy - enjoy 
+`mamba init`. So transitioning into using Mamba is actually quite easy - enjoy
 your shorter execution times!
 
 > **Quick recap** <br>

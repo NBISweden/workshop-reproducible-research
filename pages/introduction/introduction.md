@@ -41,7 +41,7 @@ to exemplify the different steps of setting up a reproducible research project.
 To give you some context, the study background and analysis steps are briefly
 described below.
 
-#### Background
+## Background
 
 The data is taken from [Osmundson, Dewell, and Darst (2013)](
 http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0076572),
@@ -58,7 +58,7 @@ To identify *S. aureus* genes repressed by gp67, the authors expressed gp67 in
 * RN4220 with empty pRMC2
 * NCTC8325-4
 
-#### Analysis
+## Analysis
 
 The graph below shows the different steps of the analysis that are included in
 this project:

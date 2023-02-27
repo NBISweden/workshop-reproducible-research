@@ -58,12 +58,12 @@ use a bind mount, a file or directory on the *host machine* is mounted into
 a container. That way, when the container generates a file in such a directory
 it will appear in the mounted directory on your host system.
 
-> **Tip** <br>
-> Docker also has a more advanced way of data storage called
-> [volumes](https://docs.docker.com/storage/volumes/). Volumes provide
-> added flexibility and are independent of the host machine's filesystem
-> having a specific directory structure available. They are particularly
-> useful when you want to share data *between* containers.
+!!! Tip
+    Docker also has a more advanced way of data storage called
+    [volumes](https://docs.docker.com/storage/volumes/). Volumes provide
+    added flexibility and are independent of the host machine's filesystem
+    having a specific directory structure available. They are particularly
+    useful when you want to share data *between* containers.
 
 Say that we are interested in getting the resulting html reports from FastQC in
 our container. We can do this by mounting a directory called, say,
@@ -102,13 +102,13 @@ reads instead of 15000. Then rerun the analysis with `bash run_qc.sh`. Tada!
 Validate that the resulting html reports look fine and then exit the container
 with `exit`.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to use `docker run` for starting a container and how the flags `-d`
->   and `--rm` work.
-> - How to use `docker container ls` for displaying information about the
->   containers.
-> - How to use `docker attach` and `docker exec` to interact with running
->   containers.
-> - How to use bind mounts to share data between the container and the host system.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How to use `docker run` for starting a container and how the flags `-d`
+    and `--rm` work.
+    - How to use `docker container ls` for displaying information about the
+    containers.
+    - How to use `docker attach` and `docker exec` to interact with running
+    containers.
+    - How to use bind mounts to share data between the container and the host system.

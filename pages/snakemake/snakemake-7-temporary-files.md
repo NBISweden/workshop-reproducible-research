@@ -35,13 +35,13 @@ Finished job 2.
 .
 ```
 
-> **Tip** <br>
-> Sometimes you may want to trigger removal of temporary files without
-> actually rerunning the jobs. You can then use the `--delete-temp-output`
-> flag. In some cases you may instead want to run only parts of a workflow
-> and therefore want to prevent files marked as temporary from being deleted
-> (because the files are needed for other parts of the workflow). In such
-> cases you can use the `--notemp` flag.
+!!! Tip
+    Sometimes you may want to trigger removal of temporary files without
+    actually rerunning the jobs. You can then use the `--delete-temp-output`
+    flag. In some cases you may instead want to run only parts of a workflow
+    and therefore want to prevent files marked as temporary from being deleted
+    (because the files are needed for other parts of the workflow). In such
+    cases you can use the `--notemp` flag.
 
 Snakemake has a number of options for marking files:
 
@@ -57,7 +57,7 @@ Snakemake has a number of options for marking files:
   enforce some rule execution order without real file dependencies.
 * `directory("...")`: The output is a directory rather than a file.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to mark an output file as temporary for automatic removal.
+Success "Quick recap"
+    In this section we've learned:
+
+    - How to mark an output file as temporary for automatic removal.

@@ -15,11 +15,11 @@ in this case (this can be used to reference the code chunk as well as alleviate
 debugging). Last comes chunk options, separated by commas (in this case there is
 only one option: `echo = FALSE`).
 
-> **Note** <br>
-> The code chunk name pressure has nothing to do with the code `plot(pressure)`. 
-> In the latter case, pressure is a default R dataframe that is used in examples. 
-> The chunk name happened to be set to the string pressure as well, but could 
-> just as well have been called something else, *e.g.* "Plot pressure data".
+!!! Note
+    The code chunk name pressure has nothing to do with the code `plot(pressure)`.
+    In the latter case, pressure is a default R dataframe that is used in examples.
+    The chunk name happened to be set to the string pressure as well, but could
+    just as well have been called something else, *e.g.* "Plot pressure data".
 
 Below are listed some useful chunk options related to evaluating and displaying
 code chunks in the final file:
@@ -150,9 +150,9 @@ In this way we can set global chunk options, *i.e.* defaults for all chunks. In
 this example, `echo` will always be set to `TRUE`, unless otherwise specified
 in individual chunks.
 
-> **Tip** <br>
-> For more chunk options, have a look at page 2-3 of this [reference](
-> https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+!!! Tip
+    For more chunk options, have a look at page 2-3 of this [reference](
+    https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
 It is also possible to create different types of interactive plots using
 R Markdown. You can see some examples of this [here](http://www.htmlwidgets.org/showcase_networkD3.html).

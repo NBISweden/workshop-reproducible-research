@@ -33,8 +33,8 @@ print("stdout:" + output.stdout)
 print("stderr:" + output.stderr)
 ```
 
-> **Tip** <br>
-> You can capture the output of some magics directly like this: `my_dir = %pwd`.
+!!! Tip
+    You can capture the output of some magics directly like this: `my_dir = %pwd`.
 
 The `%%script` magic is used for specifying a program (bash, perl, ruby, ..)
 with which to run the code (similar to a shebang). For some languages it's
