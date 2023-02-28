@@ -16,10 +16,9 @@ docs_dir: pages/
 # Configuration
 theme:
   name: material
-  static_templates: [404.html, index.html, css/base.css]
+  logo: images/IRD.png # logo top left page
   search_index_only: true
   include_search_page: true
-  home: home
   features:
     - announce.dismiss
     - content.action.edit
@@ -79,6 +78,7 @@ plugins:
 
 # Customization
 extra:
+  homepage: home # Page displayed when clicking the logo
   history_buttons: false
   institute: SouthGreen
   repo: https://github.com/Juke34/workshop-reproducible-research
