@@ -3,11 +3,9 @@ site_name: 'Bioinformatics Workshop on Tools for Reproducible Research'
 site_author: 'Jacques Dainat et al.'
 site_url: 'https://Juke34.github.io/workshop-reproducible-research'
 site_description: Workshop on Tools for Reproducible Research
-#site_url: 'http://127.0.0.1:8000/'
 
 # Repository
 repo_name: 'Juke34/workshop-reproducible-research'
-#repo_url: 'http://127.0.0.1:8000'
 repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
 
 # Set folder that contains all the docs
@@ -58,6 +56,37 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
+# Extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - attr_list
+  - tables
+  - toc:
+      permalink: '#'
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+  - macros
+
+# Customization
+extra:
+  history_buttons: false
+  institute: SouthGreen
+  repo: https://github.com/Juke34/workshop-reproducible-research
+  color_table_header: "#333a99"
+#  version: v1.3.0
+  nav_links:
+    - icon: github
+      icon_type: brand
+      text: Jacques Dainat
+      url: 'https://github.com/Juke34'
 
 # page tree
 nav:
@@ -133,34 +162,3 @@ nav:
           - Extra material: containers/containers-8-extra-material.md
         - 'Making a project reproducible': 'project/project.md'
         - 'Take down': 'take_down.md'
-
-# Extensions
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed
-  - attr_list
-  - tables
-  - toc:
-      permalink: '#'
-
-# Plugins
-plugins:
-  - search:
-      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-  - minify:
-      minify_html: true
-  - macros
-
-# Customization
-extra:
-  history_buttons: false
-  institute: SouthGreen
-  repo: https://github.com/Juke34/workshop-reproducible-research
-#  version: v1.3.0
-  nav_links:
-    - icon: github
-      icon_type: brand
-      text: Jacques Dainat
-      url: 'https://github.com/Juke34'

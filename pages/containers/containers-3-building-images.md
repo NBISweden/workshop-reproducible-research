@@ -281,19 +281,15 @@ the image. So, this is what we need to do:
 Try to add required lines to `Dockerfile_conda`. If it seems overwhelming you
 can take a look at an example below:
 
-<details>
-<summary> Click to show </summary>
-
-```no-highlight
-FROM my_docker_image:latest
-RUN conda config --add channels bioconda && \
-    conda config --add channels conda-forge && \
-    mamba install -n base fastqc=0.11.9 sra-tools=2.10.1
-COPY run_qc.sh .
-CMD bash run_qc.sh
-```
-
-</details>
+??? example "Click to show the solution"
+    ```no-highlight
+    FROM my_docker_image:latest
+    RUN conda config --add channels bioconda && \
+        conda config --add channels conda-forge && \
+        mamba install -n base fastqc=0.11.9 sra-tools=2.10.1
+    COPY run_qc.sh .
+    CMD bash run_qc.sh
+    ```
 
 Build the image and tag it `my_docker_conda`:
 
@@ -303,11 +299,11 @@ docker build -t my_docker_conda -f Dockerfile_conda .
 
 Verify that the image was built using `docker image ls`.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`,
->   `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
-> - The importance of letting each layer in the Dockerfile be a "logical unit".
-> - How to use `docker build` to construct and tag an image from a Dockerfile.
-> - How to create your own Dockerfile.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`,
+    `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
+    - The importance of letting each layer in the Dockerfile be a "logical unit".
+    - How to use `docker build` to construct and tag an image from a Dockerfile.
+    - How to create your own Dockerfile.

@@ -45,8 +45,8 @@ named `report.html` you could run:
 jupyter nbconvert --to html --output report.html --execute Untitled.ipynb
 ```
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-- How to convert Jupyter notebooks to various other formats
-- How to use `nbconvert` to convert notebooks on the command line
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How to convert Jupyter notebooks to various other formats
+    - How to use `nbconvert` to convert notebooks on the command line

@@ -112,7 +112,7 @@ RUN_MULTIQC (
 
 We already know about `.out` and `.collect()`, but we have something new here:
 the `RUN_MULTIQC` process is taking the second channel of the output from the
-`RUN_FASTQC` process - `[1]` is the index for the second channel, as Groovy is 
+`RUN_FASTQC` process - `[1]` is the index for the second channel, as Groovy is
 zero-based (the first channel is indexed by `[0]`).
 
 This comes with some issues, however. What if
@@ -127,30 +127,26 @@ path(*.txt), emit: text
 ```
 
 Instead of referring to the output by its position in an array as previously, we
-refer to the channel with a label we choose (`.out.text`) instead. This benefits us in that 
-we can infer more information about channel contents called `text` rather than `[1]`, 
+refer to the channel with a label we choose (`.out.text`) instead. This benefits us in that
+we can infer more information about channel contents called `text` rather than `[1]`,
 and it is also allows us to be less error-prone when rewriting parts of a workflow.
 
-Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC` 
-use those outputs. You'll have to change both the output section of the 
+Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC`
+use those outputs. You'll have to change both the output section of the
 `RUN_FASTQC` process, and the workflow definition section for `RUN_MULTIQC`.
 If you need help, see the hint below.
 
-<details>
-<summary> Click to show </summary>
+??? example "Click to show the solution"
+    ```nextflow
+        // Workflow definition for RUN_MULTIQC
+        RUN_MULTIQC (
+            RUN_FASTQC.out.zip.collect()
 
-```nextflow
-    // Workflow definition for RUN_MULTIQC
-    RUN_MULTIQC (
-        RUN_FASTQC.out.zip.collect()
-
-    // Output section of RUN_FASTC
-    output:
-        path("*.html"), emit: html
-        path("*.zip"),  emit: zip
-```
-
-</details>
+        // Output section of RUN_FASTC
+        output:
+            path("*.html"), emit: html
+            path("*.zip"),  emit: zip
+    ```
 
 Check if it works by executing the workflow.
 
@@ -172,7 +168,7 @@ publishDir "results/logs",
 ```
 
 In this example, `*.tsv` files are copied to the folder `results/tables/`,
-while `*.log` files are copied to the folder `results/logs`. The 
+while `*.log` files are copied to the folder `results/logs`. The
 `publishDir` directive can be used multiple times in a single process, allowing
 one to separate output as above, or publish the same output to multiple folders.
 
@@ -244,18 +240,18 @@ This might have seemed like a trivial error, but a lot of errors in Nextflow can
 be solved in the same manner, *i.e.* by just following the debugging output
 reported by Nextflow and inspecting the specific subdirectory in question.
 
-> **A note about Bash** <br>
-> If you are using Bash variables inside the `script` directive you have to be
-> careful to prepend it with a backslash, *e.g.* `\${BASH_VARIABLE}`. This is
-> because the dollar-sign is used by Nextflow, so you have to tell Nextflow
-> explicitly when you're using a Bash variable. This is a common source of
-> errors when using Bash variables, so keeping it in mind can save you some
-> debugging time!
+!!! Info "A note about Bash"
+    If you are using Bash variables inside the `script` directive you have to be
+    careful to prepend it with a backslash, *e.g.* `\${BASH_VARIABLE}`. This is
+    because the dollar-sign is used by Nextflow, so you have to tell Nextflow
+    explicitly when you're using a Bash variable. This is a common source of
+    errors when using Bash variables, so keeping it in mind can save you some
+    debugging time!
 
-> **Quick recap** <br>
-> In this section we've learnt:
->
-> * How to use the `tag` directive
-> * How to use named output
-> * How to separate process outputs into different directories
-> * How to debug errors and mistakes
+!!! Success "Quick recap"
+    In this section we've learnt:
+
+    * How to use the `tag` directive
+    * How to use named output
+    * How to separate process outputs into different directories
+    * How to debug errors and mistakes

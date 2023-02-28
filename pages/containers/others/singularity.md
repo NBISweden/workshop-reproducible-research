@@ -238,8 +238,8 @@ From: ubuntu:16.04
     AUTHOR <Your Name>
 ```
 
-Here we'll use the Singularity Library as bootstrap agent, instead of DockerHub 
-as in the lol_cow example above. The base Singularity image will be 
+Here we'll use the Singularity Library as bootstrap agent, instead of DockerHub
+as in the lol_cow example above. The base Singularity image will be
 `ubuntu:16.04`. We can also add metadata to our image using any name-value pair.
 
 * Next, add the `%environment` section:
@@ -275,9 +275,9 @@ will soon install).
     conda clean --all
 ```
 
-You should recognize parts of this from the Docker tutorial. Basically, we 
-install some required basic tools like bzip2, ca-certificates and curl, then 
-install and configure conda and finally install the required tools for the 
+You should recognize parts of this from the Docker tutorial. Basically, we
+install some required basic tools like bzip2, ca-certificates and curl, then
+install and configure conda and finally install the required tools for the
 `run_qc.sh` script.
 
 * Next, add a `%test` section:
@@ -299,21 +299,21 @@ that the `fastqc` and `fastq-dump` are available.
     bash code/run_qc.sh
 ```
 
-We should now be ready to build our image from this def file using 
-`singularity build`. Now, depending on the system you are running on and the 
-version of Singularity, you may not have the option to build locally. However, 
+We should now be ready to build our image from this def file using
+`singularity build`. Now, depending on the system you are running on and the
+version of Singularity, you may not have the option to build locally. However,
 Singularity has the option to build images remotely. To do this, you need to:
 
-* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and 
+* Go to [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library) and
   create an account
 * Log in and find "Access Tokens" in the menu and create a new token
 * Copy the token
 * In your terminal, run `singularity remote login` and hit ENTER. You should be
-  asked to enter the token (API Key). Paste the copied token and hit ENTER. 
+  asked to enter the token (API Key). Paste the copied token and hit ENTER.
   You should get a **API Key Verified!** message.
 
 !!! attention
-    In case you are not asked to enter the API Key, you can try to run 
+    In case you are not asked to enter the API Key, you can try to run
     `singularity remote login SylabsCloud` instead.
 
 We can now try to build the MRSA Singularity image using the `--remote` flag:
@@ -326,7 +326,7 @@ Did it work? Can you figure out why it failed? Tip: it has to do with the PATH
 (well, to be fair, it could fail for several reasons, but if you did everything
 else correct it should be related to the PATH).
 
-??? note "Click to see the solution"
+??? example "Click to show the solution"
     You need to add conda to the PATH. `%environment` makes it available at
     runtime but not during build.
 
@@ -385,22 +385,22 @@ a Singularity image:
 singularity build --remote mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
 ```
 
-This should result in a file called `mrsa_proj.sif`. 
+This should result in a file called `mrsa_proj.sif`.
 
 In the Docker image we included the code needed for the workflow in the
 `/course` directory of the image. These files are of course also available
 in the Singularity image. However, a Singularity image is read-only (unless
 using the sandbox feature), and this will be a problem if we try to run the
 workflow within the `/course` directory, since the workflow will produce
-files and Snakemake will create a `.snakemake` directory. 
+files and Snakemake will create a `.snakemake` directory.
 
 Instead, we need to provide the files externally from our host system and
 simply use the Singularity image as the environment to execute the workflow
-in (i.e. all the software). 
+in (i.e. all the software).
 
 In your current working directory (`singularity/`) the vital MRSA project
-files are already available (`Snakefile`, `config.yml`, `code/header.tex` and 
-`code/supplementary_material.Rmd`). 
+files are already available (`Snakefile`, `config.yml`, `code/header.tex` and
+`code/supplementary_material.Rmd`).
 
 Since Singularity bind mounts the current working directory we can simply
 execute the workflow and generate the output files using:
@@ -409,20 +409,20 @@ execute the workflow and generate the output files using:
 singularity run --vm-ram 2048 mrsa_proj.sif
 ```
 
-This executes the default run command, which is 
-`snakemake -rp --configfile config.yml` (as defined in the original 
-`Dockerfile`). 
+This executes the default run command, which is
+`snakemake -rp --configfile config.yml` (as defined in the original
+`Dockerfile`).
 
 !!! note
-    Note here that we have increased the allocated RAM to 2048 MiB (`--vm-ram 2048`), 
-    needed to fully run through the workflow. In case the command fails, 
+    Note here that we have increased the allocated RAM to 2048 MiB (`--vm-ram 2048`),
+    needed to fully run through the workflow. In case the command fails,
     you can try to increase the RAM to e.g. 4096 MiB, or you can try to run the command
     without the  `--vm-ram` parameter.
 
-The previous step in this tutorial included running the `run_qc.sh` script, 
-so that part of the workflow has already been run and Snakemake will continue 
-from that automatically without redoing anything. Once completed you should 
-see a bunch of directories and files generated in your current working 
+The previous step in this tutorial included running the `run_qc.sh` script,
+so that part of the workflow has already been run and Snakemake will continue
+from that automatically without redoing anything. Once completed you should
+see a bunch of directories and files generated in your current working
 directory, including the `results/` directory containing the final HTML report.
 
 ## Extra material

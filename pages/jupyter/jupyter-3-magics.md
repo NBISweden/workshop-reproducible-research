@@ -51,8 +51,8 @@ possible to use these shortcuts:
 Try this out if you know any of the languages above. Otherwise you can always
 try to print the quadratic formula with LaTeX!
 
-```no-highlight
-\begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
+```LaTeX
+{{ "\\begin{array}{*{20}c} {x = \\frac{{ - b \\pm \\sqrt {b^2 - 4ac} }}{{2a}}} & {{\\rm{when}}} & {ax^2 + bx + c = 0} \\\\ \\end{array}" }} 
 ```
 
 Another useful magic is `%precision` which sets the floating point precision
@@ -72,10 +72,10 @@ Now run the cell with `float(100/3)` again to see the difference.
 
 Running `%precision` without additional arguments will restore the default.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - The basics of Jupyter magics and the difference between line magics and cell
-> magics
-> - How to capture and use output from notebook cells with `%%capture`
-> - How to use magics to run non-Python code in notebooks
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - The basics of Jupyter magics and the difference between line magics and cell
+    magics
+    - How to capture and use output from notebook cells with `%%capture`
+    - How to use magics to run non-Python code in notebooks

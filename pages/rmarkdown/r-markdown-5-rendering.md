@@ -47,6 +47,6 @@ top right in the editor panel in RStudio there is a button to toggle the
 document outline. By making that visible you can click and jump between sections
 (headers and named code chunks) in your R Markdown document.
 
-> **Quick recap** <br>
-> In this section you learned how to render R Markdown documents into HTML
-> documents using several different methods.
+!!! Success "Quick recap"
+    In this section you learned how to render R Markdown documents into HTML
+    documents using several different methods.

@@ -161,11 +161,11 @@ in order to use `mamba activate` and `mamba deactivate` you first need to run
 `mamba init`. So transitioning into using Mamba is actually quite easy - enjoy
 your shorter execution times!
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to define our Conda environment using a YAML-file.
-> - How to use `conda env create` to make a new environment from a YAML-file.
-> - How to use `conda env export` to get a list of installed packages.
-> - How to work with Conda in a project-like setting.
-> - How to optimise Conda for speed.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How to define our Conda environment using a YAML-file.
+    - How to use `conda env create` to make a new environment from a YAML-file.
+    - How to use `conda env export` to get a list of installed packages.
+    - How to work with Conda in a project-like setting.
+    - How to optimise Conda for speed.

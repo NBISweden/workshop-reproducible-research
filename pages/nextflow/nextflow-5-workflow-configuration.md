@@ -102,21 +102,17 @@ factory (splitting the rows to read each entry) and the `.map` operator
 You should now have a more generalised input to your workflow! Try to run it to
 make sure it works - look below if you need some help.
 
-<details>
-<summary> Click to show </summary>
+??? example "Click to show the solution"
+    ```nextflow
+    // Channel definition
+    ch_sra_ids = Channel
+        .fromPath ( params.sra_ids )
+        .splitCsv ( header: true )
+        .map      { row -> row.sra_id }
 
-```nextflow
-// Channel definition
-ch_sra_ids = Channel
-    .fromPath ( params.sra_ids )
-    .splitCsv ( header: true )
-    .map      { row -> row.sra_id }
-
-// Configuration file
-sra_ids = "input.csv"
-```
-
-</details>
+    // Configuration file
+    sra_ids = "input.csv"
+    ```
 
 By specifying inputs from sample sheets like this we can change inputs
 of a workflow execution by creating another sample sheet and specifying

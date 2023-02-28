@@ -43,8 +43,8 @@ conda list
 conda env export --from-history > environment.yml
 ```
 
-where `--from-history` only reports the packages requested to be installed 
-and not additional dependancies. A caveat is that if no version was 
+where `--from-history` only reports the packages requested to be installed
+and not additional dependancies. A caveat is that if no version was
 originally specified, then it is not included in the export file either.
 
 * Now, deactivate the environment by running `conda deactivate`.
@@ -145,9 +145,9 @@ This will remove package tar-balls that are left from package installations,
 unused packages (*i.e.* those not present in any environments), and cached
 data.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to use `conda install` for installing packages on the fly.
-> - How to create, activate and change between environments.
-> - How to remove packages or environments and clean up.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How to use `conda install` for installing packages on the fly.
+    - How to create, activate and change between environments.
+    - How to remove packages or environments and clean up.

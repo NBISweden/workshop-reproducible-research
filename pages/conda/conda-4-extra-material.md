@@ -137,11 +137,11 @@ conda activate py27
 Now, switching between Python versions is as easy as typing `conda activate
 py35` / `conda activate py27`.
 
-> **Note**<br>
-> If you create an environment where none of the packages require Python,
-> *and* you don't explicitly install the `python` package then that new
-> environment will use the Python version installed in your base Conda
-> environment.
+!!! Note
+    If you create an environment where none of the packages require Python,
+    *and* you don't explicitly install the `python` package then that new
+    environment will use the Python version installed in your base Conda
+    environment.
 
 ## Decorating your prompt
 
@@ -189,7 +189,7 @@ Two aliases that might be usefol for you are `alias coac='conda activate'` and
 
 ## Rolling back to an earlier version of the environment
 
-Conda keeps a history of the changes to an environment. You can see 
+Conda keeps a history of the changes to an environment. You can see
 revisions to an environment by using:
 
 ```bash

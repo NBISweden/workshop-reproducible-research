@@ -33,21 +33,17 @@ all! All we need to do is to change the input to the `INDEX_GENOME` and
 Re-run the workflow to see if it worked. Check the code below for an example if
 you're stuck:
 
-<details>
-<summary> Click to show </summary>
+??? example "Click to show the solution"
+    ```nextflow
+    # Channel creation
 
-```nextflow
-# Channel creation
+    ch_genome_fasta = Channel.fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
 
-ch_genome_fasta = Channel.fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
-
-# Workflow definition
-INDEX_GENOME (
-    ch_genome_fasta
-)
-```
-
-</details>
+    # Workflow definition
+    INDEX_GENOME (
+        ch_genome_fasta
+    )
+    ```
 
 If we want to get detailed we can also change the hard-coded "NCT8325"
 naming in *e.g.* the `INDEX_GENOME` process and put that in another parameter,
@@ -55,37 +51,33 @@ or grab the `baseName()` from the channel and make a `[prefix, file]` tuple
 using the `map{}` operator like we did previously; check below if you're
 curious of how this could be done.
 
-<details>
-<summary> Click to show </summary>
+??? example "Click to show the solution"
+    ```nextflow
+    // Channel definition
+    ch_genome_fasta = Channel
+        .fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
+        .map{ file -> tuple(file.getBaseName(), file) }
 
-```nextflow
-// Channel definition
-ch_genome_fasta = Channel
-    .fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
-    .map{ file -> tuple(file.getBaseName(), file) }
+    // INDEX_GENOME process definition
+    process INDEX_GENOME {
 
-// INDEX_GENOME process definition
-process INDEX_GENOME {
+        publishDir "results/intermediate/",
+            mode: "copy"
 
-    publishDir "results/intermediate/",
-        mode: "copy"
+        input:
+        tuple val(fasta_name), path(fasta)
 
-    input:
-    tuple val(fasta_name), path(fasta)
+        output:
+        path("*.b2t"), emit: index
 
-    output:
-    path("*.b2t"), emit: index
-
-    script:
-    """
-    # Bowtie2 cannot use .gz, so unzip to a temporary file first
-    gunzip -c ${fasta} > tempfile
-    bowtie2-build tempfile ${fasta_name}
-    """
-}
-```
-
-</details>
+        script:
+        """
+        # Bowtie2 cannot use .gz, so unzip to a temporary file first
+        gunzip -c ${fasta} > tempfile
+        bowtie2-build tempfile ${fasta_name}
+        """
+    }
+    ```
 
 # Subworkflows
 
@@ -147,39 +139,35 @@ can also be treated in the same manner, and defined separately in another file.
   of the main workflow and into a subworkflow. Check below if you're having
   trouble.
 
-<details>
-<summary> Click to show </summary>
+??? example "Click to show the solution"
+    ```nextflow
+    // In the main workflow:
+    RUN_QC (
+        GET_SRA_BY_ACCESSION.out
+    )
 
-```nextflow
-// In the main workflow:
-RUN_QC (
-    GET_SRA_BY_ACCESSION.out
-)
+    // A new subworkflow
+    workflow RUN_QC {
 
-// A new subworkflow
-workflow RUN_QC {
-
-    take:
-    fastq
-
-    main:
-    RUN_FASTQC (
+        take:
         fastq
-    )
-    RUN_MULTIQC (
-        RUN_FASTQC.out.zip.collect()
-    )
-}
-```
 
-</details>
+        main:
+        RUN_FASTQC (
+            fastq
+        )
+        RUN_MULTIQC (
+            RUN_FASTQC.out.zip.collect()
+        )
+    }
+    ```
 
 If you want to challenge yourself, try to do the same with the `INDEX_GENOME`,
 `ALIGN_TO_GENOME` and `SORT_BAM` processes! Be careful of where you get your
 inputs and outputs.
 
-> **Quick recap** <br>
-> In this section we learnt:
->
-> * How to automatically download remote files
-> * How to create and work with subworkflows
+!!! Success "Quick recap"
+    In this section we learnt:
+
+    * How to automatically download remote files
+    * How to create and work with subworkflows

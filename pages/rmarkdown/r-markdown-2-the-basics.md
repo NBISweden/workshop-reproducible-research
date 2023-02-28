@@ -14,9 +14,9 @@ output:
 ---
 ```
 
-> **Attention!** <br>
-> The header might look slightly different depending on your version of
-> RStudio. If so, replace the default with the header above.
+!!! warning
+    The header might look slightly different depending on your version of
+    RStudio. If so, replace the default with the header above.
 
 Here we can specify settings for the document, like the title and the output
 format.
@@ -75,6 +75,6 @@ HTML or PDF). An even more complete guide is available
   template R Markdown document! Press *Knit* to see the effect of your changes.
   Don't worry about the code chunks just yet, we'll come to that in a second.
 
-> **Quick recap** <br>
-> In this section you learned and tried out some of the basic markdown
-> syntax.
+!!! Success "Quick recap"
+    In this section you learned and tried out some of the basic markdown
+    syntax.

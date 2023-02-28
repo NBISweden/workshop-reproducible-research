@@ -435,7 +435,7 @@ the image. So, this is what we need to do:
 Try to add required lines to `Dockerfile_conda`. If it seems overwhelming you
 can take a look below
 
-??? note "Click to see an example of `Dockerfile_conda`"
+??? example "Click to show an example of `Dockerfile_conda`"
 
     ```
     FROM my_docker_image:latest

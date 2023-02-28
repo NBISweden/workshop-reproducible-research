@@ -70,6 +70,6 @@ and some YAML settings are specific for the given output format chosen.
   for a list of YAML header options, and what output formats they are available
   for.
 
-> **Quick recap** <br>
-> In this section you learned how to set document-wide settings in the YAML
-> header, including document output type and user defined parameters.
+!!! Success "Quick recap"
+    In this section you learned how to set document-wide settings in the YAML
+    header, including document output type and user defined parameters.

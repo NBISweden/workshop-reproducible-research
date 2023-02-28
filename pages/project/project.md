@@ -14,7 +14,7 @@ should aim to use what you've learned to do the following:
 
 4. Create a R Markdown or Jupyter notebook to run your code
 
-5. Alternatively, create a `Snakefile` to run your code as a workflow and use a `config.yml` file 
+5. Alternatively, create a `Snakefile` to run your code as a workflow and use a `config.yml` file
    to add settings to the workflow
 
 6. Use git to continuously commit changes to the repository
@@ -29,16 +29,16 @@ but to really think about each step and how it all fits together in practice.
 
 !!! note "Recommendation"
     We recommend to start with git, Conda and a notebook, as we would see these as
-    the core tools to make a research project reproducible. We suggest to keep the 
-    analysis for this exercise short so that you have time to try out the different 
+    the core tools to make a research project reproducible. We suggest to keep the
+    analysis for this exercise short so that you have time to try out the different
     tools together while you have the opportunity to ask for help.
 
 ## Your own project
 
-This is a great opportunity for you to try to implement these methods on one 
-of your current research projects. It is of course up to you which tools to 
-include in making your research project reproducible, but we suggest to aim 
-for at least git and Conda. 
+This is a great opportunity for you to try to implement these methods on one
+of your current research projects. It is of course up to you which tools to
+include in making your research project reproducible, but we suggest to aim
+for at least git and Conda.
 
 !!! tip
     If your analysis project contains computationally intense steps it may be
@@ -76,7 +76,7 @@ The goal here is to create a Snakemake workflow, which contains the following:
 
 !!! attention "Remember to"
     * Keep everything versioned controlled with `git`
-    * Add information to the `README` file so others know how to re-run 
+    * Add information to the `README` file so others know how to re-run
       the project
     * Add required software to the Conda `environment.yml` file
 
@@ -86,7 +86,7 @@ The first two steps should be part of the Snakemake workflow. If you need some h
 with the cleaning step, see below for a Python script that you can save to a file
 and run in the second Snakemake rule.
 
-??? note "Click to show a script for cleaning column names"
+??? example "Click to show a script for cleaning column names"
     The script (*e.g.* `clean_csv.py`):
 
     ```python
@@ -111,7 +111,7 @@ and run in the second Snakemake rule.
     ```
 
     Command to execute the script:
-    
+
     ```
     python clean_csv.py input_file.csv output_file.csv
     ```
@@ -128,7 +128,7 @@ If you need some help/inspiration with plotting the results, click below
 to see an example Python script that you can save to file and run with
 the cleaned files as input.
 
-??? note "Click to show a script for plotting the student experience"
+??? example "Click to show a script for plotting the student experience"
     The script (*e.g.* `plot.py`):
 
     ```python

@@ -6,9 +6,9 @@ of that class — a runtime object. You can have an image containing, say,
 a certain Linux distribution, and then start multiple containers running that
 same OS.
 
-> **Attention!** <br>
-> If you don't have root privileges you have to prepend all Docker commands
-> with `sudo`.
+!!! Warning
+    If you don't have root privileges you have to prepend all Docker commands
+    with `sudo`.
 
 ## Downloading containers
 
@@ -116,7 +116,7 @@ Nextflow if you've gone through their tutorial's extra material, but we can
 also use containers directly inside scripts in a very simple way. Let's imagine
 we want to run the above command using containers instead. How would that look?
 It's quite simple, really: first we find a container image that has `bowtie2`
-installed, and then prepend the command with `docker run <image>`. 
+installed, and then prepend the command with `docker run <image>`.
 
 First of all we need to download the genome to index though, so run:
 ```bash
@@ -137,12 +137,12 @@ command! Here we're using `-v $(pwd):/analysis` to mount the current directory
 inside the container in order to make the `tempfile` input available to bowtie2.
 More on these so called "Bind mounts" in Section 4 of this tutorial.
 
-> **Quick recap** <br>
-> In this section we've learned:
->
-> - How to use `docker pull` for downloading images from a central registry.
-> - How to use `docker image ls` for getting information about the images we
->   have on our system.
-> - How to use `docker run` for starting a container from an image.
-> - How to use the `-it` flag for running in interactive mode.
-> - How to use Docker inside scripts.
+!!! Success "Quick recap"
+    In this section we've learned:
+
+    - How to use `docker pull` for downloading images from a central registry.
+    - How to use `docker image ls` for getting information about the images we
+    have on our system.
+    - How to use `docker run` for starting a container from an image.
+    - How to use the `-it` flag for running in interactive mode.
+    - How to use Docker inside scripts.

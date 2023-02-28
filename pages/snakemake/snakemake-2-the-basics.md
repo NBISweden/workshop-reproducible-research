@@ -31,13 +31,13 @@ rule convert_to_upper_case:
         """
 ```
 
-> **Attention!** <br>
-> Indentation is important in Snakefiles, so make sure that you have the
-> correct number of spaces before `input`/`output`/`shell` and their
-> respective subsections. The number of spaces per level doesn't matter as
-> long as you're consistent. Here we use four, but you could just as well use
-> two for a more compact look. Don't use tabs (unless your editor
-> automatically converts them to spaces).
+!!! warning
+    Indentation is important in Snakefiles, so make sure that you have the
+    correct number of spaces before `input`/`output`/`shell` and their
+    respective subsections. The number of spaces per level doesn't matter as
+    long as you're consistent. Here we use four, but you could just as well use
+    two for a more compact look. Don't use tabs (unless your editor
+    automatically converts them to spaces).
 
 Rules can be given names, here it's `convert_to_upper_case`. While rule names
 are not strictly necessary we encourage you to use them and to make an effort to
@@ -156,11 +156,11 @@ shell:
     """
 ```
 
-> **Attention!** <br>
-> If you have multiple inputs or outputs they need to be delimited with
-> a comma (as seen above). This is a very common mistake when writing
-> Snakemake workflows. The parser will complain, but sometimes the error
-> message can be difficult to interpret.
+!!! Warning
+    If you have multiple inputs or outputs they need to be delimited with
+    a comma (as seen above). This is a very common mistake when writing
+    Snakemake workflows. The parser will complain, but sometimes the error
+    message can be difficult to interpret.
 
 Now try to construct this rule yourself and name it `concatenate_a_and_b`.
 The syntax for concatenating two files in Bash is
@@ -177,23 +177,19 @@ based on. Try to figure out how to do this yourself. If you're stuck you can
 look at the spoiler below, but spend some time on it before you look. Also
 rename the rule to `concatenate_files` to reflect its new more general use.
 
-<details>
-<summary> Click to show </summary>
-
-```python
-rule concatenate_files:
-    output:
-        "{first}_{second}.txt"    
-    input:
-        "{first}.upper.txt",
-        "{second}.upper.txt"
-    shell:
-        """
-        cat {input[0]} {input[1]} > {output}
-        """
-```
-
-</details>
+??? example "Click to show the solution"
+    ```python
+    rule concatenate_files:
+        output:
+            "{first}_{second}.txt"    
+        input:
+            "{first}.upper.txt",
+            "{second}.upper.txt"
+        shell:
+            """
+            cat {input[0]} {input[1]} > {output}
+            """
+    ```
 
 We can now control which input files to use by the name of the file we ask
 Snakemake to generate. Run the workflow without the flag `-n` (or `--dry-run`)
@@ -263,7 +259,7 @@ Neat!
 
 !!! Success "Quick recap"
     In this section we've learned:
-    
+
     - How a simple Snakemake rule looks.
     - How to define target files when executing a workflow.
     - How to use named wildcards for writing generic and flexible rules.

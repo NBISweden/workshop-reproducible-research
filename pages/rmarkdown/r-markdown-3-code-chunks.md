@@ -25,7 +25,7 @@ Below are listed some useful chunk options related to evaluating and displaying
 code chunks in the final file:
 
 <table class="table table-hover table-condensed" border=1; style="width:600px; margin-left:auto; margin-right:auto;">
-    <thead style="background-color:#DAE7F1">
+    <thead style="background-color:{{config.extra.color_table_header}}">
         <tr>
             <td style="padding:5px; width:130px; text-align:center;"> <font size="3"><b> Chunk option </b> </td>
             <td style="padding:5px"> <font size="3"><b> Effect </b> </td>
@@ -90,7 +90,7 @@ summary(cars)
 There are also some chunk options related to plots:
 
 <table class="table table-hover table-condensed" border=1; style="width:725px; margin-left:auto; margin-right:auto;">
-    <thead style="background-color:#DAE7F1">
+    <thead style="background-color:{{config.extra.color_table_header}}">
         <tr>
             <td style="padding:5px; width:300px; text-align:center;"> <font size="3"><b> Chunk option </b> </td>
             <td style="padding:5px"> <font size="3"><b> Effect </b> </td>
@@ -168,6 +168,6 @@ forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
 ```
 ````
 
-> **Quick recap** <br>
-> In this section you learned how to include code chunks and how to use chunk
-> options to control how the output (code, results and figures) is displayed.
+!!! Success "Quick recap"
+    In this section you learned how to include code chunks and how to use chunk
+    options to control how the output (code, results and figures) is displayed.

@@ -93,8 +93,8 @@ block starts with its name, in this case `CONVERT_TO_UPPER_CASE`, followed by
 several sections: `publishDir`, `input`, `output` and `script`.
 
 > **Naming processes** <br>
-> A process can be named using any case, but a commonly used convention is to use 
-> UPPERCASE letters for processes to visually distinguish them in the workflow. 
+> A process can be named using any case, but a commonly used convention is to use
+> UPPERCASE letters for processes to visually distinguish them in the workflow.
 > You do not have to follow this if you don't want to, but we do so here.
 
 Let's ignore the first section for now and focus on the last three. The `input` and
@@ -106,7 +106,7 @@ expects a single channel (one line of input), and expects the data to be filenam
 outputs are declared? The `output` is an explicit string (*i.e* surrounded by
 quotes), while the input is a variable named `file`. This means inputs can be
 referenced in the process without naming the data explicitly, unlike the output
-where the name needs to be explicit. We'll get back to exactly how 
+where the name needs to be explicit. We'll get back to exactly how
 this works in just a moment.
 
 Let's move on to the first section: `publishDir`. This tells
@@ -246,15 +246,10 @@ call this process `CONCATENATE_FILES` and it will take the output from
 * Add a line to your workflow definition for this new process with the
   appropriate input - click below if you're having trouble.
 
-<details>
-<summary> Click to show </summary>
-
-```nextflow
-CONCATENATE_FILES( CONVERT_TO_UPPER_CASE.out.collect() )
-```
-
-</details>
-
+??? example "Click to show the solution"
+    ```nextflow
+    CONCATENATE_FILES( CONVERT_TO_UPPER_CASE.out.collect() )
+    ```
 
 Now all we have to do is define the actual `CONCATENATE_FILES` process in the
 process definition section.
@@ -304,12 +299,12 @@ transforming operators in general.
 * Check the channel contents of the (1) raw and (2) collected output of the
   `CONVERT_TO_UPPER_CASE` process. How are they different?
 
-> **Quick recap** <br>
-> In this section we've learnt:
->
-> * How to create and extend simple Nextflow workflows
-> * How to create channels for input data
-> * How to execute workflows
-> * How to explore Nextflow's `work` directory
-> * How to generalize workflows
-> * How to view channel contents
+!!! Success "Quick recap"
+    In this section we've learnt:
+
+    * How to create and extend simple Nextflow workflows
+    * How to create channels for input data
+    * How to execute workflows
+    * How to explore Nextflow's `work` directory
+    * How to generalize workflows
+    * How to view channel contents

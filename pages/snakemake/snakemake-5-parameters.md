@@ -24,27 +24,22 @@ determining how many reads we want to retrieve from SRA for each sample
 (`-X 25000`). Change in this rule to use the parameter `max_reads` instead and
 set the value to 20000. If you need help, click to show the solution below.
 
-<details>
-<summary> Click to show </summary>
-
-
-```python
-rule get_SRA_by_accession:
-    """
-    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
-    """
-    output:
-        "data/raw_internal/{sample_id}.fastq.gz"
-    params:
-        max_reads = 20000
-    shell:
+??? example "Click to show the solution"
+    ```python
+    rule get_SRA_by_accession:
         """
-        fastq-dump {wildcards.sample_id} -X {params.max_reads} --readids \
-            --dumpbase --skip-technical --gzip -Z > {output}
+        Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
         """
-```
-
-</details>
+        output:
+            "data/raw_internal/{sample_id}.fastq.gz"
+        params:
+            max_reads = 20000
+        shell:
+            """
+            fastq-dump {wildcards.sample_id} -X {params.max_reads} --readids \
+                --dumpbase --skip-technical --gzip -Z > {output}
+            """
+    ```
 
 Now run through the workflow. Because there's been changes to the `get_SRA_by_accession`
 rule this will trigger a re-run of the rule for all three accessions. In addition

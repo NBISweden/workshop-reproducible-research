@@ -22,11 +22,11 @@ You should see something similar to this printed to your terminal:
 [I 18:02:27.209 NotebookApp] Accepting one-time-token-authenticated connection from ::1
 ```
 
-> **A note for Windows users** <br>
-> If you see the error message `Start : This command cannot be run due to the
-> error: The system cannot find the file specified. ...` then try starting
-> jupyter with `jupyter notebook --no-browser` then copy the URL given into the
-> browser directly.
+!!! Info "A note for Windows users"
+    If you see the error message `Start : This command cannot be run due to the
+    error: The system cannot find the file specified. ...` then try starting
+    jupyter with `jupyter notebook --no-browser` then copy the URL given into the
+    browser directly.
 
 Jupyter Notebook probably opened up a web browser for you automatically,
 otherwise go to the address specified in the message in the terminal. Note that
@@ -88,7 +88,7 @@ available from the menus. These shortcuts are also available from the **Help**
 menu in your notebook (there's even an option there to edit shortcuts).
 
 <table class="table table-hover table-condensed" border=1; style="width:400px; margin-left:auto; margin-right:auto;">
-    <thead style="background-color:#DAE7F1">
+    <thead style="background-color:{{config.extra.color_table_header}}">
         <tr>
             <td style="padding:5px; text-align:center;"> <font size="3"><b> Shortcut </b></td>
             <td style="padding:5px"> <font size="3"><b> Effect </b></td>

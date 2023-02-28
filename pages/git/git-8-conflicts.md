@@ -52,13 +52,13 @@ to the remote since there are conflicting changes made to it.
 git fetch
 ```
 
-> **Note** <br>
-> The `fetch` command is very similar to `pull` in that it downloads remote
-> changes that are not present locally, but differs in that it doesn't try to
-> merge them locally; `pull` both downloads and merges (unless there's
-> a conflict, in which case it will tell you so and raise an error like the
-> one above). You can thus skip `fetch` and just do `pull` straight away, if
-> you prefer.
+!!! Note
+    The `fetch` command is very similar to `pull` in that it downloads remote
+    changes that are not present locally, but differs in that it doesn't try to
+    merge them locally; `pull` both downloads and merges (unless there's
+    a conflict, in which case it will tell you so and raise an error like the
+    one above). You can thus skip `fetch` and just do `pull` straight away, if
+    you prefer.
 
 * Now run `git status`. Unlike before, our local Git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
@@ -127,7 +127,7 @@ dependencies:
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
 part between `=======` and `>>>>>>> refs/remotes/origin/main` is
 the one added to the remote and which caused the conflict when you tried to merge
-those changes to your local repository. It is now up to you to decide which 
+those changes to your local repository. It is now up to you to decide which
 version to keep, or to change it to a third alternative.
 
 * Let's say that you are confident that it is better to run MultiQC 1.6 rather
@@ -193,13 +193,13 @@ git push
   from our previous work, then to `1.8`, `1.6` and, finally, followed by a merge
   where the version was set to `1.6`.
 
-> **Note** <br>
-> While the example we've used here is from a collaborative setting, conflicts
-> also arise when you are working alone. They usually happen when you have
-> several feature branches that you want to merge into `main` and you've
-> forgot to keep all branches up-to-date with each other.
+!!! Note
+    While the example we've used here is from a collaborative setting, conflicts
+    also arise when you are working alone. They usually happen when you have
+    several feature branches that you want to merge into `main` and you've
+    forgot to keep all branches up-to-date with each other.
 
-> **Quick recap** <br>
-> We learned about how conflicting commits can happen and how to deal with
-> them by inspecting the affected files and looking for the source of the
-> conflict.
+!!! Success "Quick recap"
+    We learned about how conflicting commits can happen and how to deal with
+    them by inspecting the affected files and looking for the source of the
+    conflict.

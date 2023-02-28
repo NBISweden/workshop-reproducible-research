@@ -37,6 +37,6 @@ This tutorial depends on files from the course GitHub repo. Take a look at the
 haven't done so already, then open up a terminal and go to
 `workshop-reproducible-research/tutorials/containers`.
 
-> **Attention!** <br>
-> Docker images tend to take up quite a lot of space. In order to do all
-> the exercises in this tutorial you need to have ~10 GB available.
+!!! warning
+    Docker images tend to take up quite a lot of space. In order to do all
+    the exercises in this tutorial you need to have ~10 GB available.

@@ -278,18 +278,18 @@ trying out and showing existing notebooks rather than making new ones.
     such files outside the root by making a `binder/` folder in the root
     and placing the file there.  
 
-> **A note on transparency** <br>
-> Resources like Github/Bitbucket and Jupyter Notebooks have changed
-> the way we do scientific research by encouraging visibility, social
-> interaction and transparency.
-> It was not long ago that the analysis scripts and workflows in a lab were
-> well-guarded secrets that we only most reluctantly shared with others.
-> Assuming that it was even possible. In most cases, the only postdoc who
-> knew how to get it to work had left for a new position in industry, or
-> no one could remember the password to the file server. If you're a PhD
-> student, we encourage you to embrace this new development
-> wholeheartedly, for it will make your research better and make you into
-> a better scientist. And you will have more fun.
+!!! Info "A note on transparency"
+    Resources like Github/Bitbucket and Jupyter Notebooks have changed
+    the way we do scientific research by encouraging visibility, social
+    interaction and transparency.
+    It was not long ago that the analysis scripts and workflows in a lab were
+    well-guarded secrets that we only most reluctantly shared with others.
+    Assuming that it was even possible. In most cases, the only postdoc who
+    knew how to get it to work had left for a new position in industry, or
+    no one could remember the password to the file server. If you're a PhD
+    student, we encourage you to embrace this new development
+    wholeheartedly, for it will make your research better and make you into
+    a better scientist. And you will have more fun.
 
 !!! Success "Quick recap"
     In this section we've learned:

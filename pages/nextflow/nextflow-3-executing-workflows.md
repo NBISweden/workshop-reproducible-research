@@ -155,10 +155,10 @@ bit overkill at this point! This level of detail is, however, quite useful both
 as a history of what you've attempted and as an additional help when you run
 into errors! Also, it helps with advanced debugging - which we'll get into later.
 
-> **Quick recap** <br>
-> In this section we've learnt:
->
-> * How to get automatic reports and visualisations
-> * How to re-run workflows
-> * How to clean the Nextflow cache
-> * How to check the Nextflow logs
+!!! Success "Quick recap"
+    In this section we've learnt:
+
+    * How to get automatic reports and visualisations
+    * How to re-run workflows
+    * How to clean the Nextflow cache
+    * How to check the Nextflow logs
