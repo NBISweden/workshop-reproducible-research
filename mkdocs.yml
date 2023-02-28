@@ -1,15 +1,19 @@
+# Project information
 site_name: 'Bioinformatics Workshop on Tools for Reproducible Research'
 site_author: 'Jacques Dainat et al.'
-#site_url: 'https://Juke34.github.io/workshop-reproducible-research'
-site_url: 'http://127.0.0.1:8000/'
+site_url: 'https://Juke34.github.io/workshop-reproducible-research'
+site_description: Workshop on Tools for Reproducible Research
+#site_url: 'http://127.0.0.1:8000/'
 
-repo_name: 'workshop-reproducible-research'
-repo_url: 'http://127.0.0.1:8000'
-#repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
+# Repository
+repo_name: 'Juke34/workshop-reproducible-research'
+#repo_url: 'http://127.0.0.1:8000'
+repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
 
 # Set folder that contains all the docs
 docs_dir: pages/
 
+# Configuration
 theme:
   name: material
   static_templates: [404.html, index.html, css/base.css]
@@ -40,7 +44,6 @@ theme:
     - search.suggest
     - toc.follow
     - toc.integrate # remove table of content on the right side
-
   palette:
     - scheme: default
       primary: indigo
@@ -131,7 +134,7 @@ nav:
         - 'Making a project reproducible': 'project/project.md'
         - 'Take down': 'take_down.md'
 
-
+# Extensions
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -139,14 +142,18 @@ markdown_extensions:
   - pymdownx.tabbed
   - attr_list
   - tables
-
   - toc:
       permalink: '#'
 
+# Plugins
 plugins:
-  - search
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
   - macros
 
+# Customization
 extra:
   history_buttons: false
   institute: SouthGreen
@@ -157,5 +164,3 @@ extra:
       icon_type: brand
       text: Jacques Dainat
       url: 'https://github.com/Juke34'
-hide:
-  - navigation

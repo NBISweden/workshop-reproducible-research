@@ -17,7 +17,7 @@ Tools for Reproducible Research course
 
 ## Foreword
 
-The course itself lives [here](https://Juke34.github.io/workshop-reproducible-research),
+The course itself lives [https://Juke34.github.io/workshop-reproducible-research/home](https://Juke34.github.io/workshop-reproducible-research/home),
 where you can find all the relevant information.  
 This work is based on the NBIS / ELIXIR course *Tools for
 Reproducible Research* course.
@@ -35,10 +35,13 @@ When you are in the repository, add and/or modify your markdown tutorials in the
 The arborescence of the website menu is to setup in the `mkdocs.yml` file
 
 For the custommill theme:
-`pip install mkdocs-custommill`
+`pip install mkdocs-material`
 
 For the pymdown extensions:
 `pip install pymdown-extensions`
+
+For the minify extensions:
+`pip install mkdocs-minify-plugin`
 
 ### Mkdocs commands for testing and building the website
 
