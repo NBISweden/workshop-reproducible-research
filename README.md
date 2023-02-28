@@ -65,7 +65,7 @@ For the plugins:
 
 ### Welcome to MkDocs
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+For full documentation visit [mkdocs.org](https://www.mkdocs.org).  
 For full documentation about the [material mkdocs theme](https://squidfunk.github.io/mkdocs-material/)
 
 ##  Acknowledgement
