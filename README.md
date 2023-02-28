@@ -34,14 +34,15 @@ First, clone the current repository and install Mkdocs:
 When you are in the repository, add and/or modify your markdown tutorials in the docs directory.
 The arborescence of the website menu is to setup in the `mkdocs.yml` file
 
-For the custommill theme:
+For the theme:
 `pip install mkdocs-material`
 
-For the pymdown extensions:
+For the extensions:
 `pip install pymdown-extensions`
 
-For the minify extensions:
+For the plugins:
 `pip install mkdocs-minify-plugin`
+`pip installmkdocs-macros-plugin`
 
 ### Mkdocs commands for testing and building the website
 
