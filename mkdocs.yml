@@ -7,8 +7,10 @@ site_description: Workshop on Tools for Reproducible Research
 # Repository
 repo_name: 'Juke34/workshop-reproducible-research'
 repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
+edit_uri: edit/main/pages/ # Allow to replace edit/master/docs use by default
 
 # Set folder that contains all the docs
+# docs_dir not reflected in edit_url
 docs_dir: pages/
 
 # Configuration
