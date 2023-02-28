@@ -1,7 +1,7 @@
 # Project information
 site_name: 'Bioinformatics Workshop on Tools for Reproducible Research'
 site_author: 'Jacques Dainat et al.'
-site_url: 'https://Juke34.github.io/workshop-reproducible-research'
+site_url: 'https://Juke34.github.io/workshop-reproducible-research/home'
 site_description: Workshop on Tools for Reproducible Research
 
 # Repository
@@ -83,12 +83,6 @@ extra:
   institute: SouthGreen
   repo: https://github.com/Juke34/workshop-reproducible-research
   color_table_header: "#333a99"
-#  version: v1.3.0
-  nav_links:
-    - icon: github
-      icon_type: brand
-      text: Jacques Dainat
-      url: 'https://github.com/Juke34'
 
 # page tree
 nav:
