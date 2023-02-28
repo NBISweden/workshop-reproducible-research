@@ -34,14 +34,14 @@ First, clone the current repository and install Mkdocs:
 When you are in the repository, add and/or modify your markdown tutorials in the docs directory.
 The arborescence of the website menu is to setup in the `mkdocs.yml` file
 
-For the theme:
+For the theme:  
 `pip install mkdocs-material`
 
-For the extensions:
+For the extensions:  
 `pip install pymdown-extensions`
 
-For the plugins:
-`pip install mkdocs-minify-plugin`
+For the plugins:  
+`pip install mkdocs-minify-plugin`  
 `pip installmkdocs-macros-plugin`
 
 ### Mkdocs commands for testing and building the website
@@ -66,7 +66,7 @@ For the plugins:
 ### Welcome to MkDocs
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).  
-For full documentation about the [material mkdocs theme](https://squidfunk.github.io/mkdocs-material/)
+For full documentation about the [material mkdocs theme](https://squidfunk.github.io/mkdocs-material/).
 
 ##  Acknowledgement
 
