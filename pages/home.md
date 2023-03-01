@@ -62,8 +62,7 @@ At the end of the course, students should be able to:
 
 This is an {{config.extra.institute}} course. The course is open for PhD students, postdocs,
 group leaders and core facility staff related to the {{config.extra.institute}} Platform (IRD,
-CIRAD, INRAE and the Alliance Bioversity international-CIAT). This training
-event has no fee.
+CIRAD, INRAE and the Alliance Bioversity international-CIAT).
 
 The only entry requirements for this course is a basic knowledge of Unix systems
 (*i.e.* being able to work on the command line) as well as at least a basic
