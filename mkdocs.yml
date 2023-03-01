@@ -7,16 +7,12 @@ site_description: Workshop on Tools for Reproducible Research
 # Repository
 repo_name: 'Juke34/workshop-reproducible-research'
 repo_url: 'https://github.com/Juke34/workshop-reproducible-research'
-edit_uri: edit/main/pages/ # Allow to replace edit/master/docs use by default
-
-# Set folder that contains all the docs
-# docs_dir not reflected in edit_url
-docs_dir: pages/
+edit_uri: edit/main/docs/ # Allow to replace edit/master/docs use by default
 
 # Configuration
 theme:
   name: material
-  logo: images/IRD.png # logo top left page
+  logo: pages/images/IRD.png # logo top left page
   search_index_only: true
   include_search_page: true
   features:
@@ -78,7 +74,7 @@ plugins:
 
 # Customization
 extra:
-  homepage: home # Page displayed when clicking the logo
+  homepage: pages/home # Page displayed when clicking the logo
   history_buttons: false
   institute: SouthGreen
   repo: https://github.com/Juke34/workshop-reproducible-research
@@ -86,75 +82,76 @@ extra:
 
 # page tree
 nav:
-    - Home: home.md
+    - Home: pages/home.md
     - Practicalities:
-        - Schedule: course-information/schedule.md
-        - Location: course-information/location.md
-        - Lectures: course-information/lectures.md
-        - Setup: course-information/pre-course-setup.md
+        - Schedule: pages/course-information/schedule.md
+        - Location: pages/course-information/location.md
+        - Lectures: pages/course-information/lectures.md
+        - Setup: pages/course-information/pre-course-setup.md
     - Tutorials:
-        - Introduction: introduction/introduction.md
+        - Introduction: pages/introduction/introduction.md
+        - Data Management: pages/data-management/data-management.md
         - Git:
-          - Introduction: git/git-1-introduction.md
-          - Creating a git repository: git/git-2-creating-repositories.md
-          - Committing changes: git/git-3-committing-changes.md
-          - Ignoring files: git/git-4-ignoring-files.md
-          - Branching and merging: git/git-5-branches.md
-          - Tagging commits: git/git-6-tags.md
-          - Working remotly: git/git-7-working-remotely.md
-          - Conflict: git/git-8-conflicts.md
-          - Extra material: git/git-9-extra-material.md
+          - Introduction: pages/git/git-1-introduction.md
+          - Creating a git repository: pages/git/git-2-creating-repositories.md
+          - Committing changes: pages/git/git-3-committing-changes.md
+          - Ignoring files: pages/git/git-4-ignoring-files.md
+          - Branching and merging: pages/git/git-5-branches.md
+          - Tagging commits: pages/git/git-6-tags.md
+          - Working remotly: pages/git/git-7-working-remotely.md
+          - Conflict: pages/git/git-8-conflicts.md
+          - Extra material: pages/git/git-9-extra-material.md
         - Conda:
-          - Introduction: conda/conda-1-introduction.md
-          - The basics: conda/conda-2-the-basics.md
-          - Projects: conda/conda-3-projects.md
-          - Extra material: conda/conda-4-extra-material.md
+          - Introduction: pages/conda/conda-1-introduction.md
+          - The basics: pages/conda/conda-2-the-basics.md
+          - Projects: pages/conda/conda-3-projects.md
+          - Extra material: pages/conda/conda-4-extra-material.md
         - Snakemake:
-          - Introduction: snakemake/snakemake-1-introduction.md
-          - The basics: snakemake/snakemake-2-the-basics.md
-          - Visualising workflow: snakemake/snakemake-3-visualising-workflows.md
-          - The MRSA Workflow: snakemake/snakemake-4-the-mrsa-workflow.md
-          - Parameters: snakemake/snakemake-5-parameters.md
-          - Logs: snakemake/snakemake-6-logs.md
-          - Temporary files: snakemake/snakemake-7-temporary-files.md
-          - Targets: snakemake/snakemake-8-targets.md
-          - Shadow rules: snakemake/snakemake-9-shadow-rules.md
-          - Generalizing workflows: snakemake/snakemake-10-generalizing-workflows.md
-          - Extra materiel: snakemake/snakemake-11-extra-material.md
+          - Introduction: pages/snakemake/snakemake-1-introduction.md
+          - The basics: pages/snakemake/snakemake-2-the-basics.md
+          - Visualising workflow: pages/snakemake/snakemake-3-visualising-workflows.md
+          - The MRSA Workflow: pages/snakemake/snakemake-4-the-mrsa-workflow.md
+          - Parameters: pages/snakemake/snakemake-5-parameters.md
+          - Logs: pages/snakemake/snakemake-6-logs.md
+          - Temporary files: pages/snakemake/snakemake-7-temporary-files.md
+          - Targets: pages/snakemake/snakemake-8-targets.md
+          - Shadow rules: pages/snakemake/snakemake-9-shadow-rules.md
+          - Generalizing workflows: pages/snakemake/snakemake-10-generalizing-workflows.md
+          - Extra materiel: pages/snakemake/snakemake-11-extra-material.md
         - Nextflow:
-          - Introduction: nextflow/nextflow-1-introduction.md
-          - The basics: nextflow/nextflow-2-the-basics.md
-          - Running Nextflow: nextflow/nextflow-3-executing-workflows.md
-          - Processes: nextflow/nextflow-4-working-with-processes.md
-          - Configuration: nextflow/nextflow-5-workflow-configuration.md
-          - The MRSA Workflow: nextflow/nextflow-6-optimising-the-mrsa-workflow.md
-          - Extra materiel: nextflow/nextflow-7-extra-material.md
+          - Introduction: pages/nextflow/nextflow-1-introduction.md
+          - The basics: pages/nextflow/nextflow-2-the-basics.md
+          - Running Nextflow: pages/nextflow/nextflow-3-executing-workflows.md
+          - Processes: pages/nextflow/nextflow-4-working-with-processes.md
+          - Configuration: pages/nextflow/nextflow-5-workflow-configuration.md
+          - The MRSA Workflow: pages/nextflow/nextflow-6-optimising-the-mrsa-workflow.md
+          - Extra materiel: pages/nextflow/nextflow-7-extra-material.md
         - R Markdown:
-          - Introduction: rmarkdown/r-markdown-1-introduction.md
-          - The basics: rmarkdown/r-markdown-2-the-basics.md
-          - Code chunks: rmarkdown/r-markdown-3-code-chunks.md
-          - The YAML header: rmarkdown/r-markdown-4-the-yaml-header.md
-          - Rendering: rmarkdown/r-markdown-5-rendering.md
-          - The MRSA case study: rmarkdown/r-markdown-6-the-mrsa-case-study.md
-          - Extra materiel: rmarkdown/r-markdown-7-extra-material.md
+          - Introduction: pages/rmarkdown/r-markdown-1-introduction.md
+          - The basics: pages/rmarkdown/r-markdown-2-the-basics.md
+          - Code chunks: pages/rmarkdown/r-markdown-3-code-chunks.md
+          - The YAML header: pages/rmarkdown/r-markdown-4-the-yaml-header.md
+          - Rendering: pages/rmarkdown/r-markdown-5-rendering.md
+          - The MRSA case study: pages/rmarkdown/r-markdown-6-the-mrsa-case-study.md
+          - Extra materiel: pages/rmarkdown/r-markdown-7-extra-material.md
         - Jupyter:
-          - Introduction: jupyter/jupyter-1-introduction.md
-          - The basics: jupyter/jupyter-2-the-basics.md
-          - Magics: jupyter/jupyter-3-magics.md
-          - Plotting: jupyter/jupyter-4-plotting.md
-          - Widgets: jupyter/jupyter-5-widgets.md
-          - Extensions: jupyter/jupyter-6-extensions.md
-          - Converting notebooks: jupyter/jupyter-7-converting-notebooks.md
-          - The MRSA case study: jupyter/jupyter-8-the-mrsa-case-study.md
-          - Extra material: jupyter/jupyter-9-extra-material.md
+          - Introduction: pages/jupyter/jupyter-1-introduction.md
+          - The basics: pages/jupyter/jupyter-2-the-basics.md
+          - Magics: pages/jupyter/jupyter-3-magics.md
+          - Plotting: pages/jupyter/jupyter-4-plotting.md
+          - Widgets: pages/jupyter/jupyter-5-widgets.md
+          - Extensions: pages/jupyter/jupyter-6-extensions.md
+          - Converting notebooks: pages/jupyter/jupyter-7-converting-notebooks.md
+          - The MRSA case study: pages/jupyter/jupyter-8-the-mrsa-case-study.md
+          - Extra material: pages/jupyter/jupyter-9-extra-material.md
         - Containers:
-          - Introduction: containers/containers-1-introduction.md
-          - The basics: containers/containers-2-the-basics.md
-          - Building a Docker image: containers/containers-3-building-images.md
-          - Managing containers: containers/containers-4-managing-containers.md
-          - Distributing your images: containers/containers-5-sharing-images.md
-          - Packaging the case study: containers/containers-6-packaging-the-case-study.md
-          - Singularity: containers/containers-7-singularity.md
-          - Extra material: containers/containers-8-extra-material.md
-        - 'Making a project reproducible': 'project/project.md'
-        - 'Take down': 'take_down.md'
+          - Introduction: pages/containers/containers-1-introduction.md
+          - The basics: pages/containers/containers-2-the-basics.md
+          - Building a Docker image: pages/containers/containers-3-building-images.md
+          - Managing containers: pages/containers/containers-4-managing-containers.md
+          - Distributing your images: pages/containers/containers-5-sharing-images.md
+          - Packaging the case study: pages/containers/containers-6-packaging-the-case-study.md
+          - Singularity: pages/containers/containers-7-singularity.md
+          - Extra material: pages/containers/containers-8-extra-material.md
+        - 'Making a project reproducible': 'pages/project/project.md'
+        - 'Take down': 'pages/take_down.md'

@@ -1,0 +1,55 @@
+# A snakefile used to render all lectures in one go
+
+from glob import glob
+import os.path as path
+
+rmd_files = glob("*/*.Rmd")
+ipy_files = glob("*/*.ipynb")
+
+ruleorder: render_jupyter_pdf > render_pdf
+
+rule all:
+    input:
+        ["{}.html".format(path.splitext(x)[0]) for x in rmd_files + ipy_files],
+        ["{}.pdf".format(path.splitext(x)[0]) for x in rmd_files + ipy_files]
+
+rule render_rmarkdown:
+    input:
+        "{f}.Rmd"
+    output:
+        "{f}.html"
+    shell:
+        """
+        Rscript -e 'rmarkdown::render("{input}", "xaringan::moon_reader")'
+        """
+
+rule render_pdf:
+    input:
+        "{f}.html"
+    output:
+        "{f}.pdf"
+    shell:
+        """
+        Rscript -e 'library(webshot); webshot("{input[0]}", "{output[0]}")'
+        """
+
+rule render_jupyter:
+    input:
+        "{f}.ipynb"
+    output:
+        "{f}.html"
+    shell:
+        """
+        jupyter nbconvert --to slides --execute {input}
+        mv {wildcards.f}.slides.html {output}
+        """
+
+rule render_jupyter_pdf:
+    input:
+        "{f}.ipynb"
+    output:
+        "{f}.pdf"
+    shell:
+        """
+        jupyter nbconvert --to webpdf {input} --allow-chromium-download
+        """

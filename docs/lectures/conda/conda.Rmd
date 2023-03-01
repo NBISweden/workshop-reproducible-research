@@ -1,0 +1,165 @@
+---
+title: "Managing your software environment"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+
+---
+
+layout: true
+<div class="southgreen-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+
+*Managing software environments with*
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
+
+---
+
+class: center, middle
+
+<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
+
+Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
+
+---
+
+# Conda is a package, dependency, and environment manager
+
+--
+
+.green[Package]: any type of program (_e.g._ bowtie2, snakemake etc.)
+
+--
+
+.green[Dependency]: other software required by a package
+
+--
+
+.green[Environment]: a distinct collection of packages
+
+--
+
+<br>
+.center[Conda keeps track of the dependencies between packages in each environment]
+
+---
+
+# Conda channels
+
+.green[Channels] are remote directories containing packages.
+
+--
+
+<br>
+Two common examples are
+
+
+- .green[bioconda]: a channel specializing in bioinformatics software
+
+- .green[conda-forge]: a community-led channel made up of thousands of contributors
+
+---
+
+# Conda, Anaconda, Miniconda...
+
+--
+
+- .green[Conda]: the package manager itself, written in python
+
+--
+
+- .green[Anaconda]:
+  - an installer for conda containing over 7,500 open-source packages
+  - a cloud service where conda packages are hosted ([anaconda.org](https://anaconda.org))
+  - a distribution of packages for data science ([anaconda.com](https://anaconda.com))
+
+--
+
+- .green[Miniconda]: an installer for conda containing only the most necessary packages to get started
+
+---
+
+# Defining and sharing environments
+
+
+Define a Conda environment in an `environment.yml` file:
+
+```yaml
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - fastqc=0.11
+  - sra-tools=2.8
+  - snakemake=4.3.0
+  - multiqc=1.3
+  - bowtie2=2.3
+  - samtools=1.6
+  - htseq=0.9
+  - graphviz=2.38.0
+```
+
+--
+
+```bash
+# Create a new environment from YAML
+$ conda env create --name project_a -f environment.yml
+```
+
+--
+
+```bash
+# Update an existing environment from YAML
+$ conda env update -f environment.yml
+```
+
+--
+
+```bash
+# Export existing environment as new YAML file (including all dependencies)
+$ conda env export > environment-full.yml
+```
+
+--
+
+```bash
+# Export historical environment, i.e. packages listed in the original YAML
+$ conda env export --from-history > environment-history.yml
+```
+
+---
+
+# Mamba vs. Conda
+
+<img src="https://mamba.readthedocs.io/en/latest/_static/logo.png" style="width:25%;padding: 15px 15px 15px 15px;">
+
+In short: Mamba is a faster implementation of conda.
+
+- Install mamba with conda: `conda install mamba -n base -c conda-forge`
+
+or see the [documentation](https://mamba.readthedocs.io/en/latest/installation.html) for how to do a fresh install.
+
+- Simply replace `conda` with `mamba` on the command line:
+
+```bash
+mamba env create --name project_a -f environment.yml
+mamba env update -f environment.yml
+mamba env export > environment-full.yml
+mamba env export --from-history > environment-history.yml
+```
+
+---
+
+class: center, middle
+
+# Questions?

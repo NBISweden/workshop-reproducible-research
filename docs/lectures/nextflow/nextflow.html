@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Making reproducible workflows with Nextflow</title>
+    <meta charset="utf-8" />
+    <link href="nextflow_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="nextflow_files/kePrint-0.0.1/kePrint.js"></script>
+    <link rel="stylesheet" href="../template.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+&lt;div class="southgreen-logo"&gt;&lt;/div&gt;
+&lt;div class="nbis-logo"&gt;&lt;/div&gt;
+
+---
+
+class: center, middle
+
+*Making reproducible workflows with*
+
+&lt;img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png", width=75%&gt;
+
+---
+
+# Nextflow features
+
+* .green[Generalisable]
+
+* .green[Portable]
+
+* .green[Scalable]
+
+* .green[Platform-agnostic]
+
+* Based on .green[Groovy] and Java
+
+* Large active community in *e.g.* .green[nf-core]
+
+---
+
+# Concepts and nomenclature
+
+&lt;p style="text-align:center"&gt;
+&lt;img src="https://seqera.io/training/img/channel-process.png", width=75%&gt;
+&lt;/p&gt;
+
+--
+
+* .green[Channels] contain data, *e.g.* input files
+
+--
+
+* .green[Processes] run some kind of code, *e.g.* a script or a command-line
+  program
+
+--
+
+* .green[Tasks] are instances of a process, one per process input
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    input:
+    val(sample)
+
+    output:
+    path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} &gt; ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} &gt; ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} &gt; ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    conda 'sra-tools=2.11.0'
+    container 'ncbi/sra-tools:2.11.0'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} &gt; ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a process
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    conda 'sra-tools=2.11.0'
+    container 'ncbi/sra-tools:2.11.0'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} -X {params.depth} &gt; ${sample}.fastq.gz
+    """
+}
+```
+
+---
+
+# Anatomy of a workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+}
+```
+
+---
+
+# Anatomy of a workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+}
+```
+
+---
+
+# Anatomy of a workflow
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.collect()
+    )
+}
+```
+
+---
+
+# Executing Nextflow
+
+```bash
+# Execute a workflow
+$ nextflow run main.nf
+```
+
+--
+
+```bash
+# Re-run using cached results
+$ nextflow run main.nf -resume
+```
+
+--
+
+```bash
+# Execute with a specific configuration file
+$ nextflow run main.nf -c nextflow.config
+```
+
+--
+
+```bash
+# Supply a custom parameter
+$ nextflow run main.nf --my_param "my value"
+```
+
+--
+
+```bash
+# Use Docker or Singularity
+$ nextflow run main.nf -with-docker
+$ nextflow run main.nf -with-singularity
+```
+
+--
+
+```bash
+# Use a pre-defined configuration profile
+$ nextflow run main.nf -profile uppmax
+```
+
+---
+
+# Differences between Snakemake and Nextflow
+
+&lt;br&gt;
+
+&lt;table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Snakemake &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Nextflow &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Language &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Python &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Groovy &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Data &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Everything is a file &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Can use both files and values &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Execution &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Working directory &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Each job in its own directory &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Philosophy &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; "Pull" &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; "Push" &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Dry-runs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Track code changes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Yes &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+* .green[Question]: But, which one is the *best?*
+
+--
+
+* .green[Answer]: Both - it's mostly up to personal preference!
+
+---
+
+class: center, middle
+
+# Questions?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

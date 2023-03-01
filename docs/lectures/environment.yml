@@ -1,0 +1,36 @@
+# conda env create -f environment.yml
+
+name: lecture-env
+channels:
+    - r
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+
+    # Snakemake
+    - snakemake-minimal=6.0.5
+
+    # Jupyter
+    - python=3.8
+    - numpy<1.20
+    - jupyter=1.0
+    - pandas=1.0
+    - jupyter_contrib_nbextensions=0.5.1
+    - nbconvert=6.1.0
+    - rise=5.6
+    - seaborn=0.10
+    - rpy2=3.1
+    - pyppeteer=0.2.2
+    - jinja2<=3.0.3
+
+    # R and Xaringan
+    - phantomjs=2.1.1
+    - r-base=3.6.3
+    - r-ggplot2=3.3.3
+    - r-kableextra=1.1.0
+    - r-palmerpenguins=0.1.0
+    - r-stringi=1.4.6
+    - r-tidyr=0.8.3
+    - r-xaringan=0.15
+    - r-webshot=0.5.2

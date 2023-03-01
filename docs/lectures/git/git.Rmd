@@ -1,0 +1,132 @@
+---
+title: "Version control with Git"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+---
+
+layout: true
+<div class="southgreen-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+
+*Version control with*
+
+<img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" style="width:50%;"/>
+
+---
+
+# What is Git?
+
+--
+
+* A widely used system for distributed .green[version control]
+
+--
+
+* Keeps a .green[complete history] of the changes you make to your files
+
+--
+
+* Each point in the history can be re-visited and compared with others
+
+--
+
+* Git tracks .green[who contributed what] to your code
+
+--
+
+* Git can help you .green[version, backup and share] your code and documents
+
+--
+
+* Kind of like Dropbox, but you decide when each version is saved (plus a lot
+  of more advanced features)
+
+--
+
+* Git is mainly used for .green[text files], not large or binary files
+
+---
+
+# Git nomenclature
+
+--
+
+* A .green[repository] is a collection that encompasses all the files and
+  directories of a project
+
+--
+
+* A .green[commit] is a snapshot of a repository's history, *i.e.* a point
+  in development time
+
+--
+
+* Development can be separated into .green[branches], allowing for concurrent
+  work on the same repository with simple transitions between functional and
+  work-in-progress code
+
+--
+
+* Uploading changes to a remote repository is called .green[pushing], while
+  downloading changes is called .green[pulling]
+
+---
+
+# Tracking code in three steps
+
+<br>
+<center>
+<img src="git_overview_local.png" style="width:50%"/>
+</center>
+<br>
+
+--
+
+1. Do some .green[coding] (*i.e.* add or change contents of files)
+
+--
+
+2. .green[Stage] the changes (*i.e.* specify which changes should be stored)
+
+--
+
+3. .green[Commit] the changes (storing them in the repository's history)
+
+---
+
+# Git is highly versatile
+
+* Ensures .green[reproducibility] of your analyses, regardless of whether you’ve
+  made additional changes to your code after the analysis is run
+
+--
+
+* Easily .green[fix mistakes] by reverting files to previous versions
+
+--
+
+* Improves your coding by giving you .green[additional structure]
+
+--
+
+* Your code has a .green[backup] in your remote repository
+
+--
+
+* Easily .green[share your code] and collaborate with your colleagues
+
+---
+
+class: center, middle
+
+# Questions?

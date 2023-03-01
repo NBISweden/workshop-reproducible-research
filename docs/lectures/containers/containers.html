@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Containerization with Docker and Singularity</title>
+    <meta charset="utf-8" />
+    <link href="containers_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../template.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+&lt;div class="southgreen-logo"&gt;&lt;/div&gt;
+&lt;div class="nbis-logo"&gt;&lt;/div&gt;
+
+---
+
+class: center, middle
+
+*Making self-contained, distributable projects with*
+
+.pull-left[
+&lt;img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" style="width:75%;"/&gt;
+&lt;br&gt;
+
+]
+
+.pull-right[
+&lt;img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" style="width:50%;"/&gt;
+&lt;br&gt;
+Singularity
+]
+
+---
+# What is Docker?
+
+* Standardized packaging for software and dependencies
+* Docker lets you create and run applications securely isolated in a **container**, packaged with all its dependencies and libraries.
+
+---
+
+# Docker in lifescience
+
+Docker containers can be used to allow others to reproduce a complete analysis:
+
+&gt; To further support reproducibility, we bundled all tools and dependencies into one Docker container available on DockerHub [19]. *docker run* executes the aforementioned Makefile inside the container.
+
+.small[(click [here](https://github.com/metagenomics/2015-biogas-cebitec/blob/master/Dockerfile) to see the Dockerfile)]
+
+```bash
+docker run metagenomics/2015-biogas-cebitec
+```
+
+.small[Bremges *et al* GigaScience (2015) 4:33, [doi:10.1186/s13742-015-0073-6](https://doi.org/10.1186/s13742-015-0073-6)]
+
+---
+
+# Docker in lifescience
+
+Docker can also be used to define software environments and settings for benchmarking studies
+
+[CAMI Challenge](https://data.cami-challenge.org/): an independent evaluation of several tools in the field of metagenomics
+
+&gt;... we defined standards for submitting the software itself, along with parameter settings and required databases and implemented them in Docker container templates...
+
+.small[
+Sczyrba *et al* Nature Methods (2017) 14:1063–1071, [doi.org/10.1038/nmeth.4458](https://doi.org/10.1038/nmeth.4458)
+]
+
+---
+
+# Docker in lifescience
+
+Docker can also be used to define software environments and settings for benchmarking studies
+
+[2nd CAMI Challenge](https://www.microbiome-cosi.org/cami/cami/cami2)
+
+&gt; For reproducibility, participants could submit a Docker container containing the complete workflow, a bioconda script or a software repository with detailed installation instructions...
+
+.small[
+Meyer *et al* Nature Methods (2022) 19:429-440,
+[https://doi.org/10.1038/s41592-022-01431-4](https://doi.org/10.1038/s41592-022-01431-4)
+]
+
+---
+
+# Docker nomenclature
+
+--
+
+* A Docker .green[file] is a recipe used to build a Docker .green[image]
+
+--
+
+* A Docker .green[image] is a standalone executable package of software
+
+--
+
+* A Docker .green[container] is a standard unit of software run on the Docker Engine.
+
+--
+
+* .green[Docker Hub] is an online service for sharing docker images
+
+---
+
+# Images and containers
+
+Example: Use a different OS
+
+.pull-right[&lt;img src="images/images_and_containers.png"&gt;]
+
+--
+
+.pull-left[
+
+.small[Check OS on local machine]
+
+```bash
+$ uname -a
+Darwin johnsmbp.local 19.6.0 \
+Darwin Kernel Version 19.6.0: \
+Tue Jan 12 22:13:05 PST 2021; \
+root:xnu-6153.141.16~1/RELEASE_X86_64 x86_64
+```
+
+.small[Pull Ubuntu (Linux) image]
+
+```bash
+$ docker pull ubuntu:16.04
+16.04: Pulling from library/ubuntu
+22dc81ace0ea: Pull complete
+...
+Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
+Status: Downloaded newer image for ubuntu:16.04
+```
+
+.small[Run a container and check OS version]
+
+```bash
+$ docker run -it ubuntu:16.04
+root@407b0fd13fe5:/# uname -a
+Linux 407b0fd13fe5 4.9.60-linuxkit-aufs #1 SMP Mon Nov 6 16:00:12 UTC
+2017 x86_64 x86_64 x86_64 GNU/Linux
+```
+]
+
+---
+
+# Mounting volumes
+
+
+`$ docker run -it -v $PWD/data:/home/data ubuntu:16.04`
+
+.pull-left[
+
+.tiny[Local project directory:]
+
+```
+$ ls project/
+
+|- doc/
+|
+|- data/
+|  |- raw_external/
+|  |- raw_internal/
+|  |- meta/
+|
+|- code/
+|- notebooks/
+|
+|- intermediate/
+|- scratch/
+|- logs/
+|
+|- results/
+|  |- figures/
+|  |- tables/
+|  |- reports/
+|
+|- Snakefile
+|- config.yml
+|- environment.yml
+|- Dockerfile
+```
+]
+.pull-right[
+.tiny[Docker image file system]
+```
+$ ls /
+
+|- bin/
+|- boot/
+|- dev/
+|- etc/
+|- home/
+|  |- data/ # data folder mounted under home/
+|     |- raw_external/
+|     |- raw_internal/
+|     |- meta/
+|- lib/
+|- lib64/
+|- media/
+|- opt/
+|- proc/
+|- root/
+|- run/
+|- sys/
+|- tmp/
+|- usr/
+|- var/
+```
+]
+
+---
+
+# What can I use Docker for?
+
+--
+
+* As an advanced .green[environment] manager
+
+```bash
+docker run -it -v $PWD:/home my_image /bin/bash
+```
+
+--
+
+* To package your .green[code] with the .green[environment] it needs
+
+```bash
+docker run \
+-v $PWD/data:/home/data \
+-v $PWD/results:/home/results \
+my_image snakemake report.pdf
+```
+
+--
+
+* To package a whole workflow with .green[environment], .green[code] and .green[data] (*e.g.* to accompany a manuscript).
+
+```bash
+docker run \
+-v $PWD/results:/home/results \
+my_image snakemake report.pdf
+```
+
+* and much more...
+
+---
+# What is Singularity?
+
+&lt;img src="https://sylabs.io/guides/latest/user-guide/_static/logo.png" style="width:25%;"/&gt;
+
+an open source container platform suitable for HPC clusters
+
+[https://sylabs.io/guides/latest/user-guide/](https://sylabs.io/guides/latest/user-guide/)
+
+&gt;Singularity was created to run complex applications on HPC clusters in a simple, portable, and reproducible way.
+
+---
+# What is Apptainer?
+
+&lt;img src="http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png" style="width:100%;"/&gt;
+
+In 2021 Singularity joined the Linux Foundation and became Apptainer.
+
+The company Sylabs still maintains **Singularity**
+
+---
+
+# Docker vs. Singularity
+
+| &lt;img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" style="width:25%;"/&gt; | &lt;img src="https://sylabs.io/guides/latest/user-guide/_static/logo.png" style="width:50%;"/&gt; |
+| ------ | ----------- |
+| runs as a daemon process with superuser privileges | runs as regular user |
+| images stored centrally | image files that you can move around. No layers! |
+| isolates the host and container file system by default | containers have access to host file system |
+| well supported on Mac/Linux/Windows | limited support on Mac/Windows |
+
+---
+
+class: center, middle
+
+# Questions?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Version control with Git</title>
+    <meta charset="utf-8" />
+    <link href="git_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../template.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+layout: true
+&lt;div class="southgreen-logo"&gt;&lt;/div&gt;
+&lt;div class="nbis-logo"&gt;&lt;/div&gt;
+
+---
+
+class: center, middle
+
+*Version control with*
+
+&lt;img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" style="width:50%;"/&gt;
+
+---
+
+# What is Git?
+
+--
+
+* A widely used system for distributed .green[version control]
+
+--
+
+* Keeps a .green[complete history] of the changes you make to your files
+
+--
+
+* Each point in the history can be re-visited and compared with others
+
+--
+
+* Git tracks .green[who contributed what] to your code
+
+--
+
+* Git can help you .green[version, backup and share] your code and documents
+
+--
+
+* Kind of like Dropbox, but you decide when each version is saved (plus a lot
+  of more advanced features)
+
+--
+
+* Git is mainly used for .green[text files], not large or binary files
+
+---
+
+# Git nomenclature
+
+--
+
+* A .green[repository] is a collection that encompasses all the files and
+  directories of a project
+
+--
+
+* A .green[commit] is a snapshot of a repository's history, *i.e.* a point
+  in development time
+
+--
+
+* Development can be separated into .green[branches], allowing for concurrent
+  work on the same repository with simple transitions between functional and
+  work-in-progress code
+
+--
+
+* Uploading changes to a remote repository is called .green[pushing], while
+  downloading changes is called .green[pulling]
+
+---
+
+# Tracking code in three steps
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img src="git_overview_local.png" style="width:50%"/&gt;
+&lt;/center&gt;
+&lt;br&gt;
+
+--
+
+1. Do some .green[coding] (*i.e.* add or change contents of files)
+
+--
+
+2. .green[Stage] the changes (*i.e.* specify which changes should be stored)
+
+--
+
+3. .green[Commit] the changes (storing them in the repository's history)
+
+---
+
+# Git is highly versatile
+
+* Ensures .green[reproducibility] of your analyses, regardless of whether you’ve
+  made additional changes to your code after the analysis is run
+
+--
+
+* Easily .green[fix mistakes] by reverting files to previous versions
+
+--
+
+* Improves your coding by giving you .green[additional structure]
+
+--
+
+* Your code has a .green[backup] in your remote repository
+
+--
+
+* Easily .green[share your code] and collaborate with your colleagues
+
+---
+
+class: center, middle
+
+# Questions?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

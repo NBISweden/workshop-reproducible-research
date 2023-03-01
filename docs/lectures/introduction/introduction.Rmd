@@ -1,0 +1,477 @@
+---
+title: "Introduction"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+---
+
+```{r Setup, include = FALSE}
+# Chunk options
+knitr::opts_chunk$set(include = FALSE,
+                      echo    = FALSE)
+```
+
+layout: true
+<div class="southgreen-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+.HUGE[Tools for reproducible research]
+
+<img src="https://phdcomics.com/comics/archive/phd031214s.gif" style="width:80%;"/>
+
+---
+
+class: center, middle
+.HUGE[The teachers]
+
+<div class="image-with-text">
+    <img src="https://bioinfo.ird.fr/wp-content/uploads/elementor/thumbs/20220711_123230-1-scaled-pwvlt0q1b29t6i9l8j4dkp3sxr9kdbnbmh8x72wdao.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Aurore Comte</p>
+</div>
+<div class="image-with-text">
+    <img src="https://bioinfo.ird.fr/wp-content/uploads/2023/01/JacquesDainat-scaled.jpeg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Jacques Dainat</p>
+</div>
+<div class="image-with-text">
+    <img src="https://bioinfo.ird.fr/wp-content/uploads/elementor/thumbs/profil_julie-p3khsjuamh9f3alnps4nrhysh8f5hzaivqywiksfgw.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Julie Orjuela Kutschera</p>
+</div>
+<div class="image-with-text">
+    <img src="https://www.southgreen.fr/sites/southgreen.fr/files/5896_101049108989_4444344_n.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Gautier Sarah</p>
+</div>
+<br>
+<div class="image-with-text">
+    <img src="https://pbs.twimg.com/profile_images/1128591238507257856/BqersTw6_400x400.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Thomas Denecker</p>
+</div>
+<div class="image-with-text">
+    <img src="https://transvihmi.ird.fr/wp-content/uploads/2022/02/fernandez-nicolas.jpg" style="height:120px" hspace=30/>
+    <p style="font-size:16px;">Nicolas Fernandez</p>
+</div>
+
+---
+
+# Course content
+
+* Good practices for working with data
+
+* How to use the version control system .green[Git] to track changes to code
+
+* How to use the package and environment manager .green[Conda]
+
+* How to use the workflow managers .green[Snakemake] and .green[Nextflow]
+
+* How to generate automated reports using .green[R Markdown] and .green[Jupyter]
+
+* How to use .green[Docker] and .green[Singularity] to distribute containerized
+  computational environments
+
+---
+
+# Why all the talk about reproducible research?
+
+.pull-left[
+<br>
+
+The *Reproducibility project* set out to replicate 100 experiments published in
+high-impact psychology journals.<sup>1</sup>
+
+About one-half to two-thirds of the original findings could not be observed in
+the replication study.
+
+<br> <br> <br> <br> <br> <br> <br>
+.tiny[<sup>1</sup> *"Estimating the reproducibility of psychological science". Science. 349*]
+]
+
+.pull-right[
+<img src="https://www.science.org/cms/10.1126/science.aac4716/asset/82f22975-91c8-4779-865b-6ed0650601cd/assets/graphic/349_aac4716_fa.jpeg"/>
+<br>
+]
+
+---
+
+# Why all the talk about reproducible research?
+
+.pull-left[
+<img src="https://www.nature.com/news/polopoly_fs/7.36718.1464174471!/image/reproducibility-graphic-online3.jpg_gen/derivatives/landscape_630/reproducibility-graphic-online3.jpg" height="400"/>
+
+<br>
+.tiny[<sup>2</sup> *"1,500 scientists lift the lid on reproducibility", Nature. 533: 452–454*]
+]
+
+.pull-right[
+A survey in Nature revealed that irreproducible experiments are a problem
+across all domains of science.<sup>2</sup>
+]
+
+---
+
+# Why all the talk about reproducible research?
+
+.pull-left[
+<img src="https://www.nature.com/news/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg"/>
+]
+
+.pull-right[
+Medicine is among the most affected research fields. A study in Nature found
+that 47 out of 53 medical research papers focused on cancer research were
+irreproducible.<sup>3</sup>
+
+<br>
+Common features were failure to show all the data and inappropriate use of
+statistical tests.
+]
+
+<br><br><br><br>
+
+.tiny[<sup>3</sup> *"Drug development: Raise standards for preclinical cancer research". Nature. 483 (7391): 531–533*]
+
+---
+
+# Why all the talk about reproducible research?
+
+*Replication of data analyses in 18 articles on microarray-based gene
+expression profiling published in Nature Genetics in 2005–2006 <sup>4</sup>:*
+
+```{r Load packages and define blank ggplot theme}
+# Load packages and create a basic minimal ggplot theme for downstream re-use
+library(ggplot2)
+library(gtable)
+blank_theme <- theme_minimal() +
+    theme(
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_blank(),
+        panel.grid   = element_blank(),
+        axis.ticks   = element_blank(),
+        legend.title = element_blank())
+```
+
+```{r Recreate the Ioannidis data, include = FALSE}
+# The first dataframe
+items = c("... in principle",
+          "... with some discrepancies",
+          "... from processed data with some discrepancies",
+          "... partially with some discrepancies",
+          "Cannot reproduce")
+ioannidis_1 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(2, 1, 4, 1, 10))
+
+# The second dataframe
+items = c("Data not available",
+          "Software not available",
+          "Methods unclear",
+          "Different result")
+ioannidis_2 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(5, 1, 2, 2))
+```
+
+```{r Plot the first Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
+pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
+ggplot(ioannidis_1, aes(x    = "",
+                        y    = value,
+                        fill = result)) +
+    geom_bar(width = 1,
+             stat  = "identity",
+             color = "white") +
+    coord_polar("y", start = 0) +
+    scale_fill_manual(values = pie_1_colours) +
+    blank_theme +
+    theme(axis.text.x     = element_blank(),
+          legend.text     = element_text(size = 18),
+          legend.position = "right") +
+    guides(fill = guide_legend(reverse = TRUE))
+```
+
+.tiny[<sup>4</sup> Adopted from Ioannidis *et al.* (2009) *"Repeatability of published microarray gene expression analyses", Nature Genetics 41, doi:10.1038/ng.295*]
+
+---
+
+# Why all the talk about reproducible research?
+
+*Replication of data analyses in 18 articles on microarray-based gene
+expression profiling published in Nature Genetics in 2005–2006 <sup>4</sup>:*
+
+```{r Plot the second Ioannidis data, include = TRUE, fig.width = 10, fig.height = 5, dpi = 150}
+pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
+ggplot(ioannidis_2, aes(x    = "",
+                        y    = value,
+                        fill = result)) +
+    geom_bar(width = 1,
+             stat  = "identity",
+             color = "white") +
+    coord_polar("y", start = 0) +
+    scale_fill_manual(values = pie_2_colours) +
+    blank_theme +
+    theme(axis.text.x      = element_blank(),
+          legend.position  = "right",
+          legend.text      = element_text(size = 18),
+          legend.direction = "vertical",
+          plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
+```
+
+.tiny[<sup>4</sup> Adopted from Ioannidis *et al.* (2009) *"Repeatability of published microarray gene expression analyses", Nature Genetics 41, doi:10.1038/ng.295*]
+
+---
+
+# Reproducibility is rarer than you think
+
+The results of only 26% out of 204 randomly selected papers in the journal
+*Science* could be reproduced.<sup>5</sup>
+
+.tiny[<sup>5</sup> *Stodden et. al (2018). "An empirical analysis of journal policy effectiveness for computational reproducibility". PNAS. 115 (11): 2584-2589*]
+
+--
+
+> "Many journals are revising author guidelines to include data and code
+> availability."
+
+--
+
+> "(...) an improvement over no policy, but currently insufficient for
+> reproducibility."
+
+---
+
+# Reproducibility is rarer than you think
+
+There are many so-called excuses not to work reproducibly:
+
+> “Thank you for your interest in our paper. For the [redacted] calculations I
+> used my own code, and there is no public version of this code, which could be
+> downloaded. Since this code is not very user-friendly and is under constant
+> development I prefer not to share this code.”
+
+> “We do not typically share our internal data or code with people outside our
+> collaboration.”
+
+> “When you approach a PI for the source codes and raw data, you better explain
+> who you are, whom you work for, why you need the data and what you are going
+> to do with it.”
+
+> “I have to say that this is a very unusual request without any explanation!
+> Please ask your supervisor to send me an email with a detailed, and I mean
+> detailed, explanation.”
+
+---
+
+# What does reproducible research mean?
+<br>
+<br>
+<br>
+<table>
+<tr>
+  <td colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+  <td colspan="2" align="center" bgcolor="#6DAD2A">Data</td>
+</tr>
+  <td colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+</tr>
+<tr>
+  <td rowspan="2" bgcolor="#6DAD2A">Code</td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#CFE6B8">Reproducible</td>
+  <td align="center" bgcolor="#CFE6B8">Replicable</td>
+</tr>
+<tr>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+  <td align="center" bgcolor="#CFE6B8">Robust</td>
+  <td align="center" bgcolor="#CFE6B8">Generalisable</td>
+</tr>
+</table>
+
+---
+
+# What does reproducible research mean?
+
+<br>
+.center[<img src="../../pages/images/reproducibility_overview.png" width=60%/>]
+
+--
+
+> ”Why call the course Reproducible Research, when it could just as well <br>
+>  be called Research?”
+>
+> .right.small[\- Niclas Jareborg, NBIS data management expert]
+
+---
+
+# How are you handling your .green[data]?
+
+.left-column[
+## Decent
+]
+
+.right-column[
+* Data available on request
+* All metadata required for generating the results available
+]
+
+---
+
+# How are you handling your .green[data]?
+
+.left-column[
+## .light-grey[Decent]
+## Good
+]
+
+.right-column[
+* .light-grey[Data available on request]
+* .light-grey[All metadata required for generating the results available]
+* Data deposited in public repositories
+* Raw data available in unedited form
+* If the raw data needed preprocessing, scripts were used rather than modifying
+  it manually
+]
+
+---
+
+# How are you handling your .green[data]?
+
+.left-column[
+## .light-grey[Decent]
+## .light-grey[Good]
+## Great
+]
+
+.right-column[
+* .light-grey[Data available on request]
+* .light-grey[All metadata required for generating the results available]
+* .light-grey[Data deposited in public repositories]
+* .light-grey[Raw data available in unedited form]
+* .light-grey[If the raw data needed preprocessing, scripts were used rather than modifying it manually]
+* Section in the paper to aid in reproduction
+* Used non-proprietary and machine-readable formats, *e.g.* `.csv` rather than
+  `.xls`.
+]
+
+---
+
+# How are you handling your .green[code]?
+
+.left-column[
+## Decent
+]
+
+.right-column[
+* All code for generating results from processed data available on request
+]
+
+---
+
+# How are you handling your .green[code]?
+
+.left-column[
+## .light-grey[Decent]
+## Good
+]
+
+.right-column[
+* .light-grey[All code for generating results from processed data available on request]
+* All code for generating results from raw data is available
+* The code is publicly available with timestamps or tags
+]
+
+---
+
+# How are you handling your .green[code]?
+
+.left-column[
+## .light-grey[Decent]
+## .light-grey[Good]
+## Great
+]
+
+.right-column[
+* .light-grey[All code for generating results from processed data available on request]
+* .light-grey[All code for generating results from raw data is available]
+* .light-grey[The code is publicly available with timestamps or tags]
+* All code for generating results from publicly available raw data is
+  available
+* Code is documented and contains instructions for reproducing results
+* Seeds were used and documented for heuristic methods
+]
+
+---
+
+# How are you handling your .green[environment]?
+
+.left-column[
+## Decent
+]
+
+.right-column[
+* Key programs used are mentioned in the methods section
+]
+
+---
+
+# How are you handling your .green[environment]?
+
+.left-column[
+## .light-grey[Decent]
+## Good
+]
+
+.right-column[
+* .light-grey[Key programs used are mentioned in the methods section]
+* List of all programs used and their respective versions are available
+]
+
+---
+
+# How are you handling your .green[environment]?
+
+.left-column[
+## .light-grey[Decent]
+## .light-grey[Good]
+## Great
+]
+
+.right-column[
+* .light-grey[Key programs used are mentioned in the methods section]
+* .light-grey[List of all programs used and their respective versions are available]
+* Instructions for reproducing the environment publicly available
+]
+
+---
+
+# "What's in it for me?"
+
+## .green[Before] the project
+* Improved structure and organization
+* Forced to think about scope and limitations
+
+--
+
+## .green[During] the project
+* Easier to re-run analyses and generate results after updating data, tools,
+  parameters, *etc.*
+* Closer interaction between collaborators
+* Much of the manuscript "writes itself"
+
+--
+
+## .green[After] the project
+* Faster resumption of research by others (or, more likely, your future self),
+  thereby increasing the impact of your work
+* Increased visibility in the scientific community
+
+---
+
+class: center, middle
+
+# Questions?

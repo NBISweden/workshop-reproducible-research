@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Putting it all together</title>
+    <meta charset="utf-8" />
+    <link href="putting-it-together_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../template.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+layout: true
+&lt;div class="southgreen-logo"&gt;&lt;/div&gt;
+&lt;div class="nbis-logo"&gt;&lt;/div&gt;
+
+---
+
+class: center, middle
+.HUGE[Putting it all together]
+
+---
+
+class: center, middle
+
+Take control of your research project &lt;br&gt;
+by making its different components reproducible
+
+&lt;img src="../../pages/images/reproducibility_overview.png" style="width:50%;"/&gt;
+
+---
+
+class: center, middle
+
+By working reproducibly you will also make your life a lot easier!
+
+&lt;img src="whats_in_it_for_me.png" style="width:50%;"/&gt;
+
+---
+
+# What have we learned?
+
+&lt;center&gt;&lt;img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:60%;"/&gt;&lt;/center&gt;
+
+* How to use the version control system .green[Git] to track changes to code
+* How to use the package and environment manager .green[Conda]
+* How to use the workflow managers .green[Snakemake] and .green[Nextflow]
+* How to use .green[R Markdown] and .green[Jupyter] to generate automated reports and to document your analyses
+* How to use .green[Docker] and .green[Singularity] to distribute containerized
+  computational environments
+
+---
+
+# Divide your work into distinct projects
+
+--
+
+* Keep all .green[files] needed to go from raw data to final results in a dedicated directory
+
+--
+
+* Use relevant .green[subdirectories]
+
+--
+
+* Many software support the “project way of working”, *e.g.* .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
+
+--
+
+* Use .green[Git] to create structured and version controlled project repositories
+
+---
+
+# Everything can be a project
+
+Project directory templates, *e.g.* NBIS project template:
+
+.center[&lt;img src="NBISweden_project_template.png" style="width:60%;"/&gt;]
+
+  * https://github.com/NBISweden/project_template
+  * https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow
+
+---
+
+# Treasure your data
+
+--
+
+* Keep your input data .green[read-only] - consider it static
+
+--
+
+* Don't create different versions of the input data - write a .green[script],
+  .green[R Markdown] document, .green[Jupyter] notebook or a .green[Snakemake]
+  / .green[Nextflow] workflow if you need to pre-process your input data so that
+  the steps can be recreated
+
+--
+
+* .green[Backup]! Keep redundant copies in different physical locations
+
+--
+
+* Upload your raw data as soon as possible to a .green[public data repository]
+
+---
+
+# Organize your coding
+
+--
+
+* Avoid generating files .green[interactively] or doing things .green[by hand]
+
+  - there is no way to track how they were made
+
+--
+
+* Write .green[scripts], .green[R Markdown] documents, .green[Jupyter]
+  notebooks or .green[Snakemake] / .green[Nextflow] workflows for reproducible
+  results to connect raw data to final results
+
+--
+
+* Keep the .green[parameters] separate (*e.g.* at top of file or in a separate configuration file)
+
+---
+
+# What is reasonable for your project?
+
+--
+
+.pull-left[&lt;center&gt;&lt;img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/&gt;&lt;/center&gt;
+
+.green[Minimal]: write code in a reproducible way
+
+]
+
+--
+
+.pull-right[
+
+Connect your results with the code:
+* Use .green[R Markdown] documents or .green[Jupyter] notebooks
+
+Take another step:
+* Convert your code into a .green[Snakemake] / .green[Nextflow] workflow
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[&lt;center&gt;&lt;img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/&gt;&lt;/center&gt;
+
+.green[Minimal]: write code in a reproducible way
+
+.green[Good]: versioned and structured repository
+
+]
+
+--
+
+.pull-right[
+
+Use .green[Git] for version controlling and collaboration:
+* Create one .green[Git] repository per project
+* Track your changes with .green[Git]
+* Publish your code along with your results on *e.g.* &lt;a href="https://github.com" .green[GitHub] &lt;/a&gt;
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[&lt;center&gt;&lt;img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/&gt;&lt;/center&gt;
+
+.green[Minimal]: write code in a reproducible way
+
+.green[Good]: versioned and structured repository
+
+.green[Better]: organize software dependencies
+
+]
+
+--
+
+.pull-right[
+
+Manage your depencencies:
+* Use .green[Conda] to install software in environments that can be easily exported and installed on a different system
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[&lt;center&gt;&lt;img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/&gt;&lt;/center&gt;
+
+.green[Minimal]: write code in a reproducible way
+
+.green[Good]: versioned and structured repository
+
+.green[Better]: organize software dependencies
+
+.green[Best]: export everything!
+
+]
+
+--
+
+.pull-right[
+
+Completely recreate the compute system:
+* Consider packaging your project inside a or together with a .green[Docker] or .green[Singularity] container
+
+]
+
+---
+
+# Alternatives
+
+--
+
+.green[Version control]
+
+* **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
+* **Mercurial** – Distributed model just like Git, close to sourceforge.
+* **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
+
+---
+
+# Alternatives
+
+.green[Environment / package managers]
+
+* **Conda** – General purpose environment and package manager. Community-hosted collections of tools at bioconda or conda-forge.
+* **Pip** – Package manager for Python, has a large repository at pypi.
+* **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with *e.g.* update notifications better.
+* **Virtualenv** – Environment manager used to set up semi-isolated python environments.
+
+---
+
+# Alternatives
+
+.green[Workflow managers]
+
+* **Snakemake** – Based on Python, easily understandable format, relies on file names.
+* **Nextflow** – Based on Groovy, uses data pipes rather than file names to construct the workflow.
+* **Make** – Used in software development and has been around since the 70s. Flexible but notoriously obscure syntax.
+* **Galaxy** -  attempts to make computational biology accessible to researchers without programming experience by using a GUI.
+
+---
+
+# Alternatives
+
+.green[Literate programming]
+
+* **Jupyter** – Create and share notebooks in a variety of languages and formats by using a web browser.
+* **R Markdown** – Developed by Rstudio, focuses on generating high-quality documents.
+* **Zeppelin** – Developed by Apache. Closely integrated with Spark for distributed computing and Big Data applications.
+* **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on integrating multiple languages in the same notebook.
+
+---
+
+# Alternatives
+
+.green[Containerization / virtualization]
+
+* **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
+* **Singularity** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+* **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
+* **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
+
+---
+
+class: center, middle
+
+# "What's in it for me?"
+
+&lt;img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/&gt;
+
+---
+
+# NBIS Bioinformatics drop-in
+
+Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
+
+* Online (.green[zoom])
+* Every .green[Tuesday, 14.00-15.00] (except public holidays)
+* Check .green[www.nbis.se/events] for zoom link and more info
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

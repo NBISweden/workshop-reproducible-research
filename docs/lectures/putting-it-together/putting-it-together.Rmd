@@ -1,0 +1,299 @@
+---
+title: "Putting it all together"
+subtitle: "Tools for Reproducible Research NBIS course"
+output:
+  xaringan::moon_reader:
+      self-contained: true
+      seal: false
+      css: ["default", "../template.css"]
+      nature:
+          slideNumberFormat: ""
+---
+
+```{r Setup, include = FALSE}
+# Chunk options
+knitr::opts_chunk$set(include = FALSE,
+                      echo    = FALSE)
+```
+
+layout: true
+<div class="southgreen-logo"></div>
+<div class="nbis-logo"></div>
+
+---
+
+class: center, middle
+.HUGE[Putting it all together]
+
+---
+
+class: center, middle
+
+Take control of your research project <br>
+by making its different components reproducible
+
+<img src="../../pages/images/reproducibility_overview.png" style="width:50%;"/>
+
+---
+
+class: center, middle
+
+By working reproducibly you will also make your life a lot easier!
+
+<img src="whats_in_it_for_me.png" style="width:50%;"/>
+
+---
+
+# What have we learned?
+
+<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:60%;"/></center>
+
+* How to use the version control system .green[Git] to track changes to code
+* How to use the package and environment manager .green[Conda]
+* How to use the workflow managers .green[Snakemake] and .green[Nextflow]
+* How to use .green[R Markdown] and .green[Jupyter] to generate automated reports and to document your analyses
+* How to use .green[Docker] and .green[Singularity] to distribute containerized
+  computational environments
+
+---
+
+# Divide your work into distinct projects
+
+--
+
+* Keep all .green[files] needed to go from raw data to final results in a dedicated directory
+
+--
+
+* Use relevant .green[subdirectories]
+
+--
+
+* Many software support the “project way of working”, *e.g.* .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
+
+--
+
+* Use .green[Git] to create structured and version controlled project repositories
+
+---
+
+# Everything can be a project
+
+Project directory templates, *e.g.* NBIS project template:
+
+.center[<img src="NBISweden_project_template.png" style="width:60%;"/>]
+
+  * https://github.com/NBISweden/project_template
+  * https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow
+
+---
+
+# Treasure your data
+
+--
+
+* Keep your input data .green[read-only] - consider it static
+
+--
+
+* Don't create different versions of the input data - write a .green[script],
+  .green[R Markdown] document, .green[Jupyter] notebook or a .green[Snakemake]
+  / .green[Nextflow] workflow if you need to pre-process your input data so that
+  the steps can be recreated
+
+--
+
+* .green[Backup]! Keep redundant copies in different physical locations
+
+--
+
+* Upload your raw data as soon as possible to a .green[public data repository]
+
+---
+
+# Organize your coding
+
+--
+
+* Avoid generating files .green[interactively] or doing things .green[by hand]
+
+  - there is no way to track how they were made
+
+--
+
+* Write .green[scripts], .green[R Markdown] documents, .green[Jupyter]
+  notebooks or .green[Snakemake] / .green[Nextflow] workflows for reproducible
+  results to connect raw data to final results
+
+--
+
+* Keep the .green[parameters] separate (*e.g.* at top of file or in a separate configuration file)
+
+---
+
+# What is reasonable for your project?
+
+--
+
+.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
+
+.green[Minimal]: write code in a reproducible way
+
+]
+
+--
+
+.pull-right[
+
+Connect your results with the code:
+* Use .green[R Markdown] documents or .green[Jupyter] notebooks
+
+Take another step:
+* Convert your code into a .green[Snakemake] / .green[Nextflow] workflow
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
+
+.green[Minimal]: write code in a reproducible way
+
+.green[Good]: versioned and structured repository
+
+]
+
+--
+
+.pull-right[
+
+Use .green[Git] for version controlling and collaboration:
+* Create one .green[Git] repository per project
+* Track your changes with .green[Git]
+* Publish your code along with your results on *e.g.* <a href="https://github.com" .green[GitHub] </a>
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
+
+.green[Minimal]: write code in a reproducible way
+
+.green[Good]: versioned and structured repository
+
+.green[Better]: organize software dependencies
+
+]
+
+--
+
+.pull-right[
+
+Manage your depencencies:
+* Use .green[Conda] to install software in environments that can be easily exported and installed on a different system
+
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
+
+.green[Minimal]: write code in a reproducible way
+
+.green[Good]: versioned and structured repository
+
+.green[Better]: organize software dependencies
+
+.green[Best]: export everything!
+
+]
+
+--
+
+.pull-right[
+
+Completely recreate the compute system:
+* Consider packaging your project inside a or together with a .green[Docker] or .green[Singularity] container
+
+]
+
+---
+
+# Alternatives
+
+--
+
+.green[Version control]
+
+* **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
+* **Mercurial** – Distributed model just like Git, close to sourceforge.
+* **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
+
+---
+
+# Alternatives
+
+.green[Environment / package managers]
+
+* **Conda** – General purpose environment and package manager. Community-hosted collections of tools at bioconda or conda-forge.
+* **Pip** – Package manager for Python, has a large repository at pypi.
+* **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with *e.g.* update notifications better.
+* **Virtualenv** – Environment manager used to set up semi-isolated python environments.
+
+---
+
+# Alternatives
+
+.green[Workflow managers]
+
+* **Snakemake** – Based on Python, easily understandable format, relies on file names.
+* **Nextflow** – Based on Groovy, uses data pipes rather than file names to construct the workflow.
+* **Make** – Used in software development and has been around since the 70s. Flexible but notoriously obscure syntax.
+* **Galaxy** -  attempts to make computational biology accessible to researchers without programming experience by using a GUI.
+
+---
+
+# Alternatives
+
+.green[Literate programming]
+
+* **Jupyter** – Create and share notebooks in a variety of languages and formats by using a web browser.
+* **R Markdown** – Developed by Rstudio, focuses on generating high-quality documents.
+* **Zeppelin** – Developed by Apache. Closely integrated with Spark for distributed computing and Big Data applications.
+* **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on integrating multiple languages in the same notebook.
+
+---
+
+# Alternatives
+
+.green[Containerization / virtualization]
+
+* **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
+* **Singularity** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+* **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
+* **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
+
+---
+
+class: center, middle
+
+# "What's in it for me?"
+
+<img src="calvin_hobbes_past_corresponding.png" style="width:50%;"/>
+
+---
+
+# NBIS Bioinformatics drop-in
+
+Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
+
+* Online (.green[zoom])
+* Every .green[Tuesday, 14.00-15.00] (except public holidays)
+* Check .green[www.nbis.se/events] for zoom link and more info
