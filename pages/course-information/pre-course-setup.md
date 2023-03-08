@@ -60,6 +60,10 @@ resources:
 > nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
 > then add `nameserver 8.8.8.8` to the bottom of the file and save it.
 
+> **Important!** <br>
+> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows), 
+> **please follow the Linux instructions.**
+
 Open a bash shell Linux terminal and clone the GitHub repository containing all
 files you will need for completing the tutorials as follows. First, `cd` into
 a directory on your computer (or create one) where it makes sense to download
@@ -77,20 +81,6 @@ cd /path/to/your/directory
 git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
-
-Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two,
-with no alternative for Windows), please follow the Linux instructions.
-
-> **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-> tags/course_1905`. To list all available tags, use `git tag`. Run this
-> command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
 
 ## Installing Git
 
@@ -144,63 +134,85 @@ below for more information.
 > instead of using a hard-coded `master`. We at NBIS want to be a part of this
 > change, so we have chosen to use `main` for this course.
 
-## Installing Conda
+> **Tip** <br>
+> If you want to revisit the material from an older instance of this course,
+> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+> tags/course_1905`. To list all available tags, use `git tag`. Run this
+> command after you have `cd` into `workshop-reproducible-research` as
+> described above. If you do that, you probably also want to view the
+> same older version of this website. Until spring 2021, the website was
+> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
+> Locate the version box in the bottom right corner of the website and
+> select the corresponding version.
 
-Conda is installed by downloading and executing an installer from the Conda
-website, but which version you need depends on your operating system:
+## Installing Mamba
+
+> **Mamba or Conda?** <br>
+> Maybe you've worked with the Conda package manager before, and you're wondering
+> what the heck Mamba is? Mamba is simply put a faster implementation of Conda
+> and has quickly grown and matured to the point that we are making the switch
+> to Mamba also in this course. Conveniently there is almost no difference in 
+> the way the two programs work on the command line. You simply change `conda`
+> to `mamba` and keep working as you've done before (see the exception under 
+> "Configuring Conda" below).
+> This also means that if you already have conda installed you can keep using
+> it for this course, however we strongly recommend you to try out mamba in 
+> order to make your environment managing more efficient.
+> You will notice that we still use the terms 'Conda environment', 'Conda 
+> packages' _etc._ throughout the course and that the tutorial pages still have
+> 'Conda' in the title. This is because Conda is the original package manager
+> with a widely adopted terminology, and Mamba is a reimplementation of Conda.
+> We hope this is not too confusing.
+
+Mamba is installed by downloading and executing a [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge)
+installer for your operating system.
 
 ```bash
-# Install Miniconda3 for 64-bit Mac
-curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh -O
-bash Miniconda3-4.7.12.1-MacOSX-x86_64.sh
-rm Miniconda3-4.7.12.1-MacOSX-x86_64.sh
+# Install Mambaforge3 for 64-bit Mac
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-x86_64.sh -O
+bash Mambaforge-MacOSX-x86_64.sh
+rm Mambaforge-MacOSX-x86_64.sh
 ```
 
 ```bash
-# Install Miniconda3 for 64-bit Linux
-curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O
-bash Miniconda3-4.7.12.1-Linux-x86_64.sh
-rm Miniconda3-4.7.12.1-Linux-x86_64.sh
+# Install Mambaforge3 for 64-bit Linux
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O 
+bash Mambaforge-Linux-x86_64.sh
+rm Mambaforge-Linux-x86_64.sh
 ```
 
 > **Attention!** <br>
-> If you already have installed Conda but want to update, you should be able
-> to simply run `conda update conda` and subsequently `conda init`, and skip
-> the installation instructions below.
-
-> **Apple M1 Chips** <br>
-> If you have a newer Apple computer with an M1 chip, make sure you have
-> installed [Rosetta](https://support.apple.com/en-us/HT211861) before you run
-> the installer. If you want to more fully utilise the new architecture,
-head over to [Miniforge](https://github.com/conda-forge/miniforge#miniforge3)!
+> If you already have installed Mamba but want to update, you should be able to simply 
+> run `mamba update mamba` and subsequently `mamba init`, and skip the installation instructions below.
 
 The installer will ask you questions during the installation:
 
 - Do you accept the license terms? (Yes)
-- Do you accept the installation path or do you want to choose a different one?
-  (Probably yes)
-- Do you want to run `conda init` to setup Conda on your system? (Yes)
+- Do you accept the installation path or do you want to choose a different one? (Probably yes)
+- Do you want the installer to initialize Mambaforge (Yes)
 
 Restart your shell so that the settings in `~/.bashrc`/`~/.bash_profile` can take
 effect. You can verify that the installation worked by running:
 
 ```bash
-conda --version
+mamba --version
 ```
 
-> **Different Condas** <br>
-> There are three Conda-related things you may have encountered: the first is
-> *Conda*, the package and environment manager we've been talking about so far.
-> Second is *Miniconda*, which is the installer for Conda. The third is
-> *Anaconda*, which is a distribution of not only Conda, but also over 150
-> scientific Python packages. It's generally better to stick with only Conda,
-> *i.e.* installing with Miniconda, rather than installing 3 GB worth of
-> packages you may not even use.
+> **Different Mambas/Condas** <br>
+> You may come across several flavours of both Mamba and Conda. For Mamba there's the *Miniforge* installer 
+> which allows you to install the `mamba` command line tool that works as a replacement for `conda`. There's also 
+> `micromamba`, a small standalone C++ program developed mainly for continuous integration pipelines.
+> For Conda there's *Miniconda*, which is the installer for Conda. The third is *Anaconda*, which is a distribution 
+> of not only Conda, but also over 150 scientific Python packages. If you want to use Conda it's generally better to 
+> stick with the Miniconda installation, rather than installing 3 GB worth of packages you may not even use.
 
 ### Configuring Conda
 
-Lastly, we will setup the default channels (from where packages will be searched
-for and downloaded if no channel is specified).
+At the moment the `config` subcommand is not implemented in `mamba`. This means that when you want to 
+configure your mamba or conda installation you still need to rely on `conda`.  
+
+As a last step we will setup the default channels (from where packages will be searched for and downloaded if no 
+channel is specified):
 
 ```
 conda config --add channels defaults
