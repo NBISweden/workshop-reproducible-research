@@ -211,13 +211,20 @@ mamba --version
 At the moment the `config` subcommand is not implemented in `mamba`. This means that when you want to 
 configure your mamba or conda installation you still need to rely on `conda`.  
 
-As a last step we will setup the default channels (from where packages will be searched for and downloaded if no 
+As a last step we will set up the default channels (from where packages will be searched for and downloaded if no 
 channel is specified):
 
 ```
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
+```
+
+and we will also set so called 'strict' channel priority, which ensures higher stability and better performance (see 
+details about this setting by running `conda config --describe channel_priority`):
+
+```
+conda config --set channel_priority strict
 ```
 
 ## Installing Snakemake
