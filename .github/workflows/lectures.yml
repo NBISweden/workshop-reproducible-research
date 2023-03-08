@@ -26,7 +26,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: lecture-env
-        environment-file: lectures/environment.yml
+        environment-file: docs/lectures/environment.yml
         installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
         auto-activate-base: false
     - name: Render lectures
