@@ -198,6 +198,13 @@ effect. You can verify that the installation worked by running:
 mamba --version
 ```
 
+> **Important!** <br>
+> The Mamba docs specify a couple of things to keep in mind when using Mamba.
+> First of all, `mamba` should be installed in the `base` environment and no
+> other packages should be installed into `base`. Furthermore, mixing of the
+> `conda-forge` and `defaults` channels should be avoided as the default 
+> Anaconda channels are incompatible with `conda-forge`.
+
 > **Different Mambas/Condas** <br>
 > You may come across several flavours of both Mamba and Conda. For Mamba there's the *Miniforge* installer 
 > which allows you to install the `mamba` command line tool that works as a replacement for `conda`. There's also 
@@ -208,14 +215,14 @@ mamba --version
 
 ### Configuring Conda
 
-At the moment the `config` subcommand is not implemented in `mamba`. This means that when you want to 
-configure your mamba or conda installation you still need to rely on `conda`.  
+At the moment the `config` subcommand is not implemented in `mamba`. This means 
+that when you want to configure your mamba or conda installation you still 
+need to rely on `conda`.  
 
-As a last step we will set up the default channels (from where packages will be searched for and downloaded if no 
-channel is specified):
+As a last step we will set up the default channels (from where packages will be 
+searched for and downloaded if no channel is specified):
 
 ```
-conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
