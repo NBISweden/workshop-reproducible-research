@@ -150,7 +150,7 @@ a re-run.
 
 Snakemake is aware of changes to four categories of such "rerun-triggers": 
 "input" (changes to rule input files), "params" (changes to the rule `params` section),
-"software-env" (changes to conda environment files specified by the `conda:` 
+"software-env" (changes to Conda environment files specified by the `conda:` 
 directive) and "code" (changes to code in the `shell:`, `run:`, `script:` and 
 `notebook:` directives). 
 

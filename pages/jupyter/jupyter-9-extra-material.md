@@ -16,7 +16,13 @@ general:
 ssh <your-user-name>@rackham1.uppmax.uu.se
 ```
 
-* Create/activate a conda environment containing `jupyter` then run:
+* Create/activate a Conda environment containing `jupyter`, _e.g._:
+
+```
+mamba create -n jupyter -c conda-forge jupyter
+```
+
+* activate the environment, then run:
 
 ```
 jupyter notebook 
@@ -104,8 +110,8 @@ rule make_supplementary:
 > **Note** <br>
 > The Conda enivronment for the jupyter tutorial does not contain packages
 > required to run the full snakemake workflow. So if you wish to test jupyter
-> integration fully you should update the conda environment by running 
-> `conda install snakemake-minimal fastqc sra-tools multiqc bowtie2 tbb 
+> integration fully you should update the environment by running 
+> `mamba install snakemake-minimal fastqc sra-tools multiqc bowtie2 tbb 
 > samtools htseq bedtools wget graphviz`
 
 ## More integrations
@@ -242,12 +248,12 @@ snakemake -j 1 make_supplementary_plots
 ## Presentations with Jupyter
 
 As if all the above wasn't enough you can also create presentations/slideshows
-with Jupyter! Simply use conda to install the 
+with Jupyter! Simply use mamba to install the 
 [RISE](https://rise.readthedocs.io/en/stable/) extension to your jupyter 
 environment:
 
 ```bash
-conda install -c conda-forge rise
+mamba install -c conda-forge rise
 ```
 
 then open up a notebook of your choice. In the menu click **View** -> **Cell 
