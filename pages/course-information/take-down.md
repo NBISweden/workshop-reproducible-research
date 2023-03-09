@@ -8,47 +8,57 @@ Explorer or `rm -rf workshop-reproducible-research`. Note that this will also
 delete the hidden directories `.git`, which contains the history of the repo,
 and `.snakemake`, which contains the history of any Snakemake runs.
 
-## Conda
+## Mamba
 
-Several of the tutorials use Conda for installing packages. This amounts to
-about 2.6 GB if you've done all the tutorials. If you plan on using Conda in
+Several of the tutorials use Mamba for installing packages. This amounts to
+about 2.6 GB if you've done all the tutorials. If you plan on using Mamba in
 the future you can remove just the packages, or you can remove everything
-including Conda itself. 
+including Mamba itself. 
 
-In order to remove all your Conda environments, you first need to list them:
+In order to remove all your environments, you first need to list them:
 
 ```bash
-conda env list
+mamba env list
 ```
 
 For each of the environments except "base" run the following:
 
 ```bash
-conda remove -n envname --all
+mamba remove -n <envname> --all
 ```
 
 And, finally:
 
 ```bash
-conda clean --all
+mamba clean --all
 ```
 
-If you also want to remove Conda itself (*i.e.* removing all traces of Conda),
-you need to check where Conda is installed. Look for the row "base environment".
+If you also want to remove Mamba itself (*i.e.* removing all traces of Mamba),
+you should first 'uninit' the installation, this part should be run with 
+`conda`:
+
+```
+conda init --reverse
+```
+
+Now find the path where Mamba is installed. Look for the row "base 
+environment":
 
 ```bash
-conda info
+mamba info | grep "base environment"
 ```
 
-This should say something like `/Users/<user>/miniconda3`. Then remove the
-entire Conda directory:
+This should say something like:
 
 ```
-rm -rf /Users/<user>/miniconda3
+base environment : /Users/<user>/mambaforge  (writable). 
 ```
 
-Lastly, open your `~/.bashrc` file (or `~/.bash_profile` if on Mac) in a text
-editor and remove the path to Conda from PATH.
+Then remove the entire Mambaforge directory:
+
+```
+rm -rf /Users/<user>/mambaforge
+```
 
 ## Snakemake
 
