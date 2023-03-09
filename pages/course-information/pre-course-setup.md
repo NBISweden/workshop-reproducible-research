@@ -164,6 +164,28 @@ below for more information.
 > with a widely adopted terminology, and Mamba is a reimplementation of Conda.
 > We hope this is not too confusing.
 
+### If you already have Mamba installed
+
+If you already have installed Mamba you can make sure you're using the latest 
+version by running `mamba update -n base mamba` and skip the installation 
+instructions below.
+
+### If you have Conda installed
+
+Install `mamba` from the `conda-forge` channel into your base environment:
+
+```
+conda install mamba -n base mamba -c conda-forge
+```
+
+Check that installation worked by running:
+
+```
+mamba --version
+```
+
+### If you have neither Mamba nor Conda installed
+
 Mamba is installed by downloading and executing a [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge)
 installer for your operating system.
 
@@ -180,10 +202,6 @@ curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaf
 bash Mambaforge-Linux-x86_64.sh
 rm Mambaforge-Linux-x86_64.sh
 ```
-
-> **Attention!** <br>
-> If you already have installed Mamba but want to update, you should be able to simply 
-> run `mamba update mamba` and subsequently `mamba init`, and skip the installation instructions below.
 
 The installer will ask you questions during the installation:
 
@@ -213,7 +231,7 @@ mamba --version
 > of not only Conda, but also over 150 scientific Python packages. If you want to use Conda it's generally better to 
 > stick with the Miniconda installation, rather than installing 3 GB worth of packages you may not even use.
 
-### Configuring Conda
+### Configuring Mamba/Conda
 
 At the moment the `config` subcommand is not implemented in `mamba`. This means 
 that when you want to configure your mamba or conda installation you still 
