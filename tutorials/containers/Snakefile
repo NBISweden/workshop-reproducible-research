@@ -32,7 +32,7 @@ rule get_SRA_by_accession:
         "data/raw_internal/{sample_id}.fastq.gz"
     params:
         max_reads = config["max_reads"],
-        url = config["{sample_id}"]
+        url = lambda wildcards: config[wildcards.sample_id]
     version: "1.0"
     shell:
         """
