@@ -4,9 +4,9 @@ mkdir -p intermediate/fastqc
 mkdir -p results/fastqc
 
 # Define URLs to fastq files for each sample
-SRR935090=""
-SRR935091=""
-SRR935092=""
+SRR935090="https://figshare.scilifelab.se/ndownloader/files/39539767"
+SRR935091="https://figshare.scilifelab.se/ndownloader/files/39539770"
+SRR935092="https://figshare.scilifelab.se/ndownloader/files/39539773"
 
 # Download fastq files from remote repository and put in data/raw_internal/:
 curl -L  "$SRR935090" -o data/raw_internal/SRR935090.fastq.gz
