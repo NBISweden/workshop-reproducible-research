@@ -30,8 +30,7 @@ channels:
 - conda-forge
 - bioconda
 dependencies:
-- fastqc=0.11.9
-- sra-tools=2.11.0
+- fastqc=0.12.1
 ```
 
 * Now, make a new Conda environment from the YAML file (note that here the
