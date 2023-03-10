@@ -12,14 +12,28 @@ rule all:
 
 rule get_SRA_by_accession:
     """
-    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
+    Retrieve a single-read FASTQ file from a remote repository
+    
+    The fastq file is retrieved with curl is piped directly to the 
+    seqtk program which samples a number of reads defined by the 
+    max_reads parameter. The fastq output from seqtk is in turn piped 
+    to gzip and stored as a compressed *.fastq.gz file.
+
+    The actual URL for the file is obtained from the config which 
+    requires that each sample_id is defined in the configfile as for 
+    example:
+    
+    sample_id: "https://url/to/file"
     """
     output:
         "data/raw_internal/{sample_id}.fastq.gz"
+    params:
+        max_reads = config["max_reads"],
+        url = config["{sample_id}"]
+    version: "1.0"
     shell:
         """
-        fastq-dump {wildcards.sample_id} -X 25000 --readids \
-            --dumpbase --skip-technical --gzip -Z > {output}
+        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 
 rule fastqc:
