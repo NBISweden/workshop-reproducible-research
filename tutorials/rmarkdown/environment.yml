@@ -3,7 +3,6 @@ channels:
   - r
   - conda-forge
   - bioconda
-  - main
 dependencies:
   - bioconductor-geoquery=2.54.0
   - bioconductor-rtracklayer=1.46.0
