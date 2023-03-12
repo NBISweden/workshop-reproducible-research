@@ -49,12 +49,16 @@ are unfamiliar with the purpose of the different operations (index genome,
 FastQC and so on), then take a look at the [intro](introduction).
 
 Also generate the job graph in the same manner. Here you can see that three
-samples will be downloaded from SRA (Sequence Read Archive); SRR935090,
-SRR935091, and SRR935092. Those will then be quality controlled with FastQC and
-aligned to a genome. The QC output will be aggregated with MultiQC and the
-alignments will be used to generate a count table, *i.e.* a table that shows
-how many reads map to each gene for each sample. This count table is then what
-the downstream analysis will be based on.
+samples will be downloaded: SRR935090, SRR935091, and SRR935092. The 
+original sample files contain tens of millions of reads but for the purpose 
+of this course we have subsampled them to 100,000 reads per sample, so that 
+they are easy to manage, and made them available at the [SciLifeLab Data 
+Repository](https://figshare.scilifelab.se/articles/educational_resource/MRSA_case_study_example_data/22246417).
+These fastq files will then be quality controlled with FastQC and aligned to 
+a genome. The QC output will be aggregated with MultiQC and the alignments 
+will be used to generate a count table, *i.e.* a table that shows how many 
+reads map to each gene for each sample. This count table is then what the 
+downstream analysis will be based on.
 
 ![](images/dag_mrsa.svg)
 
