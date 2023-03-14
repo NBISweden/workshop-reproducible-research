@@ -414,19 +414,3 @@ Please follow the Windows-specific instructions at the [Singularity website](htt
 > Version 6.1.28 of "Virtual box for Windows" may not work, please install
 > version 6.1.26 from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1)
 > in case you encounter problems when trying to start the Vagrant VirtualBox.
-
-## Testing sra-tools
-On some computers we've found that the package `sra-tools` which is used in the
-course is not working properly. The error seems to be related to some certificate
-used to communicate with remote read archives and may affect all environments
-with `sra-tools` on the dependency list.
-
-If you run into errors with the program `fastq-dump` from the `sra-tools` package
-try the following:
-
-1. Remove `sra-tools` from the relevant environment: `conda remove sra-tools`
-2. Download the most recent binaries for your operating system from [here](https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit#the-sra-toolkit-provides-64-bit-binary-installations-for-the-ubuntu-and-centos-linux-distributions-for-mac-os-x-and-for-windows) (example shown for Mac OSX): `curl --output sratoolkit.tar.gz https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-mac64.tar.gz`
-3. Create a temporary directory for the installation: `mkdir tmp_out`
-4. Extract the binary files: `tar -C tmp_out -zxvf sratoolkit.tar.gz */bin/*`
-5. Copy binary files into the conda environment: `cp -r tmp_out/*/bin/* $CONDA_PREFIX/bin/`
-6. Remove the downloaded files: `rm -r sratoolkit.tar.gz tmp_out/`
