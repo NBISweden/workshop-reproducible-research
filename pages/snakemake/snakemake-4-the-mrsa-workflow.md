@@ -12,7 +12,7 @@ workflow to make it more flexible and reproducible!
 > modifications is available in `tutorials/git/Snakefile`.
 
 You are probably already in your `snakemake-env` environment, otherwise
-activate it (use `conda info --envs` if you are unsure).
+activate it (use `mamba info --envs` if you are unsure).
 
 > **Tip** <br>
 > Here we have one Conda environment for executing the whole Snakemake
@@ -21,7 +21,10 @@ activate it (use `conda info --envs` if you are unsure).
 > rule-specific-env.yml` in the rule definition and running Snakemake with
 > the `--use-conda` flag. The given rule will then be run in the Conda
 > environment specified in `rule-specific-env.yml` that will be created and
-> activated on the fly by Snakemake.
+> activated on the fly by Snakemake. Note that by default Snakemake uses 
+> `mamba` to generate the rule-specific environments. This behaviour can be 
+> changed by running with `--conda-frontend conda`, which will force 
+> Snakemake to use `conda` instead.
 
 Let's start by generating the rule graph so that we get an overview of the
 workflow.

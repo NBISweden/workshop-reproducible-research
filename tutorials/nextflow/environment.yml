@@ -2,7 +2,6 @@ name: nextflow-env
 channels:
   - conda-forge
   - bioconda
-  - main
   - r
 dependencies:
   - fastqc=0.11.9

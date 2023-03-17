@@ -1,6 +1,6 @@
 Jupyter Notebook extensions are add-ons that can increase the functionality of
 your notebooks. These were installed in the [setup](pre-course-setup) section for this 
-tutorial by including the `jupyter_contrib_nbextensions` package in the conda
+tutorial by including the `jupyter_contrib_nbextensions` package in the Conda
 environment file. You can read more about the extensions 
 [here](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/). 
 

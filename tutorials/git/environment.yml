@@ -2,7 +2,6 @@ name: git-env
 channels:
   - conda-forge
   - bioconda
-  - main
   - r
 dependencies:
   - python=3.9.12

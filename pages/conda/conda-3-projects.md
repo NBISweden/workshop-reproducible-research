@@ -1,9 +1,9 @@
 We have up until now specified which Conda packages to install directly on the
-command line using the `conda create` and `conda install` commands. For working
+command line using the `mamba create` and `mamba install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use an *environment file* (in [YAML format](https://en.wikipedia.org/wiki/YAML))
-that specifies the packages, versions and channels needed to create the
-environment for a project.
+reproducibility, it is better to use an *environment file*  (in [YAML format]
+(https://en.wikipedia.org/wiki/YAML)) that specifies the packages, versions 
+and channels needed to create the environment for a project.
 
 Throughout these tutorials we will use a case study where we analyze an RNA-seq
 experiment with the multiresistant bacteria MRSA (see [intro](introduction)).
@@ -35,11 +35,11 @@ dependencies:
 ```
 
 * Now, make a new Conda environment from the YAML file (note that here the
-  command is `conda env create` as opposed to `conda create` that we used
-  above):
+  command is `mamba env create` as opposed to `mamba create` that we used
+  before):
 
 ```bash
-conda env create -n project_mrsa -f environment.yml
+mamba env create -n project_mrsa -f environment.yml
 ```
 
 > **Tip** <br>
@@ -53,7 +53,8 @@ conda env create -n project_mrsa -f environment.yml
 > contain the Conda environment inside the project directory, which does make
 > sense from a reproducibility perspective, and makes it easier to keep track
 > of what environment belongs to what project. If you don't specify `-p` the
-> environment will be installed in the default `miniconda3/envs/` directory.
+> environment will be installed in the `envs/` directory inside your 
+> Mamba/Conda installation path.
 
 * Activate the environment!
 
@@ -106,66 +107,39 @@ daunting to try to capture all of that in a single Conda environment, especially
 when you consider potential incompatibilities that may arise. It can therefore
 be a good idea to start new projects with an environment file with each package
 you know that you will need to use, but without specifying exact versions
-(except for those packages where you *know* you need a specific version). Conda
-will then try to get the latest compatible versions of all the specified
+(except for those packages where you *know* you need a specific version). 
+This will install the latest compatible versions of all the specified 
 software, making the start-up and installation part of new projects easier. You
 can then add the versions that were installed to your environment file
 afterwards, ensuring future reproducibility.
 
-There is one command that can make this easier: `conda env export`. This allows
+There is one command that can make this easier: `mamba env export`. This allows
 you to export a list of the packages you've already installed, including their
 specific versions, meaning you can easily add them after the fact to your
 environment file. If you use the `--no-builds` flag, you'll get a list of the
 packages minus their OS-specific build specifications, which is more useful for
 making the environment portable across systems. This way, you can start with an
-environment file with just the packages you need (without version), allow Conda
-to solve the dependency tree and install the most up-to-date version possible,
-and then add the resulting version back in to the environment file using the
-`export` command!
+environment file with just the packages you need (without version), which will 
+install the most up-to-date version possible, and then add the resulting 
+version back in to the environment file using the `export` command!
 
-# Optimising for speed
-
-One of the greatest strengths of Conda is, unfortunately, also its greatest
-weakness in its current implementation: the availability of a frankly enormous
-number of packages and versions. This means that the search space for the
-dependency hierarchy of any given Conda environment can become equally enormous,
-leading to a (at times) ridiculous execution time for the dependency solver. It
-is not uncommon to find yourself waiting for minutes for Conda to solve
-a dependency hierarchy, sometimes even into the double digits. How can this be
-circumvented?
-
-Firstly, it is useful to specify as many of the `major.minor.patch` version
-numbers as possible when defining your environment: this drastically reduces the
-search space that Conda needs to go through. This is not always possible,
-though. For example, we mentioned in the end of the *Environments in projects*
-section that you might want to start out new projects without version
-specifications for most packages, which means that the search space is going to
-be large. Here is where another software comes into play: *Mamba*.
-
-The [Mamba package manager](https://github.com/mamba-org/mamba) is built on-top
-of Conda with some changes and additions that greatly speed up the execution
-time. First of all, core parts of Mamba are written in C++ instead of Python,
-like the original Conda. Secondly, it uses a different dependency solver
-algorithm which is much faster than the one Conda uses. Lastly, it allows for
-parallel downloading of repository data and package files with multi-threading.
-All in all, these changes mean that Mamba is (currently) simply a better
-version of Conda. Hopefully these changes will be incorporated into the Conda
-core at some point in the future!
-
-So, how do you get Mamba? Funnily enough, the easiest way to install it is (of
-course) using Conda! Just run `conda install -n base -c conda-forge mamba`,
-which will install Mamba in your `base` Conda environment. Mamba works almost
-exactly the same as Conda, meaning that all you need to do is to stop using
-`conda command` and instead use `mamba command` - simple! Be aware though that
-in order to use `mamba activate` and `mamba deactivate` you first need to run
-`mamba init`. So transitioning into using Mamba is actually quite easy - enjoy 
-your shorter execution times!
+> **Optimised for speed** <br>
+> The availability of an enormous number of packages and versions means that 
+> the search space for the dependency hierarchy of any given Conda environment 
+> can become equally enormous, leading to a (at times) ridiculous execution 
+> time for the dependency solver.
+> Fortunately, with the introduction of the Mamba reimplementation of Conda the 
+> time needed to install environments is greatly reduced. First of all, core 
+> parts of Mamba are written in C++ instead of Python, like the original Conda.
+> Secondly, it uses a different dependency solver algorithm which is much 
+> faster than the one Conda uses. Lastly, it allows for parallel downloading 
+> of repository data and package files with multi-threading. All in all, these 
+> changes mean that Mamba is (currently) simply a better version of Conda.
 
 > **Quick recap** <br>
 > In this section we've learned:
 >
 > - How to define our Conda environment using a YAML-file.
-> - How to use `conda env create` to make a new environment from a YAML-file.
-> - How to use `conda env export` to get a list of installed packages.
-> - How to work with Conda in a project-like setting.
-> - How to optimise Conda for speed.
+> - How to use `mamba env create` to make a new environment from a YAML-file.
+> - How to use `mamba env export` to get a list of installed packages.
+> - How to work in a project-like setting.
