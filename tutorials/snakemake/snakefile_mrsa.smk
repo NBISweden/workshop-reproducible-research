@@ -10,27 +10,18 @@ rule all:
         "results/multiqc.html",
         "results/rulegraph.png"
 
+def get_sample_url(wildcards):
+    return config["sample_urls"][wildcards.sample_id]
+
 rule get_SRA_by_accession:
     """
-    Retrieve a single-read FASTQ file from a remote repository
-    
-    The fastq file is retrieved with curl is piped directly to the 
-    seqtk program which samples a number of reads defined by the 
-    max_reads parameter. The fastq output from seqtk is in turn piped 
-    to gzip and stored as a compressed *.fastq.gz file.
-
-    The actual URL for the file is obtained from the config which 
-    requires that each sample_id is defined in the configfile as for 
-    example:
-    
-    sample_id: "https://url/to/file"
+    Retrieve a single-read FASTQ file
     """
     output:
         "data/raw_internal/{sample_id}.fastq.gz"
     params:
-        max_reads = config["max_reads"],
-        url = config["{sample_id}"]
-    version: "1.0"
+        url = get_sample_url,
+        max_reads = 20000
     shell:
         """
         curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
@@ -161,7 +152,9 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv"
     input:
-        bams = ["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
+        bams = ["intermediate/SRR935090.sorted.bam",
+                "intermediate/SRR935091.sorted.bam",
+                "intermediate/SRR935092.sorted.bam"],
         annotation = "data/raw_external/NCTC8325.gff3.gz"
     shell:
         """
