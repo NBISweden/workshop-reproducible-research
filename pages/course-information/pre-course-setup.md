@@ -3,14 +3,14 @@ repository for the course. The first step of the setup is thus to download all
 the files that you will need, which is done differently depending on which
 operating system you have.
 
-At the last day, you will have the opportunity to try out the different tools
-on one of your own projects. In case you don't want to use a project you are
-currently working on, we have prepared a small-scale project for you. If you
-would like to work on your own project, it would be great if you could have the
-code and data ready before Friday so that you have more time for the exercise.
-In case your analysis project contains computationally intense steps it may be
-good to scale them down for the sake of the exercise. You might, for example,
-subset your raw data to only contain a minuscule part of its original size.
+On the last day, in the "Putting the pieces together" session we will give 
+examples of how we use these tools in our day-to-day work. During the course, 
+spend some time thinking about how these tools could be useful for you in 
+your own project(s). After you've gone through the tutorial you may feel 
+that some of the tools could make your life easier from the get-go, while 
+others may take some time to implement efficiently (and some you may never 
+use again after the course). Our idea with the "Putting the pieces together" 
+session is to have an open discussion about where to go from here.
 
 ## Setup for Mac / Linux users
 
