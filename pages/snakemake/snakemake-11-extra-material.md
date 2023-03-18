@@ -136,7 +136,7 @@ that is used _e.g._ on Uppmax.
 
 The SLURM Profile needs to be set up with the software
 [cookiecutter](https://cookiecutter.readthedocs.io/) which you can install with
-conda: `conda install -c conda-forge cookiecutter`.
+mamba: `mamba install -c conda-forge cookiecutter`.
 
 During the [setup](https://github.com/Snakemake-Profiles/slurm#quickstart) of 
 the profile you will be asked for several values for your Profile. To configure

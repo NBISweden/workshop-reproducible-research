@@ -50,7 +50,7 @@ repositories](https://hub.docker.com/explore/). There are many roads to Rome
 when it comes to choosing the best image to start from. Say you want to run
 RStudio in a Conda environment through a Jupyter notebook. You could then start
 from one of the [rocker images](https://github.com/rocker-org/rocker) for R,
-a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or
+a [Mambaforge image](https://hub.docker.com/r/condaforge/mambaforge), or
 a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from
 one of the low-level official images and set up everything from scratch.
 `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing your

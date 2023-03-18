@@ -180,12 +180,12 @@ from IPython.display import Image
 Image(rulegraph_file)
 ```
 
-Let's also output the full conda environment so that all packages and versions 
+Let's also output the full environment so that all packages and versions 
 are included in the notebook. There are several ways this can be done, for 
 example you could simply add:
 
 ```python
-!conda list
+!mamba list
 ```
 
 to the end of the notebook.
