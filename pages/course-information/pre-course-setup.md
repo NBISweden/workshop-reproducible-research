@@ -197,6 +197,13 @@ rm Mambaforge-MacOSX-x86_64.sh
 ```
 
 ```bash
+# Install Mambaforge 3 for 64-bit Mac (Apple Chip)
+curl -L  https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-arm64.sh -O
+bash Mambaforge-MacOSX-arm64.sh
+rm Mambaforge-MacOSX-arm64.sh
+```
+
+```bash
 # Install Mambaforge3 for 64-bit Linux
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O 
 bash Mambaforge-Linux-x86_64.sh
