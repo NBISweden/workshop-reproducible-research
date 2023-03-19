@@ -380,6 +380,12 @@ have `sudo` privileges on your computer in order to install or run Docker. When
 you have finished installing docker, regardless of which OS you are on, please
 type `docker --version` to verify that the installation was successful!
 
+> **Docker for older versions of OSX/Windows** <br>
+> The latest version of Docker may not work if you have an old version of either OSX or
+> Windows. You can finder older Docker versions that may be compatible for you if you
+> go to https://docs.docker.com/desktop/ and click "Previous versions" in the left side
+> menu.
+
 ### macOS
 
 Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
