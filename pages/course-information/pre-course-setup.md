@@ -312,7 +312,7 @@ rstudio &
 ```
 
 Once you've successfully completed the above steps you can deactivate your Conda
-environment using `conda deactivate` and continue with the setup for the other
+environment using `mamba deactivate` and continue with the setup for the other
 tools.
 
 > **Windows users** <br>
