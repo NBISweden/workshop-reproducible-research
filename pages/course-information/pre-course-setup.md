@@ -268,73 +268,63 @@ tutorials directory (`workshop-reproducible-research/tutorials`) and then
 create the Conda environment like so:
 
 ```bash
-conda env create -f snakemake/environment.yml -n snakemake-env
-conda activate snakemake-env
+mamba env create -f snakemake/environment.yml -n snakemake-env
+mamba activate snakemake-env
 ```
 
 Check that Snakemake is installed correctly, for example by executing
 `snakemake --help`. This should output a list of available Snakemake settings.
 If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Conda steps were successful. Once you've successfully completed 
-the above steps you can deactivate your Conda environment using `conda deactivate` 
+ensure that the Mamba steps were successful. Once you've successfully completed 
+the above steps you can deactivate the environment using `mamba deactivate` 
 and continue with the setup for the other tools.
 
 ## Installing Nextflow
 
-We'll use Conda to install Nextflow as well: navigate to
-`workshop-reproducible-research/tutorials` and create the Conda environment:
+We'll use Mamba to install Nextflow as well: navigate to
+`workshop-reproducible-research/tutorials` and create the environment:
 
 ```bash
-conda env create -f nextflow/environment.yml -n nextflow-env
-conda activate nextflow-env
+mamba env create -f nextflow/environment.yml -n nextflow-env
+mamba activate nextflow-env
 ```
 
 Check that Nextflow was installed correctly by running `nextflow -version`. Once
 you've successfully completed the installation you can deactive the environment
-using `conda deactivate` and continue with the other setups, as needed.
+using `mamba deactivate` and continue with the other setups, as needed.
 
 ## Installing R Markdown
 
-We also use Conda to install R Markdown: make sure your working directory is in
+We also use Mamba to install R Markdown: make sure your working directory is in
 the tutorials directory (`workshop-reproducible-research/tutorials`) and
 install the necessary R packages defined in the `environment.yml`:
 
 ```bash
-conda env create -f rmarkdown/environment.yml -n rmarkdown-env
+mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
 ```
 
 You can then activate the environment followed by running RStudio in the
 background from the command line:
 
 ```bash
-conda activate rmarkdown-env
+mamba activate rmarkdown-env
 rstudio &
 ```
-
-> **The sluggishness of Conda** <br>
-> Some environments are inherently quite complicated in that they have many
-> and varied dependencies, meaning that the search space for the entire
-> dependency hierarchy becomes huge - leading to slow and sluggish
-> installations. This is often the case for R environments. This can be
-> improved by using Mamba, a faster wrapper around Conda. Simply run `conda
-> install -n base mamba` to install Mamba in your base environment, and
-> replace any `conda` command with `mamba` - except activating and
-> deactivating environments, which still needs to be done using Conda.
 
 Once you've successfully completed the above steps you can deactivate your Conda
 environment using `conda deactivate` and continue with the setup for the other
 tools.
 
 > **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Conda, both
+> In case you are having trouble installing R and RStudio using Mamba, both
 > run well directly on Windows and you may therefore want to install Windows
 > versions of these software for this tutorial (if you haven't done so already).
-> Conda is, however, the recommended way. If you're having issues with
+> Mamba is, however, the recommended way. If you're having issues with
 > graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
 > scroll down to the "Graphical applications".
 
-> **RStudio and Conda** <br>
-> In some cases RStudio doesn't play well with Conda due to differing
+> **RStudio and Mamba** <br>
+> In some cases RStudio doesn't play well with Mamba due to differing
 > libpaths. The first and simplest thing to try is to always start RStudio from
 > the command line (`rstudio &`). If you're still having issues, check the
 > available library path by `.libPaths()` to make sure that it points to a path
@@ -344,7 +334,7 @@ tools.
 > your Conda environment and that something that works for you might not work
 > for someone else using the same Conda environment, simply because you had
 > additional packages installed in the second library location. One way to force
-> R to just use the conda library path is to add a `.Renviron` file to the
+> R to just use the environment library path is to add a `.Renviron` file to the
 > directory where you start R with these lines:
 
     ```
@@ -358,32 +348,39 @@ tools.
 
 ## Installing Jupyter
 
-Let's continue using Conda for installing software, since it's so convenient to
-do so! Move in the tutorials directory (`workshop-reproducible-research/tutorials`),
+Let's continue using Mamba for installing software, since it's so convenient to
+do so! Move into the tutorials directory (`workshop-reproducible-research/tutorials`),
 create a Conda environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
 
 ```bash
-conda env create -f jupyter/environment.yml -n jupyter-env
-conda activate jupyter-env
+mamba env create -f jupyter/environment.yml -n jupyter-env
+mamba activate jupyter-env
 ```
 
-Once you've successfully completed the above steps you can deactivate your Conda
-environment using `conda deactivate` and continue with the setup for the other
+Once you've successfully completed the above steps you can deactivate the
+environment using `mamba deactivate` and continue with the setup for the other
 tools.
 
 ## Installing Docker
 
-Installing Docker is quite straightforward on Mac or Windows and a little more
-cumbersome on Linux. Note that Docker runs as root, which means that you have to
-have `sudo` privileges on your computer in order to install or run Docker. When
-you have finished installing docker, regardless of which OS you are on, please
-type `docker --version` to verify that the installation was successful!
+Installing Docker (specifically Docker Desktop) is quite straightforward on 
+Mac, Windows and Linux distributions. Note that Docker runs as root, which 
+means that you have to have `sudo` privileges on your computer in order to 
+install or run Docker. When you have finished installing docker, regardless 
+of which OS you are on, please type `docker --version` to verify that the 
+installation was successful.
+
+> **Docker for older versions of OSX/Windows** <br>
+> The latest version of Docker may not work if you have an old version of either OSX or
+> Windows. You can find older Docker versions that may be compatible for you if you
+> go to https://docs.docker.com/desktop/ and click "Previous versions" in the left side
+> menu.
 
 ### macOS
 
 Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
-and select download option that is suitable for your computer's architecture
+and select the download option that is suitable for your computer's architecture
 (*i.e.* if you have an Intel chip or a newer Apple M1 chip). This will download
 a `dmg` file - click on it when it's done to start the installation. This will
 open up a window where you can drag the Docker.app to Applications. Close the
@@ -393,17 +390,11 @@ find the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-How to install Docker differs a bit depending on your Linux distribution, but
-the steps are the same. Please follow the instructions for your distribution on
-[https://docs.docker.com/engine/install/#server](https://docs.docker.com/engine/install/#server).
-
-> **Tip** <br>
-> As mentioned before, Docker needs to run as root. You can achieve this by
-> prepending all Docker commands with `sudo`. This is the approach that we
-> will take in this tutorial, since the set up becomes a little simpler that way.
-> If you plan on continuing using Docker you can get rid of this by adding your
-> user to the group `docker`. Here are instructions for how to do this:
-> [https://docs.docker.com/engine/installation/linux/linux-postinstall/](https://docs.docker.> com/engine/installation/linux/linux-postinstall/).
+Go to the 
+[linux-install](https://docs.docker.com/desktop/install/linux-install/) 
+section of the Docker documentation and make sure that your computer meets 
+the system requirements. There you can also find instructions for different 
+Linux distributions in the left sidebar under *Installation per Linux distro*.
 
 ### Windows
 
