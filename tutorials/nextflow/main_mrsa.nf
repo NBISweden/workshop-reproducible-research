@@ -18,7 +18,6 @@ workflow {
     )
     RUN_FASTQC (
         DOWNLOAD_FASTQ_FILES.out
-        // ch_input
     )
     RUN_MULTIQC (
         RUN_FASTQC.out[1].collect()
@@ -29,7 +28,6 @@ workflow {
     )
     ALIGN_TO_GENOME (
         DOWNLOAD_FASTQ_FILES.out,
-        // ch_input,
         INDEX_GENOME.out.index
     )
     SORT_BAM (

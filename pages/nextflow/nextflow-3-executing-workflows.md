@@ -8,15 +8,17 @@ workflow {
 
     // Workflow for generating count data for the MRSA case study
 
-    // Define SRA input data channel
-    ch_sra_ids = Channel.fromList( ["SRR935090", "SRR935091", "SRR935092"] )
+    // Get input files from a samplesheet
+    ch_input = Channel
+        .fromPath ( "samplesheet.csv" )
+        .splitCsv ( header: true)
 
     // Define the workflow
-    GET_SRA_BY_ACCESSION (
-        ch_sra_ids
+    DOWNLOAD_FASTQ_FILES (
+        ch_input
     )
     RUN_FASTQC (
-        GET_SRA_BY_ACCESSION.out
+        DOWNLOAD_FASTQ_FILES.out
     )
     RUN_MULTIQC (
         RUN_FASTQC.out[1].collect()
@@ -26,7 +28,7 @@ workflow {
         GET_GENOME_FASTA.out.fasta
     )
     ALIGN_TO_GENOME (
-        GET_SRA_BY_ACCESSION.out,
+        DOWNLOAD_FASTQ_FILES.out,
         INDEX_GENOME.out.index
     )
     SORT_BAM (
@@ -40,13 +42,13 @@ workflow {
 }
 ```
 
-The workflow has one input channel named `ch_sra_ids`, which is a list of SRA
-IDs (*i.e.* a list of strings). We then define the processes to be executed by
-this workflow, nine in total. The first process (`GET_SRA_BY_ACCESSION`) takes
-the `ch_sra_ids` channel as input, while the rest of the processes takes the
-output of previous processes as input. Before we go into more detail regarding
-the ins-and-outs of this workflow, let's start with some specifics of how
-workflows are executed and what you can get from them.
+The workflow has one input channel named `ch_input`, which reads input from the
+`samplesheet.csv` file. We then define the processes to be executed by this
+workflow, nine in total. The first process (`GET_SRA_BY_ACCESSION`) takes the
+`ch_input` channel as input, while the rest of the processes takes the output of
+previous processes as input. Before we go into more detail regarding the
+ins-and-outs of this workflow, let's start with some specifics of how workflows
+are executed and what you can get from them.
 
 # Reports and visualisations
 

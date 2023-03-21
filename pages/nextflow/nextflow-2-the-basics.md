@@ -224,6 +224,64 @@ variable. All that's left now is to change the input to our pipeline!
   `.fromPath(["a.txt", "b.txt"])` and try running the pipeline. Make sure it
   works before you move on!
 
+# Viewing channel contents
+
+As our channels become more complicated it is useful to actually check out
+what's inside them: you can do this using the `.view()` operator.
+
+* Add the following to your workflow definition (on a new line) and execute the
+  workflow: `ch_input.view()`. What do you see?
+
+It can be quite useful to inspect channel contents like this when you are
+developing workflows, especially if you are working with tuples, maps and any
+transforming operators in general.
+
+# Input from samplesheets
+
+So far we've been specifying inputs using strings inside the workflow itself,
+but hard-coding inputs like this is not ideal. A better solution is to use
+samplesheets instead, *e.g.* comma- or tab-separated files; this is standard for
+many pipelines, including [nf-core](https://nf-co.re/). Take, for example, the
+following CSV file:
+
+```no-highlight
+a,a.txt
+b,b.txt
+```
+
+This specifies the samples and their respective files on each row. Using such a
+file is much more portable, scalable and overall easier to use than simple
+hard-coding things in the workflow definition itself. We might also include an
+arbitrary number of additional metadata columns, useful for downstream
+processing and analyses. Using contents of files as input can be done using the
+`.splitCsv()` operator, like so:
+
+```nextflow
+ch_input = Channel
+    .fromPath ( "samplesheet.csv" )
+    .splitCsv ()
+```
+
+* Change the input channel definition to the code above and create the
+  `samplesheet.csv` file as shown above.
+
+* Add the `.view()` operator somewhere to show the contents of `ch_input`.
+
+* Execute the pipeline. Do you see what you expect? Remove the `.view()`
+  operator before moving on.
+
+> **Note** <br>
+> While we are still hard-coding the name of the samplesheet it is still much
+> better to edit a samplesheet than having to edit the pipeline itself - there
+> are also convenient ways to work around this using *parameters*, which we'll
+> talk more about later in this tutorial.
+
+We can also specify a header in our samplesheet like so: `.splitCsv(header:
+true)`.
+
+* Add an appropriate header to your samplesheet, make sure your workflow can
+  read it and execute. Use `.view()` to see what's going on, if needed.
+
 # Adding more processes
 
 It's time to add more processes to our workflow! We have the two files
@@ -244,7 +302,8 @@ call this process `CONCATENATE_FILES` and it will take the output from
 `CONVERT_TO_UPPER_CASE` as input, grouped using the `collect()` operator.
 
 * Add a line to your workflow definition for this new process with the
-  appropriate input - click below if you're having trouble.
+  appropriate input - remember that you can use `.view()` to check channel
+  contents; click below if you're having trouble.
 
 <details>
 <summary> Click to show </summary>
@@ -254,7 +313,6 @@ CONCATENATE_FILES( CONVERT_TO_UPPER_CASE.out.collect() )
 ```
 
 </details>
-
 
 Now all we have to do is define the actual `CONCATENATE_FILES` process in the
 process definition section.
@@ -278,8 +336,8 @@ process CONCATENATE_FILES {
 }
 ```
 
-Run your workflow again and check the `results/` directory. At this point you
-should have three files there: `a.upper.txt`, `b.upper.txt` and `concat.txt`.
+* Run your workflow again and check the `results/` directory. At this point you
+  should have three files there: `a.upper.txt`, `b.upper.txt` and `concat.txt`.
 
 * Inspect the contents of `concat.txt` - do you see everything as you expected?
 
@@ -289,21 +347,6 @@ references a list. Each file in that list can be individually accessed using an
 index e.g. `${files[0]}`, or as we do here, use the variable without an index
 to list all the input files.
 
-# Viewing channel contents
-
-As our channels become more complicated it is useful to actually check out
-what's inside them: you can do this using the `.view()` operator.
-
-* Add the following to your workflow definition (on a new line) and execute the
-  workflow: `ch_input.view()`. What do you see?
-
-It can be quite useful to inspect channel contents like this when you are
-developing workflows, especially if you are working with tuples, maps and any
-transforming operators in general.
-
-* Check the channel contents of the (1) raw and (2) collected output of the
-  `CONVERT_TO_UPPER_CASE` process. How are they different?
-
 > **Quick recap** <br>
 > In this section we've learnt:
 >
@@ -311,5 +354,5 @@ transforming operators in general.
 > * How to create channels for input data
 > * How to execute workflows
 > * How to explore Nextflow's `work` directory
-> * How to generalize workflows
 > * How to view channel contents
+> * How to use samplesheets as input
