@@ -12,7 +12,7 @@ which should look something like this:
 N E X T F L O W  ~  version 21.04.0
 Launching `./main.nf` [friendly_bhaskara] - revision: b4490b9201
 executor >  local (17)
-[c9/e5f818] process > GET_SRA_BY_ACCESSION (SRR935092) [100%] 3 of 3 ✔
+[c9/e5f818] process > DONWLOAD_FASTQ_FILES (SRR935092) [100%] 3 of 3 ✔
 [d5/b5f24e] process > RUN_FASTQC (SRR935092)           [100%] 3 of 3 ✔
 [91/2cea54] process > RUN_MULTIQC                      [100%] 1 of 1 ✔
 [e0/b4fd37] process > GET_GENOME_FASTA                 [100%] 1 of 1 ✔
@@ -27,34 +27,26 @@ Have you noticed that there are SRA IDs after some of the processes? Well, if
 you look at which processes show these SRA IDs you might see that it's only
 those processes that are executed three times, *i.e.* once per SRA ID. This
 doesn't happen automatically, however, and comes from something called *tags*.
-Let's look at the `GET_SRA_BY_ACCESSION` process:
+Let's look at the `DONWLOAD_FASTQ_FILES` process:
 
 ```nextflow
-process GET_SRA_BY_ACCESSION {
+process DONWLOAD_FASTQ_FILES {
 
-    // Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
-    // accession number.
+    // Download a single-read FASTQ file from the SciLifeLab Figshare remote
 
     tag "${sra_id}"
     publishDir "results/data/raw_internal",
         mode: "copy"
 
     input:
-    val(sra_id)
+    tuple val(sra_id), val(figshare_link)
 
     output:
     tuple val(sra_id), path("*.fastq.gz")
 
     script:
     """
-    fastq-dump ${sra_id} \
-        -X 25000 \
-        --readids \
-        --dumpbase \
-        --skip-technical \
-        --gzip \
-        -Z \
-        > ${sra_id}.fastq.gz
+    wget ${figshare_link} -O ${sra_id}.fastq.gz
     """
 }
 ```
@@ -66,7 +58,7 @@ sample is being processed) but also for debugging or finding problematic samples
 in case of errors or odd output. There is, naturally, no need to use tags for
 processes which are only run once.
 
-* Comment out (prefix with `//`) the `tag` directive from the `GET_SRA_BY_ACCESSION` process and run the
+* Comment out (prefix with `//`) the `tag` directive from the `DONWLOAD_FASTQ_FILES` process and run the
   workflow again. No more SRA IDs!
 
 * Uncomment the `tag` directive before you move on.
@@ -92,7 +84,6 @@ process RUN_FASTQC {
 
     script:
     """
-    # Run FastQC
     fastqc ${fastq} -q
     """
 }

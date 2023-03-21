@@ -147,10 +147,9 @@ high-throughput sequencing is that you have pairs of reads for each sample.
 Nextflow has a special, built-in way to create channels for this data type: the
 `fromFilePairs` channel factory:
 
-```groovy
-Channel
+```nextflow
+ch_raw_reads = Channel
     .fromFilePairs ( "data/*_R{1,2}.fastq.gz" )
-    .set           { ch_raw_reads }
 ```
 
 This will create a channel containing all the reads in the `data/` directory in
@@ -172,27 +171,26 @@ simple. For more methods of reading in data see the Nextflow documentation on
 We can also do quite advanced things to manipuate data in channels, such as this:
 
 ```groovy
-Channel
+samples_and_treatments = Channel
     .fromPath ( params.metadata )
     .splitCsv ( sep: "\t", header: true )
     .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }
     .filter   { id, treatment -> treatment != "DMSO" }
     .unique   (  )
-    .set      { samples_and_treatments }
 ```
 
 That's a bit of a handful! But what does it do? The first line specifies that we
 want to read some data from a file specified by the `metadata` parameter, and
 the second line actually reads that data using tab as delimiter, including a
 header. The `map` operator takes each entire row and subsets it to only two
-columns: the `sample_id` and `treatment` columns. This subset is stored as a
-tuple. The `filter` operator is then used to remove any tuples where the second
-entry, `treatment`, is not equal to the string `"DMSO"` (*i.e.* untreated cells, in this example).
-We then only take the unique tuples and set the results as the new channel
-`samples_and_treatments`. Let's say that this is the metadata we're reading:
+columns: the `sample_id` and `treatment` columns (discarding the other columns).
+This subset is stored as a tuple. The `filter` operator is then used to remove
+any tuples where the second entry (`treatment`) is not equal to the string
+`"DMSO"` (*i.e.* untreated cells, in this example). Finally, we only keep unique
+tuple values. Let's say that this is the metadata we're reading:
 
 ```no-highlight
-sample_id     dose    group     treatment
+sample        dose    group     treatment
 sample_1      0.1     control   DMSO
 sample_1      1.0     control   DMSO
 sample_1      2.0     control   DMSO

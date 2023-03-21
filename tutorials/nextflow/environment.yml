@@ -2,14 +2,12 @@ name: nextflow-env
 channels:
   - conda-forge
   - bioconda
-  - r
 dependencies:
+  - bowtie2=2.5.1
   - fastqc=0.11.9
-  - sra-tools=2.11.0
-  - nextflow=21.04.0
-  - multiqc=1.10.1
-  - bowtie2=2.4.4
-  - samtools=1.10
-  - subread=2.0.1
-  - wget=1.20.1
-  - graphviz=2.42.3
+  - graphviz=7.0.5
+  - multiqc=1.14
+  - nextflow=22.10.6
+  - samtools=1.16.1
+  - subread=2.0.3
+  - wget=1.20.3

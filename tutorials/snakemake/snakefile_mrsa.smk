@@ -10,16 +10,21 @@ rule all:
         "results/multiqc.html",
         "results/rulegraph.png"
 
+def get_sample_url(wildcards):
+    return config["sample_urls"][wildcards.sample_id]
+
 rule get_SRA_by_accession:
     """
-    Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run accession number.
+    Retrieve a single-read FASTQ file
     """
     output:
         "data/raw_internal/{sample_id}.fastq.gz"
+    params:
+        url = get_sample_url,
+        max_reads = 20000
     shell:
         """
-        fastq-dump {wildcards.sample_id} -X 25000 --readids \
-            --dumpbase --skip-technical --gzip -Z > {output}
+        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 
 rule fastqc:
@@ -147,7 +152,9 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv"
     input:
-        bams = ["intermediate/SRR935090.sorted.bam", "intermediate/SRR935091.sorted.bam", "intermediate/SRR935092.sorted.bam"],
+        bams = ["intermediate/SRR935090.sorted.bam",
+                "intermediate/SRR935091.sorted.bam",
+                "intermediate/SRR935092.sorted.bam"],
         annotation = "data/raw_external/NCTC8325.gff3.gz"
     shell:
         """
