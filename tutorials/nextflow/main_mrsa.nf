@@ -1,8 +1,5 @@
 #!/usr/bin/env nextflow
 
-// Enable DSL2 for more powerful functionality
-nextflow.enable.dsl = 2
-
 workflow {
 
     // Workflow for generating count data for the MRSA case study

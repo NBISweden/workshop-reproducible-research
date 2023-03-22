@@ -16,9 +16,6 @@ file used in Nextflow, where workflows and their processes are defined.
 * Copy the following code into your `main.nf` file:
 
 ```nextflow
-// Enable DSL2 functionality
-nextflow.enable.dsl = 2
-
 // Workflow definition
 workflow {
     // Define input files
@@ -45,11 +42,8 @@ process CONVERT_TO_UPPER_CASE {
 }
 ```
 
-Here we have three separate parts. The first part enables the DSL2 (*Domain
-Specific Language 2*) functionality, and is required to use some of the newer
-and more powerful features of Nextflow. The next part is the *workflow
-definition*, while the last is a *process*. Let's go through the last two in
-more detail!
+Here we have two separate parts. The first is the *workflow definition*, while
+the last is a *process*. Let's go through them both in more detail!
 
 > **Nextflow comments** <br>
 > Double-slashes (`//`) are used for comments in Nextflow.
