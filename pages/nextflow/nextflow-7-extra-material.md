@@ -13,11 +13,11 @@ some links to additional resources on Nextflow:
 
 # Using containers in Nextflow
 
-Nextflow has built-in support for using both Docker and Singularity containers (and others too),
-either with a single container for the workflow as a whole or separate
-containers for each individual process. The simplest way to do it is to have a
-single container for your entire workflow, in which case you simply run the
-workflow and specify the image you want to use, like so:
+Nextflow has built-in support for using both Docker and Singularity containers
+(and others too), either with a single container for the workflow as a whole or
+separate containers for each individual process. The simplest way to do it is to
+have a single container for your entire workflow, in which case you simply run
+the workflow and specify the image you want to use, like so:
 
 ```bash
 # Run with docker
@@ -124,7 +124,7 @@ profiles {
 ```
 
 This will add a profile to your workflow, which you can access by running the
-workflow with `-profile uppmax`. You will also have to supply an extra parameter 
+workflow with `-profile uppmax`. You will also have to supply an extra parameter
 `account` which corresponds to your SNIC project account, but the rest you can
 leave as-is, unless you want to tinker with *e.g.* compute resource
 specifications. That's all you need! Nextflow will take care of communications
@@ -168,7 +168,8 @@ files, one sample) into a single alignment file (one file, one sample) very
 simple. For more methods of reading in data see the Nextflow documentation on
 [Channel Factories](https://www.nextflow.io/docs/latest/channel.html#channel-factory).
 
-We can also do quite advanced things to manipuate data in channels, such as this:
+We can also do quite advanced things to manipuate data in channels, such as
+this:
 
 ```groovy
 samples_and_treatments = Channel

@@ -58,8 +58,8 @@ sample is being processed) but also for debugging or finding problematic samples
 in case of errors or odd output. There is, naturally, no need to use tags for
 processes which are only run once.
 
-* Comment out (prefix with `//`) the `tag` directive from the `DONWLOAD_FASTQ_FILES` process and run the
-  workflow again. No more SRA IDs!
+* Comment out (prefix with `//`) the `tag` directive from the
+  `DONWLOAD_FASTQ_FILES` process and run the workflow again. No more SRA IDs!
 
 * Uncomment the `tag` directive before you move on.
 
@@ -89,11 +89,11 @@ process RUN_FASTQC {
 }
 ```
 
-Here is a process with two output channels! One contains all the `.html` files, while
-the other contains all the `.zip` files. How is this handled in the workflow
-definition of downstream processes that use the outputs? The `RUN_MULTIQC`
-process uses this output, and its part in the workflow definition looks like
-this:
+Here is a process with two output channels! One contains all the `.html` files,
+while the other contains all the `.zip` files. How is this handled in the
+workflow definition of downstream processes that use the outputs? The
+`RUN_MULTIQC` process uses this output, and its part in the workflow definition
+looks like this:
 
 ```nextflow
 RUN_MULTIQC (
@@ -118,9 +118,10 @@ path(*.txt), emit: text
 ```
 
 Instead of referring to the output by its position in an array as previously, we
-refer to the channel with a label we choose (`.out.text`) instead. This benefits us in that 
-we can infer more information about channel contents called `text` rather than `[1]`, 
-and it is also allows us to be less error-prone when rewriting parts of a workflow.
+refer to the channel with a label we choose (`.out.text`) instead. This benefits
+us in that we can infer more information about channel contents called `text`
+rather than `[1]`, and it is also allows us to be less error-prone when
+rewriting parts of a workflow.
 
 Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC` 
 use those outputs. You'll have to change both the output section of the 

@@ -61,9 +61,9 @@ The workflow definition here has two parts, each doing an important job for any
 Nextflow workflow. The first part defines a *channel*, which is an asynchronous
 first-in-first-out stream of data that connect a workflow's various inputs and
 outputs. In this particular case, we define a `Channel` using the `.fromPath`
-channel factory on the specific file path `a.txt`, and name the channel `ch_input`. You
-can read this as *"create the channel `ch_input` and send the file
-`a.txt` into it"*.
+channel factory on the specific file path `a.txt`, and name the channel
+`ch_input`. You can read this as *"create the channel `ch_input` and send the
+file `a.txt` into it"*.
 
 > **Naming channels** <br>
 > A channel can be named anything you like, but it is good practice to prepend
@@ -71,10 +71,10 @@ can read this as *"create the channel `ch_input` and send the file
 > are just normal variables.
 
 How do we use these channels then? Channels pass data to and from processes
-through our workflow. By providing channels as arguments to processes, we describe
-how we want data to flow. This is exactly what we do in the second part: we call
-our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input argument - this
-is very similar to functional programming.
+through our workflow. By providing channels as arguments to processes, we
+describe how we want data to flow. This is exactly what we do in the second
+part: we call our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input
+argument - this is very similar to functional programming.
 
 This is our entire workflow, for now: the creation of a channel followed by
 using the contents of that channel as input to a single process. Let's look at
@@ -91,17 +91,17 @@ several sections: `publishDir`, `input`, `output` and `script`.
 > UPPERCASE letters for processes to visually distinguish them in the workflow. 
 > You do not have to follow this if you don't want to, but we do so here.
 
-Let's ignore the first section for now and focus on the last three. The `input` and
-`output` sections describe the data expected to come through the channel for this
-specific process. Each line of `input` describes the data expected for each process
-argument, in the order used in the workflow. In this case, `CONVERT_TO_UPPER_CASE`
-expects a single channel (one line of input), and expects the data to be filenames
-(of type `path`). Notice that there is a difference between how the inputs and
-outputs are declared? The `output` is an explicit string (*i.e* surrounded by
-quotes), while the input is a variable named `file`. This means inputs can be
-referenced in the process without naming the data explicitly, unlike the output
-where the name needs to be explicit. We'll get back to exactly how 
-this works in just a moment.
+Let's ignore the first section for now and focus on the last three. The `input`
+and `output` sections describe the data expected to come through the channel for
+this specific process. Each line of `input` describes the data expected for each
+process argument, in the order used in the workflow. In this case,
+`CONVERT_TO_UPPER_CASE` expects a single channel (one line of input), and
+expects the data to be filenames (of type `path`). Notice that there is a
+difference between how the inputs and outputs are declared? The `output` is an
+explicit string (*i.e* surrounded by quotes), while the input is a variable
+named `file`. This means inputs can be referenced in the process without naming
+the data explicitly, unlike the output where the name needs to be explicit.
+We'll get back to exactly how this works in just a moment.
 
 Let's move on to the first section: `publishDir`. This tells
 Nextflow where the output of the process should be stored when it is finished;

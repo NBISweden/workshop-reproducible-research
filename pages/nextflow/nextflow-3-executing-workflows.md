@@ -1,6 +1,6 @@
 It's time to start working with a more realistic workflow using the MRSA case
-study of this course! We've created a bare-bones version of this pipeline for you,
-but we'll work our way through it as we go along and learn more about
+study of this course! We've created a bare-bones version of this pipeline for
+you, but we'll work our way through it as we go along and learn more about
 Nextflow's features and functionality. The MRSA workflow looks like this:
 
 ```nextflow
@@ -155,7 +155,8 @@ run by looking into the `.nextflow.log` file!
 You'll be greeted by a wealth of debugging information, which may even seem a
 bit overkill at this point! This level of detail is, however, quite useful both
 as a history of what you've attempted and as an additional help when you run
-into errors! Also, it helps with advanced debugging - which we'll get into later.
+into errors! Also, it helps with advanced debugging - which we'll get into
+later.
 
 > **Quick recap** <br>
 > In this section we've learnt:
