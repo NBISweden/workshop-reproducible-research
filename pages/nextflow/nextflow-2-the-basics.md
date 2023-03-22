@@ -19,10 +19,10 @@ file used in Nextflow, where workflows and their processes are defined.
 // Workflow definition
 workflow {
     // Define input files
-    ch_input = Channel.fromPath("a.txt")
+    ch_input = Channel.fromPath( "a.txt" )
 
     // Run workflow
-    CONVERT_TO_UPPER_CASE(ch_input)
+    CONVERT_TO_UPPER_CASE( ch_input )
 }
 
 // Process definition
@@ -57,13 +57,28 @@ the last is a *process*. Let's go through them both in more detail!
 
 # Workflow definitions
 
+```nextflow
+workflow {
+    // Define input files
+    ch_input = Channel.fromPath( "a.txt" )
+
+    // Run workflow
+    CONVERT_TO_UPPER_CASE( ch_input )
+}
+```
+
 The workflow definition here has two parts, each doing an important job for any
 Nextflow workflow. The first part defines a *channel*, which is an asynchronous
 first-in-first-out stream of data that connect a workflow's various inputs and
-outputs. In this particular case, we define a `Channel` using the `.fromPath`
-channel factory on the specific file path `a.txt`, and name the channel
-`ch_input`. You can read this as *"create the channel `ch_input` and send the
-file `a.txt` into it"*.
+outputs. In simpler terms, channels contain the data that you want to process
+with the workflow and can be passed between the various parts of the workflow.
+
+Channels can be created in various different ways using *channel factories*,
+depending on what type data you want to put into them and where this data is
+stored. In this particular case we define our `ch_input` channel using the
+`.fromPath` channel factory, which takes a file path as input - hre we use the
+`a.txt` file. You can thus read `ch_input = Channel.fromPath("a.txt")` as
+*"create the channel `ch_input` and send the file `a.txt` into it"*.
 
 > **Naming channels** <br>
 > A channel can be named anything you like, but it is good practice to prepend
