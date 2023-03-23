@@ -165,18 +165,19 @@ executor >  local (1)
 The first few lines are information about this particular run, including the
 Nextflow version used, which workflow definition file was used, a randomly
 generated run name (an adjective and a scientist), the revision ID as well
-as where the processes were executed (locally, in this case).
+as where the processes were executed (locally, in this case, as opposed to
+*e.g.* SLURM or AWS).
 
 What follows next is a list of all the various processes for this particular
 workflow. The order does not necessarily reflect the order of execution
 (depending on each process’ input and output dependencies), but they are in the
 order they were defined in the workflow file - there's only the one process
-here, of course. The first part (*e.g* `[32/9124a1]`) is the process ID, which
-is also the first part of the subdirectory in which the process is run (before
-the outputs are transferred to the publish directory). We then get the process
-and its name. Lastly, we get how many instances of each process are currently
-running or have finished. Here we only have the one process, of course, but this
-will soon change.
+here, of course. The first part (*e.g.* `[32/9124a1]`) is the process ID, which
+is also the first part of the subdirectory in which the process is run (the full
+subdirectory will be something like `32/9124a1dj56n2346236245i2343`, so just a
+longer hash). We then get the process and its name. Lastly, we get how many
+instances of each process are currently running or have finished. Here we only
+have the one process, of course, but this will soon change.
 
 * Let's check that everything worked: type `ls results/` and see that it
   contains the output we expected.
@@ -184,30 +185,54 @@ will soon change.
 * Let's explore the working directory: change into whatever directory is
   specified by the process ID (your equivalent to `work/32/9124a1[...]`).
 
-What do you see when you list the contents of this directory? You should,
-hopefully, see a symbolic link named `a.txt` pointing to the real location of
-this file, plus a normal file `a.upper.txt`, which is the output of the process
-that was run in this directory. While it seems cumbersome to manually move into
-these work directories it is something you only do when debugging errors in your
-workflow, and Nextflow has some tricks to make this process a lot easier - more
-on this later.
+What do you see when you list the contents of this directory? You should see a
+symbolic link named `a.txt` pointing to the real location of this file, plus a
+normal file `a.upper.txt`, which is the output of the process that was run in
+this directory. You generally only move into these work directories when
+debugging errors in your workflow, and Nextflow has some tricks to make this
+process a lot easier - more on this later.
 
-So, how does this all work? Well, we have three components: a set of inputs, a
-set of processes and a workflow that defines which processes should be run. We
-tell Nextflow to *push* the inputs through the entire workflow, so to speak.
+So, in summary: we have three components: a set of inputs stored in a channel, a
+set of processes and a workflow that defines which processes should be run in
+what order. We tell Nextflow to *push* the inputs through the entire workflow,
+so to speak.
 
 * Now it's your turn! Move back to the workflow root and make it use only the
   `b.txt` input file and give you the `b.upper.txt` instead.
 
-* Run your workflow and make sure it works before you move on.
+* Run your workflow and make sure it works before you move on; check below if
+  you're having trouble.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+ch_input = Channel.fromPath( "a.txt" )
+```
+
+</details>
+
+# Viewing channel contents
+
+Something that's highly useful during development of Nextflow workflows is to
+view the contents of channels, which can be done with the `view()` operator.
+
+* Add the following to your workflow definition (on a new line) and execute the
+  workflow: `ch_input.view()`. What do you see?
+
+* Remove the `view()` operator once you're done.
+
+It can be quite helpful to view the channel contents whenever you're unsure of
+what a channel contains or if you've run into some kind of bug or error, or even
+just when you're adding something new to your workflow. Remember to view the
+channel contents whenever you need to during the rest of this tutorial!
 
 # Files and sample names
 
-Having to manually change inputs and outputs like you just did is not really
-ideal, is it? Hard-coding outputs is rarely good, so let's try to change that.
 One powerful feature of Nextflow is that it can handle complex data structures
-as input, and not only filenames. One strategy we can follow is to create
-a prefix for our output and pass it together with the filename.
+as input, and not only filenames. One of the more useful things this allows us
+to do is to couple sample names with their respective data files inside
+channels.
 
 * Change the channel definition to the following:
 
@@ -217,12 +242,17 @@ ch_input = Channel
     .map{ file -> tuple(file.getBaseName(), file) }
 ```
 
-Okay, so what does that do, exactly? Well, the added line containing the
-`.map{}` statement changes the data stream to be `[prefix, file]` instead of
-just `[file]` - we generate the prefix from the *base name* of the file itself,
-*i.e.* the file without extension or directory. We now have to change the
-process itself to make use of this new information contained in the `ch_input`
-channel.
+Here we create a *tuple* (something containing multiple parts) using the `map`
+operator, the *base name* of the file (`a`) and the file path (`a.txt`). The
+statement `.map{ file -> tuple(file.getBaseName(), file) }` can thus be read as
+"replace the channel's contents with a tuple containing the base name and the
+file path". The contents of the channel thus change from `[a.txt]` to `[a,
+a.txt]`. Passing the sample name or ID together with the sample data in this way
+is extremely useful in a workflow context and can grealy simplify downstream
+processes.
+
+Before this will work, however, we have to change the process itself to make use
+of this new information contained in the `ch_input` channel.
 
 * Change the process definition to the following:
 
@@ -231,45 +261,34 @@ process CONVERT_TO_UPPER_CASE {
     publishDir "results/", mode: "copy"
 
     input:
-    tuple val(prefix), path(file)
+    tuple val(sample), path(file)
 
     output:
-    path("${prefix}.upper.txt")
+    path("${sample}.upper.txt")
 
     script:
     """
-    tr [a-z] [A-Z] < ${file} > ${prefix}.upper.txt
+    tr [a-z] [A-Z] < ${file} > ${sample}.upper.txt
     """
 }
 ```
 
-Notice how the input now is aware that we're passing a *tuple* as input, which
-allows us to use both the `file` variable (as before) and the new `prefix`
+Notice how the input now is aware that we're passing a tuple as input, which
+allows us to use both the `file` variable (as before) and the new `sample`
 variable. All that's left now is to change the input to our pipeline!
 
 * Change the channel definition line from `.fromPath("a.txt")` to
   `.fromPath(["a.txt", "b.txt"])` and try running the pipeline. Make sure it
-  works before you move on!
-
-# Viewing channel contents
-
-As our channels become more complicated it is useful to actually check out
-what's inside them: you can do this using the `.view()` operator.
-
-* Add the following to your workflow definition (on a new line) and execute the
-  workflow: `ch_input.view()`. What do you see?
-
-It can be quite useful to inspect channel contents like this when you are
-developing workflows, especially if you are working with tuples, maps and any
-transforming operators in general.
+  works before you move on! Remember to use the `view()` operator if you want to
+  inspect the channel contents in detail.
 
 # Input from samplesheets
 
 So far we've been specifying inputs using strings inside the workflow itself,
 but hard-coding inputs like this is not ideal. A better solution is to use
-samplesheets instead, *e.g.* comma- or tab-separated files; this is standard for
-many pipelines, including [nf-core](https://nf-co.re/). Take, for example, the
-following CSV file:
+samplesheets instead, *e.g.* comma- or tab-separated data files; this is
+standard for many pipelines, including [nf-core](https://nf-co.re/). Take, for
+example, the following CSV file:
 
 ```no-highlight
 a,a.txt
@@ -318,11 +337,11 @@ that concatenates the content of all these UPPERCASE files.
 We already have a channel containing the two files we need: the output of the
 `CONVERT_TO_UPPER_CASE` process called `CONVERT_TO_UPPER_CASE.out`. We can use
 this output as input to a new process using the syntax:
-`CONVERT_TO_UPPER_CASE.out.collect()`. The `collect()` operator, groups all the
-outputs in the channel into a single data object for the next process. This is
-a *many-to-one* type of operation: a stream with several files (*many*) is
-merged into a lone list of files (*one*). If `collect()` was not used, the next
-process would try to run a task for each file in the output channel.
+`CONVERT_TO_UPPER_CASE.out.collect()`. The `collect()` operator groups all the
+outputs in the channel into a single data object for the next process. This is a
+*many-to-one* type of operation: a stream with several files (*many*) is merged
+into a lone list of files (*one*). If `collect()` was not used, the next process
+would try to run a task for each file in the output channel.
 
 Let's put this in use by adding a new process to the workflow definition. We'll
 call this process `CONCATENATE_FILES` and it will take the output from
@@ -377,9 +396,8 @@ to list all the input files.
 > **Quick recap** <br>
 > In this section we've learnt:
 >
-> * How to create and extend simple Nextflow workflows
-> * How to create channels for input data
-> * How to execute workflows
-> * How to explore Nextflow's `work` directory
-> * How to view channel contents
+> * How to create, execute and extend workflows
+> * How to explore the `work` directory and channel contents
+> * How to couple sample names to sample data files
 > * How to use samplesheets as input
+> * How to collect multiple files as single inputs for processes
