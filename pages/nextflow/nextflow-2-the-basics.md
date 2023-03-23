@@ -97,32 +97,50 @@ how processes themselves are defined!
 
 # Process definitions
 
+```nextflow
+process CONVERT_TO_UPPER_CASE {
+    publishDir "results/", mode: "copy"
+
+    input:
+    path(file)
+
+    output:
+    path("a.upper.txt")
+
+    script:
+    """
+    tr [a-z] [A-Z] < ${file} > a.upper.txt
+    """
+}
+```
+
 Looking at the process in the code above, we can see several parts. The process
 block starts with its name, in this case `CONVERT_TO_UPPER_CASE`, followed by
-several sections: `publishDir`, `input`, `output` and `script`.
+several sections, or *directives* as Nextflow calls them: `publishDir`, `input`,
+`output` and `script`.
 
 > **Naming processes** <br>
 > A process can be named using any case, but a commonly used convention is to use 
 > UPPERCASE letters for processes to visually distinguish them in the workflow. 
 > You do not have to follow this if you don't want to, but we do so here.
 
-Let's ignore the first section for now and focus on the last three. The `input`
-and `output` sections describe the data expected to come through the channel for
+Let's start with the first directive: `publishDir`. This tells Nextflow where
+the output of the process should be placed when it is finished. Setting `mode`
+to `"copy"` just means that we want to copy the output files to the publishing
+directory, rather than using a symbolic link (which is the default).
+
+The `input` and `output` directives describe the data expected to come through
 this specific process. Each line of `input` describes the data expected for each
 process argument, in the order used in the workflow. In this case,
 `CONVERT_TO_UPPER_CASE` expects a single channel (one line of input), and
-expects the data to be filenames (of type `path`). Notice that there is a
-difference between how the inputs and outputs are declared? The `output` is an
-explicit string (*i.e* surrounded by quotes), while the input is a variable
-named `file`. This means inputs can be referenced in the process without naming
-the data explicitly, unlike the output where the name needs to be explicit.
-We'll get back to exactly how this works in just a moment.
+expects the data to be filenames ( *i.e.* of type `path`).
 
-Let's move on to the first section: `publishDir`. This tells
-Nextflow where the output of the process should be stored when it is finished;
-setting `mode` to `"copy"` just means that we want to copy the output files to
-the publishing directory, rather than using a symbolic link (which is the
-default).
+Notice that there is a difference between how the inputs and outputs are
+declared? The `output` is an explicit string (*i.e.* surrounded by quotes),
+while the input is a variable named `file`. This means inputs can be referenced
+in the process without naming the data explicitly, unlike the output where the
+name needs to be explicit. We'll get back to exactly how this works in just a
+moment.
 
 # Executing workflows
 
