@@ -1,7 +1,7 @@
 Now that we've gone through the specifics of executing workflows in a bit more
 detail, let's go through working with processes. While there are numerous
-process *directives* that can be used, we'll go through some of the more
-commonly used ones here.
+process directives that can be used, we'll go through some of the more commonly
+used ones here.
 
 # Tags
 
@@ -9,7 +9,7 @@ Let's look at the command line output we got during the workflow's execution,
 which should look something like this:
 
 ```bash
-N E X T F L O W  ~  version 21.04.0
+N E X T F L O W  ~  version 22.10.6
 Launching `./main.nf` [friendly_bhaskara] - revision: b4490b9201
 executor >  local (17)
 [c9/e5f818] process > DONWLOAD_FASTQ_FILES (SRR935092) [100%] 3 of 3 ✔
