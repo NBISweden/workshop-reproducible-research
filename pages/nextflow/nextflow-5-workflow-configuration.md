@@ -43,7 +43,7 @@ params {
 }
 
 // A publishDir directive in a process
-publishDir: "{params.outdir}", mode: "copy"
+publishDir: "${params.outdir}", mode: "copy"
 ```
 
 </details>
@@ -110,7 +110,7 @@ this:
 ```nextflow
 manifest {
     name        = "My Workflow"
-    description = "My workflow, created by me"
+    description = "My awesome workflow, created by me"
     author      = "Me"
     mainScript  = "main.nf"
     version     = "1.0.0"
