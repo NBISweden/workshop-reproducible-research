@@ -154,7 +154,7 @@ especially for processes with more than one output. For example, we can publish
 outputs in separate directories, like so:
 
 ```nextflow
-publishDir "results/tables/",
+publishDir "results/tables",
     pattern: "*.tsv",
     mode: "copy"
 publishDir "results/logs",
@@ -169,7 +169,29 @@ one to separate output as above, or publish the same output to multiple folders.
 
 * Edit the `RUN_FASTQC` process to place the HTML and compressed files in
   separate directories. Remove the `results` directory and re-run the workflow
-  to check that it worked.
+  to check that it worked - click below if you're having trouble.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+process RUN_FASTQC {
+
+    (...)
+
+    publishDir "results/html",
+        pattern: "*.html",
+        mode: "copy"
+    publishDir "intermediate/zip",
+        pattern: "*.zip",
+        mode: "copy"
+
+    (...)
+}
+
+```
+
+</details>
 
 Note that an output and a *published* output are different things: something can
 be an output of a process without being published. In fact, the `RUN_FASTQC`
