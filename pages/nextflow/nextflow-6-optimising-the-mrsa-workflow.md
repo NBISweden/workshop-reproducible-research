@@ -153,7 +153,7 @@ can also be treated in the same manner, and defined separately in another file.
 ```nextflow
 // In the main workflow:
 RUN_QC (
-    GET_SRA_BY_ACCESSION.out
+    DOWNLOAD_FASTQ_FILES.out
 )
 
 // A new subworkflow

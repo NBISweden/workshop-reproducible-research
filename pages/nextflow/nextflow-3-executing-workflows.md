@@ -44,7 +44,7 @@ workflow {
 
 The workflow has one input channel named `ch_input`, which reads input from the
 `samplesheet.csv` file. We then define the processes to be executed by this
-workflow, nine in total. The first process (`GET_SRA_BY_ACCESSION`) takes the
+workflow, nine in total. The first process (`DOWNLOAD_FASTQ_FILES`) takes the
 `ch_input` channel as input, while the rest of the processes takes the output of
 previous processes as input. Before we go into more detail regarding the
 ins-and-outs of this workflow, let's start with some specifics of how workflows
