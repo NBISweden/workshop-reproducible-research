@@ -27,7 +27,8 @@ workflow {
 
 // Process definition
 process CONVERT_TO_UPPER_CASE {
-    publishDir "results/", mode: "copy"
+    publishDir "results/",
+        mode: "copy"
 
     input:
     path(file)
@@ -99,7 +100,8 @@ how processes themselves are defined!
 
 ```nextflow
 process CONVERT_TO_UPPER_CASE {
-    publishDir "results/", mode: "copy"
+    publishDir "results/",
+        mode: "copy"
 
     input:
     path(file)
@@ -207,7 +209,7 @@ so to speak.
 <summary> Click to show </summary>
 
 ```nextflow
-ch_input = Channel.fromPath( "a.txt" )
+ch_input = Channel.fromPath( "b.txt" )
 ```
 
 </details>
@@ -238,8 +240,8 @@ channels.
 
 ```nextflow
 ch_input = Channel
-    .fromPath("a.txt")
-    .map{ file -> tuple(file.getBaseName(), file) }
+    .fromPath ( "a.txt" )
+    .map      { file -> tuple(file.getBaseName(), file) }
 ```
 
 Here we create a *tuple* (something containing multiple parts) using the `map`
@@ -258,7 +260,8 @@ of this new information contained in the `ch_input` channel.
 
 ```nextflow
 process CONVERT_TO_UPPER_CASE {
-    publishDir "results/", mode: "copy"
+    publishDir "results/",
+        mode: "copy"
 
     input:
     tuple val(sample), path(file)
@@ -277,8 +280,8 @@ Notice how the input now is aware that we're passing a tuple as input, which
 allows us to use both the `file` variable (as before) and the new `sample`
 variable. All that's left now is to change the input to our pipeline!
 
-* Change the channel definition line from `.fromPath("a.txt")` to
-  `.fromPath(["a.txt", "b.txt"])` and try running the pipeline. Make sure it
+* Change the channel definition line from `.fromPath ( "a.txt" )` to
+  `.fromPath ( ["a.txt", "b.txt"] )` and try running the pipeline. Make sure it
   works before you move on! Remember to use the `view()` operator if you want to
   inspect the channel contents in detail.
 
@@ -305,7 +308,7 @@ processing and analyses. Using contents of files as input can be done using the
 ```nextflow
 ch_input = Channel
     .fromPath ( "samplesheet.csv" )
-    .splitCsv ()
+    .splitCsv ( )
 ```
 
 * Change the input channel definition to the code above and create the
@@ -367,7 +370,8 @@ process definition section.
 
 ```nextflow
 process CONCATENATE_FILES {
-    publishDir "results/", mode: "copy"
+    publishDir "results/",
+        mode: "copy"
 
     input:
     path(files)

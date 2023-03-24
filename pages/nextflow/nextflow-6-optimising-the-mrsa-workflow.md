@@ -66,7 +66,7 @@ params {
 
 // [ main.nf ]
 // Channel creation
-ch_genome_ggf3 = Channel.fromPath( params.genome_gff3 )
+ch_genome_ggf3 = Channel.fromPath ( params.genome_gff3 )
 
 // Workflow definition
 GENERATE_COUNTS_TABLE (
@@ -90,7 +90,7 @@ this could be done.
 // Channel definition
 ch_genome_fasta = Channel
     .fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
-    .map{ file -> tuple(file.getBaseName(), file) }
+    .map     { file -> tuple(file.getBaseName(), file) }
 
 // INDEX_GENOME process definition
 process INDEX_GENOME {
@@ -125,7 +125,7 @@ how you use them in practice. Let's take a look at a toy example:
 
 ```nextflow
 workflow {
-    ch_input = Channel.fromPath( params.input )
+    ch_input = Channel.fromPath ( params.input )
     SUBWORKFLOW (
         ch_input
     )

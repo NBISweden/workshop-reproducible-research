@@ -73,7 +73,8 @@ process RUN_FASTQC {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "results/", mode: "copy"
+    publishDir "results/",
+        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
@@ -131,14 +132,15 @@ rewriting parts of a workflow.
 <summary> Click to show </summary>
 
 ```nextflow
-    // Workflow definition for RUN_MULTIQC
-    RUN_MULTIQC (
-        RUN_FASTQC.out.zip.collect()
+// Workflow definition for RUN_MULTIQC
+RUN_MULTIQC (
+    RUN_FASTQC.out.zip.collect()
+)
 
-    // Output section of RUN_FASTC
-    output:
-        path("*.html"), emit: html
-        path("*.zip"),  emit: zip
+// Output section of RUN_FASTC
+output:
+path("*.html"), emit: html
+path("*.zip"),  emit: zip
 ```
 
 </details>
