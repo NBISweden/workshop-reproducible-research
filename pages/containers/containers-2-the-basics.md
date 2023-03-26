@@ -164,7 +164,7 @@ to bowtie2. More on these so-called "Bind mounts" in Section 4 of this tutorial.
 > **Quick recap** <br>
 > In this section we've learned:
 >
-> - How to use `docker pull` for downloading images from a remote repository.
+> - How to use `docker pull` for downloading remotely stored images
 > - How to use `docker image ls` for getting information about the images we
 >   have on our system.
 > - How to use `docker run` for starting a container from an image.
