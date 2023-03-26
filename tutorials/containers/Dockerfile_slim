@@ -1,48 +1,22 @@
-FROM ubuntu:16.04
+FROM condaforge/mambaforge
 
 LABEL description = "Minimal image for the NBIS reproducible research course."
 MAINTAINER "John Sundh" john.sundh@scilifelab.se
 
 # Use bash as shell
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "--login", "-c"]
 
 # Set workdir
 WORKDIR /course
 
-# Install necessary tools
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends bzip2 \
-                                               ca-certificates \
-                                               curl \
-                                               fontconfig \
-                                               git \
-                                               language-pack-en \
-                                               tzdata \
-                                               vim \
-                                               unzip \
-                                               wget \
-    && apt-get clean
+# Set language encoding
+ENV LANG="en_US.UTF-8"
 
-# Install Miniconda and add to PATH
-RUN curl -L https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O && \
-    bash Miniconda3-4.7.12.1-Linux-x86_64.sh -bf -p /usr/miniconda3/ && \
-    rm Miniconda3-4.7.12.1-Linux-x86_64.sh && \
-    /usr/miniconda3/bin/conda clean -tipsy && \
-    ln -s /usr/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /usr/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
-
-# Add conda to PATH and set locale
-ENV PATH="/usr/miniconda3/bin:${PATH}"
-ENV LC_ALL en_US.UTF-8
-ENV LC_LANG en_US.UTF-8
-
-# Configure Conda channels and install Mamba
-RUN conda config --add channels bioconda \
-    && conda config --add channels conda-forge \
-    && conda config --set channel_priority strict \
-    && conda install mamba \
-    && mamba clean --all
+# Configure Conda/Mamba
+RUN mamba init bash && conda config --set channel_priority strict && \
+    conda config --append channels bioconda && \
+    conda config --append channels r && \
+    conda config --set subdir linux-64
 
 # Open port for running Jupyter Notebook
 EXPOSE 8888
