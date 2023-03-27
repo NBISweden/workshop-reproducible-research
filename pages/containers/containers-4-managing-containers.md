@@ -17,8 +17,8 @@ docker container ls --all
 This should show information about the container that we just ran. Similar to:
 
 ```
-CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS                      PORTS               NAMES
-39548f30ce45        my_docker_conda     "/bin/bash -c 'bas..."    3 minutes ago       Exited (0) 3 minutes ago                             el
+CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS          PORTS      NAMES
+b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds   8888/tcp   sad_maxwell
 ```
 
 If we run `docker run` without any flags, your local terminal is attached to the
@@ -52,11 +52,12 @@ docker exec -it my_container /bin/bash
 ## Bind mounts
 
 There are obviously some advantages to isolating and running your data analysis
-in containers, but at some point you need to be able to interact with the host
-system to actually deliver the results. This is done via bind mounts. When you
-use a bind mount, a file or directory on the *host machine* is mounted into
-a container. That way, when the container generates a file in such a directory
-it will appear in the mounted directory on your host system.
+in containers, but at some point you need to be able to interact with the 
+rest of the host system (_e.g._ your laptop) to actually deliver the results. 
+This is done via bind mounts. When you use a bind mount, a file or directory 
+on the *host machine* is mounted into a container. That way, when the 
+container generates a file in such a directory it will appear in the mounted 
+directory on your host system.
 
 > **Tip** <br>
 > Docker also has a more advanced way of data storage called
