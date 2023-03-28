@@ -256,10 +256,112 @@ Finished job 0.
 
 Neat!
 
+
 > **Tip** <br>
 > You can name a file whatever you want in a Snakemake workflow, but you will
 > find that everything falls into place much nicer if the filename reflects
 > the file's path through the workflow, *e.g.* `sample_a.trimmed.deduplicated.sorted.bam`.
+
+
+The input to Snakemake rules have to be strings or lists of strings, however 
+you don't have to specify these strings directly in the `input:` section of 
+rules. Instead, you can specify Python functions that return strings or 
+lists of strings. This allows you to supply input to rules that can vary 
+depending on the wildcards being used. We'll get to why that's useful in a 
+sec, but first let's put it to use for the `conatenate_files` rule. 
+Because Snakemake is based on Python we can mix rule definitions with 
+standard python code in the same file. Add a function just above the 
+`concatenate_files` that looks like this:
+
+```python
+def concat_input(wildcards):
+    files = [wildcards.first + ".txt", wildcards.second + ".txt"]
+    return files
+```
+
+This is the syntax to define a function in Python. The 
+`def concat_input(wildcards):` line shows the name of the function 
+(`concat_input`) and the variable passed to the function 
+(the `wildcards` object). In the second line we add two items to a list 
+that we call `files` and add the '.txt' suffix to each item. Finally, the  
+function returns the list. 
+Because the `concatenate_files` rule has two wildcards `{first}` and `{second}` 
+we can access the actual strings in the `wildcards` object using 
+`wildcards.first` and `wildcards.second`. When we ask for the file `a_b.txt` 
+then `wildcards.first == 'a'` and `wildcards.second == 'b'`. This means that 
+the `files` list returned by the function will be `['a.txt', 'b.txt']`. To see
+for yourself you can add the following line to the function, just before the 
+return statement: `print(wildcards.first, wildcards.second, files)`. This 
+way the wildcard values and the list will be printed to the terminal when 
+you run Snakemake.
+ 
+Now that we've defined the function to use as input, we can use it in the 
+`concatenate_files` rule. Update the rule so that it looks like this:
+
+```python
+rule concatenate_files:
+    output:
+        "{first}_{second}.txt"
+    input:
+        concat_input
+    shell:
+        """
+        cat {input[0]} {input[1]} > {output}
+        """
+```
+
+You see that the name of the function `concat_input` is added in place of 
+the input strings. When using the `wildcards` object in input functions like 
+this we have to call the function without any arguments (simply 
+`concat_input`) and the function has to be defined to accept a single argument 
+(here `def concat_input(wildcards):`).
+Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
+`-f` to the snakemake command to force a re-run:
+
+```bash
+snakemake a_b.txt -c 1 -f
+```
+
+There are a number of possible use-cases for input functions. For example, 
+say that you have an experiment where you've sequenced three samples: 
+`sample1`, `sample2` and `sample3` with the corresponding fastq files under 
+`data/` and you want to write a rule that outputs the statistics of all  
+sequences within each sample. 
+However, samples `sample1` and `sample2` have been sequenced with single-end 
+technology while `sample3` have paired-end reads. The single-end samples will 
+have only one fastq file whereas the paired-end sample will have two (one 
+for each sequenced end). Thus, depending on the name of the sample the 
+input to the function will either be one file or two. With input functions 
+we can write a generalized rule that can handle both types:
+
+```python
+def fastq_input(wildcards):
+    if wildcards.sample_id in ["sample1", "sample2"]:
+        return "data/" + wildcards.sample_id + ".fastq.gz"
+    else:
+        return ["data/" + wildcards.sample_id + ".R1.fastq.gz",
+                "data/" + wildcards.sample_id + ".R2.fastq.gz"]
+
+rule fastq_stats:
+    output:
+        "{sample_id}.stats.txt"
+    input:
+        fastq_input
+    shell:
+        """
+        seqtk comp {input} > {output}
+        """
+```
+
+As you can see, the `fastq_stats` rule outputs one file `{sample_id}.stats.txt` 
+and takes as input the value returned from the `fastq_input` function. In 
+this function the sample id is evaluated and if it is either `sample1` or 
+`sample2` (our single-end samples) then the function returns a single string 
+which is the path to the fastq file for that sample. Otherwise, the function 
+returns a list containing both the `R1` and `R2` files for the sample. In the 
+`shell:` directive of the rule the `seqtk comp` command is run on the input 
+and the output is sent to the output file.
+
 
 > **Quick recap** <br>
 > In this section we've learned:
@@ -267,3 +369,4 @@ Neat!
 > - How a simple Snakemake rule looks.
 > - How to define target files when executing a workflow.
 > - How to use named wildcards for writing generic and flexible rules.
+> - How to use input functions in rules

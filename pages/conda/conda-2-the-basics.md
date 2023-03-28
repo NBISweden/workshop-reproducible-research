@@ -64,30 +64,30 @@ activated.
 
 # Adding more packages
 
-* Now, let's add another package (*SRA-Tools*) to our environment using `conda
+* Now, let's add another package (*seqtk*) to our environment using `conda
   install`. Make sure that `project_a` is the active environment first.
 
 ```bash
-mamba install -c bioconda sra-tools
+mamba install -c bioconda seqtk
 ```
 
 * If we don't specify the package version, the latest available version will be
-  installed. What version of SRA-Tools got installed?
+  installed. What version of seqtk got installed?
 * Run the following to see what versions are available:
 
 ```bash
-mamba search -c bioconda sra-tools
+mamba search -c bioconda seqtk
 ```
 
 * Now try to install a different version of SRA-Tools, *e.g.*:
 
 ```bash
-mamba install -c bioconda sra-tools=2.7.0
+mamba install -c bioconda seqtk=1.2
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
 you want to downgrade the initial SRA-Tools installation to the one specified
-here (`2.7.0` in the example). You can only have one version of a given package
+here (`1.2` in the example). You can only have one version of a given package
 in a given environment.
 
 Let's assume that you will have sequencing data in your Project A, and want to
@@ -123,7 +123,7 @@ mamba create -n project_old -c bioconda bowtie2=2.2.5
 Now let's try to remove an installed package from the active environment:
 
 ```
-mamba remove sra-tools
+mamba remove seqtk
 ```
 
 * Run `mamba deactivate` to exit your active environment.

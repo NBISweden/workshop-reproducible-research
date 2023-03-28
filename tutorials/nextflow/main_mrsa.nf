@@ -7,15 +7,17 @@ workflow {
 
     // Workflow for generating count data for the MRSA case study
 
-    // Define SRA input data channel
-    ch_sra_ids = Channel.fromList( ["SRR935090", "SRR935091", "SRR935092"] )
+    // Get input files from a samplesheet
+    ch_input = Channel
+        .fromPath ( "samplesheet.csv" )
+        .splitCsv ( header: true)
 
     // Define the workflow
-    GET_SRA_BY_ACCESSION (
-        ch_sra_ids
+    DOWNLOAD_FASTQ_FILES (
+        ch_input
     )
     RUN_FASTQC (
-        GET_SRA_BY_ACCESSION.out
+        DOWNLOAD_FASTQ_FILES.out
     )
     RUN_MULTIQC (
         RUN_FASTQC.out[1].collect()
@@ -25,7 +27,7 @@ workflow {
         GET_GENOME_FASTA.out.fasta
     )
     ALIGN_TO_GENOME (
-        GET_SRA_BY_ACCESSION.out,
+        DOWNLOAD_FASTQ_FILES.out,
         INDEX_GENOME.out.index
     )
     SORT_BAM (
@@ -38,31 +40,23 @@ workflow {
     )
 }
 
-process GET_SRA_BY_ACCESSION {
+process DOWNLOAD_FASTQ_FILES {
 
-    // Retrieve a single-read FASTQ file from SRA (Sequence Read Archive) by run
-    // accession number.
+    // Download a single-read FASTQ file from the SciLifeLab Figshare remote
 
     tag "${sra_id}"
     publishDir "results/data/raw_internal",
         mode: "copy"
 
     input:
-    val(sra_id)
+    tuple val(sra_id), val(figshare_link)
 
     output:
     tuple val(sra_id), path("*.fastq.gz")
 
     script:
     """
-    fastq-dump ${sra_id} \
-        -X 25000 \
-        --readids \
-        --dumpbase \
-        --skip-technical \
-        --gzip \
-        -Z \
-        > ${sra_id}.fastq.gz
+    wget ${figshare_link} -O ${sra_id}.fastq.gz
     """
 }
 
@@ -82,7 +76,6 @@ process RUN_FASTQC {
 
     script:
     """
-    # Run FastQC
     fastqc ${fastq} -q
     """
 }

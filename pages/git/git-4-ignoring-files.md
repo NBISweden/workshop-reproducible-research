@@ -82,10 +82,9 @@ git commit -m "Add metadata file"
 > should be placed in your home directory. It works exactly like a normal
 > gitignore file, but is applied to all Git repositories that you are using
 > on your machine. Some common file extensions that might be put in the
-> global gitignore are `.DS_Store` if you're working in R or `.swp` if you're
-> coding in vim.
-> To configure git to use the `.gitignore_global` file you can run
-> `git config --global core.excludesfile ~/.gitignore_global`.
+> global gitignore are `.DS_Store` if you're working on a Mac or `.swp` if
+> you're coding in (neo)vim. To configure git to use the `.gitignore_global`
+> file you can run `git config --global core.excludesfile ~/.gitignore_global`.
 
 > **Quick recap** <br>
 > We now learned how to ignore certain files and directories:
