@@ -79,14 +79,14 @@ mamba install -c bioconda seqtk
 mamba search -c bioconda seqtk
 ```
 
-* Now try to install a different version of SRA-Tools, *e.g.*:
+* Now try to install a different version of seqtk, *e.g.*:
 
 ```bash
 mamba install -c bioconda seqtk=1.2
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
-you want to downgrade the initial SRA-Tools installation to the one specified
+you want to downgrade the initial seqtk installation to the one specified
 here (`1.2` in the example). You can only have one version of a given package
 in a given environment.
 
