@@ -22,13 +22,16 @@ or so), in particular if you're on a slow internet connection.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
-previous section, although some sections have been moved around. The main
-difference is that we add the project files needed for executing the workflow
-(mentioned in the previous paragraph), and install the conda packages listed in
-`environment.yml`. If you look at the `CMD` command you can see that it will
-run the whole Snakemake workflow by default.
+[Building images](containers-3-building-images.md) section, although with 
+some small modifications. The main difference is that we add the project 
+files needed for executing the workflow (mentioned in the previous paragraph), 
+and install the conda packages using `environment.yml`. If you look at the 
+`CMD` command you can see that it will run the whole Snakemake workflow by 
+default.
 
-Now run `docker build` as before, tag the image with `my_docker_project`:
+Now run `docker build` as before, tag the image with `my_docker_project` 
+(remember the `--platform linux/x86_64` flag if you're on a new Mac with the 
+Apple chip):
 
 ````bash
 docker build -t my_docker_project -f Dockerfile .
