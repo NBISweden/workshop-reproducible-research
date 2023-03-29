@@ -303,6 +303,10 @@ Check that Nextflow was installed correctly by running `nextflow -version`. Once
 you've successfully completed the installation you can deactive the environment
 using `mamba deactivate` and continue with the other setups, as needed.
 
+You can also install Nextflow following the instructions on the [Nextflow
+website](https://www.nextflow.io/docs/latest/getstarted.html) if you want to
+have it installed outside of a Conda environment.
+
 ## Installing R Markdown
 
 We also use Mamba to install R Markdown: make sure your working directory is in
