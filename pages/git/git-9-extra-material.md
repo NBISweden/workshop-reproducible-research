@@ -128,3 +128,51 @@ are usually quite happy to incorporate new changes from contributors if they are
 reasonable and fulfil a purpose and add functionality to the project. It is
 quite common that you have a use-case the maintainer didn't think of before, and
 that you've helped the project grow by contributing your code!
+
+## The reflog
+
+We have shown many ways to work with Git and its various commands, and it
+occasionally happens that errors are introduced. This is where the *reflog*
+comes in. Think of the reflog as Git's "safety net": it stores almost every
+change you make to a Git repository (regardless of whether you commit the
+change) in a chronological manner. The following is an example of what the
+output of the `git reflog` command might show:
+
+```no-highlight
+58deba6 HEAD@{0}: merge: feature-branch: Fast-forward
+8c80c88 HEAD@{1}: checkout: moving from feature-branch to main
+555544a HEAD@{2}: commit: feature development 2
+4c92630 HEAD@{3}: commit: feature development 1
+8c80c88 HEAD@{4}: checkout: moving from main to feature-branch
+```
+
+It show the most recent change at the top, notified by `HEAD@{0}`. We thus have
+a merging of `feature-branch` into `main`, a checkout into `main`, two commits
+on `feature-branch` and a checkout into `feature-branch` - reading it backwards
+we get a chronological log of what has happened.
+
+The reflog is incredibly useful for when you've lost something you later realise
+you want to access again, such as when you've just used `git reset`. The reflog
+might look like this, for example:
+
+```no-highlight
+bc3641f HEAD@{0}: reset: moving to HEAD~2
+caf9321 HEAD@{1}: commit: More work on the feature
+1bc36af HEAD@{2}: commit: Work on a new feature
+```
+
+We see two commits related to some new feature and a reset to `HEAD~2` (two
+commits back from `HEAD`). If we realise that we actually liked the work we just
+threw away we can move around in the reflog in a similar manner we do normal
+commits:
+
+```bash
+git checkout HEAD@{1}
+```
+
+This will put us back to the state we were in before we used `git reset`. We
+here refer to the reflog using the `HEAD@{N}` notation, which differs from the
+usual `HEAD~N` notation so that it is clear if it is the commit history or the
+reflog that is intended. While the reflog is hopefully not something you'll have
+to use often it's quite useful to know it exists, if only to be able to search
+the internet for more details regarding a problem you've encountered!
