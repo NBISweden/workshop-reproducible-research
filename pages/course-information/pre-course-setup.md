@@ -3,14 +3,14 @@ repository for the course. The first step of the setup is thus to download all
 the files that you will need, which is done differently depending on which
 operating system you have.
 
-On the last day, in the "Putting the pieces together" session we will give 
-examples of how we use these tools in our day-to-day work. During the course, 
-spend some time thinking about how these tools could be useful for you in 
-your own project(s). After you've gone through the tutorial you may feel 
-that some of the tools could make your life easier from the get-go, while 
-others may take some time to implement efficiently (and some you may never 
-use again after the course). Our idea with the "Putting the pieces together" 
-session is to have an open discussion about where to go from here.
+On the last day, in the *Putting the pieces together* session we will give
+examples of how we use these tools in our day-to-day work. During the course,
+spend some time thinking about how these tools could be useful for you in your
+own project(s). After you've gone through the tutorial you may feel that some of
+the tools could make your life easier from the get-go, while others may take
+some time to implement efficiently (and some you may never use again after the
+course). Our idea with the *Putting the pieces together* session is to have an
+open discussion about where to go from here.
 
 ## Setup for Mac / Linux users
 
@@ -302,6 +302,10 @@ mamba env create -f snakemake/environment.yml -n snakemake-env
 mamba activate snakemake-env
 ```
 
+> **ARM64 users:** <br>
+> Some of the packages in this environment is not available for the ARM64
+> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
+
 Check that Snakemake is installed correctly, for example by executing `snakemake
 --help`. This should output a list of available Snakemake settings. If you get
 `bash: snakemake: command not found` then you need to go back and ensure that
@@ -318,6 +322,10 @@ We'll use Mamba to install Nextflow as well: navigate to
 mamba env create -f nextflow/environment.yml -n nextflow-env
 mamba activate nextflow-env
 ```
+
+> **ARM64 users:** <br>
+> Some of the packages in this environment is not available for the ARM64
+> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
 Check that Nextflow was installed correctly by running `nextflow -version`. Once
 you've successfully completed the installation you can deactive the environment
@@ -336,6 +344,10 @@ the necessary R packages defined in the `environment.yml`:
 ```bash
 mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
 ```
+
+> **ARM64 users:** <br>
+> Some of the packages in this environment is not available for the ARM64
+> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
 You can then activate the environment followed by running RStudio in the
 background from the command line:
