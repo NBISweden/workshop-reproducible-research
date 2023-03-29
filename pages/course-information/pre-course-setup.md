@@ -274,20 +274,20 @@ conda config --set channel_priority strict
 We will use Conda environments for the set up of this tutorial, but don't worry
 if you don't understand exactly what everything does - you'll learn all the
 details at the course. First make sure you're currently situated inside the
-tutorials directory (`workshop-reproducible-research/tutorials`) and then
-create the Conda environment like so:
+tutorials directory (`workshop-reproducible-research/tutorials`) and then create
+the Conda environment like so:
 
 ```bash
 mamba env create -f snakemake/environment.yml -n snakemake-env
 mamba activate snakemake-env
 ```
 
-Check that Snakemake is installed correctly, for example by executing
-`snakemake --help`. This should output a list of available Snakemake settings.
-If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Mamba steps were successful. Once you've successfully completed 
-the above steps you can deactivate the environment using `mamba deactivate` 
-and continue with the setup for the other tools.
+Check that Snakemake is installed correctly, for example by executing `snakemake
+--help`. This should output a list of available Snakemake settings. If you get
+`bash: snakemake: command not found` then you need to go back and ensure that
+the Mamba steps were successful. Once you've successfully completed the above
+steps you can deactivate the environment using `mamba deactivate` and continue
+with the setup for the other tools.
 
 ## Installing Nextflow
 
@@ -310,8 +310,8 @@ have it installed outside of a Conda environment.
 ## Installing R Markdown
 
 We also use Mamba to install R Markdown: make sure your working directory is in
-the tutorials directory (`workshop-reproducible-research/tutorials`) and
-install the necessary R packages defined in the `environment.yml`:
+the tutorials directory (`workshop-reproducible-research/tutorials`) and install
+the necessary R packages defined in the `environment.yml`:
 
 ```bash
 mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
@@ -330,20 +330,20 @@ environment using `mamba deactivate` and continue with the setup for the other
 tools.
 
 > **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Mamba, both
-> run well directly on Windows and you may therefore want to install Windows
+> In case you are having trouble installing R and RStudio using Mamba, both run
+> well directly on Windows and you may therefore want to install Windows
 > versions of these software for this tutorial (if you haven't done so already).
 > Mamba is, however, the recommended way. If you're having issues with
 > graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
 > scroll down to the "Graphical applications".
 
 > **RStudio and Mamba** <br>
-> In some cases RStudio doesn't play well with Mamba due to differing
-> libpaths. The first and simplest thing to try is to always start RStudio from
-> the command line (`rstudio &`). If you're still having issues, check the
-> available library path by `.libPaths()` to make sure that it points to a path
-> within your Conda environment. It might be that `.libPaths()` shows multiple
-> library paths, in which case R packages will be searched for by R in all these
+> In some cases RStudio doesn't play well with Mamba due to differing libpaths.
+> The first and simplest thing to try is to always start RStudio from the
+> command line (`rstudio &`). If you're still having issues, check the available
+> library path by `.libPaths()` to make sure that it points to a path within
+> your Conda environment. It might be that `.libPaths()` shows multiple library
+> paths, in which case R packages will be searched for by R in all these
 > locations. This means that your R session will not be completely isolated in
 > your Conda environment and that something that works for you might not work
 > for someone else using the same Conda environment, simply because you had
@@ -378,18 +378,18 @@ tools.
 
 ## Installing Docker
 
-Installing Docker (specifically Docker Desktop) is quite straightforward on 
-Mac, Windows and Linux distributions. Note that Docker runs as root, which 
-means that you have to have `sudo` privileges on your computer in order to 
-install or run Docker. When you have finished installing docker, regardless 
-of which OS you are on, please type `docker --version` to verify that the 
-installation was successful.
+Installing Docker (specifically Docker Desktop) is quite straightforward on Mac,
+Windows and Linux distributions. Note that Docker runs as root, which means that
+you have to have `sudo` privileges on your computer in order to install or run
+Docker. When you have finished installing docker, regardless of which OS you are
+on, please type `docker --version` to verify that the installation was
+successful.
 
 > **Docker for older versions of OSX/Windows** <br>
-> The latest version of Docker may not work if you have an old version of either OSX or
-> Windows. You can find older Docker versions that may be compatible for you if you
-> go to https://docs.docker.com/desktop/ and click "Previous versions" in the left side
-> menu.
+> The latest version of Docker may not work if you have an old version of either
+> OSX or Windows. You can find older Docker versions that may be compatible for
+> you if you go to https://docs.docker.com/desktop/ and click "Previous
+> versions" in the left side menu.
 
 ### macOS
 
@@ -399,29 +399,27 @@ and select the download option that is suitable for your computer's architecture
 a `dmg` file - click on it when it's done to start the installation. This will
 open up a window where you can drag the Docker.app to Applications. Close the
 window and click the Docker app from the Applications menu. Now it's basically
-just to click "next" a couple of times and we should be good to go. You can
-find the Docker icon in the menu bar in the upper right part of the screen.
+just to click "next" a couple of times and we should be good to go. You can find
+the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-Go to the 
-[linux-install](https://docs.docker.com/desktop/install/linux-install/) 
-section of the Docker documentation and make sure that your computer meets 
-the system requirements. There you can also find instructions for different 
-Linux distributions in the left sidebar under *Installation per Linux distro*.
+Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/) 
+section of the Docker documentation and make sure that your computer meets the
+system requirements. There you can also find instructions for different Linux
+distributions in the left sidebar under *Installation per Linux distro*.
 
 ### Windows
 
 In order to run Docker on Windows your computer must support *Hardware
-Virtualization Technology* and virtualization must be enabled. This is
-typically done in BIOS. Setting this is outside the scope of this tutorial,
-so we'll simply go ahead as if though it's enabled and hope that it works.
+Virtualization Technology* and virtualization must be enabled. This is typically
+done in BIOS. Setting this is outside the scope of this tutorial, so we'll
+simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
 Click the link *Download from Docker Hub*, and select *Get Docker*. Once the
-download is complete, execute the file and follow the
-[instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
+download is complete, execute the file and follow the [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
 You can now start Docker from the Start menu. You can search for it if you
 cannot find it; the Docker whale icon should appear in the task bar.
 
@@ -437,8 +435,8 @@ Installation of Singularity depends, again, on your operating system. When you
 have finished, regardless of your OS, please type `singularity --version` to
 verify that your installation was successful!
 
-Both Mac and Windows utilise Vagrant, for which the information in the box
-below may help you.
+Both Mac and Windows utilise Vagrant, for which the information in the box below
+may help you.
 
 > **Vagrant and VirtualBox** <br>
 > The Vagrant VirtualBox with Singularity can be started like this:
