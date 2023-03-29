@@ -149,22 +149,25 @@ below for more information.
 
 ## Installing Mamba
 
-> **Mamba or Conda?** <br>
-> Maybe you've worked with the Conda package manager before, and you're wondering
-> what the heck Mamba is? Mamba is simply put a faster implementation of Conda
-> and has quickly grown and matured to the point that we are making the switch
-> to Mamba also in this course. Conveniently there is almost no difference in 
-> the way the two programs work on the command line. You simply change `conda`
-> to `mamba` and keep working as you've done before (see the exception under 
-> "Configuring Conda" below).
-> This also means that if you already have conda installed you can keep using
-> it for this course, however we strongly recommend you to try out mamba in 
-> order to make your environment managing more efficient.
-> You will notice that we still use the terms 'Conda environment', 'Conda 
-> packages' _etc._ throughout the course and that the tutorial pages still have
-> 'Conda' in the title. This is because Conda is the original package manager
-> with a widely adopted terminology, and Mamba is a reimplementation of Conda.
-> We hope this is not too confusing.
+### Mamba or Conda?
+
+Maybe you've worked with the Conda package manager before, and you're wondering
+what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
+quickly grown and matured to the point that we are almost explusively using it
+in our own daily work rather than Conda -  we are thus reflecting this
+wide-spread adopting in the course material as well. Conveniently there is
+almost no difference in the way the two programs work on the command line. You
+simply change `conda` to `mamba` and keep working as you've done before (see the
+exception under *Configuring Conda* below). This also means that if you already
+have conda installed you can keep using it for this course, however we strongly
+recommend you to try out mamba in order to make your environment managing more
+efficient.
+
+You will notice that we still use the terms *Conda environment*, *Conda
+packages* *etc.* throughout the course and that the tutorial pages still have
+*Conda* in the title. This is because Conda is the original package manager with
+a widely adopted terminology, and Mamba is a re-implementation of Conda; we hope
+this is not too confusing.
 
 ### If you already have Mamba installed
 
@@ -199,7 +202,7 @@ rm Mambaforge-MacOSX-x86_64.sh
 ```
 
 ```bash
-# Install Mambaforge 3 for 64-bit Mac (Apple Chip)
+# Install Mambaforge 3 for 64-bit Mac (Apple chip)
 curl -L  https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-arm64.sh -O
 bash Mambaforge-MacOSX-arm64.sh
 rm Mambaforge-MacOSX-arm64.sh
@@ -215,11 +218,12 @@ rm Mambaforge-Linux-x86_64.sh
 The installer will ask you questions during the installation:
 
 - Do you accept the license terms? (Yes)
-- Do you accept the installation path or do you want to choose a different one? (Probably yes)
+- Do you accept the installation path or do you want to choose a different one?
+  (Probably yes)
 - Do you want the installer to initialize Mambaforge (Yes)
 
-Restart your shell so that the settings in `~/.bashrc`/`~/.bash_profile` can take
-effect. You can verify that the installation worked by running:
+Restart your shell so that the settings in `~/.bashrc` or `~/.bash_profile` can
+take effect. You can verify that the installation worked by running:
 
 ```bash
 mamba --version
@@ -233,20 +237,23 @@ mamba --version
 > Anaconda channels are incompatible with `conda-forge`.
 
 > **Different Mambas/Condas** <br>
-> You may come across several flavours of both Mamba and Conda. For Mamba there's the *Miniforge* installer 
-> which allows you to install the `mamba` command line tool that works as a replacement for `conda`. There's also 
-> `micromamba`, a small standalone C++ program developed mainly for continuous integration pipelines.
-> For Conda there's *Miniconda*, which is the installer for Conda. The third is *Anaconda*, which is a distribution 
-> of not only Conda, but also over 150 scientific Python packages. If you want to use Conda it's generally better to 
-> stick with the Miniconda installation, rather than installing 3 GB worth of packages you may not even use.
+> You may come across several flavours of both Mamba and Conda. For Mamba
+> there's the *Miniforge* installer which allows you to install the `mamba`
+> command line tool that works as a replacement for `conda`. There's also
+> `micromamba`, a small standalone C++ program developed mainly for continuous
+> integration pipelines. For Conda there's *Miniconda*, which is the installer
+> for Conda. The third is *Anaconda*, which is a distribution of not only Conda,
+> but also over 150 scientific Python packages. If you want to use Conda it's
+> generally better to stick with the Miniconda installation, rather than
+> installing 3 GB worth of packages you may not even use.
 
 ### Configuring Mamba/Conda
 
-At the moment the `config` subcommand is not implemented in `mamba`. This means 
-that when you want to configure your mamba or conda installation you still 
-need to rely on `conda`.  
+At the moment the `config` subcommand is not implemented in `mamba`. This means
+that when you want to configure your mamba or conda installation you still need
+to rely on `conda`.
 
-As a last step we will set up the default channels (from where packages will be 
+As a last step we will set up the default channels (from where packages will be
 searched for and downloaded if no channel is specified):
 
 ```
@@ -254,8 +261,9 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-and we will also set so called 'strict' channel priority, which ensures higher stability and better performance (see 
-details about this setting by running `conda config --describe channel_priority`):
+and we will also set so called 'strict' channel priority, which ensures higher
+stability and better performance (see details about this setting by running the
+following:
 
 ```
 conda config --set channel_priority strict
