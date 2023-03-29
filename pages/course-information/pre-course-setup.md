@@ -269,23 +269,25 @@ following:
 conda config --set channel_priority strict
 ```
 
-> **Mamba/Conda on new Macs** <br>
+### Mamba/Conda on new Macs
 
-> If you have one of the newer Macs with Apple chips (the M-series) you may run
-> into some problems with certain Conda packages that have not yet been built
-> for the ARM64 architecture. The [Rosetta](https://support.apple.com/en-us/HT211861)
-> software solves some of these problems, but you can also create Conda
-> environments specifically using the old AMD64 (Intel) architecture using the
-> following procedure:
->
->     ```bash
->     CONDA_SUBDIR=osx-64 <mamba command>
->     conda activate <env name>
->     conda config --env --set subdir osx-64
->     ```
->
-> The first command creates the Intel-based environment, while the last one
-> makes sure that subsequent commands are also using the Intel architecture.
+If you have one of the newer Macs with Apple chips (the M-series) you may run
+into some problems with certain Conda packages that have not yet been built for
+the ARM64 architecture. The [Rosetta](https://support.apple.com/en-us/HT211861)
+software allows ARM64 Macs to use software built for the old AMD64 architecture,
+which means you can always fall back on creating AMD/Intel-based environments
+and use them in conjunction with Rosetta. This is how you do it:
+
+```bash
+CONDA_SUBDIR=osx-64 <mamba-command>
+conda activate <env>
+conda config --env --set subdir osx-64
+```
+
+The first command creates the Intel-based environment, while the last one
+makes sure that subsequent commands are also using the Intel architecture. If
+you don't want to remember and do this manually each time you want to use
+AMD64/Rosetta you can check out [this bash script](https://github.com/fasterius/dotfiles/blob/main/scripts/intel-conda-env.sh).
 
 ## Installing Snakemake
 
