@@ -269,6 +269,24 @@ following:
 conda config --set channel_priority strict
 ```
 
+> **Mamba/Conda on new Macs** <br>
+
+> If you have one of the newer Macs with Apple chips (the M-series) you may run
+> into some problems with certain Conda packages that have not yet been built
+> for the ARM64 architecture. The [Rosetta](https://support.apple.com/en-us/HT211861)
+> software solves some of these problems, but you can also create Conda
+> environments specifically using the old AMD64 (Intel) architecture using the
+> following procedure:
+>
+>     ```bash
+>     CONDA_SUBDIR=osx-64 <mamba command>
+>     conda activate <env name>
+>     conda config --env --set subdir osx-64
+>     ```
+>
+> The first command creates the Intel-based environment, while the last one
+> makes sure that subsequent commands are also using the Intel architecture.
+
 ## Installing Snakemake
 
 We will use Conda environments for the set up of this tutorial, but don't worry
