@@ -1,7 +1,7 @@
 Now that we've gone through the specifics of executing workflows in a bit more
 detail, let's go through working with processes. While there are numerous
-process *directives* that can be used, we'll go through some of the more
-commonly used ones here.
+process directives that can be used, we'll go through some of the more commonly
+used ones here.
 
 # Tags
 
@@ -9,7 +9,7 @@ Let's look at the command line output we got during the workflow's execution,
 which should look something like this:
 
 ```bash
-N E X T F L O W  ~  version 21.04.0
+N E X T F L O W  ~  version 22.10.6
 Launching `./main.nf` [friendly_bhaskara] - revision: b4490b9201
 executor >  local (17)
 [c9/e5f818] process > DONWLOAD_FASTQ_FILES (SRR935092) [100%] 3 of 3 ✔
@@ -58,8 +58,8 @@ sample is being processed) but also for debugging or finding problematic samples
 in case of errors or odd output. There is, naturally, no need to use tags for
 processes which are only run once.
 
-* Comment out (prefix with `//`) the `tag` directive from the `DONWLOAD_FASTQ_FILES` process and run the
-  workflow again. No more SRA IDs!
+* Comment out (prefix with `//`) the `tag` directive from the
+  `DONWLOAD_FASTQ_FILES` process and run the workflow again. What do you see?
 
 * Uncomment the `tag` directive before you move on.
 
@@ -73,7 +73,8 @@ process RUN_FASTQC {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "results/", mode: "copy"
+    publishDir "results/",
+        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
@@ -89,11 +90,11 @@ process RUN_FASTQC {
 }
 ```
 
-Here is a process with two output channels! One contains all the `.html` files, while
-the other contains all the `.zip` files. How is this handled in the workflow
-definition of downstream processes that use the outputs? The `RUN_MULTIQC`
-process uses this output, and its part in the workflow definition looks like
-this:
+Here is a process with two output channels! One contains all the `.html` files,
+while the other contains all the `.zip` files. How is this handled in the
+workflow definition of downstream processes that use the outputs? The
+`RUN_MULTIQC` process uses this output, and its part in the workflow definition
+looks like this:
 
 ```nextflow
 RUN_MULTIQC (
@@ -106,39 +107,40 @@ the `RUN_MULTIQC` process is taking the second channel of the output from the
 `RUN_FASTQC` process - `[1]` is the index for the second channel, as Groovy is 
 zero-based (the first channel is indexed by `[0]`).
 
-This comes with some issues, however. What if
-we accidentally changed the order of the outputs in the rule, or added a new
-one? Using positions like this is easy to mess up, but there is a better
-solution: named outputs! This can be achieved by adding the `emit` option for
-some or all of the outputs, like so:
+This comes with some issues, however. What if we accidentally changed the order
+of the outputs in the rule, or added a new one? Using positions like this is
+easy to mess up, but there is a better solution: named outputs! This can be
+achieved by adding the `emit` option for some or all of the outputs, like so:
 
 ```nextflow
 output:
 path(*.txt), emit: text
 ```
 
-Instead of referring to the output by its position in an array as previously, we
-refer to the channel with a label we choose (`.out.text`) instead. This benefits us in that 
-we can infer more information about channel contents called `text` rather than `[1]`, 
-and it is also allows us to be less error-prone when rewriting parts of a workflow.
+Instead of referring to the output by its position in an array as before we
+refer to the channel with a label we choose (`.out.text`) instead. This benefits
+us in that we can infer more information about channel contents called `text`
+rather than `[1]`, and it is also allows us to be less error-prone when
+rewriting parts of a workflow.
 
-Your turn! Add named outputs to the `RUN_FASTQC` process and make `RUN_MULTIQC` 
-use those outputs. You'll have to change both the output section of the 
-`RUN_FASTQC` process, and the workflow definition section for `RUN_MULTIQC`.
-If you need help, see the hint below.
+* Your turn! Add named outputs to the `RUN_FASTQC` process and make
+  `RUN_MULTIQC` use those outputs. You'll have to change both the output section
+  of the `RUN_FASTQC` process, and the workflow definition section for
+  `RUN_MULTIQC`. If you need help, see the hint below.
 
 <details>
 <summary> Click to show </summary>
 
 ```nextflow
-    // Workflow definition for RUN_MULTIQC
-    RUN_MULTIQC (
-        RUN_FASTQC.out.zip.collect()
+// Workflow definition for RUN_MULTIQC
+RUN_MULTIQC (
+    RUN_FASTQC.out.zip.collect()
+)
 
-    // Output section of RUN_FASTC
-    output:
-        path("*.html"), emit: html
-        path("*.zip"),  emit: zip
+// Output section of RUN_FASTC
+output:
+path("*.html"), emit: html
+path("*.zip"),  emit: zip
 ```
 
 </details>
@@ -150,11 +152,11 @@ Check if it works by executing the workflow.
 So far we've only used the `publishDir` directive in a very simple way:
 specifying a directory and the `mode` to use when publishing (to copy the files
 rather than symbolically link them). There are more things you can do, however,
-especially for processes with more than one output. For example, we
-can publish outputs in separate directories, like so:
+especially for processes with more than one output. For example, we can publish
+outputs in separate directories, like so:
 
 ```nextflow
-publishDir "results/tables/",
+publishDir "results/tables",
     pattern: "*.tsv",
     mode: "copy"
 publishDir "results/logs",
@@ -169,7 +171,29 @@ one to separate output as above, or publish the same output to multiple folders.
 
 * Edit the `RUN_FASTQC` process to place the HTML and compressed files in
   separate directories. Remove the `results` directory and re-run the workflow
-  to check that it worked.
+  to check that it worked - click below if you're having trouble.
+
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+process RUN_FASTQC {
+
+    (...)
+
+    publishDir "results/html",
+        pattern: "*.html",
+        mode: "copy"
+    publishDir "intermediate/zip",
+        pattern: "*.zip",
+        mode: "copy"
+
+    (...)
+}
+
+```
+
+</details>
 
 Note that an output and a *published* output are different things: something can
 be an output of a process without being published. In fact, the `RUN_FASTQC`
@@ -182,16 +206,32 @@ corresponding `publishDir` directive!
 
 The MRSA workflow we've made here was refactored directly from its original
 version in the Snakemake tutorial of this course, which means that its output
-structure is not fully taking advantage of some of Nextflow's functionality.
-The compressed output we've already talked about above is, for example, put in
-the `results/intermediate/` directory. This is required for Snakemake, but not
-so for Nextflow.
+structure is not fully taking advantage of some of Nextflow's functionality. The
+compressed output we've already talked about above is, for example, put in the
+`intermediate/` directory in the Snakemake workflow - this is not needed in
+Nextflow.
 
 * See if you can find any other processes in the current implementation of the
   MRSA workflow that you could optimise like this!
 
 Think about whether all processes actually need to have published outputs. Make
-sure you test executing the workflow after you've made any changes.
+sure you test executing the workflow after you've made any changes; click below
+if you want a hint.
+
+<details>
+<summary> Click to show </summary>
+
+The `GET_GENOME_FASTA` and `GET_GENOME_GFF3` both download reference files which
+are only needed by the workflow itself and does not need to be published, the
+same goes for the genome index generated by the `INDEX_GENOME` process.
+
+One could argue that neither of the BAM files generated by the `ALIGN_TO_GENOME`
+and `SORT_BAM` processes are needed by the user if only the final counts table
+is of interest, but BAM files can also be useful for exploring the alignments in
+*e.g.* IGV. Both BAMs are, however, definitely not needed: only the sorted one
+should be published if one is interested in BAM files.
+
+</details>
 
 # Debugging
 
@@ -200,18 +240,19 @@ perfect! Nextflow helps you quite a bit when this happens, not just with its
 logs but also with informative error messages. Let's introduce an error and look
 at what we get:
 
-* Change the name of the `multiqc_general_stats.txt` output in the `RUN_MULTIQC`
-  process to something different and re-run the workflow.
+* Change the final `output` line in the `RUN_MULTIQC` process to the following
+  and re-run the workflow: `path("multiqc_general_stats.csv")` - notice the
+  usage of `.csv` rather than `.txt` as before.
 
 We got an error! We get a number of things, actually, including (in order from
 the top) the name of the process that gave the error, the likely cause, the
 command that was executed, along with its exit status, output, error and the
-work directory that the task was run in. Let's focus on the `Caused by:` part,
-which should look something like this:
+work directory that the task was run in. Let's focus on the `Caused by:` part at
+the top, which should look something like this:
 
 ```no-highlight
 Caused by:
-  Missing output file(s) `multiqc_general_stats.text` expected by process `RUN_MULTIQC`
+  Missing output file(s) `multiqc_general_stats.csv` expected by process `RUN_MULTIQC`
 ```
 
 We can also see that the command's exit status is `0`, which means that the
@@ -223,10 +264,11 @@ work directory for us so that we may check out what happened in more detail.
 * Copy the working directory path, `cd` into it and list its contents using
   `ls`.
 
-You might already have spotted the error in the message above! The error we
-introduced here was that the expected output file has a `.text` extension,
-rather than the correct `.txt`. Nextflow is expecting the `.text` output, but
-the process `script` directive is (correctly) giving us the `.txt` file.
+You might already have spotted the error in the message above; the error we
+introduced here was that the expected output file has a `.csv` extension,
+rather than the correct `.txt`. Nextflow is expecting the `.csv` output, but
+the process `script` directive is (correctly) giving us the `.txt` file, which
+we can see inside the process' work directory.
 
 * Go back to the root directory, revert the error you introduced and re-run the
   workflow to make sure it works again.
@@ -247,6 +289,6 @@ reported by Nextflow and inspecting the specific subdirectory in question.
 > In this section we've learnt:
 >
 > * How to use the `tag` directive
-> * How to use named output
-> * How to separate process outputs into different directories
+> * How to use named output with `emit`
+> * How to publish outputs into different directories
 > * How to debug errors and mistakes
