@@ -154,14 +154,132 @@ commit and can't simply rewrite what it already has.
 Amending changes is thus a good way to fix small mistakes you realise you made
 just after commiting them, as long as you only amend local changes!
 
+## Rebasing
+
+The `git rebase` command is an alternative to `git merge` in that it solves the
+same problem: getting changes in one branch into another branch. We've already
+gone through merging extensively, so how is rebasing different? Let's look at a
+common case: a `feature-branch` which we want to get into the `main` branch.
+
+![](images/git-rebase-1.png){ width=600px }
+
+Recall that a merge creates a *merge commit*, something akin to `Merge branch
+'feature-branch' into main` or similar. This is a *new* commit that didn't exist
+that brings the changes on `feature-branch` into `main`, but it contains no
+actual work itself. This is both a good and a bad thing: good, because merging
+is a safe, *non-destructive* operation (it doesn't alter history); bad, because
+it can make the history itself looks quite messy. These are the commands used
+and what the history will look like afterwards:
+
+```bash
+git checkout main
+git merge feature-branch
+```
+
+![](images/git-rebase-2){ width=600px }
+
+(The commit with the dashed border is the merge commit.)
+
+Rebasing, on the other hand does *not* create merge commits. Indeed, what rebase
+does is to "re-base" one branch on the other, *i.e.* pretend that new changes
+were done on a different base than what actually happened (hence the name).
+Getting our `feature-branch` onto `main` using rebase actually entails two
+separate steps: first the rebase itself, followed by a fast-forward merge:
+
+```bash
+git checkout feature-branch
+git rebase main
+```
+
+![](images/git-rebase-3){ width=700px }
+
+This step rebases our `feature-branch` on top of `main`, meaning that we pretend
+that the commits on `feature-branch` were done based on the latest commits on
+`main` - you can also think of it as moving the entire `feature-branch` to the
+tip of the `main` branch. The commits with the dashed borders here indicate
+*brand new* commits; rebasing can't somehow move the commits to the new base,
+rather it has to "replay" those commits as if they were done on the new base.
+
+```bash
+git checkout master
+git merge feature-branch
+```
+
+![](images/git-rebase-4){ width=800px }
+
+We've now got our `feature-branch` commits onto `main` with a single, linear
+history without any merge commits! We did have to rewrite history, though, when
+we did the rebase itself. As with amending (see [above](#amending-commits)),
+this is fine if we're only working locally, but we'll quickly run into trouble
+if we try to rebase things that have already been pushed. We can rebase *on top
+of* remote things, of course, since we're not changing any remote history, only
+the local history. Be careful when you rebase!
+
+## Rebasing as cleanup
+
+If the above section felt scary, don't worry! There's another highly useful
+use-case for `git rebase` that doesn't risk destroying any history, namely local
+cleanup!
+
+Let's imagine you've worked on your local `feature-branch` for some time, and
+you have a number of commits on it. Some are highly related to each other and
+might actually be better suited as a single commit. You've also spotted a
+spelling error in one commit message, and realised that you missed important
+information in another. We can actually solve all of these issues with an
+*interactive rebase*! If you have 4 commits on your branch you can type the
+following:
+
+```bash
+git rebase -i HEAD~4
+```
+
+The `-i` flag means *interactive*, while `HEAD~4` means 4 commits back from
+`HEAD`. This will open your default text editor and give you a selection looking
+something like this:
+
+```no-highlight
+pick 0abf162 First feature commit
+pick befc682 A minor change on the first commit
+pick c9d1426 A commit with an uncomplete commit message
+pick 2e0cb97 A commit with a spelling mitake
+
+# Rebase 879ddcc..0abf162 onto 879ddcc (4 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+
+(... more instructions ...)
+```
+
+The commits are ordered with the most recent one at the bottom. The commented
+instructions (all of which are not shown here) show you what alternatives you
+have to work with; all you have to do is to change the `pick` keyword next to
+the commit hashes to whatever keyword you need from the list, save and exit.
+
+In order to solve the toy example here we might the four keywords to be `pick`,
+`squash`, `reword` and `reword`, from top to bottom. Once that's done simply
+save and exit, and another instance of your default text editor will open for
+you to complete the specified changes. In the case above we'd get two separate
+new instances where we can change the commit message - these work the same as
+any normal commit.
+
+Interactive rebasing is thus well-suited for fixing and cleaning of local
+changes you have yet to push anywhere, even if you don't use rebasing as an
+alternative to merging! This can make your Git history both cleaner and more
+concise, which is great when you're collaborating with others.
+
 ## The reflog
 
 We have shown many ways to work with Git and its various commands, and it
-occasionally happens that errors are introduced. This is where the *reflog*
-comes in. Think of the reflog as Git's "safety net": it stores almost every
-change you make to a Git repository (regardless of whether you commit the
-change) in a chronological manner. The following is an example of what the
-output of the `git reflog` command might show:
+occasionally happens that errors are introduced - especially when you're not
+careful with using `git commit --amend` or `git rebase` on remote changes. This
+is where the *reflog* comes in. Think of the reflog as Git's "safety net": it
+stores almost every change you make to a Git repository (regardless of whether
+you commit the change) in a chronological manner. The following is an example of
+what the output of the `git reflog` command might show:
 
 ```no-highlight
 58deba6 HEAD@{0}: merge: feature-branch: Fast-forward
