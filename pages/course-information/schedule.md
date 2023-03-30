@@ -170,7 +170,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 13:00 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL, EF </td>
+        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 14:15 </td>
@@ -180,7 +180,7 @@
     <tr>
         <td style="padding:5px"> <font size="3"> 14:30 </td>
         <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL, EF </td>
+        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL </td>
     <tr>
     <tr>
         <td style="padding:5px"> <font size="3"> 15:30 </td>
