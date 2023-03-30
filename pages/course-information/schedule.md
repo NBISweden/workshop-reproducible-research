@@ -162,6 +162,7 @@
         </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>
+    <tr>
         <td style="padding:5px"> <font size="3"> 12:00 </td>
         <td style="padding:5px"> <font size="3"> Lunch </td>
         <td style="padding:5px"> <font size="3"> </td>
