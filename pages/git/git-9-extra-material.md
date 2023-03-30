@@ -129,6 +129,31 @@ reasonable and fulfil a purpose and add functionality to the project. It is
 quite common that you have a use-case the maintainer didn't think of before, and
 that you've helped the project grow by contributing your code!
 
+## Amending commits
+
+Once in a while you'll have just commited something to your Git repo and
+immediately remembered that you forgot to add something small, or perhaps you
+saw an error somewhere. While you can certainly just add that and make a new
+commit, wouldn't it be nicer if you could just make the change as if it was
+already a part of the first commit? Well, you can! Just make the change, stage
+it and the commit together with the `--amend` flag, like so:
+
+```bash
+git add <file>
+git commit --amend
+```
+
+This will add the staged changes to the previous commit as if they had always
+been there. Be careful, though! This will actually rewrite history, meaning that
+it only works if you only amended local changes. If you had already pushed the
+first commit to a remote repository you would run into trouble: you will be able
+to make the amend without issue, but you'll get an error when you try to push
+your new changes, since the remote already contains the *first* version of the
+commit and can't simply rewrite what it already has.
+
+Amending changes is thus a good way to fix small mistakes you realise you made
+just after commiting them, as long as you only amend local changes!
+
 ## The reflog
 
 We have shown many ways to work with Git and its various commands, and it
