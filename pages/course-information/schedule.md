@@ -4,7 +4,7 @@
         <tr>
             <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
             <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:120px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -65,7 +65,7 @@
         <tr>
             <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
             <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:120px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -135,7 +135,7 @@
         <tr>
             <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
             <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:120px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -195,7 +195,7 @@
         <tr>
             <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
             <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:120px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
@@ -248,7 +248,7 @@
         <tr>
             <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
             <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:100px"> <font size="3"><b> Teacher </b> </td>
+            <td style="padding:5px; width:120px"> <font size="3"><b> Teacher </b> </td>
         </tr>
     </thead>
     <tr>
