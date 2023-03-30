@@ -210,3 +210,44 @@ of the presentations you have given in the past (such as for a lab meeting, a
 journal club, *etc.*) and try to recreate that with R Markdown. Which method of
 creating presentations you prefer is, ultimately, up to you and what the your
 current end-goal is for the presentation.
+
+## Quarto - the improved R Markdown
+
+The company that created R Markdown, [Posit](https://posit.co/) (previously
+known as *RStudio*), released a new piece of software in 2022 called
+[Quarto](https://quarto.org/). Quarto is a command line-based software that can,
+among many other things, render R Markdown documents. You can think of it as R
+Markdown 2.0, but with many improvements and additions - here is a small and
+non-exhaustive list of some of the more major of these:
+
+* Quarto combines the functionality of several other packages into a stand-alone
+  software, meaning you can both create notebooks, presentations, websites,
+  books and dashboards with just Quarto without having to install *e.g.*
+  Xaringan, Distill or Bookdown. One format, many outputs.
+
+* Quarto is not dependent on R, but works out-of-the-box for both R, Python,
+  Julia and Observable; Quarto can render both R Markdown documents and Jupyter
+  Notebooks while using the same standardised YAML header.
+
+* Quarto is decoupled from RStudio and R itself: you can easily use it in
+  VSCode, JupyterLab, your favourite text editor or (of course) Rstudio.
+
+Posit has stated that they will continue to support R Markdown in the future,
+but that some new features will only be available in Quarto. This means that you
+as a pure R user don't need to switch away from R Markdown if you're already
+comfortable using it. At the same time switching over is relatively painless,
+while also giving you quite a few great features and quality of life
+improvements compared to R Markdown.
+
+While R Markdown *can* use Python, let's face it: it was never quite as seamless
+as one would have liked. So if you're a Python user who always wanted a better
+way to get the plaintext-based notebooks that R Markdown offers, Quarto is
+definitely for you! The same goes for users of Julia and Observable.
+
+While the current course materials doesn't include any details on Quarto, future
+course round most likely will. If you're interested in learning more about
+Quarto right away, we recommend that you head on over to the [Quarto
+website](https://quarto.org/) and check out their excellent [Get
+Started](https://quarto.org/docs/get-started/) documentation! Some of the
+teachers have already made the switch, so you can always ask more specific
+questions during the course as well.
