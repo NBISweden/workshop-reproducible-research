@@ -12,7 +12,7 @@ workflow to make it more flexible and reproducible!
 > modifications is available in `tutorials/git/Snakefile`.
 
 You are probably already in your `snakemake-env` environment, otherwise
-activate it (use `conda info --envs` if you are unsure).
+activate it (use `mamba info --envs` if you are unsure).
 
 > **Tip** <br>
 > Here we have one Conda environment for executing the whole Snakemake
@@ -21,7 +21,10 @@ activate it (use `conda info --envs` if you are unsure).
 > rule-specific-env.yml` in the rule definition and running Snakemake with
 > the `--use-conda` flag. The given rule will then be run in the Conda
 > environment specified in `rule-specific-env.yml` that will be created and
-> activated on the fly by Snakemake.
+> activated on the fly by Snakemake. Note that by default Snakemake uses 
+> `mamba` to generate the rule-specific environments. This behaviour can be 
+> changed by running with `--conda-frontend conda`, which will force 
+> Snakemake to use `conda` instead.
 
 Let's start by generating the rule graph so that we get an overview of the
 workflow.
@@ -49,12 +52,16 @@ are unfamiliar with the purpose of the different operations (index genome,
 FastQC and so on), then take a look at the [intro](introduction).
 
 Also generate the job graph in the same manner. Here you can see that three
-samples will be downloaded from SRA (Sequence Read Archive); SRR935090,
-SRR935091, and SRR935092. Those will then be quality controlled with FastQC and
-aligned to a genome. The QC output will be aggregated with MultiQC and the
-alignments will be used to generate a count table, *i.e.* a table that shows
-how many reads map to each gene for each sample. This count table is then what
-the downstream analysis will be based on.
+samples will be downloaded: SRR935090, SRR935091, and SRR935092. The 
+original sample files contain tens of millions of reads but for the purpose 
+of this course we have subsampled them to 100,000 reads per sample, so that 
+they are easy to manage, and made them available at the [SciLifeLab Data 
+Repository](https://figshare.scilifelab.se/articles/educational_resource/MRSA_case_study_example_data/22246417).
+These fastq files will then be quality controlled with FastQC and aligned to 
+a genome. The QC output will be aggregated with MultiQC and the alignments 
+will be used to generate a count table, *i.e.* a table that shows how many 
+reads map to each gene for each sample. This count table is then what the 
+downstream analysis will be based on.
 
 ![](images/dag_mrsa.svg)
 

@@ -1,11 +1,23 @@
 Conda is a package and environment manager. As a package manager it enables you
 to install a wide range of software and tools using one simple command: `conda
 install`. As an environment manager it allows you to create and manage multiple
-different environments, each with their own set of packages. What are the
-benefits of using an environment manager? Some examples include the ability to
-easily run different versions of the same package, have different cross-package
-dependencies that are otherwise incompatible with each other and, last but not
-least, easy installation of all the software needed for an analysis.
+different environments, each with their own set of packages. 
+
+> **Mamba vs Conda**
+> As explained in the [pre-course-setup](pre-course-setup) we advocate 
+> using Mamba instead of Conda. Mamba is a faster reimplementation of Conda and
+> can often solve environments where Conda fails to do the job. On the 
+> command line `mamba` works as a drop-in replacement for `conda`, meaning 
+> you can simply replace `conda` with `mamba` for almost all use-cases. 
+> While this tutorial references 'Conda' (as in 'Conda environment' and 
+> 'Conda package' the practical command line examples use `mamba` where 
+> possible.  
+
+What are the benefits of using an environment manager? Some examples include 
+the ability to easily run different versions of the same package, have 
+different cross-package dependencies that are otherwise incompatible with 
+each other and, last but not least, easy installation of all the software 
+needed for an analysis.
 
 Environments are of particular relevance when making bioinformatics projects
 reproducible. Full reproducibility requires the ability to recreate the system

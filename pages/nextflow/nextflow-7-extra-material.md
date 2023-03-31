@@ -13,18 +13,18 @@ some links to additional resources on Nextflow:
 
 # Using containers in Nextflow
 
-Nextflow has built-in support for using both Docker and Singularity containers (and others too),
-either with a single container for the workflow as a whole or separate
-containers for each individual process. The simplest way to do it is to have a
-single container for your entire workflow, in which case you simply run the
-workflow and specify the image you want to use, like so:
+Nextflow has built-in support for using both Docker and Singularity containers
+(and others too), either with a single container for the workflow as a whole or
+separate containers for each individual process. The simplest way to do it is to
+have a single container for your entire workflow, in which case you simply run
+the workflow and specify the image you want to use, like so:
 
 ```bash
 # Run with docker
-nextflow run main.nf -with-docker [image]
+nextflow run main.nf -with-docker image-name
 
 # Run with Singularity
-nextflow run main.nf -with-singularity [image].sif
+nextflow run main.nf -with-singularity image.sif
 ```
 
 If you don't want to supply this at every execution, you can also add it
@@ -32,7 +32,7 @@ directly to your configuration file:
 
 ```bash
 # Docker configuration
-process.container = 'image'
+process.container = 'image-name'
 docker.enabled = true
 
 # Singularity configuration
@@ -43,7 +43,7 @@ singularity.enabled = true
 If you instead would like to have each process use a different container you can
 use the `container` directive in your processes:
 
-```groovy
+```nextflow
 process PROCESS_01 {
     (...)
     container: 'image_01'
@@ -70,7 +70,7 @@ for Docker and Singularity above. You can either supply an `environment.yml`
 file, the path to an existing environment or the packages and their versions
 directly in the `conda` directive, like so:
 
-```groovy
+```nextflow
 process PROCESS_01 {
     (...)
     conda: 'mrsa-environment.yml'
@@ -91,7 +91,7 @@ process PROCESS_03 {
 You can use either of the methods described above with your configuration file
 as well, here exemplified using an `environment.yml` file:
 
-```groovy
+```nextflow
 process.conda = 'mrsa-environment.yml'
 ```
 
@@ -103,10 +103,9 @@ which is easily handled by Nextflow. What you need to do is to add the following
 
 ```
 profiles {
-
     // Uppmax general profile
     uppmax {
-        params{
+        params {
             account        = null
         }
         process {
@@ -124,7 +123,7 @@ profiles {
 ```
 
 This will add a profile to your workflow, which you can access by running the
-workflow with `-profile uppmax`. You will also have to supply an extra parameter 
+workflow with `-profile uppmax`. You will also have to supply an extra parameter
 `account` which corresponds to your SNIC project account, but the rest you can
 leave as-is, unless you want to tinker with *e.g.* compute resource
 specifications. That's all you need! Nextflow will take care of communications
@@ -147,17 +146,16 @@ high-throughput sequencing is that you have pairs of reads for each sample.
 Nextflow has a special, built-in way to create channels for this data type: the
 `fromFilePairs` channel factory:
 
-```groovy
-Channel
+```nextflow
+ch_raw_reads = Channel
     .fromFilePairs ( "data/*_R{1,2}.fastq.gz" )
-    .set           { ch_raw_reads }
 ```
 
 This will create a channel containing all the reads in the `data/` directory in
 the format `<sample>_R1.fastq.gz` and `<sample>_R2.fastq.gz` and will pair them
 together into a nested tuple looking like this:
 
-```groovy
+```nextflow
 [sample, [data/sample_R1.fastq.gz, data/sample_R2.fastq.gz]]
 ```
 
@@ -169,30 +167,30 @@ files, one sample) into a single alignment file (one file, one sample) very
 simple. For more methods of reading in data see the Nextflow documentation on
 [Channel Factories](https://www.nextflow.io/docs/latest/channel.html#channel-factory).
 
-We can also do quite advanced things to manipuate data in channels, such as this:
+We can also do quite advanced things to manipuate data in channels, such as
+this:
 
-```groovy
-Channel
+```nextflow
+samples_and_treatments = Channel
     .fromPath ( params.metadata )
     .splitCsv ( sep: "\t", header: true )
     .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }
     .filter   { id, treatment -> treatment != "DMSO" }
-    .unique   (  )
-    .set      { samples_and_treatments }
+    .unique   ( )
 ```
 
 That's a bit of a handful! But what does it do? The first line specifies that we
 want to read some data from a file specified by the `metadata` parameter, and
 the second line actually reads that data using tab as delimiter, including a
 header. The `map` operator takes each entire row and subsets it to only two
-columns: the `sample_id` and `treatment` columns. This subset is stored as a
-tuple. The `filter` operator is then used to remove any tuples where the second
-entry, `treatment`, is not equal to the string `"DMSO"` (*i.e.* untreated cells, in this example).
-We then only take the unique tuples and set the results as the new channel
-`samples_and_treatments`. Let's say that this is the metadata we're reading:
+columns: the `sample_id` and `treatment` columns (discarding the other columns).
+This subset is stored as a tuple. The `filter` operator is then used to remove
+any tuples where the second entry (`treatment`) is not equal to the string
+`"DMSO"` (*i.e.* untreated cells, in this example). Finally, we only keep unique
+tuple values. Let's say that this is the metadata we're reading:
 
 ```no-highlight
-sample_id     dose    group     treatment
+sample        dose    group     treatment
 sample_1      0.1     control   DMSO
 sample_1      1.0     control   DMSO
 sample_1      2.0     control   DMSO
@@ -224,7 +222,7 @@ You don't have to use bash or external scripts inside your processes all the
 time unless you want to: Nextflow is based on Groovy, which allows you to use
 both Groovy and Bash in the same process. For example, have a look at this:
 
-```groovy
+```nextflow
 process index_fasta {
     tag "${fasta_name}"
 

@@ -362,6 +362,14 @@ There are many so-called excuses not to work reproducibly:
   `.xls`.
 ]
 
+--
+
+.right-column[
+*If you want to learn more about data management in-depth, NBIS has a course for
+you: .green[Introduction to Data Management Practices] (find out more at
+[nbis.se](https://nbis.se))*
+]
+
 ---
 
 # How are you handling your .green[code]?

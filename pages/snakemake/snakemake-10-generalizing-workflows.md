@@ -19,18 +19,26 @@ analysis workflow, we need the config file to:
 
 The first point is straightforward; rather than using `SAMPLES = ["..."]` in
 the Snakefile we define it as a parameter in `config.yml`. You can either add
-it as a list similar to the way it was expressed before by adding
- `SAMPLES: ["..."]` to `config.yml`, or you can use this yaml notation:
+it as a list similar to the way it was expressed before by adding:
+
+```yaml
+SAMPLES: ["SRR935090", "SRR935091", "SRR935092"]
+```
+ 
+to `config.yml`, or you can use this yaml notation (whether you 
+choose `SAMPLES` or `sample_ids` as the name of the entry doesn't matter, 
+you will just have to reference the same name in the config dictionary 
+inside the workflow):
 
 ```yaml
 sample_ids:
-- SRR935090
-- SRR935091
-- SRR935092
+  - SRR935090 
+  - SRR935091
+  - SRR935092
 ```
 
-You also have to change the workflow to reference `config["sample_ids"]` (if 
-using the latter example) instead of `SAMPLES`, as in:
+Change the workflow to reference `config["sample_ids"]` (if using the latter 
+example) instead of `SAMPLES`, as in:
 
 ```bash
 expand("intermediate/{sample_id}_fastqc.zip",
@@ -39,22 +47,61 @@ expand("intermediate/{sample_id}_fastqc.zip",
 
 Do a dry-run afterwards to make sure that everything works as expected.
 
-The second point is trickier. Writing workflows in Snakemake is quite
-straightforward when the logic of the workflow is reflected in the file names,
-*i.e.* `my_sample.trimmed.deduplicated.sorted.fastq`, but that isn't always the
-case. In our case we have the FTP paths to the genome sequence and annotation
-where the naming doesn't quite fit with the rest of the workflow. The easiest
-solution is probably to make three parameters to hold these values, say
-`genome_id`, `genome_fasta_path` and `genome_gff_path`, but we will go for
-a somewhat more complex but very useful alternative. We want to construct
-a dictionary where something that will be a wildcard in the workflow is the key
-and the troublesome name is the value. An example might make this clearer (this
-is also in `config.yml` in the finished version of the workflow under 
-`tutorials/git/`). This is a nested dictionary where "genomes" is a key with 
-another dictionary as value, which in turn has genome ids as keys and so on. The
-idea is that we have a wildcard in the workflow that takes the id of a genome as
-value (either "NCTC8325" or "ST398" in this case). The fasta and gff3 paths can 
-then be retrieved based on the value of the wildcard.
+You may remember from the [snakemake-5-parameters](snakemake-5-parameters.md)
+part of this tutorial that we're using a function to return the URL of the 
+fastq files to download for each sample:
+
+```python
+def get_sample_url(wildcards):
+    samples = {
+        "SRR935090": "https://figshare.scilifelab.se/ndownloader/files/39539767",
+        "SRR935091": "https://figshare.scilifelab.se/ndownloader/files/39539770",
+        "SRR935092": "https://figshare.scilifelab.se/ndownloader/files/39539773"
+    }
+    return samples[wildcards.sample_id]
+```
+
+Here the URLs of each sample_id is hardcoded in the `samples` dictionary 
+inside the function. To generalize this function we can move the definition 
+to the config file, placing it for example under an entry that we call 
+`sample_urls` like this:
+
+```yaml
+sample_urls:
+  SRR935090: "https://figshare.scilifelab.se/ndownloader/files/39539767"
+  SRR935091: "https://figshare.scilifelab.se/ndownloader/files/39539770"
+  SRR935092: "https://figshare.scilifelab.se/ndownloader/files/39539773"
+```
+
+This is what's called 'nested' key/value pairs, meaning that each sample_id 
+-> URL pair becomes nested under the config key `sample_urls`. So in order 
+to access the url of _e.g._ `SRR935090` we would use 
+`config["sample_urls"]["SRR935090"]`. This means that you will have to 
+update the `get_sample_url` function to:
+
+```python
+def get_sample_url(wildcards):
+    return config["sample_urls"][wildcards.sample_id]
+```
+
+Now the function uses the global `config` dictionary to return URLs for each 
+sample_id. Again, do a dry-run to see that the new implementation works. 
+
+> *Tip!* <br>
+> If you were to scale up this workflow with more samples it could become 
+> impractical to have to define the URLs by hand in the config file. A 
+> tip then is to have a separate file where samples are listed in one column 
+> and the URLs (or file paths) in another column. With a few lines of python 
+> code you could then read that list at the start of the workflow and add 
+> each sample to the config dictionary.
+
+Now let's take a look at the genome reference used in the workflow. In the 
+`get_genome_fasta` and `get_genome_gff3` rules we have hardcoded FTP paths 
+to the fasta GFF annotation file for the genome `NCTC8325`. We can 
+generalize this in a similar fashion to what we did with the  
+`get_SRA_by_accession` rule. Let's add a nested entry called `genomes` to 
+the config file that will hold the genome id and FTP paths to the fasta and 
+GFF file:
 
 ```yaml
 genomes:
@@ -66,7 +113,10 @@ genomes:
     gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_st398//Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.37.gff3.gz
 ```
 
-Go ahead and add the section above to `config.yml`. 
+As you can see this is very similar to what with did with `sample_urls`, 
+just that we have one more nested level. Now to access the FTP path to the 
+fasta file for genome id `NCTC8325` we can use 
+`config["genomes"]["NCTC8325"]["fasta"]`.
 
 Let's now look at how to do the mapping from genome id to fasta path in the
 rule `get_genome_fasta`. This is how the rule currently looks (if you have
@@ -89,34 +139,11 @@ rule get_genome_fasta:
 
 We don't want the hardcoded genome id `NCTC8325`, so replace that with a 
 wildcard, say `{genome_id}` (remember to add the wildcard to the `log:` 
-directive as well). 
+directive as well). We now need to supply the remote paths to the fasta and 
+gff files for a given genome id. Because we've added this information to the 
+config file we just need to pass it to the rule in some way, and just like 
+in the `get_SRA_by_accession` rule we'll use a function to do the job:
 
-Also change in `index_genome` to use a wildcard rather than a hardcoded genome
-id. Here you will run into a complication if you have followed the previous
-instructions and use the `expand()` expression. We want the list to expand to
-`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
-*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the
-`genome_id` wildcard from being expanded we have to "mask" it with double curly
-brackets: `{{genome_id}}`. In addition, we need to replace the hardcoded 
-`intermediate/NCTC8325` in the shell directive of the rule with the genome id 
-wildcard. Inside the shell directive the wildcard object is accessed with this 
-syntax: `{wildcards.genome_id}`, so the bowtie2-build command should be:
-
-```bash
-bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
-```
-
-We now need to supply the remote paths to the fasta and gff files for a given 
-genome id. Because we've added this information to the config file we just need 
-to pass it to the rule in some way.
-
-Take a look at the code and `get_genome_fasta` rule below. Here we have defined 
-a function called `get_fasta_path` which takes the `wildcards` object as its 
-only argument. This object allows access to the wildcards values via attributes 
-(here `wildcards.genome_id`). The function will then look in the nested `config` 
-dictionary and return the value of the fasta path for the key 
-`wildcards.genome_id`. In the rule this path is stored in the `fasta_path` param
-value and is made available to `wget` in the shell directive. 
 
 ```python
 def get_fasta_path(wildcards):
@@ -138,12 +165,52 @@ rule get_genome_fasta:
         """
 ```
 
+Now change the `get_genome_gff3` rule in a similar manner. Click to see the 
+solution below if you're having trouble.
+
+<details>
+<summary> "Click to see solution" </summary>
+
+```python
+def get_gff_path(wildcards):
+    return config["genomes"][wildcards.genome_id]["gff3"]
+
+rule get_genome_gff3:
+    """
+    Retrieve annotation in gff3 format for a genome.
+    """
+    output:
+        "data/raw_external/{genome_id}.gff3.gz"
+    log:
+        "results/logs/get_genome_gff3/{genome_id}.log"
+    params:
+        gff3_path = get_gff_path
+    shell:
+        """
+        wget {params.gff3_path} -O {output} -o {log}
+        """
+```
+</details>
+
+Also change in `index_genome` to use a wildcard rather than a hardcoded genome
+id. Here you will run into a complication if you have followed the previous
+instructions and use the `expand()` expression. We want the list to expand to
+`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
+*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the
+`genome_id` wildcard from being expanded we have to "mask" it with double curly
+brackets: `{{genome_id}}`. In addition, we need to replace the hardcoded 
+`intermediate/NCTC8325` in the shell directive of the rule with the genome id 
+wildcard. Inside the shell directive the wildcard object is accessed with this 
+syntax: `{wildcards.genome_id}`, so the bowtie2-build command should be:
+
+```bash
+bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+```
+
 Note that this will only work if the `{genome_id}` wildcard can be resolved to
 something defined in the config (currently `NCTC8325` or `ST398`). If you try to
 generate a fasta file for a genome id not defined in the config Snakemake will 
 complain, even at the dry-run stage.
-
-Now change the `get_genome_gff3` rule in a similar manner.
 
 The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can now 
 download and index *any genome* as long as we provide valid links in the config
@@ -152,7 +219,11 @@ file.
 However, we need to define somewhere which genome id we actually want to use
 when running the workflow. This needs to be done both in `align_to_genome` and
 `generate_count_table`. Do this by introducing a parameter in `config.yml` 
-called `"genome_id"` (you can set it to either `NCTC8325` or `ST398`). 
+called `"genome_id"` (you can set it to either `NCTC8325` or `ST398`), _e.g._:
+
+```yaml
+genome_id: "NCTC8325"
+```
 
 Now we can resolve the `genome_id` wildcard from the config. See below for an 
 example for `align_to_genome`. Here the `substr` wildcard gets expanded from a 

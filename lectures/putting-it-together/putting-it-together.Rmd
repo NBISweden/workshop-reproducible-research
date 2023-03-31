@@ -84,7 +84,7 @@ Project directory templates, *e.g.* NBIS project template:
 .center[<img src="NBISweden_project_template.png" style="width:60%;"/>]
 
   * https://github.com/NBISweden/project_template
-  * https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow
+  * https://github.com/snakemake-workflows/snakemake-workflow-template
 
 ---
 
@@ -276,7 +276,8 @@ Completely recreate the compute system:
 .green[Containerization / virtualization]
 
 * **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
-* **Singularity** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+* **Singularity/Apptainer** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+* **Podman** - open source daemonless container tool similar to docker in many regards
 * **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
 * **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
 

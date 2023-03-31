@@ -50,7 +50,7 @@ repositories](https://hub.docker.com/explore/). There are many roads to Rome
 when it comes to choosing the best image to start from. Say you want to run
 RStudio in a Conda environment through a Jupyter notebook. You could then start
 from one of the [rocker images](https://github.com/rocker-org/rocker) for R,
-a [Miniconda image](https://hub.docker.com/r/continuumio/miniconda/), or
+a [Mambaforge image](https://hub.docker.com/r/condaforge/mambaforge), or
 a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from
 one of the low-level official images and set up everything from scratch.
 `LABEL` and `MAINTAINER` is just meta-data that can be used for organizing your
@@ -218,6 +218,10 @@ the Dockerfile is really simple. Try it out now:
 ```bash
 docker build -f Dockerfile_slim -t my_docker_image .
 ```
+
+> **Important** <br>
+> If your computer is a MAC with the M1 chip, you may have to add 
+> `--platform linux/x86_64` to the `docker build` command.
 
 This should result in something similar to this:
 

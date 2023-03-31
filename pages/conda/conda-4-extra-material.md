@@ -1,11 +1,12 @@
 The following extra material contains some more advanced things you can do with
-Conda and the command line in general, which is not part of the main course
-materials. All the essential skills of Conda are covered by the previous
+Conda/Mamba and the command line in general, which is not part of the main 
+course materials. All the essential skills of are covered by the previous
 section: the material here should be considered tips and tricks from people who
-use Conda as part of their daily work. You thus don't need to use these things
-unless you want to, and you can even skip this part of the lesson if you like!
+use Conda/Mamba as part of their daily work. You thus don't need to use these 
+things unless you want to, and you can even skip this part of the lesson if 
+you like!
 
-## Configuring Conda
+## Configuration
 
 The behaviour of your Conda installation can be changed using an optional
 configuration file `.condarc`. On a fresh Conda install no such file is
@@ -71,31 +72,32 @@ page.
 
 ## Managing Python versions
 
-With Conda it's possible to keep several different versions of Python on your
-computer at the same time, and switching between these versions is very easy.
-However, a single Conda environment can only contain one version of Python.
+With Conda environments it's possible to keep several different versions of 
+Python on your computer at the same time, and switching between these 
+versions is very easy. However, a single Conda environment can only contain 
+one version of Python.
 
 ### Your current Python installation
 
-The Conda base environment has its own version of Python installed.
-When you open a terminal (after having installed Conda on your system) this base
-environment is activated by default (as evidenced by `(base)` prepended to your
-prompt). You can check what Python version is installed in this environment by
-running `python --version`. To see the exact path to the Python executable type
-`which python`.
+The `base` environment has its own version of Python installed.
+When you open a terminal (after having installed Conda/Mamba on your system) 
+this base environment is activated by default (as evidenced by `(base)` 
+prepended to your prompt). You can check what Python version is installed in 
+this environment by running `python --version`. To see the exact path to the 
+Python executable type `which python`.
 
 In addition to this your computer may already have Python installed in a
-separate (system-wide) location outside of the Conda installation. To see if
-that is the case type `conda deactivate` until your prompt is not prepended
-with a Conda environment name. Then type `which python`. If a path was printed
-to the terminal (*e.g.* `/usr/bin/python`) that means some Python version is
-already installed in that location. Check what version it is by typing `python
---version`.
+separate (system-wide) location outside of the Conda/Mamba installation. To 
+see if that is the case type `mamba deactivate` until your prompt is not 
+prepended with a Conda environment name. Then type `which python`. If a path 
+was printed to the terminal (*e.g.* `/usr/bin/python`) that means some 
+Python version is already installed in that location. Check what version it 
+is by typing `python --version`.
 
-Now activate the base Conda environment again by typing `conda activate` (or
-the equivalent `conda activate base`) then check the Python installation path
+Now activate the `base` environment again by typing `mamba activate` (or
+the equivalent `mamba activate base`) then check the Python installation path
 and version using `which` and `python --version` as above. See the difference?
-When you activate a Conda environment your `$PATH` variable is updated so that
+When you activate an environment your `$PATH` variable is updated so that
 when you call `python` (or any other program) the system first searches the
 directory of the currently active environment.
 
@@ -106,7 +108,7 @@ version of Python in that environment as well. As an example, create an
 environment containing Python version `3.5` by running:
 
 ```bash
-conda create -n py35 python=3.5
+mamba create -n py35 python=3.5
 ```
 
 Here we name the environment `py35` but you can choose whatever name you want.
@@ -114,7 +116,7 @@ Here we name the environment `py35` but you can choose whatever name you want.
 To activate the environment run:
 
 ```bash
-conda activate py35
+mamba activate py35
 ```
 
 You now have a completely separate environment with its own Python version.
@@ -125,33 +127,32 @@ Python 2.x and are thus incompatible with Python 3.x. Simply create the new
 Conda environment with:
 
 ```bash
-conda create -n py27 python=2.7
+mamba create -n py27 python=2.7
 ```
 
 Activate this environment with:
 
 ```bash
-conda activate py27
+mamba activate py27
 ```
 
-Now, switching between Python versions is as easy as typing `conda activate
-py35` / `conda activate py27`.
+Now, switching between Python versions is as easy as typing `mamba activate
+py35` / `mamba activate py27`.
 
 > **Note**<br>
 > If you create an environment where none of the packages require Python,
 > *and* you don't explicitly install the `python` package then that new
-> environment will use the Python version installed in your base Conda
-> environment.
+> environment will use the Python version installed in your `base` environment.
 
 ## Decorating your prompt
 
-By default, Conda adds the name of the currently activated environment to the
-end of your command line prompt. This is a good thing, as it makes it easier to
-keep track of what environment and packages you have access to. The way this is
+By default, the name of the currently activated environment is added to your 
+command line prompt. This is a good thing, as it makes it easier to keep 
+track of what environment and packages you have access to. The way this is
 done in the default implementation becomes an issue when using absolute paths
-for environments (specifying `conda env create -p path/to/environment`,
+for environments (specifying `mamba env create -p path/to/environment`,
 though, as the entire path will be added to the prompt. This can take up a lot
-of unnecessary space, but can be solved in a number of ways.
+of unnecessary space on your screen, but can be solved in a number of ways.
 
 The most straightforward way to solve this is to change the Conda configuration
 file, specifically the settings of the `env_prompt` configuration value which
@@ -177,7 +178,7 @@ As an example, say you have a project called *project_a* with the project path
 `~/myprojects/project_a`. You could then install the environment for *project_a*
 into a folder `~/myprojects/project_a/envs/project_a_environment`. Activating
 the environment by pointing Conda to it (*e.g.*
-`conda activate ~/myprojects/project_a/envs/project_a_environment`) will only
+`mamba activate ~/myprojects/project_a/envs/project_a_environment`) will only
 cause your prompt to be modified with *project_a_environment*.
 
 ## Bash aliases for conda
@@ -189,11 +190,11 @@ Two aliases that might be usefol for you are `alias coac='conda activate'` and
 
 ## Rolling back to an earlier version of the environment
 
-Conda keeps a history of the changes to an environment. You can see 
-revisions to an environment by using:
+The history of the changes to an environment are automatically tracked. You can 
+see revisions to an environment by using:
 
 ```bash
-conda list --revisions
+mamba list --revisions
 ```
 
 which shows each revision (numbered) and what's installed.
@@ -201,5 +202,5 @@ which shows each revision (numbered) and what's installed.
 You can revert back to particular revision using:
 
 ```bash
-conda install --revision 5
+mamba install --revision 5
 ```

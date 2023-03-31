@@ -2,7 +2,6 @@ name: jupyter-env
 channels:
   - conda-forge
   - bioconda
-  - main
 dependencies:
   - python=3.9.7
   - biopython=1.79

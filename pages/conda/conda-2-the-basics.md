@@ -6,7 +6,7 @@ called *Project A*.
 * Let's make our first Conda environment:
 
 ```bash
-conda create -n project_a -c bioconda fastqc
+mamba create -n project_a -c bioconda fastqc
 ```
 
 This will create an environment called `project_a`, containing FastQC from the
@@ -16,7 +16,7 @@ for your confirmation.
 * Once it is done, you can activate the environment:
 
 ```bash
-conda activate project_a
+mamba activate project_a
 ```
 
 By default, Conda will add information to your prompt telling you which
@@ -25,7 +25,7 @@ environment that is active.
 * To see all your environments you can run:
 
 ```bash
-conda info --envs
+mamba info --envs
 ```
 
 The active environment will be marked with an asterisk.
@@ -34,13 +34,13 @@ The active environment will be marked with an asterisk.
   run:
 
 ```bash
-conda list
+mamba list
 ```
 
 * To save the installed packages to a file, run:
 
 ```bash
-conda env export --from-history > environment.yml
+mamba env export --from-history > environment.yml
 ```
 
 where `--from-history` only reports the packages requested to be installed 
@@ -64,30 +64,30 @@ activated.
 
 # Adding more packages
 
-* Now, let's add another package (*SRA-Tools*) to our environment using `conda
+* Now, let's add another package (*seqtk*) to our environment using `conda
   install`. Make sure that `project_a` is the active environment first.
 
 ```bash
-conda install -c bioconda sra-tools
+mamba install -c bioconda seqtk
 ```
 
 * If we don't specify the package version, the latest available version will be
-  installed. What version of SRA-Tools got installed?
+  installed. What version of seqtk got installed?
 * Run the following to see what versions are available:
 
 ```bash
-conda search -c bioconda sra-tools
+mamba search -c bioconda seqtk
 ```
 
 * Now try to install a different version of SRA-Tools, *e.g.*:
 
 ```bash
-conda install -c bioconda sra-tools=2.7.0
+mamba install -c bioconda seqtk=1.2
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
 you want to downgrade the initial SRA-Tools installation to the one specified
-here (`2.7.0` in the example). You can only have one version of a given package
+here (`1.2` in the example). You can only have one version of a given package
 in a given environment.
 
 Let's assume that you will have sequencing data in your Project A, and want to
@@ -111,7 +111,7 @@ new Project A where you want the latest version.
 * Make a new environment for your old project:
 
 ```bash
-conda create -n project_old -c bioconda bowtie2=2.2.5
+mamba create -n project_old -c bioconda bowtie2=2.2.5
 ```
 
 * List your environments (do you remember the command?).
@@ -123,14 +123,14 @@ conda create -n project_old -c bioconda bowtie2=2.2.5
 Now let's try to remove an installed package from the active environment:
 
 ```
-conda remove sra-tools
+mamba remove seqtk
 ```
 
-* Run `conda deactivate` to exit your active environment.
+* Run `mamba deactivate` to exit your active environment.
 * Now, let's remove an environment:
 
 ```bash
-conda env remove -n project_old
+mamba env remove -n project_old
 ```
 
 After making a few different environments and installing a bunch of packages,
@@ -138,7 +138,7 @@ Conda can take up some disk space. You can remove unnecessary files with the
 command:
 
 ```bash
-conda clean -a
+mamba clean -a
 ```
 
 This will remove package tar-balls that are left from package installations,
@@ -148,6 +148,6 @@ data.
 > **Quick recap** <br>
 > In this section we've learned:
 >
-> - How to use `conda install` for installing packages on the fly.
+> - How to use `mamba install` for installing packages on the fly.
 > - How to create, activate and change between environments.
 > - How to remove packages or environments and clean up.
