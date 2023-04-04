@@ -31,15 +31,23 @@ another name use `nextflow -c <path-to-config-file> run main_mrsa.nf`)
   directory.
 
 * Use your newly created parameter in the `publishDir` directory of a process
-  (it'll be in the form of `${params.resultsdir}/some/other/path`, for example).
-  Run your workflow to see if it worked.
+  Run your workflow to see if it worked; click below if you need help.
 
-> **Tip** <br>
-> Instead of manually changing all the hard-coded directories in your
-> workflow you can use the following little `sed` command, which will do it for
-> you: `sed 's/\"results\//\"${params.resultsdir}\//g' main_mrsa.nf > tmp; mv
-> tmp main_mrsa.nf`. In case you used a parameter name other than `resultsdir`
-> update the command accordingly.
+<details>
+<summary> Click to show </summary>
+
+```nextflow
+// Configuration file
+params {
+    outdir = "results"
+}
+
+// A publishDir directive in a process
+publishDir: "${params.outdir}",
+    mode: "copy"
+```
+
+</details>
 
 # Command line parameters
 
@@ -90,9 +98,9 @@ input = "samplesheet.csv"
 
 By specifying inputs from sample sheets like this we can change inputs of a
 workflow execution by creating another sample sheet and specifying *e.g.*,
-`--input input-2.csv` on the command line. This is highly useful when you want
-to run a single sample *e.g.*, when testing a workflow, or when you want to keep
-track of all the different inputs you've used historically.
+`--input samplesheet-2.csv` on the command line. This is highly useful when you
+want to run a single sample *e.g.*, when testing a workflow, or when you want to
+keep track of all the different inputs you've used historically.
 
 # Other configuration scopes
 
@@ -103,7 +111,7 @@ this:
 ```nextflow
 manifest {
     name        = "My Workflow"
-    description = "My workflow, created by me"
+    description = "My awesome workflow, created by me"
     author      = "Me"
     mainScript  = "main.nf"
     version     = "1.0.0"

@@ -3,7 +3,7 @@ to install a wide range of software and tools using one simple command: `conda
 install`. As an environment manager it allows you to create and manage multiple
 different environments, each with their own set of packages. 
 
-> **Mamba vs Conda**
+> **Mamba vs Conda** <br>
 > As explained in the [pre-course-setup](pre-course-setup) we advocate 
 > using Mamba instead of Conda. Mamba is a faster reimplementation of Conda and
 > can often solve environments where Conda fails to do the job. On the 

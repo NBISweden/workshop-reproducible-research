@@ -10,7 +10,7 @@
 
 <img src="https://www.svgrepo.com/show/20800/event-date-and-time-symbol.svg"
     width="20" height="20"/>
-    25 - 29 April, 2022
+    24 - 28 April, 2023
 
 <img src="https://www.svgrepo.com/show/4199/placeholder-on-a-map.svg"
     width="20" height="20"/>

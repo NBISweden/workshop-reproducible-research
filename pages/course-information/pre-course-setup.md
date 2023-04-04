@@ -3,14 +3,14 @@ repository for the course. The first step of the setup is thus to download all
 the files that you will need, which is done differently depending on which
 operating system you have.
 
-On the last day, in the "Putting the pieces together" session we will give 
-examples of how we use these tools in our day-to-day work. During the course, 
-spend some time thinking about how these tools could be useful for you in 
-your own project(s). After you've gone through the tutorial you may feel 
-that some of the tools could make your life easier from the get-go, while 
-others may take some time to implement efficiently (and some you may never 
-use again after the course). Our idea with the "Putting the pieces together" 
-session is to have an open discussion about where to go from here.
+On the last day, in the *Putting the pieces together* session we will give
+examples of how we use these tools in our day-to-day work. During the course,
+spend some time thinking about how these tools could be useful for you in your
+own project(s). After you've gone through the tutorial you may feel that some of
+the tools could make your life easier from the get-go, while others may take
+some time to implement efficiently (and some you may never use again after the
+course). Our idea with the *Putting the pieces together* session is to have an
+open discussion about where to go from here.
 
 ## Setup for Mac / Linux users
 
@@ -86,8 +86,10 @@ cd workshop-reproducible-research
 
 Chances are that you already have git installed on your computer. You can check
 by running *e.g.* `git --version`. If you don't have git, install it following
-the instructions [here]( https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-If you have a very old version of git you might want to update to a later version.
+the instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+If you have a very old version of git you might want to update to a later
+version. If you're on a Mac you can also install it using [Homebrew](https://brew.sh/)
+and simple `brew install git`.
 
 ### Configure git
 
@@ -147,22 +149,25 @@ below for more information.
 
 ## Installing Mamba
 
-> **Mamba or Conda?** <br>
-> Maybe you've worked with the Conda package manager before, and you're wondering
-> what the heck Mamba is? Mamba is simply put a faster implementation of Conda
-> and has quickly grown and matured to the point that we are making the switch
-> to Mamba also in this course. Conveniently there is almost no difference in 
-> the way the two programs work on the command line. You simply change `conda`
-> to `mamba` and keep working as you've done before (see the exception under 
-> "Configuring Conda" below).
-> This also means that if you already have conda installed you can keep using
-> it for this course, however we strongly recommend you to try out mamba in 
-> order to make your environment managing more efficient.
-> You will notice that we still use the terms 'Conda environment', 'Conda 
-> packages' _etc._ throughout the course and that the tutorial pages still have
-> 'Conda' in the title. This is because Conda is the original package manager
-> with a widely adopted terminology, and Mamba is a reimplementation of Conda.
-> We hope this is not too confusing.
+### Mamba or Conda?
+
+Maybe you've worked with the Conda package manager before, and you're wondering
+what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
+quickly grown and matured to the point that we are almost explusively using it
+in our own daily work rather than Conda -  we are thus reflecting this
+wide-spread adopting in the course material as well. Conveniently there is
+almost no difference in the way the two programs work on the command line. You
+simply change `conda` to `mamba` and keep working as you've done before (see the
+exception under *Configuring Conda* below). This also means that if you already
+have conda installed you can keep using it for this course, however we strongly
+recommend you to try out mamba in order to make your environment managing more
+efficient.
+
+You will notice that we still use the terms *Conda environment*, *Conda
+packages* *etc.* throughout the course and that the tutorial pages still have
+*Conda* in the title. This is because Conda is the original package manager with
+a widely adopted terminology, and Mamba is a re-implementation of Conda; we hope
+this is not too confusing.
 
 ### If you already have Mamba installed
 
@@ -197,7 +202,7 @@ rm Mambaforge-MacOSX-x86_64.sh
 ```
 
 ```bash
-# Install Mambaforge 3 for 64-bit Mac (Apple Chip)
+# Install Mambaforge 3 for 64-bit Mac (Apple chip)
 curl -L  https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-arm64.sh -O
 bash Mambaforge-MacOSX-arm64.sh
 rm Mambaforge-MacOSX-arm64.sh
@@ -213,11 +218,12 @@ rm Mambaforge-Linux-x86_64.sh
 The installer will ask you questions during the installation:
 
 - Do you accept the license terms? (Yes)
-- Do you accept the installation path or do you want to choose a different one? (Probably yes)
+- Do you accept the installation path or do you want to choose a different one?
+  (Probably yes)
 - Do you want the installer to initialize Mambaforge (Yes)
 
-Restart your shell so that the settings in `~/.bashrc`/`~/.bash_profile` can take
-effect. You can verify that the installation worked by running:
+Restart your shell so that the settings in `~/.bashrc` or `~/.bash_profile` can
+take effect. You can verify that the installation worked by running:
 
 ```bash
 mamba --version
@@ -231,20 +237,23 @@ mamba --version
 > Anaconda channels are incompatible with `conda-forge`.
 
 > **Different Mambas/Condas** <br>
-> You may come across several flavours of both Mamba and Conda. For Mamba there's the *Miniforge* installer 
-> which allows you to install the `mamba` command line tool that works as a replacement for `conda`. There's also 
-> `micromamba`, a small standalone C++ program developed mainly for continuous integration pipelines.
-> For Conda there's *Miniconda*, which is the installer for Conda. The third is *Anaconda*, which is a distribution 
-> of not only Conda, but also over 150 scientific Python packages. If you want to use Conda it's generally better to 
-> stick with the Miniconda installation, rather than installing 3 GB worth of packages you may not even use.
+> You may come across several flavours of both Mamba and Conda. For Mamba
+> there's the *Miniforge* installer which allows you to install the `mamba`
+> command line tool that works as a replacement for `conda`. There's also
+> `micromamba`, a small standalone C++ program developed mainly for continuous
+> integration pipelines. For Conda there's *Miniconda*, which is the installer
+> for Conda. The third is *Anaconda*, which is a distribution of not only Conda,
+> but also over 150 scientific Python packages. If you want to use Conda it's
+> generally better to stick with the Miniconda installation, rather than
+> installing 3 GB worth of packages you may not even use.
 
 ### Configuring Mamba/Conda
 
-At the moment the `config` subcommand is not implemented in `mamba`. This means 
-that when you want to configure your mamba or conda installation you still 
-need to rely on `conda`.  
+At the moment the `config` subcommand is not implemented in `mamba`. This means
+that when you want to configure your mamba or conda installation you still need
+to rely on `conda`.
 
-As a last step we will set up the default channels (from where packages will be 
+As a last step we will set up the default channels (from where packages will be
 searched for and downloaded if no channel is specified):
 
 ```
@@ -252,32 +261,57 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-and we will also set so called 'strict' channel priority, which ensures higher stability and better performance (see 
-details about this setting by running `conda config --describe channel_priority`):
+and we will also set so called 'strict' channel priority, which ensures higher
+stability and better performance (see details about this setting by running the
+following:
 
 ```
 conda config --set channel_priority strict
 ```
+
+### Mamba/Conda on new Macs
+
+If you have one of the newer Macs with Apple chips (the M-series) you may run
+into some problems with certain Conda packages that have not yet been built for
+the ARM64 architecture. The [Rosetta](https://support.apple.com/en-us/HT211861)
+software allows ARM64 Macs to use software built for the old AMD64 architecture,
+which means you can always fall back on creating AMD/Intel-based environments
+and use them in conjunction with Rosetta. This is how you do it:
+
+```bash
+CONDA_SUBDIR=osx-64 <mamba-command>
+conda activate <env>
+conda config --env --set subdir osx-64
+```
+
+The first command creates the Intel-based environment, while the last one
+makes sure that subsequent commands are also using the Intel architecture. If
+you don't want to remember and do this manually each time you want to use
+AMD64/Rosetta you can check out [this bash script](https://github.com/fasterius/dotfiles/blob/main/scripts/intel-conda-env.sh).
 
 ## Installing Snakemake
 
 We will use Conda environments for the set up of this tutorial, but don't worry
 if you don't understand exactly what everything does - you'll learn all the
 details at the course. First make sure you're currently situated inside the
-tutorials directory (`workshop-reproducible-research/tutorials`) and then
-create the Conda environment like so:
+tutorials directory (`workshop-reproducible-research/tutorials`) and then create
+the Conda environment like so:
 
 ```bash
 mamba env create -f snakemake/environment.yml -n snakemake-env
 mamba activate snakemake-env
 ```
 
-Check that Snakemake is installed correctly, for example by executing
-`snakemake --help`. This should output a list of available Snakemake settings.
-If you get `bash: snakemake: command not found` then you need to go back and
-ensure that the Mamba steps were successful. Once you've successfully completed 
-the above steps you can deactivate the environment using `mamba deactivate` 
-and continue with the setup for the other tools.
+> **ARM64 users:** <br>
+> Some of the packages in this environment is not available for the ARM64
+> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
+
+Check that Snakemake is installed correctly, for example by executing `snakemake
+--help`. This should output a list of available Snakemake settings. If you get
+`bash: snakemake: command not found` then you need to go back and ensure that
+the Mamba steps were successful. Once you've successfully completed the above
+steps you can deactivate the environment using `mamba deactivate` and continue
+with the setup for the other tools.
 
 ## Installing Nextflow
 
@@ -289,19 +323,31 @@ mamba env create -f nextflow/environment.yml -n nextflow-env
 mamba activate nextflow-env
 ```
 
+> **ARM64 users:** <br>
+> Some of the packages in this environment is not available for the ARM64
+> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
+
 Check that Nextflow was installed correctly by running `nextflow -version`. Once
 you've successfully completed the installation you can deactive the environment
 using `mamba deactivate` and continue with the other setups, as needed.
 
+You can also install Nextflow following the instructions on the [Nextflow
+website](https://www.nextflow.io/docs/latest/getstarted.html) if you want to
+have it installed outside of a Conda environment.
+
 ## Installing R Markdown
 
 We also use Mamba to install R Markdown: make sure your working directory is in
-the tutorials directory (`workshop-reproducible-research/tutorials`) and
-install the necessary R packages defined in the `environment.yml`:
+the tutorials directory (`workshop-reproducible-research/tutorials`) and install
+the necessary R packages defined in the `environment.yml`:
 
 ```bash
 mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
 ```
+
+> **ARM64 users:** <br>
+> Some of the packages in this environment is not available for the ARM64
+> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
 You can then activate the environment followed by running RStudio in the
 background from the command line:
@@ -316,20 +362,20 @@ environment using `mamba deactivate` and continue with the setup for the other
 tools.
 
 > **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Mamba, both
-> run well directly on Windows and you may therefore want to install Windows
+> In case you are having trouble installing R and RStudio using Mamba, both run
+> well directly on Windows and you may therefore want to install Windows
 > versions of these software for this tutorial (if you haven't done so already).
 > Mamba is, however, the recommended way. If you're having issues with
 > graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
 > scroll down to the "Graphical applications".
 
 > **RStudio and Mamba** <br>
-> In some cases RStudio doesn't play well with Mamba due to differing
-> libpaths. The first and simplest thing to try is to always start RStudio from
-> the command line (`rstudio &`). If you're still having issues, check the
-> available library path by `.libPaths()` to make sure that it points to a path
-> within your Conda environment. It might be that `.libPaths()` shows multiple
-> library paths, in which case R packages will be searched for by R in all these
+> In some cases RStudio doesn't play well with Mamba due to differing libpaths.
+> The first and simplest thing to try is to always start RStudio from the
+> command line (`rstudio &`). If you're still having issues, check the available
+> library path by `.libPaths()` to make sure that it points to a path within
+> your Conda environment. It might be that `.libPaths()` shows multiple library
+> paths, in which case R packages will be searched for by R in all these
 > locations. This means that your R session will not be completely isolated in
 > your Conda environment and that something that works for you might not work
 > for someone else using the same Conda environment, simply because you had
@@ -364,18 +410,18 @@ tools.
 
 ## Installing Docker
 
-Installing Docker (specifically Docker Desktop) is quite straightforward on 
-Mac, Windows and Linux distributions. Note that Docker runs as root, which 
-means that you have to have `sudo` privileges on your computer in order to 
-install or run Docker. When you have finished installing docker, regardless 
-of which OS you are on, please type `docker --version` to verify that the 
-installation was successful.
+Installing Docker (specifically Docker Desktop) is quite straightforward on Mac,
+Windows and Linux distributions. Note that Docker runs as root, which means that
+you have to have `sudo` privileges on your computer in order to install or run
+Docker. When you have finished installing docker, regardless of which OS you are
+on, please type `docker --version` to verify that the installation was
+successful.
 
 > **Docker for older versions of OSX/Windows** <br>
-> The latest version of Docker may not work if you have an old version of either OSX or
-> Windows. You can find older Docker versions that may be compatible for you if you
-> go to https://docs.docker.com/desktop/ and click "Previous versions" in the left side
-> menu.
+> The latest version of Docker may not work if you have an old version of either
+> OSX or Windows. You can find older Docker versions that may be compatible for
+> you if you go to https://docs.docker.com/desktop/ and click "Previous
+> versions" in the left side menu.
 
 ### macOS
 
@@ -385,29 +431,27 @@ and select the download option that is suitable for your computer's architecture
 a `dmg` file - click on it when it's done to start the installation. This will
 open up a window where you can drag the Docker.app to Applications. Close the
 window and click the Docker app from the Applications menu. Now it's basically
-just to click "next" a couple of times and we should be good to go. You can
-find the Docker icon in the menu bar in the upper right part of the screen.
+just to click "next" a couple of times and we should be good to go. You can find
+the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-Go to the 
-[linux-install](https://docs.docker.com/desktop/install/linux-install/) 
-section of the Docker documentation and make sure that your computer meets 
-the system requirements. There you can also find instructions for different 
-Linux distributions in the left sidebar under *Installation per Linux distro*.
+Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/) 
+section of the Docker documentation and make sure that your computer meets the
+system requirements. There you can also find instructions for different Linux
+distributions in the left sidebar under *Installation per Linux distro*.
 
 ### Windows
 
 In order to run Docker on Windows your computer must support *Hardware
-Virtualization Technology* and virtualization must be enabled. This is
-typically done in BIOS. Setting this is outside the scope of this tutorial,
-so we'll simply go ahead as if though it's enabled and hope that it works.
+Virtualization Technology* and virtualization must be enabled. This is typically
+done in BIOS. Setting this is outside the scope of this tutorial, so we'll
+simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
 Click the link *Download from Docker Hub*, and select *Get Docker*. Once the
-download is complete, execute the file and follow the
-[instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
+download is complete, execute the file and follow the [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
 You can now start Docker from the Start menu. You can search for it if you
 cannot find it; the Docker whale icon should appear in the task bar.
 
@@ -416,43 +460,3 @@ haven't done so during the installation of Docker Desktop. Right-click on the
 Docker whale icon in the task bar and select *Settings*. Choose *Resources* and
 select *WPS integration*. Enable integration with the Linux subsystem and click
 *Apply & Restart*; also restart the Linux subsystem.
-
-## Installing Singularity
-
-Installation of Singularity depends, again, on your operating system. When you
-have finished, regardless of your OS, please type `singularity --version` to
-verify that your installation was successful!
-
-Both Mac and Windows utilise Vagrant, for which the information in the box
-below may help you.
-
-> **Vagrant and VirtualBox** <br>
-> The Vagrant VirtualBox with Singularity can be started like this:
->
-> - Move into the folder `vm-singularity` where you installed Singularity.
-> - Type `vagrant up` and once this has finished, verify that the Vagrant
->   VirtualBox is running with `vagrant status`.
-> - Now, type `vagrant ssh`, which will open the Vagrant VirtualBox.
-> - The first time you open the Vagrant VirtualBox like this, you will have to
->   download the course material to obtain a copy for the Singularity tutorial
->   within the Vagrant VirtualBox by typing `git clone https://github.com/NBISweden/workshop-reproducible-research.git`.
-
-### macOS
-
-Please follow the Mac-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
-
-### Linux
-
-Follow the Linux-specific instruction at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-linux).
-
-### Windows
-
-Please follow the Windows-specific instructions at the [Singularity website](https://sylabs.io/guides/latest/admin-guide/installation.html#installation-on-windows-or-mac).
-
-> **Notes** <br>
-> Last time we checked, the software "Vagrant Manager" was not available for
-> download but the installation of Singularity was successful even without it.
->
-> Version 6.1.28 of "Virtual box for Windows" may not work, please install
-> version 6.1.26 from [here](https://www.virtualbox.org/wiki/Download_Old_Builds_6_1)
-> in case you encounter problems when trying to start the Vagrant VirtualBox.

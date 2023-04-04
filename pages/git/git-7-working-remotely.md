@@ -140,6 +140,10 @@ You can find the latest stable version of the Git tutorial for the course
 [here](https://uppsala.instructure.com/courses/73110/pages/git-1-introduction?module_item_id=367079).
 ```
 
+> **The markdown format** <br>
+> If you haven't seen this format before you can learn more about it at the
+> [markdown](markdown) page.
+
 * Add, commit and push these changes to GitHub.
 
 ```bash
@@ -148,28 +152,16 @@ git commit -m "Add README.md"
 git push origin main
 ```
 
-You should now be able to see the rendered markdown document, which looks a bit
-different from the text you copied in from above. Note that there are two
-different header levels, which come from the number of hash signs (`#`) used.
-You can also see bold text (which was surrounded by two asterisks), italic
-text (surrounded by one asterisk), in-line code (surrounded by acute accents)
-and a link (link text inside square brackets followed by link address inside
-parentheses).
-
-It is important to add README-files to your repositories so that they are better
-documented and more easily understood by others and, more likely, your future self.
-In fact, documentation is an important part of reproducible research! While the
-tools that you are introduced to by this course are all directly related to
-making science reproducible, you will *also* need good documentation. Make it
-a habit of always adding README-files for your repositories, fully explaining
-the ideas and rationale behind the project. You can even add README-files to
-sub-directories as well, giving you the opportunity to go more in-depth where
-you so desire.
-
-> **Tip** <br>
-> There are a lot more things you can do with markdown than what we show here.
-> Indeed, this entire course is mostly written in markdown! You can read
-> more about markdown [here](https://www.markdownguide.org/getting-started/).
+You should now be able to see the rendered markdown document in your GitHub
+repository. It is important to add README-files to your repositories so that
+they are better documented and more easily understood by others and, more
+likely, your future self. In fact, documentation is an important part of
+reproducible research! While the tools that you are introduced to by this course
+are all directly related to making science reproducible, you will *also* need
+good documentation. Make it a habit of always adding README-files for your
+repositories, fully explaining the ideas and rationale behind the project. You
+can even add README-files to sub-directories as well, giving you the opportunity
+to go more in-depth where you so desire.
 
 > **Quick recap** <br>
 > We learned how to connect local Git repositories to remote locations such as
