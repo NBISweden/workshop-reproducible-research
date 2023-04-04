@@ -11,9 +11,19 @@ be moved around and shared like any other file, which also makes it easy to work
 with on an HPC cluster.
 
 > **Singularity and Apptainer** <br>
-> Singularity has very recently been renamed to *Apptainer*, but we have opted
-> to stick with the original name in the material for now, while the change is
-> still being adopted by the community and various documentation online.
+> The open source Singularity project was recently renamed to *Apptainer*. 
+> Confusingly, the company *Sylabs* still keeps their commercial branch of 
+> the project under the Singularity name, and offer a free 'Community 
+> Edition' version. The name change was done in order to clarify the 
+> distinction between the open source project and the various commercial 
+> versions.
+> At the moment there is virtually no difference to you as a user whether you 
+> use Singularity or Apptainer, but eventually it's very likely that the two 
+> will diverge. 
+> We have opted to stick with the original name in the material for now, 
+> while the change is still being adopted by the community and various 
+> documentation online. In the future we will however move to using only 
+> Apptainer to follow the open source route of the project.
 
 While it is possible to define and build Singularity images from scratch, in a
 manner similar to what you've already learned for Docker, this is not something
@@ -24,8 +34,8 @@ Singularity user guide](https://www.uppmax.uu.se/support/user-guides/singularity
 The reasons for not covering Singularity more in-depth are varied, but it
 basically boils down to it being more or less Linux-only, unless you use Virtual
 Machines (VMs). Even with this you'll run into issues of incompatibility of
-various kinds, and if you're on one of the new ARM64-Macs you're completely out
-of luck. You also need `root` (admin) access in order to actually *build*
+various kinds, and these issues are further compounded if you're on one of the 
+new ARM64-Macs. You also need `root` (admin) access in order to actually *build*
 Singularity images regardless of platform, meaning that you can't build them on
 *e.g.* Uppmax, even though Singularity is already installed there. You can,
 however, use the `--remote` flag, which runs the build on Singularity's own
@@ -72,7 +82,7 @@ that.
 
 By creating a bare-bones, Linux-based Docker image with Singularity you can
 build Singularity images locally on non-Linux operating systems. There is
-already a good image setup for just this, and is defined in this [GitHub
+already a good image setup for just this, and it is defined in this [GitHub
 repository](https://github.com/kaczmarj/singularity-in-docker). Looking at the
 instructions there we can see that we need to do the following:
 
@@ -86,14 +96,14 @@ docker run \
 ```
 
 You already know about `docker run`, the `--rm` flag and bind mounts using `-v`.
-The `/var/run/docker.sock` part is the Unix socket that the Docker daemon listen
-to by default, meaning that it is needed for us to be able to specify the
-location of the Docker container we want to convert to a SIF file. The
-`kaczmarj/apptainer` part after the bind mounts is the image location hosted at
-[DockerHub](https://hub.docker.com/r/kaczmarj/apptainer), while the last line is
-the Singularity/Apptainer command that actually does the conversion. All we need
-to do is to replace the `<IMAGE>` part with the Docker image we want to convert,
-*e.g.* `my_docker_image`.
+The `/var/run/docker.sock` part is the Unix socket that the Docker daemon 
+listens to by default, meaning that it is needed for us to be able to 
+specify the location of the Docker container we want to convert to a SIF 
+file. The `kaczmarj/apptainer` part after the bind mounts is the image 
+location hosted at [DockerHub](https://hub.docker.com/r/kaczmarj/apptainer), 
+while the last line is the Singularity/Apptainer command that actually does 
+the conversion. All we need to do is to replace the `<IMAGE>` part with the 
+Docker image we want to convert, *e.g.* `my_docker_image`.
 
 * Replace `<IMAGE>` and `<TAG>` with one of your locally available Docker images
   and one of its tags and run the command - remember that you can use `docker
