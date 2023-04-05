@@ -103,7 +103,8 @@ file. The `kaczmarj/apptainer` part after the bind mounts is the image
 location hosted at [DockerHub](https://hub.docker.com/r/kaczmarj/apptainer), 
 while the last line is the Singularity/Apptainer command that actually does 
 the conversion. All we need to do is to replace the `<IMAGE>` part with the 
-Docker image we want to convert, *e.g.* `my_docker_image`.
+Docker image we want to convert, *e.g.* `my_docker_image`, and the `<TAG>` 
+part with a matching tag, *e.g.* `latest`.
 
 * Replace `<IMAGE>` and `<TAG>` with one of your locally available Docker images
   and one of its tags and run the command - remember that you can use `docker
