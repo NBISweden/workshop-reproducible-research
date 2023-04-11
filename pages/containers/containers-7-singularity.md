@@ -81,10 +81,15 @@ that.
 ## Singularity-in-Docker
 
 By creating a bare-bones, Linux-based Docker image with Singularity you can
-build Singularity images locally on non-Linux operating systems. There is
-already a good image setup for just this, and it is defined in this [GitHub
-repository](https://github.com/kaczmarj/singularity-in-docker). Looking at the
-instructions there we can see that we need to do the following:
+build Singularity images locally on non-Linux operating systems. 
+
+> **Mac M-chip users** <br>
+> If you're using a Mac laptop with the new M-chips (M1 or M2) then scroll 
+> down to the **Singularity for ARM64 architecture** section.  
+
+There is already a good image setup for just this, and it is defined in this 
+[GitHub repository](https://github.com/kaczmarj/apptainer-in-docker). 
+Looking at the instructions there we can see that we need to do the following:
 
 ```bash
 docker run \
@@ -114,6 +119,20 @@ In the end you'll have a SIF file (*e.g.* `my_docker_image.sif`) that you can
 transfer to an HPC such as Uppmax and run whatever analyses you need. If you
 want to be able to do this without having to remember all the code you can check
 out the [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/singularity-in-docker.sh).
+
+### Singularity for ARM64 architecture
+
+The new M-chip series of Mac laptops have a CPU based on the 
+[ARM](https://en.wikipedia.org/wiki/ARM_architecture_family) architecture 
+which differs from the 
+[AMD](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures) 
+architecture. There's enough difference between these two systems that most
+programs built for one will not work on the other. This causes issues when 
+using images on one system that is built for the other system, and why you 
+may have had to use the `--platform linux/x86_64` flag in the 
+[Building images](containers-3-building-images.md) section of this tutorial. 
+Docker is pretty good at handling this so that you can... 
+
 
 ## Running Singularity
 
