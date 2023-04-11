@@ -131,7 +131,15 @@ programs built for one will not work on the other. This causes issues when
 using images on one system that is built for the other system, and why you 
 may have had to use the `--platform linux/x86_64` flag in the 
 [Building images](containers-3-building-images.md) section of this tutorial. 
-Docker is pretty good at handling this so that you can... 
+Docker is pretty good at handling this so that you can build an image on one 
+system (_e.g._ ARM) for use on another system (_e.g._ AMD). However, at the 
+time of writing this tutorial it is not possible to both build **and run** a 
+Singularity/Apptainer image built for the AMD architecture on a system with the 
+ARM architecture. To get around this we have designed a Docker image with 
+Singularity built specifically for ARM (M-chip macs) and also created a 
+workflow that uses packages that we know work on the ARM architecture.
+
+So if you're on one of the new M-chip Macs, 
 
 
 ## Running Singularity
