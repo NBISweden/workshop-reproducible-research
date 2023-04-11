@@ -4,9 +4,10 @@ sample_ids_geo: ["GSM1186459", "GSM1186460", "GSM1186461"]
 series_id_geo: "GSE48896"
 
 # URLs to gzipped fastq files for each sample in remote repository
-SRR935090: "https://figshare.scilifelab.se/ndownloader/files/39539767"
-SRR935091: "https://figshare.scilifelab.se/ndownloader/files/39539770"
-SRR935092: "https://figshare.scilifelab.se/ndownloader/files/39539773"
+sample_urls:
+  SRR935090: "https://figshare.scilifelab.se/ndownloader/files/39539767"
+  SRR935091: "https://figshare.scilifelab.se/ndownloader/files/39539770"
+  SRR935092: "https://figshare.scilifelab.se/ndownloader/files/39539773"
 
 # Maximal number of reads to retrieve for each run. This is to reduce the time
 # and space needed for this tutorial. The maximum number of reads is 100000

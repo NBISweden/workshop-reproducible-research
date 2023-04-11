@@ -13,6 +13,9 @@ rule all:
         "results/rulegraph.png",
         "results/supplementary.html"
 
+def get_sample_url(wildcards):
+    return config["sample_urls"][wildcards.sample_id]
+
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from a remote repository
@@ -32,7 +35,7 @@ rule get_SRA_by_accession:
         "data/raw_internal/{sample_id}.fastq.gz"
     params:
         max_reads = config["max_reads"],
-        url = lambda wildcards: config[wildcards.sample_id]
+        url = get_sample_url
     version: "1.0"
     shell:
         """
