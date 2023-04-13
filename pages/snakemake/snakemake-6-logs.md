@@ -24,9 +24,10 @@ rule some_rule:
 
 A log file is not different from any other output file, but it's dealt with
 a little differently by Snakemake. For example, it's shown in the file summary
-when using `-D`. It's also a good way to clarify the purpose of the file. We
-probably don't need to save logs for all the rules, only the ones with
-interesting output.
+when using `-D` and unlike other output files it's not deleted if jobs fail 
+which of course is necessary for debugging purposes. It's also a good way to 
+clarify the purpose of the file. We probably don't need to save logs for 
+all the rules, only the ones with interesting output.
 
 * `get_genome_fasta` and `get_genome_gff3` would be good to log since they are
   dependent on downloading files from an external server.
