@@ -43,7 +43,25 @@ will download the same image).
 
 Validate with `docker image ls`. Now all that remains is to run the whole thing
 with `docker run`. We just want to get the results, so mount the directory
-`/course/results/` to, say, `mrsa_results` in your current directory.
+`/course/results/` to, say, `mrsa_results` in your current directory. Click 
+below to see how to write the command.
+
+<details>
+<summary> Click to show </summary>
+
+If building your own image:
+
+```bash
+docker run -v $(pwd)/mrsa_results:/course/results my_docker_project
+```
+
+If you pulled the image from DockerHub:
+
+```bash
+docker run -v $(pwd)/mrsa_results:/course/results nbisweden/workshop-reproducible-research
+```
+
+</details>
 
 Well done! You now have an image that allows anyone to exactly reproduce your
 analysis workflow (if you first `docker push` to Dockerhub that is).
