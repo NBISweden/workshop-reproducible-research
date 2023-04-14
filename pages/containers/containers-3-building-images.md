@@ -166,7 +166,7 @@ with `docker image ls` that you can see your new image.
 
 ## Creating your own Dockerfile
 
-Now it's time to make yur own Dockerfile to reproduce the results from the
+Now it's time to make your own Dockerfile to reproduce the results from the
 [Conda tutorial](conda-3-projects). If you haven't done the tutorial,
 it boils down to creating a Conda environment file, setting up that
 environment, downloading three RNA-seq data files, and running FastQC on those
