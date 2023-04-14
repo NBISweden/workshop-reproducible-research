@@ -29,23 +29,21 @@ Here is an example for a rule and its execution:
 
 ```python
 rule align_to_genome:
-    """
-    Align a fastq file to a genome index using Bowtie 2.
-    """
-    input:
-        "data/raw_internal/{sample_id}.fastq.gz",
-        "intermediate/NCTC8325.1.bt2",
-        "intermediate/NCTC8325.2.bt2",
-        "intermediate/NCTC8325.3.bt2",
-        "intermediate/NCTC8325.4.bt2",
-        "intermediate/NCTC8325.rev.1.bt2",
-        "intermediate/NCTC8325.rev.2.bt2"
     output:
-        "intermediate/{sample_id,\w+}.bam"
-    container: "docker://quay.io/biocontainers/bowtie2:2.3.4.1--py35h2d50403_1"
+        temp("intermediate/{sample_id,\w+}.bam")
+    input:
+        fastq = "data/raw_internal/{sample_id}.fastq.gz",
+        index = expand("intermediate/{genome_id}.{substr}.bt2",
+            genome_id=config["genome_id"],
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"])
+    log:
+        expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log",
+            genome_id = config["genome_id"])
+    version: "1.0"
+    container: "docker://quay.io/biocontainers/bowtie2:2.5.0--py310h8d7afc0_0"
     shell:
         """
-        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
+        bowtie2 -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
         """
 ```
 
@@ -66,9 +64,10 @@ where Singularity is pre-installed.
 
 There are several options to execute Snakemake workflows on UPPMAX (a HPC
 cluster with the SLURM workload manager). In any case, we highly recommend to
-use a session manager like `tmux` or `screen` so that you can run your workflow
-in a session in the background while doing other things on the cluster or even
-logging out of the cluster.
+use a session manager like [tmux](https://github.com/tmux/tmux/wiki) or 
+[screen](https://www.gnu.org/software/screen/manual/screen.html#Overview) so 
+that you can run your workflow in a session in the background while doing 
+other things on the cluster or even logging out of the cluster.
 
 ### Run your workflow in an interactive job
 
