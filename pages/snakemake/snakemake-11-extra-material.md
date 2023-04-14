@@ -69,7 +69,7 @@ use a session manager like [tmux](https://github.com/tmux/tmux/wiki) or
 that you can run your workflow in a session in the background while doing 
 other things on the cluster or even logging out of the cluster.
 
-### Run your workflow in an interactive job
+## Run your workflow in an interactive job
 
 For short workflows with only a few rules that need the same compute resources
 in terms of CPU (cores), you can start an interactive job (in your `tmux` or
@@ -77,98 +77,110 @@ in terms of CPU (cores), you can start an interactive job (in your `tmux` or
 local machine. Make sure to give your interactive job enough time to finish
 running all rules of your Snakemake workflow.
 
-### Cluster configuration
+## Use built-in SLURM support
 
 For workflows with long run times and/or where each rule requires different
 compute resources, Snakemake can be configured to automatically send each rule
 as a job to the SLURM queue and to track the status of each job.
 
-The relevant parameters for such a cluster configuration are `--cluster` and
-`--cluster-config`, in combination with a `cluster.yaml` file that specifies
-default and rule-specific compute resources and your compute account details.
-
-Here is an example for a `cluster.yaml` file:
-
-```yaml
-# cluster.yaml - cluster configuration file
-__default__:
-  account: # fill in your project compute account ID
-  partition: core
-  time: 01:00:00
-  ntasks: 1
-  cpus-per-task: 1
-### rule-specific resources
-trimming:
-  time: 01-00:00:00
-mapping:
-  time: 01-00:00:00
-  cpus-per-task: 16
-```
-
-Start your Snakemake workflow in a `tmux` or `screen` session with the
-following command:
+Since version 7.19.0 Snakemake comes with built-in support for execution on 
+compute clusters with the SLURM workload manager. To enable this you supply 
+the `--slurm` flag to your Snakemake command. In addition you need to 
+specify the id (_e.g. `snic-2023-01-001`) for your compute project. This can 
+be done directly on the command line with `--default-resources 
+slurm_account=snic2023-01-001`. You also need to specify the number of jobs 
+that Snakemake will queue at the same time with `-j`, _e.g._ `-j 100` to 
+allow up to 100 jobs to be put into the queue at any given time. So the 
+command would be (in addition to any other flags you may want to use):
 
 ```bash
-snakemake
-    -j 10 \
-    --cluster-config cluster.yaml \
-    --cluster "sbatch \
-               -A {cluster.account} \
-               -p {cluster.partition} \
-               -t {cluster.time} \
-               --ntasks {cluster.ntasks} \
-               --cpus-per-task {cluster.cpus-per-task}"
+snakemake --slurm --default-resources slurm_account=snic2023-01-001 -j 100
 ```
 
-The additional parameter `-j` specifies the number of jobs that Snakemake is
-allowed to send to SLURM at the same time.
+Snakemake will submit each job to the SLURM queue and inform you about both 
+the local jobid and the SLURM jobid by writing something similar to this to 
+your terminal:
 
-### SLURM Profile
+```
+Job 0 has been submitted with SLURM jobid 37099380 (log: .snakemake/slurm_logs/rule_name/37099380.log).
+```
 
-The cluster configuration is actually marked as "deprecated" but still exists
-side-by-side with the thought to be replacement: [profiles](https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles).
-Snakemake profiles can be used to define several options, allowing you to quickly
-adapt a workflow to different use-cases or to different environments. One such
-convenient profile is the [SLURM profile](https://github.com/Snakemake-Profiles/slurm)
-developed to make a workflow make efficient use of the SLURM workload manager
-that is used _e.g._ on Uppmax.
+In this example the log output from the job will be in 
+`.snakemake/slurm_logs/rule_name/37099380.log`.
 
-The SLURM Profile needs to be set up with the software
-[cookiecutter](https://cookiecutter.readthedocs.io/) which you can install with
-mamba: `mamba install -c conda-forge cookiecutter`.
-
-During the [setup](https://github.com/Snakemake-Profiles/slurm#quickstart) of 
-the profile you will be asked for several values for your Profile. To configure
-the profile to use your account id see [Example 1: project setup to use specific slurm account](https://github.com/Snakemake-Profiles/slurm#example-1-project-setup-to-use-specific-slurm-account)
-at the profile repository.
-
-Rule-specific resources can be defined in each rule via the `resources: `
-directive, for example:
+So how do you specify SLURM resources such as runtime, cpus etc? The best 
+way to do that is to use the `resources:` and `threads:` directives in the 
+rules of your workflow. This allows you to fine-tune jobs to run with 
+individual runtime and cpu usage. Take a look at the example rule below:
 
 ```python
-rule align_to_genome:
-    input:
-        "{genome_id}.bt2",
-        "{sample}.fastq.gz"
+rule testrule:
     output:
-        "{sample}.bam"
+        "results/output.txt"
     resources:
-        runtime = 360
-    threads: 10
+        runtime = 60
+    threads: 4
     shell:
         """
-        aligner -t {threads} -i {input[1]} -x {input[0]} > {output}
+        uname -a > {output}
         """
 ```
 
-Any rule for which runtime is specified in the `resources` directive will be
-submitted as one job to the SLURM queue with runtime as the allocated time.
-Similarly, the number specified in the `threads` directive will be used as the
-number of allocated cores.
+This rule uses the standard resource `runtime` to set the maximum allowed 
+time for the rule to 60 minutes and sets the number of threads to 4. This 
+means that the rule will have a time limit of 60 minutes and will use 4 cpus. 
 
-With this setup you can start the workflow with your SLURM Profile as follows
-from within a `tmux` or `screen` session:
+Of course you could set the runtime and threads using a configuration file 
+as we have shown in earlier sections of this tutorial, _e.g._ with a config 
+file that contains:
 
-```bash
-snakemake -j 10 --profile your_profile_name
+```yaml
+testrule:
+  threads: 4
+  runtime: 60
 ```
+
+```python
+rule testrule:
+    output:
+        "results/output.txt"
+    resources:
+        runtime = config["testrule"]["runtime"]
+    threads: config["testrule"]["threads"]
+    shell:
+        """
+        uname -a > {output}
+        """
+```
+
+Note that when using the `--slurm` flag `-j` only specifies the number of 
+jobs that can be sent to the queue at any given time, while the number of 
+cpus used for each job is set via the `threads:` directive.
+
+The `resources` directive can also be used to specify constraints, for 
+instance if jobs need to run on nodes with more memory you can use the 
+following on the Uppmax compute cluster:
+
+```python
+  resources:
+    constraint = "mem256GB"
+```
+
+If you need to submit the job on another cluster, _e.g._ the 'snowy' cluster 
+on Uppmax you can do so with the `slurm_extra` keyword in the `resources` 
+directive:
+
+```python
+  resources:
+    slurm_extra = "-M snowy"
+```
+
+You can read more details about running Snakemake on compute clusters in the 
+[Snakemake docs](https://snakemake.readthedocs.io/en/stable/executing/cluster.html).
+
+## SLURM Profile
+
+As an alternative to the built-in slurm support you can also use a 
+configuration profile developed for slurm, such as 
+https://github.com/Snakemake-Profiles/slurm or the more light-weight 
+https://github.com/jdblischak/smk-simple-slurm. 
