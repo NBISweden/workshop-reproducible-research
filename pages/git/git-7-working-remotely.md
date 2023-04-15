@@ -236,7 +236,7 @@ the original `git_tutorial` repository!
 
 * Let's say that we now want to change the `multiqc` software to an earlier
   version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.12` to `multiqc=1.7`; add and commit the change.
+  `multiqc=1.14` to `multiqc=1.7`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
