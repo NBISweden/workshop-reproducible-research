@@ -137,7 +137,7 @@ software for version control.
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://uppsala.instructure.com/courses/73110/pages/git-1-introduction?module_item_id=367079).
+[here](https://uppsala.instructure.com/courses/82575/pages/git-1-introduction?module_item_id=750503).
 ```
 
 > **The markdown format** <br>
