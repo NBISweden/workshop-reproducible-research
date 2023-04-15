@@ -142,7 +142,7 @@ You can find the latest stable version of the Git tutorial for the course
 
 > **The markdown format** <br>
 > If you haven't seen this format before you can learn more about it at the
-> [markdown](markdown) page.
+> [markdown](../course-information/markdown) page.
 
 * Add, commit and push these changes to GitHub.
 
