@@ -292,7 +292,7 @@ move back into that directory.
   bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
-bowtie2 --trim5 5 --very-sensitive-local -x $indexBase -U {input.fastq} > {output} 2> {log}
+bowtie2 --trim5 5 --very-sensitive-local -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
 ```
 
 * Add and commit the change to your local repository.
