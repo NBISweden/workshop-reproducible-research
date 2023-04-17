@@ -13,96 +13,6 @@ reading tips for you:
 * [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
 * [Git reference manual](https://book.git-scm.com/docs)
 
-## Decorating your prompt
-
-When you are working on the command line interface (CLI), you will usually have
-some small pieces of information relating to your current directory, the name
-of the computer or host you're working on, and so forth. You've probably
-already seen your prompt while working with Git throughout this lesson, but
-here's an example of what one might look like:
-
-```no-highlight
-erikfmbp:~/teaching/workshop-reproducible-research erik.fasterius $
-```
-
-The above prompt contains the name of the computer, a colon, the current
-working directory, the username and a dollar-sign; it is stored in the
-variable `PS1`. You can type `echo $PS1` to see what variables your prompt
-is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
-hostname, `\W` the working directory and `\u` the username.
-
-Some people like to also show the current branch on their prompt, thus avoiding
-having to type `git branch` continuously. There are several ways you might do
-this, and we're only presenting one of them here: a bash function.
-
-```bash
-git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-```
-
-This function does a number of things:
-
-1. Ejects the error message from Git if the current directory isn't a part of a
-   Git repository into `/dev/null` (_i.e._ into nothing).
-2. Find the current branch by searching for a line that starts with `*` (*i.e.*
-   the current branch) using the command line program `sed`.
-3. Put the current branch into parentheses with a space before it.
-
-We can then build our new prompt by adding this function into it:
-
-```bash
-# The first part of the old prompt
-PS1='\h:\W \u'
-
-# Add the Git branch
-PS1=$PS1'$(git_branch)'
-
-# Add the last part of the old prompt
-PS1=$PS1' \$'
-```
-
-Now you should see the current Git branch on your prompt! The only problem now
-is that this only works for your current session: once you restart your CLI
-you'll have to re-define your prompt again. This can be circumvented, though.
-What you need to do is to add the code defining your prompt into your so-called
-bash profile: `~/.bash_profile`. Every time you load a new CLI session this
-file is read and any code inside it is executed. You might already have this
-file, so make sure you don't overwrite it!
-
-## Bash aliases for git
-
-Some Git commands are used over and over again when working with git, such as
-`git status`. Some people like to have aliases (*i.e.* shortcuts) for these
-common commands. Here is a small list of such aliases that you may find useful
-or, even better, might inspire you to create your own! Add them to your
-`~/.bash_profile` as above, so that they're available across sessions.
-
-```bash
-# Basic git commands
-alias gb='git branch'
-alias ga='git add'
-alias gd='git diff'
-alias gcm='git commit'
-alias gp='git push'
-alias gu='git pull'
-alias gm='git merge'
-alias gco='git checkout'
-alias gl='git log'
-
-# Git status in short format
-alias gst='git status -s'
-
-# Add and commit all tracked and modified files
-alias gca='git commit -a'
-
-# Create and checkout a new branch
-alias gcob='git checkout -b'
-
-# Git log with one line per commit
-alias glo='git log --oneline'
-```
-
 ## Forking
 
 When you want to work on an Open Source project that is available on *e.g.*
@@ -319,3 +229,93 @@ usual `HEAD~N` notation so that it is clear if it is the commit history or the
 reflog that is intended. While the reflog is hopefully not something you'll have
 to use often it's quite useful to know it exists, if only to be able to search
 the internet for more details regarding a problem you've encountered!
+
+## Decorating your prompt
+
+When you are working on the command line interface (CLI), you will usually have
+some small pieces of information relating to your current directory, the name
+of the computer or host you're working on, and so forth. You've probably
+already seen your prompt while working with Git throughout this lesson, but
+here's an example of what one might look like:
+
+```no-highlight
+erikfmbp:~/teaching/workshop-reproducible-research erik.fasterius $
+```
+
+The above prompt contains the name of the computer, a colon, the current
+working directory, the username and a dollar-sign; it is stored in the
+variable `PS1`. You can type `echo $PS1` to see what variables your prompt
+is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
+hostname, `\W` the working directory and `\u` the username.
+
+Some people like to also show the current branch on their prompt, thus avoiding
+having to type `git branch` continuously. There are several ways you might do
+this, and we're only presenting one of them here: a bash function.
+
+```bash
+git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+```
+
+This function does a number of things:
+
+1. Ejects the error message from Git if the current directory isn't a part of a
+   Git repository into `/dev/null` (_i.e._ into nothing).
+2. Find the current branch by searching for a line that starts with `*` (*i.e.*
+   the current branch) using the command line program `sed`.
+3. Put the current branch into parentheses with a space before it.
+
+We can then build our new prompt by adding this function into it:
+
+```bash
+# The first part of the old prompt
+PS1='\h:\W \u'
+
+# Add the Git branch
+PS1=$PS1'$(git_branch)'
+
+# Add the last part of the old prompt
+PS1=$PS1' \$'
+```
+
+Now you should see the current Git branch on your prompt! The only problem now
+is that this only works for your current session: once you restart your CLI
+you'll have to re-define your prompt again. This can be circumvented, though.
+What you need to do is to add the code defining your prompt into your so-called
+bash profile: `~/.bash_profile`. Every time you load a new CLI session this
+file is read and any code inside it is executed. You might already have this
+file, so make sure you don't overwrite it!
+
+## Bash aliases for git
+
+Some Git commands are used over and over again when working with git, such as
+`git status`. Some people like to have aliases (*i.e.* shortcuts) for these
+common commands. Here is a small list of such aliases that you may find useful
+or, even better, might inspire you to create your own! Add them to your
+`~/.bash_profile` as above, so that they're available across sessions.
+
+```bash
+# Basic git commands
+alias gb='git branch'
+alias ga='git add'
+alias gd='git diff'
+alias gcm='git commit'
+alias gp='git push'
+alias gu='git pull'
+alias gm='git merge'
+alias gco='git checkout'
+alias gl='git log'
+
+# Git status in short format
+alias gst='git status -s'
+
+# Add and commit all tracked and modified files
+alias gca='git commit -a'
+
+# Create and checkout a new branch
+alias gcob='git checkout -b'
+
+# Git log with one line per commit
+alias glo='git log --oneline'
+```
