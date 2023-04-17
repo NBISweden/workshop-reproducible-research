@@ -86,7 +86,7 @@ git checkout main
 git merge feature-branch
 ```
 
-![](images/git-rebase-2.png){ width=300px }
+![](images/git-rebase-2.png){ width=400px }
 
 (The commit with the dashed border is the merge commit.)
 
@@ -101,7 +101,7 @@ git checkout feature-branch
 git rebase main
 ```
 
-![](images/git-rebase-3.png){ width=400px }
+![](images/git-rebase-3.png){ width=500px }
 
 This step rebases our `feature-branch` on top of `main`, meaning that we pretend
 that the commits on `feature-branch` were done based on the latest commits on
