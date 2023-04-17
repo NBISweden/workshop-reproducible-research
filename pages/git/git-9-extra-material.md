@@ -169,12 +169,12 @@ instructions (all of which are not shown here) show you what alternatives you
 have to work with; all you have to do is to change the `pick` keyword next to
 the commit hashes to whatever keyword you need from the list, save and exit.
 
-In order to solve the toy example here we might the four keywords to be `pick`,
-`squash`, `reword` and `reword`, from top to bottom. Once that's done simply
-save and exit, and another instance of your default text editor will open for
-you to complete the specified changes. In the case above we'd get two separate
-new instances where we can change the commit message - these work the same as
-any normal commit.
+In order to solve the toy example here we might decide that the four keywords
+should be `pick`, `squash`, `reword` and `reword`, from top to bottom. Once
+that's done simply save and exit, and another instance of your default text
+editor will open for you to complete the specified changes. In the case above
+we'd get two separate new instances where we can change the commit message -
+these work the same as any normal commit.
 
 Interactive rebasing is thus well-suited for fixing and cleaning of local
 changes you have yet to push anywhere, even if you don't use rebasing as an
