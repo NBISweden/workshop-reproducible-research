@@ -47,7 +47,7 @@ where `--from-history` only reports the packages requested to be installed
 and not additional dependancies. A caveat is that if no version was 
 originally specified, then it is not included in the export file either.
 
-* Now, deactivate the environment by running `conda deactivate`.
+* Now, deactivate the environment by running `mamba deactivate`.
 * List all environments again. Which environment is now marked as active?
 * Try to run FastQC:
 
@@ -79,14 +79,14 @@ mamba install -c bioconda seqtk
 mamba search -c bioconda seqtk
 ```
 
-* Now try to install a different version of SRA-Tools, *e.g.*:
+* Now try to install a different version of seqtk, *e.g.*:
 
 ```bash
 mamba install -c bioconda seqtk=1.2
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
-you want to downgrade the initial SRA-Tools installation to the one specified
+you want to downgrade the initial seqtk installation to the one specified
 here (`1.2` in the example). You can only have one version of a given package
 in a given environment.
 
@@ -94,7 +94,7 @@ Let's assume that you will have sequencing data in your Project A, and want to
 use the latest Bowtie2 software to align your reads.
 
 * Find out what versions of Bowtie2 are available in the Bioconda channel using
-  `conda search -c bioconda`.
+  `mamba search -c bioconda bowtie2`.
 * Now install the *latest* available version of Bowtie2 in your `project_a`
   environment.
 

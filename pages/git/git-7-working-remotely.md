@@ -137,8 +137,12 @@ software for version control.
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://uppsala.instructure.com/courses/73110/pages/git-1-introduction?module_item_id=367079).
+[here](https://uppsala.instructure.com/courses/82575/pages/git-1-introduction?module_item_id=750503).
 ```
+
+> **The markdown format** <br>
+> If you haven't seen this format before you can learn more about it at the
+> [markdown](../course-information/markdown) page.
 
 * Add, commit and push these changes to GitHub.
 
@@ -148,28 +152,16 @@ git commit -m "Add README.md"
 git push origin main
 ```
 
-You should now be able to see the rendered markdown document, which looks a bit
-different from the text you copied in from above. Note that there are two
-different header levels, which come from the number of hash signs (`#`) used.
-You can also see bold text (which was surrounded by two asterisks), italic
-text (surrounded by one asterisk), in-line code (surrounded by acute accents)
-and a link (link text inside square brackets followed by link address inside
-parentheses).
-
-It is important to add README-files to your repositories so that they are better
-documented and more easily understood by others and, more likely, your future self.
-In fact, documentation is an important part of reproducible research! While the
-tools that you are introduced to by this course are all directly related to
-making science reproducible, you will *also* need good documentation. Make it
-a habit of always adding README-files for your repositories, fully explaining
-the ideas and rationale behind the project. You can even add README-files to
-sub-directories as well, giving you the opportunity to go more in-depth where
-you so desire.
-
-> **Tip** <br>
-> There are a lot more things you can do with markdown than what we show here.
-> Indeed, this entire course is mostly written in markdown! You can read
-> more about markdown [here](https://www.markdownguide.org/getting-started/).
+You should now be able to see the rendered markdown document in your GitHub
+repository. It is important to add README-files to your repositories so that
+they are better documented and more easily understood by others and, more
+likely, your future self. In fact, documentation is an important part of
+reproducible research! While the tools that you are introduced to by this course
+are all directly related to making science reproducible, you will *also* need
+good documentation. Make it a habit of always adding README-files for your
+repositories, fully explaining the ideas and rationale behind the project. You
+can even add README-files to sub-directories as well, giving you the opportunity
+to go more in-depth where you so desire.
 
 > **Quick recap** <br>
 > We learned how to connect local Git repositories to remote locations such as
@@ -244,7 +236,7 @@ the original `git_tutorial` repository!
 
 * Let's say that we now want to change the `multiqc` software to an earlier
   version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.12` to `multiqc=1.7`; add and commit the change.
+  `multiqc=1.14` to `multiqc=1.7`; add and commit the change.
 
 * We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
@@ -300,7 +292,7 @@ move back into that directory.
   bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
-bowtie2 --trim5 5 --very-sensitive-local -x $indexBase -U {input.fastq} > {output} 2> {log}
+bowtie2 --trim5 5 --very-sensitive-local -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
 ```
 
 * Add and commit the change to your local repository.

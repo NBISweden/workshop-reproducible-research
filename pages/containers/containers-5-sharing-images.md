@@ -32,7 +32,8 @@ fee). Let's see how it's done!
 
 1. Register for an account on [Docker Hub](https://hub.docker.com).
 
-2. Use `docker login -u your_dockerhub_id` to login to the Docker Hub registry.
+2. Use `docker login -u your_dockerhub_id` to login to the Docker Hub 
+   registry. Or use the **Sign in** button in Docker Desktop.
 
 3. When you build an image, tag it with `-t your_dockerhub_id/image_name`,
    rather than just `image_name`.
@@ -45,9 +46,11 @@ fee). Let's see how it's done!
    for downloading without running.
 
 If you want to refer to a Docker image in for example a publication, it's very
-important that it's the correct version of the image. You can do this by adding
-a tag to the name like this `docker build -t
-your_dockerhub_id/image_name:tag_name`.
+important that it's the correct version of the image. This is handled via 
+the 'tags' (_e.g._ `docker build -t your_dockerhub_id/image_name:tag_name`) 
+that we introduced in [Containers 2: The basics](containers-2-the-basics.md) 
+and used when building images in 
+[Containers 3: Building images](containers-3-building-images.md). 
 
 > **Tip** <br>
 > On Docker Hub it is also possible to link to your Bitbucket or GitHub

@@ -89,37 +89,37 @@ about this and suggests that we should fix the conflicts and commit that.
   this:
 
 ```no-highlight
+name: git-env
 channels:
   - conda-forge
   - bioconda
-  - main
   - r
 dependencies:
-  - python=3.9.12
+  - python=3.10.10
   - fastqc=0.11.9
-  - sra-tools=2.10.1
-  - snakemake=7.3.8
+  - seqtk=1.3
+  - snakemake=7.25.0
 <<<<<<< HEAD
   - multiqc=1.6
 =======
   - multiqc=1.8
 >>>>>>> refs/remotes/origin/main
-  - bowtie2=2.4.5
-  - tbb=2020.2
-  - samtools=1.15.1
-  - subread=2.0.1
-  - bedtools=2.29.2
-  - wget=1.20.3
-  - graphviz=3.0.0
+  - bowtie2=2.5.1
+  - tbb=2021.8.0
+  - samtools=1.16
+  - subread=2.0.3
+  - bedtools=2.30.0
   - r-base=4.1.3
-  - r-ggplot2=3.3.5
+  - r-ggplot2=3.4.2
   - r-reshape2=1.4.4
-  - r-stringi=1.7.6
+  - r-stringi=1.7.12
   - r-pheatmap=1.0.12
   - r-rmarkdown=2.13
-  - r-r.utils=2.11.0
+  - r-r.utils=2.12.2
   - bioconductor-rtracklayer=1.54.0
   - bioconductor-geoquery=2.62.0
+  - wget
+  - graphviz
   - xorg-libxrender
   - xorg-libxpm
 ```
@@ -136,33 +136,33 @@ version to keep, or to change it to a third alternative.
   should look like this:
 
 ```no-highlight
+name: git-env
 channels:
   - conda-forge
   - bioconda
-  - main
   - r
 dependencies:
-  - python=3.9.12
+  - python=3.10.10
   - fastqc=0.11.9
-  - sra-tools=2.10.1
-  - snakemake=7.3.8
+  - seqtk=1.3
+  - snakemake=7.25.0
   - multiqc=1.6
-  - bowtie2=2.4.5
-  - tbb=2020.2
-  - samtools=1.15.1
-  - subread=2.0.1
-  - bedtools=2.29.2
-  - wget=1.20.3
-  - graphviz=3.0.0
+  - bowtie2=2.5.1
+  - tbb=2021.8.0
+  - samtools=1.16
+  - subread=2.0.3
+  - bedtools=2.30.0
   - r-base=4.1.3
-  - r-ggplot2=3.3.5
+  - r-ggplot2=3.4.2
   - r-reshape2=1.4.4
-  - r-stringi=1.7.6
+  - r-stringi=1.7.12
   - r-pheatmap=1.0.12
   - r-rmarkdown=2.13
-  - r-r.utils=2.11.0
+  - r-r.utils=2.12.2
   - bioconductor-rtracklayer=1.54.0
   - bioconductor-geoquery=2.62.0
+  - wget
+  - graphviz
   - xorg-libxrender
   - xorg-libxpm
 ```
