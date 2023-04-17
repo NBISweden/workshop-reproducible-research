@@ -161,7 +161,7 @@ same problem: getting changes in one branch into another branch. We've already
 gone through merging extensively, so how is rebasing different? Let's look at a
 common case: a `feature-branch` which we want to get into the `main` branch.
 
-![](images/git-rebase-1.png){ width=600px }
+![](images/git-rebase-1.png){ width=300px }
 
 Recall that a merge creates a *merge commit*, something akin to `Merge branch
 'feature-branch' into main` or similar. This is a *new* commit that didn't exist
@@ -176,7 +176,7 @@ git checkout main
 git merge feature-branch
 ```
 
-![](images/git-rebase-2){ width=600px }
+![](images/git-rebase-2.png){ width=300px }
 
 (The commit with the dashed border is the merge commit.)
 
@@ -191,7 +191,7 @@ git checkout feature-branch
 git rebase main
 ```
 
-![](images/git-rebase-3){ width=700px }
+![](images/git-rebase-3.png){ width=400px }
 
 This step rebases our `feature-branch` on top of `main`, meaning that we pretend
 that the commits on `feature-branch` were done based on the latest commits on
@@ -205,7 +205,7 @@ git checkout master
 git merge feature-branch
 ```
 
-![](images/git-rebase-4){ width=800px }
+![](images/git-rebase-4.png){ width=500px }
 
 We've now got our `feature-branch` commits onto `main` with a single, linear
 history without any merge commits! We did have to rewrite history, though, when
