@@ -275,7 +275,7 @@ standard python code in the same file. Add a function just above the
 
 ```python
 def concat_input(wildcards):
-    files = [wildcards.first + ".txt", wildcards.second + ".txt"]
+    files = [wildcards.first + ".upper.txt", wildcards.second + ".upper.txt"]
     return files
 ```
 
@@ -283,17 +283,17 @@ This is the syntax to define a function in Python. The
 `def concat_input(wildcards):` line shows the name of the function 
 (`concat_input`) and the variable passed to the function 
 (the `wildcards` object). In the second line we add two items to a list 
-that we call `files` and add the '.txt' suffix to each item. Finally, the  
-function returns the list. 
+that we call `files` and add the '.upper.txt' suffix to each item. Finally, 
+the function returns the list. 
 Because the `concatenate_files` rule has two wildcards `{first}` and `{second}` 
 we can access the actual strings in the `wildcards` object using 
 `wildcards.first` and `wildcards.second`. When we ask for the file `a_b.txt` 
 then `wildcards.first == 'a'` and `wildcards.second == 'b'`. This means that 
-the `files` list returned by the function will be `['a.txt', 'b.txt']`. To see
-for yourself you can add the following line to the function, just before the 
-return statement: `print(wildcards.first, wildcards.second, files)`. This 
-way the wildcard values and the list will be printed to the terminal when 
-you run Snakemake.
+the `files` list returned by the function will be 
+`['a.upper.txt', 'b.upper.txt']`. To see for yourself you can add the 
+following line to the function, just before the return statement: `print
+(wildcards.first, wildcards.second, files)`. This way the wildcard values 
+and the list will be printed to the terminal when you run Snakemake.
  
 Now that we've defined the function to use as input, we can use it in the 
 `concatenate_files` rule. Update the rule so that it looks like this:
@@ -327,7 +327,7 @@ following printed to your terminal:
 
 ```bash
 Building DAG of jobs...
-a b ['a.txt', 'b.txt']
+a b ['a.upper.txt', 'b.upper.txt']
 ```
 
 followed by the rest of the workflow output.
