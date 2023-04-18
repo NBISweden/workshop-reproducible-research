@@ -12,6 +12,11 @@ in the dot language and pipe it to the program `dot`, which in turn will save
 a visualization of the graph as a PNG file (if you're having troubles displaying
 PNG files you could use SVG or JPG instead).
 
+> **Attention!** <br>
+> If you added the `print(wildcards.first,wildcards.second,files)` statement 
+> to the `concat_input` function in the previous section you need to remove 
+> that line before running the commands below.
+
 ```bash
 snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
 ```
