@@ -322,6 +322,16 @@ Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
 snakemake a_b.txt -c 1 -f
 ```
 
+If you added the `print` statement to the function you should see the 
+following printed to your terminal:
+
+```bash
+Building DAG of jobs...
+a b ['a.txt', 'b.txt']
+```
+
+followed by the rest of the workflow output.
+
 There are a number of possible use-cases for input functions. For example, 
 say that you have an experiment where you've sequenced three samples: 
 `sample1`, `sample2` and `sample3` with the corresponding fastq files under 
