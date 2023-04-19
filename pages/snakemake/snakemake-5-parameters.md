@@ -42,7 +42,7 @@ rule get_SRA_by_accession:
         url = get_sample_url
     shell:
         """
-        curl -L {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        wget -O - {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
         """
 
 ```
@@ -64,11 +64,12 @@ with `{params.url}`. (We could have written three separate rules to download
 the samples, but it's easy to see how that can become impractical.)
 
 Let's add another parameter to the `get_SRA_by_accession` rule. As you can 
-see in the shell command the fastq file downloaded by `curl` gets piped 
-directly to the `seqtk sample` command which reads from STDIN and outputs 
-25000 randomly sampled reads (out of the 100,000 contained in the example fastq 
-file). Change in the rule to use the parameter `max_reads` instead and 
-set the value to 20000. If you need help, click to show the solution below.
+see in the shell command the fastq file downloaded by `wget` gets piped 
+directly (the `-O -` part means send contents to STDOUT) to the `seqtk sample` 
+command which reads from STDIN and outputs 25000 randomly sampled reads (out 
+of the 100,000 contained in the example fastq file). Change in the rule to 
+use the parameter `max_reads` instead and set the value to 20000. If you 
+need help, click to show the solution below.
 
 <details>
 <summary> Click to show </summary>
@@ -86,7 +87,7 @@ rule get_SRA_by_accession:
         max_reads = 20000
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        wget -O - {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 ```
 
@@ -114,7 +115,7 @@ rule get_SRA_by_accession:
         max_reads = config["max_reads"]
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        wget -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 ```
 

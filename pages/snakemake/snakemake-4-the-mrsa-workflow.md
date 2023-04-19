@@ -27,17 +27,16 @@ activate it (use `mamba info --envs` if you are unsure).
 > Snakemake to use `conda` instead.
 
 Let's start by generating the rule graph so that we get an overview of the
-workflow.
+workflow. Here we have to specify the file with the rules using the `-s` 
+flag to Snakemake since the path to the file differs from the default.
 
 ```bash
 snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png
 ```
 
-There are two differences in this command compared to the one we've used
-before. The first is that we're using the `-s` flag to specify which Snakemake
-workflow to run. We didn't need to do that before since `Snakefile` is the
-default name. The second is that we don't define a target. In the toy example
-we used `a_b.txt` as a target, and the wildcards were resolved based on that.
+There's another difference in this command compared to the one we've used
+before, namely that we don't define a target. In the toy example we used 
+`a_b.txt` as a target, and the wildcards were resolved based on that.
 How come that we don't need to do that here? It turns out that by default
 Snakemake targets the first rule in a workflow. By convention, we call this rule
 `all` and let it serve as a rule for aggregating the main outputs of the

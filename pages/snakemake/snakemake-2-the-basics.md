@@ -55,14 +55,17 @@ the set `[A-Z]`, and then send the output to `a.upper.txt`".
 Now let's run our first Snakemake workflow. When a workflow is executed
 Snakemake tries to generate a set of target files. Target files can be
 specified via the command line (or, as you will see later, in several other
-ways). Here we ask Snakemake to make the file `a.upper.txt`. It's good practice
-to first run with the flag `-n` (or `--dry-run`), which will show what Snakemake
-plans to do without actually running anything, and you also need to specify
-how many cores to be used for the workflow with `--cores` or `-c`. For now, you
-only need 1 so set `-c 1`. You can also use the flag `-p`, for showing the 
-shell commands that it will execute, and the flag `-r` for showing the reason 
-for running a specific rule. `snakemake --help` will show you all available 
-flags.
+ways). Here we ask Snakemake to make the file `a.upper.txt`. We can specify 
+the file containing our rules with `-s` but since the default behaviour of 
+Snakemake is to look for a file called `Snakefile` in either the working 
+directory or in a subdirectory called `workflow/` we don't need to specify 
+that here. It's good practice to first run with the flag `-n` (or 
+`--dry-run`), which will show what Snakemake plans to do without actually 
+running anything, and you also need to specify how many cores to be used for 
+the workflow with `--cores` or `-c`. For now, you only need 1 so set `-c 1`. 
+You can also use the flag `-p`, for showing the shell commands that it will 
+execute, and the flag `-r` for showing the reason for running a specific 
+rule. `snakemake --help` will show you all available flags.
 
 ```no-highlight
 $ snakemake -n -c 1 -r -p a.upper.txt
@@ -275,7 +278,7 @@ standard python code in the same file. Add a function just above the
 
 ```python
 def concat_input(wildcards):
-    files = [wildcards.first + ".txt", wildcards.second + ".txt"]
+    files = [wildcards.first + ".upper.txt", wildcards.second + ".upper.txt"]
     return files
 ```
 
@@ -283,17 +286,17 @@ This is the syntax to define a function in Python. The
 `def concat_input(wildcards):` line shows the name of the function 
 (`concat_input`) and the variable passed to the function 
 (the `wildcards` object). In the second line we add two items to a list 
-that we call `files` and add the '.txt' suffix to each item. Finally, the  
-function returns the list. 
+that we call `files` and add the '.upper.txt' suffix to each item. Finally, 
+the function returns the list. 
 Because the `concatenate_files` rule has two wildcards `{first}` and `{second}` 
 we can access the actual strings in the `wildcards` object using 
 `wildcards.first` and `wildcards.second`. When we ask for the file `a_b.txt` 
 then `wildcards.first == 'a'` and `wildcards.second == 'b'`. This means that 
-the `files` list returned by the function will be `['a.txt', 'b.txt']`. To see
-for yourself you can add the following line to the function, just before the 
-return statement: `print(wildcards.first, wildcards.second, files)`. This 
-way the wildcard values and the list will be printed to the terminal when 
-you run Snakemake.
+the `files` list returned by the function will be 
+`['a.upper.txt', 'b.upper.txt']`. To see for yourself you can add the 
+following line to the function, just before the return statement: `print
+(wildcards.first, wildcards.second, files)`. This way the wildcard values 
+and the list will be printed to the terminal when you run Snakemake.
  
 Now that we've defined the function to use as input, we can use it in the 
 `concatenate_files` rule. Update the rule so that it looks like this:
@@ -321,6 +324,16 @@ Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
 ```bash
 snakemake a_b.txt -c 1 -f
 ```
+
+If you added the `print` statement to the function you should see the 
+following printed to your terminal:
+
+```bash
+Building DAG of jobs...
+a b ['a.upper.txt', 'b.upper.txt']
+```
+
+followed by the rest of the workflow output.
 
 There are a number of possible use-cases for input functions. For example, 
 say that you have an experiment where you've sequenced three samples: 

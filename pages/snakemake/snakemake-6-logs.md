@@ -80,8 +80,9 @@ To save some time you can use the info below.
 # Wget has a -o flag for specifying the log file
 wget remote_file -O output_file -o {log}
 
-# MultiQC writes to standard error so we redirect with "2>"
+# MultiQC and featureCounts write to standard error so we redirect with "2>"
 multiqc -n output_file input_files 2> {log}
+featureCounts -t gene -g gene_id -a gff_file -o output_file input_files 2>{log}
 
 # Bowtie2-build redirects to standard out so we use ">"
 bowtie2-build input_file index_dir > {log}
