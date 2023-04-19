@@ -25,11 +25,10 @@ rule get_SRA_by_accession:
     output:
         "data/raw_internal/{sample_id}.fastq.gz"
     params:
-        url = get_sample_url,
-        max_reads = 20000
+        url = get_sample_url
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        curl -L {params.url} | seqtk sample - 20000 | gzip -c > {output[0]}
         """
 
 rule fastqc:
