@@ -20,7 +20,7 @@ rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from a remote repository
     
-    The fastq file is retrieved with curl is piped directly to the 
+    The fastq file is retrieved with wget and piped directly to the 
     seqtk program which samples a number of reads defined by the 
     max_reads parameter. The fastq output from seqtk is in turn piped 
     to gzip and stored as a compressed *.fastq.gz file.
@@ -39,7 +39,7 @@ rule get_SRA_by_accession:
     version: "1.0"
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        wget -O - {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 
 rule fastqc:
