@@ -11,7 +11,12 @@ rule all:
         "results/rulegraph.png"
 
 def get_sample_url(wildcards):
-    return config["sample_urls"][wildcards.sample_id]
+    samples = {
+        "SRR935090": "https://figshare.scilifelab.se/ndownloader/files/39539767",
+        "SRR935091": "https://figshare.scilifelab.se/ndownloader/files/39539770",
+        "SRR935092": "https://figshare.scilifelab.se/ndownloader/files/39539773"
+    }
+    return samples[wildcards.sample_id]
 
 rule get_SRA_by_accession:
     """
