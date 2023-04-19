@@ -27,7 +27,8 @@ activate it (use `mamba info --envs` if you are unsure).
 > Snakemake to use `conda` instead.
 
 Let's start by generating the rule graph so that we get an overview of the
-workflow.
+workflow. Here we have to specify the file with the rules using the `-s` 
+flag to Snakemake since the path to the file differs from the default.
 
 ```bash
 snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png
