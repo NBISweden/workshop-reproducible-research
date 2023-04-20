@@ -1,13 +1,17 @@
-It's generally a good idea to separate project-specific parameters from the
-actual implementation of the workflow. If we want to move all project-specific
-information to `config.yml`, and let the Snakefile be a more general RNA-seq
-analysis workflow, we need the config file to:
+It's a good idea to separate project-specific parameters from the
+actual implementation of the workflow. This allows anyone using the 
+workflow to modify its behaviour without changing the underlying code, 
+making the workflow more general. 
+
+In order to generalize our RNA-seq analysis workflow we should move all 
+project-specific information to `config.yml`. This means that we want the 
+config file to:
 
 * Specify which samples to run.
 * Specify which genome to align to and where to download its sequence and
   annotation files.
-* (Any other parameters we might need to make it into a general workflow,
-  *e.g.* to support both paired-end and single-read sequencing)
+* (Contain any other parameters we might need to make it into a general 
+  workflow, *e.g.* to support both paired-end and single-read sequencing)
 
 > **Note** <br>
 > Putting all configuration in `config.yml` will break the
@@ -44,6 +48,10 @@ example) instead of `SAMPLES`, as in:
 expand("intermediate/{sample_id}_fastqc.zip",
             sample_id = config["sample_ids"])
 ```
+
+Remove the line with `SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]` 
+that we added to the top of `snakefile_mrsa.smk` in 
+[Snakemake 8: Targets](snakemake-8-targets.md). 
 
 Do a dry-run afterwards to make sure that everything works as expected.
 
@@ -133,14 +141,14 @@ rule get_genome_fasta:
         "results/logs/get_genome_fasta/NCTC8325.log"
     shell:
         """
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output} -o {log}
+        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output} -o {log}
         """
 ```
 
 We don't want the hardcoded genome id `NCTC8325`, so replace that with a 
 wildcard, say `{genome_id}` (remember to add the wildcard to the `log:` 
-directive as well). We now need to supply the remote paths to the fasta and 
-gff files for a given genome id. Because we've added this information to the 
+directive as well). We now need to supply the remote paths to the fasta file 
+for a given genome id. Because we've added this information to the 
 config file we just need to pass it to the rule in some way, and just like 
 in the `get_SRA_by_accession` rule we'll use a function to do the job:
 
@@ -161,7 +169,7 @@ rule get_genome_fasta:
         fasta_path = get_fasta_path
     shell:
         """
-        wget {params.fasta_path} -O {output} -o {log}
+        wget -o {log} {params.fasta_path} -O {output}
         """
 ```
 
@@ -187,7 +195,7 @@ rule get_genome_gff3:
         gff3_path = get_gff_path
     shell:
         """
-        wget {params.gff3_path} -O {output} -o {log}
+        wget -o {log} {params.gff3_path} -O {output}
         """
 ```
 </details>

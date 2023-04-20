@@ -35,8 +35,8 @@ like this:
 
 ```python
 input:
-    fastq = "data/raw_internal/{sample_id}.fastq.gz",
-    index = [f"intermediate/NCTC8325.{substr}.bt2" for
+    "data/raw_internal/{sample_id}.fastq.gz",
+    [f"intermediate/NCTC8325.{substr}.bt2" for
         substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
 ```
 
@@ -47,16 +47,16 @@ same thing.
 
 ```python
 input:
-    fastq = "data/raw_internal/{sample_id}.fastq.gz",
-    index = expand("intermediate/NCTC8325.{substr}.bt2",
-           substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+    "data/raw_internal/{sample_id}.fastq.gz",
+    expand("intermediate/NCTC8325.{substr}.bt2",
+        substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
-**Importantly**, when using expand() like this `substr` is not a wildcard 
-because it is resolved to the values explicitly given inside the expand 
-expression.
+> **Important!** <br>
+> When using expand() like this, `substr` is not a wildcard because it is 
+> resolved to the values explicitly given inside the expand expression.
 
-Now change in the rules `index_genome` and `align_to_genome` to also use the
+Now change in the rules `index_genome` and `align_to_genome` to use the
 `expand()` expression.
 
 In the workflow we decide which samples to run by including the SRR ids in the
