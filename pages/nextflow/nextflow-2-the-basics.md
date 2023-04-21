@@ -311,13 +311,18 @@ file is much more portable, scalable and overall easier to use than simple
 hard-coding things in the workflow definition itself. We might also include an
 arbitrary number of additional metadata columns, useful for downstream
 processing and analyses. Using contents of files as input can be done using the
-`.splitCsv()` operator, like so:
+`.splitCsv()` and `.map{}` operators, like so:
 
 ```nextflow
 ch_input = Channel
     .fromPath ( "samplesheet.csv" )
     .splitCsv ( )
+    .map      { row -> tuple(row[0], file(row[1])) }
 ```
+
+The `.SplitCsv()` operator lets the channel know the input is a CSV file, while
+the `.map{}` operator makes the CSV content into a tuple from the first and
+second elements of each row.
 
 * Change the input channel definition to the code above and create the
   `samplesheet.csv` file as shown above.
