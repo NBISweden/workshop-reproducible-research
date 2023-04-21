@@ -3,6 +3,8 @@
 // This is one possible variant of the final workflow after finishing all of the
 // Nextflow tutorials, not including extra material.
 
+nextflow.enable.dsl = 2
+
 // Include subworkflows
 include { QUALITY_CONTROLS } from "./subworkflows/quality_controls.nf"
 include { ALIGNMENT        } from "./subworkflows/alignment.nf"

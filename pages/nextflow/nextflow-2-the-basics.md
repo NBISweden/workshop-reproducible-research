@@ -16,6 +16,8 @@ file used in Nextflow, where workflows and their processes are defined.
 * Copy the following code into your `main.nf` file:
 
 ```nextflow
+nextflow.enable.dsl = 2
+
 // Workflow definition
 workflow {
     // Define input files
@@ -42,6 +44,12 @@ process CONVERT_TO_UPPER_CASE {
     """
 }
 ```
+
+> **DSL2** <br>
+> The `nextflow.enable.dsl = 2` line is only required for earlier versions of
+> Nextflow, so depending on which version you have installed it might be
+> redundant; all it does is enable the latest functionality of modular Nextflow
+> design.
 
 Here we have two separate parts. The first is the *workflow definition*, while
 the last is a *process*. Let's go through them both in more detail!
