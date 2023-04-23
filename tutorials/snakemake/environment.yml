@@ -3,16 +3,16 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python=3.10.10
-  - fastqc=0.11.9
-  - seqtk=1.3
-  - snakemake=7.25.0
-  - multiqc=1.14
-  - bowtie2=2.5.1
-  - tbb=2021.8.0
-  - samtools=1.16
-  - subread=2.0.3
-  - bedtools=2.30.0
+  - python
+  - fastqc
+  - seqtk
+  - snakemake
+  - multiqc
+  - bowtie2
+  - tbb
+  - samtools
+  - subread
+  - bedtools
   - graphviz
   - wget
   - xorg-libxrender
