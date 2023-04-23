@@ -33,13 +33,14 @@ rule get_SRA_by_accession:
     """
     output:
         "data/raw_internal/{sample_id}.fastq.gz"
+    log:
+        "results/logs/get_SRA_by_accession/{sample_id}.log"
     params:
         max_reads = config["max_reads"],
         url = get_sample_url
-    version: "1.0"
     shell:
         """
-        wget -O - {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        wget -o {log} -O - {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 
 rule fastqc:
@@ -51,7 +52,6 @@ rule fastqc:
         "intermediate/{sample_id}_fastqc.zip"
     input:
         "data/raw_internal/{sample_id}.fastq.gz"
-    version: "1.0"
     shadow: "minimal"
     shell:
         """
@@ -74,7 +74,6 @@ rule multiqc:
         expand("intermediate/{sample_id}_fastqc.zip", sample_id = config["sample_ids"])
     log:
         "results/logs/multiqc/multiqc.log"
-    version: "1.0"
     shadow: "minimal"
     shell:
         """
@@ -97,7 +96,6 @@ rule get_genome_fasta:
         "results/logs/get_genome_fasta/{genome_id}.log"
     params:
         fasta_path = get_fasta_path
-    version: "1.0"
     shell:
         """
         wget {params.fasta_path} -O {output} -o {log}
@@ -116,7 +114,6 @@ rule get_genome_gff3:
         "results/logs/get_genome_gff3/{genome_id}.log"
     params:
         gff3_path = get_gff_path
-    version: "1.0"
     shell:
         """
         wget {params.gff3_path} -O {output} -o {log}
@@ -132,7 +129,6 @@ rule index_genome:
         "data/raw_external/{genome_id}.fa.gz"
     log:
         "results/logs/index_genome/{genome_id}.log"
-    version: "1.0"
     shadow: "minimal"
     shell:
         """
@@ -157,7 +153,6 @@ rule align_to_genome:
     log:
         expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log",
             genome_id = config["genome_id"])
-    version: "1.0"
     shell:
         """
         bowtie2 -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
@@ -171,7 +166,6 @@ rule sort_bam:
         "{prefix}.sorted.bam"
     input:
         "{prefix}.bam"
-    version: "1.0"
     shell:
         """
         samtools sort {input} > {output}
@@ -189,7 +183,6 @@ rule generate_count_table:
         annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     log:
         "results/logs/generate_count_table.log"
-    version: "1.0"
     shell:
         """
         featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
