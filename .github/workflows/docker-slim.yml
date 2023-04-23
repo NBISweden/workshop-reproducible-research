@@ -17,10 +17,12 @@ jobs:
       nbisweden/workshop-reproducible-research:slim
     strategy:
       matrix:
-        env: [ snakemake, jupyter, rmarkdown ]
+        env: [ snakemake, nextflow, jupyter, rmarkdown ]
         include:
           - env: snakemake
-            cmd: snakemake -j 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
+            cmd: snakemake -c 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
+          - env: nextflow
+            cmd: nextflow run tutorials/nextflow/main_mrsa.nf
           - env: jupyter
             cmd: jupyter nbconvert --template=nbextensions --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
@@ -29,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          installer-url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
+          miniconda-version: "latest"
           activate-environment: ${{ matrix.env }}-env
           environment-file: tutorials/${{ matrix.env }}/environment.yml
           auto-activate-base: false
