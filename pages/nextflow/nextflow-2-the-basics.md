@@ -85,7 +85,7 @@ with the workflow and can be passed between the various parts of the workflow.
 Channels can be created in various different ways using *channel factories*,
 depending on what type data you want to put into them and where this data is
 stored. In this particular case we define our `ch_input` channel using the
-`.fromPath` channel factory, which takes a file path as input - hre we use the
+`.fromPath` channel factory, which takes a file path as input - here we use the
 `a.txt` file. You can thus read `ch_input = Channel.fromPath("a.txt")` as
 *"create the channel `ch_input` and send the file `a.txt` into it"*.
 
