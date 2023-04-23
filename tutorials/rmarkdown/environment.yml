@@ -4,15 +4,15 @@ channels:
   - bioconda
   - r
 dependencies:
-  - r-base=4.1.3
-  - r-ggplot2=3.4.2
-  - r-reshape2=1.4.4
-  - r-stringi=1.7.12
-  - r-pheatmap=1.0.12
-  - r-rmarkdown=2.13
-  - r-r.utils=2.12.2
-  - bioconductor-rtracklayer=1.54.0
-  - bioconductor-geoquery=2.62.0
-  - r-devtools=2.4.5
-  - r-networkd3=0.4
-  - rstudio=1.0.44
+  - r-base
+  - r-ggplot2
+  - r-reshape2
+  - r-stringi
+  - r-pheatmap
+  - r-rmarkdown
+  - r-r.utils
+  - bioconductor-rtracklayer
+  - bioconductor-geoquery
+  - r-devtools
+  - r-networkd3
+  - rstudio
