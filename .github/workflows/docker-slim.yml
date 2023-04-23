@@ -22,7 +22,7 @@ jobs:
           - env: snakemake
             cmd: snakemake -c 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
           - env: nextflow
-            cmd: nextflow run tutorials/nextflow/main_mrsa.nf
+            cmd: cd tutorials/nextflow && nextflow run tutorials/nextflow/main_mrsa.nf
           - env: jupyter
             cmd: jupyter nbconvert --template=nbextensions --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
