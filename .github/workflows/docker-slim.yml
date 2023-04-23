@@ -24,7 +24,7 @@ jobs:
           - env: nextflow
             cmd: cd tutorials/nextflow && nextflow run main_mrsa.nf
           - env: jupyter
-            cmd: jupyter nbconvert --template=nbextensions --to HTML tutorials/jupyter/supplementary_material.ipynb
+            cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
             cmd: echo 'rmarkdown::render("tutorials/rmarkdown/code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
     steps:
