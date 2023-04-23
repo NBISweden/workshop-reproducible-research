@@ -203,8 +203,7 @@ rule make_supplementary:
         "results/logs/make_supplementary.log"
     params:
         SRR_IDs = config["sample_ids"],
-        GSM_IDs = config["sample_ids_geo"],
-        GSE_ID = config["series_id_geo"]
+        GSM_IDs = config["sample_ids_geo"]
     shell:
         """
         echo 'rmarkdown::render("code/supplementary_material.Rmd", \
@@ -215,8 +214,7 @@ rule make_supplementary:
                               summary_file="{input.summary_file}", \
                               rulegraph_file="{input.rulegraph}", \
                               SRR_IDs="{params.SRR_IDs}", \
-                              GSM_IDs="{params.GSM_IDs}", \
-                              GSE_ID="{params.GSE_ID}"))' \
+                              GSM_IDs="{params.GSM_IDs}"))' \
         | R --vanilla > {log} 2>&1
         """
 
