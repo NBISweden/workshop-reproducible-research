@@ -2,13 +2,12 @@
 title: "Supplementary Material"
 output: html_document
 params:
-  counts_file: ""
-  multiqc_file: ""
-  summary_file: ""
-  rulegraph_file: ""
-  SRR_IDs: ""
-  GSM_IDs: ""
-  GSE_ID: ""
+  counts_file: "results/tables/counts.tsv"
+  multiqc_file: "intermediate/multiqc_general_stats.txt"
+  summary_file: "results/tables/counts.tsv.summary"
+  rulegraph_file: "results/rulegraph.png"
+  SRR_IDs: "SRR935090 SRR935091 SRR935092"
+  GSM_IDs: "GSM1186459 GSM1186460 GSM1186461"
 ---
 
 ```{r Setup, include = FALSE}
@@ -25,13 +24,18 @@ library("GEOquery")
 ```
 
 ```{r Read parameters, include = FALSE}
+  # counts_file= "results/tables/counts.tsv"
+  # multiqc_file= "intermediate/multiqc_general_stats.txt"
+  # summary_file= "results/tables/counts.tsv.summary"
+  # rulegraph_file= "results/rulegraph.png"
+  # SRR_IDs= "SRR935090 SRR935091 SRR935092"
+  # GSM_IDs= "GSM1186459 GSM1186460 GSM1186461"
 counts_file <- params$counts_file
 multiqc_file <- params$multiqc_file
 summary_file <- params$summary_file
 rulegraph_file <- params$rulegraph_file
 SRR_IDs <- unlist(strsplit(params$SRR_IDs, " "))
 GSM_IDs <- unlist(strsplit(params$GSM_IDs, " "))
-GSE_ID <- params$GSE_ID
 ```
 
 ```{r Read data, include = FALSE}
@@ -52,11 +56,15 @@ colnames(counts_summary) <- gsub(".*(SRR[0-9]+)\\..*", "\\1",
                                  colnames(counts_summary))
 
 # Read metadata
-gse <- getGEO(GSE_ID, GSEMatrix = TRUE)
-gse <- as.data.frame(gse[[1]])
+meta <- data.frame()
+for (GSM in GSM_IDs) {
+    gsm <- Meta(getGEO(GSM))
+    current_meta <- as.data.frame(do.call(cbind, gsm))
+    meta <- rbind(meta, current_meta)
+}
+meta <- meta[c("title", "geo_accession", "source_name_ch1", "characteristics_ch1")]
 gsm2srr <- data.frame(geo_accession = GSM_IDs, SRR = SRR_IDs)
-meta <- merge(x = gse, y = gsm2srr,
-              by.x = "geo_accession", by.y = "geo_accession")
+meta <- merge(meta, gsm2srr, by = "geo_accession")
 
 # Read FastQC data and update column names
 qc <- read.delim(multiqc_file)
@@ -71,9 +79,6 @@ for (i in 1:length(patterns)) {
   colnames(qc) <- gsub(patterns[i], subs[i], colnames(qc))
 }
 meta <- merge(meta, qc, by.x = "SRR", by.y = "Sample")
-if (any(colnames(counts)[-1] != meta$SRR)) {
-    stop("Mismatching count and meta-data")
-}
 ```
 
 # Supplementary Methods
@@ -85,9 +90,10 @@ was aligned and counted.
 # Supplementary Tables and Figures
 
 ```{r Sample info}
-columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1.1")
+columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1")
 sample_info <- meta[, columns]
-sample_info$characteristics_ch1.1 <- gsub("treatment: ", "", sample_info$characteristics_ch1.1)
+sample_info$characteristics_ch1 <- gsub("treatment: ", "", sample_info$characteristics_ch1)
+sample_info$characteristics_ch1 <- gsub("growth phase: ", "", sample_info$characteristics_ch1)
 sample_info
 ```
 

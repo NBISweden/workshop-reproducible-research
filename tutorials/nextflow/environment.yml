@@ -3,11 +3,11 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - bowtie2=2.5.1
-  - fastqc=0.11.9
-  - graphviz=7.0.5
-  - multiqc=1.14
-  - nextflow=22.10.6
-  - samtools=1.16.1
-  - subread=2.0.3
-  - wget=1.20.3
+  - bowtie2
+  - fastqc
+  - graphviz
+  - multiqc
+  - nextflow
+  - samtools
+  - subread
+  - wget

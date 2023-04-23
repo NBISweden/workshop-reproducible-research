@@ -39,7 +39,6 @@ rule align_to_genome:
     log:
         expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log",
             genome_id = config["genome_id"])
-    version: "1.0"
     container: "docker://quay.io/biocontainers/bowtie2:2.5.0--py310h8d7afc0_0"
     shell:
         """
