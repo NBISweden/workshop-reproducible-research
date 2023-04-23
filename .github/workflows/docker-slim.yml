@@ -29,12 +29,13 @@ jobs:
             cmd: echo 'rmarkdown::render("tutorials/rmarkdown/code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
     steps:
       - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v2.2.0
         with:
-          miniconda-version: "latest"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
           activate-environment: ${{ matrix.env }}-env
           environment-file: tutorials/${{ matrix.env }}/environment.yml
-          auto-activate-base: false
+          use-mamba: true
       - name: Test ${{ matrix.env }}
         shell: bash -l {0}
         run: |
