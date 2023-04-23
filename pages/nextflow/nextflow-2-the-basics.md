@@ -315,7 +315,7 @@ processing and analyses. Using contents of files as input can be done using the
 
 ```nextflow
 ch_input = Channel
-    .fromPath ( "samplesheet.csv" )
+    .fromPath ( "first_samplesheet.csv" )
     .splitCsv ( )
     .map      { row -> tuple(row[0], file(row[1])) }
 ```
@@ -325,7 +325,7 @@ the `.map{}` operator makes the CSV content into a tuple from the first and
 second elements of each row.
 
 * Change the input channel definition to the code above and create the
-  `samplesheet.csv` file as shown above.
+  `first_samplesheet.csv` file as shown above.
 
 * Add the `.view()` operator somewhere to show the contents of `ch_input`.
 
