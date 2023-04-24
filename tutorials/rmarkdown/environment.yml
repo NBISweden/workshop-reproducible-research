@@ -11,7 +11,6 @@ dependencies:
   - r-pheatmap
   - r-rmarkdown
   - r-r.utils
-  - bioconductor-rtracklayer
   - bioconductor-geoquery
   - r-devtools
   - r-networkd3
