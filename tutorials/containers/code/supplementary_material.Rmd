@@ -19,7 +19,6 @@ knitr::opts_chunk$set(echo = FALSE)
 library("ggplot2")
 library("reshape2")
 library("pheatmap")
-library("rtracklayer")
 library("GEOquery")
 ```
 
