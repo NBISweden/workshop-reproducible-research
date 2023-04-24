@@ -1,9 +1,7 @@
 name: lecture-env
 channels:
-    - r
     - conda-forge
     - bioconda
-    - defaults
 dependencies:
 
     # Snakemake
