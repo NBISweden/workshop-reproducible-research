@@ -43,7 +43,7 @@ class: center, middle
 # Concepts and nomenclature
 
 <p style="text-align:center">
-<img src="https://seqera.io/training/img/channel-process.png", width=75%>
+<img src="https://training.seqera.io/img/channel-process.png", width=75%>
 </p>
 
 --
