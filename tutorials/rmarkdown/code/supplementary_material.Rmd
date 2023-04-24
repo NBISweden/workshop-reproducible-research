@@ -24,12 +24,6 @@ library("GEOquery")
 ```
 
 ```{r Read parameters, include = FALSE}
-  # counts_file= "results/tables/counts.tsv"
-  # multiqc_file= "intermediate/multiqc_general_stats.txt"
-  # summary_file= "results/tables/counts.tsv.summary"
-  # rulegraph_file= "results/rulegraph.png"
-  # SRR_IDs= "SRR935090 SRR935091 SRR935092"
-  # GSM_IDs= "GSM1186459 GSM1186460 GSM1186461"
 counts_file <- params$counts_file
 multiqc_file <- params$multiqc_file
 summary_file <- params$summary_file

@@ -339,7 +339,8 @@ second elements of each row.
 > talk more about later in this tutorial.
 
 We can also specify a header in our samplesheet like so: `.splitCsv(header:
-true)`.
+true)`. This will allow us to reference the columns using their names instead of
+their index, *e.g.* `row.col1` instead of `row[0]`.
 
 * Add an appropriate header to your samplesheet, make sure your workflow can
   read it and execute. Use `.view()` to see what's going on, if needed.
