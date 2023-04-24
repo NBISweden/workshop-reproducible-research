@@ -157,7 +157,7 @@ README.md
 
 *syntax highlighting, autocomplete, git integration etc*
 
-- <a href="https://atom.io/" .green[Atom] </a> 
+- <a href="https://code.visualstudio.com/" .green[VSCode] </a>
 - <a href="https://rstudio.com/" .green[RStudio] </a>
 - <a href="https://www.jetbrains.com/pycharm/" .green[PyCharm] </a>
 
