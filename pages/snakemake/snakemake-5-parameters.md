@@ -47,7 +47,7 @@ rule get_SRA_by_accession:
 
 ```
 
-You may recognize this from [page 2](snakemake-2-the-basics.md) of this 
+You may recognize this from [page 2](snakemake-2-the-basics) of this 
 tutorial where we used input functions to generate strings and lists of 
 strings for the `input:` section of a rule. Using a function to return 
 values based on the wildcards also works for `params:`. Here `sample_id` is 
