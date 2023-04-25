@@ -30,6 +30,7 @@ jobs:
         activate-environment: lecture-env
         environment-file: lectures/environment.yml
         use-mamba: true
+        channel-priority: strict
     - name: Render lectures
       run: |
         snakemake -d lectures/ -s lectures/Snakefile -c 1

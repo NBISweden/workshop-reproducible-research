@@ -36,6 +36,7 @@ jobs:
           activate-environment: ${{ matrix.env }}-env
           environment-file: tutorials/${{ matrix.env }}/environment.yml
           use-mamba: true
+          channel-priority: strict
       - name: Test ${{ matrix.env }}
         shell: bash -l {0}
         run: |
