@@ -26,19 +26,11 @@ jobs:
           - env: jupyter
             cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
-            cmd: cd tutorials/rmarkdown && echo 'rmarkdown::render("code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
+            cmd: mamba install --force-reinstall -y pandoc && cd tutorials/rmarkdown && echo 'rmarkdown::render("code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
     steps:
       - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2.2.0
-        with:
-          miniforge-variant: Mambaforge
-          miniforge-version: latest
-          activate-environment: ${{ matrix.env }}-env
-          environment-file: tutorials/${{ matrix.env }}/environment.yml
-          use-mamba: true
-          channel-priority: strict
       - name: Test ${{ matrix.env }}
         shell: bash -l {0}
         run: |
-          conda list
+          mamba env create -f tutorials/${{ matrix.env }}/environment.yml
           ${{ matrix.cmd }}
