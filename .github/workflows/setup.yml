@@ -15,26 +15,25 @@ jobs:
     strategy:
       matrix:
         os: [ macos-latest, ubuntu-latest ]
-        env: [snakemake, jupyter, rmarkdown]
+        env: [snakemake, nextflow, jupyter, rmarkdown]
         include:
-          - os: macos-latest
-            url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-MacOSX-x86_64.sh
-          - os: ubuntu-latest
-            url: https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
           - env: snakemake
-            cmd: snakemake -j 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
+            cmd: snakemake -c 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
+          - env: nextflow
+            cmd: cd tutorials/nextflow && nextflow run main_mrsa.nf
           - env: jupyter
-            cmd: jupyter nbconvert --template=nbextensions --to HTML tutorials/jupyter/supplementary_material.ipynb
+            cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: rmarkdown
-            cmd: echo 'rmarkdown::render("tutorials/rmarkdown/code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
+            cmd: mamba install --force-reinstall -y r-stringi && cd tutorials/rmarkdown && echo 'rmarkdown::render("code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
     steps:
       - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v2.2.0
         with:
-          installer-url: ${{ matrix.url }}
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
           activate-environment: ${{ matrix.env }}-env
           environment-file: tutorials/${{ matrix.env }}/environment.yml
-          auto-activate-base: false
+          use-mamba: true
       - name: Test ${{ matrix.env }}
         shell: bash -l {0}
         run: |
