@@ -22,7 +22,7 @@ or so), in particular if you're on a slow internet connection.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
-[Building images](containers-3-building-images.md) section, although with 
+[Building images](containers-3-building-images) section, although with 
 some small modifications. The main difference is that we add the project 
 files needed for executing the workflow (mentioned in the previous paragraph), 
 and install the conda packages using `environment.yml`. If you look at the 

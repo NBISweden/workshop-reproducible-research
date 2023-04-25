@@ -51,11 +51,11 @@ expand("intermediate/{sample_id}_fastqc.zip",
 
 Remove the line with `SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]` 
 that we added to the top of `snakefile_mrsa.smk` in 
-[Snakemake 8: Targets](snakemake-8-targets.md). 
+[Snakemake 8: Targets](snakemake-8-targets). 
 
 Do a dry-run afterwards to make sure that everything works as expected.
 
-You may remember from the [snakemake-5-parameters](snakemake-5-parameters.md)
+You may remember from the [snakemake-5-parameters](snakemake-5-parameters)
 part of this tutorial that we're using a function to return the URL of the 
 fastq files to download for each sample:
 

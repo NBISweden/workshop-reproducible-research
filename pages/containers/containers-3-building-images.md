@@ -96,7 +96,7 @@ Here we run `mamba init bash` to initialize the bash shell inside the image,
 meaning we can use `mamba activate` in containers that run from the image. 
 In the same `RUN` statement we also configure the strict channel priority 
 and add appropriate channels with `conda config`. You'll probably recognize 
-this from the [pre-course-setup](../course-information/pre-course-setup.md). 
+this from the [pre-course-setup](../course-information/pre-course-setup). 
 The last part sets the somewhat obscure `subdir` config parameter pointing to 
 the `linux-64` architecture of conda channels.
 

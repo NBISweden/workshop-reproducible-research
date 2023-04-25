@@ -86,7 +86,7 @@ The output files from these two rules, `results/multiqc.html` and
 `results/tables/counts.tsv`, are in turn specified as input to the `all` rule
 at the top of the file. Because the first rule is targeted by default when 
 we run Snakemake on the command line (like we mentioned in 
-[snakemake-4-the-mrsa-workflow](snakemake-4-the-mrsa-workflow.md)) this 
+[snakemake-4-the-mrsa-workflow](snakemake-4-the-mrsa-workflow)) this 
 is what triggers the rules to run on each of the three samples.
 
 However, this is a potential source of errors since it's easy to change in one 
