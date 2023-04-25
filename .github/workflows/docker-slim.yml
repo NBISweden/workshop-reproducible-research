@@ -33,4 +33,5 @@ jobs:
         shell: bash -l {0}
         run: |
           mamba env create -f tutorials/${{ matrix.env }}/environment.yml
+          conda activate ${{ matrix.env }}-env
           ${{ matrix.cmd }}
