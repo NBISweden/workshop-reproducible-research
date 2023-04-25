@@ -6,6 +6,12 @@ on:
       - main
       - devel
   pull_request:
+    paths:
+      - 'tutorials/containers/Dockerfile'
+      - 'tutorials/containers/environment.yml'
+      - 'tutorials/containers/Snakefile'
+      - 'tutorials/containers/config.yml'
+      - 'tutorials/containers/code/*'
     branches:
       - main
 
