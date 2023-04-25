@@ -3,8 +3,8 @@ understand how lytic bacteriophages can be used as a future therapy for the
 multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
 In order to do this we have performed RNA-seq of three strains, one test and
 two controls. We have already set up a draft Snakemake workflow for the RNA-seq
-analysis and it seems to be running nicely. It's now up to you to modify this
-workflow to make it more flexible and reproducible!
+analysis and it seems to be running nicely. The rest of the Snakemake tutorial
+will be spent improving and making this workflow more flexible!
 
 > **Tip** <br>
 > This section will leave a little more up to you compared to the previous
