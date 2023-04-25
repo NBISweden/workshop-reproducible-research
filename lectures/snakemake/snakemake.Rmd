@@ -39,22 +39,14 @@ class: center, middle
 
 # Workflow managers
 
-.pull-left[.center[
-<img src="http://ccl.cse.nd.edu/software/makeflow/MakeflowLogoSmall.png", width=75%>
-<br>
-<br>
-<br>
-<img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png", width=75%>
-]]
+**Most common**
+- .green[Snakemake]
+- .green[Nextflow]
 
-.pull-right[.center[
-<img src="https://img3.doubanio.com/lpic/s11150183.jpg", width=50%>
-<br>
-GNU Make
-
-<br>
-<img src="https://snakemake.github.io/img/jk/logo.png" style="background-color:#002221;width:75%;padding: 15px 15px 15px 15px;">
-]]
+**Others**
+- Makeflow
+- Bpipe
+- Pachyderm
 
 ---
 
@@ -259,7 +251,7 @@ rule trim_fastq:
 
     shell:
         """
-        seqtk trimfq -t 8 –b 5 -e 10 {input} > {output} \
+        seqtk trimfq -t 8 -b 5 -e 10 {input} > {output} \
                     2> {log}
         """
 ```
@@ -281,7 +273,7 @@ rule trim_fastq:
 
     shell:
       """
-      seqtk trimfq -t 8 –b {params.leftTrim} \
+      seqtk trimfq -t 8 -b {params.leftTrim} \
                    -e {params.rightTrim} {input} > {output} \
                    2> {log}
       """
@@ -308,7 +300,7 @@ rule trim_fastq:
 
     shell:
       """
-      seqtk trimfq -t {threads} –b {params.leftTrim} \
+      seqtk trimfq -t {threads} -b {params.leftTrim} \
                    -e {params.rightTrim} {input} > {output} \
                    2> {log}
       """
@@ -340,7 +332,7 @@ rule trim_fastq:
 
     shell:
       """
-      seqtk trimfq -t {threads} –b {params.leftTrim} \
+      seqtk trimfq -t {threads} -b {params.leftTrim} \
                    -e {params.rightTrim} {input} > {output} \
                    2> {log}
       """
