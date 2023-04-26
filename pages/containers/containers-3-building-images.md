@@ -74,19 +74,21 @@ WORKDIR /course
 
 # Set timezone
 ENV TZ="Europe/Stockholm"
+ENV DEBIAN_FRONTEND=noninteractive
 ```
 
 `SHELL` simply sets which shell to use and `WORKDIR` determines the 
 directory the container should start in. The `ENV` instruction is used to 
 set environmental variables and here we use it to set the timezone by declaring 
-a `TZ` variable. 
+a `TZ` variable. The `DEBIAN_FRONTEND=noninteractive` line means that we 
+force the subsequent installation to not prompt us to set the timezone manually.
 
 The next few lines introduce the important `RUN` instruction, which is used 
 for executing shell commands:
 
 ```Dockerfile
 # Install package for setting timezone
-RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y tzdata && apt clean
+RUN apt-get update && apt install -y tzdata && apt-get clean
 
 # Configure Conda/Mamba
 RUN mamba init bash && conda config --set channel_priority strict && \
@@ -98,8 +100,7 @@ RUN mamba init bash && conda config --set channel_priority strict && \
 The first RUN command installs the `tzdata` package for managing local time 
 settings in the container. This may not always be required for your 
 Dockerfile but it's added here because some R packages used in the course 
-require it. The `DEBIAN_FRONTEND=noninteractive` declaration simply means 
-that we force the installation to not prompt us to set the timezone manually.
+require it.
 
 Next, we run `mamba init bash` to initialize the bash shell inside the 
 image, meaning we can use `mamba activate` in containers that run from the 
