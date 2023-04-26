@@ -256,7 +256,11 @@ environment:
 mamba install -c conda-forge rise
 ```
 
-then open up a notebook of your choice. In the menu click **View** -> **Cell 
+> **Attention!** <br>
+> Unfortunately, the RISE extension is currently not supported in Jupyter 
+> lab so you are forced to use the classic notebook interface here.
+
+Then open up a notebook of your choice. In the menu click **View** -> **Cell 
 Toolbar** -> **Slideshow**. Now every cell will have a drop-down in the upper
 right corner allowing you to set the cell type:
 
