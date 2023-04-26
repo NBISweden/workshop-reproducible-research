@@ -11,13 +11,16 @@ rule all:
     input:
         "results/tables/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.png"
+        "results/rulegraph.png",
+
+def get_sample_url(wildcards):
+    return config["sample_urls"][wildcards.sample_id]
 
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from a remote repository
     
-    The fastq file is retrieved with curl is piped directly to the 
+    The fastq file is retrieved with wget and piped directly to the 
     seqtk program which samples a number of reads defined by the 
     max_reads parameter. The fastq output from seqtk is in turn piped 
     to gzip and stored as a compressed *.fastq.gz file.
@@ -30,25 +33,25 @@ rule get_SRA_by_accession:
     """
     output:
         "data/raw_internal/{sample_id}.fastq.gz"
+    log:
+        "results/logs/get_SRA_by_accession/{sample_id}.log"
     params:
         max_reads = config["max_reads"],
-        url = config["{sample_id}"]
-    version: "1.0"
+        url = get_sample_url
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        wget -o {log} -O - {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
         """
 
 rule fastqc:
     """
     Run FastQC on a FASTQ file.
     """
-    input:
-        "data/raw_internal/{sample_id}.fastq.gz"
     output:
         "results/{sample_id}_fastqc.html",
         "intermediate/{sample_id}_fastqc.zip"
-    version: "1.0"
+    input:
+        "data/raw_internal/{sample_id}.fastq.gz"
     shadow: "minimal"
     shell:
         """
@@ -64,14 +67,13 @@ rule multiqc:
     """
     Aggregate all FastQC reports into a MultiQC report.
     """
+    output:
+        html="results/multiqc.html",
+        stats="intermediate/multiqc_general_stats.txt"
     input:
         expand("intermediate/{sample_id}_fastqc.zip", sample_id = config["sample_ids"])
-    output:
-        html = "results/multiqc.html",
-        stats = "intermediate/multiqc_general_stats.txt"
     log:
         "results/logs/multiqc/multiqc.log"
-    version: "1.0"
     shadow: "minimal"
     shell:
         """
@@ -94,7 +96,6 @@ rule get_genome_fasta:
         "results/logs/get_genome_fasta/{genome_id}.log"
     params:
         fasta_path = get_fasta_path
-    version: "1.0"
     shell:
         """
         wget {params.fasta_path} -O {output} -o {log}
@@ -113,7 +114,6 @@ rule get_genome_gff3:
         "results/logs/get_genome_gff3/{genome_id}.log"
     params:
         gff3_path = get_gff_path
-    version: "1.0"
     shell:
         """
         wget {params.gff3_path} -O {output} -o {log}
@@ -123,13 +123,12 @@ rule index_genome:
     """
     Index a genome using Bowtie 2.
     """
+    output:
+        expand("intermediate/{{genome_id}}.{n}.bt2",n=["1", "2", "3", "4","rev.1", "rev.2"])
     input:
         "data/raw_external/{genome_id}.fa.gz"
-    output:
-        expand("intermediate/{{genome_id}}.{n}.bt2", n = ["1","2","3","4","rev.1","rev.2"])
     log:
         "results/logs/index_genome/{genome_id}.log"
-    version: "1.0"
     shadow: "minimal"
     shell:
         """
@@ -142,36 +141,31 @@ rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
     """
+    output:
+        # Here the sample_id wildcard is constrained with \w+ to match only
+        # 'word characters', i.e. letters, numbers and underscore
+        temp("intermediate/{sample_id,\w+}.bam")
     input:
         fastq = "data/raw_internal/{sample_id}.fastq.gz",
         index = expand("intermediate/{genome_id}.{substr}.bt2",
             genome_id=config["genome_id"],
             substr=["1", "2", "3", "4", "rev.1", "rev.2"])
-    output:
-        # Here the sample_id wildcard is constrained with \w+ to match only
-        # 'word characters', i.e. letters, numbers and underscore
-        temp("intermediate/{sample_id,\w+}.bam")
     log:
         expand("results/logs/align_to_genome/{{sample_id}}_{genome_id}.log",
             genome_id = config["genome_id"])
-    version: "1.0"
     shell:
         """
-        # This gives the base name for the genome index, i.e. "intermediate/some_id"
-        # rather than "intermediate/some_id.*.bt2"
-        indexBase=$(echo {input.index[0]} | sed 's/.1.bt2//g')
-        bowtie2 -x $indexBase -U {input.fastq} > {output} 2> {log}
+        bowtie2 -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
         """
 
 rule sort_bam:
     """
     Sort a bam file.
     """
-    input:
-        "{prefix}.bam"
     output:
         "{prefix}.sorted.bam"
-    version: "1.0"
+    input:
+        "{prefix}.bam"
     shell:
         """
         samtools sort {input} > {output}
@@ -181,18 +175,17 @@ rule generate_count_table:
     """
     Generate a count table using featureCounts.
     """
-    input:
-        bams=expand("intermediate/{sample_id}.sorted.bam", sample_id = config["sample_ids"]),
-        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     output:
         "results/tables/counts.tsv",
         "results/tables/counts.tsv.summary"
+    input:
+        bams=expand("intermediate/{sample_id}.sorted.bam", sample_id = config["sample_ids"]),
+        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     log:
         "results/logs/generate_count_table.log"
-    version: "1.0"
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
         """
 
 rule generate_rulegraph:
