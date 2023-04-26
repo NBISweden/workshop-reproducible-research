@@ -72,19 +72,22 @@ SHELL ["/bin/bash", "--login", "-c"]
 # Set workdir
 WORKDIR /course
 
-# Set language encoding
-ENV LANG="en_US.UTF-8"
+# Set timezone
+ENV TZ="Europe/Stockholm"
 ```
 
 `SHELL` simply sets which shell to use and `WORKDIR` determines the 
 directory the container should start in. The `ENV` instruction is used to 
-set environmental variables and here we use it to set the language encoding 
-to english [UTF-8](https://en.wikipedia.org/wiki/UTF-8). 
+set environmental variables and here we use it to set the timezone by declaring 
+a `TZ` variable. 
 
 The next few lines introduce the important `RUN` instruction, which is used 
 for executing shell commands:
 
 ```Dockerfile
+# Install package for setting timezone
+RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y tzdata && apt clean
+
 # Configure Conda/Mamba
 RUN mamba init bash && conda config --set channel_priority strict && \
     conda config --append channels bioconda && \
@@ -92,9 +95,15 @@ RUN mamba init bash && conda config --set channel_priority strict && \
     conda config --set subdir linux-64
 ```
 
-Here we run `mamba init bash` to initialize the bash shell inside the image, 
-meaning we can use `mamba activate` in containers that run from the image. 
-In the same `RUN` statement we also configure the strict channel priority 
+The first RUN command installs the `tzdata` package for managing local time 
+settings in the container. This may not always be required for your 
+Dockerfile but it's added here because some R packages used in the course 
+require it. The `DEBIAN_FRONTEND=noninteractive` declaration simply means 
+that we force the installation to not prompt us to set the timezone manually.
+
+Next, we run `mamba init bash` to initialize the bash shell inside the 
+image, meaning we can use `mamba activate` in containers that run from the 
+image. In the same `RUN` statement we also configure the strict channel priority 
 and add appropriate channels with `conda config`. You'll probably recognize 
 this from the [pre-course-setup](../course-information/pre-course-setup). 
 The last part sets the somewhat obscure `subdir` config parameter pointing to 

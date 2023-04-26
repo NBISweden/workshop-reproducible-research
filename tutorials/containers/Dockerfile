@@ -11,7 +11,9 @@ WORKDIR /course
 
 # Set timezone
 ENV TZ="Europe/Stockholm"
-ENV DEBIAN_FRONTEND=noninteractive
+
+# Install package for setting timezone
+RUN DEBIAN_FRONTEND=noninteractive apt update && apt install -y tzdata && apt clean
 
 RUN apt update && apt install -y tzdata && apt clean
 
