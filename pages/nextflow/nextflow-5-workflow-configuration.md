@@ -43,7 +43,7 @@ params {
 }
 
 // A publishDir directive in a process
-publishDir: "${params.outdir}",
+publishDir "${params.outdir}",
     mode: "copy"
 ```
 
