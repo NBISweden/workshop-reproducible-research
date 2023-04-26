@@ -6,10 +6,12 @@ dependencies:
   - python
   - biopython
   - jupyter
+  - jupyterlab
+  - nodejs
   - pandas
   - seaborn
   - matplotlib
   - ipywidgets
   - nbconvert
   - jinja2
-  - jupyter_contrib_nbextensions
+  - rpy2
