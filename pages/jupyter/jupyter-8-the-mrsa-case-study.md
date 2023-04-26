@@ -8,11 +8,16 @@ from the Snakemake tutorial and generate a Supplementary Material file with
 some basic stats.
 
 In the `workshop-reproducible-research/tutorials/jupyter/` directory you will 
-find a notebook called `supplementary_material.ipynb`. Open this notebook with 
-Jupyter by running:
+find a notebook called `supplementary_material.ipynb`. Open this notebook 
+via either the classic or lab dashboard, or using one of these commands 
+directly from the commandline:
 
 ```bash
+# Open in classic interface
 jupyter notebook supplementary_material.ipynb
+
+# Open in Jupyter lab
+jupyter lab supplementary_material.ipynb
 ```
 
 > **Tip** <br>
