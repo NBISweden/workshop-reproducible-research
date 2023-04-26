@@ -9,6 +9,12 @@ SHELL ["/bin/bash", "--login", "-c"]
 # Set workdir
 WORKDIR /course
 
+# Set timezone
+ENV TZ="Europe/Stockholm"
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt update && apt install -y tzdata && apt clean
+
 # Configure Conda/Mamba
 RUN mamba init bash && conda config --set channel_priority strict && \
     conda config --append channels bioconda && \
