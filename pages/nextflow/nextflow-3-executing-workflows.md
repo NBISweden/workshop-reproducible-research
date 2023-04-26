@@ -56,7 +56,7 @@ Let's start with running the workflow plus getting some reports and
 visualisation while we're at it!
 
 * Run the workflow using the following command: `nextflow run main_mrsa.nf
-  -with-report -with-timeline -with-dag dag.png`.
+  -with-report report.html -with-timeline timeline.html -with-dag dag.png`.
 
 After successful executing, you will find three more files in your current
 directory: `report.html`, `timeline.html` and `dag.png`. The first file contains
