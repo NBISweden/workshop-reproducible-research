@@ -61,6 +61,11 @@ processes which are only run once.
 * Comment out (prefix with `//`) the `tag` directive from the
   `DONWLOAD_FASTQ_FILES` process and run the workflow again. What do you see?
 
+Without the `tag` directive you should instead see the numbers 1 through 3,
+representing the input files (of which there are three). Nextflow still tells us
+that it's working on one of the input files, but it's generally much more useful
+to actually see the sample name or ID, rather than just a number.
+
 * Uncomment the `tag` directive before you move on.
 
 # Named outputs
