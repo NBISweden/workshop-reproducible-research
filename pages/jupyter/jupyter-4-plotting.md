@@ -72,13 +72,13 @@ Let's say that instead we want to plot the mean value of the body mass of the
 penguins at the different islands where they were examined.
 
 ```
-sns.barplot(data=penguins, x="island", y="body_mass_g", ci="sd", errwidth=.5);
+sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd", errwidth=.5);
 ```
 
 Here we specified to use values in the 'island' column as categories for the 
 x-axis, and values in the 'body_mass_g' column as values for the y-axis. 
 The barplot function of seaborn will then calculate the mean body mass for each
-island and plot the bars. With `ci="sd"` we tell the function to draw the 
+island and plot the bars. With `errorbar="sd"` we tell the function to draw the 
 standard deviation as error bars, instead of computing a confidence interval. 
 Finally `errwidth=.5` sets the linewidth of the error bars.
 
