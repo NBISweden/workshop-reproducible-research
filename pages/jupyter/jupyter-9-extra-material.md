@@ -90,13 +90,13 @@ find an example in the code chunk below:
 
 ```python
 rule make_supplementary:
+    output:
+            "results/supplementary.html"
     input:
         counts = "results/tables/counts.tsv",
         summary = "results/tables/counts.tsv.summary",
         multiqc_file = "intermediate/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
-    output:
-        "results/supplementary.html"
     params:
         base = lambda wildcards, output: os.path.basename(output[0]),
         dir = lambda wildcards, output: os.path.dirname(output[0])
@@ -108,11 +108,10 @@ rule make_supplementary:
 ```
 
 > **Note** <br>
-> The Conda enivronment for the jupyter tutorial does not contain packages
-> required to run the full snakemake workflow. So if you wish to test jupyter
-> integration fully you should update the environment by running 
-> `mamba install snakemake-minimal fastqc sra-tools multiqc bowtie2 tbb 
-> samtools htseq bedtools wget graphviz`
+> The Conda enivronment for the jupyter tutorial does not contain the 
+> snakemake package so if you wish to test the rule _e.g._ by running 
+> `snakemake -c 1 results/supplementary.html` you first install snakemake 
+> into the environment with `mamba install snakemake`.
 
 ## More integrations
 
@@ -156,14 +155,14 @@ version of the notebook using the `log: notebook=` directive:
 
 ```python
 rule make_supplementary_plots:
-    input:
-        counts = "results/tables/counts.tsv",
-        summary = "results/tables/counts.tsv.summary",
-        multiqc = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
     output:
         barplot = "results/barplot.pdf",
         heatmap = "results/heatmap.pdf"
+    input:
+        counts="results/tables/counts.tsv",
+        summary="results/tables/counts.tsv.summary",
+        multiqc="intermediate/multiqc_general_stats.txt",
+        rulegraph="results/rulegraph.png"
     log:
         notebook = "results/supplementary.ipynb"
 ```
@@ -191,13 +190,14 @@ yet so let's go ahead and do that now. Add the `params` section so that the
 
 ```python
 rule make_supplementary_plots:
-    input:
-        counts = "results/tables/counts.tsv",
-        multiqc = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
     output:
         barplot = "results/barplot.pdf",
         heatmap = "results/heatmap.pdf"
+    input:
+        counts="results/tables/counts.tsv",
+        summary="results/tables/counts.tsv.summary",
+        multiqc="intermediate/multiqc_general_stats.txt",
+        rulegraph="results/rulegraph.png"
     log:
         notebook = "results/supplementary.ipynb"
     params:
@@ -242,7 +242,7 @@ with sns.plotting_context("notebook", font_scale=0.7):
 Now you can run the following to generate the plots:
 
 ```bash
-snakemake -j 1 make_supplementary_plots
+snakemake -c 1 make_supplementary_plots
 ```
 
 ## Presentations with Jupyter
