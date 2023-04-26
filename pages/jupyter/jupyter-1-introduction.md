@@ -12,7 +12,7 @@ use RStudio. Some reasons to use Jupyter include:
 * Python is lacking a really good IDE for doing exploratory scientific data
   analysis, like RStudio or Matlab. Some people use Jupyter simply as an
   alternative for that.
-* The community around Jupyter notebooks is large and dynamic, and there are
+* The Jupyter Project community is large and dynamic, and there are
   lots of tools for sharing, displaying or interacting with notebooks.
 * An early ambition with Jupyter notebooks (and its predecessor IPython
   notebooks) was to be analogous to the lab notebook used in a wet lab. It
@@ -40,5 +40,7 @@ done so already. Then open up a terminal and go to
 >   languages. Lives at [jupyter.org](https://jupyter.org).
 > - Jupyter Notebook: A web application that you use for creating and
 >   managing notebooks. One of the outputs of the Jupyter project.
+> - Jupyter lab: A more powerful and feature-rich interface that also 
+>   includes a terminal, debugger, tabs _etc._ 
 > - Jupyter notebook: The actual `.ipynb` file that constitutes your
 >   notebook.
