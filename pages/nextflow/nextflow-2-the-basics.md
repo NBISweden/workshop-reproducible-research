@@ -143,14 +143,19 @@ The `input` and `output` directives describe the data expected to come through
 this specific process. Each line of `input` describes the data expected for each
 process argument, in the order used in the workflow. In this case,
 `CONVERT_TO_UPPER_CASE` expects a single channel (one line of input), and
-expects the data to be filenames ( *i.e.* of type `path`).
+expects the data to be filenames ( *i.e.* of type `path`). The `script`
+directive is where you put the code that the process should execute.
 
 Notice that there is a difference between how the inputs and outputs are
 declared? The `output` is an explicit string (*i.e.* surrounded by quotes),
 while the input is a variable named `file`. This means inputs can be referenced
 in the process without naming the data explicitly, unlike the output where the
 name needs to be explicit. We'll get back to exactly how this works in just a
-moment.
+moment. While the name of the input variable here is chosen to be the
+descriptive `file`, we could also have chosen something completely different,
+_e.g._ `banana` (we'd also have to change its reference in the `script`
+directive).
+
 
 # Executing workflows
 
