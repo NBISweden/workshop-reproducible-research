@@ -1,12 +1,20 @@
 One thing that sets Jupyter Notebook apart from what you might be used to is
 that it's a web application, *i.e.* you edit and run your code from your
-browser. But first you have to start the Jupyter Notebook server:
+browser. But first you have to start the Jupyter Notebook server. At this 
+point you may either try the classic notebook interface by running:
 
 ```bash
 jupyter notebook --allow-root
 ```
 
-You should see something similar to this printed to your terminal:
+or give the more feature-rich Jupyter lab interface a try by running:
+
+```bash
+jupyter lab --allow-root
+```
+
+Whichever interface you choose you should see something similar to this 
+printed to your terminal:
 
 ```no-highlight
 [I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/workshop-reproducible-research/tutorials/jupyter
@@ -28,10 +36,11 @@ You should see something similar to this printed to your terminal:
 > jupyter with `jupyter notebook --no-browser` then copy the URL given into the
 > browser directly.
 
-Jupyter Notebook probably opened up a web browser for you automatically,
-otherwise go to the address specified in the message in the terminal. Note that
-the server is running locally (as `http://localhost:8888`) so this does not
-require that you have an active internet connection. Also note that it says:
+The Jupyter Notebook/Lab interface probably opened up a web browser for you 
+automatically, otherwise go to the address specified in the message in the 
+terminal. Note that the server is running locally (as 
+`http://localhost:8888`) so this does not require that you have an active 
+internet connection. Also note that it says:
 
 ```no-highlight
 Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/tutorials/jupyter>
@@ -46,14 +55,22 @@ What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
 The Running tab keeps track of all your processes. The third tab, Clusters, is 
 used for parallel computing and won't be discussed further in this tutorial.
-Finally, the Nbextensions tab shows a list of configurable notebook extensions
-that you can use to add functionality to your notebook (as we'll see below).
 
-Let's start by creating an empty notebook by selecting the Files tab and
-clicking New > Python 3. This will open up a new tab or window 
-looking like this:
+The Jupyter lab dashboard should look something like this:
+
+> ![](images/jupyterlab_dashboard.png){ width=700px }
+
+Let's start by creating an empty notebook. In the classic notebook interface 
+you can do this by selecting the Files tab and clicking New > Python 3. In 
+the Jupyter lab interface it'll be File -> New -> Notebook.  
+
+This will open up a new tab or window looking like this:
 
 > ![](images/jupyter_empty_nb.png){ width=700px }
+
+Note that for most of this tutorial we will describe how you work in the actual 
+notebook and not devote a lot of time to the extra features available in the 
+Jupyter lab interface. 
 
 > **Tip** <br>
 > If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._

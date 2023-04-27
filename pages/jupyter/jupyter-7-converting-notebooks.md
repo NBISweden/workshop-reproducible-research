@@ -1,5 +1,7 @@
 Notebooks can be converted to various output formats such as HTML, PDF, LaTeX
-*etc.* directly from the **File** -> **Download as** menu. 
+*etc.* directly from the **File** -> **Download as** menu in the classic 
+notebook interface, or via **File** -> **Save and Export Notebook As...** in 
+the Jupyter lab interface. 
 
 Conversion can also be performed on the command line using the `jupyter nbconvert` 
 command. `nbconvert` is installed together with the `jupyter` Conda
@@ -20,11 +22,9 @@ Try converting the `Untitled.ipynb` notebook that you have been working on so
 far to HTML using `jupyter nbconvert`.
 
 > **Tip** <br>
-> To export notebooks in the form they appear with Jupyter Extensions activated
-> you can make use of the `nbextensions` template that is installed with the
-> `jupyter_contrib_nbextensions` package. Adding `--template=nbextensions` to 
-> the `jupyter nbconvert` call should do the trick, but note that not all 
-> extensions are guaranteed to display right after exporting.
+> If the plots in HTML rendered version of your notebook are not displayed 
+> properly, try changing the `matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'svg')`
+> line to `matplotlib_inline.backend_inline.set_matplotlib_formats('retina')`.
 
 `nbconvert` can also be used to run a Jupyter notebook from the command line
 by running:
