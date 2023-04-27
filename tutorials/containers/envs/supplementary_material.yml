@@ -1,0 +1,12 @@
+channels:
+  - conda-forge
+dependencies:
+  - r-base
+  - r-ggplot2
+  - r-reshape2
+  - r-stringi
+  - r-pheatmap
+  - r-rmarkdown
+  - r-r.utils
+  - bioconductor-rtracklayer
+  - bioconductor-geoquery
