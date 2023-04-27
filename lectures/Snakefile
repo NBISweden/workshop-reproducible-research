@@ -38,6 +38,8 @@ rule render_jupyter:
         "{f}.ipynb"
     output:
         "{f}.html"
+    conda:
+        "envs/jupyter.yml"
     shell:
         """
         jupyter nbconvert --to slides --execute {input}
@@ -49,6 +51,8 @@ rule render_jupyter_pdf:
         "{f}.ipynb"
     output:
         "{f}.pdf"
+    conda:
+        "envs/jupyter.yml"
     shell:
         """
         jupyter nbconvert --to webpdf {input} --allow-chromium-download

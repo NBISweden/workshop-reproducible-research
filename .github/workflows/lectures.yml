@@ -33,4 +33,5 @@ jobs:
         channel-priority: strict
     - name: Render lectures
       run: |
-        snakemake -d lectures/ -s lectures/Snakefile -c 1
+        cd lectures 
+        snakemake -c 1 --use-conda
