@@ -190,8 +190,7 @@ the image. A basic outline of what we need to do is:
 
 1. Create a file called `Dockerfile_conda`
 2. Start the image from the `my_docker_image` we just built
-3. Install the packages `fastqc` and `sra-tools` which are required for the 
-   analysis.
+3. Install the package `fastqc` which is required for the analysis.
 4. Add the `run_qc.sh` script to the image
 5. Set the default command of the image to run the `run_qc.sh` script.
 
@@ -207,8 +206,7 @@ Dockerfiles_ step.
 
 **Install packages**
 
-Use the `RUN` instruction to install the packages `fastqc=0.11.9` and 
-`sra-tools=2.10.1` with Mamba. 
+Use the `RUN` instruction to install the package `fastqc=0.11.9` with Mamba. 
 Here there are several options available. For instance we could add an 
 environment file _e.g._ `environment.yml` from the Conda tutorial and use 
 `mamba env create` to create an environment from that file. Or we could 
@@ -242,8 +240,7 @@ run_qc.sh`.
 ```Dockerfile
 FROM my_docker_image
 
-RUN mamba create -y -n project_mrsa -c bioconda fastqc=0.11.9 \
-    sra-tools=2.10.1 && mamba clean -a
+RUN mamba create -y -n project_mrsa -c bioconda fastqc=0.11.9 && mamba clean -a
 
 RUN echo "source activate project_mrsa" >> ~/.bashrc
 
