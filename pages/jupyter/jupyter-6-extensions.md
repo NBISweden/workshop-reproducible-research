@@ -5,7 +5,7 @@ The most user-friendly way of managing extensions is via the Extension Manager
 available in the Jupyter lab interface. You can access it by clicking the 
 puzzle piece icon in the left sidebar. 
 
-> ** Warning! ** <br>
+> **Warning!** <br>
 > Note that the extension manager contains a disclaimer warning you that 
 > these third-party extensions are not reviewed for vulnerabilities which 
 > means that you should be careful about what extensions you install. 
