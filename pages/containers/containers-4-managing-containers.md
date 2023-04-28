@@ -98,10 +98,7 @@ docker run -it --rm -v $(pwd):/course/ my_docker_conda /bin/bash
 ```
 
 If you run `ls` you will see that all the files in the `docker` directory are
-there. Now edit `run_qc.sh` **on your host system** to download, say, 12000
-reads instead of 15000. Then rerun the analysis with `bash run_qc.sh`. Tada!
-Validate that the resulting html reports look fine and then exit the container
-with `exit`.
+there.
 
 > **Quick recap** <br>
 > In this section we've learned:
