@@ -40,10 +40,15 @@ assumes that you have an account with `<username>` at DockerHub and you're
 pushing the `<image>` image:
 
 ```bash
-docker buildx build --platform linux/amd64,linux/arm64 -t <username>/<image>:latest --push .`
+docker buildx build --platform linux/amd64,linux/arm64 -t <username>/<image>:latest --push .
 ```
 
 * Execute the above command with your username and your image.
 
 That's it! Now anybody who does *e.g.* `docker pull <username>/<image>` will get
 an image appropriate for their architecture whether they are on AMD64 or ARM64!
+
+> **An alias to `buildx`** <br>
+> You can type `docker buildx install` to make the `docker build` into an alias
+> for `docker buildx`, allowing you to run multi-platform builds using `docker
+> build`. Use `docker buildx uninstall` to remove this alias.
