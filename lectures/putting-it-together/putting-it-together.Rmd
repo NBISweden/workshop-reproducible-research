@@ -69,21 +69,70 @@ By working reproducibly you will also make your life a lot easier!
 
 --
 
-* Many software support the “project way of working”, *e.g.* .green[Rstudio] and the text editors .green[Sublime Text] and .green[Atom]
+* Use .green[Git] to version control your projects
 
 --
 
-* Use .green[Git] to create structured and version controlled project repositories
+* Do not store data and results/output in your Git repository
+
+--
+
+* When in doubt, commit often instead of seldom
 
 ---
 
-# Everything can be a project
+# Find your own project structure
 
-Project directory templates, *e.g.* NBIS project template:
+.pull-left[
+.small[An example .green[Snakemake]-based project:]
+```no-highlight
+project/
+ ├── code/
+ ├── data/
+ │   ├── meta/
+ │   ├── raw_external/
+ │   └── raw_internal/
+ ├── doc/
+ ├── intermediate/
+ ├── logs/
+ ├── notebooks/
+ │   └── Untitled.ipynb
+ ├── results/
+ │   ├── figures/
+ │   ├── reports/
+ │   └── tables/
+ ├── scratch/
+ ├── .gitignore
+ ├── config.yml
+ ├── environment.yml
+ ├── Dockerfile
+ ├── README.md
+ └── Snakefile
+```
+]
 
-.center[<img src="NBISweden_project_template.png" style="width:60%;"/>]
+.pull-right[
+.small[An example .green[Nextflow]-based project:]
+```no-highlight
+project/
+ ├── bin/
+ │   └── report.qmd
+ ├── data/
+ │   └── metadata.csv
+ ├── doc/
+ ├── env/
+ │   ├── Dockerfile
+ │   └── environment.yml
+ ├── results/
+ ├── .gitignore
+ ├── main.nf
+ ├── nextflow.config
+ └── README.md
+```
+]
 
   * https://github.com/NBISweden/project_template
+  * https://github.com/fasterius/nbis-support-template
   * https://github.com/snakemake-workflows/snakemake-workflow-template
 
 ---
@@ -117,7 +166,7 @@ Project directory templates, *e.g.* NBIS project template:
 
 * Avoid generating files .green[interactively] or doing things .green[by hand]
 
-  - there is no way to track how they were made
+  - There is no way to track how they were made
 
 --
 
@@ -137,91 +186,58 @@ Project directory templates, *e.g.* NBIS project template:
 
 .pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
 
-.green[Minimal]: write code in a reproducible way
-
+.green[Minimal]: write code in a reproducible way and track your environment
 ]
 
 --
 
 .pull-right[
+* Track your projects with a .green[Git] repository each; publish code along
+  with your results on *e.g.* <a href="https://github.com" .green[GitHub] </a>
 
-Connect your results with the code:
-* Use .green[R Markdown] documents or .green[Jupyter] notebooks
+* Use .green[Conda] to install software in environments that can be exported and
+  installed on a different system; also publish your `environment.yml` file
+  along with your code
+]
 
-Take another step:
+---
+
+# What is reasonable for your project?
+
+.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
+
+.green[Minimal]: write code in a reproducible way and track your environment
+
+.green[Good]: structure and document your code with notebooks
+]
+
+--
+
+.pull-right[
+* Use .green[R Markdown] or .green[Jupyter] notebooks to better keep track of
+  and document your code
+]
+
+---
+
+# What is reasonable for your project?
+
+.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
+
+.green[Minimal]: write code in a reproducible way and track your environment
+
+.green[Good]: structure and document your code with notebooks
+
+.green[Great]: track the _full_ environment and connect your code in a workflow
+]
+
+--
+
+.pull-right[
+* Go one step beyond in tracking your environment using .green[Docker] and/or
+  .green[Singularity/Apptainer]
+
 * Convert your code into a .green[Snakemake] / .green[Nextflow] workflow
-
-]
-
----
-
-# What is reasonable for your project?
-
-.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
-
-.green[Minimal]: write code in a reproducible way
-
-.green[Good]: versioned and structured repository
-
-]
-
---
-
-.pull-right[
-
-Use .green[Git] for version controlling and collaboration:
-* Create one .green[Git] repository per project
-* Track your changes with .green[Git]
-* Publish your code along with your results on *e.g.* <a href="https://github.com" .green[GitHub] </a>
-
-]
-
----
-
-# What is reasonable for your project?
-
-.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
-
-.green[Minimal]: write code in a reproducible way
-
-.green[Good]: versioned and structured repository
-
-.green[Better]: organize software dependencies
-
-]
-
---
-
-.pull-right[
-
-Manage your depencencies:
-* Use .green[Conda] to install software in environments that can be easily exported and installed on a different system
-
-]
-
----
-
-# What is reasonable for your project?
-
-.pull-left[<center><img src="../../pages/images/reproducibility_overview_with_logos.png" style="width:75%;"/></center>
-
-.green[Minimal]: write code in a reproducible way
-
-.green[Good]: versioned and structured repository
-
-.green[Better]: organize software dependencies
-
-.green[Best]: export everything!
-
-]
-
---
-
-.pull-right[
-
-Completely recreate the compute system:
-* Consider packaging your project inside a or together with a .green[Docker] or .green[Singularity] container
-
 ]
 
 ---
@@ -264,10 +280,16 @@ Completely recreate the compute system:
 
 .green[Literate programming]
 
-* **Jupyter** – Create and share notebooks in a variety of languages and formats by using a web browser.
-* **R Markdown** – Developed by Rstudio, focuses on generating high-quality documents.
-* **Zeppelin** – Developed by Apache. Closely integrated with Spark for distributed computing and Big Data applications.
-* **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on integrating multiple languages in the same notebook.
+* **Jupyter** – Create and share notebooks in a variety of languages and formats
+  by using a web browser.
+* **R Markdown** – Developed by Posit (previously Rstudio), focused on
+  generating high-quality documents.
+* **Quarto** - Dveloped by Posit (previously RStudio), command-line tool focused
+  on generating high-quality documents in a language-agnostic way
+* **Zeppelin** – Developed by Apache. Closely integrated with Spark for
+  distributed computing and Big Data applications.
+* **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on
+  integrating multiple languages in the same notebook.
 
 ---
 
@@ -295,6 +317,6 @@ class: center, middle
 
 Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
 
-* Online (.green[zoom])
+* Online (.green[Zoom])
 * Every .green[Tuesday, 14.00-15.00] (except public holidays)
-* Check .green[www.nbis.se/events] for zoom link and more info
+* Check .green[www.nbis.se/events] for Zoom link and more info
