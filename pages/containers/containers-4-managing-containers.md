@@ -68,11 +68,11 @@ directory on your host system.
 
 Say that we are interested in getting the resulting html reports from FastQC in
 our container. We can do this by mounting a directory called, say,
-`fastqc_results` in your current directory to the `/course/results/fastqc`
+`fastqc_results` in your current directory to the `/course/results/`
 directory in the container. Try this out by running:
 
 ```bash
-docker run --rm -v $(pwd)/fastqc_results:/course/results/fastqc my_docker_conda
+docker run --rm -v $(pwd)/fastqc_results:/course/results/ my_docker_conda
 ```
 
 Here the `-v` flag to docker run specifies the bind mount in the form of
