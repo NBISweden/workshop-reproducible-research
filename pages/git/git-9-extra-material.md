@@ -319,3 +319,36 @@ alias gcob='git checkout -b'
 # Git log with one line per commit
 alias glo='git log --oneline'
 ```
+
+## Pretty logs
+
+If you want to customise *e.g.* the format and the colours of the logs you can
+use the `gitconfig` file (the same one we added things to using `git config
+--global user.name "Mona Lisa"` in the pre-course setup). You can read more
+about exactly what you can do at the documentation for [Git
+configs](https://git-scm.com/docs/git-config) and [pretty
+formats](https://git-scm.com/docs/pretty-formats), but we'll provide two
+examples here:
+
+```no-highlight
+[format]
+    pretty = format:%C(yellow)commit %H %C(auto)%d %nAuthor: %C(cyan)%aN %C(italic reset)(%ae) %nDate:   %C(blue)%ar %C(italic reset)(%ai) %n%n%C(bold reset)%w(0,6,6)%s%n%C(reset)%+b
+```
+
+This first example alters the format of the default `git log` command. It looks
+similar to what you'd be used to seeing with that command, except his has some
+colour highlights and adds the relative date (*e.g.* "1 hour ago" and similar
+relative times).
+
+```no-highlight
+[pretty]
+    line = format:%C(yellow)%h %C(blue)%>(12)%ar %C(cyan)%aN%C(auto)%d %C(reset)%s
+```
+
+This second example is a custom format that can be called using `git log
+--pretty=<format-name>`, and is similar to the built-in `--oneline` flag, but
+also containing nicer colours, the relative date as well as the author name ;the
+format name `line` here is used for its similarity to `oneline`. You can add any
+number of custom formats you like using such config specifications. If you're
+using aliases as in the section above you might change the `glo` alias to be
+`git log --pretty=line` instead, which will give you the nicer log on one line.
