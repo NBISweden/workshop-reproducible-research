@@ -315,8 +315,21 @@ with the setup for the other tools.
 
 ## Installing Nextflow
 
-We'll use Mamba to install Nextflow as well: navigate to
-`workshop-reproducible-research/tutorials` and create the environment:
+The easiest way to install Nextflow is the offical one, which is to just run the
+following code:
+
+```bash
+curl -s https://get.nextflow.io | bash
+```
+
+This will give you the `nextflow` file in your current directly - move this file
+to a directory in your `PATH`, *e.g.* `/usr/bin/`.
+
+If you're getting Java-related errors, you can either try to [update your Java
+installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
+(Nextflow requires Java 11 or later) or install Nextflow using Mamba. If you
+want to use Mamba, navigate to `workshop-reproducible-research/tutorials` and
+create the environment:
 
 ```bash
 mamba env create -f nextflow/environment.yml -n nextflow-env
@@ -327,13 +340,10 @@ mamba activate nextflow-env
 > Some of the packages in this environment is not available for the ARM64
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
-Check that Nextflow was installed correctly by running `nextflow -version`. Once
-you've successfully completed the installation you can deactive the environment
-using `mamba deactivate` and continue with the other setups, as needed.
-
-You can also install Nextflow following the instructions on the [Nextflow
-website](https://www.nextflow.io/docs/latest/getstarted.html) if you want to
-have it installed outside of a Conda environment.
+Check that Nextflow was installed correctly by running `nextflow -version`. If
+you successfully installed Nextflow using Mamba you can now deactive the
+environment using `mamba deactivate` and continue with the other setups, as
+needed.
 
 ## Installing R Markdown
 
