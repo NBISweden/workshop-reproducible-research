@@ -64,30 +64,30 @@ activated.
 
 # Adding more packages
 
-* Now, let's add another package (*seqtk*) to our environment using `conda
+* Now, let's add another package (*multiqc*) to our environment using `conda
   install`. Make sure that `project_a` is the active environment first.
 
 ```bash
-mamba install -c bioconda seqtk
+mamba install -c bioconda multiqc
 ```
 
 * If we don't specify the package version, the latest available version will be
-  installed. What version of seqtk got installed?
+  installed. What version of multiqc got installed?
 * Run the following to see what versions are available:
 
 ```bash
-mamba search -c bioconda seqtk
+mamba search -c bioconda multiqc
 ```
 
-* Now try to install a different version of seqtk, *e.g.*:
+* Now try to install a different version of multiqc, *e.g.*:
 
 ```bash
-mamba install -c bioconda seqtk=1.2
+mamba install -c bioconda multiqc=1.13
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
-you want to downgrade the initial seqtk installation to the one specified
-here (`1.2` in the example). You can only have one version of a given package
+you want to downgrade the initial multiqc installation to the one specified
+here (`1.13` in the example). You can only have one version of a given package
 in a given environment.
 
 Let's assume that you will have sequencing data in your Project A, and want to
@@ -123,7 +123,7 @@ mamba create -n project_old -c bioconda bowtie2=2.2.5
 Now let's try to remove an installed package from the active environment:
 
 ```
-mamba remove seqtk
+mamba remove multiqc
 ```
 
 * Run `mamba deactivate` to exit your active environment.
