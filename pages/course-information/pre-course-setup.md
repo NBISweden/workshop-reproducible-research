@@ -345,62 +345,28 @@ you successfully installed Nextflow using Mamba you can now deactive the
 environment using `mamba deactivate` and continue with the other setups, as
 needed.
 
-## Installing R Markdown
+## Installing Quarto
 
-We also use Mamba to install R Markdown: make sure your working directory is in
-the tutorials directory (`workshop-reproducible-research/tutorials`) and install
-the necessary R packages defined in the `environment.yml`:
+Installing Quarto is easiest by going to the [official
+website](https://quarto.org/docs/get-started/) and downloading the
+OS-appropriate package and following the installation instructions. While we're
+not installing Quarto *itself* using Mamba, we *will* install some software
+packages that are used in the Quarto tutorial using Mamba: make sure your
+working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
+and install the necessary packages defined in the `environment.yml`:
 
 ```bash
-mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
+mamba env create -f quarto/environment.yml -n quarto-env
+mamba activate quarto-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
-You can then activate the environment followed by running RStudio in the
-background from the command line:
-
-```bash
-mamba activate rmarkdown-env
-rstudio &
-```
-
 Once you've successfully completed the above steps you can deactivate your Conda
 environment using `mamba deactivate` and continue with the setup for the other
 tools.
-
-> **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Mamba, both run
-> well directly on Windows and you may therefore want to install Windows
-> versions of these software for this tutorial (if you haven't done so already).
-> Mamba is, however, the recommended way. If you're having issues with
-> graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
-> scroll down to the "Graphical applications".
-
-> **RStudio and Mamba** <br>
-> In some cases RStudio doesn't play well with Mamba due to differing libpaths.
-> The first and simplest thing to try is to always start RStudio from the
-> command line (`rstudio &`). If you're still having issues, check the available
-> library path by `.libPaths()` to make sure that it points to a path within
-> your Conda environment. It might be that `.libPaths()` shows multiple library
-> paths, in which case R packages will be searched for by R in all these
-> locations. This means that your R session will not be completely isolated in
-> your Conda environment and that something that works for you might not work
-> for someone else using the same Conda environment, simply because you had
-> additional packages installed in the second library location. One way to force
-> R to just use the environment library path is to add a `.Renviron` file to the
-> directory where you start R with these lines:
-
-    ```
-    R_LIBS_USER=""
-    R_LIBS=""
-    ```
-
-> ... and restart RStudio. The `rmarkdown/` directory in the course materials
-> already contains this file, so you shouldn't have to add this yourself, but
-> we mention it here for your future projects.
 
 ## Installing Jupyter
 
