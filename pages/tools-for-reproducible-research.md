@@ -10,11 +10,11 @@
 
 <img src="https://www.svgrepo.com/show/20800/event-date-and-time-symbol.svg"
     width="20" height="20"/>
-    24 - 28 April, 2023
+    20 - 24 November, 2023
 
 <img src="https://www.svgrepo.com/show/4199/placeholder-on-a-map.svg"
     width="20" height="20"/>
-    [Zoom](https://zoom.us)
+    [SciLifeLab Stockholm, Sweden](https://www.scilifelab.se/about-us/campus-solna/)
 
 One of the key principles of proper scientific procedure is the act of
 repeating an experiment or analysis and being able to reach similar
@@ -68,10 +68,11 @@ At the end of the course, students should be able to:
 This is an NBIS / Elixir course. The course is open for PhD students, postdocs,
 group leaders and core facility staff. International applications are welcome,
 but we will give approximately half of the participant slots to applicants from
-Swedish universities, due to the national role NBIS plays in Sweden. This
-online training event has no fee. However, if you confirm your participation
-but do not do so (no-show) you will be invoiced 2,000 SEK. Please note that NBIS
-cannot invoice individuals.
+Swedish universities, due to the national role NBIS plays in Sweden.
+
+<!-- This online training event has no fee. However, if you confirm your -->
+<!-- participation but do not do so (no-show) you will be invoiced 2,000 SEK. Please -->
+<!-- note that NBIS cannot invoice individuals. -->
 
 The only entry requirements for this course is a basic knowledge of Unix systems
 (*i.e.* being able to work on the command line) as well as at least a basic
@@ -98,9 +99,19 @@ You can find the course schedule at [this page](https://uppsala.instructure.com/
 
 # Location
 
-This course round is given using [Zoom](https://zoom.us). You can find the link to the
-course Zoom in a pinned thread in the [Discussions](https://uppsala.instructure.com/courses/COURSE_ID/discussion_topics)
-section.
+This course round is given on-site in Sweden at [SciLifeLab
+Stockholm](https://www.scilifelab.se/about-us/campus-solna/). Travel directions
+are as follows:
+
+1. Transport yourself to Stockholm (see *e.g.* [SJ's website](https://www.sj.se/)
+   for train travel within Sweden).
+2. Go to SciLifeLab in Solna ([Tomtebodavägen 23A, 171 65 Solna](https://goo.gl/maps/YhWgJPt44qfTe1ad9)).
+   The closest bus stop is called Karolinska institutet Biomedicum (search for
+   public transport options here).
+3. Enter the SciLifeLab/Karolinska Institutet Science Park building. After
+   entering, turn immediately left and pass through the glass door to find the
+   rooms *Air and Fire*, where to course will take place. (There is a reception
+   where you can ask for help if you cannot find the rooms.)
 
 # Course material
 
