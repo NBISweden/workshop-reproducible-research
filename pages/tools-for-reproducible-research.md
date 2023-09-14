@@ -135,6 +135,7 @@ directory on GitHub.
 * Verena Kutschera (teacher)
 * Tomas Larsson (teacher)
 * Estelle Proux-Wéra (teacher)
+* Lokeshwaran Manoharan (teacher)
 
 # Contact
 
