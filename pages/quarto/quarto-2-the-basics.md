@@ -75,6 +75,13 @@ changing the `format` option in the YAML header:
 
 * Change the format to `pdf` in the header and render your document.
 
+You can add any raw LaTeX commands you want to your document when you're
+rendering to PDF, *e.g.* `\footnotsize` to change the font size. You also have
+LaTeX-specific settings, such as setting the geometry for the whole document or
+specifying a citation method. While the details of LaTeX are outside the scope
+of this course, it's useful to be aware of this functionality of Quarto so that
+you may use it if you already know LaTeX or if you want to learn it.
+
 # Languages
 
 The examples so far have been using R, but we could just as easily have used
