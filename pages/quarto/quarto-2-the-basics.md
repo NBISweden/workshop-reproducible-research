@@ -62,6 +62,18 @@ using three backticks (`\``) and specify the R language using curly brackets
 
 * Render the document again and see what it looks like.
 
+You can also name chunks by adding it after the language:
+
+````
+```{r Show today's date}
+Sys.Date()
+```
+````
+
+This is useful for debugging when something has gone wrong, since it'll be
+easier to see exactly which code chunk an error happened (instead of just
+showing the chunk as a number).
+
 We can also get *in-line code* using `r <R CODE>`, like so:
 
 ```
