@@ -349,24 +349,26 @@ needed.
 
 Installing Quarto is easiest by going to the [official
 website](https://quarto.org/docs/get-started/) and downloading the
-OS-appropriate package and following the installation instructions. While we're
-not installing Quarto *itself* using Mamba, we *will* install some software
-packages that are used in the Quarto tutorial using Mamba: make sure your
-working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
+OS-appropriate package and following the installation instructions. You also
+need to install a LaTeX distribution to be able to render Quarto documents to
+PDF, which can be done using Quarto itself:
+
+```bash
+quarto install tinytex
+```
+
+While we're not installing Quarto *itself* using Mamba, we *will* install some
+software packages that are used in the Quarto tutorial using Mamba: make sure
+your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
 and install the necessary packages defined in the `environment.yml`:
 
 ```bash
 mamba env create -f quarto/environment.yml -n quarto-env
-mamba activate quarto-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
-
-Once you've successfully completed the above steps you can deactivate your Conda
-environment using `mamba deactivate` and continue with the setup for the other
-tools.
 
 ## Installing Jupyter
 
