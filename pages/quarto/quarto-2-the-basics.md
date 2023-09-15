@@ -70,6 +70,46 @@ The current date is `r Sys.Date()`.
 
 * Add the example above and render the document again to make sure it worked.
 
+# Previewing documents
+
+Quarto has a highly useful command for whem you're working on a document:
+`preview`. It's essentially a live preview of the document you're working on
+that will automatically render when you introduce changes to the document.
+
+* Type `quarto render quarto-tutorial.qmd` in the command line.
+
+Your default web browser should now have opened a new window with your rendered
+document, while your command line should say something like the following:
+
+```no-highlight
+Watching files for changes
+Browse at http://localhost:4175/
+```
+
+You can't type new commands at the moment, because the Quarto Preview command is
+still running - it's watching for any new changes to the Quarto document you
+specified.
+
+* Change or add some markdown text to your Quarto document, *e.g.* `This is a
+  code chunk` instead of the previous text under the first header. Make sure you
+  save the document.
+
+The HTML document in your browser should have updated to reflect your newest
+changes automatically. Previewing documents is great when you want to have
+continuous feedback to the changes you make and can make the process of writing
+more seamless, since you don't have to manually render all the time. Previewing
+will still render the entire document, however, meaning that if you have some
+heavy computations you might not want to re-render on every single save. For
+those cases you might instead prefer to stick with manual rendering when you are
+satisfied with multiple changes. You can abort a preview like any on-going
+command, *e.g.* using `Ctrl-C`.
+
+In the rest of the tutoral it's up to you whether you want to use `preview` or
+not - the tutorial will just mention when it's time to render, you decide how
+that's done.
+
+# Rendering to PDF
+
 So far we've only rendered to HTML, but sometimes you prefer a PDF. This entails
 changing the `format` option in the YAML header:
 
