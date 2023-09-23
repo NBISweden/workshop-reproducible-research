@@ -1,0 +1,240 @@
+---
+title: "Snakemake workflow manager"
+subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
+#author: "National Bioinformatics Infrastructure Sweden"
+number-sections: false
+format:
+    html:
+        output-file: "snakemake.html"
+        css: "template.css"
+        toc: true
+    revealjs:
+        output-file: "snakemake-revealjs.html"
+        footer: "NBIS Reproducible research - Snakemake"
+        css: "template.css"
+        theme: default
+        smaller: true
+    #pdf:
+     #   output-file: "snakemake.pdf"
+format-links: false
+highlight-style: a11y
+---
+
+# Making reproducible workflows with
+<img src="https://snakemake.github.io/img/jk/logo.png" style="background-color:#002221;width:50%;padding: 15px 15px 15px 15px;">
+
+# Why do we need workflow managers?
+
+![](https://images.unsplash.com/photo-1549319114-d67887c51aed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80){width=80% fig-align="left"}
+
+As projects grow or age, it becomes increasingly difficult to keep track of all the parts and how they fit together.
+
+# Workflow managers
+
+**Most common**
+
+- [Snakemake]{.green}
+- [Nextflow]{.green}
+
+**Others**
+
+- Makeflow
+- Bpipe
+- Pachyderm
+
+# Snakemake workflows
+
+::: {.incremental}
+- automatically track input/output file dependencies
+- are built from [rules]{.green}
+- are generalized with [wildcards]{.green}
+- use a [Python-based]{.green} definition language
+- easily scale from laptops to HPC clusters
+:::
+
+# Reproducible...
+
+![](repr_scal_1.png)
+
+# ...and scalable workflows
+
+![](repr_scal_2.png)
+
+# Example: sequence trimming
+
+**Goal**: Create workflow to trim and compress fastq-files
+
+```{.default code-line-numbers=false}
+./
+ ├── a.fastq
+ └── b.fastq
+```
+# Example: sequence trimming
+
+Using a bash-script:
+
+```{.bash code-line-numbers="|1-2,10|3|4-5|6-7|8-9"}
+for input in *.fastq
+do  
+   sample=$(echo ${input} | sed 's/.fastq//')  
+   # 1. Trim fastq file (trim 5 bp from left, 10 bp from right)
+   seqtk trimfq -b 5 -e 10 $input > ${sample}.trimmed.fastq
+   # 2. Compress fastq file
+   gzip -c ${sample}.trimmed.fastq > ${sample}.trimmed.fastq.gz
+   # 3. Remove intermediate files  
+   rm ${sample}.trimmed.fastq
+done
+```
+
+::: {.fragment}
+
+```{.default code-line-numbers=false}
+$ bash trimfastq.sh
+```
+:::
+
+# Example: sequence trimming
+
+Using snakemake rules:
+
+```{.python code-line-numbers="|1,6|3|2,8|4,5,9,10|7"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    shell:
+        "seqtk trimfq -b 5 -e 10 {input} > {output}"
+rule gzip:
+    output: "{sample}.trimmed.fastq.gz"
+    input: "{sample}.trimmed.fastq"
+    shell:
+        "gzip -c {input} > {output}"
+```
+
+::: {.fragment}
+``` {.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+```
+:::
+
+---
+
+## {auto-animate=true}
+
+``` {.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+```
+
+## {auto-animate=true}
+
+``` {.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+count   jobs
+2       gzip
+2       trim_fastq
+4        
+```
+
+## {auto-animate=true}
+
+``` {.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+count   jobs
+2       gzip
+2       trim_fastq
+4       
+rule trim_fastq:
+    input: a.fastq
+    output: a.trimmed.fastq
+    wildcards: sample=a
+    1 of 4 steps (25%) done
+    
+rule gzip:
+    input: a.trimmed.fastq
+    output: a.trimmed.fastq.gz
+    wildcards: sample=a
+Removing temporary output file a.trimmed.fastq.
+2 of 4 steps (50%) done
+```
+
+## {auto-animate=true}
+
+``` {.default code-line-numbers=false}
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+count   jobs
+2       gzip
+2       trim_fastq
+4       
+rule trim_fastq:
+    input: a.fastq
+    output: a.trimmed.fastq
+    wildcards: sample=a
+    1 of 4 steps (25%) done
+
+rule gzip:
+    input: a.trimmed.fastq
+    output: a.trimmed.fastq.gz
+    wildcards: sample=a
+Removing temporary output file a.trimmed.fastq.
+2 of 4 steps (50%) done
+
+rule trim_fastq:
+    input: b.fastq
+    output: b.trimmed.fastq
+    wildcards: sample=b
+3 of 4 steps (75%) done
+
+rule gzip:
+    input: b.trimmed.fastq
+    output: b.trimmed.fastq.gz
+    wildcards: sample=b
+Removing temporary output file b.trimmed.fastq.
+4 of 4 steps (100%) done
+```
+
+# Getting into the Snakemake mindset
+
+::: {.incremental}
+
+- "A Snakemake workflow is defined by specifying rules in a Snakefile."
+- "Rules decompose the workflow into small steps."
+- "Snakemake automatically determines the dependencies between the rules by matching file names."
+
+:::
+
+# Getting into the Snakemake mindset
+
+::: {.incremental}
+
+- By themselves rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you [want]{.green}
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "report", color = "0.33 0.6 0.85", style="rounded"];
+        1[label = "qc", color = "0.17 0.6 0.85", style="rounded"];
+        2[label = "gzip", color = "0.50 0.6 0.85", style="rounded"];
+        3[label = "trim\nsample: a", color = "0.00 0.6 0.85", style="rounded"];
+        4[label = "qc", color = "0.17 0.6 0.85", style="rounded"];
+        5[label = "gzip", color = "0.50 0.6 0.85", style="rounded"];
+        6[label = "trim\nsample: b", color = "0.00 0.6 0.85", style="rounded"];
+        1 -> 0
+        4 -> 0
+        2 -> 1
+        3 -> 2
+        5 -> 4
+        6 -> 5
+} 
+```
+
+:::
