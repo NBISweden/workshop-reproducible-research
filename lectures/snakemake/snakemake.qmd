@@ -168,6 +168,7 @@ Removing temporary output file a.trimmed.fastq.
 ## {auto-animate=true}
 
 ``` {.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
@@ -204,6 +205,8 @@ Removing temporary output file b.trimmed.fastq.
 
 # Getting into the Snakemake mindset
 
+From the [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#basics-an-example-workflow):
+
 ::: {.incremental}
 
 - "A Snakemake workflow is defined by specifying rules in a Snakefile."
@@ -212,24 +215,51 @@ Removing temporary output file b.trimmed.fastq.
 
 :::
 
+
 ## {auto-animate=true}
 
-- By themselves rules only define what files [can]{.green} be generated
+- By themselves, rules only define what files [can]{.green} be generated
 
 ```{dot}
 digraph snakemake_dag {
     graph[bgcolor=white, margin=0];
-    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
-        0[label = "gzip", color = "0.00 0.6 0.85", style="rounded"];
-        1[label = "trim_fastq", color = "0.33 0.6 0.85", style="rounded"];
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">               gzip              </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq.gz</font></td></tr>
+</table>>]
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">       trim_fastq       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td></tr>
+</table>>]
         1 -> 0
-} 
+}
 ```
 
 ## {auto-animate=true}
 
-- By themselves rules only define what files [can]{.green} be generated
+- By themselves, rules only define what files [can]{.green} be generated
 - The actual rules to run are determined automatically from the files you [want]{.green}
 
 
@@ -311,7 +341,7 @@ digraph snakemake_dag {
 
 ## {auto-animate=true}
 
-- By themselves rules only define what files [can]{.green} be generated
+- By themselves, rules only define what files [can]{.green} be generated
 - The actual rules to run are determined automatically from the files you [want]{.green}
 
 
@@ -358,3 +388,67 @@ digraph snakemake_dag {
         1 -> 0
 }
 ```
+
+## {auto-animate=true}
+
+- By themselves, rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you [want]{.green}
+- It can therefore be helpful to think of Snakemake workflows in a bottom-up manner, [starting with the output]{.green}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+``` {.python code-line-numbers="2,7"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    shell:
+        "seqtk trimfq -b 5 -e 10 {input} > {output}"
+rule gzip:
+    output: "{sample}.trimmed.fastq.gz"
+    input: "{sample}.trimmed.fastq"
+    shell:
+        "gzip -c {input} > {output}"
+```
+:::
+
+::: {.column width="55%"}
+``` {dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=2];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">               gzip              </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq.gz</font></td></tr>
+</table>>]
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">       trim_fastq       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td></tr>
+</table>>]
+        1 -> 0
+}
+```
+:::
+
+::::
