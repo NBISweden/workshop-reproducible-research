@@ -14,6 +14,9 @@ format:
         css: "template.css"
         theme: default
         smaller: true
+        code-block-border-left: true
+        code-block-background: true
+        
     #pdf:
      #   output-file: "snakemake.pdf"
 format-links: false
@@ -209,32 +212,149 @@ Removing temporary output file b.trimmed.fastq.
 
 :::
 
-# Getting into the Snakemake mindset
-
-::: {.incremental}
+## {auto-animate=true}
 
 - By themselves rules only define what files [can]{.green} be generated
-- The actual rules to run are determined automatically from the files you [want]{.green}
 
 ```{dot}
 digraph snakemake_dag {
     graph[bgcolor=white, margin=0];
     node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
-        0[label = "report", color = "0.33 0.6 0.85", style="rounded"];
-        1[label = "qc", color = "0.17 0.6 0.85", style="rounded"];
-        2[label = "gzip", color = "0.50 0.6 0.85", style="rounded"];
-        3[label = "trim\nsample: a", color = "0.00 0.6 0.85", style="rounded"];
-        4[label = "qc", color = "0.17 0.6 0.85", style="rounded"];
-        5[label = "gzip", color = "0.50 0.6 0.85", style="rounded"];
-        6[label = "trim\nsample: b", color = "0.00 0.6 0.85", style="rounded"];
+        0[label = "gzip", color = "0.00 0.6 0.85", style="rounded"];
+        1[label = "trim_fastq", color = "0.33 0.6 0.85", style="rounded"];
         1 -> 0
-        4 -> 0
-        2 -> 1
-        3 -> 2
-        5 -> 4
-        6 -> 5
 } 
 ```
 
-:::
+## {auto-animate=true}
+
+- By themselves rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you [want]{.green}
+
+
+``` {.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+```
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+    
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">        gzip       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq.gz</font></td></tr>
+</table>>]
+
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">trim_fastq</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="10">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td></tr>
+</table>>]
+
+
+2 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">        gzip       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.trimmed.fastq.gz</font></td></tr>
+</table>>]
+
+3 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">trim_fastq</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="10">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.trimmed.fastq</font></td></tr>
+</table>>]
+
+        1 -> 0
+        3 -> 2
+}
+```
+
+## {auto-animate=true}
+
+- By themselves rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you [want]{.green}
+
+
+``` {.default code-line-numbers=false}
+$ snakemake -c 1 a.trimmed.fastq.gz
+```
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+    
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">        gzip       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq.gz</font></td></tr>
+</table>>]
+
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">trim_fastq</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="10">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td></tr>
+</table>>]
+
+        1 -> 0
+}
+```
