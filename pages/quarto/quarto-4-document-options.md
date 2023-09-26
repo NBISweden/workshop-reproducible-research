@@ -7,10 +7,10 @@ whole, regardless of chunk content.
 
 We've already looked at some global options, such as `title`, `author`, `format`
 and `engine`. Something that would go nicely with the first two is the `date`
-option. You could just write the actual date if you like, or you can use inline
-R code to get today's date.
+option. You could just write the actual date if you like, or you can use the
+`today` option:
 
- * Add the following to the options: `date: "`r Sys.Date()`"`
+ * Add the following to the options: `date: today`
 
 # Code folding
 
