@@ -84,7 +84,7 @@ The current date is `r Sys.Date()`.
 
 # Previewing documents
 
-Quarto has a highly useful command for whem you're working on a document:
+Quarto has a highly useful command for when you're working on a document:
 `preview`. It's essentially a live preview of the document you're working on
 that will automatically render when you introduce changes to the document.
 
@@ -116,7 +116,7 @@ those cases you might instead prefer to stick with manual rendering when you are
 satisfied with multiple changes. You can abort a preview like any on-going
 command, *e.g.* using `Ctrl-C`.
 
-In the rest of the tutoral it's up to you whether you want to use `preview` or
+In the rest of the tutorial it's up to you whether you want to use `preview` or
 not - the tutorial will just mention when it's time to render, you decide how
 that's done.
 

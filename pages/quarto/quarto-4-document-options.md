@@ -101,7 +101,7 @@ anybody.
 
 What happened first is that your figures should have disappeared when you
 deleted to resources directory. Embedding resources and rendering again should
-not re-create this directory, so now you'll just have a standalone HTML file
+not re-create this directory, so now you'll just have a stand-alone HTML file
 that is more portable than before.
 
 > **Quick recap** <br>
