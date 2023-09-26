@@ -10,7 +10,7 @@ and `engine`. Something that would go nicely with the first two is the `date`
 option. You could just write the actual date if you like, or you can use inline
 R code to get today's date.
 
-* Add the following to the options: `date: "`r Sys.Date()`"`
+ * Add the following to the options: `date: "`r Sys.Date()`"`
 
 # Code folding
 
@@ -23,7 +23,7 @@ format:
         code-fold: true
 ```
 
-* Add the `code-fold` option to your document and render it.
+ * Add the `code-fold` option to your document and render it.
 
 This can be a nice default to use in scientific reports, as it hides the code by
 default but is always there for those who want to inspect it. You can also use
@@ -34,7 +34,7 @@ You can also add the `code-tools` option, which will add a drop-down menu to
 toggle visibility of all code as well as the ability to view the source of the
 document.
 
-* Add the `code-tools: true` option and render the document.
+ * Add the `code-tools: true` option and render the document.
 
 # Table of contents
 
@@ -42,15 +42,15 @@ Another useful document option is to add a table of contents, which can be done
 with the `toc` option. This will automatically populate the table of contents
 using the headers from your document.
 
-* Add some more headings and/or sub-headings to your document.
+ * Add some more headings and/or sub-headings to your document.
 
-* Add the `toc: true` option to the html format and render.
+ * Add the `toc: true` option to the html format and render.
 
 The table of contents is to the right of the document by default, but you can
 change it using `toc-location`. The `toc-depth` allows you to control how many
 sub-heading levels are included in the table of contents.
 
-* Add `toc-location: left` and `toc-depth: 2` to your document and render it.
+ * Add `toc-location: left` and `toc-depth: 2` to your document and render it.
 
 Having the table of contents on the left can be useful if you are using the
 margins for something, such as we are doing in this tutorial. You can similarly
@@ -58,14 +58,14 @@ add section numbering using `number-sections` and `number-depth`. Smooth
 scrolling is not enabled by default, but you can add it using `smooth-scroll:
 true`. You can change the title of the table of contents using `toc-title`.
 
-* Add section numbers, depth, smooth scrolling and a different table of contents
+ * Add section numbers, depth, smooth scrolling and a different table of contents
   title to your document and render it.
 
 # Themes
 
 Quarto has a lot of [themes](https://bootswatch.com/) available for it.
 
-* Add `theme: flatly` and render.
+ * Add `theme: flatly` and render.
 
 If you want to get real advanced you can play around with lots of details
 regarding the themes and adjust as you see fit, or even just create your own
@@ -81,7 +81,7 @@ main YAML header in the same manner as for *e.g.* code folding or table of
 contents. We'll still have to specify options like labels or captions at the
 chunk-level, though.
 
-* Add `warning: false` to your document header and remove it from the penguin
+ * Add `warning: false` to your document header and remove it from the penguin
   figure chunk you already have.
 
 # Embedding HTML resources
@@ -94,15 +94,33 @@ format options. This option is false by default, meaning that you'll also have
 to include the previously mentioned directory if you want to share the HTML with
 anybody.
 
-* Remove the `<document-name>_files/` directory, refresh the rendered document
+ * Remove the `<document-name>_files/` directory, refresh the rendered document
   and see what happens.
 
-* Add the `embed_resources` option and render your document again.
+ * Add the `embed_resources` option and render your document again.
 
 What happened first is that your figures should have disappeared when you
 deleted to resources directory. Embedding resources and rendering again should
 not re-create this directory, so now you'll just have a stand-alone HTML file
 that is more portable than before.
+
+# Multiple formats
+
+So far we've mostly been working with HTML output, but you don't need to limit
+yourself to a single output format if you don't want to.
+
+ * Add the `docx: default` line in the `format:` part of your YAML header and
+   render your document.
+
+You should have gotten two separate output files now: a HTML and a DOCX (Word)
+file. You can specify further options for any of the formats you include,
+instead of just using the `default` settings as in this example.
+
+ * Render your document again, but supply the `--to html` flag.
+
+This will only render to the specified output format, which is highly useful
+when you want to write a Quarto document with more than one format but not
+always render them all.
 
 > **Quick recap** <br>
 > In this sections we covered a number of document-wide options, including
