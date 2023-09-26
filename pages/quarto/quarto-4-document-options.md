@@ -122,6 +122,44 @@ This will only render to the specified output format, which is highly useful
 when you want to write a Quarto document with more than one format but not
 always render them all.
 
+# Parameters
+
+The last document-wide option we'll touch on is *parameters*. This is useful for
+when you want to be able to run the same document with different parameters or
+options for some computations. How parameters are specified depends on which
+engine you're using. With Knitr you can specify parameters using the `params`
+option:
+
+ * Add the following code to your YAML header:
+
+```yaml
+params:
+    point_size: 2
+```
+
+ * Also change the hard-coded `geom_point(size = 2)` to `geom_point(size =
+   params$point_size)` in the two `ggplot` calls in the first code chunk.
+
+We have thus specified a parameter called `point_size` in the YAML header and
+referred to it in the code using `params$point_size`. You can now change this
+parameter at run-time using the `-P <param>:<value>` (or `--execute-param`)
+flag.
+
+If you're using the Jupyter engine you can instead specify parameters by
+designating a single cell as a *parameter cell*, like so:
+
+```{python}
+#| tags: [parameters]
+point_size = 2
+```
+
+You can also specify parameters in a `params.yml` file and specify them there
+instead, which works just like for the Knitr engine above. Using parameters is
+extremely useful when you're using a workflow manager system (*e.g.* Snakemake
+or Nextflow), since you can easily specify sample-specific parameters from the
+command line directly from your workflow manager.
+
 > **Quick recap** <br>
 > In this sections we covered a number of document-wide options, including
-> code-folding, table of contents, theming and HTML portability.
+> code-folding, table of contents, theming, HTML portability, using multiple
+> output formats and parameters.
