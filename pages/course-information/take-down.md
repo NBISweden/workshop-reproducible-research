@@ -13,7 +13,7 @@ and `.snakemake`, which contains the history of any Snakemake runs.
 Several of the tutorials use Mamba for installing packages. This amounts to
 about 2.6 GB if you've done all the tutorials. If you plan on using Mamba in
 the future you can remove just the packages, or you can remove everything
-including Mamba itself. 
+including Mamba itself.
 
 In order to remove all your environments, you first need to list them:
 
@@ -40,7 +40,7 @@ you should first reverse the installation, this part should be run with `conda`:
 conda init --reverse
 ```
 
-Now find the path where Mamba is installed. Look for the row "base 
+Now find the path where Mamba is installed. Look for the row "base
 environment":
 
 ```bash
@@ -50,7 +50,7 @@ mamba info | grep "base environment"
 This should say something like:
 
 ```
-base environment : /Users/<user>/mambaforge  (writable). 
+base environment : /Users/<user>/mambaforge  (writable).
 ```
 
 Then remove the entire Mambaforge directory:
@@ -116,8 +116,8 @@ is described below:
 
 Click the Docker icon in the menu bar (upper right part of the screen) and
 select "Preferences". In the upper right corner, you should find a little bug icon.
-Click on that icon and select "Reset to factory defaults". You may have to fill 
-in your password. Then select "Uninstall". Once it's done uninstalling, drag the 
+Click on that icon and select "Reset to factory defaults". You may have to fill
+in your password. Then select "Uninstall". Once it's done uninstalling, drag the
 Docker app from Applications to Trash.
 
 #### Linux
@@ -150,9 +150,9 @@ its cache, which you may delete.
 
 #### Linux
 
-If you want to uninstall Singularity, its removal will depend on the installation 
-method you chose. Please refer to the 
-[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html?highlight=uninstall#install-on-linux) 
+If you want to uninstall Singularity, its removal will depend on the installation
+method you chose. Please refer to the
+[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html?highlight=uninstall#install-on-linux)
 to find out which tools and dependencies you need to uninstall.
 
 #### Mac
@@ -162,5 +162,5 @@ an uninstall tool that you can use.
 
 #### Windows
 
-On Windows, you will need to uninstall Git for Windows, VirtualBox, Vagrant and 
+On Windows, you will need to uninstall Git for Windows, VirtualBox, Vagrant and
 Vagrant Manager (see the [Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).

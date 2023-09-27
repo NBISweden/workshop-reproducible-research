@@ -1,6 +1,6 @@
 One thing that sets Jupyter Notebook apart from what you might be used to is
 that it's a web application, *i.e.* you edit and run your code from your
-browser. But first you have to start the Jupyter Notebook server. At this 
+browser. But first you have to start the Jupyter Notebook server. At this
 point you may either try the classic notebook interface by running:
 
 ```bash
@@ -13,7 +13,7 @@ Or give the more feature-rich Jupyter lab interface a try by running:
 jupyter lab --allow-root
 ```
 
-Whichever interface you choose you should see something similar to this 
+Whichever interface you choose you should see something similar to this
 printed to your terminal:
 
 ```no-highlight
@@ -31,15 +31,15 @@ printed to your terminal:
 ```
 
 > **A note for Windows users** <br>
-> If you see the error message `Start : This command cannot be run due to the 
-> error: The system cannot find the file specified. ...` then try starting 
+> If you see the error message `Start : This command cannot be run due to the
+> error: The system cannot find the file specified. ...` then try starting
 > Jupyter with `jupyter notebook --no-browser` then copy the URL given into the
 > browser directly.
 
-The Jupyter Notebook/Lab interface probably opened up a web browser for you 
-automatically, otherwise go to the address specified in the message in the 
-terminal. Note that the server is running locally (as 
-`http://localhost:8888`) so this does not require that you have an active 
+The Jupyter Notebook/Lab interface probably opened up a web browser for you
+automatically, otherwise go to the address specified in the message in the
+terminal. Note that the server is running locally (as
+`http://localhost:8888`) so this does not require that you have an active
 internet connection. Also note that it says:
 
 ```no-highlight
@@ -53,28 +53,28 @@ you won't lose any work if you shut down the server.
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
-The Running tab keeps track of all your processes. The third tab, Clusters, is 
+The Running tab keeps track of all your processes. The third tab, Clusters, is
 used for parallel computing and won't be discussed further in this tutorial.
 
 The Jupyter lab dashboard should look something like this:
 
 > ![](images/jupyterlab_dashboard.png){ width=700px }
 
-Let's start by creating an empty notebook. In the classic notebook interface 
-you can do this by selecting the Files tab and clicking New > Python 3. In 
-the Jupyter lab interface it'll be File -> New -> Notebook.  
+Let's start by creating an empty notebook. In the classic notebook interface
+you can do this by selecting the Files tab and clicking New > Python 3. In
+the Jupyter lab interface it'll be File -> New -> Notebook.
 
 This will open up a new tab or window looking like this:
 
 > ![](images/jupyter_empty_nb.png){ width=700px }
 
-Note that for most of this tutorial we will describe how you work in the actual 
-notebook and not devote a lot of time to the extra features available in the 
-Jupyter lab interface. 
+Note that for most of this tutorial we will describe how you work in the actual
+notebook and not devote a lot of time to the extra features available in the
+Jupyter lab interface.
 
 > **Tip** <br>
 > If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
-> Uppmax) see the section in the 
+> Uppmax) see the section in the
 > [Extra material](jupyter-9-extra-material)
 
 Jupyter notebooks are made up of cells, and you are currently standing in
@@ -168,18 +168,18 @@ menu in your notebook (there's even an option there to edit shortcuts).
 
 ## Writing markdown
 
-Let's use our first cell to create a header. Change the format from 
-Code to Markdown using the drop-down list in the Notebook Toolbar, or by 
-pressing the `m` key when in command mode. Double click on 
-the cell, or hit `enter` to enter editing mode (green frame) and input 
-"# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
-`ctrl`-`enter`. 
+Let's use our first cell to create a header. Change the format from
+Code to Markdown using the drop-down list in the Notebook Toolbar, or by
+pressing the `m` key when in command mode. Double click on
+the cell, or hit `enter` to enter editing mode (green frame) and input
+"# My notebook" ("#" is used in Markdown for header 1). Run the cell with
+`ctrl`-`enter`.
 
 Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
 
 Below are some examples of what you can do in markdown. Paste all or parts
-of it into one or more cells in your notebook to see how it renders. Make 
+of it into one or more cells in your notebook to see how it renders. Make
 sure you set the cell type to Markdown.
 
 ```
@@ -200,12 +200,12 @@ Sections can be separated by horizontal lines.
 
 Blockquotes can be added, for instance to insert a Monty Python quote:
 
-    Spam! 
-    Spam! 
-    Spam! 
+    Spam!
+    Spam!
+    Spam!
     Spam!
 
-See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html) for more information.    
+See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html) for more information.
 ```
 
 ## Writing code
@@ -227,10 +227,10 @@ tools.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
-will already have it available. We can be a little meta and do this from within 
-the notebook itself. We do it by running some shell commands in the third code 
-cell instead of Python code. This very handy functionality is possible by 
-prepending the command with `!`. Try `!ls` to list the files in the current 
+will already have it available. We can be a little meta and do this from within
+the notebook itself. We do it by running some shell commands in the third code
+cell instead of Python code. This very handy functionality is possible by
+prepending the command with `!`. Try `!ls` to list the files in the current
 directory.
 
 Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at

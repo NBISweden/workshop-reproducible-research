@@ -31,7 +31,7 @@ a number of such chunk options that are useful to know about:
         <td style="padding:5px; vertical-align:middle; text-align:center;"> <font size="3">
             `echo`
         </td>
-        <td style="padding:5px"> <font size="3"> 
+        <td style="padding:5px"> <font size="3">
             Include the chunk code in the output.
         </td>
     </tr>
@@ -153,7 +153,7 @@ Quarto even adds a clickable link to the figure itself as well!
 # Sub-figures
 
 It's also possible to create sub-figures using Quarto, instead of using whatever
-plotting library that your created the figures with. 
+plotting library that your created the figures with.
 
 * Add the following (almost identical) code at the bottom of the chunk you
   already have:

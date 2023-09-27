@@ -13,8 +13,8 @@ a visualization of the graph as a PNG file (if you're having troubles displaying
 PNG files you could use SVG or JPG instead).
 
 > **Attention!** <br>
-> If you added the `print(wildcards.first,wildcards.second,files)` statement 
-> to the `concat_input` function in the previous section you need to remove 
+> If you added the `print(wildcards.first,wildcards.second,files)` statement
+> to the `concat_input` function in the previous section you need to remove
 > that line before running the commands below.
 
 ```bash
@@ -113,9 +113,9 @@ changed, only at the timestamp for when they were last modified.
 We've seen that Snakemake keeps track of if files in the workflow have changed,
 and automatically makes sure that any results depending on such files are
 regenerated. What about if the rules themselves are changed? It turns out that
-since version 7.8.0 Snakemake keeps track of this automatically. 
+since version 7.8.0 Snakemake keeps track of this automatically.
 
-Let's say that we want to modify the rule `concatenate_files` to also include 
+Let's say that we want to modify the rule `concatenate_files` to also include
 which files were concatenated.
 
 ```python
@@ -153,21 +153,21 @@ Because although no files involved in the workflow have been changed, Snakemake
 recognizes that the workflow code itself has been modified and this triggers
 a re-run.
 
-Snakemake is aware of changes to four categories of such "rerun-triggers": 
+Snakemake is aware of changes to four categories of such "rerun-triggers":
 "input" (changes to rule input files), "params" (changes to the rule `params` section),
-"software-env" (changes to Conda environment files specified by the `conda:` 
-directive) and "code" (changes to code in the `shell:`, `run:`, `script:` and 
-`notebook:` directives). 
+"software-env" (changes to Conda environment files specified by the `conda:`
+directive) and "code" (changes to code in the `shell:`, `run:`, `script:` and
+`notebook:` directives).
 
 Prior to version 7.8.0, only changes to the modification time of input files would
-trigger automatic re-runs. To run Snakemake with this previous behaviour you 
-can use the setting `--rerun-triggers mtime` at the command line. 
+trigger automatic re-runs. To run Snakemake with this previous behaviour you
+can use the setting `--rerun-triggers mtime` at the command line.
 Change the `shell:` section of the `concatenate_files` rule back to the previous
-version, then try running: `snakemake -n -r a_b.txt --rerun-triggers mtime` and 
+version, then try running: `snakemake -n -r a_b.txt --rerun-triggers mtime` and
 you should again see `Nothing to be done (all requested files are present and up to date).`
 
-You can also export information on how all files were generated (when, by which 
-rule, which version of the rule, and by which commands) to a tab-delimited file 
+You can also export information on how all files were generated (when, by which
+rule, which version of the rule, and by which commands) to a tab-delimited file
 like this:
 
 ```bash
@@ -228,8 +228,8 @@ The content of `summary.tsv` is shown in the table below:
 You can see in the second last column that the rule implementation for `a_b.txt`
 has changed. The last column shows if Snakemake plans to regenerate the files
 when it's next executed. You can see that for the `concatenate_files` the plan
-is `update pending` because we generated the summary with the default behaviour 
-of using all rerun-triggers. 
+is `update pending` because we generated the summary with the default behaviour
+of using all rerun-triggers.
 
 You might wonder where Snakemake keeps track of all these things? It stores all
 information in a hidden subdirectory called `.snakemake`. This is convenient

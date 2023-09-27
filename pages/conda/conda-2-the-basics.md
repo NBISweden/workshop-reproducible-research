@@ -43,8 +43,8 @@ mamba list
 mamba env export --from-history > environment.yml
 ```
 
-Where `--from-history` only reports the packages requested to be installed 
-and not additional dependencies. A caveat is that if no version was 
+Where `--from-history` only reports the packages requested to be installed
+and not additional dependencies. A caveat is that if no version was
 originally specified, then it is not included in the export file either.
 
 * Now, deactivate the environment by running `mamba deactivate`.

@@ -68,7 +68,7 @@ like in the following example:
  * Add the code above to your document and render it.
 
 Stepping through incremental content works the same as for stepping through
-slides, *i.e.* using the arrow keys. 
+slides, *i.e.* using the arrow keys.
 
  * Render your document to `html` instead of `revealjs`.
 

@@ -62,7 +62,7 @@ resources:
 > save it.
 
 > **Important!** <br>
-> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows), 
+> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows),
 > **please follow the Linux instructions.**
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
@@ -172,8 +172,8 @@ this is not too confusing.
 
 ### If you already have Mamba installed
 
-If you already have installed Mamba you can make sure you're using the latest 
-version by running `mamba update -n base mamba` and skip the installation 
+If you already have installed Mamba you can make sure you're using the latest
+version by running `mamba update -n base mamba` and skip the installation
 instructions below.
 
 ### If you have Conda installed
@@ -211,7 +211,7 @@ rm Mambaforge-MacOSX-arm64.sh
 
 ```bash
 # Install Mambaforge for 64-bit Linux
-curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O 
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O
 bash Mambaforge-Linux-x86_64.sh
 rm Mambaforge-Linux-x86_64.sh
 ```
@@ -234,7 +234,7 @@ mamba --version
 > The Mamba docs specify a couple of things to keep in mind when using Mamba.
 > First of all, `mamba` should be installed in the `base` environment and no
 > other packages should be installed into `base`. Furthermore, mixing of the
-> `conda-forge` and `defaults` channels should be avoided as the default 
+> `conda-forge` and `defaults` channels should be avoided as the default
 > Anaconda channels are incompatible with `conda-forge`.
 
 > **Different Mamba/Conda flavours** <br>
@@ -415,7 +415,7 @@ the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-Go to the [Linux install](https://docs.docker.com/desktop/install/linux-install/) 
+Go to the [Linux install](https://docs.docker.com/desktop/install/linux-install/)
 section of the Docker documentation and make sure that your computer meets the
 system requirements. There you can also find instructions for different Linux
 distributions in the left sidebar under *Installation per Linux distro*.

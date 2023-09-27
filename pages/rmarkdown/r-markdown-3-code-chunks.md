@@ -15,9 +15,9 @@ debugging). Last comes chunk options, separated by commas (in this case there is
 only one option: `echo = FALSE`).
 
 > **Note** <br>
-> The code chunk name pressure has nothing to do with the code `plot(pressure)`. 
-> In the latter case, pressure is a default R dataframe that is used in examples. 
-> The chunk name happened to be set to the string pressure as well, but could 
+> The code chunk name pressure has nothing to do with the code `plot(pressure)`.
+> In the latter case, pressure is a default R dataframe that is used in examples.
+> The chunk name happened to be set to the string pressure as well, but could
 > just as well have been called something else, *e.g.* "Plot pressure data".
 
 Below are listed some useful chunk options related to evaluating and displaying

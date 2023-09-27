@@ -18,7 +18,7 @@ are:
 
 Before you start:
 
-* Make sure that your working directory in R is `workshop-reproducible-research/tutorials/rmarkdown` 
+* Make sure that your working directory in R is `workshop-reproducible-research/tutorials/rmarkdown`
   in the course directory (Session > Set Working Directory).
 * Open the file `code/supplementary_material.Rmd`.
 

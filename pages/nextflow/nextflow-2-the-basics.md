@@ -130,8 +130,8 @@ several sections, or *directives* as Nextflow calls them: `publishDir`, `input`,
 `output` and `script`.
 
 > **Naming processes** <br>
-> A process can be named using any case, but a commonly used convention is to use 
-> UPPERCASE letters for processes to visually distinguish them in the workflow. 
+> A process can be named using any case, but a commonly used convention is to use
+> UPPERCASE letters for processes to visually distinguish them in the workflow.
 > You do not have to follow this if you don't want to, but we do so here.
 
 Let's start with the first directive: `publishDir`. This tells Nextflow where

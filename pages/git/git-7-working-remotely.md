@@ -25,8 +25,8 @@ although the exact menu structure and link placements differ a bit.
 Any upload to and from GitHub requires you to authenticate yourself. GitHub
 used to allow authentication with your account and password, but this is no
 longer the case - using SSH keys is favoured instead. Knowing exactly what these
-are is not necessary to get them working, but we encourage you to read the box 
-below to learn more about them! GitHub has excellent, platform-specific 
+are is not necessary to get them working, but we encourage you to read the box
+below to learn more about them! GitHub has excellent, platform-specific
 instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please use them before moving on!
@@ -104,7 +104,7 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-You always need to specify `git push origin main` by default, but you can 
+You always need to specify `git push origin main` by default, but you can
 circumvent this by telling Git that you always want to push to
 `origin/main` when you're on your local `main` branch. To do this, use
 the command `git branch --set-upstream-to origin/main`. **Try it out now**.
