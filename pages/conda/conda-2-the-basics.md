@@ -43,8 +43,8 @@ mamba list
 mamba env export --from-history > environment.yml
 ```
 
-where `--from-history` only reports the packages requested to be installed 
-and not additional dependancies. A caveat is that if no version was 
+Where `--from-history` only reports the packages requested to be installed 
+and not additional dependencies. A caveat is that if no version was 
 originally specified, then it is not included in the export file either.
 
 * Now, deactivate the environment by running `mamba deactivate`.
@@ -64,7 +64,7 @@ activated.
 
 # Adding more packages
 
-* Now, let's add another package (*multiqc*) to our environment using `conda
+* Now, let's add another package (*MultiQC*) to our environment using `conda
   install`. Make sure that `project_a` is the active environment first.
 
 ```bash
@@ -72,40 +72,40 @@ mamba install -c bioconda multiqc
 ```
 
 * If we don't specify the package version, the latest available version will be
-  installed. What version of multiqc got installed?
+  installed. What version of MultiQC got installed?
 * Run the following to see what versions are available:
 
 ```bash
 mamba search -c bioconda multiqc
 ```
 
-* Now try to install a different version of multiqc, *e.g.*:
+* Now try to install a different version of MultiQC, *e.g.*:
 
 ```bash
 mamba install -c bioconda multiqc=1.13
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
-you want to downgrade the initial multiqc installation to the one specified
+you want to downgrade the initial MultiQC installation to the one specified
 here (`1.13` in the example). You can only have one version of a given package
 in a given environment.
 
 Let's assume that you will have sequencing data in your Project A, and want to
-use the latest bbmap software to align your reads.
+use the latest BBMap software to align your reads.
 
-* Find out what versions of bbmap are available in the Bioconda channel using
+* Find out what versions of BBMap are available in the Bioconda channel using
   `mamba search -c bioconda bbmap`.
-* Now install the *latest* available version of bbmap in your `project_a`
+* Now install the *latest* available version of BBMap in your `project_a`
   environment.
 
 Let's further assume that you have an old project (called *Project Old*) where
-you know you used bbmap `37.10`. You just got back reviewer comments and they
+you know you used BBMap `37.10`. You just got back reviewer comments and they
 want you to include some alignment statistics. Unfortunately, you haven't saved
 that information so you will have to rerun the alignment. Now, it is essential
-that you use the same version of bbmap that your results are based on,
+that you use the same version of BBMap that your results are based on,
 otherwise the alignment statistics will be misleading. Using Conda environments
 this becomes simple. You can just have a separate environment for your old
-project where you have an old version of bbmap without interfering with your
+project where you have an old version of BBMap without interfering with your
 new Project A where you want the latest version.
 
 * Make a new environment for your old project:
@@ -115,8 +115,8 @@ mamba create -n project_old -c bioconda bbmap=37.10
 ```
 
 * List your environments (do you remember the command?).
-* Activate `project_old` and check the bbmap version (`bbmap.sh --version`).
-* Activate `project_a` again and check the bbmap version.
+* Activate `project_old` and check the BBMap version (`bbmap.sh --version`).
+* Activate `project_a` again and check the BBMap version.
 
 # Removing packages
 

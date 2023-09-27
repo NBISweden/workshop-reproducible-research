@@ -24,7 +24,7 @@ rule index_genome:
 ```
 
 There is a temporary file here called `tempfile` which is the uncompressed
-version of the input, since Bowtie 2 cannot use compressed files. There are
+version of the input, since Bowtie2 cannot use compressed files. There are
 a number of drawbacks with having files that aren't explicitly part of the
 workflow as input/output files to rules:
 

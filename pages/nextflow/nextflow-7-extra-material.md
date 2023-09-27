@@ -167,7 +167,7 @@ files, one sample) into a single alignment file (one file, one sample) very
 simple. For more methods of reading in data see the Nextflow documentation on
 [Channel Factories](https://www.nextflow.io/docs/latest/channel.html#channel-factory).
 
-We can also do quite advanced things to manipuate data in channels, such as
+We can also do quite advanced things to manipulate data in channels, such as
 this:
 
 ```nextflow
@@ -211,7 +211,7 @@ Given the channel creation strategy above, we would get the following result:
 
 In this way, you can perform complex operations on input files or input metadata
 and send the resulting content to your downstream processes
-in a simple way. Composing data manipuations in Nextflow like this can be half 
+in a simple way. Composing data manipulations in Nextflow like this can be half 
 the fun of writing the workflow. Check out Nextflow's documentation on 
 [Channel operators](https://www.nextflow.io/docs/latest/operator.html) to
 see the full list of channel operations at your disposal. 

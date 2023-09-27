@@ -8,7 +8,7 @@ general:
 * A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
-## Running jupyter notebooks on a cluster
+## Running Jupyter notebooks on a cluster
 
 * Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
 
@@ -42,7 +42,7 @@ Now a Jupyter notebook server is running on the Uppmax end. The line that says:
 [I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
 ```
 
-contains information on the port used on the server side (8889 in this case) and
+Contains information on the port used on the server side (8889 in this case) and
 the token required to use the server (`357d65100058efa40a0641fce7005addcff339876c5e8000`).
 
 Next step is to use this information to login to the server from your local 
@@ -62,10 +62,10 @@ ssh -N -L localhost:8080:localhost:<remote-port> <your-user-name>@rackham1.uppma
 As long as this process is running the port forwarding is running. To disable it
 simply interrupt it with `CTRL + C`.
 
-Connect to the jupyter server by opening `localhost:8080` in your browser. When
+Connect to the Jupyter server by opening `localhost:8080` in your browser. When
 prompted, paste the token you got when starting the server on Uppmax. 
 
-You are now (hopefully) accessing the jupyter server that's running on Uppmax, 
+You are now (hopefully) accessing the Jupyter server that's running on Uppmax, 
 via your local browser.
 
 ## Integrating notebooks with Snakemake workflows
@@ -108,17 +108,17 @@ rule make_supplementary:
 ```
 
 > **Note** <br>
-> The Conda enivronment for the jupyter tutorial does not contain the 
-> snakemake package so if you wish to test the rule _e.g._ by running 
-> `snakemake -c 1 results/supplementary.html` you first install snakemake 
+> The Conda environment for the Jupyter tutorial does not contain the 
+> Snakemake package so if you wish to test the rule _e.g._ by running 
+> `snakemake -c 1 results/supplementary.html` you first install Snakemake 
 > into the environment with `mamba install snakemake`.
 
 ## More integrations
 
 Snakemake actually supports the execution of notebooks via the `notebook:` 
 rules directive. See more about Jupyter integration in the 
-[snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
-In the `notebook:` directive of such a rule you specify the path to a jupyter 
+[Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
+In the `notebook:` directive of such a rule you specify the path to a Jupyter 
 notebook (relative to the Snakefile) which is then executed when 
 the rule is run. 
 
@@ -130,7 +130,7 @@ containing information about **input** and **output** files for the rule via
 **wildcards** with `snakemake.wildcards`, **params** with `snakemake.params`, 
 and **config** settings with `snakemake.config`.
 
-When snakemake runs the rule with the `notebook:` directive `jupyter-nbconvert` 
+When Snakemake runs the rule with the `notebook:` directive `jupyter-nbconvert` 
 is used to execute the notebook. No HTML output is generated here but it is 
 possible to store a version of the notebook in its final processed form by 
 adding the following to the rule:
@@ -249,7 +249,7 @@ snakemake -c 1 make_supplementary_plots
 
 As if all the above wasn't enough you can also create presentations/slideshows
 with Jupyter! Simply use mamba to install the 
-[RISE](https://rise.readthedocs.io/en/stable/) extension to your jupyter 
+[RISE](https://rise.readthedocs.io/en/stable/) extension to your Jupyter 
 environment:
 
 ```bash

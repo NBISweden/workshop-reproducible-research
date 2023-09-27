@@ -26,7 +26,7 @@ echo "Print to stdout"
 echo "Print to stderr" >&2
 ```
 
-... and in another cell:
+... And in another cell:
 
 ```python
 print("stdout:" + output.stdout)
@@ -36,7 +36,7 @@ print("stderr:" + output.stderr)
 > **Tip** <br>
 > You can capture the output of some magics directly like this: `my_dir = %pwd`.
 
-The `%%script` magic is used for specifying a program (bash, perl, ruby, ..)
+The `%%script` magic is used for specifying a program (Bash, Perl, Ruby, ..)
 with which to run the code (similar to a shebang). For some languages it's
 possible to use these shortcuts:
 
@@ -45,7 +45,7 @@ possible to use these shortcuts:
 * `%%bash`
 * `%%html`
 * `%%latex`
-* `%%R` (here you have to first install the rpy2 extension, for example with
+* `%%R` (here you have to first install the `rpy2` extension, for example with
   Conda, and then load with `%load_ext rpy2.ipython`)
 
 Try this out if you know any of the languages above. Otherwise you can always

@@ -68,8 +68,8 @@ figure:
 
 Let's repeat this process by editing a file!
 
-* Open up `environment.yml` in your favorite editor, and change the version of
-  bowtie2 to a different value, *e.g.* `bowtie2=2.2.4`.
+* Open up `environment.yml` in your favourite editor, and change the version of
+  Bowtie2 to a different value, *e.g.* `bowtie2=2.2.4`.
 
 * Run `git status`. It will tell you that there are modifications in one file
   (`environment.yml`) compared to the previous commit. This is nice! We don't
@@ -84,7 +84,7 @@ Let's repeat this process by editing a file!
   don't specify a file, it will show all changes made in any file, compared to
   the previous commit. Do you see your changes?
 
-* Ok, we made our changes. Let's commit them! Run:
+* Okay, we made our changes. Let's commit them! Run:
 
 ```bash
 git add config.yml environment.yml
@@ -131,7 +131,7 @@ git commit -m "Change to ST398 for alignment"
 git status
 git add environment.yml
 git status
-git commit -m "Change bowtie2 version"
+git commit -m "Change Bowtie2 version"
 git status
 ```
 

@@ -48,7 +48,7 @@ log to contain. Some of the programs we use send their log information to
 standard out, some to standard error and some let us specify a log file via
 a flag. 
 
-For example, in the `align_to_genome` rule, it could look like this (bowtie2 
+For example, in the `align_to_genome` rule, it could look like this (Bowtie2 
 writes log info to standard error):
 
 ```python
@@ -77,7 +77,7 @@ rule align_to_genome:
 To save some time you can use the info below.
 
 ```bash
-# Wget has a -o flag for specifying the log file
+# wget has a -o flag for specifying the log file
 wget remote_file -O output_file -o {log}
 
 # MultiQC and featureCounts write to standard error so we redirect with "2>"

@@ -14,8 +14,8 @@ the latter is how to store and share that history with others.
 
 ## GitHub setup
 
-If you have not done so already, go to [github.com](https://github.com/join)
-and create an account. You can also create an account on another online hosting
+If you have not done so already, go to [GitHub](https://github.com/join) and
+create an account. You can also create an account on another online hosting
 service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
 [GitLab](https://about.gitlab.com/). The exercises below are written with
 examples from GitHub (as that is the most popular platform with the most
@@ -289,7 +289,7 @@ our remote - you should do this in the original `git_tutorial` repository, so
 move back into that directory.
 
 * Create a new branch named `trimming` and add the `--trim5 5` flag to the
-  bowtie2-command part of the `Snakefile`, which should now look like this:
+  Bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
 bowtie2 --trim5 5 --very-sensitive-local -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}

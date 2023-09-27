@@ -7,7 +7,7 @@ point you may either try the classic notebook interface by running:
 jupyter notebook --allow-root
 ```
 
-or give the more feature-rich Jupyter lab interface a try by running:
+Or give the more feature-rich Jupyter lab interface a try by running:
 
 ```bash
 jupyter lab --allow-root
@@ -33,7 +33,7 @@ printed to your terminal:
 > **A note for Windows users** <br>
 > If you see the error message `Start : This command cannot be run due to the 
 > error: The system cannot find the file specified. ...` then try starting 
-> jupyter with `jupyter notebook --no-browser` then copy the URL given into the
+> Jupyter with `jupyter notebook --no-browser` then copy the URL given into the
 > browser directly.
 
 The Jupyter Notebook/Lab interface probably opened up a web browser for you 
@@ -89,7 +89,7 @@ a lightweight markup language. Markdown documents can then be converted to
 other formats for viewing (the document you're reading now is written in
 Markdown and then converted to HTML). The format is discussed a little more in
 detail in the [R Markdown tutorial](r-markdown-1-introduction). Jupyter Notebook
-uses a dialect of Markdown called Github Flavored Markdown, which is described
+uses a dialect of Markdown called GitHub Flavoured Markdown, which is described
 [here](https://guides.github.com/features/mastering-markdown/).
 * **Code:** These are the cells that actually do something, just as code chunks
   do in R Markdown. You can write code in dozens of languages and all do all
@@ -175,8 +175,6 @@ the cell, or hit `enter` to enter editing mode (green frame) and input
 "# My notebook" ("#" is used in Markdown for header 1). Run the cell with 
 `ctrl`-`enter`. 
 
-Tada!
-
 Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
 
@@ -238,7 +236,7 @@ directory.
 Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
 the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's
 just a plain old JSON file. Since it's a text file it's suitable for version
-control with for example Git. It turns out that Github and Jupyter notebooks are
+control with for example Git. It turns out that GitHub and Jupyter notebooks are
 the best of friends, as we will see more of later. This switching between
 languages and whatever-works mentality is very prominent within the Jupyter
 notebook community.
@@ -252,7 +250,7 @@ def print_me(str):
     print(str)
 ```
 
-... and ...
+... And ...
 
 ```python
 print_me("Hi!")

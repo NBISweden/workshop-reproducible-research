@@ -230,7 +230,7 @@ non-exhaustive list of some of the more major of these:
   Notebooks while using the same standardised YAML header.
 
 * Quarto is decoupled from RStudio and R itself: you can easily use it in
-  VSCode, JupyterLab, your favourite text editor or (of course) Rstudio.
+  VSCode, JupyterLab, your favourite text editor or (of course) RStudio.
 
 Posit has stated that they will continue to support R Markdown in the future,
 but that some new features will only be available in Quarto. This means that you

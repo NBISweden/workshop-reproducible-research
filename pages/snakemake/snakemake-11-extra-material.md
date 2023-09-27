@@ -1,7 +1,7 @@
 If you want to read more about Snakemake in general you can find several
 resources here:
 
-* The Snakemake documentation is available on [readthedocs](
+* The Snakemake documentation is available on [ReadTheDocs](
   https://snakemake.readthedocs.io/en/stable/#).
 * Here is another (quite in-depth) [tutorial](
   https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
@@ -107,10 +107,10 @@ Job 0 has been submitted with SLURM jobid 37099380 (log: .snakemake/slurm_logs/r
 In this example the log output from the job will be in 
 `.snakemake/slurm_logs/rule_name/37099380.log`.
 
-So how do you specify SLURM resources such as runtime, cpus etc? The best 
+So how do you specify SLURM resources such as runtime, CPUs *etc.*? The best 
 way to do that is to use the `resources:` and `threads:` directives in the 
 rules of your workflow. This allows you to fine-tune jobs to run with 
-individual runtime and cpu usage. Take a look at the example rule below:
+individual runtime and CPU usage. Take a look at the example rule below:
 
 ```python
 rule testrule:
@@ -127,7 +127,7 @@ rule testrule:
 
 This rule uses the standard resource `runtime` to set the maximum allowed 
 time for the rule to 60 minutes and sets the number of threads to 4. This 
-means that the rule will have a time limit of 60 minutes and will use 4 cpus. 
+means that the rule will have a time limit of 60 minutes and will use 4 CPUs. 
 
 Of course you could set the runtime and threads using a configuration file 
 as we have shown in earlier sections of this tutorial, _e.g._ with a config 
@@ -154,7 +154,7 @@ rule testrule:
 
 Note that when using the `--slurm` flag `-j` only specifies the number of 
 jobs that can be sent to the queue at any given time, while the number of 
-cpus used for each job is set via the `threads:` directive.
+CPUs used for each job is set via the `threads:` directive.
 
 The `resources` directive can also be used to specify constraints, for 
 instance if jobs need to run on nodes with more memory you can use the 
@@ -179,7 +179,7 @@ You can read more details about running Snakemake on compute clusters in the
 
 ## SLURM Profile
 
-As an alternative to the built-in slurm support you can also use a 
-configuration profile developed for slurm, such as 
-https://github.com/Snakemake-Profiles/slurm or the more light-weight 
-https://github.com/jdblischak/smk-simple-slurm. 
+As an alternative to the built-in SLURM support you can also use a 
+configuration profile developed for SLURM, such as 
+[https://github.com/Snakemake-Profiles/slurm]() or the more light-weight 
+[https://github.com/jdblischak/smk-simple-slurm]().

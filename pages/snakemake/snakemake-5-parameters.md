@@ -57,17 +57,17 @@ a wildcard which in this specific workflow can be either `SRR935090`,
 generate, `wildcards.sample_id` will take the value of either of the three 
 sample ids. The `samples` variable defined in the function is a Python 
 [dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
-that has the URLs for each sample_id hardcoded. This dictionary is used to 
+that has the URLs for each sample_id hard-coded. This dictionary is used to 
 convert the value of the `sample_id` wildcard to a URL, which is returned by 
 the function. Finally, in the `shell:` directive we access the `url` parameter 
 with `{params.url}`. (We could have written three separate rules to download 
 the samples, but it's easy to see how that can become impractical.)
 
 Let's add another parameter to the `get_SRA_by_accession` rule. As you can 
-see in the shell command the fastq file downloaded by `wget` gets piped 
+see in the shell command the FASTQ file downloaded by `wget` gets piped 
 directly (the `-O -` part means send contents to STDOUT) to the `seqtk sample` 
 command which reads from STDIN and outputs 25000 randomly sampled reads (out 
-of the 100,000 contained in the example fastq file). Change in the rule to 
+of the 100,000 contained in the example FASTQ file). Change in the rule to 
 use the parameter `max_reads` instead and set the value to 20000. If you 
 need help, click to show the solution below.
 
@@ -135,7 +135,7 @@ configuration file to Snakemake. In this file we can collect all the
 project-specific settings, sample ids and so on. This also enables us to write 
 the Snakefile in a more general manner so that it can be better reused between 
 projects. Like several other files used in these tutorials, this file should be 
-in [yaml format](https://en.wikipedia.org/wiki/YAML). Create the file below and 
+in [YAML format](https://en.wikipedia.org/wiki/YAML). Create the file below and 
 save it as `config.yml`.
 
 ```yaml

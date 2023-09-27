@@ -70,7 +70,7 @@ This should print something like this to your command line:
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
-Seems like I'm running the Darwin version of macOS. Then run it in the Ubuntu
+Seems like I'm running the Darwin version of MacOS. Then run it in the Ubuntu
 Docker container:
 
 ```bash
@@ -139,7 +139,7 @@ curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fast
 gunzip -c NCTC8325.fa.gz > tempfile
 ```
 
-to download and prepare the input for bowtie2.
+To download and prepare the input for Bowtie2.
 
 Now try running the following Bash code:
 
@@ -147,8 +147,8 @@ Now try running the following Bash code:
 docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build /analysis/tempfile /analysis/NCTC8325
 ```
 
-Docker will automatically download the container image for bowtie2 version 
-2.5.1 from the remote repository https://quay.io/repository/biocontainers/bowtie2
+Docker will automatically download the container image for Bowtie2 version 
+2.5.1 from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
 and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
 [COMMAND] [ARG...]` syntax just like before. In this case 
 `quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but 
@@ -159,7 +159,7 @@ input tempfile and the output index)
 
 The `-v $(pwd):/analysis` part is the OPTIONS which we use to mount the current 
 directory inside the container in order to make the `tempfile` input available 
-to bowtie2. More on these so-called "Bind mounts" in Section 4 of this tutorial.
+to Bowtie2. More on these so-called "Bind mounts" in Section 4 of this tutorial.
 
 > **Quick recap** <br>
 > In this section we've learned:

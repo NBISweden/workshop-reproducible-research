@@ -34,8 +34,7 @@ mamba clean --all
 ```
 
 If you also want to remove Mamba itself (*i.e.* removing all traces of Mamba),
-you should first 'uninit' the installation, this part should be run with 
-`conda`:
+you should first reverse the installation, this part should be run with `conda`:
 
 ```
 conda init --reverse
@@ -113,7 +112,7 @@ docker image rm $(docker image ls -a -q)
 Removing Docker itself works differently on the three operating systems, which
 is described below:
 
-#### macOS
+#### MacOS
 
 Click the Docker icon in the menu bar (upper right part of the screen) and
 select "Preferences". In the upper right corner, you should find a little bug icon.

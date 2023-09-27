@@ -1,5 +1,5 @@
 During these tutorials we have been working on a case study about the
-multiresistant bacteria MRSA. Here we will build and run a Docker container
+multi-resistant bacteria MRSA. Here we will build and run a Docker container
 that contains all the work we've done so far.
 
 * We've [set up a GitHub repository](git-7-working-remotely) for version control

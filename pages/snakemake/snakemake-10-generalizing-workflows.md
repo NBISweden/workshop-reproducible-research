@@ -29,7 +29,7 @@ it as a list similar to the way it was expressed before by adding:
 SAMPLES: ["SRR935090", "SRR935091", "SRR935092"]
 ```
  
-to `config.yml`, or you can use this yaml notation (whether you 
+To `config.yml`, or you can use this YAML notation (whether you 
 choose `SAMPLES` or `sample_ids` as the name of the entry doesn't matter, 
 you will just have to reference the same name in the config dictionary 
 inside the workflow):
@@ -57,7 +57,7 @@ Do a dry-run afterwards to make sure that everything works as expected.
 
 You may remember from the [snakemake-5-parameters](snakemake-5-parameters)
 part of this tutorial that we're using a function to return the URL of the 
-fastq files to download for each sample:
+FASTQ files to download for each sample:
 
 ```python
 def get_sample_url(wildcards):
@@ -69,7 +69,7 @@ def get_sample_url(wildcards):
     return samples[wildcards.sample_id]
 ```
 
-Here the URLs of each sample_id is hardcoded in the `samples` dictionary 
+Here the URLs of each sample_id is hard-coded in the `samples` dictionary 
 inside the function. To generalize this function we can move the definition 
 to the config file, placing it for example under an entry that we call 
 `sample_urls` like this:
@@ -83,7 +83,7 @@ sample_urls:
 
 This is what's called 'nested' key/value pairs, meaning that each sample_id 
 -> URL pair becomes nested under the config key `sample_urls`. So in order 
-to access the url of _e.g._ `SRR935090` we would use 
+to access the URL of _e.g._ `SRR935090` we would use 
 `config["sample_urls"]["SRR935090"]`. This means that you will have to 
 update the `get_sample_url` function to:
 
@@ -104,11 +104,11 @@ sample_id. Again, do a dry-run to see that the new implementation works.
 > each sample to the config dictionary.
 
 Now let's take a look at the genome reference used in the workflow. In the 
-`get_genome_fasta` and `get_genome_gff3` rules we have hardcoded FTP paths 
-to the fasta GFF annotation file for the genome `NCTC8325`. We can 
+`get_genome_fasta` and `get_genome_gff3` rules we have hard-coded FTP paths 
+to the FASTA GFF annotation file for the genome `NCTC8325`. We can 
 generalize this in a similar fashion to what we did with the  
 `get_SRA_by_accession` rule. Let's add a nested entry called `genomes` to 
-the config file that will hold the genome id and FTP paths to the fasta and 
+the config file that will hold the genome id and FTP paths to the FASTA and 
 GFF file:
 
 ```yaml
@@ -123,10 +123,10 @@ genomes:
 
 As you can see this is very similar to what with did with `sample_urls`, 
 just that we have one more nested level. Now to access the FTP path to the 
-fasta file for genome id `NCTC8325` we can use 
+FASTA file for genome id `NCTC8325` we can use 
 `config["genomes"]["NCTC8325"]["fasta"]`.
 
-Let's now look at how to do the mapping from genome id to fasta path in the
+Let's now look at how to do the mapping from genome id to FASTA path in the
 rule `get_genome_fasta`. This is how the rule currently looks (if you have
 added the log section as previously described).
 
@@ -145,9 +145,9 @@ rule get_genome_fasta:
         """
 ```
 
-We don't want the hardcoded genome id `NCTC8325`, so replace that with a 
+We don't want the hard-coded genome id `NCTC8325`, so replace that with a 
 wildcard, say `{genome_id}` (remember to add the wildcard to the `log:` 
-directive as well). We now need to supply the remote paths to the fasta file 
+directive as well). We now need to supply the remote paths to the FASTA file 
 for a given genome id. Because we've added this information to the 
 config file we just need to pass it to the rule in some way, and just like 
 in the `get_SRA_by_accession` rule we'll use a function to do the job:
@@ -200,16 +200,16 @@ rule get_genome_gff3:
 ```
 </details>
 
-Also change in `index_genome` to use a wildcard rather than a hardcoded genome
+Also change in `index_genome` to use a wildcard rather than a hard-coded genome
 id. Here you will run into a complication if you have followed the previous
 instructions and use the `expand()` expression. We want the list to expand to
 `["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
-*i.e.* only expanding the wildcard referring to the bowtie2 index. To keep the
+*i.e.* only expanding the wildcard referring to the Bowtie2 index. To keep the
 `genome_id` wildcard from being expanded we have to "mask" it with double curly
-brackets: `{{genome_id}}`. In addition, we need to replace the hardcoded 
+brackets: `{{genome_id}}`. In addition, we need to replace the hard-coded 
 `intermediate/NCTC8325` in the shell directive of the rule with the genome id 
 wildcard. Inside the shell directive the wildcard object is accessed with this 
-syntax: `{wildcards.genome_id}`, so the bowtie2-build command should be:
+syntax: `{wildcards.genome_id}`, so the Bowtie2-build command should be:
 
 ```bash
 bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
@@ -217,7 +217,7 @@ bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
 
 Note that this will only work if the `{genome_id}` wildcard can be resolved to
 something defined in the config (currently `NCTC8325` or `ST398`). If you try to
-generate a fasta file for a genome id not defined in the config Snakemake will 
+generate a FASTA file for a genome id not defined in the config Snakemake will 
 complain, even at the dry-run stage.
 
 The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can now 
@@ -244,7 +244,7 @@ input:
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
-Also change the hardcoded genome id in the `generate_count_table` input in a 
+Also change the hard-coded genome id in the `generate_count_table` input in a 
 similar manner.
 
 In general, we want the rules as far downstream as possible in the workflow to 
@@ -255,7 +255,7 @@ to determine how it can use all the available rules to generate it. Here the
 `align_to_genome` rule says "I need this genome index to align my sample to" and
 then it's up to Snakemake to determine how to download and build the index.
 
-One last thing is to change the hardcoded `NCTC8325` in the `shell:` directive
+One last thing is to change the hard-coded `NCTC8325` in the `shell:` directive
 of `align_to_genome`. Bowtie2 expects the index name supplied with the `-x` flag
 to be without the ".*.bt2" suffix so we can't use `-x {input.index}`. Instead 
 we'll insert the genome_id directly from the config like this:

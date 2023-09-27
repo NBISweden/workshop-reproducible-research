@@ -17,10 +17,10 @@ x = np.linspace(0,3*np.pi,100)
 # Use the sine function to generate y-values
 y = np.sin(x)
 # Plot the data
-line, = plt.plot(x, y, color='red', linestyle="-")
+line, = plt.plot(x, y, colour='red', linestyle="-")
 ```
 
-By default plots are rendered in the notebook as rasterized images which can 
+By default plots are rendered in the notebook as rasterised images which can 
 make the quality poor. To render in scalable vector graphics format use the 
 `set_matplotlib_formats` from the matplotlib_inline package:
 
@@ -40,13 +40,13 @@ involve a lot of cumbersome coding, when all you want is a simple bar chart!
 
 Fortunately there are a number of Python packages that build upon matplotlib but 
 with a much simplified interface. One such popular package is 
-[seaborn](http://seaborn.pydata.org/). Below we'll see how to generate a nice 
+[Seaborn](http://Seaborn.pydata.org/). Below we'll see how to generate a nice 
 looking bar plot with error bars.
 
-First import the seaborn package (using an abbreviated name to simplify typing):
+First import the Seaborn package (using an abbreviated name to simplify typing):
 
 ```python
-import seaborn as sns
+import Seaborn as sns
 ```
 
 Next we'll load some example data of penguins collected at the Palmer Station, 
@@ -58,13 +58,13 @@ penguins = sns.load_dataset("penguins")
 penguins.head(5)
 ```
 
-The most basic way to generate a bar plot of this data with seaborn is:
+The most basic way to generate a bar plot of this data with Seaborn is:
 
 ```python
 sns.barplot(data=penguins)
 ```
 
-Simple right? Yes, but maybe not very informative. Here seaborn simply 
+Simple right? Yes, but maybe not very informative. Here Seaborn simply 
 calculates the mean of all numeric variables for the penguins and plots them 
 with error bars representing a 95% confidence interval.
 
@@ -77,14 +77,14 @@ sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd", errwidth=
 
 Here we specified to use values in the 'island' column as categories for the 
 x-axis, and values in the 'body_mass_g' column as values for the y-axis. 
-The barplot function of seaborn will then calculate the mean body mass for each
+The barplot function of Seaborn will then calculate the mean body mass for each
 island and plot the bars. With `errorbar="sd"` we tell the function to draw the 
 standard deviation as error bars, instead of computing a confidence interval. 
 Finally `errwidth=.5` sets the linewidth of the error bars.
 
 If we instead want to visualize the data as a scatterplot we can use the 
-`sns.scatterplot` function. Let's plot the body mass vs. bill length for all
-penguins and color the data points by species. We'll also move the legend 
+`sns.scatterplot` function. Let's plot the body mass vs bill length for all
+penguins and colour the data points by species. We'll also move the legend 
 outside of the plotting area and modify the x and y-axis labels:
 
 ```python
@@ -108,12 +108,12 @@ plt.savefig("scatterplot.pdf", bbox_inches="tight")
 The `bbox_inches="tight"` setting ensures that the figure is not clipped when
 saved to file.
 
-The Seaborn [website](http://seaborn.pydata.org/) contains great tutorials and
+The Seaborn [website](http://Seaborn.pydata.org/) contains great tutorials and
 examples of other ways to plot data!
 
 > **Quick recap** <br>
 > In this section we've learned:
 >
 - How to generate simple plots with `matplotlib`
-- How to import and use the `seaborn` package for plotting
+- How to import and use the `Seaborn` package for plotting
 - How to save plots from notebooks to a file

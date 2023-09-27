@@ -1,6 +1,6 @@
 As you might remember from the [intro](introduction), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+multi-resistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
 In order to do this we have performed RNA-seq of three strains, one test and
 two controls. We have already set up a draft Snakemake workflow for the RNA-seq
 analysis and it seems to be running nicely. The rest of the Snakemake tutorial
@@ -53,10 +53,10 @@ FastQC and so on), then take a look at the [intro](introduction).
 Also generate the job graph in the same manner. Here you can see that three
 samples will be downloaded: SRR935090, SRR935091, and SRR935092. The 
 original sample files contain tens of millions of reads but for the purpose 
-of this course we have subsampled them to 100,000 reads per sample, so that 
+of this course we have sub-sampled them to 100,000 reads per sample, so that 
 they are easy to manage, and made them available at the [SciLifeLab Data 
 Repository](https://figshare.scilifelab.se/articles/educational_resource/MRSA_case_study_example_data/22246417).
-These fastq files will then be quality controlled with FastQC and aligned to 
+These FASTQ files will then be quality controlled with FastQC and aligned to 
 a genome. The QC output will be aggregated with MultiQC and the alignments 
 will be used to generate a count table, *i.e.* a table that shows how many 
 reads map to each gene for each sample. This count table is then what the 

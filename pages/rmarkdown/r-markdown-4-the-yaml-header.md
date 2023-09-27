@@ -23,7 +23,7 @@ We can also set parameters in the YAML header. These are either character
 strings, numerical values, or logicals, and they can be used in the R code in
 the code chunks. Let's try it out:
 
-* Add two parameters, `data` and `color`, to the YAML header. It should now
+* Add two parameters, `data` and `colour`, to the YAML header. It should now
   look something like this:
 
 ```yaml
@@ -36,7 +36,7 @@ output:
         number_sections: true
 params:
     data: cars
-    color: blue
+    colour: blue
 ---
 ```
 
@@ -45,11 +45,11 @@ params:
 
 ````
 ```{r pressure, fig.width = 6, fig.height = 4}
-plot(get(params$data), col = params$color)
+plot(get(params$data), col = params$colour)
 ```
 ````
 
-This will plot the dataset `cars` using the color `blue`, based on the
+This will plot the dataset `cars` using the colour `blue`, based on the
 parameters we set in the YAML header.
 
 * Knit and see what happens!

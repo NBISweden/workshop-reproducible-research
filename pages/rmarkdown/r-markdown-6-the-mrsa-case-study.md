@@ -1,6 +1,6 @@
 As you might remember from the [intro](introduction), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+multi-resistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
 In this exercise we will use R Markdown to make a report in form of
 a Supplementary Material HTML based on the outputs from the [Snakemake
 tutorial](snakemake-10-generalizing-workflows). Among the benefits of having
@@ -68,7 +68,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 Next, take a look at the `dependencies`, `read_params`, and `read_data` chunks.
 They 1) load the required packages, 2) read the parameters and store them in
 R objects to be used later in the code, and 3) read the data in the counts
-file, the multiqc file, as well as fetch meta data from GEO. These chunks are
+file, the MultiQC file, as well as fetch meta data from GEO. These chunks are
 provided as is, and you do not need to edit them.
 
 Below these chunks there is some markdown text that contains the Supplementary
@@ -208,7 +208,7 @@ fig.cap = "A rule graph showing the different steps of the bioinformatic
            analysis that is included in the Snakemake workflow."
 ```
 
-and:
+And:
 
 ```r
 out.height = "11cm"

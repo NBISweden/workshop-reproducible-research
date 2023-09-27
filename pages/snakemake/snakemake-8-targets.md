@@ -25,8 +25,8 @@ rule align_to_genome:
         """
 ```
 
-Here we have seven inputs; the fastq file with the reads and six files with
-similar file names from the Bowtie 2 genome indexing. Instead of writing all 
+Here we have seven inputs; the FASTQ file with the reads and six files with
+similar file names from the Bowtie2 genome indexing. Instead of writing all 
 the filenames we can tidy this up by using a Python expression to generate a 
 list of these files instead. If you're familiar with Python you could do 
 this with 

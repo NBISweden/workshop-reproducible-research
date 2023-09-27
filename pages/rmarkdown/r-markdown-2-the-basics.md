@@ -1,7 +1,7 @@
 Let's begin with starting RStudio and opening a new file (*File* --> *New File*
 --> *R Markdown*). If you're using Conda you should have all the packages
 needed, but install anything that RStudio prompts you to. In the window that
-opens, select *Document and HTML* (which should be the default), and click *Ok*.
+opens, select *Document and HTML* (which should be the default), and click *OK*.
 This will open a template R Markdown document for you. On the top is a so called
 YAML header:
 
@@ -32,7 +32,7 @@ in an R Markdown document:
 3. The YAML header
 
 We will dig deeper into each of these in the following sections! But first, just
-to get the flavor for things to come: press the little *Knit*-button located at
+to get the flavour for things to come: press the little *Knit*-button located at
 the top of the text editor panel in RStudio. This will prompt you to save the
 `rmd` file (do that), and generate the output file (an HTML file in this case).
 It will also open up a preview of this file for you.

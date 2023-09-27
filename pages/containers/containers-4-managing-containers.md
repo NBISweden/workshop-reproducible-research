@@ -62,7 +62,7 @@ directory on your host system.
 > **Tip** <br>
 > Docker also has a more advanced way of data storage called
 > [volumes](https://docs.docker.com/storage/volumes/). Volumes provide
-> added flexibility and are independent of the host machine's filesystem
+> added flexibility and are independent of the host machine's file system
 > having a specific directory structure available. They are particularly
 > useful when you want to share data *between* containers.
 

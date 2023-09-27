@@ -150,8 +150,8 @@ this example, `echo` will always be set to `TRUE`, unless otherwise specified
 in individual chunks.
 
 > **Tip** <br>
-> For more chunk options, have a look at page 2-3 of this [reference](
-> https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+> For more chunk options, have a look at page 2-3 of this
+> [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
 It is also possible to create different types of interactive plots using
 R Markdown. You can see some examples of this [here](http://www.htmlwidgets.org/showcase_networkD3.html).

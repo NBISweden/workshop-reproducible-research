@@ -179,7 +179,7 @@ git add environment.yml
   guessed it, run:
 
 ```bash
-git commit -m "Merge and set multiqc to v1.6"
+git commit -m "Merge and set MultiQC to v1.6"
 ```
 
 * Finally, push these changes to GitHub:

@@ -1,6 +1,6 @@
 As you might remember from the [intro](introduction), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+multi-resistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
 We have already seen how to define the project environment in the [Conda
 tutorial](conda-3-projects) and how to set up the workflow in the [Snakemake
 tutorial](snakemake-10-generalizing-workflows). Here we explore the results
@@ -10,7 +10,7 @@ some basic stats.
 In the `workshop-reproducible-research/tutorials/jupyter/` directory you will 
 find a notebook called `supplementary_material.ipynb`. Open this notebook 
 via either the classic or lab dashboard, or using one of these commands 
-directly from the commandline:
+directly from the command line:
 
 ```bash
 # Open in classic interface
@@ -51,7 +51,7 @@ import matplotlib_inline
 matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'svg')
 ```
 
-to set high-quality output for plots.
+To set high-quality output for plots.
 
 Run the cell and create a new one below it.
 
@@ -95,7 +95,7 @@ qc = pd.merge(qc, name_df, left_on="Sample", right_index=True)
 qc
 ```
 
-In the code above we load the multiqc file, rename the columns by stripping the 
+In the code above we load the MultiQC file, rename the columns by stripping the 
 `FastQC_mqc-generalstats-fastqc-` part from column names and replace underscores
 with spaces. Finally the table is merged with the information obtained in the 
 step above and output to show summary statistics from the QC stage.
@@ -134,7 +134,7 @@ summary_plot_data = counts_summary.loc[counts_summary.sum(axis=1)>0]
 Now for the plotting:
 
 ```python
-# Set color palette to 'Set2'
+# Set colour palette to 'Set2'
 colors = sns.color_palette("Set2")
 # Create a stacked barplot
 ax = summary_plot_data.T.plot(kind="bar", stacked=True, color=colors)
@@ -161,7 +161,7 @@ notebook:
 heatmap_data = heatmap_data.rename(columns = name_dict['title'])
 ```
 
-Now let's plot the heatmap. We'll log-transform the counts, set color scale 
+Now let's plot the heatmap. We'll log-transform the counts, set colour scale 
 to Blue-Yellow-Red and cluster both samples and genes using 'complete' linkage
 clustering:
 
@@ -173,7 +173,7 @@ with sns.plotting_context("notebook", font_scale=0.7):
     plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
 ```
 
-In the code above we use the seaborn `plotting_context` function to scale all 
+In the code above we use the Seaborn `plotting_context` function to scale all 
 text elements of the heatmap in one go.
 
 As a final step we'll add some info for reproducibility under the 
@@ -193,11 +193,11 @@ example you could simply add:
 !mamba list
 ```
 
-to the end of the notebook.
+To the end of the notebook.
 
 > **Tip** <br>
 > If you want to know more about how notebooks can be integrated into 
-> Snakemake worfklows, see the Extra material at the end of this tutorial
+> Snakemake workflows, see the Extra material at the end of this tutorial
 
 ## Sharing your work
 
@@ -211,12 +211,12 @@ and navigate to `tutorials/jupyter/supplementary_material.ipynb`.
 
 As you can imagine, having this very effortless way of sharing results
 can greatly increase the visibility of your work. You work as normal on
-your project, and push regularly to the repository as you would anyways,
+your project, and push regularly to the repository as you would anyway,
 and the output is automatically available for anyone to see. Or for a
 select few if you're not ready to share your findings with the world
 quite yet.
 
-Say your notebook isn't on Github/Bitbucket. All hope isn't lost there.
+Say your notebook isn't on GitHub/Bitbucket. All hope isn't lost there.
 Jupyter.org provides a neat functionality called *nbviewer*, where you can
 paste a URL to any notebook and they will render it for you. Go to
 [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try
@@ -284,7 +284,7 @@ trying out and showing existing notebooks rather than making new ones.
 > and placing the file there.  
 
 > **A note on transparency** <br>
-> Resources like Github/Bitbucket and Jupyter Notebooks have changed 
+> Resources like GitHub/Bitbucket and Jupyter Notebooks have changed 
 > the way we do scientific research by encouraging visibility, social 
 > interaction and transparency. 
 > It was not long ago that the analysis scripts and workflows in a lab were

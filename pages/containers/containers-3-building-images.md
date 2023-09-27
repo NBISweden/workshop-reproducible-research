@@ -72,22 +72,22 @@ SHELL ["/bin/bash", "--login", "-c"]
 # Set workdir
 WORKDIR /course
 
-# Set timezone
+# Set time zone
 ENV TZ="Europe/Stockholm"
 ENV DEBIAN_FRONTEND=noninteractive
 ```
 
 `SHELL` simply sets which shell to use and `WORKDIR` determines the 
 directory the container should start in. The `ENV` instruction is used to 
-set environmental variables and here we use it to set the timezone by declaring 
+set environmental variables and here we use it to set the time zone by declaring 
 a `TZ` variable. The `DEBIAN_FRONTEND=noninteractive` line means that we 
-force the subsequent installation to not prompt us to set the timezone manually.
+force the subsequent installation to not prompt us to set the time zone manually.
 
 The next few lines introduce the important `RUN` instruction, which is used 
 for executing shell commands:
 
 ```Dockerfile
-# Install package for setting timezone
+# Install package for setting time zone
 RUN apt-get update && apt install -y tzdata && apt-get clean
 
 # Configure Conda/Mamba
@@ -138,8 +138,8 @@ Snakefile -c 1 generate_figures`.
 
 ## Building from Dockerfiles
 
-Ok, so now we understand how a Dockerfile works. Constructing the image from
-the Dockerfile is really simple. Try it out now:
+Now we understand how a Dockerfile works. Constructing the image itself from the
+Dockerfile can be done as follows - try it out:
 
 > **Important** <br>
 > If your computer is a MAC with the M1 chip, you may have to add 

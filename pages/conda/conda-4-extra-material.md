@@ -165,8 +165,8 @@ with the active environment name if it was installed using the `-n` flag or if
 the environment folder has a parent folder named `envs/`. Otherwise the full
 environment path (*i.e.* the 'prefix') is displayed.
 
-If you instead set env_prompt to `({name}) ` Conda will modify your prompt with
-the folder name of the active environment. You can change the setting by
+If you instead set `env_prompt` to `({name}) ` Conda will modify your prompt
+with the folder name of the active environment. You can change the setting by
 running `conda config --set env_prompt '({name}) '`
 
 If you wish to keep the `({default_env})` behaviour, or just don't want to
@@ -184,7 +184,7 @@ cause your prompt to be modified with *project_a_environment*.
 ## Bash aliases for conda
 
 Some programmers like to have aliases (_i.e._ shortcuts) for common commands.
-Two aliases that might be usefol for you are `alias coac='conda activate'` and
+Two aliases that might be useful for you are `alias coac='conda activate'` and
 `alias code='conda deactivate'`. Don't forget to add them to your
 `~/.bash_profile` if you want to use them!
 
@@ -197,7 +197,7 @@ see revisions to an environment by using:
 mamba list --revisions
 ```
 
-which shows each revision (numbered) and what's installed.
+Which shows each revision (numbered) and what's installed.
 
 You can revert back to particular revision using:
 

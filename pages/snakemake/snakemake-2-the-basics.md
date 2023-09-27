@@ -13,7 +13,7 @@ echo "This is a.txt" > a.txt
 echo "This is b.txt" > b.txt
 ```
 
-Then open `Snakefile` in your favorite text editor. A Snakemake workflow is based on
+Then open `Snakefile` in your favourite text editor. A Snakemake workflow is based on
 rules which take some file(s) as input, performs some type of operation on
 them, and generate some file(s) as outputs. Here is a very simple rule that
 produces `a.upper.txt` as an output, using `a.txt` as input. Copy this rule to 
@@ -319,7 +319,7 @@ this we have to call the function without any arguments (simply
 `concat_input`) and the function has to be defined to accept a single argument 
 (here `def concat_input(wildcards):`).
 Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
-`-f` to the snakemake command to force a re-run:
+`-f` to the Snakemake command to force a re-run:
 
 ```bash
 snakemake a_b.txt -c 1 -f
@@ -333,16 +333,16 @@ Building DAG of jobs...
 a b ['a.upper.txt', 'b.upper.txt']
 ```
 
-followed by the rest of the workflow output.
+Followed by the rest of the workflow output.
 
 There are a number of possible use-cases for input functions. For example, 
 say that you have an experiment where you've sequenced three samples: 
-`sample1`, `sample2` and `sample3` with the corresponding fastq files under 
+`sample1`, `sample2` and `sample3` with the corresponding FASTQ files under 
 `data/` and you want to write a rule that outputs the statistics of all  
 sequences within each sample. 
 However, samples `sample1` and `sample2` have been sequenced with single-end 
 technology while `sample3` have paired-end reads. The single-end samples will 
-have only one fastq file whereas the paired-end sample will have two (one 
+have only one FASTQ file whereas the paired-end sample will have two (one 
 for each sequenced end). Thus, depending on the name of the sample the 
 input to the function will either be one file or two. With input functions 
 we can write a generalized rule that can handle both types:
@@ -370,7 +370,7 @@ As you can see, the `fastq_stats` rule outputs one file `{sample_id}.stats.txt`
 and takes as input the value returned from the `fastq_input` function. In 
 this function the sample id is evaluated and if it is either `sample1` or 
 `sample2` (our single-end samples) then the function returns a single string 
-which is the path to the fastq file for that sample. Otherwise, the function 
+which is the path to the FASTQ file for that sample. Otherwise, the function 
 returns a list containing both the `R1` and `R2` files for the sample. In the 
 `shell:` directive of the rule the `seqtk comp` command is run on the input 
 and the output is sent to the output file.

@@ -149,7 +149,7 @@ rule concatenate_files:
     wildcards: first=a, second=b
 ```
 
-because although no files involved in the workflow have been changed, Snakemake
+Because although no files involved in the workflow have been changed, Snakemake
 recognizes that the workflow code itself has been modified and this triggers
 a re-run.
 
