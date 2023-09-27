@@ -14,8 +14,8 @@ the latter is how to store and share that history with others.
 
 ## GitHub setup
 
-If you have not done so already, go to [github.com](https://github.com/join)
-and create an account. You can also create an account on another online hosting
+If you have not done so already, go to [GitHub](https://github.com/join) and
+create an account. You can also create an account on another online hosting
 service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
 [GitLab](https://about.gitlab.com/). The exercises below are written with
 examples from GitHub (as that is the most popular platform with the most
@@ -25,8 +25,8 @@ although the exact menu structure and link placements differ a bit.
 Any upload to and from GitHub requires you to authenticate yourself. GitHub
 used to allow authentication with your account and password, but this is no
 longer the case - using SSH keys is favoured instead. Knowing exactly what these
-are is not necessary to get them working, but we encourage you to read the box 
-below to learn more about them! GitHub has excellent, platform-specific 
+are is not necessary to get them working, but we encourage you to read the box
+below to learn more about them! GitHub has excellent, platform-specific
 instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please use them before moving on!
@@ -104,7 +104,7 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-You always need to specify `git push origin main` by default, but you can 
+You always need to specify `git push origin main` by default, but you can
 circumvent this by telling Git that you always want to push to
 `origin/main` when you're on your local `main` branch. To do this, use
 the command `git branch --set-upstream-to origin/main`. **Try it out now**.
@@ -289,7 +289,7 @@ our remote - you should do this in the original `git_tutorial` repository, so
 move back into that directory.
 
 * Create a new branch named `trimming` and add the `--trim5 5` flag to the
-  bowtie2-command part of the `Snakefile`, which should now look like this:
+  Bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
 bowtie2 --trim5 5 --very-sensitive-local -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}

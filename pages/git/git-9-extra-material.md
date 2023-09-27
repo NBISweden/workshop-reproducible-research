@@ -41,7 +41,7 @@ that you've helped the project grow by contributing your code!
 
 ## Amending commits
 
-Once in a while you'll have just commited something to your Git repo and
+Once in a while you'll have just committed something to your Git repo and
 immediately remembered that you forgot to add something small, or perhaps you
 saw an error somewhere. While you can certainly just add that and make a new
 commit, wouldn't it be nicer if you could just make the change as if it was
@@ -62,7 +62,7 @@ your new changes, since the remote already contains the *first* version of the
 commit and can't simply rewrite what it already has.
 
 Amending changes is thus a good way to fix small mistakes you realise you made
-just after commiting them, as long as you only amend local changes!
+just after committing them, as long as you only amend local changes!
 
 ## Rebasing
 
@@ -125,11 +125,11 @@ if we try to rebase things that have already been pushed. We can rebase *on top
 of* remote things, of course, since we're not changing any remote history, only
 the local history. Be careful when you rebase!
 
-## Rebasing as cleanup
+## Rebasing as clean-up
 
 If the above section felt scary, don't worry! There's another highly useful
 use-case for `git rebase` that doesn't risk destroying any history, namely local
-cleanup!
+clean-up!
 
 Let's imagine you've worked on your local `feature-branch` for some time, and
 you have a number of commits on it. Some are highly related to each other and

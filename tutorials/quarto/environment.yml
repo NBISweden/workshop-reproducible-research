@@ -1,0 +1,11 @@
+name: quarto-env
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - jupyter
+  - python=3
+  - r-base
+  - r-ggplot2
+  - r-palmerpenguins
+  - r-rmarkdown

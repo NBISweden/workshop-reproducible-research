@@ -130,8 +130,8 @@ several sections, or *directives* as Nextflow calls them: `publishDir`, `input`,
 `output` and `script`.
 
 > **Naming processes** <br>
-> A process can be named using any case, but a commonly used convention is to use 
-> UPPERCASE letters for processes to visually distinguish them in the workflow. 
+> A process can be named using any case, but a commonly used convention is to use
+> UPPERCASE letters for processes to visually distinguish them in the workflow.
 > You do not have to follow this if you don't want to, but we do so here.
 
 Let's start with the first directive: `publishDir`. This tells Nextflow where
@@ -263,7 +263,7 @@ statement `.map{ file -> tuple(file.getBaseName(), file) }` can thus be read as
 "replace the channel's contents with a tuple containing the base name and the
 file path". The contents of the channel thus change from `[a.txt]` to `[a,
 a.txt]`. Passing the sample name or ID together with the sample data in this way
-is extremely useful in a workflow context and can grealy simplify downstream
+is extremely useful in a workflow context and can greatly simplify downstream
 processes.
 
 Before this will work, however, we have to change the process itself to make use

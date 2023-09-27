@@ -127,7 +127,7 @@ dependencies:
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
 part between `=======` and `>>>>>>> refs/remotes/origin/main` is
 the one added to the remote and which caused the conflict when you tried to merge
-those changes to your local repository. It is now up to you to decide which 
+those changes to your local repository. It is now up to you to decide which
 version to keep, or to change it to a third alternative.
 
 * Let's say that you are confident that it is better to run MultiQC 1.6 rather
@@ -179,7 +179,7 @@ git add environment.yml
   guessed it, run:
 
 ```bash
-git commit -m "Merge and set multiqc to v1.6"
+git commit -m "Merge and set MultiQC to v1.6"
 ```
 
 * Finally, push these changes to GitHub:

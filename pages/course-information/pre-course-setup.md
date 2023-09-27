@@ -30,7 +30,7 @@ cd workshop-reproducible-research
 > Run this command after you have `cd` into `workshop-reproducible-research`
 > as described above. If you do that, you probably also want to view the
 > same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io.
+> hosted at [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io).
 > Locate the version box in the bottom right corner of the website and
 > select the corresponding version.
 
@@ -57,11 +57,12 @@ resources:
 > **Note** <br>
 > If you run into error messages when trying to download files through the Linux
 > shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
-> nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
-> then add `nameserver 8.8.8.8` to the bottom of the file and save it.
+> name server to the internet configuration by running `sudo nano
+> /etc/resolv.conf` then add `nameserver 8.8.8.8` to the bottom of the file and
+> save it.
 
 > **Important!** <br>
-> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows), 
+> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows),
 > **please follow the Linux instructions.**
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
@@ -137,15 +138,15 @@ below for more information.
 > change, so we have chosen to use `main` for this course.
 
 > **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-> tags/course_1905`. To list all available tags, use `git tag`. Run this
-> command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
+> If you want to revisit the material from an older instance of this course, you
+> can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+> tags/course_1905`. To list all available tags, use `git tag`. Run this command
+> after you have `cd` into `workshop-reproducible-research` as described above.
+> If you do that, you probably also want to view the same older version of this
+> website. Until spring 2021, the website was hosted at
+> [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io/en/latest/).
+> Locate the version box in the bottom right corner of the website and select
+> the corresponding version.
 
 ## Installing Mamba
 
@@ -153,7 +154,7 @@ below for more information.
 
 Maybe you've worked with the Conda package manager before, and you're wondering
 what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
-quickly grown and matured to the point that we are almost explusively using it
+quickly grown and matured to the point that we are almost exclusively using it
 in our own daily work rather than Conda -  we are thus reflecting this
 wide-spread adopting in the course material as well. Conveniently there is
 almost no difference in the way the two programs work on the command line. You
@@ -171,8 +172,8 @@ this is not too confusing.
 
 ### If you already have Mamba installed
 
-If you already have installed Mamba you can make sure you're using the latest 
-version by running `mamba update -n base mamba` and skip the installation 
+If you already have installed Mamba you can make sure you're using the latest
+version by running `mamba update -n base mamba` and skip the installation
 instructions below.
 
 ### If you have Conda installed
@@ -195,7 +196,7 @@ Mamba is installed by downloading and executing a [Mambaforge](https://github.co
 installer for your operating system.
 
 ```bash
-# Install Mambaforge3 for 64-bit Mac
+# Install Mambaforge for 64-bit Mac
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-x86_64.sh -O
 bash Mambaforge-MacOSX-x86_64.sh
 rm Mambaforge-MacOSX-x86_64.sh
@@ -209,8 +210,8 @@ rm Mambaforge-MacOSX-arm64.sh
 ```
 
 ```bash
-# Install Mambaforge3 for 64-bit Linux
-curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O 
+# Install Mambaforge for 64-bit Linux
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O
 bash Mambaforge-Linux-x86_64.sh
 rm Mambaforge-Linux-x86_64.sh
 ```
@@ -233,14 +234,14 @@ mamba --version
 > The Mamba docs specify a couple of things to keep in mind when using Mamba.
 > First of all, `mamba` should be installed in the `base` environment and no
 > other packages should be installed into `base`. Furthermore, mixing of the
-> `conda-forge` and `defaults` channels should be avoided as the default 
+> `conda-forge` and `defaults` channels should be avoided as the default
 > Anaconda channels are incompatible with `conda-forge`.
 
-> **Different Mambas/Condas** <br>
+> **Different Mamba/Conda flavours** <br>
 > You may come across several flavours of both Mamba and Conda. For Mamba
 > there's the *Miniforge* installer which allows you to install the `mamba`
 > command line tool that works as a replacement for `conda`. There's also
-> `micromamba`, a small standalone C++ program developed mainly for continuous
+> `micromamba`, a small stand-alone C++ program developed mainly for continuous
 > integration pipelines. For Conda there's *Miniconda*, which is the installer
 > for Conda. The third is *Anaconda*, which is a distribution of not only Conda,
 > but also over 150 scientific Python packages. If you want to use Conda it's
@@ -261,7 +262,7 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-and we will also set so called 'strict' channel priority, which ensures higher
+And we will also set so called 'strict' channel priority, which ensures higher
 stability and better performance (see details about this setting by running the
 following:
 
@@ -315,7 +316,7 @@ with the setup for the other tools.
 
 ## Installing Nextflow
 
-The easiest way to install Nextflow is the offical one, which is to just run the
+The easiest way to install Nextflow is the official one, which is to just run the
 following code:
 
 ```bash
@@ -341,7 +342,7 @@ mamba activate nextflow-env
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
 Check that Nextflow was installed correctly by running `nextflow -version`. If
-you successfully installed Nextflow using Mamba you can now deactive the
+you successfully installed Nextflow using Mamba you can now deactivate the
 environment using `mamba deactivate` and continue with the other setups, as
 needed.
 
@@ -398,10 +399,10 @@ successful.
 > **Docker for older versions of OSX/Windows** <br>
 > The latest version of Docker may not work if you have an old version of either
 > OSX or Windows. You can find older Docker versions that may be compatible for
-> you if you go to https://docs.docker.com/desktop/ and click "Previous
+> you if you go to [https://docs.docker.com/desktop/]() and click "Previous
 > versions" in the left side menu.
 
-### macOS
+### MacOS
 
 Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 and select the download option that is suitable for your computer's architecture
@@ -414,7 +415,7 @@ the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/) 
+Go to the [Linux install](https://docs.docker.com/desktop/install/linux-install/)
 section of the Docker documentation and make sure that your computer meets the
 system requirements. There you can also find instructions for different Linux
 distributions in the left sidebar under *Installation per Linux distro*.
@@ -422,7 +423,7 @@ distributions in the left sidebar under *Installation per Linux distro*.
 ### Windows
 
 In order to run Docker on Windows your computer must support *Hardware
-Virtualization Technology* and virtualization must be enabled. This is typically
+Virtualisation Technology* and virtualisation must be enabled. This is typically
 done in BIOS. Setting this is outside the scope of this tutorial, so we'll
 simply go ahead as if though it's enabled and hope that it works.
 

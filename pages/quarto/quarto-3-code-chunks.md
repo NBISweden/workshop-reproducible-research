@@ -31,7 +31,7 @@ a number of such chunk options that are useful to know about:
         <td style="padding:5px; vertical-align:middle; text-align:center;"> <font size="3">
             `echo`
         </td>
-        <td style="padding:5px"> <font size="3"> 
+        <td style="padding:5px"> <font size="3">
             Include the chunk code in the output.
         </td>
     </tr>
@@ -127,7 +127,7 @@ figures and make them look the way you want.
 > for Jupyter. There is a way to set these for the whole document with Jupyter,
 > though, which we'll talk more about in the next section of the tutorial.
 
-You can also add captions and alt. text using `fig-cap` and `fig-alt`,
+You can also add captions and alt text using `fig-cap` and `fig-alt`,
 respectively.
 
 * Add a suitable caption and alt text to the figure and render.
@@ -150,10 +150,10 @@ as per the example here. This is extremely useful if you're writing a paper or a
 report where you want to refer to figures and content in the markdown text.
 Quarto even adds a clickable link to the figure itself as well!
 
-# Subfigures
+# Sub-figures
 
-It's also possible to create subfigures using Quarto, instead of using whatever
-plotting library that your created the figures with. 
+It's also possible to create sub-figures using Quarto, instead of using whatever
+plotting library that your created the figures with.
 
 * Add the following (almost identical) code at the bottom of the chunk you
   already have:
@@ -208,4 +208,4 @@ knitr::kable(
 
 > **Quick recap** <br>
 > In this section you learned several chunk, figure and table options, how
-> cross-referencing works and how to add subfigures.
+> cross-referencing works and how to add sub-figures.

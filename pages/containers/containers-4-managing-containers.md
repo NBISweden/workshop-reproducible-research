@@ -52,17 +52,17 @@ docker exec -it my_container /bin/bash
 ## Bind mounts
 
 There are obviously some advantages to isolating and running your data analysis
-in containers, but at some point you need to be able to interact with the 
-rest of the host system (_e.g._ your laptop) to actually deliver the results. 
-This is done via bind mounts. When you use a bind mount, a file or directory 
-on the *host machine* is mounted into a container. That way, when the 
-container generates a file in such a directory it will appear in the mounted 
+in containers, but at some point you need to be able to interact with the
+rest of the host system (_e.g._ your laptop) to actually deliver the results.
+This is done via bind mounts. When you use a bind mount, a file or directory
+on the *host machine* is mounted into a container. That way, when the
+container generates a file in such a directory it will appear in the mounted
 directory on your host system.
 
 > **Tip** <br>
 > Docker also has a more advanced way of data storage called
 > [volumes](https://docs.docker.com/storage/volumes/). Volumes provide
-> added flexibility and are independent of the host machine's filesystem
+> added flexibility and are independent of the host machine's file system
 > having a specific directory structure available. They are particularly
 > useful when you want to share data *between* containers.
 
