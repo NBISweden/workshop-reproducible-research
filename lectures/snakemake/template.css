@@ -35,10 +35,10 @@ h3 {
 .Huge { font-size: 200% }
 .HUGE { font-size: 250% }
 
-.remark-code { font-size: 100% }
+*.remark-code { font-size: 75% }*
 
 /* Custom colours */
-.green { color: #85be42; font-weight: bold }
+.green { color: #85be42; font-weight: bold;}
 .dark-green { color: #487a2d; font-weight: bold }
 .blue { color: #0099c2; font-weight: bold }
 .dark-blue { color: #015491; font-weight: bold }
