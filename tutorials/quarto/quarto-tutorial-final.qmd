@@ -1,0 +1,116 @@
+---
+title: "My first Quarto document"
+author: "John Doe"
+date: today
+format:
+    html:
+        code-fold: true
+        code-tools: true
+        embed-resources: true
+        number-sections: true
+        smooth-scroll: true
+        theme: flatly
+        toc-depth: 2
+        toc-location: left
+        toc: true
+        warning: false
+    revealjs:
+        embed-resources: true
+        scrollable: true
+        slide-number: true
+        smaller: false
+        theme: default
+params:
+    point_size: 2
+    ncols: 2
+engine: knitr
+---
+
+# Palmer penguins
+
+## Figures
+
+As you can see below in @fig-penguins, penguins are great!
+
+```{r Penguin figure}
+#| label: fig-penguins
+#| fig-width: 10
+#| fig-height: 5
+#| fig-cap: Palmer penguins and their bill length, depth and body mass.
+#| cap-location: margin
+#| fig-subcap:
+#|     - Bill length vs. body mass
+#|     - Bill depth vs. body mass
+#| fig-alt: Benedict Cumberbatch pronounces penguins funnily.
+#| layout-ncol: !expr params$ncols
+library("ggplot2")
+library("palmerpenguins")
+data(penguins, package = "palmerpenguins")
+ggplot(penguins, aes(x      = bill_length_mm,
+                     y      = body_mass_g,
+                     colour = species)) +
+    geom_point(size = params$point_size) +
+    theme_bw() +
+    labs(x      = "Bill length (mm)",
+         y      = "Body mass (g)",
+         colour = "Species") +
+    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
+ggplot(penguins, aes(x      = bill_depth_mm,
+                     y      = body_mass_g,
+                     colour = species)) +
+    geom_point(size = params$point_size) +
+    theme_bw() +
+    labs(x      = "Bill depth (mm)",
+         y      = "Body mass (g)",
+         colour = "Species") +
+    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
+```
+
+## A table {.smaller}
+
+This subsection holds @tbl-penguins.
+
+```{r Penguin table}
+#| label: tbl-penguins
+#| tbl-cap: Palmer penguins bill length, width and body mass.
+#| tbl-cap-location: margin
+knitr::kable(
+    penguins[1:10, c("species", "bill_length_mm", "bill_depth_mm", "body_mass_g")],
+    col.names = c("Species", "Bill length (mm)", "Bill depth (mm)", "Body mass (g)")
+)
+```
+
+## Penguin species
+
+:::: {.columns}
+
+::: {.column width="30%"}
+::: {.incremental}
+ - Adelie
+ - Chinstrap
+ - Gentoo
+:::
+:::
+
+::: {.column width="70%"}
+::: {.fragment}
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+:::
+:::
+
+::::
+
+::: {.aside}
+If you want to hear something funny, just Google "Benedict Cumberbatch penguin"!
+:::
+
+## Why Palmer Penguins?
+
+::: {.fragment fragment-index=2}
+![](https://allisonhorst.github.io/palmerpenguins/logo.png){fig-align="center"}
+:::
+
+::: {.fragment fragment-index=1}
+The goal of `palmerpenguins` is to provide a good dataset for data exploration
+and visualization, as an alternative to `iris.`
+:::
