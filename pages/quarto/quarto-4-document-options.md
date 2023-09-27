@@ -145,6 +145,13 @@ referred to it in the code using `params$point_size`. You can now change this
 parameter at run-time using the `-P <param>:<value>` (or `--execute-param`)
 flag.
 
+Notice that this won't work if you want to use a parameter to control *e.g.* a
+chunk option like `layout-ncol`. For this we need to use an in-line code
+expression: `#| layout-ncol: !expr params$ncols`.
+
+ * Add a parameter for the `layout-ncol` chunk option and render to make sure it
+   works.
+
 If you're using the Jupyter engine you can instead specify parameters by
 designating a single cell as a *parameter cell*, like so:
 
