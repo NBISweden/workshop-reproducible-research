@@ -88,7 +88,7 @@ Quarto has a highly useful command for when you're working on a document:
 `preview`. It's essentially a live preview of the document you're working on
 that will automatically render when you introduce changes to the document.
 
-* Type `quarto preview quarto-tutorial.qmd` in the command line.
+* Type `quarto preview quarto-tutorial.qmd` at the command line.
 
 Your default web browser should now have opened a new window with your rendered
 document, while your command line should say something like the following:
