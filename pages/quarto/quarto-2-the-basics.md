@@ -65,7 +65,7 @@ using three backticks (`\``) and specify the R language using curly brackets
 You can also name chunks by adding it after the language:
 
 ````
-```{r Show today's date}
+```{r Show date}
 Sys.Date()
 ```
 ````
