@@ -1,32 +1,23 @@
 ---
 title: "Snakemake workflow manager"
 subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
-#author: "National Bioinformatics Infrastructure Sweden"
 number-sections: false
 format:
-    html:
-        output-file: "snakemake.html"
-        css: "template.css"
-        toc: true
     revealjs:
-        output-file: "snakemake-revealjs.html"
+        output-file: "snakemake.html"
         footer: "NBIS Reproducible research - Snakemake"
         css: "template.css"
         theme: default
         smaller: true
         code-block-border-left: true
         code-block-background: true
-        
-    #pdf:
-     #   output-file: "snakemake.pdf"
+        auto-stretch: false
 format-links: false
 highlight-style: a11y
 ---
 
 # Making reproducible workflows with
-<img src="https://snakemake.github.io/img/jk/logo.png" style="background-color:#002221;width:10%;padding: 15px 15px 15px 15px;">
-
-
+<img src="https://snakemake.github.io/img/jk/logo.png" style="background-color:#002221;width:50%;padding: 15px 15px 15px 15px;">
 
 # Why do we need workflow managers? {auto-animate=true}
 
