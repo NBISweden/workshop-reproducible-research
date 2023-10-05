@@ -1,36 +1,28 @@
 ---
 title: "Jupyter notebooks"
 subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
-#author: "National Bioinformatics Infrastructure Sweden"
 number-sections: false
 kernel: jupyter
 format:
-    html:
+    revealjs:
         output-file: "jupyter.html"
         footer: "NBIS Reproducible research - Jupyter"
-        #css: "../template.css"
-        #toc: true
-    revealjs:
-        output-file: "jupyter-revealjs.html"
-        footer: "NBIS Reproducible research - Jupyter"
-        #css: "../template.css"
         theme: default
         smaller: true
         code-block-border-left: true
         code-block-background: true
         auto-stretch: false
-    pdf:
-        output-file:
 format-links: false
 highlight-style: a11y
-execute:
-  enable: true
 ---
 
 ```{python}
 #|echo: false
 #|warning: false
-%load_ext rpy2.ipython
+from IPython import get_ipython
+ip = get_ipython()
+if 'rpy2.ipython' not in ip.extension_manager.loaded:
+    %load_ext rpy2.ipython
 ```
 
 # Connect code and reports with {auto-animate=true}
