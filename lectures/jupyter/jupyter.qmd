@@ -1,0 +1,250 @@
+---
+title: "Jupyter notebooks"
+subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
+#author: "National Bioinformatics Infrastructure Sweden"
+number-sections: false
+kernel: jupyter
+format:
+    html:
+        output-file: "jupyter.html"
+        footer: "NBIS Reproducible research - Jupyter"
+        #css: "../template.css"
+        #toc: true
+    revealjs:
+        output-file: "jupyter-revealjs.html"
+        footer: "NBIS Reproducible research - Jupyter"
+        #css: "../template.css"
+        theme: default
+        smaller: true
+        code-block-border-left: true
+        code-block-background: true
+        auto-stretch: false
+    pdf:
+        output-file:
+format-links: false
+highlight-style: a11y
+execute:
+  enable: true
+---
+
+```{python}
+#|echo: false
+#|warning: false
+%load_ext rpy2.ipython
+```
+
+# Connect code and reports with {auto-animate=true}
+
+::: {data-id="logo1"}
+![](https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg){width="50%"}
+:::
+
+## {auto-animate=true}
+
+::: {data-id="logo1"}
+![](https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg){width="25%"}
+:::
+
+::: {.incremental}
+- An open source project for interactive data science and computing
+- Allows you to document, edit and run code directly in your browser
+:::
+
+## Notebook basics
+
+![](https://docs.jupyter.org/en/latest/_images/trynb.png){width="50%"}
+
+::: {.incremental}
+- Runs as a local web server
+- Load/save/manage notebooks from the menu
+- The jupyter notebook is scheduled to be 'sunsetted', in favor of the more advanced **Jupyter lab** interface.
+:::
+
+## Jupyter lab
+
+_The next-generation web-based user interface for Project Jupyter._
+
+![](https://jupyterlab.readthedocs.io/en/stable/_images/jupyterlab.png){width="75%"}
+
+
+::: {.incremental}
+- Similar to an integrated development environments (IDE).
+- Tab views, Code consoles, Show output in a separate tab, Live rendering of edits _etc._
+- The jupyter lab interface can run Jupyter notebooks in the **main** work area
+:::
+
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...
+:::
+
+::: {data-id="markdown1"}
+``` {.default}
+**Penguin data analysis**
+
+Here we will investigate the [Penguin dataset](https://github.com/allisonhorst/palmerpenguins).
+
+---
+
+The species included in this set are:
+
+ - _Adelie_
+ - _Chinstrap_
+ - _Gentoo_
+ ```
+:::
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...and have it rendered automatically.
+:::
+
+::: {data-id="markdown1"}
+
+**Penguin data analysis**
+
+Here we will investigate the [Penguin dataset](https://github.com/allisonhorst/palmerpenguins).
+
+---
+
+The species included in this set are:
+
+ - _Adelie_
+ - _Chinstrap_
+ - _Gentoo_
+:::
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...and have it rendered automatically.
+- Execute code directly from the browser, with results attached to the code which generated them.
+:::
+
+```{python}
+#| echo: true
+import seaborn as sns
+
+data = sns.load_dataset("penguins")
+data.groupby("species").mean(numeric_only=True)
+```
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...and have it rendered automatically.
+- Execute code directly from the browser, with results attached to the code which generated them.
+- Mix and match languages in addition to `python`.
+:::
+
+**R**
+```{python}
+#| echo: true
+%%R
+print(paste(Sys.Date(), ": Hello World", sep=""))
+```
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...and have it rendered automatically.
+- Execute code directly from the browser, with results attached to the code which generated them.
+- Mix and match languages in addition to `python`.
+:::
+
+**R**
+```{python}
+#| echo: true
+%%R
+print(paste(Sys.Date(), ": Hello World", sep=""))
+```
+
+**ruby**
+```{python}
+#| echo: true
+%%ruby
+require 'date'
+print DateTime.now(), ": Hello World!"
+```
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...and have it rendered automatically.
+- Execute code directly from the browser, with results attached to the code which generated them.
+- Mix and match languages in addition to `python`.
+:::
+
+**R**
+```{python}
+#| echo: true
+%%R
+print(paste(Sys.Date(), ": Hello World", sep=""))
+```
+
+**ruby**
+```{python}
+#| echo: true
+%%ruby
+require 'date'
+print DateTime.now(), ": Hello World!"
+```
+
+**bash**
+
+```{python}
+#| echo: true
+%%bash
+echo "$(date): Hello World!"
+```
+
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+
+::: {data-id="bullets"}
+- Document your work in markdown...and have it rendered automatically
+- Execute code directly from the browser, with results attached to the code which generated them
+- Mix and match languages in addition to `python`.
+- Generate plots directly in the browser and/or save to file.
+:::
+
+```{python}
+sns.set_context("paper", rc={"axes.labelsize":6})
+```
+
+```{python}
+#| echo: true
+#| warning: false
+ax = sns.pairplot(data, hue="species", height=1,
+                  plot_kws=dict(s=20, linewidth=0.5), 
+                  diag_kws=dict(linewidth=0.5))
+```
+
+## Use cases
+
+::: {.incremental}
+- Lab notebook
+- Data exploration
+- Code development
+- Reports
+- Interactive dashboards
+- and more...
+:::
+
+## Sharing notebooks
+
+::: {.incremental}
+- Put the notebook on GitHub/Bitbucket and it will be rendered there
+- Export to one of many different formats, _e.g._ HTML, PDF, code, slides _etc._
+- Paste a link to any Jupyter notebook [nbviewer.jupyter.org](https://nbviewer.jupyter.org) and it will be rendered for you.
+- Or generate interactive notebooks using [Binder](https://mybinder.org)
+:::
+
+## For the tutorial
+
+- `jupyter lab` - will give you the updated and more advanced Jupyter lab interface
+- `jupyter notebook` - will give you the Classic notebook interface
+
+# Questions? {.center}
