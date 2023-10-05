@@ -29,3 +29,8 @@ snakemake/*txt
 snakemake/*png
 snakemake/*tsv
 .Rproj.user
+
+# jupyter checkpoints
+.ipynb_checkpoints
+
+.idea
