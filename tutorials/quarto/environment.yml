@@ -9,3 +9,5 @@ dependencies:
   - r-ggplot2
   - r-palmerpenguins
   - r-rmarkdown
+  - r-reticulate
+  - nb_conda_kernels
