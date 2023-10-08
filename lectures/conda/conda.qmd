@@ -1,0 +1,100 @@
+---
+title: "Conda software manager"
+subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
+number-sections: false
+kernel: jupyter
+format:
+    revealjs:
+        output-file: "conda.html"
+        footer: "NBIS Reproducible research - Conda"
+        theme: default
+        css: "../template.css"
+        smaller: true
+        code-block-border-left: true
+        code-block-background: true
+        auto-stretch: false
+format-links: false
+highlight-style: a11y
+---
+
+# Managing software environments with
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
+
+---
+
+<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
+
+Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
+
+## Conda is a package, dependency, and environment manager
+
+::: {.incremental}
+- [package]{.green}: any type of program (_e.g._ bowtie2, snakemake etc.)
+- [dependency]{.green}: other software required by a package
+- [environment]{.green}: a distinct collection of packages
+:::
+
+::: {.fragment}
+Conda keeps track of the dependencies between packages in each environment
+:::
+
+## Conda channels {auto-animate=true}
+
+[Channels]{.green} are remote directories containing packages
+
+::: {data-id="m1"}
+```{mermaid}
+flowchart TD
+    ch1[(channel1)] --- p1[package1]
+    ch1[(channel1)] --- p2[package2]
+    ch1[(channel1)] --- p3[package3]
+
+    ch2[(channel2)] --- p4[package4]
+    ch2[(channel2)] --- p5[package5]
+    ch2[(channel2)] --- p6[package6]
+```
+:::
+
+
+## Conda channels {auto-animate=true}
+
+Two common examples are:
+
+- [bioconda]{.green} (a channel specializing in bioinformatics software)
+- [conda-forge]{.green} (a community-led channel made up of thousands of contributors)
+
+::: {data-id="m1"}
+```{mermaid}
+flowchart TD
+    ch1[(bioconda)] --- p1[bowtie2]
+    ch1[(bioconda)] --- p2[fastqc]
+    ch1[(bioconda)] --- p3[snakemake]
+
+    ch2[(conda-forge)] --- p4[numpy]
+    ch2[(conda-forge)] --- p5[jupyter]
+    ch2[(conda-forge)] --- p6[wget]
+```
+:::
+
+## Conda channels {auto-animate=true}
+
+
+
+::: {data-id="m1"}
+```{mermaid}
+flowchart TD
+    ch1[(bioconda)] --- p1[bowtie2]
+    ch1[(bioconda)] --- p2[fastqc]
+    ch1[(bioconda)] --- p3[snakemake]
+
+    ch2[(conda-forge)] --- p4[numpy]
+    ch2[(conda-forge)] --- p5[jupyter]
+    ch2[(conda-forge)] --- p6[wget]
+
+    p5 -.-> l1([conda install -c conda-forge bioconda fastqc snakemake jupyter])
+    p3 -.-> l1
+    p2 -.-> l1
+
+```
+:::
