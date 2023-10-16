@@ -57,7 +57,7 @@ Sys.Date()
 ````
 
 Notice that we delimit the code chunk from the rest of the document's contents
-using three backticks (`\``) and specify the R language using curly brackets
+using three backticks (\`\`\`) and specify the R language using curly brackets
 (`{r}`). The code itself just prints the current date.
 
 * Render the document again and see what it looks like.
@@ -65,7 +65,7 @@ using three backticks (`\``) and specify the R language using curly brackets
 You can also name chunks by adding it after the language:
 
 ````
-```{r Show date}
+```{r Show the current date}
 Sys.Date()
 ```
 ````
@@ -88,7 +88,7 @@ Quarto has a highly useful command for when you're working on a document:
 `preview`. It's essentially a live preview of the document you're working on
 that will automatically render when you introduce changes to the document.
 
-* Type `quarto preview quarto-tutorial.qmd` at the command line.
+* Type `quarto preview quarto-tutorial.qmd` in the command line.
 
 Your default web browser should now have opened a new window with your rendered
 document, while your command line should say something like the following:
