@@ -41,7 +41,6 @@ a number of such chunk options that are useful to know about:
         </td>
         <td style="padding:5px"> <font size="3">
             Evaluate the code chunk.
-            output).
         </td>
     </tr>
     <tr>
