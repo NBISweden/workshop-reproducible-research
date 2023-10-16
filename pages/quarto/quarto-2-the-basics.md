@@ -134,6 +134,8 @@ specifying a citation method. While the details of LaTeX are outside the scope
 of this course, it's useful to be aware of this functionality of Quarto so that
 you may use it if you already know LaTeX or if you want to learn it.
 
+Switch back to HTML rendering before you move on.
+
 # Languages
 
 The examples so far have been using R, but we could just as easily have used
