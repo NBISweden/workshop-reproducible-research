@@ -160,6 +160,12 @@ header.
 
 * Explicitly add `engine: jupyter` to your YAML header and render the document.
 
+:::{.callout-important}
+## Making sure your jupyter engine is recognized
+Quarto attempts to identify a suitable Jupyter engine for your system when you include Python code chunks. However, if you want to use Jupyter available in a specific conda environment (_e.g._ your `quarto-env` environment) you need to take some extra steps. Please visit [this link](https://github.com/Anaconda-Platform/nb_conda_kernels#use-with-nbconvert-voila-papermill) and follow steps 1-4.
+:::
+
+
 While this is not necessary, it can be useful to explicitly set the language for
 the document, as it makes it clearer from just the YAML header what language
 will be used. There are also more language-related options for Quarto, but we'll
