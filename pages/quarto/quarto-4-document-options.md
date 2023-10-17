@@ -161,11 +161,9 @@ designating a single cell as a *parameter cell*, like so:
 point_size = 2
 ```
 
-You can also specify parameters in a `params.yml` file and specify them there
-instead, which works just like for the Knitr engine above. Using parameters is
-extremely useful when you're using a workflow manager system (*e.g.* Snakemake
-or Nextflow), since you can easily specify sample-specific parameters from the
-command line directly from your workflow manager.
+You can also specify parameters in a `params.yml` file and instruct quarto to use them with the `--execute-params params.yml` flag when rendering. Note that the parameters must be defined in the document (in the YAML header when using the `knitr` engine, or in a cell when using the `jupyter` engine). Pointing quarto to a `params.yml` file with `--execute-params` only overrides them when rendering.
+
+Using parameters is extremely useful when you're using a workflow manager system (*e.g.* Snakemake or Nextflow), since you can easily specify sample-specific parameters from the command line directly from your workflow manager.
 
 > **Quick recap** <br>
 > In this sections we covered a number of document-wide options, including
