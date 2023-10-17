@@ -27,7 +27,7 @@ format:
 
 This can be a nice default to use in scientific reports, as it hides the code by
 default but is always there for those who want to inspect it. You can also use
-the `code-summary` option to specify a different text to show with the folded
+the `code-summary` option inside your code chunks to specify a different text to show with the folded
 code instead of the default `Code`, *e.g.* `code-summary: Click to show code`.
 
 You can also add the `code-tools` option, which will add a drop-down menu to
@@ -100,7 +100,7 @@ anybody.
  * Add the `embed_resources` option and render your document again.
 
 What happened first is that your figures should have disappeared when you
-deleted to resources directory. Embedding resources and rendering again should
+deleted the resources directory. Embedding resources and rendering again should
 not re-create this directory, so now you'll just have a stand-alone HTML file
 that is more portable than before.
 
@@ -142,15 +142,16 @@ params:
 
 We have thus specified a parameter called `point_size` in the YAML header and
 referred to it in the code using `params$point_size`. You can now change this
-parameter at run-time using the `-P <param>:<value>` (or `--execute-param`)
-flag.
+parameter at run-time by supplying the `-P <param>:<value>` (or `--execute-param`)
+flag to `quarto render`.
 
 Notice that this won't work if you want to use a parameter to control *e.g.* a
 chunk option like `layout-ncol`. For this we need to use an in-line code
 expression: `#| layout-ncol: !expr params$ncols`.
 
- * Add a parameter for the `layout-ncol` chunk option and render to make sure it
-   works.
+ * Add a parameter for the `layout-ncol` chunk option to the YAML header
+ * Also add the `layout-ncol` chunk option to the figure chunk using the syntax 
+ above and render to make sure it works.
 
 If you're using the Jupyter engine you can instead specify parameters by
 designating a single cell as a *parameter cell*, like so:
