@@ -167,6 +167,7 @@ header.
 > [this link](https://github.com/Anaconda-Platform/nb_conda_kernels#use-with-nbconvert-voila-papermill) 
 > and follow steps 1-4.
 > Now you can also explicitly define what Jupyter kernel to use by adding the following to your YAML header:
+>
 > ```yaml
 > jupyter: 
 >  kernelspec:
