@@ -151,6 +151,7 @@ print(date.today())
 
 * Change the code chunk to the above Python chunk instead and render your
   document again.
+* If you added the in-line code example above, change that to use Python code as well using `{python} date.strftime(date.today(), format="%Y-%m-%d")`
 
 So far we've had Quarto automatically determine which language *engine* should
 be used, which it detects through the code chunks we've written. We can also do
