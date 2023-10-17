@@ -156,10 +156,12 @@ expression: `#| layout-ncol: !expr params$ncols`.
 If you're using the Jupyter engine you can instead specify parameters by
 designating a single cell as a *parameter cell*, like so:
 
+````
 ```{python}
 #| tags: [parameters]
 point_size = 2
 ```
+````
 
 You can also specify parameters in a `params.yml` file and instruct quarto to use them with the `--execute-params params.yml` flag when rendering. Note that the parameters must be defined in the document (in the YAML header when using the `knitr` engine, or in a cell when using the `jupyter` engine). Pointing quarto to a `params.yml` file with `--execute-params` only overrides them when rendering.
 
