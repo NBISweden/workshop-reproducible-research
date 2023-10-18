@@ -11,3 +11,4 @@ dependencies:
   - r-rmarkdown
   - r-reticulate
   - nb_conda_kernels
+  - papermill
