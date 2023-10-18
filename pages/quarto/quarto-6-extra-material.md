@@ -16,8 +16,8 @@ Sometimes you'll want to present the same content in different ways, *e.g.* the
 equivalent code in different languages. Look at the following toy example:
 
 ````
-## R
 ::: {.panel-tabset}
+## R
 ```{.r}
 words <- c("Foo", "bar")
 print(paste(words), collapse = ' ')
