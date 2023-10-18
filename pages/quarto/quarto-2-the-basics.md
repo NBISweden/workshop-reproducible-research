@@ -166,7 +166,14 @@ header.
 > environment) you need to take some extra steps. Please visit 
 > [this link](https://github.com/Anaconda-Platform/nb_conda_kernels#use-with-nbconvert-voila-papermill) 
 > and follow steps 1-4.
-> Now you can also explicitly define what Jupyter kernel to use by adding the following to your YAML header:
+> In the final step, check for the name of the kernel matching your `quarto-env` conda environment, _e.g._
+> ```bash
+> $ jupyter kernelspec list
+> Available kernels:
+> ...
+>  conda-env-quarto-env-py    /Users/<your-user-name>/Library/Jupyter/kernels/conda-env-quarto-env-py
+> ```
+> Using the example output from above we can add the following to the YAML header of our Quarto document:
 >
 > ```yaml
 > jupyter: 
@@ -175,7 +182,6 @@ header.
 >    language: python
 >    name: conda-env-quarto-env-py
 >```
-
 
 It can be useful to explicitly set the language for the document, as it makes it clearer from just the 
 YAML header what language will be used. There are also more language-related options for Quarto, but we'll
