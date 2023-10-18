@@ -22,7 +22,7 @@ If you've followed along you should have one level-1 header (`#`) and two
 level-2 headers (`##`). Notice that the level-1 header here will render as a
 blank page with just the header content on it, while the level-2 headers will
 render as normal slide headers. This all looks quite nice, and we didn't even
-have change a thing! Disregard that the table on the last slide doesn't fit for
+have to change a thing! Disregard that the table on the last slide doesn't fit for
 now, we'll get back to it later. Another method of delimiting slides is using a
 horizontal rule, `---`, which allows you more fine-grained control over slides
 and their content (and is especially useful if you want to have a slide without
@@ -31,10 +31,16 @@ a title).
 # Divisions
 
 There are many ways you can add presentation-specific content to your slides,
-some of which you'd recognise from *e.g.* PowerPoint functionality. First, let's
-fix that issue with the table that was larger than the page. The problem here is
-one of *content overflow*, which can be fixed by adding a special `{.smaller}`
-*div* (a division).
+some of which you'd recognise from *e.g.* PowerPoint functionality.
+
+So called "divisions" or "divs" allow you to control the appearance of content 
+in your slides.
+
+Let's fix that issue with the table that was larger than the page. The problem here is
+one of *content overflow*, which can be fixed by adding a special `{.smaller}` div.
+
+> **Note** <br>
+> Divs do not work for level1 headings (starting with a single `#`).
 
  * Add the `{.smaller}` div to the table header (it should read something like
    `## A table {.smaller}`) and render.
@@ -53,7 +59,6 @@ which can also be achieved with divisions. When adding a division to slide
 content we specify the division's content in a manner similar to a code chunk,
 like in the following example:
 
-````
 ```
 ## Penguin species
 
@@ -63,7 +68,6 @@ like in the following example:
  - Gentoo
 :::
 ```
-````
 
  * Add the code above to your document and render it.
 
