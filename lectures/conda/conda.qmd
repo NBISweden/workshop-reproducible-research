@@ -10,14 +10,14 @@ jupyter:
     name: python3
 format:
     revealjs:
-        output-file: "conda.html"
-        footer: "NBIS Reproducible research - Conda"
-        theme: default
-        css: "../template.css"
-        smaller: true
-        code-block-border-left: true
-        code-block-background: true
-        auto-stretch: false
+      output-file: "conda.html"
+      footer: "NBIS Reproducible research - Conda"
+      theme: default
+      css: "../template.css"
+      smaller: true
+      code-block-border-left: true
+      code-block-background: true
+      auto-stretch: false
 format-links: false
 highlight-style: a11y
 ---
