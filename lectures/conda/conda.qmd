@@ -3,6 +3,11 @@ title: "Conda software manager"
 subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
 number-sections: false
 kernel: jupyter
+jupyter: 
+  kernelspec: 
+    display_name: Python 3
+    language: python
+    name: python3
 format:
     revealjs:
         output-file: "conda.html"
@@ -27,16 +32,78 @@ highlight-style: a11y
 
 Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
 
-## Conda is a package, dependency, and environment manager
+## Conda is a package, dependency, and environment manager {auto-animate="true"}
 
-::: {.incremental}
-- [package]{.green}: any type of program (_e.g._ bowtie2, snakemake etc.)
+- [package]{.green}: any type of program (_e.g._ multiqc, snakemake etc.)
+
+::: {data-id="flowchart1"}
+```{mermaid}
+flowchart LR
+    multiqc(multiqc)
+```
+:::
+
+## Conda is a package, dependency, and environment manager {auto-animate="true"}
+
+- [package]{.green}: any type of program (_e.g._ multiqc, snakemake etc.)
 - [dependency]{.green}: other software required by a package
+
+::: {data-id="flowchart1"}
+```{mermaid}
+flowchart LR
+    multiqc(multiqc) -.-> numpy(numpy)
+    multiqc -.-> matplotlib(matplotlib)
+    multiqc -.-> python(python)
+```
+:::
+
+## Conda is a package, dependency, and environment manager {auto-animate="true"}
+
+- [package]{.green}: any type of program (_e.g._ multiqc, snakemake etc.)
+- [dependency]{.green}: other software required by a package
+  - dependencies in turn have their own dependencies
+
+::: {data-id="flowchart1"}
+```{mermaid}
+flowchart LR 
+    multiqc(multiqc) -.-> numpy(numpy)
+    multiqc -.-> matplotlib(matplotlib)
+    multiqc -.-> python(python)
+    matplotlib -.-> python
+    matplotlib -.-> numpy
+    matplotlib -.-> fonttools(fonttools)
+    numpy -.-> python
+    numpy -.-> libcxx(libcxx)
+```
+:::
+
+## Conda is a package, dependency, and environment manager {auto-animate="true"}
+
+- [package]{.green}: any type of program (_e.g._ multiqc, snakemake etc.)
+- [dependency]{.green}: other software required by a package
+  - dependencies in turn have their own dependencies
 - [environment]{.green}: a distinct collection of packages
+
+::: {data-id="flowchart1"}
+```{mermaid}
+flowchart LR
+    subgraph environment&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    style environment&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp fill:#ffffff, stroke-width:1px
+    direction LR
+    multiqc(multiqc) -.-> numpy(numpy)
+    multiqc -.-> matplotlib(matplotlib)
+    multiqc -.-> python(python)
+    matplotlib -.-> python
+    matplotlib -.-> numpy
+    matplotlib -.-> fonttools(fonttools)
+    numpy-.->python
+    numpy -.-> libcxx(libcxx)
+    end
+```
 :::
 
 ::: {.fragment}
-Conda keeps track of the dependencies between packages in each environment
+Conda keeps track of packages and their dependencies.
 :::
 
 ## Conda channels {auto-animate=true}
@@ -79,7 +146,10 @@ flowchart TD
 
 ## Conda channels {auto-animate=true}
 
+Two common examples are:
 
+- [bioconda]{.green} (a channel specializing in bioinformatics software)
+- [conda-forge]{.green} (a community-led channel made up of thousands of contributors)
 
 ::: {data-id="m1"}
 ```{mermaid}
@@ -92,9 +162,113 @@ flowchart TD
     ch2[(conda-forge)] --- p5[jupyter]
     ch2[(conda-forge)] --- p6[wget]
 
-    p5 -.-> l1([conda install -c conda-forge bioconda fastqc snakemake jupyter])
+    p5 -.-> l1([conda install -c conda-forge -c bioconda snakemake jupyter])
     p3 -.-> l1
-    p2 -.-> l1
-
 ```
 :::
+
+## Conda, Anaconda, Miniconda, Mamba...
+
+::: {.incremental}
+- [Conda]{.green}: the package manager itself, written in python
+- [Mamba]{.green}: a faster reimplementation of Conda (written in C++)
+- [Anaconda]{.green}: 
+  - an installer for conda containing over 7,500 open-source packages
+  - a cloud service where conda packages are hosted ([anaconda.com](https://anaconda.com))
+- [Miniconda]{.green}: a minimal installer for conda, containing only the most necessary packages to get started
+- [Mambaforge]{.green}: installer with Mamba in the base environment, pre-configured to use the conda-forge channel
+:::
+
+## Mamba vs. Conda {auto-animate="true"}
+
+In short: Mamba is a faster implementation of conda.
+
+::: {data-id="mamba-logo"}
+![](https://mamba.readthedocs.io/en/latest/_static/logo.png){width=50%}
+:::
+
+
+## Mamba vs. Conda {auto-animate="true"}
+
+In short: Mamba is a faster implementation of conda.
+
+- Install mamba with conda: `conda install -n base -c conda-forge mamba`
+- or see the [documentation](https://mamba.readthedocs.io/en/latest/installation.html) for how to do a fresh install.
+
+## Mamba vs. Conda {auto-animate="true"}
+
+In short: Mamba is a faster implementation of conda.
+
+- Install mamba with conda: `conda install -n base -c conda-forge mamba`
+- or see the [documentation](https://mamba.readthedocs.io/en/latest/installation.html) for how to do a fresh install.
+- Simply replace `conda` with `mamba` on the command line:
+
+```bash
+mamba env create --name project_a -f environment.yml
+mamba env update -f environment.yml
+mamba env export > environment-full.yml
+mamba env export --from-history > environment-history.yml
+```
+
+## Defining and sharing environments
+
+Define a Conda environment in an `environment.yml` file:
+
+``` {.yaml code-line-numbers="|1-3|4-12"}
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - fastqc=0.11
+  - sra-tools=2.8
+  - snakemake=4.3.0
+  - multiqc=1.3
+  - bowtie2=2.3
+  - samtools=1.6
+  - htseq=0.9
+  - graphviz=2.38.0
+```
+
+## Defining and sharing environments {auto-animate="true"}
+
+- Update an existing environment:
+
+```
+conda env update -f environment.yml
+```
+
+## Defining and sharing environments {auto-animate="true"}
+
+- Update an existing environment:
+
+```
+conda env update -f environment.yml
+```
+
+- Export environment (including all dependencies) to a file:
+
+```
+conda env export > environment.yml
+```
+
+## Defining and sharing environments {auto-animate="true"}
+
+- Update an existing environment:
+
+```
+conda env update -f environment.yml
+```
+
+- Export environment (including all dependencies) to a file:
+
+```
+conda env export > environment.yml
+```
+
+- Export historical environment (only packages explicitly installed):
+
+```
+conda env export --from-history > environment.yml
+```
+
+# Questions?
