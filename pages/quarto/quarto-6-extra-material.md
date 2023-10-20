@@ -54,7 +54,16 @@ This is a note callout.
 The different callouts come with appropriate colours by default, which you can
 change in the theme. You can also have collapsible callouts by adding the
 `collapse=true` option, where `true` will have the callout collapsed by default.
-You can also specify titles in the same way using the `title=<TITLE>` option.
+You can also specify titles in the same way using the `title=<TITLE>` option or
+by adding the title directly to the callout content, like so:
+
+```
+::: {.callout-note}
+## This is the callout title
+
+This is a note callout.
+:::
+```
 
 You can change the overall appearance of callouts by using the `appearance`
 option or the `callout-appearance` global option. Valid values are `default`,
