@@ -49,7 +49,6 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
 ::: {.incremental}
 - Runs as a local web server
 - Load/save/manage notebooks from the menu
-- The jupyter notebook is scheduled to be 'sunsetted', in favor of the more advanced **Jupyter lab** interface.
 :::
 
 ## Jupyter lab
