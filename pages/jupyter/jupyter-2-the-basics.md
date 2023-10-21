@@ -53,16 +53,15 @@ you won't lose any work if you shut down the server.
 
 What you're looking at is the Notebook dashboard. This is where you manage your
 files, notebooks, and kernels. The Files tab shows the files in your directory.
-The Running tab keeps track of all your processes. The third tab, Clusters, is
-used for parallel computing and won't be discussed further in this tutorial.
+The Running tab keeps track of all your processes.
 
 The Jupyter lab dashboard should look something like this:
 
 > ![](images/jupyterlab_dashboard.png){ width=700px }
 
-Let's start by creating an empty notebook. In the classic notebook interface
-you can do this by selecting the Files tab and clicking New > Python 3. In
-the Jupyter lab interface it'll be File -> New -> Notebook.
+Let's start by creating an empty notebook. You can do this by selecting the
+Files tab and clicking New > Notebook. When the notebook opens, select the
+suggested Python 3 kernel from the drop-down menu.
 
 This will open up a new tab or window looking like this:
 
@@ -78,31 +77,38 @@ Jupyter lab interface.
 > [Extra material](jupyter-9-extra-material)
 
 Jupyter notebooks are made up of cells, and you are currently standing in
-the first cell in your notebook. The fact that it has a green border indicates
-that it's in "Edit mode", so you can write stuff in it. A blue border indicates
-"Command mode" (see below). Cells in Jupyter notebooks can be of two types:
-*markdown* or *code*.
+the first cell in your notebook. Your cursor should be blinking in this cell,
+indicating that you are in "Edit mode" meaning that you can type text in the
+cell. Pressing the `Esc` key puts you in "Command mode" which allows you to
+manipulate the notebook as a whole, more on this later.
 
-* **Markdown:** These cells contain static material such as captions, text,
-lists, images and so on. You express this using Markdown, which is
-a lightweight markup language. Markdown documents can then be converted to
-other formats for viewing (the document you're reading now is written in
-Markdown and then converted to HTML). The format is discussed a little more in
-detail in the [R Markdown tutorial](r-markdown-1-introduction). Jupyter Notebook
-uses a dialect of Markdown called GitHub Flavoured Markdown, which is described
+Cells in Jupyter notebooks can be of two types:*markdown* or *code*.
+
+* **Markdown:** 
+
+These cells contain static material such as captions, text, lists, images and so
+on. You express this using Markdown, which is a lightweight markup language.
+Markdown documents can then be converted to other formats for viewing (the
+document you're reading now is written in Markdown and then converted to HTML).
+The format is discussed a little more in detail in the [Quarto
+tutoriall](quarto-1-introduction). Jupyter Notebook uses a dialect of Markdown
+called GitHub Flavoured Markdown, which is described
 [here](https://guides.github.com/features/mastering-markdown/).
-* **Code:** These are the cells that actually do something, just as code chunks
-  do in R Markdown. You can write code in dozens of languages and all do all
-  kinds of clever tricks. You then run the code cell and any output the code
-  generates, such as text or figures, will be displayed beneath the cell. We
-  will get back to this in much more detail, but for now it's enough to
-  understand that code cells are for executing code that is interpreted by
-  a kernel (in this case the Python version in your Conda environment).
+
+* **Code:** 
+
+These are the cells that actually do something, just as code chunks do in
+Quarto/R Markdown. You can write code in dozens of languages and do all
+kinds of clever tricks. You then run the code cell and any output the code
+generates, such as text or figures, will be displayed beneath the cell. We
+will get back to this in much more detail, but for now it's enough to
+understand that code cells are for executing code that is interpreted by a
+kernel (in this case the Python version in your Conda environment).
 
 Before we continue, here are some shortcuts that can be useful. Note that they
-are only applicable when in command mode (blue frames). Most of them are also
-available from the menus. These shortcuts are also available from the **Help**
-menu in your notebook (there's even an option there to edit shortcuts).
+are only applicable when in "Command mode". Most of them are also available from
+the menus. You can also view this list of shortcuts from the **Help** menu under
+"Show Keyboard Shortcuts".
 
 <table class="table table-hover table-condensed" border=1; style="width:400px; margin-left:auto; margin-right:auto;">
     <thead style="background-color:#DAE7F1">
@@ -160,6 +166,10 @@ menu in your notebook (there's even an option there to edit shortcuts).
         <td style="padding:5px"> <font size="3"> Cut currently selected cells </td>
     </tr>
     <tr>
+        <td style="padding:5px; text-align:center;"> <font size="3"> `v` </td>
+        <td style="padding:5px"> <font size="3"> Paste cell below </td>
+    </tr>
+    <tr>
         <td style="padding:5px; text-align:center;"> <font size="3"> `o` </td>
         <td style="padding:5px"> <font size="3"> Toggle output of current cell </td>
     </tr>
@@ -200,10 +210,10 @@ Sections can be separated by horizontal lines.
 
 Blockquotes can be added, for instance to insert a Monty Python quote:
 
-    Spam!
-    Spam!
-    Spam!
-    Spam!
+> Spam!
+> Spam!
+> Spam!
+> Spam!
 
 See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html) for more information.
 ```
@@ -221,9 +231,7 @@ print("Hello world!")
 Note how the output is displayed below the cell. This interactive way of working
 is one of the things that sets Jupyter Notebook apart from RStudio and
 R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
-work *in* a Jupyter notebook in a different way. This has partly changed with
-newer versions of RStudio, but it's probably still how most people use the two
-tools.
+work *in* a Jupyter notebook in a different way.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
@@ -243,14 +251,15 @@ notebook community.
 
 Variables defined in cells become variables in the global namespace. You can
 therefore share information between cells. Try to define a function or variable
-in one cell and use it in the next. For example:
+in one cell and use it in the next. For example, add the following to a new cell
+and run it:
 
 ```python
 def print_me(str):
     print(str)
 ```
 
-... And ...
+Now create a new cell and add:
 
 ```python
 print_me("Hi!")
