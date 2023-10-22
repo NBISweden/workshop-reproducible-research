@@ -1,0 +1,22 @@
+title: NBIS Quarto Extension
+author: Erik Fasterius
+version: 1.0.0
+quarto-required: ">=1.2.0"
+contributes:
+  formats:
+    html:
+      theme: [default, nbis.scss]
+      highlight-style: nbis.theme
+      toc: true
+      toc-location: left
+      toc-title: <img src="_extensions/NBISweden/nbis/nbis-logo-green.svg" width="100" vspace="10"/>
+      df-print: paged
+      code-fold: true
+      smooth-scroll: true
+      embed-resources: true
+    revealjs:
+      theme: [default, nbis.scss]
+      logo: nbis-logo-green.svg
+      slide-number: false
+      embed-resources: true
+      slide-level: 2
