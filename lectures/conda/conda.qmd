@@ -1,36 +1,21 @@
 ---
-title: "Conda software manager"
-subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
-number-sections: false
-kernel: jupyter
-jupyter: 
-  kernelspec: 
-    display_name: Python 3
-    language: python
-    name: python3
-format:
-    revealjs:
-      output-file: "conda.html"
-      footer: "NBIS Reproducible research - Conda"
-      theme: default
-      css: "../template.css"
-      smaller: true
-      code-block-border-left: true
-      code-block-background: true
-      auto-stretch: false
-format-links: false
-highlight-style: a11y
+title: 'Managing software environments with <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 25px 25px 25px 25px;">'
+format: nbis-revealjs
+jupyter:
+    kernelspec:
+        display_name: Python 3
+        language: python
+        name: python3
 ---
 
-# Managing software environments with
+## The problem
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 15px 15px 15px 15px;">
+![](r-reproducibility-6-638_cropped.jpg)
 
----
-
-<img src="r-reproducibility-6-638_cropped.jpg" style="width:75%;padding: 15px 15px 15px 15px;">
-
-Full reproducibility requires the possibility to recreate the system that was originally used to generate the results.
+::: {.justify-center}
+Full reproducibility requires the possibility to recreate the system that was
+originally used to generate the results.
+:::
 
 ## Conda is a package, dependency, and environment manager {auto-animate="true"}
 
@@ -65,7 +50,7 @@ flowchart LR
 
 ::: {data-id="flowchart1"}
 ```{mermaid}
-flowchart LR 
+flowchart LR
     multiqc(multiqc) -.-> numpy(numpy)
     multiqc -.-> matplotlib(matplotlib)
     multiqc -.-> python(python)
@@ -87,8 +72,8 @@ flowchart LR
 ::: {data-id="flowchart1"}
 ```{mermaid}
 flowchart LR
-    subgraph environment&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    style environment&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp fill:#ffffff, stroke-width:1px
+    subgraph environment
+    style environment fill:#ffffff, stroke-width:1px
     direction LR
     multiqc(multiqc) -.-> numpy(numpy)
     multiqc -.-> matplotlib(matplotlib)
@@ -100,10 +85,6 @@ flowchart LR
     numpy -.-> libcxx(libcxx)
     end
 ```
-:::
-
-::: {.fragment}
-Conda keeps track of packages and their dependencies.
 :::
 
 ## Conda channels {auto-animate=true}
@@ -122,7 +103,6 @@ flowchart TD
     ch2[(channel2)] --- p6[package6]
 ```
 :::
-
 
 ## Conda channels {auto-animate=true}
 
@@ -167,49 +147,6 @@ flowchart TD
 ```
 :::
 
-## Conda, Anaconda, Miniconda, Mamba...
-
-::: {.incremental}
-- [Conda]{.green}: the package manager itself, written in python
-- [Mamba]{.green}: a faster reimplementation of Conda (written in C++)
-- [Anaconda]{.green}: 
-  - an installer for conda containing over 7,500 open-source packages
-  - a cloud service where conda packages are hosted ([anaconda.com](https://anaconda.com))
-- [Miniconda]{.green}: a minimal installer for conda, containing only the most necessary packages to get started
-- [Mambaforge]{.green}: installer with Mamba in the base environment, pre-configured to use the conda-forge channel
-:::
-
-## Mamba vs. Conda {auto-animate="true"}
-
-In short: Mamba is a faster implementation of conda.
-
-::: {data-id="mamba-logo"}
-![](https://mamba.readthedocs.io/en/latest/_static/logo.png){width=50%}
-:::
-
-
-## Mamba vs. Conda {auto-animate="true"}
-
-In short: Mamba is a faster implementation of conda.
-
-- Install mamba with conda: `conda install -n base -c conda-forge mamba`
-- or see the [documentation](https://mamba.readthedocs.io/en/latest/installation.html) for how to do a fresh install.
-
-## Mamba vs. Conda {auto-animate="true"}
-
-In short: Mamba is a faster implementation of conda.
-
-- Install mamba with conda: `conda install -n base -c conda-forge mamba`
-- or see the [documentation](https://mamba.readthedocs.io/en/latest/installation.html) for how to do a fresh install.
-- Simply replace `conda` with `mamba` on the command line:
-
-```bash
-mamba env create --name project_a -f environment.yml
-mamba env update -f environment.yml
-mamba env export > environment-full.yml
-mamba env export --from-history > environment-history.yml
-```
-
 ## Defining and sharing environments
 
 Define a Conda environment in an `environment.yml` file:
@@ -233,7 +170,7 @@ dependencies:
 
 - Update an existing environment:
 
-```
+```bash
 conda env update -f environment.yml
 ```
 
@@ -241,13 +178,13 @@ conda env update -f environment.yml
 
 - Update an existing environment:
 
-```
+```bash
 conda env update -f environment.yml
 ```
 
 - Export environment (including all dependencies) to a file:
 
-```
+```bash
 conda env export > environment.yml
 ```
 
@@ -255,20 +192,66 @@ conda env export > environment.yml
 
 - Update an existing environment:
 
-```
+```bash
 conda env update -f environment.yml
 ```
 
 - Export environment (including all dependencies) to a file:
 
-```
+```bash
 conda env export > environment.yml
 ```
 
 - Export historical environment (only packages explicitly installed):
 
-```
+```bash
 conda env export --from-history > environment.yml
+```
+
+## Conda, Anaconda, Miniconda, Mamba...
+
+::: {.incremental}
+- [Conda]{.green}: The package manager itself, written in python
+- [Mamba]{.green}: A faster re-implementation of Conda (written in C++)
+- [Anaconda]{.green}:
+  - An installer for Conda containing over 7,500 open-source packages
+  - A cloud service where conda packages are hosted ([anaconda.com](https://anaconda.com))
+- [Miniconda]{.green}: A minimal installer for Conda, containing only the most necessary packages to get started
+- [Mambaforge]{.green}: Installer with Mamba in the base environment, pre-configured to use the conda-forge channel
+:::
+
+## Mamba vs. Conda {auto-animate="true"}
+
+_Mamba is a faster re-implementation of Conda in C++._
+
+::: {layout-ncol=2 layout-valign="center" data-id="mamba-logo"}
+![](https://mamba.readthedocs.io/en/latest/_static/logo.png){width=50%}
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png){width=50%}
+:::
+
+## Mamba vs. Conda {auto-animate="true"}
+
+_Mamba is a faster re-implementation of Conda in C++._
+
+- Install mamba with conda: `conda install -n base -c conda-forge mamba` (or see
+  the [documentation](https://mamba.readthedocs.io/en/latest/installation.html)
+  for how to do a fresh install)
+
+## Mamba vs. Conda {auto-animate="true"}
+
+_Mamba is a faster re-implementation of Conda in C++._
+
+- Install mamba with conda: `conda install -n base -c conda-forge mamba` (or see
+  the [documentation](https://mamba.readthedocs.io/en/latest/installation.html)
+  for how to do a fresh install)
+- Simply replace `conda` with `mamba` on the command line:
+
+```bash
+mamba env create --name project_a -f environment.yml
+mamba env update -f environment.yml
+mamba env export > environment-full.yml
+mamba env export --from-history > environment-history.yml
 ```
 
 # Questions?
