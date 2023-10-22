@@ -3,8 +3,10 @@ channels:
     - conda-forge
     - bioconda
 dependencies:
+
     # Snakemake
     - snakemake-minimal
+
     # R
     - r-base
     - r-ggplot2
@@ -12,3 +14,17 @@ dependencies:
     - r-palmerpenguins
     - r-stringi
     - r-tidyr
+
+    # Python
+    - python
+    - jupyter
+    - jupyterlab
+    - pandas
+    - nbconvert
+    - seaborn
+    - rpy2
+    - pyppeteer
+    - jinja2
+    - pip
+    - pip:
+        - RISE
