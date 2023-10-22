@@ -6,12 +6,9 @@ dependencies:
     # Snakemake
     - snakemake-minimal
     # R
-    - phantomjs
     - r-base
     - r-ggplot2
     - r-kableextra
     - r-palmerpenguins
     - r-stringi
     - r-tidyr
-    - r-xaringan
-    - r-webshot
