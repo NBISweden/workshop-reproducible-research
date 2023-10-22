@@ -2,7 +2,6 @@
 *-env
 
 # Lecture-related files
-lectures/**/*.html
 lectures/*/*/remark-css-0.0.1/default.css
 lectures/*/*/header-attrs-2.3/header-attrs.js
 
