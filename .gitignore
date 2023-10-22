@@ -1,12 +1,8 @@
-# Conda environment
+# Conda environments
 *-env
-
-# Xaringan-related files
-**/*_files
 
 # Lecture-related files
 lectures/**/*.html
-# lectures/**/*.pdf
 lectures/*/*/remark-css-0.0.1/default.css
 lectures/*/*/header-attrs-2.3/header-attrs.js
 
@@ -22,15 +18,14 @@ jupyter/.ipynb_checkpoints
 **/intermediate
 **/results
 **/work
-rmarkdown/.R*
-rmarkdown/*html
-rmarkdown/*Rproj
 snakemake/*txt
 snakemake/*png
 snakemake/*tsv
-.Rproj.user
 
 # jupyter checkpoints
 .ipynb_checkpoints
-
 .idea
+
+# Quarto-related files
+.quarto/
+**/*_files
