@@ -1,0 +1,265 @@
+---
+title: 'Making reproducible workflows with <img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png" style="width:50%; padding: 15px 15px 15px 15px">'
+format:
+    nbis-revealjs:
+        code-line-numbers: false
+
+---
+
+## Nextflow features
+
+::: {.incremental}
+- [Generalisable]{.green}
+- [Portable]{.green}
+- [Scalable]{.green}
+- [Platform-agnostic]{.green}
+- Based on [Groovy]{.green} and Java
+- Large active community in *e.g.* [nf-core]{.green}
+:::
+
+## Concepts and nomenclature
+
+![](https://training.seqera.io/img/channel-process.png){height=325 fig-align=center}
+
+::: {.incremental}
+- [Channels]{.green} contain data, *e.g.* input files
+- [Processes]{.green} run some kind of code, *e.g.* a script or a program
+- [Tasks]{.green} are instances of a process, one per process input
+:::
+
+## Anatomy of a process {auto-animate=true}
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    input:
+    val(sample)
+
+    output:
+    path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+## Anatomy of a process {auto-animate=true}
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+## Anatomy of a process {auto-animate=true}
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+## Anatomy of a process {auto-animate=true}
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    conda 'sra-tools=2.11.0'
+    container 'ncbi/sra-tools:2.11.0'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} > ${sample}.fastq.gz
+    """
+}
+```
+
+## Anatomy of a process {auto-animate=true}
+
+```groovy
+process GET_SRA_BY_ACCESSION {
+
+    cpus 2
+    memory '8 GB'
+
+    conda 'sra-tools=2.11.0'
+    container 'ncbi/sra-tools:2.11.0'
+
+    input:
+    val(sample)
+
+    output:
+    tuple val(sample), path("${sample}.fastq.gz")
+
+    script:
+    """
+    fastq-dump ${sample} -X {params.depth} > ${sample}.fastq.gz
+    """
+}
+```
+
+## Anatomy of a workflow {auto-animate=true}
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+}
+```
+
+## Anatomy of a workflow {auto-animate=true}
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+}
+```
+
+## Anatomy of a workflow {auto-animate=true}
+
+```groovy
+workflow {
+
+    // Define SRA input data channel
+    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+
+    // Define the workflow
+    GET_SRA_BY_ACCESSION (
+        ch_sra_ids
+    )
+    RUN_FASTQC (
+        GET_SRA_BY_ACCESSION.out
+    )
+    RUN_MULTIQC (
+        RUN_FASTQC.out.collect()
+    )
+}
+```
+
+## Executing Nextflow
+
+:::: {.columns}
+
+::: {.column}
+::: {.fragment}
+Execute a workflow
+```bash
+$ nextflow run main.nf
+```
+<br>
+:::
+
+::: {.fragment}
+Re-run using cached results
+```bash
+$ nextflow run main.nf -resume
+```
+<br>
+:::
+
+::: {.fragment}
+Execute with a specific configuration file
+```bash
+$ nextflow run main.nf -c nextflow.config
+```
+<br>
+:::
+:::
+
+::: {.column}
+::: {.fragment}
+Supply a custom parameter
+```bash
+$ nextflow run main.nf --param "value"
+```
+<br>
+:::
+
+::: {.fragment}
+Use Docker or Apptainer
+```bash
+$ nextflow run main.nf -with-docker
+$ nextflow run main.nf -with-apptainer
+<br>
+```
+:::
+
+::: {.fragment}
+Use a pre-defined configuration profile
+```bash
+$ nextflow run main.nf -profile uppmax
+```
+<br>
+:::
+:::
+
+::::
+
+## Snakemake and Nextflow differences
+
+|                | [Snakemake]{.green}  | [Nextflow]{.green}            |
+| ----           | ------               | ---------                     |
+| **Language**   | Python               | Groovy                        |
+| **Data**       | Everything is a file | Can use both files and values |
+| **Execution**  | Working directory    | Each job in its own directory |
+| **Philosophy** | "Pull"               | "Push"                        |
+| **Dry-runs**   | Yes                  | No                            |
+
+<br>
+
+::: {.incremental}
+- [Question]{.green}: But, which one is the _best?_
+- [Answer]{.green}: Both - it's mostly up to personal preference!
+:::
+
+# Questions?
