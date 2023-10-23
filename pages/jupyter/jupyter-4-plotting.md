@@ -110,16 +110,6 @@ saved to file.
 The Seaborn [website](http://Seaborn.pydata.org/) contains great tutorials and
 examples of other ways to plot data!
 
-## More plotting alternatives
-
-If neither the standard matplotlib package nor Seaborn are to your liking, there
-are many other plotting packages available for Python. Some examples are:
-
-- [mpld3](https://mpld3.github.io/)
-- [bokeh](https://bokeh.org/)
-- [plotly](https://plotly.com/python/)
-- [altair](https://altair-viz.github.io/)
-
 > **Quick recap** <br>
 > In this section we've learned:
 >
