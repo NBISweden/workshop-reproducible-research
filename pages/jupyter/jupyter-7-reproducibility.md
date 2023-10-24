@@ -1,6 +1,3 @@
-
-## Version control of Jupyter notebooks
-
 As we've seen, Jupyter notebooks are plain-text JSON files. This means that they
 can be version controlled with Git just like any other text file. However,
 because of the way Jupyter notebooks store their content, the diffs produced by
