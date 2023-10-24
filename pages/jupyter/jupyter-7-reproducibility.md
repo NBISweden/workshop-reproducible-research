@@ -1,3 +1,10 @@
+Now that you have a feeling for what Jupyter can do we'll spend a
+little time on things to consider specifically from a repdroducibility point of
+view when it comes to Jupyter notebooks.
+
+
+## Version control of Jupyter notebooks
+
 As we've seen, Jupyter notebooks are plain-text JSON files. This means that they
 can be version controlled with Git just like any other text file. However,
 because of the way Jupyter notebooks store their content, the diffs produced by
