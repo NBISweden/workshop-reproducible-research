@@ -72,7 +72,7 @@ command will only enable the integration for the current repository, use the
 flag `--global` to enable it for all repositories and your user account.
 
 Now run `git diff Analysis.ipynb` again. You will still see a very long diff,
-but this time you should also see some explanatory lines such as 
+but this time you should also see some explanatory lines such as:
 
 ```
 ## replaced /cells/0/execution_count:
@@ -106,6 +106,28 @@ example, to see the diff but ignore changes to the output of cells you can run:
 ```bash
 nbdiff -O Analysis.ipynb
 ```
+
+nbdime also comes with a graphical web-based diff viewer. To try it, run:
+
+```bash
+nbdiff-web Analysis.ipynb
+```
+
+This will open up a tab in your web browser showing you changes made to the
+notebook side-by-side for each cell, including also cell output. This makes it
+easy to see changes made to plots and other outputs.
+
+### Other tools for version control of notebooks
+
+- You can also install the nbdime jupyter [lab
+  extension](https://github.com/jupyter/nbdime) to get access to the diff
+  functionality directly from the Jupyter lab interface. If you also install the
+  [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git) extension you
+  can both view diffs and commit changes directly from Jupyter lab.
+- [VS Code](https://code.visualstudio.com/) actually comes with built-in support
+  for both Jupyter notebooks and Git so that you can view [informative
+  diffs](https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_custom-notebook-diffing)
+  directly from the editor
 
 ## Making sure notebooks work as expected
 
