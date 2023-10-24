@@ -229,9 +229,11 @@ print("Hello world!")
 ```
 
 Note how the output is displayed below the cell. This interactive way of working
-is one of the things that sets Jupyter Notebook apart from RStudio and
-R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
-work *in* a Jupyter notebook in a different way.
+is one of the things that sets Jupyter Notebook apart from RStudio and R
+Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
+work *in* a Jupyter notebook in a different way. This requires some special
+attention when it comes to reproducibility, which we will get back to in the
+[reproducibility](jupyter-7-reproducibility) section.
 
 What **is** a Jupyter notebook? Let's look a little at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
@@ -244,10 +246,9 @@ directory.
 Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
 the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's
 just a plain old JSON file. Since it's a text file it's suitable for version
-control with for example Git. It turns out that GitHub and Jupyter notebooks are
-the best of friends, as we will see more of later. This switching between
-languages and whatever-works mentality is very prominent within the Jupyter
-notebook community.
+control with for example Git. There are however some special considerations to
+take into account for Notebooks which we will cover in the [reproducibility
+section](jupyter-7-reproducibility) of this tutorial.
 
 Variables defined in cells become variables in the global namespace. You can
 therefore share information between cells. Try to define a function or variable
