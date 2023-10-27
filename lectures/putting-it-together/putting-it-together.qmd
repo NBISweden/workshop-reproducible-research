@@ -74,7 +74,7 @@ More examples:
 ::: {.incremental}
 - Avoid generating files [interactively]{.green} or doing things [by
   hand]{.green}
-- Write [scripts]{.green}, [R Markdown]{.green} documents, [Jupyter]{.green}
+- Write [scripts]{.green}, [Quarto]{.green} documents, [Jupyter]{.green}
   notebooks or [Snakemake]{.green} / [Nextflow]{.green} workflows for
   reproducible results to connect raw data to final results
 - Keep the [parameters]{.green} separate (_e.g._ at top of file or in a separate

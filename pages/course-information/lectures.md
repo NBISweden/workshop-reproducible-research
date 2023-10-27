@@ -10,7 +10,7 @@ along with instructions on how to render them.
 * [Data management](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/data-management/data-management.html)
 * [Git](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/git/git.html)
 * [Conda](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/conda/conda.html)
-* [R Markdown](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/rmarkdown/rmarkdown.html)
+* [Quarto](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/quarto/quarto.html)
 * [Jupyter](https://github.com/NBISweden/workshop-reproducible-research/blob/GITHUB_BRANCH/lectures/jupyter/jupyter.ipynb)
 * [Snakemake](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/snakemake/snakemake.html)
 * [Nextflow](https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/GITHUB_BRANCH/lectures/nextflow/nextflow.html)

@@ -88,11 +88,11 @@ lists, images and so on. You express this using Markdown, which is
 a lightweight markup language. Markdown documents can then be converted to
 other formats for viewing (the document you're reading now is written in
 Markdown and then converted to HTML). The format is discussed a little more in
-detail in the [R Markdown tutorial](r-markdown-1-introduction). Jupyter Notebook
+detail in the [Quarto tutorial](quarto-1-introduction). Jupyter Notebook
 uses a dialect of Markdown called GitHub Flavoured Markdown, which is described
 [here](https://guides.github.com/features/mastering-markdown/).
 * **Code:** These are the cells that actually do something, just as code chunks
-  do in R Markdown. You can write code in dozens of languages and all do all
+  do in Quarto. You can write code in dozens of languages and all do all
   kinds of clever tricks. You then run the code cell and any output the code
   generates, such as text or figures, will be displayed beneath the cell. We
   will get back to this in much more detail, but for now it's enough to
@@ -220,7 +220,7 @@ print("Hello world!")
 
 Note how the output is displayed below the cell. This interactive way of working
 is one of the things that sets Jupyter Notebook apart from RStudio and
-R Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
+Quarto. Quarto is typically rendered top-to-bottom in one run, while you
 work *in* a Jupyter notebook in a different way. This has partly changed with
 newer versions of RStudio, but it's probably still how most people use the two
 tools.
