@@ -1,4 +1,7 @@
 project:
   title: "lectures"
+  render:
+    - "*/*.qmd"
+    - "!*-env/"
 
 format-links: false
