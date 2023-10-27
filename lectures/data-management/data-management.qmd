@@ -65,10 +65,12 @@ $ ls -l data/
 
 The first step towards working reproducibly: [Get organized!]{.green}
 
+::: {.incremental}
 - Divide your work into [distinct projects]{.green}
 - Keep all files needed to go from raw data to final results in a dedicated
   directory
 - Use [relevant subdirectories]{.green}
+:::
 
 ## There are many ways to organize a project
 
@@ -151,7 +153,7 @@ nextflow.config
 
 - [Nano](https://www.nano-editor.org/)
 - [Vim](https://www.vim.org/)
-- [NeoVim](https://neovim.io/)
+- [Neovim](https://neovim.io/)
 :::
 
 # Questions?

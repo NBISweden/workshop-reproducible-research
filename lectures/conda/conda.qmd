@@ -1,5 +1,5 @@
 ---
-title: 'Managing software environments with <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png" style="width:50%;padding: 25px 25px 25px 25px;">'
+title: 'Managing software environments with <br> <img src="images/conda-logo.png" style="width:50%;padding: 25px 25px 25px 25px;">'
 format: nbis-revealjs
 jupyter:
     kernelspec:
@@ -12,9 +12,9 @@ jupyter:
 
 ![](r-reproducibility-6-638_cropped.jpg)
 
-::: {.justify-center}
-Full reproducibility requires the possibility to recreate the system that was
-originally used to generate the results.
+::: {.fragment .justify-center}
+_Full reproducibility requires the possibility to recreate the system that was
+originally used to generate the results._
 :::
 
 ## Conda is a package, dependency, and environment manager {auto-animate="true"}
