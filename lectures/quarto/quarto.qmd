@@ -1,0 +1,193 @@
+---
+title: 'Making reports with <img src="images/quarto-logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
+format:
+    nbis-revealjs:
+        code-line-numbers: false
+---
+
+## Quarto connects code with results
+
+<br>
+<br>
+
+![](../../pages/images/reproducibility_overview.png){height=400 fig-align=center}
+
+## Quarto connects code with results {.smaller}
+
+:::: {.columns}
+::: {.column}
+````
+---
+title: "There's something about penguins"
+author: "John Doe, Joan Doe, Dyon Do"
+date: today
+format:
+    html:
+        code-fold: true
+        warning: false
+---
+
+# Palmer penguins
+
+```{{r Penguin figure}}
+#| fig-width: 10
+#| fig-height: 5
+library("ggplot2")
+library("palmerpenguins")
+data(penguins, package = "palmerpenguins")
+ggplot(penguins, aes(x      = bill_length_mm,
+                     y      = body_mass_g,
+                     colour = species)) +
+    geom_point(size = 2) +
+    theme_bw() +
+    labs(x      = "Bill length (mm)",
+         y      = "Body mass (g)",
+         colour = "Species") +
+    scale_colour_manual(values = c("#c1dea0",
+                                   "#85be42",
+                                   "#425f21"))
+```
+````
+:::
+
+::: {.column}
+::: {.fragment}
+![](images/example-report.png)
+:::
+:::
+::::
+
+## Quarto connects code with results {.smaller}
+
+:::: {.columns}
+::: {.column}
+````
+---
+title: "There's something about penguins"
+author: "John Doe, Joan Doe, Dyon Do"
+date: today
+format:
+    html:
+        code-fold: true
+        warning: false
+---
+
+# Palmer penguins
+
+```{{r Penguin figure}}
+#| fig-width: 10
+#| fig-height: 5
+library("ggplot2")
+library("palmerpenguins")
+data(penguins, package = "palmerpenguins")
+ggplot(penguins, aes(x      = bill_length_mm,
+                     y      = body_mass_g,
+                     colour = species)) +
+    geom_point(size = 2) +
+    theme_bw() +
+    labs(x      = "Bill length (mm)",
+         y      = "Body mass (g)",
+         colour = "Species") +
+    scale_colour_manual(values = c("#c1dea0",
+                                   "#85be42",
+                                   "#425f21"))
+```
+````
+:::
+
+::: {.column}
+**A [YAML header]{.green}:**
+
+- Defines document-wide options
+- Specifies the output format
+- Can include several parameters
+
+::: {.fragment}
+**[Markdown]{.green} text:**
+
+- Freely add and format text using markdown
+:::
+
+::: {.fragment}
+**Code [chunks]{.green}:**
+
+- Evaluate code and show its output
+- Specify global and/or local chunk options (_e.g._ figure dimensions)
+- Also works with other languages (_e.g._ Python)
+:::
+
+:::
+::::
+
+## Rendering Quarto documents
+
+::: {.fragment}
+Render from the [command line]{.green}:
+```bash
+quarto render report.qmd
+```
+:::
+
+::: {.fragment}
+Render to a [specific format]{.green}:
+```bash
+quarto render report.qmd --to html
+```
+:::
+
+<br>
+
+::: {.fragment}
+_Many IDEs like VS Code and R Studio also have [buttons]{.green} to render
+Quarto documents._
+:::
+
+## Output formats
+
+::: {.incremental}
+- [Reports]{.green} and general documents (HTML, PDF, Jupyter Notebook,
+  Microsoft Word)
+- [Presentations]{.green} (reveal.js, PowerPoint, Beamer)
+- [Interactive documents]{.green} (Observable, R Shiny)
+- [Books]{.green}, [websites]{.green} and [blogs]{.green}
+- [Journal articles]{.green}
+- Your own [custom formats]{.green}
+:::
+
+## Presentations with Quarto
+
+<br>
+
+```{r Plot penguins}
+#| fig-width: 10
+#| fig-height: 4.5
+library("ggplot2")
+library("palmerpenguins")
+data(penguins, package = "palmerpenguins")
+ggplot(penguins, aes(x      = bill_length_mm,
+                     y      = body_mass_g,
+                     colour = species)) +
+    geom_point(size = 2) +
+    theme_bw() +
+    labs(x = "Bill length (mm)",
+         y = "Body mass (g)") +
+    ggtitle("Penguin weight and bill length") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
+```
+
+## Quarto vs. R Markdown
+
+::: {.incremental}
+- Quarto is a [command line tool]{.green}
+- Quarto $\thickapprox$ R Markdown 2.0
+- Quarto is [language-agnostic]{.green} (does not depend on R)
+- Quarto has all functionality [built-in]{.green} (you don't need to install
+  another package to create _e.g._ presentations)
+- The Quarto format is similar to R Markdown
+- Quarto can render R Markdown documents
+- R Markdown will continued to be supported, but Quarto is the focus of new
+  functionality and major development
+:::
+
+# Questions?
