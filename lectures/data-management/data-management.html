@@ -1301,21 +1301,23 @@ margin-right: 0; }
 <section id="organizing-your-projects" class="slide level2 larger">
 <h2>Organizing your projects</h2>
 <p><em>Which sample file represents the <span class="green">latest</span> version?</em></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">$</span> ls <span class="at">-l</span> data/</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">-rw-r--r--</span>  user  staff  samples.mat</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesFinal.mat</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesFinalV2.mat</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesUSE_THIS_ONE.mat</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesV2.mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> data/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  user  staff  samples.mat</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesFinal.mat</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesFinalV2.mat</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesUSE_THIS_ONE.mat</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  user  staff  samplesV2.mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="the-project-directory" class="slide level2">
 <h2>The project directory</h2>
 <p>The first step towards working reproducibly: <span class="green">Get organized!</span></p>
+<div>
 <ul>
-<li>Divide your work into <span class="green">distinct projects</span></li>
-<li>Keep all files needed to go from raw data to final results in a dedicated directory</li>
-<li>Use <span class="green">relevant subdirectories</span></li>
+<li class="fragment">Divide your work into <span class="green">distinct projects</span></li>
+<li class="fragment">Keep all files needed to go from raw data to final results in a dedicated directory</li>
+<li class="fragment">Use <span class="green">relevant subdirectories</span></li>
 </ul>
+</div>
 </section>
 <section id="there-are-many-ways-to-organize-a-project" class="slide level2">
 <h2>There are many ways to organize a project</h2>
@@ -1323,49 +1325,49 @@ margin-right: 0; }
 <div class="fragment" data-fragment-index="1">
 <div class="fragment fade-out" data-fragment-index="2">
 <p>A simple but effective example is the following:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">code/</span>             Code needed to go from input files to final results</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">data/</span>             Raw data <span class="at">-</span> this should never edited</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">doc/</span>              Documentation of the project</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="ex">env/</span>              Environment-related files, e.g. Conda environments or Dockerfiles</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="ex">results/</span>          Output from workflows and analyses</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="ex">README.md</span>         Project description and instructions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code/</span>             Code needed to go from input files to final results</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span>             Raw data <span class="at">-</span> this should never edited</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">doc/</span>              Documentation of the project</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">env/</span>              Environment-related files, e.g. Conda environments or Dockerfiles</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">results/</span>          Output from workflows and analyses</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">README.md</span>         Project description and instructions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment" data-fragment-index="2">
 <div class="fragment fade-out" data-fragment-index="3">
 <p>Another example is the <a href="https://github.com/NBISweden/project_template">NBISweden/project_template</a>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">code/</span>             Code needed to go from input files to final results</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">data/</span>             Raw data <span class="at">-</span> this should never edited</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">doc/</span>              Documentation of the project</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">intermediate/</span>     output files from intermediate analysis steps</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">logs/</span>             Logs from the different analysis steps</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="ex">notebooks/</span>        Notebooks that document your day-to-day work</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="ex">results/</span>          Output from workflows and analyses</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="ex">scratch/</span>          Temporary files that can be safely deleted or lost</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="ex">config.yml</span>        Configuration of the project workflow</span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="ex">Dockerfile</span>        Recipe to create a project container</span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="ex">environment.yml</span>   Project dependencies list used to create software environment</span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="ex">README.md</span>         Project description and instructions</span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="ex">Snakefile</span>         Workflow file used by snakemake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code/</span>             Code needed to go from input files to final results</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span>             Raw data <span class="at">-</span> this should never edited</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">doc/</span>              Documentation of the project</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">intermediate/</span>     output files from intermediate analysis steps</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">logs/</span>             Logs from the different analysis steps</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">notebooks/</span>        Notebooks that document your day-to-day work</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">results/</span>          Output from workflows and analyses</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">scratch/</span>          Temporary files that can be safely deleted or lost</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">config.yml</span>        Configuration of the project workflow</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Dockerfile</span>        Recipe to create a project container</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">environment.yml</span>   Project dependencies list used to create software environment</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">README.md</span>         Project description and instructions</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Snakefile</span>         Workflow file used by snakemake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment" data-fragment-index="3">
 <p>A Snakemake-based example: <a href="https://github.com/snakemake-workflows/snakemake-workflow-template">snakemake-workflows/template</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">config/</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">workflow/</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="ex">Snakefile</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">LICENSE</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="ex">README.md</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">config/</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">workflow/</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Snakefile</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">LICENSE</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">README.md</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <p>A Nextflow-based example: <a href="https://github.com/fasterius/nbis-support-template">fasterius/nbis-support-template</a></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">bin/</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">data/</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="ex">doc/</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">env/</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="ex">results/</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="ex">README.md</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">main.nf</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="ex">nextflow.config</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bin/</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">data/</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">doc/</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">env/</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">results/</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">README.md</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">main.nf</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow.config</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1384,7 +1386,7 @@ margin-right: 0; }
 <ul>
 <li><a href="https://www.nano-editor.org/">Nano</a></li>
 <li><a href="https://www.vim.org/">Vim</a></li>
-<li><a href="https://neovim.io/">NeoVim</a></li>
+<li><a href="https://neovim.io/">Neovim</a></li>
 </ul>
 </div>
 </section>
