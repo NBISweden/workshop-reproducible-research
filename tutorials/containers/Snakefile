@@ -19,16 +19,16 @@ def get_sample_url(wildcards):
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from a remote repository
-    
-    The fastq file is retrieved with wget and piped directly to the 
-    seqtk program which samples a number of reads defined by the 
-    max_reads parameter. The fastq output from seqtk is in turn piped 
+
+    The fastq file is retrieved with wget and piped directly to the
+    seqtk program which samples a number of reads defined by the
+    max_reads parameter. The fastq output from seqtk is in turn piped
     to gzip and stored as a compressed *.fastq.gz file.
 
-    The actual URL for the file is obtained from the config which 
-    requires that each sample_id is defined in the configfile as for 
+    The actual URL for the file is obtained from the config which
+    requires that each sample_id is defined in the configfile as for
     example:
-    
+
     sample_id: "https://url/to/file"
     """
     output:
@@ -206,16 +206,14 @@ rule make_supplementary:
         GSM_IDs = config["sample_ids_geo"]
     shell:
         """
-        echo 'rmarkdown::render("code/supplementary_material.Rmd", \
-                  output_file="supplementary.html", \
-                  output_dir="results/", \
-                  params=list(counts_file="{input.counts}", \
-                              multiqc_file="{input.multiqc_file}", \
-                              summary_file="{input.summary_file}", \
-                              rulegraph_file="{input.rulegraph}", \
-                              SRR_IDs="{params.SRR_IDs}", \
-                              GSM_IDs="{params.GSM_IDs}"))' \
-        | R --vanilla > {log} 2>&1
+        quarto render code/supplementary_material.qmd \
+            -P counts_file:../{input.counts} \
+            -P multiqc_file:../{input.multiqc_file} \
+            -P summary_file:../{input.summary_file} \
+            -P rulegraph_file:../{input.rulegraph} \
+            -P srr_ids:"{params.SRR_IDs}" \
+            -P gsm_ids:"{params.GSM_IDs}"
+        mv code/supplementary_material.html {output}
         """
 
 rule generate_rulegraph:
