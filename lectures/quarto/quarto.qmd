@@ -138,7 +138,7 @@ quarto render report.qmd --to html
 <br>
 
 ::: {.fragment}
-_Many IDEs like VS Code and R Studio also have [buttons]{.green} to render
+_Many IDEs like VS Code and RStudio also have [buttons]{.green} to render
 Quarto documents._
 :::
 
