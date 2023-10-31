@@ -131,9 +131,102 @@ easy to see changes made to plots and other outputs.
 
 ## Making sure notebooks work as expected
 
-- Use [nbval]() for testing notebooks and make sure they still work as expected.
+One of the great things with Jupyter notebooks is the ability to do data
+exploration in an interactive way. Because loaded data, defined variables and
+functions remain in the notebook until you restart the kernel, you can easily
+make changes to your analysis and re-run cells to see the effect of the changes
+immediately. However, this can also be a source of errors and inconsistencies if
+you, during your work, modify or use variables in cells upstream of their
+initial definition.
+ 
+As an example, create a new notebook named `exploration.ipynb` and add the following code to the first
+cell to import the `seaborn` package and load the oh so useful `penguins` dataset:
 
-## Parameterising notebooks
+```python
+import seaborn as sns
+df = sns.load_dataset("penguins")
+```
 
-- Use [papermill](https://papermill.readthedocs.io/en/latest/) to parameterise
-  notebooks and run them as scripts.
+Let's say we want to estimate the size of the bill of penguins using the
+`bill_length_mm` and `bill_depth_mm` columns. We'll do this by adding a new cell
+below the first one with the following code:
+
+```python
+df["bill_size"] = (df["bill_length_mm"] * df["bill_depth_mm"])
+```
+
+Run the cell and add a new one below it. In the new cell, output the mean of
+each column grouped by `island` using the following code:
+
+```python
+df.groupby("island").mean(numeric_only=True)
+```
+
+Run the cell to see the output. Looks good. Now we have a very simple example of
+some exploratory analyses on a dataset.
+
+Save the notebook and try running `nbval` on it to see if it works as
+expected. From the commandline, run:
+
+```bash
+pytest --nbval exploration.ipynb
+```
+
+nbval tests each cell in your notebook by executing it and comparing the output
+to the output stored in the notebook. If the output is the same, the test
+passes. The output of the test should look something like this:
+
+```
+collected 3 items                                                                                                              
+
+exploration.ipynb ....                                                                                                   [100%]
+
+========== 3 passed in 1.93s ==========
+```
+
+Now let's say we realize that we want to normalize the `bill_size` values by the
+body mass of the penguins. We'll just modify the cell where we calculated this
+value, introducing a small piece of code to divide by the `body_mass_g` column.
+
+Wouldn't it also be nice to see how our estimated `bill_size` relates to the
+flipper length of the penguins? Let's add a line of code to output a scatterplot
+directly from the second cell where we also calculate the new value:
+
+Change the second cell of the notebook so that it reads:
+
+```python
+df["bill_size"] = (df["bill_length_mm"] * df["bill_depth_mm"]) / df["body_mass_g"]
+sns.scatterplot(data=df, x="bill_size", y="flipper_length_mm", hue="island")
+```
+
+Re-run the cell and save the notebook. So far so good! Let's test the notebook
+again with nbval. Just like before run it from the commandline with:
+
+```bash
+pytest --nbval exploration.ipynb
+```
+
+If you've followed the instructions, this second run of nbval should generate a
+`FAILED` test, showing something like:
+
+```
+=================================================== short test summary info ====================================================
+FAILED exploration.ipynb::Cell 2
+================================================= 1 failed, 2 passed in 1.83s ==================================================
+```
+
+What happened here was that we modified the cell where we calculated the 
+`bill_size` value, but we didn't re-run the cell where we output the mean of
+each column grouped by `island`. This means that the output of the last cell in
+the notebook now differs from what is actually stored in the notebook variables.
+This type of error can be difficult to spot, especially if you have a large
+notebook with many cells. Luckily, nbval can help us here.
+
+> **Note** <br>
+> Note that nbval reports cell numbers using 0-based numbering, so when the test
+> fails on `Cell 2` it actually refers to the third cell in the notebook.
+
+This problem would have been solved if we had re-run the cell where we output
+the mean of each column grouped by `island`. In fact, it is good practice to
+re-run all cells in a notebook before saving it. If you in addition restart the
+kernel before re-running you make sure that you haven't introduced any 'hidden states'
