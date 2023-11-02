@@ -74,7 +74,7 @@ Jupyter lab interface.
 > **Tip** <br>
 > If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
 > Uppmax) see the section in the
-> [Extra material](jupyter-9-extra-material)
+> [Extra material](jupyter-10-extra-material)
 
 Jupyter notebooks are made up of cells, and you are currently standing in
 the first cell in your notebook. Your cursor should be blinking in this cell,

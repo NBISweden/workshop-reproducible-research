@@ -19,7 +19,6 @@ dependencies:
   - r-reshape2=1.4.4
   - r-stringi=1.7.12
   - r-pheatmap=1.0.12
-  - r-rmarkdown=2.13
   - r-r.utils=2.12.2
   - bioconductor-rtracklayer=1.54.0
   - bioconductor-geoquery=2.62.0

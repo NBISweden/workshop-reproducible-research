@@ -1,19 +1,7 @@
 ---
-title: "Jupyter notebooks"
-subtitle: "NBIS/ELIXIR-SE Tools for Reproducible Research"
-number-sections: false
+title: 'Making reports with <img src="https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg" style="width:50%;padding: 15px 15px 15px 15px;">'
+format: nbis-revealjs
 kernel: jupyter
-format:
-    revealjs:
-        output-file: "jupyter.html"
-        footer: "NBIS Reproducible research - Jupyter"
-        theme: default
-        smaller: true
-        code-block-border-left: true
-        code-block-background: true
-        auto-stretch: false
-format-links: false
-highlight-style: a11y
 ---
 
 ```{python}
@@ -25,17 +13,7 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
     %load_ext rpy2.ipython
 ```
 
-# Connect code and reports with {auto-animate=true}
-
-::: {data-id="logo1"}
-![](https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg){width="50%"}
-:::
-
-## {auto-animate=true}
-
-::: {data-id="logo1"}
-![](https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg){width="25%"}
-:::
+## What is Jupyter?
 
 ::: {.incremental}
 - An open source project for interactive data science and computing
@@ -44,7 +22,7 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
 
 ## Notebook basics
 
-![](https://docs.jupyter.org/en/latest/_images/trynb.png){width="50%"}
+![](https://docs.jupyter.org/en/latest/_images/trynb.png){width="50%" fig-align=center}
 
 ::: {.incremental}
 - Runs as a local web server
@@ -53,10 +31,9 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
 
 ## Jupyter lab
 
-_The next-generation web-based user interface for Project Jupyter._
+_The next-generation web-based user interface for Project Jupyter_
 
-![](https://jupyterlab.readthedocs.io/en/stable/_images/jupyterlab.png){width="75%"}
-
+![](https://jupyterlab.readthedocs.io/en/stable/_images/jupyterlab.png){width="75%" fig-align=center}
 
 ::: {.incremental}
 - Similar to an integrated development environments (IDE).
@@ -65,7 +42,7 @@ _The next-generation web-based user interface for Project Jupyter._
 :::
 
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...
@@ -87,7 +64,7 @@ The species included in this set are:
  ```
 :::
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -108,7 +85,7 @@ The species included in this set are:
  - _Gentoo_
 :::
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -123,7 +100,7 @@ data = sns.load_dataset("penguins")
 data.groupby("species").mean(numeric_only=True)
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -138,7 +115,7 @@ data.groupby("species").mean(numeric_only=True)
 print(paste(Sys.Date(), ": Hello World", sep=""))
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -161,7 +138,7 @@ require 'date'
 print DateTime.now(), ": Hello World!"
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -185,14 +162,13 @@ print DateTime.now(), ": Hello World!"
 ```
 
 **bash**
-
 ```{python}
 #| echo: true
 %%bash
 echo "$(date): Hello World!"
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast"}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically
@@ -209,7 +185,7 @@ sns.set_context("paper", rc={"axes.labelsize":6})
 #| echo: true
 #| warning: false
 ax = sns.pairplot(data, hue="species", height=1,
-                  plot_kws=dict(s=20, linewidth=0.5), 
+                  plot_kws=dict(s=20, linewidth=0.5),
                   diag_kws=dict(linewidth=0.5))
 ```
 

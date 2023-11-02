@@ -12,6 +12,13 @@ header levels.
 
  * Render your document using the `--to revealjs` flag and open it.
 
+> **Note** <br>
+> If you get an `NotFound: No such file or directory (os error 2)` error when
+> doing this, it is likely due to a known bug. Try adding the `revealjs` format
+> in your YAML header along with an option, _e.g._ `theme: default` - check the
+> [Presentation options](#presentation-options) below for details on how to do
+> this.
+
 You should now have the same document we've been working on for this tutorial in
 presentation format! You can step through the slides using the arrow keys, press
 `F` to go into full-screen mode, `S` to view speaker notes, `M` for the menu
@@ -33,7 +40,7 @@ a title).
 There are many ways you can add presentation-specific content to your slides,
 some of which you'd recognise from *e.g.* PowerPoint functionality.
 
-So called "divisions" or "divs" allow you to control the appearance of content 
+So called "divisions" or "divs" allow you to control the appearance of content
 in your slides.
 
 Let's fix that issue with the table that was larger than the page. The problem here is

@@ -8,8 +8,8 @@ that contains all the work we've done so far.
   packages we're depending on in the project.
 * We've constructed a [Snakemake workflow](snakemake-10-generalizing-workflows)
   that performs the data analysis and keeps track of files and parameters.
-* We've written a [R Markdown document](r-markdown-6-the-mrsa-case-study) that
-  takes the results from the Snakemake workflow and summarizes them in a report.
+* We've written a [Quarto document](quarto-1-introduction) that takes the
+  results from the Snakemake workflow and summarizes them in a report.
 
 The `workshop-reproducible-research/tutorials/containers` directory contains the
 final versions of all the files we've generated in the other tutorials:

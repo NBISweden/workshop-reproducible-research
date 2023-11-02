@@ -18,7 +18,7 @@ following order:
 2. Conda
 3. Snakemake
 4. Nextflow
-5. R Markdown
+5. Quarto
 6. Jupyter
 7. Containers
 
