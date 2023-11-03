@@ -91,30 +91,13 @@ README.md         Project description and instructions
 :::
 
 ::: {.fragment fragment-index=2}
-::: {.fragment .fade-out fragment-index=3}
-Another example is the [NBISweden/project_template](https://github.com/NBISweden/project_template):
-```bash
-code/             Code needed to go from input files to final results
-data/             Raw data - this should never edited
-doc/              Documentation of the project
-intermediate/     output files from intermediate analysis steps
-logs/             Logs from the different analysis steps
-notebooks/        Notebooks that document your day-to-day work
-results/          Output from workflows and analyses
-scratch/          Temporary files that can be safely deleted or lost
-config.yml        Configuration of the project workflow
-Dockerfile        Recipe to create a project container
-environment.yml   Project dependencies list used to create software environment
-README.md         Project description and instructions
-Snakefile         Workflow file used by snakemake
-```
-:::
-:::
-
-::: {.fragment fragment-index=3}
 A Snakemake-based example: [snakemake-workflows/template](https://github.com/snakemake-workflows/snakemake-workflow-template)
 ```bash
 config/
+data/
+doc/
+env/
+results/
 workflow/
   Snakefile
 LICENSE
@@ -131,6 +114,7 @@ doc/
 env/
 results/
 README.md
+LICENSE
 main.nf
 nextflow.config
 ```
