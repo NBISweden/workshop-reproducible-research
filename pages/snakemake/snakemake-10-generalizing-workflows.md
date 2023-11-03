@@ -162,7 +162,7 @@ rule get_genome_fasta:
     Retrieve the sequence in fasta format for a genome.
     """
     output:
-        "data/raw_external/{genome_id}.fa.gz"
+        "data/ref/{genome_id}.fa.gz"
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
     params:
@@ -188,7 +188,7 @@ rule get_genome_gff3:
     Retrieve annotation in gff3 format for a genome.
     """
     output:
-        "data/raw_external/{genome_id}.gff3.gz"
+        "data/ref/{genome_id}.gff3.gz"
     log:
         "results/logs/get_genome_gff3/{genome_id}.log"
     params:

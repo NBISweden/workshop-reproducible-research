@@ -35,7 +35,7 @@ process DONWLOAD_FASTQ_FILES {
     // Download a single-read FASTQ file from the SciLifeLab Figshare remote
 
     tag "${sra_id}"
-    publishDir "results/data/raw_internal",
+    publishDir "results/data",
         mode: "copy"
 
     input:
@@ -186,10 +186,10 @@ process RUN_FASTQC {
 
     (...)
 
-    publishDir "results/html",
+    publishDir "results/fastqc/html",
         pattern: "*.html",
         mode: "copy"
-    publishDir "intermediate/zip",
+    publishDir "results/fastqc/zip",
         pattern: "*.zip",
         mode: "copy"
 
@@ -212,9 +212,7 @@ corresponding `publishDir` directive!
 The MRSA workflow we've made here was refactored directly from its original
 version in the Snakemake tutorial of this course, which means that its output
 structure is not fully taking advantage of some of Nextflow's functionality. The
-compressed output we've already talked about above is, for example, put in the
-`intermediate/` directory in the Snakemake workflow - this is not needed in
-Nextflow.
+compressed output we've already talked about above is one example.
 
 * See if you can find any other processes in the current implementation of the
   MRSA workflow that you could optimise like this!
