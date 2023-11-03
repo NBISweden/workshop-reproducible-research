@@ -83,7 +83,7 @@ jupyter nbconvert --to HTML --output-dir results --output supplementary.html --e
 ```
 
 This command could be used in a rule, _e.g._ `make_supplementary`, the input of
-which would be `results/tables/counts.tsv`, `intermediate/multiqc_general_stats.txt`,
+which would be `results/tables/counts.tsv`, `results/multiqc/multiqc_general_stats.txt`,
 and `results/rulegraph.png`. See if you can work out how to implement such a
 rule at the end of the `Snakefile` found in the `jupyter/` directory. You can
 find an example in the code chunk below:
@@ -95,7 +95,7 @@ rule make_supplementary:
     input:
         counts = "results/tables/counts.tsv",
         summary = "results/tables/counts.tsv.summary",
-        multiqc_file = "intermediate/multiqc_general_stats.txt",
+        multiqc_file = "results/multiqc/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     params:
         base = lambda wildcards, output: os.path.basename(output[0]),
@@ -161,7 +161,7 @@ rule make_supplementary_plots:
     input:
         counts="results/tables/counts.tsv",
         summary="results/tables/counts.tsv.summary",
-        multiqc="intermediate/multiqc_general_stats.txt",
+        multiqc="results/multiqc/multiqc_general_stats.txt",
         rulegraph="results/rulegraph.png"
     log:
         notebook = "results/supplementary.ipynb"
@@ -196,7 +196,7 @@ rule make_supplementary_plots:
     input:
         counts="results/tables/counts.tsv",
         summary="results/tables/counts.tsv.summary",
-        multiqc="intermediate/multiqc_general_stats.txt",
+        multiqc="results/multiqc/multiqc_general_stats.txt",
         rulegraph="results/rulegraph.png"
     log:
         notebook = "results/supplementary.ipynb"
