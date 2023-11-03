@@ -27,8 +27,9 @@ format:
 
 This can be a nice default to use in scientific reports, as it hides the code by
 default but is always there for those who want to inspect it. You can also use
-the `code-summary` option inside your code chunks to specify a different text to show with the folded
-code instead of the default `Code`, *e.g.* `code-summary: Click to show code`.
+the `code-summary` chunk option to specify a different text to show with the
+folded code instead of the default `Code`, *e.g.* `code-summary: Click to show
+code`.
 
 You can also add the `code-tools` option, which will add a drop-down menu to
 toggle visibility of all code as well as the ability to view the source of the
@@ -150,7 +151,7 @@ chunk option like `layout-ncol`. For this we need to use an in-line code
 expression: `#| layout-ncol: !expr params$ncols`.
 
  * Add a parameter for the `layout-ncol` chunk option to the YAML header
- * Also add the `layout-ncol` chunk option to the figure chunk using the syntax 
+ * Also add the `layout-ncol` chunk option to the figure chunk using the syntax
  above and render to make sure it works.
 
 If you're using the Jupyter engine you can instead specify parameters by
