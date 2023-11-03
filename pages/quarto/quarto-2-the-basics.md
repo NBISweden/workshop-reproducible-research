@@ -198,9 +198,10 @@ header.
 >    name: conda-env-quarto-env-py
 >```
 
-It can be useful to explicitly set the language for the document, as it makes it clearer from just the 
-YAML header what language will be used. There are also more language-related options for Quarto, but we'll
-save those for later in the tutorial.
+It can be useful to explicitly set the language for the document, as it makes it
+clearer from just the YAML header what language will be used. There are also
+more language-related options for Quarto, but we'll save those for later in the
+tutorial.
 
 > **Quick recap** <br>
 > In this section you learned how to create, edit and render basic Quarto
