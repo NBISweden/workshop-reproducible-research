@@ -6,17 +6,17 @@ rule index_genome:
     Index a genome using Bowtie 2.
     """
     output:
-        index = expand("intermediate/NCTC8325.{substr}.bt2",
+        index = expand("results/bowtie2/NCTC8325.{substr}.bt2",
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
     input:
-        "data/raw_external/NCTC8325.fa.gz"
+        "data/NCTC8325.fa.gz"
     log:
         "results/logs/index_genome/NCTC8325.log"
     shell:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
         gunzip -c {input} > tempfile
-        bowtie2-build tempfile intermediate/NCTC8325 >{log}
+        bowtie2-build tempfile results/bowtie2/NCTC8325 >{log}
 
         # Remove the temporary file
         rm tempfile

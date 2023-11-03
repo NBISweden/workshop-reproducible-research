@@ -10,18 +10,18 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     output:
-        "intermediate/{sample_id}.bam"
+        "results/bam/{sample_id}.bam"
     input:
-        "data/raw_internal/{sample_id}.fastq.gz",
-        "intermediate/NCTC8325.1.bt2",
-        "intermediate/NCTC8325.2.bt2",
-        "intermediate/NCTC8325.3.bt2",
-        "intermediate/NCTC8325.4.bt2",
-        "intermediate/NCTC8325.rev.1.bt2",
-        "intermediate/NCTC8325.rev.2.bt2"
+        "data/{sample_id}.fastq.gz",
+        "results/bowtie2/NCTC8325.1.bt2",
+        "results/bowtie2/NCTC8325.2.bt2",
+        "results/bowtie2/NCTC8325.3.bt2",
+        "results/bowtie2/NCTC8325.4.bt2",
+        "results/bowtie2/NCTC8325.rev.1.bt2",
+        "results/bowtie2/NCTC8325.rev.2.bt2"
     shell:
         """
-        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output}
         """
 ```
 
@@ -35,8 +35,8 @@ like this:
 
 ```python
 input:
-    "data/raw_internal/{sample_id}.fastq.gz",
-    [f"intermediate/NCTC8325.{substr}.bt2" for
+    "data/{sample_id}.fastq.gz",
+    [f"results/bowtie2/NCTC8325.{substr}.bt2" for
         substr in ["1", "2", "3", "4", "rev.1", "rev.2"]]
 ```
 
@@ -47,8 +47,8 @@ same thing.
 
 ```python
 input:
-    "data/raw_internal/{sample_id}.fastq.gz",
-    expand("intermediate/NCTC8325.{substr}.bt2",
+    "data/{sample_id}.fastq.gz",
+    expand("results/bowtie2/NCTC8325.{substr}.bt2",
         substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
@@ -67,18 +67,18 @@ rule generate_count_table:
     output:
         "results/tables/counts.tsv"
     input:
-        bams = ["intermediate/SRR935090.sorted.bam",
-                "intermediate/SRR935091.sorted.bam",
-                "intermediate/SRR935092.sorted.bam"],
+        bams = ["results/bam/SRR935090.sorted.bam",
+                "results/bam/SRR935091.sorted.bam",
+                "results/bam/SRR935092.sorted.bam"],
 ...
 rule multiqc:
     output:
-        html = "results/multiqc.html",
-        stats = "intermediate/multiqc_general_stats.txt"
+        html = "results/multiqc/multiqc.html",
+        stats = "results/multiqc/multiqc_general_stats.txt"
     input:
-        "intermediate/SRR935090_fastqc.zip",
-        "intermediate/SRR935091_fastqc.zip",
-        "intermediate/SRR935092_fastqc.zip"
+        "results/fastqc/SRR935090_fastqc.zip",
+        "results/fastqc/SRR935091_fastqc.zip",
+        "results/fastqc/SRR935092_fastqc.zip"
 
 ```
 
@@ -103,7 +103,7 @@ the sample ids. For the `multiqc` rule it could look like this:
 
 ```python
 input:
-    expand("intermediate/{sample_id}_fastqc.zip", sample_id = SAMPLES)
+    expand("results/fastqc/{sample_id}_fastqc.zip", sample_id = SAMPLES)
 ```
 
 See if you can update the `generate_count_table` rule in the same manner!

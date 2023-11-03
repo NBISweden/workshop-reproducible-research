@@ -45,7 +45,7 @@ Change the workflow to reference `config["sample_ids"]` (if using the latter
 example) instead of `SAMPLES`, as in:
 
 ```bash
-expand("intermediate/{sample_id}_fastqc.zip",
+expand("results/fastqc/{sample_id}_fastqc.zip",
             sample_id = config["sample_ids"])
 ```
 
@@ -203,16 +203,16 @@ rule get_genome_gff3:
 Also change in `index_genome` to use a wildcard rather than a hard-coded genome
 id. Here you will run into a complication if you have followed the previous
 instructions and use the `expand()` expression. We want the list to expand to
-`["intermediate/{genome_id}.1.bt2", "intermediate/{genome_id}.2.bt2", ...]`,
+`["results/bowtie2/{genome_id}.1.bt2", "results/bowtie2/{genome_id}.2.bt2", ...]`,
 *i.e.* only expanding the wildcard referring to the Bowtie2 index. To keep the
 `genome_id` wildcard from being expanded we have to "mask" it with double curly
 brackets: `{{genome_id}}`. In addition, we need to replace the hard-coded
-`intermediate/NCTC8325` in the shell directive of the rule with the genome id
+`results/bowtie2/NCTC8325` in the shell directive of the rule with the genome id
 wildcard. Inside the shell directive the wildcard object is accessed with this
 syntax: `{wildcards.genome_id}`, so the Bowtie2-build command should be:
 
 ```bash
-bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
 ```
 
 Note that this will only work if the `{genome_id}` wildcard can be resolved to
@@ -239,7 +239,7 @@ list while `genome_id` gets expanded from the config file.
 
 ```python
 input:
-    index = expand("intermediate/{genome_id}.{substr}.bt2",
+    index = expand("results/bowtie2/{genome_id}.{substr}.bt2",
            genome_id = config["genome_id"],
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
@@ -263,7 +263,7 @@ we'll insert the genome_id directly from the config like this:
 ```bash
 shell:
     """
-    bowtie2 -x intermediate/{config[genome_id]} -U {input[0]} > {output} 2>{log}
+    bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
     """
 ```
 
@@ -277,8 +277,8 @@ shell:
 > - Clearly defined the environment for the workflow using Conda.
 > - The workflow is neat and free from temporary files due to using `temp()` and
 >   `shadow`.
-> - A logical directory structure which makes it easy to separate raw data,
->   intermediate files, and results.
+> - A logical directory structure which makes it easy to separate data and
+>   results of different software packages.
 > - A project set up in a way that makes it very easy to distribute and
 >   reproduce either via Git, Snakemake's `--archive` option or a Docker image.
 

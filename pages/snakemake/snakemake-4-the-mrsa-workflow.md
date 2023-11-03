@@ -91,12 +91,12 @@ Select jobs to execute...
 
 [Mon Oct 25 17:13:47 2021]
 rule get_genome_fasta:
-    output: data/raw_external/NCTC8325.fa.gz
+    output: data/ref/NCTC8325.fa.gz
     jobid: 6
     resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
 --2021-10-25 17:13:48--  ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
-           => ‘data/raw_external/NCTC8325.fa.gz’
+           => ‘data/ref/NCTC8325.fa.gz’
 Resolving ftp.ensemblgenomes.org (ftp.ensemblgenomes.org)... 193.62.197.75
 Connecting to ftp.ensemblgenomes.org (ftp.ensemblgenomes.org)|193.62.197.75|:21... connected.
 Logging in as anonymous ... Logged in!
@@ -107,7 +107,7 @@ Logging in as anonymous ... Logged in!
 .
 .
 localrule all:
-    input: results/tables/counts.tsv, results/multiqc.html, results/rulegraph.png
+    input: results/tables/counts.tsv, results/multiqc/multiqc.html, results/rulegraph.png
     jobid: 0
     resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
 
@@ -116,10 +116,10 @@ Finished job 0.
 19 of 19 steps (100%) done
 ```
 
-After everything is done, the workflow will have resulted in a bunch of files
-in the directories `data`, `intermediate` and `results`. Take some time to look
-through the structure, in particular the quality control reports in `results`
-and the count table in `results/tables`.
+After everything is done, the workflow will have resulted in a bunch of files in
+the directories `data/` and `results/`. Take some time to look through the
+structure, in particular the quality control reports in `results/multiqc/` and
+the count table in `results/tables/`.
 
 > **Quick recap** <br>
 > In this section we've learned:
