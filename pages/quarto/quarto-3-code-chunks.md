@@ -10,10 +10,7 @@ print(date.today())
 ```
 ````
 
-* Add the chunk option above to your document.
-* If you added the inline python code (the line starting with "The current date is", remove that line as well).
-
-Now render the document again.
+* Add the chunk option above to your document and render the document again.
 
 Notice how we no longer see the code itself, just the output? This is because
 the `echo` option specifies just that: whether we see the code or not. There are
