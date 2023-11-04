@@ -142,6 +142,11 @@ If you want to place the caption in the margin of your document you can use the
 
 * Add `cap-location: margin` to your chunk options and render.
 
+> **Note** <br>
+>
+> On some quarto versions the `cap-location:` option may not work as expected.
+> If you experience this, try also adding `#| label: fig-penguins` to the chunk.
+
 # Cross-references
 
 A convenient way to be able to refer to figures in text is by adding a figure
