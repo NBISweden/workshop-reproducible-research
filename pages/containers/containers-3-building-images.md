@@ -88,7 +88,7 @@ for executing shell commands:
 
 ```Dockerfile
 # Install package for setting time zone
-RUN apt-get update && apt install -y tzdata && apt-get clean
+RUN apt-get update && apt-get install -y tzdata && apt-get clean
 
 # Configure Conda/Mamba
 RUN mamba init bash && conda config --set channel_priority strict && \
@@ -101,6 +101,14 @@ The first RUN command installs the `tzdata` package for managing local time
 settings in the container. This may not always be required for your
 Dockerfile but it's added here because some R packages used in the course
 require it.
+
+> **Note** <br>
+> While installing things with `apt-get` inside Dockerfiles is relatively common
+> practice, it's important to note that this _may_ affect reproducibility, since
+> it's not common to specify an exact version. The packages installed in this
+> manner are, however, usually not important for the actual analyses performed,
+> but rather help in the building of the container image itself. While not
+> critical, it's important to note this from a reproducibility perspective.
 
 Next, we run `mamba init bash` to initialize the bash shell inside the
 image, meaning we can use `mamba activate` in containers that run from the
