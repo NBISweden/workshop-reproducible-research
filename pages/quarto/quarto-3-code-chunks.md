@@ -119,7 +119,7 @@ using the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguin
 You should also see a warning along the lines of `Removed 2 rows containing
 missing values`.
 
-* Suppress the warning by adding `warning: false` as a chunk option and render.
+* Suppress the warning by adding `#| warning: false` as a chunk option and render.
 
 There are two chunk options related to figure sizes: `fig-width` and
 `fig-height` (expressed in inches). These allow you to experiment with your
