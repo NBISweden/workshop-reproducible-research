@@ -78,7 +78,13 @@ a number of such chunk options that are useful to know about:
     </tr>
 </table>
 
-* Check what happens if you change `echo` to `eval`.
+* Check what happens if you change `echo: False` to `eval: False`.
+
+Now the code in the code chunk is not run, which means that if you previously
+added the python inline code it will no longer work because it depends on `date`
+from the `datetime` module that we import in the code chunk. Remove the inline
+code snippet if you added it. Then try rendering again. Now you should see the
+code itself but it won't be run and therefore has no output.
 
 # Figure options
 
