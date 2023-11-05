@@ -37,11 +37,31 @@ format: nbis-revealjs
 ![Estelle Proux-Wera](images/estelle-proux-wera.png)
 :::
 
-## What is reproducibility?
+## What is NBIS?
+
+::: {.smaller}
+[National Bioinformatics Infrastructure Sweden]{.green}
+:::
+
+::: {.incremental}
+ - A distributed national bioinformatics infrastructure supporting life sciences
+   in Sweden
+ - Provides hands-on bioinformatic support, training, infrastructure and a weekly
+   drop-in
+ - Situated in Lund, Gothenburg, Linköping, Stockholm, Uppsala and Umeå
+ - Provides wide-spectrum support in the fields of bioinformatics, bioimage
+   informatics, data management, imaging AI, development of systems and tools as
+   well as national compute resources.
+ - Read more at [nbis.se](https://nbis.se/)
+:::
+
+## What is reproducibility? {.nostretch}
 
 <br>
+<br>
+<br>
 
-![](https://phdcomics.com/comics/archive/phd031214s.gif)
+![](https://phdcomics.com/comics/archive/phd031214s.gif){fig-align=center}
 
 ## Why all the talk about reproducibility?
 

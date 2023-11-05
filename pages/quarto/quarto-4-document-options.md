@@ -29,7 +29,15 @@ This can be a nice default to use in scientific reports, as it hides the code by
 default but is always there for those who want to inspect it. You can also use
 the `code-summary` chunk option to specify a different text to show with the
 folded code instead of the default `Code`, *e.g.* `code-summary: Click to show
-code`.
+code`. 
+
+If you want to add the `code-summary` option to all chunks you can add
+the following to the yaml header:
+
+```yaml
+language:
+  code-summary: Click to show code 
+```
 
 You can also add the `code-tools` option, which will add a drop-down menu to
 toggle visibility of all code as well as the ability to view the source of the
@@ -153,6 +161,13 @@ expression: `#| layout-ncol: !expr params$ncols`.
  * Add a parameter for the `layout-ncol` chunk option to the YAML header
  * Also add the `layout-ncol` chunk option to the figure chunk using the syntax
  above and render to make sure it works.
+
+Note that to modify multiple parameters at run-time you have to use the `-P
+param:value` flag multiple times, like so:
+
+```bash
+quarto render quarto-tutorial.qmd -P point_size:4 -P ncols:1
+```
 
 If you're using the Jupyter engine you can instead specify parameters by
 designating a single cell as a *parameter cell*, like so:

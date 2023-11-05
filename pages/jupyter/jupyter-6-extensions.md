@@ -1,9 +1,8 @@
 Jupyter Notebook extensions are add-ons that can increase the functionality of
 your notebooks. Extensions include themes, editors, git support, renderers and
-much more.
-The most user-friendly way of managing extensions is via the Extension Manager
-available in the Jupyter lab interface. You can access it by clicking the
-puzzle piece icon in the left sidebar.
+much more. The most user-friendly way of managing extensions is via the
+Extension Manager available in the Jupyter lab interface. You can access it by
+clicking the puzzle piece icon in the left sidebar.
 
 > **Warning!** <br>
 > Note that the extension manager contains a disclaimer warning you that

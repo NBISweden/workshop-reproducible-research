@@ -151,7 +151,22 @@ print(date.today())
 
 * Change the code chunk to the above Python chunk instead and render your
   document again.
-* If you added the in-line code example above, change that to use Python code as well using `{python} date.strftime(date.today(), format="%Y-%m-%d")`
+
+> **Note on Python in-line code** <br>
+>
+> Quarto support for in-line python code was added in version 1.4, so if you're
+> using an older version of Quarto simply remove the in-line code example. You
+> can check your quarto version by running `quarto --version` on the
+> commandline. As of this writing, the 1.4 version of Quarto can be obtained
+> from the pre-release page: https://quarto.org/docs/download/prerelease
+>  
+> If you're using Quarto version 1.4 or higher and want to try the in-line code
+> example above for Python, change the line to:
+> ````
+> ```
+> The current date is `{python} date.strftime(date.today(), format="%Y-%m-%d")`
+> ```
+> ````
 
 So far we've had Quarto automatically determine which language *engine* should
 be used, which it detects through the code chunks we've written. We can also do
@@ -183,9 +198,10 @@ header.
 >    name: conda-env-quarto-env-py
 >```
 
-It can be useful to explicitly set the language for the document, as it makes it clearer from just the 
-YAML header what language will be used. There are also more language-related options for Quarto, but we'll
-save those for later in the tutorial.
+It can be useful to explicitly set the language for the document, as it makes it
+clearer from just the YAML header what language will be used. There are also
+more language-related options for Quarto, but we'll save those for later in the
+tutorial.
 
 > **Quick recap** <br>
 > In this section you learned how to create, edit and render basic Quarto

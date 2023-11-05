@@ -10,10 +10,7 @@ print(date.today())
 ```
 ````
 
-* Add the chunk option above to your document.
-* If you added the inline python code (the line starting with "The current date is", remove that line as well).
-
-Now render the document again.
+* Add the chunk option above to your document and render the document again.
 
 Notice how we no longer see the code itself, just the output? This is because
 the `echo` option specifies just that: whether we see the code or not. There are
@@ -81,7 +78,13 @@ a number of such chunk options that are useful to know about:
     </tr>
 </table>
 
-* Check what happens if you change `echo` to `eval`.
+* Check what happens if you change `echo: False` to `eval: False`.
+
+Now the code in the code chunk is not run, which means that if you previously
+added the python inline code it will no longer work because it depends on `date`
+from the `datetime` module that we import in the code chunk. Remove the inline
+code snippet if you added it. Then try rendering again. Now you should see the
+code itself but it won't be run and therefore has no output.
 
 # Figure options
 
@@ -116,7 +119,7 @@ using the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguin
 You should also see a warning along the lines of `Removed 2 rows containing
 missing values`.
 
-* Suppress the warning by adding `warning: false` as a chunk option and render.
+* Suppress the warning by adding `#| warning: false` as a chunk option and render.
 
 There are two chunk options related to figure sizes: `fig-width` and
 `fig-height` (expressed in inches). These allow you to experiment with your
@@ -138,6 +141,11 @@ If you want to place the caption in the margin of your document you can use the
 `cap-location` chunk option.
 
 * Add `cap-location: margin` to your chunk options and render.
+
+> **Note** <br>
+>
+> On some quarto versions the `cap-location:` option may not work as expected.
+> If you experience this, try also adding `#| label: fig-penguins` to the chunk.
 
 # Cross-references
 
