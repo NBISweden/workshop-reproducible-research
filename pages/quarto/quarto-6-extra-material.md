@@ -79,8 +79,8 @@ Quarto document. This is done via the Knitr engine and the `reticulate` R
 package, which allows communication between any variables and data you store in
 either R or Python code chunks. While this may not be that common of a use-case,
 it's still great that it's there for those that want access to it. We won't go
-through the details of this works here, but you're welcome to go and check out
-the [official reticulate website](https://rstudio.github.io/reticulate/) for
+through the details of how this works here, but you're welcome to go and check
+out the [official reticulate website](https://rstudio.github.io/reticulate/) for
 yourself.
 
 If you just want to mix R and Python in a single Quarto document without the
