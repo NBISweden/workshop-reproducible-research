@@ -36,6 +36,14 @@ printed to your terminal:
 > Jupyter with `jupyter notebook --no-browser` then copy the URL given into the
 > browser directly.
 
+
+> **Jupyter notebook versions** <br>
+> Depending on what version of the `notebook` conda package you have installed,
+> the interface may look slightly different. The screenshots in this tutorial
+> are from version 7, an update which has brought the 'classic' Jupyter notebook
+> closer to the Jupyter lab interface. Read more about this update at the
+> [Jupyter homepage](https://jupyter-notebook.readthedocs.io/en/latest/migrate_to_notebook7.html).
+
 The Jupyter Notebook/Lab interface probably opened up a web browser for you
 automatically, otherwise go to the address specified in the message in the
 terminal. Note that the server is running locally (as
@@ -66,6 +74,9 @@ suggested Python 3 kernel from the drop-down menu.
 This will open up a new tab or window looking like this:
 
 > ![](images/jupyter_empty_nb.png){ width=700px }
+
+Start by giving your notebook a name by clicking on the text "Untitled" at the
+top of the page. Enter "jupyter-tutorial.ipynb".
 
 Note that for most of this tutorial we will describe how you work in the actual
 notebook and not devote a lot of time to the extra features available in the
@@ -178,12 +189,11 @@ the menus. You can also view this list of shortcuts from the **Help** menu under
 
 ## Writing markdown
 
-Let's use our first cell to create a header. Change the format from
-Code to Markdown using the drop-down list in the Notebook Toolbar, or by
-pressing the `m` key when in command mode. Double click on
-the cell, or hit `enter` to enter editing mode (green frame) and input
-"# My notebook" ("#" is used in Markdown for header 1). Run the cell with
-`ctrl`-`enter`.
+Let's use our first cell to create a header. Change the format from Code to
+Markdown using the drop-down list in the Notebook Toolbar, or by pressing the
+`m` key when in command mode. Double click on the cell, or hit `enter` to enter
+editing mode and input "# My notebook" ("#" is used in Markdown for header 1).
+Run the cell with `ctrl`-`enter` (`cmd`-`enter` on Mac).
 
 Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
@@ -228,23 +238,22 @@ it:
 print("Hello world!")
 ```
 
-Note how the output is displayed below the cell. This interactive way of working
-is one of the things that sets Jupyter Notebook apart from RStudio and R
-Markdown. R Markdown is typically rendered top-to-bottom in one run, while you
-work *in* a Jupyter notebook in a different way. This requires some special
+Note how the output is directly displayed below the cell. This interactive way
+of working is one of the things that sets Jupyter Notebook apart from RStudio
+and R Markdown. R Markdown is typically rendered top-to-bottom in one run, while
+you work *in* a Jupyter notebook in a different way. This requires some special
 attention when it comes to reproducibility, which we will get back to in the
 [reproducibility](jupyter-7-reproducibility) section.
 
-What **is** a Jupyter notebook? Let's look a little at the notebook we're
+What **is** a Jupyter notebook? Let's look a closer at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
 will already have it available. We can be a little meta and do this from within
-the notebook itself. We do it by running some shell commands in the third code
-cell instead of Python code. This very handy functionality is possible by
-prepending the command with `!`. Try `!ls` to list the files in the current
-directory.
+the notebook itself, by running some shell commands in a code cell. This very
+handy functionality is possible by prepending the command with `!`. Try adding
+`!ls` to a code cell and run it. This will list the files in the current directory.
 
-Aha, we have a new file called `Untitled.ipynb`! This is our notebook. Look at
-the first ten lines of the file by using `!head Untitled.ipynb`. Seems like it's
+Aha, we have a new file called `jupyter-tutorial.ipynb`! This is our notebook. Look at
+the first ten lines of the file by using `!head jupyter-tutorial.ipynb`. Seems like it's
 just a plain old JSON file. Since it's a text file it's suitable for version
 control with for example Git. There are however some special considerations to
 take into account for Notebooks which we will cover in the [reproducibility
@@ -270,10 +279,10 @@ Your notebook should now look something like this.
 
 > ![](images/jupyter_basic_update.png){ width=700px }
 
-The focus of this tutorial is not on how to write Markdown or Python; you can make really
-pretty notebooks with Markdown and you can code whatever you want with Python.
-Rather, we will focus on the Jupyter Notebook features that allow you to do
-a little more than that.
+The focus of this tutorial is not on how to write Markdown or Python; you can
+make really pretty notebooks with Markdown and you can code whatever you want
+with Python. Rather, we will focus on the Jupyter Notebook features that allow
+you to do a little more than that.
 
 > **Quick recap** <br>
 > In this section we've learned:
