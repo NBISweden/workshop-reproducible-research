@@ -3,7 +3,7 @@ for some time and then deleted once they are no longer needed. A typical case
 could be that some operation generates a file, which is then compressed to save
 space or indexed to make searching faster. There is then no need to save the
 original output file. Take a look at the job graph for our workflow again. The
-output from `align_to_genome` is a bam file, which contains information about
+output from `align_to_genome` is a BAM file, which contains information about
 all the reads for a sample and where they map in the genome. For downstream
 processing we need this file to be sorted by genome coordinates. This is what
 the rule `sort_bam` is for. We therefore end up with both

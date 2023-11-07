@@ -12,13 +12,13 @@ resources). You can also define the compute environment in which each task is
 carried out on a per-task basis. You might thus develop your workflow on your
 local computer using a minimal test dataset, but run the full analyses with all
 samples on *e.g.* a computer cluster. Nextflow can work on both files and
-arbitrary values, oftentimes connected in useful and advanced ways.
+arbitrary values, often-times connected in useful and advanced ways.
 
 Nextflow can easily work with dynamic inputs where the exact output is unknown,
 *e.g.* the exact number of files or which samples pass some arbitrary quality
 control threshold. While Nextflow is based on the Groovy language, you don't
 need to know how to code Groovy to be able to write good Nextflow workflows.
-Nextflow has a large community centered around it, including the
+Nextflow has a large community centred around it, including the
 [nf-core](https://nf-co.re/) curated collection of high quality pipelines used
 by *e.g.* the [National Genomics Infrastructure](https://ngisweden.scilifelab.se/).
 

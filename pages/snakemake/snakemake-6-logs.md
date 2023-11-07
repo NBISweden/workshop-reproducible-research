@@ -24,9 +24,9 @@ rule some_rule:
 
 A log file is not different from any other output file, but it's dealt with
 a little differently by Snakemake. For example, it's shown in the file summary
-when using `-D` and unlike other output files it's not deleted if jobs fail 
-which of course is necessary for debugging purposes. It's also a good way to 
-clarify the purpose of the file. We probably don't need to save logs for 
+when using `-D` and unlike other output files it's not deleted if jobs fail
+which of course is necessary for debugging purposes. It's also a good way to
+clarify the purpose of the file. We probably don't need to save logs for
 all the rules, only the ones with interesting output.
 
 * `get_genome_fasta` and `get_genome_gff3` would be good to log since they are
@@ -38,17 +38,17 @@ all the rules, only the ones with interesting output.
   probably the most important log to save.
 
 Now add a log file to some or all of the rules above. A good place to save them
-to would be `results/logs/rule_name/`. In order to avoid that multiple jobs 
-write to the same files Snakemake requires that all output and log files contain 
-the same wildcards, so be sure to include any wildcards used in the rule in the 
-log name as well, *e.g.* `{some_wildcard}.log`. 
+to would be `results/logs/rule_name/`. In order to avoid that multiple jobs
+write to the same files Snakemake requires that all output and log files contain
+the same wildcards, so be sure to include any wildcards used in the rule in the
+log name as well, *e.g.* `{some_wildcard}.log`.
 
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
 standard out, some to standard error and some let us specify a log file via
-a flag. 
+a flag.
 
-For example, in the `align_to_genome` rule, it could look like this (bowtie2 
+For example, in the `align_to_genome` rule, it could look like this (Bowtie2
 writes log info to standard error):
 
 ```python
@@ -77,7 +77,7 @@ rule align_to_genome:
 To save some time you can use the info below.
 
 ```bash
-# Wget has a -o flag for specifying the log file
+# wget has a -o flag for specifying the log file
 wget remote_file -O output_file -o {log}
 
 # MultiQC and featureCounts write to standard error so we redirect with "2>"
@@ -88,17 +88,17 @@ featureCounts -t gene -g gene_id -a gff_file -o output_file input_files 2>{log}
 bowtie2-build input_file index_dir > {log}
 ```
 
-Now rerun the whole workflow. Do the logs contain what they should? Note how 
+Now rerun the whole workflow. Do the logs contain what they should? Note how
 much easier it is to follow the progression of the workflow when the rules write
-to logs instead of to the terminal. 
+to logs instead of to the terminal.
 
 > **Tip** <br>
-> If you have a rule with a shell directive in which several commands are run 
-> and you want to save stdout and stderr for all commands into the same log file 
+> If you have a rule with a shell directive in which several commands are run
+> and you want to save stdout and stderr for all commands into the same log file
 > you can add `exec &>{log}` as the first line of the shell directive.
 
-If you run with `-D` (or `-S` for a simpler version) you will see that the 
-summary table now also contains the log file for each of the files in the 
+If you run with `-D` (or `-S` for a simpler version) you will see that the
+summary table now also contains the log file for each of the files in the
 workflow.
 
 > **Quick recap** <br>

@@ -1,6 +1,6 @@
 As you might remember from the [intro](introduction), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+multi-resistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
 In order to do this we have performed RNA-seq of three strains, one test and
 two controls. We have already set up a draft Snakemake workflow for the RNA-seq
 analysis and it seems to be running nicely. The rest of the Snakemake tutorial
@@ -21,13 +21,13 @@ activate it (use `mamba info --envs` if you are unsure).
 > rule-specific-env.yml` in the rule definition and running Snakemake with
 > the `--use-conda` flag. The given rule will then be run in the Conda
 > environment specified in `rule-specific-env.yml` that will be created and
-> activated on the fly by Snakemake. Note that by default Snakemake uses 
-> `mamba` to generate the rule-specific environments. This behaviour can be 
-> changed by running with `--conda-frontend conda`, which will force 
+> activated on the fly by Snakemake. Note that by default Snakemake uses
+> `mamba` to generate the rule-specific environments. This behaviour can be
+> changed by running with `--conda-frontend conda`, which will force
 > Snakemake to use `conda` instead.
 
 Let's start by generating the rule graph so that we get an overview of the
-workflow. Here we have to specify the file with the rules using the `-s` 
+workflow. Here we have to specify the file with the rules using the `-s`
 flag to Snakemake since the path to the file differs from the default.
 
 ```bash
@@ -35,7 +35,7 @@ snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png
 ```
 
 There's another difference in this command compared to the one we've used
-before, namely that we don't define a target. In the toy example we used 
+before, namely that we don't define a target. In the toy example we used
 `a_b.txt` as a target, and the wildcards were resolved based on that.
 How come that we don't need to do that here? It turns out that by default
 Snakemake targets the first rule in a workflow. By convention, we call this rule
@@ -51,15 +51,15 @@ are unfamiliar with the purpose of the different operations (index genome,
 FastQC and so on), then take a look at the [intro](introduction).
 
 Also generate the job graph in the same manner. Here you can see that three
-samples will be downloaded: SRR935090, SRR935091, and SRR935092. The 
-original sample files contain tens of millions of reads but for the purpose 
-of this course we have subsampled them to 100,000 reads per sample, so that 
-they are easy to manage, and made them available at the [SciLifeLab Data 
+samples will be downloaded: SRR935090, SRR935091, and SRR935092. The
+original sample files contain tens of millions of reads but for the purpose
+of this course we have sub-sampled them to 100,000 reads per sample, so that
+they are easy to manage, and made them available at the [SciLifeLab Data
 Repository](https://figshare.scilifelab.se/articles/educational_resource/MRSA_case_study_example_data/22246417).
-These fastq files will then be quality controlled with FastQC and aligned to 
-a genome. The QC output will be aggregated with MultiQC and the alignments 
-will be used to generate a count table, *i.e.* a table that shows how many 
-reads map to each gene for each sample. This count table is then what the 
+These FASTQ files will then be quality controlled with FastQC and aligned to
+a genome. The QC output will be aggregated with MultiQC and the alignments
+will be used to generate a count table, *i.e.* a table that shows how many
+reads map to each gene for each sample. This count table is then what the
 downstream analysis will be based on.
 
 ![](images/dag_mrsa.svg)

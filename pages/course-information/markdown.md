@@ -18,22 +18,26 @@ order to be as unobtrusive as possible, so that a human can easily read it. Look
 at the following toy example:
 
 ```markdown
-# Heading
+# A header
 
 A [link](http://example.com).
 
-## Sub-heading
+## A sub-header
 
 Text attributes _italic_, *italic*, **bold**, `monospace`.
 
-### Another deeper heading
+### A deeper sub-header
 
 Bullet list:
 
-  * apples
-  * oranges
-  * pears
+  - Apples
+  - Oranges
+  - Pears
 ```
+
+This would render to something like this:
+
+![](images/markdown-example.png)
 
 A markdown document can be converted to other formats, such as HTML or PDF, for
 viewing in a browser or a PDF reader; in fact, the page you are reading right

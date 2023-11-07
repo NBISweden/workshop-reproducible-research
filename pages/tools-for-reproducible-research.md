@@ -46,7 +46,7 @@ The following topics and tools are covered in the course:
 * Conda
 * Snakemake
 * Nextflow
-* R Markdown
+* Quarto
 * Jupyter
 * Docker
 * Singularity
@@ -58,8 +58,8 @@ At the end of the course, students should be able to:
 * Use the version control system Git to track and collaborate on code
 * Use the package and environment manager Conda
 * Use and develop workflows with Snakemake and Nextflow
-* Use R Markdown and Jupyter Notebooks to document and generate automated
-  reports for their analyses
+* Use Quarto and Jupyter Notebooks to document and generate automated reports
+  for their analyses
 * Use Docker and Singularity to distribute containerized computational
   environments
 
@@ -69,10 +69,6 @@ This is an NBIS / Elixir course. The course is open for PhD students, postdocs,
 group leaders and core facility staff. International applications are welcome,
 but we will give approximately half of the participant slots to applicants from
 Swedish universities, due to the national role NBIS plays in Sweden.
-
-<!-- This online training event has no fee. However, if you confirm your -->
-<!-- participation but do not do so (no-show) you will be invoiced 2,000 SEK. Please -->
-<!-- note that NBIS cannot invoice individuals. -->
 
 The only entry requirements for this course is a basic knowledge of Unix systems
 (*i.e.* being able to work on the command line) as well as at least a basic
@@ -92,6 +88,12 @@ valid for formal credits or not.
 
 By accepting to participate in the course, you agree to follow the [NBIS
 Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
+
+# Course feel
+
+A course fee of 3000 SEK will be invoiced to accepted participants. This 
+includes lunches, coffee and snacks, and course dinner. Please note that NBIS 
+cannot invoice individuals
 
 # Schedule
 

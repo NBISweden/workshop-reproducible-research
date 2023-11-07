@@ -83,7 +83,7 @@ git commit -m "Add metadata file"
 > gitignore file, but is applied to all Git repositories that you are using
 > on your machine. Some common file extensions that might be put in the
 > global gitignore are `.DS_Store` if you're working on a Mac or `.swp` if
-> you're coding in (neo)vim. To configure git to use the `.gitignore_global`
+> you're coding in (Neo)Vim. To configure git to use the `.gitignore_global`
 > file you can run `git config --global core.excludesfile ~/.gitignore_global`.
 
 > **Quick recap** <br>
