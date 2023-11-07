@@ -114,7 +114,8 @@ nbdiff-web Analysis.ipynb
 ```
 
 This will open up a tab in your web browser showing you changes made to the
-notebook side-by-side for each cell, including also cell output. This makes it
+notebook side-by-side for each cell, including also cell output (you may have to
+click the "Trust outputs" button at the top of the page). This makes it
 easy to see changes made to plots and other outputs.
 
 ### Other tools for version control of notebooks
