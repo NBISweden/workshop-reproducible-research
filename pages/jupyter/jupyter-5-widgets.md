@@ -19,11 +19,12 @@ Let's take the scatterplot of the penguins dataset that we generated in the
 previous section and add widgets that lets us choose variables to plot as well
 as coloring of the points.
 
-First we'll import the `interactive` function from `ipywidgets`, so add the
-following code to a cell and run it:
+First we'll import the `interactive` function from `ipywidgets`. Let's also
+import the `widgets` module which we we'll use later. Add the following code to
+a cell and run it:
 
 ```python
-from ipywidgets import interactive
+from ipywidgets import interactive, widgets
 ```
 
 Now, in a new cell, define a function called `scatterplot` with the code to
@@ -97,7 +98,7 @@ call the `interactive` function so that it looks like this, then run it:
 ```python
 interactive_scatterplot = interactive(scatterplot, 
             x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"], 
-            y=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
+            y=["body_mass_g","bill_length_mm","bill_depth_mm","flipper_length_mm",],
             hue=["species","island","sex"],
             palette=["Set1","Set2","Dark2","Paired2"],
             size=(20,100,10))
@@ -133,8 +134,19 @@ To see this in practice, we'll modify the scatterplot function to display a
 title and add a color picker widget that let's us set the color of the title
 text.
 
-First define the new widget by adding the following code to a cell and running
-it:
+First, update the scatterplot function so that it looks like this:
+
+```python
+def scatterplot(x, y, hue, palette, size, color):
+    ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette, s=size)
+    ax.set_title("Penguin scatterplot", color=color)
+```
+
+Then run the cell to update the function definition.
+
+Next, we'll define the colour picker widget. Add the definition to the cell
+where you defined the `interactive_scatterplot` then supply the widget to the
+`interactive` call. The cell should look like this:
 
 ```python
 colorpicker = widgets.ColorPicker(
@@ -143,29 +155,15 @@ colorpicker = widgets.ColorPicker(
     value='blue',
     disabled=False
 )
-```
-
-Now change the scatterplot function so that it looks like this, then run the
-cell:
-
-```python
-def scatterplot(x, y, hue, palette, size, color):
-    ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette, s=size)
-    ax.set_title("Penguin scatterplot", color=color)
-```
-
-Next, update the cell where we call the `interactive` function so that it looks
-like this, then run the cell:
-
-```python 
 interactive_scatterplot = interactive(scatterplot, 
             x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"], 
-            y=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
+            y=["body_mass_g","bill_length_mm","bill_depth_mm","flipper_length_mm"],
             hue=["species","island","sex"],
             palette=["Set1","Set2","Dark2","Paired2"],
             size=(20, 100, 10),
             color=colorpicker)
 ```
+Run the cell to update the widgets.
 
 Finally, re-run the cell where we displayed the `interactive_scatterplot`. The
 plot should now have a title and you should see a new color picker below the
