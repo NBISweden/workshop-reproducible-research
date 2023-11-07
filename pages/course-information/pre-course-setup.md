@@ -148,6 +148,55 @@ below for more information.
 > Locate the version box in the bottom right corner of the website and select
 > the corresponding version.
 
+### GitHub setup
+
+[GitHub](https://github.com) is one of several online hosting platforms for Git
+repositories. We'll go through the details regarding how Git and GitHub are
+connected in the course itself, so for now we'll stick to setting up your
+account and credentials.
+
+If you have not done so already, go to [github.com](https://github.com/join) and
+create an account. You can also create an account on another online hosting
+service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
+[GitLab](https://about.gitlab.com/). The exercises in this course are written
+with examples from GitHub (as that is the most popular platform with the most
+extensive features), but the same thing can be done on alternative services,
+although the exact menu structure and link placements differ.
+
+Any upload to and from GitHub requires you to authenticate yourself. GitHub
+used to allow authentication with your account and password, but this is no
+longer the case - using SSH keys is required instead. Knowing exactly what these
+are is not necessary to get them working, but we encourage you to read the box
+below to learn more about them! GitHub has excellent, platform-specific
+instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+SSH keys to your account, so please follow those instructions.
+
+> **SSH keys and authentication** <br>
+> Using SSH (Secure Shell) for authentication basically entails setting up a
+> pair of keys: one private and one public. You keep the private key on your
+> local computer and give the public key to anywhere you want to be able to
+> connect to, *e.g.* GitHub. The public key can be used to encrypt messages that
+> *only* the corresponding private key can decrypt. A simplified description of
+> how SSH authentication works goes like this:
+>
+> 1. The client (*i.e.* the local computer) sends the ID of the SSH key pair it
+>    would like to use for authentication to the server (*e.g.* GitHub)
+> 2. If that ID is found, the server generates a random number and encrypts this
+>    with the public key and sends it back to the client
+> 3. The client decrypts the random number with the private key and sends it
+>    back to the server
+>
+> Notice that the private key always remains on the client's side and is never
+> transferred over the connection; the ability to decrypt messages encrypted
+> with the public key is enough to ascertain the client's authenticity. This is
+> in contrast with using passwords, which are themselves sent across a
+> connection (albeit encrypted). It is also important to note that even though
+> the keys come in pairs it is impossible to derive the private key from the
+> public key. If you want to read more details about how SSH authentication work
+> you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
+> which has more in-depth information than we provide here.
+
 ## Installing Mamba
 
 ### Mamba or Conda?
@@ -210,7 +259,7 @@ rm Mambaforge-MacOSX-arm64.sh
 ```
 
 ```bash
-# Install Mambaforge for 64-bit Linux
+# Install Mambaforge3 for 64-bit Linux
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O
 bash Mambaforge-Linux-x86_64.sh
 rm Mambaforge-Linux-x86_64.sh
@@ -415,7 +464,7 @@ the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-Go to the [Linux install](https://docs.docker.com/desktop/install/linux-install/)
+Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/)
 section of the Docker documentation and make sure that your computer meets the
 system requirements. There you can also find instructions for different Linux
 distributions in the left sidebar under *Installation per Linux distro*.
