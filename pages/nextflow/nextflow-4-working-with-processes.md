@@ -109,7 +109,7 @@ RUN_MULTIQC (
 
 We already know about `.out` and `.collect()`, but we have something new here:
 the `RUN_MULTIQC` process is taking the second channel of the output from the
-`RUN_FASTQC` process - `[1]` is the index for the second channel, as Groovy is 
+`RUN_FASTQC` process - `[1]` is the index for the second channel, as Groovy is
 zero-based (the first channel is indexed by `[0]`).
 
 This comes with some issues, however. What if we accidentally changed the order
@@ -170,7 +170,7 @@ publishDir "results/logs",
 ```
 
 In this example, `*.tsv` files are copied to the folder `results/tables/`,
-while `*.log` files are copied to the folder `results/logs`. The 
+while `*.log` files are copied to the folder `results/logs`. The
 `publishDir` directive can be used multiple times in a single process, allowing
 one to separate output as above, or publish the same output to multiple folders.
 

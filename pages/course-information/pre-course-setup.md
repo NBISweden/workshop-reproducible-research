@@ -30,7 +30,7 @@ cd workshop-reproducible-research
 > Run this command after you have `cd` into `workshop-reproducible-research`
 > as described above. If you do that, you probably also want to view the
 > same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io.
+> hosted at [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io).
 > Locate the version box in the bottom right corner of the website and
 > select the corresponding version.
 
@@ -57,8 +57,9 @@ resources:
 > **Note** <br>
 > If you run into error messages when trying to download files through the Linux
 > shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
-> nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
-> then add `nameserver 8.8.8.8` to the bottom of the file and save it.
+> name server to the internet configuration by running `sudo nano
+> /etc/resolv.conf` then add `nameserver 8.8.8.8` to the bottom of the file and
+> save it.
 
 > **Important!** <br>
 > Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows),
@@ -137,15 +138,15 @@ below for more information.
 > change, so we have chosen to use `main` for this course.
 
 > **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-> tags/course_1905`. To list all available tags, use `git tag`. Run this
-> command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
+> If you want to revisit the material from an older instance of this course, you
+> can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+> tags/course_1905`. To list all available tags, use `git tag`. Run this command
+> after you have `cd` into `workshop-reproducible-research` as described above.
+> If you do that, you probably also want to view the same older version of this
+> website. Until spring 2021, the website was hosted at
+> [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io/en/latest/).
+> Locate the version box in the bottom right corner of the website and select
+> the corresponding version.
 
 ### GitHub setup
 
@@ -202,7 +203,7 @@ SSH keys to your account, so please follow those instructions.
 
 Maybe you've worked with the Conda package manager before, and you're wondering
 what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
-quickly grown and matured to the point that we are almost explusively using it
+quickly grown and matured to the point that we are almost exclusively using it
 in our own daily work rather than Conda -  we are thus reflecting this
 wide-spread adopting in the course material as well. Conveniently there is
 almost no difference in the way the two programs work on the command line. You
@@ -244,7 +245,7 @@ Mamba is installed by downloading and executing a [Mambaforge](https://github.co
 installer for your operating system.
 
 ```bash
-# Install Mambaforge3 for 64-bit Mac
+# Install Mambaforge for 64-bit Mac
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-x86_64.sh -O
 bash Mambaforge-MacOSX-x86_64.sh
 rm Mambaforge-MacOSX-x86_64.sh
@@ -285,11 +286,11 @@ mamba --version
 > `conda-forge` and `defaults` channels should be avoided as the default
 > Anaconda channels are incompatible with `conda-forge`.
 
-> **Different Mambas/Condas** <br>
+> **Different Mamba/Conda flavours** <br>
 > You may come across several flavours of both Mamba and Conda. For Mamba
 > there's the *Miniforge* installer which allows you to install the `mamba`
 > command line tool that works as a replacement for `conda`. There's also
-> `micromamba`, a small standalone C++ program developed mainly for continuous
+> `micromamba`, a small stand-alone C++ program developed mainly for continuous
 > integration pipelines. For Conda there's *Miniconda*, which is the installer
 > for Conda. The third is *Anaconda*, which is a distribution of not only Conda,
 > but also over 150 scientific Python packages. If you want to use Conda it's
@@ -310,7 +311,7 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-and we will also set so called 'strict' channel priority, which ensures higher
+And we will also set so called 'strict' channel priority, which ensures higher
 stability and better performance (see details about this setting by running the
 following:
 
@@ -364,7 +365,7 @@ with the setup for the other tools.
 
 ## Installing Nextflow
 
-The easiest way to install Nextflow is the offical one, which is to just run the
+The easiest way to install Nextflow is the official one, which is to just run the
 following code:
 
 ```bash
@@ -390,66 +391,34 @@ mamba activate nextflow-env
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
 Check that Nextflow was installed correctly by running `nextflow -version`. If
-you successfully installed Nextflow using Mamba you can now deactive the
+you successfully installed Nextflow using Mamba you can now deactivate the
 environment using `mamba deactivate` and continue with the other setups, as
 needed.
 
-## Installing R Markdown
+## Installing Quarto
 
-We also use Mamba to install R Markdown: make sure your working directory is in
-the tutorials directory (`workshop-reproducible-research/tutorials`) and install
-the necessary R packages defined in the `environment.yml`:
+Installing Quarto is easiest by going to the [official
+website](https://quarto.org/docs/get-started/) and downloading the
+OS-appropriate package and following the installation instructions. You also
+need to install a LaTeX distribution to be able to render Quarto documents to
+PDF, which can be done using Quarto itself:
 
 ```bash
-mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
+quarto install tinytex
+```
+
+While we're not installing Quarto *itself* using Mamba, we *will* install some
+software packages that are used in the Quarto tutorial using Mamba: make sure
+your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
+and install the necessary packages defined in the `environment.yml`:
+
+```bash
+mamba env create -f quarto/environment.yml -n quarto-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
-
-You can then activate the environment followed by running RStudio in the
-background from the command line:
-
-```bash
-mamba activate rmarkdown-env
-rstudio &
-```
-
-Once you've successfully completed the above steps you can deactivate your Conda
-environment using `mamba deactivate` and continue with the setup for the other
-tools.
-
-> **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Mamba, both run
-> well directly on Windows and you may therefore want to install Windows
-> versions of these software for this tutorial (if you haven't done so already).
-> Mamba is, however, the recommended way. If you're having issues with
-> graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
-> scroll down to the "Graphical applications".
-
-> **RStudio and Mamba** <br>
-> In some cases RStudio doesn't play well with Mamba due to differing libpaths.
-> The first and simplest thing to try is to always start RStudio from the
-> command line (`rstudio &`). If you're still having issues, check the available
-> library path by `.libPaths()` to make sure that it points to a path within
-> your Conda environment. It might be that `.libPaths()` shows multiple library
-> paths, in which case R packages will be searched for by R in all these
-> locations. This means that your R session will not be completely isolated in
-> your Conda environment and that something that works for you might not work
-> for someone else using the same Conda environment, simply because you had
-> additional packages installed in the second library location. One way to force
-> R to just use the environment library path is to add a `.Renviron` file to the
-> directory where you start R with these lines:
-
-    ```
-    R_LIBS_USER=""
-    R_LIBS=""
-    ```
-
-> ... and restart RStudio. The `rmarkdown/` directory in the course materials
-> already contains this file, so you shouldn't have to add this yourself, but
-> we mention it here for your future projects.
 
 ## Installing Jupyter
 
@@ -479,10 +448,10 @@ successful.
 > **Docker for older versions of OSX/Windows** <br>
 > The latest version of Docker may not work if you have an old version of either
 > OSX or Windows. You can find older Docker versions that may be compatible for
-> you if you go to https://docs.docker.com/desktop/ and click "Previous
+> you if you go to [https://docs.docker.com/desktop/]() and click "Previous
 > versions" in the left side menu.
 
-### macOS
+### MacOS
 
 Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 and select the download option that is suitable for your computer's architecture
@@ -503,7 +472,7 @@ distributions in the left sidebar under *Installation per Linux distro*.
 ### Windows
 
 In order to run Docker on Windows your computer must support *Hardware
-Virtualization Technology* and virtualization must be enabled. This is typically
+Virtualisation Technology* and virtualisation must be enabled. This is typically
 done in BIOS. Setting this is outside the scope of this tutorial, so we'll
 simply go ahead as if though it's enabled and hope that it works.
 

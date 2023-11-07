@@ -13,8 +13,18 @@ WORKDIR /course
 ENV TZ="Europe/Stockholm"
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install package for setting timezone
-RUN apt-get update && apt-get install -y tzdata && apt-get clean
+# Install packages require for timezone and Quarto installation
+RUN apt-get update \
+    && apt-get install -y tzdata curl \
+    && apt-get clean
+
+# Install Quarto
+ARG QUARTO_VERSION="1.3.450"
+RUN mkdir -p /opt/quarto/${QUARTO_VERSION} \
+    && curl -o quarto.tar.gz -L "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz" \
+    && tar -zxvf quarto.tar.gz -C "/opt/quarto/${QUARTO_VERSION}" --strip-components=1 \
+    && rm quarto.tar.gz
+ENV PATH /opt/quarto/${QUARTO_VERSION}/bin:${PATH}
 
 # Configure Conda/Mamba
 RUN mamba init bash && conda config --set channel_priority strict && \

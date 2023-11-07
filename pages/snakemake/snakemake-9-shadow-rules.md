@@ -24,7 +24,7 @@ rule index_genome:
 ```
 
 There is a temporary file here called `tempfile` which is the uncompressed
-version of the input, since Bowtie 2 cannot use compressed files. There are
+version of the input, since Bowtie2 cannot use compressed files. There are
 a number of drawbacks with having files that aren't explicitly part of the
 workflow as input/output files to rules:
 
@@ -42,11 +42,11 @@ isolated temporary directory (located in `.snakemake/shadow/` by default).
 There are a few options for `shadow` (for the full list of these options see
 the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
 The most simple is `shadow: "minimal"`, which means that the rule is executed in
-an empty directory that the input files to the rule have been symlinked into. 
-For the rule below, that means that the only file available would be `input.txt`. 
-The shell commands would generate the files `some_other_junk_file` and 
-`output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its 
-"real" location and remove the whole shadow directory. We therefore never have 
+an empty directory that the input files to the rule have been symlinked into.
+For the rule below, that means that the only file available would be `input.txt`.
+The shell commands would generate the files `some_other_junk_file` and
+`output.txt`. Lastly, Snakemake will move the output file (`output.txt`) to its
+"real" location and remove the whole shadow directory. We therefore never have
 to think about manually removing `some_other_junk_file`.
 
 ```python

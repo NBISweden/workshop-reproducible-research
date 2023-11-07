@@ -114,7 +114,6 @@ dependencies:
   - r-reshape2=1.4.4
   - r-stringi=1.7.12
   - r-pheatmap=1.0.12
-  - r-rmarkdown=2.13
   - r-r.utils=2.12.2
   - bioconductor-rtracklayer=1.54.0
   - bioconductor-geoquery=2.62.0
@@ -127,7 +126,7 @@ dependencies:
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
 part between `=======` and `>>>>>>> refs/remotes/origin/main` is
 the one added to the remote and which caused the conflict when you tried to merge
-those changes to your local repository. It is now up to you to decide which 
+those changes to your local repository. It is now up to you to decide which
 version to keep, or to change it to a third alternative.
 
 * Let's say that you are confident that it is better to run MultiQC 1.6 rather
@@ -157,7 +156,6 @@ dependencies:
   - r-reshape2=1.4.4
   - r-stringi=1.7.12
   - r-pheatmap=1.0.12
-  - r-rmarkdown=2.13
   - r-r.utils=2.12.2
   - bioconductor-rtracklayer=1.54.0
   - bioconductor-geoquery=2.62.0
@@ -179,7 +177,7 @@ git add environment.yml
   guessed it, run:
 
 ```bash
-git commit -m "Merge and set multiqc to v1.6"
+git commit -m "Merge and set MultiQC to v1.6"
 ```
 
 * Finally, push these changes to GitHub:

@@ -7,13 +7,13 @@ for, or to see how some parameter value affects a clustering. Jupyter notebooks
 has great support for this in the form of *widgets*.
 
 Widgets are eventful Python objects that have a representation in the browser,
-often as a control like a slider, textbox, etc. These are implemented in the 
+often as a control like a slider, text box, etc. These are implemented in the
 `ipywidgets` package.
 
 The easiest way to get started with using widgets are via the `interact` and
-`interactive` functions. These functions autogenerate widgets from functions
+`interactive` functions. These functions auto-generate widgets from functions
 that you define, and then call those functions when you manipulate the widgets.
-Too abstract? Let's put it into practice! 
+Too abstract? Let's put it into practice!
 
 Let's try to add sliders that allow us to change the frequency, amplitude and
 phase of the sine curve we plotted previously.
@@ -21,7 +21,7 @@ phase of the sine curve we plotted previously.
 ```python
 # Import the interactive function from ipywidgets
 from ipywidgets import interactive
-# Also import numpy (for calculating the sine curve) 
+# Also import numpy (for calculating the sine curve)
 # and pyplot from matplotlib for plotting
 import numpy as np
 import matplotlib.pyplot as plt
@@ -34,23 +34,23 @@ def sine_curve(A, f, p):
     x = np.linspace(0,10,100)
     # Calculate the y values using the supplied parameters
     y = A*np.sin(x*f+p)
-    # Plot the x and y values ('r-' specifies color and line style)
-    plt.plot(x, y, color='red', linestyle="-")
+    # Plot the x and y values ('r-' specifies colour and line style)
+    plt.plot(x, y, colour='red', linestyle="-")
     plt.show()
 
-# Here we supply the sine_curve function to interactive, 
+# Here we supply the sine_curve function to interactive,
 # and set some limits on the input parameters
-interactive_plot = interactive(sine_curve, 
-            A=(1, 5, 1), 
-            f=(0, 5, 1), 
+interactive_plot = interactive(sine_curve,
+            A=(1, 5, 1),
+            f=(0, 5, 1),
             p=(1, 5, 0.5))
 
 # Display the widgets and the plot
 interactive_plot
 ```
 
-The code above defines a function called `sine_curve` which takes three 
-arguments: 
+The code above defines a function called `sine_curve` which takes three
+arguments:
 
 - `A` = the amplitude of the curve
 - `f` = the frequency of the curve
@@ -60,50 +60,50 @@ The function creates a plot area, generates x-values and calculates y-values
 using the `np.sin` function and the supplied parameters. Finally, the x and y
 values are plotted.
 
-Below the function definition we use `interactive` with the `sine_curve` 
-function as the first parameter. This means that the widgets will be tied to 
-the `sine_curve` function. As you can see we also supply the `A`, `f` and `p` 
-keyword arguments. Importantly, all parameters defined in the `sine_curve` 
+Below the function definition we use `interactive` with the `sine_curve`
+function as the first parameter. This means that the widgets will be tied to
+the `sine_curve` function. As you can see we also supply the `A`, `f` and `p`
+keyword arguments. Importantly, all parameters defined in the `sine_curve`
 function must be given in the `interactive` call and a widget is created for
-each one. 
+each one.
 
 Depending on the `type` of the passed argument different types of
-widgets will be created by `interactive`. For instance: 
+widgets will be created by `interactive`. For instance:
 
 - `int` or `float` arguments will generate a slider
 - `bool` arguments (True/False) will generate checkbox widgets
-- `list` arguments will generate a dropdown
-- `str` arguments will generate a text-box 
+- `list` arguments will generate a drop-down
+- `str` arguments will generate a text-box
 
-By supplying the arguments in the form of 
+By supplying the arguments in the form of
 [tuples](https://docs.python.org/3/library/stdtypes.html#typesseq) we can
-adjust the properties of the sliders. `f=(1, 5, 1)` creates a widget with 
+adjust the properties of the sliders. `f=(1, 5, 1)` creates a widget with
 minimum value of `1`, maximum value of `5` and a step size of `1`. Try adjusting
 these numbers in the `interactive` call to see how the sliders change (you have
 to re-execute the cell).
 
-The final line of the cell (`interactive_plot`) is where the actual widgets and 
+The final line of the cell (`interactive_plot`) is where the actual widgets and
 plot are displayed. This code can be put in a separate cell, so that you can
 define functions and widgets in one part of your notebook, and reuse them
 somewhere else.
 
 This is how it should look if everything works. You can now set the frequency
-amplitude and phase of the sine curve by moving the sliders. 
+amplitude and phase of the sine curve by moving the sliders.
 
 ![](images/jupyter_widget.png){ width=700px }
 
 There are lots of widgets, _e.g._:
 
-- Dropdown menus
+- Drop-down menus
 - Toggle buttons
 - Range sliders
 - File uploader
 
-... and much, much more. Here is a [list of all available widgets](
+... And much, much more. Here is a [list of all available widgets](
 https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html)
-together with documentation and examples. Some of these widgets cannot be 
-autogenerated by `interactive`, but fear not! Instead of relying on 
-autogeneration we can define the widget and supply it directly to `interactive`.
+together with documentation and examples. Some of these widgets cannot be
+auto-generated by `interactive`, but fear not! Instead of relying on
+auto-generation we can define the widget and supply it directly to `interactive`.
 
 To see this in practice, change out the `A` argument to a pre-defined
 `IntSlider` widget. First define the slider:
@@ -122,7 +122,7 @@ interactive_plot = interactive(sine_curve, A=A, f=5, p=5)
 ## Extra challenge
 
 If you can't get enough of widgets you might want to try this out: see if you
-can figure out how to add a widget that lets you pick the color for the sine
+can figure out how to add a widget that lets you pick the colour for the sine
 curve line. Search for the appropriate widget in the [Widget list](
 https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html).
 You'll need to update the `sine_curve` function and pass the new widget as
@@ -135,7 +135,7 @@ below:
 ```python
 # Import the interactive function from ipywidgets
 from ipywidgets import interactive
-# Also import numpy (for calculating the sine curve) 
+# Also import numpy (for calculating the sine curve)
 # and pyplot from matplotlib for plotting
 import numpy as np
 from ipywidgets import widgets ## <- import widgets
@@ -149,17 +149,17 @@ def sine_curve(A, f, p, color): ## <- add parameter here
     x = np.linspace(0,10,100)
     # Calculate the y values using the supplied parameters
     y = A*np.sin(x*f+p)
-    # Plot the x and y values 
-    plt.plot(x, y, color=color) ## <- Use color from widget here
+    # Plot the x and y values
+    plt.plot(x, y, color=color) ## <- Use colour from widget here
     plt.show()
 
-# Here we supply the sine_curve function to interactive, 
+# Here we supply the sine_curve function to interactive,
 # and set some limits on the input parameters
 # Define the colorpicker widget
 colorpicker = widgets.ColorPicker(description='color',value="red")
-interactive_plot = interactive(sine_curve, 
-            A=(1, 5, 1), 
-            f=(0, 5, 1), 
+interactive_plot = interactive(sine_curve,
+            A=(1, 5, 1),
+            f=(0, 5, 1),
             p=(1, 5, 0.5),
             color=colorpicker) ## <- Supply the colorpicker to the function
 
@@ -170,7 +170,7 @@ interactive_plot
 </details>
 
 > **Attention!** <br>
-> Note that you may have to close the color picker once you've made your 
+> Note that you may have to close the colour picker once you've made your
 > choice in order to make the plot update.
 
 ## Other interactive plots

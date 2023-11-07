@@ -46,7 +46,7 @@ The following topics and tools are covered in the course:
 * Conda
 * Snakemake
 * Nextflow
-* R Markdown
+* Quarto
 * Jupyter
 * Docker
 * Singularity
@@ -58,8 +58,8 @@ At the end of the course, students should be able to:
 * Use the version control system Git to track and collaborate on code
 * Use the package and environment manager Conda
 * Use and develop workflows with Snakemake and Nextflow
-* Use R Markdown and Jupyter Notebooks to document and generate automated
-  reports for their analyses
+* Use Quarto and Jupyter Notebooks to document and generate automated reports
+  for their analyses
 * Use Docker and Singularity to distribute containerized computational
   environments
 

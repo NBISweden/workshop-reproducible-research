@@ -12,7 +12,7 @@ for other researchers to be able to rerun your published analysis.
   used to generate the manuscript figures. Let's add a tag:
 
 ```bash
-git tag "submission1"
+git tag "submission-1"
 ```
 
 * We can now list all the tags available in the current repository:
@@ -39,7 +39,7 @@ git tag
 ```bash
 git add config.yml
 git commit -m "Increase number of reads"
-git tag "revision1"
+git tag "revision-1"
 ```
 
 * Now let's say that the reviewers were happy and the manuscript was

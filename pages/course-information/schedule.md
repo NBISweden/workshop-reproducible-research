@@ -202,8 +202,8 @@
         <td style="padding:5px"> <font size="3"> 09:00 </td>
         <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
              <font size="2"><i><br>
-             - Introduction to R Markdown<br>
-             - Practical tutorial: R Markdown </i>
+             - Introduction to Quarto<br>
+             - Practical tutorial: Quarto </i>
         </td>
         <td style="padding:5px"> <font size="3"> EF </td>
     </tr>

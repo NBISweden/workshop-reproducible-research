@@ -10,8 +10,7 @@ rule all:
     input:
         "results/tables/counts.tsv",
         "results/multiqc.html",
-        "results/rulegraph.png",
-        "results/supplementary.html"
+        "results/rulegraph.png"
 
 def get_sample_url(wildcards):
     return config["sample_urls"][wildcards.sample_id]
@@ -19,16 +18,16 @@ def get_sample_url(wildcards):
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file from a remote repository
-    
-    The fastq file is retrieved with wget and piped directly to the 
-    seqtk program which samples a number of reads defined by the 
-    max_reads parameter. The fastq output from seqtk is in turn piped 
+
+    The fastq file is retrieved with wget and piped directly to the
+    seqtk program which samples a number of reads defined by the
+    max_reads parameter. The fastq output from seqtk is in turn piped
     to gzip and stored as a compressed *.fastq.gz file.
 
-    The actual URL for the file is obtained from the config which 
-    requires that each sample_id is defined in the configfile as for 
+    The actual URL for the file is obtained from the config which
+    requires that each sample_id is defined in the configfile as for
     example:
-    
+
     sample_id: "https://url/to/file"
     """
     output:
@@ -186,38 +185,6 @@ rule generate_count_table:
     shell:
         """
         featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
-        """
-
-rule make_supplementary:
-    """
-    Generate Supplementary Material
-    """
-    output:
-        "results/supplementary.html"
-    input:
-        counts = "results/tables/counts.tsv",
-        summary_file = "results/tables/counts.tsv.summary",
-        multiqc_file = "intermediate/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    log:
-        "results/logs/make_supplementary.log"
-    params:
-        SRR_IDs = config["sample_ids"],
-        GSM_IDs = config["sample_ids_geo"],
-        GSE_ID = config["series_id_geo"]
-    shell:
-        """
-        echo 'rmarkdown::render("code/supplementary_material.Rmd", \
-                  output_file="supplementary.html", \
-                  output_dir="results/", \
-                  params=list(counts_file="{input.counts}", \
-                              multiqc_file="{input.multiqc_file}", \
-                              summary_file="{input.summary_file}", \
-                              rulegraph_file="{input.rulegraph}", \
-                              SRR_IDs="{params.SRR_IDs}", \
-                              GSM_IDs="{params.GSM_IDs}", \
-                              GSE_ID="{params.GSE_ID}"))' \
-        | R --vanilla > {log} 2>&1
         """
 
 rule generate_rulegraph:

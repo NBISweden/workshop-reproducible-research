@@ -10,7 +10,7 @@ Now list all available magics with `%lsmagic` (which itself is a magic). You
 add a question mark to a magic to show the help (*e.g.* `%lsmagic?`). Some of
 them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`,
 ..). Others are useful for debugging and optimizing your code (`%timeit`,
-`%debug`, `%prun`, ..). For more information see the 
+`%debug`, `%prun`, ..). For more information see the
 [magics documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html).
 
 A very useful magic, in particular when using shell commands a lot in your
@@ -26,7 +26,7 @@ echo "Print to stdout"
 echo "Print to stderr" >&2
 ```
 
-... and in another cell:
+... And in another cell:
 
 ```python
 print("stdout:" + output.stdout)
@@ -36,7 +36,7 @@ print("stderr:" + output.stderr)
 > **Tip** <br>
 > You can capture the output of some magics directly like this: `my_dir = %pwd`.
 
-The `%%script` magic is used for specifying a program (bash, perl, ruby, ..)
+The `%%script` magic is used for specifying a program (Bash, Perl, Ruby, ..)
 with which to run the code (similar to a shebang). For some languages it's
 possible to use these shortcuts:
 
@@ -45,7 +45,7 @@ possible to use these shortcuts:
 * `%%bash`
 * `%%html`
 * `%%latex`
-* `%%R` (here you have to first install the rpy2 extension, for example with
+* `%%R` (here you have to first install the `rpy2` extension, for example with
   Conda, and then load with `%load_ext rpy2.ipython`)
 
 Try this out if you know any of the languages above. Otherwise you can always
@@ -55,7 +55,7 @@ try to print the quadratic formula with LaTeX!
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
-Another useful magic is `%precision` which sets the floating point precision 
+Another useful magic is `%precision` which sets the floating point precision
 in the notebook. As a quick example, add the following to a cell and run it:
 
 ```python

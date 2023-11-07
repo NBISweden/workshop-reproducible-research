@@ -1,0 +1,191 @@
+---
+title: "Putting it all together"
+format: nbis-revealjs
+---
+
+## Working reproducibly will make your research life a lot easier!
+
+<br>
+
+![](images/whats_in_it_for_me.png){height=400 fig-align=center}
+
+## Take control of your research by making its different components reproducible
+
+<br>
+
+![](../../pages/images/reproducibility_overview.png){height=400 fig-align=center}
+
+## What have we learned? {.smaller}
+
+![](../../pages/images/reproducibility_overview_with_logos.png){height=300 fig-align=center}
+
+- How to use the version control system [Git]{.green} to track changes to code
+- How to use the package and environment manager [Conda]{.green}
+- How to use the workflow managers [Snakemake]{.green} and [Nextflow]{.green}
+- How to use [Quarto]{.green} and [Jupyter]{.green} to generate automated
+  reports and to document your analyses
+- How to use [Docker]{.green} and [Apptainer]{.green} to distribute
+  containerized computational environments
+
+## Divide your work into distinct projects
+
+::: {.incremental}
+- Keep all [files]{.green} needed to go from raw data to final results in a dedicated directory
+- Use relevant [subdirectories]{.green}
+- Use [Git]{.green} to version control your projects
+- Do not store data and results/output in your Git repository
+- When in doubt, [commit often]{.green} rather than not
+:::
+
+## Find your own project structure
+
+For example:
+```bash
+code/             Code needed to go from input files to final results
+data/             Raw data - this should never edited
+doc/              Documentation of the project
+env/              Environment-related files, e.g. Conda environments or Dockerfiles
+results/          Output from workflows and analyses
+README.md         Project description and instructions
+```
+
+<br>
+
+More examples:
+
+- [https://github.com/NBISweden/project_template]()
+- [https://github.com/fasterius/nbis-support-template]()
+- [https://github.com/snakemake-workflows/snakemake-workflow-template]()
+
+## Treasure your data
+
+::: {.incremental}
+- Keep your raw data [read-only]{.green} and static
+- Don't create different versions of the input data - write a [script]{.green},
+  [Quarto]{.green} document, [Jupyter]{.green} notebook or a [Snakemake]{.green}
+  / [Nextflow]{.green} workflow if you need to pre-process your input data so that
+  the steps can be recreated
+- [Backup]{.green}! Keep redundant copies in different physical locations
+- Upload your raw data as soon as possible to a [public data repository]{.green}
+:::
+
+## Organize your coding
+
+::: {.incremental}
+- Avoid generating files [interactively]{.green} or doing things [by
+  hand]{.green}
+- Write [scripts]{.green}, [Quarto]{.green} documents, [Jupyter]{.green}
+  notebooks or [Snakemake]{.green} / [Nextflow]{.green} workflows for
+  reproducible results to connect raw data to final results
+- Keep the [parameters]{.green} separate (_e.g._ at top of file or in a separate
+  configuration file)
+:::
+
+## What is reasonable for your project?
+
+<br>
+
+![](../../pages/images/reproducibility_overview_with_logos.png){height=450 fig-align=center}
+
+## What is reasonable for your project?
+
+[Minimal]{.green}
+
+_Write code in a reproducible way and track your environment_
+
+- Track your projects with a [Git]{.green} repository each; publish code with
+  your results on _e.g._ [GitHub](https://github.com)
+- Use [Conda]{.green} to install software in environments that can be exported
+  and installed on a different system
+- Publish your `environment.yml` file along with your code
+
+## What is reasonable for your project?
+
+[Good]{.green}
+
+_Structure and document your code with notebooks_
+
+- Use [Quarto]{.green} or [Jupyter]{.green} notebooks to better keep track of
+  and document your code
+- Track your notebooks with Git
+
+## What is reasonable for your project?
+
+[Great]{.green}
+
+_Track the **full** environment and connect your code in a workflow_
+
+- Go one step beyond in tracking your environment using [Docker]{.green} or
+  [Apptainer]{.green}
+- Convert your code into a [Snakemake]{.green} / [Nextflow]{.green} workflow
+- Track both your image definitions (_e.g._ Dockerfiles) as well as your
+  workflows with Git
+
+## Alternatives
+
+[Version control]{.green}
+
+- **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
+- **Mercurial** – Distributed model just like Git, close to sourceforge.
+- **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
+
+## Alternatives
+
+[Environment / package managers]{.green}
+
+- **Conda** – General purpose environment and package manager. Community-hosted collections of tools at bioconda or conda-forge.
+- **Pip** – Package manager for Python, has a large repository at pypi.
+- **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with _e.g._ update notifications better.
+- **Virtualenv** – Environment manager used to set up semi-isolated python environments.
+
+## Alternatives
+
+[Workflow managers]{.green}
+
+- **Snakemake** – Based on Python, easily understandable format, relies on file names.
+- **Nextflow** – Based on Groovy, uses data pipes rather than file names to construct the workflow.
+- **Make** – Used in software development and has been around since the 70s. Flexible but notoriously obscure syntax.
+- **Galaxy** -  attempts to make computational biology accessible to researchers without programming experience by using a GUI.
+
+## Alternatives
+
+[Literate programming]{.green}
+
+- **Quarto** - Developed by Posit (previously RStudio), command-line tool focused
+  on generating high-quality documents in a language-agnostic way
+- **Jupyter** – Create and share notebooks in a variety of languages and formats
+  by using a web browser.
+- **R Markdown** – Developed by Posit (previously RStudio), focused on
+  generating high-quality documents.
+- **Zeppelin** – Developed by Apache. Closely integrated with Spark for
+  distributed computing and Big Data applications.
+- **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on
+  integrating multiple languages in the same notebook.
+
+## Alternatives
+
+[Containerization / virtualization]{.green}
+
+- **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
+- **Singularity/Apptainer** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+- **Podman** - open source daemonless container tool similar to docker in many regards
+- **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
+- **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
+
+class: center, middle
+
+## "What's in it for me?"
+
+<br>
+
+![](images/calvin_hobbes_past_corresponding.png){height=450 fig-align=center}
+
+## NBIS Bioinformatics drop-in
+
+Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
+
+- Online ([Zoom]{.green})
+- Every [Tuesday, 14.00-15.00]{.green} (except public holidays)
+- Check [www.nbis.se/events]{.green} for Zoom link and more info
+
+# Questions?

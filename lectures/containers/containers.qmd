@@ -1,0 +1,238 @@
+---
+title: 'Working with containers
+        <img src="images/docker-logo.webp" height="250px" style="float:center; padding: 15px 15px 15px 15px;"/>
+        <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="250px" style="float:center; padding: 15px 15px 15px 15px;"/>
+        <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="250px" style="float:center; padding: 15px 15px 15px 15px;"/>'
+format: nbis-revealjs
+---
+
+## What is [Docker]{.green}?
+
+::: {.incremental}
+- Standardized packaging for software, dependencies as well as the operating
+  system
+- Docker lets you create and run applications securely isolated in
+  [containers]{.green}
+:::
+
+## Docker in life science
+
+Docker containers can be used to allow others to reproduce a complete analysis:
+
+> To further support reproducibility, we bundled all tools and dependencies into
+> one Docker container available on DockerHub. `docker run` executes the
+> aforementioned Makefile inside the container. ^[_Bremges et al GigaScience
+> (2015) 4:33, [doi:10.1186/s13742-015-0073-6](https://doi.org/10.1186/s13742-015-0073-6)_]
+
+<br>
+
+::: {.fragment}
+Reproducing the paper can now be done with one command:
+```bash
+docker run metagenomics/2015-biogas-cebitec
+```
+:::
+
+## Docker in life science
+
+Docker can also be used to define software environments and settings for
+benchmarking studies:
+
+<br>
+
+[CAMI Challenge](https://data.cami-challenge.org/): an independent evaluation of
+several tools in the field of metagenomics.
+
+> [...] We defined standards for submitting the software itself, along with
+> parameter settings and required databases and implemented them in Docker
+> container templates ... ^[_Sczyrba et al Nature Methods (2017) 14:1063–1071,
+> [doi.org/10.1038/nmeth.4458](https://doi.org/10.1038/nmeth.4458)_]
+
+## Docker in life science
+
+Docker can also be used to define software environments and settings for
+benchmarking studies:
+
+<br>
+
+[2nd CAMI Challenge](https://www.microbiome-cosi.org/cami/cami/cami2)
+
+> For reproducibility, participants could submit a Docker container containing
+> the complete workflow, a Bioconda script or a software repository with
+> detailed installation instructions [...] ^[_Meyer et al Nature Methods (2022)
+> 19:429-440, [https://doi.org/10.1038/s41592-022-01431-4](https://doi.org/10.1038/s41592-022-01431-4)_]
+
+## Docker nomenclature
+
+::: {.incremental}
+- A Docker [image]{.green} is a stand-alone executable package of software
+- A Docker [container]{.green} is an instance of a Docker image
+- A [Dockerfile]{.green} is a recipe used to build a Docker image
+- [Docker Hub]{.green} is an online service for hosting Docker images
+:::
+
+::: {.fragment}
+![](images/images_and_containers.png){height=350 fig-align="center"}
+:::
+
+## An example: using a different OS
+
+::: {.fragment}
+Check OS on local machine
+```{.bash code-line-numbers="|1|2"}
+$ uname -a
+Darwin johnsmbp.local 19.6.0 Darwin Kernel Version 19.6.0: [...] x86_64
+```
+:::
+
+::: {.fragment}
+Pull Ubuntu (Linux) image
+```{.bash code-line-numbers="|1|2-6"}
+$ docker pull ubuntu:16.04
+16.04: Pulling from library/ubuntu
+22dc81ace0ea: Pull complete
+...
+Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
+Status: Downloaded image for ubuntu:16.04
+```
+:::
+
+::: {.fragment}
+Run the container interactively and check OS version
+```{.bash code-line-numbers="|1|2|3"}
+$ docker run -it ubuntu:16.04
+root@407b0fd13fe5:/## uname -a
+Linux 407b0fd13fe5 4.9.60-linuxkit-aufs [...] x86_64 GNU/Linux
+```
+:::
+
+## Mounting volumes
+
+:::: {.columns height=90%}
+
+::: {.column}
+::: {.fragment}
+Local `project/` directory:
+```{.bash code-line-numbers="1|2-16|3-6"}
+$ ls
+|- doc/
+|- data/
+|  |- raw_external/
+|  |- raw_internal/
+|  |- meta/
+|- code/
+|- notebooks/
+|- intermediate/
+|- scratch/
+|- logs/
+|- results/
+|- Snakefile
+|- config.yml
+|- environment.yml
+|- Dockerfile
+```
+:::
+:::
+
+::: {.column}
+::: {.fragment}
+Docker container file system:
+```{.bash code-line-numbers="1-3|4-16|7-11"}
+$ docker run \
+    -v $PWD/data:/home/data \
+    ubuntu:16.04 ls
+|- bin/
+|- dev/
+|- etc/
+|- home/
+|  |- data/
+|     |- raw_external/
+|     |- raw_internal/
+|     |- meta/
+|- lib/
+|- opt/
+|- run/
+|- sys/
+|- usr/
+```
+:::
+:::
+
+::::
+
+## What can I use Docker for?
+
+::: {.fragment}
+- As an advanced [environment]{.green} manager
+
+```bash
+docker run -it -v $PWD:/home my_image /bin/bash
+```
+:::
+
+::: {.fragment}
+- To package your [code]{.green} with the environment it needs
+
+```bash
+docker run \
+    -v $PWD/data:/home/data \
+    -v $PWD/results:/home/results \
+    my_image snakemake report.pdf
+```
+:::
+
+::: {.fragment}
+- To package a [whole project]{.green} with environment, code and data (_e.g._
+  to accompany a manuscript).
+
+```bash
+docker run \
+    -v $PWD/results:/home/results \
+    my_image snakemake report.pdf
+```
+:::
+
+## What is Singularity?
+
+![](https://sylabs.io/guides/3.0/user-guide/_static/logo.png){height=250 fig-align=center}
+
+::: {.incremental}
+- Another software for working with containers, similar to Docker
+- A Singularity image is contained in a single file, facilitating portability
+- Does not require `root` access, making it suitable for work at HPCs
+:::
+
+## What is Apptainer?
+
+![](http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png){fig-align=center}
+
+::: {.incremental}
+- In 2021 Singularity joined the Linux Foundation and became
+  [Apptainer]{.green}.
+- The company [Sylabs]{.green} still maintains Singularity as a commercial
+piece of software.
+- [SingularityCE]{.green} is an Open Source project supported by Sylabs.
+- The three versions are similar today, but will diverge with time.
+- [Apptainer]{.green} is the most commonly adopted version of the scientific
+  community.
+:::
+
+## Docker vs. Apptainer
+
+:::: {.columns}
+::: {.column}
+![](images/docker-logo.webp){height=150 fig-align=center}
+:::
+::: {.column}
+![](https://apptainer.org/docs/user/main/_static/logo.png){height=150 fig-align=center}
+:::
+::::
+
+|                                                         |                                                          |
+| ------------------------------------------------------- | -------------------------------------------------------- |
+| Runs as a daemon process with superuser privileges      | Runs as a regular user                                   |
+| Images stored centrally                                 | Image files that you can move around.                    |
+| Isolates the host and container file system by default  | Containers have access to host file system               |
+| Well-supported on Mac, Linux and Windows                | Limited support on Mac and Windows                       |
+
+# Questions?

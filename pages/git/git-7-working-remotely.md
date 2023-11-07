@@ -245,7 +245,7 @@ our remote - you should do this in the original `git_tutorial` repository, so
 move back into that directory.
 
 * Create a new branch named `trimming` and add the `--trim5 5` flag to the
-  bowtie2-command part of the `Snakefile`, which should now look like this:
+  Bowtie2-command part of the `Snakefile`, which should now look like this:
 
 ```bash
 bowtie2 --trim5 5 --very-sensitive-local -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}

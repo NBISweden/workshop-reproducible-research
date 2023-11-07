@@ -1,16 +1,16 @@
 As you might remember from the [intro](introduction), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multiresistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+multi-resistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
 We have already seen how to define the project environment in the [Conda
 tutorial](conda-3-projects) and how to set up the workflow in the [Snakemake
 tutorial](snakemake-10-generalizing-workflows). Here we explore the results
 from the Snakemake tutorial and generate a Supplementary Material file with
 some basic stats.
 
-In the `workshop-reproducible-research/tutorials/jupyter/` directory you will 
-find a notebook called `supplementary_material.ipynb`. Open this notebook 
-via either the classic or lab dashboard, or using one of these commands 
-directly from the commandline:
+In the `workshop-reproducible-research/tutorials/jupyter/` directory you will
+find a notebook called `supplementary_material.ipynb`. Open this notebook
+via either the classic or lab dashboard, or using one of these commands
+directly from the command line:
 
 ```bash
 # Open in classic interface
@@ -21,16 +21,16 @@ jupyter lab supplementary_material.ipynb
 ```
 
 > **Tip** <br>
-> Using what you've learned about markdown in notebooks, add headers 
+> Using what you've learned about markdown in notebooks, add headers
 > and descriptive text to subdivide sections as you add them. This will
-> help you train how to structure and keep note of your work with a 
+> help you train how to structure and keep note of your work with a
 > notebook.
 
 You will see that the notebook contains only a little markdown text and a code
-cell with a function `get_geodata`. We'll start by adding a cell with some 
-import statements. 
+cell with a function `get_geodata`. We'll start by adding a cell with some
+import statements.
 
-Run the cell with the `get_geodata` function and add a new cell directly after 
+Run the cell with the `get_geodata` function and add a new cell directly after
 it. Then add the following to the new cell:
 
 ```python
@@ -40,7 +40,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-This imports the `pandas` (for working with tables), `seaborn` and 
+This imports the `pandas` (for working with tables), `seaborn` and
 `matplotlib.pyplot` (for plotting) and `numpy` (for numerical operations)
 Python modules.
 
@@ -51,7 +51,7 @@ import matplotlib_inline
 matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'svg')
 ```
 
-to set high-quality output for plots.
+To set high-quality output for plots.
 
 Run the cell and create a new one below it.
 
@@ -67,7 +67,7 @@ GSM_IDs=["GSM1186459","GSM1186460","GSM1186461"]
 GEO_ID="GSE48896"
 ```
 
-As you can see we add paths to results files and define lists with some sample 
+As you can see we add paths to results files and define lists with some sample
 IDS. Run this cell and add a new one below it.
 
 Next, we'll fetch some sample information from NCBI using the `get_geodata`
@@ -95,12 +95,12 @@ qc = pd.merge(qc, name_df, left_on="Sample", right_index=True)
 qc
 ```
 
-In the code above we load the multiqc file, rename the columns by stripping the 
+In the code above we load the MultiQC file, rename the columns by stripping the
 `FastQC_mqc-generalstats-fastqc-` part from column names and replace underscores
-with spaces. Finally the table is merged with the information obtained in the 
+with spaces. Finally the table is merged with the information obtained in the
 step above and output to show summary statistics from the QC stage.
 
-Next it's time to start loading gene count results from the workflow. Start by 
+Next it's time to start loading gene count results from the workflow. Start by
 reading the counts and summary results, then edit the columns and index:
 
 ```python
@@ -116,11 +116,11 @@ counts_summary.rename(columns = lambda x: x.split("/")[-1].replace(".sorted.bam"
 Take a look at the `counts` dataframe to get an idea of the data structure. As
 you can see the dataframe shows genes as rows while the columns shows various
 information such as start and stop, strand and length of the genes. The last
-three columns contain counts of the genes in each of the samples. 
+three columns contain counts of the genes in each of the samples.
 
-If you have a look at the `counts_summary` dataframe you will see statistics 
-from the read assignment step, showing number of reads that could be properly 
-assigned as well as number of reads that could not be assigned to genes for 
+If you have a look at the `counts_summary` dataframe you will see statistics
+from the read assignment step, showing number of reads that could be properly
+assigned as well as number of reads that could not be assigned to genes for
 various reasons.
 
 Now let's generate a barplot of the summary statistics. Before we plot, we'll
@@ -134,7 +134,7 @@ summary_plot_data = counts_summary.loc[counts_summary.sum(axis=1)>0]
 Now for the plotting:
 
 ```python
-# Set color palette to 'Set2'
+# Set colour palette to 'Set2'
 colors = sns.color_palette("Set2")
 # Create a stacked barplot
 ax = summary_plot_data.T.plot(kind="bar", stacked=True, color=colors)
@@ -143,7 +143,7 @@ ax.legend(bbox_to_anchor=(1,1), title="Category");
 ```
 
 The final plot will be a heatmap of gene counts for a subset of the genes. We'll
-select genes whose standard deviation/mean count across samples is greater than 
+select genes whose standard deviation/mean count across samples is greater than
 1.5, **and** have a maximum of at least 5 reads in 1 or more sample:
 
 ```python
@@ -154,29 +154,29 @@ heatmap_data = count_data.loc[(count_data.std(axis=1).div(count_data.mean(axis=1
 ```
 
 We'll also replace the SRR ids with the title of samples
-used in the study, using the `name_dict` dictionary created further up in the 
+used in the study, using the `name_dict` dictionary created further up in the
 notebook:
 
 ```python
 heatmap_data = heatmap_data.rename(columns = name_dict['title'])
 ```
 
-Now let's plot the heatmap. We'll log-transform the counts, set color scale 
+Now let's plot the heatmap. We'll log-transform the counts, set colour scale
 to Blue-Yellow-Red and cluster both samples and genes using 'complete' linkage
 clustering:
 
 ```python
 with sns.plotting_context("notebook", font_scale=0.7):
-    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r", 
+    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r",
                         method="complete", yticklabels=True, linewidth=.5,
                         cbar_pos=(.7, .85, .05, .1), figsize=(3,9))
     plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
 ```
 
-In the code above we use the seaborn `plotting_context` function to scale all 
+In the code above we use the Seaborn `plotting_context` function to scale all
 text elements of the heatmap in one go.
 
-As a final step we'll add some info for reproducibility under the 
+As a final step we'll add some info for reproducibility under the
 **Reproducibility** section. To add the overview image of the workflow found in
 `results/rulegraph.png` we can use the `Image` function from `IPython.display`:
 
@@ -185,19 +185,19 @@ from IPython.display import Image
 Image(rulegraph_file)
 ```
 
-Let's also output the full environment so that all packages and versions 
-are included in the notebook. There are several ways this can be done, for 
+Let's also output the full environment so that all packages and versions
+are included in the notebook. There are several ways this can be done, for
 example you could simply add:
 
 ```python
 !mamba list
 ```
 
-to the end of the notebook.
+To the end of the notebook.
 
 > **Tip** <br>
-> If you want to know more about how notebooks can be integrated into 
-> Snakemake worfklows, see the Extra material at the end of this tutorial
+> If you want to know more about how notebooks can be integrated into
+> Snakemake workflows, see the Extra material at the end of this tutorial
 
 ## Sharing your work
 
@@ -211,12 +211,12 @@ and navigate to `tutorials/jupyter/supplementary_material.ipynb`.
 
 As you can imagine, having this very effortless way of sharing results
 can greatly increase the visibility of your work. You work as normal on
-your project, and push regularly to the repository as you would anyways,
+your project, and push regularly to the repository as you would anyway,
 and the output is automatically available for anyone to see. Or for a
 select few if you're not ready to share your findings with the world
 quite yet.
 
-Say your notebook isn't on Github/Bitbucket. All hope isn't lost there.
+Say your notebook isn't on GitHub/Bitbucket. All hope isn't lost there.
 Jupyter.org provides a neat functionality called *nbviewer*, where you can
 paste a URL to any notebook and they will render it for you. Go to
 [https://nbviewer.jupyter.org](https://nbviewer.jupyter.org) and try
@@ -244,15 +244,15 @@ Here we will try out a service called Binder, which lets you run and
 share Jupyter Notebooks in Git repositories for free. There are a number
 of [example repositories](https://github.com/binder-examples/) that are
 setup to be used with Binder. Navigate to
-[https://github.com/binder-examples/conda/](https://github.com/binder-examples/conda/) 
-to see one such example. As you can see the repository contains a LICENSE 
-file, a README, an environment file and a notebook. To use a repository 
-with Binder the environment file should contain all the packages needed 
-to run notebooks in the repo. So let's try to run the `index.ipynb` file 
+[https://github.com/binder-examples/conda/](https://github.com/binder-examples/conda/)
+to see one such example. As you can see the repository contains a LICENSE
+file, a README, an environment file and a notebook. To use a repository
+with Binder the environment file should contain all the packages needed
+to run notebooks in the repo. So let's try to run the `index.ipynb` file
 using Binder:
 
-Just go to [https://mybinder.org](https://mybinder.org) and paste the link 
-to the GitHub repo. Note the link that you can use to share your notebook. 
+Just go to [https://mybinder.org](https://mybinder.org) and paste the link
+to the GitHub repo. Note the link that you can use to share your notebook.
 Then press "launch".
 
 ![](images/binder.png){ width=700px }
@@ -279,14 +279,14 @@ trying out and showing existing notebooks rather than making new ones.
 
 > **Tip** <br>
 > By default Binder looks for configuration files such as environment.yml
-> in the root of the repository being built. But you may also put 
+> in the root of the repository being built. But you may also put
 > such files outside the root by making a `binder/` folder in the root
-> and placing the file there.  
+> and placing the file there.
 
 > **A note on transparency** <br>
-> Resources like Github/Bitbucket and Jupyter Notebooks have changed 
-> the way we do scientific research by encouraging visibility, social 
-> interaction and transparency. 
+> Resources like GitHub/Bitbucket and Jupyter Notebooks have changed
+> the way we do scientific research by encouraging visibility, social
+> interaction and transparency.
 > It was not long ago that the analysis scripts and workflows in a lab were
 > well-guarded secrets that we only most reluctantly shared with others.
 > Assuming that it was even possible. In most cases, the only postdoc who
@@ -299,8 +299,7 @@ trying out and showing existing notebooks rather than making new ones.
 > **Quick recap** <br>
 > In this section we've learned:
 >
-> - How notebooks can be used to generate summary statistics and plots using the 
+> - How notebooks can be used to generate summary statistics and plots using the
 > results of a workflow run
-> - How to share notebooks via [nbviewer](https://nbviewer.jupyter.org) and 
-> [Binder](https://mybinder.org) 
-
+> - How to share notebooks via [nbviewer](https://nbviewer.jupyter.org) and
+> [Binder](https://mybinder.org)
