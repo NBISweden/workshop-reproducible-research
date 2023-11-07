@@ -22,13 +22,12 @@ using for this tutorial. To try it in action, create a new notebook and name it
 `Analysis.ipynb`. Add the following code to the first cell, then run it:
 
 ```python
-import matplotlib_inline
-matplotlib_inline.backend_inline.set_matplotlib_formats("svg")
-import pandas as pd
+import numpy as np
 import seaborn as sns
 penguins = sns.load_dataset("penguins")
-sns.barplot(penguins, x="island", y="bill_depth_mm")
 ```
+
+This simply imports some python modules and loads a dataset.
 
 Save the notebook. Now we'll add and commit the new notebook to the Git repository:
 
@@ -38,70 +37,48 @@ git commit -m "Add Analysis notebook"
 ```
 
 So far so good. And nothing new here compared to what we've already learned
-about version control. Now let's make some changes to the notebook. We'll simply
-add a `hue` argument to the plot to see differences in bill depth between male
-and female penguins. Update the code cell so that the last line looks like this:
+about version control. Now let's make some changes to the notebook. First we'll
+replace one of the loaded modules. Update the first cell of the notebook so that
+it reads:
 
 ```python
-sns.barplot(penguins, x="island", y="bill_depth_mm", hue="sex")
+import pandas as pd
+import seaborn as sns
+penguins = sns.load_dataset("penguins")
 ```
 
-Then run the cell again and save the notebook.
+Then create a new cell where we'll calculate the mean of each numeric value
+grouped by species. In the new cell, add the following code:
 
-Now we'll use `git diff` to view the changes we've made to the notebook. We
-haven't yet enabled the `nbdime` functionality so this will be a default view of
-the diff with `git`. Run:
+```python
+penguins.groupby("species").mean(numeric_only=True)
+```
+
+Run the cell and save the notebook.
+
+Now use `git diff` to view the changes we've made to the notebook. Run:
 
 ```bash
 git diff Analysis.ipynb
 ```
 
-Even though we only made a small change to one line of code you'll see hundreds
-of lines of output that are difficult to interpret. This is because the notebook
-not only contains the code, but also cell metadata and output (in this case a
-plot).
+Even with very minor modifications to the notebook the diff will contain
+numerous lines that are difficult to interpret. This is because the notebook not
+only contains the code, but also cell metadata and output (in this case a
+table produced by the second cell).
 
-Now let's enable `nbdime` to see how it can help us. Run:
-
-```bash
-nbdime config-git --enable
-```
-
-This command will enable the git integration for `nbdime`. By default this
-command will only enable the integration for the current repository, use the
-flag `--global` to enable it for all repositories and your user account.
-
-Now run `git diff Analysis.ipynb` again. You will still see a very long diff,
-but this time you should also see some explanatory lines such as:
-
-```
-## replaced /cells/0/execution_count:
--  1
-+  2
-
-## replaced /cells/0/outputs/0/execution_count:
--  1
-+  2
-
-## inserted before /cells/0/outputs/1:
-```
-
-This was made possible by the `nbdime` integration. It understands the structure
-of the notebook and can therefore provide a more informative diff.
-
-However, to get a diff output that is even easier to read we can use the
-`nbdiff` tool. Run:
+Now let's generate a more easy-to-read diff. Run:
 
 ```bash
 nbdiff -s Analysis.ipynb
 ```
 
 This will use the `nbdiff` tool that comes with `nbdime` to show an inline diff
-of the notebook. In addition, the `-s` flag tells `nbdiff` to only show
-differences for the actual code changes, ignoring changes in metadata and
-output. There are a number of flags you can use here to customise the diff. The
-uppercase version of each flag will ignore the respective change type. For
-example, to see the diff but ignore changes to the output of cells you can run:
+of the notebook. The `-s` flag tells `nbdiff` to only show differences for the
+actual code changes, ignoring changes in metadata and output. There are a number
+of flags you can use here to customise the diff. The uppercase version of each
+flag will ignore the respective change type. For example, to see the diff but
+ignore changes to the output of cells you can run:
 
 ```bash
 nbdiff -O Analysis.ipynb
@@ -114,9 +91,8 @@ nbdiff-web Analysis.ipynb
 ```
 
 This will open up a tab in your web browser showing you changes made to the
-notebook side-by-side for each cell, including also cell output (you may have to
-click the "Trust outputs" button at the top of the page). This makes it
-easy to see changes made to plots and other outputs.
+notebook side-by-side for each cell, including also cell output. This makes it
+easy to see changes made both to code and outputs such as tables and plots.
 
 ### Other tools for version control of notebooks
 
@@ -139,28 +115,30 @@ make changes to your analysis and re-run cells to see the effect of the changes
 immediately. However, this can also be a source of errors and inconsistencies if
 you, during your work, modify or use variables in cells upstream of their
 initial definition.
- 
-As an example, create a new notebook named `exploration.ipynb` and add the following code to the first
-cell to import the `seaborn` package and load the oh so useful `penguins` dataset:
 
-```python
-import seaborn as sns
-df = sns.load_dataset("penguins")
-```
+The `nbval` package can help you catch these types of errors. `nbval` is a
+plugin for the `pytest` testing framework that can be used to test Jupyter
+notebooks. It works by executing each cell in the notebook and comparing the
+output to the output stored in the notebook. If the output is the same, the test
+passes. If the output differs, the test fails. `nbval` is also pre-installed in
+the `jupyter-env` Conda environment you're using for this tutorial.
+ 
+As an example, we'll keep working with the `Analysis.ipynb` notebook we've
+created. 
 
 Let's say we want to estimate the size of the bill of penguins using the
 `bill_length_mm` and `bill_depth_mm` columns. We'll do this by adding a new cell
-below the first one with the following code:
+to our notebook with the following code:
 
 ```python
-df["bill_size"] = (df["bill_length_mm"] * df["bill_depth_mm"])
+penguins["bill_size"] = (penguins["bill_length_mm"] * penguins["bill_depth_mm"])
 ```
 
 Run the cell and add a new one below it. In the new cell, output the mean of
 each column grouped by `island` using the following code:
 
 ```python
-df.groupby("island").mean(numeric_only=True)
+penguins.groupby("island").mean(numeric_only=True)
 ```
 
 Run the cell to see the output. Looks good. Now we have a very simple example of
@@ -170,7 +148,7 @@ Save the notebook and try running `nbval` on it to see if it works as
 expected. From the commandline, run:
 
 ```bash
-pytest --nbval exploration.ipynb
+pytest --nbval Analysis.ipynb
 ```
 
 nbval tests each cell in your notebook by executing it and comparing the output
@@ -178,25 +156,21 @@ to the output stored in the notebook. If the output is the same, the test
 passes. The output of the test should look something like this:
 
 ```
-collected 3 items                                                                                                              
+collected 4 items                                                                                                              
 
-exploration.ipynb ....                                                                                                   [100%]
+Analysis.ipynb ....                                                                                                   [100%]
 
-========== 3 passed in 1.93s ==========
+========== 4 passed in 1.93s ==========
 ```
 
 Now let's say we realize that we want to normalize the `bill_size` values by the
 body mass of the penguins. We'll just modify the cell where we calculated this
 value, introducing a small piece of code to divide by the `body_mass_g` column.
 
-Wouldn't it also be nice to see how our estimated `bill_size` relates to the
-flipper length of the penguins? Let's add a line of code to output a scatterplot
-directly from the second cell where we also calculate the new value:
-
-Change the second cell of the notebook so that it reads:
+Change the third cell of the notebook so that it reads:
 
 ```python
-df["bill_size"] = (df["bill_length_mm"] * df["bill_depth_mm"]) / df["body_mass_g"]
+penguins["bill_size"] = (penguins["bill_length_mm"] * penguins["bill_depth_mm"]) / penguins["body_mass_g"]
 sns.scatterplot(data=df, x="bill_size", y="flipper_length_mm", hue="island")
 ```
 
@@ -204,16 +178,16 @@ Re-run the cell and save the notebook. So far so good! Let's test the notebook
 again with nbval. Just like before run it from the commandline with:
 
 ```bash
-pytest --nbval exploration.ipynb
+pytest --nbval Analysis.ipynb
 ```
 
 If you've followed the instructions, this second run of nbval should generate a
 `FAILED` test, showing something like:
 
 ```
-=================================================== short test summary info ====================================================
-FAILED exploration.ipynb::Cell 2
-================================================= 1 failed, 2 passed in 1.83s ==================================================
+==================== short test summary info ====================
+FAILED Analysis.ipynb::Cell 3
+================== 1 failed, 3 passed in 1.83s ==================
 ```
 
 What happened here was that we modified the cell where we calculated the 
@@ -225,9 +199,19 @@ notebook with many cells. Luckily, nbval can help us here.
 
 > **Note** <br>
 > Note that nbval reports cell numbers using 0-based numbering, so when the test
-> fails on `Cell 2` it actually refers to the third cell in the notebook.
+> fails on `Cell 3` it actually refers to the 4th cell in the notebook.
 
-This problem would have been solved if we had re-run the cell where we output
+This problem could have been solved if we had re-run the cell where we output
 the mean of each column grouped by `island`. In fact, it is good practice to
 re-run all cells in a notebook before saving it. If you in addition restart the
 kernel before re-running you make sure that you haven't introduced any 'hidden states'
+
+> **Ignoring specific cells** <br>
+>One caveat of `nbval` is that it doesn't work well with cells that generate
+>plots. You can tell `nbval` to ignore the output of specific cells by adding 
+>`# NBVAL_IGNORE_OUTPUT` to the top of a cell.
+
+> **Quick recap** <br>
+> In this section we've learned:
+> - How to use `nbdime` to view diffs of Jupyter notebooks
+> - How to use `nbval` to test that notebooks work as expected
