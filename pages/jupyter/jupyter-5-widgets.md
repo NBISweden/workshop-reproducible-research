@@ -26,28 +26,31 @@ following code to a cell and run it:
 from ipywidgets import interactive
 ```
 
-Now move the code that generates the scatterplot into a function called
-`scatterplot`. Also add a `palette` argument to the function so that we can
-specify the colour palette to use for the plot. The function should look like this:
+Now, in a new cell, define a function called `scatterplot` with the code to
+generate the plot itself. Also add a `palette` argument to the function so that
+we can specify the colour palette to use for the plot. The function should look
+like this:
 
 ```python
 def scatterplot(x, y, hue, palette):
     ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette)
 ```
 
-Next, we'll use the `interactive` function to generate a widget with control
-over the  for the `x`, `y`, `hue` and `palette` arguments. The `interactive`
-function takes a function as its first argument, and then keyword arguments for
-each of the arguments in the function. The returned value is a widget which we
-will store in a variable called `interactive_scatterplot`. Add the following to
-a cell and run it:
+Run the cell and create a new cell below it.
+
+Next, we'll use the `interactive` function to generate a widget to control the
+`x`, `y`, `hue` and `palette` arguments. The `interactive` function takes a
+function as its first argument, and then keyword arguments for each of the
+arguments in the function. The returned value is a widget which we will store in
+a variable called `interactive_scatterplot`. Add the following to a cell and run
+it:
 
 ```python
 interactive_scatterplot = interactive(scatterplot, 
             x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"], 
-            y=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
+            y=["body_mass_g","bill_length_mm","bill_depth_mm","flipper_length_mm"],
             hue=["species","island","sex"],
-            color=["Set1","Set2","Dark2","Paired2"])
+            palette=["Set1","Set2","Dark2","Paired2"])
 ```
 
 Importantly, all parameters defined in the `scatterplot` function must be given
