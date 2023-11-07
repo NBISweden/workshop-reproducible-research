@@ -3,7 +3,7 @@ power of Jupyter notebooks. There are two types of magics:
 
 * **Line magics**: Commands that are prepended by `%`, and whose arguments only
   extend to the end of the line.
-* **Cell magics**: Commands that start with `%%` and then applies to the whole
+* **Cell magics**: Commands that start with `%%` and then apply to the whole
   cell. Must be written on the first line of a cell.
 
 Now list all available magics with `%lsmagic` (which itself is a magic). You
@@ -45,8 +45,13 @@ possible to use these shortcuts:
 * `%%bash`
 * `%%html`
 * `%%latex`
-* `%%R` (here you have to first install the `rpy2` extension, for example with
-  Conda, and then load with `%load_ext rpy2.ipython`)
+* `%%R`
+
+> **Note on R code** <br>
+> In order to use the `%%R` magic you need to install the `rpy2` extension, for
+> example with Conda. This package is already installed in the `jupyter-env`
+> environment you're using for this tutorial. However, you also have to load it
+> by running `%load_ext rpy2.ipython` in a cell.
 
 Try this out if you know any of the languages above. Otherwise you can always
 try to print the quadratic formula with LaTeX!
