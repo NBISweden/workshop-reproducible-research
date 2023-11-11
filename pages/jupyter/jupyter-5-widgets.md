@@ -13,59 +13,58 @@ often as a control like a slider, text box, etc. These are implemented in the
 The easiest way to get started with using widgets are via the `interact` and
 `interactive` functions. These functions auto-generate widgets from functions
 that you define, and then call those functions when you manipulate the widgets.
-Too abstract? Let's put it into practice!
+This might sound abstract so let's look at an example.
 
-Let's try to add sliders that allow us to change the frequency, amplitude and
-phase of the sine curve we plotted previously.
+Let's take the scatterplot of the penguins dataset that we generated in the
+previous section and add widgets that lets us choose variables to plot as well
+as coloring of the points.
+
+First we'll import the `interactive` function from `ipywidgets`, so add the
+following code to a cell and run it:
 
 ```python
-# Import the interactive function from ipywidgets
 from ipywidgets import interactive
-# Also import numpy (for calculating the sine curve)
-# and pyplot from matplotlib for plotting
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Define the function for plotting the sine curve
-def sine_curve(A, f, p):
-    # Set up the plot
-    plt.figure(1, figsize=(4,4))
-    # Create a range of 100 evenly spaced numbers between 0 and 100
-    x = np.linspace(0,10,100)
-    # Calculate the y values using the supplied parameters
-    y = A*np.sin(x*f+p)
-    # Plot the x and y values ('r-' specifies colour and line style)
-    plt.plot(x, y, colour='red', linestyle="-")
-    plt.show()
-
-# Here we supply the sine_curve function to interactive,
-# and set some limits on the input parameters
-interactive_plot = interactive(sine_curve,
-            A=(1, 5, 1),
-            f=(0, 5, 1),
-            p=(1, 5, 0.5))
-
-# Display the widgets and the plot
-interactive_plot
 ```
 
-The code above defines a function called `sine_curve` which takes three
-arguments:
+Now move the code that generates the scatterplot into a function called
+`scatterplot`. Also add a `palette` argument to the function so that we can
+specify the colour palette to use for the plot. The function should look like this:
 
-- `A` = the amplitude of the curve
-- `f` = the frequency of the curve
-- `p` = the phase of the curve
+```python
+def scatterplot(x, y, hue, palette):
+    ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette)
+```
 
-The function creates a plot area, generates x-values and calculates y-values
-using the `np.sin` function and the supplied parameters. Finally, the x and y
-values are plotted.
+Next, we'll use the `interactive` function to generate a widget with control
+over the  for the `x`, `y`, `hue` and `palette` arguments. The `interactive`
+function takes a function as its first argument, and then keyword arguments for
+each of the arguments in the function. The returned value is a widget which we
+will store in a variable called `interactive_scatterplot`. Add the following to
+a cell and run it:
 
-Below the function definition we use `interactive` with the `sine_curve`
-function as the first parameter. This means that the widgets will be tied to
-the `sine_curve` function. As you can see we also supply the `A`, `f` and `p`
-keyword arguments. Importantly, all parameters defined in the `sine_curve`
-function must be given in the `interactive` call and a widget is created for
-each one.
+```python
+interactive_scatterplot = interactive(scatterplot, 
+            x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"], 
+            y=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
+            hue=["species","island","sex"],
+            color=["Set1","Set2","Dark2","Paired2"])
+```
+
+Importantly, all parameters defined in the `scatterplot` function must be given
+in the `interactive` call. The `interactive_scatterplot` widget is now tied to
+the `scatterplot` function. However, we still haven't displayed the widget
+itself. To do that, simply add `interactive_scatterplot` to a new cell and run it:
+
+```python
+interactive_scatterplot
+```
+
+This should show the scatterplot with drop-down menus for each of the arguments.
+Try changing the `x` and `y` variables to plot by selecting from the respective
+drop-downs. The `hue` drop-down now lets you change what variable to use for
+colouring the points and the `palette` drop-down changes the colour palette. As
+you can see, the available options in the drop-downs are the ones we specified
+in the `interactive` call.
 
 Depending on the `type` of the passed argument different types of
 widgets will be created by `interactive`. For instance:
@@ -75,20 +74,42 @@ widgets will be created by `interactive`. For instance:
 - `list` arguments will generate a drop-down
 - `str` arguments will generate a text-box
 
-By supplying the arguments in the form of
-[tuples](https://docs.python.org/3/library/stdtypes.html#typesseq) we can
-adjust the properties of the sliders. `f=(1, 5, 1)` creates a widget with
-minimum value of `1`, maximum value of `5` and a step size of `1`. Try adjusting
-these numbers in the `interactive` call to see how the sliders change (you have
-to re-execute the cell).
+Let's add a slider to control the size of the points. In the Seaborn package
+this is controlled by the `s` argument to the `scatterplot` function. Modify the
+cell with your `scatterplot` function so it looks like this (remember to run the
+cell in order to update the function definition):
 
-The final line of the cell (`interactive_plot`) is where the actual widgets and
-plot are displayed. This code can be put in a separate cell, so that you can
-define functions and widgets in one part of your notebook, and reuse them
-somewhere else.
+```python
+def scatterplot(x, y, hue, palette, size=50):
+    ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette, s=size)
+```
 
-This is how it should look if everything works. You can now set the frequency
-amplitude and phase of the sine curve by moving the sliders.
+Note that we added a `size` argument to the function and supplied it to the
+Seaborn scatterplot call with `s=size`. Setting `size=50` in the function
+definition means that the default size of the points will be 50.
+
+Now we need to add a slider for the `size` argument. Update the cell where we
+call the `interactive` function so that it looks like this, then run it:
+
+```python
+interactive_scatterplot = interactive(scatterplot, 
+            x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"], 
+            y=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
+            hue=["species","island","sex"],
+            palette=["Set1","Set2","Dark2","Paired2"],
+            size=(20,100,10))
+```
+
+Here the `size` argument is defined as a
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple) which sets the
+minimum value of the slider to 20, the maximum value to 100 and the step size to
+10. 
+
+Finally, re-run the cell where we displayed the `interactive_scatterplot`
+widget. You should now see a slider for the `size` argument (starting at 50).
+Try changing the size of the points by moving the slider.
+
+This is how it should look if everything works.
 
 ![](images/jupyter_widget.png){ width=700px }
 
@@ -105,69 +126,48 @@ together with documentation and examples. Some of these widgets cannot be
 auto-generated by `interactive`, but fear not! Instead of relying on
 auto-generation we can define the widget and supply it directly to `interactive`.
 
-To see this in practice, change out the `A` argument to a pre-defined
-`IntSlider` widget. First define the slider:
+To see this in practice, we'll modify the scatterplot function to display a
+title and add a color picker widget that let's us set the color of the title
+text.
+
+First define the new widget by adding the following code to a cell and running
+it:
 
 ```python
-from ipywidgets import widgets
-A = widgets.IntSlider(value=2, min=1, max=5, step=1)
+colorpicker = widgets.ColorPicker(
+    concise=False,
+    description='Title color',
+    value='blue',
+    disabled=False
+)
 ```
 
-Then replace the call to `interactive` so that it looks like this:
+Now change the scatterplot function so that it looks like this, then run the
+cell:
 
 ```python
-interactive_plot = interactive(sine_curve, A=A, f=5, p=5)
+def scatterplot(x, y, hue, palette, size, color):
+    ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette, s=size)
+    ax.set_title("Penguin scatterplot", color=color)
 ```
 
-## Extra challenge
+Next, update the cell where we call the `interactive` function so that it looks
+like this, then run the cell:
 
-If you can't get enough of widgets you might want to try this out: see if you
-can figure out how to add a widget that lets you pick the colour for the sine
-curve line. Search for the appropriate widget in the [Widget list](
-https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html).
-You'll need to update the `sine_curve` function and pass the new widget as
-an argument in the call to `interactive`. If you need help, see the code chunk
-below:
-
-<details>
-<summary> Click to show </summary>
-
-```python
-# Import the interactive function from ipywidgets
-from ipywidgets import interactive
-# Also import numpy (for calculating the sine curve)
-# and pyplot from matplotlib for plotting
-import numpy as np
-from ipywidgets import widgets ## <- import widgets
-import matplotlib.pyplot as plt
-
-# Define the function for plotting the sine curve
-def sine_curve(A, f, p, color): ## <- add parameter here
-    # Set up the plot
-    plt.figure(1, figsize=(4,4))
-    # Create a range of 100 evenly spaced numbers between 0 and 100
-    x = np.linspace(0,10,100)
-    # Calculate the y values using the supplied parameters
-    y = A*np.sin(x*f+p)
-    # Plot the x and y values
-    plt.plot(x, y, color=color) ## <- Use colour from widget here
-    plt.show()
-
-# Here we supply the sine_curve function to interactive,
-# and set some limits on the input parameters
-# Define the colorpicker widget
-colorpicker = widgets.ColorPicker(description='color',value="red")
-interactive_plot = interactive(sine_curve,
-            A=(1, 5, 1),
-            f=(0, 5, 1),
-            p=(1, 5, 0.5),
-            color=colorpicker) ## <- Supply the colorpicker to the function
-
-# Display the widgets and the plot
-interactive_plot
+```python 
+interactive_scatterplot = interactive(scatterplot, 
+            x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"], 
+            y=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
+            hue=["species","island","sex"],
+            palette=["Set1","Set2","Dark2","Paired2"],
+            size=(20, 100, 10),
+            color=colorpicker)
 ```
 
-</details>
+Finally, re-run the cell where we displayed the `interactive_scatterplot`. The
+plot should now have a title and you should see a new color picker below the
+slider for the point size. Try changing the title colour by clicking on the new 
+color picker. 
 
 > **Attention!** <br>
 > Note that you may have to close the colour picker once you've made your
@@ -178,6 +178,10 @@ interactive_plot
 Jupyter widgets, like we used here, is the most vanilla way of getting
 interactive graphs in Jupyter notebooks. Some other alternatives are:
 
+* [altair](https://altair-viz.github.io/) is a plotting library that uses
+  Vega-Lite grammar which is reminiscent of ggplot2 in R. The syntax is
+  different from what we've shown here, but it's very powerful once you get the
+  hang of it.
 * [Plotly](https://plot.ly/python/ipython-notebook-tutorial) is actually an
   API to a web service that renders your graph and returns it for display in
   your Jupyter notebook. Generates very visually appealing graphs, but from
@@ -192,6 +196,6 @@ interactive graphs in Jupyter notebooks. Some other alternatives are:
   datasets, but it's easy to use and works quite seamlessly.
 
 > **Quick recap** <br>
-> In the three previous sections we've learned:
+> In this section we've learned:
 >
 > - How to implement interactive widgets in notebooks

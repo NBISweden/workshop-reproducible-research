@@ -4,11 +4,10 @@ functionality is partly overlapping with Quarto (see the
 [tutorial](quarto-1-introduction)), in that they both use markdown and code
 chunks to generate reports that integrate results of computations with the code
 that generated them. Jupyter Notebook comes from the Python community while
-Quarto was developed by Posit (who also created R Markdown and RStudio), but
-you could use most common programming languages in either alternative. In
-practice though, it's quite common that R developers use Jupyter but probably
-not very common that Python developers use RStudio. Some reasons to use Jupyter
-include:
+Quarto was developed by Posit (who also created R Markdown and RStudio), but you
+could use most common programming languages in either alternative. In practice
+though, it's quite common that R developers use Jupyter but probably not very
+common that Python developers use RStudio. Some reasons to use Jupyter include:
 
 * Python is lacking a really good IDE for doing exploratory scientific data
   analysis, like RStudio or Matlab. Some people use Jupyter simply as an

@@ -112,7 +112,7 @@ Docker image we want to convert, *e.g.* `my_docker_image`.
 In the end you'll have a SIF file (*e.g.* `my_docker_image.sif`) that you can
 transfer to an HPC such as Uppmax and run whatever analyses you need. If you
 want to be able to do this without having to remember all the code you can check
-out the [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/singularity-in-docker.sh).
+out the [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/apptainer-in-docker.sh).
 
 ## Running Singularity
 

@@ -31,6 +31,14 @@ the `code-summary` chunk option to specify a different text to show with the
 folded code instead of the default `Code`, *e.g.* `code-summary: Click to show
 code`.
 
+If you want to add the `code-summary` option to all chunks you can add
+the following to the yaml header:
+
+```yaml
+language:
+  code-summary: Click to show code
+```
+
 You can also add the `code-tools` option, which will add a drop-down menu to
 toggle visibility of all code as well as the ability to view the source of the
 document.
@@ -66,7 +74,7 @@ true`. You can change the title of the table of contents using `toc-title`.
 
 Quarto has a lot of [themes](https://bootswatch.com/) available for it.
 
- * Add `theme: flatly` and render.
+ * Add `theme: flatly` under the HTML `format` option and render.
 
 If you want to get real advanced you can play around with lots of details
 regarding the themes and adjust as you see fit, or even just create your own
@@ -153,6 +161,13 @@ expression: `#| layout-ncol: !expr params$ncols`.
  * Add a parameter for the `layout-ncol` chunk option to the YAML header
  * Also add the `layout-ncol` chunk option to the figure chunk using the syntax
  above and render to make sure it works.
+
+Note that to modify multiple parameters at run-time you have to use the `-P
+param:value` flag multiple times, like so:
+
+```bash
+quarto render quarto-tutorial.qmd -P point_size:4 -P ncols:1
+```
 
 If you're using the Jupyter engine you can instead specify parameters by
 designating a single cell as a *parameter cell*, like so:
