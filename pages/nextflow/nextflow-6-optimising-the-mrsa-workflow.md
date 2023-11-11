@@ -95,7 +95,7 @@ ch_genome_fasta = Channel
 // INDEX_GENOME process definition
 process INDEX_GENOME {
 
-    publishDir "results/intermediate/",
+    publishDir "results/bowtie2/",
         mode: "copy"
 
     input:

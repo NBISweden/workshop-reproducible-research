@@ -30,10 +30,10 @@ Here is an example for a rule and its execution:
 ```python
 rule align_to_genome:
     output:
-        temp("intermediate/{sample_id,\w+}.bam")
+        temp("results/bam/{sample_id,\w+}.bam")
     input:
-        fastq = "data/raw_internal/{sample_id}.fastq.gz",
-        index = expand("intermediate/{genome_id}.{substr}.bt2",
+        fastq = "data/{sample_id}.fastq.gz",
+        index = expand("results/bowtie2/{genome_id}.{substr}.bt2",
             genome_id=config["genome_id"],
             substr=["1", "2", "3", "4", "rev.1", "rev.2"])
     log:
@@ -42,7 +42,7 @@ rule align_to_genome:
     container: "docker://quay.io/biocontainers/bowtie2:2.5.0--py310h8d7afc0_0"
     shell:
         """
-        bowtie2 -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
         """
 ```
 

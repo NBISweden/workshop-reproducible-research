@@ -41,8 +41,8 @@ execute any command in a running container. It's typically used to peak in at
 what is happening by opening up a new shell. Here we start the container in
 detached mode and then start a new interactive shell so that we can see what
 happens. If you use `ls` inside the container you can see how the script
-generates file in the `data`, `intermediate` and `results` directories. Note
-that you will be thrown out when the container exits, so you have to be quick.
+generates file in the `data` and `results` directories. Note that you will be
+thrown out when the container exits, so you have to be quick.
 
 ```bash
 docker run -d --rm --name my_container my_docker_conda
