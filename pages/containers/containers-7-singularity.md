@@ -139,11 +139,12 @@ the files externally from our host system and simply use the Singularity image
 as the environment to execute the workflow in (*i.e.* all the software and
 dependencies).
 
-In your current working directory (`workshop-reproducible-research/tutorials/containers/`)
-the vital MRSA project files are already available (`Snakefile`, `config.yml`,
-`code/header.tex` and `code/supplementary_material.Rmd`). Since Singularity bind
-mounts the current working directory we can simply execute the workflow and
-generate the output files using:
+In your current working directory
+(`workshop-reproducible-research/tutorials/containers/`) the vital MRSA project
+files are already available (`Snakefile`, `config.yml` and
+`code/supplementary_material.qmd`). Since Singularity bind mounts the current
+working directory we can simply execute the workflow and generate the output
+files using:
 
 ```bash
 singularity run mrsa_proj.sif

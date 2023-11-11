@@ -13,12 +13,12 @@ that contains all the work we've done so far.
 
 The `workshop-reproducible-research/tutorials/containers` directory contains the
 final versions of all the files we've generated in the other tutorials:
-`environment.yml`, `Snakefile`, `config.yml`, `code/header.tex`, and
-`code/supplementary_material.Rmd`. The only difference compared to the other
+`environment.yml`, `Snakefile`, `config.yml` and
+`code/supplementary_material.qmd`. The only difference compared to the other
 tutorials is that we have also included the rendering of the Supplementary
 Material HTML file into the Snakemake workflow as the rule `make_supplementary`.
-Running all of these steps will take some time to execute (around 20 minutes
-or so), in particular if you're on a slow internet connection.
+Running all of these steps will take some time to execute (around 20 minutes or
+so), in particular if you're on a slow internet connection.
 
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
