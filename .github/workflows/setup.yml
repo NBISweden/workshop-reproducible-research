@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ macos-latest, ubuntu-latest ]
-        env: [snakemake, nextflow, jupyter, rmarkdown]
+        env: [snakemake, nextflow, jupyter, quarto]
         include:
           - env: snakemake
             cmd: snakemake -c 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
@@ -23,8 +23,8 @@ jobs:
             cmd: cd tutorials/nextflow && nextflow run main_mrsa.nf
           - env: jupyter
             cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
-          - env: rmarkdown
-            cmd: cd tutorials/rmarkdown && echo 'rmarkdown::render("code/supplementary_material.Rmd", output_file="supplementary.html")' | R --vanilla
+          - env: quarto
+            cmd: mamba install -c conda-forge quarto && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2.2.0
