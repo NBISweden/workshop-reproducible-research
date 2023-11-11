@@ -44,7 +44,7 @@ process DOWNLOAD_FASTQ_FILES {
     // Download a single-read FASTQ file from the SciLifeLab Figshare remote
 
     tag "${sra_id}"
-    publishDir "results/data/raw_internal",
+    publishDir "results/data",
         mode: "copy"
 
     input:
@@ -86,7 +86,7 @@ process RUN_MULTIQC {
     publishDir "results/results",
         pattern: "*.html",
         mode: "copy"
-    publishDir "results/intermediate",
+    publishDir "results/multiqc",
         pattern: "*.txt",
         mode: "copy"
 
@@ -108,7 +108,7 @@ process GET_GENOME_FASTA {
 
     // Retrieve the sequence in fasta format for a genome.
 
-    publishDir "results/data/raw_external",
+    publishDir "results/data/ref",
         mode: "copy"
 
     output:
@@ -124,7 +124,7 @@ process GET_GENOME_GFF3 {
 
     // Retrieve annotation in gff3 format for a genome.
 
-    publishDir "results/data/raw_external",
+    publishDir "results/data/ref",
         mode: "copy"
 
     output:
@@ -140,7 +140,7 @@ process INDEX_GENOME {
 
     // Index a genome using Bowtie 2.
 
-    publishDir "results/intermediate/",
+    publishDir "results/bowtie2/",
         mode: "copy"
 
     input:
@@ -162,7 +162,7 @@ process ALIGN_TO_GENOME {
     // Align a fastq file to a genome index using Bowtie 2.
 
     tag "${sample}"
-    publishDir "results/intermediate/",
+    publishDir "results/bam/",
         mode: "copy"
 
     input:
@@ -183,7 +183,7 @@ process SORT_BAM {
     // Sort a bam file.
 
     tag "${sample}"
-    publishDir "results/intermediate/",
+    publishDir "results/bam/",
         mode: "copy"
 
     input:
@@ -202,7 +202,7 @@ process GENERATE_COUNTS_TABLE {
 
     // Generate a count table using featureCounts.
 
-    publishDir "results/results/tables",
+    publishDir "results/tables",
         mode: "copy"
 
     input:

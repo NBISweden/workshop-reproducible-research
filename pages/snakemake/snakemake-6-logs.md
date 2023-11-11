@@ -57,20 +57,20 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     output:
-        "intermediate/{sample_id,\w+}.bam"
+        "results/bam/{sample_id,\w+}.bam"
     input:
-        "data/raw_internal/{sample_id}.fastq.gz",
-        "intermediate/NCTC8325.1.bt2",
-        "intermediate/NCTC8325.2.bt2",
-        "intermediate/NCTC8325.3.bt2",
-        "intermediate/NCTC8325.4.bt2",
-        "intermediate/NCTC8325.rev.1.bt2",
-        "intermediate/NCTC8325.rev.2.bt2"
+        "data/{sample_id}.fastq.gz",
+        "results/bowtie2/NCTC8325.1.bt2",
+        "results/bowtie2/NCTC8325.2.bt2",
+        "results/bowtie2/NCTC8325.3.bt2",
+        "results/bowtie2/NCTC8325.4.bt2",
+        "results/bowtie2/NCTC8325.rev.1.bt2",
+        "results/bowtie2/NCTC8325.rev.2.bt2"
     log:
         "results/logs/align_to_genome/{sample_id}.log"
     shell:
         """
-        bowtie2 -x intermediate/NCTC8325 -U {input[0]} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output} 2>{log}
         """
 ```
 

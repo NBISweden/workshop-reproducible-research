@@ -74,22 +74,18 @@ mentioned above).
     |   |- run_qc.sh
     |
     |- data/
-    |   |- raw_internal/
-    |       |- SRR935090.fastq.gz
-    |       |- SRR935091.fastq.gz
-    |       |- SRR935092.fastq.gz
-    |
-    |- intermediate/
-    |   |- fastqc/
-    |       |- SRR935090_fastqc.zip
-    |       |- SRR935091_fastqc.zip
-    |       |- SRR935092_fastqc.zip
+    |   |- SRR935090.fastq.gz
+    |   |- SRR935091.fastq.gz
+    |   |- SRR935092.fastq.gz
     |
     |- results/
     |   |- fastqc/
     |       |- SRR935090_fastqc.html
+    |       |- SRR935090_fastqc.zip
     |       |- SRR935091_fastqc.html
+    |       |- SRR935091_fastqc.zip
     |       |- SRR935092_fastqc.html
+    |       |- SRR935092_fastqc.zip
     |
     |- environment.yml
 ```

@@ -32,7 +32,7 @@ rule get_SRA_by_accession:
     sample_id: "https://url/to/file"
     """
     output:
-        "data/raw_internal/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz"
     log:
         "results/logs/get_SRA_by_accession/{sample_id}.log"
     params:
@@ -49,9 +49,9 @@ rule fastqc:
     """
     output:
         "results/{sample_id}_fastqc.html",
-        "intermediate/{sample_id}_fastqc.zip"
+        "results/fastqc/{sample_id}_fastqc.zip"
     input:
-        "data/raw_internal/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz"
     shadow: "minimal"
     shell:
         """
@@ -69,9 +69,9 @@ rule multiqc:
     """
     output:
         html="results/multiqc.html",
-        stats="intermediate/multiqc_general_stats.txt"
+        stats="results/multiqc/multiqc_general_stats.txt"
     input:
-        expand("intermediate/{sample_id}_fastqc.zip", sample_id = config["sample_ids"])
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id = config["sample_ids"])
     log:
         "results/logs/multiqc/multiqc.log"
     shadow: "minimal"
@@ -91,7 +91,7 @@ rule get_genome_fasta:
     Retrieve the sequence in fasta format for a genome.
     """
     output:
-        "data/raw_external/{genome_id}.fa.gz"
+        "data/ref/{genome_id}.fa.gz"
     log:
         "results/logs/get_genome_fasta/{genome_id}.log"
     params:
@@ -109,7 +109,7 @@ rule get_genome_gff3:
     Retrieve annotation in gff3 format for a genome.
     """
     output:
-        "data/raw_external/{genome_id}.gff3.gz"
+        "data/ref/{genome_id}.gff3.gz"
     log:
         "results/logs/get_genome_gff3/{genome_id}.log"
     params:
@@ -124,9 +124,9 @@ rule index_genome:
     Index a genome using Bowtie 2.
     """
     output:
-        expand("intermediate/{{genome_id}}.{n}.bt2",n=["1", "2", "3", "4","rev.1", "rev.2"])
+        expand("results/bowtie2/{{genome_id}}.{n}.bt2",n=["1", "2", "3", "4","rev.1", "rev.2"])
     input:
-        "data/raw_external/{genome_id}.fa.gz"
+        "data/ref/{genome_id}.fa.gz"
     log:
         "results/logs/index_genome/{genome_id}.log"
     shadow: "minimal"
@@ -134,7 +134,7 @@ rule index_genome:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
         gunzip -c {input} > tempfile
-        bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+        bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
         """
 
 rule align_to_genome:
@@ -144,10 +144,10 @@ rule align_to_genome:
     output:
         # Here the sample_id wildcard is constrained with \w+ to match only
         # 'word characters', i.e. letters, numbers and underscore
-        temp("intermediate/{sample_id,\w+}.bam")
+        temp("results/bam/{sample_id,\w+}.bam")
     input:
-        fastq = "data/raw_internal/{sample_id}.fastq.gz",
-        index = expand("intermediate/{genome_id}.{substr}.bt2",
+        fastq = "data/{sample_id}.fastq.gz",
+        index = expand("results/bowtie2/{genome_id}.{substr}.bt2",
             genome_id=config["genome_id"],
             substr=["1", "2", "3", "4", "rev.1", "rev.2"])
     log:
@@ -155,7 +155,7 @@ rule align_to_genome:
             genome_id = config["genome_id"])
     shell:
         """
-        bowtie2 -x intermediate/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
         """
 
 rule sort_bam:
@@ -179,8 +179,8 @@ rule generate_count_table:
         "results/tables/counts.tsv",
         "results/tables/counts.tsv.summary"
     input:
-        bams=expand("intermediate/{sample_id}.sorted.bam", sample_id = config["sample_ids"]),
-        annotation=expand("data/raw_external/{genome_id}.gff3.gz", genome_id = config["genome_id"])
+        bams=expand("results/bam/{sample_id}.sorted.bam", sample_id = config["sample_ids"]),
+        annotation=expand("data/ref/{genome_id}.gff3.gz", genome_id = config["genome_id"])
     log:
         "results/logs/generate_count_table.log"
     shell:
@@ -197,7 +197,7 @@ rule make_supplementary:
     input:
         counts = "results/tables/counts.tsv",
         summary_file = "results/tables/counts.tsv.summary",
-        multiqc_file = "intermediate/multiqc_general_stats.txt",
+        multiqc_file = "results/multiqc/multiqc_general_stats.txt",
         rulegraph = "results/rulegraph.png"
     log:
         "results/logs/make_supplementary.log"

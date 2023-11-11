@@ -80,15 +80,15 @@ digraph snakemake_dag {
     edge[penwidth=2, color=grey];
         0[label = "all", color = "0.06 0.6 0.85", style="rounded"];
         1[label = "generate_count_table", color = "0.50 0.6 0.85", style="rounded"];
-        2[label = "sort_bam\nprefix: intermediate/SRR935090", color = "0.17 0.6 0.85", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "0.17 0.6 0.85", style="rounded"];
         3[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
         4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.22 0.6 0.85", style="rounded"];
         5[label = "index_genome", color = "0.56 0.6 0.85", style="rounded"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "0.28 0.6 0.85", style="rounded"];
-        7[label = "sort_bam\nprefix: intermediate/SRR935091", color = "0.17 0.6 0.85", style="rounded"];
+        7[label = "sort_bam\nprefix: results/bam/SRR935091", color = "0.17 0.6 0.85", style="rounded"];
         8[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
         9[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.22 0.6 0.85", style="rounded"];
-        10[label = "sort_bam\nprefix: intermediate/SRR935092", color = "0.17 0.6 0.85", style="rounded"];
+        10[label = "sort_bam\nprefix: results/bam/SRR935092", color = "0.17 0.6 0.85", style="rounded"];
         11[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
         12[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.22 0.6 0.85", style="rounded"];
         13[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "0.44 0.6 0.85", style="rounded"];
@@ -616,7 +616,7 @@ digraph snakemake_dag {
     edge[penwidth=2, color=grey];
         0[label = "make_supplementary", color = "black", style="rounded"];
         1[label = "generate_count_table", color = "black", style="rounded"];
-        2[label = "sort_bam\nprefix: intermediate/SRR935090", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
         4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
         5[label = "index_genome", color = "black", style="rounded"];
@@ -662,7 +662,7 @@ digraph snakemake_dag {
     edge[penwidth=2, color=grey];
         0[label = "make_supplementary", color = "red", style="rounded"];
         1[label = "generate_count_table", color = "black", style="rounded"];
-        2[label = "sort_bam\nprefix: intermediate/SRR935090", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
         4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
         5[label = "index_genome", color = "black", style="rounded"];
@@ -696,7 +696,7 @@ digraph snakemake_dag {
 
 ::: {data-id="code1"}
 ```{.commandline code-line-numbers=false}
-$ touch intermediate/NCTC8325.1.bt2
+$ touch results/bowtie2/NCTC8325.1.bt2
 ```
 :::
 
@@ -708,7 +708,7 @@ digraph snakemake_dag {
     edge[penwidth=2, color=grey];
         0[label = "make_supplementary", color = "black", style="rounded"];
         1[label = "generate_count_table", color = "black", style="rounded"];
-        2[label = "sort_bam\nprefix: intermediate/SRR935090", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bowtie2/SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
         4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
         5[label = "index_genome*", color = "cyan", style="rounded"];
@@ -755,7 +755,7 @@ digraph snakemake_dag {
     edge[penwidth=2, color=grey];
         0[label = "make_supplementary", color = "red", style="rounded"];
         1[label = "generate_count_table", color = "black", style="rounded"];
-        2[label = "sort_bam\nprefix: intermediate/SRR935090", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bowtie2/SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
         4[label = "get_SRA_by_accession\nsample_id: SRR935090", fontcolor="grey", fillcolor="lightgrey", color = "grey", style="rounded,dashed,filled"];
         5[label = "index_genome", color = "grey", fillcolor="lightgrey", fontcolor="grey", style="rounded,dashed,filled"];

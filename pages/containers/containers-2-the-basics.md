@@ -122,7 +122,7 @@ the Snakemake workflow for the MRSA case study:
 ```python
 shell:
     """
-    bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+    bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
     """
 ```
 

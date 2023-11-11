@@ -1,13 +1,13 @@
-It's not uncommon that workflows contain temporary files that should be kept
-for some time and then deleted once they are no longer needed. A typical case
-could be that some operation generates a file, which is then compressed to save
-space or indexed to make searching faster. There is then no need to save the
-original output file. Take a look at the job graph for our workflow again. The
-output from `align_to_genome` is a BAM file, which contains information about
-all the reads for a sample and where they map in the genome. For downstream
-processing we need this file to be sorted by genome coordinates. This is what
-the rule `sort_bam` is for. We therefore end up with both
-`intermediate/{sample_id}.bam` and `intermediate/{sample_id}.sorted.bam`.
+It's not uncommon that workflows contain temporary files that should be kept for
+some time and then deleted once they are no longer needed. A typical case could
+be that some operation generates a file, which is then compressed to save space
+or indexed to make searching faster. There is then no need to save the original
+output file. Take a look at the job graph for our workflow again. The output
+from `align_to_genome` is a BAM file, which contains information about all the
+reads for a sample and where they map in the genome. For downstream processing
+we need this file to be sorted by genome coordinates. This is what the rule
+`sort_bam` is for. We therefore end up with both `results/bam/{sample_id}.bam`
+and `results/bam/{sample_id}.sorted.bam`.
 
 In Snakemake we can mark an output file as temporary like this:
 
@@ -24,12 +24,12 @@ like this:
 .
 .
 rule sort_bam:
-    input: intermediate/SRR935090.bam
-    output: intermediate/SRR935090.sorted.bam
+    input: results/bam/SRR935090.bam
+    output: results/bam/SRR935090.sorted.bam
     jobid: 2
     wildcards: sample_id=SRR935090
 
-Removing temporary output file intermediate/SRR935090.bam.
+Removing temporary output file results/bam/SRR935090.bam.
 Finished job 2.
 .
 .

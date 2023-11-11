@@ -7,7 +7,7 @@ format:
 engine: knitr
 params:
     counts_file: "results/tables/counts.tsv"
-    multiqc_file: "intermediate/multiqc_general_stats.txt"
+    multiqc_file: "results/multiqc/multiqc_general_stats.txt"
     summary_file: "results/tables/counts.tsv.summary"
     rulegraph_file: "results/rulegraph.png"
     srr_ids: "SRR935090 SRR935091 SRR935092"

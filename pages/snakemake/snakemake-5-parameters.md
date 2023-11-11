@@ -37,7 +37,7 @@ rule get_SRA_by_accession:
     Retrieve a single-read FASTQ file
     """
     output:
-        "data/raw_internal/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz"
     params:
         url = get_sample_url
     shell:
@@ -81,7 +81,7 @@ rule get_SRA_by_accession:
     Retrieve a single-read FASTQ file
     """
     output:
-        "data/raw_internal/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz"
     params:
         url = get_sample_url,
         max_reads = 20000
@@ -109,7 +109,7 @@ rule get_SRA_by_accession:
     Retrieve a single-read FASTQ file
     """
     output:
-        "data/raw_internal/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz"
     params:
         url = get_sample_url,
         max_reads = config["max_reads"]

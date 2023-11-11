@@ -60,7 +60,7 @@ In the next cell we'll define some parameters to use for the notebook:
 ```python
 counts_file="results/tables/counts.tsv"
 summary_file="results/tables/counts.tsv.summary"
-multiqc_file="intermediate/multiqc_general_stats.txt"
+multiqc_file="results/multiqc/multiqc_general_stats.txt"
 rulegraph_file="results/rulegraph.png"
 SRR_IDs=["SRR935090","SRR935091","SRR935092"]
 GSM_IDs=["GSM1186459","GSM1186460","GSM1186461"]
