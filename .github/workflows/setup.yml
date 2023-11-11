@@ -24,7 +24,7 @@ jobs:
           - env: jupyter
             cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: quarto
-            cmd: mamba install -c conda-forge quarto && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
+            cmd: mamba install -c conda-forge quarto=1.3.450 -c conda-forge deno=1.22.0 && export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2.2.0
