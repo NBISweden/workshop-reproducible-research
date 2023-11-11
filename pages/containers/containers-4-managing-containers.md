@@ -41,8 +41,8 @@ execute any command in a running container. It's typically used to peak in at
 what is happening by opening up a new shell. Here we start the container in
 detached mode and then start a new interactive shell so that we can see what
 happens. If you use `ls` inside the container you can see how the script
-generates file in the `data`, `intermediate` and `results` directories. Note
-that you will be thrown out when the container exits, so you have to be quick.
+generates file in the `data` and `results` directories. Note that you will be
+thrown out when the container exits, so you have to be quick.
 
 ```bash
 docker run -d --rm --name my_container my_docker_conda
@@ -52,17 +52,17 @@ docker exec -it my_container /bin/bash
 ## Bind mounts
 
 There are obviously some advantages to isolating and running your data analysis
-in containers, but at some point you need to be able to interact with the 
-rest of the host system (_e.g._ your laptop) to actually deliver the results. 
-This is done via bind mounts. When you use a bind mount, a file or directory 
-on the *host machine* is mounted into a container. That way, when the 
-container generates a file in such a directory it will appear in the mounted 
+in containers, but at some point you need to be able to interact with the
+rest of the host system (_e.g._ your laptop) to actually deliver the results.
+This is done via bind mounts. When you use a bind mount, a file or directory
+on the *host machine* is mounted into a container. That way, when the
+container generates a file in such a directory it will appear in the mounted
 directory on your host system.
 
 > **Tip** <br>
 > Docker also has a more advanced way of data storage called
 > [volumes](https://docs.docker.com/storage/volumes/). Volumes provide
-> added flexibility and are independent of the host machine's filesystem
+> added flexibility and are independent of the host machine's file system
 > having a specific directory structure available. They are particularly
 > useful when you want to share data *between* containers.
 

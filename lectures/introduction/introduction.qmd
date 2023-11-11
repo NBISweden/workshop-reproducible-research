@@ -1,0 +1,397 @@
+---
+title: "Introduction"
+subtitle: "Tools for Reproducible Research"
+format: nbis-revealjs
+---
+
+## Course content
+
+::: {.incremental}
+- Good practices for working with data
+
+- How to use the version control system [Git]{.green} to track changes to code
+
+- How to use the package and environment manager [Conda]{.green}
+
+- How to use the workflow managers [Snakemake]{.green} and [Nextflow]{.green}
+
+- How to generate automated reports using [Quarto]{.green} and [Jupyter]{.green}
+
+- How to use [Docker]{.green} and [Singularity]{.green} to distribute containerized
+  computational environments
+:::
+
+## The Teachers
+
+::: {layout-nrow=2 .justify-center}
+![John Sundh](images/john-sundh.png)
+
+![Erik Fasterius](images/erik-fasterius.png)
+
+![Verena Kutchera](images/verena-kutschera.png)
+
+![Tomas Larsson](images/tomas-larsson.png)
+
+![Lokeshwaran Manoharan](images/lokeshwaran-manoharan.png)
+
+![Estelle Proux-Wera](images/estelle-proux-wera.png)
+:::
+
+## What is NBIS?
+
+::: {.smaller}
+[National Bioinformatics Infrastructure Sweden]{.green}
+:::
+
+::: {.incremental}
+ - A distributed national bioinformatics infrastructure supporting life sciences
+   in Sweden
+ - Provides hands-on bioinformatic support, training, infrastructure and a weekly
+   drop-in
+ - Situated in Lund, Gothenburg, Linköping, Stockholm, Uppsala and Umeå
+ - Provides wide-spectrum support in the fields of bioinformatics, bioimage
+   informatics, data management, imaging AI, development of systems and tools as
+   well as national compute resources.
+ - Read more at [nbis.se](https://nbis.se/)
+:::
+
+## What is reproducibility? {.nostretch}
+
+<br>
+<br>
+<br>
+
+![](https://phdcomics.com/comics/archive/phd031214s.gif){fig-align=center}
+
+## Why all the talk about reproducibility?
+
+:::: {.columns}
+::: {.column width=45%}
+The *Reproducibility project* set out to replicate 100 experiments published in
+high-impact psychology journals. ^[*"Estimating the reproducibility of
+psychological science". Science. 349*]
+
+<br>
+
+About one-half to two-thirds of the original findings could not be observed in
+the replication study.
+:::
+
+::: {.column width=55%}
+![](images/reproducibility-study-1.jpg)
+:::
+::::
+
+## Why all the talk about reproducibility?
+
+:::: {.columns}
+::: {.column}
+A survey in Nature revealed that irreproducible experiments are a problem across
+all domains of science.^[*"1,500 scientists lift the lid on reproducibility",
+Nature. 533: 452–454*]
+:::
+
+::: {.column}
+![](images/reproducibility-study-2.jpg)
+:::
+::::
+
+## Why all the talk about reproducibility?
+
+:::: {.columns}
+::: {.column}
+Medicine is among the most affected research fields. A study in Nature found
+that 47 out of 53 medical research papers focused on cancer research were
+irreproducible.^[*"Drug development: Raise standards for preclinical cancer
+research". Nature. 483 (7391): 531–533*]
+:::
+
+::: {.column}
+![](https://www.nature.com/news/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg)
+:::
+::::
+
+## Why all the talk about reproducibility? {.smaller}
+
+*Replication of 18 articles on microarray-based experiments published in Nature
+Genetics in 2005–2006* ^[*Ioannidis et al. (2009) "Repeatability of published
+microarray gene expression analyses", Nature Genetics 41, doi:10.1038/ng.295*]
+
+```{r Load packages and define blank ggplot theme}
+library(ggplot2)
+library(gtable)
+blank_theme <- theme_minimal() +
+    theme(
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_blank(),
+        panel.grid   = element_blank(),
+        axis.ticks   = element_blank(),
+        legend.title = element_blank())
+```
+```{r Recreate the Ioannidis data}
+items = c("... in principle",
+          "... with some discrepancies",
+          "... from processed data with some discrepancies",
+          "... partially with some discrepancies",
+          "Cannot reproduce")
+ioannidis_1 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(2, 1, 4, 1, 10))
+items = c("Data not available",
+          "Software not available",
+          "Methods unclear",
+          "Different result")
+ioannidis_2 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(5, 1, 2, 2))
+```
+```{r Plot the first Ioannidis data}
+#| fig-width: 10
+#| fig-height: 5
+pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
+ggplot(ioannidis_1, aes(x    = "",
+                        y    = value,
+                        fill = result)) +
+    geom_bar(width = 1,
+             stat  = "identity",
+             color = "white") +
+    coord_polar("y", start = 0) +
+    scale_fill_manual(values = pie_1_colours) +
+    blank_theme +
+    theme(axis.text.x     = element_blank(),
+          legend.text     = element_text(size = 18),
+          legend.position = "right") +
+    guides(fill = guide_legend(reverse = TRUE))
+```
+
+## Why all the talk about reproducibility? {.smaller}
+
+*Replication of 18 articles on microarray-based experiments published in Nature
+Genetics in 2005–2006* ^[*Ioannidis et al. (2009) "Repeatability of published
+microarray gene expression analyses", Nature Genetics 41, doi:10.1038/ng.295*]
+
+```{r Plot the second Ioannidis data}
+#| fig-width: 10
+#| fig-height: 5
+pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
+ggplot(ioannidis_2, aes(x    = "",
+                        y    = value,
+                        fill = result)) +
+    geom_bar(width = 1,
+             stat  = "identity",
+             color = "white") +
+    coord_polar("y", start = 0) +
+    scale_fill_manual(values = pie_2_colours) +
+    blank_theme +
+    theme(axis.text.x      = element_blank(),
+          legend.position  = "right",
+          legend.text      = element_text(size = 18),
+          legend.direction = "vertical",
+          plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
+```
+
+## Reproducibility is rarer than you think
+
+The results of only 26% out of 204 randomly selected papers in the journal
+*Science* could be reproduced. ^[*Stodden et. al (2018). "An empirical analysis
+of journal policy effectiveness for computational reproducibility". PNAS. 115
+(11): 2584-2589*]
+
+::: {.fragment}
+> "Many journals are revising author guidelines to include data and code
+> availability."
+:::
+
+::: {.fragment}
+> "(...) an improvement over no policy, but currently insufficient for
+> reproducibility."
+:::
+
+## Reproducibility is rarer than you think
+
+*There are many so-called excuses not to work reproducibly:*
+
+<br>
+
+::: {.r-stack}
+
+::: {.fragment .fade-out fragment-index=2}
+::: {.fragment fragment-index=1}
+> “Thank you for your interest in our paper. For the [redacted] calculations I
+> used my own code, and there is no public version of this code, which could be
+> downloaded. Since this code is not very user-friendly and is under constant
+> development I prefer not to share this code.”
+:::
+:::
+
+::: {.fragment .fade-out fragment-index=3}
+::: {.fragment fragment-index=2}
+> “We do not typically share our internal data or code with people outside our
+> collaboration.”
+:::
+:::
+
+::: {.fragment .fade-out fragment-index=4}
+::: {.fragment fragment-index=3}
+> “When you approach a PI for the source codes and raw data, you better explain
+> who you are, whom you work for, why you need the data and what you are going
+> to do with it.”
+:::
+:::
+
+::: {.fragment fragment-index=4}
+> “I have to say that this is a very unusual request without any explanation!
+> Please ask your supervisor to send me an email with a detailed, and I mean
+> detailed, explanation.”
+:::
+
+:::
+
+## What does reproducible research mean?
+
+::: {.r-stack}
+
+::: {.fragment .fade-out fragment-index=2}
+::: {.fragment fragment-index=1}
+<table>
+<tr>
+  <td colspan="2" bgcolor="#FFFFFF" style="border-bottom: none"></td>
+  <td colspan="2" align="center" bgcolor="#6DAD2A">Data</td>
+</tr>
+  <td colspan="2" bgcolor="#FFFFFF"></td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+</tr>
+<tr>
+  <td rowspan="2" bgcolor="#6DAD2A">Code</td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#CFE6B8">Reproducible</td>
+  <td align="center" bgcolor="#CFE6B8">Replicable</td>
+</tr>
+<tr>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+  <td align="center" bgcolor="#CFE6B8">Robust</td>
+  <td align="center" bgcolor="#CFE6B8">Generalisable</td>
+</tr>
+</table>
+:::
+:::
+
+::: {.fragment .fade-out fragment-index=3}
+::: {.fragment fragment-index=2}
+![](../../pages/images/reproducibility_overview.png)
+:::
+:::
+
+::: {.fragment fragment-index=3}
+> ”Why call the course Reproducible Research, when it could just as well be
+> called Research?”
+
+::: {.justify-right}
+*\- Niclas Jareborg, NBIS data management expert*
+:::
+:::
+
+:::
+
+## How are you handling your [data]{.green}? {.smaller}
+
+::: {.fragment}
+[Decent:]{.light-grey}
+
+- Data available on request
+- All metadata required for generating the results available
+:::
+
+::: {.fragment}
+[Good:]{.light-grey}
+
+- Raw data deposited in public repositories
+- If the raw data needed preprocessing, scripts were used rather than modifying
+  it manually
+:::
+
+::: {.fragment}
+[Great:]{.light-grey}
+
+- Section in the paper or online repository (_e.g._ GitHub) to aid in
+  reproduction
+- Used non-proprietary and machine-readable formats, *e.g.* `.csv` rather than
+  `.xls`.
+:::
+
+::: {.aside}
+*If you want to learn more about data management in-depth, NBIS has a course for
+you: [Introduction to Data Management Practices]{.green}*
+:::
+
+## How are you handling your [code]{.green}? {.smaller}
+
+::: {.fragment}
+[Decent:]{.light-grey}
+
+- All code for generating results from processed data available on request
+:::
+
+::: {.fragment}
+[Good:]{.light-grey}
+
+- All code for generating results from raw data is available
+- The code is publicly available with timestamps or tags
+:::
+
+
+::: {.fragment}
+[Great:]{.light-grey}
+
+- Code is documented and contains instructions for reproducing results
+- Seeds were used and documented for heuristic methods
+:::
+
+## How are you handling your [environment]{.green}? {.smaller}
+
+::: {.fragment}
+[Decent:]{.light-grey}
+
+- Key programs used are mentioned in the _materials and methods_ section
+:::
+
+::: {.fragment}
+[Good:]{.light-grey}
+
+- List of all programs used and their respective versions are available
+:::
+
+::: {.fragment}
+[Great:]{.light-grey}
+
+- Instructions for reproducing the whole environment publicly available
+:::
+
+## "What's in it for me?" {.smaller}
+
+::: {.fragment}
+[Before]{.green} the project:
+
+- Improved structure and organization
+- Forced to think about scope and limitations
+:::
+
+::: {.fragment}
+[During]{.green} the project:
+
+- Easier to re-run analyses and generate results after updates and/or changes
+- Closer interaction between collaborators
+- Much of the manuscript "writes itself"
+:::
+
+
+::: {.fragment}
+[After]{.green} the project:
+
+- Faster resumption of research by others (or, more likely, your future self)
+- Increased visibility in the scientific community
+:::
+
+# Questions?

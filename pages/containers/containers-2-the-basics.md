@@ -1,7 +1,7 @@
 We're almost ready to start, just one last note on nomenclature. You might have
 noticed that we sometimes refer to "Docker images" and sometimes to "Docker
-containers". We use images to start containers, so containers are simply an 
-instances of an image. You can have an image containing, say, a certain 
+containers". We use images to start containers, so containers are simply an
+instances of an image. You can have an image containing, say, a certain
 Linux distribution, and then start multiple containers running that
 same OS.
 
@@ -44,18 +44,18 @@ ubuntu           latest           d70eaf7277ea        3 weeks ago         72.9MB
 
 ## Running containers
 
-We can now start a container from the image we just downloaded. We can refer to 
-the image either by "REPOSITORY:TAG" ("latest" is the default so we can omit 
+We can now start a container from the image we just downloaded. We can refer to
+the image either by "REPOSITORY:TAG" ("latest" is the default so we can omit
 it) or "IMAGE ID". The syntax for `docker run` is `docker run [OPTIONS] IMAGE
-[COMMAND] [ARG...]`. To see the available options run `docker run --help`. 
-The `COMMAND` part is any command that you want to run inside the container, 
-it can be a script that you have written yourself, a command line tool or a 
-complete workflow. The `ARG` part is where you put optional arguments that 
+[COMMAND] [ARG...]`. To see the available options run `docker run --help`.
+The `COMMAND` part is any command that you want to run inside the container,
+it can be a script that you have written yourself, a command line tool or a
+complete workflow. The `ARG` part is where you put optional arguments that
 the command will use.
 
-Let's run `uname -a` to get some info about the operating system. In this 
-case, `uname` is the `COMMAND` and `-a` the `ARG`. This command will display 
-some general info about your system, and the `-a` argument tells `uname` to 
+Let's run `uname -a` to get some info about the operating system. In this
+case, `uname` is the `COMMAND` and `-a` the `ARG`. This command will display
+some general info about your system, and the `-a` argument tells `uname` to
 display all possible information.
 
 First run it on your own system (use `systeminfo` if you are on Windows):
@@ -70,7 +70,7 @@ This should print something like this to your command line:
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
-Seems like I'm running the Darwin version of macOS. Then run it in the Ubuntu
+Seems like I'm running the Darwin version of MacOS. Then run it in the Ubuntu
 Docker container:
 
 ```bash
@@ -83,17 +83,17 @@ Here I get the following result:
 Linux 24d063b5d877 5.4.39-linuxkit #1 SMP Fri May 8 23:03:06 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-And now I'm running on Linux! What happens is that we use the downloaded 
-ubuntu image to run a container that has `Ubuntu` as the operating system, 
-and we instruct Docker to execute `uname -a` to print the system info within 
-that container. The output from the command is printed to the terminal. 
+And now I'm running on Linux! What happens is that we use the downloaded
+ubuntu image to run a container that has `Ubuntu` as the operating system,
+and we instruct Docker to execute `uname -a` to print the system info within
+that container. The output from the command is printed to the terminal.
 
 Try the same thing with `whoami`.
 
 ## Running interactively
 
-So, seems we can execute arbitrary commands on Linux. This looks useful, but 
-maybe a bit limited. We can also get an interactive terminal with the flags 
+So, seems we can execute arbitrary commands on Linux. This looks useful, but
+maybe a bit limited. We can also get an interactive terminal with the flags
 `-it`.
 
 ```bash
@@ -106,9 +106,9 @@ Your prompt should now look similar to:
 root@1f339e929fa9:/#
 ```
 
-You are now using a terminal inside a container running Ubuntu. Here you can 
-do whatever; install, run, remove stuff. Anything you do will be isolated 
-within the container and never affect your host system. 
+You are now using a terminal inside a container running Ubuntu. Here you can
+do whatever; install, run, remove stuff. Anything you do will be isolated
+within the container and never affect your host system.
 
 Now exit the container with `exit`.
 
@@ -122,7 +122,7 @@ the Snakemake workflow for the MRSA case study:
 ```python
 shell:
     """
-    bowtie2-build tempfile intermediate/{wildcards.genome_id} > {log}
+    bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
     """
 ```
 
@@ -131,7 +131,7 @@ Nextflow if you've gone through their tutorial's extra material, but we can
 also use containers directly inside scripts in a very simple way. Let's imagine
 we want to run the above command using containers instead. How would that look?
 It's quite simple, really: first we find a container image that has `bowtie2`
-installed, and then prepend the command with `docker run <image>`. 
+installed, and then prepend the command with `docker run <image>`.
 
 First of all we need to download the genome to index though, so run:
 ```bash
@@ -139,7 +139,7 @@ curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fast
 gunzip -c NCTC8325.fa.gz > tempfile
 ```
 
-to download and prepare the input for bowtie2.
+To download and prepare the input for Bowtie2.
 
 Now try running the following Bash code:
 
@@ -147,19 +147,19 @@ Now try running the following Bash code:
 docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build /analysis/tempfile /analysis/NCTC8325
 ```
 
-Docker will automatically download the container image for bowtie2 version 
-2.5.1 from the remote repository https://quay.io/repository/biocontainers/bowtie2
+Docker will automatically download the container image for Bowtie2 version
+2.5.1 from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
 and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
-[COMMAND] [ARG...]` syntax just like before. In this case 
-`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but 
-instead of first downloading and then running it we point to its remote 
-location directly, which will cause Docker to download it on 
-the fly. The `bowtie2-build` part is the COMMAND followed by the ARG (the 
+[COMMAND] [ARG...]` syntax just like before. In this case
+`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but
+instead of first downloading and then running it we point to its remote
+location directly, which will cause Docker to download it on
+the fly. The `bowtie2-build` part is the COMMAND followed by the ARG (the
 input tempfile and the output index)
 
-The `-v $(pwd):/analysis` part is the OPTIONS which we use to mount the current 
-directory inside the container in order to make the `tempfile` input available 
-to bowtie2. More on these so-called "Bind mounts" in Section 4 of this tutorial.
+The `-v $(pwd):/analysis` part is the OPTIONS which we use to mount the current
+directory inside the container in order to make the `tempfile` input available
+to Bowtie2. More on these so-called "Bind mounts" in Section 4 of this tutorial.
 
 > **Quick recap** <br>
 > In this section we've learned:

@@ -1,0 +1,141 @@
+---
+title: "Supplementary Material"
+format:
+    html:
+        echo: false
+        embed_resources: true
+engine: knitr
+params:
+    counts_file: "results/tables/counts.tsv"
+    multiqc_file: "results/multiqc/multiqc_general_stats.txt"
+    summary_file: "results/tables/counts.tsv.summary"
+    rulegraph_file: "results/rulegraph.png"
+    srr_ids: "SRR935090 SRR935091 SRR935092"
+    gsm_ids: "GSM1186459 GSM1186460 GSM1186461"
+---
+
+```{r Dependencies}
+#| include: false
+library("ggplot2")
+library("reshape2")
+library("pheatmap")
+library("GEOquery")
+```
+
+```{r Read parameters}
+#| include: false
+counts_file <- params$counts_file
+multiqc_file <- params$multiqc_file
+summary_file <- params$summary_file
+rulegraph_file <- params$rulegraph_file
+srr_ids <- unlist(strsplit(params$srr_ids, " "))
+gsm_ids <- unlist(strsplit(params$gsm_ids, " "))
+```
+
+```{r Read data}
+#| include: false
+# Read counts
+counts <- read.delim(counts_file,
+                     header       = TRUE,
+                     comment.char = "#",
+                     row.names    = 1)
+counts <- counts[, 5:ncol(counts)]
+colnames(counts) <- gsub(".*(SRR[0-9]+)\\..*", "\\1", colnames(counts))
+
+# Read count summary file
+counts_summary <- read.delim(summary_file,
+                             sep       = "\t",
+                             header    = TRUE,
+                             row.names = 1)
+colnames(counts_summary) <- gsub(".*(SRR[0-9]+)\\..*", "\\1",
+                                 colnames(counts_summary))
+
+# Read metadata
+meta <- data.frame()
+for (GSM in gsm_ids) {
+    gsm <- Meta(getGEO(GSM))
+    current_meta <- as.data.frame(do.call(cbind, gsm))
+    meta <- rbind(meta, current_meta)
+}
+meta <- meta[c("title", "geo_accession", "source_name_ch1", "characteristics_ch1")]
+gsm2srr <- data.frame(geo_accession = gsm_ids, SRR = srr_ids)
+meta <- merge(meta, gsm2srr, by = "geo_accession")
+
+# Read FastQC data and update column names
+qc <- read.delim(multiqc_file)
+patterns <- c(".+percent_duplicates.*",
+              ".+percent_gc.*",
+              ".+avg_sequence_length.*",
+              ".+percent_fails.*",
+              ".+total_sequences.*")
+subs <- c("Percent duplicates", "Percent GC", "Avg sequence length",
+          "Percent fails", "Total sequences")
+for (i in 1:length(patterns)) {
+    colnames(qc) <- gsub(patterns[i], subs[i], colnames(qc))
+}
+meta <- merge(meta, qc, by.x = "SRR", by.y = "Sample")
+```
+
+# Supplementary Methods
+
+Here you might include a description of the methods used in obtaining and
+analysing the data before getting into this document, *e.g.* how sequencing data
+was aligned and counted.
+
+# Supplementary Tables and Figures
+
+```{r Sample info}
+columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1")
+sample_info <- meta[, columns]
+sample_info$characteristics_ch1 <- gsub("treatment: ", "", sample_info$characteristics_ch1)
+sample_info$characteristics_ch1 <- gsub("growth phase: ", "", sample_info$characteristics_ch1)
+sample_info
+```
+
+```{r QC statistics}
+columns <- c("SRR", "Percent duplicates", "Percent GC", "Avg sequence length",
+             "Percent fails", "Total sequences")
+qc_data <- meta[, columns]
+qc_data
+```
+
+```{r Counts barplot}
+count_data <- rbind(genes = apply(counts[, -1], 2, sum), counts_summary)
+count_data <- melt(as.matrix(count_data),
+                   varnames   = c("Feature", "Sample"),
+                   value.name = "Reads")
+ggplot(count_data, aes(x = Sample, y = Reads, fill = Feature)) +
+    geom_bar(stat = "identity")
+```
+
+```{r Gene heatmap}
+#| fig-height: 14
+cv_cutoff <- 1.2
+max_cutoff <- 5
+heatmap_data <-
+    counts[apply(counts[, -1], 1, function(x) sd(x) / mean(x)) > cv_cutoff &
+           apply(counts[, -1], 1, max) > max_cutoff, ]
+colnames(heatmap_data)[2:4] <- as.character(meta$title)
+labels_row <- paste0(rownames(heatmap_data), " (",
+                     substr(gsub("%2C", "", heatmap_data$description), 1, 50),
+                     ")")
+gg <- pheatmap(log10(heatmap_data[, -1] + 1),
+               fontsize_row = 8,
+               labels_row = labels_row)
+show(gg)
+```
+
+## Reproducibility
+
+The code for reproducing this analysis is available in this [GitHub repo](https://github.com/NBISweden/workshop-reproducible-research/tree/master/docker).
+The repo contains:
+
+- A Snakemake workflow for running all analysis steps
+- A Conda environment file for installing all needed dependenciesx
+- A Docker file for running the analysis in a well-defined and isolated system
+
+The results in this supplementary were generated in the following R environment:
+
+```{r Session info}
+sessionInfo()
+```

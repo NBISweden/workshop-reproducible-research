@@ -30,7 +30,7 @@ cd workshop-reproducible-research
 > Run this command after you have `cd` into `workshop-reproducible-research`
 > as described above. If you do that, you probably also want to view the
 > same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io.
+> hosted at [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io).
 > Locate the version box in the bottom right corner of the website and
 > select the corresponding version.
 
@@ -57,11 +57,12 @@ resources:
 > **Note** <br>
 > If you run into error messages when trying to download files through the Linux
 > shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
-> nameserver to the internet configuration by running `sudo nano /etc/resolv.conf`
-> then add `nameserver 8.8.8.8` to the bottom of the file and save it.
+> name server to the internet configuration by running `sudo nano
+> /etc/resolv.conf` then add `nameserver 8.8.8.8` to the bottom of the file and
+> save it.
 
 > **Important!** <br>
-> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows), 
+> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows),
 > **please follow the Linux instructions.**
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
@@ -137,15 +138,64 @@ below for more information.
 > change, so we have chosen to use `main` for this course.
 
 > **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-> tags/course_1905`. To list all available tags, use `git tag`. Run this
-> command after you have `cd` into `workshop-reproducible-research` as
-> described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at https://nbis-reproducible-research.readthedocs.io/en/latest/.
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
+> If you want to revisit the material from an older instance of this course, you
+> can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
+> tags/course_1905`. To list all available tags, use `git tag`. Run this command
+> after you have `cd` into `workshop-reproducible-research` as described above.
+> If you do that, you probably also want to view the same older version of this
+> website. Until spring 2021, the website was hosted at
+> [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io/en/latest/).
+> Locate the version box in the bottom right corner of the website and select
+> the corresponding version.
+
+### GitHub setup
+
+[GitHub](https://github.com) is one of several online hosting platforms for Git
+repositories. We'll go through the details regarding how Git and GitHub are
+connected in the course itself, so for now we'll stick to setting up your
+account and credentials.
+
+If you have not done so already, go to [github.com](https://github.com/join) and
+create an account. You can also create an account on another online hosting
+service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
+[GitLab](https://about.gitlab.com/). The exercises in this course are written
+with examples from GitHub (as that is the most popular platform with the most
+extensive features), but the same thing can be done on alternative services,
+although the exact menu structure and link placements differ.
+
+Any upload to and from GitHub requires you to authenticate yourself. GitHub
+used to allow authentication with your account and password, but this is no
+longer the case - using SSH keys is required instead. Knowing exactly what these
+are is not necessary to get them working, but we encourage you to read the box
+below to learn more about them! GitHub has excellent, platform-specific
+instructions both on how to [generate](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+SSH keys to your account, so please follow those instructions.
+
+> **SSH keys and authentication** <br>
+> Using SSH (Secure Shell) for authentication basically entails setting up a
+> pair of keys: one private and one public. You keep the private key on your
+> local computer and give the public key to anywhere you want to be able to
+> connect to, *e.g.* GitHub. The public key can be used to encrypt messages that
+> *only* the corresponding private key can decrypt. A simplified description of
+> how SSH authentication works goes like this:
+>
+> 1. The client (*i.e.* the local computer) sends the ID of the SSH key pair it
+>    would like to use for authentication to the server (*e.g.* GitHub)
+> 2. If that ID is found, the server generates a random number and encrypts this
+>    with the public key and sends it back to the client
+> 3. The client decrypts the random number with the private key and sends it
+>    back to the server
+>
+> Notice that the private key always remains on the client's side and is never
+> transferred over the connection; the ability to decrypt messages encrypted
+> with the public key is enough to ascertain the client's authenticity. This is
+> in contrast with using passwords, which are themselves sent across a
+> connection (albeit encrypted). It is also important to note that even though
+> the keys come in pairs it is impossible to derive the private key from the
+> public key. If you want to read more details about how SSH authentication work
+> you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
+> which has more in-depth information than we provide here.
 
 ## Installing Mamba
 
@@ -153,7 +203,7 @@ below for more information.
 
 Maybe you've worked with the Conda package manager before, and you're wondering
 what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
-quickly grown and matured to the point that we are almost explusively using it
+quickly grown and matured to the point that we are almost exclusively using it
 in our own daily work rather than Conda -  we are thus reflecting this
 wide-spread adopting in the course material as well. Conveniently there is
 almost no difference in the way the two programs work on the command line. You
@@ -171,8 +221,8 @@ this is not too confusing.
 
 ### If you already have Mamba installed
 
-If you already have installed Mamba you can make sure you're using the latest 
-version by running `mamba update -n base mamba` and skip the installation 
+If you already have installed Mamba you can make sure you're using the latest
+version by running `mamba update -n base mamba` and skip the installation
 instructions below.
 
 ### If you have Conda installed
@@ -195,7 +245,7 @@ Mamba is installed by downloading and executing a [Mambaforge](https://github.co
 installer for your operating system.
 
 ```bash
-# Install Mambaforge3 for 64-bit Mac
+# Install Mambaforge for 64-bit Mac
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-x86_64.sh -O
 bash Mambaforge-MacOSX-x86_64.sh
 rm Mambaforge-MacOSX-x86_64.sh
@@ -210,7 +260,7 @@ rm Mambaforge-MacOSX-arm64.sh
 
 ```bash
 # Install Mambaforge3 for 64-bit Linux
-curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O 
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O
 bash Mambaforge-Linux-x86_64.sh
 rm Mambaforge-Linux-x86_64.sh
 ```
@@ -233,14 +283,14 @@ mamba --version
 > The Mamba docs specify a couple of things to keep in mind when using Mamba.
 > First of all, `mamba` should be installed in the `base` environment and no
 > other packages should be installed into `base`. Furthermore, mixing of the
-> `conda-forge` and `defaults` channels should be avoided as the default 
+> `conda-forge` and `defaults` channels should be avoided as the default
 > Anaconda channels are incompatible with `conda-forge`.
 
-> **Different Mambas/Condas** <br>
+> **Different Mamba/Conda flavours** <br>
 > You may come across several flavours of both Mamba and Conda. For Mamba
 > there's the *Miniforge* installer which allows you to install the `mamba`
 > command line tool that works as a replacement for `conda`. There's also
-> `micromamba`, a small standalone C++ program developed mainly for continuous
+> `micromamba`, a small stand-alone C++ program developed mainly for continuous
 > integration pipelines. For Conda there's *Miniconda*, which is the installer
 > for Conda. The third is *Anaconda*, which is a distribution of not only Conda,
 > but also over 150 scientific Python packages. If you want to use Conda it's
@@ -261,7 +311,7 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-and we will also set so called 'strict' channel priority, which ensures higher
+And we will also set so called 'strict' channel priority, which ensures higher
 stability and better performance (see details about this setting by running the
 following:
 
@@ -315,8 +365,21 @@ with the setup for the other tools.
 
 ## Installing Nextflow
 
-We'll use Mamba to install Nextflow as well: navigate to
-`workshop-reproducible-research/tutorials` and create the environment:
+The easiest way to install Nextflow is the official one, which is to just run the
+following code:
+
+```bash
+curl -s https://get.nextflow.io | bash
+```
+
+This will give you the `nextflow` file in your current directly - move this file
+to a directory in your `PATH`, *e.g.* `/usr/bin/`.
+
+If you're getting Java-related errors, you can either try to [update your Java
+installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
+(Nextflow requires Java 11 or later) or install Nextflow using Mamba. If you
+want to use Mamba, navigate to `workshop-reproducible-research/tutorials` and
+create the environment:
 
 ```bash
 mamba env create -f nextflow/environment.yml -n nextflow-env
@@ -327,70 +390,35 @@ mamba activate nextflow-env
 > Some of the packages in this environment is not available for the ARM64
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
 
-Check that Nextflow was installed correctly by running `nextflow -version`. Once
-you've successfully completed the installation you can deactive the environment
-using `mamba deactivate` and continue with the other setups, as needed.
+Check that Nextflow was installed correctly by running `nextflow -version`. If
+you successfully installed Nextflow using Mamba you can now deactivate the
+environment using `mamba deactivate` and continue with the other setups, as
+needed.
 
-You can also install Nextflow following the instructions on the [Nextflow
-website](https://www.nextflow.io/docs/latest/getstarted.html) if you want to
-have it installed outside of a Conda environment.
+## Installing Quarto
 
-## Installing R Markdown
-
-We also use Mamba to install R Markdown: make sure your working directory is in
-the tutorials directory (`workshop-reproducible-research/tutorials`) and install
-the necessary R packages defined in the `environment.yml`:
+Installing Quarto is easiest by going to the [official
+website](https://quarto.org/docs/get-started/) and downloading the
+OS-appropriate package and following the installation instructions. You also
+need to install a LaTeX distribution to be able to render Quarto documents to
+PDF, which can be done using Quarto itself:
 
 ```bash
-mamba env create -f rmarkdown/environment.yml -n rmarkdown-env
+quarto install tinytex
+```
+
+While we're not installing Quarto *itself* using Mamba, we *will* install some
+software packages that are used in the Quarto tutorial using Mamba: make sure
+your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
+and install the necessary packages defined in the `environment.yml`:
+
+```bash
+mamba env create -f quarto/environment.yml -n quarto-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
 > architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
-
-You can then activate the environment followed by running RStudio in the
-background from the command line:
-
-```bash
-mamba activate rmarkdown-env
-rstudio &
-```
-
-Once you've successfully completed the above steps you can deactivate your Conda
-environment using `mamba deactivate` and continue with the setup for the other
-tools.
-
-> **Windows users** <br>
-> In case you are having trouble installing R and RStudio using Mamba, both run
-> well directly on Windows and you may therefore want to install Windows
-> versions of these software for this tutorial (if you haven't done so already).
-> Mamba is, however, the recommended way. If you're having issues with
-> graphical applications, please have a look at [this website](https://seanthegeek.net/234/graphical-linux-applications-bash-ubuntu-windows/);
-> scroll down to the "Graphical applications".
-
-> **RStudio and Mamba** <br>
-> In some cases RStudio doesn't play well with Mamba due to differing libpaths.
-> The first and simplest thing to try is to always start RStudio from the
-> command line (`rstudio &`). If you're still having issues, check the available
-> library path by `.libPaths()` to make sure that it points to a path within
-> your Conda environment. It might be that `.libPaths()` shows multiple library
-> paths, in which case R packages will be searched for by R in all these
-> locations. This means that your R session will not be completely isolated in
-> your Conda environment and that something that works for you might not work
-> for someone else using the same Conda environment, simply because you had
-> additional packages installed in the second library location. One way to force
-> R to just use the environment library path is to add a `.Renviron` file to the
-> directory where you start R with these lines:
-
-    ```
-    R_LIBS_USER=""
-    R_LIBS=""
-    ```
-
-> ... and restart RStudio. The `rmarkdown/` directory in the course materials
-> already contains this file, so you shouldn't have to add this yourself, but
-> we mention it here for your future projects.
 
 ## Installing Jupyter
 
@@ -420,10 +448,10 @@ successful.
 > **Docker for older versions of OSX/Windows** <br>
 > The latest version of Docker may not work if you have an old version of either
 > OSX or Windows. You can find older Docker versions that may be compatible for
-> you if you go to https://docs.docker.com/desktop/ and click "Previous
+> you if you go to [https://docs.docker.com/desktop/]() and click "Previous
 > versions" in the left side menu.
 
-### macOS
+### MacOS
 
 Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 and select the download option that is suitable for your computer's architecture
@@ -436,7 +464,7 @@ the Docker icon in the menu bar in the upper right part of the screen.
 
 ### Linux
 
-Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/) 
+Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/)
 section of the Docker documentation and make sure that your computer meets the
 system requirements. There you can also find instructions for different Linux
 distributions in the left sidebar under *Installation per Linux distro*.
@@ -444,7 +472,7 @@ distributions in the left sidebar under *Installation per Linux distro*.
 ### Windows
 
 In order to run Docker on Windows your computer must support *Hardware
-Virtualization Technology* and virtualization must be enabled. This is typically
+Virtualisation Technology* and virtualisation must be enabled. This is typically
 done in BIOS. Setting this is outside the scope of this tutorial, so we'll
 simply go ahead as if though it's enabled and hope that it works.
 

@@ -11,18 +11,18 @@ be moved around and shared like any other file, which also makes it easy to work
 with on an HPC cluster.
 
 > **Singularity and Apptainer** <br>
-> The open source Singularity project was recently renamed to *Apptainer*. 
-> Confusingly, the company *Sylabs* still keeps their commercial branch of 
-> the project under the Singularity name, and offer a free 'Community 
-> Edition' version. The name change was done in order to clarify the 
-> distinction between the open source project and the various commercial 
+> The open source Singularity project was recently renamed to *Apptainer*.
+> Confusingly, the company *Sylabs* still keeps their commercial branch of
+> the project under the Singularity name, and offer a free 'Community
+> Edition' version. The name change was done in order to clarify the
+> distinction between the open source project and the various commercial
 > versions.
-> At the moment there is virtually no difference to you as a user whether you 
-> use Singularity or Apptainer, but eventually it's very likely that the two 
-> will diverge. 
-> We have opted to stick with the original name in the material for now, 
-> while the change is still being adopted by the community and various 
-> documentation online. In the future we will however move to using only 
+> At the moment there is virtually no difference to you as a user whether you
+> use Singularity or Apptainer, but eventually it's very likely that the two
+> will diverge.
+> We have opted to stick with the original name in the material for now,
+> while the change is still being adopted by the community and various
+> documentation online. In the future we will however move to using only
 > Apptainer to follow the open source route of the project.
 
 While it is possible to define and build Singularity images from scratch, in a
@@ -34,7 +34,7 @@ Singularity user guide](https://www.uppmax.uu.se/support/user-guides/singularity
 The reasons for not covering Singularity more in-depth are varied, but it
 basically boils down to it being more or less Linux-only, unless you use Virtual
 Machines (VMs). Even with this you'll run into issues of incompatibility of
-various kinds, and these issues are further compounded if you're on one of the 
+various kinds, and these issues are further compounded if you're on one of the
 new ARM64-Macs. You also need `root` (admin) access in order to actually *build*
 Singularity images regardless of platform, meaning that you can't build them on
 *e.g.* Uppmax, even though Singularity is already installed there. You can,
@@ -96,13 +96,13 @@ docker run \
 ```
 
 You already know about `docker run`, the `--rm` flag and bind mounts using `-v`.
-The `/var/run/docker.sock` part is the Unix socket that the Docker daemon 
-listens to by default, meaning that it is needed for us to be able to 
-specify the location of the Docker container we want to convert to a SIF 
-file. The `kaczmarj/apptainer` part after the bind mounts is the image 
-location hosted at [DockerHub](https://hub.docker.com/r/kaczmarj/apptainer), 
-while the last line is the Singularity/Apptainer command that actually does 
-the conversion. All we need to do is to replace the `<IMAGE>` part with the 
+The `/var/run/docker.sock` part is the Unix socket that the Docker daemon
+listens to by default, meaning that it is needed for us to be able to
+specify the location of the Docker container we want to convert to a SIF
+file. The `kaczmarj/apptainer` part after the bind mounts is the image
+location hosted at [DockerHub](https://hub.docker.com/r/kaczmarj/apptainer),
+while the last line is the Singularity/Apptainer command that actually does
+the conversion. All we need to do is to replace the `<IMAGE>` part with the
 Docker image we want to convert, *e.g.* `my_docker_image`.
 
 * Replace `<IMAGE>` and `<TAG>` with one of your locally available Docker images
@@ -112,7 +112,7 @@ Docker image we want to convert, *e.g.* `my_docker_image`.
 In the end you'll have a SIF file (*e.g.* `my_docker_image.sif`) that you can
 transfer to an HPC such as Uppmax and run whatever analyses you need. If you
 want to be able to do this without having to remember all the code you can check
-out the [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/singularity-in-docker.sh).
+out the [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/apptainer-in-docker.sh).
 
 ## Running Singularity
 
@@ -139,11 +139,12 @@ the files externally from our host system and simply use the Singularity image
 as the environment to execute the workflow in (*i.e.* all the software and
 dependencies).
 
-In your current working directory (`workshop-reproducible-research/tutorials/containers/`)
-the vital MRSA project files are already available (`Snakefile`, `config.yml`,
-`code/header.tex` and `code/supplementary_material.Rmd`). Since Singularity bind
-mounts the current working directory we can simply execute the workflow and
-generate the output files using:
+In your current working directory
+(`workshop-reproducible-research/tutorials/containers/`) the vital MRSA project
+files are already available (`Snakefile`, `config.yml` and
+`code/supplementary_material.qmd`). Since Singularity bind mounts the current
+working directory we can simply execute the workflow and generate the output
+files using:
 
 ```bash
 singularity run mrsa_proj.sif

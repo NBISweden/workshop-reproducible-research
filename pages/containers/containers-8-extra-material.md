@@ -7,7 +7,7 @@ tips and tricks that you can be inspired from!
 If you want to read more about containers in general you can check out these
 resources:
 
-* A "Get started with Docker" at [docker.com](https://docs.docker.com/get-started/).
+* A "Get started with Docker" at the [Docker website](https://docs.docker.com/get-started/).
 * An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using
   Docker for reproducible research.
 
@@ -24,12 +24,12 @@ builds*. We can build for multiple platforms at the same time and push those to
 *e.g.* DockerHub and anybody using those images will automatically pull the one
 appropriate for their computer. Here's how to do it:
 
-* Start by checking the available buildrs using `docker buildx ls`.
+* Start by checking the available builders using `docker buildx ls`.
 
 You should only see the default builder, which does not have access to
 multi-platform builds. Let's create a new builder that *does* have access to it:
 
-* Run the follownig: `docker buildx create --name mybuilder --driver
+* Run the following: `docker buildx create --name mybuilder --driver
   docker-container --bootstrap`.
 
 * Switch to using the new builder with `docker buildx use mybuilder` and check

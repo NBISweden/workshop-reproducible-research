@@ -1,5 +1,9 @@
 # Lectures
 
+This directory contains all the course lectures, which were created using
+[Quarto](https://quarto.org/). The directory is set up as a Quarto project,
+so as to make rendering as simple as possible.
+
 ## Requirements
 
 Install the required packages using:
@@ -10,23 +14,20 @@ conda env create -f environment.yml
 
 ## Rendering
 
-Lectures in **Rmarkdown** format can be rendered using the following from
-the command line:
+Make sure your current directory is the `lectures/` directory and run the
+following command:
 
 ```bash
-Rscript -e 'rmarkdown::render(<Rmd-file>, "xaringan::moon_reader")'
+quarto render
 ```
 
-Lectures in **Jupyter notebook** format can be rendered using:
+## Render a single lecture
+
+To render only a single, specific lecture you can execute the following command:
 
 ```bash
-jupyter nbconvert --to slides --execute <.ipynb-file>
+quarto render <lecture>
 ```
 
-## Render everything
-
-To render all lectures you can use `snakemake`:
-
-```bash
-snakemake -j 1
-```
+For example, to render the Git lecture execute `quarto render git` while inside
+the `lectures/` directory.

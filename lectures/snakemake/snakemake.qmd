@@ -1,0 +1,983 @@
+---
+title: 'Making reproducible workflows with <img src="images/snakemake_logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
+format: nbis-revealjs
+---
+
+## Why do we need workflow managers? {auto-animate=true}
+
+- As projects grow or age, it becomes increasingly difficult to keep track of
+  all the parts and how they fit together.
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
+        1[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.11 0.6 0.85", style="rounded"];
+        1 -> 0
+}
+```
+
+## Why do we need workflow managers? {auto-animate=true}
+
+- As projects grow or age, it becomes increasingly difficult to keep track of
+  all the parts and how they fit together.
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
+        1[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.61 0.6 0.85", style="rounded"];
+        2[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
+        3[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.61 0.6 0.85", style="rounded"];
+        4[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
+        5[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.61 0.6 0.85", style="rounded"];
+        1 -> 0
+        3 -> 2
+        5 -> 4
+}
+```
+
+## Why do we need workflow managers? {auto-animate=true}
+
+- As projects grow or age, it becomes increasingly difficult to keep track of
+  all the parts and how they fit together.
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "align_to_genome", color = "0.06 0.6 0.85", style="rounded"];
+        1[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.00 0.6 0.85", style="rounded"];
+        2[label = "index_genome", color = "0.61 0.6 0.85", style="rounded"];
+        3[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "0.33 0.6 0.85", style="rounded"];
+        4[label = "align_to_genome", color = "0.06 0.6 0.85", style="rounded"];
+        5[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.00 0.6 0.85", style="rounded"];
+        6[label = "align_to_genome", color = "0.06 0.6 0.85", style="rounded"];
+        7[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.00 0.6 0.85", style="rounded"];
+        1 -> 0
+        2 -> 0
+        3 -> 2
+        5 -> 4
+        2 -> 4
+        7 -> 6
+        2 -> 6
+}
+```
+
+## Why do we need workflow managers? {auto-animate=true}
+
+- A workflow manager helps you scale up both in complexity and dataset size
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "all", color = "0.06 0.6 0.85", style="rounded"];
+        1[label = "generate_count_table", color = "0.50 0.6 0.85", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "0.17 0.6 0.85", style="rounded"];
+        3[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
+        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.22 0.6 0.85", style="rounded"];
+        5[label = "index_genome", color = "0.56 0.6 0.85", style="rounded"];
+        6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "0.28 0.6 0.85", style="rounded"];
+        7[label = "sort_bam\nprefix: results/bam/SRR935091", color = "0.17 0.6 0.85", style="rounded"];
+        8[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
+        9[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.22 0.6 0.85", style="rounded"];
+        10[label = "sort_bam\nprefix: results/bam/SRR935092", color = "0.17 0.6 0.85", style="rounded"];
+        11[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
+        12[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.22 0.6 0.85", style="rounded"];
+        13[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "0.44 0.6 0.85", style="rounded"];
+        14[label = "multiqc", color = "0.11 0.6 0.85", style="rounded"];
+        15[label = "fastqc", color = "0.00 0.6 0.85", style="rounded"];
+        16[label = "fastqc", color = "0.00 0.6 0.85", style="rounded"];
+        17[label = "fastqc", color = "0.00 0.6 0.85", style="rounded"];
+        18[label = "generate_rulegraph", color = "0.33 0.6 0.85", style="rounded"];
+        19[label = "make_supplementary", color = "0.39 0.6 0.85", style="rounded"];
+        1 -> 0
+        14 -> 0
+        18 -> 0
+        19 -> 0
+        2 -> 1
+        7 -> 1
+        10 -> 1
+        13 -> 1
+        3 -> 2
+        4 -> 3
+        5 -> 3
+        6 -> 5
+        8 -> 7
+        9 -> 8
+        5 -> 8
+        11 -> 10
+        12 -> 11
+        5 -> 11
+        15 -> 14
+        16 -> 14
+        17 -> 14
+        4 -> 15
+        9 -> 16
+        12 -> 17
+        1 -> 19
+        14 -> 19
+        18 -> 19
+}
+```
+
+## Workflow managers for bioinformatics
+
+::: {.fragment}
+**Most common**
+
+- [Snakemake]{.green}
+- [Nextflow]{.green}
+:::
+
+::: {.fragment}
+**Others**
+
+- Makeflow
+- Bpipe
+- Pachyderm
+:::
+
+## Snakemake workflows
+
+::: {.incremental}
+- Automatically track input/output file dependencies
+- Are built from [rules]{.green}
+- Are generalized with [wildcards]{.green}
+- Use a [Python-based]{.green} definition language
+- Easily scale from laptops to HPC clusters
+:::
+
+## Reproducible...
+
+![](images/repr_scal_1.png)
+
+## ...and scalable workflows
+
+![](images/repr_scal_2.png)
+
+## Example: sequence trimming
+
+**Goal**: Create workflow to trim and compress FASTQ files
+
+```{.bash code-line-numbers=false}
+./
+ ├── a.fastq
+ └── b.fastq
+```
+
+## Example: sequence trimming
+
+Using a bash-script:
+```{.bash code-line-numbers="|1-2,10|3|4-5|6-7|8-9"}
+for input in *.fastq
+do
+   sample=$(echo ${input} | sed 's/.fastq//')
+   # 1. Trim fastq file (trim 5 bp from left, 10 bp from right)
+   seqtk trimfq -b 5 -e 10 $input > ${sample}.trimmed.fastq
+   # 2. Compress fastq file
+   gzip -c ${sample}.trimmed.fastq > ${sample}.trimmed.fastq.gz
+   # 3. Remove intermediate files
+   rm ${sample}.trimmed.fastq
+done
+```
+
+::: {.fragment}
+Execution:
+```{.bash code-line-numbers=false}
+$ bash trimfastq.sh
+```
+:::
+
+## Example: sequence trimming {auto-animate=true}
+
+Using Snakemake rules:
+```{.python code-line-numbers="|1,6|3|2,8|4,5,9,10|7"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    shell:
+        "seqtk trimfq -b 5 -e 10 {input} > {output}"
+rule gzip:
+    output: "{sample}.trimmed.fastq.gz"
+    input: "{sample}.trimmed.fastq"
+    shell:
+        "gzip -c {input} > {output}"
+```
+
+::: {.fragment data-id="cmd1"}
+Execution:
+```{.bash code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+```
+:::
+
+---
+
+## {auto-animate=true transition="none"}
+
+::: {data-id="cmd1"}
+```{.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+```
+:::
+
+## {auto-animate=true transition="none"}
+
+```{.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+count   jobs
+2       gzip
+2       trim_fastq
+4
+```
+
+## {auto-animate=true}
+
+```{.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+count   jobs
+2       gzip
+2       trim_fastq
+4
+rule trim_fastq:
+    input: a.fastq
+    output: a.trimmed.fastq
+    wildcards: sample=a
+    1 of 4 steps (25%) done
+
+rule gzip:
+    input: a.trimmed.fastq
+    output: a.trimmed.fastq.gz
+    wildcards: sample=a
+Removing temporary output file a.trimmed.fastq.
+2 of 4 steps (50%) done
+```
+
+## {auto-animate=true}
+
+```{.default code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+count   jobs
+2       gzip
+2       trim_fastq
+4
+rule trim_fastq:
+    input: a.fastq
+    output: a.trimmed.fastq
+    wildcards: sample=a
+    1 of 4 steps (25%) done
+
+rule gzip:
+    input: a.trimmed.fastq
+    output: a.trimmed.fastq.gz
+    wildcards: sample=a
+Removing temporary output file a.trimmed.fastq.
+2 of 4 steps (50%) done
+
+rule trim_fastq:
+    input: b.fastq
+    output: b.trimmed.fastq
+    wildcards: sample=b
+3 of 4 steps (75%) done
+
+rule gzip:
+    input: b.trimmed.fastq
+    output: b.trimmed.fastq.gz
+    wildcards: sample=b
+Removing temporary output file b.trimmed.fastq.
+4 of 4 steps (100%) done
+```
+
+## Getting into the Snakemake mindset
+
+From the [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/tutorial/basics.html#basics-an-example-workflow):
+
+<br>
+
+::: {.fragment}
+> "A Snakemake workflow is defined by specifying rules in a Snakefile."
+:::
+::: {.fragment}
+> "Rules decompose the workflow into small steps."
+:::
+::: {.fragment}
+> "Snakemake automatically determines the dependencies between the rules by matching file names."
+:::
+
+## {auto-animate=true}
+
+- By themselves, rules only define what files [can]{.green} be generated
+
+::: {data-id="dag1"}
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">               gzip              </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq.gz</font></td></tr>
+</table>>]
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">       trim_fastq       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td></tr>
+</table>>]
+        1 -> 0
+}
+```
+:::
+
+## {auto-animate=true}
+
+- By themselves, rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you
+  [want]{.green}, so called [targets]{.green}
+
+::: {data-id="cmd1"}
+
+```{.commandline code-line-numbers=false}
+$ snakemake -c 1 {a,b}.trimmed.fastq.gz
+```
+
+:::
+
+::: {data-id="dag1"}
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">        gzip       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq.gz</font></td></tr>
+</table>>]
+
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">trim_fastq</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="10">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td></tr>
+</table>>]
+
+
+2 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">        gzip       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.trimmed.fastq.gz</font></td></tr>
+</table>>]
+
+3 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">trim_fastq</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="10">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">b.trimmed.fastq</font></td></tr>
+</table>>]
+
+        1 -> 0
+        3 -> 2
+}
+```
+
+:::
+
+## {auto-animate=true}
+
+- By themselves, rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you
+  [want]{.green}, so-called [targets]{.green}
+
+::: {data-id="cmd1"}
+
+```{.commandline code-line-numbers=false}
+$ snakemake -c 1 a.trimmed.fastq.gz
+```
+
+:::
+
+::: {data-id="dag1" transition="fade"}
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">        gzip       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq.gz</font></td></tr>
+</table>>]
+
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">trim_fastq</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="10">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font point-size="8" face="monospace">a.trimmed.fastq</font></td></tr>
+</table>>]
+
+        1 -> 0
+}
+```
+
+:::
+
+## {auto-animate=true}
+
+- By themselves, rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you
+  [want]{.green}, so called [targets]{.green}
+- It can therefore be helpful to think of Snakemake workflows in a bottom-up
+  manner, [starting with the output]{.green}
+
+:::: {.columns}
+::: {.column width="45%"}
+```{.python code-line-numbers="2,7"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    shell:
+        "seqtk trimfq -b 5 -e 10 {input} > {output}"
+rule gzip:
+    output: "{sample}.trimmed.fastq.gz"
+    input: "{sample}.trimmed.fastq"
+    shell:
+        "gzip -c {input} > {output}"
+```
+:::
+
+::: {.column width="55%"}
+::: {data-id="dag1" transition="fade"}
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=2];
+    node[shape=box, style=rounded, fontname=sans, fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+0 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">               gzip              </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq.gz</font></td></tr>
+</table>>]
+1 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">       trim_fastq       </font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.fastq</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{sample}.trimmed.fastq</font></td></tr>
+</table>>]
+        1 -> 0
+}
+```
+:::
+:::
+::::
+
+## {auto-animate=true}
+
+- By themselves, rules only define what files [can]{.green} be generated
+- The actual rules to run are determined automatically from the files you
+  [want]{.green}, so called [targets]{.green}
+- It can therefore be helpful to think of Snakemake workflows in a bottom-up
+  manner, [starting with the output]{.green}
+- If no target is passed at the command line, Snakemake will use the first
+  defined rule in the Snakefile as a target
+
+```{.python code-line-numbers="1-4"}
+rule all:
+    input:
+        "a.trimmed.fastq.gz",
+        "b.trimmed.fastq.gz"
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    shell:
+        "seqtk trimfq -b 5 -e 10 {input} > {output}"
+[...]
+```
+
+## How does Snakemake keep track of what files to generate?
+*Example from the practical tutorial*
+
+## {auto-animate=true .smaller}
+
+- The tutorial contains a workflow to download and map RNA-seq reads against a
+  reference genome.
+
+::: {data-id="dag1"}
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "make_supplementary", color = "black", style="rounded"];
+        1[label = "generate_count_table", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "black", style="rounded"];
+        3[label = "align_to_genome", color = "black", style="rounded"];
+        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
+        5[label = "index_genome", color = "black", style="rounded"];
+        6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "black", style="rounded"];
+        7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "black", style="rounded"];
+        8[label = "multiqc", color = "black", style="rounded"];
+        9[label = "fastqc", color = "black", style="rounded"];
+        10[label = "generate_rulegraph", color = "black", style="rounded"];
+        1 -> 0
+        8 -> 0
+        10 -> 0
+        2 -> 1
+        7 -> 1
+        3 -> 2
+        4 -> 3
+        5 -> 3
+        6 -> 5
+        9 -> 8
+        4 -> 9
+}
+```
+:::
+
+## {auto-animate=true .smaller}
+
+- The tutorial contains a workflow to download and map RNA-seq reads against a
+  reference genome.
+- Here we ask for [results/supplementary.html]{.green}, which is an Quarto
+  report generated by the rule `make_supplementary`:
+
+::: {data-id="code1"}
+```{.commandline code-line-numbers=false}
+$ snakemake -c 1 results/supplementary.html
+```
+:::
+
+::: {data-id="dag1"}
+
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "make_supplementary", color = "red", style="rounded"];
+        1[label = "generate_count_table", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "black", style="rounded"];
+        3[label = "align_to_genome", color = "black", style="rounded"];
+        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
+        5[label = "index_genome", color = "black", style="rounded"];
+        6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "black", style="rounded"];
+        7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "black", style="rounded"];
+        8[label = "multiqc", color = "black", style="rounded"];
+        9[label = "fastqc", color = "black", style="rounded"];
+        10[label = "generate_rulegraph", color = "black", style="rounded"];
+        1 -> 0
+        8 -> 0
+        10 -> 0
+        2 -> 1
+        7 -> 1
+        3 -> 2
+        4 -> 3
+        5 -> 3
+        6 -> 5
+        9 -> 8
+        4 -> 9
+}
+```
+:::
+
+## {auto-animate=true .smaller}
+
+- The tutorial contains a workflow to download and map RNA-seq reads against a
+  reference genome.
+- Here we ask for [results/supplementary.html]{.green}, which is an Quarto
+  report generated by the rule `make_supplementary`:
+- If the timestamp of a file upstream in the workflow is updated...
+
+::: {data-id="code1"}
+```{.commandline code-line-numbers=false}
+$ touch results/bowtie2/NCTC8325.1.bt2
+```
+:::
+
+::: {data-id="dag1"}
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "make_supplementary", color = "black", style="rounded"];
+        1[label = "generate_count_table", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bowtie2/SRR935090", color = "black", style="rounded"];
+        3[label = "align_to_genome", color = "black", style="rounded"];
+        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
+        5[label = "index_genome*", color = "cyan", style="rounded"];
+        6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "black", style="rounded"];
+        7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "black", style="rounded"];
+        8[label = "multiqc", color = "black", style="rounded"];
+        9[label = "fastqc", color = "black", style="rounded"];
+        10[label = "generate_rulegraph", color = "black", style="rounded"];
+        1 -> 0
+        8 -> 0
+        10 -> 0
+        2 -> 1
+        7 -> 1
+        3 -> 2
+        4 -> 3
+        5 -> 3
+        6 -> 5
+        9 -> 8
+        4 -> 9
+}
+```
+:::
+
+## {auto-animate=true .smaller}
+
+- The tutorial contains a workflow to download and map RNA-seq reads against a
+  reference genome.
+- Here we ask for [results/supplementary.html]{.green}, which is an Quarto
+  report generated by the rule `make_supplementary`:
+- If the timestamp of a file upstream in the workflow is updated...
+- Snakemake detects a file change and only reruns the necessary rules.
+
+::: {data-id="code1"}
+```{.commandline code-line-numbers=false}
+$ snakemake -c 1 results/supplementary.html
+```
+:::
+
+::: {data-id="dag1"}
+```{dot}
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+        0[label = "make_supplementary", color = "red", style="rounded"];
+        1[label = "generate_count_table", color = "black", style="rounded"];
+        2[label = "sort_bam\nprefix: results/bowtie2/SRR935090", color = "black", style="rounded"];
+        3[label = "align_to_genome", color = "black", style="rounded"];
+        4[label = "get_SRA_by_accession\nsample_id: SRR935090", fontcolor="grey", fillcolor="lightgrey", color = "grey", style="rounded,dashed,filled"];
+        5[label = "index_genome", color = "grey", fillcolor="lightgrey", fontcolor="grey", style="rounded,dashed,filled"];
+        6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "grey", fontcolor="grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
+        7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "grey", fontcolor="grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
+        8[label = "multiqc", color = "black", style="rounded"];
+        9[label = "fastqc", color = "grey", fillcolor="lightgrey", fontcolor="grey", style="rounded,dashed,filled"];
+        10[label = "generate_rulegraph", background_color="black", fontcolor="grey", color = "grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
+        1 -> 0
+        8 -> 0
+        10 -> 0
+        2 -> 1
+        7 -> 1
+        3 -> 2
+        4 -> 3
+        5 -> 3
+        6 -> 5
+        9 -> 8
+        4 -> 9
+}
+```
+:::
+
+## Anatomy of a Snakemake rule
+
+## {auto-animate=true .smaller}
+
+- Rules are typically named and have input and/or output directives
+
+```{.python}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    shell:
+        """
+        seqtk trimfq -b 5 -e 10 {input} > {output}
+        """
+```
+
+## {auto-animate=true .smaller}
+
+- Rules are typically named and have input and/or output directives
+- Logfiles help with debugging and leave a "paper trail"
+
+```{.python code-line-numbers="4,7"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    log: "logs/{sample}.trim_fastq.log"
+    shell:
+        """
+        seqtk trimfq -b 5 -e 10 {input} > {output} 2> {log}
+        """
+```
+
+## {auto-animate=true .smaller}
+
+- Rules are typically named and have input and/or output directives
+- Logfiles help with debugging and leave a "paper trail"
+- Params can be used to pass on settings
+
+```{.python code-line-numbers="5-7,10"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    log: "logs/{sample}.trim_fastq.log"
+    params:
+        leftTrim=5,
+        rightTrim=10
+    shell:
+      """
+      seqtk trimfq -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
+      """
+```
+
+## {auto-animate=true .smaller}
+
+- Rules are typically named and have input and/or output directives
+- Logfiles help with debugging and leave a "paper trail"
+- Params can be used to pass on settings
+- The `threads` directive specify maximum number of threads for a rule
+- You can also define `resources` such as disk/memory requirements and runtime
+
+```{.python code-line-numbers="8-11,14"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    log: "logs/{sample}.trim_fastq.log"
+    params:
+        leftTrim=5,
+        rightTrim=10
+    threads: 8
+    resources:
+        mem_mb=64,
+        runtime=120
+    shell:
+      """
+      seqtk trimfq -t [threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
+      """
+```
+
+## {auto-animate=true .smaller}
+
+- Rules are typically named and have input and/or output directives
+- Logfiles help with debugging and leave a "paper trail"
+- Params can be used to pass on settings
+- The `threads` directive specify maximum number of threads for a rule
+- You can also define `resources` such as disk/memory requirements and runtime
+- Rules can be executed in separate software environments using either the
+  `conda` or `container` directive
+
+```{.python code-line-numbers="12-13"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    log: "logs/{sample}.trim_fastq.log"
+    params:
+        leftTrim=5,
+        rightTrim=10
+    threads: 8
+    resources:
+        mem_mb=64,
+        runtime=120
+    conda: "envs/seqtk.yaml"
+    container: "docker://quay.io/biocontainers/seqtk"
+    shell:
+      """
+      seqtk trimfq -t [threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
+      """
+```
+
+## {auto-animate=true .smaller}
+
+- Rules are typically named and have input and/or output directives
+- Logfiles help with debugging and leave a "paper trail"
+- Params can be used to pass on settings
+- The `threads` directive specify maximum number of threads for a rule
+- You can also define `resources` such as disk/memory requirements and runtime
+- Rules can be executed in separate software environments using either the
+  `conda` or `container` directive
+
+```{.python code-line-numbers="12-13"}
+rule trim_fastq:
+    output: temp("{sample}.trimmed.fastq")
+    input: "{sample}.fastq"
+    log: "logs/{sample}.trim_fastq.log"
+    params:
+        leftTrim=5,
+        rightTrim=10
+    threads: 8
+    resources:
+        mem_mb=64,
+        runtime=120
+    conda: "envs/seqtk.yaml"
+    container: "docker://quay.io/biocontainers/seqtk"
+    shell:
+      """
+      seqtk trimfq -t [threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
+      """
+```
+
+`envs/seqtk.yaml`
+```{.yaml}
+name: seqtk
+channels:
+  - bioconda
+dependencies:
+  - seqtk
+```
+
+## See more in the Snakemake documentation
+
+[https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html)
+
+## Snakemake commandline {.smaller}
+
+::: {.fragment}
+- Generate the output of the first rule in Snakefile
+
+```{.bash code-line-numbers=false}
+$ snakemake -s Snakefile
+```
+:::
+
+::: {.fragment}
+- Run the workflow in dry mode and print shell commands
+
+```{.bash code-line-numbers=false}
+$ snakemake -n -p
+```
+:::
+
+::: {.fragment}
+- Execute the workflow with 8 cores
+
+```{.bash code-line-numbers=false}
+$ snakemake --cores 8
+```
+:::
+
+::: {.fragment}
+-  Specify a configuration file
+
+```{.bash code-line-numbers=false}
+$ snakemake --configfile config.yaml
+```
+:::
+
+::: {.fragment}
+- Run rules with specific conda environments
+
+```{.bash code-line-numbers=false}
+$ snakemake --use-conda
+```
+:::
+
+::: {.fragment}
+- Run rules with specific Singularity or Docker containers
+
+```{.bash code-line-numbers=false}
+$ snakemake --use-singularity
+```
+:::
+
+# Questions?

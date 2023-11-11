@@ -167,7 +167,7 @@ files, one sample) into a single alignment file (one file, one sample) very
 simple. For more methods of reading in data see the Nextflow documentation on
 [Channel Factories](https://www.nextflow.io/docs/latest/channel.html#channel-factory).
 
-We can also do quite advanced things to manipuate data in channels, such as
+We can also do quite advanced things to manipulate data in channels, such as
 this:
 
 ```nextflow
@@ -196,7 +196,7 @@ sample_1      1.0     control   DMSO
 sample_1      2.0     control   DMSO
 sample_2      0.1     case      vorinostat
 sample_2      1.0     case      vorinostat
-sample_2      2.0     case      vorinostat 
+sample_2      2.0     case      vorinostat
 sample_3      0.1     case      fulvestrant
 sample_3      1.0     case      fulvestrant
 sample_3      2.0     case      fulvestrant
@@ -211,10 +211,10 @@ Given the channel creation strategy above, we would get the following result:
 
 In this way, you can perform complex operations on input files or input metadata
 and send the resulting content to your downstream processes
-in a simple way. Composing data manipuations in Nextflow like this can be half 
-the fun of writing the workflow. Check out Nextflow's documentation on 
+in a simple way. Composing data manipulations in Nextflow like this can be half
+the fun of writing the workflow. Check out Nextflow's documentation on
 [Channel operators](https://www.nextflow.io/docs/latest/operator.html) to
-see the full list of channel operations at your disposal. 
+see the full list of channel operations at your disposal.
 
 # Using Groovy in processes
 

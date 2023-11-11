@@ -41,7 +41,7 @@ that you've helped the project grow by contributing your code!
 
 ## Amending commits
 
-Once in a while you'll have just commited something to your Git repo and
+Once in a while you'll have just committed something to your Git repo and
 immediately remembered that you forgot to add something small, or perhaps you
 saw an error somewhere. While you can certainly just add that and make a new
 commit, wouldn't it be nicer if you could just make the change as if it was
@@ -62,7 +62,7 @@ your new changes, since the remote already contains the *first* version of the
 commit and can't simply rewrite what it already has.
 
 Amending changes is thus a good way to fix small mistakes you realise you made
-just after commiting them, as long as you only amend local changes!
+just after committing them, as long as you only amend local changes!
 
 ## Rebasing
 
@@ -125,11 +125,11 @@ if we try to rebase things that have already been pushed. We can rebase *on top
 of* remote things, of course, since we're not changing any remote history, only
 the local history. Be careful when you rebase!
 
-## Rebasing as cleanup
+## Rebasing as clean-up
 
 If the above section felt scary, don't worry! There's another highly useful
 use-case for `git rebase` that doesn't risk destroying any history, namely local
-cleanup!
+clean-up!
 
 Let's imagine you've worked on your local `feature-branch` for some time, and
 you have a number of commits on it. Some are highly related to each other and
@@ -319,3 +319,36 @@ alias gcob='git checkout -b'
 # Git log with one line per commit
 alias glo='git log --oneline'
 ```
+
+## Pretty logs
+
+If you want to customise *e.g.* the format and the colours of the logs you can
+use the `gitconfig` file (the same one we added things to using `git config
+--global user.name "Mona Lisa"` in the pre-course setup). You can read more
+about exactly what you can do at the documentation for [Git
+configs](https://git-scm.com/docs/git-config) and [pretty
+formats](https://git-scm.com/docs/pretty-formats), but we'll provide two
+examples here:
+
+```no-highlight
+[format]
+    pretty = format:%C(yellow)commit %H %C(auto)%d %nAuthor: %C(cyan)%aN %C(italic reset)(%ae) %nDate:   %C(blue)%ar %C(italic reset)(%ai) %n%n%C(bold reset)%w(0,6,6)%s%n%C(reset)%+b
+```
+
+This first example alters the format of the default `git log` command. It looks
+similar to what you'd be used to seeing with that command, except his has some
+colour highlights and adds the relative date (*e.g.* "1 hour ago" and similar
+relative times).
+
+```no-highlight
+[pretty]
+    line = format:%C(yellow)%h %C(blue)%>(12)%ar %C(cyan)%aN%C(auto)%d %C(reset)%s
+```
+
+This second example is a custom format that can be called using `git log
+--pretty=<format-name>`, and is similar to the built-in `--oneline` flag, but
+also containing nicer colours, the relative date as well as the author name ;the
+format name `line` here is used for its similarity to `oneline`. You can add any
+number of custom formats you like using such config specifications. If you're
+using aliases as in the section above you might change the `glo` alias to be
+`git log --pretty=line` instead, which will give you the nicer log on one line.
