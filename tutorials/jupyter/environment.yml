@@ -15,3 +15,6 @@ dependencies:
   - nbconvert
   - jinja2
   - rpy2
+  - papermill
+  - nbval
+  - nbdime

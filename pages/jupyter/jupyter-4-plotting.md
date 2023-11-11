@@ -17,7 +17,7 @@ x = np.linspace(0,3*np.pi,100)
 # Use the sine function to generate y-values
 y = np.sin(x)
 # Plot the data
-line, = plt.plot(x, y, colour='red', linestyle="-")
+line, = plt.plot(x, y, color='red', linestyle="-")
 ```
 
 By default plots are rendered in the notebook as rasterised images which can
@@ -72,7 +72,7 @@ Let's say that instead we want to plot the mean value of the body mass of the
 penguins at the different islands where they were examined.
 
 ```
-sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd", errwidth=.5);
+sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd");
 ```
 
 Here we specified to use values in the 'island' column as categories for the
@@ -80,7 +80,6 @@ x-axis, and values in the 'body_mass_g' column as values for the y-axis.
 The barplot function of Seaborn will then calculate the mean body mass for each
 island and plot the bars. With `errorbar="sd"` we tell the function to draw the
 standard deviation as error bars, instead of computing a confidence interval.
-Finally `errwidth=.5` sets the linewidth of the error bars.
 
 If we instead want to visualize the data as a scatterplot we can use the
 `sns.scatterplot` function. Let's plot the body mass vs bill length for all

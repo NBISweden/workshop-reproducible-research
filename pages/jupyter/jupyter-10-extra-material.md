@@ -283,3 +283,8 @@ You can also export the notebook to an HTML-file with `jupyter nbconvert
 --execute --to SLIDES <your-notebook.ipynb>`. The resulting file, with the
 slideshow functionality included, can be opened in any browser. However, in
 this format you cannot run/edit cells.
+
+## Parameterising notebooks
+
+- Use [papermill](https://papermill.readthedocs.io/en/latest/) to parameterise
+  notebooks and run them as scripts.

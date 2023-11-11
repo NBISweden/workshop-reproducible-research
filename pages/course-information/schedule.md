@@ -1,321 +1,344 @@
-<h1> Day 1 </h1>
-<table class="table table-hover table-condensed" border=1; style="width:800px;">
-    <thead style="background-color:#DAE7F1">
-        <tr>
-            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:145px"> <font size="3"><b> Teacher </b> </td>
-        </tr>
-    </thead>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> Setting up </td>
-        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:00 </td>
-        <td style="padding:5px"> <font size="3"> Introduction to Reproducible Research </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:30 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:45 </td>
-        <td style="padding:5px"> <font size="3"> Data management and project organization </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 11:15 </td>
-        <td style="padding:5px"> <font size="3"> Break-out rooms and ice breaker session </td>
-        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 11:30 </td>
-        <td style="padding:5px"> <font size="3"> Distributing and version tracking your code
-             <font size="2"><i><br>
-               - Introduction to version control and Git <br>
-               - Practical tutorial: Git <br>
-        </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:00 </td>
-        <td style="padding:5px"> <font size="3"> Lunch </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 13:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Git tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> JS, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:30 </td>
-        <td style="padding:5px"> <font size="3"> Wrap-up day 1 </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
+<h1>Day 1</h1>
+
+<table border="1;" class="table table-hover table-condensed" style="width:800px;">
+	<thead style="background-color:#DAE7F1">
+		<tr>
+			<td style="padding:5px; width:75px"><font size="3"><b>Time </b> </font></td>
+			<td style="padding:5px; width:625px"><font size="3"><b>Topic </b> </font></td>
+			<td style="padding:5px; width:145px"><font size="3"><b>Teachers </b> </font></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="padding:5px"><font size="3">09:00 </font></td>
+			<td style="padding:5px"><font size="3">Setting up and troubleshooting installations </font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:00 </font></td>
+			<td style="padding:5px"><font size="3">Lecture: Introduction to Reproducible Research </font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:25 </font></td>
+			<td style="padding:5px"><font size="3"><em>Break</em> </font></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:40</font></td>
+			<td style="padding:5px"><font size="3">Lecture: Data management and project organization</font></td>
+			<td style="padding:5px"><font size="3">JS</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">11:10 </font></td>
+			<td style="padding:5px"><font size="3">Version tracking and distributing your code<br />
+			<font size="2"><i>- Lecture: Introduction to version control and Git<br />
+			- Practical tutorial: Git </i></font></font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">12:00 </font></td>
+			<td style="padding:5px"><em><font size="3">Lunch </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">13:00 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Git</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:40</font></td>
+			<td style="padding:5px"><font size="3"><em>Break</em> </font></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">15:00</font></td>
+			<td style="padding:5px"><font size="3">Mastering your environment<br />
+			<font size="2"><i>- Lecture: Introduction to the package and environment manager Conda<br />
+			- Practical tutorial: Conda </i> </font></font></td>
+			<td style="padding:5px"><font size="3">JS</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">16:45 </font></td>
+			<td style="padding:5px"><font size="3">Wrap-up day 1 </font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+	</tbody>
 </table>
 
-<h1> Day 2 </h1>
-<table class="table table-hover table-condensed" border=1; style="width:800px;">
-    </tr>
-    <thead style="background-color:#DAE7F1">
-        <tr>
-            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:145px"> <font size="3"><b> Teacher </b> </td>
-        </tr>
-    </thead>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> Master your dependencies - environments and reproducibility
-             <font size="2"><i><br>
-             - Introduction to the package and environment manager Conda <br>
-             - Practical tutorial: Conda </i>
-        </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:00 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:15 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Conda tutorial <br></td>
-        <td style="padding:5px"> <font size="3"> JS, EF, EP, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:45 </td>
-        <td style="padding:5px"> <font size="3"> Wrap up: Conda tutorial </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 11:00 </td>
-        <td style="padding:5px"> <font size="3"> Organize your analysis using workflow managers
-             <font size="2"> <i><br>
-             - Introduction to Snakemake <br>
-             - Practical tutorial: Snakemake
-             </i>
-        </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:00 </td>
-        <td style="padding:5px"> <font size="3"> Lunch </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 13:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> JS, EF, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:30 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:45 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> JS, EF, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 15:30 </td>
-        <td style="padding:5px"> <font size="3"> Wrap-up day 2 </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
+<h1>Day 2</h1>
+
+<table border="1;" class="table table-hover table-condensed" style="width:800px;">
+	<thead style="background-color:#DAE7F1">
+		<tr>
+			<td style="padding:5px; width:75px"><font size="3"><b>Time </b> </font></td>
+			<td style="padding:5px; width:625px"><font size="3"><b>Topic </b> </font></td>
+			<td style="padding:5px; width:145px"><font size="3"><b>Teachers </b> </font></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="padding:5px"><font size="3">09:00 </font></td>
+			<td style="padding:5px"><font size="3">Organize your analyses using workflow managers<br />
+			<font size="2"><i>- Lecture: Introduction to Snakemake<br />
+			- Practical tutorial: Snakemake</i></font></font></td>
+			<td style="padding:5px"><font size="3">JS </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:20 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:40 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Snakemake<font size="2"> </font></font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">12:00 </font></td>
+			<td style="padding:5px"><em><font size="3">Lunch </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">13:00 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Snakemake</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:40 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">15:00 </font></td>
+			<td style="padding:5px"><font size="3">Organize your analyses using workflow managers<br />
+			<font size="2"><i>- Lecture: Introduction to Nextflow<br />
+			- Practical tutorial: Nextflow</i></font></font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">16:45 </font></td>
+			<td style="padding:5px"><font size="3">Wrap-up day 2 </font></td>
+			<td style="padding:5px"><font size="3">JS </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">18:00</font></td>
+			<td style="padding:5px"><p><font size="3">Course dinner @ Grappa</font></p>
+			</td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP</font></td>
+		</tr>
+	</tbody>
 </table>
 
-<h1> Day 3 </h1>
-<table class="table table-hover table-condensed" border=1; style="width:800px;">
-    <thead style="background-color:#DAE7F1">
-        <tr>
-            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:145px"> <font size="3"><b> Teacher </b> </td>
-        </tr>
-    </thead>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> JS, EF, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 09:45 </td>
-        <td style="padding:5px"> <font size="3"> Wrap-up: Snakemake tutorial </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:00 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:15 </td>
-        <td style="padding:5px"> <font size="3"> Organize your analysis using workflow managers
-             <font size="2"><i><br>
-             - Introduction to Nextflow <br>
-             - Practical tutorial: Nextflow </i>
-        </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:00 </td>
-        <td style="padding:5px"> <font size="3"> Lunch </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 13:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL </td>
-    <tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:15 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:30 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Nextflow tutorial </td>
-        <td style="padding:5px"> <font size="3"> EF, JS, JW, LM, TL </td>
-    <tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 15:30 </td>
-        <td style="padding:5px"> <font size="3"> Wrap-up day 3 </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
+<h1>Day 3</h1>
+
+<table border="1;" class="table table-hover table-condensed" style="width:800px;">
+	<thead style="background-color:#DAE7F1">
+		<tr>
+			<td style="padding:5px; width:75px"><font size="3"><b>Time </b> </font></td>
+			<td style="padding:5px; width:625px"><font size="3"><b>Topic </b> </font></td>
+			<td style="padding:5px; width:145px"><font size="3"><b>Teachers </b> </font></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="padding:5px"><font size="3">09:00 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Nextflow<font size="2"><i> </i> </font></font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:20 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:40 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Nextflow</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">12:00 </font></td>
+			<td style="padding:5px"><em><font size="3">Lunch </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">13:00 </font></td>
+			<td style="padding:5px"><font size="3">Writing computational notebooks and reproducible reports<br />
+			<font size="2"><i>- Lecture: Introduction to Quarto<br />
+			- Practical tutorial: Quarto</i></font></font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:30 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:50 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Quarto<font size="2"> </font></font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP &nbsp;</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">15:20</font></td>
+			<td style="padding:5px"><font size="3">Writing computational notebooks and reproducible reports<br />
+			<font size="2"><i>- Lecture: Introduction to Jypyter<br />
+			- Practical tutorial: Jupyter </i></font></font></td>
+			<td style="padding:5px"><font size="3">JS</font></td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">16:45 </font></td>
+			<td style="padding:5px"><font size="3">Wrap-up day 3 </font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+	</tbody>
 </table>
 
-<h1> Day 4 </h1>
-<table class="table table-hover table-condensed" border=1; style="width:800px;">
-    <thead style="background-color:#DAE7F1">
-        <tr>
-            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:145px"> <font size="3"><b> Teacher </b> </td>
-        </tr>
-    </thead>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
-             <font size="2"><i><br>
-             - Introduction to Quarto<br>
-             - Practical tutorial: Quarto </i>
-        </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:30 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:45 </td>
-        <td style="padding:5px"> <font size="3"> Computational notebooks and reproducible reports
-             <font size="2"><i><br>
-             - Introduction to Jypyter <br>
-             - Practical tutorial: Jupyter <br>
-        </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:15 </td>
-        <td style="padding:5px"> <font size="3"> Lunch </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 13:15 </td>
-        <td style="padding:5px"> <font size="3"> Containerization
-             <font size="2"><i><br>
-             - Introduction to containers <br>
-             - Practical tutorial: Containers <br>
-        </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    <tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:30  </td>
-        <td style="padding:5px"> <font size="3"> Wrap-up day 4 </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
+<h1>Day 4</h1>
+
+<table border="1;" class="table table-hover table-condensed" style="width:800px;">
+	<thead style="background-color:#DAE7F1">
+		<tr>
+			<td style="padding:5px; width:75px"><font size="3"><b>Time </b> </font></td>
+			<td style="padding:5px; width:625px"><font size="3"><b>Topic </b> </font></td>
+			<td style="padding:5px; width:145px"><font size="3"><b>Teachers </b> </font></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="padding:5px"><font size="3">09:00 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Jupyter</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">09:45 </font></td>
+			<td style="padding:5px"><font size="3">Working with containers<br />
+			<font size="2"><i>- Lecture: Introduction to containers<br />
+			- Practical tutorial: Containers </i></font></font></td>
+			<td style="padding:5px"><font size="3">JS </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:30 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:50 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Containers</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">12:00 </font></td>
+			<td style="padding:5px"><em><font size="3">Lunch </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">13:00 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Containers<font size="2"><i> </i></font></font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:20</font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:40</font></td>
+			<td style="padding:5px"><font size="3">... continued: Containers</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">16:45 </font></td>
+			<td style="padding:5px"><font size="3">Wrap-up day 4 </font></td>
+			<td style="padding:5px"><font size="3">JS </font></td>
+		</tr>
+	</tbody>
 </table>
 
-<h1> Day 5 </h1>
-<table class="table table-hover table-condensed" border=1; style="width:800px;">
-    <thead style="background-color:#DAE7F1">
-        <tr>
-            <td style="padding:5px; width:75px"> <font size="3"><b> Time </b> </td>
-            <td style="padding:5px; width:625px"> <font size="3"><b> Topic </b> </td>
-            <td style="padding:5px; width:145px"> <font size="3"><b> Teacher </b> </td>
-        </tr>
-    </thead>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 09:00 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> JS, EF, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:30 </td>
-        <td style="padding:5px"> <font size="3"> Break </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 10:45 </td>
-        <td style="padding:5px"> <font size="3"> ... continued: Containers </td>
-        <td style="padding:5px"> <font size="3"> JS, EF, JW, LM, TL </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 12:15 </td>
-        <td style="padding:5px"> <font size="3"> Lunch </td>
-        <td style="padding:5px"> <font size="3"> </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 13:15 </td>
-        <td style="padding:5px"> <font size="3"> Putting the pieces together
-             <font size="2"> <i> <br>
-             - How to put all the tools and procedures together <br>
-             - How to implement these procedures on a day-to-day basis <br>
-        </td>
-        <td style="padding:5px"> <font size="3"> EF </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> 14:30 </td>
-        <td style="padding:5px"> <font size="3"> End of the course! </td>
-        <td style="padding:5px"> <font size="3"> JS </td>
-    </tr>
+<h1>Day 5</h1>
+
+<table border="1;" class="table table-hover table-condensed" style="width:800px;">
+	<thead style="background-color:#DAE7F1">
+		<tr>
+			<td style="padding:5px; width:75px"><font size="3"><b>Time </b> </font></td>
+			<td style="padding:5px; width:625px"><font size="3"><b>Topic </b> </font></td>
+			<td style="padding:5px; width:145px"><font size="3"><b>Teachers </b> </font></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="padding:5px"><font size="3">09:00 </font></td>
+			<td style="padding:5px"><font size="3">Putting it all together<br />
+			<font size="2"><i>- Lecture: How to put all the tools together and seeing the big picture<br />
+			- Practical tutorial: Start using the tools in your own projects </i></font> </font></td>
+			<td style="padding:5px"><font size="3">EF </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:20 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">10:40 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Putting it all together</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">12:00 </font></td>
+			<td style="padding:5px"><em><font size="3">Lunch </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">13:00 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Putting it all together</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP </font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:20 </font></td>
+			<td style="padding:5px"><em><font size="3">Break </font></em></td>
+			<td style="padding:5px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">14:40 </font></td>
+			<td style="padding:5px"><font size="3">... continued: Putting it all together</font></td>
+			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP</font></td>
+		</tr>
+		<tr>
+			<td style="padding:5px"><font size="3">15:45 </font></td>
+			<td style="padding:5px"><font size="3">Final wrap-up and end of the course! </font></td>
+			<td style="padding:5px"><font size="3">JS </font></td>
+		</tr>
+	</tbody>
 </table>
 
-The above schedule is approximate; variations may occur.
+<p>The above schedule is approximate; variations may occur.</p>
 
 <table>
-    <tr>
-        <td style="width:30px"> <b> EF </b> </td>
-        <td> Erik Fasterius </td>
-    </tr>
-    <tr>
-        <td> <b> JS </b> </td>
-        <td> John Sundh </td>
-    </tr>
-    <tr>
-        <td> <b> VK </b> </td>
-        <td> Verena Kutschera </td>
-    </tr>
-    <tr>
-        <td> <b> TL </b> </td>
-        <td> Tomas Larsson </td>
-    </tr>
-    <tr>
-        <td> <b> JW </b> </td>
-        <td> Jakub Westholm </td>
-    </tr>
-    <tr>
-        <td> <b> LM </b> </td>
-        <td> Lokesh Manoharan </td>
-    </tr>
-    <tr>
-        <td> <b> EP </b> </td>
-        <td> Estelle Proux-Wéra </td>
-    </tr>
+	<tbody>
+		<tr>
+			<td style="width:30px"><b>EF </b></td>
+			<td>Erik Fasterius</td>
+		</tr>
+		<tr>
+			<td><b>JS </b></td>
+			<td>John Sundh</td>
+		</tr>
+		<tr>
+			<td><b>TL </b></td>
+			<td>Tomas Larsson</td>
+		</tr>
+		<tr>
+			<td><b>LM </b></td>
+			<td>Lokesh Manoharan</td>
+		</tr>
+		<tr>
+			<td><b>EP </b></td>
+			<td>Estelle Proux-W&eacute;ra</td>
+		</tr>
+	</tbody>
 </table>
