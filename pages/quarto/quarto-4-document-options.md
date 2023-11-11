@@ -29,14 +29,14 @@ This can be a nice default to use in scientific reports, as it hides the code by
 default but is always there for those who want to inspect it. You can also use
 the `code-summary` chunk option to specify a different text to show with the
 folded code instead of the default `Code`, *e.g.* `code-summary: Click to show
-code`. 
+code`.
 
 If you want to add the `code-summary` option to all chunks you can add
 the following to the yaml header:
 
 ```yaml
 language:
-  code-summary: Click to show code 
+  code-summary: Click to show code
 ```
 
 You can also add the `code-tools` option, which will add a drop-down menu to
@@ -74,7 +74,7 @@ true`. You can change the title of the table of contents using `toc-title`.
 
 Quarto has a lot of [themes](https://bootswatch.com/) available for it.
 
- * Add `theme: flatly` and render.
+ * Add `theme: flatly` under the HTML `format` option and render.
 
 If you want to get real advanced you can play around with lots of details
 regarding the themes and adjust as you see fit, or even just create your own
