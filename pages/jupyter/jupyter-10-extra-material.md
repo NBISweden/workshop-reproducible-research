@@ -1,3 +1,7 @@
+The following material contains some additional tips and tricks on how to use
+Jupyter notebooks. This is not part of the core of the Jupyter material and you
+can choose what you want to go through, or skip it entirely.
+
 Here are some useful resources if you want to read more about Jupyter in
 general:
 
@@ -25,25 +29,26 @@ mamba create -n jupyter -c conda-forge jupyter
 * activate the environment, then run:
 
 ```
-jupyter notebook
+jupyter notebook --no-browser
 ```
 
 When the Jupyter server starts up you should see something resembling:
 ```
-[I 11:00:00.000 NotebookApp] Serving notebooks from local directory: <path-to-your-local-dir>
-[I 11:00:00.000 NotebookApp] Jupyter Notebook 6.4.6 is running at:
-[I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
-[I 11:00:00.000 NotebookApp]  or http://127.0.0.1:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
-[I 11:00:00.000 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 2023-11-13 22:15:36.944 ServerApp] Serving notebooks from local directory: <path-to-your-directory>
+[I 2023-11-13 22:15:36.944 ServerApp] Jupyter Server 2.10.0 is running at:
+[I 2023-11-13 22:15:36.944 ServerApp] http://localhost:8888/tree?token=25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6
+[I 2023-11-13 22:15:36.944 ServerApp]     http://127.0.0.1:8888/tree?token=25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6
+[I 2023-11-13 22:15:36.944 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 ```
 
 Now a Jupyter notebook server is running on the Uppmax end. The line that says:
+
 ```
-[I 11:00:00.000 NotebookApp] http://localhost:8889/?token=357d65100058efa40a0641fce7005addcff339876c5e8000
+[I 2023-11-13 22:15:36.944 ServerApp] http://localhost:8888/tree?token=25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6
 ```
 
-Contains information on the port used on the server side (8889 in this case) and
-the token required to use the server (`357d65100058efa40a0641fce7005addcff339876c5e8000`).
+Contains information on the port used on the server side (8888 in this case) and
+the token required to use the server (`25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6`).
 
 Next step is to use this information to login to the server from your local
 computer.
@@ -63,228 +68,44 @@ As long as this process is running the port forwarding is running. To disable it
 simply interrupt it with `CTRL + C`.
 
 Connect to the Jupyter server by opening `localhost:8080` in your browser. When
-prompted, paste the token you got when starting the server on Uppmax.
+prompted, paste the token you got when starting the server on Uppmax and set a
+new password.
 
-You are now (hopefully) accessing the Jupyter server that's running on Uppmax,
-via your local browser.
+## Using Binder to share interactive notebooks
 
-## Integrating notebooks with Snakemake workflows
+[Binder](https://mybinder.org/) is a service that allows you to share Jupyter
+notebooks with others, while also allowing them to run the notebooks in the
+browser. This is great if you wish to share an analysis and have others interact
+with the code and results, without them having to install anything locally. What
+you will need is:
 
-In the [case study](jupyter-8-the-mrsa-case-study) section of this tutorial we
-created a Jupyter notebook that used output from a Snakemake workflow
-and produced some summary results and plots. Wouldn't it be nice if this was
-actually part of the workflow itself? To generate a HTML version of the notebook
-we can use what we learned in the section about
-[converting notebooks](jupyter-7-converting-notebooks). The command to execute the notebook
-and save it in HTML format in a file `results/supplementary.html` would be:
+1. A public GitHub repository containing the notebooks you want to share.
+2. An `environment.yml` file in the repository containing the Conda environment
+   required to run the notebooks.
+3. Data files (if any) required to run the notebook(s).
 
-```bash
-jupyter nbconvert --to HTML --output-dir results --output supplementary.html --execute supplementary_material.ipynb
-```
+Binder will then create a Docker image containing the Conda environment and the
+notebooks, and run a Jupyter server on this image. The Docker image is then
+hosted on the Binder server and can be used by anyone with the link to the
+repository to run the notebooks interactively in their browser.
 
-This command could be used in a rule, _e.g._ `make_supplementary`, the input of
-which would be `results/tables/counts.tsv`, `results/multiqc/multiqc_general_stats.txt`,
-and `results/rulegraph.png`. See if you can work out how to implement such a
-rule at the end of the `Snakefile` found in the `jupyter/` directory. You can
-find an example in the code chunk below:
+To show you an example we've created a basic [GitHub
+repository](https://github.com/NBISweden/workshop-reproducible-research-binder_example)
+containing the `supplementary_material.ipynb` notebook from the previous
+section. If you go to the repository you will see a badge saying "launch
+binder", click this to start the Binder server. This will take a few minutes the
+first time you do it, but after that it should be faster. When the server is
+ready you will be presented with the now familiar Jupyter interface. Go ahead
+and open up the `supplementary_material.ipynb` notebook and run it.
 
-```python
-rule make_supplementary:
-    output:
-            "results/supplementary.html"
-    input:
-        counts = "results/tables/counts.tsv",
-        summary = "results/tables/counts.tsv.summary",
-        multiqc_file = "results/multiqc/multiqc_general_stats.txt",
-        rulegraph = "results/rulegraph.png"
-    params:
-        base = lambda wildcards, output: os.path.basename(output[0]),
-        dir = lambda wildcards, output: os.path.dirname(output[0])
-    shell:
-        """
-        jupyter nbconvert --to HTML --output-dir {params.dir} --output {params.base} \
-            --execute supplementary_material.ipynb
-        """
-```
+You can now interact with the notebook as you would if you had it running on a
+local Jupyter server. You can change the code, run it, and see the results. You
+can also add new cells and write new code. However, you cannot save the changes
+you make to the notebook.
 
-> **Note** <br>
-> The Conda environment for the Jupyter tutorial does not contain the
-> Snakemake package so if you wish to test the rule _e.g._ by running
-> `snakemake -c 1 results/supplementary.html` you first install Snakemake
-> into the environment with `mamba install snakemake`.
-
-## More integrations
-
-Snakemake actually supports the execution of notebooks via the `notebook:`
-rules directive. See more about Jupyter integration in the
-[Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#jupyter-notebook-integration).
-In the `notebook:` directive of such a rule you specify the path to a Jupyter
-notebook (relative to the Snakefile) which is then executed when
-the rule is run.
-
-So how is this useful?
-
-In the notebook itself this gives you access to a `snakemake` object
-containing information about **input** and **output** files for the rule via
-`snakemake.input` and `snakemake.output`. Similarly, you can access rule
-**wildcards** with `snakemake.wildcards`, **params** with `snakemake.params`,
-and **config** settings with `snakemake.config`.
-
-When Snakemake runs the rule with the `notebook:` directive `jupyter-nbconvert`
-is used to execute the notebook. No HTML output is generated here but it is
-possible to store a version of the notebook in its final processed form by
-adding the following to the rule:
-
-```python
-log:
-    notebook="<path>/<to>/<processed>/<notebook.ipynb>"
-```
-
-Because you won't get the notebook in full HTML glory, this type of
-integration is better suited if you want to use a notebook to generate figures
-and store these in local files (_e.g._ pdf/svg/png formats).
-
-We'll use the `supplementary_material.ipynb` notebook as an example! Let's say
-that instead of exporting the entire notebook to HTML we want a rule that
-outputs pdf versions of the barplot and heatmap figures we created.
-
-Let's start by setting up the rule. For simplicity we'll use the same input as
-when we edited the notebook in the first place. The output will be
-`results/barplot.pdf` and `results/heatmap.pdf`. Let's also output a finalized
-version of the notebook using the `log: notebook=` directive:
-
-```python
-rule make_supplementary_plots:
-    output:
-        barplot = "results/barplot.pdf",
-        heatmap = "results/heatmap.pdf"
-    input:
-        counts="results/tables/counts.tsv",
-        summary="results/tables/counts.tsv.summary",
-        multiqc="results/multiqc/multiqc_general_stats.txt",
-        rulegraph="results/rulegraph.png"
-    log:
-        notebook = "results/supplementary.ipynb"
-```
-
-The notebook will now have access to `snakemake.input.counts`,
-`snakemake.output.barplot` and `snakemake.output.heatmap` when executed from
-within the workflow. Let's go ahead and edit the notebook! In the cell where we
-defined notebook parameters edit the code so that it looks like this:
-
-```python
-counts_file=snakemake.input.counts
-summary_file=snakemake.input.summary
-multiqc_file=snakemake.input.multiqc
-rulegraph_file=snakemake.input.rulegraph
-
-SRR_IDs=snakemake.params.SRR_IDs
-GSM_IDs=snakemake.params.GSM_IDs
-GEO_ID=snakemake.params.GEO_ID
-```
-
-Notice that we set the `SRR_IDs`, `GSM_IDs` and `GEO_ID` variables using
-variables in `snakemake.params`? However, we haven't defined these in our rule
-yet so let's go ahead and do that now. Add the `params` section so that the
-`make_supplementary_plots` in the Snakefile looks like this:
-
-```python
-rule make_supplementary_plots:
-    output:
-        barplot = "results/barplot.pdf",
-        heatmap = "results/heatmap.pdf"
-    input:
-        counts="results/tables/counts.tsv",
-        summary="results/tables/counts.tsv.summary",
-        multiqc="results/multiqc/multiqc_general_stats.txt",
-        rulegraph="results/rulegraph.png"
-    log:
-        notebook = "results/supplementary.ipynb"
-    params:
-        SRR_IDs = ["SRR935090","SRR935091","SRR935092"],
-        GSM_IDs = ["GSM1186459", "GSM1186460", "GSM1186461"],
-        GEO_ID = "GSE48896"
-    notebook: "supplementary_material.ipynb"
-```
-
-> **Tip** <br>
-> One way to further generalize this rule could be to define the SRR_IDs, GSM_IDs
-> and GEO_ID parameters in a config file instead, in which case they would be
-> directly accessible from within the notebook using `snakemake.config['SRR_IDs']`
-> etc.
-
-Now the rule contains everything needed, but we still need to edit the notebook
-to save the plots to the output files. First, edit the cell that generates the
-barplot so that it looks like this:
-
-```python
-# Create a stacked barplot
-ax = summary_plot_data.T.plot(kind="bar", stacked=True, color=colors)
-# Move legend and set legend title
-ax.legend(bbox_to_anchor=(1,1), title="Category");
-plt.savefig(snakemake.output.barplot, dpi=300, bbox_inches="tight") ## <-- Add this line!
-```
-
-Finally, edit the cell that generates the heatmap so that it looks like this:
-
-```python
-count_data = counts.loc[:, SRR_IDs]
-heatmap_data = count_data.loc[(count_data.std(axis=1).div(count_data.mean(axis=1))>1.2)&(count_data.max(axis=1)>5)]
-heatmap_data = heatmap_data.rename(columns = name_dict['title'])
-with sns.plotting_context("notebook", font_scale=0.7):
-    ax = sns.clustermap(data=np.log10(heatmap_data+1), cmap="RdYlBu_r",
-                        method="complete", yticklabels=True, linewidth=.5,
-                        cbar_pos=(.7, .85, .05, .1), figsize=(3,9))
-    plt.setp(ax.ax_heatmap.get_xticklabels(), rotation=270)
-    plt.savefig(snakemake.output.heatmap, dpi=300, bbox_inches="tight") ## <-- Add this line!
-```
-
-Now you can run the following to generate the plots:
-
-```bash
-snakemake -c 1 make_supplementary_plots
-```
-
-## Presentations with Jupyter
-
-As if all the above wasn't enough you can also create presentations/slideshows
-with Jupyter! Simply use mamba to install the
-[RISE](https://rise.readthedocs.io/en/stable/) extension to your Jupyter
-environment:
-
-```bash
-mamba install -c conda-forge rise
-```
-
-> **Attention!** <br>
-> Unfortunately, the RISE extension is currently not supported in Jupyter
-> lab so you are forced to use the classic notebook interface here.
-
-Then open up a notebook of your choice. In the menu click **View** -> **Cell
-Toolbar** -> **Slideshow**. Now every cell will have a drop-down in the upper
-right corner allowing you to set the cell type:
-
-- **Slide**: a regular slide
-- **Sub-Slide**: a regular slide that will be displayed _below_ the previous
-- **Fragment**: these cells split up slides so that content (fragments) are
-  added only when you press Space
-- **Skip**: these cells will not appear in the presentation
-- **Notes**: these cells act as notes, shown in the speaker view but not in the
-  main view
-
-The presentation can be run directly from the notebook by clicking the
-'Enter/Exit RISE Slideshow' button (looks like a bar chart) in the toolbar, or
-by using the keyboard shortcut `Alt-r`. Running it directly from a notebook
-means you can also edit and run cells during your presentation. The downside is
-that the presentation is not as portable because it may rely on certain software
-packages that other people are not comfortable with installing.
-
-You can also export the notebook to an HTML-file with `jupyter nbconvert
---execute --to SLIDES <your-notebook.ipynb>`. The resulting file, with the
-slideshow functionality included, can be opened in any browser. However, in
-this format you cannot run/edit cells.
-
-## Parameterising notebooks
-
-- Use [papermill](https://papermill.readthedocs.io/en/latest/) to parameterise
-  notebooks and run them as scripts.
+To read more about Binder and how to use it, see the 
+[Binder documentation](https://mybinder.readthedocs.io/en/latest/). For pointers
+on how to make data available to the notebooks you share via Binder, see this
+guide on
+[Accessing data in your
+Binder](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html#accessing-data-in-your-binder).
