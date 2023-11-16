@@ -25,11 +25,11 @@ Article number: 160018 (2016)_] for both machines and humans:
 - [**I**]{.green}nteroperable
 - [**R**]{.green}eusable
 
-## Data management plan
+## Data management plan {.smaller}
 
 ::: {.incremental}
 - Check [requirements of funding agency]{.green} and field of research
-  ^[_https://www.vr.se/english/calls-and-decisions/grant-terms-and-conditions/data-management-plan.html_]
+  ^[[VR data management plan](https://www.vr.se/english/calls-and-decisions/grant-terms-and-conditions/data-management-plan.html)]
 - Determine [required storage]{.green} space for short and long term
 - Provide [helpful metadata]{.green}
 - Consider legal/ethical restrictions if working with [sensitive data]{.green}
@@ -50,15 +50,15 @@ Article number: 160018 (2016)_] for both machines and humans:
 
 ## Organizing your projects {.larger}
 
-_Which sample file represents the [latest]{.green} version?_
+_Which sample file represents the most up to date version?_
 
 ```bash
 $ ls -l data/
--rw-r--r--  user  staff  samples.mat
--rw-r--r--  user  staff  samplesFinal.mat
--rw-r--r--  user  staff  samplesFinalV2.mat
--rw-r--r--  user  staff  samplesUSE_THIS_ONE.mat
--rw-r--r--  user  staff  samplesV2.mat
+-rw-r--r--  user  staff  Nov 12 22:00 samples.mat
+-rw-r--r--  user  staff  Nov 16 11:39 samplesFinal.mat
+-rw-r--r--  user  staff  Nov 18 22:41 samplesFinalV2.mat
+-rw-r--r--  user  staff  Nov 18 13:25 samplesUSE_THIS_ONE.mat
+-rw-r--r--  user  staff  Nov 15 22:39 samplesV2.mat
 ```
 
 ## The project directory
@@ -72,7 +72,7 @@ The first step towards working reproducibly: [Get organized!]{.green}
 - Use [relevant subdirectories]{.green}
 :::
 
-## There are many ways to organize a project
+## There are many ways to organize a project {.smaller}
 
 ::: {.r-stack}
 
@@ -142,7 +142,7 @@ nextflow.config
 
 # Questions?
 
-## Topics for discussion in breakout rooms
+## Topics for discussion
 
 - Do you organize your work in distinct projects?
 - How do you organize your files in this context?
