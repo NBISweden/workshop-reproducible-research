@@ -2,6 +2,7 @@
 title: "Introduction"
 subtitle: "Tools for Reproducible Research"
 format: nbis-revealjs
+encoding: utf-8
 ---
 
 ## Course content
@@ -28,7 +29,7 @@ format: nbis-revealjs
 
 ![Erik Fasterius](images/erik-fasterius.png)
 
-![Verena Kutchera](images/verena-kutschera.png)
+![Verena Kutschera](images/verena-kutschera.png)
 
 ![Tomas Larsson](images/tomas-larsson.png)
 
@@ -48,7 +49,7 @@ format: nbis-revealjs
    in Sweden
  - Provides hands-on bioinformatic support, training, infrastructure and a weekly
    drop-in
- - Situated in Lund, Gothenburg, Linköping, Stockholm, Uppsala and Umeå
+ - Situated throughout Sweden
  - Provides wide-spectrum support in the fields of bioinformatics, bioimage
    informatics, data management, imaging AI, development of systems and tools as
    well as national compute resources.
