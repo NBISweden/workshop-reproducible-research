@@ -7,6 +7,7 @@ dependencies:
   - biopython
   - jupyter
   - jupyterlab
+  - nb_conda_kernels
   - nodejs
   - pandas
   - seaborn
@@ -18,3 +19,4 @@ dependencies:
   - papermill
   - nbval
   - nbdime
+  - altair
