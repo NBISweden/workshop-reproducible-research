@@ -230,8 +230,8 @@ Use Docker or Apptainer
 ```bash
 $ nextflow run main.nf -with-docker
 $ nextflow run main.nf -with-apptainer
-<br>
 ```
+<br>
 :::
 
 ::: {.fragment}
@@ -245,7 +245,7 @@ $ nextflow run main.nf -profile uppmax
 
 ::::
 
-## Snakemake and Nextflow differences
+## Snakemake and Nextflow differences {.smaller}
 
 |                | [Snakemake]{.green}  | [Nextflow]{.green}            |
 | ----           | ------               | ---------                     |
