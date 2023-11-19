@@ -46,7 +46,7 @@ looking bar plot with error bars.
 First import the Seaborn package (using an abbreviated name to simplify typing):
 
 ```python
-import Seaborn as sns
+import seaborn as sns
 ```
 
 Next we'll load some example data of penguins collected at the Palmer Station,

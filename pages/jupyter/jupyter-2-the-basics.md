@@ -240,7 +240,7 @@ print("Hello world!")
 
 Note how the output is directly displayed below the cell. This interactive way
 of working is one of the things that sets Jupyter Notebook apart from RStudio
-and R Markdown. R Markdown is typically rendered top-to-bottom in one run, while
+and Quarto. In RStudio/Quarto, documents are typically rendered top-to-bottom in one run, while
 you work *in* a Jupyter notebook in a different way. This requires some special
 attention when it comes to reproducibility, which we will get back to in the
 [reproducibility](jupyter-7-reproducibility) section.

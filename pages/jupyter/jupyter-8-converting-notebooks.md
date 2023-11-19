@@ -1,7 +1,5 @@
 Notebooks can be converted to various output formats such as HTML, PDF, LaTeX
-*etc.* directly from the **File** -> **Download as** menu in the classic
-notebook interface, or via **File** -> **Save and Export Notebook As...** in
-the Jupyter lab interface.
+*etc.* directly from the **File** -> **Save and Export Notebook As...** menu.
 
 Conversion can also be performed on the command line using the `jupyter nbconvert`
 command. `nbconvert` is installed together with the `jupyter` Conda
@@ -18,8 +16,8 @@ Here `<FORMAT>` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
 output formats (*e.g.* PDF) may require you to install separate software such
 as [Pandoc](https://pandoc.org/) or a **TeX** environment.
 
-Try converting the `Untitled.ipynb` notebook that you have been working on so
-far to HTML using `jupyter nbconvert`.
+Try converting the `jupyter-tutorial.ipynb` notebook that you have been working
+on for this tutorial to HTML using `jupyter nbconvert`.
 
 > **Tip** <br>
 > If the plots in HTML rendered version of your notebook are not displayed
@@ -34,15 +32,15 @@ jupyter nbconvert --execute --to <FORMAT> notebook.ipynb
 ```
 
 `nbconvert` executes the cells in a notebook, captures the output and saves the
-results in a new file. Try running it on the `Untitled.ipynb` notebook.
+results in a new file. Try running it on the `jupyter-tutorial.ipynb` notebook.
 
 You can also specify a different output file with `--output <filename>`.
 
-So in order to execute your `Untitled.ipynb` notebook and save it to a file
+So in order to execute your `jupyter-tutorial.ipynb` notebook and save it to a file
 named `report.html` you could run:
 
 ```bash
-jupyter nbconvert --to html --output report.html --execute Untitled.ipynb
+jupyter nbconvert --to html --output report.html --execute jupyter-tutorial.ipynb
 ```
 
 > **Quick recap** <br>
