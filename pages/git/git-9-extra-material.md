@@ -78,7 +78,7 @@ Recall that a merge creates a *merge commit*, something akin to `Merge branch
 that brings the changes on `feature-branch` into `main`, but it contains no
 actual work itself. This is both a good and a bad thing: good, because merging
 is a safe, *non-destructive* operation (it doesn't alter history); bad, because
-it can make the history itself looks quite messy. These are the commands used
+it can make the history itself look quite messy. These are the commands used
 and what the history will look like afterwards:
 
 ```bash
@@ -199,7 +199,7 @@ what the output of the `git reflog` command might show:
 8c80c88 HEAD@{4}: checkout: moving from main to feature-branch
 ```
 
-It show the most recent change at the top, notified by `HEAD@{0}`. We thus have
+It shows the most recent change at the top, notified by `HEAD@{0}`. We thus have
 a merging of `feature-branch` into `main`, a checkout into `main`, two commits
 on `feature-branch` and a checkout into `feature-branch` - reading it backwards
 we get a chronological log of what has happened.

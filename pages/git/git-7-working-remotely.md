@@ -242,7 +242,7 @@ repository as having one branch (you can see this by going to the *Code* tab).
 This is because we only pushed our `main` branch to the remote. Let's create
 a new local branch and add some changes that we'll push as a separate branch to
 our remote - you should do this in the original `git_tutorial` repository, so
-move back into that directory.
+make sure you're in that directory.
 
 * Create a new branch named `trimming` and add the `--trim5 5` flag to the
   Bowtie2-command part of the `Snakefile`, which should now look like this:
