@@ -93,7 +93,7 @@ software for version control.
 ## Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://uppsala.instructure.com/courses/82575/pages/git-1-introduction?module_item_id=750503).
+[here](https://uppsala.instructure.com/courses/87979/pages/git-7-working-remotely?module_item_id=890886).
 ```
 
 > **The markdown format** <br>
