@@ -186,7 +186,7 @@ ggplot(penguins, aes(x      = bill_length_mm,
   another package to create _e.g._ presentations)
 - The Quarto format is similar to R Markdown
 - Quarto can render R Markdown documents
-- R Markdown will continued to be supported, but Quarto is the focus of new
+- R Markdown will continue to be supported, but Quarto is the focus of new
   functionality and major development
 :::
 

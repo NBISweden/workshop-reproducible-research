@@ -123,7 +123,7 @@
 		</tr>
 		<tr>
 			<td style="padding:5px"><font size="3">18:00</font></td>
-			<td style="padding:5px"><font size="3">Course dinner @ Grappa</font></td>
+			<td style="padding:5px"><font size="3">Course dinner at Grappa</font></td>
 			<td style="padding:5px"><font size="3">EF, JS, LM, TL, EP</font></td>
 		</tr>
 	</tbody>

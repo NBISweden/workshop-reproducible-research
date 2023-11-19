@@ -12,7 +12,7 @@ for other researchers to be able to rerun your published analysis.
   used to generate the manuscript figures. Let's add a tag:
 
 ```bash
-git tag "submission-1"
+git tag "submission1"
 ```
 
 * We can now list all the tags available in the current repository:

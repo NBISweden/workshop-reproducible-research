@@ -10,7 +10,7 @@ jupyter:
 
 ## The problem
 
-![](r-reproducibility-6-638_cropped.jpg)
+![](r-reproducibility-6-638_cropped.jpg){width=75%}
 
 ::: {.fragment .justify-center}
 _Full reproducibility requires the possibility to recreate the system that was
@@ -73,7 +73,7 @@ flowchart LR
 ```{mermaid}
 flowchart LR
     subgraph environment
-    style environment fill:#ffffff, stroke-width:1px
+    style environment fill:#00000000, stroke-width:1px
     direction LR
     multiqc(multiqc) -.-> numpy(numpy)
     multiqc -.-> matplotlib(matplotlib)
@@ -208,7 +208,7 @@ conda env export > environment.yml
 conda env export --from-history > environment.yml
 ```
 
-## Conda, Anaconda, Miniconda, Mamba...
+## Conda, Anaconda, Miniconda, Mamba... {.smaller}
 
 ::: {.incremental}
 - [Conda]{.green}: The package manager itself, written in python
@@ -225,9 +225,9 @@ conda env export --from-history > environment.yml
 _Mamba is a faster re-implementation of Conda in C++._
 
 ::: {layout-ncol=2 layout-valign="center" data-id="mamba-logo"}
-![](https://mamba.readthedocs.io/en/latest/_static/logo.png){width=50%}
+![](https://mamba.readthedocs.io/en/latest/_static/logo.png){width=75%}
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Conda_logo.svg/2056px-Conda_logo.svg.png){width=50%}
+![](https://docs.conda.io/en/latest/_images/conda_logo.svg){width=75%}
 :::
 
 ## Mamba vs. Conda {auto-animate="true"}

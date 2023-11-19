@@ -26,5 +26,3 @@ dependencies:
     - pyppeteer
     - jinja2
     - pip
-    - pip:
-        - RISE

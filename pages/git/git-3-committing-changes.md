@@ -157,7 +157,6 @@ git add Dockerfile
 git status
 git commit -m "Remove Dockerfile"
 git status
-git log
 ```
 
 Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to

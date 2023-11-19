@@ -1,7 +1,6 @@
 ---
-title: 'Making reports with <img src="https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg" style="width:50%;padding: 15px 15px 15px 15px;">'
+title: 'Making reports with <img src="https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg" style="width:100%;padding: 5px 5px 5px 5px;">'
 format: nbis-revealjs
-kernel: jupyter
 ---
 
 ```{python}
@@ -20,27 +19,36 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
 - Allows you to document, edit and run code directly in your browser
 :::
 
-## Notebook basics
+## Notebook basics {.smaller}
 
-![](https://docs.jupyter.org/en/latest/_images/trynb.png){width="50%" fig-align=center}
-
+::::: {.columns}
+:::: {.column width="75%"}
+![](https://docs.jupyter.org/en/latest/_images/trynb.png){height="50%" fig-align=center}
+::::
+:::: {.column width="25%"}
 ::: {.incremental}
 - Runs as a local web server
 - Load/save/manage notebooks from the menu
 :::
+::::
+:::::
 
-## Jupyter lab
+## Jupyter lab {.smaller}
 
-_The next-generation web-based user interface for Project Jupyter_
+_The next-generation interface for Jupyter_
 
-![](https://jupyterlab.readthedocs.io/en/stable/_images/jupyterlab.png){width="75%" fig-align=center}
-
+::::: {.columns}
+:::: {.column width="75%"}
+![](https://jupyterlab.readthedocs.io/en/stable/_images/jupyterlab.png){height="100%" fig-align=center}
+::::
+:::: {.column width="25%"}
 ::: {.incremental}
 - Similar to an integrated development environments (IDE).
 - Tab views, Code consoles, Show output in a separate tab, Live rendering of edits _etc._
 - The jupyter lab interface can run Jupyter notebooks in the **main** work area
 :::
-
+::::
+:::::
 
 ## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
 
