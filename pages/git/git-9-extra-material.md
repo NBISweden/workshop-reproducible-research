@@ -199,7 +199,7 @@ what the output of the `git reflog` command might show:
 8c80c88 HEAD@{4}: checkout: moving from main to feature-branch
 ```
 
-It show the most recent change at the top, notified by `HEAD@{0}`. We thus have
+It shows the most recent change at the top, notified by `HEAD@{0}`. We thus have
 a merging of `feature-branch` into `main`, a checkout into `main`, two commits
 on `feature-branch` and a checkout into `feature-branch` - reading it backwards
 we get a chronological log of what has happened.
