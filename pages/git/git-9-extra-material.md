@@ -78,7 +78,7 @@ Recall that a merge creates a *merge commit*, something akin to `Merge branch
 that brings the changes on `feature-branch` into `main`, but it contains no
 actual work itself. This is both a good and a bad thing: good, because merging
 is a safe, *non-destructive* operation (it doesn't alter history); bad, because
-it can make the history itself looks quite messy. These are the commands used
+it can make the history itself look quite messy. These are the commands used
 and what the history will look like afterwards:
 
 ```bash
