@@ -220,9 +220,34 @@ something defined in the config (currently `NCTC8325` or `ST398`). If you try to
 generate a FASTA file for a genome id not defined in the config Snakemake will
 complain, even at the dry-run stage.
 
-The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can now
-download and index *any genome* as long as we provide valid links in the config
-file.
+Finally, remember that any wildcards need to be present both in the `output:`
+and `log:` directives? This means we have to update the `log:` directive in
+`index_genome` as well. The final rule should look like this:
+
+```python
+rule index_genome:
+    """
+    Index a genome using Bowtie 2.
+    """
+    output:
+        expand("results/bowtie2/{{genome_id}}.{substr}.bt2",
+            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+    input:
+        "data/ref/{genome_id}.fa.gz"
+    log:
+        "results/logs/index_genome/{genome_id}.log"
+    shadow: "minimal"
+    shell:
+        """
+        # Bowtie2 cannot use .gz, so unzip to a temporary file first
+        gunzip -c {input} > tempfile
+        bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
+        """
+```
+
+Good job! The rules `get_genome_fasta`, `get_genome_gff3` and `index_genome` can
+now download and index *any genome* as long as we provide valid links in the
+config file.
 
 However, we need to define somewhere which genome id we actually want to use
 when running the workflow. This needs to be done both in `align_to_genome` and
@@ -239,13 +264,35 @@ list while `genome_id` gets expanded from the config file.
 
 ```python
 input:
+    "data/{sample_id}.fastq.gz",
     index = expand("results/bowtie2/{genome_id}.{substr}.bt2",
            genome_id = config["genome_id"],
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
 Also change the hard-coded genome id in the `generate_count_table` input in a
-similar manner.
+similar manner:
+
+```python
+rule generate_count_table:
+    """
+    Generate a count table using featureCounts.
+    """
+    output:
+        "results/tables/counts.tsv",
+        "results/tables/counts.tsv.summary"
+    input:
+        bams=expand("results/bam/{sample_id}.sorted.bam", 
+                    sample_id = config["sample_ids"]),
+        annotation=expand("data/ref/{genome_id}.gff3.gz", 
+                    genome_id = config["genome_id"])
+    log:
+        "results/logs/generate_count_table.log"
+    shell:
+        """
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
+        """
+```
 
 In general, we want the rules as far downstream as possible in the workflow to
 be the ones that determine what the wildcards should resolve to. In our case
