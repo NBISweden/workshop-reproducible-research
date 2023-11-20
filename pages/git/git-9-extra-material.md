@@ -248,6 +248,10 @@ variable `PS1`. You can type `echo $PS1` to see what variables your prompt
 is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
 hostname, `\W` the working directory and `\u` the username.
 
+> **Note** <br>
+> If you're using `zsh` instead of bash you'll have to replace the backslashes
+> (`\`) in the commands with percent signs (`%`).
+
 Some people like to also show the current branch on their prompt, thus avoiding
 having to type `git branch` continuously. There are several ways you might do
 this, and we're only presenting one of them here: a bash function.
