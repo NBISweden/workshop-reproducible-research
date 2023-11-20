@@ -139,6 +139,8 @@ testrule:
   runtime: 60
 ```
 
+followed by updating the rule to:
+
 ```python
 rule testrule:
     output:
