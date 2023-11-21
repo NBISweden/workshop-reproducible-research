@@ -1,8 +1,8 @@
 ---
 title: 'Working with containers
-        <img src="images/docker-logo.webp" height="250px" style="float:center; padding: 15px 15px 15px 15px;"/>
-        <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="250px" style="float:center; padding: 15px 15px 15px 15px;"/>
-        <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="250px" style="float:center; padding: 15px 15px 15px 15px;"/>'
+        <img src="images/docker-logo.webp" height="200px" style="float:center; padding: 15px 15px 15px 15px;"/>
+        <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="200px" style="float:center; padding: 15px 15px 15px 15px;"/>
+        <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="200px" style="float:center; padding: 15px 15px 15px 15px;"/>'
 format: nbis-revealjs
 ---
 
@@ -13,24 +13,6 @@ format: nbis-revealjs
   system
 - Docker lets you create and run applications securely isolated in
   [containers]{.green}
-:::
-
-## Docker in life science
-
-Docker containers can be used to allow others to reproduce a complete analysis:
-
-> To further support reproducibility, we bundled all tools and dependencies into
-> one Docker container available on DockerHub. `docker run` executes the
-> aforementioned Makefile inside the container. ^[_Bremges et al GigaScience
-> (2015) 4:33, [doi:10.1186/s13742-015-0073-6](https://doi.org/10.1186/s13742-015-0073-6)_]
-
-<br>
-
-::: {.fragment}
-Reproducing the paper can now be done with one command:
-```bash
-docker run metagenomics/2015-biogas-cebitec
-```
 :::
 
 ## Docker in life science
@@ -64,6 +46,10 @@ benchmarking studies:
 
 ## Docker nomenclature
 
+::: {.fragment}
+![](images/images_and_containers.png){height=350 fig-align="center"}
+:::
+
 ::: {.incremental}
 - A Docker [image]{.green} is a stand-alone executable package of software
 - A Docker [container]{.green} is an instance of a Docker image
@@ -71,9 +57,7 @@ benchmarking studies:
 - [Docker Hub]{.green} is an online service for hosting Docker images
 :::
 
-::: {.fragment}
-![](images/images_and_containers.png){height=350 fig-align="center"}
-:::
+
 
 ## An example: using a different OS
 
@@ -106,7 +90,7 @@ Linux 407b0fd13fe5 4.9.60-linuxkit-aufs [...] x86_64 GNU/Linux
 ```
 :::
 
-## Mounting volumes
+## Mounting volumes {.smaller}
 
 :::: {.columns height=90%}
 
@@ -133,9 +117,9 @@ $ ls
 ::: {.fragment}
 Docker container file system:
 ```{.bash code-line-numbers="1-3|4-11|7-8"}
-$ docker run \
-    -v $PWD/data:/home/data \
-    ubuntu:16.04 ls
+$ docker run -v $PWD/data:/home/data ubuntu:16.04 
+
+ls
 |- bin/
 |- dev/
 |- etc/
