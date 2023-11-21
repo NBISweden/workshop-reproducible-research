@@ -329,6 +329,87 @@ shell:
 > - A project set up in a way that makes it very easy to distribute and
 >   reproduce either via Git, Snakemake's `--archive` option or a Docker image.
 
+## Reading samples from a file instead of hard-coding them
+
+So far we've specified the samples to use in the workflow either as a hard-coded list in the Snakefile, or as a list in the configuration file. This is of course impractical for large real-world examples. Here we'll just quickly show how you could supply the samples instead via a tab-separated file. For example you could create a file called `samples.tsv` with the following content:
+
+```
+SRR935090	https://figshare.scilifelab.se/ndownloader/files/39539767
+SRR935091	https://figshare.scilifelab.se/ndownloader/files/39539770
+SRR935092	https://figshare.scilifelab.se/ndownloader/files/39539773
+```
+
+The first column has the sample id and the second column has the url to the fastq file. Now in order to read this into the workflow we need to use a few lines of python code. Since you can mix python code with rule definitions in Snakemake we'll just add the following lines to the top of the Snakefile:
+
+```python
+# define an empty 'samples' dictionary
+samples = {}
+# read the sample list file and populate the dictionary
+with open("samples.tsv", "r") as fhin:
+    for line in fhin:
+        # strip the newline character from the end of the line
+        # then split by tab character to get the sample id and url
+        sample_id, url = line.strip().split("\t")
+        # store the url in the dictionary with the sample id as key
+        samples[sample_id] = url
+```
+
+Now we can use the `samples` dictionary in the workflow. For example, to get the url for `SRR935090` we can use `samples["SRR935090"]`. 
+
+For example, the `get_sample_url` function can now be written as:
+
+```python
+def get_sample_url(wildcards):
+    return samples[wildcards.sample_id]
+```
+
+We can also use the `samples` dictionary in `expand()`, for example in the `multiqc` rule:
+
+```python
+rule multiqc:
+    """
+    Aggregate all FastQC reports into a MultiQC report.
+    """
+    output:
+        html="results/multiqc/multiqc.html",
+        stats="results/multiqc/multiqc_general_stats.txt"
+    input:
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id = samples.keys())
+    log:
+        "results/logs/multiqc/multiqc.log"
+    shadow: "minimal"
+    shell:
+        """
+        # Run multiQC and keep the html report
+        multiqc -n multiqc.html {input} 2> {log}
+        mv multiqc.html {output.html}
+        mv multiqc_data/multiqc_general_stats.txt {output.stats}
+        """
+```
+
+Now this depends on there being a `samples.tsv` file in the working directory. To make this a configurable parameter we can add it to the config file:
+
+```yaml
+sample_list: "samples.tsv"
+```
+
+and update the code for populating the `samples` dictionary:
+
+```python
+# define an empty 'samples' dictionary
+samples = {}
+# read the sample list file and populate the dictionary
+with open(config["sample_list"], "r") as fhin:
+    for line in fhin:
+        # strip the newline character from the end of the line
+        # then split by tab character to get the sample id and url
+        sample_id, url = line.strip().split("\t")
+        # store the url in the dictionary with the sample id as key
+        samples[sample_id] = url
+```
+
+This way, anyone can take our Snakefile and just update the path to their own `sample_list` using the config file.
+
 > **Quick recap** <br>
 > In this section we've learned:
 >
