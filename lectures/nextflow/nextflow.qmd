@@ -245,7 +245,7 @@ $ nextflow run main.nf -profile uppmax
 
 ::::
 
-## Snakemake and Nextflow differences {.smaller}
+## Snakemake and Nextflow differences
 
 |                | [Snakemake]{.green}  | [Nextflow]{.green}            |
 | ----           | ------               | ---------                     |
