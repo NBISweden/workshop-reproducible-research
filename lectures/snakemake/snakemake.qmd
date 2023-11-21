@@ -678,7 +678,7 @@ digraph snakemake_dag {
         5[label = "index_genome", color = "grey", fillcolor="lightgrey", fontcolor="grey", style="rounded,dashed,filled"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "grey", fontcolor="grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
         7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "grey", fontcolor="grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
-        8[label = "multiqc", color = "black", style="rounded"];
+        8[label = "multiqc", fontcolor="grey", fillcolor="lightgrey", color = "grey", style="rounded,dashed,filled"];
         9[label = "fastqc", color = "grey", fillcolor="lightgrey", fontcolor="grey", style="rounded,dashed,filled"];
         10[label = "generate_rulegraph", background_color="black", fontcolor="grey", color = "grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
         1 -> 0
@@ -770,7 +770,7 @@ rule trim_fastq:
         runtime=120
     shell:
       """
-      seqtk trimfq -t [threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
+      seqtk trimfq -t {threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
       """
 ```
 
@@ -800,7 +800,7 @@ rule trim_fastq:
     container: "docker://quay.io/biocontainers/seqtk"
     shell:
       """
-      seqtk trimfq -t [threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
+      seqtk trimfq -t {threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
       """
 ```
 
