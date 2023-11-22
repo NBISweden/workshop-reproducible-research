@@ -88,7 +88,7 @@ ubuntu image to run a container that has `Ubuntu` as the operating system,
 and we instruct Docker to execute `uname -a` to print the system info within
 that container. The output from the command is printed to the terminal.
 
-Try the same thing with `whoami`.
+Try the same thing with `whoami` instead of `uname -a`.
 
 ## Running interactively
 
