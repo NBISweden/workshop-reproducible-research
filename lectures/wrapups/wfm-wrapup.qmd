@@ -1,0 +1,30 @@
+---
+title: 'Wrap-up: Workflow managers
+        <br>
+        <img src="https://assets.stickpng.com/images/63457d1f458f7fedca81867b.png" height="100px"/>
+        <img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png" height="80px" style="padding: 15px 15px 15px 15px"/>'
+format: nbis-revealjs
+---
+
+## What we have learned
+
+* How to create and execute workflows
+* How to rerun workflows (and what triggers reruns)
+* How to capture logs and errors
+* How to set parameters to make workflows more flexible
+* How to generalize workflows
+
+## Comparison {.smaller}
+
+|  | Snakemake | Nextflow |
+|---------|-----------|----------|
+| language | Python | Groovy |
+| philosophy | 'pull' | 'push' |
+| data | file(s) | channel(s) |
+| unit of execution | rule | process |
+| execution | working directory | each job in its own directory |
+
+## If you want to learn more {.smaller}
+
+- NBIS Snakemake BYOC (bring-your-own-code) workshop (check [https://www.scilifelab.se/events/#calendar](https://www.scilifelab.se/events/#calendar) for next instance)
+- Nextflow Training ([https://training.nextflow.io/](https://training.nextflow.io/))
