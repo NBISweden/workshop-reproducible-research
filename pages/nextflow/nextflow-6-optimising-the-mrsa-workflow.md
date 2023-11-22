@@ -183,7 +183,7 @@ can also be treated in the same manner, and defined separately in another file.
 ```nextflow
 // [ main.nf ]
 // Include subworkflow
-include { QUALITY_CONTROLS } from "subworkflows/quality_controls.nf"
+include { QUALITY_CONTROLS } from "./subworkflows/quality_controls.nf"
 
 // Main workflow
 QUALITY_CONTROLS (
@@ -226,7 +226,7 @@ this:
 ```nextflow
 // [ main.nf ]
 // Include subworkflow
-include { ALIGNMENT } from "subworkflows/alignment.nf"
+include { ALIGNMENT } from "./subworkflows/alignment.nf"
 
 // Main workflow
 ALIGNMENT {
