@@ -14,17 +14,18 @@ format:
 - [Scalable]{.green}
 - [Platform-agnostic]{.green}
 - Based on [Groovy]{.green} and Java
-- Large active community in *e.g.* [nf-core]{.green}
+- Large active community in _e.g._ [nf-core]{.green}
 :::
 
 ## Concepts and nomenclature
 
-![](https://training.seqera.io/img/channel-process.png){height=325 fig-align=center}
+![](https://training.seqera.io/img/channel-process.png){height=300 fig-align=center}
 
 ::: {.incremental}
-- [Channels]{.green} contain data, *e.g.* input files
-- [Processes]{.green} run some kind of code, *e.g.* a script or a program
+- [Channels]{.green} contain data, _e.g._ input files
+- [Processes]{.green} run some kind of code, _e.g._ a script or a program
 - [Tasks]{.green} are instances of a process, one per process input
+- Each task is run in its own, isolated sub-directory
 :::
 
 ## Anatomy of a process {auto-animate=true}
