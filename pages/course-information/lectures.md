@@ -1,7 +1,6 @@
 This page contains links to all the lectures in the course in HTML format, which
-you can either view in your browser (click the link) or download (right-click
-and save the link to wherever you want it). If you want to view the raw files
-you can find them at [GitHub](https://github.com/NBISweden/workshop-reproducible-research/tree/GITHUB_BRANCH/lectures),
+you can download to view (right-click and save the link to wherever you want
+it). If you want to view the raw files you can find them at [GitHub](https://github.com/NBISweden/workshop-reproducible-research/tree/GITHUB_BRANCH/lectures),
 along with instructions on how to render them.
 
 ### Lecture links
