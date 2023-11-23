@@ -97,7 +97,7 @@ won't start the analysis automatically when we start the container.
 docker run -it --rm -v $(pwd):/course/ my_docker_conda /bin/bash
 ```
 
-If you run `ls` you will see that all the files in the `docker` directory are
+If you run `ls` you will see that all the files in the `container/` directory are
 there.
 
 > **Quick recap** <br>
