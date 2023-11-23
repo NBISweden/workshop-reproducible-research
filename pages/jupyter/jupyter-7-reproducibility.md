@@ -122,9 +122,9 @@ notebooks. It works by executing each cell in the notebook and comparing the
 output to the output stored in the notebook. If the output is the same, the test
 passes. If the output differs, the test fails. `nbval` is also pre-installed in
 the `jupyter-env` Conda environment you're using for this tutorial.
- 
+
 As an example, we'll keep working with the `Analysis.ipynb` notebook we've
-created. 
+created.
 
 Let's say we want to estimate the size of the bill of penguins using the
 `bill_length_mm` and `bill_depth_mm` columns. We'll do this by adding a new cell
@@ -156,7 +156,7 @@ to the output stored in the notebook. If the output is the same, the test
 passes. The output of the test should look something like this:
 
 ```
-collected 4 items                                                                                                              
+collected 4 items
 
 Analysis.ipynb ....                                                                                                   [100%]
 
@@ -171,7 +171,7 @@ Change the third cell of the notebook so that it reads:
 
 ```python
 penguins["bill_size"] = (penguins["bill_length_mm"] * penguins["bill_depth_mm"]) / penguins["body_mass_g"]
-sns.scatterplot(data=df, x="bill_size", y="flipper_length_mm", hue="island")
+sns.scatterplot(data=penguins, x="bill_size", y="flipper_length_mm", hue="island")
 ```
 
 Re-run the cell and save the notebook. So far so good! Let's test the notebook
@@ -190,7 +190,7 @@ FAILED Analysis.ipynb::Cell 3
 ================== 1 failed, 3 passed in 1.83s ==================
 ```
 
-What happened here was that we modified the cell where we calculated the 
+What happened here was that we modified the cell where we calculated the
 `bill_size` value, but we didn't re-run the cell where we output the mean of
 each column grouped by `island`. This means that the output of the last cell in
 the notebook now differs from what is actually stored in the notebook variables.
@@ -208,7 +208,7 @@ kernel before re-running you make sure that you haven't introduced any 'hidden s
 
 > **Ignoring specific cells** <br>
 >One caveat of `nbval` is that it doesn't work well with cells that generate
->plots. You can tell `nbval` to ignore the output of specific cells by adding 
+>plots. You can tell `nbval` to ignore the output of specific cells by adding
 >`# NBVAL_IGNORE_OUTPUT` to the top of a cell.
 
 > **Quick recap** <br>
