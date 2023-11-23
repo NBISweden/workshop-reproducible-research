@@ -220,7 +220,7 @@ environment file _e.g._ `environment.yml` from the Conda tutorial and use
 `mamba env create` to create an environment from that file. Or we could
 create an environment directly with `mamba create`. We'll try this later
 option here, so add a line that will create an environment named
-`project_mrsa` containing the two packages, and also clean up packages and
+`project_mrsa` containing the `fastqc` package, and also clean up packages and
 cache after installation. Use the `-y` flag to `mamba create` to avoid the
 prompt that expects an interaction from the user.
 
