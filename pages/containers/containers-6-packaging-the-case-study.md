@@ -82,6 +82,5 @@ analysis workflow (if you first `docker push` to Dockerhub that is).
 > you've built it yourself):
 >
 > ```bash
-> docker run -it -p 8888:8888 nbisweden/workshop-reproducible-research \
->     jupyter notebook  --ip=0.0.0.0 --allow-root
+> docker run -it nbisweden/workshop-reproducible-research jupyter notebook -allow-root --no-browser
 > ```
