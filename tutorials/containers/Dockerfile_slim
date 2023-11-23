@@ -14,7 +14,7 @@ ENV TZ="Europe/Stockholm"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install package for setting timezone
-RUN apt-get update && apt-get install -y tzdata && apt-get clean
+RUN apt-get update && apt-get install -y tzdata curl && apt-get clean
 
 # Configure Conda/Mamba
 RUN mamba init bash && conda config --set channel_priority strict && \
