@@ -1,0 +1,29 @@
+---
+title: 'Wrap-up: Reports'
+format: nbis-revealjs
+---
+
+## What we have learned {.smaller}
+
+**Quarto**
+
+- How to create, edit and render Quarto documents
+- How to use and configure code-chunks
+- How to create presentations using the revealjs format
+
+**Jupyter**
+
+- How to document and run code in Jupyter notebooks
+- How to use Jupyter `magics`
+- How to define and use interactive widgets
+- Special considerations for working reproducibly with Jupyter notebooks
+- How to convert and render Jupyter notebooks
+
+## Comparison
+
+| | Quarto | Jupyter |
+| --- | --- | --- |
+| underlying format | markdown | json |
+| code execution | code chunks | cells |
+| user interface | command line | web browser |
+| way of working | render top to bottom | interactive |
