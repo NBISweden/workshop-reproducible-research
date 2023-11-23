@@ -448,8 +448,9 @@ successful.
 > **Docker for older versions of OSX/Windows** <br>
 > The latest version of Docker may not work if you have an old version of either
 > OSX or Windows. You can find older Docker versions that may be compatible for
-> you if you go to [https://docs.docker.com/desktop/]() and click "Previous
-> versions" in the left side menu.
+> you if you go to
+> [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/) and click
+> "Previous versions" in the left side menu.
 
 ### MacOS
 
