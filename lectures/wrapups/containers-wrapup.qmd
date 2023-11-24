@@ -1,0 +1,19 @@
+---
+title: 'Wrap-up: Containers'
+format: nbis-revealjs
+---
+
+## What we have learned {.smaller}
+
+- How to run docker containers
+- Basic syntax of Dockerfiles
+- How to build docker images from Dockerfiles
+- How to mount volumes inside containers
+- How to push/pull docker images to/from DockerHub
+- How to convert a docker image to singularity/apptainer format
+
+## If you want to learn more {.smaller}
+
+- Docker documentation: [https://docs.docker.com/](https://docs.docker.com/)
+- Dockerfile reference: [https://docs.docker.com/engine/reference/builder/](https://docs.docker.com/engine/reference/builder/)
+- Apptainer documentation: [https://apptainer.org/docs/user/latest/](https://apptainer.org/docs/user/latest/)
