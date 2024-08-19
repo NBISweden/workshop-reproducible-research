@@ -5,34 +5,34 @@ can choose what you want to go through, or skip it entirely.
 Here are some useful resources if you want to read more about Jupyter in
 general:
 
-* The [Jupyter project site](http://jupyter.org) contains a lot of information
+- The [Jupyter project site](http://jupyter.org) contains a lot of information
   and inspiration.
-* The [Jupyter Notebook documentation](
-  https://jupyter-notebook.readthedocs.io/en/stable/).
-* A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
+- The [Jupyter Notebook documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
+- A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
 ## Running Jupyter notebooks on a cluster
 
-* Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
+- Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
 
 ```
 ssh <your-user-name>@rackham1.uppmax.uu.se
 ```
 
-* Create/activate a Conda environment containing `jupyter`, _e.g._:
+- Create/activate a Conda environment containing `jupyter`, _e.g._:
 
 ```
-mamba create -n jupyter -c conda-forge jupyter
+conda create -n jupyter -c conda-forge jupyter
 ```
 
-* activate the environment, then run:
+- activate the environment, then run:
 
 ```
 jupyter notebook --no-browser
 ```
 
 When the Jupyter server starts up you should see something resembling:
+
 ```
 [I 2023-11-13 22:15:36.944 ServerApp] Serving notebooks from local directory: <path-to-your-directory>
 [I 2023-11-13 22:15:36.944 ServerApp] Jupyter Server 2.10.0 is running at:
@@ -103,9 +103,10 @@ local Jupyter server. You can change the code, run it, and see the results. You
 can also add new cells and write new code. However, you cannot save the changes
 you make to the notebook.
 
-To read more about Binder and how to use it, see the 
+To read more about Binder and how to use it, see the
 [Binder documentation](https://mybinder.readthedocs.io/en/latest/). For pointers
 on how to make data available to the notebooks you share via Binder, see this
 guide on
 [Accessing data in your
 Binder](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html#accessing-data-in-your-binder).
+

@@ -6,13 +6,13 @@ to.
 If you're interested in learning more about Quarto in general, here are some
 reading tips:
 
- - [The Quarto documentation](https://quarto.org/docs/guide/)
- - [A gallery of Quarto examples](https://quarto.org/docs/gallery/)
- - [An awesome list of Quarto content](https://github.com/mcanouil/awesome-quarto)
+- [The Quarto documentation](https://quarto.org/docs/guide/)
+- [A gallery of Quarto examples](https://quarto.org/docs/gallery/)
+- [An awesome list of Quarto content](https://github.com/mcanouil/awesome-quarto)
 
 # Tabsets
 
-Sometimes you'll want to present the same content in different ways, *e.g.* the
+Sometimes you'll want to present the same content in different ways, _e.g._ the
 equivalent code in different languages. Look at the following toy example:
 
 ````
@@ -40,7 +40,7 @@ different tabs, or even show different interactive elements in separate tabs.
 # Callouts
 
 If you're writing some sort of documentation, tutorial or just want to draw
-special attention to something, *callouts* are here for you. They render as a
+special attention to something, _callouts_ are here for you. They render as a
 coloured block with a header and content. There are five types of callouts:
 `note`, `tip`, `warning`, `caution`, and `important`. As with lots of Quarto
 things they are specified using a division, like so:
@@ -85,7 +85,7 @@ yourself.
 
 If you just want to mix R and Python in a single Quarto document without the
 interoperability between the languages it's a lot simpler, though. You can
-either just install the `reticulate` package (`r-reticulate` in Conda/Mamba) or
+either just install the `reticulate` package (`r-reticulate` in Conda) or
 add the `python.reticulate=FALSE` chunk option to the Python chunks.
 
 # Citations
