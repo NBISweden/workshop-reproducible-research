@@ -181,15 +181,32 @@ changes you have yet to push anywhere, even if you don't use rebasing as an
 alternative to merging! This can make your Git history both cleaner and more
 concise, which is great when you're collaborating with others.
 
+## Resetting
+
+Sometimes you'll want to simply discard changes you've already committed. This
+should, however, be something that you _rarely_ have to do. Completely moving
+back to a previous commit is something called a _hard reset_, which can be
+accomplished like so:
+
+```bash
+git reset --hard 5b83463
+```
+
+You specify the commit you wish to return to, discarding _all_ other changes,
+including any changes done to the working directory. It goes without saying that
+this command is among the most dangerous commands available in Git and should be
+used with caution.
+
 ## The reflog
 
 We have shown many ways to work with Git and its various commands, and it
 occasionally happens that errors are introduced - especially when you're not
-careful with using `git commit --amend` or `git rebase` on remote changes. This
-is where the _reflog_ comes in. Think of the reflog as Git's "safety net": it
-stores almost every change you make to a Git repository (regardless of whether
-you commit the change) in a chronological manner. The following is an example of
-what the output of the `git reflog` command might show:
+careful with using `git commit --amend`, `git rebase` or `git reset` on remote
+changes. This is where the _reflog_ comes in. Think of the reflog as Git's
+"safety net": it stores almost every change you make to a Git repository
+(regardless of whether you commit the change) in a chronological manner. The
+following is an example of what the output of the `git reflog` command might
+show:
 
 ```no-highlight
 58deba6 HEAD@{0}: merge: feature-branch: Fast-forward
