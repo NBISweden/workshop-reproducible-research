@@ -78,7 +78,7 @@ This shows the difference between the active branch (`test_alignment`) and
 > **Note** <br>
 > Git is constantly evolving, along with some of its commands. The `checkout`
 > command was previously used for switching between branches, but this
-> functionality now has the dedicated (are clearer) `switch` command for this.
+> functionality now has the dedicated (and clearer) `switch` command for this.
 > If you've previously learned using `checkout` instead you can keep doing that
 > without any issues, as the `checkout` command itself hasn't changed.
 

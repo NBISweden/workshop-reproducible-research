@@ -3,13 +3,13 @@ repository for the course. The first step of the setup is thus to download all
 the files that you will need, which is done differently depending on which
 operating system you have.
 
-On the last day, in the *Putting the pieces together* session we will give
+On the last day, in the _Putting the pieces together_ session we will give
 examples of how we use these tools in our day-to-day work. During the course,
 spend some time thinking about how these tools could be useful for you in your
 own project(s). After you've gone through the tutorial you may feel that some of
 the tools could make your life easier from the get-go, while others may take
 some time to implement efficiently (and some you may never use again after the
-course). Our idea with the *Putting the pieces together* session is to have an
+course). Our idea with the _Putting the pieces together_ session is to have an
 open discussion about where to go from here.
 
 ## Setup for Mac / Linux users
@@ -25,8 +25,8 @@ cd workshop-reproducible-research
 
 > **Tip** <br>
 > If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, e.g.
-> `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+> you can do that using `git switch -d tags/<tag-name>`, e.g.
+> `git switch -d tags/course_1905`. To list all available tags, use `git tag`.
 > Run this command after you have `cd` into `workshop-reproducible-research`
 > as described above. If you do that, you probably also want to view the
 > same older version of this website. Until spring 2021, the website was
@@ -38,16 +38,15 @@ cd workshop-reproducible-research
 
 Using a Windows computer for bioinformatic work has sadly not been ideal most of
 the time, but large advanced in recent years have made this quite feasible
-through the Windows 10 *Linux subsystem*. This is the only setup for Windows
+through the Windows 10 _Linux subsystem_. This is the only setup for Windows
 users that we allow for participants of this course, as all the material has
 been created and tested to work on Unix-based systems.
 
 Using the Linux subsystem will give you access to a full command-line bash shell
 based on Linux on your Windows 10 PC. For the difference between the Linux Bash
-Shell and the PowerShell on Windows 10, see *e.g.* [this article](
-https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
+Shell and the PowerShell on Windows 10, see _e.g._ [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
 
-Install Bash on Windows 10, follow the instructions at *e.g.* one of these
+Install Bash on Windows 10, follow the instructions at _e.g._ one of these
 resources:
 
 - [Installing the Windows Subsystem and the Linux Bash](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
@@ -58,11 +57,11 @@ resources:
 > If you run into error messages when trying to download files through the Linux
 > shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
 > name server to the internet configuration by running `sudo nano
-> /etc/resolv.conf` then add `nameserver 8.8.8.8` to the bottom of the file and
+/etc/resolv.conf` then add `nameserver 8.8.8.8` to the bottom of the file and
 > save it.
 
 > **Important!** <br>
-> Whenever a setup instruction specifies Mac or Linux (*i.e.* only those two, with no alternative for Windows),
+> Whenever a setup instruction specifies Mac or Linux (_i.e._ only those two, with no alternative for Windows),
 > **please follow the Linux instructions.**
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
@@ -86,7 +85,7 @@ cd workshop-reproducible-research
 ## Installing Git
 
 Chances are that you already have git installed on your computer. You can check
-by running *e.g.* `git --version`. If you don't have git, install it following
+by running _e.g._ `git --version`. If you don't have git, install it following
 the instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 If you have a very old version of git you might want to update to a later
 version. If you're on a Mac you can also install it using [Homebrew](https://brew.sh/)
@@ -105,7 +104,7 @@ git config --global user.email "mona_lisa@gmail.com"
 ```
 
 > **Tip** <br>
-> If you have several accounts (*e.g.* both a GitHub and Bitbucket account),
+> If you have several accounts (_e.g._ both a GitHub and Bitbucket account),
 > and thereby several different usernames, you can configure git on
 > a per-repository level. Change directory into the relevant local git
 > repository and run `git config user.name "Mona Lisa"`. This will set the
@@ -127,7 +126,7 @@ below for more information.
 > Git repositories has traditionally been `master`, which historically comes
 > from the "master/slave" repositories of
 > [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-> This has been heavily discussed and in 2020 the decision was made by  many
+> This has been heavily discussed and in 2020 the decision was made by many
 > ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
 > to start using `main` instead. Any repository created with GitHub uses this
 > new naming scheme since October of 2020, and Git itself is currently
@@ -136,17 +135,6 @@ below for more information.
 > [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
 > instead of using a hard-coded `master`. We at NBIS want to be a part of this
 > change, so we have chosen to use `main` for this course.
-
-> **Tip** <br>
-> If you want to revisit the material from an older instance of this course, you
-> can do that using `git checkout tags/<tag-name>`, *e.g.* `git checkout
-> tags/course_1905`. To list all available tags, use `git tag`. Run this command
-> after you have `cd` into `workshop-reproducible-research` as described above.
-> If you do that, you probably also want to view the same older version of this
-> website. Until spring 2021, the website was hosted at
-> [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io/en/latest/).
-> Locate the version box in the bottom right corner of the website and select
-> the corresponding version.
 
 ### GitHub setup
 
@@ -157,7 +145,7 @@ account and credentials.
 
 If you have not done so already, go to [github.com](https://github.com/join) and
 create an account. You can also create an account on another online hosting
-service for version control, *e.g.* [Bitbucket](https://bitbucket.org) or
+service for version control, _e.g._ [Bitbucket](https://bitbucket.org) or
 [GitLab](https://about.gitlab.com/). The exercises in this course are written
 with examples from GitHub (as that is the most popular platform with the most
 extensive features), but the same thing can be done on alternative services,
@@ -176,12 +164,12 @@ SSH keys to your account, so please follow those instructions.
 > Using SSH (Secure Shell) for authentication basically entails setting up a
 > pair of keys: one private and one public. You keep the private key on your
 > local computer and give the public key to anywhere you want to be able to
-> connect to, *e.g.* GitHub. The public key can be used to encrypt messages that
-> *only* the corresponding private key can decrypt. A simplified description of
+> connect to, _e.g._ GitHub. The public key can be used to encrypt messages that
+> _only_ the corresponding private key can decrypt. A simplified description of
 > how SSH authentication works goes like this:
 >
-> 1. The client (*i.e.* the local computer) sends the ID of the SSH key pair it
->    would like to use for authentication to the server (*e.g.* GitHub)
+> 1. The client (_i.e._ the local computer) sends the ID of the SSH key pair it
+>    would like to use for authentication to the server (_e.g._ GitHub)
 > 2. If that ID is found, the server generates a random number and encrypts this
 >    with the public key and sends it back to the client
 > 3. The client decrypts the random number with the private key and sends it
@@ -204,18 +192,18 @@ SSH keys to your account, so please follow those instructions.
 Maybe you've worked with the Conda package manager before, and you're wondering
 what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
 quickly grown and matured to the point that we are almost exclusively using it
-in our own daily work rather than Conda -  we are thus reflecting this
+in our own daily work rather than Conda - we are thus reflecting this
 wide-spread adopting in the course material as well. Conveniently there is
 almost no difference in the way the two programs work on the command line. You
 simply change `conda` to `mamba` and keep working as you've done before (see the
-exception under *Configuring Conda* below). This also means that if you already
+exception under _Configuring Conda_ below). This also means that if you already
 have conda installed you can keep using it for this course, however we strongly
 recommend you to try out mamba in order to make your environment managing more
 efficient.
 
-You will notice that we still use the terms *Conda environment*, *Conda
-packages* *etc.* throughout the course and that the tutorial pages still have
-*Conda* in the title. This is because Conda is the original package manager with
+You will notice that we still use the terms _Conda environment_, _Conda
+packages_ _etc._ throughout the course and that the tutorial pages still have
+_Conda_ in the title. This is because Conda is the original package manager with
 a widely adopted terminology, and Mamba is a re-implementation of Conda; we hope
 this is not too confusing.
 
@@ -288,11 +276,11 @@ mamba --version
 
 > **Different Mamba/Conda flavours** <br>
 > You may come across several flavours of both Mamba and Conda. For Mamba
-> there's the *Miniforge* installer which allows you to install the `mamba`
+> there's the _Miniforge_ installer which allows you to install the `mamba`
 > command line tool that works as a replacement for `conda`. There's also
 > `micromamba`, a small stand-alone C++ program developed mainly for continuous
-> integration pipelines. For Conda there's *Miniconda*, which is the installer
-> for Conda. The third is *Anaconda*, which is a distribution of not only Conda,
+> integration pipelines. For Conda there's _Miniconda_, which is the installer
+> for Conda. The third is _Anaconda_, which is a distribution of not only Conda,
 > but also over 150 scientific Python packages. If you want to use Conda it's
 > generally better to stick with the Miniconda installation, rather than
 > installing 3 GB worth of packages you may not even use.
@@ -373,7 +361,7 @@ curl -s https://get.nextflow.io | bash
 ```
 
 This will give you the `nextflow` file in your current directly - move this file
-to a directory in your `PATH`, *e.g.* `/usr/bin/`.
+to a directory in your `PATH`, _e.g._ `/usr/bin/`.
 
 If you're getting Java-related errors, you can either try to [update your Java
 installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
@@ -407,7 +395,7 @@ PDF, which can be done using Quarto itself:
 quarto install tinytex
 ```
 
-While we're not installing Quarto *itself* using Mamba, we *will* install some
+While we're not installing Quarto _itself_ using Mamba, we _will_ install some
 software packages that are used in the Quarto tutorial using Mamba: make sure
 your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
 and install the necessary packages defined in the `environment.yml`:
@@ -456,7 +444,7 @@ successful.
 
 Go to [docker.com](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 and select the download option that is suitable for your computer's architecture
-(*i.e.* if you have an Intel chip or a newer Apple M1 chip). This will download
+(_i.e._ if you have an Intel chip or a newer Apple M1 chip). This will download
 a `dmg` file - click on it when it's done to start the installation. This will
 open up a window where you can drag the Docker.app to Applications. Close the
 window and click the Docker app from the Applications menu. Now it's basically
@@ -468,24 +456,24 @@ the Docker icon in the menu bar in the upper right part of the screen.
 Go to the [linux-install](https://docs.docker.com/desktop/install/linux-install/)
 section of the Docker documentation and make sure that your computer meets the
 system requirements. There you can also find instructions for different Linux
-distributions in the left sidebar under *Installation per Linux distro*.
+distributions in the left sidebar under _Installation per Linux distro_.
 
 ### Windows
 
-In order to run Docker on Windows your computer must support *Hardware
-Virtualisation Technology* and virtualisation must be enabled. This is typically
+In order to run Docker on Windows your computer must support _Hardware
+Virtualisation Technology_ and virtualisation must be enabled. This is typically
 done in BIOS. Setting this is outside the scope of this tutorial, so we'll
 simply go ahead as if though it's enabled and hope that it works.
 
 On Windows 10 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
-Click the link *Download from Docker Hub*, and select *Get Docker*. Once the
+Click the link _Download from Docker Hub_, and select _Get Docker_. Once the
 download is complete, execute the file and follow the [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
 You can now start Docker from the Start menu. You can search for it if you
 cannot find it; the Docker whale icon should appear in the task bar.
 
 You will probably need to enable integration with the Linux subsystem, if you
 haven't done so during the installation of Docker Desktop. Right-click on the
-Docker whale icon in the task bar and select *Settings*. Choose *Resources* and
-select *WPS integration*. Enable integration with the Linux subsystem and click
-*Apply & Restart*; also restart the Linux subsystem.
+Docker whale icon in the task bar and select _Settings_. Choose _Resources_ and
+select _WPS integration_. Enable integration with the Linux subsystem and click
+_Apply & Restart_; also restart the Linux subsystem.
