@@ -317,25 +317,29 @@ or, even better, might inspire you to create your own! Add them to your
 `~/.bash_profile` as above, so that they're available across sessions.
 
 ```bash
-# Basic git commands
-alias gb='git branch'
+# Basic Git commands
 alias ga='git add'
+alias gb='git branch'
+alias gc='git commit'
 alias gd='git diff'
-alias gcm='git commit'
-alias gp='git push'
-alias gu='git pull'
-alias gm='git merge'
-alias gco='git checkout'
 alias gl='git log'
+alias gm='git merge'
+alias gp='git push'
+alias gt='git tag'
+alias gu='git pull'
+alias gw='git switch'
 
 # Git status in short format
-alias gs='git status -s'
+alias gs='git status --short'
+
+# Show diff of staged files
+alias gds='git diff --staged'
 
 # Add and commit all tracked and modified files
-alias gca='git commit -a'
+alias gca='git commit --all'
 
-# Create and checkout a new branch
-alias gcob='git checkout -b'
+# Create and switch to a new branch
+alias gwc='git switch --create'
 
 # Git log with one line per commit
 alias glo='git log --oneline'
