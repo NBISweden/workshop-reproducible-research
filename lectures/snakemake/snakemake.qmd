@@ -870,7 +870,7 @@ $ snakemake --use-conda
 :::
 
 ::: {.fragment}
-- Run rules with specific Singularity or Docker containers
+- Run rules with specific Apptainer/Singularity or Docker containers
 
 ```{.bash code-line-numbers=false}
 $ snakemake --use-singularity

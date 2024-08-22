@@ -1,27 +1,25 @@
 If you want to read more about Snakemake in general you can find several
 resources here:
 
-* The Snakemake documentation is available on [ReadTheDocs](
-  https://snakemake.readthedocs.io/en/stable/#).
-* Here is another (quite in-depth) [tutorial](
-  https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
-* If you have questions, check out [stack overflow](
-  https://stackoverflow.com/questions/tagged/snakemake).
+- The Snakemake documentation is available on [ReadTheDocs](https://snakemake.readthedocs.io/en/stable/#).
+- Here is another (quite in-depth) [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
+- If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
 
 # Using containers in Snakemake
 
-Snakemake also supports defining a Singularity or Docker container for each
-rule (you will have time to work on the [Containers tutorial](containers-1-introduction)
-later during the course). Analogous to using a rule-specific Conda environment,
-specify `container: "docker://some-account/rule-specific-image"` in the rule
-definition. Instead of a link to a container image, it is also possible to
-provide the path to a `*.sif` file (= a Singularity file). When executing
-Snakemake, add the `--use-singularity` flag to the command line. For the given
-rule, a Singularity container will then be created from the image or Singularity
-file that is provided in the rule definition on the fly by Snakemake and the
-rule will be run in this container.
+Snakemake also supports defining a Apptainer/Singularity or Docker container for
+each rule (you will have time to work on the [Containers
+tutorial](containers-1-introduction) later during the course). Analogous to
+using a rule-specific Conda environment, specify `container:
+"docker://some-account/rule-specific-image"` in the rule definition. Instead of
+a link to a container image, it is also possible to provide the path to a
+`*.sif` file (= a _Singularity image file_). When executing Snakemake, add the
+`--use-singularity` flag to the command line (even if you are using Apptainer).
+For the given rule, a Apptainer container will then be created from the image or
+Apptainer file that is provided in the rule definition on the fly by Snakemake
+and the rule will be run in this container.
 
-You can find pre-made Singularity or Docker images for many tools on
+You can find pre-made Apptainer or Docker images for many tools on
 [https://biocontainers.pro/](https://biocontainers.pro/) (bioinformatics-specific)
 or on [https://hub.docker.com/](https://hub.docker.com/).
 
@@ -52,12 +50,12 @@ Start your Snakemake workflow with the following command:
 snakemake --use-singularity
 ```
 
-Feel free to modify the MRSA workflow according to this example. As Singularity
+Feel free to modify the MRSA workflow according to this example. As Apptainer
 is a container software that was developed for HPC clusters, and for example the
 Mac version is still a beta version, it might not work to run your updated
-Snakemake workflow with Singularity locally on your computer.
+Snakemake workflow with Apptainer locally on your computer.
 In the next section we explain how you can run Snakemake workflows on UPPMAX
-where Singularity is pre-installed.
+where Apptainer is pre-installed.
 
 # Running Snakemake workflows on UPPMAX
 
@@ -88,7 +86,7 @@ the `--slurm` flag to your Snakemake command. In addition you need to
 specify the id (_e.g. `snic-2023-01-001`) for your compute project. This can
 be done directly on the command line with `--default-resources
 slurm_account=snic2023-01-001`. You also need to specify the number of jobs
-that Snakemake will queue at the same time with `-j`, _e.g._ `-j 100` to
+that Snakemake will queue at the same time with `-j`, \_e.g._ `-j 100` to
 allow up to 100 jobs to be put into the queue at any given time. So the
 command would be (in addition to any other flags you may want to use):
 
@@ -107,7 +105,7 @@ Job 0 has been submitted with SLURM jobid 37099380 (log: .snakemake/slurm_logs/r
 In this example the log output from the job will be in
 `.snakemake/slurm_logs/rule_name/37099380.log`.
 
-So how do you specify SLURM resources such as runtime, CPUs *etc.*? The best
+So how do you specify SLURM resources such as runtime, CPUs _etc._? The best
 way to do that is to use the `resources:` and `threads:` directives in the
 rules of your workflow. This allows you to fine-tune jobs to run with
 individual runtime and CPU usage. Take a look at the example rule below:

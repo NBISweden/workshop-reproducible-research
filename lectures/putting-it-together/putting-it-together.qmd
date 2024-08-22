@@ -167,7 +167,7 @@ _Track the **full** environment and connect your code in a workflow_
 [Containerization / virtualization]{.green}
 
 - **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
-- **Singularity/Apptainer** – Simpler Docker alternative geared towards high performance computing. Does not require root.
+- **Apptainer/Singularity** – Simpler Docker alternative geared towards high performance computing. Does not require root.
 - **Podman** - open source daemonless container tool similar to docker in many regards
 - **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
 - **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
