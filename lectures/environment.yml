@@ -12,6 +12,7 @@ dependencies:
     - r-ggplot2
     - r-kableextra
     - r-palmerpenguins
+    - r-rmarkdown
     - r-stringi
     - r-tidyr
 
