@@ -237,7 +237,7 @@ threw away we can move around in the reflog in a similar manner we do normal
 commits:
 
 ```bash
-git switch -d HEAD@{1}
+git reset HEAD@{1}
 ```
 
 This will put us back to the state we were in before we used `git reset`. We
