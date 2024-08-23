@@ -126,15 +126,16 @@ _Track the **full** environment and connect your code in a workflow_
 [Version control]{.green}
 
 - **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
-- **Mercurial** – Distributed model just like Git, close to sourceforge.
+- **Mercurial** – Distributed model just like Git, close to Sourceforge.
 - **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
 
 ## Alternatives
 
 [Environment / package managers]{.green}
 
-- **Conda** – General purpose environment and package manager. Community-hosted collections of tools at bioconda or conda-forge.
-- **Pip** – Package manager for Python, has a large repository at pypi.
+- **Conda** – General purpose environment and package manager. Community-hosted collections of tools at Bioconda or Conda-forge.
+- **Pixi** - General purpose environment/package manager built on the Conda ecosystem, but much faster and allows for lock-files; no ARM64 emulation.
+- **Pip** – Package manager for Python, has a large repository at PyPI.
 - **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with _e.g._ update notifications better.
 - **Virtualenv** – Environment manager used to set up semi-isolated python environments.
 
@@ -159,7 +160,7 @@ _Track the **full** environment and connect your code in a workflow_
   generating high-quality documents.
 - **Zeppelin** – Developed by Apache. Closely integrated with Spark for
   distributed computing and Big Data applications.
-- **Beaker** – Newcomer based on Ipython, just as Jupyter. Has a focus on
+- **Beaker** – Newcomer based on IPython, just as Jupyter. Has a focus on
   integrating multiple languages in the same notebook.
 
 ## Alternatives
@@ -170,7 +171,7 @@ _Track the **full** environment and connect your code in a workflow_
 - **Singularity/Apptainer** – Simpler Docker alternative geared towards high performance computing. Does not require root.
 - **Podman** - open source daemonless container tool similar to docker in many regards
 - **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
-- **VirtualBox/VMWare** – Virtualization rather than containerization. Less lightweight, but no reliance on host kernel.
+- **VirtualBox/VMWare** – Virtualisation rather than containerization. Less lightweight, but no reliance on host kernel.
 
 class: center, middle
 

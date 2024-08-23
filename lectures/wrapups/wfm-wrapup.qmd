@@ -1,8 +1,5 @@
 ---
-title: 'Wrap-up: Workflow managers
-        <br>
-        <img src="https://assets.stickpng.com/images/63457d1f458f7fedca81867b.png" height="100px"/>
-        <img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png" height="80px" style="padding: 15px 15px 15px 15px"/>'
+title: 'Wrap-up: Workflow managers'
 format: nbis-revealjs
 ---
 
