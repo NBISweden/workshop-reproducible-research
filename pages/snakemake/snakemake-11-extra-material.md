@@ -7,17 +7,18 @@ resources here:
 
 # Using containers in Snakemake
 
-Snakemake also supports defining a Apptainer/Singularity or Docker container for
-each rule (you will have time to work on the [Containers
+Snakemake also supports defining an Apptainer or Docker container for each rule
+(you will have time to work on the [Containers
 tutorial](containers-1-introduction) later during the course). Analogous to
 using a rule-specific Conda environment, specify `container:
 "docker://some-account/rule-specific-image"` in the rule definition. Instead of
 a link to a container image, it is also possible to provide the path to a
 `*.sif` file (= a _Singularity image file_). When executing Snakemake, add the
-`--use-singularity` flag to the command line (even if you are using Apptainer).
-For the given rule, a Apptainer container will then be created from the image or
-Apptainer file that is provided in the rule definition on the fly by Snakemake
-and the rule will be run in this container.
+`--software-deployment-method apptainer` (or the shorthand `--sdm apptainer`)
+flag to the command line. For the given rule,
+an Apptainer container will then be created from the image or file that
+is provided in the rule definition on the fly by Snakemake and the rule will be
+run in this container.
 
 You can find pre-made Apptainer or Docker images for many tools on
 [https://biocontainers.pro/](https://biocontainers.pro/) (bioinformatics-specific)
@@ -47,7 +48,7 @@ rule align_to_genome:
 Start your Snakemake workflow with the following command:
 
 ```bash
-snakemake --use-singularity
+snakemake --software-deployment-method apptainer
 ```
 
 Feel free to modify the MRSA workflow according to this example. As Apptainer
