@@ -865,15 +865,15 @@ $ snakemake --configfile config.yaml
 - Run rules with specific conda environments
 
 ```{.bash code-line-numbers=false}
-$ snakemake --use-conda
+$ snakemake --software-deployment-method conda
 ```
 :::
 
 ::: {.fragment}
-- Run rules with specific Apptainer/Singularity or Docker containers
+- Run rules with specific Apptainer or Docker containers
 
 ```{.bash code-line-numbers=false}
-$ snakemake --use-singularity
+$ snakemake --software-deployment-method apptainer
 ```
 :::
 
