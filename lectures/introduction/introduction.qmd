@@ -17,7 +17,7 @@ format: nbis-revealjs
 
 - How to generate automated reports using [Quarto]{.green} and [Jupyter]{.green}
 
-- How to use [Docker]{.green} and [Singularity]{.green} to distribute containerized
+- How to use [Docker]{.green} and [Apptainer]{.green} to distribute containerized
   computational environments
 :::
 
