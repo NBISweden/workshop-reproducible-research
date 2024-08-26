@@ -3,17 +3,17 @@ here. If you are interested to learn more details about Nextflow, we will
 briefly show some of its advanced features in this section. But first, here are
 some links to additional resources on Nextflow:
 
- * [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html) that
-   can help with common operations and concepts
- * The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
- * [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
- * Nextflow training at [Seqera](https://seqera.io/training/)
- * A work-in-progress [Nextflow Carpentry course](https://carpentries-incubator.github.io/workflows-nextflow/index.html)
- * Community help from [Nextflow's Slack channel](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg)
+- [Nextflow patterns](http://nextflow-io.github.io/patterns/index.html) that
+  can help with common operations and concepts
+- The Nextflow [documentation](https://www.nextflow.io/docs/latest/index.html)
+- [Learning Nextflow in 2020](https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html)
+- Nextflow training at [Seqera](https://seqera.io/training/)
+- A work-in-progress [Nextflow Carpentry course](https://carpentries-incubator.github.io/workflows-nextflow/index.html)
+- Community help from [Nextflow's Slack channel](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg)
 
 # Using containers in Nextflow
 
-Nextflow has built-in support for using both Docker and Singularity containers
+Nextflow has built-in support for using both Docker and Apptainer containers
 (and others too), either with a single container for the workflow as a whole or
 separate containers for each individual process. The simplest way to do it is to
 have a single container for your entire workflow, in which case you simply run
@@ -23,8 +23,8 @@ the workflow and specify the image you want to use, like so:
 # Run with docker
 nextflow run main.nf -with-docker image-name
 
-# Run with Singularity
-nextflow run main.nf -with-singularity image.sif
+# Run with Apptainer
+nextflow run main.nf -with-apptainer image.sif
 ```
 
 If you don't want to supply this at every execution, you can also add it
@@ -35,9 +35,9 @@ directly to your configuration file:
 process.container = 'image-name'
 docker.enabled = true
 
-# Singularity configuration
+# Apptainer configuration
 process.container = 'path/to/image.sif'
-singularity.enabled = true
+apptainer.enabled = true
 ```
 
 If you instead would like to have each process use a different container you can
@@ -60,13 +60,13 @@ process PROCESS_02 {
 Regardless of which solution you go for, Nextflow will execute all the processes
 inside the specified container. In practice, this means that Nextflow will
 automatically wrap your processes and run them by executing the Docker or
-Singularity command with the image you have provided.
+Apptainer command with the image you have provided.
 
 # Using Conda in Nextflow
 
 While you can execute Nextflow inside Conda environments just like you would any
 other type of software, you can also use Conda with Nextflow in the same way as
-for Docker and Singularity above. You can either supply an `environment.yml`
+for Docker and Apptainer above. You can either supply an `environment.yml`
 file, the path to an existing environment or the packages and their versions
 directly in the `conda` directive, like so:
 
@@ -99,7 +99,7 @@ process.conda = 'mrsa-environment.yml'
 
 A lot of researchers in Sweden are using the Uppmax computer cluster in Uppsala,
 which is easily handled by Nextflow. What you need to do is to add the following
-*profile* to your `nextflow.config` file:
+_profile_ to your `nextflow.config` file:
 
 ```
 profiles {
@@ -125,7 +125,7 @@ profiles {
 This will add a profile to your workflow, which you can access by running the
 workflow with `-profile uppmax`. You will also have to supply an extra parameter
 `account` which corresponds to your SNIC project account, but the rest you can
-leave as-is, unless you want to tinker with *e.g.* compute resource
+leave as-is, unless you want to tinker with _e.g._ compute resource
 specifications. That's all you need! Nextflow will take care of communications
 with SLURM (the system used by Uppmax, specified by the `executor` line) and
 will send off jobs to the cluster for you, and everything will look exactly the
@@ -161,8 +161,8 @@ together into a nested tuple looking like this:
 
 The first element of the tuple (`[0]`) thus contains the value `sample`, while
 the second element (`[1]`) contains another tuple with paths to both read files.
-This nested tuple can be passed into processes for *e.g.* read alignment, and
-it makes the entire procedure of going from read pairs (*i.e.* two separate
+This nested tuple can be passed into processes for _e.g._ read alignment, and
+it makes the entire procedure of going from read pairs (_i.e._ two separate
 files, one sample) into a single alignment file (one file, one sample) very
 simple. For more methods of reading in data see the Nextflow documentation on
 [Channel Factories](https://www.nextflow.io/docs/latest/channel.html#channel-factory).
@@ -186,7 +186,7 @@ header. The `map` operator takes each entire row and subsets it to only two
 columns: the `sample_id` and `treatment` columns (discarding the other columns).
 This subset is stored as a tuple. The `filter` operator is then used to remove
 any tuples where the second entry (`treatment`) is not equal to the string
-`"DMSO"` (*i.e.* untreated cells, in this example). Finally, we only keep unique
+`"DMSO"` (_i.e._ untreated cells, in this example). Finally, we only keep unique
 tuple values. Let's say that this is the metadata we're reading:
 
 ```no-highlight
@@ -241,7 +241,7 @@ process index_fasta {
 ```
 
 Here we have some command `index` that, for whatever reason, requires both the
-path to a FASTA file and the name of that file *without* the `.fasta`
+path to a FASTA file and the name of that file _without_ the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
 Bash, mixing and matching as we like. The first line of the `script` directive
 gets the name of the FASTA file without the extension by removing anything
@@ -253,7 +253,7 @@ bash.
 You may have heard of the [nf-core](https://nf-co.re/) pipeline collection
 previously, which is a large, collaborative bioinformatics community dedicated
 to building, developing and maintaining Nextflow workflows. In fact, if you have
-sequenced data at *e.g.* the National Genomics Infrastructure ([NGI](https://ngisweden.scilifelab.se/)),
+sequenced data at _e.g._ the National Genomics Infrastructure ([NGI](https://ngisweden.scilifelab.se/)),
 you can be sure that the data processing has been run using one of the nf-core
 pipelines! While the community only started in 2018 (with a [Nature Biotechnology](https://www.nature.com/articles/s41587-020-0439-x)
 paper in 2020), it already has over 30 production-ready pipelines with
@@ -271,7 +271,7 @@ it with.
 Each pipeline comes with extensive documentation, test datasets that you can
 use to practice on, can be run on both HPCs like Uppmax, cloud services like
 AWS or locally on your own computer. All pipelines support both Conda and
-Docker/Singularity, and you can additionally run specific versions of the
+Docker/Apptainer, and you can additionally run specific versions of the
 pipelines, allowing for full reproducibility of your analyses. If you want to
 check nf-core out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
 and see what's available! Who knows, you might even write your own nf-core

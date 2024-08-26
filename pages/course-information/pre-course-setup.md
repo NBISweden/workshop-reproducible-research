@@ -215,17 +215,17 @@ instructions below.
 
 ### If you have Conda installed
 
-Install `mamba` from the `conda-forge` channel into your base environment:
-
-```
 conda install mamba -n base mamba -c conda-forge
+
 ```
 
 Check that installation worked by running:
 
 ```
+
 mamba --version
-```
+
+````
 
 ### If you have neither Mamba nor Conda installed
 
@@ -237,7 +237,7 @@ installer for your operating system.
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-x86_64.sh -O
 bash Mambaforge-MacOSX-x86_64.sh
 rm Mambaforge-MacOSX-x86_64.sh
-```
+````
 
 ```bash
 # Install Mambaforge 3 for 64-bit Mac (Apple chip)
