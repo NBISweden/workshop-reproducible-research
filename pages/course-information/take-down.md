@@ -141,26 +141,3 @@ Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7)
 via Control Panel > Programs > Programs and Features. Docker Toolbox will also
 have installed Oracle VM VirtualBox, so uninstall that as well if you're not
 using it for other purposes.
-
-## Singularity
-
-Singularity images are files that can simply be deleted. Singularity also
-creates a hidden directory `.singularity` in your home directory that contains
-its cache, which you may delete.
-
-#### Linux
-
-If you want to uninstall Singularity, its removal will depend on the installation
-method you chose. Please refer to the
-[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html?highlight=uninstall#install-on-linux)
-to find out which tools and dependencies you need to uninstall.
-
-#### Mac
-
-The DMG file you downloaded to install Singularity Desktop on your Mac contains
-an uninstall tool that you can use.
-
-#### Windows
-
-On Windows, you will need to uninstall Git for Windows, VirtualBox, Vagrant and
-Vagrant Manager (see the [Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).

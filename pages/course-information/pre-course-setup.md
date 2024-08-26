@@ -25,8 +25,8 @@ cd workshop-reproducible-research
 
 > **Tip** <br>
 > If you want to revisit the material from an older instance of this course,
-> you can do that using `git checkout tags/<tag-name>`, e.g.
-> `git checkout tags/course_1905`. To list all available tags, use `git tag`.
+> you can do that using `git switch -d tags/<tag-name>`, e.g.
+> `git switch -d tags/course_1905`. To list all available tags, use `git tag`.
 > Run this command after you have `cd` into `workshop-reproducible-research`
 > as described above. If you do that, you probably also want to view the
 > same older version of this website. Until spring 2021, the website was
@@ -135,17 +135,6 @@ below for more information.
 > [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
 > instead of using a hard-coded `master`. We at NBIS want to be a part of this
 > change, so we have chosen to use `main` for this course.
-
-> **Tip** <br>
-> If you want to revisit the material from an older instance of this course, you
-> can do that using `git checkout tags/<tag-name>`, _e.g._ `git checkout
-tags/course_1905`. To list all available tags, use `git tag`. Run this command
-> after you have `cd` into `workshop-reproducible-research` as described above.
-> If you do that, you probably also want to view the same older version of this
-> website. Until spring 2021, the website was hosted at
-> [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io/en/latest/).
-> Locate the version box in the bottom right corner of the website and select
-> the corresponding version.
 
 ### GitHub setup
 
