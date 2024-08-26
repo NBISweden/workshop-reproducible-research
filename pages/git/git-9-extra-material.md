@@ -8,19 +8,19 @@ to, and you can even skip this part of the lesson if you like!
 If you are interested in learning more about Git in general, here are some
 reading tips for you:
 
-* [Git cheat-sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-* [A simple Git guide](http://rogerdudler.github.io/git-guide/)
-* [Resources to learn Git]( https://try.github.io/levels/1/challenges/1)
-* [Git reference manual](https://book.git-scm.com/docs)
+- [Git cheat-sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- [A simple Git guide](http://rogerdudler.github.io/git-guide/)
+- [Resources to learn Git](https://try.github.io/levels/1/challenges/1)
+- [Git reference manual](https://book.git-scm.com/docs)
 
 ## Forking
 
-When you want to work on an Open Source project that is available on *e.g.*
+When you want to work on an Open Source project that is available on _e.g._
 GitHub, you usually don't have permission to directly push code to the project's
 repository - this is so that the project's maintainers are the only ones that
 can directly change anything in their codebase. How do you then contribute to
 projects that don't allow you to push your code to their repository? Simple: use
-*forking*!
+_forking_!
 
 Forking is when you make your own copy of a repository on your GitHub account,
 which you will then have permissions to change as you see fit. You can then
@@ -58,7 +58,7 @@ been there. Be careful, though! This will actually rewrite history, meaning that
 it only works if you only amended local changes. If you had already pushed the
 first commit to a remote repository you would run into trouble: you will be able
 to make the amend without issue, but you'll get an error when you try to push
-your new changes, since the remote already contains the *first* version of the
+your new changes, since the remote already contains the _first_ version of the
 commit and can't simply rewrite what it already has.
 
 Amending changes is thus a good way to fix small mistakes you realise you made
@@ -73,16 +73,16 @@ common case: a `feature-branch` which we want to get into the `main` branch.
 
 ![](images/git-rebase-1.png){ width=300px }
 
-Recall that a merge creates a *merge commit*, something akin to `Merge branch
-'feature-branch' into main` or similar. This is a *new* commit that didn't exist
+Recall that a merge creates a _merge commit_, something akin to `Merge branch
+'feature-branch' into main` or similar. This is a _new_ commit that didn't exist
 that brings the changes on `feature-branch` into `main`, but it contains no
 actual work itself. This is both a good and a bad thing: good, because merging
-is a safe, *non-destructive* operation (it doesn't alter history); bad, because
+is a safe, _non-destructive_ operation (it doesn't alter history); bad, because
 it can make the history itself look quite messy. These are the commands used
 and what the history will look like afterwards:
 
 ```bash
-git checkout main
+git switch main
 git merge feature-branch
 ```
 
@@ -90,14 +90,14 @@ git merge feature-branch
 
 (The commit with the dashed border is the merge commit.)
 
-Rebasing, on the other hand does *not* create merge commits. Indeed, what rebase
-does is to "re-base" one branch on the other, *i.e.* pretend that new changes
+Rebasing, on the other hand does _not_ create merge commits. Indeed, what rebase
+does is to "re-base" one branch on the other, _i.e._ pretend that new changes
 were done on a different base than what actually happened (hence the name).
 Getting our `feature-branch` onto `main` using rebase actually entails two
 separate steps: first the rebase itself, followed by a fast-forward merge:
 
 ```bash
-git checkout feature-branch
+git switch feature-branch
 git rebase main
 ```
 
@@ -107,11 +107,11 @@ This step rebases our `feature-branch` on top of `main`, meaning that we pretend
 that the commits on `feature-branch` were done based on the latest commits on
 `main` - you can also think of it as moving the entire `feature-branch` to the
 tip of the `main` branch. The commits with the dashed borders here indicate
-*brand new* commits; rebasing can't somehow move the commits to the new base,
+_brand new_ commits; rebasing can't somehow move the commits to the new base,
 rather it has to "replay" those commits as if they were done on the new base.
 
 ```bash
-git checkout master
+git switch main
 git merge feature-branch
 ```
 
@@ -121,8 +121,8 @@ We've now got our `feature-branch` commits onto `main` with a single, linear
 history without any merge commits! We did have to rewrite history, though, when
 we did the rebase itself. As with amending (see [above](#amending-commits)),
 this is fine if we're only working locally, but we'll quickly run into trouble
-if we try to rebase things that have already been pushed. We can rebase *on top
-of* remote things, of course, since we're not changing any remote history, only
+if we try to rebase things that have already been pushed. We can rebase _on top
+of_ remote things, of course, since we're not changing any remote history, only
 the local history. Be careful when you rebase!
 
 ## Rebasing as clean-up
@@ -136,14 +136,14 @@ you have a number of commits on it. Some are highly related to each other and
 might actually be better suited as a single commit. You've also spotted a
 spelling error in one commit message, and realised that you missed important
 information in another. We can actually solve all of these issues with an
-*interactive rebase*! If you have 4 commits on your branch you can type the
+_interactive rebase_! If you have 4 commits on your branch you can type the
 following:
 
 ```bash
 git rebase -i HEAD~4
 ```
 
-The `-i` flag means *interactive*, while `HEAD~4` means 4 commits back from
+The `-i` flag means _interactive_, while `HEAD~4` means 4 commits back from
 `HEAD`. This will open your default text editor and give you a selection looking
 something like this:
 
@@ -181,15 +181,32 @@ changes you have yet to push anywhere, even if you don't use rebasing as an
 alternative to merging! This can make your Git history both cleaner and more
 concise, which is great when you're collaborating with others.
 
+## Resetting
+
+Sometimes you'll want to simply discard changes you've already committed. This
+should, however, be something that you _rarely_ have to do. Completely moving
+back to a previous commit is something called a _hard reset_, which can be
+accomplished like so:
+
+```bash
+git reset --hard 5b83463
+```
+
+You specify the commit you wish to return to, discarding _all_ other changes,
+including any changes done to the working directory. It goes without saying that
+this command is among the most dangerous commands available in Git and should be
+used with caution.
+
 ## The reflog
 
 We have shown many ways to work with Git and its various commands, and it
 occasionally happens that errors are introduced - especially when you're not
-careful with using `git commit --amend` or `git rebase` on remote changes. This
-is where the *reflog* comes in. Think of the reflog as Git's "safety net": it
-stores almost every change you make to a Git repository (regardless of whether
-you commit the change) in a chronological manner. The following is an example of
-what the output of the `git reflog` command might show:
+careful with using `git commit --amend`, `git rebase` or `git reset` on remote
+changes. This is where the _reflog_ comes in. Think of the reflog as Git's
+"safety net": it stores almost every change you make to a Git repository
+(regardless of whether you commit the change) in a chronological manner. The
+following is an example of what the output of the `git reflog` command might
+show:
 
 ```no-highlight
 58deba6 HEAD@{0}: merge: feature-branch: Fast-forward
@@ -200,9 +217,9 @@ what the output of the `git reflog` command might show:
 ```
 
 It shows the most recent change at the top, notified by `HEAD@{0}`. We thus have
-a merging of `feature-branch` into `main`, a checkout into `main`, two commits
-on `feature-branch` and a checkout into `feature-branch` - reading it backwards
-we get a chronological log of what has happened.
+a merging of `feature-branch` into `main`, a checkout (switch) into `main`, two
+commits on `feature-branch` and a checkout into `feature-branch` - reading it
+backwards we get a chronological log of what has happened.
 
 The reflog is incredibly useful for when you've lost something you later realise
 you want to access again, such as when you've just used `git reset`. The reflog
@@ -220,7 +237,7 @@ threw away we can move around in the reflog in a similar manner we do normal
 commits:
 
 ```bash
-git checkout HEAD@{1}
+git reset HEAD@{1}
 ```
 
 This will put us back to the state we were in before we used `git reset`. We
@@ -266,7 +283,7 @@ This function does a number of things:
 
 1. Ejects the error message from Git if the current directory isn't a part of a
    Git repository into `/dev/null` (_i.e._ into nothing).
-2. Find the current branch by searching for a line that starts with `*` (*i.e.*
+2. Find the current branch by searching for a line that starts with `*` (_i.e._
    the current branch) using the command line program `sed`.
 3. Put the current branch into parentheses with a space before it.
 
@@ -294,31 +311,35 @@ file, so make sure you don't overwrite it!
 ## Bash aliases for git
 
 Some Git commands are used over and over again when working with git, such as
-`git status`. Some people like to have aliases (*i.e.* shortcuts) for these
+`git status`. Some people like to have aliases (_i.e._ shortcuts) for these
 common commands. Here is a small list of such aliases that you may find useful
 or, even better, might inspire you to create your own! Add them to your
 `~/.bash_profile` as above, so that they're available across sessions.
 
 ```bash
-# Basic git commands
-alias gb='git branch'
+# Basic Git commands
 alias ga='git add'
+alias gb='git branch'
+alias gc='git commit'
 alias gd='git diff'
-alias gcm='git commit'
-alias gp='git push'
-alias gu='git pull'
-alias gm='git merge'
-alias gco='git checkout'
 alias gl='git log'
+alias gm='git merge'
+alias gp='git push'
+alias gt='git tag'
+alias gu='git pull'
+alias gw='git switch'
 
 # Git status in short format
-alias gst='git status -s'
+alias gs='git status --short'
+
+# Show diff of staged files
+alias gds='git diff --staged'
 
 # Add and commit all tracked and modified files
-alias gca='git commit -a'
+alias gca='git commit --all'
 
-# Create and checkout a new branch
-alias gcob='git checkout -b'
+# Create and switch to a new branch
+alias gwc='git switch --create'
 
 # Git log with one line per commit
 alias glo='git log --oneline'
@@ -326,7 +347,7 @@ alias glo='git log --oneline'
 
 ## Pretty logs
 
-If you want to customise *e.g.* the format and the colours of the logs you can
+If you want to customise _e.g._ the format and the colours of the logs you can
 use the `gitconfig` file (the same one we added things to using `git config
 --global user.name "Mona Lisa"` in the pre-course setup). You can read more
 about exactly what you can do at the documentation for [Git
@@ -341,7 +362,7 @@ examples here:
 
 This first example alters the format of the default `git log` command. It looks
 similar to what you'd be used to seeing with that command, except his has some
-colour highlights and adds the relative date (*e.g.* "1 hour ago" and similar
+colour highlights and adds the relative date (_e.g._ "1 hour ago" and similar
 relative times).
 
 ```no-highlight
