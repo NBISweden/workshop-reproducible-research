@@ -8,55 +8,55 @@ Explorer or `rm -rf workshop-reproducible-research`. Note that this will also
 delete the hidden directories `.git`, which contains the history of the repo,
 and `.snakemake`, which contains the history of any Snakemake runs.
 
-## Mamba
+## Conda
 
-Several of the tutorials use Mamba for installing packages. This amounts to
-about 2.6 GB if you've done all the tutorials. If you plan on using Mamba in
+Several of the tutorials use Conda for installing packages. This amounts to
+about 2.6 GB if you've done all the tutorials. If you plan on using Conda in
 the future you can remove just the packages, or you can remove everything
-including Mamba itself.
+including Conda itself.
 
 In order to remove all your environments, you first need to list them:
 
 ```bash
-mamba env list
+conda env list
 ```
 
 For each of the environments except "base" run the following:
 
 ```bash
-mamba remove -n <envname> --all
+conda remove -n <envname> --all
 ```
 
 And, finally:
 
 ```bash
-mamba clean --all
+conda clean --all
 ```
 
-If you also want to remove Mamba itself (*i.e.* removing all traces of Mamba),
+If you also want to remove Conda itself (_i.e._ removing all traces of Conda),
 you should first reverse the installation, this part should be run with `conda`:
 
 ```
 conda init --reverse
 ```
 
-Now find the path where Mamba is installed. Look for the row "base
+Now find the path where Conda is installed. Look for the row "base
 environment":
 
 ```bash
-mamba info | grep "base environment"
+conda info | grep "base environment"
 ```
 
 This should say something like:
 
 ```
-base environment : /Users/<user>/mambaforge  (writable).
+base environment : /Users/<user>/condaforge  (writable).
 ```
 
-Then remove the entire Mambaforge directory:
+Then remove the entire Miniforge directory:
 
 ```
-rm -rf /Users/<user>/mambaforge
+rm -rf /Users/<user>/miniforge3
 ```
 
 ## Snakemake
@@ -141,26 +141,3 @@ Uninstall Docker for Windows (on Windows 10) or Docker Toolbox (on Windows 7)
 via Control Panel > Programs > Programs and Features. Docker Toolbox will also
 have installed Oracle VM VirtualBox, so uninstall that as well if you're not
 using it for other purposes.
-
-## Singularity
-
-Singularity images are files that can simply be deleted. Singularity also
-creates a hidden directory `.singularity` in your home directory that contains
-its cache, which you may delete.
-
-#### Linux
-
-If you want to uninstall Singularity, its removal will depend on the installation
-method you chose. Please refer to the
-[Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html?highlight=uninstall#install-on-linux)
-to find out which tools and dependencies you need to uninstall.
-
-#### Mac
-
-The DMG file you downloaded to install Singularity Desktop on your Mac contains
-an uninstall tool that you can use.
-
-#### Windows
-
-On Windows, you will need to uninstall Git for Windows, VirtualBox, Vagrant and
-Vagrant Manager (see the [Singularity installation guide](https://sylabs.io/guides/3.4/user-guide/installation.html#install-on-windows-or-mac)).

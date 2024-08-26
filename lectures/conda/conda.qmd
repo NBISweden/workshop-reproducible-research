@@ -208,50 +208,16 @@ conda env export > environment.yml
 conda env export --from-history > environment.yml
 ```
 
-## Conda, Anaconda, Miniconda, Mamba... {.smaller}
+## Conda, Anaconda, Miniconda, Miniforge... {.smaller}
 
 ::: {.incremental}
 - [Conda]{.green}: The package manager itself, written in python
-- [Mamba]{.green}: A faster re-implementation of Conda (written in C++)
 - [Anaconda]{.green}:
+  - The company behind Conda itself
   - An installer for Conda containing over 7,500 open-source packages
   - A cloud service where conda packages are hosted ([anaconda.com](https://anaconda.com))
-- [Miniconda]{.green}: A minimal installer for Conda, containing only the most necessary packages to get started
-- [Mambaforge]{.green}: Installer with Mamba in the base environment, pre-configured to use the conda-forge channel
+- [Miniconda]{.green}: A minimal installer for Conda, pre-configured to use the `default` channel
+- [Miniforge]{.green}: A minimal installer for Conda, pre-configured to use the `conda-forge` channel
 :::
-
-## Mamba vs. Conda {auto-animate="true"}
-
-_Mamba is a faster re-implementation of Conda in C++._
-
-::: {layout-ncol=2 layout-valign="center" data-id="mamba-logo"}
-![](https://mamba.readthedocs.io/en/latest/_static/logo.png){width=75%}
-
-![](https://docs.conda.io/en/latest/_images/conda_logo.svg){width=75%}
-:::
-
-## Mamba vs. Conda {auto-animate="true"}
-
-_Mamba is a faster re-implementation of Conda in C++._
-
-- Install mamba with conda: `conda install -n base -c conda-forge mamba` (or see
-  the [documentation](https://mamba.readthedocs.io/en/latest/installation.html)
-  for how to do a fresh install)
-
-## Mamba vs. Conda {auto-animate="true"}
-
-_Mamba is a faster re-implementation of Conda in C++._
-
-- Install mamba with conda: `conda install -n base -c conda-forge mamba` (or see
-  the [documentation](https://mamba.readthedocs.io/en/latest/installation.html)
-  for how to do a fresh install)
-- Simply replace `conda` with `mamba` on the command line:
-
-```bash
-mamba env create --name project_a -f environment.yml
-mamba env update -f environment.yml
-mamba env export > environment-full.yml
-mamba env export --from-history > environment-history.yml
-```
 
 # Questions?

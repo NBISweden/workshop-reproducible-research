@@ -34,7 +34,7 @@ together with best practices, can be found
 [here](https://docs.docker.com/engine/reference/builder/).
 
 ```Dockerfile
-FROM condaforge/mambaforge
+FROM condaforge/miniforge3
 
 LABEL description = "Minimal image for the NBIS reproducible research course."
 MAINTAINER "John Sundh" john.sundh@scilifelab.se
@@ -43,23 +43,23 @@ MAINTAINER "John Sundh" john.sundh@scilifelab.se
 Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. While `LABEL`
 and `MAINTAINER` is just meta-data that can be used for organizing your
 various Docker components the important one is `FROM`, which specifies the
-base image we want to start from. Because we want to use `mamba` to install
+base image we want to start from. Because we want to use `conda` to install
 packages we will start from an image from the conda-forge community that has
-`mamba` pre-installed. This image was in turn built using a Dockerfile as a
+`conda` pre-installed. This image was in turn built using a Dockerfile as a
 blueprint and then uploaded to
-[Dockerhub](https://hub.docker.com/r/condaforge/mambaforge). The conda-forge
+[Dockerhub](https://hub.docker.com/r/condaforge/miniforge3). The conda-forge
 community keeps the Dockerfile in a git repository and you can view the file
 [here](https://github.com/conda-forge/miniforge-images/blob/master/ubuntu/Dockerfile).
 You will see that it starts from an official Ubuntu image (check the first
 line with the `FROM` instruction), followed by code to install various
-packages including mamba.
+packages including conda.
 
-> *Many roads to Rome* <br>
+> _Many roads to Rome_ <br>
 > When it comes to choosing the best image to start from there are multiple
 > routes you could take. Say you want to run RStudio in a Conda environment
 > through a Jupyter notebook. You could then start from one of the
 > [rocker images](https://github.com/rocker-org/rocker) for R, a
-> [Mambaforge image](https://hub.docker.com/r/condaforge/mambaforge), or
+> [Condaforge image](https://hub.docker.com/r/condaforge/miniforge3), or
 > a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start
 > from one of the low-level official images and set up everything from scratch.
 
@@ -90,8 +90,8 @@ for executing shell commands:
 # Install package for setting time zone
 RUN apt-get update && apt-get install -y tzdata && apt-get clean
 
-# Configure Conda/Mamba
-RUN mamba init bash && conda config --set channel_priority strict && \
+# Configure Conda
+RUN conda init bash && conda config --set channel_priority strict && \
     conda config --append channels bioconda && \
     conda config --append channels r && \
     conda config --set subdir linux-64
@@ -110,8 +110,8 @@ require it.
 > but rather help in the building of the container image itself. While not
 > critical, it's important to note this from a reproducibility perspective.
 
-Next, we run `mamba init bash` to initialize the bash shell inside the
-image, meaning we can use `mamba activate` in containers that run from the
+Next, we run `conda init bash` to initialize the bash shell inside the
+image, meaning we can use `conda activate` in containers that run from the
 image. In the same `RUN` statement we also configure the strict channel priority
 and add appropriate channels with `conda config`. You'll probably recognize
 this from the [pre-course-setup](../course-information/pre-course-setup).
@@ -165,10 +165,10 @@ This should result in something similar to this:
  => => transferring dockerfile: 667B                                                                                                                                                                  0.0s
  => [internal] load .dockerignore                                                                                                                                                                     0.0s
  => => transferring context: 2B                                                                                                                                                                       0.0s
- => [internal] load metadata for docker.io/condaforge/mambaforge:latest                                                                                                                               0.0s
- => [1/3] FROM docker.io/condaforge/mambaforge                                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/condaforge/miniforge3:latest                                                                                                                               0.0s
+ => [1/3] FROM docker.io/condaforge/miniforge3                                                                                                                                                        0.0s
  => CACHED [2/3] WORKDIR /course                                                                                                                                                                      0.0s
- => [3/3] RUN mamba init bash && conda config --set channel_priority strict &&     conda config --append channels bioconda &&     conda config --append channels r &&     conda config --set subdir   2.1s
+ => [3/3] RUN conda init bash && conda config --set channel_priority strict &&     conda config --append channels bioconda &&     conda config --append channels r &&     conda config --set subdir   2.1s
  => exporting to image                                                                                                                                                                                0.0s
  => => exporting layers                                                                                                                                                                               0.0s
  => => writing image sha256:53e6efeaa063eadf44c509c770d887af5e222151f08312e741aecc687e6e8981                                                                                                          0.0s
@@ -214,14 +214,14 @@ Dockerfiles_ step.
 
 **Install packages**
 
-Use the `RUN` instruction to install the package `fastqc=0.11.9` with Mamba.
+Use the `RUN` instruction to install the package `fastqc=0.11.9` with conda.
 Here there are several options available. For instance we could add an
 environment file _e.g._ `environment.yml` from the Conda tutorial and use
-`mamba env create` to create an environment from that file. Or we could
-create an environment directly with `mamba create`. We'll try this later
+`conda env create` to create an environment from that file. Or we could
+create an environment directly with `conda create`. We'll try this later
 option here, so add a line that will create an environment named
 `project_mrsa` containing the `fastqc` package, and also clean up packages and
-cache after installation. Use the `-y` flag to `mamba create` to avoid the
+cache after installation. Use the `-y` flag to `conda create` to avoid the
 prompt that expects an interaction from the user.
 
 In order to have the `project_mrsa` environment activated upon start-up we
@@ -248,7 +248,7 @@ run_qc.sh`.
 ```Dockerfile
 FROM my_docker_image
 
-RUN mamba create -y -n project_mrsa -c bioconda fastqc=0.11.9 && mamba clean -a
+RUN conda create -y -n project_mrsa -c bioconda fastqc=0.11.9 && conda clean -a
 
 RUN echo "source activate project_mrsa" >> ~/.bashrc
 
@@ -275,6 +275,6 @@ Verify that the image was built using `docker image ls`.
 > In this section we've learned:
 >
 > - How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`,
->  `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
+>   `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
 > - How to use `docker build` to construct and tag an image from a Dockerfile.
 > - How to create your own Dockerfile.
