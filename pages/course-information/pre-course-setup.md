@@ -311,7 +311,7 @@ following code:
 curl -s https://get.nextflow.io | bash
 ```
 
-This will give you the `nextflow` file in your current directly - move this file
+This will give you the `nextflow` file in your current directory - move this file
 to a directory in your `PATH`, _e.g._ `/usr/bin/`.
 
 If you're getting Java-related errors, you can either try to [update your Java
