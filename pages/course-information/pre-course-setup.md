@@ -185,72 +185,30 @@ SSH keys to your account, so please follow those instructions.
 > you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
 > which has more in-depth information than we provide here.
 
-## Installing Mamba
+## Installing Conda
 
-### Mamba or Conda?
-
-Maybe you've worked with the Conda package manager before, and you're wondering
-what Mamba is? Mamba is, simply put, a faster implementation of Conda. Mamba has
-quickly grown and matured to the point that we are almost exclusively using it
-in our own daily work rather than Conda - we are thus reflecting this
-wide-spread adopting in the course material as well. Conveniently there is
-almost no difference in the way the two programs work on the command line. You
-simply change `conda` to `mamba` and keep working as you've done before (see the
-exception under _Configuring Conda_ below). This also means that if you already
-have conda installed you can keep using it for this course, however we strongly
-recommend you to try out mamba in order to make your environment managing more
-efficient.
-
-You will notice that we still use the terms _Conda environment_, _Conda
-packages_ _etc._ throughout the course and that the tutorial pages still have
-_Conda_ in the title. This is because Conda is the original package manager with
-a widely adopted terminology, and Mamba is a re-implementation of Conda; we hope
-this is not too confusing.
-
-### If you already have Mamba installed
-
-If you already have installed Mamba you can make sure you're using the latest
-version by running `mamba update -n base mamba` and skip the installation
-instructions below.
-
-### If you have Conda installed
-
-conda install mamba -n base mamba -c conda-forge
-
-```
-
-Check that installation worked by running:
-
-```
-
-mamba --version
-
-````
-
-### If you have neither Mamba nor Conda installed
-
-Mamba is installed by downloading and executing a [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge)
-installer for your operating system.
+Conda is installed with a [Miniforge](https://github.com/conda-forge/miniforge)
+installer specific for your operating system:
 
 ```bash
-# Install Mambaforge for 64-bit Mac
-curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-x86_64.sh -O
-bash Mambaforge-MacOSX-x86_64.sh
-rm Mambaforge-MacOSX-x86_64.sh
-````
-
-```bash
-# Install Mambaforge 3 for 64-bit Mac (Apple chip)
-curl -L  https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-MacOSX-arm64.sh -O
-bash Mambaforge-MacOSX-arm64.sh
-rm Mambaforge-MacOSX-arm64.sh
+# Install Miniforge for 64-bit Mac
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh -O
+bash Miniforge3-MacOSX-x86_64.sh
+rm Miniforge3-MacOSX-x86_64.sh
 ```
 
 ```bash
-# Install Mambaforge3 for 64-bit Linux
-curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O
-bash Mambaforge-Linux-x86_64.sh
-rm Mambaforge-Linux-x86_64.sh
+# Install Miniforge for 64-bit Mac (Apple chip)
+curl -L  https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -O
+bash Miniforge3-MacOSX-arm64.sh
+rm Miniforge3-MacOSX-arm64.sh
+```
+
+```bash
+# Install Miniforge for 64-bit Linux
+curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O
+bash Miniforge3-Linux-x86_64.sh
+rm Miniforge3-Linux-x86_64.sh
 ```
 
 The installer will ask you questions during the installation:
@@ -258,38 +216,22 @@ The installer will ask you questions during the installation:
 - Do you accept the license terms? (Yes)
 - Do you accept the installation path or do you want to choose a different one?
   (Probably yes)
-- Do you want the installer to initialize Mambaforge (Yes)
+- Do you want the installer to initialize Miniforge (Yes)
 
 Restart your shell so that the settings in `~/.bashrc` or `~/.bash_profile` can
 take effect. You can verify that the installation worked by running:
 
 ```bash
-mamba --version
+conda --version
 ```
 
-> **Important!** <br>
-> The Mamba docs specify a couple of things to keep in mind when using Mamba.
-> First of all, `mamba` should be installed in the `base` environment and no
-> other packages should be installed into `base`. Furthermore, mixing of the
-> `conda-forge` and `defaults` channels should be avoided as the default
-> Anaconda channels are incompatible with `conda-forge`.
+### If you already have Conda installed
 
-> **Different Mamba/Conda flavours** <br>
-> You may come across several flavours of both Mamba and Conda. For Mamba
-> there's the _Miniforge_ installer which allows you to install the `mamba`
-> command line tool that works as a replacement for `conda`. There's also
-> `micromamba`, a small stand-alone C++ program developed mainly for continuous
-> integration pipelines. For Conda there's _Miniconda_, which is the installer
-> for Conda. The third is _Anaconda_, which is a distribution of not only Conda,
-> but also over 150 scientific Python packages. If you want to use Conda it's
-> generally better to stick with the Miniconda installation, rather than
-> installing 3 GB worth of packages you may not even use.
+If you already have installed Conda you can make sure you're using the latest
+version by running `conda update -n base conda` and skip the installation
+instructions below.
 
-### Configuring Mamba/Conda
-
-At the moment the `config` subcommand is not implemented in `mamba`. This means
-that when you want to configure your mamba or conda installation you still need
-to rely on `conda`.
+### Configuring Conda
 
 As a last step we will set up the default channels (from where packages will be
 searched for and downloaded if no channel is specified):
@@ -307,7 +249,16 @@ following:
 conda config --set channel_priority strict
 ```
 
-### Mamba/Conda on new Macs
+> **Important!** <br>
+> The Conda docs specify a couple of things to keep in mind when using Conda.
+> First of all, `conda` should be installed in the `base` environment and no
+> other packages should be installed into `base`. Furthermore, mixing of the
+> `conda-forge` and `defaults` channels should be avoided as the default
+> Anaconda channels are incompatible with `conda-forge`. Since we are installing
+> from `miniforge` we get the `conda-forge` defaults without having to do
+> anything.
+
+### Conda on new Macs
 
 If you have one of the newer Macs with Apple chips (the M-series) you may run
 into some problems with certain Conda packages that have not yet been built for
@@ -317,7 +268,7 @@ which means you can always fall back on creating AMD/Intel-based environments
 and use them in conjunction with Rosetta. This is how you do it:
 
 ```bash
-CONDA_SUBDIR=osx-64 <mamba-command>
+CONDA_SUBDIR=osx-64 <conda-command>
 conda activate <env>
 conda config --env --set subdir osx-64
 ```
@@ -336,19 +287,19 @@ tutorials directory (`workshop-reproducible-research/tutorials`) and then create
 the Conda environment like so:
 
 ```bash
-mamba env create -f snakemake/environment.yml -n snakemake-env
-mamba activate snakemake-env
+conda env create -f snakemake/environment.yml -n snakemake-env
+conda activate snakemake-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
-> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
+> architecture, so you'll have to follow the [instructions above](#conda/Conda-on-new-macs).
 
 Check that Snakemake is installed correctly, for example by executing `snakemake
 --help`. This should output a list of available Snakemake settings. If you get
 `bash: snakemake: command not found` then you need to go back and ensure that
-the Mamba steps were successful. Once you've successfully completed the above
-steps you can deactivate the environment using `mamba deactivate` and continue
+the Conda steps were successful. Once you've successfully completed the above
+steps you can deactivate the environment using `conda deactivate` and continue
 with the setup for the other tools.
 
 ## Installing Nextflow
@@ -365,22 +316,22 @@ to a directory in your `PATH`, _e.g._ `/usr/bin/`.
 
 If you're getting Java-related errors, you can either try to [update your Java
 installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
-(Nextflow requires Java 11 or later) or install Nextflow using Mamba. If you
-want to use Mamba, navigate to `workshop-reproducible-research/tutorials` and
+(Nextflow requires Java 11 or later) or install Nextflow using conda. If you
+want to use Conda, navigate to `workshop-reproducible-research/tutorials` and
 create the environment:
 
 ```bash
-mamba env create -f nextflow/environment.yml -n nextflow-env
-mamba activate nextflow-env
+conda env create -f nextflow/environment.yml -n nextflow-env
+conda activate nextflow-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
-> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
+> architecture, so you'll have to follow the [instructions above](#conda/Conda-on-new-macs).
 
 Check that Nextflow was installed correctly by running `nextflow -version`. If
-you successfully installed Nextflow using Mamba you can now deactivate the
-environment using `mamba deactivate` and continue with the other setups, as
+you successfully installed Nextflow using Conda you can now deactivate the
+environment using `conda deactivate` and continue with the other setups, as
 needed.
 
 ## Installing Quarto
@@ -395,33 +346,33 @@ PDF, which can be done using Quarto itself:
 quarto install tinytex
 ```
 
-While we're not installing Quarto _itself_ using Mamba, we _will_ install some
-software packages that are used in the Quarto tutorial using Mamba: make sure
+While we're not installing Quarto _itself_ using Conda, we _will_ install some
+software packages that are used in the Quarto tutorial using Conda: make sure
 your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
 and install the necessary packages defined in the `environment.yml`:
 
 ```bash
-mamba env create -f quarto/environment.yml -n quarto-env
+conda env create -f quarto/environment.yml -n quarto-env
 ```
 
 > **ARM64 users:** <br>
 > Some of the packages in this environment is not available for the ARM64
-> architecture, so you'll have to follow the [instructions above](#mamba/Conda-on-new-macs).
+> architecture, so you'll have to follow the [instructions above](#conda/Conda-on-new-macs).
 
 ## Installing Jupyter
 
-Let's continue using Mamba for installing software, since it's so convenient to
+Let's continue using Conda for installing software, since it's so convenient to
 do so! Move into the tutorials directory (`workshop-reproducible-research/tutorials`),
 create a Conda environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
 
 ```bash
-mamba env create -f jupyter/environment.yml -n jupyter-env
-mamba activate jupyter-env
+conda env create -f jupyter/environment.yml -n jupyter-env
+conda activate jupyter-env
 ```
 
 Once you've successfully completed the above steps you can deactivate the
-environment using `mamba deactivate` and continue with the setup for the other
+environment using `conda deactivate` and continue with the setup for the other
 tools.
 
 ## Installing Docker

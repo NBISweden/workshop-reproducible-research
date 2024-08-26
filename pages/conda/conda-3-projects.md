@@ -1,7 +1,7 @@
 We have up until now specified which Conda packages to install directly on the
-command line using the `mamba create` and `mamba install` commands. For working
+command line using the `conda create` and `conda install` commands. For working
 in projects this is not the recommended way. Instead, for increased control and
-reproducibility, it is better to use an *environment file*  (in [YAML
+reproducibility, it is better to use an _environment file_ (in [YAML
 format](https://en.wikipedia.org/wiki/YAML)) that specifies the packages,
 versions and channels needed to create the environment for a project.
 
@@ -21,24 +21,24 @@ We will start by making a Conda YAML-file that contains the required packages to
 perform these two steps. Later in the course, you will update the Conda
 YAML-file with more packages, as the analysis workflow is expanded.
 
-* Let's get going! Make a YAML file called `environment.yml` looking like
+- Let's get going! Make a YAML file called `environment.yml` looking like
   this, and save it in the current directory (which should be
   `workshop-reproducible-research/tutorials/conda`):
 
 ```yml
 channels:
-- conda-forge
-- bioconda
+  - conda-forge
+  - bioconda
 dependencies:
-- fastqc=0.12.1
+  - fastqc=0.12.1
 ```
 
-* Now, make a new Conda environment from the YAML file (note that here the
-  command is `mamba env create` as opposed to `mamba create` that we used
+- Now, make a new Conda environment from the YAML file (note that here the
+  command is `conda env create` as opposed to `conda create` that we used
   before):
 
 ```bash
-mamba env create -n project_mrsa -f environment.yml
+conda env create -n project_mrsa -f environment.yml
 ```
 
 > **Tip** <br>
@@ -53,18 +53,18 @@ mamba env create -n project_mrsa -f environment.yml
 > sense from a reproducibility perspective, and makes it easier to keep track
 > of what environment belongs to what project. If you don't specify `-p` the
 > environment will be installed in the `envs/` directory inside your
-> Mamba/Conda installation path.
+> Conda installation path.
 
-* Activate the environment!
+- Activate the environment!
 
-* Now we can run the code for the MRSA project found in `code/run_qc.sh`,
+- Now we can run the code for the MRSA project found in `code/run_qc.sh`,
   either by running `bash code/run_qc.sh` or by opening the `run_qc.sh` file
   and executing each line in the terminal one by one. Do this!
 
 This should download the project FASTQ files and run FastQC on them (as
 mentioned above).
 
-* Check your directory contents (`ls -Rlh`, or in your file browser). It should
+- Check your directory contents (`ls -Rlh`, or in your file browser). It should
   now have the following structure:
 
 ```no-highlight
@@ -102,13 +102,13 @@ daunting to try to capture all of that in a single Conda environment, especially
 when you consider potential incompatibilities that may arise. It can therefore
 be a good idea to start new projects with an environment file with each package
 you know that you will need to use, but without specifying exact versions
-(except for those packages where you *know* you need a specific version).
+(except for those packages where you _know_ you need a specific version).
 This will install the latest compatible versions of all the specified
 software, making the start-up and installation part of new projects easier. You
 can then add the versions that were installed to your environment file
 afterwards, ensuring future reproducibility.
 
-There is one command that can make this easier: `mamba env export`. This allows
+There is one command that can make this easier: `conda env export`. This allows
 you to export a list of the packages you've already installed, including their
 specific versions, meaning you can easily add them after the fact to your
 environment file. If you use the `--no-builds` flag, you'll get a list of the
@@ -118,23 +118,10 @@ environment file with just the packages you need (without version), which will
 install the most up-to-date version possible, and then add the resulting
 version back in to the environment file using the `export` command!
 
-> **Optimised for speed** <br>
-> The availability of an enormous number of packages and versions means that
-> the search space for the dependency hierarchy of any given Conda environment
-> can become equally enormous, leading to a (at times) ridiculous execution
-> time for the dependency solver.
-> Fortunately, with the introduction of the Mamba reimplementation of Conda the
-> time needed to install environments is greatly reduced. First of all, core
-> parts of Mamba are written in C++ instead of Python, like the original Conda.
-> Secondly, it uses a different dependency solver algorithm which is much
-> faster than the one Conda uses. Lastly, it allows for parallel downloading
-> of repository data and package files with multi-threading. All in all, these
-> changes mean that Mamba is (currently) simply a better version of Conda.
-
 > **Quick recap** <br>
 > In this section we've learned:
 >
 > - How to define our Conda environment using a YAML-file.
-> - How to use `mamba env create` to make a new environment from a YAML-file.
-> - How to use `mamba env export` to get a list of installed packages.
+> - How to use `conda env create` to make a new environment from a YAML-file.
+> - How to use `conda env export` to get a list of installed packages.
 > - How to work in a project-like setting.

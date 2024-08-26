@@ -1,8 +1,8 @@
 The following extra material contains some more advanced things you can do with
-Conda/Mamba and the command line in general, which is not part of the main
+Conda and the command line in general, which is not part of the main
 course materials. All the essential skills of are covered by the previous
 section: the material here should be considered tips and tricks from people who
-use Conda/Mamba as part of their daily work. You thus don't need to use these
+use Conda as part of their daily work. You thus don't need to use these
 things unless you want to, and you can even skip this part of the lesson if
 you like!
 
@@ -22,11 +22,11 @@ conda config --show
 
 Similar to Conda environment files, the configuration file is in YAML syntax.
 This means that the config file is structured in the form of `key:value` pairs
-where the `key` is the name of the config parameter (*e.g.* `auto_update_conda`)
-and the `value` is the parameter setting (*e.g.* `True`).
+where the `key` is the name of the config parameter (_e.g._ `auto_update_conda`)
+and the `value` is the parameter setting (_e.g._ `True`).
 
 Adding the name of a config parameter to `conda config --show` will show only
-that parameter, *e.g.* `conda config --show channels`.
+that parameter, _e.g._ `conda config --show channels`.
 
 You can change parameters with the `--set`, `--add`, `--append` and `--remove`
 flags to `conda config`.
@@ -53,7 +53,7 @@ the configuration file you can run:
 conda config --remove channels conda-forge
 ```
 
-Check your `.condarc` file to see the change. To add the *conda-forge* channel
+Check your `.condarc` file to see the change. To add the _conda-forge_ channel
 back to the top of the `channels` simply run:
 
 ```bash
@@ -80,22 +80,22 @@ one version of Python.
 ### Your current Python installation
 
 The `base` environment has its own version of Python installed.
-When you open a terminal (after having installed Conda/Mamba on your system)
+When you open a terminal (after having installed Conda on your system)
 this base environment is activated by default (as evidenced by `(base)`
 prepended to your prompt). You can check what Python version is installed in
 this environment by running `python --version`. To see the exact path to the
 Python executable type `which python`.
 
 In addition to this your computer may already have Python installed in a
-separate (system-wide) location outside of the Conda/Mamba installation. To
-see if that is the case type `mamba deactivate` until your prompt is not
+separate (system-wide) location outside of the Conda installation. To
+see if that is the case type `conda deactivate` until your prompt is not
 prepended with a Conda environment name. Then type `which python`. If a path
-was printed to the terminal (*e.g.* `/usr/bin/python`) that means some
+was printed to the terminal (_e.g._ `/usr/bin/python`) that means some
 Python version is already installed in that location. Check what version it
 is by typing `python --version`.
 
-Now activate the `base` environment again by typing `mamba activate` (or
-the equivalent `mamba activate base`) then check the Python installation path
+Now activate the `base` environment again by typing `conda activate` (or
+the equivalent `conda activate base`) then check the Python installation path
 and version using `which` and `python --version` as above. See the difference?
 When you activate an environment your `$PATH` variable is updated so that
 when you call `python` (or any other program) the system first searches the
@@ -108,7 +108,7 @@ version of Python in that environment as well. As an example, create an
 environment containing Python version `3.5` by running:
 
 ```bash
-mamba create -n py35 python=3.5
+conda create -n py35 python=3.5
 ```
 
 Here we name the environment `py35` but you can choose whatever name you want.
@@ -116,7 +116,7 @@ Here we name the environment `py35` but you can choose whatever name you want.
 To activate the environment run:
 
 ```bash
-mamba activate py35
+conda activate py35
 ```
 
 You now have a completely separate environment with its own Python version.
@@ -127,21 +127,21 @@ Python 2.x and are thus incompatible with Python 3.x. Simply create the new
 Conda environment with:
 
 ```bash
-mamba create -n py27 python=2.7
+conda create -n py27 python=2.7
 ```
 
 Activate this environment with:
 
 ```bash
-mamba activate py27
+conda activate py27
 ```
 
-Now, switching between Python versions is as easy as typing `mamba activate
-py35` / `mamba activate py27`.
+Now, switching between Python versions is as easy as typing `conda activate
+py35` / `conda activate py27`.
 
 > **Note**<br>
 > If you create an environment where none of the packages require Python,
-> *and* you don't explicitly install the `python` package then that new
+> _and_ you don't explicitly install the `python` package then that new
 > environment will use the Python version installed in your `base` environment.
 
 ## Decorating your prompt
@@ -150,7 +150,7 @@ By default, the name of the currently activated environment is added to your
 command line prompt. This is a good thing, as it makes it easier to keep
 track of what environment and packages you have access to. The way this is
 done in the default implementation becomes an issue when using absolute paths
-for environments (specifying `mamba env create -p path/to/environment`,
+for environments (specifying `conda env create -p path/to/environment`,
 though, as the entire path will be added to the prompt. This can take up a lot
 of unnecessary space on your screen, but can be solved in a number of ways.
 
@@ -163,7 +163,7 @@ your current setting you can run `conda config --show env_prompt`.
 By default `env_prompt` is set to `({default_env})` which modifies your prompt
 with the active environment name if it was installed using the `-n` flag or if
 the environment folder has a parent folder named `envs/`. Otherwise the full
-environment path (*i.e.* the 'prefix') is displayed.
+environment path (_i.e._ the 'prefix') is displayed.
 
 If you instead set `env_prompt` to `({name}) ` Conda will modify your prompt
 with the folder name of the active environment. You can change the setting by
@@ -174,12 +174,12 @@ change your Conda config, an alternative is to keep Conda environment folders
 within a parent folder called `envs/`. This will make Conda only add the folder
 name of the Conda environment to your prompt when you activate it.
 
-As an example, say you have a project called *project_a* with the project path
-`~/myprojects/project_a`. You could then install the environment for *project_a*
+As an example, say you have a project called _project_a_ with the project path
+`~/myprojects/project_a`. You could then install the environment for _project_a_
 into a folder `~/myprojects/project_a/envs/project_a_environment`. Activating
-the environment by pointing Conda to it (*e.g.*
-`mamba activate ~/myprojects/project_a/envs/project_a_environment`) will only
-cause your prompt to be modified with *project_a_environment*.
+the environment by pointing Conda to it (_e.g._
+`conda activate ~/myprojects/project_a/envs/project_a_environment`) will only
+cause your prompt to be modified with _project_a_environment_.
 
 ## Bash aliases for conda
 
@@ -194,7 +194,7 @@ The history of the changes to an environment are automatically tracked. You can
 see revisions to an environment by using:
 
 ```bash
-mamba list --revisions
+conda list --revisions
 ```
 
 Which shows each revision (numbered) and what's installed.
@@ -202,5 +202,20 @@ Which shows each revision (numbered) and what's installed.
 You can revert back to particular revision using:
 
 ```bash
-mamba install --revision 5
+conda install --revision 5
 ```
+
+## Mamba, the drop-in Conda replacement
+
+There is another piece of software that is built on top of Conda as a drop-in
+replacement for it: _Mamba_. The reason for Mamba's existence is that it used to
+have a better solver algorithm for the dependency tree than Conda did. These
+days, however, this algorithm is included in Conda as the default. There is
+still some minor reasons you might want to use Mamba, however, the first of
+which being that Mamba re-implements Conda in C++, which runs slightly faster
+than the Python-based Conda. This only yields a minor speed increase compared to
+the dependency-tree algorithm, though, so don't expect major differences in
+execution time between Conda and Mamba. Another reason is that Mamba colours its
+output, which is nice if you care about that sort of thing. If you installed
+Conda as described in the pre-course material you'll, conveniently, already have
+installed Mamba as well!
