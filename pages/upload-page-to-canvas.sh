@@ -60,7 +60,7 @@ cat "$HTML" \
     | sed "s|COURSE_ID|$COURSE_ID|g" \
     | sed "s|GITHUB_BRANCH|$BRANCH|g" \
     > tmp.html
-echo '<div class="container" style="max-width:1000px">' \
+echo '<div class="content" style="max-width:800px">' \
     | cat - tmp.html \
     > tmp2.html
 echo "</div>" >> tmp2.html
