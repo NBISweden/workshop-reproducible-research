@@ -76,7 +76,9 @@ This will open up a new tab or window looking like this:
 > ![](images/jupyter_empty_nb.png){ width=700px }
 
 Start by giving your notebook a name by clicking on the text "Untitled" at the
-top of the page. Enter "jupyter-tutorial.ipynb".
+top of the page. Enter "jupyter-tutorial.ipynb". If you're using Jupyter lab you
+right-click on the file in the left sidebar, or right-click on the tab in the
+top bar and select "Rename Notebook...".
 
 Note that for most of this tutorial we will describe how you work in the actual
 notebook and not devote a lot of time to the extra features available in the
@@ -87,13 +89,12 @@ Jupyter lab interface.
 > Uppmax) see the section in the
 > [Extra material](jupyter-10-extra-material)
 
-Jupyter notebooks are made up of cells, and you are currently standing in
-the first cell in your notebook. Your cursor should be blinking in this cell,
-indicating that you are in "Edit mode" meaning that you can type text in the
-cell. Pressing the `Esc` key puts you in "Command mode" which allows you to
-manipulate the notebook as a whole, more on this later.
+Jupyter notebooks are made up of cells, of which there is currently only one in
+your notebook. Clicking inside a cell puts you in "Edit mode" meaning that you
+can type text in the cell. Pressing the `Esc` key puts you in "Command mode"
+which allows you to manipulate the notebook as a whole, more on this later.
 
-Cells in Jupyter notebooks can be of two types:*markdown* or *code*.
+Cells in Jupyter notebooks can be of types: **Code**, **Markdown**, or **Raw**.
 
 * **Markdown:** 
 
@@ -115,6 +116,11 @@ generates, such as text or figures, will be displayed beneath the cell. We
 will get back to this in much more detail, but for now it's enough to
 understand that code cells are for executing code that is interpreted by a
 kernel (in this case the Python version in your Conda environment).
+
+* **Raw:**
+
+The raw cell type can be used to display _e.g._ HTML or LaTeX content when
+converting the notebook. This is not something we will cover in this tutorial.
 
 Before we continue, here are some shortcuts that can be useful. Note that they
 are only applicable when in "Command mode". Most of them are also available from
@@ -189,18 +195,16 @@ the menus. You can also view this list of shortcuts from the **Help** menu under
 
 ## Writing markdown
 
-Let's use our first cell to create a header. Change the format from Code to
-Markdown using the drop-down list in the Notebook Toolbar, or by pressing the
-`m` key when in command mode. Double click on the cell, or hit `enter` to enter
-editing mode and input "# My notebook" ("#" is used in Markdown for header 1).
-Run the cell with `ctrl`-`enter` (`cmd`-`enter` on Mac).
-
 Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
 
 Below are some examples of what you can do in markdown. Paste all or parts
 of it into one or more cells in your notebook to see how it renders. Make
 sure you set the cell type to Markdown.
+
+Headers are created by starting a line with one or more `#` characters. The
+number of `#` characters determines the header level. For example, `## Introduction`
+creates a second-level header.
 
 ```
 ## Introduction
@@ -240,24 +244,23 @@ print("Hello world!")
 
 Note how the output is directly displayed below the cell. This interactive way
 of working is one of the things that sets Jupyter Notebook apart from RStudio
-and Quarto. In RStudio/Quarto, documents are typically rendered top-to-bottom in one run, while
-you work *in* a Jupyter notebook in a different way. This requires some special
-attention when it comes to reproducibility, which we will get back to in the
-[reproducibility](jupyter-7-reproducibility) section.
+and Quarto. In RStudio/Quarto, documents are typically rendered top-to-bottom in
+one run, while you work *in* a Jupyter notebook in a different way. This
+requires some special attention when it comes to reproducibility, which we will
+get back to in the [reproducibility](jupyter-7-reproducibility) section.
 
-What **is** a Jupyter notebook? Let's look a closer at the notebook we're
+What **is** a Jupyter notebook? Let's look closer at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
 will already have it available. We can be a little meta and do this from within
 the notebook itself, by running some shell commands in a code cell. This very
 handy functionality is possible by prepending the command with `!`. Try adding
-`!ls` to a code cell and run it. This will list the files in the current directory.
+`!ls` to a code cell and run it. This will list the files in the current
+directory.
 
 Aha, we have a new file called `jupyter-tutorial.ipynb`! This is our notebook. Look at
 the first ten lines of the file by using `!head jupyter-tutorial.ipynb`. Seems like it's
 just a plain old JSON file. Since it's a text file it's suitable for version
-control with for example Git. There are however some special considerations to
-take into account for Notebooks which we will cover in the [reproducibility
-section](jupyter-7-reproducibility) of this tutorial.
+control with for example Git.
 
 Variables defined in cells become variables in the global namespace. You can
 therefore share information between cells. Try to define a function or variable
@@ -287,8 +290,8 @@ you to do a little more than that.
 > **Quick recap** <br>
 > In this section we've learned:
 >
-> - That a Jupyter notebook consists of a series of cells, and that they can
->   be either markdown or code cells.
+> - That a Jupyter notebook consists of a series of cells of different types,
+>   primarily markdown and code cells.
 > - That we execute the code in a code cell with the kernel that we chose
 >   when opening the notebook.
 > - We can run shell commands by prepending them with `!`.
