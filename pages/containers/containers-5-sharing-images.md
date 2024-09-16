@@ -1,15 +1,15 @@
 There would be little point in going through all the trouble of making your
 analyses reproducible if you can't distribute them to others. Luckily, sharing
 Docker containers is extremely easy, and can be done in several ways. One of the
-more common ways to share Docker images is through container *registries* and
-*repositories*.
+more common ways to share Docker images is through container _registries_ and
+_repositories_.
 
 For example, a Docker registry is a service that stores Docker images, which
 could be hosted by a third party, publicly or privately. One of the most common
 registries is [Docker Hub](https://docs.docker.com/docker-hub/), which is a
 registry hosted by Docker itself. A repository, on the other hand, is a
-collection of container images with the same name but different tags, *i.e.*
-versions. For example, `ubuntu:latest` or `ubuntu:20.04`. Repositories are
+collection of container images with the same name but different tags (_i.e._
+versions), for example `ubuntu:latest` or `ubuntu:20.04`. Repositories are
 stored in registries.
 
 > **Note** <br>
@@ -20,15 +20,17 @@ stored in registries.
 There are many registries out there, but here are some that might be of interest
 to you who are taking this course:
 
-* [Docker Hub](https://docs.docker.com/docker-hub/)
-* [Quay](https://quay.io/)
-* [Biocontainers](https://biocontainers.pro/#/registry)
-* [Rocker](https://www.rocker-project.org/images/)
-* [Jupyter containers](https://jupyter-docker-stacks.readthedocs.io/en/latest)
+- [Docker Hub](https://docs.docker.com/docker-hub/)
+- [GitHub Container Registry](https://ghcr.io)
+- [Quay](https://quay.io/)
+- [Biocontainers](https://biocontainers.pro/#/registry)
+- [Rocker](https://www.rocker-project.org/images/)
+- [Jupyter containers](https://jupyter-docker-stacks.readthedocs.io/en/latest)
 
 The most common registry is probably Docker Hub, which lets you host unlimited
 public images and one private image for free (after which they charge a small
-fee). Let's see how it's done!
+fee). The GitHub Container Registry is also quite handy if you're already using
+GitHub. Let's see how it's done using Docker Hub!
 
 1. Register for an account on [Docker Hub](https://hub.docker.com).
 
@@ -38,8 +40,8 @@ fee). Let's see how it's done!
 3. When you build an image, tag it with `-t your_dockerhub_id/image_name`,
    rather than just `image_name`.
 
-4. Once the image has been built, upload it to Docker Hub with `docker push
-   your_dockerhub_id/image_name`.
+4. Once the image has been built, upload it to Docker Hub with
+   `docker push your_dockerhub_id/image_name`.
 
 5. If another user runs `docker run your_dockerhub_id/image_name` the image
    will automatically be retrieved from Docker Hub. You can use `docker pull`
