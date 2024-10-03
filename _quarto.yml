@@ -21,7 +21,7 @@ website:
         href: "home_contents.html"
       - text: "Syllabus"
         href: "home_syllabus.html"
-      - text: "Precourse"
+      - text: "Pre-course"
         href: "home_precourse.html"
   page-footer:
     border: false
