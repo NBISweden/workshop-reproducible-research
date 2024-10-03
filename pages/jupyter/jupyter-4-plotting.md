@@ -71,8 +71,8 @@ with error bars representing a 95% confidence interval.
 Let's say that instead we want to plot the mean value of the body mass of the
 penguins at the different islands where they were examined.
 
-```
-sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd");
+```python
+sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd")
 ```
 
 Here we specified to use values in the 'island' column as categories for the
@@ -94,7 +94,7 @@ ax = sns.scatterplot(data=penguins, x="bill_length_mm", y="body_mass_g",
 ax.set_xlabel("Bill length (mm)")
 ax.set_ylabel("Body mass (g)")
 # Set legend position outside of plot
-ax.legend(bbox_to_anchor=(1,1));
+ax.legend(bbox_to_anchor=(1,1))
 ```
 
 If you want to save a plot to file you can use the `plt.savefig` function. Add
