@@ -28,6 +28,8 @@ snakemake/*tsv
 # Quarto-related files
 .quarto/
 **/*_files
+_freeze/
+docs/
 
 # VScode
 .vscode
