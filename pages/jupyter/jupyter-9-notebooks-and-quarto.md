@@ -86,10 +86,11 @@ use the two tools in combination.
 
 Let's go back to the YAML header cell and fix how it looks in the Jupyter
 notebook. The reason it looks weird is that Jupyter doesn't understand the
-syntax. But luckily there's a Jupyter lab Quarto extension you can install to
-fix this. Click the extension icon in the left sidebar and search for `quarto`.
-Install the `jupyterlab-quarto` extension and then reload the page. Now the YAML
-header should look a lot better.
+syntax. But luckily the Jupyter lab Quarto extension we mentioned in the
+[Jupyter Extensions](jupyter-6-extensions) section can be installed to fix this.
+Click the extension icon in the left sidebar and search for `quarto`. Install
+the `jupyterlab-quarto` extension and then reload the page. Now the YAML header
+should look a lot better.
 
 Try adding more options to the header to customize the look of the rendered
 document. For instance you could:
