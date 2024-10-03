@@ -1,6 +1,6 @@
 ---
 title: "Contents"
-description: "Sample reports and slides. Slides: {{< fa file-powerpoint >}} / {{< fa file-pdf >}}, Reports: {{< fa file-lines >}}"
+description: "Tutorials and lecture links"
 date: ""
 toc: false
 number-sections: false
@@ -8,23 +8,21 @@ sidebar: false
 format: html
 ---
 
-## Reports
+Below you can find a list of all the topics covered by the workshop and links to
+their respective tutorials and lectures. Please note that not all topics have a
+tutorial associated with them, and are only covered by a lecture. Lectures
+should be considered short introductions to each topic, while the tutorials
+themselves contain all of the material covered by the workshop.
 
-HTML report using the Quarto format `html`.
-
-[Listing page](reports/) for all reports.
-
-- Using Quarto and custom theme [{{< fa file-lines >}}](reports/usage/index.html)
-- Minimal demo [{{< fa file-lines >}}](reports/sample/index.html)
-- Quarto basics [{{< fa file-lines >}}](reports/demo/index.html)
-- Quarto with R [{{< fa file-lines >}}](reports/demo-with-r/index.html)
-- OJS and mermaid [{{< fa file-lines >}}](reports/more/index.html)
-
-## Slides
-
-Presentation using the Quarto `revealjs` format.
-
-[Listing page](slides/) for all slides.
-
-- Minimal demo [{{< fa file-powerpoint >}}](slides/sample/index.html)
-- Quarto with R [{{< fa file-powerpoint >}}](slides/demo/index.html)
+| Topic                   | Tutorial                                             | Lecture                                                                |
+| ----------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| Introduction            |                                                      | [{{< fa file-lines >}}](lectures/introduction/introduction)            |
+| Data management         |                                                      | [{{< fa file-lines >}}](lectures/data-management/data-management.html) |
+| Git                     | [{{< fa file-lines >}}](pages/git/git-1.html)        | [{{< fa file-lines >}}](lectures/git/git.html)                         |
+| Conda                   | [{{< fa file-lines >}}](pages/conda/conda-1.html)    | [{{< fa file-lines >}}](lectures/conda/conda.html)                     |
+| Snakemake               | [{{< fa file-lines >}}](pages/git/snakemake-1.html)  | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)             |
+| Nextflow                | [{{< fa file-lines >}}](pages/git/nextflow-1.html)   | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)               |
+| Quarto                  | [{{< fa file-lines >}}](pages/git/quarto-1.html)     | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                   |
+| Jupyter                 | [{{< fa file-lines >}}](pages/git/jupyter-1.html)    | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                 |
+| Containers              | [{{< fa file-lines >}}](pages/git/containers-1.html) | [{{< fa file-lines >}}](lectures/containers/containers.html)           |
+| Putting it all together |                                                      | [{{< fa file-lines >}}](lectures/git/git.html)                         |
