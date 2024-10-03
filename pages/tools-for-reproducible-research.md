@@ -10,7 +10,7 @@
 
 <img src="https://www.svgrepo.com/show/20800/event-date-and-time-symbol.svg"
     width="20" height="20"/>
-20 - 24 November, 2023
+25 - 29 November, 2024
 
 <img src="https://www.svgrepo.com/show/4199/placeholder-on-a-map.svg"
     width="20" height="20"/>
@@ -110,10 +110,13 @@ are as follows:
 2. Go to SciLifeLab in Solna ([Tomtebodavägen 23A, 171 65 Solna](https://goo.gl/maps/YhWgJPt44qfTe1ad9)).
    The closest bus stop is called Karolinska institutet Biomedicum (search for
    public transport options here).
-3. Enter the SciLifeLab/Karolinska Institutet Science Park building. After
-   entering, turn immediately left and pass through the glass door to find the
-   rooms _Air and Fire_, where to course will take place. (There is a reception
-   where you can ask for help if you cannot find the rooms.)
+3. Enter the SciLifeLab/Karolinska Institutet Science Park building. There are
+   public transport-style access gates to your left, and the glass door to the
+   left immediately after the gates is where you need to go for the rooms _Air_
+   and _Fire_, where the course will be held. You will, however, need an access
+   card in order to pass through the gates, which will be handed to you on the
+   morning of the first day (there is also a reception where you can ask for
+   help if you run into any issues).
 
 # Course material
 
