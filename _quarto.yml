@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!tutorials/"
+    - "!lectures/wrapups/"
 
 website:
   image: "assets/images/featured.jpg"
@@ -100,4 +104,3 @@ filters:
   - assets/custom.lua
   - reveal-logo
   - fontawesome
-
