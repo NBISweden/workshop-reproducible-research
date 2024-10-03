@@ -31,3 +31,5 @@ snakemake/*tsv
 
 # VScode
 .vscode
+
+/.quarto/
