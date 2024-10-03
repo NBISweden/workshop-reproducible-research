@@ -17,13 +17,13 @@ While an in-depth listing of available extensions is well beyond the scope
 of this tutorial we offer this list of a few extensions that are of particular
 relevance to this course:
 
-- [Jupyterlab/GitHub](https://github.com/jupyterlab/jupyterlab-github) -
+- [jupyterlab-github](https://github.com/jupyterlab/jupyterlab-github) -
   view and open files from GitHub
-- [Jupyterlab/Git](https://github.com/jupyterlab/jupyterlab-git) - version
+- [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git) - version
   controlling with git
-- [mamba-org/gator-lab](https://github.com/mamba-org/gator) - manage Conda
+- [jupyterlab-quarto](https://github.com/quarto-dev/jupyterlab-quarto) - add support for quarto markdown content to your notebooks
+- [mamba-gator](https://github.com/mamba-org/gator) - manage Conda
   environments
-- [voila-dashboards/Jupyterlab-preview](https://github.com/voila-dashboards/voila) - preview a rendered version of your notebook
 
 > **Quick recap** <br>
 > In this section we've learned:
