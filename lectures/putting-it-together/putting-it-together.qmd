@@ -1,6 +1,6 @@
 ---
 title: "Putting it all together"
-format: nbis-revealjs
+format: revealjs
 ---
 
 ## Working reproducibly will make your research life a lot easier!

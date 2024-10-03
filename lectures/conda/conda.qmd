@@ -1,6 +1,6 @@
 ---
 title: 'Managing software environments with <br> <img src="images/conda-logo.png" style="width:50%;padding: 25px 25px 25px 25px;">'
-format: nbis-revealjs
+format: revealjs
 jupyter:
     kernelspec:
         display_name: Python 3

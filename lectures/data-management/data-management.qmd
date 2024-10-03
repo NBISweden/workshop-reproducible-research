@@ -1,6 +1,6 @@
 ---
 title: "Managing your data"
-format: nbis-revealjs
+format: revealjs
 ---
 
 ## Data (mis)management in practice {.smaller}

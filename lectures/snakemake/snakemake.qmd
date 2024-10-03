@@ -1,6 +1,6 @@
 ---
 title: 'Making reproducible workflows with <img src="images/snakemake_logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
-format: nbis-revealjs
+format: revealjs
 ---
 
 ## Why do we need workflow managers? {auto-animate=true}
