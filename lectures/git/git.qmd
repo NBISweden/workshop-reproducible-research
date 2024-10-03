@@ -32,7 +32,7 @@ format: nbis-revealjs
 
 ## Tracking code in three steps
 
-![](images/git_overview_local.png){height=300 fig-align=center}
+![](../../../pages/images/git_overview_local.png){height=300 fig-align=center}
 
 ::: {.incremental}
 1. Do some [coding]{.green} (*i.e.* add or change contents of files)
