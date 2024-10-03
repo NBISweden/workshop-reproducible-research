@@ -18,7 +18,7 @@ themselves contain all of the material covered by the workshop.
 | ----------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
 | Introduction            |                                                      | [{{< fa file-lines >}}](lectures/introduction/introduction)            |
 | Data management         |                                                      | [{{< fa file-lines >}}](lectures/data-management/data-management.html) |
-| Git                     | [{{< fa file-lines >}}](pages/git/git-1.html)        | [{{< fa file-lines >}}](lectures/git/git.html)                         |
+| Git                     | [{{< fa file-lines >}}](pages/git.html)              | [{{< fa file-lines >}}](lectures/git/git.html)                         |
 | Conda                   | [{{< fa file-lines >}}](pages/conda/conda-1.html)    | [{{< fa file-lines >}}](lectures/conda/conda.html)                     |
 | Snakemake               | [{{< fa file-lines >}}](pages/git/snakemake-1.html)  | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)             |
 | Nextflow                | [{{< fa file-lines >}}](pages/git/nextflow-1.html)   | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)               |
