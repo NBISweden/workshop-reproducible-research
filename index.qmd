@@ -1,5 +1,5 @@
 ---
-pagetitle: "Abstrave"
+paetitle: "Home"
 subtitle: ""
 toc: false
 date: ""
@@ -18,13 +18,11 @@ execute:
 ::: {.home-grid-parent}
 ::: {.home-grid-child-left}
 
-## [**Specky: Course Template**]{.large}
-### A quarto course template
+#### NBIS / Elixir workshop
+## [**Tools for Reproducible Research**]{.large}
 
-- [Report](reports/sample/index.html)
-- [Presentation](slides/sample/index.html)
-
-For usage instructions and demo examples, see [Contents](home_contents.html)
+How to work reproducibly with control and structuring of project code,
+environment and workflow management
 
 ---
 
