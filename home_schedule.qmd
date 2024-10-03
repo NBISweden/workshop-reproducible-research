@@ -66,7 +66,7 @@ s <- readxl::read_xlsx("schedule.xlsx") %>%
     dplyr::group_by(date) %>%
     dplyr::mutate(
         start_time = format(start_time, "%H:%M"),
-        end_time = format(end_time, "%H:%M")
+        # end_time = format(end_time, "%H:%M")
     ) %>%
     as.data.frame() %>%
     dplyr::mutate(room = ifelse(is.na(link_room), room, paste0("<a href='", link_room, "'>", room, "</a>"))) %>%
