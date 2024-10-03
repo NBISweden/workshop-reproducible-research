@@ -18,15 +18,17 @@ themselves contain all of the material covered by the workshop.
 
 <br>
 
-| Topic                   | Tutorial                                             | Lecture                                                                |
-| ----------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
-| Introduction            |                                                      | [{{< fa file-lines >}}](lectures/introduction/introduction)            |
-| Data management         |                                                      | [{{< fa file-lines >}}](lectures/data-management/data-management.html) |
-| Git                     | [{{< fa file-lines >}}](pages/git.html)              | [{{< fa file-lines >}}](lectures/git/git.html)                         |
-| Conda                   | [{{< fa file-lines >}}](pages/conda/conda-1.html)    | [{{< fa file-lines >}}](lectures/conda/conda.html)                     |
-| Snakemake               | [{{< fa file-lines >}}](pages/git/snakemake-1.html)  | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)             |
-| Nextflow                | [{{< fa file-lines >}}](pages/git/nextflow-1.html)   | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)               |
-| Quarto                  | [{{< fa file-lines >}}](pages/git/quarto-1.html)     | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                   |
-| Jupyter                 | [{{< fa file-lines >}}](pages/git/jupyter-1.html)    | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                 |
-| Containers              | [{{< fa file-lines >}}](pages/git/containers-1.html) | [{{< fa file-lines >}}](lectures/containers/containers.html)           |
-| Putting it all together |                                                      | [{{< fa file-lines >}}](lectures/git/git.html)                         |
+| Topic                   | Lecture                                                                | Tutorial                                             |
+| ----------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------- |
+| Introduction            | [{{< fa file-lines >}}](lectures/introduction/introduction)            | [{{< fa file-lines >}}](pages/introduction.html)     |
+| Data management         | [{{< fa file-lines >}}](lectures/data-management/data-management.html) |                                                      |
+| Git                     | [{{< fa file-lines >}}](lectures/git/git.html)                         | [{{< fa file-lines >}}](pages/git.html)              |
+| Conda                   | [{{< fa file-lines >}}](lectures/conda/conda.html)                     | [{{< fa file-lines >}}](pages/conda/conda-1.html)    |
+| Snakemake               | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)             | [{{< fa file-lines >}}](pages/git/snakemake-1.html)  |
+| Nextflow                | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)               | [{{< fa file-lines >}}](pages/git/nextflow-1.html)   |
+| Quarto                  | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                   | [{{< fa file-lines >}}](pages/git/quarto-1.html)     |
+| Jupyter                 | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                 | [{{< fa file-lines >}}](pages/git/jupyter-1.html)    |
+| Containers              | [{{< fa file-lines >}}](lectures/containers/containers.html)           | [{{< fa file-lines >}}](pages/git/containers-1.html) |
+| Putting it all together | [{{< fa file-lines >}}](lectures/git/git.html)                         |                                                      |
+| Markdown                |                                                                        | [{{< fa file-lines >}}](pages/markdown.html) |
+| Take-down               |                                                                        | [{{< fa file-lines >}}](pages/take-down.html) |
