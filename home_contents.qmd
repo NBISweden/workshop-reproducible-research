@@ -1,6 +1,8 @@
 ---
 title: "Contents"
-description: "Tutorials and lecture links"
+subtitle: "Tutorials and lecture links"
+pagetitle: "Contents | Tools for Reproducible Research"
+description: ""
 date: ""
 toc: false
 number-sections: false
@@ -13,6 +15,8 @@ their respective tutorials and lectures. Please note that not all topics have a
 tutorial associated with them, and are only covered by a lecture. Lectures
 should be considered short introductions to each topic, while the tutorials
 themselves contain all of the material covered by the workshop.
+
+<br>
 
 | Topic                   | Tutorial                                             | Lecture                                                                |
 | ----------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
