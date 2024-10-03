@@ -1,0 +1,44 @@
+---
+title: "Syllabus"
+subtitle: "Syllabus, learning outcomes and entry requirements"
+date: ""
+toc: false
+number-sections: false
+sidebar: false
+format: html
+---
+
+::: {.panel-tabset}
+
+## Syllabus
+
+The syllabus for this workshop are as follows.
+
+- Working on the unix/linux command line
+  - Command line navigation and related commands: cd, mkdir, rm, rmdir
+  - Commonly used linux tools: cp, mv, tar, less, more, head, tail, nano, grep, top, man
+  - Wildcards
+  - Ownership and permissions
+  - Symbolic links
+  - Piping commands
+- Working on remote computing cluster
+  - Logging on to UPPMAX
+  - Booking resources
+  - Job templates, submission and queues
+  - Modules
+
+## Learning outcomes
+
+After this workshop you should be able to:
+
+- Describe the basic principles of next generation sequencing.
+- Use the Linux command line interface to manage simple file processing operations, and organise directory structures.
+- Connect to and work on a remote compute cluster.
+- Apply programs in Linux for analysis of NGS data.
+
+## Entry requirements
+
+- This is a national course open to PhD students, postdocs, group leaders and core facility staff.
+- A background in genetics, cell biology, biomedicine, biochemistry, bioinformatics or comparable is desirable.
+
+:::

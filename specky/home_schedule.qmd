@@ -1,0 +1,24 @@
+---
+title: "Schedule"
+toc: false
+date: ""
+sidebar: false
+format:
+  html:
+    number-sections: false
+execute:
+  freeze: false
+---
+
+:::{.contents-table .column-body-outset}
+
+|Topic                                  |Instructor  |Links|
+|---------------------------------------|------------|-----|
+|[**12-Jan-2024 (Fri)**]{.badge .badge-primary}    |||
+|Minimal demo                           |Roy Francis |[Slides](slides/sample/index.html), [Report](reports/sample/index.html)|
+|Using custom theme                     |Roy Francis |[Report](reports/usage/index.html)|
+|Quarto basics                          |Roy Francis |[Report](reports/demo/index.html)|
+|Quarto and R                           |Roy Francis |[Slides](slides/demo/index.html), [Report](reports/demo-with-r/index.html)|
+|OJS and mermaid                        |Roy Francis |[Report](reports/more/index.html)|
+
+:::

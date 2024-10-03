@@ -1,0 +1,40 @@
+---
+title: "Precourse"
+subtitle: "These are steps to be completed before the workshop"
+date: ""
+toc: false
+sidebar: false
+format: html
+---
+
+## Cluster
+
+Remote computing cluster will be use for data analyses. A SUPR/NAISS account is needed to use these resources.
+
+::: {.callout-tip}
+This is where you might run into trouble if you don't have a SWAMID connected account. You will not be able to accept the user agreement online without it, so you will have to send in your acceptance in paper form together with a copy of your passport. This process can take a week or more, so please make sure you can accept the user agreement in good time.
+:::
+
+You need to request login accounts to NSC and UPPMAX. These are the accounts you use to log in to the actual computers, so they are not the same as your SUPR account. Login to SUPR and go to the Accounts page. Under the **Possible Resource Account Requests** heading click on **Request Account on Tetralith @ NSC** and **Request Account on Rackham @ UPPMAX** button and confirm it on the next page. If either of them are missing from this page, it could be because you already have a login account created (only 1 account per person allowed), or that you have not yet gotten your project memberships approved.
+
+::: {.callout-note}
+You will get one username & password for the account on UPPMAX, and one username and password for the account on NSC. Please keep track of both, we will tell you when to use which account during the workshop.
+:::
+
+## Install tools
+
+### ThinLinc
+
+ThinLinc allows graphical connection to UPPMAX. It can be used directly from the browser but it is recommended to download and install the client for better copy/paste operation.
+
+### XQuartz
+
+Mac users will need to download and install XQuartz for X11 forwarding. *ie*; to forward remotely opened windows to local machine.
+
+### MobaXterm (Optional)
+
+If you are on a Windows system, and you want to open graphical applications from the terminal, we recommend MobaXterm. It is recommended that you INSTALL the program and not use the portable version. MobaXterm also has an integrated SFTP file browser.
+
+### Filezilla (Optional)
+
+When you need to transfer data between the remote cluster and your computer, you can use the tools SCP or SFTP through the terminal. Windows users can use the SFTP browser available with MobaXterm. If you prefer a GUI to upload and download files from the remote cluster, we recommend installing FileZilla.

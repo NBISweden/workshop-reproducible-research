@@ -1,0 +1,30 @@
+---
+title: "Contents"
+description: "Sample reports and slides. Slides: {{< fa file-powerpoint >}} / {{< fa file-pdf >}}, Reports: {{< fa file-lines >}}"
+date: ""
+toc: false
+number-sections: false
+sidebar: false
+format: html
+---
+
+## Reports
+
+HTML report using the Quarto format `html`.
+
+[Listing page](reports/) for all reports.
+
+- Using Quarto and custom theme [{{< fa file-lines >}}](reports/usage/index.html)
+- Minimal demo [{{< fa file-lines >}}](reports/sample/index.html)
+- Quarto basics [{{< fa file-lines >}}](reports/demo/index.html)
+- Quarto with R [{{< fa file-lines >}}](reports/demo-with-r/index.html)
+- OJS and mermaid [{{< fa file-lines >}}](reports/more/index.html)
+
+## Slides
+
+Presentation using the Quarto `revealjs` format.
+
+[Listing page](slides/) for all slides.
+
+- Minimal demo [{{< fa file-powerpoint >}}](slides/sample/index.html)
+- Quarto with R [{{< fa file-powerpoint >}}](slides/demo/index.html)
