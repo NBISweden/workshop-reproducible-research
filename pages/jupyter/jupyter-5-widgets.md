@@ -20,7 +20,7 @@ previous section and add widgets that lets us choose variables to plot as well
 as coloring of the points.
 
 First we'll import the `interactive` function from `ipywidgets`. Let's also
-import the `widgets` module which we we'll use later. Add the following code to
+import the `widgets` module which we will use later. Add the following code to
 a cell and run it:
 
 ```python
