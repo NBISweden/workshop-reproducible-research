@@ -18,31 +18,31 @@ Using version control for tracking your files, and edits to those, is an
 essential step in making your computational research reproducible. A typical Git
 workflow consists of:
 
-* Making distinct and related edits to one or several files
-* Committing those changes (*i.e.* telling Git to add those edits to the
+- Making distinct and related edits to one or several files
+- Committing those changes (_i.e._ telling Git to add those edits to the
   history, together with a message about what those changes involve)
-* Pushing the commit to a remote repository (*i.e.* syncing your local project
+- Pushing the commit to a remote repository (_i.e._ syncing your local project
   directory with one in the cloud)
 
 There are many benefits of using Git in your research project:
 
-* You are automatically forced into a more organized way of working, which is
+- You are automatically forced into a more organized way of working, which is
   usually a first step towards reproducibility.
-* If you have made some changes to a file and realize that those were probably
+- If you have made some changes to a file and realize that those were probably
   not a good idea after all, it is simple to view exactly what the changes were
   and revert them.
-* If there is more than one person involved in the project, Git makes it easy
+- If there is more than one person involved in the project, Git makes it easy
   to collaborate by tracking all edits made by each person. It will also handle
   any potential conflicting edits.
-* Using a cloud-based repository hosting service (the one you push your commits
-  to), like *e.g.* [GitHub](https://github.com/) or
+- Using a cloud-based repository hosting service (the one you push your commits
+  to), like _e.g._ [GitHub](https://github.com/) or
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
-* If at some point your project will be published GitHub or Bitbucket (or
+- If at some point your project will be published GitHub or Bitbucket (or
   similar) are excellent places to publicly distribute your code. Other
   researchers can then use Git to access the code needed for reproducing your
   results, in exactly the state it was when used for the publication.
-* If needed, you can host private repositories on GitHub and Bitbucket as well.
+- If needed, you can host private repositories on GitHub and Bitbucket as well.
   This may be convenient during an ongoing research project, before it is
   publicly published.
 
@@ -61,9 +61,10 @@ In order to create a new Git repository, we first need a directory to track.
 For this tutorial, go ahead and create a directory called `git_tutorial`, then
 navigate into it.
 
-> **Attention!** <br>
-> The directory should *not* be within the `workshop-reproducible-research`
-> directory, since this is itself a Git-tracked directory.
+::: {.callout-warning}
+The directory should *not* be within the `workshop-reproducible-research`
+directory, since this is itself a Git-tracked directory.
+:::
 
 Once we are inside the desired directory, we can *initialise*
 Git with the following command:
@@ -83,15 +84,16 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-> **Tip** <br>
-> If you try to run `git status` in a non-Git directory, it will say
-> that it is *not a git repository*. The way this works is that Git
-> adds a hidden directory `.git/` in the root of a Git tracked
-> directory (run `ls -a` to see it). This hidden directory contains
-> all information and settings Git needs in order to run and version
-> track your files. This also means that your Git-tracked directory
-> is self-contained, *i.e.* you can simply delete it and everything that
-> has to do with Git in connection to that directory will be gone.
+::: {.callout-tip}
+If you try to run `git status` in a non-Git directory, it will say
+that it is *not a git repository*. The way this works is that Git
+adds a hidden directory `.git/` in the root of a Git tracked
+directory (run `ls -a` to see it). This hidden directory contains
+all information and settings Git needs in order to run and version
+track your files. This also means that your Git-tracked directory
+is self-contained, _i.e._ you can simply delete it and everything that
+has to do with Git in connection to that directory will be gone.
+:::
 
 The text `nothing to commit (create/copy files and use "git add" to track)`
 tells us that while we are inside a directory that Git is currently tracking,
@@ -100,37 +102,39 @@ there are currently no files being tracked; let's add some!
 Copy the following files from the `workshop-reproducible-research/tutorials/git`
 directory into your `git_tutorial` directory:
 
-* `Dockerfile`
-* `Snakefile`
-* `config.yml`
-* `environment.yml`
+- `Dockerfile`
+- `Snakefile`
+- `config.yml`
+- `environment.yml`
 
 Once you have done that, run `git status` again. It will tell you that there
 are files in the directory that are not version tracked by Git.
 
-> **Note** <br>
-> For the purpose of this tutorial, the exact contents of the files you just
-> copied are not important. But you will probably recognize many of them, as
-> they are all files used in the MRSA case study described in the
-> [introduction to the tutorials](introduction). The details of what
-> these files do are described in their respective sessions later in the
-> course, but we provide a brief overview here:
->
-> - The `environment.yml` file contains the Conda environment with all the
->   software used in the analysis (see the [Conda tutorial](conda-1-introduction)).
-> - The `Snakefile` and `config.yml` are both used to define the Snakemake
->   workflow, that we'll go through in the [Snakemake tutorial](snakemake-1-introduction).
-> - The `Dockerfile` contains the recipe for making a Docker container for
->   the analysis, which will be covered in detail in the
->   [Container tutorial](containers-1-introduction).
+::: {.callout-note}
+For the purpose of this tutorial, the exact contents of the files you just
+copied are not important. But you will probably recognize many of them, as
+they are all files used in the MRSA case study described in the
+[introduction to the tutorials](introduction). The details of what
+these files do are described in their respective sessions later in the
+course, but we provide a brief overview here:
 
-> **Quick recap** <br>
-> We have used two `git` commands this far:
->
-> - `git init` tells Git to track the current directory.
-> - `git status` is a command you should use *a lot*. It will tell you,
->   amongst other things, the status of your Git clone in relation to the
->   online remote repository.
+- The `environment.yml` file contains the Conda environment with all the
+  software used in the analysis (see the [Conda tutorial](conda-1-introduction)).
+- The `Snakefile` and `config.yml` are both used to define the Snakemake
+  workflow, that we'll go through in the [Snakemake tutorial](snakemake-1-introduction).
+- The `Dockerfile` contains the recipe for making a Docker container for
+  the analysis, which will be covered in detail in the
+  [Container tutorial](containers-1-introduction).
+:::
+
+::: {.callout-note title="Quick recap"}
+We have used two `git` commands this far:
+
+- `git init` tells Git to track the current directory.
+- `git status` is a command you should use *a lot*. It will tell you,
+  amongst other things, the status of your Git clone in relation to the
+  online remote repository.
+:::
 
 ## Adding and committing files
 
@@ -168,29 +172,30 @@ git commit -m "Add initial files"
 The `-m` option adds a commit message. This should be a short description of
 what the commit contains.
 
-> **Good commit messages** <br>
-> Writing informative and succinct commit messages can be tricky when you're
-> just starting out. Here are some general guidelines that can help you write
-> good commit messages from the start:
->
-> - Separate subject from body with a blank line
-> - Limit the subject line to 50 characters
-> - Capitalize the subject line
-> - Do not end the subject line with a period
-> - Use the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood)
->   in the subject line
-> - Wrap the body at 72 characters
-> - Use the body to explain _what_ and _why_ vs. _how_
->
-> In the command above we just added a short subject line ("Add initial
-> files"). It is capitalized, less than 50 characters, does not end with
-> a period, and uses imperative mood (Add!). It is possible to add
-> a descriptive body text as well, as hinted by the points above. This is
-> easiest done in a text editor. If you run `git commit` without the `-m`
-> flag, Git will open the default terminal text editor (which can be
-> configured with the `core.editor` variable) where you can write a longer
-> commit message and body. If you want to read more about the motivation for
-> these points, please see [this website](https://chris.beams.io/posts/git-commit/).
+::: {.callout-tip title="Good commit messages}
+Writing informative and succinct commit messages can be tricky when you're
+just starting out. Here are some general guidelines that can help you write
+good commit messages from the start:
+
+- Separate subject from body with a blank line
+- Limit the subject line to 50 characters
+- Capitalize the subject line
+- Do not end the subject line with a period
+- Use the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood)
+  in the subject line
+- Wrap the body at 72 characters
+- Use the body to explain _what_ and _why_ vs. _how_
+
+In the command above we just added a short subject line ("Add initial
+files"). It is capitalized, less than 50 characters, does not end with
+a period, and uses imperative mood (Add!). It is possible to add
+a descriptive body text as well, as hinted by the points above. This is
+easiest done in a text editor. If you run `git commit` without the `-m`
+flag, Git will open the default terminal text editor (which can be
+configured with the `core.editor` variable) where you can write a longer
+commit message and body. If you want to read more about the motivation for
+these points, please see [this website](https://chris.beams.io/posts/git-commit/).
+:::
 
 - Run `git status` again. It should tell you _"nothing to commit, working
   directory clean"_.
@@ -243,12 +248,13 @@ separate. We thus want to make two commits, one for each change.
 git restore --staged environment.yml
 ```
 
-> **Note** <br>
-> Please note the use of the `--staged` flag here, which simply removes the
-> specified file(s) from the staging area without changing the file contents.
-> Using the `restore` command without this flag will not only remove the file
-> from the staging area, but _also_ restore the file to the state it was in the
-> last commit, which is not what we want here.
+::: {.callout-note}
+Please note the use of the `--staged` flag here, which simply removes the
+specified file(s) from the staging area without changing the file contents.
+Using the `restore` command without this flag will not only remove the file
+from the staging area, but _also_ restore the file to the state it was in the
+last commit, which is not what we want here.
+:::
 
 - Run `git status` again. See that now only `config.yml` is staged for being
   committed, whereas the changes in `environment.yml` are tracked by Git, but
@@ -308,35 +314,37 @@ operations in one step.
 git log
 ```
 
-> **Note** <br>
-> Since Git keeps track of changes in text, _e.g._ code and text-based
-> documentation, there are some files which you should _not_ commit. Examples
-> of such files are file formats that are not text-based, _e.g._ Microsoft
-> Word/Excel files or PDFs - although one might sometimes want to track one of
-> these files regardless, such as when you have a static PDF report you
-> received from a sequencing platform that's never going to change. Other
-> files you shouldn't track are vary large text files, _e.g._ those larger
-> than 50 MB.
+::: {.callout-note}
+Since Git keeps track of changes in text, _e.g._ code and text-based
+documentation, there are some files which you should _not_ commit. Examples
+of such files are file formats that are not text-based, _e.g._ Microsoft
+Word/Excel files or PDFs - although one might sometimes want to track one of
+these files regardless, such as when you have a static PDF report you
+received from a sequencing platform that's never going to change. Other
+files you shouldn't track are vary large text files, _e.g._ those larger
+than 50 MB.
+:::
 
-> **Quick recap** <br>
-> We added four important Git commands to our repertoire:
->
-> - `git add` adds a file to the staging area
-> - `git commit` commits the changes we have staged
-> - `git restore --staged` to remove files from the staging area
-> - `git rm` is shorthand for `rm <file>; git add <file>`
-> - `git log` shows us the commit history
+::: {.callout-note title="Quick recap"}
+We added four important Git commands to our repertoire:
+
+- `git add` adds a file to the staging area
+- `git commit` commits the changes we have staged
+- `git restore --staged` to remove files from the staging area
+- `git rm` is shorthand for `rm <file>; git add <file>`
+- `git log` shows us the commit history
+:::
 
 ## Ignoring files
 
 Git is aware of all files within the repository. However, it is not uncommon to
 have files that we don't want Git to track. For instance, our analysis might
 produce several intermediate files and results. We typically don't track such
-files. Rather, we want to track the actual code and other related files (*e.g.*
+files. Rather, we want to track the actual code and other related files (_e.g._
 configuration files) that produce the intermediate and result files, given the
 raw input data.
 
-* Let's make some mock result files. These are some of the files that would have
+- Let's make some mock result files. These are some of the files that would have
 been generated by the Snakemake workflow if it was run.
 
 ```bash
@@ -346,7 +354,7 @@ touch results/supplementary.html
 touch log.tmp
 ```
 
-* Run `git status`. You will see that Git tells you that you have untracked
+- Run `git status`. You will see that Git tells you that you have untracked
   files. However, we don't want Git to track these files anyway. To tell Git
   what files to ignore we use a file called `.gitignore`. Let's create it:
 
@@ -354,7 +362,7 @@ touch log.tmp
 touch .gitignore
 ```
 
-* Open the `.gitignore` file in a text editor and add the following lines to it:
+- Open the `.gitignore` file in a text editor and add the following lines to it:
 
 ```
 # Ignore these directories:
@@ -364,13 +372,13 @@ results/
 *.tmp
 ```
 
-* Run `git status` again. Now there is no mention of the `results` directory or
+- Run `git status` again. Now there is no mention of the `results` directory or
   the `log.tmp` file. Notice that we can use wildcards (\*) to ignore files with
-  a given pattern, *e.g.* a specific file extension.
+  a given pattern, _e.g._ a specific file extension.
 
-* Sometimes you want to ignore all files in a directory with one or two
+- Sometimes you want to ignore all files in a directory with one or two
   exceptions. For example, you don't want to track all your huge raw data files,
-  but there may be a smaller data file that you *do* want to track, *e.g.*
+  but there may be a smaller data file that you *do* want to track, _e.g._
   metadata or a list of barcodes used in your experiment. Let's add some mock
   data:
 
@@ -380,7 +388,7 @@ touch data/huge.fastq.gz
 touch data/metadata.txt
 ```
 
-* Git allows you to ignore all files using the aforementioned wildcard, but
+- Git allows you to ignore all files using the aforementioned wildcard, but
   then *exclude* certain files from that ignore command. Open the `.gitignore`
   file again and add the following:
 
@@ -392,7 +400,7 @@ data/*
 !data/metadata.txt
 ```
 
-* Finish up by adding the `.gitignore` and `data/metadata.txt` files to the
+- Finish up by adding the `.gitignore` and `data/metadata.txt` files to the
   staging area and committing them:
 
 ```bash
@@ -402,25 +410,27 @@ git add data/metadata.txt
 git commit -m "Add metadata file"
 ```
 
-> **Tip** <br>
-> It is common for certain programming languages or text editors to leave
-> *e.g.* swap files or hidden data files in the working directory, which you
-> don't want to track using Git. Instead of manually adding these to every
-> single project you have, you can use the `.gitignore_global` file, which
-> should be placed in your home directory. It works exactly like a normal
-> gitignore file, but is applied to all Git repositories that you are using
-> on your machine. Some common file extensions that might be put in the
-> global gitignore are `.DS_Store` if you're working on a Mac or `.swp` if
-> you're coding in (Neo)Vim. To configure git to use the `.gitignore_global`
-> file you can run `git config --global core.excludesfile ~/.gitignore_global`.
+::: {.callout-tip}
+It is common for certain programming languages or text editors to leave
+_e.g._ swap files or hidden data files in the working directory, which you
+don't want to track using Git. Instead of manually adding these to every
+single project you have, you can use the `.gitignore_global` file, which
+should be placed in your home directory. It works exactly like a normal
+gitignore file, but is applied to all Git repositories that you are using
+on your machine. Some common file extensions that might be put in the
+global gitignore are `.DS_Store` if you're working on a Mac or `.swp` if
+you're coding in (Neo)Vim. To configure git to use the `.gitignore_global`
+file you can run `git config --global core.excludesfile ~/.gitignore_global`.
+:::
 
-> **Quick recap** <br>
-> We now learned how to ignore certain files and directories:
->
-> - The `.gitignore` file controls which files and directories Git should
->   ignore, if any.
-> - Specific files can be excluded from ignored directories using the
->   exclamation mark (`!`) prefix.
+::: {.callout-note title="Quick recap"}
+We now learned how to ignore certain files and directories:
+
+- The `.gitignore` file controls which files and directories Git should
+  ignore, if any.
+- Specific files can be excluded from ignored directories using the
+  exclamation mark (`!`) prefix.
+:::
 
 ## Branches
 
@@ -444,10 +454,11 @@ git branch
 
 This tells us that there is only the `main` branch at the moment.
 
-> **Main and Master** <br>
-> If your branch is called `master` instead of `main` that's perfectly fine as
-> well, but do check out the Git section of the [pre-course setup](pre-course-setup)
-> for more details about the choice of default branch names.
+::: {.callout-note title="Main and Master"}
+If your branch is called `master` instead of `main` that's perfectly fine as
+well, but do check out the Git section of the [pre-course setup](pre-course-setup)
+for more details about the choice of default branch names.
+:::
 
 - Let's make a new branch:
 
@@ -464,9 +475,10 @@ git branch test_alignment
 git switch test_alignment
 ```
 
-> **Tip** <br>
-> You can create and switch to a new branch in one line with `git switch -c
+::: {.callout-tip}
+You can create and switch to a new branch in one line with `git switch -c
 branch_name` (or `--create`).
+:::
 
 Let's add some changes to our new branch! We'll use this to try out a different
 set of parameters on the sequence alignment step of the case study project.
@@ -497,16 +509,18 @@ This shows the difference between the active branch (`test_alignment`) and
 `main` on a line-per-line basis. Do you see which lines have changed between
 `test_alignment` and `main` branches?
 
-> **Tip** <br>
-> We can also add the `--color-words` flag to `git diff`, which instead
-> displays the difference on a word-per-word basis rather than line-per-line.
+::: {.callout-tip}
+We can also add the `--color-words` flag to `git diff`, which instead
+displays the difference on a word-per-word basis rather than line-per-line.
+:::
 
-> **Note** <br>
-> Git is constantly evolving, along with some of its commands. The `checkout`
-> command was previously used for switching between branches, but this
-> functionality now has the dedicated (and clearer) `switch` command for this.
-> If you've previously learned using `checkout` instead you can keep doing that
-> without any issues, as the `checkout` command itself hasn't changed.
+::: {.callout-note}
+Git is constantly evolving, along with some of its commands. The `checkout`
+command was previously used for switching between branches, but this
+functionality now has the dedicated (and clearer) `switch` command for this.
+If you've previously learned using `checkout` instead you can keep doing that
+without any issues, as the `checkout` command itself hasn't changed.
+:::
 
 Now, let's assume that we have tested our code and the alignment analysis is run
 successfully with our new parameters. We thus want to merge our work into the
@@ -528,13 +542,14 @@ git merge test_alignment
 Run `git log --graph --all --oneline` again to see how the merge commit brings
 back the changes made in `test_alignment` to `main`.
 
-> **Tip** <br>
-> If working on different features or parts of an analysis on different
-> branches, and at the same time maintaining a working `main` branch for the
-> stable code, it is convenient to periodically merge the changes made to
-> `main` into relevant branches (_i.e._ the opposite to what we did above).
-> That way, you keep your experimental branches up-to-date with the newest
-> changes and make them easier to merge into `main` when time comes.
+::: {.callout-tip}
+If working on different features or parts of an analysis on different
+branches, and at the same time maintaining a working `main` branch for the
+stable code, it is convenient to periodically merge the changes made to
+`main` into relevant branches (_i.e._ the opposite to what we did above).
+That way, you keep your experimental branches up-to-date with the newest
+changes and make them easier to merge into `main` when time comes.
+:::
 
 - If we do not want to do more work in `test_alignment` we can delete that
   branch:
@@ -547,25 +562,27 @@ git branch -d test_alignment
   the graph history are still there? A branch is simply a pointer to a
   specific commit, and that pointer has been removed.
 
-> **Tip** <br>
-> There are many types of so-called "branching models", each with varying
-> degrees of complexity depending on the developer's needs and the number of
-> collaborators. While there certainly isn't a single branching model that
-> can be considered to be the "best", it is very often most useful to keep it
-> simple. An example of a simple and functional model is to have a `main`
-> branch that is always working (_i.e._ can successfully run all your code
-> and without known bugs) and develop new code on feature branches (one new
-> feature per branch). Feature branches are short-lived, meaning that they
-> are deleted once they are merged into `main`.
+::: {.callout-tip}
+There are many types of so-called "branching models", each with varying
+degrees of complexity depending on the developer's needs and the number of
+collaborators. While there certainly isn't a single branching model that
+can be considered to be the "best", it is very often most useful to keep it
+simple. An example of a simple and functional model is to have a `main`
+branch that is always working (_i.e._ can successfully run all your code
+and without known bugs) and develop new code on feature branches (one new
+feature per branch). Feature branches are short-lived, meaning that they
+are deleted once they are merged into `main`.
+:::
 
-> **Quick recap** <br>
-> We have now learned how to divide our work into branches and how to manage
-> them:
->
-> - `git branch <branch>` creates a new branch.
-> - `git switch <branch>` moves the repository to the state in which the
->   specified branch is currently in.
-> - `git merge <branch>` merges the specified branch into the current one.
+::: {.callout-note title="Quick recap"}
+We have now learned how to divide our work into branches and how to manage
+them:
+
+- `git branch <branch>` creates a new branch.
+- `git switch <branch>` moves the repository to the state in which the
+  specified branch is currently in.
+- `git merge <branch>` merges the specified branch into the current one.
+:::
 
 ## Tags
 
@@ -592,16 +609,17 @@ git tag "submission1"
 git tag
 ```
 
-> **Tip** <br>
-> You can use the flag `-a` or `--annotate` to give more detailed information
-> about a specific tag, similar to a commit message. This can be quite useful
-> when there are many changes that happened, in that it allows you to
-> summarise them. You can, for example, do `git tag -a submission1 -m
+::: {.callout-tip}
+You can use the flag `-a` or `--annotate` to give more detailed information
+about a specific tag, similar to a commit message. This can be quite useful
+when there are many changes that happened, in that it allows you to
+summarise them. You can, for example, do `git tag -a submission1 -m
 "Annotation for tag submission1"` to write the annotation along with the
-> command (similar to the `-m` flag for committing) or just `git tag -a
+command (similar to the `-m` flag for committing) or just `git tag -a
 submission1` to write the annotation with your default editor. To list all
-> your tags along with their annotations you can use _e.g._ `git tag -n10`
-> (which will list the first 10 lines of each tag's annotation).
+your tags along with their annotations you can use _e.g._ `git tag -n10`
+(which will list the first 10 lines of each tag's annotation).
+:::
 
 - Let's assume we now got comments from the reviewers, and by fixing
   those we had to update our code. Open `config.yml` and change the line
@@ -642,19 +660,21 @@ git switch main
 
 - Open `config.yml` and see that the value is now `50000`.
 
-> **Tip** <br>
-> You can also see the difference between tags in the same way as for
-> branches and commits using _e.g._ `git diff <tag1> <tag2>`.
+::: {.callout-tip}
+You can also see the difference between tags in the same way as for
+branches and commits using _e.g._ `git diff <tag1> <tag2>`.
+:::
 
 At this point could run `git log --oneline --decorate` to get a condensed
 commit history, where you should also be able to see the tagged commits.
 
-> **Quick recap** <br>
-> We have now learned how to tag important commits:
->
-> - `git tag` adds a tag to a commit.
-> - `git switch -d` moves between tags in a similar fashion as between
->   branches.
+::: {.callout-note title="Quick recap"}
+We have now learned how to tag important commits:
+
+- `git tag` adds a tag to a commit.
+- `git switch -d` moves between tags in a similar fashion as between
+  branches.
+:::
 
 ## Working remotely
 
@@ -699,9 +719,10 @@ git remote add origin git@github.com:user/git_tutorial.git
   your local Git clone. The short name of the default remote is usually
   "_origin_" by convention.
 
-> **Note** <br>
-> Make sure you've used an SSH address (_i.e._ starting with `git@github.com`
-> rather than an HTTPS address (starting with `https://github.com`)!
+::: {.callout-note}
+Make sure you've used an SSH address (_i.e._ starting with `git@github.com`
+rather than an HTTPS address (starting with `https://github.com`)!
+:::
 
 - We have not yet synced the local and remote repositories, though, we've simply
   connected them. Let's sync them now:
@@ -756,9 +777,10 @@ You can find the latest stable version of the Git tutorial for the course
 [here](https://uppsala.instructure.com/courses/87979/pages/git-7-working-remotely?module_item_id=890886).
 ```
 
-> **The markdown format** <br>
-> If you haven't seen this format before you can learn more about it at the
-> [markdown](markdown) page.
+::: {.callout-note title="The Markdown format"}
+If you haven't seen this format before you can learn more about it at the
+[markdown](markdown) page.
+:::
 
 - Add, commit and push these changes to GitHub.
 
@@ -779,10 +801,11 @@ repositories, fully explaining the ideas and rationale behind the project. You
 can even add README-files to sub-directories as well, giving you the opportunity
 to go more in-depth where you so desire.
 
-> **Quick recap** <br>
-> We learned how to connect local Git repositories to remote locations such as
-> GitHub and how to upload commits using `git push`. We also learned the
-> basics of _markdown_ and how it can be used to document Git repositories.
+::: {.callout-note title="Quick recap"}
+We learned how to connect local Git repositories to remote locations such as
+GitHub and how to upload commits using `git push`. We also learned the
+basics of _markdown_ and how it can be used to document Git repositories.
+:::
 
 ### Browsing GitHub
 
@@ -820,10 +843,6 @@ You will now see the files as they were when we first added them. Specifically
 you can see that the `Dockerfile` is back, even though we deleted it! Click on
 the _Code_ tab to the left to return to the overview of the latest repository
 version.
-
-> **Quick recap** <br>
-> We learned some of the most important features of the GitHub interface and
-> how repositories can be viewed online.
 
 ### Working with remote repositories
 
@@ -883,16 +902,17 @@ will give you a short visual summary:
 
 ![](images/git_overview_remote.png){ width=600px }
 
-> **Quick recap** <br>
-> We have learned the difference between local and remote copies of git
-> repositories and how to sync them:
->
-> - `git push` uploads commits to a remote repository
-> - `git pull` downloads commits from a remote repository and merges them
->   to the local branch
-> - `git fetch` downloads commits from a remote repository without merging
->   them to the local branch
-> - `git clone` makes a local copy of a remote repository
+::: {.callout-note title="Quick recap"}
+We have learned the difference between local and remote copies of git
+repositories and how to sync them:
+
+- `git push` uploads commits to a remote repository
+- `git pull` downloads commits from a remote repository and merges them
+  to the local branch
+- `git fetch` downloads commits from a remote repository without merging
+  them to the local branch
+- `git clone` makes a local copy of a remote repository
+:::
 
 ### Remote branches
 
@@ -942,10 +962,11 @@ branch from the remote repository as well, run:
 git push origin --delete trimming
 ```
 
-> **Quick recap** <br>
-> We learned how to push local branches to a remote with `git push origin
+::: {.callout-note title="Quick recap"}
+We learned how to push local branches to a remote with `git push origin
 <branch>` and how to delete remote branches with `git push origin --delete
 <branch>`.
+:::
 
 ### Sharing tags
 
@@ -974,8 +995,9 @@ Alternatively, Git users who want to reproduce your analysis with the code used
 for the publication can clone the GitHub repository and then run `git switch -d
 publication`.
 
-> **Quick recap** <br>
-> We learned how to push Git tags to a remote by using the `--tags` flag.
+::: {.callout-note title="Quick recap"}
+We learned how to push Git tags to a remote by using the `--tags` flag.
+:::
 
 ## Conflicts
 
@@ -985,7 +1007,7 @@ setting with remote repositories. It'll happen sooner or later, even if you're
 only working locally, so it's important to know how to deal with them! We'll
 now introduce a conflict on purpose, which we can then solve.
 
-* Remember that we have two separate local copies of the same repository? Let's
+- Remember that we have two separate local copies of the same repository? Let's
   go into the first one, `git_tutorial`, and change the MultiQC version in the
   `environment.yml` file:
 
@@ -993,23 +1015,23 @@ now introduce a conflict on purpose, which we can then solve.
 multiqc=1.8
 ```
 
-* Add, commit and push your change to the remote.
+- Add, commit and push your change to the remote.
 
 Now we have a change in our remote and *one* of our local copies, but not in the
 other. This could happen if a collaborator of yours committed a change and
 pushed it to GitHub. Let's create a conflict!
 
-* Move into your other local repository, `git_remote_tutorial`, which doesn't
+- Move into your other local repository, `git_remote_tutorial`, which doesn't
   have the new change. Run `git status`. Notice that Git says: "*Your branch is
   up-to-date with 'origin/main'.*". We know that this is not true, but this
   local clone is not yet aware of the remote changes.
 
-* Let's change the `environment.yml` file in this local repository as well, but
+- Let's change the `environment.yml` file in this local repository as well, but
   to version 1.6, instead! It may be the case that your collaborator thought it
   was good to use MultiQC version 1.8, whereas you thought it would be better to
   use MultiQC version 1.6, but neither of you communicated that to the other.
 
-* Add and commit your change and try to push the commit, which should give you
+- Add and commit your change and try to push the commit, which should give you
   an error message that looks like this:
 
 ```no-highlight
@@ -1026,34 +1048,35 @@ This error message is thankfully quite informative in regards to what is going
 on and what might be done about it. In essence it will not allow you to push
 to the remote since there are conflicting changes made to it.
 
-* Let's download the changes made to the remote, but without trying to merge
+- Let's download the changes made to the remote, but without trying to merge
   them directly. This can be done using the following command:
 
 ```bash
 git fetch
 ```
 
-> **Note** <br>
-> The `fetch` command is very similar to `pull` in that it downloads remote
-> changes that are not present locally, but differs in that it doesn't try to
-> merge them locally; `pull` both downloads and merges (unless there's
-> a conflict, in which case it will tell you so and raise an error like the
-> one above). You can thus skip `fetch` and just do `pull` straight away, if
-> you prefer.
+::: {.callout-note}
+The `fetch` command is very similar to `pull` in that it downloads remote
+changes that are not present locally, but differs in that it doesn't try to
+merge them locally; `pull` both downloads and merges (unless there's
+a conflict, in which case it will tell you so and raise an error like the
+one above). You can thus skip `fetch` and just do `pull` straight away, if
+you prefer.
+:::
 
-* Now run `git status`. Unlike before, our local Git clone now is aware of the
+- Now run `git status`. Unlike before, our local Git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
   lines: "*Your branch and 'origin/main' have diverged, and have 1 and
   1 different commit each, respectively.*".
 
-* We can now run the following to see what the difference is between the current
+- We can now run the following to see what the difference is between the current
   state of our local clone and the `main` branch on the remote origin:
 
 ```bash
 git diff origin/main
 ```
 
-* Now let's try to integrate the remote changes with our local changes and get
+- Now let's try to integrate the remote changes with our local changes and get
   up to sync with the remote:
 
 ```bash
@@ -1063,7 +1086,7 @@ git merge
 Unsurprisingly, the `git merge` command resulted in a conflict. Git tells us
 about this and suggests that we should fix the conflicts and commit that.
 
-* As always, run `git status` to get an overview: you will see that you have
+- As always, run `git status` to get an overview: you will see that you have
   so-called unmerged paths and that the conflicting file is `environment.yml`,
   since both modified the same line in this file. To fix a conflict, open the
   affected file in a text editor. You will see that it now looks something like
@@ -1110,8 +1133,8 @@ the one added to the remote and which caused the conflict when you tried to merg
 those changes to your local repository. It is now up to you to decide which
 version to keep, or to change it to a third alternative.
 
-* Let's say that you are confident that it is better to run MultiQC 1.6 rather
-  than 1.8. Edit the file so that it looks like you want it to, *i.e.* remove
+- Let's say that you are confident that it is better to run MultiQC 1.6 rather
+  than 1.8. Edit the file so that it looks like you want it to, _i.e._ remove
   the lines added by Git and delete the line with `multiqc=1.8`. The final file
   should look like this:
 
@@ -1146,14 +1169,14 @@ dependencies:
   - xorg-libxpm
 ```
 
-* Run `git status` again. Notice that it says `use "git add <file>..." to mark
+- Run `git status` again. Notice that it says `use "git add <file>..." to mark
   resolution`? Let's do that!
 
 ```bash
 git add environment.yml
 ```
 
-* Run `git status` again! It will now tell us: `All conflicts fixed but you are
+- Run `git status` again! It will now tell us: `All conflicts fixed but you are
   still merging. (use "git commit" to conclude merge)`. So, you probably
   guessed it, run:
 
@@ -1161,27 +1184,29 @@ git add environment.yml
 git commit -m "Merge and set MultiQC to v1.6"
 ```
 
-* Finally, push these changes to GitHub:
+- Finally, push these changes to GitHub:
 
 ```bash
 git push
 ```
 
-* Go to GitHub in the browser and click the commit tracker again. You will see
+- Go to GitHub in the browser and click the commit tracker again. You will see
   a list of commits including where MultiQC was first changed to version `1.7`
   from our previous work, then to `1.8`, `1.6` and, finally, followed by a merge
   where the version was set to `1.6`.
 
-> **Note** <br>
-> While the example we've used here is from a collaborative setting, conflicts
-> also arise when you are working alone. They usually happen when you have
-> several feature branches that you want to merge into `main` and you've
-> forgot to keep all branches up-to-date with each other.
+::: {.callout-note}
+While the example we've used here is from a collaborative setting, conflicts
+also arise when you are working alone. They usually happen when you have
+several feature branches that you want to merge into `main` and you've
+forgot to keep all branches up-to-date with each other.
+:::
 
-> **Quick recap** <br>
-> We learned about how conflicting commits can happen and how to deal with
-> them by inspecting the affected files and looking for the source of the
-> conflict.
+::: {.callout-note title="Quick recap"}
+We learned about how conflicting commits can happen and how to deal with
+them by inspecting the affected files and looking for the source of the
+conflict.
+:::
 
 ## Extra material
 
@@ -1452,9 +1477,10 @@ variable `PS1`. You can type `echo $PS1` to see what variables your prompt
 is made up of; the above example contains `\h:\W \u\$`, where `\h` is the
 hostname, `\W` the working directory and `\u` the username.
 
-> **Note** <br>
-> If you're using `zsh` instead of bash you'll have to replace the backslashes
-> (`\`) in the commands with percent signs (`%`).
+::: {.callout-note}
+If you're using `zsh` instead of bash you'll have to replace the backslashes
+(`\`) in the commands with percent signs (`%`).
+:::
 
 Some people like to also show the current branch on their prompt, thus avoiding
 having to type `git branch` continuously. There are several ways you might do
