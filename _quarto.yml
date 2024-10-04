@@ -27,7 +27,7 @@ website:
     border: false
     left: "{{< meta current_year >}} [NBIS](https://nbis.se) | [GPL-3 License](https://choosealicense.com/licenses/gpl-3.0/)"
     right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
-  site-url: "https://royfrancis.github.io/specky/"
+  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
 
 format:
   html:
@@ -86,10 +86,10 @@ format:
     subtitle: "Specky quarto theme"
     header-logo-left: /assets/logos/nbis.png
     header-logo-left-height: 25px
-    header-logo-left-url: https://royfrancis.github.io/specky/home_contents.html
+    header-logo-left-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
     header-logo-right: /assets/logos/scilifelab.png
     header-logo-right-height: 25px
-    header-logo-right-url: https://royfrancis.github.io/specky/home_contents.html
+    header-logo-right-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
     template-partials:
       - "assets/title-slide.html"
 
