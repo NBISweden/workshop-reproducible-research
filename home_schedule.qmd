@@ -24,8 +24,6 @@ library(readxl)
 library(here)
 
 schedule_message <- yaml::read_yaml(here("_quarto.yml"))$schedule_message
-color_primary <- yaml::read_yaml(here("_quarto.yml"))$colors$primary
-
 asst <- yaml::read_yaml("_quarto.yml")$assistant
 
 #' @description Add hover classes to assistants
@@ -58,41 +56,37 @@ create_tooltip <- function(a, asst) {
 #| eval: true
 
 s <- readxl::read_xlsx("schedule.xlsx") %>%
-    # remove rows that are all NA
-    filter(if_any(everything(), ~ !is.na(.))) %>%
-    # missing values in date and room are filled
-    tidyr::fill(date, room, link_room, .direction = "down") %>%
-    # convert date characters to date objects
-    dplyr::mutate(date = format(as_datetime(date, format = "%d/%m/%Y"), "%d-%b-%Y")) %>%
-    dplyr::mutate(day = format(as_datetime(date, format = "%d-%b-%Y"), "%a")) %>%
-    dplyr::group_by(date) %>%
-    dplyr::mutate(
-        start_time = format(start_time, "%H:%M"),
-        # end_time = format(end_time, "%H:%M")
-    ) %>%
-    as.data.frame() %>%
-    dplyr::mutate(room = ifelse(is.na(link_room), room, paste0("<a href='", link_room, "'>", room, "</a>"))) %>%
-    # create day label (with date, day, room)
-    dplyr::mutate(date = paste0("<p style='font-size:110%;padding-top:10px;padding-bottom:5px;'><span style='font-weight:bold;'><span class='marker'>",fa("fas fa-calendar"),"</span>", date, "</span>", "<span style='color:white;border-radius:4px;padding-right:4px;padding-left:4px;background:", color_primary, ";margin-left:9px;margin-right:7px;'>", day, "</span>", "<span class='marker'>", fa("fas fa-location-dot"),"</span>", room, "</p>")) %>%
-    # style topic
-    dplyr::mutate(topic = ifelse(tolower(topic) == "break" | tolower(topic) == "lunch", paste0("<span class='topic'>", topic, "</span>"), topic)) %>%
-    dplyr::mutate(topic = ifelse(grepl("dinner",tolower(topic)), paste0("<span class='topic-dinner'>", topic, "</span>"), topic)) %>%
-    dplyr::mutate(topic = ifelse(!startsWith(topic, "<span"), paste0("<span style='margin-right:5px;'>", topic, "</span>"), topic)) %>%
-    # add links to topic
-    dplyr::mutate(topic = ifelse(is.na(link_slide), topic, paste0("<span>", topic, "<a class='marker' href='", link_slide, "'>", fa("fas fa-file-powerpoint"), "</a></span>"))) %>%
-    dplyr::mutate(topic = ifelse(is.na(link_lab), topic, paste0("<span>", topic, "<a class='marker' href='", link_lab, "'>", fa("fas fa-file-lines"), "</a></span>"))) %>%
-    dplyr::mutate(topic = ifelse(is.na(link_youtube), topic, paste0("<span>", topic, "<a class='marker' href='", link_youtube, "' target=”_blank”>", fa("fab fa-youtube"),"</a></span>"))) %>%
-    dplyr::mutate(time = paste0(start_time, " - ", end_time)) %>%
-    dplyr::mutate(instructor = ifelse(is.na(instructor), "", instructor)) %>%
-    dplyr::mutate(assistant = ifelse(is.na(assistant), "", assistant)) %>%
-    dplyr::select(date, room, time, topic, instructor, assistant)
+  # remove rows that are all NA
+  filter(if_any(everything(), ~ !is.na(.))) %>%
+  # missing values in date and room are filled
+  tidyr::fill(date, room, link_room, .direction = "down") %>%
+  # convert date characters to date objects
+  dplyr::mutate(date = format(as_datetime(date, format = "%d/%m/%Y"), "%d-%b-%Y")) %>%
+  dplyr::mutate(day = format(as_datetime(date, format = "%d-%b-%Y"), "%a")) %>%
+  dplyr::group_by(date) %>%
+  dplyr::mutate(time = format(time, "%H:%M")) %>%
+  as.data.frame() %>%
+  dplyr::mutate(room = ifelse(is.na(link_room), room, paste0("<a href='", link_room, "'>", room, "</a>"))) %>%
+  # create day label (with date, day, room)
+  dplyr::mutate(date = paste0("<p style='font-size:110%;padding-top:10px;padding-bottom:5px;'><span style='font-weight:bold;'><span class='marker'>", fa("fas fa-calendar"), "</span>", date, "</span>", "<span style='color:white;border-radius:4px;padding-right:4px;padding-left:4px;background:#95b540;margin-left:9px;margin-right:7px;'>", day, "</span>", "<span class='marker'>", fa("fas fa-location-dot"), "</span>", room, "</p>")) %>%
+  # style topic
+  dplyr::mutate(topic = ifelse(tolower(topic) == "break" | tolower(topic) == "lunch", paste0("<span class='topic'>", topic, "</span>"), topic)) %>%
+  dplyr::mutate(topic = ifelse(grepl("dinner", tolower(topic)), paste0("<span class='topic-dinner'>", topic, "</span>"), topic)) %>%
+  dplyr::mutate(topic = ifelse(!startsWith(topic, "<span"), paste0("<span style='margin-right:5px;'>", topic, "</span>"), topic)) %>%
+  # add links to topic
+  dplyr::mutate(topic = ifelse(is.na(link_slide), topic, paste0("<span>", topic, "<a class='marker' href='", link_slide, "'>", fa("fas fa-file-powerpoint"), "</a></span>"))) %>%
+  dplyr::mutate(topic = ifelse(is.na(link_lab), topic, paste0("<span>", topic, "<a class='marker' href='", link_lab, "'>", fa("fas fa-file-lines"), "</a></span>"))) %>%
+  dplyr::mutate(topic = ifelse(is.na(link_youtube), topic, paste0("<span>", topic, "<a class='marker' href='", link_youtube, "' target=”_blank”>", fa("fab fa-youtube"), "</a></span>"))) %>%
+  dplyr::mutate(instructor = ifelse(is.na(instructor), "", instructor)) %>%
+  dplyr::mutate(assistant = ifelse(is.na(assistant), "", assistant)) %>%
+  dplyr::select(date, room, time, topic, instructor, assistant)
 
 if (all(is.na(s$assistant)) | all(s$assistant == "")) {
-    s$assistant <- NULL
-    cnames <- c("Time", "Topic", "Instructor")
+  s$assistant <- NULL
+  cnames <- c("Time", "Topic", "Instructor")
 } else {
-    s$assistant <- create_tooltip(s$assistant, asst)
-    cnames <- c("Time", "Topic", "Instructor", "Assistant")
+  s$assistant <- create_tooltip(s$assistant, asst)
+  cnames <- c("Time", "Topic", "Instructor", "Assistant")
 }
 ```
 
