@@ -173,3 +173,45 @@ div.callout-caution .callout-icon::before {
 div.callout-important .callout-icon::before {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTYiIHdpZHRoPSIxNiIgZmlsbD0iIzFjMjgzMyIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjwhLS0hRm9udCBBd2Vzb21lIEZyZWUgNi41LjEgYnkgQGZvbnRhd2Vzb21lIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20gTGljZW5zZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tL2xpY2Vuc2UvZnJlZSBDb3B5cmlnaHQgMjAyMyBGb250aWNvbnMsIEluYy4tLT48cGF0aCBkPSJNNDE2IDM5OC45YzU4LjUtNDEuMSA5Ni0xMDQuMSA5Ni0xNzQuOUM1MTIgMTAwLjMgMzk3LjQgMCAyNTYgMFMwIDEwMC4zIDAgMjI0YzAgNzAuNyAzNy41IDEzMy44IDk2IDE3NC45YzAgLjQgMCAuNyAwIDEuMXY2NGMwIDI2LjUgMjEuNSA0OCA0OCA0OGg0OFY0NjRjMC04LjggNy4yLTE2IDE2LTE2czE2IDcuMiAxNiAxNnY0OGg2NFY0NjRjMC04LjggNy4yLTE2IDE2LTE2czE2IDcuMiAxNiAxNnY0OGg0OGMyNi41IDAgNDgtMjEuNSA0OC00OFY0MDBjMC0uNCAwLS43IDAtMS4xek05NiAyNTZhNjQgNjQgMCAxIDEgMTI4IDBBNjQgNjQgMCAxIDEgOTYgMjU2em0yNTYtNjRhNjQgNjQgMCAxIDEgMCAxMjggNjQgNjQgMCAxIDEgMC0xMjh6Ii8+PC9zdmc+') !important;
 }
+
+/* table schedule */
+
+.table-schedule {
+  font-size: 0.85em;
+  line-height: 1.8;
+}
+
+.table-schedule tr:hover {
+  background-color: whitesmoke;
+}
+
+.table-schedule table {
+  margin: 1em auto;
+}
+
+.table-schedule .topic {
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 1px 4px;
+  background: #BDBDBD;
+}
+
+.table-schedule .topic-dinner {
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 1px 4px;
+  background: #95b540;
+}
+
+.table-schedule .marker {
+  color: $primary;
+  margin-left: 2px;
+  margin-right: 3px;
+}
+
+.table-schedule td p {
+  margin-bottom: 0;
+  padding: 5px 0px;
+}
