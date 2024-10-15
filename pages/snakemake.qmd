@@ -229,7 +229,7 @@ based on. Try to figure out how to do this yourself. If you're stuck you can
 look at the spoiler below, but spend some time on it before you look. Also
 rename the rule to `concatenate_files` to reflect its new more general use.
 
-::: {.callout-note collapse="true" title="Click to show"}
+::: {.callout-tip collapse="true" title="Click to show"}
 ```python
 rule concatenate_files:
     output:
@@ -493,7 +493,7 @@ rules involved in the generation of your target files. Now try to change the
 contents of `a.txt` to some other text and save it. What do you think will
 happen if you run `snakemake -n -r a_b.txt` again?
 
-::: {.callout-note collapse="true" title="Click to show"}
+::: {.callout-tip collapse="true" title="Click to show"}
 ```no-highlight
 $ snakemake -n -r a_b.txt
 
@@ -609,54 +609,13 @@ snakemake a_b.txt -c 1 -D > summary.tsv
 
 The content of `summary.tsv` is shown in the table below:
 
-<table class="table table-hover table-condensed" border=1; style="margin-left:auto; margin-right:auto;">
-    <thead style="background-color:#DAE7F1">
-        <tr>
-            <td style="padding:5px"> <font size="3"><b> output_file </b> </td>
-            <td style="padding:5px"> <font size="3"><b> date </b> </td>
-            <td style="padding:5px"> <font size="3"><b> rule </b> </td>
-            <td style="padding:5px"> <font size="3"><b> version </b> </td>
-            <td style="padding:5px"> <font size="3"><b> log-file(s) </b> </td>
-            <td style="padding:5px"> <font size="3"><b> input-file(s) </b> </td>
-            <td style="padding:5px"> <font size="3"><b> shellcmd </b> </td>
-            <td style="padding:5px"> <font size="3"><b> status </b> </td>
-            <td style="padding:5px"> <font size="3"><b> plan </b> </td>
-        </tr>
-    </thead>
-    <tr>
-        <td style="padding:5px"> <font size="3"> a_b.txt </td>
-        <td style="padding:5px"> <font size="3"> Mon Oct 25 17:01:46 2021 </td>
-        <td style="padding:5px"> <font size="3"> concatenate_files </td>
-        <td style="padding:5px"> <font size="3"> - </td>
-        <td style="padding:5px"> <font size="3"> </td>
-        <td style="padding:5px"> <font size="3"> a.upper.txt,b.upper.txt </td>
-        <td style="padding:5px"> <font size="3"> cat a.upper.txt b.upper.txt > a_b.txt </td>
-        <td style="padding:5px"> <font size="3"> rule implementation changed </td>
-        <td style="padding:5px"> <font size="3"> update pending </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> a.upper.txt</td>
-        <td style="padding:5px"> <font size="3"> Mon Oct 25 17:01:46 2021 </td>
-        <td style="padding:5px"> <font size="3"> convert_to_upper_case </td>
-        <td style="padding:5px"> <font size="3"> - </td>
-        <td style="padding:5px"> <font size="3"> </td>
-        <td style="padding:5px"> <font size="3"> a.txt </td>
-        <td style="padding:5px"> <font size="3"> tr [a-z] [A-Z] < a.txt > a.upper.txt </td>
-        <td style="padding:5px"> <font size="3"> ok </td>
-        <td style="padding:5px"> <font size="3"> no update  </td>
-    </tr>
-    <tr>
-        <td style="padding:5px"> <font size="3"> b.upper.txt</td>
-        <td style="padding:5px"> <font size="3"> Mon Oct 25 17:01:46 2021 </td>
-        <td style="padding:5px"> <font size="3"> convert_to_upper_case </td>
-        <td style="padding:5px"> <font size="3"> - </td>
-        <td style="padding:5px"> <font size="3"> </td>
-        <td style="padding:5px"> <font size="3"> b.txt </td>
-        <td style="padding:5px"> <font size="3"> tr [a-z] [A-Z] < b.txt > b.upper.txt </td>
-        <td style="padding:5px"> <font size="3"> ok </td>
-        <td style="padding:5px"> <font size="3"> no update  </td>
-    </tr>
-</table>
+<div class="table-responsive">
+| output_file    |   date                      |   rule                   |   version   |   log-file(s)   |   input-file(s)            |   shellcmd                               |   status                       |   plan            |
+|----------------|-----------------------------|--------------------------|-------------|-----------------|----------------------------|------------------------------------------|--------------------------------|-------------------|
+|   a_b.txt      |   Mon Oct 25 17:01:46 2021  |   concatenate_files      |   -         |                 |   a.upper.txt,b.upper.txt  |   cat a.upper.txt b.upper.txt > a_b.txt  |   rule implementation changed  |   update pending  |
+|   a.upper.txt  |   Mon Oct 25 17:01:46 2021  |   convert_to_upper_case  |   -         |                 |   a.txt                    |   tr [a-z] [A-Z] < a.txt > a.upper.txt   |   ok                           |   no update       |
+|   b.upper.txt  |   Mon Oct 25 17:01:46 2021  |   convert_to_upper_case  |   -         |                 |   b.txt                    |   tr [a-z] [A-Z] < b.txt > b.upper.txt   |   ok                           |   no update       |
+</div>
 
 You can see in the second last column that the rule implementation for `a_b.txt`
 has changed. The last column shows if Snakemake plans to regenerate the files
@@ -900,7 +859,7 @@ of the 100,000 contained in the example FASTQ file). Change in the rule to
 use the parameter `max_reads` instead and set the value to 20000. If you
 need help, click to show the solution below.
 
-::: {.callout-note collapse="true" title="Click to show"}
+::: {.callout-tip collapse="true" title="Click to show"}
 
 ```python
 rule get_SRA_by_accession:
@@ -1558,7 +1517,7 @@ rule get_genome_fasta:
 Now change the `get_genome_gff3` rule in a similar manner. Click to see the
 solution below if you're having trouble.
 
-::: {.callout-note collapse="true" title="Click to show"}
+::: {.callout-tip collapse="true" title="Click to show"}
 ```python
 def get_gff_path(wildcards):
     return config["genomes"][wildcards.genome_id]["gff3"]
@@ -1577,6 +1536,7 @@ rule get_genome_gff3:
         """
         wget -o {log} {params.gff3_path} -O {output}
         """
+```
 :::
 
 Also change in `index_genome` to use a wildcard rather than a hard-coded genome
