@@ -7,8 +7,7 @@ on:
       - devel
   push:
     paths:
-      - 'pages/*.md'
-      - 'pages/*/*.md'
+      - 'pages/tools-for-reproducible-research.md'
       - 'pages/upload-page-to-canvas.sh'
     branches:
       - main
