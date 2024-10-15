@@ -12,7 +12,9 @@ save and execute code as well as generating reports in various output formats.
 This is done by mixing *markdown* and so-called *code chunks* in the same
 document (we have [course materials for markdown](markdown) if you are
 unfamiliar with this format). The code itself as well as the output it generates
-can be included in the final report.
+can be included in the final report. Not only can Quarto work great for
+scientific coding, but can also be used for things such as presentation and
+websites - this entire workshop website is, in fact, created using only Quarto!
 
 Quarto makes your analysis more reproducible by connecting your code, figures
 and descriptive text. You can use it to make reproducible reports, rather than
