@@ -20,7 +20,7 @@ A page using the `conda-2-the-basics.md` original file will be named `Conda
 or add special characters and subsequent updates to the same page will keep
 those changes. For example, manually editing the page in Canvas to be `Conda 2:
 The basics` will keep that change after further updates, while changing it to
-*e.g.* `Conda 2: Some basics` will cause a new page with the original, unaltered
+_e.g._ `Conda 2: Some basics` will cause a new page with the original, unaltered
 name to be created.
 
 # Formatting for Canvas
@@ -32,7 +32,7 @@ are highlighted in this section when they vary from standard markdown.
 
 A blockquote is a good replacement for non-standard markdown boxes (such as
 admonitions in `mkdocs`). There are some things to keep in mind, though, such as
-having to use explicit breaks (`<br>`) when you want a newline for *e.g.*
+having to use explicit breaks (`<br>`) when you want a newline for _e.g._
 headers.
 
 Another thing is lists: you need to make sure you have a space between any text
@@ -43,7 +43,7 @@ and the start/end of lists, otherwise they will not render as proper lists.
 > This is a blockquote formatted to look nice inside Canvas. It starts with
 > a header and an explicit line break, followed by some text. Then comes a
 > a blank line, a list and some more text.
-> 
+>
 > * The first element, with some *italic text*
 > * The second element, with some **bold** text
 >
