@@ -12,6 +12,7 @@ dependencies:
   - r-here
   - r-htmltable
   - r-kableextra
+  - r-leaflet
   - r-lubridate
   - r-palmerpenguins
   - r-readxl
