@@ -23,6 +23,8 @@ website:
         href: "home_syllabus.html"
       - text: "Pre-course"
         href: "home_precourse.html"
+      - icon: "github"
+        href: "https://github.com/NBISweden/workshop-reproducible-research/"
   page-footer:
     border: false
     left: "{{< meta current_year >}} [NBIS](https://nbis.se) | [GPL-3 License](https://choosealicense.com/licenses/gpl-3.0/)"
