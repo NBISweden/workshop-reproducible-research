@@ -4,6 +4,7 @@ channels:
 dependencies:
 
   # Command line
+  - git
   - snakemake-minimal
 
   # R

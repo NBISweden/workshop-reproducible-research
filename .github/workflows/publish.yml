@@ -1,6 +1,7 @@
 name: Render and publish site
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -17,10 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy on GitHub Pages
+      - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
-          render: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
