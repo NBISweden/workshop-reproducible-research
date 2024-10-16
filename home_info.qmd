@@ -6,6 +6,7 @@ number-sections: false
 sidebar: false
 code-tools: false
 format: html
+freeze: false
 ---
 
 ```{r}
