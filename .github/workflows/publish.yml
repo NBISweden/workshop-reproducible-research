@@ -1,4 +1,4 @@
-name: deploy
+name: Render and publish site
 
 on:
   push:
@@ -7,8 +7,9 @@ on:
       - specky
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
+    container: ghcr.io/nbisweden/workshop-reproducible-research/publish:specky
     permissions:
       contents: write
     steps:
@@ -18,7 +19,6 @@ jobs:
 
       - name: Deploy on GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
-        container: ghcr.io/nbisweden/workshop-reproducible-research/deploy
         with:
           target: gh-pages
           render: true
