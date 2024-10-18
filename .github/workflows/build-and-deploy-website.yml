@@ -6,6 +6,12 @@ on:
     branches:
       - main
       - specky
+    paths-ignore:
+      - "README.md"
+      - "LICENCE.md"
+      - "env/"
+      - "pages/tools-for-reproducible-research.md"
+      - "tutorials/"
 
 concurrency:
   group: pages
