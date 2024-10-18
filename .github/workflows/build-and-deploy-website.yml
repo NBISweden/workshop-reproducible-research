@@ -15,7 +15,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    container: ghcr.io/nbisweden/workshop-reproducible-research/publish:specky
+    container: ghcr.io/nbisweden/workshop-reproducible-research/build-website:specky
     steps:
 
       - name: Checkout
