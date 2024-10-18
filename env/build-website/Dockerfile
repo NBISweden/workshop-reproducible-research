@@ -19,8 +19,6 @@ RUN mkdir -p /opt/quarto \
 # Second stage: Conda environment
 #
 FROM condaforge/miniforge3:24.7.1-0
-LABEL org.opencontainers.image.authors="erik.fasterius@nbis.se"
-LABEL org.opencontainers.image.description="Dockerfile for the Tools for Reproducible Research NBIS / Elixir workshop"
 COPY --from=quarto /opt/quarto /opt/quarto
 ENV PATH="${PATH}:/opt/quarto/bin"
 RUN apt-get update \
@@ -42,3 +40,6 @@ WORKDIR /work
 
 # Start Bash shell by default
 CMD /bin/bash
+
+LABEL org.opencontainers.image.authors="erik.fasterius@nbis.se"
+LABEL org.opencontainers.image.description="Dockerfile for the Tools for Reproducible Research NBIS / Elixir workshop"
