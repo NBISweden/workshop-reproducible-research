@@ -1,0 +1,40 @@
+---
+pagetitle: "Home | Tools for Reproducible Research"
+subtitle: ""
+toc: false
+date: ""
+sidebar: false
+format:
+  html:
+    css: "assets/css/home.css"
+    number-sections: false
+    title-block-banner: false
+    page-layout: full
+execute:
+  freeze: false
+---
+
+::: {.home-container}
+::: {.home-grid-parent}
+::: {.home-grid-child-left}
+
+#### NBIS / Elixir workshop
+## [**Tools for Reproducible Research**]{.large}
+
+How to work reproducibly with control and structuring of project code,
+environment and workflow management
+
+---
+
+::: small
+Updated: {{< meta current_date >}}  at {{< meta current_time >}} .
+:::
+
+:::
+:::{.home-grid-child-right}
+
+![](assets/images/hero.png){.nolightbox}
+
+:::
+:::
+:::

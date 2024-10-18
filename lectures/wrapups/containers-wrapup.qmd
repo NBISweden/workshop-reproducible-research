@@ -10,7 +10,7 @@ format: nbis-revealjs
 - How to build docker images from Dockerfiles
 - How to mount volumes inside containers
 - How to push/pull docker images to/from DockerHub
-- How to convert a docker image to singularity/apptainer format
+- How to convert a docker image to Apptainer format
 
 ## If you want to learn more {.smaller}
 

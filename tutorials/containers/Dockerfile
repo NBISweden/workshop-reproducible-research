@@ -1,4 +1,4 @@
-FROM condaforge/mambaforge
+FROM condaforge/miniforge3
 
 LABEL description = "Image for the NBIS reproducible research course."
 MAINTAINER "John Sundh" john.sundh@scilifelab.se
@@ -26,16 +26,16 @@ RUN mkdir -p /opt/quarto/${QUARTO_VERSION} \
     && rm quarto.tar.gz
 ENV PATH /opt/quarto/${QUARTO_VERSION}/bin:${PATH}
 
-# Configure Conda/Mamba
-RUN mamba init bash && conda config --set channel_priority strict && \
+# Configure Conda
+RUN conda init bash && conda config --set channel_priority strict && \
     conda config --append channels bioconda && \
     conda config --append channels r && \
     conda config --set subdir linux-64
 
 # Install environment
 COPY environment.yml ./
-RUN mamba env create -f environment.yml -n project_mrsa && \
-    mamba clean -a
+RUN conda env create -f environment.yml -n project_mrsa && \
+    conda clean -a
 
 # Set mrsa-workflow environment as active at start-up
 RUN echo "source activate project_mrsa" >> ~/.bashrc

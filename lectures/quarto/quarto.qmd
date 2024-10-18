@@ -1,7 +1,7 @@
 ---
 title: 'Making reports with <img src="images/quarto-logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
 format:
-    nbis-revealjs:
+    revealjs:
         code-line-numbers: false
 ---
 
