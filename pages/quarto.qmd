@@ -10,7 +10,7 @@ The *Quarto* format (`.qmd`) is a multi-functional format, which is especially
 useful for scientific coding and analyses. Quarto documents can be used both to
 save and execute code as well as generating reports in various output formats.
 This is done by mixing *markdown* and so-called *code chunks* in the same
-document (we have [course materials for markdown](markdown) if you are
+document (we have [course materials for markdown](markdown.html) if you are
 unfamiliar with this format). The code itself as well as the output it generates
 can be included in the final report. Not only can Quarto work great for
 scientific coding, but can also be used for things such as presentation and
@@ -27,10 +27,10 @@ languages are R, Python, Julia and Observable. Quarto is fully compatible with
 both R Markdown and Jupyter documents.
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](pre-course-setup) for instructions on how to set it up if you haven't
-done so already. Place yourself in the `workshop-reproducible-research/tutorials/quarto/`
-directory, activate your `quarto-env` Conda environment and start your text
-editor or IDE of choice.
+[setup](../home_precourse.html) for instructions on how to set it up if you
+haven't done so already. Place yourself in the
+`workshop-reproducible-research/tutorials/quarto/` directory, activate your
+`quarto-env` Conda environment and start your text editor or IDE of choice.
 
 ::: {.callout-note title="A note on R Markdown"}
 Quarto is an evolution of the [R Markdown](https://rmarkdown.rstudio.com/)

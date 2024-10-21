@@ -22,7 +22,7 @@ reproducible. Full reproducibility requires the ability to recreate the system
 that was originally used to generate the results. This can, to a large extent,
 be accomplished by using Conda to make a project environment with specific
 versions of the packages that are needed in the project. You can read more about
-Conda [here](https://conda.io/projects/conda/en/latest/user-guide/concepts/index.html).
+Conda [at the Conda website](https://conda.io/projects/conda/en/latest/user-guide/concepts/index.html).
 
 A Conda _package_ is a compressed tarball (system-level libraries, Python or
 other modules, executable programs or other components). Conda keeps track of
@@ -65,12 +65,12 @@ want this information more in-depth you can read this [blog post by Anaconda](ht
 ## The basics
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](pre-course-setup) for instructions on how to set it up if, you haven't
-done so already. Then open up a terminal and go to
-`workshop-reproducible-research/tutorials/conda`. Instructions below assume
-that you are standing in `workshop-reproducible-research/tutorials/conda/`
-unless otherwise specified (_e.g._ if it says "create a file", it means save it
-in `workshop-reproducible-research/tutorials/conda/`).
+[setup](../home_precourse.html) for instructions on how to set it up if, you
+haven't done so already. Then open up a terminal and go to
+`workshop-reproducible-research/tutorials/conda`. Instructions below assume that
+you are standing in `workshop-reproducible-research/tutorials/conda/` unless
+otherwise specified (_e.g._ if it says "create a file", it means save it in
+`workshop-reproducible-research/tutorials/conda/`).
 
 Let's assume that you are just about to start a new exciting research project
 called _Project A_.
@@ -237,10 +237,10 @@ format](https://en.wikipedia.org/wiki/YAML)) that specifies the packages,
 versions and channels needed to create the environment for a project.
 
 Throughout these tutorials we will use a case study where we analyse an RNA-seq
-experiment with the multi-resistant bacteria MRSA (see [intro](introduction)).
-You will now start to make a Conda YAML file for this MRSA project. The file
-will contain a list of the software and versions needed to execute the analysis
-code.
+experiment with the multi-resistant bacteria MRSA (please see the
+[introduction](introduction.html)). You will now start to make a Conda YAML file
+for this MRSA project. The file will contain a list of the software and versions
+needed to execute the analysis code.
 
 In this Conda tutorial, all code for the analysis is available in the script
 `code/run_qc.sh`. This code will download the raw FASTQ-files and subsequently

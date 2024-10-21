@@ -31,9 +31,10 @@ Nextflow has a large community centred around it, including the
 by _e.g._ the [National Genomics Infrastructure](https://ngisweden.scilifelab.se/).
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](pre-course-setup) for instructions on how to set it up if you haven't
-done so already, then open up a terminal and go to `workshop-reproducible-research/tutorials/nextflow`
-and activate your `nextflow-env` Conda environment.
+[setup](../home_precourse.html) for instructions on how to set it up if you
+haven't done so already, then open up a terminal and go to
+`workshop-reproducible-research/tutorials/nextflow` and activate your
+`nextflow-env` Conda environment.
 
 ## The basics
 
@@ -1582,11 +1583,11 @@ a data type that you can analyse using one of the pipelines in nf-core, meaning
 you don't need to do anything other than find out what parameters you should run
 it with.
 
-Each pipeline comes with extensive documentation, test datasets that you can
-use to practice on, can be run on both HPCs like Uppmax, cloud services like
-AWS or locally on your own computer. All pipelines support both Conda and
-Docker/Apptainer, and you can additionally run specific versions of the
-pipelines, allowing for full reproducibility of your analyses. If you want to
-check nf-core out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
+Each pipeline comes with extensive documentation, test datasets that you can use
+to practice on, can be run on both HPCs like Uppmax, cloud services like AWS or
+locally on your own computer. All pipelines support both Conda and Docker and
+Apptainer, and you can additionally run specific versions of the pipelines,
+allowing for full reproducibility of your analyses. If you want to check nf-core
+out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
 and see what's available! Who knows, you might even write your own nf-core
 pipeline in the future?

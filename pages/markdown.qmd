@@ -59,4 +59,4 @@ most of the syntax, however, with various additions on top.
 
 There are a lot more things you can do with markdown than what we show here.
 Indeed, this entire course is mostly written in markdown! You can read more
-about markdown [here](https://www.markdownguide.org/getting-started/).
+about markdown at [markdowngide.org](https://www.markdownguide.org/getting-started/).

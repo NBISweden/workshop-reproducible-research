@@ -9,13 +9,13 @@ format: html
 The Jupyter Notebook is an open-source web application that allows you to create
 and share documents that contain code, equations, visualizations and text. The
 functionality is partly overlapping with Quarto (see the
-[tutorial](quarto-1-introduction)), in that they both use markdown and code
-chunks to generate reports that integrate results of computations with the code
-that generated them. Jupyter Notebook comes from the Python community while
-Quarto was developed by Posit (who also created R Markdown and RStudio), but you
-could use most common programming languages in either alternative. In practice
-though, it's quite common that R developers use Jupyter but probably not very
-common that Python developers use RStudio. Some reasons to use Jupyter include:
+[tutorial](quarto.html)), in that they both use markdown and code chunks to
+generate reports that integrate results of computations with the code that
+generated them. Jupyter Notebook comes from the Python community while Quarto
+was developed by Posit (who also created R Markdown and RStudio), but you could
+use most common programming languages in either alternative. In practice though,
+it's quite common that R developers use Jupyter but probably not very common
+that Python developers use RStudio. Some reasons to use Jupyter include:
 
 - Python is lacking a really good IDE for doing exploratory scientific data
   analysis, like RStudio or Matlab. Some people use Jupyter simply as an
@@ -36,8 +36,8 @@ As always, the best way is to try it out yourself and decide what to use it
 for!
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](pre-course-setup) for instructions on how to set it up if you haven't
-done so already. Then open up a terminal and go to
+[setup](../home_precourse.html) for instructions on how to set it up if you
+haven't done so already. Then open up a terminal and go to
 `workshop-reproducible-research/tutorials/jupyter` and activate your
 `jupyter-env` Conda environment.
 
@@ -142,8 +142,7 @@ Jupyter lab interface.
 
 ::: {.callout-tip}
 If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
-Uppmax) see the section in the
-[Extra material](jupyter-10-extra-material)
+Uppmax) see the section in the [Extra material](#extra-material).
 :::
 
 Jupyter notebooks are made up of cells, and you are currently standing in
@@ -158,12 +157,11 @@ Cells in Jupyter notebooks can be of two types:*markdown* or *code*.
 
 These cells contain static material such as captions, text, lists, images and so
 on. You express this using Markdown, which is a lightweight markup language.
-Markdown documents can then be converted to other formats for viewing (the
-document you're reading now is written in Markdown and then converted to HTML).
-The format is discussed a little more in detail in the [Quarto
-tutoriall](quarto-1-introduction). Jupyter Notebook uses a dialect of Markdown
-called GitHub Flavoured Markdown, which is described
-[here](https://guides.github.com/features/mastering-markdown/).
+Markdown documents can then be converted to other formats for viewing. The
+format is discussed a little more in detail in the [Markdown
+introduction](markdown.html). Jupyter Notebook uses a dialect of Markdown called
+GitHub Flavoured Markdown, which is described [at
+GitHub](https://guides.github.com/features/mastering-markdown/).
 
 - **Code:**
 
@@ -250,10 +248,10 @@ print("Hello world!")
 
 Note how the output is directly displayed below the cell. This interactive way
 of working is one of the things that sets Jupyter Notebook apart from RStudio
-and Quarto. In RStudio/Quarto, documents are typically rendered top-to-bottom in one run, while
-you work *in* a Jupyter notebook in a different way. This requires some special
-attention when it comes to reproducibility, which we will get back to in the
-[reproducibility](jupyter-7-reproducibility) section.
+and Quarto. In RStudio/Quarto, documents are typically rendered top-to-bottom in
+one run, while you work *in* a Jupyter notebook in a different way. This
+requires some special attention when it comes to reproducibility, which we will
+get back to in the [reproducibility](#reproducibility) section.
 
 What **is** a Jupyter notebook? Let's look a closer at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
@@ -262,12 +260,12 @@ the notebook itself, by running some shell commands in a code cell. This very
 handy functionality is possible by prepending the command with `!`. Try adding
 `!ls` to a code cell and run it. This will list the files in the current directory.
 
-Aha, we have a new file called `jupyter-tutorial.ipynb`! This is our notebook. Look at
-the first ten lines of the file by using `!head jupyter-tutorial.ipynb`. Seems like it's
-just a plain old JSON file. Since it's a text file it's suitable for version
-control with for example Git. There are however some special considerations to
-take into account for Notebooks which we will cover in the [reproducibility
-section](jupyter-7-reproducibility) of this tutorial.
+Aha, we have a new file called `jupyter-tutorial.ipynb`! This is our notebook.
+Look at the first ten lines of the file by using `!head jupyter-tutorial.ipynb`.
+Seems like it's just a plain old JSON file. Since it's a text file it's suitable
+for version control with for example Git. There are however some special
+considerations to take into account for Notebooks which we will cover in the
+[reproducibility section](#reproducibility) of this tutorial.
 
 Variables defined in cells become variables in the global namespace. You can
 therefore share information between cells. Try to define a function or variable
@@ -702,7 +700,7 @@ choice in order to make the plot update.
 Jupyter widgets, like we used here, is the most vanilla way of getting
 interactive graphs in Jupyter notebooks. Some other alternatives are:
 
-- [altair](https://altair-viz.github.io/) is a plotting library that uses
+- [Altair](https://altair-viz.github.io/) is a plotting library that uses
   Vega-Lite grammar which is reminiscent of ggplot2 in R. The syntax is
   different from what we've shown here, but it's very powerful once you get the
   hang of it.
@@ -1137,8 +1135,7 @@ Try adding more options to the header to customize the look of the rendered
 document. For instance you could:
 
 - add a Table of contents with (`toc: true`)
-- try out different
-  [themes](https://quarto.org/docs/output-formats/html-themes.html)
+- try out different [themes](https://quarto.org/docs/output-formats/html-themes.html)
 - add your name as author (`author: Your Name`)
 - add a date (`date: last-modified`)
 
@@ -1261,5 +1258,4 @@ To read more about Binder and how to use it, see the
 [Binder documentation](https://mybinder.readthedocs.io/en/latest/). For pointers
 on how to make data available to the notebooks you share via Binder, see this
 guide on
-[Accessing data in your
-Binder](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html#accessing-data-in-your-binder).
+[Accessing data in your Binder](https://the-turing-way.netlify.app/communication/binder/zero-to-binder.html#accessing-data-in-your-binder).

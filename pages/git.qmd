@@ -774,7 +774,7 @@ software for version control.
 ### Links
 
 You can find the latest stable version of the Git tutorial for the course
-[here](https://uppsala.instructure.com/courses/87979/pages/git-7-working-remotely?module_item_id=890886).
+[here](https://nbisweden.github.io/workshop-reproducible-research/).
 ```
 
 ::: {.callout-note title="The Markdown format"}

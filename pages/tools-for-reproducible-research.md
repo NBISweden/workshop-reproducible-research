@@ -90,9 +90,6 @@ are crucial, the student needs to confer with the home department before
 submitting a course application in order to establish whether the course is
 valid for formal credits or not.
 
-By accepting to participate in the course, you agree to follow the [NBIS
-Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
-
 # Course fee
 
 A course fee of 3000 SEK will be invoiced to accepted participants. This
