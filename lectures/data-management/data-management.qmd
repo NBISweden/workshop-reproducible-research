@@ -1,5 +1,6 @@
 ---
-title: "Managing your data"
+title: Managing your data
+subtitle: ""
 format: revealjs
 ---
 
@@ -25,7 +26,7 @@ Article number: 160018 (2016)_] for both machines and humans:
 - [**I**]{.green}nteroperable
 - [**R**]{.green}eusable
 
-## Data management plan {.smaller}
+## Data management plan
 
 ::: {.incremental}
 - Check [requirements of funding agency]{.green} and field of research
@@ -48,7 +49,7 @@ Article number: 160018 (2016)_] for both machines and humans:
 - Published results should be [verifiable by others]{.green}
 - Enables other to [build upon previous work]{.green}
 
-## Organizing your projects {.larger}
+## Organising your projects
 
 _Which sample file represents the most up to date version?_
 
@@ -63,7 +64,7 @@ $ ls -l data/
 
 ## The project directory
 
-The first step towards working reproducibly: [Get organized!]{.green}
+The first step towards working reproducibly: [Get organised!]{.green}
 
 ::: {.incremental}
 - Divide your work into [distinct projects]{.green}
@@ -72,7 +73,7 @@ The first step towards working reproducibly: [Get organized!]{.green}
 - Use [relevant subdirectories]{.green}
 :::
 
-## There are many ways to organize a project {.smaller}
+## There are many ways to organise a project
 
 ::: {.r-stack}
 
@@ -91,6 +92,7 @@ README.md         Project description and instructions
 :::
 
 ::: {.fragment fragment-index=2}
+::: {.fragment .fade-out fragment-index=3}
 A Snakemake-based example: [snakemake-workflows/template](https://github.com/snakemake-workflows/snakemake-workflow-template)
 ```bash
 config/
@@ -103,9 +105,10 @@ workflow/
 LICENSE
 README.md
 ```
+:::
+:::
 
-<br>
-
+::: {.fragment fragment-index=3}
 A Nextflow-based example: [fasterius/nbis-support-template](https://github.com/fasterius/nbis-support-template)
 ```bash
 bin/
@@ -144,8 +147,8 @@ nextflow.config
 
 ## Topics for discussion
 
-- Do you organize your work in distinct projects?
-- How do you organize your files in this context?
+- Do you organise your work in distinct projects?
+- How do you organise your files in this context?
 - Are you happy with the way you work today?
 - Does your group have a data management plan in place?
 - Do you know "your" repositories and how to submit data to them?
