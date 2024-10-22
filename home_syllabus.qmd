@@ -77,7 +77,7 @@ To make clear what is expected, everyone participating in NBIS/ELIXIR courses is
 required to conform to the Code of Conduct. This Code of Conduct applies to all
 spaces managed by NBIS including, but not limited to, courses, email lists, and
 online forums such as Studium, GitHub, Slack, Twitter and LinkedIn. Course
-organizers and teachers are expected to assist with the enforcement of the Code
+organisers and teachers are expected to assist with the enforcement of the Code
 of Conduct.
 
 We are dedicated to providing a welcoming and supportive environment for all

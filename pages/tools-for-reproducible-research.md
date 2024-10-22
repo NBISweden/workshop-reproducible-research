@@ -35,8 +35,8 @@ description thereof.
 
 Reproducible research not only leads to proper scientific conduct, but also
 enables other researchers to build upon previous work. Most importantly, the
-person who organizes their work with reproducibility in mind will quickly
-realize the immediate personal benefits: an organized and structured way of
+person who organises their work with reproducibility in mind will quickly
+realize the immediate personal benefits: an organised and structured way of
 working. The person that most often has to reproduce your own analysis is your
 future self!
 

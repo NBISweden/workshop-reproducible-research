@@ -385,7 +385,7 @@ you: [Introduction to Data Management Practices]{.green}*
 ::: {.fragment}
 [Before]{.green} the project:
 
-- Improved structure and organization
+- Improved structure and organisation
 - Forced to think about scope and limitations
 :::
 

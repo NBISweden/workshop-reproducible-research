@@ -272,7 +272,7 @@ MAINTAINER "John Sundh" john.sundh@scilifelab.se
 ```
 
 Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. While `LABEL`
-and `MAINTAINER` is just meta-data that can be used for organizing your
+and `MAINTAINER` is just meta-data that can be used for organising your
 various Docker components the important one is `FROM`, which specifies the
 base image we want to start from. Because we want to use `conda` to install
 packages we will start from an image from the conda-forge community that has
@@ -602,7 +602,7 @@ We can also use bind mounts for getting files into the container rather than
 out. We've mainly been discussing Docker in the context of packaging an
 analysis pipeline to allow someone else to reproduce its outcome. Another
 application is as a kind of very powerful environment manager, similarly to how
-we've used Conda before. If you've organized your work into projects, then you
+we've used Conda before. If you've organised your work into projects, then you
 can mount the whole project directory in a container and use the container as
 the terminal for running stuff while still using your normal OS for editing
 files and so on. Let's try this out by mounting our current directory and start
