@@ -1,5 +1,6 @@
 ---
 title: 'Version control with <img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" style="width:50%; padding: 15px 15px 15px 15px"/>'
+subtitle: ""
 format: revealjs
 ---
 
