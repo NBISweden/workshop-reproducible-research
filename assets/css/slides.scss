@@ -234,7 +234,7 @@ $presentation-h6-font-size: 1em;
 
 /* datatable components */
 
-.reveal .dataTables_wrapper .dataTables_length, 
+.reveal .dataTables_wrapper .dataTables_length,
 .reveal .dataTables_wrapper .dataTables_filter,
 .reveal .dataTables_wrapper .dataTables_info,
 .reveal .dataTables_wrapper .dataTables_processing,
@@ -360,4 +360,9 @@ $presentation-h6-font-size: 1em;
 
 .references {
   font-size: 0.7rem;
+}
+
+.green {
+    color: $primary;
+    font-weight: bold;
 }
