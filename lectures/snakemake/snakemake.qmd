@@ -1,6 +1,9 @@
 ---
 title: 'Making reproducible workflows with <img src="images/snakemake_logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
+subtitle: ""
 format: revealjs
+execute:
+  echo: false
 ---
 
 ## Why do we need workflow managers? {auto-animate=true}
@@ -520,7 +523,7 @@ rule trim_fastq:
 ## How does Snakemake keep track of what files to generate?
 *Example from the practical tutorial*
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - The tutorial contains a workflow to download and map RNA-seq reads against a
   reference genome.
@@ -557,7 +560,7 @@ digraph snakemake_dag {
 ```
 :::
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - The tutorial contains a workflow to download and map RNA-seq reads against a
   reference genome.
@@ -603,7 +606,7 @@ digraph snakemake_dag {
 ```
 :::
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - The tutorial contains a workflow to download and map RNA-seq reads against a
   reference genome.
@@ -649,7 +652,7 @@ digraph snakemake_dag {
 ```
 :::
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - The tutorial contains a workflow to download and map RNA-seq reads against a
   reference genome.
@@ -698,7 +701,7 @@ digraph snakemake_dag {
 
 ## Anatomy of a Snakemake rule
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - Rules are typically named and have input and/or output directives
 
@@ -712,7 +715,7 @@ rule trim_fastq:
         """
 ```
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - Rules are typically named and have input and/or output directives
 - Logfiles help with debugging and leave a "paper trail"
@@ -728,7 +731,7 @@ rule trim_fastq:
         """
 ```
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - Rules are typically named and have input and/or output directives
 - Logfiles help with debugging and leave a "paper trail"
@@ -748,7 +751,7 @@ rule trim_fastq:
       """
 ```
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - Rules are typically named and have input and/or output directives
 - Logfiles help with debugging and leave a "paper trail"
@@ -774,7 +777,7 @@ rule trim_fastq:
       """
 ```
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - Rules are typically named and have input and/or output directives
 - Logfiles help with debugging and leave a "paper trail"
@@ -804,7 +807,7 @@ rule trim_fastq:
       """
 ```
 
-## {auto-animate=true .smaller}
+## {auto-animate=true}
 
 - Rules are typically named and have input and/or output directives
 - Logfiles help with debugging and leave a "paper trail"
@@ -827,7 +830,7 @@ dependencies:
 
 [https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html)
 
-## Snakemake commandline {.smaller}
+## Snakemake commandline
 
 ::: {.fragment}
 - Generate the output of the first rule in Snakefile
@@ -862,17 +865,10 @@ $ snakemake --configfile config.yaml
 :::
 
 ::: {.fragment}
-- Run rules with specific conda environments
+- Run rules with specific conda environments or Docker/Apptainer containers
 
 ```{.bash code-line-numbers=false}
 $ snakemake --software-deployment-method conda
-```
-:::
-
-::: {.fragment}
-- Run rules with specific Apptainer or Docker containers
-
-```{.bash code-line-numbers=false}
 $ snakemake --software-deployment-method apptainer
 ```
 :::
