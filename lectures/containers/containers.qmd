@@ -1,8 +1,9 @@
 ---
 title: 'Working with containers
-        <img src="images/docker-logo.webp" height="200px" style="float:center; padding: 15px 15px 15px 15px;"/>
-        <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="200px" style="float:center; padding: 15px 15px 15px 15px;"/>
-        <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="200px" style="float:center; padding: 15px 15px 15px 15px;"/>'
+        <img src="images/docker-logo.webp" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
+        <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
+        <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>'
+subtitle: ""
 format: revealjs
 ---
 
@@ -90,7 +91,7 @@ Linux 407b0fd13fe5 4.9.60-linuxkit-aufs [...] x86_64 GNU/Linux
 ```
 :::
 
-## Mounting volumes {.smaller}
+## Mounting volumes
 
 :::: {.columns height=90%}
 
@@ -116,10 +117,12 @@ $ ls
 ::: {.column}
 ::: {.fragment}
 Docker container file system:
-```{.bash code-line-numbers="1-3|4-11|7-8"}
-$ docker run -v $PWD/data:/home/data ubuntu:16.04
+```{.bash code-line-numbers="1-4|6-13|9-10"}
+$ docker run \
+    -v $PWD/data:/home/data \
+    ubuntu:16.04 \
+    ls
 
-ls
 |- bin/
 |- dev/
 |- etc/
@@ -193,20 +196,11 @@ piece of software.
 
 ## Docker vs. Apptainer
 
-:::: {.columns}
-::: {.column}
-![](images/docker-logo.webp){height=150 fig-align=center}
-:::
-::: {.column}
-![](https://apptainer.org/docs/user/main/_static/logo.png){height=150 fig-align=center}
-:::
-::::
-
-|                                                         |                                                          |
-| ------------------------------------------------------- | -------------------------------------------------------- |
-| Runs as a daemon process with superuser privileges      | Runs as a regular user                                   |
-| Images stored centrally                                 | Image files that you can move around.                    |
-| Isolates the host and container file system by default  | Containers have access to host file system               |
-| Well-supported on Mac, Linux and Windows                | Limited support on Mac and Windows                       |
+| ![](images/docker-logo.webp){height=150 fig-align=center} | ![](https://apptainer.org/docs/user/main/_static/logo.png){height=150 fig-align=center} |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Runs as a daemon process with superuser privileges        | Runs as a regular user                                                                  |
+| Images stored centrally                                   | Image files that you can move around.                                                   |
+| Isolates the host and container file system by default    | Containers have access to host file system                                              |
+| Well-supported on Mac, Linux and Windows                  | Limited support on Mac and Windows                                                      |
 
 # Questions?
