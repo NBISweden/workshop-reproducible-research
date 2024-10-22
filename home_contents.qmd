@@ -18,17 +18,17 @@ themselves contain all of the material covered by the workshop.
 
 <br>
 
-| Topic                   | Lecture                                                                | Tutorial                                         |
-| ----------------------- | ---------------------------------------------------------------------- | ------------------------------------------------ |
-| Introduction            | [{{< fa file-lines >}}](lectures/introduction/introduction.html)       | [{{< fa file-lines >}}](pages/introduction.html) |
-| Data management         | [{{< fa file-lines >}}](lectures/data-management/data-management.html) |                                                  |
-| Git                     | [{{< fa file-lines >}}](lectures/git/git.html)                         | [{{< fa file-lines >}}](pages/git.html)          |
-| Conda                   | [{{< fa file-lines >}}](lectures/conda/conda.html)                     | [{{< fa file-lines >}}](pages/conda.html)        |
-| Snakemake               | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)             | [{{< fa file-lines >}}](pages/snakemake.html)    |
-| Nextflow                | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)               | [{{< fa file-lines >}}](pages/nextflow.html)     |
-| Quarto                  | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                   | [{{< fa file-lines >}}](pages/quarto.html)       |
-| Jupyter                 | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                 | [{{< fa file-lines >}}](pages/jupyter.html)      |
-| Containers              | [{{< fa file-lines >}}](lectures/containers/containers.html)           | [{{< fa file-lines >}}](pages/containers.html)   |
-| Putting it all together | [{{< fa file-lines >}}](lectures/git/git.html)                         |                                                  |
-| Markdown                |                                                                        | [{{< fa file-lines >}}](pages/markdown.html)     |
-| Take-down               |                                                                        | [{{< fa file-lines >}}](pages/take-down.html)    |
+| Topic                   | Lecture                                                                        | Tutorial                                         |
+| ----------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------ |
+| Introduction            | [{{< fa file-lines >}}](lectures/introduction/introduction.html)               | [{{< fa file-lines >}}](pages/introduction.html) |
+| Data management         | [{{< fa file-lines >}}](lectures/data-management/data-management.html)         |                                                  |
+| Git                     | [{{< fa file-lines >}}](lectures/git/git.html)                                 | [{{< fa file-lines >}}](pages/git.html)          |
+| Conda                   | [{{< fa file-lines >}}](lectures/conda/conda.html)                             | [{{< fa file-lines >}}](pages/conda.html)        |
+| Snakemake               | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)                     | [{{< fa file-lines >}}](pages/snakemake.html)    |
+| Nextflow                | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)                       | [{{< fa file-lines >}}](pages/nextflow.html)     |
+| Quarto                  | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                           | [{{< fa file-lines >}}](pages/quarto.html)       |
+| Jupyter                 | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                         | [{{< fa file-lines >}}](pages/jupyter.html)      |
+| Containers              | [{{< fa file-lines >}}](lectures/containers/containers.html)                   | [{{< fa file-lines >}}](pages/containers.html)   |
+| Putting it all together | [{{< fa file-lines >}}](lectures/putting-it-together/putting-it-together.html) |                                                  |
+| Markdown                |                                                                                | [{{< fa file-lines >}}](pages/markdown.html)     |
+| Take-down               |                                                                                | [{{< fa file-lines >}}](pages/take-down.html)    |
