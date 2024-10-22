@@ -398,7 +398,7 @@ magics
 
 An essential feature of Jupyter Notebooks is of course the ability to visualize
 data and results via plots. A full guide to plotting in Python is beyond the
-scope of this course, but we'll offer a few glimpses into the plotting landscape
+scope of this course, but will offer a few glimpses into the plotting landscape
 of Python.
 
 First of all, Python has a library for plotting called
@@ -470,7 +470,7 @@ Let's say that instead we want to plot the mean value of the body mass of the
 penguins at the different islands where they were examined.
 
 ```
-sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd");
+sns.barplot(data=penguins, x="island", y="body_mass_g", errorbar="sd")
 ```
 
 Here we specified to use values in the 'island' column as categories for the
@@ -492,7 +492,7 @@ ax = sns.scatterplot(data=penguins, x="bill_length_mm", y="body_mass_g",
 ax.set_xlabel("Bill length (mm)")
 ax.set_ylabel("Body mass (g)")
 # Set legend position outside of plot
-ax.legend(bbox_to_anchor=(1,1));
+ax.legend(bbox_to_anchor=(1,1))
 ```
 
 If you want to save a plot to file you can use the `plt.savefig` function. Add
@@ -1126,10 +1126,11 @@ use the two tools in combination.
 
 Let's go back to the YAML header cell and fix how it looks in the Jupyter
 notebook. The reason it looks weird is that Jupyter doesn't understand the
-syntax. But luckily there's a Jupyter lab Quarto extension you can install to
-fix this. Click the extension icon in the left sidebar and search for `quarto`.
-Install the `jupyterlab-quarto` extension and then reload the page. Now the YAML
-header should look a lot better.
+syntax. But luckily the Jupyter lab Quarto extension we mentioned in the
+[extensions section](#extensions) section can be installed to fix this. Click
+the extension icon in the left sidebar and search for `quarto`. Install the
+`jupyterlab-quarto` extension and then reload the page. Now the YAML header
+should look a lot better.
 
 Try adding more options to the header to customize the look of the rendered
 document. For instance you could:
