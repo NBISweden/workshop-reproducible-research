@@ -32,16 +32,17 @@ git clone https://github.com/NBISweden/workshop-reproducible-research.git
 cd workshop-reproducible-research
 ```
 
-> **Tip** <br>
-> If you want to revisit the material from an older instance of this course,
-> you can do that using `git switch -d tags/<tag-name>`, e.g.
-> `git switch -d tags/course_1905`. To list all available tags, use `git tag`.
-> Run this command after you have `cd` into `workshop-reproducible-research`
-> as described above. If you do that, you probably also want to view the
-> same older version of this website. Until spring 2021, the website was
-> hosted at [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io).
-> Locate the version box in the bottom right corner of the website and
-> select the corresponding version.
+::: {.callout-tip}
+If you want to revisit the material from an older instance of this course,
+you can do that using `git switch -d tags/<tag-name>`, e.g.
+`git switch -d tags/course_1905`. To list all available tags, use `git tag`.
+Run this command after you have `cd` into `workshop-reproducible-research`
+as described above. If you do that, you probably also want to view the
+same older version of this website. Until spring 2021, the website was
+hosted at [ReadTheDocs](https://nbis-reproducible-research.readthedocs.io).
+Locate the version box in the bottom right corner of the website and
+select the corresponding version.
+:::
 
 ## Setup for Windows users
 
@@ -62,28 +63,30 @@ resources:
 - [Installing and using Linux Bash on Windows](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
 - [Installing Linux Bash on Windows](https://itsfoss.com/install-bash-on-windows/)
 
-> **Note** <br>
-> If you run into error messages when trying to download files through the Linux
-> shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
-> name server to the internet configuration by running `sudo nano
+::: {.callout-note}
+If you run into error messages when trying to download files through the Linux
+shell (_e.g._ `curl:(6) Could not resolve host`) then try adding the Google
+name server to the internet configuration by running `sudo nano
 /etc/resolv.conf` then add `nameserver 8.8.8.8` to the bottom of the file and
-> save it.
+save it.
+:::
 
-> **Important!** <br>
-> Whenever a setup instruction specifies Mac or Linux (_i.e._ only those two, with no alternative for Windows),
-> **please follow the Linux instructions.**
+::: {.callout-caution}
+Whenever a setup instruction specifies Mac or Linux (_i.e._ only those two, with
+no alternative for Windows), **please follow the Linux instructions.**
+:::
 
 Open a bash shell Linux terminal and clone the GitHub repository containing all
 files you will need for completing the tutorials as follows. First, `cd` into
 a directory on your computer (or create one) where it makes sense to download
 the course directory.
 
-> **Tip** <br>
-> You can find the directory where the Linux distribution is storing all its
-> files by typing `explorer.exe .`. This will launch the Windows File Explorer
-> showing the current Linux directory.
-> Alternatively, you can find the Windows C drive from within the bash shell
-> Linux terminal by navigating to `/mnt/c/`.
+::: {.callout-tip}
+You can find the directory where the Linux distribution is storing all its files
+by typing `explorer.exe .`. This will launch the Windows File Explorer showing
+the current Linux directory. Alternatively, you can find the Windows C drive
+from within the bash shell Linux terminal by navigating to `/mnt/c/`.
+:::
 
 ```bash
 cd /path/to/your/directory
@@ -112,12 +115,13 @@ git config --global user.name "Mona Lisa"
 git config --global user.email "mona_lisa@gmail.com"
 ```
 
-> **Tip** <br>
-> If you have several accounts (_e.g._ both a GitHub and Bitbucket account),
-> and thereby several different usernames, you can configure git on
-> a per-repository level. Change directory into the relevant local git
-> repository and run `git config user.name "Mona Lisa"`. This will set the
-> default username for that repository only.
+::: {.callout-tip}
+If you have several accounts (_e.g._ both a GitHub and Bitbucket account), and
+thereby several different usernames, you can configure git on a per-repository
+level. Change directory into the relevant local git repository and run `git
+config user.name "Mona Lisa"`. This will set the default username for that
+repository only.
+:::
 
 You will also need to configure the default branch name to be `main` instead of
 `master`:
@@ -130,20 +134,21 @@ The short version of why you need to do this is that GitHub uses `main` as the
 default branch while Git itself is still using `master`; please read the box
 below for more information.
 
-> **The default branch name** <br>
-> The default branch name for Git and many of the online resources for hosting
-> Git repositories has traditionally been `master`, which historically comes
-> from the "master/slave" repositories of
-> [BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
-> This has been heavily discussed and in 2020 the decision was made by many
-> ([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
-> to start using `main` instead. Any repository created with GitHub uses this
-> new naming scheme since October of 2020, and Git itself is currently
-> discussing implementing a similar change. Git did, however, introduce the
-> ability to set the default branch name when using `git init` in
-> [version 2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
-> instead of using a hard-coded `master`. We at NBIS want to be a part of this
-> change, so we have chosen to use `main` for this course.
+::: {.callout-note title="The default branch name"}
+The default branch name for Git and many of the online resources for hosting Git
+repositories has traditionally been `master`, which historically comes from the
+"master/slave" repositories of
+[BitKeeper](https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html).
+This has been heavily discussed and in 2020 the decision was made by many
+([including GitHub](https://sfconservancy.org/news/2020/jun/23/gitbranchname/))
+to start using `main` instead. Any repository created with GitHub uses this new
+naming scheme since October of 2020, and Git itself is currently discussing
+implementing a similar change. Git did, however, introduce the ability to set
+the default branch name when using `git init` in [version
+2.28](https://github.blog/2020-07-27-highlights-from-git-2-28/#introducing-init-defaultbranch),
+instead of using a hard-coded `master`. We at NBIS want to be a part of this
+change, so we have chosen to use `main` for this course.
+:::
 
 ### GitHub setup
 
@@ -169,30 +174,31 @@ instructions both on how to [generate](https://docs.github.com/en/authentication
 and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 SSH keys to your account, so please follow those instructions.
 
-> **SSH keys and authentication** <br>
-> Using SSH (Secure Shell) for authentication basically entails setting up a
-> pair of keys: one private and one public. You keep the private key on your
-> local computer and give the public key to anywhere you want to be able to
-> connect to, _e.g._ GitHub. The public key can be used to encrypt messages that
-> _only_ the corresponding private key can decrypt. A simplified description of
-> how SSH authentication works goes like this:
->
-> 1. The client (_i.e._ the local computer) sends the ID of the SSH key pair it
->    would like to use for authentication to the server (_e.g._ GitHub)
-> 2. If that ID is found, the server generates a random number and encrypts this
->    with the public key and sends it back to the client
-> 3. The client decrypts the random number with the private key and sends it
->    back to the server
->
-> Notice that the private key always remains on the client's side and is never
-> transferred over the connection; the ability to decrypt messages encrypted
-> with the public key is enough to ascertain the client's authenticity. This is
-> in contrast with using passwords, which are themselves sent across a
-> connection (albeit encrypted). It is also important to note that even though
-> the keys come in pairs it is impossible to derive the private key from the
-> public key. If you want to read more details about how SSH authentication work
-> you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
-> which has more in-depth information than we provide here.
+::: {.callout-note title="SSH keys and authentication"}
+Using SSH (Secure Shell) for authentication basically entails setting up a
+pair of keys: one private and one public. You keep the private key on your
+local computer and give the public key to anywhere you want to be able to
+connect to, _e.g._ GitHub. The public key can be used to encrypt messages that
+_only_ the corresponding private key can decrypt. A simplified description of
+how SSH authentication works goes like this:
+
+1. The client (_i.e._ the local computer) sends the ID of the SSH key pair it
+   would like to use for authentication to the server (_e.g._ GitHub)
+2. If that ID is found, the server generates a random number and encrypts this
+   with the public key and sends it back to the client
+3. The client decrypts the random number with the private key and sends it
+   back to the server
+
+Notice that the private key always remains on the client's side and is never
+transferred over the connection; the ability to decrypt messages encrypted
+with the public key is enough to ascertain the client's authenticity. This is
+in contrast with using passwords, which are themselves sent across a
+connection (albeit encrypted). It is also important to note that even though
+the keys come in pairs it is impossible to derive the private key from the
+public key. If you want to read more details about how SSH authentication work
+you can check out [this website](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process),
+which has more in-depth information than we provide here.
+:::
 
 ## Installing Conda
 
@@ -258,14 +264,14 @@ following:
 conda config --set channel_priority strict
 ```
 
-> **Important!** <br>
-> The Conda docs specify a couple of things to keep in mind when using Conda.
-> First of all, `conda` should be installed in the `base` environment and no
-> other packages should be installed into `base`. Furthermore, mixing of the
-> `conda-forge` and `defaults` channels should be avoided as the default
-> Anaconda channels are incompatible with `conda-forge`. Since we are installing
-> from `miniforge` we get the `conda-forge` defaults without having to do
-> anything.
+::: {.callout-caution}
+The Conda docs specify a couple of things to keep in mind when using Conda.
+First of all, `conda` should be installed in the `base` environment and no other
+packages should be installed into `base`. Furthermore, mixing of the
+`conda-forge` and `defaults` channels should be avoided as the default Anaconda
+channels are incompatible with `conda-forge`. Since we are installing from
+`miniforge` we get the `conda-forge` defaults without having to do anything.
+:::
 
 ### Conda on new Macs
 
@@ -300,9 +306,11 @@ conda env create -f snakemake/environment.yml -n snakemake-env
 conda activate snakemake-env
 ```
 
-> **ARM64 users:** <br>
-> Some of the packages in this environment is not available for the ARM64
-> architecture, so you'll have to follow the [instructions above](#conda/Conda-on-new-macs).
+::: {.callout-caution title="ARM64 users"}
+Some of the packages in this environment is not available for the ARM64
+architecture, so you'll have to follow the [instructions
+above](#installing-conda).
+:::
 
 Check that Snakemake is installed correctly, for example by executing `snakemake
 --help`. This should output a list of available Snakemake settings. If you get
@@ -334,9 +342,11 @@ conda env create -f nextflow/environment.yml -n nextflow-env
 conda activate nextflow-env
 ```
 
-> **ARM64 users:** <br>
-> Some of the packages in this environment is not available for the ARM64
-> architecture, so you'll have to follow the [instructions above](#conda/Conda-on-new-macs).
+::: {.callout-caution title="ARM64 users"}
+Some of the packages in this environment is not available for the ARM64
+architecture, so you'll have to follow the [instructions
+above](#installing-conda).
+:::
 
 Check that Nextflow was installed correctly by running `nextflow -version`. If
 you successfully installed Nextflow using Conda you can now deactivate the
@@ -389,12 +399,13 @@ Docker. When you have finished installing docker, regardless of which OS you are
 on, please type `docker --version` to verify that the installation was
 successful.
 
-> **Docker for older versions of OSX/Windows** <br>
-> The latest version of Docker may not work if you have an old version of either
-> OSX or Windows. You can find older Docker versions that may be compatible for
-> you if you go to
-> [https://docs.docker.com/desktop/](https://docs.docker.com/desktop/) and click
-> "Previous versions" in the left side menu.
+::: {.callout-note title="Docker for older versions of OSX/Windows"}
+The latest version of Docker may not work if you have an old version of either
+OSX or Windows. You can find older Docker versions that may be compatible for
+you if you go to
+[https://docs.docker.com/desktop/](https://docs.docker.com/desktop/) and click
+"Previous versions" in the left side menu.
+:::
 
 ### MacOS
 
