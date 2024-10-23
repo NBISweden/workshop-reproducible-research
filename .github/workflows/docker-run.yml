@@ -1,4 +1,4 @@
-name: docker
+name: MRSA container testing
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Docker build
+      - name: Build and test Docker image
         run: |
           docker build -t my_docker_project -f tutorials/containers/Dockerfile tutorials/containers/
           docker run --rm my_docker_project

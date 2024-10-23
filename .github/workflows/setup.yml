@@ -1,4 +1,4 @@
-name: setup
+name: Conda environment testing
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
       - devel
 
 jobs:
-  install:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
