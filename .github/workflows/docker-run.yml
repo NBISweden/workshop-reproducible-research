@@ -19,7 +19,9 @@ jobs:
   docker-build-and-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Docker build
         run: |
           docker build -t my_docker_project -f tutorials/containers/Dockerfile tutorials/containers/
