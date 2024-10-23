@@ -14,6 +14,7 @@ jobs:
   install:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest]
         env: [snakemake, nextflow, jupyter, quarto]
