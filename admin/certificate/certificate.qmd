@@ -26,11 +26,14 @@ engine: knitr
 \hspace{4em}
 ![Elixir logo](images/elixir_sweden_white_background.png){height=50}
 
-This is to certify that **`r params$participant`** has successfully taken part in the NBIS/ELIXIR course 
+This is to certify that **`r params$participant`** has successfully taken part
+in the NBIS/ELIXIR course
 
 **Tools for Reproducible Research**
- 
-The course was held `r params$location`, `r params$month_start` `r params$day_start` - `r params$month_end` `r params$day_end` `r params$year`. It consisted of lectures, computer exercises and group discussions.
+
+The course was held `r params$location`, `r params$month_start` `r
+params$day_start` - `r params$month_end` `r params$day_end` `r params$year`. It
+consisted of lectures, computer exercises and group discussions.
 
 The following subjects and fields were covered:
 
@@ -40,17 +43,19 @@ The following subjects and fields were covered:
 - Use the package and environment manager Conda
 - Use and develop workflows with Snakemake and Nextflow
 - Use Quarto and Jupyter Notebooks to document and generate automated reports
-- Use Docker and Singularity/Apptainer to distribute containerized computational environments
- 
-**Examination**: Presence during all the lectures and computer/practical exercises.
+- Use Docker and Singularity/Apptainer to distribute containerized computational
+  environments
 
+**Examination**: Presence during all the lectures and computer/practical
+exercises.
 
-The course was arranged by the National Bioinformatics Infrastructure Sweden (NBIS), Science for Life Laboratory (SciLifeLab) and ELIXIR-Europe.
+The course was arranged by the National Bioinformatics Infrastructure Sweden
+(NBIS), Science for Life Laboratory (SciLifeLab) and ELIXIR-Europe.
 
 \-\-\-\
-*Stockholm, `r params$month_end` `r params$day_end`, `r params$year`*
+_Stockholm, `r params$month_end` `r params$day_end`, `r params$year`_
 
-*Erik Fasterius & John Sundh*\
-*Dept of Biochemistry and Biophysics*\
-*NBIS, Science for Life Laboratory, Stockholm University*\
-*Course examiners*
+_Erik Fasterius & John Sundh_\
+_Dept of Biochemistry and Biophysics_\
+_NBIS, Science for Life Laboratory, Stockholm University_\
+_Course examiners_
