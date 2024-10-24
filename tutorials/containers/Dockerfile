@@ -50,4 +50,4 @@ COPY code ./code/
 # Open up port 8888
 EXPOSE 8888
 
-CMD snakemake -rp -c 1 --configfile config.yml
+CMD snakemake -p -c 1 --configfile config.yml
