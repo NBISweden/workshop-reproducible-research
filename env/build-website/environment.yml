@@ -1,0 +1,34 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+
+  # Command line
+  - snakemake-minimal
+
+  # R
+  - r-fontawesome
+  - r-ggplot2
+  - r-here
+  - r-htmltable
+  - r-kableextra
+  - r-leaflet
+  - r-lubridate
+  - r-palmerpenguins
+  - r-readxl
+  - r-rmarkdown
+  - r-stringi
+  - r-tidyverse
+  - r-yaml
+
+  # Python
+  - python
+  - jupyter
+  - jupyterlab
+  - pandas
+  - nbconvert
+  - seaborn
+  - rpy2
+  - pyppeteer
+  - jinja2
+  - pip

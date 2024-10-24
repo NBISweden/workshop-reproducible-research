@@ -1,0 +1,28 @@
+name: Upload landing page to Canvas
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    paths:
+      - 'pages/tools-for-reproducible-research.md'
+      - 'pages/upload-page-to-canvas.sh'
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    container: pandoc/latex
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Upload to Canvas
+        env:
+          API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
+        run: |
+          bash pages/upload-page-to-canvas.sh pages/tools-for-reproducible-research.md $API_TOKEN

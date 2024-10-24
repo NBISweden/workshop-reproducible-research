@@ -1,0 +1,116 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!admin/"
+    - "!tutorials/"
+    - "!lectures/wrapups/"
+
+website:
+  image: "assets/images/featured.jpg"
+  favicon: "assets/favicon.png"
+  navbar:
+    logo: "assets/logos/nbis-scilifelab.png"
+    logo-alt: "logo"
+    right:
+      - text: "Home"
+        href: "index.html"
+      - text: "Schedule"
+        href: "home_schedule.html"
+      - text: "Contents"
+        href: "home_contents.html"
+      - text: "Syllabus"
+        href: "home_syllabus.html"
+      - text: "Pre-course"
+        href: "home_precourse.html"
+      - text: "Info"
+        href: "home_info.html"
+      - icon: "github"
+        href: "https://github.com/NBISweden/workshop-reproducible-research/"
+  page-footer:
+    border: false
+    left: "{{< meta current_year >}} [NBIS](https://nbis.se) | [CC-BY-4.0 License](https://choosealicense.com/licenses/cc-by-4.0/)"
+    right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
+  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
+
+format:
+  html:
+    quarto-required: ">=1.4.0"
+    include-in-header: "assets/include_head.html"
+    include-before-body: "assets/include_body_before.html"
+    include_after_body: "assets/include_body_after.html"
+    theme: "assets/css/styles.scss"
+    smooth-scroll: true
+    toc: true
+    toc-depth: 4
+    toc-location: right
+    number-sections: true
+    number-depth: 4
+    code-fold: false
+    code-tools: false
+    code-copy: true
+    code-overflow: wrap
+    df-print: paged
+    standalone: false
+    fig-align: left
+    title-block-banner: "assets/images/banner.jpg"
+    subtitle: ""
+    callout-icon: true
+    date:  last-modified
+    date-format: "DD-MMM-YYYY"
+    image: "assets/images/featured.png"
+  revealjs:
+    quarto-required: ">=1.4.0"
+    include-in-header: "assets/include_head.html"
+    include-before-body: "assets/include_body_before.html"
+    include_after_body: "assets/include_body_after.html"
+    theme: ["default","assets/css/slides.scss"]
+    df-print: paged
+    width: 1280
+    height: 720
+    transition: "fade"
+    transition-speed: "fast"
+    smaller: false
+    incremental: false
+    scrollable: false
+    slide-level: 2
+    slide-number: true
+    progress: true
+    date:  last-modified
+    date-format: "DD-MMM-YYYY"
+    fig-align: left
+    chalkboard: true
+    callout-icon: true
+    image: "/assets/images/featured.jpg"
+    hero: "/assets/images/slide-hero.png"
+    title-slide-attributes:
+      data-background-image: "/assets/images/cover.jpg"
+      data-background-size: "cover"
+      data-background-opacity: "1"
+    subtitle: ""
+    header-logo-left: /assets/logos/nbis.png
+    header-logo-left-height: 25px
+    header-logo-left-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
+    header-logo-right: /assets/logos/scilifelab.png
+    header-logo-right-height: 25px
+    header-logo-right-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
+    template-partials:
+      - "assets/title-slide.html"
+
+execute:
+  eval: true
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+
+filters:
+  - assets/custom.lua
+  - reveal-logo
+  - fontawesome
+
+# For rendering location the info page; options are Stockholm or online.
+# One or more separated by commas or semicolon; online doesn't display any
+# location info.
+location: stockholm

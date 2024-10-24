@@ -1,9 +1,8 @@
 ---
 title: 'Making reproducible workflows with <img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png" style="width:50%; padding: 15px 15px 15px 15px">'
 format:
-    nbis-revealjs:
+    revealjs:
         code-line-numbers: false
-
 ---
 
 ## Nextflow features
@@ -19,7 +18,7 @@ format:
 
 ## Concepts and nomenclature
 
-![](https://training.seqera.io/img/channel-process.png){height=300 fig-align=center}
+![](images/concepts.png){height=300 fig-align=center}
 
 ::: {.incremental}
 - [Channels]{.green} contain data, _e.g._ input files
@@ -227,18 +226,18 @@ $ nextflow run main.nf --param "value"
 :::
 
 ::: {.fragment}
-Use Docker or Apptainer
+Use a pre-defined configuration profile
 ```bash
-$ nextflow run main.nf -with-docker
-$ nextflow run main.nf -with-apptainer
+$ nextflow run main.nf -profile uppmax
 ```
 <br>
 :::
 
 ::: {.fragment}
-Use a pre-defined configuration profile
+Use Docker or Apptainer
 ```bash
-$ nextflow run main.nf -profile uppmax
+$ nextflow run main.nf -with-docker
+$ nextflow run main.nf -with-apptainer
 ```
 <br>
 :::
@@ -248,6 +247,15 @@ $ nextflow run main.nf -profile uppmax
 
 ## Snakemake and Nextflow differences
 
+<br>
+<br>
+
+:::: {.columns}
+
+::: {.column width="20%"}
+:::
+
+::: {.column width="80%"}
 |                | [Snakemake]{.green}  | [Nextflow]{.green}            |
 | ----           | ------               | ---------                     |
 | **Language**   | Python               | Groovy                        |
@@ -262,5 +270,9 @@ $ nextflow run main.nf -profile uppmax
 - [Question]{.green}: But, which one is the _best?_
 - [Answer]{.green}: Both - it's mostly up to personal preference!
 :::
+
+:::
+::::
+
 
 # Questions?

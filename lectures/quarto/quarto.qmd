@@ -1,7 +1,7 @@
 ---
 title: 'Making reports with <img src="images/quarto-logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
 format:
-    nbis-revealjs:
+    revealjs:
         code-line-numbers: false
 ---
 
@@ -12,7 +12,7 @@ format:
 
 ![](../../pages/images/reproducibility_overview.png){height=400 fig-align=center}
 
-## Quarto connects code with results {.smaller}
+## Quarto connects code with results {.small}
 
 :::: {.columns}
 ::: {.column}
@@ -21,10 +21,7 @@ format:
 title: "There's something about penguins"
 author: "John Doe, Joan Doe, Dyon Do"
 date: today
-format:
-    html:
-        code-fold: true
-        warning: false
+format: html
 ---
 
 # Palmer penguins
@@ -43,9 +40,7 @@ ggplot(penguins, aes(x      = bill_length_mm,
     labs(x      = "Bill length (mm)",
          y      = "Body mass (g)",
          colour = "Species") +
-    scale_colour_manual(values = c("#c1dea0",
-                                   "#85be42",
-                                   "#425f21"))
+    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
 ```
 ````
 :::
@@ -57,7 +52,7 @@ ggplot(penguins, aes(x      = bill_length_mm,
 :::
 ::::
 
-## Quarto connects code with results {.smaller}
+## Quarto connects code with results {.small}
 
 :::: {.columns}
 ::: {.column}
@@ -66,10 +61,7 @@ ggplot(penguins, aes(x      = bill_length_mm,
 title: "There's something about penguins"
 author: "John Doe, Joan Doe, Dyon Do"
 date: today
-format:
-    html:
-        code-fold: true
-        warning: false
+format: html
 ---
 
 # Palmer penguins
@@ -88,9 +80,7 @@ ggplot(penguins, aes(x      = bill_length_mm,
     labs(x      = "Bill length (mm)",
          y      = "Body mass (g)",
          colour = "Species") +
-    scale_colour_manual(values = c("#c1dea0",
-                                   "#85be42",
-                                   "#425f21"))
+    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
 ```
 ````
 :::
@@ -149,18 +139,20 @@ Quarto documents._
   Microsoft Word)
 - [Presentations]{.green} (reveal.js, PowerPoint, Beamer)
 - [Interactive documents]{.green} (Observable, R Shiny)
-- [Books]{.green}, [websites]{.green} and [blogs]{.green}
+- [Books]{.green}, [blogs]{.green} and [websites]{.green} (the entire course
+  website is done with Quarto)
 - [Journal articles]{.green}
 - Your own [custom formats]{.green}
 :::
 
-## Presentations with Quarto
+## Presentations with Quarto {.small}
 
 <br>
 
 ```{r Plot penguins}
-#| fig-width: 10
+#| fig-width: 9
 #| fig-height: 4.5
+#| output-location: column
 library("ggplot2")
 library("palmerpenguins")
 data(penguins, package = "palmerpenguins")
@@ -173,7 +165,9 @@ ggplot(penguins, aes(x      = bill_length_mm,
          y = "Body mass (g)") +
     ggtitle("Penguin weight and bill length") +
     theme(plot.title = element_text(hjust = 0.5)) +
-    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
+    scale_colour_manual(values = c("#c1dea0",
+                                   "#85be42",
+                                   "#425f21"))
 ```
 
 ## Quarto vs. R Markdown

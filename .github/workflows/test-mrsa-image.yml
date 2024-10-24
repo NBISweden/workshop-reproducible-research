@@ -1,0 +1,27 @@
+name: Test MRSA image
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'tutorials/containers/Dockerfile'
+      - 'tutorials/containers/environment.yml'
+      - 'tutorials/containers/Snakefile'
+      - 'tutorials/containers/config.yml'
+      - 'tutorials/containers/code/*'
+
+jobs:
+  docker-build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and test Docker image
+        run: |
+          docker build -t my_docker_project -f tutorials/containers/Dockerfile tutorials/containers/
+          docker run --rm my_docker_project

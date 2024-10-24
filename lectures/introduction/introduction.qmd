@@ -1,7 +1,7 @@
 ---
-title: "Introduction"
-subtitle: "Tools for Reproducible Research"
-format: nbis-revealjs
+title: "Tools for Reproducible Research"
+subtitle: "Introduction"
+format: revealjs
 ---
 
 ## Course content
@@ -17,8 +17,8 @@ format: nbis-revealjs
 
 - How to generate automated reports using [Quarto]{.green} and [Jupyter]{.green}
 
-- How to use [Docker]{.green} and [Singularity]{.green} to distribute containerized
-  computational environments
+- How to use [Docker]{.green} and [Apptainer]{.green} to distribute
+  containerised computational environments
 :::
 
 ## The Teachers
@@ -32,9 +32,11 @@ format: nbis-revealjs
 
 ![Tomas Larsson](images/tomas-larsson.png)
 
-![Lokeshwaran Manoharan](images/lokeshwaran-manoharan.png)
-
 ![Estelle Proux-Wera](images/estelle-proux-wera.png)
+
+![Mahesh Binzer-Panchal](images/mahesh-binzer-panchal.png)
+
+![Cormac Kinsella](images/cormac-kinsella.jpg)
 :::
 
 ## What is NBIS?
@@ -63,7 +65,7 @@ format: nbis-revealjs
 
 ![](https://phdcomics.com/comics/archive/phd031214s.gif){fig-align=center}
 
-## Why all the talk about reproducibility? {.smaller}
+## Why all the talk about reproducibility?
 
 :::: {.columns}
 ::: {.column width=45%}
@@ -82,7 +84,7 @@ the replication study.
 :::
 ::::
 
-## Why all the talk about reproducibility? {.smaller}
+## Why all the talk about reproducibility?
 
 :::: {.columns}
 ::: {.column}
@@ -96,7 +98,7 @@ Nature. 533: 452–454*]
 :::
 ::::
 
-## Why all the talk about reproducibility? {.smaller}
+## Why all the talk about reproducibility?
 
 :::: {.columns}
 ::: {.column}
@@ -116,6 +118,7 @@ Replication of 18 articles on microarray-based experiments published in 
 Nature Genetics in 2005 & 2006^[*"Repeatability of published microarray gene expression analyses. Nature genetics, 41(2), 149-155.*]
 
 ```{r Load packages and define blank ggplot theme}
+#| echo: false
 library(ggplot2)
 library(gtable)
 blank_theme <- theme_minimal() +
@@ -128,6 +131,7 @@ blank_theme <- theme_minimal() +
         legend.title = element_blank())
 ```
 ```{r Recreate the Ioannidis data}
+#| echo: false
 items = c("... in principle",
           "... with some discrepancies",
           "... from processed data with some discrepancies",
@@ -145,6 +149,7 @@ ioannidis_2 <- data.frame(
     value  = c(5, 1, 2, 2))
 ```
 ```{r Plot the first Ioannidis data}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 5
 pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
@@ -169,6 +174,7 @@ Replication of 18 articles on microarray-based experiments published in 
 Nature Genetics in 2005 & 2006^[*"Repeatability of published microarray gene expression analyses. Nature genetics, 41(2), 149-155.*]
 
 ```{r Plot the second Ioannidis data}
+#| echo: false
 #| fig-width: 10
 #| fig-height: 5
 pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
@@ -190,10 +196,12 @@ ggplot(ioannidis_2, aes(x    = "",
 
 ## Reproducibility is rarer than you think
 
+::: {.smaller}
 The results of only 26% out of 204 randomly selected papers in the journal
 *Science* could be reproduced. ^[*"An empirical analysis
 of journal policy effectiveness for computational reproducibility". PNAS. 115
 (11): 2584-2589*]
+:::
 
 ::: {.fragment}
 > "Many journals are revising author guidelines to include data and code
@@ -247,10 +255,15 @@ of journal policy effectiveness for computational reproducibility". PNAS. 115
 
 ## What does reproducible research mean?
 
+<br>
+<br>
+<br>
+
 ::: {.r-stack}
 
 ::: {.fragment .fade-out fragment-index=2}
 ::: {.fragment fragment-index=1}
+::: {.large}
 <table>
 <tr>
   <td colspan="2" bgcolor="#FFFFFF" style="border-bottom: none"></td>
@@ -274,10 +287,11 @@ of journal policy effectiveness for computational reproducibility". PNAS. 115
 </table>
 :::
 :::
+:::
 
 ::: {.fragment .fade-out fragment-index=3}
 ::: {.fragment fragment-index=2}
-![](../../pages/images/reproducibility_overview.png)
+![](../../pages/images/reproducibility_overview.png){ width=600px }
 :::
 :::
 
@@ -292,7 +306,7 @@ of journal policy effectiveness for computational reproducibility". PNAS. 115
 
 :::
 
-## How are you handling your [data]{.green}? {.smaller}
+## How are you handling your [data]{.green}?
 
 ::: {.fragment}
 [Decent:]{.light-grey}
@@ -323,7 +337,7 @@ of journal policy effectiveness for computational reproducibility". PNAS. 115
 you: [Introduction to Data Management Practices]{.green}*
 :::
 
-## How are you handling your [code]{.green}? {.smaller}
+## How are you handling your [code]{.green}?
 
 ::: {.fragment}
 [Decent:]{.light-grey}
@@ -346,7 +360,7 @@ you: [Introduction to Data Management Practices]{.green}*
 - Seeds were used and documented for heuristic methods
 :::
 
-## How are you handling your [environment]{.green}? {.smaller}
+## How are you handling your [environment]{.green}?
 
 ::: {.fragment}
 [Decent:]{.light-grey}
@@ -366,12 +380,12 @@ you: [Introduction to Data Management Practices]{.green}*
 - Instructions for reproducing the whole environment publicly available
 :::
 
-## "What's in it for me?" {.smaller}
+## "What's in it for me?"
 
 ::: {.fragment}
 [Before]{.green} the project:
 
-- Improved structure and organization
+- Improved structure and organisation
 - Forced to think about scope and limitations
 :::
 

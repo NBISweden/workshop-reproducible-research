@@ -1,0 +1,64 @@
+name: Test Conda environments
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'tutorials/snakemake/snakefile_mrsa.smk'
+      - 'tutorials/snakemake/environment.yml'
+      - 'tutorials/nextflow/environment.yml'
+      - 'tutorials/nextflow/main_mrsa.yml'
+      - 'tutorials/nextflow/samplesheet.csv'
+      - 'tutorials/jupyter/environment.yml'
+      - 'tutorials/jupyter/references.bib'
+      - 'tutorials/jupyter/supplementary_material.ipynb'
+      - 'tutorials/quarto/environment.yml'
+      - 'tutorials/quarto/quarto-tutorial-example.qmd'
+
+concurrency:
+  group: conda-env-test
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        env: [snakemake, nextflow, jupyter, quarto]
+        include:
+          - env: snakemake
+            cmd: snakemake -c 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
+          - env: nextflow
+            cmd: cd tutorials/nextflow && nextflow run main_mrsa.nf
+          - env: jupyter
+            cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
+          - env: quarto
+            cmd: conda install -c conda-forge quarto && conda install -c conda-forge deno && export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
+        exclude:
+          - os: macos-latest
+            env: snakemake
+          - os: macos-latest
+            env: nextflow
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Conda setup
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          activate-environment: ${{ matrix.env }}-env
+          environment-file: tutorials/${{ matrix.env }}/environment.yml
+          channel-priority: strict
+
+      - name: Test ${{ matrix.env }} environment
+        shell: bash -l {0}
+        run: |
+          conda list
+          ${{ matrix.cmd }}

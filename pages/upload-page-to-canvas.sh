@@ -11,16 +11,18 @@
 # Images are linked to their specified location on GitHub (the `GITHUB`
 # variable) and should be referenced to as e.g. `![](images/<some-image.png>)`
 # in the markdown.
-#
+
 # Links to pages on Canvas can be given using the URL to the page, but replacing
 # the course ID with the string 'COURSE_ID', which will then automatically build
-# the correct link by using the $COURSE_ID variable defined below. You can also
-# just provide the link using the markdown format: `[link text](<page-name>)`.
+# the correct link by using the $COURSE_ID variable defined below. The COURSE_ID
+# needs to be updated between course rounds, which is done by editing the
+# `pages/.course_id` file. You can also just provide the link using the markdown
+# format: `[link text](<page-name>)`.
 
-# TODO: what is the difference between using an explicit URL with course ID
-# (HTML) versus just using the path to the file (markdown)? The "course link
-# validator" seems to say markdown-based links are invalid even though they link
-# to the correct page with the correct course ID.
+# This script is run automatically in a GitHub Actions workflow which you can
+# find at `.github/workflows/canvas-upload.yml`. There is only one page that it
+# will run on, and that is the main landing page used as an example above, while
+# the rest of the course materials lives on GitHub pages.
 
 # Input parameters
 MARKDOWN=$1
@@ -41,7 +43,7 @@ BRANCH=$(git branch | sed -n -e 's|^\* \(.*\)|\1|p')
 GITHUB="https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/$BRANCH/pages/"
 
 # Get the appropriate course ID from the current branch
-# (set to devel ID on feature branches for easier testing)
+# (set to development ID on feature branches for testing)
 COURSE_ID=$(grep $BRANCH pages/.course_id | cut -f2 -d ':')
 if [ "$COURSE_ID" == "" ]; then
     COURSE_ID=54324
@@ -60,7 +62,7 @@ cat "$HTML" \
     | sed "s|COURSE_ID|$COURSE_ID|g" \
     | sed "s|GITHUB_BRANCH|$BRANCH|g" \
     > tmp.html
-echo '<div class="container" style="max-width:1000px">' \
+echo '<div class="content" style="max-width:800px">' \
     | cat - tmp.html \
     > tmp2.html
 echo "</div>" >> tmp2.html
