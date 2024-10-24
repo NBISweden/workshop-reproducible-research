@@ -309,7 +309,7 @@ conda activate snakemake-env
 ::: {.callout-caution title="ARM64 users"}
 Some of the packages in this environment is not available for the ARM64
 architecture, so you'll have to follow the [instructions
-above](#installing-conda).
+above](#conda-on-new-macs).
 :::
 
 Check that Snakemake is installed correctly, for example by executing `snakemake
@@ -345,7 +345,7 @@ conda activate nextflow-env
 ::: {.callout-caution title="ARM64 users"}
 Some of the packages in this environment is not available for the ARM64
 architecture, so you'll have to follow the [instructions
-above](#installing-conda).
+above](#conda-on-new-macs).
 :::
 
 Check that Nextflow was installed correctly by running `nextflow -version`. If
