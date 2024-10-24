@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - devel
-      - specky
     paths:
       - "env/*/Dockerfile"
       - "env/*/environment.yml"

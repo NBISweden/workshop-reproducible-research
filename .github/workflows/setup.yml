@@ -4,11 +4,9 @@ on:
   workflow_dispatch:
     branches:
       - main
-      - devel
   pull_request:
     branches:
       - main
-      - devel
     paths:
       - 'tutorials/snakemake/snakefile_mrsa.smk'
       - 'tutorials/snakemake/environment.yml'

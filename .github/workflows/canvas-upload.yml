@@ -4,11 +4,9 @@ on:
   workflow_dispatch:
     branches:
       - main
-      - devel
   push:
     branches:
       - main
-      - devel
     paths:
       - 'pages/tools-for-reproducible-research.md'
       - 'pages/upload-page-to-canvas.sh'
