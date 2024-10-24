@@ -8,7 +8,7 @@ project:
     - "!lectures/wrapups/"
 
 website:
-  image: "assets/images/featured.jpg"
+  image: "assets/images/featured.webp"
   favicon: "assets/favicon.png"
   navbar:
     logo: "assets/logos/nbis-scilifelab.png"
@@ -54,12 +54,12 @@ format:
     df-print: paged
     standalone: false
     fig-align: left
-    title-block-banner: "assets/images/banner.jpg"
+    title-block-banner: "assets/images/banner.webp"
     subtitle: ""
     callout-icon: true
     date:  last-modified
     date-format: "DD-MMM-YYYY"
-    image: "assets/images/featured.png"
+    image: "assets/images/featured.webp"
   revealjs:
     quarto-required: ">=1.4.0"
     include-in-header: "assets/include_head.html"
@@ -82,10 +82,10 @@ format:
     fig-align: left
     chalkboard: true
     callout-icon: true
-    image: "/assets/images/featured.jpg"
-    hero: "/assets/images/slide-hero.png"
+    image: "/assets/images/featured.webp"
+    hero: "/assets/images/slide-hero.webp"
     title-slide-attributes:
-      data-background-image: "/assets/images/cover.jpg"
+      data-background-image: "/assets/images/cover.webp"
       data-background-size: "cover"
       data-background-opacity: "1"
     subtitle: ""
