@@ -1,0 +1,56 @@
+---
+title: Course Certificate
+subtitle: Tools for Reproducible Research
+format:
+    pdf:
+        theme: flatly
+        mainfont: Arial
+        fontsize: 11pt
+        number-sections: false
+        fig-align: center
+        papersize: a4
+params:
+  location: ''
+  participant: ''
+  month_start: ''
+  day_start: ''
+  month_end: ''
+  day_end: ''
+  year: ''
+engine: knitr
+---
+
+![NBIS logo](images/nbislogo_green_txt_f34bc9d3c3.png){height=50}
+\hspace{4em}
+![SciLifeLab logo](images/SciLifeLab_Logotype_Green_POS.png){height=50}
+\hspace{4em}
+![Elixir logo](images/elixir_sweden_white_background.png){height=50}
+
+This is to certify that **`r params$participant`** has successfully taken part in the NBIS/ELIXIR course 
+
+**Tools for Reproducible Research**
+ 
+The course was held `r params$location`, `r params$month_start` `r params$day_start` - `r params$month_end` `r params$day_end` `r params$year`. It consisted of lectures, computer exercises and group discussions.
+
+The following subjects and fields were covered:
+
+- Use good practices for data analysis and management
+- Clearly organise their bioinformatic projects
+- Use the version control system Git to track and collaborate on code
+- Use the package and environment manager Conda
+- Use and develop workflows with Snakemake and Nextflow
+- Use Quarto and Jupyter Notebooks to document and generate automated reports
+- Use Docker and Singularity/Apptainer to distribute containerized computational environments
+ 
+**Examination**: Presence during all the lectures and computer/practical exercises.
+
+
+The course was arranged by the National Bioinformatics Infrastructure Sweden (NBIS), Science for Life Laboratory (SciLifeLab) and ELIXIR-Europe.
+
+\-\-\-\
+*Stockholm, `r params$month_end` `r params$day_end`, `r params$year`*
+
+*Erik Fasterius & John Sundh*\
+*Dept of Biochemistry and Biophysics*\
+*NBIS, Science for Life Laboratory, Stockholm University*\
+*Course examiners*
