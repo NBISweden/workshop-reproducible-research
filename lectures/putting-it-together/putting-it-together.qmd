@@ -1,6 +1,5 @@
 ---
 title: "Putting it all together"
-subtitle: ""
 format: revealjs
 ---
 

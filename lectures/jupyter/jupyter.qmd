@@ -1,6 +1,5 @@
 ---
 title: 'Making reports with <img src="https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg" style="width:100%;padding: 5px 5px 5px 5px;">'
-subtitle: ""
 format: revealjs
 ---
 

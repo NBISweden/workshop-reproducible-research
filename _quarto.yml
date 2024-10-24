@@ -54,7 +54,7 @@ format:
     standalone: false
     fig-align: left
     title-block-banner: "assets/images/banner.jpg"
-    subtitle: "Specky quarto theme"
+    subtitle: ""
     callout-icon: true
     date:  last-modified
     date-format: "DD-MMM-YYYY"
@@ -87,7 +87,7 @@ format:
       data-background-image: "/assets/images/cover.jpg"
       data-background-size: "cover"
       data-background-opacity: "1"
-    subtitle: "Specky quarto theme"
+    subtitle: ""
     header-logo-left: /assets/logos/nbis.png
     header-logo-left-height: 25px
     header-logo-left-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html

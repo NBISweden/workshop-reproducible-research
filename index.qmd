@@ -1,6 +1,5 @@
 ---
 pagetitle: "Home | Tools for Reproducible Research"
-subtitle: ""
 toc: false
 date: ""
 sidebar: false

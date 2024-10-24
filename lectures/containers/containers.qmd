@@ -3,7 +3,6 @@ title: 'Working with containers
         <img src="images/docker-logo.webp" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
         <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
         <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>'
-subtitle: ""
 format: revealjs
 ---
 

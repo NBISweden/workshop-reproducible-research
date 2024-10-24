@@ -1,6 +1,5 @@
 ---
 title: 'Managing software environments with <br> <img src="images/conda-logo.png" style="width:50%;padding: 25px 25px 25px 25px;">'
-subtitle: ""
 format: revealjs
 execute:
   echo: false

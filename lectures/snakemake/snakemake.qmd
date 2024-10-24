@@ -1,6 +1,5 @@
 ---
 title: 'Making reproducible workflows with <img src="images/snakemake_logo.png" style="width:50%;padding: 15px 15px 15px 15px;">'
-subtitle: ""
 format: revealjs
 execute:
   echo: false
