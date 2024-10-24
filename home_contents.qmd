@@ -1,0 +1,34 @@
+---
+title: "Contents"
+subtitle: "Tutorials and lecture links"
+pagetitle: "Contents | Tools for Reproducible Research"
+description: ""
+date: ""
+toc: false
+number-sections: false
+sidebar: false
+format: html
+---
+
+Below you can find a list of all the topics covered by the workshop and links to
+their respective tutorials and lectures. Please note that not all topics have a
+tutorial associated with them, and are only covered by a lecture. Lectures
+should be considered short introductions to each topic, while the tutorials
+themselves contain all of the material covered by the workshop.
+
+<br>
+
+| Topic                   | Lecture                                                                        | Tutorial                                         |
+| ----------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------ |
+| Introduction            | [{{< fa file-lines >}}](lectures/introduction/introduction.html)               | [{{< fa file-lines >}}](pages/introduction.html) |
+| Data management         | [{{< fa file-lines >}}](lectures/data-management/data-management.html)         |                                                  |
+| Git                     | [{{< fa file-lines >}}](lectures/git/git.html)                                 | [{{< fa file-lines >}}](pages/git.html)          |
+| Conda                   | [{{< fa file-lines >}}](lectures/conda/conda.html)                             | [{{< fa file-lines >}}](pages/conda.html)        |
+| Snakemake               | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)                     | [{{< fa file-lines >}}](pages/snakemake.html)    |
+| Nextflow                | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)                       | [{{< fa file-lines >}}](pages/nextflow.html)     |
+| Quarto                  | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                           | [{{< fa file-lines >}}](pages/quarto.html)       |
+| Jupyter                 | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                         | [{{< fa file-lines >}}](pages/jupyter.html)      |
+| Containers              | [{{< fa file-lines >}}](lectures/containers/containers.html)                   | [{{< fa file-lines >}}](pages/containers.html)   |
+| Putting it all together | [{{< fa file-lines >}}](lectures/putting-it-together/putting-it-together.html) |                                                  |
+| Markdown                |                                                                                | [{{< fa file-lines >}}](pages/markdown.html)     |
+| Take-down               |                                                                                | [{{< fa file-lines >}}](pages/take-down.html)    |

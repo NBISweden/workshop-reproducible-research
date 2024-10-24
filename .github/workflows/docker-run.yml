@@ -1,4 +1,4 @@
-name: docker
+name: MRSA container testing
 
 on:
   workflow_dispatch:
@@ -6,21 +6,23 @@ on:
       - main
       - devel
   pull_request:
+    branches:
+      - main
     paths:
       - 'tutorials/containers/Dockerfile'
       - 'tutorials/containers/environment.yml'
       - 'tutorials/containers/Snakefile'
       - 'tutorials/containers/config.yml'
       - 'tutorials/containers/code/*'
-    branches:
-      - main
 
 jobs:
   docker-build-and-run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Docker build
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and test Docker image
         run: |
           docker build -t my_docker_project -f tutorials/containers/Dockerfile tutorials/containers/
           docker run --rm my_docker_project

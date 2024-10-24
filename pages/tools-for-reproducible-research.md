@@ -4,6 +4,10 @@
 
 # Course overview
 
+<img src="https://www.svgrepo.com/show/478288/internet.svg"
+    width="20" height="20"/>
+[Course website](https://nbisweden.github.io/workshop-reproducible-research/)
+
 <img src="https://www.svgrepo.com/show/305241/github.svg"
     width="20" height="20"/>
 [GitHub repository](https://github.com/NBISweden/workshop-reproducible-research/)
@@ -31,8 +35,8 @@ description thereof.
 
 Reproducible research not only leads to proper scientific conduct, but also
 enables other researchers to build upon previous work. Most importantly, the
-person who organizes their work with reproducibility in mind will quickly
-realize the immediate personal benefits: an organized and structured way of
+person who organises their work with reproducibility in mind will quickly
+realize the immediate personal benefits: an organised and structured way of
 working. The person that most often has to reproduce your own analysis is your
 future self!
 
@@ -86,61 +90,17 @@ are crucial, the student needs to confer with the home department before
 submitting a course application in order to establish whether the course is
 valid for formal credits or not.
 
-By accepting to participate in the course, you agree to follow the [NBIS
-Training Code of Conduct](COURSE_ID/pages/code-of-conduct).
-
-# Course feel
+# Course fee
 
 A course fee of 3000 SEK will be invoiced to accepted participants. This
 includes lunches, coffee and snacks, and course dinner. Please note that NBIS
 cannot invoice individuals
 
-# Schedule
-
-You can find the course schedule at [this page](https://uppsala.instructure.com/courses/COURSE_ID/pages/schedule).
-
-# Location
-
-This course round is given on-site in Sweden at [SciLifeLab
-Stockholm](https://www.scilifelab.se/about-us/campus-solna/). Travel directions
-are as follows:
-
-1. Transport yourself to Stockholm (see _e.g._ [SJ's website](https://www.sj.se/)
-   for train travel within Sweden).
-2. Go to SciLifeLab in Solna ([Tomtebodavägen 23A, 171 65 Solna](https://goo.gl/maps/YhWgJPt44qfTe1ad9)).
-   The closest bus stop is called Karolinska institutet Biomedicum (search for
-   public transport options here).
-3. Enter the SciLifeLab/Karolinska Institutet Science Park building. There are
-   public transport-style access gates to your left, and the glass door to the
-   left immediately after the gates is where you need to go for the rooms _Air_
-   and _Fire_, where the course will be held. You will, however, need an access
-   card in order to pass through the gates, which will be handed to you on the
-   morning of the first day (there is also a reception where you can ask for
-   help if you run into any issues).
-
 # Course material
 
-The [pre-course setup](https://uppsala.instructure.com/courses/COURSE_ID/pages/pre-course-setup)
-page lists all the information you need before the course starts. The most
-important part is the installation and setup of all the tools used in the
-course, so make sure you've gone through it all for the course start. You can
-find the tutorials themselves (_i.e._ the content we will go through during the
-course) in the [modules](https://uppsala.instructure.com/courses/COURSE_ID/modules)
-page.
-
-All of the lectures used in this course is available at the [lecture page](https://uppsala.instructure.com/courses/COURSE_ID/pages/lectures),
-while the source code used to create the lectures is available under the
-[lectures/](https://github.com/NBISweden/workshop-reproducible-research/tree/main/lectures)
-directory on GitHub.
-
-# Teachers
-
-- John Sundh (course responsible)
-- Erik Fasterius (course responsible)
-- Verena Kutschera (teacher)
-- Tomas Larsson (teacher)
-- Estelle Proux-Wéra (teacher)
-- Lokeshwaran Manoharan (teacher)
+All of the material for this workshop can be found at the [course
+website](https://nbisweden.github.io/workshop-reproducible-research/), including
+both lectures, tutorials and other information.
 
 # Contact
 

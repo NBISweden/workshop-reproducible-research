@@ -1,0 +1,108 @@
+---
+title: "Syllabus"
+subtitle: "Syllabus, learning outcomes, entry requirements and code of conduct"
+pagetitle: "Syllabus | Tools for Reproducible Research"
+date: ""
+toc: false
+number-sections: false
+sidebar: false
+format: html
+---
+
+::: {.panel-tabset}
+
+## Syllabus
+
+The following topics and tools are covered in the course:
+
+ - Data management
+ - Project organisation
+ - Git
+ - Conda
+ - Snakemake
+ - Nextflow
+ - Quarto
+ - Jupyter
+ - Docker
+ - Apptainer
+
+## Learning outcomes
+
+At the end of the course, students should be able to:
+
+ - Use good practices for data analysis and management
+ - Clearly organise their bioinformatic projects
+ - Use the version control system Git to track and collaborate on code
+ - Use the package and environment manager Conda
+ - Use and develop workflows with Snakemake and Nextflow
+ - Use Quarto and Jupyter Notebooks to document and generate automated reports
+   for their analyses
+ - Use Docker and Apptainer to distribute containerized computational environments
+
+## Entry requirements
+
+This is an NBIS / Elixir course. The course is open for PhD students, postdocs,
+group leaders and core facility staff. International applications are welcome,
+but we will give approximately half of the participant slots to applicants from
+Swedish universities, due to the national role NBIS plays in Sweden.
+
+The only entry requirements for this course is a basic knowledge of Unix systems
+(i.e. being able to work on the command line) as well as at least a basic
+knowledge of either R or Python.
+
+Due to limited space the course can accommodate maximum of 20 participants. If
+we receive more applications, participants will be selected based on several
+criteria. Selection criteria include correct entry requirements, motivation to
+attend the course as well as gender and geographical balance.
+
+Please note that NBIS training events do not provide any formal university
+credits. The training content is estimated to correspond to a certain number of
+credits, however the estimated credits are just guidelines. If formal credits
+are crucial, the student needs to confer with the home department before
+submitting a course application in order to establish whether the course is
+valid for formal credits or not.
+
+## Code of Conduct
+
+By accepting to participate in the course, you agree to follow the NBIS Training
+Code of Conduct.
+
+Training is one of the core values of NBIS, and benefits from the contributions
+of the entire scientific community. We value the involvement of everyone in the
+community. We are committed to creating a friendly and respectful place for
+learning, teaching and contributing. All participants in our events and
+communications are expected to show respect and courtesy to others.
+
+To make clear what is expected, everyone participating in NBIS/ELIXIR courses is
+required to conform to the Code of Conduct. This Code of Conduct applies to all
+spaces managed by NBIS including, but not limited to, courses, email lists, and
+online forums such as Studium, GitHub, Slack, Twitter and LinkedIn. Course
+organisers and teachers are expected to assist with the enforcement of the Code
+of Conduct.
+
+We are dedicated to providing a welcoming and supportive environment for all
+people, regardless of background or identity. By participating in this event,
+participants accept to abide by the NBIS Code of Conduct and accept the
+procedures by which any Code of Conduct incidents are resolved. Any form of
+behaviour to exclude, intimidate, or cause discomfort is a violation of the Code
+of Conduct. In order to foster a positive and professional learning environment
+we encourage the following kinds of behaviours in all platforms and training
+events:
+
+ - Use welcoming and inclusive language
+ - Be respectful of different viewpoints and experiences
+ - Gracefully accept constructive criticism
+ - Focus on what is best to all those involved in this training event
+ - Show courtesy and respect towards everyone involved in this training event
+
+The NBIS Training Coordinator is responsible for enforcing the Code of Conduct,
+and may be contacted by emailing [education@nbis.se](mailto:education@nbis.se).
+All reports will be reviewed and will be kept confidential. If you believe
+someone is violating the Code of Conduct, we ask that you report it to the NBIS
+Training coordinator, who will take the appropriate action to address the
+situation.
+
+For an extended description please see the [ELIXIR Code of
+Conduct](https://elixir-europe.org/events/code-of-conduct).
+
+:::

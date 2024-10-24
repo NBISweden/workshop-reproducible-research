@@ -1,6 +1,7 @@
 ---
 title: 'Making reports with <img src="https://jupyter.readthedocs.io/en/latest/_static/_images/jupyter.svg" style="width:100%;padding: 5px 5px 5px 5px;">'
-format: nbis-revealjs
+subtitle: ""
+format: revealjs
 ---
 
 ```{python}
@@ -19,7 +20,7 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
 - Allows you to document, edit and run code directly in your browser
 :::
 
-## Notebook basics {.smaller}
+## Notebook basics
 
 ::::: {.columns}
 :::: {.column width="75%"}
@@ -33,7 +34,7 @@ if 'rpy2.ipython' not in ip.extension_manager.loaded:
 ::::
 :::::
 
-## Jupyter lab {.smaller}
+## Jupyter lab
 
 _The next-generation interface for Jupyter_
 
@@ -50,7 +51,7 @@ _The next-generation interface for Jupyter_
 ::::
 :::::
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
 
 ::: {data-id="bullets"}
 - Document your work in markdown...
@@ -72,7 +73,7 @@ The species included in this set are:
  ```
 :::
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -93,7 +94,7 @@ The species included in this set are:
  - _Gentoo_
 :::
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -108,7 +109,7 @@ data = sns.load_dataset("penguins")
 data.groupby("species").mean(numeric_only=True)
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -123,7 +124,7 @@ data.groupby("species").mean(numeric_only=True)
 print(paste(Sys.Date(), ": Hello World", sep=""))
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
@@ -136,37 +137,6 @@ print(paste(Sys.Date(), ": Hello World", sep=""))
 #| echo: true
 %%R
 print(paste(Sys.Date(), ": Hello World", sep=""))
-```
-
-**ruby**
-```{python}
-#| echo: true
-%%ruby
-require 'date'
-print DateTime.now(), ": Hello World!"
-```
-
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
-
-::: {data-id="bullets"}
-- Document your work in markdown...and have it rendered automatically.
-- Execute code directly from the browser, with results attached to the code which generated them.
-- Mix and match languages in addition to `python`.
-:::
-
-**R**
-```{python}
-#| echo: true
-%%R
-print(paste(Sys.Date(), ": Hello World", sep=""))
-```
-
-**ruby**
-```{python}
-#| echo: true
-%%ruby
-require 'date'
-print DateTime.now(), ": Hello World!"
 ```
 
 **bash**
@@ -176,7 +146,7 @@ print DateTime.now(), ": Hello World!"
 echo "$(date): Hello World!"
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" .smaller}
+## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
 
 ::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically
@@ -186,15 +156,17 @@ echo "$(date): Hello World!"
 :::
 
 ```{python}
-sns.set_context("paper", rc={"axes.labelsize":6})
-```
-
-```{python}
 #| echo: true
 #| warning: false
-ax = sns.pairplot(data, hue="species", height=1,
-                  plot_kws=dict(s=20, linewidth=0.5),
-                  diag_kws=dict(linewidth=0.5))
+#| output-location: column
+sns.set_context("paper",
+                rc={"axes.labelsize":6})
+ax = sns.pairplot(
+    data,
+    hue="species",
+    height=1,
+    plot_kws=dict(s=20, linewidth=0.5),
+    diag_kws=dict(linewidth=0.5))
 ```
 
 ## Use cases

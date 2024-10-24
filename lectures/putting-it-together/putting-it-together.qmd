@@ -1,6 +1,7 @@
 ---
 title: "Putting it all together"
-format: nbis-revealjs
+subtitle: ""
+format: revealjs
 ---
 
 ## Working reproducibly will make your research life a lot easier!
@@ -15,7 +16,7 @@ format: nbis-revealjs
 
 ![](../../pages/images/reproducibility_overview.png){height=400 fig-align=center}
 
-## What have we learned? {.smaller}
+## What have we learned?
 
 ![](../../pages/images/reproducibility_overview_with_logos.png){height=300 fig-align=center}
 
@@ -69,7 +70,7 @@ More examples:
 - Upload your raw data as soon as possible to a [public data repository]{.green}
 :::
 
-## Organize your coding
+## Organise your coding
 
 ::: {.incremental}
 - Avoid generating files [interactively]{.green} or doing things [by
@@ -172,8 +173,6 @@ _Track the **full** environment and connect your code in a workflow_
 - **Podman** - open source daemonless container tool similar to docker in many regards
 - **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
 - **VirtualBox/VMWare** – Virtualisation rather than containerization. Less lightweight, but no reliance on host kernel.
-
-class: center, middle
 
 ## "What's in it for me?"
 

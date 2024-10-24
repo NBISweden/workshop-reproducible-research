@@ -1,4 +1,4 @@
-name: setup
+name: Conda environment testing
 
 on:
   workflow_dispatch:
@@ -8,13 +8,30 @@ on:
   pull_request:
     branches:
       - main
+      - devel
+    paths:
+      - 'tutorials/snakemake/snakefile_mrsa.smk'
+      - 'tutorials/snakemake/environment.yml'
+      - 'tutorials/nextflow/environment.yml'
+      - 'tutorials/nextflow/main_mrsa.yml'
+      - 'tutorials/nextflow/samplesheet.csv'
+      - 'tutorials/jupyter/environment.yml'
+      - 'tutorials/jupyter/references.bib'
+      - 'tutorials/jupyter/supplementary_material.ipynb'
+      - 'tutorials/quarto/environment.yml'
+      - 'tutorials/quarto/quarto-tutorial-example.qmd'
+
+concurrency:
+  group: conda-env-test
+  cancel-in-progress: true
 
 jobs:
-  install:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ macos-latest, ubuntu-latest ]
+        os: [macos-latest, ubuntu-latest]
         env: [snakemake, nextflow, jupyter, quarto]
         include:
           - env: snakemake
@@ -24,18 +41,25 @@ jobs:
           - env: jupyter
             cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: quarto
-            cmd: mamba install -c conda-forge quarto && mamba install -c conda-forge deno && export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
+            cmd: conda install -c conda-forge quarto && conda install -c conda-forge deno && export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
+        exclude:
+          - os: macos-latest
+            env: snakemake
+          - os: macos-latest
+            env: nextflow
     steps:
-      - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2.2.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Conda setup
+        uses: conda-incubator/setup-miniconda@v3
         with:
-          miniforge-variant: Mambaforge
           miniforge-version: latest
           activate-environment: ${{ matrix.env }}-env
           environment-file: tutorials/${{ matrix.env }}/environment.yml
-          use-mamba: true
           channel-priority: strict
-      - name: Test ${{ matrix.env }}
+
+      - name: Test ${{ matrix.env }} Conda environment
         shell: bash -l {0}
         run: |
           conda list

@@ -1,6 +1,7 @@
 ---
 title: 'Version control with <img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" style="width:50%; padding: 15px 15px 15px 15px"/>'
-format: nbis-revealjs
+subtitle: ""
+format: revealjs
 ---
 
 ## What is Git?
@@ -32,7 +33,7 @@ format: nbis-revealjs
 
 ## Tracking code in three steps
 
-![](images/git_overview_local.png){height=300 fig-align=center}
+![](../../../pages/images/git_overview_local.png){height=300 fig-align=center}
 
 ::: {.incremental}
 1. Do some [coding]{.green} (*i.e.* add or change contents of files)

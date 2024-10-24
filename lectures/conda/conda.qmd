@@ -1,6 +1,9 @@
 ---
 title: 'Managing software environments with <br> <img src="images/conda-logo.png" style="width:50%;padding: 25px 25px 25px 25px;">'
-format: nbis-revealjs
+subtitle: ""
+format: revealjs
+execute:
+  echo: false
 jupyter:
     kernelspec:
         display_name: Python 3
@@ -10,7 +13,7 @@ jupyter:
 
 ## The problem
 
-![](r-reproducibility-6-638_cropped.jpg){width=75%}
+![](images/dying-script.jpg)
 
 ::: {.fragment .justify-center}
 _Full reproducibility requires the possibility to recreate the system that was
@@ -208,7 +211,7 @@ conda env export > environment.yml
 conda env export --from-history > environment.yml
 ```
 
-## Conda, Anaconda, Miniconda, Miniforge... {.smaller}
+## Conda, Anaconda, Miniconda, Miniforge...
 
 ::: {.incremental}
 - [Conda]{.green}: The package manager itself, written in python
@@ -216,8 +219,10 @@ conda env export --from-history > environment.yml
   - The company behind Conda itself
   - An installer for Conda containing over 7,500 open-source packages
   - A cloud service where conda packages are hosted ([anaconda.com](https://anaconda.com))
-- [Miniconda]{.green}: A minimal installer for Conda, pre-configured to use the `default` channel
-- [Miniforge]{.green}: A minimal installer for Conda, pre-configured to use the `conda-forge` channel
+- [Miniconda]{.green}: A minimal installer for Conda, pre-configured to use the
+  `default` channel
+- [Miniforge]{.green}: A minimal installer for Conda, pre-configured to use the
+  `conda-forge` channel (use this!)
 :::
 
 # Questions?
