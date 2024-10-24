@@ -9,6 +9,17 @@ on:
     branches:
       - main
       - devel
+    paths:
+      - 'tutorials/snakemake/snakefile_mrsa.smk'
+      - 'tutorials/snakemake/environment.yml'
+      - 'tutorials/nextflow/environment.yml'
+      - 'tutorials/nextflow/main_mrsa.yml'
+      - 'tutorials/nextflow/samplesheet.csv'
+      - 'tutorials/jupyter/environment.yml'
+      - 'tutorials/jupyter/references.bib'
+      - 'tutorials/jupyter/supplementary_material.ipynb'
+      - 'tutorials/quarto/environment.yml'
+      - 'tutorials/quarto/quarto-tutorial-example.qmd'
 
 concurrency:
   group: conda-env-test
