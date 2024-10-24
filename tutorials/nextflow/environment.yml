@@ -9,6 +9,6 @@ dependencies:
   - multiqc
   - nextflow
   - samtools
-  - subread
+  - subread>=2
   - wget
   - tree

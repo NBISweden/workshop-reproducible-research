@@ -11,7 +11,7 @@ dependencies:
   - bowtie2
   - tbb
   - samtools
-  - subread
+  - subread>=2
   - bedtools
   - r-base
   - r-ggplot2
