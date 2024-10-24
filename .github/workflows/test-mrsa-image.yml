@@ -1,4 +1,4 @@
-name: MRSA container testing
+name: Test MRSA image
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: Conda environment testing
+name: Test Conda environments
 
 on:
   workflow_dispatch:
@@ -57,7 +57,7 @@ jobs:
           environment-file: tutorials/${{ matrix.env }}/environment.yml
           channel-priority: strict
 
-      - name: Test ${{ matrix.env }} Conda environment
+      - name: Test ${{ matrix.env }} environment
         shell: bash -l {0}
         run: |
           conda list
