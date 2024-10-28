@@ -35,7 +35,7 @@ format: revealjs
 ![](../../../pages/images/git_overview_local.png){height=300 fig-align=center}
 
 ::: {.incremental}
-1. Do some [coding]{.green} (*i.e.* add or change contents of files)
+1. Do some [coding]{.green} (*i.e.* make or change contents of files)
 2. [Stage]{.green} the changes (*i.e.* specify which changes should be stored)
 3. [Commit]{.green} the changes (storing them in the repository's history)
 :::
