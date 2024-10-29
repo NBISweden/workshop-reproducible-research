@@ -47,16 +47,20 @@ select the corresponding version.
 ## Setup for Windows users
 
 Using a Windows computer for bioinformatic work has sadly not been ideal most of
-the time, but large advanced in recent years have made this quite feasible
-through the Windows 10 _Linux subsystem_. This is the only setup for Windows
+the time, but large advances in recent years have made this quite feasible
+through the _Windows Subsystem for Linux (WSL)_. This is the only setup for Windows
 users that we allow for participants of this course, as all the material has
 been created and tested to work on Unix-based systems.
 
-Using the Linux subsystem will give you access to a full command-line bash shell
-based on Linux on your Windows 10 PC. For the difference between the Linux Bash
-Shell and the PowerShell on Windows 10, see _e.g._ [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
+There are two substantially different versions of the Linux subsystem, WSL1 and
+WSL2. We strongly recommend using **WSL2**, which offers an essentially complete
+Linux experience and better performance.
 
-Install Bash on Windows 10, follow the instructions at _e.g._ one of these
+Using the Linux subsystem will give you access to a full command-line bash shell
+and a Linux implementation on your Windows 10 or 11 PC. For the difference between
+the Linux Bash Shell and the Windows PowerShell, see _e.g._ [this article](https://searchitoperations.techtarget.com/tip/On-Windows-PowerShell-vs-Bash-comparison-gets-interesting).
+
+Install WSL2 on Windows 10 or 11, follow the instructions at _e.g._ one of these
 resources:
 
 - [Installing the Windows Subsystem and the Linux Bash](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
@@ -432,7 +436,7 @@ Virtualisation Technology_ and virtualisation must be enabled. This is typically
 done in BIOS. Setting this is outside the scope of this tutorial, so we'll
 simply go ahead as if though it's enabled and hope that it works.
 
-On Windows 10 we will install Docker for Windows, which is available at
+On Windows 10/11 we will install Docker for Windows, which is available at
 [docker.com](https://docs.docker.com/docker-for-windows/install/#download-docker-for-windows).
 Click the link _Download from Docker Hub_, and select _Get Docker_. Once the
 download is complete, execute the file and follow the [instructions](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows).
