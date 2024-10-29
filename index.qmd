@@ -8,6 +8,7 @@ format:
     css: "assets/css/home.css"
     number-sections: false
     title-block-banner: false
+    anchor-sections: false
     page-layout: full
 execute:
   freeze: false
@@ -32,7 +33,7 @@ Updated: {{< meta current_date >}}  at {{< meta current_time >}} .
 :::
 :::{.home-grid-child-right}
 
-![](assets/images/hero.png){.nolightbox}
+![](assets/images/hero.webp){.nolightbox}
 
 :::
 :::
