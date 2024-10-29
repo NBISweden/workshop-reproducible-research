@@ -43,7 +43,6 @@ jobs:
       fail-fast: false
       matrix:
         name: ${{ fromJSON(needs.changed-directories.outputs.matrix) }}
-        platform: [linux/amd64, linux/arm64]
     permissions:
       contents: read
       packages: write
@@ -78,4 +77,4 @@ jobs:
           context: ${{ env.INCLUDE_DIR }}/${{ matrix.name }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          platforms: ${{ matrix.platform }}
+          platforms: linux/amd64,linux/arm64
