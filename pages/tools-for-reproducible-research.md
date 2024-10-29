@@ -1,6 +1,6 @@
 # Tools for Reproducible Research
 
-![](images/achievement-agreement-arms-1068523.jpg)
+![](images/seo.jpg)
 
 # Course overview
 
