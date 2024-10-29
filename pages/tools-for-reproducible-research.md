@@ -1,5 +1,3 @@
-# Tools for Reproducible Research
-
 ![](images/seo.jpg)
 
 # Course overview
