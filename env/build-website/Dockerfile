@@ -41,5 +41,5 @@ WORKDIR /work
 # Start Bash shell by default
 CMD /bin/bash
 
-LABEL org.opencontainers.image.authors="Erik Fasterius, erik.fasterius@nbis.se"
+LABEL org.opencontainers.image.authors="erik.fasterius@nbis.se"
 LABEL org.opencontainers.image.description="Dockerfile for building the Tools for Reproducible Research NBIS / Elixir workshop website"
