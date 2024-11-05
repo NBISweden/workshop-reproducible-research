@@ -35,7 +35,7 @@ There are many benefits of using Git in your research project:
   to collaborate by tracking all edits made by each person. It will also handle
   any potential conflicting edits.
 - Using a cloud-based repository hosting service (the one you push your commits
-  to), like _e.g._ [GitHub](https://github.com/) or
+  to), like [GitHub](https://github.com/) or
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
 - If at some point your project will be published GitHub or Bitbucket (or
