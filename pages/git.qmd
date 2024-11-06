@@ -516,10 +516,10 @@ displays the difference on a word-per-word basis rather than line-per-line.
 
 ::: {.callout-note}
 Git is constantly evolving, along with some of its commands. The `checkout`
-command was previously used for switching between branches, but this
-functionality now has the dedicated (and clearer) `switch` command for this.
-If you've previously learned using `checkout` instead you can keep doing that
-without any issues, as the `checkout` command itself hasn't changed.
+command was previously used for switching between branches, but now there's the
+dedicated (and clearer) `switch` command for this functionality. If you've
+previously learned using `checkout` instead you can keep doing that without any
+issues, as the `checkout` command itself hasn't changed.
 :::
 
 Now, let's assume that we have tested our code and the alignment analysis is run
