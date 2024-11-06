@@ -540,7 +540,7 @@ git merge test_alignment
 ```
 
 Run `git log --graph --all --oneline` again to see how the merge commit brings
-back the changes made in `test_alignment` to `main`.
+the changes made in `test_alignment` into `main`.
 
 ::: {.callout-tip}
 If working on different features or parts of an analysis on different
