@@ -918,7 +918,7 @@ repositories and how to sync them:
 
 ### Remote branches
 
-Remote branches work much in the same way a local branches, but you have to
+Remote branches work much in the same way as local branches, but you have to
 push them separately; you might have noticed that GitHub only listed our
 repository as having one branch (you can see this by going to the _Code_ tab).
 This is because we only pushed our `main` branch to the remote. Let's create
