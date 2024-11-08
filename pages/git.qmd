@@ -719,9 +719,11 @@ git remote add origin git@github.com:user/git_tutorial.git
   your local Git clone. The short name of the default remote is usually
   "_origin_" by convention.
 
-::: {.callout-note}
+::: {.callout-note} 
 Make sure you've used an SSH address (_i.e._ starting with `git@github.com`
-rather than an HTTPS address (starting with `https://github.com`)!
+rather than an HTTPS address (starting with `https://github.com`)! Also make
+sure you've set up ssh-keys as described in the
+[github-setup](../home_precourse.html#github-setup) in the pre-course material.
 :::
 
 - We have not yet synced the local and remote repositories, though, we've simply
@@ -897,8 +899,8 @@ a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
 
 That's quite a few concepts and commands you've just learnt! It can be a bit
 hard to keep track of everything and the connections between local and remote
-Git repositories and how you work with them, but hopefully the following figure
-will give you a short visual summary:
+Git repositories and how you work with them. The following figure will give you
+a short visual summary:
 
 ![](images/git_overview_remote.png){ width=600px }
 
