@@ -249,16 +249,23 @@ blueprints for the images. It is therefore good practice to have your
 Dockerfile in your project Git repository, since it allows other users to
 exactly replicate your project environment.
 
-We will be looking at a Dockerfile called `Dockerfile_slim` that is located in
+We will be looking at a Dockerfile called `slim.Dockerfile` that is located in
 your `containers` directory (where you should hopefully be standing already). We
 will now go through that file and discuss the different steps and what they do.
 After that we'll build the image and test it out. Lastly, we'll start from that
 image and make a new one to reproduce the results from the [Conda
 tutorial](conda.html#working-with-environments).
 
+::: {.callout-note title="Naming Dockerfile"}
+The default name for a Dockerfile is just that, `Dockerfile`. In cases where you
+want to have more than one Dockerfile in a single directory you can use the
+format `<name>.Dockerfile` instead, as per the [official
+documentation](https://docs.docker.com/build/concepts/dockerfile/#filename).
+:::
+
 ### Understanding Dockerfiles
 
-Here are the first few lines of `Dockerfile_slim`. Each line in the Dockerfile
+Here are the first few lines of `slim.Dockerfile`. Each line in the Dockerfile
 will typically result in one layer in the resulting image. The format for
 Dockerfiles is `INSTRUCTION arguments`. A full specification of the format,
 together with best practices, can be found at the [Docker
@@ -304,7 +311,7 @@ a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start
 from one of the low-level official images and set up everything from scratch.
 :::
 
-Let's take a look at the next section of `Dockerfile_slim`.
+Let's take a look at the next section of `slim.Dockerfile`.
 
 ```Dockerfile
 # Use bash as shell
@@ -397,14 +404,14 @@ If your computer is a MAC with the M1 chip, you may have to add
 :::
 
 ```bash
-docker build -f Dockerfile_slim -t my_docker_image .
+docker build -f slim.Dockerfile -t my_docker_image .
 ```
 
 This should result in something similar to this:
 
 ```
  [+] Building 2.2s (7/7) FINISHED
- => [internal] load build definition from Dockerfile_slim                                                                                                                                             0.0s
+ => [internal] load build definition from slim.Dockerfile                                                                                                                                             0.0s
  => => transferring dockerfile: 667B                                                                                                                                                                  0.0s
  => [internal] load .dockerignore                                                                                                                                                                     0.0s
  => => transferring context: 2B                                                                                                                                                                       0.0s
@@ -439,14 +446,14 @@ running the analysis. A copy of this file should also be available in your
 current directory. If we want to use the same script we need to include it in
 the image. A basic outline of what we need to do is:
 
-1. Create a file called `Dockerfile_conda`
+1. Create a file called `conda.Dockerfile`
 2. Start the image from the `my_docker_image` we just built
 3. Install the package `fastqc` which is required for the analysis.
 4. Add the `run_qc.sh` script to the image
 5. Set the default command of the image to run the `run_qc.sh` script.
 
 We'll now go through these steps in more detail. Try to add the
-corresponding code to `Dockerfile_conda` on your own, and if you get stuck
+corresponding code to `conda.Dockerfile` on your own, and if you get stuck
 you can click to reveal the solution below under "Click to show solution".
 
 **Set image starting point**
@@ -506,7 +513,7 @@ Build the image and tag it `my_docker_conda` (remember to add
 Apple chip).
 
 ```bash
-docker build -t my_docker_conda -f Dockerfile_conda .
+docker build -t my_docker_conda -f conda.Dockerfile .
 ```
 
 Verify that the image was built using `docker image ls`.
@@ -703,7 +710,7 @@ image from the Dockerfile in your Git repository and make it available for
 download using `docker pull`. That way, you don't have to bother manually
 building and pushing using `docker push`. The GitHub repository for this
 course is linked to Docker Hub and the Docker images are built automatically
-from `Dockerfile` and `Dockerfile_slim`, triggered by changes made to the
+from `Dockerfile` and `slim.Dockerfile`, triggered by changes made to the
 GitHub repository. You can take a look at the course on [Docker
 Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
 :::
