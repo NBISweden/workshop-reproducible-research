@@ -267,8 +267,8 @@ website](https://docs.docker.com/engine/reference/builder/).
 ```Dockerfile
 FROM condaforge/miniforge3
 
-LABEL description = "Minimal image for the NBIS reproducible research course."
-MAINTAINER "John Sundh" john.sundh@scilifelab.se
+LABEL author="John Sundh, john.sundh@scilifelab.se"
+LABEL description="Minimal image for the NBIS reproducible research course."
 ```
 
 Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. While `LABEL`

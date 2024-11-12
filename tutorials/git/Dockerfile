@@ -1,10 +1,11 @@
 FROM ubuntu:16.04
 
-LABEL description = "Image for the NBIS reproducible research course."
-MAINTAINER "John Sundh" john.sundh@scilifelab.se
+LABEL authors="John Sundh, john.sundh@scilifelab.se"
+LABEL description="Minimal image for the NBIS reproducible research course."
 
 # Use bash as shell
 SHELL ["/bin/bash", "-c"]
+
 # Set workdir
 WORKDIR /course
 

@@ -1,7 +1,7 @@
 FROM condaforge/miniforge3
 
-LABEL description = "Minimal image for the NBIS reproducible research course."
-MAINTAINER "John Sundh" john.sundh@scilifelab.se
+LABEL authors="John Sundh, john.sundh@scilifelab.se"
+LABEL description="Minimal image for the NBIS reproducible research course."
 
 # Use bash as shell
 SHELL ["/bin/bash", "--login", "-c"]

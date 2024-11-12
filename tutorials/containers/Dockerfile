@@ -1,8 +1,7 @@
 FROM --platform=amd64 condaforge/miniforge3
 
+LABEL authors="John Sundh, john.sundh@scilifelab.se"
 LABEL description="Image for the NBIS reproducible research course."
-LABEL author="John Sundh"
-LABEL email="john.sundh@scilifelab.se"
 
 # Use bash as shell
 SHELL ["/bin/bash", "--login", "-c"]
