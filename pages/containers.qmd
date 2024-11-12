@@ -399,8 +399,8 @@ Now we understand how a Dockerfile works. Constructing the image itself from the
 Dockerfile can be done as follows - try it out:
 
 ::: {.callout-warning title="Image platforms on newer Macs"}
-If your computer is a MAC with the M1 chip, you may have to add
-`--platform linux/x86_64` to the `docker build` command.
+If your computer is a MAC with the M1 chip, you may have to add `--platform
+linux/amd64` to the `docker build` command.
 :::
 
 ```bash
@@ -509,7 +509,7 @@ CMD bash run_qc.sh
 :::
 
 Build the image and tag it `my_docker_conda` (remember to add
-`--platform linux/x86_64` to the build command if you are using a Mac with the
+`--platform linux/amd64` to the build command if you are using a Mac with the
 Apple chip).
 
 ```bash
@@ -756,7 +756,7 @@ conda packages using `environment.yml`. If you look at the `CMD` command you can
 see that it will run the whole Snakemake workflow by default.
 
 Now run `docker build` as before, tag the image with `my_docker_project`
-(remember the `--platform linux/x86_64` flag if you're on a new Mac with the
+(remember the `--platform linux/amd64` flag if you're on a new Mac with the
 Apple chip):
 
 ````bash
