@@ -51,14 +51,15 @@ not even use. Then, lastly, there's the _Miniforge_ flavour that we're using
 here, which is a community-driven version of Conda that's highly popular
 within the scientific community.
 
-The difference between Miniconda and Miniforge is that the former points to
-points to the `default` channel by default (which requires an Anaconda license
-for commercial purposes), while the latter points to the community-maintained
-`conda-forge` channel by default. While Conda is created and owned by Anaconda
-the company, Conda itself is open source - it's the `default` channel that is
-proprietary. The `conda-forge` and `bioconda` channels (two of the largest
-channels outside of `default`) are community-driven. Confusing? Yes. If you
-want this information more in-depth you can read this [blog post by Anaconda](https://www.anaconda.com/blog/is-conda-free).
+The difference between Miniconda and Miniforge is that the former points to the
+`default` channel by default (which requires an Anaconda license for commercial
+purposes), while the latter points to the community-maintained `conda-forge`
+channel by default. While Conda is created and owned by Anaconda the company,
+Conda itself is open source - it's the `default` channel that is proprietary.
+The `conda-forge` and `bioconda` channels (two of the largest channels outside
+of `default`) are community-driven. Confusing? Yes. If you want this information
+more in-depth you can read this [blog post by
+Anaconda](https://www.anaconda.com/blog/is-conda-free). 
 :::
 
 ## The basics
