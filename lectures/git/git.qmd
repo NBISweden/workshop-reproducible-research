@@ -32,7 +32,7 @@ format: revealjs
 
 ## Tracking code in three steps
 
-![](../../../pages/images/git_overview_local.png){height=300 fig-align=center}
+![](../../pages/images/git_overview_local.png){height=300 fig-align=center}
 
 ::: {.incremental}
 1. Do some [coding]{.green} (*i.e.* make or change contents of files)
