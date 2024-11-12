@@ -492,7 +492,7 @@ specified with `./`.
 Use the `CMD` instruction to set the default command for the image to `bash
 run_qc.sh`.
 
-::: {.callout-tip collapse="true" title="Click to show"}
+::: {.callout-tip collapse="true" title="Click to show solution"}
 ```Dockerfile
 FROM my_docker_image
 
