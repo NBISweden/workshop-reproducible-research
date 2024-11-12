@@ -274,7 +274,7 @@ website](https://docs.docker.com/engine/reference/builder/).
 ```Dockerfile
 FROM condaforge/miniforge3
 
-LABEL author="John Sundh, john.sundh@scilifelab.se"
+LABEL authors="John Sundh, john.sundh@scilifelab.se; Erik Fasterius, erik.fasterius@nbis.se"
 LABEL description="Minimal image for the NBIS reproducible research course."
 ```
 
@@ -314,41 +314,37 @@ from one of the low-level official images and set up everything from scratch.
 Let's take a look at the next section of `slim.Dockerfile`.
 
 ```Dockerfile
-# Use bash as shell
-SHELL ["/bin/bash", "--login", "-c"]
-
-# Set workdir
 WORKDIR /course
-
-# Set time zone
-ENV TZ="Europe/Stockholm"
-ENV DEBIAN_FRONTEND=noninteractive
 ```
 
-`SHELL` simply sets which shell to use and `WORKDIR` determines the
-directory the container should start in. The `ENV` instruction is used to
-set environmental variables and here we use it to set the time zone by declaring
-a `TZ` variable. The `DEBIAN_FRONTEND=noninteractive` line means that we
-force the subsequent installation to not prompt us to set the time zone manually.
+`WORKDIR` determines the directory the container should start in. By default it
+is set to `/`, _i.e._ the container root, but it can be useful to set it to
+something else so you don't always see system-level files that are irrelevant
+for your analyses. While we call it `course` here you can call it whatever you
+like, _e.g._ `work` or `analyses`.
 
 The next few lines introduce the important `RUN` instruction, which is used
 for executing shell commands:
 
 ```Dockerfile
-# Install package for setting time zone
-RUN apt-get update && apt-get install -y tzdata && apt-get clean
+# Install `curl` for downloading of FASTQ data later in the tutorial
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get clean
 
 # Configure Conda
-RUN conda init bash && conda config --set channel_priority strict && \
-    conda config --append channels bioconda && \
-    conda config --append channels r && \
-    conda config --set subdir linux-64
+RUN conda config --set channel_priority strict
 ```
 
-The first RUN command installs the `tzdata` package for managing local time
-settings in the container. This may not always be required for your
-Dockerfile but it's added here because some R packages used in the course
-require it.
+The first `RUN` command installs the `curl` command, which will be used to
+download some raw FASTQ data. As a general rule, you want each layer in an image
+to be a "logical unit". For example, if you want to install a program the `RUN`
+command should both retrieve the program, install it and perform any necessary
+clean up. This is due to how layers work and how Docker decides what needs to be
+rerun between builds (more on this later).
+
+We then configure Conda to only use strict mode for building the dependency
+tree, like we did in the [pre-course-setup](../home_precourse.html).
 
 ::: {.callout-note}
 While installing things with `apt-get` inside Dockerfiles is relatively common
@@ -359,49 +355,25 @@ but rather help in the building of the container image itself. While not
 critical, it's important to note this from a reproducibility perspective.
 :::
 
-Next, we run `conda init bash` to initialize the bash shell inside the image,
-meaning we can use `conda activate` in containers that run from the image. In
-the same `RUN` statement we also configure the strict channel priority and add
-appropriate channels with `conda config`. You'll probably recognize this from
-the [pre-course-setup](../home_precourse.html). The last part sets the somewhat
-obscure `subdir` config parameter pointing to the `linux-64` architecture of
-conda channels.
-
-As a general rule, you want each layer in an image to be a "logical unit". For
-example, if you want to install a program the `RUN` command should both
-retrieve the program, install it and perform any necessary clean up. This is
-due to how layers work and how Docker decides what needs to be rerun between
-builds. More on this later.
-
 Next up is:
 
 ```Dockerfile
-# Open port for running Jupyter Notebook
-EXPOSE 8888
-
 # Start Bash shell by default
 CMD /bin/bash
 ```
 
-`EXPOSE` opens up the port 8888, so that we can later run a Jupyter Notebook
-server on that port. `CMD` is an interesting instruction. It sets what a
-container should run when nothing else is specified, _i.e._ if you run
-`docker run [OPTIONS] [IMAGE]` without the additional `[COMMAND] [ARG]`. It
-can be used for example for printing some information on how to use the
-image or, as here, start a Bash shell for the user. If the purpose of your
-image is to accompany a publication then `CMD` could be to run the workflow that
-generates the paper figures from raw data, _e.g._ `CMD snakemake -s
-Snakefile -c 1 generate_figures`.
+`CMD` is an interesting instruction. It sets what a container should run when
+nothing else is specified, _i.e._ if you run `docker run [OPTIONS] [IMAGE]`
+without the additional `[COMMAND] [ARG]`. It can be used for example for
+printing some information on how to use the image or, as here, start a Bash
+shell for the user. If the purpose of your image is to accompany a publication
+then `CMD` could be to run the workflow that generates the paper figures from
+raw data, _e.g._ `CMD snakemake -s Snakefile -c 1 generate_figures`.
 
 ### Building from Dockerfiles
 
 Now we understand how a Dockerfile works. Constructing the image itself from the
 Dockerfile can be done as follows - try it out:
-
-::: {.callout-warning title="Image platforms on newer Macs"}
-If your computer is a MAC with the M1 chip, you may have to add `--platform
-linux/amd64` to the `docker build` command.
-:::
 
 ```bash
 docker build -f slim.Dockerfile -t my_docker_image .
@@ -418,7 +390,7 @@ This should result in something similar to this:
  => [internal] load metadata for docker.io/condaforge/miniforge3:latest                                                                                                                               0.0s
  => [1/3] FROM docker.io/condaforge/miniforge3                                                                                                                                                        0.0s
  => CACHED [2/3] WORKDIR /course                                                                                                                                                                      0.0s
- => [3/3] RUN conda init bash && conda config --set channel_priority strict &&     conda config --append channels bioconda &&     conda config --append channels r &&     conda config --set subdir   2.1s
+ => [3/3] RUN conda config --set channel_priority strict 0.4s
  => exporting to image                                                                                                                                                                                0.0s
  => => exporting layers                                                                                                                                                                               0.0s
  => => writing image sha256:53e6efeaa063eadf44c509c770d887af5e222151f08312e741aecc687e6e8981                                                                                                          0.0s
@@ -466,26 +438,27 @@ Dockerfiles_ step.
 
 Use the `RUN` instruction to install the package `fastqc=0.11.9` with conda.
 Here there are several options available. For instance we could add an
-environment file _e.g._ `environment.yml` from the Conda tutorial and use
-`conda env create` to create an environment from that file. Or we could
-create an environment directly with `conda create`. We'll try this later
-option here, so add a line that will create an environment named
-`project_mrsa` containing the `fastqc` package, and also clean up packages and
-cache after installation. Use the `-y` flag to `conda create` to avoid the
+environment file _e.g._ `environment.yml` from the Conda tutorial and use `conda
+env update --name base` to update the base environment from that file (the rule
+to keep the base Conda environment free of other packages does not apply to when
+you're building it inside a Docker image). Or we could install the package
+directly with `conda install --name base`. We'll try this later option here, so
+add a line that will install the `fastqc` package, and also clean up packages
+and cache after installation. Use the `-y` flag to `conda install` to avoid the
 prompt that expects an interaction from the user.
 
-In order to have the `project_mrsa` environment activated upon start-up we
-need to add two more lines to the Dockerfile. First we need to use a `RUN`
-instruction to run `echo "source activate project_mrsa" >> ~/.bashrc`, and
-then we need to use the `ENV` instruction to set the `$PATH` variable
-inside the image to `/opt/conda/envs/project_mrsa/bin:$PATH`.
+Since we used the excellent Miniforge as a base image for `my_docker_image` the
+base environment is always available and the `conda-forge` channel is already
+added as a default. The only thing we need to do is to add the `bioconda`
+channel to the configuration, but other than that there's not much else needed
+for Conda to work when using the Miniforge base image.
 
 **Add the analysis script**
 
 Use the `COPY` instruction to Add `run_qc.sh` to the image. The syntax is
 `COPY SOURCE TARGET`. In this case `SOURCE` is the `run_qc.sh`
 script and `TARGET` is a path inside the image, for simplicity it can be
-specified with `./`.
+specified with `.`.
 
 **Set default command**
 
@@ -496,11 +469,8 @@ run_qc.sh`.
 ```Dockerfile
 FROM my_docker_image
 
-RUN conda create -y -n project_mrsa -c bioconda fastqc=0.11.9 && conda clean -a
-
-RUN echo "source activate project_mrsa" >> ~/.bashrc
-
-ENV PATH=/opt/conda/envs/project_mrsa/bin:$PATH
+RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
+    conda clean -a
 
 COPY run_qc.sh .
 
@@ -508,9 +478,7 @@ CMD bash run_qc.sh
 ```
 :::
 
-Build the image and tag it `my_docker_conda` (remember to add
-`--platform linux/amd64` to the build command if you are using a Mac with the
-Apple chip).
+Build the image and tag it `my_docker_conda`.
 
 ```bash
 docker build -t my_docker_conda -f conda.Dockerfile .
@@ -549,7 +517,7 @@ This should show information about the container that we just ran. Similar to:
 
 ```
 CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS          PORTS      NAMES
-b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds   8888/tcp   sad_maxwell
+b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds      sad_maxwell
 ```
 
 If we run `docker run` without any flags, your local terminal is attached to the
@@ -629,8 +597,8 @@ won't start the analysis automatically when we start the container.
 docker run -it --rm -v $(pwd):/course/ my_docker_conda /bin/bash
 ```
 
-If you run `ls` you will see that all the files in the `container/` directory are
-there.
+If you run `ls` you will see that all the files in the `container/` directory
+are there.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
