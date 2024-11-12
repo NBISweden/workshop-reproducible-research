@@ -41,8 +41,7 @@ A Conda _environment_ is essentially a directory that is added to your PATH and
 that contains a specific collection of packages that you have installed.
 Packages are symlinked between environments to avoid unnecessary duplication.
 
-::: {.callout-}
-**Different Conda flavours**
+::: {.callout-note title="Different Conda flavours"}
 You may come across several flavours of Conda. There's _Miniconda_, which is
 the installer for Conda. The second is _Anaconda_, which is a distribution of
 not only Conda, but also over 150 scientific Python packages curated by the
