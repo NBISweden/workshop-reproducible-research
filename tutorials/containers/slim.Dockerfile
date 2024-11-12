@@ -14,10 +14,13 @@ ENV TZ="Europe/Stockholm"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install package for setting timezone
-RUN apt-get update && apt-get install -y tzdata curl && apt-get clean
+RUN apt-get update && \
+    apt-get install -y tzdata curl && \
+    apt-get clean
 
 # Configure Conda
-RUN conda init bash && conda config --set channel_priority strict && \
+RUN conda init bash && \
+    conda config --set channel_priority strict && \
     conda config --append channels bioconda && \
     conda config --append channels r && \
     conda config --set subdir linux-64

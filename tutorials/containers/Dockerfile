@@ -27,7 +27,8 @@ RUN mkdir -p /opt/quarto/${QUARTO_VERSION} \
 ENV PATH /opt/quarto/${QUARTO_VERSION}/bin:${PATH}
 
 # Configure Conda
-RUN conda init bash && conda config --set channel_priority strict && \
+RUN conda init bash && \
+    conda config --set channel_priority strict && \
     conda config --append channels bioconda && \
     conda config --append channels r && \
     conda config --set subdir linux-64
