@@ -271,19 +271,28 @@ LABEL author="John Sundh, john.sundh@scilifelab.se"
 LABEL description="Minimal image for the NBIS reproducible research course."
 ```
 
-Here we use the instructions `FROM`, `LABEL` and `MAINTAINER`. While `LABEL`
-and `MAINTAINER` is just meta-data that can be used for organising your
-various Docker components the important one is `FROM`, which specifies the
-base image we want to start from. Because we want to use `conda` to install
-packages we will start from an image from the conda-forge community that has
-`conda` pre-installed. This image was in turn built using a Dockerfile as a
-blueprint and then uploaded to
+Here we use the instructions `FROM` and `LABEL`. While `LABEL` is just key/value
+metadata pairs that can be used for organising your various Docker components,
+the important one is `FROM`, which specifies the base image we want to start
+from. Because we want to use `conda` to install packages we will start from an
+image from the conda-forge community that has `conda` pre-installed. This image
+was in turn built using a Dockerfile as a blueprint and then uploaded to
 [Dockerhub](https://hub.docker.com/r/condaforge/miniforge3). The conda-forge
 community keeps the Dockerfile in a git repository and you can view the file
 [here](https://github.com/conda-forge/miniforge-images/blob/master/ubuntu/Dockerfile).
-You will see that it starts from an official Ubuntu image (check the first
-line with the `FROM` instruction), followed by code to install various
-packages including conda.
+You will see that it starts from an official Ubuntu image (check the first line
+with the `FROM` instruction), followed by code to install various packages
+including conda.
+
+::: {.callout-note title="A note on label best practices"}
+While you can use arbitrary key/value pairs for LABEL instructions however you
+like, there _are_ best practices available that you might want to follow. These
+follow the format of `org.opencontainers.image.<label>`, where the namespace
+(the first part of the format) comes from the [Open Container Initiative
+(OCI)](https://opencontainers.org/), an organisation aimed at creating industry
+standards for container formats. You can find a list of all the standard labels
+at the [OCI GitHub](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
+:::
 
 ::: {.callout-note title="There are many roads to Rome"}
 When it comes to choosing the best image to start from there are multiple
