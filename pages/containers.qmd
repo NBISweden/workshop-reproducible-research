@@ -731,9 +731,15 @@ Apple chip):
 docker build -t my_docker_project -f Dockerfile .
 ````
 
-Go get a coffee while the image builds (or
-you could use `docker pull nbisweden/workshop-reproducible-research` which
-will download the same image).
+::: {.note-caution title="Building on ARM64 systems"}
+This particular environment (which is quite complicated) has some packages that
+are not available on ARM64 systems. So if you're using a new Mac computer you
+will additionally have to supply the `--platform linux/amd64` flag in order for
+it to build successfully.
+:::
+
+Go get a coffee while the image builds (or you could use `docker pull
+nbisweden/workshop-reproducible-research` which will download the same image).
 
 Validate with `docker image ls`. Now all that remains is to run the whole thing
 with `docker run`. We just want to get the results, so mount the directory
@@ -760,16 +766,17 @@ analysis workflow (if you first `docker push` to Dockerhub that is).
 ::: {.callout-tip}
 If you've done the [Jupyter tutorial](jupyter.html), you know that Jupyter
 Notebook runs as a web server. This makes it very well suited for running in a
-Docker container, since we can just expose the port Jupyter Notebook uses and
-redirect it to one of our own. You can then work with the notebooks in your
-browser just as you've done before, while it's actually running in the
-container. This means you could package your data, scripts and environment in a
-Docker image that also runs a Jupyter Notebook server. If you make this image
-available, say on Dockerhub, other researchers could then download it and
-interact with your data/code via the fancy interactive Jupyter notebooks that
-you have prepared for them. We haven't made any fancy notebooks for you, but we
-*have* set up a Jupyter Notebook server. Try it out if you want to (replace the
-image name with your version if you've built it yourself):
+Docker container, since we can just expose the port Jupyter Notebook uses (with
+`EXPOSE 8888` in the Dockerfile) and redirect it to one of our own. You can then
+work with the notebooks in your browser just as you've done before, while it's
+actually running in the container. This means you could package your data,
+scripts and environment in a Docker image that also runs a Jupyter Notebook
+server. If you make this image available, say on Dockerhub, other researchers
+could then download it and interact with your data/code via the fancy
+interactive Jupyter notebooks that you have prepared for them. We haven't made
+any fancy notebooks for you, but we *have* set up a Jupyter Notebook server. Try
+it out if you want to (replace the image name with your version if you've built
+it yourself):
 
 ```bash
 docker run -it nbisweden/workshop-reproducible-research jupyter notebook -allow-root --no-browser
