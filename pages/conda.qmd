@@ -80,12 +80,43 @@ called _Project A_.
 - Let's make our first Conda environment:
 
 ```bash
-conda create -n project_a -c bioconda fastqc
+conda create -n project_a fastqc
 ```
 
-This will create an environment called `project_a`, containing FastQC from the
-Bioconda channel. Conda will list the packages that will be installed and ask
-for your confirmation.
+This will create an environment called `project_a`, containing FastQC.
+
+You should see something like this printed to the terminal:
+
+```
+Channels:
+ - conda-forge
+ - bioconda
+ - defaults
+Platform: osx-arm64 # <- Your platform may differ
+```
+
+This is Conda telling you which channels it is looking in for the package you
+requested. If you followed the
+[pre-course](../home_precourse.html##configuring-conda) instructions and added
+the `conda-forge` and `bioconda` channels to your conda configuration, you
+should see them listed here. If you had not configured Conda to use these
+channels, you would have to specify them when installing packages, _e.g._ `conda
+install -c bioconda fastqc`.
+
+Further down you will see something like this:
+
+```
+The following NEW packages will be INSTALLED:
+
+  fastqc             bioconda/noarch::fastqc-0.12.1-hdfd78af_0
+  <more packages>
+```
+
+This shows that the `fastqc` package will be installed from the `bioconda`
+channel (the `noarch` part shows that the package is not specific to any
+computer architecture). In the example above we see that version `0.12.1` will
+be installed. The `hdfd78af_0` part is a unique build string that is used to
+differentiate between different builds of the same package version.
 
 - Once it is done, you can activate the environment:
 
@@ -142,7 +173,7 @@ activated.
 install`. Make sure that `project_a` is the active environment first.
 
 ```bash
-conda install -c bioconda multiqc
+conda install multiqc
 ```
 
 - If we don't specify the package version, the latest available version will be
@@ -150,13 +181,13 @@ conda install -c bioconda multiqc
 - Run the following to see what versions are available:
 
 ```bash
-conda search -c bioconda multiqc
+conda search multiqc
 ```
 
 - Now try to install a different version of MultiQC, _e.g._:
 
 ```bash
-conda install -c bioconda multiqc=1.13
+conda install multiqc=1.13
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
@@ -196,7 +227,7 @@ conda create -n project_old -c bioconda bbmap=37.10
 
 Now let's try to remove an installed package from the active environment:
 
-```
+```bash
 conda remove multiqc
 ```
 
