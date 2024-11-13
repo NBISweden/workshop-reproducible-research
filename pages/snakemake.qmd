@@ -113,32 +113,37 @@ for showing the shell commands that it will execute. `snakemake --help` will
 show you all available flags.
 
 ```no-highlight
-$ snakemake -n -c 1 -r -p a.upper.txt
+$ snakemake -n -p a.upper.txt
 
 Building DAG of jobs...
 Job stats:
-job                      count    min threads    max threads
----------------------  -------  -------------  -------------
-convert_to_upper_case        1              1              1
-total                        1              1              1
+job                      count
+---------------------  -------
+convert_to_upper_case        1
+total                        1
 
 
-[Mon Oct 25 16:48:43 2021]
+[Wed Nov 13 21:59:01 2024]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
     jobid: 0
     reason: Missing output files: a.upper.txt
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
+    resources: tmpdir=<TBD>
 
 
         tr [a-z] [A-Z] < a.txt > a.upper.txt
-
+        
 Job stats:
-job                      count    min threads    max threads
----------------------  -------  -------------  -------------
-convert_to_upper_case        1              1              1
-total                        1              1              1
+job                      count
+---------------------  -------
+convert_to_upper_case        1
+total                        1
+
+Reasons:
+    (check individual jobs above for details)
+    output files have to be generated:
+        convert_to_upper_case
 
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
