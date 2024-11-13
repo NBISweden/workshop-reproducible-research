@@ -25,8 +25,11 @@ RUN conda config --set channel_priority strict && \
 
 # Install environment
 COPY environment.yml ./
-RUN conda env update -f environment.yml -n base && \
+RUN conda env create -f environment.yml -n project_mrsa && \
     conda clean -a
+
+RUN echo "source activate project_mrsa" >> ~/.bashrc
+ENV PATH /opt/conda/envs/project_mrsa/bin:${PATH}
 
 # Add project files
 COPY Snakefile config.yml ./
