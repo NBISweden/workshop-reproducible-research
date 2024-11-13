@@ -97,7 +97,7 @@ Platform: osx-arm64 # <- Your platform may differ
 
 This is Conda telling you which channels it is looking in for the package you
 requested. If you followed the
-[pre-course](../home_precourse.html##configuring-conda) instructions and added
+[pre-course](../home_precourse.html#configuring-conda) instructions and added
 the `conda-forge` and `bioconda` channels to your conda configuration, you
 should see them listed here. If you had not configured Conda to use these
 channels, you would have to specify them when installing packages, _e.g._ `conda
