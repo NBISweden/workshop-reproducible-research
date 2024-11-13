@@ -17,7 +17,7 @@ RUN mkdir -p /opt/quarto/${QUARTO_VERSION} && \
     curl -o quarto.tar.gz -L "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz" && \
     tar -zxvf quarto.tar.gz -C "/opt/quarto/${QUARTO_VERSION}" --strip-components=1 && \
     rm quarto.tar.gz
-ENV PATH /opt/quarto/${QUARTO_VERSION}/bin:${PATH}
+ENV PATH=/opt/quarto/${QUARTO_VERSION}/bin:${PATH}
 
 # Configure Conda
 RUN conda config --set channel_priority strict && \
@@ -29,7 +29,7 @@ RUN conda env create -f environment.yml -n project_mrsa && \
     conda clean -a
 
 RUN echo "source activate project_mrsa" >> ~/.bashrc
-ENV PATH /opt/conda/envs/project_mrsa/bin:${PATH}
+ENV PATH=/opt/conda/envs/project_mrsa/bin:${PATH}
 
 # Add project files
 COPY Snakefile config.yml ./
@@ -38,4 +38,4 @@ COPY code ./code/
 # Open port for running Jupyter Notebook
 EXPOSE 8888
 
-CMD snakemake -p -c 1 --configfile config.yml
+CMD ["snakemake", "--configfile config.yml", "-p", "-c", "1"]
