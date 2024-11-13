@@ -500,7 +500,18 @@ directory of the currently active environment.
 
 When you create a new Conda environment you can choose to install a specific
 version of Python in that environment as well. As an example, create an
-environment containing Python version `3.5` by running:
+environment containing Python version `3.5`:
+
+::: {.callout-note}
+
+Python versions older than `v3.8.5` are not available for Macs with the M-series
+chips, so if you are using one of those you will need to add `--subdir osx-64`
+to the command, _e.g._:
+
+```bash
+conda create --subdir osx-64 -n py35 python=3.5
+```
+:::
 
 ```bash
 conda create -n py35 python=3.5
