@@ -313,18 +313,18 @@ We will use Conda environments for the set up of this tutorial, but don't worry
 if you don't understand exactly what everything does - you'll learn all the
 details at the course. First make sure you're currently situated inside the
 tutorials directory (`workshop-reproducible-research/tutorials`) and then create
-the Conda environment like so:
+and activate the Conda environment with the commands below:
+
+::: {.callout-caution title="ARM64 users"}
+Some of the packages in this environment are not available for the ARM64
+architecture, so you'll have to add `--subdir osx-64` to the `conda env create`
+command. See the [instructions above](#conda-on-new-macs) for more details.
+:::
 
 ```bash
 conda env create -f snakemake/environment.yml -n snakemake-env
 conda activate snakemake-env
 ```
-
-::: {.callout-caution title="ARM64 users"}
-Some of the packages in this environment is not available for the ARM64
-architecture, so you'll have to follow the [instructions
-above](#conda-on-new-macs).
-:::
 
 Check that Snakemake is installed correctly, for example by executing `snakemake
 --help`. This should output a list of available Snakemake settings. If you get
