@@ -998,3 +998,179 @@ You can type `docker buildx install` to make the `docker build` into an alias
 for `docker buildx`, allowing you to run multi-platform builds using `docker
 build`. Use `docker buildx uninstall` to remove this alias.
 :::
+
+### Multi-stage builds
+
+Some build processes can be quite complicated, requiring a more diverse set of
+software packages in order to successfully build a Docker image. Not all of
+these packages are always required for _running_ the final image, however, which
+results in a somewhat bloated image with a larger size footprint than what is
+strictly required. This is where _multi-stage_ builds come in, which allows for
+optimisation where only the files and packages actually required for execution
+is included in the final image.
+
+While this is mostly interesting for software developers and people working with
+binaries and other non-scripted code, it can be of interest in the context of
+bioinformatics when it comes to optimising Conda environments. Conda actually
+comes in two parts: the Conda installation itself (along with all the files
+requires to build Conda environments) and the Conda environments that we've
+built. The former is actually not needed to be able to use the latter, but the
+technical details behind this are non-trivial and out of the scope of this
+course. Regardless, there's a package that can help us with this: `conda-pack`.
+
+Let's take a very simple Dockerfile as an example of what we might have created
+before:
+
+```Dockerfile
+FROM condaforge/miniforge3:24.7.1-0
+RUN conda install -y -n base python=3.10
+CMD /bin/bash
+```
+
+Here we install Python in the Conda base environment, similar to how we have
+done it previously in the course.
+
+ - Copy the above code into _e.g._ `base.Dockerfile` and build it using
+   `docker build -f base.Dockerfile -t my_docker_base .`
+
+Let's look at multi-stage image that includes `conda-pack`:
+
+```Dockerfile
+#
+# First stage: Conda environment
+#
+FROM condaforge/miniforge3:24.7.1-0 AS build
+
+# Install conda-pack into the base environment
+RUN conda install -y -n base conda-pack
+
+# Create a new environment that just contains Python
+RUN conda create -y -n env python=3.10
+
+# Package the new environment into /env
+RUN conda-pack -n env -o /tmp/env.tar && \
+    mkdir /env && \
+    tar -xf /tmp/env.tar -C /env && \
+    rm /tmp/env.tar && \
+    /env/bin/conda-unpack
+
+#
+# Second stage: final image
+#
+FROM ubuntu:20.04
+
+# Copy Conda environment from previous stage
+COPY --from=build /env /env
+
+# Activate the environment when running the container
+RUN echo "source /env/bin/activate" >> ~/.bashrc
+CMD /bin/bash
+```
+
+The first thing to notice here is the first `FROM` statement, which also
+includes `AS build`, which is specific to multi-stage builds. What we are doing
+is giving the stage a name, `build` in this case, so that we may refer back to
+it later.
+
+The first `RUN` command install `conda-pack` in the _base_ environment, _not_
+the environment with Python that we're actually interested in. The reason for
+this is that we only need `conda-pack` for making the Python environment
+independent of the Conda installation, but we won't need it to actually activate
+the environment once this is done. The second and third `RUN` commands installs
+the new environment (named `env` here) and packages that environment into a
+separate directory, respectively.
+
+The second `FROM` statement starts the second (and final) stage of the build,
+and thus does not need a name (hence no `AS <name>` statement). Notice that
+there's a `COPY` statement just after: this is the directive that copies files
+from the `build` stage into the current stage. We only copy the Python
+environment itself, not the base environment nor the Conda installation.
+
+ - Copy the code above into _e.g._ `my_docker_multi` and build it.
+
+ - List your docker images with `docker image ls` and compare the newly created
+   `my_docker_multi` with `my_docker_base`.
+
+Hopefully you should see that the size of the final image are different: the
+`multi` image should be about 500 MB smaller than the `multi` image. This tells
+you something about how large the Conda installation is all by itself.
+
+::: {.callout-note title="A smaller base image"}
+We're still using Ubuntu as the base image for the  final stage of our image,
+but we _could_ go even further in our attempt to minimise the image size by
+using an even smaller base image, such as `alpine`. Doing this means that you
+lose out on a lot of basic Unix utilities, though, such as Bash.
+:::
+
+ - Try to optimise the last image we did for the MRSA project,
+ `my_docker_project`! Click below if you want some help.
+
+::: {.callout-note collapse="true" title="Click to show solution"}
+```Dockerfile
+#
+# First stage: Conda environment
+#
+FROM condaforge/miniforge3:24.7.1-0 AS conda
+
+# Install conda-pack
+RUN conda install -y -n base conda-pack
+
+# Install environment
+COPY environment.yml ./
+RUN conda env create -f environment.yml -n env && \
+    conda clean -a
+
+# Package the new environment into /env
+RUN conda-pack -n env -o /tmp/env.tar && \
+    mkdir /env && \
+    tar -xf /tmp/env.tar -C /env && \
+    rm /tmp/env.tar && \
+    /env/bin/conda-unpack
+
+#
+# Second stage: final image
+#
+FROM ubuntu:20.04
+COPY --from=conda /env /env
+WORKDIR /course
+
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get clean
+
+# Install Quarto
+ARG QUARTO_VERSION="1.3.450"
+RUN mkdir -p /opt/quarto && \
+    curl -o quarto.tar.gz -L "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz" && \
+    tar -zxvf quarto.tar.gz -C /opt/quarto/ --strip-components=1 && \
+    rm quarto.tar.gz
+ENV PATH /opt/quarto/bin:${PATH}
+
+# Activate the environment when running the container
+RUN echo "source /env/bin/activate" >> ~/.bashrc
+
+# Add project files
+COPY Snakefile config.yml ./
+COPY code ./code/
+
+# Open port for running Jupyter Notebook
+EXPOSE 8888
+
+SHELL ["/bin/bash", "-c"]
+CMD source /env/bin/activate && \
+    snakemake -p -c 1 --configfile config.yml
+```
+:::
+
+ - Now check the difference between the previous `my_docker_project` and your
+ new image. How much of a size did you get?
+
+You should hopefully find that you get around 500 MB difference here as well,
+but since the Conda environment for this particular image is _much_ more
+complicated than the previous example, this difference is proportionally
+smaller: Going from ~850 to ~250 MB is quite a big optimisation, while going
+from 4 to 3.5 GB is not quite as big. Regardless, that (albeit smaller)
+difference can add up over time when it comes to downloading the image,
+especially if it's an image used by many people in a project, or if you're
+actually paying for hosting of the image.
