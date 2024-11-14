@@ -101,20 +101,36 @@ will convert all characters in the set `[a-z]` to the corresponding character in
 the set `[A-Z]`, and then send the output to `a.upper.txt`".
 
 Now let's run our first Snakemake workflow. When a workflow is executed
-Snakemake tries to generate a set of target files. Target files can be specified
-via the command line (or, as you will see later, in several other ways). Here we
-ask Snakemake to make the file `a.upper.txt`. We can specify the file containing
-our rules with `-s` but since the default behaviour of Snakemake is to look for
-a file called `Snakefile` in either the working directory or in a subdirectory
-called `workflow/` we don't need to specify that here. It's good practice to
-first run with the flag `-n` (or `--dry-run`), which will show what Snakemake
-plans to do without actually running anything. You can also use the flag `-p`,
-for showing the shell commands that it will execute. `snakemake --help` will
-show you all available flags.
+Snakemake tries to generate a set of **target files**. Target files can be
+specified via the command line or, as you will see later, in several other ways.
+But importantly you will always have to specify what you want Snakemake to
+generate, in one way or another. The basic Snakemake command line looks like
+this:
+
+```bash
+snakemake <arguments> [target files ...]
+```
+
+where `<arguments>` are flags that modify the behaviour of Snakemake and
+`[target files ...]` are the files that you want Snakemake to generate.
+
+Let's ask Snakemake to generate the file `a.upper.txt`, this is our target file.
+For the arguments part we'll use the `-s` flag to specify the file containing
+our rules and the `-c` flag to set the number of cores to use. It's good
+practice to first run with the flag `-n` (or `--dry-run`), which will show what
+Snakemake plans to do without actually running anything. You can also use the
+flag `-p`, for showing the shell commands that it will execute. `snakemake
+--help` will show you all available flags.
+
+The command thus becomes:
+
+```bash
+snakemake -s Snakefile -c 1 -n -p a.upper.txt
+```
+
+You should see something like this:
 
 ```no-highlight
-$ snakemake -n -p a.upper.txt
-
 Building DAG of jobs...
 Job stats:
 job                      count
@@ -148,43 +164,81 @@ Reasons:
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
-You can see that Snakemake plans to run one job: the rule `convert_to_upper_case`
-with `a.txt` as input and `a.upper.txt` as output. The reason for doing this is
-that it's missing the file `a.upper.txt`. Now execute the workflow without the
-`-n` flag and check that the contents of `a.upper.txt` is as expected. Then try
-running the same command again. What do you see? It turns out that Snakemake
-only reruns jobs if there have been changes to either **the input files, or the
-workflow itself**. This is how Snakemake ensures that everything in the
-workflow is up to date. We will get back to this shortly.
+You can see that Snakemake plans to run one job: the rule
+`convert_to_upper_case` with `a.txt` as input and `a.upper.txt` as output. The
+reason for doing this is that it's missing the file `a.upper.txt`. Now run the
+command without the `-n` flag and check that the contents of `a.upper.txt` is as
+expected.
 
-What if we ask Snakemake to generate the file `b.upper.txt`?
+We used the `-s` flag to point to the file containing the rules. In fact,
+Snakemake will look for a file named `Snakefile` in the current directory (or in
+a subdirectory called `workflow`) by default, which means we can omit this flag
+for this example. If we also omit the `-c` flag Snakemake will use all available
+cores, which won't make a difference for this small workflow. The command can
+thus be simplified to:
 
-```no-highlight
-$ snakemake -n -c 1 -r -p b.upper.txt
-
-Building DAG of jobs...
-MissingRuleException:
-No rule to produce b.upper.txt (if you use input functions make sure that they don't raise unexpected exceptions).
+```bash
+snakemake -p a.upper.txt
 ```
 
-That didn't work well. We could copy the rule to make a similar one for
-`b.txt`, but that would be a bit cumbersome. Here is where named wildcards come
-in; one of the most powerful features of Snakemake. Simply change the input
-from `input: "a.txt"` to `input: "{some_name}.txt"` and the output to `output:
-"{some_name}.upper.txt"`. Now try asking for `b.upper.txt` again.
+Try running this simplified command. What do you see? It turns out that
+Snakemake only reruns jobs if there have been changes to either **the input
+files, or the workflow itself**. Here neither the `a.txt` input, nor the
+`Snakefile` have been changed so Snakemake determines that everything in the
+workflow is up to date and there is nothing to do.
+
+What if we ask Snakemake to generate the file `b.upper.txt`? Run the following:
+
+```bash
+snakemake -n -p b.upper.txt
+```
+
+You will see that Snakemake complains that there is no rule to produce
+`b.upper.txt`. This is because we have only defined a rule for `a.upper.txt`. We
+could copy the rule to make a similar one for `b.txt`, but that would be a bit
+cumbersome. Here is where named wildcards come in; one of the most powerful
+features of Snakemake. Simply change the input and output directives from 
+
+```python
+    output:
+        "a.upper.txt"
+    input: 
+        "a.txt"
+```
+
+to 
+
+```python
+    output:
+        "{some_name}.upper.txt"
+    input: 
+        "{some_name}.txt"
+```
+
+Now try asking for `b.upper.txt` again.
 
 Tada! What happens here is that Snakemake looks at all the rules it has
 available (actually only one in this case) and tries to assign values to all
-wildcards so that the targeted files can be generated. In this case it was
-quite simple, you can see that it says that `wildcards: some_name=b`, but for
-large workflows and multiple wildcards it can get much more complex. Named
-wildcards is what enables a workflow (or single rules) to be efficiently
-generalized and reused between projects or shared between people.
+wildcards so that the targeted files can be generated. In this case you can see
+that it says `wildcards: some_name=b`, which means that the `some_name` wildcard
+was assigned the value `b`. This was quite simple but for large workflows and
+multiple wildcards it can get much more complex. Named wildcards is what enables
+a workflow (or single rules) to be efficiently generalized and reused between
+projects or shared between people.
 
-It seems we have the first part of our workflow working, now it's time to make
-the second rule for concatenating the outputs from `convert_to_upper_case`. The
-rule structure will be similar; the only difference is that here we have two
-inputs instead of one. This can be expressed in two ways, either with named
+Remember that we're trying to make a workflow that will convert two files to
+uppercase and concatenate them. It seems we have the first part of our workflow
+working, now it's time to make the second rule for concatenating the outputs
+from `convert_to_upper_case`. 
+
+The syntax for concatenating two files in Bash is :
+
+```bash
+cat first_file.txt second_file.txt > output_file.txt`
+```
+
+The structure of this second rule will be similar to the first but here we have
+two inputs instead of one. This can be expressed in two ways, either with named
 inputs like this:
 
 ```python
@@ -216,20 +270,49 @@ Snakemake workflows. The parser will complain, but sometimes the error
 message can be difficult to interpret.
 :::
 
-Now try to construct this rule yourself and name it `concatenate_a_and_b`.
-The syntax for concatenating two files in Bash is
-`cat first_file.txt second_file.txt > output_file.txt`. Call the output `c.txt`.
-Run the workflow in Snakemake and validate that the output looks as expected.
+Now try to construct this second rule yourself. Add it to the `Snakefile` and
+name the rule `concatenate_a_and_b`. Use `a.upper.txt` and `b.upper.txt` as
+input and call the output `c.txt`. Check the solution below if you get stuck.
+
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```python
+rule concatenate_a_and_b:
+    output:
+        "c.txt"
+    input:
+        "a.upper.txt",
+        "b.upper.txt"
+    shell:
+        """
+        cat {input[0]} {input[1]} > {output}
+        """
+```
+:::
+
+Now try to generate the file `c.txt` with your workflow by running:
+
+```bash
+snakemake -p c.txt
+``` 
+
+Validate that the output looks as expected.
+
+Good job! You've now created a simple Snakemake workflow that converts two files
+to uppercase and concatenates them.
 
 Wouldn't it be nice if our workflow could be used for _any_ files, not just
-`a.txt` and `b.txt`? We can achieve this by using named wildcards (or in other
-ways as we will discuss later). As we've mentioned, Snakemake looks at all the
-rules it has available and tries to assign values to all wildcards so that the
-targeted files can be generated. We therefore have to name the output file in
-a way so that it also contains information about which input files it should be
-based on. Try to figure out how to do this yourself. If you're stuck you can
-look at the spoiler below, but spend some time on it before you look. Also
-rename the rule to `concatenate_files` to reflect its new more general use.
+`a.txt` and `b.txt`? We can achieve this by generalizing the
+`concatenate_a_and_b` rule using named wildcards. 
+
+As we've mentioned, Snakemake looks at all the rules it has available and tries
+to assign values to all wildcards so that the targeted files can be generated.
+We therefore have to name the output file in a way so that it contains
+information about which input files it should be based on. Try to figure out how
+to modify the `concatenate_a_and_b` rule yourself. If you're stuck you can look
+at the solution below, but spend some time on it before you look. Also rename
+the `concatenate_a_and_b` rule to `concatenate_files` to reflect its new more
+general use.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```python
@@ -247,65 +330,19 @@ rule concatenate_files:
 :::
 
 We can now control which input files to use by the name of the file we ask
-Snakemake to generate. Run the workflow without the flag `-n` (or `--dry-run`)
-to execute both rules, providing one core with `-c 1` (or `--cores 1`):
+Snakemake to generate. Run the workflow to create a file `a_b.txt`:
 
-```no-highlight
-$ snakemake a_b.txt -c 1
-
-Building DAG of jobs...
-Using shell: /bin/bash
-Provided cores: 1 (use --cores to define parallelism)
-Rules claiming more threads will be scaled down.
-Job stats:
-job                      count    min threads    max threads
----------------------  -------  -------------  -------------
-concatenate_files            1              1              1
-convert_to_upper_case        2              1              1
-total                        3              1              1
-
-Select jobs to execute...
-
-[Mon Oct 25 16:51:52 2021]
-rule convert_to_upper_case:
-    input: b.txt
-    output: b.upper.txt
-    jobid: 2
-    wildcards: some_name=b
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
-
-[Mon Oct 25 16:51:53 2021]
-Finished job 2.
-1 of 3 steps (33%) done
-Select jobs to execute...
-
-[Mon Oct 25 16:51:53 2021]
-rule convert_to_upper_case:
-    input: a.txt
-    output: a.upper.txt
-    jobid: 1
-    wildcards: some_name=a
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
-
-[Mon Oct 25 16:51:53 2021]
-Finished job 1.
-2 of 3 steps (67%) done
-Select jobs to execute...
-
-[Mon Oct 25 16:51:53 2021]
-rule concatenate_files:
-    input: a.upper.txt, b.upper.txt
-    output: a_b.txt
-    jobid: 0
-    wildcards: first=a, second=b
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
-
-[Mon Oct 25 16:51:53 2021]
-Finished job 0.
-3 of 3 steps (100%) done
+```bash
+snakemake -p a_b.txt
 ```
 
-Neat!
+You will see that Snakemake assigned the values `a` and `b` to the wildcards
+`{first}` and `{second}`, respectively. This is because the output of the
+`concatenate_files` rule is defined as `"{first}_{second}.txt"`, which means
+that when we ask for `a_b.txt`, the `{first}` wildcard is assigned `a` and the
+`{second}` wildcard is assigned `b`. Try to generate the file `b_a.txt` and see
+what happens.
+
 
 ::: {.callout-tip}
 You can name a file whatever you want in a Snakemake workflow, but you will
