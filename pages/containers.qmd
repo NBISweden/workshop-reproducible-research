@@ -731,13 +731,7 @@ executing the workflow (mentioned in the previous paragraph), and install the
 conda packages using `environment.yml`. If you look at the `CMD` command you can
 see that it will run the whole Snakemake workflow by default.
 
-Now run `docker build` as before, tag the image with `my_docker_project`
-(remember the `--platform linux/amd64` flag if you're on a new Mac with the
-Apple chip):
-
-````bash
-docker build -t my_docker_project -f Dockerfile .
-````
+Now run `docker build` as before, tag the image with `my_docker_project`:
 
 ::: {.note-caution title="Building on ARM64 systems"}
 This particular environment (which is quite complicated) has some packages that
@@ -745,6 +739,10 @@ are not available on ARM64 systems. So if you're using a new Mac computer you
 will additionally have to supply the `--platform linux/amd64` flag in order for
 it to build successfully.
 :::
+
+```bash
+docker build -t my_docker_project -f Dockerfile .
+```
 
 Go get a coffee while the image builds (or you could use `docker pull
 nbisweden/workshop-reproducible-research` which will download the same image).
