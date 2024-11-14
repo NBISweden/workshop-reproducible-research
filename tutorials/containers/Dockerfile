@@ -6,6 +6,9 @@ LABEL description="Image for the NBIS reproducible research course."
 # Set workdir
 WORKDIR /course
 
+# Use bash as shell
+SHELL ["/bin/bash", "-c"]
+
 # Install required packages
 RUN apt-get update && \
     apt-get install -y curl && \
@@ -38,4 +41,4 @@ COPY code ./code/
 # Open port for running Jupyter Notebook
 EXPOSE 8888
 
-CMD ["snakemake", "--configfile" ,"config.yml", "-p", "-c", "1"]
+CMD snakemake --configfile config.yml -p -c 1
