@@ -3,7 +3,7 @@ title: "Supplementary Material"
 format:
     html:
         echo: false
-        embed_resources: true
+        embed-resources: true
 engine: knitr
 params:
     counts_file: "results/tables/counts.tsv"
