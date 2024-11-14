@@ -38,7 +38,4 @@ ENV PATH=/opt/conda/envs/project_mrsa/bin:${PATH}
 COPY Snakefile config.yml ./
 COPY code ./code/
 
-# Open port for running Jupyter Notebook
-EXPOSE 8888
-
 CMD snakemake --configfile config.yml -p -c 1
