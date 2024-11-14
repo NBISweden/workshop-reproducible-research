@@ -38,4 +38,4 @@ COPY code ./code/
 # Open port for running Jupyter Notebook
 EXPOSE 8888
 
-CMD ["snakemake", "--configfile config.yml", "-p", "-c", "1"]
+CMD ["snakemake", "--configfile" ,"config.yml", "-p", "-c", "1"]
