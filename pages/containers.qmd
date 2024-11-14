@@ -323,6 +323,14 @@ something else so you don't always see system-level files that are irrelevant
 for your analyses. While we call it `course` here you can call it whatever you
 like, _e.g._ `work` or `analyses`.
 
+Next up is:
+
+```Dockerfile
+SHELL ["/bin/bash", "-c"]
+```
+
+`SHELL` sets the default shell to use i the container. The `SHELL` instruction has to be written in the `["executable", "parameters"]` syntax, which is referred to as "JSON form". Here we set `SHELL` to the `bash` shell (the `-c` flag is used to pass a command to the shell).
+
 The next few lines introduce the important `RUN` instruction, which is used
 for executing shell commands:
 
