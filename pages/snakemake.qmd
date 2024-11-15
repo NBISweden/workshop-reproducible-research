@@ -743,10 +743,7 @@ a per-rule basis, by specifying something like `conda:
 rule-specific-env.yml` in the rule definition and running Snakemake with
 the `--use-conda` flag. The given rule will then be run in the Conda
 environment specified in `rule-specific-env.yml` that will be created and
-activated on the fly by Snakemake. Note that by default Snakemake uses
-`conda` to generate the rule-specific environments. This behaviour can be
-changed by running with `--conda-frontend conda`, which will force
-Snakemake to use `conda` instead.
+activated on the fly by Snakemake.
 :::
 
 Let's start by generating the rule graph so that we get an overview of the
