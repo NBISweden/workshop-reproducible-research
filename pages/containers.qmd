@@ -194,7 +194,7 @@ curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fast
 gunzip -c NCTC8325.fa.gz > tempfile
 ```
 
-To download and prepare the input for Bowtie2.
+to download and prepare the input for Bowtie2.
 
 Now try running the following Bash code:
 
@@ -329,7 +329,10 @@ Next up is:
 SHELL ["/bin/bash", "-c"]
 ```
 
-`SHELL` sets the default shell to use i the container. The `SHELL` instruction has to be written in the `["executable", "parameters"]` syntax, which is referred to as "JSON form". Here we set `SHELL` to the `bash` shell (the `-c` flag is used to pass a command to the shell).
+`SHELL` sets the default shell to use in the container. The `SHELL` instruction
+has to be written in the `["executable", "parameters"]` syntax, which is
+referred to as "JSON form". Here we set `SHELL` to the `bash` shell (the `-c`
+flag is used to pass a command to the shell).
 
 The next few lines introduce the important `RUN` instruction, which is used
 for executing shell commands:
