@@ -122,7 +122,7 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     output:
-        "results/bam/{sample_id,\w+}.bam"
+        "results/bam/{sample_id,\\w+}.bam"
     input:
         "data/{sample_id}.fastq.gz",
         "results/bowtie2/NCTC8325.1.bt2",
