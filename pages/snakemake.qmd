@@ -521,81 +521,84 @@ The main difference here is that now each node is a job instead of a rule. You
 can see that the wildcards used in each job are also displayed. Another
 difference is the dotted lines around the nodes. A dotted line is Snakemake's
 way of indicating that this rule doesn't need to be rerun in order to generate
-`a_b.txt`. Validate this by running `snakemake -n -r a_b.txt` and it should say
+`a_b.txt`. Validate this by running `snakemake -n a_b.txt` and it should say
 that there is nothing to be done.
-
 
 We've discussed before that one of the main purposes of using a WfMS is that it
 automatically makes sure that everything is up to date. This is done by
 recursively checking that outputs are always newer than inputs for all the
 rules involved in the generation of your target files. Now try to change the
 contents of `a.txt` to some other text and save it. What do you think will
-happen if you run `snakemake -n -r a_b.txt` again?
+happen if you run `snakemake -n a_b.txt` again?
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```no-highlight
-$ snakemake -n -r a_b.txt
-
 Building DAG of jobs...
 Job stats:
-job                      count    min threads    max threads
----------------------  -------  -------------  -------------
-concatenate_files            1              1              1
-convert_to_upper_case        1              1              1
-total                        2              1              1
+job                      count
+---------------------  -------
+concatenate_files            1
+convert_to_upper_case        1
+total                        2
 
 
-[Mon Oct 25 17:00:02 2021]
+[Fri Nov 15 10:27:22 2024]
 rule convert_to_upper_case:
     input: a.txt
     output: a.upper.txt
     jobid: 1
     reason: Updated input files: a.txt
     wildcards: some_name=a
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
+    resources: tmpdir=<TBD>
 
 
-[Mon Oct 25 17:00:02 2021]
+[Fri Nov 15 10:27:22 2024]
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
     output: a_b.txt
     jobid: 0
     reason: Input files updated by another job: a.upper.txt
     wildcards: first=a, second=b
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
+    resources: tmpdir=<TBD>
 
 Job stats:
-job                      count    min threads    max threads
----------------------  -------  -------------  -------------
-concatenate_files            1              1              1
-convert_to_upper_case        1              1              1
-total                        2              1              1
+job                      count
+---------------------  -------
+concatenate_files            1
+convert_to_upper_case        1
+total                        2
+
+Reasons:
+    (check individual jobs above for details)
+    input files updated by another job:
+        concatenate_files
+    updated input files:
+        convert_to_upper_case
 
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 :::
 
 Were you correct? Also generate the job graph and compare to the one generated
-above. What's the difference? Now rerun without `-n` and validate that
-`a_b.txt` contains the new text (don't forget to specify `-c 1`). Note that
-Snakemake doesn't look at the contents of files when trying to determine what has
-changed, only at the timestamp for when they were last modified.
+above. What's the difference? Now rerun without `-n` and validate that `a_b.txt`
+contains the new text. Note that Snakemake doesn't look at the contents of files
+when trying to determine what has changed, only at the timestamp for when they
+were last modified.
 
 We've seen that Snakemake keeps track of if files in the workflow have changed,
 and automatically makes sure that any results depending on such files are
-regenerated. What about if the rules themselves are changed? It turns out that
-since version 7.8.0 Snakemake keeps track of this automatically.
+regenerated. What about if the rules themselves are changed? Since version 7.8.0
+Snakemake keeps track of this automatically.
 
-Let's say that we want to modify the rule `concatenate_files` to also include
-which files were concatenated.
+Modify the rule `concatenate_files` to also include which files were
+concatenated.
 
 ```python
 rule concatenate_files:
     output:
         "{first}_{second}.txt"
     input:
-        "{first}.upper.txt",
-        "{second}.upper.txt"
+        concat_input
     shell:
         """
         echo 'Concatenating {input}' | cat - {input[0]} {input[1]} > {output}
@@ -611,7 +614,14 @@ it should read from standard input). Lastly, the output from `cat` is sent
 to `{output}`.
 :::
 
-If you now run the workflow as before you should see:
+If you now run:
+
+```bash
+snakemake -n a_b.txt
+```
+
+ you should see:
+
 ```bash
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
@@ -621,21 +631,28 @@ rule concatenate_files:
     wildcards: first=a, second=b
 ```
 
-Because although no files involved in the workflow have been changed, Snakemake
-recognizes that the workflow code itself has been modified and this triggers
-a re-run.
+Although no files involved in the workflow have been changed, Snakemake
+recognizes that the workflow code itself has been modified and this triggers a
+re-run.
 
-Snakemake is aware of changes to four categories of such "rerun-triggers":
-"input" (changes to rule input files), "params" (changes to the rule `params` section),
-"software-env" (changes to Conda environment files specified by the `conda:`
-directive) and "code" (changes to code in the `shell:`, `run:`, `script:` and
-`notebook:` directives).
+Snakemake is aware of changes to five categories of such "rerun-triggers":
+
+- "input" (changes to rule input files), 
+- "params" (changes to the rule `params` section)
+- "software-env" (changes to Conda environment files specified by the `conda:` directive)
+- "code" (changes to code in the `shell:`, `run:`, `script:` and `notebook:` directives)
+- "mtime" (changes to the modification time of input files)
+
+Using the flag `--rerun-triggers` you can specify which of these categories
+should trigger a re-run. For example, `--rerun-triggers input` will only
+re-run the workflow if the specified input files have changed and `--rerun-triggers
+input params` will re-run if either the input files or the `params` section of
+the rule has changed.
 
 Prior to version 7.8.0, only changes to the modification time of input files would
 trigger automatic re-runs. To run Snakemake with this previous behaviour you
 can use the setting `--rerun-triggers mtime` at the command line.
-Change the `shell:` section of the `concatenate_files` rule back to the previous
-version, then try running: `snakemake -n -r a_b.txt --rerun-triggers mtime` and
+Try running: `snakemake --rerun-triggers mtime -n a_b.txt` and
 you should again see `Nothing to be done (all requested files are present and up to date).`
 
 You can also export information on how all files were generated (when, by which
@@ -643,18 +660,18 @@ rule, which version of the rule, and by which commands) to a tab-delimited file
 like this:
 
 ```bash
-snakemake a_b.txt -c 1 -D > summary.tsv
+snakemake a_b.txt -D > summary.tsv
 ```
 
 The content of `summary.tsv` is shown in the table below:
 
-<div class="table-responsive">
-| output_file    |   date                      |   rule                   |   version   |   log-file(s)   |   input-file(s)            |   shellcmd                               |   status                       |   plan            |
-|----------------|-----------------------------|--------------------------|-------------|-----------------|----------------------------|------------------------------------------|--------------------------------|-------------------|
-|   a_b.txt      |   Mon Oct 25 17:01:46 2021  |   concatenate_files      |   -         |                 |   a.upper.txt,b.upper.txt  |   cat a.upper.txt b.upper.txt > a_b.txt  |   rule implementation changed  |   update pending  |
-|   a.upper.txt  |   Mon Oct 25 17:01:46 2021  |   convert_to_upper_case  |   -         |                 |   a.txt                    |   tr [a-z] [A-Z] < a.txt > a.upper.txt   |   ok                           |   no update       |
-|   b.upper.txt  |   Mon Oct 25 17:01:46 2021  |   convert_to_upper_case  |   -         |                 |   b.txt                    |   tr [a-z] [A-Z] < b.txt > b.upper.txt   |   ok                           |   no update       |
-</div>
+| output_file | date                  | rule                    | log-file(s) | input-file(s)          | shellcmd                                  | status                     | plan            |
+|-------------|-----------------------|-------------------------|-------------|------------------------|-------------------------------------------|----------------------------|-----------------|
+| a_b.txt     | Fri Nov 15 10:32:04 2024 | concatenate_files       |             | a.upper.txt,b.upper.txt | cat a.upper.txt b.upper.txt > a_b.txt     | rule implementation changed | update pending  |
+| a.upper.txt | Fri Nov 15 10:32:04 2024 | convert_to_upper_case   |             | a.txt                  | tr [a-z] [A-Z] < a.txt > a.upper.txt      | ok                         | no update       |
+| b.upper.txt | Thu Nov 14 00:04:06 2024 | convert_to_upper_case   |             | b.txt                  | tr [a-z] [A-Z] < b.txt > b.upper.txt      | ok                         | no update       |
+
+: summary.tsv {.responsive .sm}
 
 You can see in the second last column that the rule implementation for `a_b.txt`
 has changed. The last column shows if Snakemake plans to regenerate the files
@@ -667,6 +684,19 @@ information in a hidden subdirectory called `.snakemake`. This is convenient
 since it's easy to delete if you don't need it anymore and everything is
 contained in the project directory. Just be sure to add it to `.gitignore` so
 that you don't end up tracking it with git.
+
+Let's take a look at the final type of graph that Snakemake can generate, this
+is done with the `--filegraph` flag and will show the rules and their input and
+output files.
+
+```bash
+snakemake --filegraph a_b.txt | dot -Tpng > filegraph.png
+```
+
+In terms of details/complexity the filegraph is an intermediate between the
+rulegraph (`--rulegraph`) and the jobgraph (`--dag`). It shows the rules to run
+with their respective input and output files (shown with wildcards), but doesn't
+show the jobs that will be executed.
 
 By now you should be familiar with the basic functionality of Snakemake, and
 you can build advanced workflows with only the features we have discussed here.
@@ -681,8 +711,7 @@ the other tutorials instead.
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- How to use `--dag` and `--rulegraph` for visualizing the job and rule
-  graphs, respectively.
+- How to use `--rulegraph`, `--dag` and `--filegraph` for visualizing the workflow.
 - How Snakemake reruns relevant parts of the workflow after
   there have been changes.
 - How Snakemake tracks changes to files and code in a workflow
