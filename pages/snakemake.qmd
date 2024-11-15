@@ -406,7 +406,7 @@ Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
 `-f` to the Snakemake command to force a re-run:
 
 ```bash
-snakemake a_b.txt -c 1 -f
+snakemake -f a_b.txt
 ```
 
 If you added the `print` statement to the function you should see the
