@@ -730,7 +730,7 @@ will be spent improving and making this workflow more flexible!
 ::: {.callout-tip}
 This section will leave a little more up to you compared to the previous
 one. If you get stuck at some point the final workflow after all the
-modifications is available in `tutorials/git/Snakefile`.
+modifications is available in `tutorials/containers/Snakefile`.
 :::
 
 You are probably already in your `snakemake-env` environment, otherwise
@@ -743,10 +743,7 @@ a per-rule basis, by specifying something like `conda:
 rule-specific-env.yml` in the rule definition and running Snakemake with
 the `--use-conda` flag. The given rule will then be run in the Conda
 environment specified in `rule-specific-env.yml` that will be created and
-activated on the fly by Snakemake. Note that by default Snakemake uses
-`conda` to generate the rule-specific environments. This behaviour can be
-changed by running with `--conda-frontend conda`, which will force
-Snakemake to use `conda` instead.
+activated on the fly by Snakemake.
 :::
 
 Let's start by generating the rule graph so that we get an overview of the
@@ -759,11 +756,11 @@ snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png
 
 There's another difference in this command compared to the one we've used
 before, namely that we don't define a target. In the toy example we used
-`a_b.txt` as a target, and the wildcards were resolved based on that.
-How come that we don't need to do that here? It turns out that by default
-Snakemake targets the first rule in a workflow. By convention, we call this rule
-`all` and let it serve as a rule for aggregating the main outputs of the
-workflow.
+`a_b.txt` as a target, and the wildcards were resolved based on that. How come
+that we don't need to do that here? This is because by default Snakemake uses
+the first rule in a workflow as its target, unless a target is specified on the
+command line. By convention, this rule is called `all` and serves as a rule
+for aggregating the main outputs of the workflow.
 
 ![](images/rulegraph_mrsa.svg)
 
@@ -787,62 +784,21 @@ downstream analysis will be based on.
 
 ![](images/dag_mrsa.svg)
 
-Now try to run the whole workflow. Hopefully you see something like this.
+Now try to run the whole workflow. As before you can specify `-p` to have
+Snakemake print the shell commands for rules and you can control how many cores
+to use with `-c`. If you don't specify number of cores Snakemake will use all
+available cores on your machine. Let's run the workflow with one core:
 
-```no-highlight
-Building DAG of jobs...
-Using shell: /bin/bash
-Provided cores: 1 (use --cores to define parallelism)
-Rules claiming more threads will be scaled down.
-Job stats:
-job                     count    min threads    max threads
---------------------  -------  -------------  -------------
-align_to_genome             3              1              1
-all                         1              1              1
-fastqc                      3              1              1
-generate_count_table        1              1              1
-generate_rulegraph          1              1              1
-get_SRA_by_accession        3              1              1
-get_genome_fasta            1              1              1
-get_genome_gff3             1              1              1
-index_genome                1              1              1
-multiqc                     1              1              1
-sort_bam                    3              1              1
-total                      19              1              1
-
-Select jobs to execute...
-
-[Mon Oct 25 17:13:47 2021]
-rule get_genome_fasta:
-    output: data/ref/NCTC8325.fa.gz
-    jobid: 6
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
-
---2021-10-25 17:13:48--  ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
-           => ‘data/ref/NCTC8325.fa.gz’
-Resolving ftp.ensemblgenomes.org (ftp.ensemblgenomes.org)... 193.62.197.75
-Connecting to ftp.ensemblgenomes.org (ftp.ensemblgenomes.org)|193.62.197.75|:21... connected.
-Logging in as anonymous ... Logged in!
-==> SYST ... done.    ==> PWD ... done.
-.
-.
-[lots of stuff]
-.
-.
-localrule all:
-    input: results/tables/counts.tsv, results/multiqc/multiqc.html, results/rulegraph.png
-    jobid: 0
-    resources: tmpdir=/var/folders/p0/6z00kpv16qbf_bt52y4zz2kc0000gp/T
-
-[Mon Oct 25 17:14:38 2021]
-Finished job 0.
-19 of 19 steps (100%) done
+```bash
+snakemake -s snakefile_mrsa.smk -c 1 -p
 ```
 
-After everything is done, the workflow will have resulted in a bunch of files in
-the directories `data/` and `results/`. Take some time to look through the
-structure, in particular the quality control reports in `results/multiqc/` and
-the count table in `results/tables/`.
+After everything is done, the workflow will have generated fastq files for each
+sample under `data/` and reference genome files under `data/ref`. The `results/`
+directory will contain the output from the different steps in the workflow,
+divided into subdirectories. Take some time to look through the structure, in
+particular the quality control reports in `results/multiqc/` and the count table
+in `results/tables/`.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -874,10 +830,13 @@ rule some_rule:
         """
 ```
 
-Most of the programs are run with default settings in the MRSA workflow and
+In the toy example above, the params directive has one keyword called `cutoff`
+which is set to `2.5` and this value can be accessed in the shell command with
+`{params.cutoff}`. 
+
+In the MRSA workflow most of the programs are run with default settings and
 don't use the `params:` directive. However, the `get_SRA_by_accession` rule
-is an exception. Here the remote address for each of the files to download
-is passed to the shell directive via:
+is an exception. Let's take a look at this part of the workflow:
 
 ```python
 def get_sample_url(wildcards):
@@ -902,6 +861,11 @@ rule get_SRA_by_accession:
         """
 
 ```
+
+Here `params` has a keyword called `url` which is set to a function called
+`get_sample_url` defined just above the rule. The function returns a URL for the
+sample that the rule is supposed to download and this URL is then accessed in
+the `shell:` directive with `{params.url}`.
 
 You may recognize this from [the basics](#the-basics) of this tutorial where we
 used input functions to generate strings and lists of strings for the `input:`
@@ -945,9 +909,15 @@ rule get_SRA_by_accession:
 ```
 :::
 
-Now run through the workflow. Because there's been changes to the `get_SRA_by_accession`
-rule this will trigger a re-run of the rule for all three accessions. In addition
-all downstream rules that depend on output from `get_SRA_by_accession` are re-run.
+Now run the workflow again with:
+
+```bash
+snakemake -s snakefile_mrsa.smk -p -c 1
+```
+
+Because there's been changes to the `get_SRA_by_accession` rule this will
+trigger a re-run of the rule for all three accessions. In addition all
+downstream rules that depend on output from `get_SRA_by_accession` are re-run.
 
 As you can see the parameter values we set in the `params` section don't have
 to be static, they can be any Python expression. In particular, Snakemake
@@ -995,9 +965,16 @@ max_reads: 25000
 ```
 
 If we now run Snakemake with `--configfile config.yml`, it will parse this file
-to form the `config` dictionary. If you want to overwrite a parameter value,
-_e.g._ for testing, you can still use the `--config KEY=VALUE` flag, as in
-`--config max_reads=1000`.
+to form the `config` dictionary. Try it out by running:
+
+```bash
+snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1
+```
+
+Configuration settings that you specify with `--config KEY=VALUE` on the command
+line will overwrite settings specified in a config file. This can be useful if
+you want to run the workflow with a different setting for a specific parameter
+for testing purposes.
 
 ::: {.callout-tip}
 Rather than supplying the config file from the command line you could also
@@ -1055,7 +1032,7 @@ all the rules, only the ones with interesting output.
   probably the most important log to save.
 
 Now add a log file to some or all of the rules above. A good place to save them
-to would be `results/logs/rule_name/`. In order to avoid that multiple jobs
+to would be `results/logs/<rule_name>/`. In order to avoid that multiple jobs
 write to the same files Snakemake requires that all output and log files contain
 the same wildcards, so be sure to include any wildcards used in the rule in the
 log name as well, _e.g._ `{some_wildcard}.log`.
@@ -1105,9 +1082,15 @@ featureCounts -t gene -g gene_id -a gff_file -o output_file input_files 2>{log}
 bowtie2-build input_file index_dir > {log}
 ```
 
-Now rerun the whole workflow. Do the logs contain what they should? Note how
-much easier it is to follow the progression of the workflow when the rules write
-to logs instead of to the terminal.
+Now rerun the whole workflow with:
+
+```bash
+snakemake -s snakefile_mrsa.smk -p -c 1 --configfile config.yml
+```
+
+Do the logs contain what they should? Note how much easier it is to follow the
+progression of the workflow when the rules write to logs instead of to the
+terminal.
 
 ::: {.callout-tip}
 If you have a rule with a shell directive in which several commands are run
@@ -1136,7 +1119,7 @@ from `align_to_genome` is a BAM file, which contains information about all the
 reads for a sample and where they map in the genome. For downstream processing
 we need this file to be sorted by genome coordinates. This is what the rule
 `sort_bam` is for. We therefore end up with both `results/bam/{sample_id}.bam`
-and `results/bam/{sample_id}.sorted.bam`.
+and `results/bam/{sample_id}.sorted.bam` as you can see if you list the contents of `results/bam`.
 
 In Snakemake we can mark an output file as temporary like this:
 
@@ -1145,32 +1128,34 @@ output: temp("...")
 ```
 
 The file will then be deleted as soon as all jobs where it's an input have
-finished. Now do this for the output of `align_to_genome`. We have to rerun the
-rule for it to trigger, so use `-R align_to_genome`. It should look something
-like this:
+finished. Let's use the `temp` notation for for the output of `align_to_genome`, modify the rule so that the `output:` directive looks like this:
 
-```no-highlight
-.
-.
-rule sort_bam:
-    input: results/bam/SRR935090.bam
-    output: results/bam/SRR935090.sorted.bam
-    jobid: 2
-    wildcards: sample_id=SRR935090
-
-Removing temporary output file results/bam/SRR935090.bam.
-Finished job 2.
-.
-.
+```python
+    output:
+            temp("results/bam/{sample_id,\\w+}.bam")
 ```
 
+We have to force a rerun of the rule for it to trigger, so we use `--forcerun align_to_genome` to do this. Run the workflow with:
+
+```bash
+snakemake -s snakefile_mrsa.smk -p -c 1 --configfile config.yml --forcerun align_to_genome
+```
+
+Take a look at the output printed to your terminal. After the rule `sort_bam` you should see something like this:
+
+```no-highlight
+Removing temporary output results/bam/SRR935092.bam.
+```
+
+If you list the contents of `results/bam` you should see that it now only
+contains the sorted BAM files.
+
 ::: {.callout-tip}
-Sometimes you may want to trigger removal of temporary files without
-actually rerunning the jobs. You can then use the `--delete-temp-output`
-flag. In some cases you may instead want to run only parts of a workflow
-and therefore want to prevent files marked as temporary from being deleted
-(because the files are needed for other parts of the workflow). In such
-cases you can use the `--notemp` flag.
+If you want to prevent Snakemake from deleting files marked as temporary you can
+run with the `--notemp` command line flag which will cause Snakemake to ignore
+any `temp()` declarations. If you at any point want to delete remaining files
+that are declared as temporary in your workflow you can instead run with the
+`--delete-temp-output` which will delete all remaining `temp` files.
 :::
 
 Snakemake has a number of options for marking files:
@@ -1193,11 +1178,11 @@ In this section we've learned:
 - How to mark an output file as temporary for automatic removal.
 :::
 
-## Targets
+## The expand function
 
 We've mentioned that Snakemake rules take either strings or a list of strings as
-input, and that we can use any Python expression in Snakemake workflows.
-Here we'll show how these features help us condense the code of rules.
+input, and that we can use any Python expression in Snakemake workflows. Here
+we'll show how these features help us condense the code of rules.
 
 Consider the rule `align_to_genome` below.
 
@@ -1239,7 +1224,7 @@ input:
 This will take the elements of the list of substrings one by one, and insert
 that element in the place of `{substr}`. Since this type of aggregating
 rules are quite common, Snakemake also has a more compact way of achieving the
-same thing.
+same thing with the built-in function `expand()`.
 
 ```python
 input:
@@ -1248,13 +1233,61 @@ input:
         substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
 ```
 
+Here `expand` will take the string `"results/bowtie2/NCTC8325.{substr}.bt2"` and
+insert each of the values in the list `["1", "2", "3", "4", "rev.1", "rev.2"]`
+in place of `{substr}`. The result is a list of strings that can be used as
+input to the rule. This is a very powerful feature that can save you a lot of
+typing and make your code more readable.
+
 ::: {.callout-caution}
-When using expand() like this, `substr` is not a wildcard because it is
+When using expand() like this, `substr` is **not** a wildcard because it is
 resolved to the values explicitly given inside the expand expression.
 :::
 
 Now change in the rules `index_genome` and `align_to_genome` to use the
-`expand()` expression.
+`expand()` expression. Click the solution below if you need help.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```python
+rule index_genome:
+    """
+    Index a genome using Bowtie 2.
+    """
+    output:
+        expand("results/bowtie2/NCTC8325.{substr}.bt2",
+                substr=["1", "2", "3", "4","rev.1", "rev.2"])
+    input:
+        "data/ref/NCTC8325.fa.gz"
+    log:
+        "results/logs/index_genome/NCTC8325.log"
+    shell:
+        """
+        # Bowtie2 cannot use .gz, so unzip to a temporary file first
+        gunzip -c {input} > tempfile
+        bowtie2-build tempfile results/bowtie2/NCTC8325 > {log}
+
+        # Remove the temporary file
+        rm tempfile
+        """
+
+rule align_to_genome:
+    """
+    Align a fastq file to a genome index using Bowtie 2.
+    """
+    output:
+        temp("results/bam/{sample_id,\\w+}.bam")
+    input:
+        "data/{sample_id}.fastq.gz",
+        expand("results/bowtie2/NCTC8325.{substr}.bt2", 
+                substr=["1", "2", "3", "4", "rev.1", "rev.2"])
+    log:
+        "results/logs/align_to_genome/{sample_id}.log"
+    shell:
+        """
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output} 2> {log}
+        """
+```
+:::
 
 In the workflow we decide which samples to run by including the SRR ids in the
 names of the inputs to the rules `multiqc` and `generate_count_table`:
@@ -1303,7 +1336,26 @@ input:
     expand("results/fastqc/{sample_id}_fastqc.zip", sample_id = SAMPLES)
 ```
 
-See if you can update the `generate_count_table` rule in the same manner!
+See if you can update the `generate_count_table` rule in the same manner. If you
+need help, click the solution below.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```python
+ule generate_count_table:
+    """
+    Generate a count table using featureCounts.
+    """
+    output:
+        "results/tables/counts.tsv"
+    input:
+        bams = expand("results/bam/{sample_id}.sorted.bam", sample_id = SAMPLES),
+        annotation = "data/ref/NCTC8325.gff3.gz"
+    shell:
+        """
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
+        """
+```
+:::
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -1322,7 +1374,7 @@ rule index_genome:
     Index a genome using Bowtie 2.
     """
     output:
-        index = expand("results/bowtie2/NCTC8325.{substr}.bt2",
+        expand("results/bowtie2/NCTC8325.{substr}.bt2",
            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
     input:
         "data/NCTC8325.fa.gz"
@@ -1340,23 +1392,24 @@ rule index_genome:
 ```
 
 There is a temporary file here called `tempfile` which is the uncompressed
-version of the input, since Bowtie2 cannot use compressed files. There are
-a number of drawbacks with having files that aren't explicitly part of the
-workflow as input/output files to rules:
+version of the input fasta file. This file is created when the rule starts (
+since Bowtie2 cannot use compressed files) but is not needed upon completion.
+There are a number of drawbacks with having files that aren't explicitly part of
+the workflow as input/output files to rules:
 
 - Snakemake cannot clean up these files if the job fails, as it would do for
   normal output files.
 - If several jobs are run in parallel there is a risk that they write to
   `tempfile` at the same time. This can lead to very scary results.
 - Sometimes we don't know the names of all the files that a program can
-  generate. It is, for example, not unusual that programs leave some kind of
-  error log behind if something goes wrong.
+  generate and we may only be interested in a few of them.
 
 All of these issues can be dealt with by using the `shadow` option for a rule.
 The shadow option results in that each execution of the rule is run in an
 isolated temporary directory (located in `.snakemake/shadow/` by default).
 There are a few options for `shadow` (for the full list of these options see
 the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
+
 The most simple is `shadow: "minimal"`, which means that the rule is executed in
 an empty directory that the input files to the rule have been symlinked into.
 For the rule below, that means that the only file available would be `input.txt`.
@@ -1379,11 +1432,20 @@ rule some_rule:
         """
 ```
 
-Try this out for the rules where we have to "manually" deal with files that
-aren't tracked by Snakemake (`multiqc`, `index_genome`). Also remove the shell
-commands that remove temporary files from those rules, as they are no longer
-needed. Now rerun the workflow and validate that the temporary files don't show
-up in your working directory.
+Try this out for the rules `multiqc` and `index_genome` where we have to
+"manually" deal with files that aren't tracked by Snakemake. Add `shadow:
+"minimal"` to these rules and also delete the shell commands that remove
+temporary files from those rules (the last lines in the shell directives that
+begin with `rm`), as they are no longer needed. By editing the shell directive
+you will trigger a rerun of these two rules, as well as all rules that depend on
+them. So run the workflow with:
+
+```bash
+snakemake -s snakefile_mrsa.smk -p -c 1 --configfile config.yml
+```
+
+and make sure that you see neither `tempfile`, nor the `multiqc_data` directory
+in your current working directory after the workflow has finished.
 
 ::: {.callout-tip}
 Some people use the shadow option for almost every rule and some never
