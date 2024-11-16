@@ -838,7 +838,7 @@ In the MRSA workflow most of the programs are run with default settings and
 don't use the `params:` directive. However, the `get_SRA_by_accession` rule
 is an exception. Let's take a look at this part of the workflow:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 def get_sample_url(wildcards):
     samples = {
         "SRR935090": "https://figshare.scilifelab.se/ndownloader/files/39539767",
@@ -892,7 +892,7 @@ need help, click to show the solution below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file
@@ -925,7 +925,7 @@ provides a global dictionary of configuration parameters called `config`.
 Let's modify `get_SRA_by_accession` to look something like this in order to
 make use of this dictionary:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule get_SRA_by_accession:
     """
     Retrieve a single-read FASTQ file
@@ -960,8 +960,8 @@ projects. Like several other files used in these tutorials, this file should be
 in [YAML format](https://en.wikipedia.org/wiki/YAML). Create the file below and
 save it as `config.yml`.
 
-```yaml
-max_reads: 25000
+```{.yaml filename="config.yml"}
+max_reads: 20000
 ```
 
 If we now run Snakemake with `--configfile config.yml`, it will parse this file
@@ -1045,7 +1045,7 @@ a flag.
 For example, in the `align_to_genome` rule, it could look like this (Bowtie2
 writes log info to standard error):
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
@@ -1130,7 +1130,7 @@ output: temp("...")
 The file will then be deleted as soon as all jobs where it's an input have
 finished. Let's use the `temp` notation for for the output of `align_to_genome`, modify the rule so that the `output:` directive looks like this:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
     output:
             temp("results/bam/{sample_id,\\w+}.bam")
 ```
@@ -1186,7 +1186,7 @@ we'll show how these features help us condense the code of rules.
 
 Consider the rule `align_to_genome` below.
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule align_to_genome:
     """
     Align a fastq file to a genome index using Bowtie 2.
@@ -1214,7 +1214,7 @@ list of these files instead. If you're familiar with Python you could do
 this with [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
 like this:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 input:
     "data/{sample_id}.fastq.gz",
     [f"results/bowtie2/NCTC8325.{substr}.bt2" for
@@ -1226,7 +1226,7 @@ that element in the place of `{substr}`. Since this type of aggregating
 rules are quite common, Snakemake also has a more compact way of achieving the
 same thing with the built-in function `expand()`.
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 input:
     "data/{sample_id}.fastq.gz",
     expand("results/bowtie2/NCTC8325.{substr}.bt2",
@@ -1248,7 +1248,7 @@ Now change in the rules `index_genome` and `align_to_genome` to use the
 `expand()` expression. Click the solution below if you need help.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule index_genome:
     """
     Index a genome using Bowtie 2.
@@ -1292,7 +1292,7 @@ rule align_to_genome:
 In the workflow we decide which samples to run by including the SRR ids in the
 names of the inputs to the rules `multiqc` and `generate_count_table`:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule generate_count_table:
     output:
         "results/tables/counts.tsv"
@@ -1331,7 +1331,7 @@ SAMPLES = ["SRR935090", "SRR935091", "SRR935092"]
 Now use `expand()` in `multiqc` and `generate_count_table` to use `SAMPLES` for
 the sample ids. For the `multiqc` rule it could look like this:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 input:
     expand("results/fastqc/{sample_id}_fastqc.zip", sample_id = SAMPLES)
 ```
@@ -1340,7 +1340,7 @@ See if you can update the `generate_count_table` rule in the same manner. If you
 need help, click the solution below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-```python
+```{.python filename="snakefile_mrsa.smk"}
 ule generate_count_table:
     """
     Generate a count table using featureCounts.
@@ -1368,7 +1368,7 @@ In this section we've learned:
 
 Take a look at the `index_genome` rule below:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
 rule index_genome:
     """
     Index a genome using Bowtie 2.
