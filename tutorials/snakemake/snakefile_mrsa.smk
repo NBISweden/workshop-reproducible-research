@@ -8,7 +8,6 @@ rule all:
     input:
         "results/tables/counts.tsv",
         "results/multiqc/multiqc.html",
-        "results/rulegraph.png"
 
 def get_sample_url(wildcards):
     samples = {
@@ -163,15 +162,4 @@ rule generate_count_table:
     shell:
         """
         featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
-        """
-
-rule generate_rulegraph:
-    """
-    Generate a rulegraph for the workflow.
-    """
-    output:
-        "results/rulegraph.png"
-    shell:
-        """
-        snakemake --snakefile snakefile_mrsa.smk --config max_reads=0 --rulegraph | dot -Tpng > {output}
         """
