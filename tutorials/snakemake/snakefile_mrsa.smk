@@ -1,5 +1,5 @@
 from snakemake.utils import min_version
-min_version("5.3.0")
+min_version("8.0.0")
 
 rule all:
     """
@@ -7,7 +7,7 @@ rule all:
     """
     input:
         "results/tables/counts.tsv",
-        "results/multiqc/multiqc.html",
+        "results/multiqc/multiqc.html"
 
 def get_sample_url(wildcards):
     samples = {
@@ -27,7 +27,7 @@ rule get_SRA_by_accession:
         url = get_sample_url
     shell:
         """
-        wget -O - {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        wget -q -O - {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
         """
 
 rule fastqc:
