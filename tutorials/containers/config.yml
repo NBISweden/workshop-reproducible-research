@@ -4,7 +4,7 @@ sample_ids_geo: ["GSM1186459", "GSM1186460", "GSM1186461"]
 series_id_geo: "GSE48896"
 
 # URLs to gzipped fastq files for each sample in remote repository
-sample_urls:
+samples:
   SRR935090: "https://figshare.scilifelab.se/ndownloader/files/39539767"
   SRR935091: "https://figshare.scilifelab.se/ndownloader/files/39539770"
   SRR935092: "https://figshare.scilifelab.se/ndownloader/files/39539773"
