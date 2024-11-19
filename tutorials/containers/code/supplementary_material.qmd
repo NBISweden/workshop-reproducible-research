@@ -3,7 +3,7 @@ title: "Supplementary Material"
 format:
     html:
         echo: false
-        embed_resources: true
+        embed-resources: true
 engine: knitr
 params:
     counts_file: "results/tables/counts.tsv"
@@ -54,22 +54,29 @@ colnames(counts_summary) <- gsub(".*(SRR[0-9]+)\\..*", "\\1",
 meta <- data.frame()
 for (GSM in gsm_ids) {
     gsm <- Meta(getGEO(GSM))
-    current_meta <- as.data.frame(do.call(cbind, gsm))
+    current_meta <- as.data.frame(
+        list(
+            title=gsm$title, geo_accession=gsm$geo_accession, source_name_ch1=gsm$source_name_ch1, 
+            growth_phase=gsub("growth phase: ", "", gsm$characteristics_ch1[grep("growth phase", gsm$characteristics_ch1)]),
+            treatment=gsub("treatment: ", "", gsm$characteristics_ch1[grep("treatment", gsm$characteristics_ch1)])
+        )
+    )
     meta <- rbind(meta, current_meta)
 }
-meta <- meta[c("title", "geo_accession", "source_name_ch1", "characteristics_ch1")]
+meta <- meta[c("title", "geo_accession", "source_name_ch1", "growth_phase", "treatment")]
 gsm2srr <- data.frame(geo_accession = gsm_ids, SRR = srr_ids)
 meta <- merge(meta, gsm2srr, by = "geo_accession")
 
 # Read FastQC data and update column names
 qc <- read.delim(multiqc_file)
-patterns <- c(".+percent_duplicates.*",
-              ".+percent_gc.*",
-              ".+avg_sequence_length.*",
-              ".+percent_fails.*",
-              ".+total_sequences.*")
+patterns <- c("*.+percent_duplicates.*",
+              "*.+percent_gc.*",
+              "*.+avg_sequence_length.*",
+              "*.+median_sequence_length.*",
+              "*.+percent_fails.*",
+              "*.+total_sequences.*")
 subs <- c("Percent duplicates", "Percent GC", "Avg sequence length",
-          "Percent fails", "Total sequences")
+          "Median sequence length", "Percent fails", "Total sequences")
 for (i in 1:length(patterns)) {
     colnames(qc) <- gsub(patterns[i], subs[i], colnames(qc))
 }
@@ -85,10 +92,8 @@ was aligned and counted.
 # Supplementary Tables and Figures
 
 ```{r Sample info}
-columns <- c("SRR", "geo_accession", "source_name_ch1", "characteristics_ch1")
+columns <- c("SRR", "geo_accession", "source_name_ch1", "growth_phase", "treatment")
 sample_info <- meta[, columns]
-sample_info$characteristics_ch1 <- gsub("treatment: ", "", sample_info$characteristics_ch1)
-sample_info$characteristics_ch1 <- gsub("growth phase: ", "", sample_info$characteristics_ch1)
 sample_info
 ```
 
