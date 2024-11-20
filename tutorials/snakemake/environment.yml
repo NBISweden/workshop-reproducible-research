@@ -6,7 +6,7 @@ dependencies:
   - python
   - fastqc
   - seqtk
-  - snakemake
+  - snakemake>=8
   - multiqc
   - bowtie2
   - tbb

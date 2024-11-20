@@ -9,7 +9,6 @@ params:
     counts_file: "results/tables/counts.tsv"
     multiqc_file: "results/multiqc/multiqc_general_stats.txt"
     summary_file: "results/tables/counts.tsv.summary"
-    rulegraph_file: "results/rulegraph.png"
     srr_ids: "SRR935090 SRR935091 SRR935092"
     gsm_ids: "GSM1186459 GSM1186460 GSM1186461"
 ---
@@ -27,7 +26,6 @@ library("GEOquery")
 counts_file <- params$counts_file
 multiqc_file <- params$multiqc_file
 summary_file <- params$summary_file
-rulegraph_file <- params$rulegraph_file
 srr_ids <- unlist(strsplit(params$srr_ids, " "))
 gsm_ids <- unlist(strsplit(params$gsm_ids, " "))
 ```

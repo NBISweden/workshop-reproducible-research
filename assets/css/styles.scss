@@ -116,6 +116,10 @@ $footer-fg: DimGray;
 
 /* code */
 
+pre, code, .sourceCode {
+  font-size: 0.75rem;
+}
+
 pre {
   line-height: 1.4;
   background-color: $code-block-bg;

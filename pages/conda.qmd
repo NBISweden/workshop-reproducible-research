@@ -41,8 +41,7 @@ A Conda _environment_ is essentially a directory that is added to your PATH and
 that contains a specific collection of packages that you have installed.
 Packages are symlinked between environments to avoid unnecessary duplication.
 
-::: {.callout-}
-**Different Conda flavours**
+::: {.callout-note title="Different Conda flavours"}
 You may come across several flavours of Conda. There's _Miniconda_, which is
 the installer for Conda. The second is _Anaconda_, which is a distribution of
 not only Conda, but also over 150 scientific Python packages curated by the
@@ -52,14 +51,15 @@ not even use. Then, lastly, there's the _Miniforge_ flavour that we're using
 here, which is a community-driven version of Conda that's highly popular
 within the scientific community.
 
-The difference between Miniconda and Miniforge is that the former points to
-points to the `default` channel by default (which requires an Anaconda license
-for commercial purposes), while the latter points to the community-maintained
-`conda-forge` channel by default. While Conda is created and owned by Anaconda
-the company, Conda itself is open source - it's the `default` channel that is
-proprietary. The `conda-forge` and `bioconda` channels (two of the largest
-channels outside of `default`) are community-driven. Confusing? Yes. If you
-want this information more in-depth you can read this [blog post by Anaconda](https://www.anaconda.com/blog/is-conda-free).
+The difference between Miniconda and Miniforge is that the former points to the
+`default` channel by default (which requires an Anaconda license for commercial
+purposes), while the latter points to the community-maintained `conda-forge`
+channel by default. While Conda is created and owned by Anaconda the company,
+Conda itself is open source - it's the `default` channel that is proprietary.
+The `conda-forge` and `bioconda` channels (two of the largest channels outside
+of `default`) are community-driven. Confusing? Yes. If you want this information
+more in-depth you can read this [blog post by
+Anaconda](https://www.anaconda.com/blog/is-conda-free). 
 :::
 
 ## The basics
@@ -80,12 +80,43 @@ called _Project A_.
 - Let's make our first Conda environment:
 
 ```bash
-conda create -n project_a -c bioconda fastqc
+conda create -n project_a fastqc
 ```
 
-This will create an environment called `project_a`, containing FastQC from the
-Bioconda channel. Conda will list the packages that will be installed and ask
-for your confirmation.
+This will create an environment called `project_a`, containing FastQC.
+
+You should see something like this printed to the terminal:
+
+```
+Channels:
+ - conda-forge
+ - bioconda
+ - defaults
+Platform: osx-arm64 # <- Your platform may differ
+```
+
+This is Conda telling you which channels it is looking in for the package you
+requested. If you followed the
+[pre-course](../home_precourse.html#configuring-conda) instructions and added
+the `conda-forge` and `bioconda` channels to your conda configuration, you
+should see them listed here. If you had not configured Conda to use these
+channels, you would have to specify them when installing packages, _e.g._ `conda
+install -c bioconda fastqc`.
+
+Further down you will see something like this:
+
+```
+The following NEW packages will be INSTALLED:
+
+  fastqc             bioconda/noarch::fastqc-0.12.1-hdfd78af_0
+  <more packages>
+```
+
+This shows that the `fastqc` package will be installed from the `bioconda`
+channel (the `noarch` part shows that the package is not specific to any
+computer architecture). In the example above we see that version `0.12.1` will
+be installed. The `hdfd78af_0` part is a unique build string that is used to
+differentiate between different builds of the same package version.
 
 - Once it is done, you can activate the environment:
 
@@ -142,7 +173,7 @@ activated.
 install`. Make sure that `project_a` is the active environment first.
 
 ```bash
-conda install -c bioconda multiqc
+conda install multiqc
 ```
 
 - If we don't specify the package version, the latest available version will be
@@ -150,13 +181,13 @@ conda install -c bioconda multiqc
 - Run the following to see what versions are available:
 
 ```bash
-conda search -c bioconda multiqc
+conda search multiqc
 ```
 
 - Now try to install a different version of MultiQC, _e.g._:
 
 ```bash
-conda install -c bioconda multiqc=1.13
+conda install multiqc=1.13
 ```
 
 Read the information that Conda displays in the terminal. It probably asks if
@@ -196,7 +227,7 @@ conda create -n project_old -c bioconda bbmap=37.10
 
 Now let's try to remove an installed package from the active environment:
 
-```
+```bash
 conda remove multiqc
 ```
 
@@ -290,9 +321,9 @@ Conda installation path.
 
 - Activate the environment!
 
-- Now we can run the code for the MRSA project found in `code/run_qc.sh`,
-  either by running `bash code/run_qc.sh` or by opening the `run_qc.sh` file
-  and executing each line in the terminal one by one. Do this!
+- Now we can run the code for the MRSA project found in `code/run_qc.sh`
+  by running `bash code/run_qc.sh`. Do this! (You can also open the file
+  and run the commands manually if you prefer.)
 
 This should download the project FASTQ files and run FastQC on them (as
 mentioned above).
@@ -469,7 +500,18 @@ directory of the currently active environment.
 
 When you create a new Conda environment you can choose to install a specific
 version of Python in that environment as well. As an example, create an
-environment containing Python version `3.5` by running:
+environment containing Python version `3.5`:
+
+::: {.callout-note}
+
+Python versions older than `v3.8.5` are not available for Macs with the M-series
+chips, so if you are using one of those you will need to add `--subdir osx-64`
+to the command, _e.g._:
+
+```bash
+conda create --subdir osx-64 -n py35 python=3.5
+```
+:::
 
 ```bash
 conda create -n py35 python=3.5

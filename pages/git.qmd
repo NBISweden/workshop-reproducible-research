@@ -35,7 +35,7 @@ There are many benefits of using Git in your research project:
   to collaborate by tracking all edits made by each person. It will also handle
   any potential conflicting edits.
 - Using a cloud-based repository hosting service (the one you push your commits
-  to), like _e.g._ [GitHub](https://github.com/) or
+  to), like [GitHub](https://github.com/) or
   [Bitbucket](https://bitbucket.org/), adds additional features, such as being
   able to discuss the project, comment on edits, or report issues.
 - If at some point your project will be published GitHub or Bitbucket (or
@@ -515,10 +515,10 @@ displays the difference on a word-per-word basis rather than line-per-line.
 
 ::: {.callout-note}
 Git is constantly evolving, along with some of its commands. The `checkout`
-command was previously used for switching between branches, but this
-functionality now has the dedicated (and clearer) `switch` command for this.
-If you've previously learned using `checkout` instead you can keep doing that
-without any issues, as the `checkout` command itself hasn't changed.
+command was previously used for switching between branches, but now there's the
+dedicated (and clearer) `switch` command for this functionality. If you've
+previously learned using `checkout` instead you can keep doing that without any
+issues, as the `checkout` command itself hasn't changed.
 :::
 
 Now, let's assume that we have tested our code and the alignment analysis is run
@@ -539,7 +539,7 @@ git merge test_alignment
 ```
 
 Run `git log --graph --all --oneline` again to see how the merge commit brings
-back the changes made in `test_alignment` to `main`.
+the changes made in `test_alignment` into `main`.
 
 ::: {.callout-tip}
 If working on different features or parts of an analysis on different
@@ -718,9 +718,11 @@ git remote add origin git@github.com:user/git_tutorial.git
   your local Git clone. The short name of the default remote is usually
   "_origin_" by convention.
 
-::: {.callout-note}
+::: {.callout-note} 
 Make sure you've used an SSH address (_i.e._ starting with `git@github.com`
-rather than an HTTPS address (starting with `https://github.com`)!
+rather than an HTTPS address (starting with `https://github.com`)! Also make
+sure you've set up ssh-keys as described in the
+[github-setup](../home_precourse.html#github-setup) in the pre-course material.
 :::
 
 - We have not yet synced the local and remote repositories, though, we've simply
@@ -896,8 +898,8 @@ a shorthand for `git fetch` followed by `git merge FETCH_HEAD` (where
 
 That's quite a few concepts and commands you've just learnt! It can be a bit
 hard to keep track of everything and the connections between local and remote
-Git repositories and how you work with them, but hopefully the following figure
-will give you a short visual summary:
+Git repositories and how you work with them. The following figure will give you
+a short visual summary:
 
 ![](images/git_overview_remote.png){ width=600px }
 
@@ -915,7 +917,7 @@ repositories and how to sync them:
 
 ### Remote branches
 
-Remote branches work much in the same way a local branches, but you have to
+Remote branches work much in the same way as local branches, but you have to
 push them separately; you might have noticed that GitHub only listed our
 repository as having one branch (you can see this by going to the _Code_ tab).
 This is because we only pushed our `main` branch to the remote. Let's create

@@ -1,5 +1,5 @@
 from snakemake.utils import min_version
-min_version("5.3.0")
+min_version("8.0.0")
 
 rule all:
     """
@@ -7,8 +7,7 @@ rule all:
     """
     input:
         "results/tables/counts.tsv",
-        "results/multiqc/multiqc.html",
-        "results/rulegraph.png"
+        "results/multiqc/multiqc.html"
 
 def get_sample_url(wildcards):
     samples = {
@@ -28,7 +27,7 @@ rule get_SRA_by_accession:
         url = get_sample_url
     shell:
         """
-        wget -O - {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        wget -q -O - {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
         """
 
 rule fastqc:
@@ -122,7 +121,7 @@ rule align_to_genome:
     Align a fastq file to a genome index using Bowtie 2.
     """
     output:
-        "results/bam/{sample_id,\w+}.bam"
+        "results/bam/{sample_id,\\w+}.bam"
     input:
         "data/{sample_id}.fastq.gz",
         "results/bowtie2/NCTC8325.1.bt2",
@@ -163,15 +162,4 @@ rule generate_count_table:
     shell:
         """
         featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
-        """
-
-rule generate_rulegraph:
-    """
-    Generate a rulegraph for the workflow.
-    """
-    output:
-        "results/rulegraph.png"
-    shell:
-        """
-        snakemake --snakefile snakefile_mrsa.smk --config max_reads=0 --rulegraph | dot -Tpng > {output}
         """
