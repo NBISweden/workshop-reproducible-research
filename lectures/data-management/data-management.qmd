@@ -54,11 +54,11 @@ _Which sample file represents the most up to date version?_
 
 ```bash
 $ ls -l data/
--rw-r--r--  user  staff  Nov 12 22:00 samples.mat
--rw-r--r--  user  staff  Nov 16 11:39 samplesFinal.mat
--rw-r--r--  user  staff  Nov 18 22:41 samplesFinalV2.mat
--rw-r--r--  user  staff  Nov 18 13:25 samplesUSE_THIS_ONE.mat
--rw-r--r--  user  staff  Nov 15 22:39 samplesV2.mat
+-rw-r--r--  user  staff  Nov 12 22:00 samples.tsv
+-rw-r--r--  user  staff  Nov 16 11:39 samplesFinal.tsv
+-rw-r--r--  user  staff  Nov 18 22:41 samplesFinalV2.tsv
+-rw-r--r--  user  staff  Nov 18 13:25 samplesUSE_THIS_ONE.tsv
+-rw-r--r--  user  staff  Nov 15 22:39 samplesV2.tsv
 ```
 
 ## The project directory
@@ -72,14 +72,11 @@ The first step towards working reproducibly: [Get organised!]{.green}
 - Use [relevant subdirectories]{.green}
 :::
 
-## There are many ways to organise a project
+## There are many ways to organise a project {auto-animate="true"}
 
-::: {.r-stack}
 
-::: {.fragment fragment-index=1}
-::: {.fragment .fade-out fragment-index=2}
 A simple but effective example is the following:
-```bash
+```{.bash code-line-numbers="false"}
 code/             Code needed to go from input files to final results
 data/             Raw data - this should never edited
 doc/              Documentation of the project
@@ -87,29 +84,31 @@ env/              Environment-related files, e.g. Conda environments or Dockerfi
 results/          Output from workflows and analyses
 README.md         Project description and instructions
 ```
-:::
-:::
 
-::: {.fragment fragment-index=2}
-::: {.fragment .fade-out fragment-index=3}
+## There are many ways to organise a project {auto-animate="true"}
+
 A Snakemake-based example: [snakemake-workflows/template](https://github.com/snakemake-workflows/snakemake-workflow-template)
-```bash
+```{.bash code-line-numbers="false"}
 config/
-data/
-doc/
-env/
+  config.yaml
 results/
+resources/
 workflow/
+  rules/
+    module1.smk
+  envs/
+    tool1.yaml
+  scripts/
+    script1.py
   Snakefile
-LICENSE
+LICENSE.md
 README.md
 ```
-:::
-:::
 
-::: {.fragment fragment-index=3}
+## There are many ways to organise a project {auto-animate="true"}
+
 A Nextflow-based example: [fasterius/nbis-support-template](https://github.com/fasterius/nbis-support-template)
-```bash
+```{.bash code-line-numbers="false"}
 bin/
 data/
 doc/
@@ -120,9 +119,6 @@ LICENSE
 main.nf
 nextflow.config
 ```
-:::
-
-:::
 
 ## Helpful tools
 
