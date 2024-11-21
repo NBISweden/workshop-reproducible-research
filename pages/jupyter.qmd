@@ -55,23 +55,15 @@ haven't done so already. Then open up a terminal and go to
 
 ## The basics
 
-One thing that sets Jupyter Notebook apart from what you might be used to is
-that it's a web application, _i.e._ you edit and run your code from your
-browser. But first you have to start the Jupyter Notebook server. At this
-point you may either try the classic notebook interface by running:
-
-```bash
-jupyter notebook --allow-root
-```
-
-Or give the more feature-rich Jupyter lab interface a try by running:
+One thing that sets Jupyter apart from what you might be used to is that it's a
+web application, _i.e._ you edit and run your code from your browser. But first
+you have to start the Jupyter server. Do this by running:
 
 ```bash
 jupyter lab --allow-root
 ```
 
-Whichever interface you choose you should see something similar to this
-printed to your terminal:
+You should see something similar to this printed to your terminal:
 
 ```no-highlight
 [I 18:02:26.722 NotebookApp] Serving notebooks from local directory: /Users/john/workshop-reproducible-research/tutorials/jupyter
@@ -90,68 +82,45 @@ printed to your terminal:
 ::: {.callout-tip title="A note for Windows users"}
 If you see the error message `Start : This command cannot be run due to the
 error: The system cannot find the file specified. ...` then try starting
-Jupyter with `jupyter notebook --no-browser` then copy the URL given into the
+Jupyter with `jupyter lab --no-browser` then copy the URL given into the
 browser directly.
 :::
 
-::: {.callout-note title="Jupyter notebook versions"}
-Depending on what version of the `notebook` conda package you have installed,
-the interface may look slightly different. The screenshots in this tutorial
-are from version 7, an update which has brought the 'classic' Jupyter notebook
-closer to the Jupyter lab interface. Read more about this update at the
-[Jupyter homepage](https://jupyter-notebook.readthedocs.io/en/latest/migrate_to_notebook7.html).
-:::
-
-The Jupyter Notebook/Lab interface probably opened up a web browser for you
+The Jupyter Lab interface probably opened up a web browser for you
 automatically, otherwise go to the address specified in the message in the
-terminal. Note that the server is running locally (as
-`http://localhost:8888`) so this does not require that you have an active
-internet connection. Also note that it says:
+terminal under `Or copy and paste one of these URLs:`.
 
-```no-highlight
-Serving notebooks from local directory: </some/local/path/workshop-reproducible-research/tutorials/jupyter>
-```
-
-Everything you do in your Notebook session will be stored in this directory, so
-you won't lose any work if you shut down the server.
-
-> ![](images/jupyter_dashboard.png){ width=700px }
-
-What you're looking at is the Notebook dashboard. This is where you manage your
-files, notebooks, and kernels. The Files tab shows the files in your directory.
-The Running tab keeps track of all your processes.
-
-The Jupyter lab dashboard should look something like this:
+What you're looking at is the dashboard which should look something like this:
 
 > ![](images/jupyterlab_dashboard.png){ width=700px }
 
+In the left margin you have a few icons, the first being a folder icon. This is
+the **File browser**, which shows the files in your directory. The next icon is
+the **Running terminals and Kernels** tab, which shows you the running kernels.
+The third icon is the **Table of contents**, which shows the outline of your
+active notebook (if you have one open). This table will be populated with
+headers from your markdown cells. The fourth icon is the **Extensions Manager**
+tab, where you can install and manage extensions.
+
+The main part of the dashboard is occupied by what's called the **Main work
+area**. This is where you can open and work on notebooks, text files, terminals
+and so on. These are opened in tabs, and you can have several tabs open at the
+same time. These tabs can be moved, resized, and split by dragging them around.
+
 Let's start by creating an empty notebook. You can do this by selecting the
-Files tab and clicking New > Notebook. When the notebook opens, select the
-suggested Python 3 kernel from the drop-down menu.
+Files tab and clicking New > Notebook. From the drop-down menu that appears,
+select the `jupyter-env` kernel.
 
-This will open up a new tab or window looking like this:
+Start by giving your notebook a name by right-clicking on the text "Untitled.ipynb" at the
+top of the panel then clicking "Rename Notebook". Enter "jupyter-tutorial.ipynb".
 
-> ![](images/jupyter_empty_nb.png){ width=700px }
+Jupyter notebooks are made up of cells, and you should have one cell in your
+newly created notebook. Clicking inside the cell puts you in "Edit mode" meaning
+that you can type text in the cell. Pressing the `Esc` key puts you in "Command
+mode" which allows you to manipulate the notebook as a whole, more on this
+later.
 
-Start by giving your notebook a name by clicking on the text "Untitled" at the
-top of the page. Enter "jupyter-tutorial.ipynb".
-
-Note that for most of this tutorial we will describe how you work in the actual
-notebook and not devote a lot of time to the extra features available in the
-Jupyter lab interface.
-
-::: {.callout-tip}
-If you want to start Jupyter Notebooks on a cluster that you SSH to (_e.g._
-Uppmax) see the section in the [Extra material](#extra-material).
-:::
-
-Jupyter notebooks are made up of cells, and you are currently standing in
-the first cell in your notebook. Your cursor should be blinking in this cell,
-indicating that you are in "Edit mode" meaning that you can type text in the
-cell. Pressing the `Esc` key puts you in "Command mode" which allows you to
-manipulate the notebook as a whole, more on this later.
-
-Cells in Jupyter notebooks can be of two types:*markdown* or *code*.
+Cells in Jupyter notebooks can be of two types: *markdown* or *code*.
 
 - **Markdown:**
 
@@ -185,23 +154,18 @@ the menus. You can also view this list of shortcuts from the **Help** menu under
 | `ctrl-enter`  | Run the cell                             |
 | `shift-enter` | Run the cell and select the cell below   |
 | `alt-enter`   | Run the cell and insert a new cell below |
-| `s`           | Save the notebook                        |
-| `tab`         | For code completion or indentation       |
 | `m,y`         | Toggle between Markdown and Code cells   |
 | `d-d`         | Delete a cell                            |
 | `a`           | Insert cells above current cell          |
 | `b`           | Insert cells below current cell          |
 | `x`           | Cut currently selected cells             |
 | `v`           | Paste cell below                         |
-| `o`           | Toggle output of current cell            |
 
 ## Writing markdown
 
-Let's use our first cell to create a header. Change the format from Code to
-Markdown using the drop-down list in the Notebook Toolbar, or by pressing the
-`m` key when in command mode. Double click on the cell, or hit `enter` to enter
-editing mode and input "# My notebook" ("#" is used in Markdown for header 1).
-Run the cell with `ctrl`-`enter` (`cmd`-`enter` on Mac).
+Let's use our first cell to create a header. Change the format from Code to by
+pressing the `m` key when in command mode. Click inside the cell and input `# My
+notebook`. Run the cell with `ctrl`-`enter` (`cmd`-`enter` on Mac).
 
 Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
@@ -238,9 +202,10 @@ See [here](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/W
 
 ## Writing code
 
-Now let's write some code! Since we chose a Python kernel, Python would be the
-native language to run in a cell. Enter this code in the second cell and run
-it:
+Now let's write some code! Create a new cell either by clicking the `+` in the
+tab menu or by pressing `b` when in command mode. Since we chose a Python
+kernel, Python would be the native language to run in a cell. Enter this code in
+the second cell and run it:
 
 ```python
 print("Hello world!")
@@ -253,12 +218,13 @@ one run, while you work *in* a Jupyter notebook in a different way. This
 requires some special attention when it comes to reproducibility, which we will
 get back to in the [reproducibility](#reproducibility) section.
 
-What **is** a Jupyter notebook? Let's look a closer at the notebook we're
+What **is** a Jupyter notebook? Let's look closer at the notebook we're
 currently working in. Jupyter Notebooks are autosaved every minute or so, so you
 will already have it available. We can be a little meta and do this from within
 the notebook itself, by running some shell commands in a code cell. This very
 handy functionality is possible by prepending the command with `!`. Try adding
-`!ls` to a code cell and run it. This will list the files in the current directory.
+`!ls` to a code cell and run it. This will list the files in the current
+directory.
 
 Aha, we have a new file called `jupyter-tutorial.ipynb`! This is our notebook.
 Look at the first ten lines of the file by using `!head jupyter-tutorial.ipynb`.
@@ -283,10 +249,6 @@ Now create a new cell and add:
 print_me("Hi!")
 ```
 
-Your notebook should now look something like this.
-
-> ![](images/jupyter_basic_update.png){ width=700px }
-
 The focus of this tutorial is not on how to write Markdown or Python; you can
 make really pretty notebooks with Markdown and you can code whatever you want
 with Python. Rather, we will focus on the Jupyter Notebook features that allow
@@ -295,6 +257,7 @@ you to do a little more than that.
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
+- How to open and work with Jupyter lab
 - That a Jupyter notebook consists of a series of cells, and that they can
   be either markdown or code cells.
 - That we execute the code in a code cell with the kernel that we chose
@@ -313,12 +276,13 @@ power of Jupyter notebooks. There are two types of magics:
 - **Cell magics**: Commands that start with `%%` and then apply to the whole
   cell. Must be written on the first line of a cell.
 
-Now list all available magics with `%lsmagic` (which itself is a magic). You
-add a question mark to a magic to show the help (_e.g._ `%lsmagic?`). Some of
-them act as shortcuts for commonly used shell commands (`%ls`, `%cp`, `%cat`,
-..). Others are useful for debugging and optimizing your code (`%timeit`,
-`%debug`, `%prun`, ..). For more information see the
-[magics documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html).
+Now list all available magics with by adding `%lsmagic` (which itself is a
+magic) to a cell and running it. You can add a question mark to a magic to show
+the help (_e.g._ `%lsmagic?`). Some of them act as shortcuts for commonly used
+shell commands (`%ls`, `%cp`, `%cat`, ..). Others are useful for debugging and
+optimizing your code (`%timeit`, `%debug`, `%prun`, ..). For more information
+see the [magics
+documentation](https://ipython.readthedocs.io/en/stable/interactive/magics.html).
 
 A very useful magic, in particular when using shell commands a lot in your
 work, is `%%capture`. This will capture the stdout/stderr of any code cell and
@@ -340,8 +304,11 @@ print("stdout:" + output.stdout)
 print("stderr:" + output.stderr)
 ```
 
-> **Tip** <br>
-> You can capture the output of some magics directly like this: `my_dir = %pwd`.
+::: {.callout-tip}
+
+You can capture the output of some magics directly like this: `my_dir = %pwd`.
+
+:::
 
 The `%%script` magic is used for specifying a program (Bash, Perl, Ruby, ..)
 with which to run the code (similar to a shebang). For some languages it's
@@ -361,10 +328,19 @@ environment you're using for this tutorial. However, you also have to load it
 by running `%load_ext rpy2.ipython` in a cell.
 :::
 
-Try this out if you know any of the languages above. Otherwise you can always
-try to print the quadratic formula with LaTeX!
+Try this out if you know any of the languages above. For example, to run some
+simple R code:
+
+```
+%%R
+print(paste("Hello","world", sep=" "))
+```
+
+
+Or to print the quadratic formula with LaTeX:
 
 ```no-highlight
+%%latex
 \begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
@@ -1163,7 +1139,7 @@ general:
 - A [guide](http://ipywidgets.readthedocs.io/en/stable/index.html) to using
   widgets for creating interactive notebooks.
 
-## Running Jupyter notebooks on a cluster
+### Running Jupyter notebooks on a cluster
 
 - Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
 
@@ -1223,7 +1199,7 @@ Connect to the Jupyter server by opening `localhost:8080` in your browser. When
 prompted, paste the token you got when starting the server on Uppmax and set a
 new password.
 
-## Using Binder to share interactive notebooks
+### Using Binder to share interactive notebooks
 
 [Binder](https://mybinder.org/) is a service that allows you to share Jupyter
 notebooks with others, while also allowing them to run the notebooks in the
