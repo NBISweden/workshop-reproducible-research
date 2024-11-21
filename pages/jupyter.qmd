@@ -1053,8 +1053,15 @@ previous section, convert it to HTML or PDF via `jupybter nbconvert`.
 Let's do that first so we have something to compare with. Run the following:
 
 ```bash
-jupyter nbconvert --to HTML --output supplementary_material.nbconvert.html supplementary_material.ipynb
+jupyter nbconvert --ExecutePreprocessor.kernel_name=jupyter-env --execute --to HTML --output supplementary_material.nbconvert.html supplementary_material.ipynb
 ```
+
+::: {.callout-note}
+
+The `--ExecutePreprocessor.kernel_name=jupyter-env --execute` flags tell
+`nbconvert` to run the notebook using the `jupyter-env` kernel.
+
+:::
 
 Open the `supplementary_material.nbconvert.html` file in a browser to see that
 it looks like you expect. This looks more or less like the original notebook.
@@ -1076,6 +1083,7 @@ format:
         code-tools: true
 language:
   code-summary: Click to show code
+jupyter: jupyter-env
 bibliography: references.bib
 ---
 ```
@@ -1086,7 +1094,7 @@ look rather weird but that's OK. We'll fix that in a bit.
 Save the notebook and now render the document with Quarto from the commandline:
 
 ```bash
-quarto render supplementary_material.ipynb
+quarto render supplementary_material.ipynb --execute
 ```
 
 Open up the `supplementary_material.html` file in a browser and compare it to
