@@ -42,7 +42,7 @@ _The next-generation interface for Jupyter_
 ![](https://jupyterlab.readthedocs.io/en/stable/_images/jupyterlab.png){height="100%" fig-align=center}
 ::::
 :::: {.column width="25%"}
-::: {.incremental}
+::: {.incremental .small}
 - Similar to an integrated development environments (IDE).
 - Tab views, Code consoles, Show output in a separate tab, Live rendering of edits _etc._
 - The jupyter lab interface can run Jupyter notebooks in the **main** work area
@@ -50,55 +50,39 @@ _The next-generation interface for Jupyter_
 ::::
 :::::
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
+## Using Jupyter notebooks
 
-::: {data-id="bullets"}
 - Document your work in markdown...
-:::
 
-::: {data-id="markdown1"}
 ``` {.default}
 **Penguin data analysis**
 
 Here we will investigate the [Penguin dataset](https://github.com/allisonhorst/palmerpenguins).
 
----
-
 The species included in this set are:
 
- - _Adelie_
- - _Chinstrap_
- - _Gentoo_
- ```
-:::
+- _Adelie_
+- _Chinstrap_
+- _Gentoo_
+```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
+## Using Jupyter notebooks
 
-::: {data-id="bullets"}
 - Document your work in markdown...and have it rendered automatically.
-:::
-
-::: {data-id="markdown1"}
 
 **Penguin data analysis**
 
 Here we will investigate the [Penguin dataset](https://github.com/allisonhorst/palmerpenguins).
 
----
-
 The species included in this set are:
 
- - _Adelie_
- - _Chinstrap_
- - _Gentoo_
-:::
+- _Adelie_
+- _Chinstrap_
+- _Gentoo_
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
+## Using Jupyter notebooks
 
-::: {data-id="bullets"}
-- Document your work in markdown...and have it rendered automatically.
 - Execute code directly from the browser, with results attached to the code which generated them.
-:::
 
 ```{python}
 #| echo: true
@@ -108,51 +92,31 @@ data = sns.load_dataset("penguins")
 data.groupby("species").mean(numeric_only=True)
 ```
 
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
+## Using Jupyter notebooks
 
-::: {data-id="bullets"}
-- Document your work in markdown...and have it rendered automatically.
-- Execute code directly from the browser, with results attached to the code which generated them.
 - Mix and match languages in addition to `python`.
-:::
 
+::: {.fragment}
 **R**
 ```{python}
 #| echo: true
 %%R
 print(paste(Sys.Date(), ": Hello World", sep=""))
 ```
-
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
-
-::: {data-id="bullets"}
-- Document your work in markdown...and have it rendered automatically.
-- Execute code directly from the browser, with results attached to the code which generated them.
-- Mix and match languages in addition to `python`.
 :::
 
-**R**
-```{python}
-#| echo: true
-%%R
-print(paste(Sys.Date(), ": Hello World", sep=""))
-```
-
+::: {.fragment}
 **bash**
 ```{python}
 #| echo: true
 %%bash
 echo "$(date): Hello World!"
 ```
-
-## Using Jupyter notebooks {auto-animate="true" transition="none" transition-speed="fast" }
-
-::: {data-id="bullets"}
-- Document your work in markdown...and have it rendered automatically
-- Execute code directly from the browser, with results attached to the code which generated them
-- Mix and match languages in addition to `python`.
-- Generate plots directly in the browser and/or save to file.
 :::
+
+## Using Jupyter notebooks
+
+- Generate plots directly in the browser and/or save to file.
 
 ```{python}
 #| echo: true

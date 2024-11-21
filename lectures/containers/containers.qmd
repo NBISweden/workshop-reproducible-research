@@ -1,8 +1,9 @@
 ---
-title: 'Working with containers
+title: 'Working with containers'
+subtitle: '
         <img src="images/docker-logo.webp" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
         <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
-        <img src="https://sylabs.io/guides/3.0/user-guide/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>'
+        '
 format: revealjs
 ---
 
@@ -81,14 +82,20 @@ Status: Downloaded image for ubuntu:16.04
 ```
 :::
 
-::: {.fragment}
+## An example: using a different OS
+
+Check OS on local machine
+```{.bash}
+$ uname -a
+Darwin johnsmbp.local 19.6.0 Darwin Kernel Version 19.6.0: [...] x86_64
+```
+
 Run the container interactively and check OS version
 ```{.bash code-line-numbers="|1|2|3"}
 $ docker run -it ubuntu:16.04
 root@407b0fd13fe5:/## uname -a
 Linux 407b0fd13fe5 4.9.60-linuxkit-aufs [...] x86_64 GNU/Linux
 ```
-:::
 
 ## Mounting volumes
 
@@ -168,9 +175,9 @@ docker run \
 ```
 :::
 
-## What is Singularity?
+## What is Apptainer?
 
-![](https://sylabs.io/guides/3.0/user-guide/_static/logo.png){height=250 fig-align=center}
+![](http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png){fig-align=center}
 
 ::: {.incremental}
 - Another software for working with containers, similar to Docker
@@ -183,6 +190,7 @@ docker run \
 ![](http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png){fig-align=center}
 
 ::: {.incremental}
+- Apptainer used to be 'Singularity'. 
 - In 2021 Singularity joined the Linux Foundation and became
   [Apptainer]{.green}.
 - The company [Sylabs]{.green} still maintains Singularity as a commercial
