@@ -400,6 +400,14 @@ conda env create -f jupyter/environment.yml -n jupyter-env
 conda activate jupyter-env
 ```
 
+We'll do one more thing before we're done with the Jupyter setup, which is to
+install the Jupyter kernel for the environment we just created. First make sure
+you have the `jupyter-env` environment activated, and then run:
+
+```bash
+python -m ipykernel install --user --name jupyter-env
+```
+
 Once you've successfully completed the above steps you can deactivate the
 environment using `conda deactivate` and continue with the setup for the other
 tools.
