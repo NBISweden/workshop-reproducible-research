@@ -1047,10 +1047,14 @@ the results of a workflow run. (A real-world example could of course include a
 lot more in-depth exploratory analyses).
 
 Now, let's say you want to share the results of this notebook with your PI or
-collaborators. We could simply share the notebook file, or as we saw in the
-previous section, convert it to HTML or PDF via `jupybter nbconvert`.
+collaborators. We could simply share the notebook file, or run all cells to
+generate the plots and tables and then convert it to HTML via `jupybter
+nbconvert`.
 
-Let's do that first so we have something to compare with. Run the following:
+We'll first use `nbconvert` so we have something to compare with. 
+
+Run the following from your terminal to execute the cells in the notebook and
+convert it to HTML:
 
 ```bash
 jupyter nbconvert --ExecutePreprocessor.kernel_name=jupyter-env --execute --to HTML --output supplementary_material.nbconvert.html supplementary_material.ipynb
@@ -1068,9 +1072,8 @@ it looks like you expect. This looks more or less like the original notebook.
 
 Now let's go one step further and render the notebook to a high-quality report
 using Quarto. We can actually add a YAML header to the notebook with some
-document options that Quarto understands. Create a new cell in the notebook
-(from the Jupyter lab interface) and move it to the top. In this cell, add the
-following:
+document options that Quarto understands. Create a new cell at the very top of
+the notebook (from the Jupyter lab interface). In this cell, add the following:
 
 ```yaml
 ---
@@ -1091,7 +1094,8 @@ bibliography: references.bib
 Set the cell type to `Markdown`, then run the cell. Most likely that cell will
 look rather weird but that's OK. We'll fix that in a bit.
 
-Save the notebook and now render the document with Quarto from the commandline:
+Save the notebook and now execute and render the document with Quarto from the
+commandline:
 
 ```bash
 quarto render supplementary_material.ipynb --execute
