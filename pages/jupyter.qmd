@@ -1126,11 +1126,12 @@ quarto render supplementary_material.ipynb --execute
 ```
 
 Open up the `supplementary_material.html` file in a browser and compare it to
-the `supplementary_material.nbconvert.html` file. You should see that the
-Quarto version looks a lot better. The fact that Quarto supports rendering of
-Jupyter notebooks means you can keep editing your notebooks as you normally
-would and use Quarto for rendering the final document. Also there's very little
-we had to change in the notebook to make it work with Quarto: just the YAML header and the chunk options neither of which impact the notebook when run in Jupyter.
+the `supplementary_material.nbconvert.html` file. You should see that the Quarto
+version looks a lot better. The fact that Quarto supports rendering of Jupyter
+notebooks means you can keep editing your notebooks as you normally would and
+use Quarto for rendering the final document. Also there's very little we had to
+change in the notebook to make it work with Quarto: just the YAML header and the
+chunk options neither of which impact the notebook when run in Jupyter.
 
 Let's go back to the YAML header cell and fix how it looks in the Jupyter
 notebook. The reason it looks weird is that Jupyter doesn't understand the
