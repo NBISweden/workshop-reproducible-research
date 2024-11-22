@@ -721,13 +721,11 @@ While an in-depth listing of available extensions is well beyond the scope
 of this tutorial we offer this list of a few extensions that are of particular
 relevance to this course:
 
-- [Jupyterlab/GitHub](https://github.com/jupyterlab/jupyterlab-github) -
+- [jupyterlab-quarto](https://github.com/quarto-dev/jupyterlab-quarto)
+- [jupyterlab-github](https://github.com/jupyterlab/jupyterlab-github) -
   view and open files from GitHub
-- [Jupyterlab/Git](https://github.com/jupyterlab/jupyterlab-git) - version
+- [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git) - version
   controlling with git
-- [mamba-org/gator-lab](https://github.com/mamba-org/gator) - manage Conda
-  environments
-- [voila-dashboards/Jupyterlab-preview](https://github.com/voila-dashboards/voila) - preview a rendered version of your notebook
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -967,46 +965,56 @@ Notebooks can be converted to various output formats such as HTML, PDF, LaTeX
 *etc.* directly from the **File** -> **Save and Export Notebook As...** menu.
 
 Conversion can also be performed on the command line using the `jupyter nbconvert`
-command. `nbconvert` is installed together with the `jupyter` Conda
-package and is executed on the command line by running `jupyter nbconvert`.
+command.
 
 The syntax for converting a Jupyter notebook is:
 
 ```bash
-jupyter nbconvert --to <FORMAT> notebook.ipynb
+jupyter nbconvert --to <FORMAT> <NOTEBOOK>
 ```
 
-Here `<FORMAT>` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
+Here `<NOTEBOOK>` is the filename of the notebook you want to convert and
+`<FORMAT>` can be any of `asciidoc`, `custom`, `html`, `latex`, `markdown`,
 `notebook`, `pdf`, `python`, `rst`, `script`, `slides`. Converting to some
-output formats (_e.g._ PDF) may require you to install separate software such
-as [Pandoc](https://pandoc.org/) or a **TeX** environment.
+output formats (_e.g._ PDF) may require you to install separate software such as
+[Pandoc](https://pandoc.org/) or a **TeX** environment.
+
+You can also specify a different output file with `--output <filename>`.
 
 Try converting the `jupyter-tutorial.ipynb` notebook that you have been working
 on for this tutorial to HTML using `jupyter nbconvert`.
 
 ::: {.callout-tip}
-If the plots in HTML rendered version of your notebook are not displayed
-properly, try changing the `matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'svg')`
-line to `matplotlib_inline.backend_inline.set_matplotlib_formats('retina')`.
+
+If the plots in the HTML rendered version of your notebook are not displayed
+properly, try changing the
+`matplotlib_inline.backend_inline.set_matplotlib_formats('pdf', 'svg')` line to
+`matplotlib_inline.backend_inline.set_matplotlib_formats('retina')`.
+
 :::
 
-`nbconvert` can also be used to run a Jupyter notebook from the command line
-by running:
+We can also execute each cell of a notebook from the commandline and convert the
+results using the `--execute` flag, like so:
 
 ```bash
-jupyter nbconvert --execute --to <FORMAT> notebook.ipynb
+jupyter nbconvert --execute --to <FORMAT> <NOTEBOOK>
 ```
 
-`nbconvert` executes the cells in a notebook, captures the output and saves the
-results in a new file. Try running it on the `jupyter-tutorial.ipynb` notebook.
+When the notebook is executed, nbconvert will use a
+[kernel](https://docs.jupyter.org/en/latest/projects/kernels.html#kernels) to
+run the code and by default the kernel associated with the notebook is used.
+When you start a notebook, the kernel you select is stored in the notebook
+metadata and becomes associated with it. If you want to use a different kernel,
+you can specify it with the flag `--ExecutePreprocessor.kernel_name
+<KERNEL_NAME>`. To see available kernels you can run `jupyter kernelspec list`.
 
-You can also specify a different output file with `--output <filename>`.
-
-So in order to execute your `jupyter-tutorial.ipynb` notebook and save it to a file
-named `report.html` you could run:
+Let's execute and convert the `jupyter-tutorial.ipynb` notebook to an HTML file
+called `report.html`. The `jupyter-env` kernel is most likely already associated
+with the notebook, but let's be explicit and specify it anyway. Run the
+following command:
 
 ```bash
-jupyter nbconvert --to html --output report.html --execute jupyter-tutorial.ipynb
+jupyter nbconvert --to html --output report.html --ExecutePreprocessor.kernel_name jupyter-env --execute jupyter-tutorial.ipynb
 ```
 
 ::: {.callout-note title="Quick recap"}
@@ -1041,14 +1049,14 @@ render the notebook to a high-quality report or manuscript.
 
 To give you an example, take a look at the `supplementary_material.ipynb` file
 in the `jupyter/` tutorial directory. Open this notebook in the Jupyter lab
-interface (make sure you have activated the `jupyter-env` Conda environment).
+interface.
 
 As you can see this notebook contains some brief descriptions in Markdown and
-code to generate a few plots. It uses the output from the MRSA case-study
-Snakemake workflow you worked on in the Snakemake tutorial. This is a common
-use-case for Jupyter notebooks; to generate summary statistics and plots from
-the results of a workflow run. (A real-world example could of course include a
-lot more in-depth exploratory analyses).
+code to generate a few plots and tables. It uses the output from the MRSA
+case-study Snakemake workflow you worked on in the Snakemake tutorial. This is a
+common use-case for Jupyter notebooks; to generate summary statistics and plots
+from the results of a workflow run. (A real-world example could of course
+include a lot more in-depth exploratory analyses).
 
 Now, let's say you want to share the results of this notebook with your PI or
 collaborators. We could simply share the notebook file, or run all cells to
@@ -1061,23 +1069,22 @@ Run the following from your terminal to execute the cells in the notebook and
 convert it to HTML:
 
 ```bash
-jupyter nbconvert --ExecutePreprocessor.kernel_name=jupyter-env --execute --to HTML --output supplementary_material.nbconvert.html supplementary_material.ipynb
+jupyter nbconvert --ExecutePreprocessor.kernel_name=jupyter-env --execute \
+  --to HTML --output supplementary_material.nbconvert.html supplementary_material.ipynb
 ```
 
-::: {.callout-note}
-
-The `--ExecutePreprocessor.kernel_name=jupyter-env --execute` flags tell
-`nbconvert` to run the notebook using the `jupyter-env` kernel.
-
-:::
-
-Open the `supplementary_material.nbconvert.html` file in a browser to see that
-it looks like you expect. This looks more or less like the original notebook.
+If you open the `supplementary_material.nbconvert.html` file in a browser you
+will see it looks more or less like the original notebook.
 
 Now let's go one step further and render the notebook to a high-quality report
-using Quarto. We can actually add a YAML header to the notebook with some
-document options that Quarto understands. Create a new cell at the very top of
-the notebook (from the Jupyter lab interface). In this cell, add the following:
+using Quarto. 
+
+Take a look at the notebook again in the Jupyter lab interface. As you can see
+some of the code cells contain _chunk options_ just like the ones you learned
+about in the Quarto tutorial. These options are ignored when executing the cells
+from within Jupyter lab, but are used by Quarto when rendering the notebook.
+
+We will now use quarto from the commandline to both execute and render the notebook. But first we need to add a YAML header to the notebook. Create a new cell at the top of the notebook, set it to Markdown format and add the following:
 
 ```yaml
 ---
@@ -1095,8 +1102,18 @@ bibliography: references.bib
 ---
 ```
 
-Set the cell type to `Markdown`, then run the cell. Most likely that cell will
-look rather weird but that's OK. We'll fix that in a bit.
+This YAML header instructs Quarto to:
+
+- set a title and a subtitle for the document
+- render the document as HTML
+- embed resources such as images in the HTML file
+- enable [code folding](https://quarto.org/docs/output-formats/html-code.html#folding-code) and [code tools](https://quarto.org/docs/output-formats/html-code.html#code-tools)
+- sets the text for folded code to "Click to show code"
+- specifies to use the `jupyter-env` kernel for executing the notebook
+- sets the `references.bib` file to be used for [citations](https://quarto.org/docs/authoring/citations.html)
+
+Most likely that cell will look rather weird if you run it but that's OK. We'll fix that in a
+bit.
 
 Save the notebook and now execute and render the document with Quarto from the
 commandline:
@@ -1110,11 +1127,7 @@ the `supplementary_material.nbconvert.html` file. You should see that the
 Quarto version looks a lot better. The fact that Quarto supports rendering of
 Jupyter notebooks means you can keep editing your notebooks as you normally
 would and use Quarto for rendering the final document. Also there's very little
-we had to change in the notebook to make it work with Quarto. If you look
-closely at the code cells used to generate the plots and table you'll see that
-they contain code-chunk options in the same form we used in the Quarto tutorial.
-These options do not impact the notebook when run in Jupyter, making it easy to
-use the two tools in combination.
+we had to change in the notebook to make it work with Quarto: just the YAML header and the chunk options neither of which impact the notebook when run in Jupyter.
 
 Let's go back to the YAML header cell and fix how it looks in the Jupyter
 notebook. The reason it looks weird is that Jupyter doesn't understand the
@@ -1157,63 +1170,26 @@ general:
 
 ### Running Jupyter notebooks on a cluster
 
-- Login to Uppmax, making sure to use a specific login node, _e.g._ `rackham1`:
+If you sometimes work on a remote cluster you can start up a Jupyter server on
+the cluster side and connect to it from your local computer. This way you can
+create, edit and run notebooks from your local computer but have the actual
+computations done on the cluster. This can be useful if you have a lot of data
+on the cluster side, or need to run computations that require a lot of resources.
 
-```
-ssh <your-user-name>@rackham1.uppmax.uu.se
-```
+One way to do this is to start a [public Jupyter
+server](https://jupyter-server.readthedocs.io/en/latest/operators/public-server.html)
+on the cluster side and then connect to it via an SSH tunnel. This requires a
+fair amount of setup, especially to ensure that the server is properly secured,
+as explained
+[here](https://jupyter-server.readthedocs.io/en/latest/operators/public-server.html#securing-a-jupyter-server).
 
-- Create/activate a Conda environment containing `jupyter`, _e.g._:
-
-```
-conda create -n jupyter -c conda-forge jupyter
-```
-
-- activate the environment, then run:
-
-```
-jupyter notebook --no-browser
-```
-
-When the Jupyter server starts up you should see something resembling:
-
-```
-[I 2023-11-13 22:15:36.944 ServerApp] Serving notebooks from local directory: <path-to-your-directory>
-[I 2023-11-13 22:15:36.944 ServerApp] Jupyter Server 2.10.0 is running at:
-[I 2023-11-13 22:15:36.944 ServerApp] http://localhost:8888/tree?token=25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6
-[I 2023-11-13 22:15:36.944 ServerApp]     http://127.0.0.1:8888/tree?token=25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6
-[I 2023-11-13 22:15:36.944 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-```
-
-Now a Jupyter notebook server is running on the Uppmax end. The line that says:
-
-```
-[I 2023-11-13 22:15:36.944 ServerApp] http://localhost:8888/tree?token=25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6
-```
-
-Contains information on the port used on the server side (8888 in this case) and
-the token required to use the server (`25fa07e89b7c0bc2e518f259ba79c67847ca813cdf4eeed6`).
-
-Next step is to use this information to login to the server from your local
-computer.
-
-**On your local computer**
-
-In a terminal, run the following command to start port forwarding of
-port 8080 on your local computer to the remote port on the Uppmax side. Replace
-<remote-port> with the port given when you started the server on Uppmax. Also
-replace <your-user-name> with your user name on Uppmax.
-
-```bash
-ssh -N -L localhost:8080:localhost:<remote-port> <your-user-name>@rackham1.uppmax.uu.se
-```
-
-As long as this process is running the port forwarding is running. To disable it
-simply interrupt it with `CTRL + C`.
-
-Connect to the Jupyter server by opening `localhost:8080` in your browser. When
-prompted, paste the token you got when starting the server on Uppmax and set a
-new password.
+As an alternative you can install [VS Code](https://code.visualstudio.com/) on
+your local computer. As we've mentioned VS code has [built-in
+support](https://code.visualstudio.com/docs/datascience/jupyter-notebooks) for
+Jupter notebooks. If you also install the [Remote -
+Explorer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-explorer)
+extension you can connect to the cluster and run Jupyter notebooks on the
+cluster side directly from VS Code on your laptop.
 
 ### Using Binder to share interactive notebooks
 
