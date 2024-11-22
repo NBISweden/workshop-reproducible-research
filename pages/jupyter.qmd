@@ -112,7 +112,7 @@ Files tab and clicking New > Notebook. From the drop-down menu that appears,
 select the `jupyter-env` kernel.
 
 Start by giving your notebook a name by right-clicking on the text "Untitled.ipynb" at the
-top of the panel then clicking "Rename Notebook". Enter "jupyter-tutorial.ipynb".
+top of the tab then clicking "Rename Notebook". Enter `jupyter-tutorial.ipynb`.
 
 Jupyter notebooks are made up of cells, and you should have one cell in your
 newly created notebook. Clicking inside the cell puts you in "Edit mode" meaning
@@ -163,9 +163,9 @@ the menus. You can also view this list of shortcuts from the **Help** menu under
 
 ## Writing markdown
 
-Let's use our first cell to create a header. Change the format from Code to by
-pressing the `m` key when in command mode. Click inside the cell and input `# My
-notebook`. Run the cell with `ctrl`-`enter` (`cmd`-`enter` on Mac).
+Let's use our first cell to create a header. Change the format from Code to
+Markdown by pressing the `m` key when in command mode. Click inside the cell and
+input `# My notebook`. Run the cell with `ctrl`-`enter` (`cmd`-`enter` on Mac).
 
 Markdown is a simple way to structure your notebook into sections with
 descriptive notes, lists, links, images etc.
@@ -738,10 +738,10 @@ In this section we've learned:
 ## Reproducibility
 
 Now that you have a feeling for what Jupyter can do we'll spend a
-little time on things to consider specifically from a repdroducibility point of
+little time on things to consider specifically from a reproducibility point of
 view when it comes to Jupyter notebooks.
 
-## Version control of Jupyter notebooks
+### Version control of Jupyter notebooks
 
 As we've seen, Jupyter notebooks are plain-text JSON files. This means that they
 can be version controlled with Git just like any other text file. However,
@@ -844,7 +844,7 @@ easy to see changes made both to code and outputs such as tables and plots.
   diffs](https://code.visualstudio.com/docs/datascience/jupyter-notebooks#_custom-notebook-diffing)
   directly from the editor
 
-## Making sure notebooks work as expected
+### Making sure notebooks work as expected
 
 One of the great things with Jupyter notebooks is the ability to do data
 exploration in an interactive way. Because loaded data, defined variables and
@@ -879,8 +879,8 @@ each column grouped by `island` using the following code:
 penguins.groupby("island").mean(numeric_only=True)
 ```
 
-Run the cell to see the output. Looks good. Now we have a very simple example of
-some exploratory analyses on a dataset.
+Run the cell to see the output. Now we have a very simple example of some
+exploratory analyses on a dataset.
 
 Save the notebook and try running `nbval` on it to see if it works as
 expected. From the commandline, run:
@@ -943,7 +943,8 @@ fails on `Cell 3` it actually refers to the 4th cell in the notebook.
 This problem could have been solved if we had re-run the cell where we output
 the mean of each column grouped by `island`. In fact, it is good practice to
 re-run all cells in a notebook before saving it. If you in addition restart the
-kernel before re-running you make sure that you haven't introduced any 'hidden states'
+kernel before re-running you make sure that you haven't introduced any 'hidden
+states'.
 
 ::: {.callout-tip title="Ignoring specific cells"}
 One caveat of `nbval` is that it doesn't work well with cells that generate
@@ -952,9 +953,12 @@ plots. You can tell `nbval` to ignore the output of specific cells by adding
 :::
 
 ::: {.callout-note title="Quick recap"}
+
 In this section we've learned:
+
 - How to use `nbdime` to view diffs of Jupyter notebooks
 - How to use `nbval` to test that notebooks work as expected
+
 :::
 
 ## Converting notebooks
