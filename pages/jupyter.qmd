@@ -1084,7 +1084,10 @@ some of the code cells contain _chunk options_ just like the ones you learned
 about in the Quarto tutorial. These options are ignored when executing the cells
 from within Jupyter lab, but are used by Quarto when rendering the notebook.
 
-We will now use quarto from the commandline to both execute and render the notebook. But first we need to add a YAML header to the notebook. Create a new cell at the top of the notebook, set it to Markdown format and add the following:
+We will now use quarto from the commandline to both execute and render the
+notebook. But first we need to add a YAML header to the notebook. Create a new
+cell at the top of the notebook, set it to Markdown format and add the
+following:
 
 ```yaml
 ---
