@@ -59,7 +59,7 @@ Conda itself is open source - it's the `default` channel that is proprietary.
 The `conda-forge` and `bioconda` channels (two of the largest channels outside
 of `default`) are community-driven. Confusing? Yes. If you want this information
 more in-depth you can read this [blog post by
-Anaconda](https://www.anaconda.com/blog/is-conda-free). 
+Anaconda](https://www.anaconda.com/blog/is-conda-free).
 :::
 
 ## The basics
@@ -91,7 +91,6 @@ You should see something like this printed to the terminal:
 Channels:
  - conda-forge
  - bioconda
- - defaults
 Platform: osx-arm64 # <- Your platform may differ
 ```
 
@@ -450,6 +449,17 @@ conda config --remove channels conda-forge
 
 Check your `.condarc` file to see the change. To add the _conda-forge_ channel
 back to the top of the `channels` simply run:
+
+::: {.callout-note title="Multiple config files"}
+You can have multiple `.condarc` in different locations, and when using the
+Miniforge installer (like in the pre-course setup) you automatically get an
+additional one inside your Miniforge installation directory; you can use `conda
+config --show-sources` to see exactly where it is. While the commands we ran
+only changes the one in your home directory, Conda will still pick up the
+configuration coming from the Miniforge installation as well (as well as any
+other config files you may have), resulting in a union of your multiple configs.
+You can remove the one added by Miniforge by default it you like.
+:::
 
 ```bash
 conda config --add channels conda-forge
