@@ -208,8 +208,12 @@ figure:
 
 Let's repeat this process by editing a file!
 
-- Open up `environment.yml` in your favourite editor, and change the version of
-  Bowtie2 to a different value, _e.g._ `bowtie2=2.2.4`.
+- Open up `environment.yml` in your favourite editor, and set the version of
+  Bowtie2 to `2.2.4`. The line should look like this: 
+
+```{.yaml filename="environment.yml"}
+  - bowtie2=2.2.4
+```
 
 - Run `git status`. It will tell you that there are modifications in one file
   (`environment.yml`) compared to the previous commit. This is nice! We don't
@@ -486,7 +490,7 @@ set of parameters on the sequence alignment step of the case study project.
   looks like this (add the `--very-sensitive-local` option):
 
 ```bash
-bowtie2 --very-sensitive-local -x results/bowtie2/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
+bowtie2 --very-sensitive-local -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
 ```
 
 - Add and commit the change!
@@ -664,7 +668,7 @@ You can also see the difference between tags in the same way as for
 branches and commits using _e.g._ `git diff <tag1> <tag2>`.
 :::
 
-At this point could run `git log --oneline --decorate` to get a condensed
+At this point you could run `git log --oneline --decorate` to get a condensed
 commit history, where you should also be able to see the tagged commits.
 
 ::: {.callout-note title="Quick recap"}
@@ -803,9 +807,11 @@ can even add README-files to sub-directories as well, giving you the opportunity
 to go more in-depth where you so desire.
 
 ::: {.callout-note title="Quick recap"}
-We learned how to connect local Git repositories to remote locations such as
-GitHub and how to upload commits using `git push`. We also learned the
-basics of _markdown_ and how it can be used to document Git repositories.
+
+- We learned how to connect local Git repositories to remote locations such as
+GitHub and how to upload commits using `git push`. 
+- We also learned the basics of _markdown_ and how it can be used to document Git repositories.
+
 :::
 
 ### Browsing GitHub
@@ -870,9 +876,14 @@ the original `git_tutorial` repository!
 - Since you already gave the address to Git when you cloned the repository, you
   don't have to add it manually as before. Verify this with `git remote -v`.
 
-- Let's say that we now want to change the `multiqc` software to an earlier
-  version: open the `environment.yml` file in the second local repo and change
-  `multiqc=1.14` to `multiqc=1.7`; add and commit the change.
+- Let's say that we now want to set the `multiqc` software to version `1.7`.
+  Open the `environment.yml` file in the second local repo and edit the line with `multiqc` to:
+  
+```{.yaml filename="environment.yml"}
+  - multiqc=1.7
+```
+
+- Add and commit the change.
 
 - We can now use `push` again to sync our remote repository with the new local
   changes. Refresh your web page again and see that the changes have taken
@@ -883,7 +894,7 @@ second local repository, the first local repository is now outdated. We thus
 need to update the first local repo with the new changes. This can be done with
 the `pull` command.
 
-- `cd` back into the first local repository (_e.g._ `git_tutorial`) and run the
+- `cd` back into the first local repository (_i.e._ `git_tutorial`) and run the
   `git pull` command. This will download the newest changes from the remote
   repository and merge them locally automatically.
 
@@ -925,11 +936,12 @@ a new local branch and add some changes that we'll push as a separate branch to
 our remote - you should do this in the original `git_tutorial` repository, so
 make sure you're in that directory.
 
-- Create a new branch named `trimming` and add the `--trim5 5` flag to the
-  Bowtie2-command part of the `Snakefile`, which should now look like this:
+- Create a new branch named `trimming`, switch to it and add the `--trim5 5`
+  flag to the Bowtie2-command part of the `Snakefile`, which should now look
+  like this:
 
 ```bash
-bowtie2 --trim5 5 --very-sensitive-local -x results/bowtie2/{config[genome_id]} -U {input.fastq} > {output} 2>{log}
+bowtie2 --trim5 5 --very-sensitive-local results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
 ```
 
 - Add and commit the change to your local repository.
@@ -1012,8 +1024,8 @@ now introduce a conflict on purpose, which we can then solve.
   go into the first one, `git_tutorial`, and change the MultiQC version in the
   `environment.yml` file:
 
-```yaml
-multiqc=1.8
+```{.yaml filename="environment.yml"}
+  - multiqc=1.8
 ```
 
 - Add, commit and push your change to the remote.
@@ -1093,39 +1105,22 @@ about this and suggests that we should fix the conflicts and commit that.
   affected file in a text editor. You will see that it now looks something like
   this:
 
-```no-highlight
-name: git-env
+```{.yaml filename="environment.yml"}
 channels:
   - conda-forge
   - bioconda
-  - r
 dependencies:
-  - python=3.10.10
-  - fastqc=0.11.9
-  - seqtk=1.3
-  - snakemake=7.25.0
+  - python
+  - fastqc
+  - seqtk
+  - snakemake>=8
 <<<<<<< HEAD
   - multiqc=1.6
 =======
   - multiqc=1.8
 >>>>>>> refs/remotes/origin/main
-  - bowtie2=2.5.1
-  - tbb=2021.8.0
-  - samtools=1.16
-  - subread=2.0.3
-  - bedtools=2.30.0
-  - r-base=4.1.3
-  - r-ggplot2=3.4.2
-  - r-reshape2=1.4.4
-  - r-stringi=1.7.12
-  - r-pheatmap=1.0.12
-  - r-r.utils=2.12.2
-  - bioconductor-rtracklayer=1.54.0
-  - bioconductor-geoquery=2.62.0
-  - wget
-  - graphviz
-  - xorg-libxrender
-  - xorg-libxpm
+  - jupyter
+  - bowtie2=2.2.4
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
@@ -1139,31 +1134,31 @@ version to keep, or to change it to a third alternative.
   the lines added by Git and delete the line with `multiqc=1.8`. The final file
   should look like this:
 
-```no-highlight
-name: git-env
+```{.yaml filename="environment.yml"}
 channels:
   - conda-forge
   - bioconda
-  - r
 dependencies:
-  - python=3.10.10
-  - fastqc=0.11.9
-  - seqtk=1.3
-  - snakemake=7.25.0
+  - python
+  - fastqc
+  - seqtk
+  - snakemake>=8
   - multiqc=1.6
-  - bowtie2=2.5.1
-  - tbb=2021.8.0
-  - samtools=1.16
-  - subread=2.0.3
-  - bedtools=2.30.0
-  - r-base=4.1.3
-  - r-ggplot2=3.4.2
-  - r-reshape2=1.4.4
-  - r-stringi=1.7.12
-  - r-pheatmap=1.0.12
-  - r-r.utils=2.12.2
-  - bioconductor-rtracklayer=1.54.0
-  - bioconductor-geoquery=2.62.0
+  - jupyter
+  - bowtie2=2.2.4
+  - tbb
+  - samtools
+  - subread>=2
+  - bedtools
+  - r-base
+  - r-ggplot2
+  - r-reshape2
+  - r-stringi
+  - r-pheatmap
+  - r-rmarkdown
+  - r-r.utils
+  - bioconductor-rtracklayer
+  - bioconductor-geoquery
   - wget
   - graphviz
   - xorg-libxrender
