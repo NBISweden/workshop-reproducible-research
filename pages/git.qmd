@@ -209,7 +209,7 @@ figure:
 Let's repeat this process by editing a file!
 
 - Open up `environment.yml` in your favourite editor, and set the version of
-  Bowtie2 to `2.2.4`. The line should look like this: 
+  Bowtie2 to `2.2.4`. The line should look like this:
 
 ```{.yaml filename="environment.yml"}
   - bowtie2=2.2.4
@@ -722,11 +722,21 @@ git remote add origin git@github.com:user/git_tutorial.git
   your local Git clone. The short name of the default remote is usually
   "_origin_" by convention.
 
-::: {.callout-note} 
+::: {.callout-note}
 Make sure you've used an SSH address (_i.e._ starting with `git@github.com`
 rather than an HTTPS address (starting with `https://github.com`)! Also make
 sure you've set up ssh-keys as described in the
 [github-setup](../home_precourse.html#github-setup) in the pre-course material.
+:::
+
+::: {.callout-note title="Why both fetch and push?"}
+You may ask why the results show both a line for `fetch` and `push`, since
+they're both pointing to the exact same address. The answer is that there are
+some cases when you might want to be able to fetch updates from a location, but
+you want to disable pushing there, either for security reasons or for some
+organisational reason (_i.e._ have read-only access). There are other cases
+where it is useful to be able to have different addresses for fetch and push as
+well, but for our cases here it they almost always the same.
 :::
 
 - We have not yet synced the local and remote repositories, though, we've simply
@@ -809,7 +819,7 @@ to go more in-depth where you so desire.
 ::: {.callout-note title="Quick recap"}
 
 - We learned how to connect local Git repositories to remote locations such as
-GitHub and how to upload commits using `git push`. 
+GitHub and how to upload commits using `git push`.
 - We also learned the basics of _markdown_ and how it can be used to document Git repositories.
 
 :::
@@ -878,7 +888,7 @@ the original `git_tutorial` repository!
 
 - Let's say that we now want to set the `multiqc` software to version `1.7`.
   Open the `environment.yml` file in the second local repo and edit the line with `multiqc` to:
-  
+
 ```{.yaml filename="environment.yml"}
   - multiqc=1.7
 ```
