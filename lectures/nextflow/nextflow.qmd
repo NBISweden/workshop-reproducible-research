@@ -108,30 +108,6 @@ process GET_SRA_BY_ACCESSION {
 }
 ```
 
-## Anatomy of a process {auto-animate=true}
-
-```groovy
-process GET_SRA_BY_ACCESSION {
-
-    cpus 2
-    memory '8 GB'
-
-    conda 'sra-tools=2.11.0'
-    container 'ncbi/sra-tools:2.11.0'
-
-    input:
-    val(sample)
-
-    output:
-    tuple val(sample), path("${sample}.fastq.gz")
-
-    script:
-    """
-    fastq-dump ${sample} -X {params.depth} > ${sample}.fastq.gz
-    """
-}
-```
-
 ## Anatomy of a workflow {auto-animate=true}
 
 ```groovy
