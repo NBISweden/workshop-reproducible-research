@@ -1,1 +1,33 @@
+# A docker image supplied by nf-core. 
+# Defined at https://github.com/nf-core/tools/blob/main/nf_core/gitpod/gitpod.Dockerfile
+# Image contains:
+# - git
+# - conda
+# - docker
+# - apptainer
+# - nextflow
+# - nf-core (tools)
+# - nf-test
 image: nfcore/gitpod:latest
+
+tasks:
+  - name: Install Pixi
+    command: |
+      sudo chown gitpod -R /home/gitpod/
+      curl -fsSL https://pixi.sh/install.sh | bash
+      . /home/gitpod/.bashrc
+  - name: Update Nextflow
+    command: |
+      nextflow self-update
+      exit
+  - name: Install Snakemake
+    command: |
+      conda install snakemake -y
+      exit
+
+
+vscode:
+  extensions:
+    - nextflow.nextflow
+    - snakemake.snakemake-lang
+    - quarto.quarto
