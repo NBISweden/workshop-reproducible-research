@@ -753,7 +753,7 @@ achieved by adding the `emit` option for some or all of the outputs, like so:
 
 ```nextflow
 output:
-path(*.txt), emit: text
+path("*.txt"), emit: text
 ```
 
 Instead of referring to the output by its position in an array as before we
