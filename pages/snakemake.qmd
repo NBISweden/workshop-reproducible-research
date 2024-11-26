@@ -1700,7 +1700,7 @@ Now change the `multiqc` and `generate_count_table` rules that use the `expand` 
 ```python
     input:
         expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = config["samples"].keys())
+            sample_id = config["samples"].keys()
 ```
 
 Try to change the `generate_count_table` rule in the same way. Check the solution below if you need help.
@@ -2117,7 +2117,7 @@ rule align_to_genome:
 Start your Snakemake workflow with the following command:
 
 ```bash
-snakemake --software-deployment-method apptainer
+snakemake --configfile config.yml  -s snakefile_mrsa.smk -c 1 --software-deployment-method apptainer
 ```
 
 Feel free to modify the MRSA workflow according to this example. As Apptainer is
