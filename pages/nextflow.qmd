@@ -1151,7 +1151,7 @@ process INDEX_GENOME {
     tuple val(fasta_name), path(fasta)
 
     output:
-    path("*.b2t"), emit: index
+    path("*.bt2"), emit: index
 
     script:
     """
