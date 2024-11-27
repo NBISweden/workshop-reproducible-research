@@ -20,9 +20,9 @@ tasks:
     command: |
       nextflow self-update
       exit
-  - name: Install Snakemake
+  - name: Install Snakemake and Quarto
     command: |
-      conda install snakemake -y
+      conda install snakemake quarto -y
       exit
 
 
