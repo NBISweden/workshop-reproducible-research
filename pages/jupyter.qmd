@@ -331,7 +331,7 @@ by running `%load_ext rpy2.ipython` in a cell.
 Try this out if you know any of the languages above. For example, to run some
 simple R code:
 
-```
+```r
 %%R
 print(paste("Hello","world", sep=" "))
 ```
@@ -339,9 +339,9 @@ print(paste("Hello","world", sep=" "))
 
 Or to print the quadratic formula with LaTeX:
 
-```no-highlight
+```latex
 %%latex
-\begin{array}{*{20}c} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
+\begin{array}{} {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}} & {{\rm{when}}} & {ax^2 + bx + c = 0} \\ \end{array}
 ```
 
 Another useful magic is `%precision` which sets the floating point precision
