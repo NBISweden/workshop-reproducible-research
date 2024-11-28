@@ -547,7 +547,7 @@ interactive_scatterplot = interactive(scatterplot,
             x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
             y=["body_mass_g","bill_length_mm","bill_depth_mm","flipper_length_mm"],
             hue=["species","island","sex"],
-            palette=["Set1","Set2","Dark2","Paired2"])
+            palette=["Set1","Set2","Dark2","Paired"])
 ```
 
 Importantly, all parameters defined in the `scatterplot` function must be given
@@ -596,7 +596,7 @@ interactive_scatterplot = interactive(scatterplot,
             x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
             y=["body_mass_g","bill_length_mm","bill_depth_mm","flipper_length_mm",],
             hue=["species","island","sex"],
-            palette=["Set1","Set2","Dark2","Paired2"],
+            palette=["Set1","Set2","Dark2","Paired"],
             size=(20,100,10))
 ```
 
@@ -655,7 +655,7 @@ interactive_scatterplot = interactive(scatterplot,
             x=["bill_length_mm","bill_depth_mm","flipper_length_mm","body_mass_g"],
             y=["body_mass_g","bill_length_mm","bill_depth_mm","flipper_length_mm"],
             hue=["species","island","sex"],
-            palette=["Set1","Set2","Dark2","Paired2"],
+            palette=["Set1","Set2","Dark2","Paired"],
             size=(20, 100, 10),
             color=colorpicker)
 ```
