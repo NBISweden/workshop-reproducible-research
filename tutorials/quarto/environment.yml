@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - quarto
   - jupyter
   - python=3
   - r-base
