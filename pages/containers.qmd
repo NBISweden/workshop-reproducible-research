@@ -1075,8 +1075,11 @@ there's a `COPY` statement just after: this is the directive that copies files
 from the `build` stage into the current stage. We only copy the Python
 environment itself, not the base environment nor the Conda installation.
 
- - Copy the code above into a file called `multi.Dockerfile` and build it with
- `docker build -f multi.Dockerfile -t my_docker_multi`.
+ - Copy the code above into a file called `multi.Dockerfile` and build it with:
+
+ ```bash
+ docker build -f multi.Dockerfile -t my_docker_multi .
+ ```
 
  - List your docker images with `docker image ls` and compare the newly created
    `my_docker_multi` with `my_docker_base`.
