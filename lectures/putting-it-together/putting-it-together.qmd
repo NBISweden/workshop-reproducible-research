@@ -30,7 +30,8 @@ format: revealjs
 ## Divide your work into distinct projects
 
 ::: {.incremental}
-- Keep all [files]{.green} needed to go from raw data to final results in a dedicated directory
+- Keep all [files]{.green} needed to go from raw data to final results in a
+  dedicated directory
 - Use relevant [subdirectories]{.green}
 - Use [Git]{.green} to version control your projects
 - Do not store data and results/output in your Git repository
@@ -41,12 +42,12 @@ format: revealjs
 
 For example:
 ```bash
-code/             Code needed to go from input files to final results
-data/             Raw data - this should never edited
-doc/              Documentation of the project
-env/              Environment-related files, e.g. Conda environments or Dockerfiles
-results/          Output from workflows and analyses
-README.md         Project description and instructions
+code/          Code needed to go from input files to final results
+data/          Raw data - this should never edited
+doc/           Documentation of the project
+env/           Environment-related files, e.g. Conda environments or Dockerfiles
+results/       Output from workflows and analyses
+README.md      Project description and instructions
 ```
 
 <br>
@@ -127,33 +128,42 @@ _Track the **full** environment and connect your code in a workflow_
 
 - **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
 - **Mercurial** – Distributed model just like Git, close to Sourceforge.
-- **Subversion** – Centralized model unlike git/mercurial; no local repository on your computer and somewhat easier to use.
+- **Subversion** – Centralized model unlike git/mercurial; no local repository
+  on your computer and somewhat easier to use.
 
 ## Alternatives
 
 [Environment / package managers]{.green}
 
-- **Conda** – General purpose environment and package manager. Community-hosted collections of tools at Bioconda or Conda-forge.
-- **Pixi** - General purpose environment/package manager built on the Conda ecosystem, but much faster and allows for lock-files; no ARM64 emulation.
+- **Conda** – General purpose environment and package manager. Community-hosted
+  collections of tools at Bioconda or Conda-forge.
+- **Pixi** - General purpose environment/package manager built on the Conda
+  ecosystem, but much faster and works seamlessly with lock-files.
 - **Pip** – Package manager for Python, has a large repository at PyPI.
-- **Apt/yum/brew** – Native package managers for different OS. Integrated in OS and might deal with _e.g._ update notifications better.
-- **Virtualenv** – Environment manager used to set up semi-isolated python environments.
+- **Apt/yum/brew** – Native package managers for different OS. Integrated in OS
+  and might deal with _e.g._ update notifications better.
+- **Virtualenv** – Environment manager used to set up semi-isolated python
+  environments.
 
 ## Alternatives
 
 [Workflow managers]{.green}
 
-- **Snakemake** – Based on Python, easily understandable format, relies on file names.
-- **Nextflow** – Based on Groovy, uses data pipes rather than file names to construct the workflow.
-- **Make** – Used in software development and has been around since the 70s. Flexible but notoriously obscure syntax.
-- **Galaxy** -  attempts to make computational biology accessible to researchers without programming experience by using a GUI.
+- **Snakemake** – Based on Python, easily understandable format, relies on file
+  names.
+- **Nextflow** – Based on Groovy, uses data pipes rather than file names to
+  construct the workflow.
+- **Make** – Used in software development and has been around since the 70s.
+  Flexible but notoriously obscure syntax.
+- **Galaxy** -  attempts to make computational biology accessible to researchers
+  without programming experience by using a GUI.
 
 ## Alternatives
 
 [Literate programming]{.green}
 
-- **Quarto** - Developed by Posit (previously RStudio), command-line tool focused
-  on generating high-quality documents in a language-agnostic way
+- **Quarto** - Developed by Posit (previously RStudio), command-line tool
+  focused on generating high-quality documents in a language-agnostic way.
 - **Jupyter** – Create and share notebooks in a variety of languages and formats
   by using a web browser.
 - **R Markdown** – Developed by Posit (previously RStudio), focused on
@@ -167,11 +177,16 @@ _Track the **full** environment and connect your code in a workflow_
 
 [Containerization / virtualization]{.green}
 
-- **Docker** – Used for packaging and isolating applications in containers. Dockerhub allows for convenient sharing. Requires root access.
-- **Apptainer/Singularity** – Simpler Docker alternative geared towards high performance computing. Does not require root.
-- **Podman** - open source daemonless container tool similar to docker in many regards
-- **Shifter** – Similar ambition as Singularity, but less focus on mobility and more on resource management.
-- **VirtualBox/VMWare** – Virtualisation rather than containerization. Less lightweight, but no reliance on host kernel.
+- **Docker** – Used for packaging and isolating applications in containers.
+  Dockerhub allows for convenient sharing. Requires root access.
+- **Apptainer/Singularity** – Simpler Docker alternative geared towards high
+  performance computing. Does not require root.
+- **Podman** - open source daemonless container tool similar to docker in many
+  regards
+- **Shifter** – Similar ambition as Singularity, but less focus on mobility and
+  more on resource management.
+- **VirtualBox/VMWare** – Virtualisation rather than containerization. Less
+  lightweight, but no reliance on host kernel.
 
 ## "What's in it for me?"
 

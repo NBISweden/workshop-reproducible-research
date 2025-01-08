@@ -181,7 +181,7 @@ docker run \
 
 ::: {.incremental}
 - Another software for working with containers, similar to Docker
-- A Singularity image is contained in a single file, facilitating portability
+- An apptainer image is contained in a single file, facilitating portability
 - Does not require `root` access, making it suitable for work at HPCs
 :::
 
