@@ -517,8 +517,7 @@ always render them all.
 
 The last document-wide option we'll touch on is *parameters*. This is useful for
 when you want to be able to run the same document with different parameters or
-options for some computations. How parameters are specified depends on which
-engine you're using. With Knitr you can specify parameters using the `params`
+options for some computations. Parameters are specified using the `params`
 option:
 
  - Add the following code to your YAML header:
@@ -552,15 +551,7 @@ param:value` flag multiple times, like so:
 quarto render quarto-tutorial.qmd -P point_size:4 -P ncols:1
 ```
 
-If you're using the Jupyter engine you can instead specify parameters by
-designating a single cell as a *parameter cell*, like so:
-
-```{{python}}
-#| tags: [parameters]
-point_size = 2
-```
-
-You can also specify parameters in a `params.yml` file and instruct quarto to use them with the `--execute-params params.yml` flag when rendering. Note that the parameters must be defined in the document (in the YAML header when using the `knitr` engine, or in a cell when using the `jupyter` engine). Pointing quarto to a `params.yml` file with `--execute-params` only overrides them when rendering.
+You can also specify parameters in a `params.yml` file and instruct quarto to use them with the `--execute-params params.yml` flag when rendering. Note that the parameters must be defined in the YAML header, pointing quarto to a `params.yml` file with `--execute-params` only overrides them when rendering.
 
 Using parameters is extremely useful when you're using a workflow manager system (_e.g._ Snakemake or Nextflow), since you can easily specify sample-specific parameters from the command line directly from your workflow manager.
 
