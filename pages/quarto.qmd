@@ -55,7 +55,7 @@ Let's start with creating basic Quarto document that we can work with.
 Quarto documents are just plain text files with the `.qmd` extension. Create a
 new file called _e.g._ `quarto-tutorial.qmd` and copy the following into it:
 
-```yaml
+```{.yaml filename="quarto-tutorial.qmd"}
 ---
 title: "Untitled Quarto Document"
 author: "Jane Doe"
@@ -79,7 +79,7 @@ markdown:
 - Add some text into your Quarto document (including an empty line between the
   YAML header and the text), _e.g._ the following:
 
-```
+```{.markdown filename="quarto-tutorial.qmd"}
 This is my first Quarto document!
 
 # This is a header
@@ -99,11 +99,13 @@ above command from the command line if you prefer.
 
 Open your new `quarto-tutorial.html` file that was created and see what it looks
 like. It's only markdown content so far, so let's add some R code using a *code
-chunk*:
+chunk*. Add the following to the `quarto-tutorial.qmd` file:
 
+````{.markdown filename="quarto-tutorial.qmd"}
 ```{{r}}
 Sys.Date()
 ```
+````
 
 Notice that we delimit the code chunk from the rest of the document's contents
 using three backticks (\`\`\`) and specify the R language using curly brackets
@@ -113,9 +115,11 @@ using three backticks (\`\`\`) and specify the R language using curly brackets
 
 You can also name chunks by adding it after the language:
 
-```{{r}}
+````{.markdown filename="quarto-tutorial.qmd"}
+```{{r date}}
 Sys.Date()
 ```
+````
 
 This is useful for debugging when something has gone wrong, since it'll be
 easier to see exactly which code chunk an error happened (instead of just
@@ -123,7 +127,7 @@ showing the chunk as a number).
 
 We can also get _in-line code_ using `{{r}} <R CODE>`, like so:
 
-```
+```{.markdown filename="quarto-tutorial.qmd"}
 The current date is `{r} Sys.Date()`.
 ```
 
@@ -186,83 +190,35 @@ Switch back to HTML rendering before you move on.
 ### Languages
 
 The examples so far have been using R, but we could just as easily have used
-Python. All we have to do is to change our code chunk to specify `{python}` as
-language and its content to be the equivalent Python code:
+Python. All we have to do is to specify `{python}` as the code chunk language and
+its content to be the equivalent Python code. Try adding this to your document and 
+render it again:
 
+````{.markdown filename="quarto-tutorial.qmd"}
 ```{{python}}
 from datetime import date
 print(date.today())
 ```
-
-- Change the code chunk to the above Python chunk instead and render your
-  document again.
-
-::: {.callout-note title="A note on Python in-line code"}
-Quarto support for in-line python code was added in version 1.4, so if you're
-using an older version of Quarto simply remove the in-line code example. You
-can check your quarto version by running `quarto --version` on the
-commandline. As of this writing, the 1.4 version of Quarto can be obtained
-from the pre-release page: https://quarto.org/docs/download/prerelease
-
-If you're using Quarto version 1.4 or higher and want to try the in-line code
-example above for Python, change the line to:
-```
-The current date is `{{python}} date.strftime(date.today(), format="%Y-%m-%d")`
-```
-:::
-
-So far we've had Quarto automatically determine which language *engine* should
-be used, which it detects through the code chunks we've written. We can also do
-this explicitly by adding `engine: knitr` or `engine: jupyter` to the YAML
-header.
-
-- Explicitly add `engine: jupyter` to your YAML header and render the document.
-
-::: {.callout-note title="Making sure your Jupyter engine is recognised"}
-Quarto attempts to identify a suitable Jupyter engine for your system when you include Python code chunks.
-However, if you want to use Jupyter available in a specific conda environment (_e.g._ your `quarto-env`
-environment) you need to take some extra steps. Please visit
-[this link](https://github.com/Anaconda-Platform/nb_conda_kernels#use-with-nbconvert-voila-papermill)
-and follow steps 1-4.
-In the final step, check for the name of the kernel matching your `quarto-env` conda environment, _e.g._
-```bash
-$ jupyter kernelspec list
-Available kernels:
-...
- conda-env-quarto-env-py    /Users/<your-user-name/Library/Jupyter/kernels/conda-env-quarto-env-py
-```
-Using the example output from above we can add the following to the YAML header of our Quarto document:
-
-```yaml
-jupyter:
- kernelspec:
-   display_name: Python 3
-   language: python
-   name: conda-env-quarto-env-py
-```
-:::
-
-It can be useful to explicitly set the language for the document, as it makes it
-clearer from just the YAML header what language will be used. There are also
-more language-related options for Quarto, but we'll save those for later in the
-tutorial.
+````
 
 ::: {.callout-note title="Quick recap"}
 In this section you learned how to create, edit and render basic Quarto
 documents using different languages.
 :::
 
-## Code chunks
+## Code chunk options
 
 Sometimes you want to add *chunk options* to the code chunks in your Quarto
 documents. They are also in YAML format and are prefixed with a special type of
 comment (`#|`). It can look something like this:
 
+````{.markdown filename="quarto-tutorial.qmd"}
 ```{{python}}
 #| echo: false
 from datetime import date
 print(date.today())
 ```
+````
 
 - Add the chunk option above to your document and render the document again.
 
@@ -283,21 +239,18 @@ a number of such chunk options that are useful to know about:
 
 - Check what happens if you change `echo: False` to `eval: False`.
 
-Now the code in the code chunk is not run, which means that if you previously
-added the python inline code it will no longer work because it depends on `date`
-from the `datetime` module that we import in the code chunk. Remove the inline
-code snippet if you added it. Then try rendering again. Now you should see the
-code itself but it won't be run and therefore has no output.
+Now the code in the code chunk is not run but the code itself is shown in the
+rendered document.
 
 ### Figure options
 
 There are also options related to figures, but for that we need to actually have
 some code that produces a figure.
 
-- Change the YAML header to use R instead of Python, remove the Python code
-  chunk and replace it with the following (don't worry if you don't understand
+- Add the following code chunk to your document (don't worry if you don't understand
   the R code itself, it's just as example):
 
+````{.markdown filename="quarto-tutorial.qmd"}
 ```{{r}}
 library("ggplot2")
 library("palmerpenguins")
@@ -314,13 +267,14 @@ ggplot(penguins, aes(x      = bill_length_mm,
     theme(plot.title = element_text(hjust = 0.5)) +
     scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
 ```
+````
 
-When you've rendered the document you should see both the code and a figure
+Now render the document again. You should see both the code and a figure
 using the [Palmer Penguins dataset](https://allisonhorst.github.io/palmerpenguins/).
 You should also see a warning along the lines of `Removed 2 rows containing
 missing values`.
 
-- Suppress the warning by adding `#| warning: false` as a chunk option and render.
+- Suppress the warning by adding `#| warning: false` as a chunk option and render the document again.
 
 There are two chunk options related to figure sizes: `fig-width` and
 `fig-height` (expressed in inches). These allow you to experiment with your
@@ -328,14 +282,7 @@ figures and make them look the way you want.
 
 - Add both the `fig-width: 10` and `fig-height: 5` chunk options and render.
 
-::: {.callout-note}
-These two chunk options are only available when using the Knitr engine, not
-for Jupyter. There is a way to set these for the whole document with Jupyter,
-though, which we'll talk more about in the next section of the tutorial.
-:::
-
-You can also add captions and alt text using `fig-cap` and `fig-alt`,
-respectively.
+You can also add captions and alt text using the `fig-cap` and `fig-alt` code chunk options respectively.
 
 - Add a suitable caption and alt text to the figure and render.
 
@@ -354,11 +301,22 @@ If you experience this, try also adding `#| label: fig-penguins` to the chunk.
 A convenient way to be able to refer to figures in text is by adding a figure
 `label`, which will automatically add a figure number before your caption.
 
-- Add a suitable label, _e.g._ `label: fig-penguins` to the chunk options.
+- Add a suitable label, _e.g._ `label: fig-penguins` to the chunk options, then render the document again.
+
+Notice that the figure now has a number before the caption. Importantly, the label must
+start with `fig-` for the numbering and cross-referencing to work.
 
 Cross-references use the `@` symbol and the corresponding label. You can thus
 write some markdown outside of a code chunk and refer to _e.g._ `@fig-penguins`,
-as per the example here. This is extremely useful if you're writing a paper or a
+as per the example here. Try this out by adding the following to your document:
+
+```{.markdown filename="quarto-tutorial.qmd"}
+A plot of penguin weight and bill length is shown in @fig-penguins.
+```
+
+then render the document again.
+
+This is extremely useful if you're writing a paper or a
 report where you want to refer to figures and content in the markdown text.
 Quarto even adds a clickable link to the figure itself as well!
 
@@ -384,7 +342,7 @@ ggplot(penguins, aes(x      = bill_depth_mm,
 
 - Also add the following to the chunk options:
 
-```no-highlight
+```{.markdown}
 #| fig-subcap:
 #|     - Bill length vs. body mass
 #|     - Bill depth vs. body mass
@@ -406,6 +364,7 @@ to add a table with the data we previously plotted.
 
 - Add the following code chunk to your document and render it:
 
+````{.markdown filename="quarto-tutorial.qmd"}
 ```{{r}}
 #| label: tbl-penguins
 #| tbl-cap: Palmer penguins bill length, width and body mass.
@@ -415,6 +374,7 @@ knitr::kable(
     col.names = c("Species", "Bill length (mm)", "Bill depth (mm)", "Body mass (g)")
 )
 ```
+````
 
 ::: {.callout-note title="Quick recap"}
 In this section you learned several chunk, figure and table options, how
@@ -428,12 +388,11 @@ they appear in. You can set many of these at the global document level, however,
 and there are also some options specifically for tailoring the document as a
 whole, regardless of chunk content.
 
-We've already looked at some global options, such as `title`, `author`, `format`
-and `engine`. Something that would go nicely with the first two is the `date`
-option. You could just write the actual date if you like, or you can use the
-`today` option:
+We've already looked at some global options, such as `title`, `author` and `format`. 
+Something that would go nicely with the first two is the `date` option. You could 
+just write the actual date if you like, or you can use the `today` option:
 
- - Add the following to the options: `date: today`
+ - Add the following to the document options: `date: today`
 
 ### Code folding
 
@@ -529,7 +488,7 @@ anybody.
  - Remove the `<document-name>_files/` directory, refresh the rendered document
   and see what happens.
 
- - Add the `embed_resources` option and render your document again.
+ - Add the `embed-resources` option and render your document again.
 
 What happened first is that your figures should have disappeared when you
 deleted the resources directory. Embedding resources and rendering again should
@@ -675,7 +634,7 @@ which can also be achieved with divisions. When adding a division to slide
 content we specify the division's content in a manner similar to a code chunk,
 like in the following example:
 
-```
+```{.markdown filename="quarto-tutorial.qmd"}
 ## Penguin species
 
 ::: {.incremental}
@@ -735,7 +694,7 @@ is done with the `{.columns}` and `{.column}` divisions. The former specifies
 that a section with multiple columns is starting, while the second specifies
 when each column starts, like so:
 
-```no-highlight
+```{.markdown filename="quarto-tutorial.qmd"}
 :::: {.columns}
 
 ::: {.column}
@@ -780,7 +739,7 @@ You can also control the order in which fragments appear using the
    than the order of the code. If you need help or inspiration, click below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-```
+```{.markdown}
 ## Why Palmer Penguins?
 
 ::: {.fragment fragment-index=2}
