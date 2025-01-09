@@ -825,22 +825,169 @@ option or the `callout-appearance` global option. Valid values are `default`,
 also suppress the callout icons using `icon=false` or `callout-icon: false` in a
 similar manner.
 
+### Python code
+
+So far we've used Quarto with R-code chunks, but Quarto also supports Python.
+While R-code is executed with the **Knitr** engine, Python code can be executed
+using either **Jupyter** or Knitr + the **reticulate** package.
+
+To try out Python code in Quarto, make a new document called `quarto-python.qmd`
+and add the following to it:
+
+````{.markdown filename="quarto-python.qmd"}
+---
+title: "Python in Quarto"
+format: html
+---
+
+This is a Quarto document with Python code!
+
+```{{python}}
+from datetime import date
+print(date.today())
+```
+
+Here is how you'd use inline code to print today's date: `{{python}} date.today().strftime("%Y-%m-%d")`.
+````
+
+Save and render the document with `quarto render quarto-python.qmd`.
+
+You probably saw that Quarto reported:
+
+```no-highlight
+Starting python3 kernel...Done
+```
+
+This is because Quarto automatically determined that it should use a Jupyter
+kernel to execute the code in the document. You can read more about how this works
+[here](https://quarto.org/docs/computations/execution-options.html#engine-binding).
+
+The `quarto-env` conda environment that you installed for this tutorial comes
+with the default `IPython` kernel, but you can install additional kernels for
+other coding languages or containing specific packages.
+
+To see which kernels are available on your computer, run `jupyter kernelspec
+list` on the command line. If you haven't installed any kernels before you
+should just see the `python3` kernel which is the one contained in the
+`quarto-env` environment and the one Quarto used to render the document above.
+
+If you want to explicitly instruct Quarto to use the `python3` kernel you can
+add `jupyter: python3` to the document YAML header. However, this requires that
+you have the `quarto-env` environment activated. If you activate another conda
+environment with the `jupyter` package installed, the `python3` kernel used for
+rendering will be the one in that environment.
+
+To get around this, you can install the kernel in an active conda environment
+under a unique name using the following command:
+
+```bash
+python -m ipykernel install --user --name=KERNEL_NAME
+```
+  
+where `KERNEL_NAME` can be any name you want. Try this out with the `quarto-env`
+environment. Run:
+
+```bash
+python -m ipykernel install --user --name=quarto-env
+```
+
+Now specify the kernel name in the YAML header of your Quarto document:
+
+```yaml
+jupyter: quarto-env
+```
+
+and render the document again.
+
 ### Mixing R and Python
 
-Earlier in the tutorial we showed how to change the language using the `engine`
-global option, but there is actually a way to use both R and Python in the same
-Quarto document. This is done via the Knitr engine and the `reticulate` R
-package, which allows communication between any variables and data you store in
-either R or Python code chunks. While this may not be that common of a use-case,
-it's still great that it's there for those that want access to it. We won't go
-through the details of how this works here, but you're welcome to go and check
-out the [official reticulate website](https://rstudio.github.io/reticulate/) for
-yourself.
+Another way to execute Python code in Quarto documents is to use the
+`reticulate` package in R. This also allows you to use R objects such as
+dataframes in Python code chunks and vice versa. The `r-reticulate` conda 
+package is already installed in the `quarto-env` environment, so you can try
+this out directly in the `quarto-python.qmd` document you created above.
 
-If you just want to mix R and Python in a single Quarto document without the
-interoperability between the languages it's a lot simpler, though. You can
-either just install the `reticulate` package (`r-reticulate` in Conda) or
-add the `python.reticulate=FALSE` chunk option to the Python chunks.
+Change the YAML header in `quarto-python.qmd` to instruct Quarto to use the
+Knitr engine. The header should look like this:
+
+```{.yaml filename="quarto-python.qmd"}
+---
+title: "Python in Quarto"
+format: html
+engine: knitr
+---
+```
+
+Also add the following R code chunk to the end of the document:
+
+````{.markdown filename="quarto-python.qmd"}
+```{{r}}
+library("palmerpenguins")
+library("reticulate")
+data(penguins, package = "palmerpenguins")
+penguins <- penguins[!is.na(penguins$body_mass_g),]
+head(penguins)
+```
+````
+
+Render the document again. In the R code chunk we load the penguins dataset,
+remove rows with missing values and printed the first few rows. As you can see,
+both the Python and R code chunks are executed in the same document. You'll also
+notice that the inline Python code could not be executed. This is currently a
+limitation of Knitr.
+
+Now add the following Python code chunk:
+
+````{.markdown filename="quarto-python.qmd"}
+```{{python}}
+import pandas as pd
+penguins = r.penguins
+penguins["body_mass_kg"] = penguins["body_mass_g"] / 1000
+penguins.head()
+```
+````
+
+and render the document again.
+
+This code chunk takes the penguins dataframe from R (`penguins = r.penguins`)
+and adds a new column with the body mass in kilogram then prints the first few
+rows. 
+
+We can also pass the modified dataframe back to R. Add the following code chunk:
+
+````{.markdown filename="quarto-python.qmd"}
+```{{r}}
+#| fig-width: 10
+#| fig-height: 5
+#| label: fig-penguins
+#| fig-cap: "Penguin weight and bill length"
+#| fig-alt: "A scatter plot of penguin weight and bill length"
+#| cap-location: margin
+library("ggplot2")
+penguins_py <- py$penguins
+ggplot(penguins_py, 
+    aes(x = bill_length_mm,
+        y = body_mass_kg,
+        colour = species)) +
+    geom_point(size = 2) +
+    theme_bw() +
+    labs(x = "Bill length (mm)",
+            y = "Body mass (kg)",
+            colour = "Species") +
+    ggtitle("Penguin weight and bill length") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    scale_colour_manual(values = c("#c1dea0", "#85be42", "#425f21"))
+```
+````
+
+then render the document again.
+
+In this code chunk the modified dataframe is passed to R (`penguins_py <-
+py$penguins`) and used to create a scatter plot of penguin weight (in kilograms)
+and bill length.
+
+You can read more about the `reticulate` package in the
+[documentation](https://rstudio.github.io/reticulate/).
 
 ### Citations
 
