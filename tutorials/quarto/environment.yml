@@ -13,3 +13,4 @@ dependencies:
   - r-reticulate
   - nb_conda_kernels
   - papermill
+  - pandas
