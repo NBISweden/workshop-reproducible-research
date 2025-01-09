@@ -31,9 +31,7 @@ in the NBIS/ELIXIR course
 
 **Tools for Reproducible Research**
 
-The course was held `r params$location`, `r params$month_start` `r
-params$day_start` - `r params$month_end` `r params$day_end` `r params$year`. It
-consisted of lectures, computer exercises and group discussions.
+The course was held in `r params$location`, `r params$month_start` `r params$day_start` - `r params$month_end` `r params$day_end` `r params$year`. It consisted of lectures, computer exercises and group discussions.
 
 The following subjects and fields were covered:
 
