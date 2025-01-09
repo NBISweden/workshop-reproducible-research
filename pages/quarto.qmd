@@ -46,6 +46,19 @@ website](https://quarto.org/docs/faq/rmarkdown.html) for more in-depth
 discussions regarding Quarto/R Markdown (dis-)similarities.
 :::
 
+::: {.callout-tip title="Python and R paths"}
+To be sure that Quarto uses the Python and R installations in the `quarto-env`
+environment, you can set the environmental variables `QUARTO_PYTHON` and `QUARTO_R`
+to the paths of the Python and R executables in the `quarto-env` environment.
+
+Activate the `quarto-env` environment and run the following commands in the
+terminal:
+
+```bash
+export QUARTO_PYTHON=$CONDA_PREFIX/bin/python
+export QUARTO_R=$CONDA_PREFIX/bin/R
+```
+:::
 ## The basics
 
 Let's start with creating basic Quarto document that we can work with.
