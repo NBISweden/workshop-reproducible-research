@@ -306,18 +306,6 @@ conda config --env --set subdir osx-64
 ```
 :::
 
-## Installing Pixi
-
-Install the package manager [Pixi](https://prefix.dev/) by running the following
-command:
-
-```bash
-curl -fsSL https://pixi.sh/install.sh | bash
-```
-
-Then restart your shell and make sure that Pixi is installed by running `pixi
---version`.
-
 ## Installing Snakemake
 
 We will use Conda environments for the set up of this tutorial, but don't worry
