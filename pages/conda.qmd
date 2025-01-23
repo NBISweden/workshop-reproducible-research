@@ -637,12 +637,29 @@ output, which is nice if you care about that sort of thing. If you installed
 Conda as described in the pre-course material you'll, conveniently, already have
 installed Mamba as well!
 
-### Pixi, for a project-centric approach
+### Pixi, for a faster, project-centric approach
 
 Pixi is another package management tool that builds on the Conda ecosystem but
-which has a more project-centric approach. Each 'project' is tied to a specific
-folder that contains a `pixi.toml` manifest file describing the project. An
-example of a `pixi.toml` file could look like this:
+which has a more organised, project-centric approach. Pixi does not have a
+`base` environment either, which is a very nice feature, as you can completely
+focus on the environments that your projects need without. The project-centric
+approach also makes it easy to have multiple environments together. Importantly,
+Pixi is also significantly faster than both Conda and Mamba. Indeed, several of
+the teachers here at the course have moved away from using Conda/Mamba and now
+almost exclusively use Pixi instead.
+
+::: {.callout-tip}
+If Pixi is so good, why is it in the "extra materials" section rather than as a
+replacement for Conda? Firstly, Conda is still widely adopted throughout the field,
+not only as a stand-alone tool, but it's also widely integrated into _other_
+tools such as IDEs, workflow managers, _etc._. Secondly, Pixi still uses the
+Conda ecosystem with channels, packages, _etc._, so learning Conda is still time
+well spent, as a lot of it transfers directly to Pixi.
+:::
+
+Each Pixi _project_ is tied to a specific folder that contains a `pixi.toml`
+manifest file describing the project. An example of a `pixi.toml` file could
+look like this:
 
 ```{.toml filename="pixi.toml"}
 [project]
