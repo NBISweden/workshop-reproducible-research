@@ -658,8 +658,9 @@ well spent, as a lot of it transfers directly to Pixi.
 :::
 
 Each Pixi _project_ is tied to a specific folder that contains a `pixi.toml`
-manifest file describing the project. An example of a `pixi.toml` file could
-look like this:
+manifest file describing the project; the TOML format is similar to the YAML
+format we've already used in Conda, but with some structural differences. An
+example of a minimal `pixi.toml` file could look like this:
 
 ```{.toml filename="pixi.toml"}
 [project]
