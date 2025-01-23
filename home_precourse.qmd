@@ -306,7 +306,6 @@ conda config --env --set subdir osx-64
 ```
 :::
 
-
 ## Installing Snakemake
 
 We will use Conda environments for the set up of this tutorial, but don't worry

@@ -636,3 +636,182 @@ execution time between Conda and Mamba. Another reason is that Mamba colours its
 output, which is nice if you care about that sort of thing. If you installed
 Conda as described in the pre-course material you'll, conveniently, already have
 installed Mamba as well!
+
+### Pixi, for a faster, project-centric approach
+
+Pixi is another package management tool that builds on the Conda ecosystem but
+which has a more organised, project-centric approach. Pixi does not have a
+`base` environment either, which is a very nice feature, as you can completely
+focus on the environments that your projects needs. The project-centric
+approach also makes it easy to have multiple environments together. Importantly,
+Pixi is also significantly faster than both Conda and Mamba. Indeed, several of
+the teachers here at the course have moved away from using Conda/Mamba and now
+almost exclusively use Pixi instead.
+
+::: {.callout-tip}
+If Pixi is so good, why is it in the "extra materials" section rather than as a
+replacement for Conda? Firstly, Conda is still widely adopted throughout the field,
+not only as a stand-alone tool, but it's also widely integrated into _other_
+tools such as IDEs, workflow managers, _etc._. Secondly, Pixi still uses the
+Conda ecosystem with channels, packages, _etc._, so learning Conda is still time
+well spent, as a lot of it transfers directly to Pixi.
+:::
+
+Installing Pixi is simple. Just run:
+
+```bash
+curl -fsSL https://pixi.sh/install.sh | bash
+```
+
+Then restart your shell and make sure that Pixi is installed by running `pixi
+--version`.
+
+Each Pixi _project_ is tied to a specific folder that contains a `pixi.toml`
+manifest file describing the project; the TOML format is similar to the YAML
+format we've already used in Conda, but with some structural differences. An
+example of a minimal `pixi.toml` file could look like this:
+
+```{.toml filename="pixi.toml"}
+[project]
+name = "project_mrsa"
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64", "osx-64"]
+````
+
+::: {.callout-tip}
+If you are using VSCode you can install an extension to get syntax highlighting
+for TOML files. Search for "TOML Support" in the extensions marketplace.
+:::
+
+The `pixi.toml` file is built up of several 'tables' which are collections of
+key/value pairs. In the example above we have the `[project]` table which
+defines general information about the project, for example the project name, the
+Conda channels to use and which platforms the project should be compatible with.
+These are the minimum requirements for a `pixi.toml` file.
+
+But you can also add a lot more information to this table, such as `authors`,
+`description`, `version`, `license`, `homepage` _etc._
+
+The easiest way to start a new project with Pixi is to run `pixi init` in the
+project folder. This will create a `pixi.toml` file with some default values
+that you can then edit to fit your project. Try this out in the
+`tutorials/conda/` folder!
+
+Make sure you are in the `tutorials/conda/` folder and run:
+
+```bash
+pixi init
+```
+
+This will create a `pixi.toml` file in the folder. Open it up and take a look.
+
+You should see something similar to the example above, but likely Pixi also
+added the `authors` key (where the value is the name and email address taken
+from your global git configuration), a `description` and a `version`. You can
+edit these values as you see fit.
+
+Let's add the `bioconda` channel to the `channels` list. Edit the `channels`
+key/value pair in the `pixi.toml` file so it looks like this:
+
+```{.toml filename="pixi.toml"}
+channels = ["conda-forge", "bioconda"]
+```
+
+At the end of the file there should also be two empty placeholder tables:
+`[tasks]` and `[dependencies]`. The tasks table allows you to add custom shell
+commands to your project. You can leave the tasks table empty as we won't go
+through it in this tutorial, but you can read more about this in the [Pixi
+documentation](https://pixi.sh/latest/reference/pixi_manifest/#the-tasks-table).
+
+Let's instead focus on the `[dependencies]` table. This is where you specify the
+software dependencies for your project, similar to how you add package names and
+versions in a Conda environment file. These dependencies can be specified in
+several ways, the most simple being _e.g._:
+
+```{.toml}
+[dependencies]
+python = "*"
+```
+
+This will install the most recent version (the `*` character is a wildcard which
+translates into 'any version') of Python available in the channels specified in
+the `channels` key. You can also specify an explicit version number, _e.g._
+`python = "3.8"` or combine this with an operator, _e.g._ `python = ">=3.8"` to
+specify that you want Python version 3.8 or later.
+
+Let's add the `fastqc` package to the `[dependencies]` table. Edit this section
+in the `pixi.toml` file so it looks like this:
+
+```{.toml filename="pixi.toml"}
+[dependencies]
+fastqc = "*"
+```
+
+Now let's use the `pixi.toml` file to create the environment for the project. Run:
+
+```bash
+pixi install
+```
+
+Pixi will download and install the packages specified under the `[dependencies]`
+table (for now just `fastqc`) and then report:
+
+```bash
+✔ The default environment has been installed.
+```
+
+You should now see a new file `pixi.lock` inside your current folder. This file
+was generated by Pixi during the `install` step and contains information about
+the environment that was created and the packages it contains. Importantly, the
+lock file should be treated as read-only, **never edit this file by hand**.
+
+If you list hidden files and folder inside the directory (`ls -l`) you will also
+see a `.pixi/` folder. This, or more specifically the `.pixi/envs/default/`
+folder, is where the environment is stored by default. You can define several
+[environments](https://pixi.sh/latest/reference/pixi_manifest/#the-feature-and-environments-tables)
+in the `pixi.toml` file and each environment will get a sub folder in
+`.pixi/envs/`. Here we only have one environment, the `default` environment.
+
+So how do you activate the environment? You can do this by running:
+
+```bash
+pixi shell
+```
+
+This will start a new shell in the project environment and as you can see the
+name of the project is now prepended to the prompt. Try to run `fastqc
+--version` to see that the software is installed and working. To exit the
+shell/environment simply type `exit` (or hit `Ctrl+D`).
+
+Let's add a few more packages to the `[dependencies]` table. Edit the
+`pixi.toml` file so that the `[dependencies]` table looks like this:
+
+```{.toml filename="pixi.toml"}
+[dependencies]
+fastqc = "*"
+multiqc = "*"
+seqtk = "*"
+snakemake = ">=8"
+bowtie2 = "*"
+samtools = "*"
+subread = "*"
+```
+
+Now directly run `pixi shell` from the command line. Because you updated the
+`pixi.toml` file Pixi will automatically detect that the environment needs to be
+updated and will do so before starting the shell. Consequently, the `pixi.lock`
+file will be updated to reflect the new environment. Try running _e.g._
+`snakemake --version` to see that the new software is installed and working.
+
+::: {.callout-tip}
+To see which packages are installed in the environment you can run `pixi list`
+from inside the project directory.
+:::
+
+This was a very short introduction to Pixi, focusing on how it can be used to
+achieve the same type of functionality as Conda. As you can see, in Pixi the
+emphasis is on projects rather than environments. Whether this makes your work
+more organised and easier to manage is for you to decide.
+
+There is much more you can do with this tool though so if you want to learn more
+about it you can read the [Pixi documentation](https://pixi.sh/latest/).
