@@ -640,9 +640,20 @@ installed Mamba as well!
 ### Pixi, for a project-centric approach
 
 Pixi is another package management tool that builds on the Conda ecosystem but
-which has a more project-centric approach. Each 'project' is tied to a specific
-folder that contains a `pixi.toml` manifest file describing the project. An
-example of a `pixi.toml` file could look like this:
+which has a more project-centric approach. 
+
+Installing Pixi is simple. Just run:
+
+```bash
+curl -fsSL https://pixi.sh/install.sh | bash
+```
+
+Then restart your shell and make sure that Pixi is installed by running `pixi
+--version`.
+
+Each Pixi 'project' is tied to a specific folder that contains a `pixi.toml` manifest
+file describing the project. An example of a `pixi.toml` file could look like
+this:
 
 ```{.toml filename="pixi.toml"}
 [project]
