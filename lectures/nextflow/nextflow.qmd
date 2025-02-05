@@ -1,5 +1,5 @@
 ---
-title: 'Making reproducible workflows with <img src="https://nextflow-io.github.io/nf-hack18/assets/nextflow_logo.png" style="width:50%; padding: 15px 15px 15px 15px">'
+title: 'Making reproducible workflows with <img src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow-logo-bg-light.png" style="width:50%; padding: 15px 15px 15px 15px">'
 format:
     revealjs:
         code-line-numbers: false
