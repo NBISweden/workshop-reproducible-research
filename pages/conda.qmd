@@ -249,6 +249,25 @@ This will remove package tar-balls that are left from package installations,
 unused packages (_i.e._ those not present in any environments), and cached
 data.
 
+You can also specify the path to which the tar-balls are downloaded by setting
+the `$CONDA_PKGS_DIRS` environment variable. This can be useful especially on
+compute clusters where disk space in your home directory is limited. Compute
+clusters typically have a 'scratch' folder for storing temporary data which has
+a larger quota so setting `$CONDA_PKGS_DIRS` to point to this folder will save
+space in your home directory. For example, on the Dardel compute cluster the
+scratch folder is defined by the environment variable `$PDC_TMP` so for this
+cluster you can add the following line to your `.bashrc` file:
+
+```bash
+export CONDA_PKGS_DIRS=$PDC_TMP/conda_pkgs
+```
+
+From now on, Conda will download and store the package tar-balls in the
+`$PDC_TMP/conda_pkgs` folder.
+
+You can also achieve the same effect by setting the `pkgs_dirs` config parameter
+with `conda config` (see [configuration](#configuration) below).
+
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
@@ -432,6 +451,15 @@ automatically choose the `yes` option, such as when installing, you can run:
 conda config --set always_yes True
 ```
 
+Above we mentioned that you can set the `$CONDA_PKGS_DIRS` environment variable
+to specify where Conda should store downloaded packages. This can also be done
+using the `conda config` command. Taking the example from above for the Dardel compute cluster, you can set
+the `pkgs_dirs` parameter with:
+
+```bash
+conda config --set pkgs_dirs $PDC_TMP/conda_pkgs
+```
+
 To see details about a config parameter you can run `conda config --describe
 parameter`. Try running it on the `channels` parameter:
 
@@ -450,17 +478,6 @@ conda config --remove channels conda-forge
 Check your `.condarc` file to see the change. To add the _conda-forge_ channel
 back to the top of the `channels` simply run:
 
-::: {.callout-note title="Multiple config files"}
-You can have multiple `.condarc` in different locations, and when using the
-Miniforge installer (like in the pre-course setup) you automatically get an
-additional one inside your Miniforge installation directory; you can use `conda
-config --show-sources` to see exactly where it is. While the commands we ran
-only changes the one in your home directory, Conda will still pick up the
-configuration coming from the Miniforge installation as well (as well as any
-other config files you may have), resulting in a union of your multiple configs.
-You can remove the one added by Miniforge by default it you like.
-:::
-
 ```bash
 conda config --add channels conda-forge
 ```
@@ -474,6 +491,17 @@ conda config --remove-key parameter
 For a list of Conda configuration parameters see the
 [Conda configuration](https://docs.conda.io/projects/conda/en/latest/configuration.html)
 page.
+
+::: {.callout-note title="Multiple config files"}
+You can have multiple `.condarc` in different locations, and when using the
+Miniforge installer (like in the pre-course setup) you automatically get an
+additional one inside your Miniforge installation directory; you can use `conda
+config --show-sources` to see exactly where it is. While the commands we ran
+only changes the one in your home directory, Conda will still pick up the
+configuration coming from the Miniforge installation as well (as well as any
+other config files you may have), resulting in a union of your multiple configs.
+You can remove the one added by Miniforge by default it you like.
+:::
 
 ### Managing Python versions
 
