@@ -68,18 +68,20 @@ format: revealjs
 ## Why all the talk about reproducibility?
 
 :::: {.columns}
-::: {.column width=45%}
-The *Reproducibility project* set out to replicate 100 experiments published in
-high-impact psychology journals. ^[*"Estimating the reproducibility of
-psychological science". Science. 349*]
+::: {.column width=50%}
+
+In 2015 the *Open Science Collaboration* set out to replicate 100 experiments
+published in high-impact psychology journals. ^[*"Estimating the reproducibility of psychological science". Science349, aac4716(2015)*]
 
 <br>
 
-About one-half to two-thirds of the original findings could not be observed in
-the replication study.
+::: {.small}
+- <50% of the experiments could be replicated
+- effect sizes were significantly smaller in the replicated studies
+:::
 :::
 
-::: {.column width=55%}
+::: {.column width=50%}
 ![](images/reproducibility-study-1.jpg)
 :::
 ::::
@@ -87,171 +89,183 @@ the replication study.
 ## Why all the talk about reproducibility?
 
 :::: {.columns}
-::: {.column}
-A survey in Nature revealed that irreproducible experiments are a problem across
-all domains of science.^[*"1,500 scientists lift the lid on reproducibility",
-Nature. 533: 452–454*]
+::: {.column width=50%}
+
+The same year, money spent on preclinical research that could not be reproduced
+was estimated at $28 billion in the US. ^[*"The Economics of Reproducibility in Preclinical Research". PLOS Biology 16(4): e1002626(2015)*]
 :::
 
-::: {.column}
-![](images/reproducibility-study-2.jpg){width="75%"}
+::: {.column width=50%}
+
+![](https://journals.plos.org/plosbiology/article/figure/image?size=large&id=10.1371/journal.pbio.1002165.g002)
 :::
 ::::
 
 ## Why all the talk about reproducibility?
 
+```{r make survey plot}
+#| echo: false
+library(ggplot2)
+blank_theme <- theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.border = element_blank(),
+    panel.grid   = element_blank(),
+    axis.ticks   = element_blank(),
+    axis.line    = element_blank(),
+    axis.text.x  = element_blank(),
+    axis.text.y  = element_blank(),
+    legend.text  = element_text(size=42),
+    legend.key.size = unit(3, 'cm'),
+    legend.title=element_text(size=56)
+    )
+ 
+# Create test data.
+data <- data.frame(
+  category=factor(c("Don't know", "No, there is no crisis", "Yes, a slight crisis", "Yes, a significant crisis"),
+          levels = c("Don't know", "No, there is no crisis", "Yes, a slight crisis", "Yes, a significant crisis")),
+  count=c(7, 3, 38, 52)
+)
+
+# Compute the cumulative percentages (top of each rectangle)
+data <- data[order(data$category), ]
+data$ymax = cumsum(data$count) 
+
+# Compute the bottom of each rectangle
+data$ymin = c(0, head(data$ymax, n=-1))
+ 
+# Make the plot
+survey_plot <- ggplot(data, aes(stat="identity", ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category)) +
+   geom_rect() +
+   scale_fill_manual(values=c("#d7d7d5", "#6695b9", "#ef9b9a", "#e05656")) +
+   coord_polar(theta="y") + 
+   xlim(c(2, 4)) + 
+   geom_text(aes(label = paste0(round(count / sum(count) * 100, 1), "%"), 
+        y = (ymin + ymax) / 2, x = 3.5), color = "black", size = 20) + blank_theme + labs(fill='IS THERE A\nREPRODUCIBILITY CRISIS?')
+```
+
 :::: {.columns}
-::: {.column}
-Medicine is among the most affected research fields. A study in Nature found
-that 47 out of 53 medical research papers focused on cancer research were
-irreproducible.^[*"Raise standards for preclinical cancer research. Nature, 483(7391), 531-533.*]
+::: {.column width=50%}
+
+In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454(2016)*]
+
+::: {.small}
+
+- 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
+
 :::
 
-::: {.column}
-![](https://www.nature.com/news/polopoly_fs/7.36716.1469695923!/image/reproducibility-graphic-online1.jpeg_gen/derivatives/landscape_630/reproducibility-graphic-online1.jpeg)
+:::
+
+::: {.column width=50%}
+```{r plot survey}
+#| echo: false
+#| fig-width: 30
+#| fig-height: 30
+survey_plot
+```
+:::
+
+::::
+
+## Why all the talk about reproducibility?
+
+:::: {.columns}
+::: {.column width=50%}
+
+In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454(2016)*]
+
+::: {.small}
+
+- 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
+- Failure to reproduce experiments is a problem across all domains of science
+:::
+
+:::
+
+::: {.column width=50%}
+![](images/reproducibility-study-2.jpg)
+:::
+
+::::
+
+## Reproducibility in computational research
+
+:::: {.columns}
+::: {.column width=50%}
+
+In 2018, Stodden *et al* estimated the reproducibility rate of computational
+papers published in the journal *Science*. ^[*An empirical analysis of journal policy effectiveness for computational reproducibility, Proc. Natl. Acad. Sci. U.S.A. 115 (11) 2584-2589(2018)*]
+
+::: {.small}
+- Only 26% of the studies were estimated to be reproducible
+- Failure to reproduce was mainly due to lack of data and code
+- Stricter journal guidelines gave improvement but were insufficient
+:::
+
+:::
+::: {.column width=50%}
+```{r Plot Stodden Table 4}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 8
+library(ggplot2)
+library(gtable)
+items = c(
+        "manual data wrangling", # 5
+        "expertise required", # 5
+        "resource demanding", # 14
+        "software/hardware", # 18 + 14
+        "missing code" # 23+5+5
+)
+table4 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(5, 5, 14, 32, 33)
+)
+
+ggplot(
+  table4, aes(y = result, x = value)) +
+  geom_bar( stat  = "identity", fill  = "lightblue", color = "white") +
+  theme(plot.margin=unit(c(1,1,1,1), 'cm'), axis.text.y = element_text(size=14)) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  geom_text( aes(label = paste0(value, "%")), hjust = -.25, color = "black", size = 3.5) + 
+  labs(x = "%") +
+  scale_x_continuous(limits = c(0, 35)) +
+  ggtitle("Issues hindering reproducibility")
+```
 :::
 ::::
 
-## Why all the talk about reproducibility? {.smaller}
+## Reproducibility in computational research
 
-Replication of 18 articles on microarray-based experiments published in 
-Nature Genetics in 2005 & 2006^[*"Repeatability of published microarray gene expression analyses. Nature genetics, 41(2), 149-155.*]
+More examples:
 
-```{r Load packages and define blank ggplot theme}
-#| echo: false
-library(ggplot2)
-library(gtable)
-blank_theme <- theme_minimal() +
-    theme(
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_blank(),
-        panel.grid   = element_blank(),
-        axis.ticks   = element_blank(),
-        legend.title = element_blank())
-```
-```{r Recreate the Ioannidis data}
-#| echo: false
-items = c("... in principle",
-          "... with some discrepancies",
-          "... from processed data with some discrepancies",
-          "... partially with some discrepancies",
-          "Cannot reproduce")
-ioannidis_1 <- data.frame(
-    result = factor(items, levels = items),
-    value  = c(2, 1, 4, 1, 10))
-items = c("Data not available",
-          "Software not available",
-          "Methods unclear",
-          "Different result")
-ioannidis_2 <- data.frame(
-    result = factor(items, levels = items),
-    value  = c(5, 1, 2, 2))
-```
-```{r Plot the first Ioannidis data}
-#| echo: false
-#| fig-width: 10
-#| fig-height: 5
-pie_1_colours <- c("#4D702D","#A1C880","#F5E959","#E6A72E","#BA382F")
-ggplot(ioannidis_1, aes(x    = "",
-                        y    = value,
-                        fill = result)) +
-    geom_bar(width = 1,
-             stat  = "identity",
-             color = "white") +
-    coord_polar("y", start = 0) +
-    scale_fill_manual(values = pie_1_colours) +
-    blank_theme +
-    theme(axis.text.x     = element_blank(),
-          legend.text     = element_text(size = 18),
-          legend.position = "right") +
-    guides(fill = guide_legend(reverse = TRUE))
-```
+:::{.fragment}
 
-## Why all the talk about reproducibility? {.smaller}
-
-Replication of 18 articles on microarray-based experiments published in 
-Nature Genetics in 2005 & 2006^[*"Repeatability of published microarray gene expression analyses. Nature genetics, 41(2), 149-155.*]
-
-```{r Plot the second Ioannidis data}
-#| echo: false
-#| fig-width: 10
-#| fig-height: 5
-pie_2_colours <- c("#E5876B","#BC5B33","#A2100C","#C8325E")
-ggplot(ioannidis_2, aes(x    = "",
-                        y    = value,
-                        fill = result)) +
-    geom_bar(width = 1,
-             stat  = "identity",
-             color = "white") +
-    coord_polar("y", start = 0) +
-    scale_fill_manual(values = pie_2_colours) +
-    blank_theme +
-    theme(axis.text.x      = element_blank(),
-          legend.position  = "right",
-          legend.text      = element_text(size = 18),
-          legend.direction = "vertical",
-          plot.margin      = grid::unit(c(5, 5, 5, 5), 'lines'))
-```
-
-## Reproducibility is rarer than you think
-
-::: {.smaller}
-The results of only 26% out of 204 randomly selected papers in the journal
-*Science* could be reproduced. ^[*"An empirical analysis
-of journal policy effectiveness for computational reproducibility". PNAS. 115
-(11): 2584-2589*]
+- Trisovic et al found that only 26% of R files in the Harvard Dataverse could be executed as-is. ^[*A large-scale study on research code quality and execution. Scientific Data 9.1 (2022): 60.*]
 :::
 
-::: {.fragment}
-> "Many journals are revising author guidelines to include data and code
-> availability."
-:::
+:::{.fragment}
 
-::: {.fragment}
-> "(...) an improvement over no policy, but currently insufficient for
-> reproducibility."
-:::
-
-## Reproducibility is rarer than you think
-
-*There are many so-called excuses not to work reproducibly:*
-
-<br>
-
-::: {.r-stack}
-
-::: {.fragment .fade-out fragment-index=2}
-::: {.fragment fragment-index=1}
-> "Thank you for your interest in our paper. For the [redacted] calculations I
-> used my own code, and there is no public version of this code, which could be
-> downloaded. Since this code is not very user-friendly and is under constant
-> development I prefer not to share this code."
-:::
-:::
-
-::: {.fragment .fade-out fragment-index=3}
-::: {.fragment fragment-index=2}
-> "We do not typically share our internal data or code with people outside our
-> collaboration."
-:::
-:::
-
-::: {.fragment .fade-out fragment-index=4}
-::: {.fragment fragment-index=3}
-> "When you approach a PI for the source codes and raw data, you better explain
-> who you are, whom you work for, why you need the data and what you are going
-> to do with it."
-:::
-:::
-
-::: {.fragment fragment-index=4}
-> "I have to say that this is a very unusual request without any explanation!
-> Please ask your supervisor to send me an email with a detailed, and I mean
-> detailed, explanation."
-:::
+- Sheeba & Mietchen found that only 8% of Jupyter notebooks used in publications executed without errors  ^[*Computational reproducibility of Jupyter notebooks from biomedical publications. GigaScience 13 (2024): giad113.*]
 
 :::
+
+:::{.fragment}
+
+- missing dependencies
+- missing variables
+- incorrect file/directory structure
+
+:::
+
+## Implications for research
+
+> Innovation points out paths that are possible; replication points out paths
+> that are likely; progress relies on both. ^[*"Estimating the reproducibility of
+> psychological science". Science. 349*]
+
 
 ## What does reproducible research mean?
 
@@ -293,17 +307,6 @@ of journal policy effectiveness for computational reproducibility". PNAS. 115
 ::: {.fragment fragment-index=2}
 ![](../../pages/images/reproducibility_overview.png){ width=600px }
 :::
-:::
-
-::: {.fragment fragment-index=3}
-> "Why call the course Reproducible Research, when it could just as well be
-> called Research?"
-
-::: {.justify-right}
-*\- Niclas Jareborg, NBIS data management expert*
-:::
-:::
-
 :::
 
 ## How are you handling your [data]{.green}?
