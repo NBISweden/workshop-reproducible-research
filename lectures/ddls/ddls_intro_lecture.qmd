@@ -1,0 +1,474 @@
+---
+title: "Principles and tools for FAIR research practices"
+subtitle: "Introduction"
+date: 2025-03-21
+format: 
+    revealjs:
+        embed-resources: true
+        chalkboard: false
+---
+
+## Course aim
+
+Introduction to the importance of [FAIR data management]{.green} and the use of [computational tools]{.green} to perform scalable, reproducible and transparent research. 
+
+Combines a theoretical foundation and practical exercises to learn how to apply the tools and concepts to your own research projects.
+
+## Course content
+
+:::{.small}
+
+::: {.incremental}
+- [Data management]{.green}
+    - Data Management and FAIR in Practice
+    - Organising data, files and folders in research projects
+    - Publishing data and code to public data repositories
+    - Writing Data Management Plans
+- [Version control]{.green}
+    - How to use the version control system [Git]{.green} to track changes to code
+- [Software management]{.green}
+    - How to use the package and environment manager [Conda]{.green}
+- [Workflow managers]{.green}
+    - How to use the workflow managers [Snakemake]{.green} and [Nextflow]{.green}
+- [Automated reports]{.green}
+    - How to generate automated reports using [Quarto]{.green} and [Jupyter]{.green}
+- [Containerization]{.green}
+    - How to use [Docker]{.green} and [Apptainer]{.green} to distribute
+  containerised computational environments
+:::
+
+:::
+
+## Overview
+
+:::{.panel-tabset}
+
+### Course info
+:::{.callout-note title="Course info"}
+- **Webpage**: [https://uppsala.instructure.com/courses/111591](https://uppsala.instructure.com/courses/111591)
+- **Date**: 22 September - 23 October 2025
+- **On-site location**: SciLifeLab Solna
+- **Application**: April-May 2025
+- **Examination**: Report on implementation (last session)
+- **Organizer**: National Bioinformatics Infrastructure Sweden (NBIS)
+:::
+
+### Course schedule
+
+| Date | Topic | Location |
+|-|---|-|
+| Sep 22 - Sep 23 | Pre-course reading and installation | Individual work |
+| Sep 24 | Course Introduction | Online |
+| Oct 2 | Data Management & Installation troubleshooting | Online |
+| Oct 3 | Assessment of current research practices | Individual work |
+| Oct 6 - Oct 10 | Hands-on workshop | SciLifeLab Solna |
+| Oct 14 | Introduction to assignments | Online |
+| Oct 15 - Oct 22 | Assignments and preparation for reporting/feedback session | Individual work |
+| Oct 23 | Reporting and feedback session | Online |
+
+: Schedule {.striped}
+
+:::
+
+## What is NBIS?
+
+[National Bioinformatics Infrastructure Sweden]{.green}
+
+::: {.incremental}
+ - A distributed national bioinformatics infrastructure supporting life sciences
+   in Sweden
+ - Provides hands-on bioinformatic support in a wide range of areas, training, infrastructure and a weekly drop-in
+ - Situated throughout Sweden
+ - Read more at [nbis.se](https://nbis.se/)
+:::
+
+## Why all the talk about reproducibility?
+
+::::{.columns}
+
+:::{.column width=50%}
+
+:::{.fragment fragment-index=1}
+
+In 2015 the *Open Science Collaboration* set out to replicate 100 experiments
+published in high-impact psychology journals. ^[*"Estimating the reproducibility of psychological science". Science349, aac4716(2015)*]
+
+:::
+
+:::{.fragment fragment-index=2}
+
+- <50% of the experiments could be replicated
+- effect sizes were significantly smaller in the replicated studies
+
+:::
+
+:::
+
+:::{.column width=50%}
+
+:::{.fragment fragment-index=2}
+
+![](../introduction/images/reproducibility-study-1.jpg)
+
+:::
+
+:::
+
+::::
+
+## Why all the talk about reproducibility?
+
+:::: {.columns}
+::: {.column width=50%}
+
+The same year, money spent on preclinical research that could not be reproduced
+was estimated at $28 billion in the US. ^[*"The Economics of Reproducibility in Preclinical Research". PLOS Biology 16(4): e1002626(2015)*]
+:::
+
+::: {.column width=50%}
+
+![](https://journals.plos.org/plosbiology/article/figure/image?size=large&id=10.1371/journal.pbio.1002165.g002)
+:::
+::::
+
+## Why all the talk about reproducibility?
+
+```{r make survey plot}
+#| echo: false
+library(ggplot2)
+blank_theme <- theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.border = element_blank(),
+    panel.grid   = element_blank(),
+    axis.ticks   = element_blank(),
+    axis.line    = element_blank(),
+    axis.text.x  = element_blank(),
+    axis.text.y  = element_blank(),
+    legend.text  = element_text(size=42),
+    legend.key.size = unit(3, 'cm'),
+    legend.title=element_text(size=56)
+    )
+ 
+# Create test data.
+data <- data.frame(
+  category=factor(c("Don't know", "No, there is no crisis", "Yes, a slight crisis", "Yes, a significant crisis"),
+          levels = c("Don't know", "No, there is no crisis", "Yes, a slight crisis", "Yes, a significant crisis")),
+  count=c(7, 3, 38, 52)
+)
+
+# Compute the cumulative percentages (top of each rectangle)
+data <- data[order(data$category), ]
+data$ymax = cumsum(data$count) 
+
+# Compute the bottom of each rectangle
+data$ymin = c(0, head(data$ymax, n=-1))
+ 
+# Make the plot
+survey_plot <- ggplot(data, aes(stat="identity", ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category)) +
+   geom_rect() +
+   scale_fill_manual(values=c("#d7d7d5", "#6695b9", "#ef9b9a", "#e05656")) +
+   coord_polar(theta="y") + 
+   xlim(c(2, 4)) + 
+   geom_text(aes(label = paste0(round(count / sum(count) * 100, 1), "%"), 
+        y = (ymin + ymax) / 2, x = 3.5), color = "black", size = 20) + blank_theme + labs(fill='IS THERE A\nREPRODUCIBILITY CRISIS?')
+```
+
+:::: {.columns}
+::: {.column width=50%}
+
+In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454(2016)*]
+
+::: {.small}
+
+- 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
+
+:::
+
+:::
+
+::: {.column width=50%}
+```{r plot survey}
+#| echo: false
+#| fig-width: 30
+#| fig-height: 30
+survey_plot
+```
+:::
+
+::::
+
+## Why all the talk about reproducibility?
+
+:::: {.columns}
+::: {.column width=50%}
+
+In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454(2016)*]
+
+::: {.small}
+
+- 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
+- Failure to reproduce experiments is a problem across all domains of science
+:::
+
+:::
+
+::: {.column width=50%}
+![](../introduction/images/reproducibility-study-2.jpg)
+:::
+
+::::
+
+## Reproducibility in computational research
+
+:::: {.columns}
+::: {.column width=50%}
+
+In 2018, Stodden *et al* estimated the reproducibility rate of computational
+papers published in the journal *Science*. ^[*An empirical analysis of journal policy effectiveness for computational reproducibility, Proc. Natl. Acad. Sci. U.S.A. 115 (11) 2584-2589(2018)*]
+
+::: {.small}
+- Only 26% of the studies were estimated to be reproducible
+- Failure to reproduce was mainly due to lack of data and code
+- Stricter journal guidelines gave improvement but were insufficient
+:::
+
+:::
+::: {.column width=50%}
+```{r Plot Stodden Table 4}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 8
+library(ggplot2)
+library(gtable)
+items = c(
+        "manual data wrangling", # 5
+        "expertise required", # 5
+        "resource demanding", # 14
+        "software/hardware", # 18 + 14
+        "missing code" # 23+5+5
+)
+table4 <- data.frame(
+    result = factor(items, levels = items),
+    value  = c(5, 5, 14, 32, 33)
+)
+
+ggplot(
+  table4, aes(y = result, x = value)) +
+  geom_bar( stat  = "identity", fill  = "lightblue", color = "white") +
+  theme(plot.margin=unit(c(1,1,1,1), 'cm'), axis.text.y = element_text(size=14)) +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  geom_text( aes(label = paste0(value, "%")), hjust = -.25, color = "black", size = 3.5) + 
+  labs(x = "%") +
+  scale_x_continuous(limits = c(0, 35)) +
+  ggtitle("Issues hindering reproducibility")
+```
+:::
+::::
+
+## Reproducibility in computational research
+
+More examples:
+
+:::{.fragment}
+
+- Trisovic et al found that only 26% of R files in the Harvard Dataverse could be executed as-is. ^[*A large-scale study on research code quality and execution. Scientific Data 9.1 (2022): 60.*]
+:::
+
+:::{.fragment}
+
+- Sheeba & Mietchen found that only 8% of Jupyter notebooks used in publications executed without errors  ^[*Computational reproducibility of Jupyter notebooks from biomedical publications. GigaScience 13 (2024): giad113.*]
+
+:::
+
+:::{.fragment}
+
+- missing dependencies
+- missing variables
+- incorrect file/directory structure
+
+:::
+
+## Implications for research
+
+> Innovation points out paths that are possible; replication points out paths
+> that are likely; progress relies on both. ^[*"Estimating the reproducibility of psychological science". Science349, aac4716(2015)*]
+
+
+## What does reproducible research mean?
+
+<br>
+<br>
+<br>
+
+:::{.r-stack}
+
+:::{.large .center}
+
+<table>
+<tr>
+  <td colspan="2" bgcolor="#FFFFFF" style="border-bottom: none"></td>
+  <td colspan="2" align="center" bgcolor="#6DAD2A">Data</td>
+</tr>
+  <td colspan="2" bgcolor="#FFFFFF"></td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+</tr>
+<tr>
+  <td rowspan="2" bgcolor="#6DAD2A">Code</td>
+  <td align="center" bgcolor="#A3CF76">Same</td>
+  <td align="center" bgcolor="#CFE6B8">Reproducible</td>
+  <td align="center" bgcolor="#CFE6B8">Replicable</td>
+</tr>
+<tr>
+  <td align="center" bgcolor="#A3CF76">Different</td>
+  <td align="center" bgcolor="#CFE6B8">Robust</td>
+  <td align="center" bgcolor="#CFE6B8">Generalisable</td>
+</tr>
+</table>
+
+:::
+
+:::
+
+## What does reproducible research mean? {.nostretch}
+
+:::{.center}
+![](../../pages/images/reproducibility_overview_with_logos.png){ width=800px }
+:::
+
+## What is FAIR data? {.nostretch}
+
+Metadata and data should be^[_Wilkinson, Mark et al. "The FAIR Guiding
+Principles for scientific data management and stewardship". Scientific Data 3,
+Article number: 160018 (2016)_]:
+
+- [**F**]{.green}indable: easy to find for both humans and computers. 
+- [**A**]{.green}ccessible: easy to access for users.
+- [**I**]{.green}nteroperable: integrate with other data, analysis workflows and storage.
+- [**R**]{.green}eusable: well-described to facilitate replication and/or re-use in different settings.
+
+## What is Git? {.nostretch}
+
+![](https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png){width=25%}
+
+::: {.incremental}
+- A widely used system for distributed [version control]{.green}
+- Keeps a [complete history]{.green} of the changes you make to your files
+- Tracks [who contributed what]{.green} to your code
+- Help you [version, backup and share]{.green} your code and documents
+- Mainly used for small [text files]{.green}, not large or binary files
+:::
+
+## What is Conda? {.nostretch}
+
+![](../conda/images/conda-logo.png){width=25%}
+
+:::{.incremental}
+- A package, dependency, and environment manager
+  - [package]{.green}: any type of program (_e.g._ python, bowtie2)
+  - [dependency]{.green}: other software required by a package
+  - [environment]{.green}: a distinct collection of packages
+- Conda solves package dependencies automatically
+- Environments can be defined via text-files
+:::
+
+## What are workflow managers? {.nostretch}
+
+::::{.columns}
+:::{.column width=50%}
+![](../snakemake/images/snakemake_logo.png){width=50% fig-align="center"}
+:::
+:::{.column width=50%}
+![](https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow-logo-bg-light.png){width=50%}
+:::
+::::
+
+:::{.incremental}
+- Workflow managers are software that automate computational steps in an analysis
+- Keep track of input/output, creation date etc.
+- [Snakemake]{.green} and [Nextflow]{.green} are two of the most common
+- Scale from laptops to HPC systems
+- Integrated support for software management via conda and containers
+- Configurable
+- Automatically run steps in parallell
+:::
+
+## What is Quarto? {.nostretch}
+
+![](../quarto/images/quarto-logo.png){width=33%}
+
+:::{.incremental}
+- An open source publishing system
+- Connects code, text and plots
+- Supports several programming languages (_e.g._ R, python)
+- Supports Jupyter notebooks
+- Render via command line/GUI tool into several formats (_e.g._ HTML, slides, PDF)
+- (This presentation is written as a Quarto document)
+:::
+
+## What is Jupyter? {.nostretch}
+
+
+![](https://docs.jupyter.org/en/latest/_static/jupyter.svg){.absolute top=0 left=0 width="350" height="300"}
+
+<br>
+<br>
+<br>
+
+:::{.incremental}
+- An open source project for interactive data science and computing
+- Allows you to document, edit and run code directly in your browser
+- Also connects your code to your results (plots, tables _etc._)
+- Notebooks are textfiles in JSON format
+- Support for various programming languages
+:::
+
+## What are containers? {.nostretch}
+
+::::{.columns}
+:::{.column width=50%}
+![](../containers/images/docker-logo.webp){width=33%}
+:::
+:::{.column width=50%}
+![](https://apptainer.org/docs/user/main/_static/logo.png){width=33%}
+:::
+::::
+
+:::{.incremental}
+- Standardized packaging for software, dependencies as well as the operating system
+- Docker and Apptainer (formerly Singularity) most widely used
+- Lets you create and run applications securely in isolation
+- A container contains all the necessary components to run your analyses (code, configuration files, software, even data)
+- Containers run the same way independent of the host (_e.g._ your laptop, HPC servers)
+:::
+
+
+## "What's in it for me?"
+
+::: {.fragment}
+[Before]{.green} the project:
+
+- Improved structure and organisation
+- Forced to think about scope and limitations
+:::
+
+::: {.fragment}
+[During]{.green} the project:
+
+- Easier to re-run analyses and generate results after updates and/or changes
+- Closer interaction between collaborators
+- Much of the manuscript "writes itself"
+:::
+
+
+::: {.fragment}
+[After]{.green} the project:
+
+- Faster resumption of research by others (or, more likely, your future self)
+- Increased visibility in the scientific community
+:::
+
+
+## Questions? {.center}
