@@ -1025,8 +1025,11 @@ configuration file to Snakemake. In this file we can collect all the
 project-specific settings, sample ids and so on. This also enables us to write
 the Snakefile in a more general manner so that it can be better reused between
 projects. Like several other files used in these tutorials, this file should be
-in [YAML format](https://en.wikipedia.org/wiki/YAML). Create the file below and
-save it as `config.yml` (here we change back to using 25000 reads):
+in [YAML format](https://en.wikipedia.org/wiki/YAML). A 
+[command-line YAML linter](https://yamllint.readthedocs.io/en/stable/) or an 
+[online linter](https://yamline.com/validator/) can help you debug YAML syntax 
+if you encounter problems.Create the file below andsave it as `config.yml` 
+(here we change back to using 25000 reads):
 
 ```{.yaml filename="config.yml"}
 max_reads: 25000
