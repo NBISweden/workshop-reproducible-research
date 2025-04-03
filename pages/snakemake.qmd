@@ -1028,7 +1028,7 @@ projects. Like several other files used in these tutorials, this file should be
 in [YAML format](https://en.wikipedia.org/wiki/YAML). A 
 [command-line YAML linter](https://yamllint.readthedocs.io/en/stable/) or an 
 [online linter](https://yamline.com/validator/) can help you debug YAML syntax 
-if you encounter problems.Create the file below andsave it as `config.yml` 
+if you encounter problems. Create the file below andsave it as `config.yml` 
 (here we change back to using 25000 reads):
 
 ```{.yaml filename="config.yml"}
