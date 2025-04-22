@@ -138,12 +138,12 @@ data$ymin = c(0, head(data$ymax, n = -1))
 
 # Make the plot
 library("ggplot2")
-survey_plot <- ggplot(data, aes(stat = "identity",
-                                ymax = ymax,
-                                ymin = ymin,
-                                xmax = 4,
-                                xmin = 3,
-                                fill = category)) +
+ggplot(data, aes(stat = "identity",
+                 ymax = ymax,
+                 ymin = ymin,
+                 xmax = 4,
+                 xmin = 3,
+                 fill = category)) +
    geom_rect() +
    scale_fill_manual(values = c("#d7d7d5", "#6695b9", "#ef9b9a", "#e05656")) +
    coord_polar(theta = "y") +
