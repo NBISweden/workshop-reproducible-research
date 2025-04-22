@@ -105,44 +105,43 @@ was estimated at $28 billion in the US. ^[*"The Economics of Reproducibility in 
 
 ```{r make survey plot}
 #| echo: false
-library(ggplot2)
-blank_theme <- theme_minimal() +
-  theme(
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    panel.border = element_blank(),
-    panel.grid   = element_blank(),
-    axis.ticks   = element_blank(),
-    axis.line    = element_blank(),
-    axis.text.x  = element_blank(),
-    axis.text.y  = element_blank(),
-    legend.text  = element_text(size=42),
-    legend.key.size = unit(3, 'cm'),
-    legend.title=element_text(size=56)
-    )
- 
-# Create test data.
-data <- data.frame(
-  category=factor(c("Don't know", "No, there is no crisis", "Yes, a slight crisis", "Yes, a significant crisis"),
-          levels = c("Don't know", "No, there is no crisis", "Yes, a slight crisis", "Yes, a significant crisis")),
-  count=c(7, 3, 38, 52)
+# Create test data
+categories <- c(
+    "Don't know",
+    "No, there is no crisis",
+    "Yes, a slight crisis",
+    "Yes, a significant crisis"
 )
+data <- data.frame(category = factor(categories, levels = categories),
+                   count = c(7, 3, 38, 52))
 
 # Compute the cumulative percentages (top of each rectangle)
 data <- data[order(data$category), ]
-data$ymax = cumsum(data$count) 
+data$ymax = cumsum(data$count)
 
 # Compute the bottom of each rectangle
-data$ymin = c(0, head(data$ymax, n=-1))
- 
+data$ymin = c(0, head(data$ymax, n = -1))
+
 # Make the plot
-survey_plot <- ggplot(data, aes(stat="identity", ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category)) +
+library("ggplot2")
+survey_plot <- ggplot(data, aes(stat = "identity",
+                                ymax = ymax,
+                                ymin = ymin,
+                                xmax = 4,
+                                xmin = 3,
+                                fill = category)) +
    geom_rect() +
-   scale_fill_manual(values=c("#d7d7d5", "#6695b9", "#ef9b9a", "#e05656")) +
-   coord_polar(theta="y") + 
-   xlim(c(2, 4)) + 
-   geom_text(aes(label = paste0(round(count / sum(count) * 100, 1), "%"), 
-        y = (ymin + ymax) / 2, x = 3.5), color = "black", size = 20) + blank_theme + labs(fill='IS THERE A\nREPRODUCIBILITY CRISIS?')
+   scale_fill_manual(values = c("#d7d7d5", "#6695b9", "#ef9b9a", "#e05656")) +
+   coord_polar(theta = "y") +
+   xlim(c(2, 4)) +
+   geom_text(aes(label = paste0(round(count / sum(count) * 100, 1), "%"),
+                 y = (ymin + ymax) / 2,
+                 x = 3.5),
+             color = "black", size = 20) +
+   theme_void() +
+   theme(legend.title = element_text(size = 70),
+         legend.text  = element_text(size = 50)) +
+   labs(fill = 'Is there a\nreproducibility crisis?')
 ```
 
 :::: {.columns}
@@ -205,34 +204,39 @@ papers published in the journal *Science*. ^[*An empirical analysis of journal p
 :::
 
 :::
-::: {.column width=50%}
+
+::: {.column}
 ```{r Plot Stodden Table 4}
 #| echo: false
 #| fig-width: 10
 #| fig-height: 8
-library(ggplot2)
 library(gtable)
 items = c(
-        "manual data wrangling", # 5
-        "expertise required", # 5
-        "resource demanding", # 14
-        "software/hardware", # 18 + 14
-        "missing code" # 23+5+5
+    "manual data wrangling", # 5
+    "expertise required", # 5
+    "resource demanding", # 14
+    "software/hardware", # 18 + 14
+    "missing code" # 23+5+5
 )
 table4 <- data.frame(
     result = factor(items, levels = items),
     value  = c(5, 5, 14, 32, 33)
 )
-
 ggplot(
-  table4, aes(y = result, x = value)) +
-  geom_bar( stat  = "identity", fill  = "lightblue", color = "white") +
-  theme(plot.margin=unit(c(1,1,1,1), 'cm'), axis.text.y = element_text(size=14)) +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  geom_text( aes(label = paste0(value, "%")), hjust = -.25, color = "black", size = 3.5) + 
-  labs(x = "%") +
-  scale_x_continuous(limits = c(0, 35)) +
-  ggtitle("Issues hindering reproducibility")
+    table4, aes(y = result, x = value)) +
+    geom_bar(stat = "identity", fill = "#95b540", color = "black") +
+    theme(plot.margin = unit(c(1, 1, 1, 1), 'cm'),
+          axis.text.y = element_text(size=14)) +
+    guides(fill = guide_legend(reverse = TRUE)) +
+    geom_text(aes(label = paste0(value, "%")),
+              hjust = -0.25,
+              color = "black",
+              size = 4.5) +
+    labs(x = "Proportion (%)", y = NULL) +
+    theme_bw() +
+    scale_x_continuous(limits = c(0, 35)) +
+    ggtitle("Issues hindering reproducibility") +
+    theme(axis.text = element_text(size = 14))
 ```
 :::
 ::::
