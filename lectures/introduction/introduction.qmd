@@ -68,43 +68,57 @@ format: revealjs
 ## Why all the talk about reproducibility?
 
 :::: {.columns}
-::: {.column width=50%}
 
-In 2015 the *Open Science Collaboration* set out to replicate 100 experiments
-published in high-impact psychology journals. ^[*"Estimating the reproducibility of psychological science". Science349, aac4716(2015)*]
+::: {.column}
+In 2015 the _Open Science Collaboration_ set out to replicate 100 experiments
+published in high-impact psychology journals. ^[*"Estimating the reproducibility of psychological science". Science349, aac4716 (2015)*]
 
 <br>
 
 ::: {.small}
-- <50% of the experiments could be replicated
-- effect sizes were significantly smaller in the replicated studies
+- Less than 50% of the experiments could be replicated
+- Effect sizes were significantly smaller in the replicated studies
 :::
 :::
 
-::: {.column width=50%}
+::: {.column}
 ![](images/reproducibility-study-1.jpg)
 :::
+
 ::::
 
 ## Why all the talk about reproducibility?
 
 :::: {.columns}
-::: {.column width=50%}
 
+::: {.column}
 The same year, money spent on preclinical research that could not be reproduced
-was estimated at $28 billion in the US. ^[*"The Economics of Reproducibility in Preclinical Research". PLOS Biology 16(4): e1002626(2015)*]
+was estimated at $28 billion in the US. ^[*"The Economics of Reproducibility in Preclinical Research". PLOS Biology 16(4): e1002626 (2015)*]
 :::
 
-::: {.column width=50%}
-
+::: {.column}
 ![](https://journals.plos.org/plosbiology/article/figure/image?size=large&id=10.1371/journal.pbio.1002165.g002)
 :::
+
 ::::
 
 ## Why all the talk about reproducibility?
 
-```{r make survey plot}
+:::: {.columns}
+
+::: {.column}
+In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454 (2016)*]
+
+::: {.small}
+- 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
+:::
+:::
+
+::: {.column}
+```{r plot survey}
 #| echo: false
+#| fig-width: 30
+#| fig-height: 30
 # Create test data
 categories <- c(
     "Don't know",
@@ -143,27 +157,6 @@ survey_plot <- ggplot(data, aes(stat = "identity",
          legend.text  = element_text(size = 50)) +
    labs(fill = 'Is there a\nreproducibility crisis?')
 ```
-
-:::: {.columns}
-::: {.column width=50%}
-
-In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454(2016)*]
-
-::: {.small}
-
-- 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
-
-:::
-
-:::
-
-::: {.column width=50%}
-```{r plot survey}
-#| echo: false
-#| fig-width: 30
-#| fig-height: 30
-survey_plot
-```
 :::
 
 ::::
@@ -171,20 +164,18 @@ survey_plot
 ## Why all the talk about reproducibility?
 
 :::: {.columns}
-::: {.column width=50%}
 
+::: {.column}
 In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scientists lift the lid on reproducibility". Nature 533: 452–454(2016)*]
 
 ::: {.small}
-
 - 90% agreed that there is a 'slight' or 'significant' reproducibility crisis
 - Failure to reproduce experiments is a problem across all domains of science
 :::
-
 :::
 
-::: {.column width=50%}
-![](images/reproducibility-study-2.jpg)
+::: {.column}
+![](images/reproducibility-study-2.jpg){width=70%}
 :::
 
 ::::
@@ -192,17 +183,16 @@ In 2016, 1,576 scientists were surveyed about reproducibility. ^[*"1,500 scienti
 ## Reproducibility in computational research
 
 :::: {.columns}
-::: {.column width=50%}
 
-In 2018, Stodden *et al* estimated the reproducibility rate of computational
-papers published in the journal *Science*. ^[*An empirical analysis of journal policy effectiveness for computational reproducibility, Proc. Natl. Acad. Sci. U.S.A. 115 (11) 2584-2589(2018)*]
+::: {.column}
+In 2018, Stodden _et al_ estimated the reproducibility rate of computational
+papers published in the journal _Science_. ^[*An empirical analysis of journal policy effectiveness for computational reproducibility, Proc. Natl. Acad. Sci. U.S.A. 115 (11) 2584-2589 (2018)*]
 
 ::: {.small}
 - Only 26% of the studies were estimated to be reproducible
 - Failure to reproduce was mainly due to lack of data and code
 - Stricter journal guidelines gave improvement but were insufficient
 :::
-
 :::
 
 ::: {.column}
@@ -239,6 +229,7 @@ ggplot(
     theme(axis.text = element_text(size = 14))
 ```
 :::
+
 ::::
 
 ## Reproducibility in computational research
@@ -246,30 +237,34 @@ ggplot(
 More examples:
 
 :::{.fragment}
+- Trisovic _et al_ (2022) found that only 26% of R files in the Harvard
+  Dataverse could be executed as-is.^[*A large-scale study on research code quality and execution. Scientific Data 9.1 (2022): 60.*]
+:::
 
-- Trisovic et al found that only 26% of R files in the Harvard Dataverse could be executed as-is. ^[*A large-scale study on research code quality and execution. Scientific Data 9.1 (2022): 60.*]
+:::{.fragment}
+- Sheeba & Mietchen (2024) found that only 8% of Jupyter notebooks used in
+  publications executed without errors.^[*Computational reproducibility of Jupyter notebooks from biomedical publications. GigaScience 13 (2024): giad113.*]
 :::
 
 :::{.fragment}
 
-- Sheeba & Mietchen found that only 8% of Jupyter notebooks used in publications executed without errors  ^[*Computational reproducibility of Jupyter notebooks from biomedical publications. GigaScience 13 (2024): giad113.*]
-
-:::
-
-:::{.fragment}
-
-- missing dependencies
-- missing variables
-- incorrect file/directory structure
+- Missing dependencies
+- Missing variables
+- Incorrect file/directory structure
 
 :::
 
 ## Implications for research
 
-> Innovation points out paths that are possible; replication points out paths
-> that are likely; progress relies on both. ^[*"Estimating the reproducibility of
-> psychological science". Science. 349*]
+<br>
+<br>
+<br>
+<br>
 
+::: {.large}
+> Innovation points out paths that are possible; replication points out paths
+> that are likely; progress relies on both. ^[*"Estimating the reproducibility of psychological science". Science. 349*]
+:::
 
 ## What does reproducible research mean?
 
@@ -307,10 +302,10 @@ More examples:
 :::
 :::
 
-::: {.fragment .fade-out fragment-index=3}
 ::: {.fragment fragment-index=2}
-![](../../pages/images/reproducibility_overview.png){ width=600px }
+![](../../pages/images/reproducibility_overview.png){width=600px}
 :::
+
 :::
 
 ## How are you handling your [data]{.green}?
