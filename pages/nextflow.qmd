@@ -1572,9 +1572,9 @@ to building, developing and maintaining Nextflow workflows. In fact, if you have
 sequenced data at _e.g._ the National Genomics Infrastructure ([NGI](https://ngisweden.scilifelab.se/)),
 you can be sure that the data processing has been run using one of the nf-core
 pipelines! While the community only started in 2018 (with a [Nature Biotechnology](https://www.nature.com/articles/s41587-020-0439-x)
-paper in 2020), it already has over 30 production-ready pipelines with
-everything from genomics, transcriptomics, proteomics and metagenomics - and
-more being developed all the time.
+paper in 2020), it already has over 130 pipelines, 70 subworkflows as well as
+over 1500 software-specific modules for use both in development and production,
+and more being developed all the time.
 
 The nf-core pipelines all work in the same way, in that they have the same exact
 base for inputs, parameters and arguments, making them all highly similar to
