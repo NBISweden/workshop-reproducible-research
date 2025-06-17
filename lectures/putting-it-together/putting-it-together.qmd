@@ -127,6 +127,8 @@ _Track the **full** environment and connect your code in a workflow_
 [Version control]{.green}
 
 - **Git** – Widely used and a lot of tools available + GitHub/BitBucket.
+- **Jujutsu** - New "front-end" for Git by Google, with a smaller and improved
+  mental model for version control.
 - **Mercurial** – Distributed model just like Git, close to Sourceforge.
 - **Subversion** – Centralized model unlike git/mercurial; no local repository
   on your computer and somewhat easier to use.
