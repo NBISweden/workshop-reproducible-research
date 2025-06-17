@@ -366,6 +366,12 @@ you successfully installed Nextflow using Conda you can now deactivate the
 environment using `conda deactivate` and continue with the other setups, as
 needed.
 
+Nextflow also has its own [language server](https://github.com/nextflow-io/language-server)
+and [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow)
+that can help with syntax highlighting, code navigation, diagnostics, _etc._,
+which you can install if you like: read more at the [Nextflow
+documentation](https://nextflow.io/docs/latest/vscode.html).
+
 ## Installing Quarto
 
 Installing Quarto is easiest by going to the [official
