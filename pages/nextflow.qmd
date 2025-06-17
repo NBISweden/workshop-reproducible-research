@@ -1345,7 +1345,7 @@ nextflow run main.nf -with-apptainer image.sif
 If you don't want to supply this at every execution, you can also add it
 directly to your configuration file:
 
-```bash
+```nextflow
 # Docker configuration
 process.container = 'image-name'
 docker.enabled = true
@@ -1407,6 +1407,7 @@ You can use either of the methods described above with your configuration file
 as well, here exemplified using an `environment.yml` file:
 
 ```nextflow
+conda.enabled = true
 process.conda = 'mrsa-environment.yml'
 ```
 
