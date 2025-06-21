@@ -1596,3 +1596,72 @@ format name `line` here is used for its similarity to `oneline`. You can add any
 number of custom formats you like using such config specifications. If you're
 using aliases as in the section above you might change the `glo` alias to be
 `git log --pretty=line` instead, which will give you the nicer log on one line.
+
+### Useful configurations
+
+Git has many configuration options, some of which we've already gone through,
+while most we haven't mentioned. We'll go through some of the more useful and
+commonly used ones here and you can add those that appeal to you to your Git
+configuration.
+
+The following options will (1) change the algorithm used for diffs to one
+generally considered to be better and more easily viewed, and (2) coloured moved
+lines differently than added or removed lines. These two options together make
+the Git diffs more pleasant to read and work with.
+
+```conf
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+```
+
+But there is one more thing that can make the diff output _even nicer_, and
+that's _word highlighting_. There are several ways of achieving this, but the
+following configuration uses `diff-highlight`, which is bundled with Git and
+thus doesn't require any additional work.
+
+```conf
+[pager]
+    diff = diff-highlight | less
+```
+
+::: {.callout-note}
+While `diff-highlight` is bundled with Git, Apple installs Git in a slightly
+weird manner, and a common workaround is installing Git with the package manager
+[Homebrew](https://brew.sh/) and adding the following line to your `.bashrc`:
+
+```bash
+export PATH="`brew --prefix git`/share/git-core/contrib/diff-highlight/:$PATH"
+```
+:::
+
+Another simple yet useful option is sorting tags numerically:
+
+```conf
+[tag]
+    sort = version:refname
+```
+
+You can additionally always push tags along without having to add `--tags` as
+well as automatically removing local tags no longer on the remote:
+
+```conf
+[push]
+    followTags = true
+[fetch]
+    pruneTags = true
+```
+
+If you are consistent with naming branches the same locally as on your remote,
+you can also use the following option to automatically setup remote branch
+tracking without having to do `--set-upstream` when pushing:
+
+```conf
+[push]
+    autoSetupRemote = true
+```
+
+There are many more configuration options that come with Git, but many of them
+are either less universally applicable or more opinionated than the ones listed
+here. If you want to find out more about the other Git configuration options
+available you can always go to [the documentation](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration).
