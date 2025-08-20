@@ -288,13 +288,13 @@ and use them in conjunction with Rosetta. This can be done by specifying
 `--subdir osx-64` when creating the environment, _e.g._:
 
 ```bash
-conda env create -f <path-To-Environment.yml> --subdir osx-64
+conda env create -f <path/to/environment.yml> --subdir osx-64
 ```
 
 or
 
 ```bash
-conda create -n myenv <packages...> --subdir osx-64
+conda create -n myenv <packages ...> --subdir osx-64
 ```
 
 ::: {.callout-important}
@@ -304,6 +304,9 @@ To make sure that subsequent installations into this environment also use the
 ```bash
 conda config --env --set subdir osx-64
 ```
+
+If you want to simplify this whole process you can use [this
+script](https://github.com/fasterius/conda-intel-env).
 :::
 
 ## Installing Snakemake
