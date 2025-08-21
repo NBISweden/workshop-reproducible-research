@@ -16,6 +16,14 @@ format:
 - Large active community in _e.g._ [nf-core]{.green}
 :::
 
+## Nextflow adoption
+
+Nextflow has grown rapidly since its creation, and is the most commonly used
+workflow manager in bioinformatics since 2024. ^[*"Empowering bioinformatics
+communities with Nextflow and nf-core". Genome Biol 26, 228 (2025)*]
+
+![](images/nextflow-adoption.webp){height=475 fig-align=center}
+
 ## Concepts and nomenclature
 
 ![](images/concepts.png){height=300 fig-align=center}
