@@ -181,12 +181,9 @@ shell:
     """
 ```
 
-You may have seen that one can use containers through both Snakemake and
-Nextflow if you've gone through their tutorial's extra material, but we can
-also use containers directly inside scripts in a very simple way. Let's imagine
-we want to run the above command using containers instead. How would that look?
-It's quite simple, really: first we find a container image that has `bowtie2`
-installed, and then prepend the command with `docker run <image>`.
+Let's imagine we want to run the above command using containers instead. How
+would that look? First we find a container image that has `bowtie2` installed,
+and then prepend the command with `docker run <image>`.
 
 First of all we need to download the genome to index though, so run the
 following to download and prepare the input for Bowtie2:
@@ -548,6 +545,15 @@ for the same effect).
 ```bash
 docker run -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
 ```
+
+::: {.callout-tip}
+While the general strategy we've outlined here is sound, it can feel a bit
+cumbersome to keep track of all the various directories and bind mounts we're
+using, but there is an _even better_ strategy: using workflow managers! Both
+Snakemake and Nextflow can handle all of this for you, and you can focus purely
+on the command you want to execute in what container. More information about
+this can be found in their respective "extra materials" section.
+:::
 
 ### Seqera containers
 
