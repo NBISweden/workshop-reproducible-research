@@ -772,7 +772,7 @@ In this section we've learned:
 
 During these tutorials we have been working on a case study about the
 multi-resistant bacteria MRSA. Here we will build and run a Docker container
-that contains all the work we've done so far.
+that contains the environment for all the work we've done so far.
 
 - We've [set up a GitHub repository](git.html#working-remotely) for version
   control and for hosting our project.
@@ -796,12 +796,10 @@ so), in particular if you're on a slow internet connection.
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
 [building images](#building-images) section, although with some small
-modifications. The main difference is that we add the project files needed for
-executing the workflow (mentioned in the previous paragraph), and install the
-conda packages using `environment.yml`. If you look at the `CMD` command you can
-see that it will run the whole Snakemake workflow by default.
+modifications. The main difference is that we install the conda packages using
+`environment.yml`.
 
-Now run `docker build` as before, tag the image with `my_docker_project`:
+- Now run `docker build` as before, tag the image with `my_docker_project`:
 
 ::: {.callout-caution title="Building on ARM64 systems"}
 This particular environment (which is quite complicated) has some packages that
@@ -818,26 +816,21 @@ Go get a coffee while the image builds (or you could use `docker pull
 nbisweden/workshop-reproducible-research` which will download the same image).
 
 Validate with `docker image ls`. Now all that remains is to run the whole thing
-with `docker run`. We just want to get the results, so mount the directory
-`/course/results/` to, say, `results/` in your current directory. Click
-below to see how to write the command.
+with the appropriate command. The command to execute the Snakemake workflow is
+`snakemake --configfile config.yml -p -c 1`, and we'll also need to mount the
+current directory into the container's WORKDIR, which is `/course`.
+Click below to see how to write the command.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-If building your own image:
-
 ```bash
-docker run -v $(pwd)/results:/course/results my_docker_project
-```
-
-If you pulled the image from DockerHub:
-
-```bash
-docker run -v $(pwd)/results:/course/results nbisweden/workshop-reproducible-research
+docker run -v $(pwd):/course my_docker_project snakemake --configfile config.yml -p -c 1
 ```
 :::
 
 Well done! You now have an image that allows anyone to exactly reproduce your
-analysis workflow (if you first `docker push` to Dockerhub that is).
+analysis workflow. All you need to do now is to make sure all the code and the
+container is hosted at _e.g._ GitHub and/or DockerHub, together with
+documentation about the commands to run.
 
 ## Apptainer
 
