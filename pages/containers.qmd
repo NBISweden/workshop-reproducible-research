@@ -468,23 +468,23 @@ Now it's time to make your own Dockerfile to reproduce the results from the
 [Conda tutorial](conda.html#working-with-environments). If you haven't done the
 tutorial, it boils down to creating a Conda environment file, setting up that
 environment, downloading three RNA-seq data files, and running FastQC on those
-files. We will later package and run the whole RNA-seq workflow in a Docker
-container, but for now we keep it simple to reduce the size and time required.
+files. The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and
+running the analysis.
 
-The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and
-running the analysis. A copy of this file should also be available in your
-current directory. If we want to use the same script we need to include it in
-the image. A basic outline of what we need to do is:
+Remember from the lecture that the best way to use containers is, generally, as
+an advanced environment manager together with a Git repository that tracks code,
+documentation and the environment specification. What we need to do is thus the
+following:
 
 1. Create a file called `conda.Dockerfile`
 2. Start the image from the `my_docker_image` we just built
-3. Install the package `fastqc` which is required for the analysis.
-4. Add the `run_qc.sh` script to the image
-5. Set the default command of the image to run the `run_qc.sh` script.
+3. Install the package `fastqc` which is required for the analysis
+4. Run the `run_qc.sh` script using the new image and the appropriate bind
+   mounts
 
-We'll now go through these steps in more detail. Try to add the
-corresponding code to `conda.Dockerfile` on your own, and if you get stuck
-you can click to reveal the solution below under "Click to show solution".
+We'll now go through these steps in more detail. Try to add the corresponding
+code to `conda.Dockerfile` on your own, and if you get stuck you can click to
+reveal the solution below under "Click to show solution".
 
 **Set image starting point**
 
@@ -511,38 +511,43 @@ added as a default. The only thing we need to do is to add the `bioconda`
 channel to the configuration, but other than that there's not much else needed
 for Conda to work when using the Miniforge base image.
 
-**Add the analysis script**
-
-Use the `COPY` instruction to Add `run_qc.sh` to the image. The syntax is
-`COPY SOURCE TARGET`. In this case `SOURCE` is the `run_qc.sh`
-script and `TARGET` is a path inside the image, for simplicity it can be
-specified with `.`.
-
-**Set default command**
-
-Use the `CMD` instruction to set the default command for the image to `bash
-run_qc.sh`.
-
 ::: {.callout-tip collapse="true" title="Click to show solution"}
 ```Dockerfile
 FROM my_docker_image
 
 RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
     conda clean -a
-
-COPY run_qc.sh .
-
-CMD bash run_qc.sh
 ```
 :::
 
-Build the image and tag it `my_docker_conda`.
+- Build the image and tag it `my_docker_conda`.
 
 ```bash
 docker build -t my_docker_conda -f conda.Dockerfile .
 ```
 
-Verify that the image was built using `docker image ls`.
+- Verify that the image was built using `docker image ls`.
+
+- Execute the `run_qc.sh` script inside the container with the appropriate bind
+  mounts:
+
+```bash
+docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
+```
+
+You should now see the script to completion, but you won't find the output files
+in your working directory. The script creates the `data` and `results`
+directories and puts its files there, but since we're running from within the
+container in the root (`/`) directory, the directories created become `/data`
+and `/results`, which are _not_ mounted (since they're not inside the
+`/analysis` directory). What we can do is to add the `-w` (`--workdir`) flag,
+which tells Docker where execution should happen, _i.e._ what should be the
+working directory (you could instead add `WORKDIR /analysis` to the Dockerfile
+for the same effect).
+
+```bash
+docker run -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
+```
 
 ### Seqera containers
 
@@ -580,10 +585,11 @@ ready". The image can now be used in the same way as for any other image.
 
 Since we previously ran the `run_qc.sh` script with our image, let's do the same
 here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
-`run_qc.sh` will be available in the container:
+`/tmp/run_qc.sh` will be available in the container, as well as the `-w /tmp` to
+set the workdir:
 
-- Execute `docker run -v $(pwd):/tmp <CONTAINER LINK> bash run_qc.sh` from the
-  command line.
+- Execute `docker run -v $(pwd):/tmp -w /tmp <CONTAINER_LINK> /tmp/run_qc.sh`
+  from the command line.
 
 This will automatically download the Seqera image and start the script as soon
 as it's ready.
@@ -611,6 +617,7 @@ In this section we've learned:
   `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
 - How to use `docker build` to construct and tag an image from a Dockerfile.
 - How to create your own Dockerfile.
+- How to use `-w` to set the working directory at runtime.
 - How to create an image using Seqera Containers.
 :::
 
