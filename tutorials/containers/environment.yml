@@ -2,27 +2,28 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python
-  - fastqc
-  - seqtk
-  - snakemake>=8
-  - multiqc
-  - jupyter
-  - bowtie2
-  - tbb
-  - samtools
-  - subread>=2
   - bedtools
+  - bioconductor-geoquery
+  - bioconductor-rtracklayer
+  - bowtie2
+  - fastqc
+  - graphviz
+  - jupyter
+  - multiqc
+  - python
+  - quarto
   - r-base
   - r-ggplot2
-  - r-reshape2
-  - r-stringi
   - r-pheatmap
-  - r-rmarkdown
   - r-r.utils
-  - bioconductor-rtracklayer
-  - bioconductor-geoquery
+  - r-reshape2
+  - r-rmarkdown
+  - r-stringi
+  - samtools
+  - seqtk
+  - snakemake>=8
+  - subread>=2
+  - tbb
   - wget
-  - graphviz
-  - xorg-libxrender
   - xorg-libxpm
+  - xorg-libxrender
