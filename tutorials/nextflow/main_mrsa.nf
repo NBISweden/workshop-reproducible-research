@@ -53,7 +53,7 @@ process DOWNLOAD_FASTQ_FILES {
 
     script:
     """
-    wget ${figshare_link} -O ${sra_id}.fastq.gz
+    curl -L -A "Mozilla/5.0" ${figshare_link} -o ${sra_id}.fastq.gz
     """
 }
 
