@@ -2388,3 +2388,61 @@ There's a VSCode plugin for Snakefmt which you can use to automatically rewrite
 your Snakefiles on save. Search for "Snakefmt" in the plugin catalog.
 
 :::
+
+### Turning your workflow into a command-line tool
+
+Did you feel it was cumbersome to write `snakemake -c 1 ...` when running the
+workflow? Do you wish your workflow could instead be executed as a standalone
+command-line tool, *e.g.*: `my-workflow --input samples.csv ...`? This can be
+achieved with the [snk](https://snk.wytamma.com/) tool. Snk allows you to install a Snakemake workflow so that it becomes available as a command line interface.
+
+You can install `snk` with conda:
+
+```bash
+conda install -c bioconda snk python
+```
+
+By default, snk installs Snakemake workflows from a GitHub repo or a local path with *e.g.*:
+
+```bash
+snk install <GitHub username>/<repo name>
+```
+
+```bash
+snk install <local-path-to-workflow>
+```
+
+but this requires that the repo or local folder contains a file named `Snakefile` either in the root or in a subfolder called `workflow/`.
+
+You can however specify non-standard paths to the workflow you're installing. Let's try this out with the `snakefile_mrsa.smk` workflow:
+
+```bash
+snk install --snakefile snakefile_mrsa.smk --config config.yml --name mrsa .
+```
+
+Here we specify the Snakefile to install with `--snakefile` and the associated
+configuration file with `--config`. We also give the workflow a name with
+`--name`. The final dot `.` tells snk to use the current directory as the
+workflow path during installation. You should hope fully have seen `Successfully
+installed mrsa!` printed to the terminal.
+
+Once installed, you can run `mrsa -h` to get a list of options and commands for
+the installed workflow. Try it out in a fresh folder (without any of the files we've already produced). Create a new folder called `mrsa-testrun` and navigate into it. 
+
+::: {.callout-note}
+
+If you followed the section on how to [read samples from a
+file](#reading-samples-from-a-file-instead-of-hard-coding-them) you will have to
+supply the `samples.csv` file to the `mrsa` workflow. The example below assumes
+you created the `mrsa-testrun` folder in a subdirectory within the
+`tutorials/snakemake/` folder:
+
+:::
+
+In this newly created folder you can run the pipeline with:
+
+```bash
+mrsa run --sample-list ../samples.csv
+```
+
+Congratulations! You have now turned the MRSA workflow into a command-line tool (which runs Snakemake under the hood). You can even go one step further and skip the `snk install` step by directly building a [standalone workflow package](https://snk.wytamma.com/workflow_packages/).
