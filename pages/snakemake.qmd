@@ -1104,10 +1104,10 @@ all the rules, only the ones with interesting output:
   probably the most important log to save.
 
 Now add a log file to some or all of the rules above. A good place to save them
-to would be `results/logs/<rule_name>/`. In order to avoid that multiple jobs
-write to the same files Snakemake requires that all output and log files contain
-the same wildcards, so be sure to include any wildcards used in the rule in the
-log name as well, _e.g._ `{some_wildcard}.log`.
+to would be `results/logs/<rule_name>/`. To avoid having multiple jobs write to
+the same files Snakemake requires that all output and log files contain the same
+wildcards, so be sure to include any wildcards used in the rule in the log name
+as well, _e.g._ `{some_wildcard}.log`.
 
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
@@ -1329,7 +1329,7 @@ that are declared as temporary in your workflow you can instead run with the
 `--delete-temp-output` which will delete all remaining `temp` files.
 :::
 
-Snakemake has a number of additional options for marking files:
+Snakemake has a number of additional options for marking files, including:
 
 - `protected("...")`: The output file should be write-protected. Typically used
   to protect files that require a huge amount of computational resources from
@@ -1559,11 +1559,11 @@ the workflow as input/output files to rules:
 - Sometimes we don't know the names of all the files that a program can
   generate and we may only be interested in a few of them.
 
-All of these issues can be dealt with by using the `shadow` option for a rule.
-The shadow option results in that each execution of the rule is run in an
-isolated temporary directory (located in `.snakemake/shadow/` by default).
-There are a few options for `shadow` (for the full list of these options see
-the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
+All of these issues can be dealt with by using the `shadow` directive for a
+rule. This causes each execution of the rule to run in an isolated temporary
+directory (located in `.snakemake/shadow/` by default). There are a few options
+for `shadow` (for the full list of these options see the [Snakemake
+docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
 
 The most simple is `shadow: "minimal"`, which means that the rule is executed in
 an empty shadow directory that the input files to the rule have been symlinked into.
@@ -1703,7 +1703,7 @@ Now change the `multiqc` and `generate_count_table` rules that use the `expand` 
 ```python
     input:
         expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = config["samples"].keys()
+            sample_id = config["samples"].keys())
 ```
 
 Try to change the `generate_count_table` rule in the same way. Check the solution below if you need help.
@@ -1780,9 +1780,9 @@ rule get_genome_fasta:
     Retrieve the sequence in fasta format for a genome.
     """
     output:
-        "data/raw_external/NCTC8325.fa.gz"
+        "data/ref/NCTC8325.fa.gz"
     log:
-        "results/logs/get_genome_fasta/NCTC8325.log"
+        "results/logs/get_genome_fasta.log"
     shell:
         """
         wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
@@ -2193,7 +2193,7 @@ run Snakemake with the following command:
 snakemake --executor slurm -j 100 <other flags>
 ```
 
-### Specifying resources for SLURM
+#### Specifying resources for SLURM
 
 Depending on the cluster you are using, you will need to specify some resource
 requirements for the rules in your workflow, such as the number of CPUs, memory,
@@ -2213,26 +2213,29 @@ rules, can be set with `--default-resources`:
 snakemake --executor slurm -j 100 --default-resources slurm_account=naiss-2023-01-001
 ```
 
-Rule-specific resources such as runtime, memory and number of CPUs can be set in
-the rule definition, for example:
+Rule-specific resources such as runtime and memory can be set in
+the rule definition with the `resources:` directive. The `threads:` directive is passed to SLURM by the slurm plugin to set the number of cpus required by the job.:
 
 ```python
 rule testrule:
+    input:
+        "data/some_fastq_file.fastq",
+        "data/some_genome_file.fasta"
     output:
         "results/output.txt"
     resources:
         runtime = 60,
         mem_mb = 16000,
-        tasks = 4
+    threads: 4
     shell:
         """
-        uname -a > {output}
+        somecommand --threads {threads} {input[0]} {input[1]} > {output}
         """
 ```
 
 This rule uses the standard resource `runtime` to set the maximum allowed time
 (in minutes) for the rule, sets the memory requirement with `mem_mb` and the
-number of requested CPUs with `tasks`. In this example the rule will have a
+number of requested CPUs with `threads:`. In this example the rule will have a
 time limit of 60 minutes, will require 16G of RAM and 4 CPUs.
 
 Some clusters also require you to specify the **partition** you want to run your
@@ -2245,18 +2248,23 @@ The partition can be set with the `slurm_partition` resource, for example like s
 
 ```python
 rule testrule:
+    input:
+        "data/some_fastq_file.fastq",
+        "data/some_genome_file.fasta"
     output:
         "results/output.txt"
     resources:
         runtime = 60,
         mem_mb = 16000,
-        tasks = 4,
-        slurm_partition: "shared"
+        slurm_partition = "shared"
+    threads: 4
     shell:
         """
-        uname -a > {output}
+        somecommand --threads {threads} {input[0]} {input[1]} > {output}
         """
 ```
+
+### Using configuration profiles
 
 To make it easy to adapt your workflow to different compute clusters it is
 recommended to define resource settings in a **configuration profile**. A
@@ -2273,7 +2281,6 @@ default-resources:
   slurm_account: "naiss-2023-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
-  tasks: 1
   runtime: 60
 ```
 
@@ -2298,22 +2305,20 @@ default-resources:
   slurm_account: "naiss-2023-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
-  tasks: 4
   runtime: 60
+
 set_resources:
   index_genome:
     runtime: 240
     mem_mb: 32000
-    tasks: 8
   align_to_genome:
     runtime: 120
     mem_mb: 24000
-    tasks: 6
 ```
 
-In this example, the `index_genome` rule will have a runtime of 240 minutes,
-will require 32G of RAM and 8 CPUs, while the `align_to_genome` rule will have a
-runtime of 120 minutes, will require 24G of RAM and 6 CPUs. Both rules will use
+In this example, the `index_genome` rule will have a runtime of 240 minutes and
+will require 32G of RAM, while the `align_to_genome` rule will have a
+runtime of 120 minutes and will require 24G of RAM. Both rules will use
 the `slurm_account` and `slurm_partition` settings from the `default_resources`
 section, unless overridden in the rule-specific settings.
 
