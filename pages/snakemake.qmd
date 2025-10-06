@@ -2344,3 +2344,47 @@ In this example the log output from the job will be in
 
 You can read more details about running Snakemake on compute clusters in the
 [Snakemake docs](https://snakemake.readthedocs.io/en/stable/executing/cluster.html).
+
+
+### Linting and automatic formatting
+
+Snakemake comes with a built-in code quality checker (linter) which can help you find mistakes and fix potential issues in your workflow code. It also gives suggestions for how to conform to Snakemake [best practices](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html).
+
+Try running the linter on the `snakefile_mrsa.smk` you've been working on in this tutorial:
+
+```bash
+snakemake --configfile config.yml -s snakefile_mrsa.smk --lint
+```
+
+This will print a number of messages to the terminal with information of how to improve the workflow code.
+
+A more intrusive way of conforming to the Snakemake best-practices is to use the [Snakefmt](https://github.com/snakemake/snakefmt) tool. If you've used [Black](https://black.readthedocs.io/en/stable/) for formatting python code this will look familiar.
+
+Snakefmt rewrites the code of your workflow so that it's in line with the best practices defined by the Snakemake developers.
+
+You can install `snakefmt` with conda:
+
+```bash
+conda install -c bioconda snakefmt
+```
+
+Now try it out on the `snakefile_mrsa.smk` file. Instead of changing the file in-place you can have `snakefmt` print the changes that would be made to the file with `--diff`:
+
+```bash
+snakefmt --diff snakefile_mrsa.smk
+```
+
+To only see lines that would be changed use `--compact-diff` instead.
+
+To run with the default behaviour you simply run:
+
+```bash
+snakefmt snakefile_mrsa.smk
+```
+
+::: {.callout-tip title="VSCode plugin"}
+
+There's a VSCode plugin for Snakefmt which you can use to automatically rewrite
+your Snakefiles on save. Search for "Snakefmt" in the plugin catalog.
+
+:::
