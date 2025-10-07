@@ -2445,4 +2445,6 @@ In this newly created folder you can run the pipeline with:
 mrsa run --sample-list ../samples.csv
 ```
 
-Congratulations! You have now turned the MRSA workflow into a command-line tool (which runs Snakemake under the hood). You can even go one step further and skip the `snk install` step by directly building a [standalone workflow package](https://snk.wytamma.com/workflow_packages/).
+Congratulations! You have now turned the MRSA workflow into a command-line tool (which runs Snakemake under the hood). 
+
+You can even go one step further and skip the `snk install` step by directly building a [standalone workflow package](https://snk.wytamma.com/workflow_packages/). This requires a little more initial work in setting up a `pyproject.toml` file and structuring the workflow into a package directory. For an example of how this could look for our MRSA workflow take a look at [this example](https://github.com/johnne/mrsa-workflow).
