@@ -173,12 +173,10 @@ expected.
 We used the `-s` flag to point to the file containing the rules. In fact,
 Snakemake will look for a file named `Snakefile` in the current directory (or in
 a subdirectory called `workflow`) by default, which means we can omit this flag
-for this example. If we also omit the `-c` flag Snakemake will use all available
-cores, which won't make a difference for this small workflow. The command can
-thus be simplified to:
+for this example. The command can thus be simplified to:
 
 ```bash
-snakemake -p a.upper.txt
+snakemake -c 1 -p a.upper.txt
 ```
 
 Try running this simplified command. What do you see? It turns out that
@@ -190,7 +188,7 @@ workflow is up to date and there is nothing to do.
 What if we ask Snakemake to generate the file `b.upper.txt`? Run the following:
 
 ```bash
-snakemake -n -p b.upper.txt
+snakemake -c 1 -n -p b.upper.txt
 ```
 
 You will see that Snakemake complains that there is no rule to produce
@@ -293,7 +291,7 @@ rule concatenate_a_and_b:
 Now try to generate the file `c.txt` with your workflow by running:
 
 ```bash
-snakemake -p c.txt
+snakemake -c 1 -p c.txt
 ``` 
 
 Validate that the output looks as expected.
@@ -333,7 +331,7 @@ We can now control which input files to use by the name of the file we ask
 Snakemake to generate. Run the workflow to create a file `a_b.txt`:
 
 ```bash
-snakemake -p a_b.txt
+snakemake -c 1 -p a_b.txt
 ```
 
 You will see that Snakemake assigned the values `a` and `b` to the wildcards
@@ -406,7 +404,7 @@ Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
 `-f` to the Snakemake command to force a re-run:
 
 ```bash
-snakemake -f a_b.txt
+snakemake -c 1 -f a_b.txt
 ```
 
 If you added the `print` statement to the function you should see the
@@ -492,7 +490,7 @@ that line before running the commands below.
 :::
 
 ```bash
-snakemake --rulegraph a_b.txt | dot -Tpng > rulegraph.png
+snakemake --rulegraph -c 1 a_b.txt | dot -Tpng > rulegraph.png
 ```
 
 ![](images/rulegraph.svg)
@@ -512,7 +510,7 @@ The second type of graph is based on the jobs, and looks like this for our
 little workflow (use `--dag` instead of `--rulegraph`).
 
 ```bash
-snakemake --dag a_b.txt | dot -Tpng > jobgraph.png
+snakemake --dag -c 1 a_b.txt | dot -Tpng > jobgraph.png
 ```
 
 ![](images/jobgraph.svg)
@@ -521,7 +519,7 @@ The main difference here is that now each node is a job instead of a rule. You
 can see that the wildcards used in each job are also displayed. Another
 difference is the dotted lines around the nodes. A dotted line is Snakemake's
 way of indicating that this rule doesn't need to be rerun in order to generate
-`a_b.txt`. Validate this by running `snakemake -n a_b.txt` and it should say
+`a_b.txt`. Validate this by running `snakemake -c 1 -n a_b.txt` and it should say
 that there is nothing to be done.
 
 We've discussed before that one of the main purposes of using a WfMS is that it
@@ -529,7 +527,7 @@ automatically makes sure that everything is up to date. This is done by
 recursively checking that outputs are always newer than inputs for all the
 rules involved in the generation of your target files. Now try to change the
 contents of `a.txt` to some other text and save it. What do you think will
-happen if you run `snakemake -n a_b.txt` again?
+happen if you run `snakemake -c 1 -n a_b.txt` again?
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```no-highlight
@@ -617,7 +615,7 @@ to `{output}`.
 If you now run:
 
 ```bash
-snakemake -n a_b.txt
+snakemake -c 1 -n a_b.txt
 ```
 
  you should see:
@@ -704,9 +702,7 @@ There's a lot we haven't covered though, in particular when it comes to making
 your workflow more reusable. In the following section we will start with
 a workflow that is fully functional but not very flexible. We will then
 gradually improve it, and at the same time showcase some Snakemake features
-we haven't discussed yet. Note that this can get a little complex at times, so
-if you felt that this section was a struggle then you could move on to one of
-the other tutorials instead.
+we haven't discussed yet.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -747,7 +743,7 @@ snakemake -s snakefile_mrsa.smk --rulegraph | dot -T png > rulegraph_mrsa.png
 There's another difference in this command compared to the one we've used
 before, namely that we don't define a target. In the toy example we used
 `a_b.txt` as a target, and the wildcards were resolved based on that. How come
-that we don't need to do that here? This is because by default Snakemake uses
+we don't need to do that here? This is because by default Snakemake uses
 the first rule in a workflow as its target, unless a target is specified on the
 command line. By convention, this rule is called `all` and serves as a rule
 for aggregating the main outputs of the workflow.
@@ -951,13 +947,12 @@ function. Finally, in the `shell:` directive we access the `url` parameter with
 `{params.url}`. (We could have written three separate rules to download the
 samples, but it's easy to see how that can become impractical.)
 
-Let's add another parameter to the `get_SRA_by_accession` rule. As you can
-see in the shell command the FASTQ file downloaded by `curl` gets piped
-directly to the `seqtk sample`
-command which reads from STDIN and outputs 25000 randomly sampled reads (out
-of the 100,000 contained in the example FASTQ file). Change in the rule to
-use the parameter `max_reads` instead and set the value to 20000. If you
-need help, click to show the solution below.
+Let's add another parameter to the `get_SRA_by_accession` rule. As you can see
+in the shell command the FASTQ file downloaded by `curl` gets piped directly to
+the `seqtk sample` command which reads from STDIN and outputs 25000 randomly
+sampled reads (out of the 100,000 contained in the example FASTQ file). Change
+in the rule to use the parameter `max_reads` instead and set the value to 20000.
+If you need help, click to show the solution below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 
@@ -1109,10 +1104,10 @@ all the rules, only the ones with interesting output:
   probably the most important log to save.
 
 Now add a log file to some or all of the rules above. A good place to save them
-to would be `results/logs/<rule_name>/`. In order to avoid that multiple jobs
-write to the same files Snakemake requires that all output and log files contain
-the same wildcards, so be sure to include any wildcards used in the rule in the
-log name as well, _e.g._ `{some_wildcard}.log`.
+to would be `results/logs/<rule_name>/`. To avoid having multiple jobs write to
+the same files Snakemake requires that all output and log files contain the same
+wildcards, so be sure to include any wildcards used in the rule in the log name
+as well, _e.g._ `{some_wildcard}.log`.
 
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
@@ -1334,7 +1329,7 @@ that are declared as temporary in your workflow you can instead run with the
 `--delete-temp-output` which will delete all remaining `temp` files.
 :::
 
-Snakemake has a number of additional options for marking files:
+Snakemake has a number of additional options for marking files, including:
 
 - `protected("...")`: The output file should be write-protected. Typically used
   to protect files that require a huge amount of computational resources from
@@ -1564,11 +1559,11 @@ the workflow as input/output files to rules:
 - Sometimes we don't know the names of all the files that a program can
   generate and we may only be interested in a few of them.
 
-All of these issues can be dealt with by using the `shadow` option for a rule.
-The shadow option results in that each execution of the rule is run in an
-isolated temporary directory (located in `.snakemake/shadow/` by default).
-There are a few options for `shadow` (for the full list of these options see
-the [Snakemake docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
+All of these issues can be dealt with by using the `shadow` directive for a
+rule. This causes each execution of the rule to run in an isolated temporary
+directory (located in `.snakemake/shadow/` by default). There are a few options
+for `shadow` (for the full list of these options see the [Snakemake
+docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
 
 The most simple is `shadow: "minimal"`, which means that the rule is executed in
 an empty shadow directory that the input files to the rule have been symlinked into.
@@ -1708,7 +1703,7 @@ Now change the `multiqc` and `generate_count_table` rules that use the `expand` 
 ```python
     input:
         expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = config["samples"].keys()
+            sample_id = config["samples"].keys())
 ```
 
 Try to change the `generate_count_table` rule in the same way. Check the solution below if you need help.
@@ -1785,9 +1780,9 @@ rule get_genome_fasta:
     Retrieve the sequence in fasta format for a genome.
     """
     output:
-        "data/raw_external/NCTC8325.fa.gz"
+        "data/ref/NCTC8325.fa.gz"
     log:
-        "results/logs/get_genome_fasta/NCTC8325.log"
+        "results/logs/get_genome_fasta.log"
     shell:
         """
         wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
@@ -2198,7 +2193,7 @@ run Snakemake with the following command:
 snakemake --executor slurm -j 100 <other flags>
 ```
 
-### Specifying resources for SLURM
+#### Specifying resources for SLURM
 
 Depending on the cluster you are using, you will need to specify some resource
 requirements for the rules in your workflow, such as the number of CPUs, memory,
@@ -2218,26 +2213,29 @@ rules, can be set with `--default-resources`:
 snakemake --executor slurm -j 100 --default-resources slurm_account=naiss-2023-01-001
 ```
 
-Rule-specific resources such as runtime, memory and number of CPUs can be set in
-the rule definition, for example:
+Rule-specific resources such as runtime and memory can be set in
+the rule definition with the `resources:` directive. The `threads:` directive is passed to SLURM by the slurm plugin to set the number of cpus required by the job.:
 
 ```python
 rule testrule:
+    input:
+        "data/some_fastq_file.fastq",
+        "data/some_genome_file.fasta"
     output:
         "results/output.txt"
     resources:
         runtime = 60,
         mem_mb = 16000,
-        tasks = 4
+    threads: 4
     shell:
         """
-        uname -a > {output}
+        somecommand --threads {threads} {input[0]} {input[1]} > {output}
         """
 ```
 
 This rule uses the standard resource `runtime` to set the maximum allowed time
 (in minutes) for the rule, sets the memory requirement with `mem_mb` and the
-number of requested CPUs with `tasks`. In this example the rule will have a
+number of requested CPUs with `threads:`. In this example the rule will have a
 time limit of 60 minutes, will require 16G of RAM and 4 CPUs.
 
 Some clusters also require you to specify the **partition** you want to run your
@@ -2250,18 +2248,23 @@ The partition can be set with the `slurm_partition` resource, for example like s
 
 ```python
 rule testrule:
+    input:
+        "data/some_fastq_file.fastq",
+        "data/some_genome_file.fasta"
     output:
         "results/output.txt"
     resources:
         runtime = 60,
         mem_mb = 16000,
-        tasks = 4,
-        slurm_partition: "shared"
+        slurm_partition = "shared"
+    threads: 4
     shell:
         """
-        uname -a > {output}
+        somecommand --threads {threads} {input[0]} {input[1]} > {output}
         """
 ```
+
+### Using configuration profiles
 
 To make it easy to adapt your workflow to different compute clusters it is
 recommended to define resource settings in a **configuration profile**. A
@@ -2278,7 +2281,6 @@ default-resources:
   slurm_account: "naiss-2023-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
-  tasks: 1
   runtime: 60
 ```
 
@@ -2303,22 +2305,20 @@ default-resources:
   slurm_account: "naiss-2023-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
-  tasks: 4
   runtime: 60
+
 set_resources:
   index_genome:
     runtime: 240
     mem_mb: 32000
-    tasks: 8
   align_to_genome:
     runtime: 120
     mem_mb: 24000
-    tasks: 6
 ```
 
-In this example, the `index_genome` rule will have a runtime of 240 minutes,
-will require 32G of RAM and 8 CPUs, while the `align_to_genome` rule will have a
-runtime of 120 minutes, will require 24G of RAM and 6 CPUs. Both rules will use
+In this example, the `index_genome` rule will have a runtime of 240 minutes and
+will require 32G of RAM, while the `align_to_genome` rule will have a
+runtime of 120 minutes and will require 24G of RAM. Both rules will use
 the `slurm_account` and `slurm_partition` settings from the `default_resources`
 section, unless overridden in the rule-specific settings.
 
@@ -2344,3 +2344,105 @@ In this example the log output from the job will be in
 
 You can read more details about running Snakemake on compute clusters in the
 [Snakemake docs](https://snakemake.readthedocs.io/en/stable/executing/cluster.html).
+
+
+### Linting and automatic formatting
+
+Snakemake comes with a built-in code quality checker (linter) which can help you find mistakes and fix potential issues in your workflow code. It also gives suggestions for how to conform to Snakemake [best practices](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html).
+
+Try running the linter on the `snakefile_mrsa.smk` you've been working on in this tutorial:
+
+```bash
+snakemake --configfile config.yml -s snakefile_mrsa.smk --lint
+```
+
+This will print a number of messages to the terminal with information of how to improve the workflow code.
+
+A more intrusive way of conforming to the Snakemake best-practices is to use the [Snakefmt](https://github.com/snakemake/snakefmt) tool. If you've used [Black](https://black.readthedocs.io/en/stable/) for formatting python code this will look familiar.
+
+Snakefmt rewrites the code of your workflow so that it's in line with the best practices defined by the Snakemake developers.
+
+You can install `snakefmt` with conda:
+
+```bash
+conda install -c bioconda snakefmt
+```
+
+Now try it out on the `snakefile_mrsa.smk` file. Instead of changing the file in-place you can have `snakefmt` print the changes that would be made to the file with `--diff`:
+
+```bash
+snakefmt --diff snakefile_mrsa.smk
+```
+
+To only see lines that would be changed use `--compact-diff` instead.
+
+To run with the default behaviour you simply run:
+
+```bash
+snakefmt snakefile_mrsa.smk
+```
+
+::: {.callout-tip title="VSCode plugin"}
+
+There's a VSCode plugin for Snakefmt which you can use to automatically rewrite
+your Snakefiles on save. Search for "Snakefmt" in the plugin catalog.
+
+:::
+
+### Turning your workflow into a command-line tool
+
+Did you feel it was cumbersome to write `snakemake -c 1 ...` when running the
+workflow? Do you wish your workflow could instead be executed as a standalone
+command-line tool, *e.g.*: `my-workflow --input samples.csv ...`? This can be
+achieved with the [snk](https://snk.wytamma.com/) tool. Snk allows you to install a Snakemake workflow so that it becomes available as a command line interface.
+
+You can install `snk` with conda:
+
+```bash
+conda install -c bioconda snk python
+```
+
+By default, snk installs Snakemake workflows from a GitHub repo or a local path with *e.g.*:
+
+```bash
+snk install <GitHub username>/<repo name>
+```
+
+```bash
+snk install <local-path-to-workflow>
+```
+
+but this requires that the repo or local folder contains a file named `Snakefile` either in the root or in a subfolder called `workflow/`.
+
+You can however specify non-standard paths to the workflow you're installing. Let's try this out with the `snakefile_mrsa.smk` workflow:
+
+```bash
+snk install --snakefile snakefile_mrsa.smk --config config.yml --name mrsa .
+```
+
+Here we specify the Snakefile to install with `--snakefile` and the associated
+configuration file with `--config`. We also give the workflow a name with
+`--name`. The final dot `.` tells snk to use the current directory as the
+workflow path during installation. You should hope fully have seen `Successfully
+installed mrsa!` printed to the terminal.
+
+Once installed, you can run `mrsa -h` to get a list of options and commands for
+the installed workflow. Try it out in a fresh folder (without any of the files we've already produced). Create a new folder called `mrsa-testrun` and navigate into it. 
+
+::: {.callout-note}
+
+If you followed the section on how to [read samples from a
+file](#reading-samples-from-a-file-instead-of-hard-coding-them) you will have to
+supply the `samples.csv` file to the `mrsa` workflow. The example below assumes
+you created the `mrsa-testrun` folder in a subdirectory within the
+`tutorials/snakemake/` folder:
+
+:::
+
+In this newly created folder you can run the pipeline with:
+
+```bash
+mrsa run --sample-list ../samples.csv
+```
+
+Congratulations! You have now turned the MRSA workflow into a command-line tool (which runs Snakemake under the hood). You can even go one step further and skip the `snk install` step by directly building a [standalone workflow package](https://snk.wytamma.com/workflow_packages/).
