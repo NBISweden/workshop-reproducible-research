@@ -202,6 +202,15 @@ Now try running the following Bash code:
 docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build /analysis/tempfile /analysis/NCTC8325
 ```
 
+::: {.callout-caution title="Linux machines"}
+It is important to note that if you are running the above command on a Linux machine like `Ubuntu`, the output files will have `root` ownership which is not ideal. This is because `Docker daemon` always runs as a root user or the user that the image has. To avoid this, you can add the following option to the above command.
+
+```bash
+-u $(id -u ${USER}):$(id -g ${USER})
+```
+This will make the output files have the same permissions as the user that is running the command. 
+:::
+
 Docker will automatically download the container image for Bowtie2 version
 2.5.1 from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
 and subsequently run the command! This is the `docker run [OPTIONS] IMAGE

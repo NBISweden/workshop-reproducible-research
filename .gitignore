@@ -36,3 +36,5 @@ docs/
 
 /.quarto/
 test_files/
+
+**/*.quarto_ipynb
