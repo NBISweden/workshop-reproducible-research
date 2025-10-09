@@ -1,0 +1,71 @@
+FROM condaforge/miniforge3:24.7.1-0
+
+LABEL authors="Lokesh Mano, lokeshwaran.manoharan@scilifelab.se; John Sundh, john.sundh@scilifelab.se; Erik Fasterius, erik.fasterius@nbis.se"
+LABEL description="Dev-container image for the NBIS reproducible research course."
+LABEL org.opencontainers.image.source=https://github.com/NBISweden/workshop-reproducible-research
+# Set workdir
+WORKDIR /course
+
+# Use bash as shell
+SHELL ["/bin/bash", "-c"]
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get install -y unzip && \
+    apt-get install -y zip && \
+    apt-get clean
+
+# Install Java (required for nextflow)
+RUN curl -s https://get.sdkman.io | bash && \
+    bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install java 17.0.10-tem"
+ENV JAVA_HOME="/root/.sdkman/candidates/java/current"
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
+# Configure Conda
+RUN conda config --set channel_priority strict && \
+    conda config --append channels bioconda
+
+# Install snakemake environment
+RUN curl -o snakemake_env.yml -L "https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/tutorials/snakemake/environment.yml" && \
+    conda env create -f snakemake_env.yml -n snakemake-env && \
+    conda clean -a
+
+# Install nextflow environment
+RUN curl -s https://get.nextflow.io | bash && \
+    mv nextflow /usr/local/bin/
+RUN curl -o nextflow_env.yml -L "https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/tutorials/nextflow/environment.yml" && \
+    conda env create -f nextflow_env.yml -n nextflow-env && \
+    conda clean -a
+
+# Install Quarto
+ARG QUARTO_VERSION="1.8.25"
+RUN mkdir -p /opt/quarto/${QUARTO_VERSION} && \
+    curl -o quarto.tar.gz -L "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz" && \
+    tar -zxvf quarto.tar.gz -C "/opt/quarto/${QUARTO_VERSION}" --strip-components=1 && \
+    rm quarto.tar.gz
+ENV PATH=/opt/quarto/${QUARTO_VERSION}/bin:${PATH}
+RUN quarto install tinytex
+RUN curl -o quarto_env.yml -L "https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/tutorials/quarto/environment.yml" && \
+    conda env create -f quarto_env.yml -n quarto-env && \
+    conda clean -a
+
+# Install Jupyter Lab environment
+RUN curl -o jupyter_env.yml -L "https://raw.githubusercontent.com/NBISweden/workshop-reproducible-research/main/tutorials/jupyter/environment.yml" && \
+    conda env create -f jupyter_env.yml -n jupyter-env && \
+    conda clean -a
+RUN source activate jupyter-env && \
+    pip install ipykernel && \
+    python -m ipykernel install --user && \
+    conda deactivate
+
+RUN curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | \
+    tar xvz -C /tmp/ && \
+    mv /tmp/docker/docker /usr/bin/docker
+
+# Start Bash shell by default
+CMD /bin/bash
+
+
