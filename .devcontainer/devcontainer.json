@@ -1,0 +1,23 @@
+{
+    "image": "ghcr.io/nbisweden/workshop-rr-dev-container:latest",
+    "customizations": {
+        "vscode": {
+        "extensions": [
+            "quarto.quarto", "ms-toolsai.jupyter",
+            "snakemake.snakemake-lang","nextflow.nextflow",
+            "docker.docker","redhat.vscode-yaml"
+            ],
+        "settings": {
+            "editor.wordWrap": "on",
+            "files.associations": {
+                "*.rmd": "markdown",
+                "*.Rmd": "rmd",
+                "*.py": "python",
+                "*.qmd": "quarto",
+                "*.tsv": "plaintext"
+                },
+            "editor.tabCompletion": "on"
+            }
+        }
+    }
+}
