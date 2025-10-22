@@ -254,6 +254,30 @@ becomes `/analysis/tempfile` and `/analysis/NCTC8325`, since that's where the
 files will be mounted inside the container.
 :::
 
+::: {.callout-caution title="Linux machines"}
+It is important to note that if you are running the above command on a Linux
+machine like `Ubuntu`, the output files will have `root` ownership which is not
+ideal. This is because `Docker daemon` always runs as a root user or the user
+that the image has. To avoid this, you can add the following option to the above
+command.
+
+```bash
+-u $(id -u ${USER}):$(id -g ${USER})
+```
+
+This will make the output files have the same permissions as the user that is running the command.
+:::
+
+Docker will automatically download the container image for Bowtie2 version
+2.5.1 from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
+and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
+[COMMAND] [ARG...]` syntax just like before. In this case
+`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but
+instead of first downloading and then running it we point to its remote
+location directly, which will cause Docker to download it on
+the fly. The `bowtie2-build` part is the COMMAND followed by the ARG (the
+input tempfile and the output index)
+
 The operation should now successfully run and you'll have a bunch of
 Bowtie2-related files in your directory; since we _mounted_ the current working
 directory into the container to get the input files _in_, we _also_ get the

@@ -35,3 +35,6 @@ docs/
 .vscode
 
 /.quarto/
+test_files/
+
+**/*.quarto_ipynb

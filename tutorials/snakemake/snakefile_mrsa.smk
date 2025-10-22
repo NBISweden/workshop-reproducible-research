@@ -27,7 +27,7 @@ rule get_SRA_by_accession:
         url = get_sample_url
     shell:
         """
-        wget -q -O - {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        curl -L -A "Mozilla/5.0" {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
         """
 
 rule fastqc:
