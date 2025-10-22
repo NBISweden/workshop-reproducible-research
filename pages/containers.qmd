@@ -181,34 +181,91 @@ shell:
     """
 ```
 
-You may have seen that one can use containers through both Snakemake and
-Nextflow if you've gone through their tutorial's extra material, but we can
-also use containers directly inside scripts in a very simple way. Let's imagine
-we want to run the above command using containers instead. How would that look?
-It's quite simple, really: first we find a container image that has `bowtie2`
-installed, and then prepend the command with `docker run <image>`.
+Let's imagine we want to run the above command using containers instead. How
+would that look? First we find a container image that has `bowtie2` installed,
+and then prepend the command with `docker run <image>`.
 
-First of all we need to download the genome to index though, so run:
+First of all we need to download the genome to index though, so run the
+following to download and prepare the input for Bowtie2:
+
 ```bash
 curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
 gunzip -c NCTC8325.fa.gz > tempfile
 ```
 
-to download and prepare the input for Bowtie2.
-
 Now try running the following Bash code:
+
+```bash
+docker run quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build tempfile NCTC8325
+```
+
+Docker will automatically download the container image for Bowtie2 version 2.5.1
+from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
+and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
+[COMMAND] [ARG...]` syntax just like before. In this case
+`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but instead
+of first downloading and then running it we point to its remote location
+directly, which will cause Docker to download it on the fly.
+
+The `bowtie2-build` part is the COMMAND followed by the ARG (the input tempfile
+and the output index). You'll find, however, that the command failed with an
+error message including `Error: could not open tempfile`. Why is that? Well,
+it's something to do with a thing called _bind mounts_.
+
+### Bind mounts
+
+Docker containers are, by default, isolated from the rest of your system. This
+is a really good thing, as it keeps everything separate and reproducible, but it
+requires some extra work in order to get your file system to talk to the
+container. The error message we got was because the container couldn't find the
+`tempfile` file we just downloaded, even though we can see it right there in our
+directory.
+
+This is where _bind mounts_ come into play: we can explicitly give the container
+access to any files we need to run the analysis. When you use a bind mount, a
+file or directory on the _host machine_ is mounted into a container. That way,
+when the container generates a file in such a directory it will appear in the
+mounted directory on your host system.
+
+::: {.callout-tip}
+Docker also has a more advanced way of data storage called
+[volumes](https://docs.docker.com/storage/volumes/). Volumes provide
+added flexibility and are independent of the host machine's file system
+having a specific directory structure available. They are particularly
+useful when you want to share data *between* containers.
+:::
+
+The simplest way to use bind mounts is usually to bind the current directory to
+a directory inside the container. This can be done with the `-v $(pwd):<MOUNT>`
+syntax, where `<MOUNT>` is the directory inside the container we want the files
+to be available (the general form of this syntax is `-v <LOCAL>:<MOUNT>`).
+
+- Run the same command again, but also mount the files into the `/analysis`
+  directory inside the container:
 
 ```bash
 docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build /analysis/tempfile /analysis/NCTC8325
 ```
 
+::: {.callout-note}
+Note that we not only added the `-v` flag, but also changed the locations of the
+input and output files: `tempfile` and `NCTC8325` from the previous command
+becomes `/analysis/tempfile` and `/analysis/NCTC8325`, since that's where the
+files will be mounted inside the container.
+:::
+
 ::: {.callout-caution title="Linux machines"}
-It is important to note that if you are running the above command on a Linux machine like `Ubuntu`, the output files will have `root` ownership which is not ideal. This is because `Docker daemon` always runs as a root user or the user that the image has. To avoid this, you can add the following option to the above command.
+It is important to note that if you are running the above command on a Linux
+machine like `Ubuntu`, the output files will have `root` ownership which is not
+ideal. This is because `Docker daemon` always runs as a root user or the user
+that the image has. To avoid this, you can add the following option to the above
+command.
 
 ```bash
 -u $(id -u ${USER}):$(id -g ${USER})
 ```
-This will make the output files have the same permissions as the user that is running the command. 
+
+This will make the output files have the same permissions as the user that is running the command.
 :::
 
 Docker will automatically download the container image for Bowtie2 version
@@ -221,9 +278,10 @@ location directly, which will cause Docker to download it on
 the fly. The `bowtie2-build` part is the COMMAND followed by the ARG (the
 input tempfile and the output index)
 
-The `-v $(pwd):/analysis` part is the OPTIONS which we use to mount the current
-directory inside the container in order to make the `tempfile` input available
-to Bowtie2. More on these so-called "Bind mounts" in Section 4 of this tutorial.
+The operation should now successfully run and you'll have a bunch of
+Bowtie2-related files in your directory; since we _mounted_ the current working
+directory into the container to get the input files _in_, we _also_ get the
+output files _out_ of the container.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -234,6 +292,7 @@ In this section we've learned:
 - How to use `docker run` for starting a container from an image.
 - How to use the `-it` flag for running in interactive mode.
 - How to use Docker inside scripts.
+- How to use bind mounts to share data between the container and the host system.
 :::
 
 ## Building images
@@ -307,7 +366,7 @@ follow the format of `org.opencontainers.image.<label>`, where the namespace
 (the first part of the format) comes from the [Open Container Initiative
 (OCI)](https://opencontainers.org/), an organisation aimed at creating industry
 standards for container formats. You can find a list of all the standard labels
-at the [OCI GitHub](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
+at the [OCI GitHub](https://github.com/opencontainers/image-spec/blob/main/annotations.md).
 :::
 
 ::: {.callout-note title="There are many roads to Rome"}
@@ -430,23 +489,23 @@ Now it's time to make your own Dockerfile to reproduce the results from the
 [Conda tutorial](conda.html#working-with-environments). If you haven't done the
 tutorial, it boils down to creating a Conda environment file, setting up that
 environment, downloading three RNA-seq data files, and running FastQC on those
-files. We will later package and run the whole RNA-seq workflow in a Docker
-container, but for now we keep it simple to reduce the size and time required.
+files. The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and
+running the analysis.
 
-The Conda tutorial uses a shell script, `run_qc.sh`, for downloading and
-running the analysis. A copy of this file should also be available in your
-current directory. If we want to use the same script we need to include it in
-the image. A basic outline of what we need to do is:
+Remember from the lecture that the best way to use containers is, generally, as
+an advanced environment manager together with a Git repository that tracks code,
+documentation and the environment specification. What we need to do is thus the
+following:
 
 1. Create a file called `conda.Dockerfile`
 2. Start the image from the `my_docker_image` we just built
-3. Install the package `fastqc` which is required for the analysis.
-4. Add the `run_qc.sh` script to the image
-5. Set the default command of the image to run the `run_qc.sh` script.
+3. Install the package `fastqc` which is required for the analysis
+4. Run the `run_qc.sh` script using the new image and the appropriate bind
+   mounts
 
-We'll now go through these steps in more detail. Try to add the
-corresponding code to `conda.Dockerfile` on your own, and if you get stuck
-you can click to reveal the solution below under "Click to show solution".
+We'll now go through these steps in more detail. Try to add the corresponding
+code to `conda.Dockerfile` on your own, and if you get stuck you can click to
+reveal the solution below under "Click to show solution".
 
 **Set image starting point**
 
@@ -473,38 +532,52 @@ added as a default. The only thing we need to do is to add the `bioconda`
 channel to the configuration, but other than that there's not much else needed
 for Conda to work when using the Miniforge base image.
 
-**Add the analysis script**
-
-Use the `COPY` instruction to Add `run_qc.sh` to the image. The syntax is
-`COPY SOURCE TARGET`. In this case `SOURCE` is the `run_qc.sh`
-script and `TARGET` is a path inside the image, for simplicity it can be
-specified with `.`.
-
-**Set default command**
-
-Use the `CMD` instruction to set the default command for the image to `bash
-run_qc.sh`.
-
 ::: {.callout-tip collapse="true" title="Click to show solution"}
 ```Dockerfile
 FROM my_docker_image
 
 RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
     conda clean -a
-
-COPY run_qc.sh .
-
-CMD bash run_qc.sh
 ```
 :::
 
-Build the image and tag it `my_docker_conda`.
+- Build the image and tag it `my_docker_conda`.
 
 ```bash
 docker build -t my_docker_conda -f conda.Dockerfile .
 ```
 
-Verify that the image was built using `docker image ls`.
+- Verify that the image was built using `docker image ls`.
+
+- Execute the `run_qc.sh` script inside the container with the appropriate bind
+  mounts:
+
+```bash
+docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
+```
+
+You should now see the script to completion, but you won't find the output files
+in your working directory. The script creates the `data` and `results`
+directories and puts its files there, but since we're running from within the
+container in the root (`/`) directory, the directories created become `/data`
+and `/results`, which are _not_ mounted (since they're not inside the
+`/analysis` directory). What we can do is to add the `-w` (`--workdir`) flag,
+which tells Docker where execution should happen, _i.e._ what should be the
+working directory (you could instead add `WORKDIR /analysis` to the Dockerfile
+for the same effect).
+
+```bash
+docker run -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
+```
+
+::: {.callout-tip}
+While the general strategy we've outlined here is sound, it can feel a bit
+cumbersome to keep track of all the various directories and bind mounts we're
+using, but there is an _even better_ strategy: using workflow managers! Both
+Snakemake and Nextflow can handle all of this for you, and you can focus purely
+on the command you want to execute in what container. More information about
+this can be found in their respective "extra materials" section.
+:::
 
 ### Seqera containers
 
@@ -542,10 +615,11 @@ ready". The image can now be used in the same way as for any other image.
 
 Since we previously ran the `run_qc.sh` script with our image, let's do the same
 here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
-`run_qc.sh` will be available in the container:
+`/tmp/run_qc.sh` will be available in the container, as well as the `-w /tmp` to
+set the workdir:
 
-- Execute `docker run -v $(pwd):/tmp <CONTAINER LINK> bash run_qc.sh` from the
-  command line.
+- Execute `docker run -v $(pwd):/tmp -w /tmp <CONTAINER_LINK> /tmp/run_qc.sh`
+  from the command line.
 
 This will automatically download the Seqera image and start the script as soon
 as it's ready.
@@ -568,10 +642,12 @@ or PyPI and you have to install it manually).
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
+
 - How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`,
   `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
 - How to use `docker build` to construct and tag an image from a Dockerfile.
 - How to create your own Dockerfile.
+- How to use `-w` to set the working directory at runtime.
 - How to create an image using Seqera Containers.
 :::
 
@@ -628,68 +704,14 @@ docker run -d --rm --name my_container my_docker_conda
 docker exec -it my_container /bin/bash
 ```
 
-### Bind mounts
-
-There are obviously some advantages to isolating and running your data analysis
-in containers, but at some point you need to be able to interact with the
-rest of the host system (_e.g._ your laptop) to actually deliver the results.
-This is done via bind mounts. When you use a bind mount, a file or directory
-on the *host machine* is mounted into a container. That way, when the
-container generates a file in such a directory it will appear in the mounted
-directory on your host system.
-
-::: {.callout-tip}
-Docker also has a more advanced way of data storage called
-[volumes](https://docs.docker.com/storage/volumes/). Volumes provide
-added flexibility and are independent of the host machine's file system
-having a specific directory structure available. They are particularly
-useful when you want to share data *between* containers.
-:::
-
-Say that we are interested in getting the resulting html reports from FastQC in
-our container. We can do this by mounting a directory called, say,
-`fastqc_results` in your current directory to the `/course/results/fastqc`
-directory in the container. Try this out by running:
-
-```bash
-docker run --rm -v $(pwd)/fastqc_results:/course/results/fastqc my_docker_conda
-```
-
-Here the `-v` flag to docker run specifies the bind mount in the form of
-`directory/on/your/computer:/directory/inside/container`. `$(pwd)` simply
-evaluates to the working directory on your computer.
-
-Once the container finishes validate that it worked by opening one of the html
-reports under `fastqc_results/`.
-
-We can also use bind mounts for getting files into the container rather than
-out. We've mainly been discussing Docker in the context of packaging an
-analysis pipeline to allow someone else to reproduce its outcome. Another
-application is as a kind of very powerful environment manager, similarly to how
-we've used Conda before. If you've organised your work into projects, then you
-can mount the whole project directory in a container and use the container as
-the terminal for running stuff while still using your normal OS for editing
-files and so on. Let's try this out by mounting our current directory and start
-an interactive terminal. Note that this will override the `CMD` command, so we
-won't start the analysis automatically when we start the container.
-
-```bash
-docker run -it --rm -v $(pwd):/course/ my_docker_conda /bin/bash
-```
-
-If you run `ls` you will see that all the files in the `container/` directory
-are there.
-
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- How to use `docker run` for starting a container and how the flags `-d`
-  and `--rm` work.
+- How the `docker run` flags `-d` and `--rm` work.
 - How to use `docker container ls` for displaying information about the
   containers.
 - How to use `docker attach` and `docker exec` to interact with running
   containers.
-- How to use bind mounts to share data between the container and the host system.
 :::
 
 ## Sharing images
@@ -774,7 +796,7 @@ In this section we've learned:
 
 During these tutorials we have been working on a case study about the
 multi-resistant bacteria MRSA. Here we will build and run a Docker container
-that contains all the work we've done so far.
+that contains the environment for all the work we've done so far.
 
 - We've [set up a GitHub repository](git.html#working-remotely) for version
   control and for hosting our project.
@@ -798,12 +820,10 @@ so), in particular if you're on a slow internet connection.
 Now take a look at `Dockerfile`. Everything should look quite familiar to you,
 since it's basically the same steps as in the image we constructed in the
 [building images](#building-images) section, although with some small
-modifications. The main difference is that we add the project files needed for
-executing the workflow (mentioned in the previous paragraph), and install the
-conda packages using `environment.yml`. If you look at the `CMD` command you can
-see that it will run the whole Snakemake workflow by default.
+modifications. The main difference is that we install the conda packages using
+`environment.yml`.
 
-Now run `docker build` as before, tag the image with `my_docker_project`:
+- Now run `docker build` as before, tag the image with `my_docker_project`:
 
 ::: {.callout-caution title="Building on ARM64 systems"}
 This particular environment (which is quite complicated) has some packages that
@@ -820,26 +840,21 @@ Go get a coffee while the image builds (or you could use `docker pull
 nbisweden/workshop-reproducible-research` which will download the same image).
 
 Validate with `docker image ls`. Now all that remains is to run the whole thing
-with `docker run`. We just want to get the results, so mount the directory
-`/course/results/` to, say, `results/` in your current directory. Click
-below to see how to write the command.
+with the appropriate command. The command to execute the Snakemake workflow is
+`snakemake --configfile config.yml -p -c 1`, and we'll also need to mount the
+current directory into the container's WORKDIR, which is `/course`.
+Click below to see how to write the command.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-If building your own image:
-
 ```bash
-docker run -v $(pwd)/results:/course/results my_docker_project
-```
-
-If you pulled the image from DockerHub:
-
-```bash
-docker run -v $(pwd)/results:/course/results nbisweden/workshop-reproducible-research
+docker run -v $(pwd):/course my_docker_project snakemake --configfile config.yml -p -c 1
 ```
 :::
 
 Well done! You now have an image that allows anyone to exactly reproduce your
-analysis workflow (if you first `docker push` to Dockerhub that is).
+analysis workflow. All you need to do now is to make sure all the code and the
+container is hosted at _e.g._ GitHub and/or DockerHub, together with
+documentation about the commands to run.
 
 ## Apptainer
 

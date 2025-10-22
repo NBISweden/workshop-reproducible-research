@@ -58,8 +58,6 @@ benchmarking studies:
 - [Docker Hub]{.green} is an online service for hosting Docker images
 :::
 
-
-
 ## An example: using a different OS
 
 ::: {.fragment}
@@ -145,34 +143,25 @@ $ docker run \
 
 ## What can I use Docker for?
 
-::: {.fragment}
-- As an advanced [environment]{.green} manager
-
-```bash
-docker run -it -v $PWD:/home my_image /bin/bash
-```
+::: {.incremental}
+1. As an advanced [environment]{.green} manager
+2. To package your [code]{.green} together with the environment it needs
+3. To package a [whole project]{.green} with environment, code _and_ data
 :::
 
-::: {.fragment}
-- To package your [code]{.green} with the environment it needs
+<br>
 
-```bash
-docker run \
-    -v $PWD/data:/home/data \
-    -v $PWD/results:/home/results \
-    my_image snakemake report.pdf
-```
+::: {.fragment}
+Alternatives (2) and (3) are generally not advisable; containers are best used
+to [control the environment]{.green} for maximal reproducibility, portability
+and ease-of-use.
 :::
 
-::: {.fragment}
-- To package a [whole project]{.green} with environment, code and data (_e.g._
-  to accompany a manuscript).
+<br>
 
-```bash
-docker run \
-    -v $PWD/results:/home/results \
-    my_image snakemake report.pdf
-```
+::: {.fragment}
+The best overall solution is a Git repository storing documentation, code,
+environment specification as well as instructions on how to get the raw data.
 :::
 
 ## What is Apptainer?
@@ -190,7 +179,7 @@ docker run \
 ![](http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png){fig-align=center}
 
 ::: {.incremental}
-- Apptainer used to be 'Singularity'. 
+- Apptainer used to be 'Singularity'.
 - In 2021 Singularity joined the Linux Foundation and became
   [Apptainer]{.green}.
 - The company [Sylabs]{.green} still maintains Singularity as a commercial
