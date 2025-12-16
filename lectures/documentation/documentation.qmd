@@ -1,0 +1,38 @@
+---
+title: 'Documentation and reproducibility'
+format: revealjs
+---
+
+## Why documentation matters
+
+::: {.incremental}
+- Projects become [difficult to understand without documentation]{.green}
+- [Documentation is essential]{.green} from a reproducibility perspective
+- Properly organised [documentation is often overlooked]{.green}
+:::
+
+## Good documentation should
+
+::: {.incremental}
+- [Explain]{.green} what the project is about
+- [Link]{.green} together data, code and environment
+- [Record]{.green} how the analyses were performed
+- Provide [clear instructions]{.green} for reproducibility
+- Happen [continuously]{.green} throughout the project
+:::
+
+## The README file
+
+The `README.md` file is the [most important piece of documentation]{.green} and
+should answer the following questions:
+
+::: {.incremental}
+1. What is this project about?
+2. Is there a publication related to this project?
+3. What is contained in this repository?
+4. What is the minimum hardware requirements to reproduce the analyses?
+5. How do I reproduce the analyses?
+6. What outputs should I expect?
+:::
+
+# Questions?
