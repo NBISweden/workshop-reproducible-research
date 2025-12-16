@@ -1,0 +1,169 @@
+---
+title: Documentation and reproducibility
+subtitle: "How to make your work organised and understandable"
+description: ""
+format: html
+---
+
+## Introduction
+
+Documentation is often overlooked, even when following other best practices for
+bioinformatics reproducibility. While tools like Git, Conda, workflow managers,
+and containers are essential for reproducibility, they are not sufficient on
+their own. Without clear documentation, even a perfectly versioned and
+containerized analysis can be difficult for others (or, more likely, your future
+self) to understand and reproduce. From a reproducibility perspective,
+documentation serves several purposes:
+
+ - It explains what the project is about
+ - It links the data, code and computational environment together
+ - It records how analyses were performed and with which tools
+ - It provides clear instructions for reproducing the results
+
+In a published research project, the _article_ is usually the central artefact.
+In it, readers should thus be able to find all the information listed above.
+
+ - Think about one of your projects. Would an outside viewer be able to find all
+   of the above information somewhere in your project? If no, what is missing?
+
+Organising documentation is not a trivial matter: even though you may have all
+the information _somewhere_ in the project, it may not be easily readable or
+understandable. The simplest and most straightforward way to organise the
+project is to store the data in whatever public repository is appropriate for
+your data, while storing the code, workflow and environment in a Git repository
+on _e.g._ GitHub. More detailed documentation regarding reproducibility should
+also be stored in the repository, which is usually done in a `README.md` file.
+
+::: {.callout-note}
+Just like all the other things we've gone through in this course, good
+documentation is not something you add at the end of a project: it should be
+developed continuously as the project evolves.
+:::
+
+## The README file
+
+In most computational projects, the `README.md` file is the most important piece
+of documentation. It is often the first thing a reader sees when visiting your
+repository, and it plays an important role in reproducibility. A good README
+should answer the following questions:
+
+ 1. What is this project about?
+ 2. Is there a publication related to this project?
+ 3. What is contained in this repository?
+ 4. What is the minimum hardware requirements to reproduce the analyses?
+ 5. How do I reproduce the analyses?
+ 6. What outputs should I expect?
+
+All projects are different, not only in what they are about but also in terms of
+the tools they use. For example, let's look at point 4: if you use a workflow
+manager (_e.g._ Nextflow or Snakemake) this question has a very short answer;
+simply show the command to run the workflow from start to finish. If you don't
+use a workflow manager, however, you will need to more fully describe the order
+in which scripts should be run, with what parameters, and so on. A workflow
+manager is, to a certain extent, self-documenting.
+
+ - Think about one of your projects. Are all of the above points available in an
+   organised way? If not, what is missing?
+
+The first two points are generally best done in free-flowing text, and can be at
+the top of the README itself. We will also provide some examples of how you
+might do the rest of the points.
+
+::: {.callout-note}
+Whenever changes are made to the codebase, these instructions should be
+re-tested. A README that no longer works could be worse than no README at all.
+:::
+
+### Repository contents
+
+It is highly useful to give an overview of the repository's contents, which will
+help anybody coming across it to orient themselves. A Nextflow-based example
+might look like this:
+
+````
+## Project organisation
+
+```
+project/
+ ├── bin/                   Scripts and executables
+ ├── data/                  Data (not stored in this repository)
+ ├── doc/                   Documents and other information
+ ├── env/*/                 Environment-related files
+ │   ├── Dockerfile           Docker image specification
+ │   └── environment.yml      Conda environment file
+ ├── results/               Workflow results
+ ├── main.nf                Workflow definition
+ ├── nextflow.config        Workflow configuration
+ └── README.md              Project overview and documentation
+```
+````
+
+You can get the nice lines between files and directories using the `tree`
+command, which can then be copied to the README. It should be explicitly stated
+where the data can be found and downloaded, as raw data should not be stored in
+Git repositories.
+
+### Hardware requirements
+
+Reproducibility is not only about software; hardware constraints can determine
+whether an analysis is feasible on any given system. Some analyses can be run
+locally on a small laptop, while others may require running on _e.g._ an HPC
+cluster or in the cloud. It could also be that part of the analysis could be run
+locally, not run on Apple Silicon hardware, or perhaps some step requires GPUs.
+If there are no specific hardware requirements you should also mention this;
+some analyses can run on most any hardware, and the only limiting factor is time
+to completion.
+
+````
+## Hardware requirements
+
+ - Minimum 64 GB RAM
+ - Minimum 8 cores
+ - x86_64 CPU architecture
+````
+
+### Reproducing the analyses
+
+This is the most important section of the README from a reproducibility
+standpoint. The instructions should be explicit, complete and as simple as
+possible. Ideally, a complete reproduction of the project should be possible
+with as few commands as possible. How the environment is reproduced should also
+be included, which is easiest when using _e.g._ Conda and/or containers.
+
+````
+## Reproducibility
+
+ 1. Clone this repository:
+
+```bash
+git clone https://github.com/my-account/my-project.git
+cd my-project
+```
+
+ 2. Run the Nextflow workflow using Docker or Singularity:
+```bash
+nextflow run main.nf -profile <docker/singularity>
+```
+````
+
+### Expected outputs
+
+Here you can describe what results should be expected after a successful
+reproduction, and which ones might be of special interest.
+
+````
+## Outputs
+
+- `results/multiqc/` – Quality control summary reports
+- `results/reports/` – Final reports with analyses in R/Python
+- `results/tables/`  – Summary statistics and tables used in the manuscript
+- `results/figures`  - Figures used in the manuscript
+````
+
+::: {.callout-note title="Quick recap"}
+In this section we've learnt:
+
+- The `README.md` file is the central hub for documentation
+- Documentation should link together code, data and the environment
+- The documentation should continuously be tested and kept up-to-date
+:::
