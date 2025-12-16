@@ -29,6 +29,7 @@ themselves contain all of the material covered by the workshop.
 | Quarto                  | [{{< fa file-lines >}}](lectures/quarto/quarto.html)                             | [{{< fa file-lines >}}](pages/quarto.html)         |
 | Jupyter                 | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                           | [{{< fa file-lines >}}](pages/jupyter.html)        |
 | Containers              | [{{< fa file-lines >}}](lectures/containers/containers.html)                     | [{{< fa file-lines >}}](pages/containers.html)     |
+| Documentation           | [{{< fa file-lines >}}](lectures/documentation/documentation.html)               | [{{< fa file-lines >}}](pages/documentation.html)     |
 | Putting it all together | [{{< fa file-lines >}}](lectures/putting-it-together/putting-it-together.html)   |                                                    |
 | Markdown                |                                                                                  | [{{< fa file-lines >}}](pages/markdown.html)       |
 | Take-down               |                                                                                  | [{{< fa file-lines >}}](pages/take-down.html)      |
