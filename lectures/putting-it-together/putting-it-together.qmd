@@ -166,8 +166,9 @@ _Track the **full** environment and connect your code in a workflow_
 
 - **Quarto** - Developed by Posit (previously RStudio), command-line tool
   focused on generating high-quality documents in a language-agnostic way.
-- **Jupyter** – Create and share notebooks in a variety of languages and formats
-  by using a web browser.
+- **Jupyter** – Interactive notebooks in a variety of languages/formats.
+- **Marimo** - Similar to Jupyter, but pure python. Tries to eliminate common
+  problems with Jupyter notebooks.
 - **R Markdown** – Developed by Posit (previously RStudio), focused on
   generating high-quality documents.
 - **Zeppelin** – Developed by Apache. Closely integrated with Spark for
@@ -200,8 +201,8 @@ _Track the **full** environment and connect your code in a workflow_
 
 Any questions related to reproducible research tools and concepts? Talk to an NBIS expert!
 
-- Online ([Zoom]{.green})
+- Online Drop-in: [https://meet.nbis.se/dropin](https://meet.nbis.se/dropin)
 - Every [Tuesday, 14.00-15.00]{.green} (except public holidays)
-- Check [www.nbis.se/events]{.green} for Zoom link and more info
+- Check [https://www.nbis.se/get-support/talk-to-us](https://www.nbis.se/get-support/talk-to-us) for more info
 
 # Questions?
