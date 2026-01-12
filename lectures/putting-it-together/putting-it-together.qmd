@@ -26,6 +26,7 @@ format: revealjs
   reports and to document your analyses
 - How to use [Docker]{.green} and [Apptainer]{.green} to distribute
   containerized computational environments
+- How to create and maintain proper [documentation]{.green}
 
 ## Divide your work into distinct projects
 
@@ -47,7 +48,7 @@ data/          Raw data - this should never edited
 doc/           Documentation of the project
 env/           Environment-related files, e.g. Conda environments or Dockerfiles
 results/       Output from workflows and analyses
-README.md      Project description and instructions
+README.md      Project documentation
 ```
 
 <br>

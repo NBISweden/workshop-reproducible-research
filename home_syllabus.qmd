@@ -25,6 +25,7 @@ The following topics and tools are covered in the course:
  - Jupyter
  - Docker
  - Apptainer
+ - Documentation
 
 ## Learning outcomes
 
@@ -38,6 +39,7 @@ At the end of the course, students should be able to:
  - Use Quarto and Jupyter Notebooks to document and generate automated reports
    for their analyses
  - Use Docker and Apptainer to distribute containerized computational environments
+ - Write and maintain good project documentation
 
 ## Entry requirements
 
