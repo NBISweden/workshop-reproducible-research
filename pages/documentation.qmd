@@ -53,6 +53,7 @@ should answer the following questions:
  4. What is the minimum hardware requirements to reproduce the analyses?
  5. How do I reproduce the analyses?
  6. What outputs should I expect?
+ 7. How can a reader discuss with the author?
 
 All projects are different, not only in what they are about but also in terms of
 the tools they use. For example, let's look at point 4: if you use a workflow
@@ -154,11 +155,18 @@ reproduction, and which ones might be of special interest.
 ````
 ## Outputs
 
-- `results/multiqc/` – Quality control summary reports
-- `results/reports/` – Final reports with analyses in R/Python
-- `results/tables/`  – Summary statistics and tables used in the manuscript
+- `results/multiqc/` - Quality control summary reports
+- `results/reports/` - Final reports with analyses in R/Python
+- `results/tables/`  - Summary statistics and tables used in the manuscript
 - `results/figures`  - Figures used in the manuscript
 ````
+
+### Discussion with your audience
+
+Simply because a project has been published, doesn't mean the end of it. Readers may
+want clarification on certain aspects, or further help. Describe how a reader should
+communicate further with you, whether it be e-mail, Github issues/discussions, or some
+other method.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learnt:
