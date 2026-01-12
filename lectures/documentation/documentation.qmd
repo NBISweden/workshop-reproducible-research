@@ -8,7 +8,7 @@ format: revealjs
 ::: {.incremental}
 - Projects become [difficult to understand without documentation]{.green}
 - [Documentation is essential]{.green} from a reproducibility perspective
-- Properly organised [documentation is often overlooked]{.green}
+- Properly organised [documentation encourages reuse]{.green}
 :::
 
 ## Good documentation should
@@ -19,6 +19,7 @@ format: revealjs
 - [Record]{.green} how the analyses were performed
 - Provide [clear instructions]{.green} for reproducibility
 - Happen [continuously]{.green} throughout the project
+- Describe how to [discuss]{.green} the project
 :::
 
 ## The README file
@@ -33,6 +34,7 @@ should answer the following questions:
 4. What is the minimum hardware requirements to reproduce the analyses?
 5. How do I reproduce the analyses?
 6. What outputs should I expect?
+7. How can a reader discuss with the author?
 :::
 
 # Questions?
