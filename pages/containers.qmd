@@ -370,13 +370,13 @@ at the [OCI GitHub](https://github.com/opencontainers/image-spec/blob/main/annot
 :::
 
 ::: {.callout-note title="There are many roads to Rome"}
-When it comes to choosing the best image to start from there are multiple
-routes you could take. Say you want to run RStudio in a Conda environment
-through a Jupyter notebook. You could then start from one of the
-[rocker images](https://github.com/rocker-org/rocker) for R, a
-[Condaforge image](https://hub.docker.com/r/condaforge/miniforge3), or
-a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start
-from one of the low-level official images and set up everything from scratch.
+When it comes to choosing the best image to start from there are multiple routes
+you could take. Say you want to run RStudio in a Conda environment along with a
+Jupyter notebook (which we go through in the [Jupyter tutorial](jupyter.html)):
+you could then start from one of the [rocker images](https://github.com/rocker-org/rocker)
+for R, a [Condaforge image](https://hub.docker.com/r/condaforge/miniforge3), or
+a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one
+of the low-level official images and set up everything from scratch.
 :::
 
 Let's take a look at the next section of `slim.Dockerfile`.
