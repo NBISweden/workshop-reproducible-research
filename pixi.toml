@@ -1,8 +1,12 @@
 [workspace]
-authors = ["Mahesh Binzer-Panchal <mahesh.binzer-panchal@nbis.se>"]
+authors = [
+    "John Sundh <john.sundh@nbis.se>",
+    "Erik Fasterius <erik.fasterius@nbis.se>",
+    "Mahesh Binzer-Panchal <mahesh.binzer-panchal@nbis.se>",
+]
 channels = ["conda-forge", "bioconda"]
 name = "workshop-reproducible-research"
-platforms = ["osx-arm64","osx-64","linux-64"]
+platforms = ["osx-arm64", "osx-64", "linux-64"]
 version = "0.1.0"
 
 [tasks]
