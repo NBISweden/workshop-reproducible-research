@@ -8,6 +8,7 @@ version = "0.1.0"
 [tasks]
 
 [dependencies]
+conda = ">=25.11.1,<26"
 
 [feature.jupyter-env]
 channels = ["conda-forge", "bioconda"]
@@ -85,3 +86,6 @@ jupyter-env = { features = ["jupyter-env"], no-default-feature = true }
 nextflow-env = { features = ["nextflow-env"], no-default-feature = true }
 quarto-env = { features = ["quarto-env"], no-default-feature = true }
 snakemake-env = { features = ["snakemake-env"], no-default-feature = true }
+
+[target.linux-64.dependencies]
+apptainer = ">=1.4.5,<2"
