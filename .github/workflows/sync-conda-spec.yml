@@ -17,7 +17,6 @@ jobs:
 
       - name: Generate Explicit Specs
         run: |
-          mkdir -p env/conda-specfiles
           # Export every environment for every platform
           pixi workspace export conda-explicit-spec env/conda-specfiles
 
