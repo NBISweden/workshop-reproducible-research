@@ -10,7 +10,7 @@ platforms = ["osx-arm64", "osx-64", "linux-64"]
 version = "0.1.0"
 
 [tasks]
-update-conda-lockfiles = "pixi-to-conda-lock pixi.lock --output env/conda-lockfiles/"
+update-conda-specfiles = "pixi workspace export conda-explicit-spec env/conda-specfiles"
 
 [dependencies]
 conda = ">=25.11.1,<26"
