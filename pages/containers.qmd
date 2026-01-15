@@ -579,66 +579,6 @@ on the command you want to execute in what container. More information about
 this can be found in their respective "extra materials" section.
 :::
 
-### Seqera containers
-
-While building from your own Dockerfile gives you full control over exactly how
-you build your image, there is also another alternative for building images:
-[Seqera Containers](https://seqera.io/containers/). This a free service provided
-by Seqera, the company behind Nextflow (among other things), and it allows you
-to easily build images from any package available in PyPI, Bioconda or Conda
-Forge. This means that most (but not all) bioinformatic software packages can be
-bundled with a Seqera container, all without the need for a Dockerfile of your
-own. In fact, all you need to do is to search for the packages in the web
-interface and Seqera will both build and host your final image for you!
-
-- Head over to [https://seqera.io/containers/](https://seqera.io/containers/)
-  and type `fastqc` in the search bar.
-
-You should find a bunch of packages with `fastqc` in their names, but the one
-we're looking for is the one from Bioconda, which you'll find listed as
-`bioconda::fastqc`.
-
-- Select the `0.11.9` version (the same as we previously used for our other
-  Docker image), which you can do on the right-hand side of the list.
-
-Once you've done that the text `bioconda::fastqc=0.11.9` should appear in the
-search bar. We'll also need `curl`, since that's used by the `run_qc.sh` script.
-
-- Add `curl` to the image in the same way.
-
-Once you've added `curl` you can press the blue "Get Container" button, and the
-image will start building. When you pressed the button you should have gotten a
-quick response of "Fetching container" and a link to the image itself; you can
-also press "View build details" if you want to explore the details about the
-build and image. Once the build is ready you'll instead see "Container is
-ready". The image can now be used in the same way as for any other image.
-
-Since we previously ran the `run_qc.sh` script with our image, let's do the same
-here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
-`/tmp/run_qc.sh` will be available in the container, as well as the `-w /tmp` to
-set the workdir:
-
-- Execute `docker run -v $(pwd):/tmp -w /tmp <CONTAINER_LINK> /tmp/run_qc.sh`
-  from the command line.
-
-This will automatically download the Seqera image and start the script as soon
-as it's ready.
-
-::: {.callout-note}
-The reason we used `-v $(pwd):/tmp` rather than `-v $(pwd):/analysis` as before
-is that Seqera containers default to the `/tmp` directory as their point of
-entry when running them. There is nothing special about this name, it's just the
-default location.
-:::
-
-While this particular image was quite simple, it's quite common to create more
-complicated R and Python environments, which require many more packages and
-dependencies. If all of them are available in _e.g._ Bioconda (the most common
-place for bioinformatic software) then you can use a Seqera container instead of
-making your own Dockerfile. Making your own Dockerfile is, however, still the
-better alternative if you want complete control of the image (and it's sometimes
-the _only_ alternative if your package isn't available in Bioconda, Conda Forge
-or PyPI and you have to install it manually).
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -648,7 +588,6 @@ In this section we've learned:
 - How to use `docker build` to construct and tag an image from a Dockerfile.
 - How to create your own Dockerfile.
 - How to use `-w` to set the working directory at runtime.
-- How to create an image using Seqera Containers.
 :::
 
 ## Managing containers
@@ -1028,6 +967,67 @@ resources:
 - A "Get started with Docker" at the [Docker website](https://docs.docker.com/get-started/).
 - An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using
   Docker for reproducible research.
+
+### Seqera containers
+
+While building from your own Dockerfile gives you full control over exactly how
+you build your image, there is also another alternative for building images:
+[Seqera Containers](https://seqera.io/containers/). This a free service provided
+by Seqera, the company behind Nextflow (among other things), and it allows you
+to easily build images from any package available in PyPI, Bioconda or Conda
+Forge. This means that most (but not all) bioinformatic software packages can be
+bundled with a Seqera container, all without the need for a Dockerfile of your
+own. In fact, all you need to do is to search for the packages in the web
+interface and Seqera will both build and host your final image for you!
+
+- Head over to [https://seqera.io/containers/](https://seqera.io/containers/)
+  and type `fastqc` in the search bar.
+
+You should find a bunch of packages with `fastqc` in their names, but the one
+we're looking for is the one from Bioconda, which you'll find listed as
+`bioconda::fastqc`.
+
+- Select the `0.11.9` version (the same as we previously used for our other
+  Docker image), which you can do on the right-hand side of the list.
+
+Once you've done that the text `bioconda::fastqc=0.11.9` should appear in the
+search bar. We'll also need `curl`, since that's used by the `run_qc.sh` script.
+
+- Add `curl` to the image in the same way.
+
+Once you've added `curl` you can press the blue "Get Container" button, and the
+image will start building. When you pressed the button you should have gotten a
+quick response of "Fetching container" and a link to the image itself; you can
+also press "View build details" if you want to explore the details about the
+build and image. Once the build is ready you'll instead see "Container is
+ready". The image can now be used in the same way as for any other image.
+
+Since we previously ran the `run_qc.sh` script with our image, let's do the same
+here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
+`/tmp/run_qc.sh` will be available in the container, as well as the `-w /tmp` to
+set the workdir:
+
+- Execute `docker run -v $(pwd):/tmp -w /tmp <CONTAINER_LINK> /tmp/run_qc.sh`
+  from the command line.
+
+This will automatically download the Seqera image and start the script as soon
+as it's ready.
+
+::: {.callout-note}
+The reason we used `-v $(pwd):/tmp` rather than `-v $(pwd):/analysis` as before
+is that Seqera containers default to the `/tmp` directory as their point of
+entry when running them. There is nothing special about this name, it's just the
+default location.
+:::
+
+While this particular image was quite simple, it's quite common to create more
+complicated R and Python environments, which require many more packages and
+dependencies. If all of them are available in _e.g._ Bioconda (the most common
+place for bioinformatic software) then you can use a Seqera container instead of
+making your own Dockerfile. Making your own Dockerfile is, however, still the
+better alternative if you want complete control of the image (and it's sometimes
+the _only_ alternative if your package isn't available in Bioconda, Conda Forge
+or PyPI and you have to install it manually).
 
 ### Building for multiple platforms
 
