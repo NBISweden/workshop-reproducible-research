@@ -420,12 +420,13 @@ We then configure Conda to only use strict mode for building the dependency
 tree, like we did in the [pre-course-setup](../home_precourse.html).
 
 ::: {.callout-note}
-While installing things with `apt-get` inside Dockerfiles is relatively common
-practice, it's important to note that this _may_ affect reproducibility, since
-it's not common to specify an exact version. The packages installed in this
-manner are, however, usually not important for the actual analyses performed,
-but rather help in the building of the container image itself. While not
-critical, it's important to note this from a reproducibility perspective.
+While installing things with package managers such as `apt-get` inside
+Dockerfiles is relatively common practice, it's important to note that this
+_may_ affect reproducibility, since it's not common to specify an exact version.
+The packages installed in this manner are, however, usually not important for
+the actual analyses performed, but rather help in the building of the container
+image itself. While not critical, it's important to note this from a
+reproducibility perspective.
 :::
 
 Next up is:
