@@ -577,6 +577,13 @@ on the command you want to execute in what container. More information about
 this can be found in their respective "extra materials" section.
 :::
 
+::: {.callout-tip}
+Another way to build complicated images is by using _Seqera Containers_, which
+is outlined in the [extra materials](#seqera-containers) section. This is a very
+convenient way to get around local builds and hosting the resulting images
+yourself, and has become widely used in the bioinformatics community.
+:::
+
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
