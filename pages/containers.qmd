@@ -113,11 +113,7 @@ case, `uname` is the `COMMAND` and `-a` the `ARG`. This command will display
 some general info about your system, and the `-a` argument tells `uname` to
 display all possible information.
 
-First run it on your own system (use `systeminfo` if you are on Windows):
-
-```bash
-uname -a
-```
+- First run it on your own system (use `systeminfo` if you are on Windows).
 
 This should print something like this to your command line:
 
@@ -125,12 +121,10 @@ This should print something like this to your command line:
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
-Seems like I'm running the Darwin version of MacOS. Then run it in the Ubuntu
-Docker container:
+Seems like I'm running the Darwin version of MacOS.
 
-```bash
-docker run ubuntu uname -a
-```
+- Run the same command inside the Docker container, like so: `docker run ubuntu
+  uname -a`.
 
 Here I get the following result:
 
@@ -143,7 +137,7 @@ ubuntu image to run a container that has `Ubuntu` as the operating system,
 and we instruct Docker to execute `uname -a` to print the system info within
 that container. The output from the command is printed to the terminal.
 
-Try the same thing with `whoami` instead of `uname -a`.
+- Try the same thing with `whoami` instead of `uname -a`.
 
 ### Running interactively
 
@@ -151,9 +145,7 @@ So, seems we can execute arbitrary commands on Linux. This looks useful, but
 maybe a bit limited. We can also get an interactive terminal with the flags
 `-it`.
 
-```bash
-docker run -it ubuntu
-```
+- Run a container interactively with `docker run -it ubuntu`
 
 Your prompt should now look similar to:
 
@@ -165,7 +157,7 @@ You are now using a terminal inside a container running Ubuntu. Here you can
 do whatever; install, run, remove stuff. Anything you do will be isolated
 within the container and never affect your host system.
 
-Now exit the container with `exit`.
+- Now exit the container by typing `exit` or pressing `CTRL + D`.
 
 ### Containers inside scripts
 
@@ -183,17 +175,17 @@ shell:
 
 Let's imagine we want to run the above command using containers instead. How
 would that look? First we find a container image that has `bowtie2` installed,
-and then prepend the command with `docker run <image>`.
+and then prepend the command with `docker run <image>`. First of all we need to
+download the genome to index, though.
 
-First of all we need to download the genome to index though, so run the
-following to download and prepare the input for Bowtie2:
+- Run the following to download and prepare the input for Bowtie2:
 
 ```bash
 curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
 gunzip -c NCTC8325.fa.gz > tempfile
 ```
 
-Now try running the following Bash code:
+- Now try running the following command:
 
 ```bash
 docker run quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build tempfile NCTC8325
@@ -265,18 +257,19 @@ command.
 -u $(id -u ${USER}):$(id -g ${USER})
 ```
 
-This will make the output files have the same permissions as the user that is running the command.
+This will make the output files have the same permissions as the user that is
+running the command.
 :::
 
-Docker will automatically download the container image for Bowtie2 version
-2.5.1 from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
+Docker will automatically download the container image for Bowtie2 version 2.5.1
+from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
 and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
 [COMMAND] [ARG...]` syntax just like before. In this case
-`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but
-instead of first downloading and then running it we point to its remote
-location directly, which will cause Docker to download it on
-the fly. The `bowtie2-build` part is the COMMAND followed by the ARG (the
-input tempfile and the output index)
+`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but instead
+of first downloading and then running it we point to its remote location
+directly, which will cause Docker to download it on the fly. The `bowtie2-build`
+part is the COMMAND followed by the ARG (the input tempfile and the output
+index)
 
 The operation should now successfully run and you'll have a bunch of
 Bowtie2-related files in your directory; since we _mounted_ the current working
@@ -292,7 +285,8 @@ In this section we've learned:
 - How to use `docker run` for starting a container from an image.
 - How to use the `-it` flag for running in interactive mode.
 - How to use Docker inside scripts.
-- How to use bind mounts to share data between the container and the host system.
+- How to use bind mounts to share data between the container and the host
+  system.
 :::
 
 ## Building images
@@ -451,37 +445,48 @@ raw data, _e.g._ `CMD snakemake -s Snakefile -c 1 generate_figures`.
 
 ### Building from Dockerfiles
 
-Now we understand how a Dockerfile works. Constructing the image itself from the
-Dockerfile can be done as follows - try it out:
+Now we understand how a Dockerfile works, and it's time to actually build an
+image from one.
 
-```bash
-docker build -f slim.Dockerfile -t my_docker_image .
-```
+- Build an image using the following command: `docker build -f slim.Dockerfile
+  -t my_docker_image .`.
 
 This should result in something similar to this:
 
-```
- [+] Building 2.2s (7/7) FINISHED
- => [internal] load build definition from slim.Dockerfile                                                                                                                                             0.0s
- => => transferring dockerfile: 667B                                                                                                                                                                  0.0s
- => [internal] load .dockerignore                                                                                                                                                                     0.0s
- => => transferring context: 2B                                                                                                                                                                       0.0s
- => [internal] load metadata for docker.io/condaforge/miniforge3:latest                                                                                                                               0.0s
- => [1/3] FROM docker.io/condaforge/miniforge3                                                                                                                                                        0.0s
- => CACHED [2/3] WORKDIR /course                                                                                                                                                                      0.0s
- => [3/3] RUN conda config --set channel_priority strict 0.4s
- => exporting to image                                                                                                                                                                                0.0s
- => => exporting layers                                                                                                                                                                               0.0s
- => => writing image sha256:53e6efeaa063eadf44c509c770d887af5e222151f08312e741aecc687e6e8981                                                                                                          0.0s
- => => naming to docker.io/library/my_docker_image
+```no-highlight
+[+] Building 52.0s (9/9) FINISHED                           docker:desktop-linux
+ => [internal] load build definition from slim.Dockerfile                   0.0s
+ => => transferring dockerfile: 585B                                        0.0s
+ => [internal] load metadata for docker.io/condaforge/miniforge3:latest     1.8s
+ => [auth] condaforge/miniforge3:pull token for registry-1.docker.io        0.0s
+ => [internal] load .dockerignore                                           0.0s
+ => => transferring context: 2B                                             0.0s
+ => [1/4] FROM docker.io/condaforge/miniforge3:latest@sha256:b176780143fe  35.2s
+ => => resolve docker.io/condaforge/miniforge3:latest@sha256:b176780143fe0  0.0s
+ => => sha256:97dd3f0ce510a30a2868ff104e9ff286ffc0ef0128 28.86MB / 28.86MB  9.0s
+ => => sha256:cf80b7965770fb1031c5fe4ce4ca539d1930312 111.15MB / 111.61MB  50.1s
+ => => extracting sha256:97dd3f0ce510a30a2868ff104e9ff286ffc0ef01284aebe38  0.4s
+ => => extracting sha256:cf80b7965770fb1031c5fe4ce4ca539d1930312626d3ead3e  1.4s
+ => [2/4] WORKDIR /course                                                   0.4s
+ => [3/4] RUN apt-get update &&     apt-get install -y curl &&     apt-ge  12.1s
+ => [4/4] RUN conda config --set channel_priority strict &&     conda conf  0.4s
+ => exporting to image                                                      1.9s
+ => => exporting layers                                                     1.6s
+ => => exporting manifest sha256:57132027a7303f6024ff7a2da78155fcc45563a76  0.0s
+ => => exporting config sha256:7d25bab9c520dbc56b134d825279dd88c718bfeb89e  0.0s
+ => => exporting attestation manifest sha256:a4d504627e50a93a33dd76838866d  0.0s
+ => => exporting manifest list sha256:49504f68de7c0265181b7a322272272e43bb  0.0s
+ => => naming to docker.io/library/my_docker_image:latest                   0.0s
+ => => unpacking to docker.io/library/my_docker_image:latest                0.3s
 ```
 
 Exactly how the output looks depends on which version of Docker you are using.
 The `-f` flag sets which Dockerfile to use and `-t` tags the image with a name.
 This name is how you will refer to the image later. Lastly, the `.` is the path
 to where the image should be build (`.` means the current directory). This had
-no real impact in this case, but matters if you want to import files. Validate
-with `docker image ls` that you can see your new image.
+no real impact in this case, but matters if you want to import files.
+
+- Validate with `docker image ls` that you can see your new image.
 
 ### Creating your own Dockerfile
 
@@ -541,20 +546,14 @@ RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
 ```
 :::
 
-- Build the image and tag it `my_docker_conda`.
-
-```bash
-docker build -t my_docker_conda -f conda.Dockerfile .
-```
+- Build the image and tag it using `docker build -t my_docker_conda -f
+  conda.Dockerfile .`.
 
 - Verify that the image was built using `docker image ls`.
 
 - Execute the `run_qc.sh` script inside the container with the appropriate bind
-  mounts:
-
-```bash
-docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
-```
+  mounts using `docker run -v $(pwd):/analysis my_docker_conda
+  /analysis/run_qc.sh`.
 
 You should now see the script to completion, but you won't find the output files
 in your working directory. The script creates the `data` and `results`
@@ -566,9 +565,7 @@ which tells Docker where execution should happen, _i.e._ what should be the
 working directory (you could instead add `WORKDIR /analysis` to the Dockerfile
 for the same effect).
 
-```bash
-docker run -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
-```
+- Run the same command again, but add `-w /analysis` to the command.
 
 ::: {.callout-tip}
 While the general strategy we've outlined here is sound, it can feel a bit
@@ -578,7 +575,6 @@ Snakemake and Nextflow can handle all of this for you, and you can focus purely
 on the command you want to execute in what container. More information about
 this can be found in their respective "extra materials" section.
 :::
-
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -593,22 +589,19 @@ In this section we've learned:
 ## Managing containers
 
 When you start a container with `docker run` it is given an unique id that you
-can use for interacting with the container. Let's try to run a container from
-the image we just created:
+can use for interacting with the container.
 
-```bash
-docker run my_docker_conda
-```
+- Let's try to run a container from the image we just created by running `docker
+  run my_docker_conda`.`
 
 If everything worked `run_qc.sh` is executed and will first download and then
-analyse the three samples. Once it's finished you can list all containers,
-including those that have exited.
+analyse the three samples.
 
-```bash
-docker container ls --all
-```
+- Once it's finished you can list all containers, including those that have
+  exited, using `docker container ls --all`.
 
-This should show information about the container that we just ran. Similar to:
+This should show information about the container that we just ran, something
+similar to the following:
 
 ```
 CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS          PORTS      NAMES
@@ -618,12 +611,14 @@ b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24
 If we run `docker run` without any flags, your local terminal is attached to the
 container. This enables you to see the output of `run_qc.sh`, but also disables
 you from doing anything else in the meantime. We can start a container in
-detached mode with the `-d` flag. Try this out and run `docker container ls`
-to validate that the container is running.
+detached mode with the `-d` flag.
+
+- Run the command in detached mode followed by `docker container ls` to validate
+  that the container is running.
 
 By default, Docker keeps containers after they have exited. This can be
 convenient for debugging or if you want to look at logs, but it also consumes
-huge amounts of disk space. It's therefore a good idea to always run with
+huge amounts of disk space. It's therefore usually a good idea to run with
 `--rm`, which will remove the container once it has exited.
 
 If we want to enter a running container, there are two related commands we can
@@ -632,11 +627,19 @@ standard input, output, and error streams to a running container. This can be
 useful if your terminal closed down for some reason or if you started
 a terminal in detached mode and changed your mind. `docker exec` can be used to
 execute any command in a running container. It's typically used to peak in at
-what is happening by opening up a new shell. Here we start the container in
-detached mode and then start a new interactive shell so that we can see what
-happens. If you use `ls` inside the container you can see how the script
-generates file in the `data` and `results` directories. Note that you will be
-thrown out when the container exits, so you have to be quick.
+what is happening by opening up a new shell.
+
+- Start a new container in detached mode using `docker run -d --rm --name
+  my_container my_docker_conda`.
+
+- Start a new interactive Bash shell inside the newly created container using
+  `docker exec -it my_container /bin/bash`.
+
+- Use _e.g._ `ls` to see how the script generated files in the `data` and
+  `results` directories.
+
+Note that you will be thrown out when the container exits, so you have to be
+quick with performing these three steps, one after the other.
 
 ```bash
 docker run -d --rm --name my_container my_docker_conda
@@ -690,38 +693,37 @@ public images and one private image for free (after which they charge a small
 fee). The GitHub Container Registry is also quite handy if you're already using
 GitHub. Let's see how it's done using Docker Hub!
 
-1. Register for an account on [Docker Hub](https://hub.docker.com).
+- Register for an account on [Docker Hub](https://hub.docker.com).
 
-2. Use `docker login -u your_dockerhub_id` to login to the Docker Hub
-   registry. Or use the **Sign in** button in Docker Desktop.
+- Use `docker login -u your_dockerhub_id` to login to the Docker Hub registry.
+  Or use the **Sign in** button in Docker Desktop.
 
-3. When you build an image, tag it with `-t your_dockerhub_id/image_name`,
-   rather than just `image_name`.
+- When you build an image, tag it with `-t your_dockerhub_id/image_name`, rather
+  than just `image_name`.
 
-4. Once the image has been built, upload it to Docker Hub with
-   `docker push your_dockerhub_id/image_name`.
+- Once the image has been built, upload it to Docker Hub with `docker push
+  your_dockerhub_id/image_name`.
 
-5. If another user runs `docker run your_dockerhub_id/image_name` the image
-   will automatically be retrieved from Docker Hub. You can use `docker pull`
-   for downloading without running.
+- If another user runs `docker run your_dockerhub_id/image_name` the image will
+  automatically be retrieved from Docker Hub. You can use `docker pull` for
+  downloading without running.
 
 If you want to refer to a Docker image in for example a publication, it's very
 important that it's the correct version of the image. This is handled via the
-'tags' (_e.g._ `docker build -t your_dockerhub_id/image_name:tag_name`) that we
+tags (_e.g._ `docker build -t your_dockerhub_id/image_name:tag_name`) that we
 introduced in [the basics](#the-basics) and used when [building
 images](#building-images).
 
 ::: {.callout-tip}
-On Docker Hub it is also possible to link to your Bitbucket or GitHub
-account and select repositories from which you want to automatically build
-and distribute Docker images. The Docker Hub servers will then build an
-image from the Dockerfile in your Git repository and make it available for
-download using `docker pull`. That way, you don't have to bother manually
-building and pushing using `docker push`. The GitHub repository for this
-course is linked to Docker Hub and the Docker images are built automatically
-from `Dockerfile` and `slim.Dockerfile`, triggered by changes made to the
-GitHub repository. You can take a look at the course on [Docker
-Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
+On Docker Hub it is also possible to link to your GitHub / BitBucket account and
+select repositories from which you want to automatically build and distribute
+Docker images. The Docker Hub servers will then build an image from the
+Dockerfile in your Git repository and make it available for download using
+`docker pull`. That way, you don't have to bother manually building and pushing
+using `docker push`. The GitHub repository for this course is linked to Docker
+Hub and the Docker images are built automatically from `Dockerfile` and
+`slim.Dockerfile`, triggered by changes made to the GitHub repository. You can
+take a look at the course on [Docker Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
 :::
 
 ::: {.callout-note title="Quick recap"}
@@ -730,70 +732,6 @@ In this section we've learned:
 - How container registries and repositories work
 - How to use Docker Hub to share Docker images
 :::
-
-## Packaging the case study
-
-During these tutorials we have been working on a case study about the
-multi-resistant bacteria MRSA. Here we will build and run a Docker container
-that contains the environment for all the work we've done so far.
-
-- We've [set up a GitHub repository](git.html#working-remotely) for version
-  control and for hosting our project.
-- We've defined a [Conda environment](conda.html#working-with-environments) that
-  specifies the packages we're depending on in the project.
-- We've constructed a [Snakemake
-workflow](snakemake.html#generalising-workflows) that performs the data analysis
-  and keeps track of files and parameters.
-- We've written a [Quarto document](quarto.html) that takes the results from the
-  Snakemake workflow and summarizes them in a report.
-
-The `workshop-reproducible-research/tutorials/containers` directory contains the
-final versions of all the files we've generated in the other tutorials:
-`environment.yml`, `Snakefile`, `config.yml` and
-`code/supplementary_material.qmd`. The only difference compared to the other
-tutorials is that we have also included the rendering of the Supplementary
-Material HTML file into the Snakemake workflow as the rule `make_supplementary`.
-Running all of these steps will take some time to execute (around 20 minutes or
-so), in particular if you're on a slow internet connection.
-
-Now take a look at `Dockerfile`. Everything should look quite familiar to you,
-since it's basically the same steps as in the image we constructed in the
-[building images](#building-images) section, although with some small
-modifications. The main difference is that we install the conda packages using
-`environment.yml`.
-
-- Now run `docker build` as before, tag the image with `my_docker_project`:
-
-::: {.callout-caution title="Building on ARM64 systems"}
-This particular environment (which is quite complicated) has some packages that
-are not available on ARM64 systems. So if you're using a new Mac computer you
-will additionally have to supply the `--platform linux/amd64` flag in order for
-it to build successfully.
-:::
-
-```bash
-docker build -t my_docker_project -f Dockerfile .
-```
-
-Go get a coffee while the image builds (or you could use `docker pull
-nbisweden/workshop-reproducible-research` which will download the same image).
-
-Validate with `docker image ls`. Now all that remains is to run the whole thing
-with the appropriate command. The command to execute the Snakemake workflow is
-`snakemake --configfile config.yml -p -c 1`, and we'll also need to mount the
-current directory into the container's WORKDIR, which is `/course`.
-Click below to see how to write the command.
-
-::: {.callout-tip collapse="true" title="Click to show"}
-```bash
-docker run -v $(pwd):/course my_docker_project snakemake --configfile config.yml -p -c 1
-```
-:::
-
-Well done! You now have an image that allows anyone to exactly reproduce your
-analysis workflow. All you need to do now is to make sure all the code and the
-container is hosted at _e.g._ GitHub and/or DockerHub, together with
-documentation about the commands to run.
 
 ## Extra material
 
@@ -988,12 +926,10 @@ out [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/apptai
 The following exercises assume that you have a login to the Uppmax HPC cluster
 in Uppsala, but will also work for any other system that has Apptainer
 installed - like if you managed to install Apptainer on your local system or
-have access to some other HPC cluster. Let's try to convert the Docker image for
-this course directly from DockerHub:
+have access to some other HPC cluster.
 
-```bash
-apptainer pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research
-```
+- Convert the Docker image for this course directly from DockerHub using the
+  following command: `apptainer pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research`.
 
 This should result in a SIF file called `mrsa_proj.sif`.
 
@@ -1009,18 +945,16 @@ all the software and dependencies).
 In your current working directory
 (`workshop-reproducible-research/tutorials/containers/`) the vital MRSA project
 files are already available (`Snakefile`, `config.yml` and
-`code/supplementary_material.qmd`). Since Apptainer bind mounts the current
-working directory we can simply execute the workflow and generate the output
-files using:
+`code/supplementary_material.qmd`).
 
-```bash
-apptainer run mrsa_proj.sif
-```
+- Execute the workflow inside Apptainer using `apptainer run mrsa_proj.sif`.
 
 This executes the default run command, which is `snakemake -rp -c 1 --configfile
-config.yml` (as defined in the original `Dockerfile`). Once completed you should
-see a bunch of directories and files generated in your current working
-directory, including the `results/` directory containing the final HTML report.
+config.yml` (as defined in the original `Dockerfile`), and since Apptainer
+automatically bind mounts the current working directory we have access to all
+the required input files already. Once completed you should see a bunch of
+directories and files generated in your current working directory, including the
+`results/` directory containing the final HTML report.
 
 ### Building for multiple platforms
 
@@ -1029,9 +963,9 @@ problem of not having an architecture-native image to run with. This is
 sometimes okay since the [Rosetta2](https://support.apple.com/en-us/HT211861)
 software can emulate the old AMD64 architecture on newer ARM64 computers, but
 results in a performance hit. One could just build for ARM64 using
-`--platform=linux/arm64` instead, but then somebody who *doesn't* have the new
-architecture can't run it. There is a way around this, however: *multi-platform
-builds*. We can build for multiple platforms at the same time and push those to
+`--platform=linux/arm64` instead, but then somebody who _doesn't_ have the new
+architecture can't run it. There is a way around this, however: _multi-platform
+builds_. We can build for multiple platforms at the same time and push those to
 _e.g._ DockerHub and anybody using those images will automatically pull the one
 appropriate for their computer. Here's how to do it:
 
@@ -1077,11 +1011,11 @@ is included in the final image.
 
 While this is mostly interesting for software developers and people working with
 binaries and other non-scripted code, it can be of interest in the context of
-bioinformatics when it comes to optimising Conda environments. Conda actually
-comes in two parts: the Conda installation itself (along with all the files
-requires to build Conda environments) and the Conda environments that we've
-built. The former is actually not needed to be able to use the latter, but the
-technical details behind this are non-trivial and out of the scope of this
+bioinformatics when it comes to optimising _e.g._ Conda environments. Conda
+actually comes in two parts: the Conda installation itself (along with all the
+files requires to build Conda environments) and the Conda environments that
+we've built. The former is actually not needed to be able to use the latter, but
+the technical details behind this are non-trivial and out of the scope of this
 course. Regardless, there's a package that can help us with this: `conda-pack`.
 
 Let's take a very simple Dockerfile as an example of what we might have created
@@ -1096,8 +1030,8 @@ CMD /bin/bash
 Here we install Python in the Conda base environment, similar to how we have
 done it previously in the course.
 
- - Copy the above code into _e.g._ `base.Dockerfile` and build it using
-   `docker build -f base.Dockerfile -t my_docker_base .`
+- Copy the above code into _e.g._ `base.Dockerfile` and build it using `docker
+  build -f base.Dockerfile -t my_docker_base .`
 
 Let's look at multi-stage image that includes `conda-pack`:
 
@@ -1152,14 +1086,11 @@ there's a `COPY` statement just after: this is the directive that copies files
 from the `build` stage into the current stage. We only copy the Python
 environment itself, not the base environment nor the Conda installation.
 
- - Copy the code above into a file called `multi.Dockerfile` and build it with:
+- Copy the code above into a file called `multi.Dockerfile` and build it with
+  `docker build -f multi.Dockerfile -t my_docker_multi .`.
 
- ```bash
- docker build -f multi.Dockerfile -t my_docker_multi .
- ```
-
- - List your docker images with `docker image ls` and compare the newly created
-   `my_docker_multi` with `my_docker_base`.
+- List your docker images with `docker image ls` and compare the newly created
+  `my_docker_multi` with `my_docker_base`.
 
 Hopefully you should see that the size of the final image are different: the
 `multi` image should be about 500 MB smaller than the `multi` image. This tells
@@ -1172,8 +1103,8 @@ using an even smaller base image, such as `alpine`. Doing this means that you
 lose out on a lot of basic Unix utilities, though, such as Bash.
 :::
 
- - Try to optimise the last image we did for the MRSA project,
- `my_docker_project`! Click below if you want some help.
+- Try to optimise the last image we did for the MRSA project,
+  `my_docker_project`! Click below if you want some help.
 
 ::: {.callout-note collapse="true" title="Click to show solution"}
 ```Dockerfile
@@ -1230,8 +1161,8 @@ CMD source /env/bin/activate && \
 ```
 :::
 
- - Now check the difference between the previous `my_docker_project` and your
- new image. How much of a size did you get?
+- Now check the difference between the previous `my_docker_project` and your new
+  image. How much of a size did you get?
 
 You should hopefully find that you get around 500 MB difference here as well,
 but since the Conda environment for this particular image is _much_ more
