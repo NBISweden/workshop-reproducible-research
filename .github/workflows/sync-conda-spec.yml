@@ -22,7 +22,6 @@ jobs:
           pixi workspace export conda-explicit-spec env/conda-specfiles
 
       - name: Commit Changes
-        if: github.event_name == 'push'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
