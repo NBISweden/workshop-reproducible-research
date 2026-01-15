@@ -6,8 +6,19 @@
   },
   "customizations": {
     "vscode": {
-      "settings": {},
-      "extensions": ["ms-python.python", "charliermarsh.ruff", "GitHub.copilot"]
+      "extensions": [
+        "nextflow.nextflow",
+        "snakemake.snakemake-lang",
+        "quarto.quarto",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "tamasfe.even-better-toml"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": ".pixi/envs/default/bin/python",
+        "snakemake.executable": ".pixi/envs/snakemake-env/bin/snakemake",
+        "nextflow.executable": ".pixi/envs/nextflow-env/bin/nextflow"
+      }
     }
   },
   "features": {
