@@ -1103,72 +1103,12 @@ using an even smaller base image, such as `alpine`. Doing this means that you
 lose out on a lot of basic Unix utilities, though, such as Bash.
 :::
 
-- Try to optimise the last image we did for the MRSA project,
-  `my_docker_project`! Click below if you want some help.
-
-::: {.callout-note collapse="true" title="Click to show solution"}
-```Dockerfile
-#
-# First stage: Conda environment
-#
-FROM condaforge/miniforge3:24.7.1-0 AS conda
-
-# Install conda-pack
-RUN conda install -y -n base conda-pack
-
-# Install environment
-COPY environment.yml ./
-RUN conda env create -f environment.yml -n env && \
-    conda clean -a
-
-# Package the new environment into /env
-RUN conda-pack -n env -o /tmp/env.tar && \
-    mkdir /env && \
-    tar -xf /tmp/env.tar -C /env && \
-    rm /tmp/env.tar && \
-    /env/bin/conda-unpack
-
-#
-# Second stage: final image
-#
-FROM ubuntu:20.04
-COPY --from=conda /env /env
-WORKDIR /course
-
-# Install required packages
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get clean
-
-# Install Quarto
-ARG QUARTO_VERSION="1.3.450"
-RUN mkdir -p /opt/quarto && \
-    curl -o quarto.tar.gz -L "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz" && \
-    tar -zxvf quarto.tar.gz -C /opt/quarto/ --strip-components=1 && \
-    rm quarto.tar.gz
-ENV PATH /opt/quarto/bin:${PATH}
-
-# Activate the environment when running the container
-RUN echo "source /env/bin/activate" >> ~/.bashrc
-
-# Add project files
-COPY Snakefile config.yml ./
-COPY code ./code/
-
-SHELL ["/bin/bash", "-c"]
-CMD source /env/bin/activate && \
-    snakemake -p -c 1 --configfile config.yml
-```
-:::
-
-- Now check the difference between the previous `my_docker_project` and your new
-  image. How much of a size did you get?
-
-You should hopefully find that you get around 500 MB difference here as well,
-but since the Conda environment for this particular image is _much_ more
-complicated than the previous example, this difference is proportionally
-smaller: Going from ~850 to ~250 MB is quite a big optimisation, while going
-from 4 to 3.5 GB is not quite as big. Regardless, that (albeit smaller)
-difference can add up over time when it comes to downloading the image,
-especially if it's an image used by many people in a project, or if you're
-actually paying for hosting of the image.
+There are more complex environment specifications than this, though, especially
+those using multiple R and/or Python packages. The Conda environments for those
+type of environments are _much_ more complicated than the previous example,
+which means that the optimisation is proportionally smaller. Going from ~850 to
+~350 MB is quite a big optimisation, while going from _e.g._ 2 or 3 GB to 1.5 or
+2.5 GB is not quite as big. Regardless, that (albeit smaller) difference can add
+up over time when it comes to downloading the image, especially if it's an image
+used by many people in a project, or if you're actually paying for hosting of
+the image.
