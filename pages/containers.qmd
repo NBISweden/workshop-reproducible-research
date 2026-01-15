@@ -311,11 +311,11 @@ blueprints for the images. It is therefore good practice to have your
 Dockerfile in your project Git repository, since it allows other users to
 exactly replicate your project environment.
 
-We will be looking at a Dockerfile called `slim.Dockerfile` that is located in
-your `containers` directory (where you should hopefully be standing already). We
-will now go through that file and discuss the different steps and what they do.
-After that we'll build the image and test it out. Lastly, we'll start from that
-image and make a new one to reproduce the results from the [Conda
+We will be looking at a Dockerfile called `Dockerfile` that is located in your
+`containers` directory (where you should hopefully be standing already). We will
+now go through that file and discuss the different steps and what they do. After
+that we'll build the image and test it out. Lastly, we'll start from that image
+and make a new one to reproduce the results from the [Conda
 tutorial](conda.html#working-with-environments).
 
 ::: {.callout-note title="Naming Dockerfile"}
@@ -327,11 +327,10 @@ documentation](https://docs.docker.com/build/concepts/dockerfile/#filename).
 
 ### Understanding Dockerfiles
 
-Here are the first few lines of `slim.Dockerfile`. Each line in the Dockerfile
-will typically result in one layer in the resulting image. The format for
-Dockerfiles is `INSTRUCTION arguments`. A full specification of the format,
-together with best practices, can be found at the [Docker
-website](https://docs.docker.com/engine/reference/builder/).
+Here are the first few lines of `Dockerfile`. Each line in the Dockerfile will
+typically result in one layer in the resulting image. The format for Dockerfiles
+is `INSTRUCTION arguments`. A full specification of the format, together with
+best practices, can be found at the [Docker website](https://docs.docker.com/engine/reference/builder/).
 
 ```Dockerfile
 FROM condaforge/miniforge3
@@ -373,7 +372,7 @@ a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start
 from one of the low-level official images and set up everything from scratch.
 :::
 
-Let's take a look at the next section of `slim.Dockerfile`.
+Let's take a look at the next section of `Dockerfile`.
 
 ```Dockerfile
 WORKDIR /course
@@ -406,7 +405,8 @@ RUN apt-get update && \
     apt-get clean
 
 # Configure Conda
-RUN conda config --set channel_priority strict
+RUN conda config --set channel_priority strict && \
+    conda config --append channels bioconda
 ```
 
 The first `RUN` command installs the `curl` command, which will be used to
@@ -417,7 +417,8 @@ clean up. This is due to how layers work and how Docker decides what needs to be
 rerun between builds (more on this later).
 
 We then configure Conda to only use strict mode for building the dependency
-tree, like we did in the [pre-course-setup](../home_precourse.html).
+tree, like we did in the [pre-course-setup](../home_precourse.html), as well as
+add `bioconda` to the channel list.
 
 ::: {.callout-note}
 While installing things with package managers such as `apt-get` inside
@@ -436,27 +437,26 @@ Next up is:
 CMD /bin/bash
 ```
 
-`CMD` is an interesting instruction. It sets what a container should run when
+`CMD` is an interesting instruction: it sets what a container should run when
 nothing else is specified, _i.e._ if you run `docker run [OPTIONS] [IMAGE]`
-without the additional `[COMMAND] [ARG]`. It can be used for example for
-printing some information on how to use the image or, as here, start a Bash
-shell for the user. If the purpose of your image is to accompany a publication
-then `CMD` could be to run the workflow that generates the paper figures from
-raw data, _e.g._ `CMD snakemake -s Snakefile -c 1 generate_figures`.
+without the additional `[COMMAND] [ARG]`. It can be used for _e.g._ printing
+some information on how to use the image or, as here, start a Bash shell for the
+user. If you want some other command to be run by default, for example a
+workflow, you can change `CMD` to whatever command would be appropriate instead.
 
 ### Building from Dockerfiles
 
 Now we understand how a Dockerfile works, and it's time to actually build an
 image from one.
 
-- Build an image using the following command: `docker build -f slim.Dockerfile
-  -t my_docker_image .`.
+- Build an image using the following command: `docker build -f Dockerfile -t
+  my_docker_image .`.
 
 This should result in something similar to this:
 
 ```no-highlight
 [+] Building 52.0s (9/9) FINISHED                           docker:desktop-linux
- => [internal] load build definition from slim.Dockerfile                   0.0s
+ => [internal] load build definition from Dockerfile                        0.0s
  => => transferring dockerfile: 585B                                        0.0s
  => [internal] load metadata for docker.io/condaforge/miniforge3:latest     1.8s
  => [auth] condaforge/miniforge3:pull token for registry-1.docker.io        0.0s
@@ -723,8 +723,8 @@ Dockerfile in your Git repository and make it available for download using
 `docker pull`. That way, you don't have to bother manually building and pushing
 using `docker push`. The GitHub repository for this course is linked to Docker
 Hub and the Docker images are built automatically from `Dockerfile` and
-`slim.Dockerfile`, triggered by changes made to the GitHub repository. You can
-take a look at the course on [Docker Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
+`Dockerfile`, triggered by changes made to the GitHub repository. You can take a
+look at the course on [Docker Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
 :::
 
 ::: {.callout-note title="Quick recap"}
@@ -924,38 +924,20 @@ out [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/apptai
 
 #### Running Apptainer
 
-The following exercises assume that you have a login to the Uppmax HPC cluster
-in Uppsala, but will also work for any other system that has Apptainer
+The following small exercise assume that you have a login to the Uppmax HPC
+cluster in Uppsala, but will also work for any other system that has Apptainer
 installed - like if you managed to install Apptainer on your local system or
 have access to some other HPC cluster.
 
-- Convert the Docker image for this course directly from DockerHub using the
-  following command: `apptainer pull mrsa_proj.sif docker://nbisweden/workshop-reproducible-research`.
+- Convert the Docker image for the `lolcow` software directly from the GitHub
+  Container Registry using the following command: `apptainer pull lolcow.sif
+  docker://ghcr.io/apptainer/lolcow`.
 
-This should result in a SIF file called `mrsa_proj.sif`.
+This should result in a SIF file called `lolcow.sif`.
 
-In the Docker image we included the code needed for the workflow in the
-`/course` directory of the image. These files are of course also available in
-the Apptainer image. However, a Apptainer image is read-only. This will be a
-problem if we try to run the workflow within the `/course` directory, since the
-workflow will produce files and Snakemake will create a `.snakemake` directory.
-Instead, we need to provide the files externally from our host system and simply
-use the Apptainer image as the environment to execute the workflow in (_i.e._
-all the software and dependencies).
+- Run the `lolcow` software with Apptainer using `apptainer run lolcow.sif`.
 
-In your current working directory
-(`workshop-reproducible-research/tutorials/containers/`) the vital MRSA project
-files are already available (`Snakefile`, `config.yml` and
-`code/supplementary_material.qmd`).
-
-- Execute the workflow inside Apptainer using `apptainer run mrsa_proj.sif`.
-
-This executes the default run command, which is `snakemake -rp -c 1 --configfile
-config.yml` (as defined in the original `Dockerfile`), and since Apptainer
-automatically bind mounts the current working directory we have access to all
-the required input files already. Once completed you should see a bunch of
-directories and files generated in your current working directory, including the
-`results/` directory containing the final HTML report.
+You should now see a small ASCII art of a cow and today's date.
 
 ### Building for multiple platforms
 
@@ -1108,7 +1090,7 @@ There are more complex environment specifications than this, though, especially
 those using multiple R and/or Python packages. The Conda environments for those
 type of environments are _much_ more complicated than the previous example,
 which means that the optimisation is proportionally smaller. Going from ~850 to
-~350 MB is quite a big optimisation, while going from _e.g._ 2 or 3 GB to 1.5 or
+~250 MB is quite a big optimisation, while going from _e.g._ 2 or 3 GB to 1.5 or
 2.5 GB is not quite as big. Regardless, that (albeit smaller) difference can add
 up over time when it comes to downloading the image, especially if it's an image
 used by many people in a project, or if you're actually paying for hosting of
