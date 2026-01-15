@@ -398,8 +398,7 @@ conda env create -f quarto/environment.yml -n quarto-env
 
 ## Installing Jupyter
 
-Let's continue using Conda for installing software, since it's so convenient to
-do so! Move into the tutorials directory (`workshop-reproducible-research/tutorials`),
+Move into the tutorials directory (`workshop-reproducible-research/tutorials`),
 create a Conda environment from the `jupyter/environment.yml` file and test
 the installation of Jupyter, like so:
 
