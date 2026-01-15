@@ -15,9 +15,10 @@
         "tamasfe.even-better-toml"
       ],
       "settings": {
-        "python.defaultInterpreterPath": ".pixi/envs/default/bin/python",
-        "snakemake.executable": ".pixi/envs/snakemake-env/bin/snakemake",
-        "nextflow.executable": ".pixi/envs/nextflow-env/bin/nextflow"
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.pixi/envs/jupyter-env/bin/python",
+        "snakemake.executable": "${containerWorkspaceFolder}/.pixi/envs/snakemake-env/bin/snakemake",
+        "nextflow.java.home": "${containerWorkspaceFolder}/.pixi/envs/nextflow-env",
+        "nextflow.executable": "${containerWorkspaceFolder}/.pixi/envs/nextflow-env/bin/nextflow"
       }
     }
   },
