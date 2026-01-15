@@ -14,7 +14,6 @@ update-conda-lockfiles = "pixi-to-conda-lock pixi.lock --output env/conda-lockfi
 
 [dependencies]
 conda = ">=25.11.1,<26"
-pixi-to-conda-lock = ">=0.4.2,<0.5"
 
 [feature.jupyter-env]
 channels = ["conda-forge", "bioconda"]
