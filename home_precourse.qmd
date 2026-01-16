@@ -417,14 +417,8 @@ First make sure you're currently situated inside the tutorials directory
 (`workshop-reproducible-research/tutorials`) and then create and activate the
 Conda environment with the commands below:
 
-::: {.callout-caution title="ARM64 users"}
-Some of the packages in this environment are not available for the ARM64
-architecture, so you'll have to add `--subdir osx-64` to the `conda env create`
-command. See the [instructions above](#conda-on-new-macs) for more details.
-:::
-
 ```bash
-conda env create -f snakemake/environment.yml -n snakemake-env
+conda create -f env/conda-specfiles/snakemake-env_<platform>_conda_spec.txt -n snakemake-env
 conda activate snakemake-env
 ```
 
@@ -454,15 +448,9 @@ want to use Conda, navigate to `workshop-reproducible-research/tutorials` and
 create the environment:
 
 ```bash
-conda env create -f nextflow/environment.yml -n nextflow-env
+conda create -f env/conda-specfiles/nextflow-env_<platform>_conda_spec.txt -n nextflow-env
 conda activate nextflow-env
 ```
-
-::: {.callout-caution title="ARM64 users"}
-Some of the packages in this environment is not available for the ARM64
-architecture, so you'll have to follow the [instructions
-above](#conda-on-new-macs).
-:::
 
 Check that Nextflow was installed correctly by running `nextflow -version`. If
 you successfully installed Nextflow using Conda you can now deactivate the
