@@ -921,7 +921,7 @@ out [this script](https://github.com/fasterius/dotfiles/blob/main/scripts/apptai
 
 #### Running Apptainer
 
-The following small exercise assume that you have a login to the Uppmax HPC
+The following small exercise assumes that you have a login to the Uppmax HPC
 cluster in Uppsala, but will also work for any other system that has Apptainer
 installed - like if you managed to install Apptainer on your local system or
 have access to some other HPC cluster.
