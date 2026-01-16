@@ -261,16 +261,6 @@ This will make the output files have the same permissions as the user that is
 running the command.
 :::
 
-Docker will automatically download the container image for Bowtie2 version 2.5.1
-from the remote repository `https://quay.io/repository/biocontainers/bowtie2`
-and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
-[COMMAND] [ARG...]` syntax just like before. In this case
-`quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0` is the IMAGE but instead
-of first downloading and then running it we point to its remote location
-directly, which will cause Docker to download it on the fly. The `bowtie2-build`
-part is the COMMAND followed by the ARG (the input tempfile and the output
-index)
-
 The operation should now successfully run and you'll have a bunch of
 Bowtie2-related files in your directory; since we _mounted_ the current working
 directory into the container to get the input files _in_, we _also_ get the
@@ -648,11 +638,6 @@ what is happening by opening up a new shell.
 
 Note that you will be thrown out when the container exits, so you have to be
 quick with performing these three steps, one after the other.
-
-```bash
-docker run -d --rm --name my_container my_docker_conda
-docker exec -it my_container /bin/bash
-```
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
