@@ -547,7 +547,7 @@ RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
   mounts using the following command:
 
 ```bash
-docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh.
+docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
 ```
 
 You should now see the script to completion, but you won't find the output files
