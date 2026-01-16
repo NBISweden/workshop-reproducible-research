@@ -12,9 +12,6 @@ version = "0.1.0"
 [tasks]
 update-conda-specfiles = "pixi workspace export conda-explicit-spec env/conda-specfiles"
 
-[dependencies]
-conda = ">=25.11.1,<26"
-
 [feature.jupyter-env]
 channels = ["conda-forge", "bioconda"]
 
