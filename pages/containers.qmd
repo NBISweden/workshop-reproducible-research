@@ -630,7 +630,7 @@ use, `docker attach` and `docker exec`. `docker attach` will attach local
 standard input, output, and error streams to a running container. This can be
 useful if your terminal closed down for some reason or if you started
 a terminal in detached mode and changed your mind. `docker exec` can be used to
-execute any command in a running container. It's typically used to peak in at
+execute any command in a running container. It's typically used to peek in at
 what is happening by opening up a new shell.
 
 - Start a new container in detached mode using
