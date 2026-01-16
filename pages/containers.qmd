@@ -113,35 +113,34 @@ case, `uname` is the `COMMAND` and `-a` the `ARG`. This command will display
 some general info about your system, and the `-a` argument tells `uname` to
 display all possible information.
 
-- First run it on your own system (use `systeminfo` if you are on Windows).
+- Run `uname -a` on your own system (use `systeminfo` if you are on Windows).
 
-This should print something like this to your command line:
+This should print something like this to your command line (Darwin is the
+Unix-like OS that Macs use):
 
 ```no-highlight
 Darwin liv433l.lan 15.6.0 Darwin Kernel Version 15.6.0: Mon Oct  2 22:20:08 PDT 2017; root:xnu-3248.71.4~1/RELEASE_X86_64 x86_64
 ```
 
-Seems like I'm running the Darwin version of MacOS.
-
 - Run the same command inside the Docker container, like so: `docker run ubuntu
   uname -a`.
 
-Here I get the following result:
+You should then get something like this:
 
 ```no-highlight
 Linux 24d063b5d877 5.4.39-linuxkit #1 SMP Fri May 8 23:03:06 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-And now I'm running on Linux! What happens is that we use the downloaded
-ubuntu image to run a container that has `Ubuntu` as the operating system,
-and we instruct Docker to execute `uname -a` to print the system info within
-that container. The output from the command is printed to the terminal.
+What happens is that we use the downloaded ubuntu image to run a container that
+has `Ubuntu` as the operating system, and we instruct Docker to execute `uname
+-a` to print the system info within that container. The output from the command
+is printed to the terminal.
 
 - Try the same thing with `whoami` instead of `uname -a`.
 
 ### Running interactively
 
-So, seems we can execute arbitrary commands on Linux. This looks useful, but
+Docker allows us to execute arbitrary commands on Linux. This looks useful, but
 maybe a bit limited. We can also get an interactive terminal with the flags
 `-it`.
 
@@ -153,9 +152,9 @@ Your prompt should now look similar to:
 root@1f339e929fa9:/#
 ```
 
-You are now using a terminal inside a container running Ubuntu. Here you can
-do whatever; install, run, remove stuff. Anything you do will be isolated
-within the container and never affect your host system.
+You are now using a terminal inside a container running Ubuntu. Here you can do
+whatever: install, run, remove stuff, and so on. Anything you do will be
+isolated within the container and never affect your host system.
 
 - Now exit the container by typing `exit` or pressing `CTRL + D`.
 
@@ -294,19 +293,19 @@ the [Conda tutorial](conda.html)) has one base image and then one individual
 layer for each of the more than 3000 packages available in Bioconda.
 
 Docker provides a convenient way to describe how to go from a base image to the
-image we want by using a "Dockerfile". This is a simple text file containing
-the instructions for how to generate each layer. Docker images are typically
-quite large, often several GBs, while Dockerfiles are small and serve as
-blueprints for the images. It is therefore good practice to have your
-Dockerfile in your project Git repository, since it allows other users to
-exactly replicate your project environment.
+image we want by using a _Dockerfile_. This is a simple text file containing the
+instructions for how to generate each layer. Docker images can sometimes be
+quite large, upwards of several GBs, while Dockerfiles are small and serve as
+blueprints for the images. It is therefore good practice to have your Dockerfile
+in your project Git repository, since it allows other users to exactly replicate
+your project environment.
 
 We will be looking at a Dockerfile called `Dockerfile` that is located in your
-`containers` directory (where you should hopefully be standing already). We will
-now go through that file and discuss the different steps and what they do. After
-that we'll build the image and test it out. Lastly, we'll start from that image
-and make a new one to reproduce the results from the [Conda
-tutorial](conda.html#working-with-environments).
+`tutorials/containers` directory (where you should hopefully be standing
+already). We will now go through that file and discuss the different steps and
+what they do. After that we'll build the image and test it out. Lastly, we'll
+start from that image and make a new one to reproduce the results from the
+[Conda tutorial](conda.html#working-with-environments).
 
 ::: {.callout-note title="Naming Dockerfile"}
 The default name for a Dockerfile is just that, `Dockerfile`. In cases where you
@@ -353,13 +352,13 @@ at the [OCI GitHub](https://github.com/opencontainers/image-spec/blob/main/annot
 :::
 
 ::: {.callout-note title="There are many roads to Rome"}
-When it comes to choosing the best image to start from there are multiple
-routes you could take. Say you want to run RStudio in a Conda environment
-through a Jupyter notebook. You could then start from one of the
-[rocker images](https://github.com/rocker-org/rocker) for R, a
-[Condaforge image](https://hub.docker.com/r/condaforge/miniforge3), or
-a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start
-from one of the low-level official images and set up everything from scratch.
+When it comes to choosing the best image to start from there are multiple routes
+you could take. Say you want to run RStudio in a Conda environment together with
+a Jupyter notebook. You could then start from one of the [Rocker
+images](https://github.com/rocker-org/rocker) for R, a [Condaforge
+image](https://hub.docker.com/r/condaforge/miniforge3), or a [Jupyter
+image](https://hub.docker.com/r/jupyter/). Or you just start from one of the
+low-level official images and set up everything from scratch.
 :::
 
 Let's take a look at the next section of `Dockerfile`.
@@ -439,8 +438,11 @@ workflow, you can change `CMD` to whatever command would be appropriate instead.
 Now we understand how a Dockerfile works, and it's time to actually build an
 image from one.
 
-- Build an image using the following command: `docker build -f Dockerfile -t
-  my_docker_image .`.
+- Build an image using the following command:
+
+```bash
+docker build -f Dockerfile -t my_docker_image .
+```
 
 This should result in something similar to this:
 
@@ -494,7 +496,7 @@ documentation and the environment specification. What we need to do is thus the
 following:
 
 1. Create a file called `conda.Dockerfile`
-2. Start the image from the `my_docker_image` we just built
+2. Start the image from the `my_docker_image` we previously built
 3. Install the package `fastqc` which is required for the analysis
 4. Run the `run_qc.sh` script using the new image and the appropriate bind
    mounts
@@ -543,8 +545,11 @@ RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
 - Verify that the image was built using `docker image ls`.
 
 - Execute the `run_qc.sh` script inside the container with the appropriate bind
-  mounts using `docker run -v $(pwd):/analysis my_docker_conda
-  /analysis/run_qc.sh`.
+  mounts using the following command:
+
+```bash
+docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh.
+```
 
 You should now see the script to completion, but you won't find the output files
 in your working directory. The script creates the `data` and `results`
@@ -589,8 +594,8 @@ In this section we've learned:
 When you start a container with `docker run` it is given an unique id that you
 can use for interacting with the container.
 
-- Let's try to run a container from the image we just created by running `docker
-  run my_docker_conda`.`
+- Let's try to run a container from the image we just created by running
+  `docker run my_docker_conda`.
 
 If everything worked `run_qc.sh` is executed and will first download and then
 analyse the three samples.
@@ -627,8 +632,8 @@ a terminal in detached mode and changed your mind. `docker exec` can be used to
 execute any command in a running container. It's typically used to peak in at
 what is happening by opening up a new shell.
 
-- Start a new container in detached mode using `docker run -d --rm --name
-  my_container my_docker_conda`.
+- Start a new container in detached mode using
+  `docker run -d --rm --name my_container my_docker_conda`.
 
 - Start a new interactive Bash shell inside the newly created container using
   `docker exec -it my_container /bin/bash`.
@@ -651,11 +656,10 @@ In this section we've learned:
 
 ## Sharing images
 
-There would be little point in going through all the trouble of making your
-analyses reproducible if you can't distribute them to others. Luckily, sharing
-Docker containers is extremely easy, and can be done in several ways. One of the
-more common ways to share Docker images is through container _registries_ and
-_repositories_.
+An important point of reproducibility is the ability to share your analyses with
+others. Luckily, sharing Docker containers is relatively simple, and can be done
+in several ways. One of the more common ways to share Docker images is through
+container _registries_ and _repositories_.
 
 For example, a Docker registry is a service that stores Docker images, which
 could be hosted by a third party, publicly or privately. One of the most common
@@ -667,8 +671,8 @@ stored in registries.
 
 ::: {.callout-note}
 Remember that we now have some clashing nomenclature between Git repositories
-(which we covered in the Git tutorial) and container repositories, so be aware
-of which one you're talking about!
+(which we covered in the [Git tutorial](git.html)) and container repositories,
+so be aware of which one you're talking about!
 :::
 
 There are many registries out there, but here are some that might be of interest
@@ -728,11 +732,9 @@ In this section we've learned:
 
 ## Extra material
 
-Containers can be large and complicated, but once you start using them regularly
-you'll find that you start understand these complexities. There are lots of
-different things you can do with images and containers in general, especially
-when it comes to optimising build time or final image size. Here is some small
-tips and tricks that you can be inspired from!
+There are lots of different things you can do with images and containers in
+general, especially when it comes to optimising build time or final image size.
+Here is some tips and tricks that you can be inspired from!
 
 If you want to read more about containers in general you can check out these
 resources:
@@ -793,8 +795,8 @@ entry when running them. There is nothing special about this name, it's just the
 default location.
 :::
 
-While this particular image was quite simple, it's quite common to create more
-complicated R and Python environments, which require many more packages and
+While this particular image was relatively simple, it's quite common to create
+more complicated R and Python environments, which require many more packages and
 dependencies. If all of them are available in _e.g._ Bioconda (the most common
 place for bioinformatic software) then you can use a Seqera container instead of
 making your own Dockerfile. Making your own Dockerfile is, however, still the
@@ -922,8 +924,11 @@ installed - like if you managed to install Apptainer on your local system or
 have access to some other HPC cluster.
 
 - Convert the Docker image for the `lolcow` software directly from the GitHub
-  Container Registry using the following command: `apptainer pull lolcow.sif
-  docker://ghcr.io/apptainer/lolcow`.
+  Container Registry using the following command:
+
+```bash
+apptainer pull lolcow.sif docker://ghcr.io/apptainer/lolcow.
+```
 
 This should result in a SIF file called `lolcow.sif`.
 
@@ -949,8 +954,11 @@ appropriate for their computer. Here's how to do it:
 You should only see the default builder, which does not have access to
 multi-platform builds. Let's create a new builder that *does* have access to it:
 
-- Run the following: `docker buildx create --name mybuilder --driver
-  docker-container --bootstrap`.
+- Run the following command:
+
+```bash
+docker buildx create --name mybuilder --driver docker-container --bootstrap.
+```
 
 - Switch to using the new builder with `docker buildx use mybuilder` and check
   that it worked with `docker buildx ls`.
@@ -1005,10 +1013,10 @@ CMD /bin/bash
 Here we install Python in the Conda base environment, similar to how we have
 done it previously in the course.
 
-- Copy the above code into _e.g._ `base.Dockerfile` and build it using `docker
-  build -f base.Dockerfile -t my_docker_base .`
+- Copy the above code into _e.g._ `base.Dockerfile` and build it using
+  `docker build -f base.Dockerfile -t my_docker_base .`
 
-Let's look at multi-stage image that includes `conda-pack`:
+Let's look at the Dockerfile for a multi-stage image that includes `conda-pack`:
 
 ```Dockerfile
 #
