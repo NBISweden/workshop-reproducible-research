@@ -741,8 +741,8 @@ If you want to read more about containers in general you can check out these
 resources:
 
 - A "Get started with Docker" at the [Docker website](https://docs.docker.com/get-started/).
-- An [early paper](https://arxiv.org/abs/1410.0846) on the subject of using
-  Docker for reproducible research.
+- An [early paper](https://dl.acm.org/doi/10.1145/2723872.2723882) on the
+  subject of using Docker for reproducible research.
 
 ### Seqera containers
 
