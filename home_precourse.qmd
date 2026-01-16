@@ -383,7 +383,7 @@ Quarto can also be installed using Conda. We will also install some
 software packages that are used in the Quarto tutorial using Conda:
 
 ```bash
-conda create -f env/conda-specfiles/quarto-env_<platform>_conda_spec.txt -n quarto-env
+conda create --file env/conda-specfiles/quarto-env_<platform>_conda_spec.txt --name quarto-env
 ```
 
 ## Installing Jupyter
@@ -391,7 +391,7 @@ conda create -f env/conda-specfiles/quarto-env_<platform>_conda_spec.txt -n quar
 Install Jupyter like so:
 
 ```bash
-conda create -f env/conda-specfiles/jupyter-env_<platform>_conda_spec.txt -n jupyter-env
+conda create --file env/conda-specfiles/jupyter-env_<platform>_conda_spec.txt --name jupyter-env
 conda activate jupyter-env
 ```
 
@@ -412,7 +412,7 @@ tools.
 Create and activate the Conda environment with the commands below:
 
 ```bash
-conda create -f env/conda-specfiles/snakemake-env_<platform>_conda_spec.txt -n snakemake-env
+conda create --file env/conda-specfiles/snakemake-env_<platform>_conda_spec.txt --name snakemake-env
 conda activate snakemake-env
 ```
 
@@ -441,7 +441,7 @@ installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
 want to use Conda to create the environment:
 
 ```bash
-conda create -f env/conda-specfiles/nextflow-env_<platform>_conda_spec.txt -n nextflow-env
+conda create --file env/conda-specfiles/nextflow-env_<platform>_conda_spec.txt --name nextflow-env
 conda activate nextflow-env
 ```
 
