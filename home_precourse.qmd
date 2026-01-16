@@ -261,8 +261,7 @@ conda config --add channels conda-forge
 ```
 
 And we will also set so called 'strict' channel priority, which ensures higher
-stability and better performance (see details about this setting by running the
-following:
+stability and better performance, by running the following:
 
 ```
 conda config --set channel_priority strict
