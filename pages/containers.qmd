@@ -475,7 +475,7 @@ This should result in something similar to this:
 Exactly how the output looks depends on which version of Docker you are using.
 The `-f` flag sets which Dockerfile to use and `-t` tags the image with a name.
 This name is how you will refer to the image later. Lastly, the `.` is the path
-to where the image should be build (`.` means the current directory). This had
+to where the image should be built (`.` means the current directory). This had
 no real impact in this case, but matters if you want to import files.
 
 - Validate with `docker image ls` that you can see your new image.
