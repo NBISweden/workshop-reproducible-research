@@ -4,24 +4,6 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "nextflow.nextflow",
-        "snakemake.snakemake-lang",
-        "quarto.quarto",
-        "ms-python.python",
-        "ms-toolsai.jupyter",
-        "tamasfe.even-better-toml"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.pixi/envs/jupyter-env/bin/python",
-        "snakemake.executable": "${containerWorkspaceFolder}/.pixi/envs/snakemake-env/bin/snakemake",
-        "nextflow.java.home": "${containerWorkspaceFolder}/.pixi/envs/nextflow-env",
-        "nextflow.executable": "${containerWorkspaceFolder}/.pixi/envs/nextflow-env/bin/nextflow"
-      }
-    }
-  },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/rocker-org/devcontainer-features/miniforge:2": {
