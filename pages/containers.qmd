@@ -807,6 +807,12 @@ better alternative if you want complete control of the image (and it's sometimes
 the _only_ alternative if your package isn't available in Bioconda, Conda Forge
 or PyPI and you have to install it manually).
 
+::: {.callout-note}
+You can also check out the underlying [Wave CLI](https://github.com/seqeralabs/wave-cli)
+if you want even more options than the ones available in the Seqera Containers
+web version.
+:::
+
 ### Apptainer
 
 Apptainer is a container software alternative to Docker. It was originally
