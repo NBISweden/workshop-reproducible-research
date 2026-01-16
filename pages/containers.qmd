@@ -370,13 +370,13 @@ at the [OCI GitHub](https://github.com/opencontainers/image-spec/blob/main/annot
 :::
 
 ::: {.callout-note title="There are many roads to Rome"}
-When it comes to choosing the best image to start from there are multiple
-routes you could take. Say you want to run RStudio in a Conda environment
-through a Jupyter notebook. You could then start from one of the
-[rocker images](https://github.com/rocker-org/rocker) for R, a
-[Condaforge image](https://hub.docker.com/r/condaforge/miniforge3), or
-a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start
-from one of the low-level official images and set up everything from scratch.
+When it comes to choosing the best image to start from there are multiple routes
+you could take. Say you want to run RStudio in a Conda environment along with a
+Jupyter notebook (which we go through in the [Jupyter tutorial](jupyter.html)):
+you could then start from one of the [rocker images](https://github.com/rocker-org/rocker)
+for R, a [Condaforge image](https://hub.docker.com/r/condaforge/miniforge3), or
+a [Jupyter image](https://hub.docker.com/r/jupyter/). Or you just start from one
+of the low-level official images and set up everything from scratch.
 :::
 
 Let's take a look at the next section of `slim.Dockerfile`.
@@ -574,9 +574,11 @@ docker run -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
 While the general strategy we've outlined here is sound, it can feel a bit
 cumbersome to keep track of all the various directories and bind mounts we're
 using, but there is an _even better_ strategy: using workflow managers! Both
-Snakemake and Nextflow can handle all of this for you, and you can focus purely
-on the command you want to execute in what container. More information about
-this can be found in their respective "extra materials" section.
+[Snakemake](snakemake.html#extra-material) and
+[Nextflow](nextflow.html#extra-material) can handle all of this for you, and you
+can focus purely on the command you want to execute in what container. More
+information about this can be found in their respective "extra materials"
+section.
 :::
 
 ### Seqera containers
@@ -802,9 +804,8 @@ that contains the environment for all the work we've done so far.
   control and for hosting our project.
 - We've defined a [Conda environment](conda.html#working-with-environments) that
   specifies the packages we're depending on in the project.
-- We've constructed a [Snakemake
-workflow](snakemake.html#generalising-workflows) that performs the data analysis
-  and keeps track of files and parameters.
+- We've constructed a [Snakemake workflow](snakemake.html#generalising-workflows)
+  that performs the data analysis and keeps track of files and parameters.
 - We've written a [Quarto document](quarto.html) that takes the results from the
   Snakemake workflow and summarizes them in a report.
 
