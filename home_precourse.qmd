@@ -379,23 +379,19 @@ PDF, which can be done using Quarto itself:
 quarto install tinytex
 ```
 
-While we're not installing Quarto _itself_ using Conda, we _will_ install some
-software packages that are used in the Quarto tutorial using Conda: make sure
-your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
-and install the necessary packages defined in the `environment.yml`:
+Quarto can also be installed using Conda. We will also install some
+software packages that are used in the Quarto tutorial using Conda:
 
 ```bash
-conda env create -f quarto/environment.yml -n quarto-env
+conda create -f env/conda-specfiles/quarto-env_<platform>_conda_spec.txt -n quarto-env
 ```
 
 ## Installing Jupyter
 
-Move into the tutorials directory (`workshop-reproducible-research/tutorials`),
-create a Conda environment from the `jupyter/environment.yml` file and test
-the installation of Jupyter, like so:
+Install Jupyter like so:
 
 ```bash
-conda env create -f jupyter/environment.yml -n jupyter-env
+conda create -f env/conda-specfiles/jupyter-env_<platform>_conda_spec.txt -n jupyter-env
 conda activate jupyter-env
 ```
 
@@ -413,9 +409,7 @@ tools.
 
 ## Installing Snakemake
 
-First make sure you're currently situated inside the tutorials directory
-(`workshop-reproducible-research/tutorials`) and then create and activate the
-Conda environment with the commands below:
+Create and activate the Conda environment with the commands below:
 
 ```bash
 conda create -f env/conda-specfiles/snakemake-env_<platform>_conda_spec.txt -n snakemake-env
@@ -444,8 +438,7 @@ to a directory in your `PATH`, _e.g._ `/usr/bin/`.
 If you're getting Java-related errors, you can either try to [update your Java
 installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
 (Nextflow requires Java 11 or later) or install Nextflow using conda. If you
-want to use Conda, navigate to `workshop-reproducible-research/tutorials` and
-create the environment:
+want to use Conda to create the environment:
 
 ```bash
 conda create -f env/conda-specfiles/nextflow-env_<platform>_conda_spec.txt -n nextflow-env
@@ -462,6 +455,7 @@ and [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=nextflow
 that can help with syntax highlighting, code navigation, diagnostics, _etc._,
 which you can install if you like: read more at the [Nextflow
 documentation](https://nextflow.io/docs/latest/vscode.html).
+
 ## Alternative to installation
 
 If installing these tools locally is problematic, you can use [GitHub Codespaces](https://github.com/features/codespaces) to work in a cloud-based development environment with all the necessary tools pre-configured.
