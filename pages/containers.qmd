@@ -160,34 +160,32 @@ isolated within the container and never affect your host system.
 
 ### Containers inside scripts
 
-Okay, so Docker lets us work in any OS in a quite convenient way. That would
-probably be useful on its own, but Docker is much more powerful than that. For
-example, let's look at the `shell` part of the `index_genome` rule in
-the Snakemake workflow for the MRSA case study:
+Docker lets us work in any OS in a quite convenient way. That would probably be
+useful on its own, but Docker is much more powerful than that. For example,
+let's look at a bioinformatic command with Bowtie2, used to build a named
+reference from a FASTA file:
 
-```python
-shell:
-    """
-    bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
-    """
+```bash
+bowtie2-build <name>.fa <name>
 ```
 
-Let's imagine we want to run the above command using containers instead. How
-would that look? First we find a container image that has `bowtie2` installed,
-and then prepend the command with `docker run <image>`. First of all we need to
-download the genome to index, though.
+Let's imagine we want to run the above command using containers. We need to find
+a container image that has `bowtie2` installed, and then prepend the command
+with `docker run <image>`. First of all we need to download the genome to index,
+though.
 
 - Run the following to download and prepare the input for Bowtie2:
 
 ```bash
 curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
-gunzip -c NCTC8325.fa.gz > tempfile
+gunzip -c NCTC8325.fa.gz > NCTC8325.fa
 ```
 
 - Now try running the following command:
 
 ```bash
-docker run quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build tempfile NCTC8325
+docker run quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 \
+    bowtie2-build NCTC8325.fa NCTC8325
 ```
 
 Docker will automatically download the container image for Bowtie2 version 2.5.1
@@ -198,10 +196,10 @@ and subsequently run the command! This is the `docker run [OPTIONS] IMAGE
 of first downloading and then running it we point to its remote location
 directly, which will cause Docker to download it on the fly.
 
-The `bowtie2-build` part is the COMMAND followed by the ARG (the input tempfile
-and the output index). You'll find, however, that the command failed with an
-error message including `Error: could not open tempfile`. Why is that? Well,
-it's something to do with a thing called _bind mounts_.
+The `bowtie2-build` part is the COMMAND followed by the ARG (the input FASTA
+file and the output index). You'll find, however, that the command failed with
+an error message including `Error: could not open NCTC8325.fa`. Why is that?
+Well, it's something to do with a thing called _bind mounts_.
 
 ### Bind mounts
 
@@ -209,7 +207,7 @@ Docker containers are, by default, isolated from the rest of your system. This
 is a really good thing, as it keeps everything separate and reproducible, but it
 requires some extra work in order to get your file system to talk to the
 container. The error message we got was because the container couldn't find the
-`tempfile` file we just downloaded, even though we can see it right there in our
+FASTA file we just downloaded, even though we can see it right there in our
 directory.
 
 This is where _bind mounts_ come into play: we can explicitly give the container
@@ -235,13 +233,14 @@ to be available (the general form of this syntax is `-v <LOCAL>:<MOUNT>`).
   directory inside the container:
 
 ```bash
-docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 bowtie2-build /analysis/tempfile /analysis/NCTC8325
+docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 \
+    bowtie2-build /analysis/NCTC8325.fa /analysis/NCTC8325
 ```
 
 ::: {.callout-note}
 Note that we not only added the `-v` flag, but also changed the locations of the
-input and output files: `tempfile` and `NCTC8325` from the previous command
-becomes `/analysis/tempfile` and `/analysis/NCTC8325`, since that's where the
+input and output files: `NCTC8325.fa` and `NCTC8325` from the previous command
+becomes `/analysis/NCTC8325.fa` and `/analysis/NCTC8325`, since that's where the
 files will be mounted inside the container.
 :::
 
