@@ -370,31 +370,30 @@ _Apply & Restart_; also restart the Linux subsystem.
 
 ## Installing Quarto
 
-We install Quarto using Conda: make sure your working directory is in the
-tutorials directory (`workshop-reproducible-research/tutorials`) and install the
-necessary packages defined in the `environment.yml`:
-
-```bash
-conda env create -f quarto/environment.yml -n quarto-env
-conda activate quart-env
-```
-
-If you prefer to install Quarto outside of Conda you can go to the [official
-website](https://quarto.org/docs/get-started/) and download the OS-appropriate
-package and following the installation instructions. You will also need to
-install a LaTeX distribution to be able to render Quarto documents to PDF, which
-can be done using Quarto itself:
+Installing Quarto is easiest by going to the [official
+website](https://quarto.org/docs/get-started/) and downloading the
+OS-appropriate package and following the installation instructions. You also
+need to install a LaTeX distribution to be able to render Quarto documents to
+PDF, which can be done using Quarto itself:
 
 ```bash
 quarto install tinytex
 ```
 
+While we're not installing Quarto _itself_ using Conda, we _will_ install some
+software packages that are used in the Quarto tutorial using Conda: make sure
+your working directory is in the tutorials directory (`workshop-reproducible-research/tutorials`)
+and install the necessary packages defined in the `environment.yml`:
+
+```bash
+conda env create -f quarto/environment.yml -n quarto-env
+```
+
 ## Installing Jupyter
 
-Jupyter is also installed using Conda: move into the tutorials directory
-(`workshop-reproducible-research/tutorials`), create a Conda environment from
-the `jupyter/environment.yml` file and test the installation of Jupyter, like
-so:
+Move into the tutorials directory (`workshop-reproducible-research/tutorials`),
+create a Conda environment from the `jupyter/environment.yml` file and test
+the installation of Jupyter, like so:
 
 ```bash
 conda env create -f jupyter/environment.yml -n jupyter-env
@@ -439,8 +438,8 @@ with the setup for the other tools.
 
 ## Installing Nextflow
 
-The easiest way to install Nextflow is the official one, which is to just run
-the following code:
+The easiest way to install Nextflow is the official one, which is to just run the
+following code:
 
 ```bash
 curl -s https://get.nextflow.io | bash
