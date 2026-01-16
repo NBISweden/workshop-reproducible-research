@@ -566,9 +566,11 @@ for the same effect).
 While the general strategy we've outlined here is sound, it can feel a bit
 cumbersome to keep track of all the various directories and bind mounts we're
 using, but there is an _even better_ strategy: using workflow managers! Both
-Snakemake and Nextflow can handle all of this for you, and you can focus purely
-on the command you want to execute in what container. More information about
-this can be found in their respective "extra materials" section.
+[Snakemake](snakemake.html#extra-material) and
+[Nextflow](nextflow.html#extra-material) can handle all of this for you, and you
+can focus purely on the command you want to execute in what container. More
+information about this can be found in their respective "extra materials"
+section.
 :::
 
 ::: {.callout-tip}
