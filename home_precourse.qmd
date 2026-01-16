@@ -462,3 +462,25 @@ and [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=nextflow
 that can help with syntax highlighting, code navigation, diagnostics, _etc._,
 which you can install if you like: read more at the [Nextflow
 documentation](https://nextflow.io/docs/latest/vscode.html).
+## Alternative to installation
+
+If installing these tools locally is problematic, you can use [GitHub Codespaces](https://github.com/features/codespaces) to work in a cloud-based development environment with all the necessary tools pre-configured.
+
+### Using GitHub Codespaces
+
+1. Fork the [workshop repository](https://github.com/NBISweden/workshop-reproducible-research) to your GitHub account
+2. Click the green **Code** button on your fork
+3. Select the **Codespaces** tab and click **Create codespace on main**
+4. Wait for the environment to build (this may take a few minutes on first launch)
+
+Once the Codespace is ready, you'll have:
+- Git, Conda, and Docker installed. The other environments can be created with Conda as described above.
+- A VS Code editor in your browser
+- Pre-configured Conda channels (conda-forge and bioconda)
+- All tutorial materials ready to use
+
+You can then follow the tutorials as normal. GitHub provides [~120 compute hours per month](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) free for personal accounts, which should be sufficient for completing this course.
+
+::: {.callout-note}
+You'll need a GitHub account to use Codespaces. See the [GitHub setup](#github-setup) section above if you don't already have one.
+:::
