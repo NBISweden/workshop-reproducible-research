@@ -772,11 +772,13 @@ search bar. We'll also need `curl`, since that's used by the `run_qc.sh` script.
 - Add `curl` to the image in the same way.
 
 Once you've added `curl` you can press the blue "Get Container" button, and the
-image will start building. When you pressed the button you should have gotten a
-quick response of "Fetching container" and a link to the image itself; you can
-also press "View build details" if you want to explore the details about the
-build and image. Once the build is ready you'll instead see "Container is
-ready". The image can now be used in the same way as for any other image.
+image will start building; you can also change from Docker to Apptainer image,
+or the platform (AMD64 or ARM64), but going with the default of AMD64 Docker is
+usually useful. When you pressed the button you should have gotten a quick
+response of "Fetching container" and a link to the image itself; you can also
+press "View build details" if you want to explore the details about the build
+and image. Once the build is ready you'll instead see "Container is ready". The
+image can now be used in the same way as for any other image.
 
 Since we previously ran the `run_qc.sh` script with our image, let's do the same
 here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
