@@ -470,6 +470,7 @@ If installing these tools locally is problematic, you can use [GitHub Codespaces
 4. Wait for the environment to build (this may take a few minutes on first launch)
 
 Once the Codespace is ready, you'll have:
+
 - Git, Conda, and Docker installed. The other environments can be created with Conda as described above. Alternatively, if you're familiar with Pixi, the environments are already available.
 - A VS Code editor in your browser
 - Pre-configured Conda channels (conda-forge and bioconda)
