@@ -804,7 +804,7 @@ dependencies. If all of them are available in _e.g._ Bioconda (the most common
 place for bioinformatic software) then you can use a Seqera container instead of
 making your own Dockerfile. Making your own Dockerfile is, however, still the
 better alternative if you want complete control of the image (and it's sometimes
-the _only_ alternative if your package isn't available in Bioconda, Conda Forge
+the _only_ alternative if your package isn't available in a Conda channel
 or PyPI and you have to install it manually).
 
 ::: {.callout-note}
