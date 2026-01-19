@@ -386,7 +386,7 @@ software packages that are used in the Quarto tutorial using Conda:
 conda create --file env/conda-specfiles/quarto-env_<platform>_conda_spec.txt --name quarto-env
 ```
 
-The valid platforms are `osx-64` (Intel-based Mac systems), `osx-arm64` (M-series Mac systems) and `linux-64` (Linux systems). So, for example, if you have a new Apple Silicon Mac you'd use `env/conda-specfiles/quarto-env_osx-arm64_conda_spec.txt` as the path after the `-f` flag.
+The valid platforms are `osx-64` (Intel-based Mac systems), `osx-arm64` (M-series Mac systems) and `linux-64` (Linux systems). So, for example, if you have a new Apple Silicon Mac you'd use `env/conda-specfiles/quarto-env_osx-arm64_conda_spec.txt` as the path after the `--file` flag.
 
 ## Installing Jupyter
 
