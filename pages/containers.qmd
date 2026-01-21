@@ -525,21 +525,24 @@ prompt that expects an interaction from the user.
 
 Since we used the excellent Miniforge as a base image for `my_docker_image` the
 base environment is always available and the `conda-forge` channel is already
-added as a default. The only thing we need to do is to add the `bioconda`
-channel to the configuration, but other than that there's not much else needed
-for Conda to work when using the Miniforge base image.
+added as a default. As you saw above the `Dockerfile` contains a line where the
+`bioconda` channel is added to the Conda configuration so all we need to do is
+install the `fastqc` package.
 
 ::: {.callout-tip collapse="true" title="Click to show solution"}
 ```Dockerfile
 FROM my_docker_image
 
-RUN conda install -y -n base -c bioconda fastqc=0.11.9 && \
-    conda clean -a
+RUN conda install -y -n base fastqc=0.11.9 && \
+    conda clean -ay
 ```
 :::
 
-- Build the image and tag it using `docker build -t my_docker_conda -f
-  conda.Dockerfile .`.
+- Build the image and tag it using:
+
+```bash
+docker build -t my_docker_conda -f conda.Dockerfile .
+```
 
 - Verify that the image was built using `docker image ls`.
 
