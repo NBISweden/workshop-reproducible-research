@@ -90,6 +90,15 @@ The Jupyter Lab interface probably opened up a web browser for you
 automatically, otherwise go to the address specified in the message in the
 terminal under `Or copy and paste one of these URLs:`.
 
+::: {.callout-note title="GitHub Codespaces"}
+
+If you're running the workshop through GitHub Codespaces, then you can open the
+jupyter lab server by holding the `Ctrl`-key (`Cmd`-key on Mac) and clicking the
+`http://localhost:8888/lab` link under where it says `Jupyter Server <version>
+is running at:`.
+
+:::
+
 What you're looking at is the dashboard which should look something like this:
 
 > ![](images/jupyterlab_dashboard.png){ width=700px }

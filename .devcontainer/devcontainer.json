@@ -1,0 +1,22 @@
+{
+  "name": "my-workspace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/rocker-org/devcontainer-features/miniforge:2": {
+      "channels": "conda-forge,bioconda"
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
+  ],
+  "postCreateCommand": "sudo chown vscode .pixi && pixi install",
+  "customizations": {
+        "vscode": {
+          "extensions": ["ms-vscode.live-server"]
+        }
+  }
+}

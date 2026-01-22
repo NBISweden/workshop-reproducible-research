@@ -1,6 +1,6 @@
 # Tools for Reproducible Research
 
-[![CC BY 4.0][cc-by-shield]][cc-by] [![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-FFB45B?logo=gitpod)][gitpod]
+[![CC BY 4.0][cc-by-shield]][cc-by]
 
 This repo contains files used in the tutorials in the NBIS / ELIXIR _Tools for
 Reproducible Research_ course. The course itself lives on [GitHub
@@ -37,4 +37,3 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
-[gitpod]: https://gitpod.io/#https://github.com/NBISweden/workshop-reproducible-research
