@@ -616,41 +616,62 @@ similar to the following:
 
 ```
 CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS          PORTS      NAMES
-b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds      sad_maxwell
+b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds              sad_maxwell
 ```
 
-If we run `docker run` without any flags, your local terminal is attached to the
-container. This enables you to see the output of `run_qc.sh`, but also disables
-you from doing anything else in the meantime. We can start a container in
-detached mode with the `-d` flag.
+This shows useful information such as the unique container id, the name of the
+image used to start the container and the unique name given to the container.
 
-- Run the command in detached mode followed by `docker container ls` to validate
-  that the container is running.
+::: {.callout-tip}
 
 By default, Docker keeps containers after they have exited. This can be
 convenient for debugging or if you want to look at logs, but it also consumes
 huge amounts of disk space. It's therefore usually a good idea to run with
 `--rm`, which will remove the container once it has exited.
 
-If we want to enter a running container, there are two related commands we can
-use, `docker attach` and `docker exec`. `docker attach` will attach local
-standard input, output, and error streams to a running container. This can be
-useful if your terminal closed down for some reason or if you started
-a terminal in detached mode and changed your mind. `docker exec` can be used to
-execute any command in a running container. It's typically used to peek in at
-what is happening by opening up a new shell.
+:::
 
-- Start a new container in detached mode using
-  `docker run -d --rm --name my_container my_docker_conda`.
+With the way we've used `docker run` so far, your local terminal is attached to
+the container while it's running. This enables you to see the output of
+`run_qc.sh`, but also disables you from doing anything else in the meantime. We
+can start a container in detached mode with the `-d` flag. This will print the
+container ID that you can use to interact with the running container.
+Alternatively, you can use the unique name assigned to the container. You can
+assign this name yourself using the flag `--name <any name you want>`.
 
-- Start a new interactive Bash shell inside the newly created container using
-  `docker exec -it my_container /bin/bash`.
+If we want to enter a running container, there are two commands we can
+use: `docker attach` and `docker exec`. 
+
+* `docker attach` will attach local standard input, output, and error streams to
+a running container. This can be useful if your terminal closed down for some
+reason or if you started a terminal in detached mode and changed your mind. 
+
+* `docker exec` can be used to execute any command in a running container. It's
+typically used to peek in at what is happening by opening up a new shell.
+
+Let's try out the `docker exec` command.
+
+- Start a new container in detached mode and name it `my_container` using:
+
+```bash
+docker run -d --name my_container -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
+```
+
+- Start a new interactive Bash shell inside the newly created container using:
+
+```bash
+docker exec -it my_container /bin/bash
+```
 
 - Use _e.g._ `ls` to see how the script generated files in the `data` and
   `results` directories.
+  
+::: {.callout-tip}
 
-Note that you will be thrown out when the container exits, so you have to be
+You will be thrown out when the container exits, so you have to be
 quick with performing these three steps, one after the other.
+
+:::
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
