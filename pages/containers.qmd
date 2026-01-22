@@ -598,8 +598,12 @@ In this section we've learned:
 When you start a container with `docker run` it is given a unique id that you
 can use for interacting with the container.
 
-- Let's try to run a container from the image we just created by running
-  `docker run my_docker_conda`.
+- Let's try to run a container from the same image we previously used by running
+  the same command again:
+
+```bash
+docker run -v $(pwd):/analysis -w /analysis my_docker_conda /analysis/run_qc.sh
+```
 
 If everything worked `run_qc.sh` is executed and will first download and then
 analyse the three samples.
