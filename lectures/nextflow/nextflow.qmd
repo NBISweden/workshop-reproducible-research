@@ -122,7 +122,7 @@ process GET_SRA_BY_ACCESSION {
 workflow {
 
     // Define SRA input data channel
-    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+    ch_sra_ids = channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
 
     // Define the workflow
     GET_SRA_BY_ACCESSION (
@@ -137,7 +137,7 @@ workflow {
 workflow {
 
     // Define SRA input data channel
-    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+    ch_sra_ids = channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
 
     // Define the workflow
     GET_SRA_BY_ACCESSION (
@@ -155,7 +155,7 @@ workflow {
 workflow {
 
     // Define SRA input data channel
-    ch_sra_ids = Channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
+    ch_sra_ids = channel.fromList ( ["SRR935090", "SRR935091", "SRR935092"] )
 
     // Define the workflow
     GET_SRA_BY_ACCESSION (

@@ -5,7 +5,7 @@ workflow {
     // Workflow for generating count data for the MRSA case study
 
     // Get input files from a samplesheet
-    ch_input = Channel
+    ch_input = channel
         .fromPath ( "samplesheet.csv" )
         .splitCsv ( header: true)
 
