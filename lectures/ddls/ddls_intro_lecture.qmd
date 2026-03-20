@@ -1,12 +1,18 @@
 ---
 title: "Principles and tools for FAIR research practices"
 subtitle: "Introduction"
-date: 2025-03-21
+date: 2026-03-20
 format: 
     revealjs:
         embed-resources: true
         chalkboard: false
 ---
+::: {.notes}
+* Presented at the DDLS Research School Annual Meeting
+* 10 minutes presentation time
+* only present until question slide
+:::
+
 
 ## Course aim
 
@@ -14,11 +20,12 @@ Introduction to the importance of [FAIR data management]{.green} and the use of 
 
 Combines a theoretical foundation and practical exercises to learn how to apply the tools and concepts to your own research projects.
 
+
+
 ## Course content
 
 :::{.small}
 
-::: {.incremental}
 - [Data management]{.green}
     - Data Management and FAIR in Practice
     - Organising data, files and folders in research projects
@@ -35,7 +42,7 @@ Combines a theoretical foundation and practical exercises to learn how to apply 
 - [Containerization]{.green}
     - How to use [Docker]{.green} and [Apptainer]{.green} to distribute
   containerised computational environments
-:::
+
 
 :::
 
@@ -45,26 +52,25 @@ Combines a theoretical foundation and practical exercises to learn how to apply 
 
 ### Course info
 :::{.callout-note title="Course info"}
-- **Webpage**: [https://uppsala.instructure.com/courses/111591](https://uppsala.instructure.com/courses/111591)
-- **Date**: 22 September - 23 October 2025
-- **On-site location**: SciLifeLab Solna
-- **Application**: April-May 2025
+- **Webpage**: [https://uppsala.instructure.com/courses/122228](https://uppsala.instructure.com/courses/122228)
+- **Date**: 5 October - 5 November 2026
+- **On-site location**: SciLifeLab Solna, **Oct 13-19**
+- **Application**: April 2026
 - **Examination**: Report on implementation (last session)
 - **Organizer**: National Bioinformatics Infrastructure Sweden (NBIS)
+- **ECTS**: 3
 :::
 
 ### Course schedule
 
 | Date | Topic | Location |
 |-|---|-|
-| Sep 22 - Sep 23 | Pre-course reading and installation | Individual work |
-| Sep 24 | Course Introduction | Online |
-| Oct 2 | Data Management & Installation troubleshooting | Online |
-| Oct 3 | Assessment of current research practices | Individual work |
-| Oct 6 - Oct 10 | Hands-on workshop | SciLifeLab Solna |
-| Oct 14 | Introduction to assignments | Online |
-| Oct 15 - Oct 22 | Assignments and preparation for reporting/feedback session | Individual work |
-| Oct 23 | Reporting and feedback session | Online |
+| Oct 05 - Oct 09 | Pre-course reading and installation | Individual work |
+| **Oct 12** | FAIR practices | Online |
+| Oct 13 - Oct 16 | Assessment of current research practices | Individual work |
+| **Oct 19 - Oct 23** | **Hands-on workshop** | **SciLifeLab Solna** |
+| Oct 26 - Nov 3 | Assignments and preparation for reporting/feedback session | Individual work |
+| **Nov 05** | Reporting and feedback session | Online |
 
 : Schedule {.striped}
 
@@ -74,13 +80,12 @@ Combines a theoretical foundation and practical exercises to learn how to apply 
 
 [National Bioinformatics Infrastructure Sweden]{.green}
 
-::: {.incremental}
+
  - A distributed national bioinformatics infrastructure supporting life sciences
    in Sweden
  - Provides hands-on bioinformatic support in a wide range of areas, training, infrastructure and a weekly drop-in
  - Situated throughout Sweden
  - Read more at [nbis.se](https://nbis.se/)
-:::
 
 ## Why all the talk about reproducibility?
 
@@ -290,10 +295,6 @@ More examples:
 
 :::
 
-## Implications for research
-
-> Innovation points out paths that are possible; replication points out paths
-> that are likely; progress relies on both. ^[*"Estimating the reproducibility of psychological science". Science349, aac4716(2015)*]
 
 
 ## What does reproducible research mean?
@@ -332,7 +333,7 @@ More examples:
 
 :::
 
-## What does reproducible research mean? {.nostretch}
+## What does reproducible research mean? {.nostretch} 
 
 :::{.center}
 ![](../../pages/images/reproducibility_overview_with_logos.png){ width=800px }
@@ -349,6 +350,35 @@ Article number: 160018 (2016)_]:
 - [**I**]{.green}nteroperable: integrate with other data, analysis workflows and storage.
 - [**R**]{.green}eusable: well-described to facilitate replication and/or re-use in different settings.
 
+
+
+## "What's in it for me?"
+
+::: {.fragment}
+[Before]{.green} the project:
+
+- Improved structure and organisation
+- Forced to think about scope and limitations
+:::
+
+::: {.fragment}
+[During]{.green} the project:
+
+- Easier to re-run analyses and generate results after updates and/or changes
+- Closer interaction between collaborators
+- Much of the manuscript "writes itself"
+:::
+
+
+::: {.fragment}
+[After]{.green} the project:
+
+- Faster resumption of research by others (or, more likely, your future self)
+- Increased visibility in the scientific community
+:::
+
+
+## Questions? {.center}
 ## What is Git? {.nostretch}
 
 ![](https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png){width=25%}
