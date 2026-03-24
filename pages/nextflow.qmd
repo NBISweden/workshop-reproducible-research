@@ -59,7 +59,7 @@ file used in Nextflow, where workflows and their processes are defined.
 // Workflow definition
 workflow {
     // Define input files
-    ch_input = Channel.fromPath( "a.txt" )
+    ch_input = channel.fromPath( "a.txt" )
 
     // Run workflow
     CONVERT_TO_UPPER_CASE( ch_input )
@@ -103,7 +103,7 @@ idea to forego it entirely, even though you can.
 ```nextflow
 workflow {
     // Define input files
-    ch_input = Channel.fromPath( "a.txt" )
+    ch_input = channel.fromPath( "a.txt" )
 
     // Run workflow
     CONVERT_TO_UPPER_CASE( ch_input )
@@ -120,7 +120,7 @@ Channels can be created in various different ways using _channel factories_,
 depending on what type data you want to put into them and where this data is
 stored. In this particular case we define our `ch_input` channel using the
 `.fromPath` channel factory, which takes a file path as input - here we use the
-`a.txt` file. You can thus read `ch_input = Channel.fromPath("a.txt")` as
+`a.txt` file. You can thus read `ch_input = channel.fromPath("a.txt")` as
 _"create the channel `ch_input` and send the file `a.txt` into it"_.
 
 ::: {.callout-tip title="Naming channels"}
@@ -255,7 +255,7 @@ so to speak.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
-ch_input = Channel.fromPath( "b.txt" )
+ch_input = channel.fromPath( "b.txt" )
 ```
 :::
 
@@ -284,7 +284,7 @@ channels.
 - Change the channel definition to the following:
 
 ```nextflow
-ch_input = Channel
+ch_input = channel
     .fromPath ( "a.txt" )
     .map      { file -> tuple(file.getBaseName(), file) }
 ```
@@ -351,7 +351,7 @@ processing and analyses. Using contents of files as input can be done using the
 `.splitCsv()` and `.map{}` operators, like so:
 
 ```nextflow
-ch_input = Channel
+ch_input = channel
     .fromPath ( "first_samplesheet.csv" )
     .splitCsv ( )
     .map      { row -> tuple(row[0], file(row[1])) }
@@ -469,7 +469,7 @@ workflow {
     // Workflow for generating count data for the MRSA case study
 
     // Get input files from a samplesheet
-    ch_input = Channel
+    ch_input = channel
         .fromPath ( "samplesheet.csv" )
         .splitCsv ( header: true)
 
@@ -1008,7 +1008,7 @@ make sure it works - look below if you need some help.
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel definition
-ch_input = Channel
+ch_input = channel
     .fromPath ( params.input )
     .splitCsv ( header: true )
 
@@ -1092,7 +1092,7 @@ you're stuck:
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel creation
-ch_genome_fasta = Channel.fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
+ch_genome_fasta = channel.fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
 
 // Workflow definition
 INDEX_GENOME (
@@ -1118,7 +1118,7 @@ params {
 
 // [ main.nf ]
 // Channel creation
-ch_genome_ggf3 = Channel.fromPath ( params.genome_gff3 )
+ch_genome_ggf3 = channel.fromPath ( params.genome_gff3 )
 
 // Workflow definition
 GENERATE_COUNTS_TABLE (
@@ -1137,7 +1137,7 @@ this could be done.
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel definition
-ch_genome_fasta = Channel
+ch_genome_fasta = channel
     .fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
     .map     { file -> tuple(file.getBaseName(), file) }
 
@@ -1173,7 +1173,7 @@ how you use them in practice. Let's take a look at a toy example:
 
 ```nextflow
 workflow {
-    ch_input = Channel.fromPath ( params.input )
+    ch_input = channel.fromPath ( params.input )
     SUBWORKFLOW (
         ch_input
     )
@@ -1463,7 +1463,7 @@ Nextflow has a special, built-in way to create channels for this data type: the
 `fromFilePairs` channel factory:
 
 ```nextflow
-ch_raw_reads = Channel
+ch_raw_reads = channel
     .fromFilePairs ( "data/*_R{1,2}.fastq.gz" )
 ```
 
@@ -1487,7 +1487,7 @@ We can also do quite advanced things to manipulate data in channels, such as
 this:
 
 ```nextflow
-samples_and_treatments = Channel
+samples_and_treatments = channel
     .fromPath ( params.metadata )
     .splitCsv ( sep: "\t", header: true )
     .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }

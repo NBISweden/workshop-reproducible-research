@@ -1,0 +1,93 @@
+[workspace]
+authors = [
+    "John Sundh <john.sundh@nbis.se>",
+    "Erik Fasterius <erik.fasterius@nbis.se>",
+    "Mahesh Binzer-Panchal <mahesh.binzer-panchal@nbis.se>",
+]
+channels = ["conda-forge", "bioconda"]
+name = "workshop-reproducible-research"
+platforms = ["osx-arm64", "osx-64", "linux-64"]
+version = "0.1.0"
+
+[tasks]
+update-conda-specfiles = "pixi workspace export conda-explicit-spec env/conda-specfiles"
+
+[feature.jupyter-env]
+channels = ["conda-forge", "bioconda"]
+
+[feature.jupyter-env.dependencies]
+python = "*"
+biopython = "*"
+jupyter = "*"
+jupyterlab = "*"
+nb_conda_kernels = "*"
+nodejs = "*"
+pandas = "*"
+seaborn = "*"
+matplotlib = "*"
+ipywidgets = "*"
+nbconvert = "*"
+jinja2 = "*"
+rpy2 = "*"
+papermill = "*"
+nbval = "*"
+nbdime = "*"
+altair = "*"
+
+[feature.nextflow-env]
+channels = ["conda-forge", "bioconda"]
+
+[feature.nextflow-env.dependencies]
+bowtie2 = "*"
+fastqc = "*"
+graphviz = "*"
+multiqc = "*"
+nextflow = "*"
+samtools = "*"
+subread = ">=2"
+wget = "*"
+tree = "*"
+
+[feature.quarto-env]
+channels = ["conda-forge", "bioconda"]
+
+[feature.quarto-env.dependencies]
+quarto = "*"
+jupyter = "*"
+python = "3.*"
+r-base = "*"
+r-ggplot2 = "*"
+r-palmerpenguins = "*"
+r-rmarkdown = "*"
+r-reticulate = "*"
+nb_conda_kernels = "*"
+papermill = "*"
+pandas = "*"
+
+[feature.snakemake-env]
+channels = ["conda-forge", "bioconda"]
+
+[feature.snakemake-env.dependencies]
+python = "*"
+fastqc = "*"
+seqtk = "*"
+snakemake = ">=8"
+multiqc = "*"
+bowtie2 = "*"
+tbb = "*"
+samtools = "*"
+subread = ">=2"
+bedtools = "*"
+graphviz = "*"
+wget = "*"
+xorg-libxrender = "*"
+xorg-libxpm = "*"
+
+[environments]
+jupyter-env = { features = ["jupyter-env"], no-default-feature = true }
+nextflow-env = { features = ["nextflow-env"], no-default-feature = true }
+quarto-env = { features = ["quarto-env"], no-default-feature = true }
+snakemake-env = { features = ["snakemake-env"], no-default-feature = true }
+
+[target.linux-64.dependencies]
+apptainer = ">=1.4.5,<2"

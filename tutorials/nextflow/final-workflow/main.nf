@@ -11,7 +11,7 @@ include { ALIGNMENT        } from "./subworkflows/alignment.nf"
 workflow {
 
     // Get input files from a samplesheet
-    ch_input = Channel
+    ch_input = channel
         .fromPath ( params.input )
         .splitCsv ( header: true )
 

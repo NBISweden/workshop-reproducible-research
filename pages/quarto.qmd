@@ -20,7 +20,7 @@ Quarto makes your analysis more reproducible by connecting your code, figures
 and descriptive text. You can use it to make reproducible reports, rather than
 _e.g._ copy-pasting figures into a Word document. You can also use it as a
 notebook, in the same way as lab notebooks are used in a wet lab setting (or as
-we utilise *Jupyter notebooks* in the tutorial after this one). Quarto itself
+we utilise _Jupyter notebooks_ in the tutorial after this one). Quarto itself
 does not require any particular programming language to be installed - any
 language you want to use can be installed separately. The currently supported
 languages are R, Python, Julia and Observable. Quarto is fully compatible with
@@ -59,6 +59,7 @@ export QUARTO_PYTHON=$CONDA_PREFIX/bin/python
 export QUARTO_R=$CONDA_PREFIX/bin/R
 ```
 :::
+
 ## The basics
 
 Let's start with creating basic Quarto document that we can work with.
@@ -204,7 +205,7 @@ Switch back to HTML rendering before you move on.
 
 The examples so far have been using R, but we could just as easily have used
 Python. All we have to do is to specify `{python}` as the code chunk language and
-its content to be the equivalent Python code. Try adding this to your document and 
+its content to be the equivalent Python code. Try adding this to your document and
 render it again:
 
 ````{.markdown filename="quarto-tutorial.qmd"}
@@ -401,8 +402,8 @@ they appear in. You can set many of these at the global document level, however,
 and there are also some options specifically for tailoring the document as a
 whole, regardless of chunk content.
 
-We've already looked at some global options, such as `title`, `author` and `format`. 
-Something that would go nicely with the first two is the `date` option. You could 
+We've already looked at some global options, such as `title`, `author` and `format`.
+Something that would go nicely with the first two is the `date` option. You could
 just write the actual date if you like, or you can use the `today` option:
 
  - Add the following to the document options: `date: today`
@@ -564,9 +565,15 @@ param:value` flag multiple times, like so:
 quarto render quarto-tutorial.qmd -P point_size:4 -P ncols:1
 ```
 
-You can also specify parameters in a `params.yml` file and instruct quarto to use them with the `--execute-params params.yml` flag when rendering. Note that the parameters must be defined in the YAML header, pointing quarto to a `params.yml` file with `--execute-params` only overrides them when rendering.
+You can also specify parameters in a `params.yml` file and instruct quarto to
+use them with the `--execute-params params.yml` flag when rendering. Note that
+the parameters must be defined in the YAML header, pointing quarto to a
+`params.yml` file with `--execute-params` only overrides them when rendering.
 
-Using parameters is extremely useful when you're using a workflow manager system (_e.g._ Snakemake or Nextflow), since you can easily specify sample-specific parameters from the command line directly from your workflow manager.
+Using parameters is extremely useful when you're using a workflow manager system
+(_e.g._ Snakemake or Nextflow, which we'll go through in subsequent tutorials),
+since you can easily specify sample-specific parameters from the command line
+directly from your workflow manager.
 
 ::: {.callout-note title="Quick recap"}
 In this sections we covered a number of document-wide options, including
@@ -896,7 +903,7 @@ under a unique name using the following command:
 ```bash
 python -m ipykernel install --user --name=KERNEL_NAME
 ```
-  
+
 where `KERNEL_NAME` can be any name you want. Try this out with the `quarto-env`
 environment. Run:
 
@@ -916,7 +923,7 @@ and render the document again.
 
 Another way to execute Python code in Quarto documents is to use the
 `reticulate` package in R. This also allows you to use R objects such as
-dataframes in Python code chunks and vice versa. The `r-reticulate` conda 
+dataframes in Python code chunks and vice versa. The `r-reticulate` conda
 package is already installed in the `quarto-env` environment, so you can try
 this out directly in the `quarto-python.qmd` document you created above.
 
@@ -964,7 +971,7 @@ and render the document again.
 
 This code chunk takes the penguins dataframe from R (`penguins = r.penguins`)
 and adds a new column with the body mass in kilogram then prints the first few
-rows. 
+rows.
 
 We can also pass the modified dataframe back to R. Add the following code chunk:
 
@@ -978,7 +985,7 @@ We can also pass the modified dataframe back to R. Add the following code chunk:
 #| cap-location: margin
 library("ggplot2")
 penguins_py <- py$penguins
-ggplot(penguins_py, 
+ggplot(penguins_py,
     aes(x = bill_length_mm,
         y = body_mass_kg,
         colour = species)) +

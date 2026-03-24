@@ -1,23 +1,22 @@
 {
-    "image": "ghcr.io/nbisweden/workshop-rr-dev-container:latest",
-    "customizations": {
-        "vscode": {
-        "extensions": [
-            "quarto.quarto", "ms-toolsai.jupyter",
-            "snakemake.snakemake-lang","nextflow.nextflow",
-            "docker.docker","redhat.vscode-yaml"
-            ],
-        "settings": {
-            "editor.wordWrap": "on",
-            "files.associations": {
-                "*.rmd": "markdown",
-                "*.Rmd": "rmd",
-                "*.py": "python",
-                "*.qmd": "quarto",
-                "*.tsv": "plaintext"
-                },
-            "editor.tabCompletion": "on"
-            }
-        }
+  "name": "my-workspace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/rocker-org/devcontainer-features/miniforge:2": {
+      "channels": "conda-forge,bioconda"
     }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
+  ],
+  "postCreateCommand": "sudo chown vscode .pixi && pixi install",
+  "customizations": {
+        "vscode": {
+          "extensions": ["ms-vscode.live-server"]
+        }
+  }
 }

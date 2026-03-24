@@ -32,7 +32,7 @@ engine: knitr
 
 As you can see below in @fig-penguins, penguins are great!
 
-```{r Penguin figure}
+```{r}
 #| label: fig-penguins
 #| fig-width: 10
 #| fig-height: 5
@@ -70,7 +70,7 @@ ggplot(penguins, aes(x      = bill_depth_mm,
 
 This subsection holds @tbl-penguins.
 
-```{r Penguin table}
+```{r}
 #| label: tbl-penguins
 #| tbl-cap: Palmer penguins bill length, width and body mass.
 #| tbl-cap-location: margin
