@@ -1,0 +1,120 @@
+# markdown is supported in description but not in popup
+# In popup, semicolon (;) is used as delimiter for new lines
+# For details on icons and icon colors: https://rstudio.github.io/leaflet/reference/awesomeIcons.html
+# fontawesome 4 icons are used: https://fontawesome.com/v4/icons/
+lund:
+  description: |
+    Room E10022 - Datorsal  
+    Forum Medicum BMC
+    Sölvegatan 19
+    223 62 Lund  
+    Sweden  
+
+    **From the Forum Medicum main entrance take the elevator down to 10th floor and follow signs for Datorsal**
+
+    Few selected hotels are listed below ranked by distance from the venue.
+
+    - [Elite Hotel Ideon](https://www.elite.se/hotell/lund/elite-hotel-ideon-lund/) (1.1 km, 15 min walk)
+    - [Hotel Lundia](https://www.hotellundia.se/) (1.3 km, 16 min walk)
+    - [Grand Hotel Lund](https://www.grandlund.se/) (1.4 km, 18 min walk)
+    - [Motel L](https://ligula.se/motel-l/motel-l-lund/) (2.2 km, 30 min walk)
+
+    The venue and hotels are also marked on the map.
+
+    For Lund city buses, tram, regional buses and regional trains, use [skanetrafiken.se](https://www.skanetrafiken.se/). You can buy a ticket at the central station in Lund or at the regional bus (card only). You can also use the app [Skånetrafiken](https://www.skanetrafiken.se/biljetter/app2/) From the Lund C the easiest is to take the tram from **Clemenstorget** towards **ESS** and get off at  **Lund LTH**. The trip take about 4 minutes and a tram leaves about four times an hour.
+    
+    ### Lunch
+    The lunches during the course will be provided at **Restaurand Stamstället** located in the same building as the course. The restaurant menu can be found [here](https://stamstallet.se/lunch/).
+    
+    ### Dinner
+    The restaurant for the dinner on the 2nd day will be at [Valvet Steakhouse](https://goo.gl/maps/rMfdSM79ddTodzxE9).
+  map:
+    - label: Venue
+      marker_icon: briefcase
+      marker_color: red
+      lat: 55.711086
+      lon: 13.202617
+      popup: "Room E11073; Forum Medicum BMC; Sölvegatan 19; 223 62 Lund, Sweden"
+    - label: Lund LTH Tram stop
+      marker_icon: bus
+      marker_color: purple
+      lat: 55.71249
+      lon: 13.20807
+      popup: "LTH Bus/Tram stop; 223 62 Lund; Sweden"
+    - label: Centralstation
+      marker_icon: train
+      marker_color: purple
+      lat: 55.70669
+      lon: 13.18695
+      popup: "Centralstation; Bangatan 1; 222 21 Lund; Sweden"
+    - label: Dinner
+      marker_icon: glass
+      marker_color: green
+      lat: 55.70847
+      lon: 13.19594
+      popup: "Valvet Steakhouse, Allhelgona kyrkogata 7, 223 62 Lund"
+    - label: Hotel Lundia
+      marker_icon: bed
+      marker_color: blue
+      lat: 55.70549
+      lon: 13.18925
+      popup: "Hotel Lundia; Bantorget 1; 223 50 Lund; Sweden"
+    - label: Elite Hotel Ideon
+      marker_icon: bed
+      marker_color: blue
+      lat: 55.71784
+      lon: 13.21398
+      popup: "Elite Hotel Ideon; Scheelevägen 27; 223 70 Lund; Sweden"
+    - label: Grand Hotel Lund
+      marker_icon: bed
+      marker_color: blue
+      lat: 55.70398
+      lon: 13.18895
+      popup: "Grand Hotel Lund; Bantorget 1; 223 50 Lund; Sweden"
+    - label: Motel L
+      marker_icon: bed
+      marker_color: blue
+      lat: 55.71749
+      lon: 13.22943
+      popup: "Motel L; Västergatan 2; 222 22 Lund; Sweden"
+stockholm:
+  description: |
+    Room Air & Fire  
+    Ground floor  
+    [Science for Life Laboratory Stockholm](https://www.scilifelab.se/about-us/campus-solna/)  
+    Tomtebodavägen 23A  
+    17165 Solna  
+    Sweden  
+
+    This course round is given on-site in Sweden at [SciLifeLab Stockholm](https://www.scilifelab.se/about-us/campus-solna/). Travel directions are as follows:
+
+    - Transport yourself to Stockholm (see e.g. [SJ's website](https://www.sj.se/) for train travel within Sweden).
+    - Go to SciLifeLab in Solna. The closest bus stop is called Karolinska institutet Biomedicum (search for public transport options here).
+    - Enter the SciLifeLab/Karolinska Institutet Science Park building. There are public transport-style access gates to your left, and the glass door to the left immediately after the gates is where you need to go for the rooms Air & Fire, where the course will be held. You will, however, need an access card in order to pass through the gates, which will be handed to you on the morning of the first day (there is also a reception where you can ask for help if you run into any issues).
+  map:
+    - label: Venue
+      marker_icon: briefcase
+      marker_color: red
+      lat: 59.3504843470136
+      lon: 18.0234314999999
+      popup: "SciLifeLab Stockholm; Tomtebodavägen 23A; 171 65 Solna; Sweden"
+    - label: Centralstation
+      marker_icon: train
+      marker_color: purple
+      lat: 59.330231
+      lon: 18.059196
+      popup: "Centralstation; Vasagatan 1; 111 20 Stockholm; Sweden"
+    - label: Karolinska Institutet Biomedicum Bus stop
+      marker_icon: bus
+      marker_color: purple
+      lat: 59.34998995628685
+      lon: 18.02542771374187
+      popup: "Karolinska Institutet Biomedicum; 171 65 Solna; Sweden"
+    - label: "Karolinkskavägen Bus stop"
+      marker_icon: bus
+      marker_color: purple
+      lat: 59.35098473792899
+      lon: 18.02378243706668
+      popup: "Karolinkskavägen; 171 64 Solna; Sweden"
+online:
+  description: "Online meeting links are sent to participants by email."

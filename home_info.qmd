@@ -19,7 +19,7 @@ library(readxl)
 
 # Set location in _quarto.yml
 loc <- sapply(unlist(strsplit(yaml::read_yaml(here("_quarto.yml"))$location,";|,")),trimws)
-dfr <- readxl::read_xlsx("info.xlsx")
+l <- yaml::yaml.load_file(here("info.yml"))
 ```
 
 ## Location
@@ -34,16 +34,20 @@ for (i in seq_along(loc)) {
     p <- loc[i]
     cat(paste0("\n### ", tools::toTitleCase(p), "\n"))
 
-    if(p %in% dfr$location){
-      dfr1 <- dfr[dfr$location %in% p, , drop = FALSE]
-      dfr1$address <- gsub(",", "<br>", dfr1$address)
-      icons <- awesomeIcons(icon = dfr1$marker_icon, markerColor = dfr1$marker_colour, iconColor = "#FFFFFF", library = "fa")
-      if(p != "online") {
-        cat(knitr::knit_child(input = "assets/_child-info.qmd", envir = environment(), quiet = TRUE))
-        cat("\n")
-        cat("\n", dfr1$address[1], "\n")
-      }
-      cat("\n", dfr1$description[1])
+  idata <- get_info(l, p)
+  if (!is.null(idata)) {
+    if (!is.null(idata$map)) {
+      dfr1 <- idata$map
+      dfr1$popup <- gsub(";|; ", "<br>", dfr1$popup)
+      dfr2 <- dfr1[complete.cases(dfr1$lat, dfr1$lon), ]
+      
+      cat(knitr::knit_child(input = "assets/_child-info.qmd", envir = environment(), quiet = TRUE))
+      cat("\n")
+    }
+
+    if (!is.null(idata$description)) {
+      cat("\n", idata$description)
+    }
     }else{
       cat("No additional information is provided.")
     }
