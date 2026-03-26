@@ -55,7 +55,7 @@ create_tooltip <- function(a, asst) {
 #| echo: false
 #| eval: true
 
-s <- readxl::read_xlsx("schedule.xlsx") %>%
+s <- read.table("schedule.tsv", sep = "\t", header = T, na.strings=c("","NA")) %>%
   # remove rows that are all NA
   filter(if_any(everything(), ~ !is.na(.))) %>%
   # missing values in date and room are filled
@@ -64,7 +64,7 @@ s <- readxl::read_xlsx("schedule.xlsx") %>%
   dplyr::mutate(date = format(as_datetime(date, format = "%d/%m/%Y"), "%d-%b-%Y")) %>%
   dplyr::mutate(day = format(as_datetime(date, format = "%d-%b-%Y"), "%a")) %>%
   dplyr::group_by(date) %>%
-  dplyr::mutate(time = format(time, "%H:%M")) %>%
+  #dplyr::mutate(time = format(time, "%H:%M")) %>%
   as.data.frame() %>%
   dplyr::mutate(room = ifelse(is.na(link_room), room, paste0("<a href='", link_room, "'>", room, "</a>"))) %>%
   # create day label (with date, day, room)
