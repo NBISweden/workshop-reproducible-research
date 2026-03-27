@@ -113,4 +113,4 @@ filters:
 # For rendering location the info page; options are Stockholm or online.
 # One or more separated by commas or semicolon; online doesn't display any
 # location info.
-location: stockholm
+location: stockholm;lund

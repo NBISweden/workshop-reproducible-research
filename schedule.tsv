@@ -1,0 +1,47 @@
+date	room	time	topic	instructor	assistant	link_slide	link_lab	link_youtube	link_room
+20/04/2026	Stockholm	09:00	Setting up and troubleshooting installations						
+		10:00	Introduction to Reproducible Research	Erik Fasterius		lectures/introduction/introduction.html	pages/introduction.html		
+		10:25	Break						
+		10:40	Data management and project organisation	John Sundh		lectures/data-management/data-management.html			
+		11:10	Version tracking and distributing your code	Erik Fasterius		lectures/git/git.html	pages/git.html		
+		12:00	Lunch						
+		13:00	… continued: Git				pages/git.html		
+		14:40	Break						
+		15:00	Controlling your environment with Conda	John Sundh		lectures/conda/conda.html	pages/conda.html		
+		16:45	Wrap-up day 1	Erik Fasterius					
+21/04/2026	Stockholm	09:00	Working with containers	John Sundh		lectures/containers/containers.html	pages/containers.html		
+		10:20	Break						
+		10:40	… continued: Containers				pages/containers.html		
+		12:00	Lunch						
+		13:00	… continued: Containers				pages/containers.html		
+		15:00	Break						
+		15:20	Writing computational notebooks and reproducible reports: Quarto	Erik Fasterius		lectures/quarto/quarto.html	pages/quarto.html		
+		16:45	Wrap-up day 2	John Sundh					
+		18:00	Course dinner						
+22/04/2026	Stockholm	09:00	… continued: Quarto				pages/quarto.html		
+		09:45	Writing computational notebooks and reproducible reports: Jupyter	John Sundh		lectures/jupyter/jupyter.html	pages/jupyter.html		
+		10:20	Break						
+		10:40	… continued: Jupyter				pages/jupyter.html		
+		12:00	Lunch						
+		13:00	… continued: Jupyter				pages/jupyter.html		
+		13:30	Organise your analyses using workflow managers: Snakemake	John Sundh		lectures/snakemake/snakemake.html	pages/snakemake.html		
+		14:30	Break						
+		14:50	… continued: Snakemake				pages/snakemake.html		
+		16:45	Wrap-up day 3	John Sundh					
+23/04/2026	Stockholm	09:00	… continued: Snakemake				pages/snakemake.html		
+		10:30	Break						
+		10:50	Organise your analyses using workflow managers: Nextflow	Erik Fasterius		lectures/nextflow/nextflow.html	pages/nextflow.html		
+		12:00	Lunch						
+		13:00	… continued: Nextflow				pages/nextflow.html		
+		14:20	Break						
+		14:40	… continued: Nextflow				pages/nextflow.html		
+		16:45	Wrap-up day 4	Erik Fasterius					
+24/04/2026	Stockholm	09:00	Documentation	Erik Fasterius		lectures/documentation/documentation.html	pages/documentation.html		
+		09:15	Putting it all together	Erik Fasterius		lectures/putting-it-together/putting-it-together.html			
+		10:20	Break						
+		10:40	… continued: Putting it all together						
+		12:00	Lunch						
+		13:00	… continued: Putting it all together						
+		14:20	Break						
+		14:40	… continued: Putting it all together						
+		15:45	Final wrap-up and end of the course	John Sundh					
