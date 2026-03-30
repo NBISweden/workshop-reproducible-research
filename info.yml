@@ -27,7 +27,7 @@ lund:
     The lunches during the course will be provided at **Restaurand Stamstället** located in the same building as the course. The restaurant menu can be found [here](https://stamstallet.se/lunch/).
     
     #### Dinner
-    The course dinner on the **21st of April at 1800** will be at [Restaurang Mediterranean](https://www.mediterranean.se/). We will walk to the restaurant together to the [restaurant](https://maps.app.goo.gl/6hbmvLqQdmbgvgcq5) from the course venue at 17:15.
+    The course dinner on the **21st of April at 18:00** will be at [Restaurang Mediterranean](https://www.mediterranean.se/). We will walk to the restaurant together to the [restaurant](https://maps.app.goo.gl/6hbmvLqQdmbgvgcq5) from the course venue at 17:15.
   map:
     - label: Venue
       marker_icon: briefcase
@@ -50,9 +50,9 @@ lund:
     - label: Dinner
       marker_icon: glass
       marker_color: green
-      lat: 55.70847
-      lon: 13.19594
-      popup: "Valvet Steakhouse, Allhelgona kyrkogata 7, 223 62 Lund"
+      lat: 55.70306
+      lon: 13.19049
+      popup: "Restaurang Mediterranean, Grönegatan 2B, 222 24 Lund"
     - label: Hotel Lundia
       marker_icon: bed
       marker_color: blue
