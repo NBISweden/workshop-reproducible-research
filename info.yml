@@ -10,7 +10,7 @@ lund:
     223 62 Lund  
     Sweden  
 
-    **From the Forum Medicum main entrance take the elevator down to 10th floor and follow signs for Datorsal**
+    **It is located in the BMC D Building on the 15th floor**
 
     Few selected hotels are listed below ranked by distance from the venue.
 
@@ -24,7 +24,7 @@ lund:
     For Lund city buses, tram, regional buses and regional trains, use [skanetrafiken.se](https://www.skanetrafiken.se/). You can buy a ticket at the central station in Lund or at the regional bus (card only). You can also use the app [Skånetrafiken](https://www.skanetrafiken.se/biljetter/app2/) From the Lund C the easiest is to take the tram from **Clemenstorget** towards **ESS** and get off at  **Lund LTH**. The trip take about 4 minutes and a tram leaves about four times an hour.
     
     #### Lunch
-    The lunches during the course will be provided at **Restaurand Stamstället** located in the same building as the course. The restaurant menu can be found [here](https://stamstallet.se/lunch/).
+    The lunches during the course will be provided at **Cafe Bryggan** located at the **IKDC** building which is a 10 minute walk from the course. The restaurant menu can be found [here](https://mersmak.me/vara-stallen/bryggan/).
     
     #### Dinner
     The course dinner on the **21st of April at 18:00** will be at [Restaurang Mediterranean](https://www.mediterranean.se/). We will walk together from the course venue at 17:15; see the location on this [map](https://maps.app.goo.gl/6hbmvLqQdmbgvgcq5).
@@ -32,9 +32,15 @@ lund:
     - label: Venue
       marker_icon: briefcase
       marker_color: red
-      lat: 55.711086
-      lon: 13.202617
-      popup: "Room E11073; Forum Medicum BMC; Sölvegatan 19; 223 62 Lund, Sweden"
+      lat: 55.71315
+      lon: 13.20193
+      popup: "Room Sven Gardel; BMC D1513a; Sölvegatan 19; 223 62 Lund, Sweden"
+    - label: Lunch
+      marker_icon: cutlery
+      marker_color: cadetblue
+      lat: 55.71508
+      lon: 13.21241
+      popup: "Bryggan Kitchen & Café, IKDC, Formstråket 13, 223 62 Lund"
     - label: Lund LTH Tram stop
       marker_icon: bus
       marker_color: purple
