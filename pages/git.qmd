@@ -191,16 +191,16 @@ figure:
 
 Let's repeat this process by editing a file!
 
-- Open up `bowtie.sh` in your favourite editor add a `-x` flag to the command:
-  the line should now say `bowtie2 -x input > output`.
+- Open up `bowtie.sh` in your favourite editor and add a `-x` flag to the
+  command: the line should now say `bowtie2 -x input > output`.
 
 - Run `git status`. It will tell you that there are modifications in one file
   (`bowtie.sh`) compared to the previous commit. This is nice! We don't have to
   keep track of which files we have edited, Git will do that for us.
 
 - Run `git diff bowtie.sh`. This will show you the changes made to the file. A
-  `-` means a deleted line, a `+` means an added line. There are also shown a
-  few lines before and after the changes, to put them in context.
+  `-` means a deleted line, a `+` means an added line. A few lines before and
+  after the changes are also shown for context.
 
 - Let's edit the other file! Open `environment.yml` and change the second line
   to say `  - bowtie2=2.2.4`. Run `git status`, followed by `git diff`. If we
@@ -578,18 +578,8 @@ for other researchers to be able to rerun your published analysis.
 
 - Let's assume that the status of the repository as it is now is ready for
   a submission to a journal. It may for example contain the scripts that were
-  used to generate the manuscript figures. Let's add a tag:
-
-```bash
-git tag "submission1"
-```
-
-- We can now list all the tags available in the current repository:
-
-```bash
-git tag
-```
-
+  used to generate the manuscript figures. 
+  
 ::: {.callout-tip}
 You can use the flag `-a` or `--annotate` to give more detailed information
 about a specific tag, similar to a commit message. This can be quite useful
@@ -601,6 +591,18 @@ submission1` to write the annotation with your default editor. To list all
 your tags along with their annotations you can use _e.g._ `git tag -n10`
 (which will list the first 10 lines of each tag's annotation).
 :::
+
+- Let's add a tag:
+
+```bash
+git tag "submission1"
+```
+
+- We can now list all the tags available in the current repository:
+
+```bash
+git tag
+```
 
 - Let's assume we now got comments from the reviewers, and by fixing those we
   had to update our code . Open `bowtie.sh` and remove the
@@ -681,7 +683,7 @@ Log in to your GitHub account and press the _New_ button:
 - Make sure you are listed as the owner
 - Add a repository name, _e.g._ `git_tutorial`
 - You can keep the repo private or make it public, as you wish
-- Skip including a README, a `.gitignore` and licence
+- Skip including a README, a `.gitignore` and license
 
 > ![](images/github_new_repo.png){ width=600px }
 
@@ -715,7 +717,7 @@ some cases when you might want to be able to fetch updates from a location, but
 you want to disable pushing there, either for security reasons or for some
 organisational reason (_i.e._ have read-only access). There are other cases
 where it is useful to be able to have different addresses for fetch and push as
-well, but for our cases here it they almost always the same.
+well, but for our cases here they are almost always the same.
 :::
 
 - We have not yet synced the local and remote repositories, though, we've simply
@@ -742,7 +744,7 @@ circumvent this by telling Git that you always want to push to
 - Set your upstream to `origin/main` using the command `git branch
   --set-upstream-to origin/main`.
 
-- Now run `git-status` again. You should see that now git additionally tells you
+- Now run `git status` again. You should see that now git additionally tells you
   that your local branch is up to date with the remote branch.
 
 If you go to the repository's GitHub page you should now be able to see all your
