@@ -62,12 +62,12 @@ For this tutorial, go ahead and create a directory called `git_tutorial`, then
 navigate into it.
 
 ::: {.callout-warning}
-The directory should *not* be within the `workshop-reproducible-research`
+The directory should _not_ be within the `workshop-reproducible-research`
 directory, since this is itself a Git-tracked directory.
 :::
 
-Once we are inside the desired directory, we can *initialise*
-Git with the following command:
+Once we are inside the desired directory, we can _initialise_ Git with the
+following command:
 
 ```bash
 git init
@@ -86,7 +86,7 @@ nothing to commit (create/copy files and use "git add" to track)
 
 ::: {.callout-tip}
 If you try to run `git status` in a non-Git directory, it will say
-that it is *not a git repository*. The way this works is that Git
+that it is _not a git repository_. The way this works is that Git
 adds a hidden directory `.git/` in the root of a Git tracked
 directory (run `ls -a` to see it). This hidden directory contains
 all information and settings Git needs in order to run and version
@@ -97,40 +97,23 @@ has to do with Git in connection to that directory will be gone.
 
 The text `nothing to commit (create/copy files and use "git add" to track)`
 tells us that while we are inside a directory that Git is currently tracking,
-there are currently no files being tracked; let's add some! Copy the following
-files from the `workshop-reproducible-research/tutorials/containers` directory
-into your `git_tutorial` directory:
+there are currently no files being tracked. Let's add some fictitious script
+that runs `bowtie` and an `environment.yml` file specifying some packages that
+we need to install in order to be able to run the script:
 
-- `Dockerfile`
-- `Snakefile`
-- `config.yml`
-- `environment.yml`
+```bash
+echo "bowtie2 input > output " > bowtie.sh
+printf "dependencies:\n  - bowtie2\n" > environment.yml
+```
 
 Once you have done that, run `git status` again. It will tell you that there
 are files in the directory that are not version tracked by Git.
-
-::: {.callout-note}
-For the purpose of this tutorial, the exact contents of the files you just
-copied are not important. But you will probably recognize many of them, as they
-are all files used in the MRSA case study described in the [introduction to the
-tutorials](introduction.html). The details of what these files do are described
-in their respective sessions later in the course, but we provide a brief
-overview here:
-
-- The `environment.yml` file contains the Conda environment with all the
-  software used in the analysis (see the [Conda tutorial](conda.html)).
-- The `Snakefile` and `config.yml` are both used to define the Snakemake
-  workflow, that we'll go through in the [Snakemake tutorial](snakemake.html).
-- The `Dockerfile` contains the recipe for making a Docker container for
-  the analysis, which will be covered in detail in the
-  [Container tutorial](containers.html).
-:::
 
 ::: {.callout-note title="Quick recap"}
 We have used two `git` commands this far:
 
 - `git init` tells Git to track the current directory.
-- `git status` is a command you should use *a lot*. It will tell you,
+- `git status` is a command you should use _a lot_. It will tell you,
   amongst other things, the status of your Git clone in relation to the
   online remote repository.
 :::
@@ -145,18 +128,18 @@ be related to something, _e.g._ a specific bug fix or a new feature.
   following (as suggested by `git status`):
 
 ```bash
-git add Dockerfile Snakefile
+git add bowtie.sh
 ```
 
-- Run `git status` again! See that we have added Dockerfile and Snakefile to
-  our upcoming commit (listed under "_Changes to be committed_"). This is
-  called the staging area, and the files there are staged to be committed.
+- Run `git status` again! See that we have added `bowtie.sh` to our upcoming
+  commit (listed under "_Changes to be committed_"). This is called the _staging
+  area_, and the files there are staged to be committed.
 
 - We might as well commit all files in one go! Use `git add` on the remaining
-  files as well:
+  file as well:
 
 ```bash
-git add config.yml environment.yml
+git add environment.yml
 ```
 
 - Run `git status` and see that all files are in the staging area, and that no
@@ -208,42 +191,39 @@ figure:
 
 Let's repeat this process by editing a file!
 
-- Open up `environment.yml` in your favourite editor, and set the version of
-  Bowtie2 to `2.2.4`. The line should look like this:
-
-```{.yaml filename="environment.yml"}
-  - bowtie2=2.2.4
-```
+- Open up `bowtie.sh` in your favourite editor and add a `-x` flag to the
+  command: the line should now say `bowtie2 -x input > output`.
 
 - Run `git status`. It will tell you that there are modifications in one file
-  (`environment.yml`) compared to the previous commit. This is nice! We don't
-  have to keep track of which files we have edited, Git will do that for us.
+  (`bowtie.sh`) compared to the previous commit. This is nice! We don't have to
+  keep track of which files we have edited, Git will do that for us.
 
-- Run `git diff environment.yml`. This will show you the changes made to the
-  file. A `-` means a deleted line, a `+` means an added line. There are also
-  shown a few lines before and after the changes, to put them in context.
+- Run `git diff bowtie.sh`. This will show you the changes made to the file. A
+  `-` means a deleted line, a `+` means an added line. A few lines before and
+  after the changes are also shown for context.
 
-- Let's edit another file! Open `config.yml` and change the line `genome_id:
-NCTC8325` to `genome_id: ST398`. Run `git status`. Run `git diff`. If we
+- Let's edit the other file! Open `environment.yml` and change the second line
+  to say `  - bowtie2=2.2.4`. Run `git status`, followed by `git diff`. If we
   don't specify a file, it will show all changes made in any file, compared to
   the previous commit. Do you see your changes?
 
 - Okay, we made our changes. Let's commit them! Run:
 
 ```bash
-git add config.yml environment.yml
+git add bowtie.sh environment.yml
 ```
 
 This will add both our files to the staging area at the same time. Run `git
-status` and see that the changes in both `config.yml` and `environment.yml` are
+status` and see that the changes in both `bowtie.sh` and `environment.yml` are
 ready to be committed.
 
 ### Unstaging files
 
 But wait a minute! Shouldn't each commit optimally be a conceptual unit of
-change? Here we have one change to the genome ID used for an analysis and one
-change where another software version is specified: these should probably be
-separate. We thus want to make two commits, one for each change.
+change? While all we have here is a toy example, one change is how we run a
+command, while the other is about which version of packages we install, meaning
+that these should probably be separate. We thus want to make two commits, one
+for each change.
 
 - Let's remove `environment.yml` from the staging area.
 
@@ -259,14 +239,14 @@ from the staging area, but _also_ restore the file to the state it was in the
 last commit, which is not what we want here.
 :::
 
-- Run `git status` again. See that now only `config.yml` is staged for being
+- Run `git status` again. See that now only `bowtie.sh` is staged for being
   committed, whereas the changes in `environment.yml` are tracked by Git, but
   not ready to be committed.
 
-- Commit the changes in `config.yml`:
+- Commit the changes in `bowtie.sh`:
 
 ```bash
-git commit -m "Change to ST398 for alignment"
+git commit -m "Add -x flag to Bowtie command"
 ```
 
 - Add and commit the changes in `environment.yml`:
@@ -275,7 +255,7 @@ git commit -m "Change to ST398 for alignment"
 git status
 git add environment.yml
 git status
-git commit -m "Change Bowtie2 version"
+git commit -m "Specify Bowtie version 2.2.4"
 git status
 ```
 
@@ -291,7 +271,7 @@ history and version tracking you will have of your files.
 - We can also try to delete a file:
 
 ```bash
-rm Dockerfile
+rm environment.yml
 ```
 
 - Run `git status`. As you can see, Git tells us that the file is deleted, but
@@ -299,15 +279,15 @@ rm Dockerfile
   files, we need to commit a deletion of a file:
 
 ```bash
-git add Dockerfile
+git add environment.yml
 git status
-git commit -m "Remove Dockerfile"
+git commit -m "Remove environment.yml"
 git status
 ```
 
-Here we used `rm Dockerfile` to delete the file and `git add Dockerfile` to
-stage the deletion. You can also use `git rm Dockerfile` to do both these
-operations in one step.
+Here we used `rm environment.yml` to delete the file and `git add
+environment.yml` to stage the deletion. You can also use `git rm
+environment.yml` to do both these operations in one step.
 
 ### Browsing the history
 
@@ -347,8 +327,7 @@ files. Rather, we want to track the actual code and other related files (_e.g._
 configuration files) that produce the intermediate and result files, given the
 raw input data.
 
-- Let's make some mock result files. These are some of the files that would have
-been generated by the Snakemake workflow if it was run.
+- Let's make some mock result files:
 
 ```bash
 mkdir -p results/multiqc
@@ -381,7 +360,7 @@ results/
 
 - Sometimes you want to ignore all files in a directory with one or two
   exceptions. For example, you don't want to track all your huge raw data files,
-  but there may be a smaller data file that you *do* want to track, _e.g._
+  but there may be a smaller data file that you _do_ want to track, _e.g._
   metadata or a list of barcodes used in your experiment. Let's add some mock
   data:
 
@@ -392,7 +371,7 @@ touch data/metadata.txt
 ```
 
 - Git allows you to ignore all files using the aforementioned wildcard, but
-  then *exclude* certain files from that ignore command. Open the `.gitignore`
+  then _exclude_ certain files from that ignore command. Open the `.gitignore`
   file again and add the following:
 
 ```bash
@@ -486,14 +465,13 @@ branch_name` (or `--create`).
 Let's add some changes to our new branch! We'll use this to try out a different
 set of parameters on the sequence alignment step of the case study project.
 
-- Edit the `Snakefile` so that the shell command of the `align_to_genome` rule
-  looks like this (add the `--very-sensitive-local` option):
+- Add a fictitious `--very-sensitive-local` flag to the `bowtie.sh` script:
 
 ```bash
-bowtie2 --very-sensitive-local -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
+bowtie2 --very-sensitive-local -x input > output
 ```
 
-- Add and commit the change!
+- Add and commit the change.
 
 - To get a visual view of your branches and commits you can use the command:
 
@@ -600,18 +578,8 @@ for other researchers to be able to rerun your published analysis.
 
 - Let's assume that the status of the repository as it is now is ready for
   a submission to a journal. It may for example contain the scripts that were
-  used to generate the manuscript figures. Let's add a tag:
-
-```bash
-git tag "submission1"
-```
-
-- We can now list all the tags available in the current repository:
-
-```bash
-git tag
-```
-
+  used to generate the manuscript figures. 
+  
 ::: {.callout-tip}
 You can use the flag `-a` or `--annotate` to give more detailed information
 about a specific tag, similar to a commit message. This can be quite useful
@@ -624,13 +592,26 @@ your tags along with their annotations you can use _e.g._ `git tag -n10`
 (which will list the first 10 lines of each tag's annotation).
 :::
 
-- Let's assume we now got comments from the reviewers, and by fixing
-  those we had to update our code. Open `config.yml` and change the line
-  `max_reads: 25000` to `max_reads: 50000`. Commit and tag the changes:
+- Let's add a tag:
 
 ```bash
-git add config.yml
-git commit -m "Increase number of reads"
+git tag "submission1"
+```
+
+- We can now list all the tags available in the current repository:
+
+```bash
+git tag
+```
+
+- Let's assume we now got comments from the reviewers, and by fixing those we
+  had to update our code . Open `bowtie.sh` and remove the
+  `--very-sensitive-local` flag (which reviewer \#3 didn't like). Commit and tag
+  the changes:
+
+```bash
+git add bowtie.sh
+git commit -m "Remove `--very-sensitive-local` flag"
 git tag "revision-1"
 ```
 
@@ -654,18 +635,18 @@ branches as default; switching between tags requires us to be in a _detached_
 state. This means that we're not actually on a branch, but rather at a specific
 point in the Git history without a branch.
 
-- Open `config.yml` and note that the `max_reads` variable is `25000`! To go
-  back to the latest version, run:
+- Open `bowtie.sh` and note that the is `--very-sensitive-local` flag is there!
+  To go back to the latest version, run:
 
 ```bash
 git switch main
 ```
 
-- Open `config.yml` and see that the value is now `50000`.
+- Open `bowtie.sh` and see that the flag is now gone.
 
 ::: {.callout-tip}
-You can also see the difference between tags in the same way as for
-branches and commits using _e.g._ `git diff <tag1> <tag2>`.
+You can also see the difference between tags in the same way as for branches and
+commits using _e.g._ `git diff <tag1> <tag2>`.
 :::
 
 At this point you could run `git log --oneline --decorate` to get a condensed
@@ -702,7 +683,7 @@ Log in to your GitHub account and press the _New_ button:
 - Make sure you are listed as the owner
 - Add a repository name, _e.g._ `git_tutorial`
 - You can keep the repo private or make it public, as you wish
-- Skip including a README, a `.gitignore` and licence
+- Skip including a README, a `.gitignore` and license
 
 > ![](images/github_new_repo.png){ width=600px }
 
@@ -736,7 +717,7 @@ some cases when you might want to be able to fetch updates from a location, but
 you want to disable pushing there, either for security reasons or for some
 organisational reason (_i.e._ have read-only access). There are other cases
 where it is useful to be able to have different addresses for fetch and push as
-well, but for our cases here it they almost always the same.
+well, but for our cases here they are almost always the same.
 :::
 
 - We have not yet synced the local and remote repositories, though, we've simply
@@ -758,10 +739,12 @@ nothing to commit, working tree clean
 
 You always need to specify `git push origin main` by default, but you can
 circumvent this by telling Git that you always want to push to
-`origin/main` when you're on your local `main` branch. To do this, use
-the command `git branch --set-upstream-to origin/main`. **Try it out now**.
+`origin/main` when you're on your local `main` branch.
 
-- Now run `git-status` again. You should see that now git additionally tells you
+- Set your upstream to `origin/main` using the command `git branch
+  --set-upstream-to origin/main`.
+
+- Now run `git status` again. You should see that now git additionally tells you
   that your local branch is up to date with the remote branch.
 
 If you go to the repository's GitHub page you should now be able to see all your
@@ -782,9 +765,9 @@ see. Let's try it out!
 ```markdown
 # A Git tutorial
 
-This repository contains tutorial information related to the **NBIS/ELIXIR** course
-_Tools for Reproducible Research_, specifically the session on using the `git`
-software for version control.
+This repository contains tutorial information related to the **NBIS/ELIXIR**
+course _Tools for Reproducible Research_, specifically the session on using the
+`git` software for version control.
 
 ### Links
 
@@ -819,9 +802,9 @@ to go more in-depth where you so desire.
 ::: {.callout-note title="Quick recap"}
 
 - We learned how to connect local Git repositories to remote locations such as
-GitHub and how to upload commits using `git push`.
-- We also learned the basics of _markdown_ and how it can be used to document Git repositories.
-
+  GitHub and how to upload commits using `git push`.
+- We also learned the basics of _markdown_ and how it can be used to document
+  Git repositories.
 :::
 
 ### Browsing GitHub
@@ -831,35 +814,34 @@ repositories all have numerous features, which can be somewhat difficult to
 navigate in the beginning. We here go through some of the basics of what you can
 do with GitHub.
 
-- Go to your GitHub repository in your browser again and click on _Code_ to the
-  left. Click on `config.yml`. You will see the contents of the file. Notice
-  that it is the latest version, where we previously changed the `genome_id`
-  variable:
+- Go to your GitHub repository in your browser again and click on `bowtie.sh`.
+  You will see the contents of the file. Notice that it is the latest version,
+  where we previously removed the `--very-sensitive-local` flag:
 
-> ![](images/github_config_yml.png){ width=600px }
+> ![](images/github_bowtie_sh.png){ width=600px }
 
 - Click on _History_. You will see an overview of the commits involving changes
   made to this file:
 
-> ![](images/github_config_yml_history.png){ width=600px }
+> ![](images/github_bowtie_sh_history.png){ width=600px }
 
-- Click on the `Change to ST398 for alignment` commit. You will see the changes
+- Click on the `Add --very-sensitive-local Bowtie flag` commit. You will see the changes
   made to `config.yml` file compared to the previous commit.
 
-> ![](images/github_config_yml_diff.png){ width=600px }
+> ![](images/github_bowtie_sh_diff.png){ width=600px }
 
 - Go back to the repository's main page and click on the commit tracker on the
   right above the list of files, which will give you an overview of all commits
   made. Clicking on a specific commit lets you see the changes introduced by
-  that commit. Click on the commit that was the initial commit, where we added
-  all the files.
+  that commit. Click on the `Add initial files` commit, that was the initial
+  commit.
 
 > ![](images/github_initial_commit.png){ width=600px }
 
 You will now see the files as they were when we first added them. Specifically
-you can see that the `Dockerfile` is back, even though we deleted it! Click on
-the _Code_ tab to the left to return to the overview of the latest repository
-version.
+you can see that the `environment.yml` is back, even though we deleted it! Click
+on the name of the repository at the top of the page to return to the overview
+of the latest repository version.
 
 ### Working with remote repositories
 
@@ -886,8 +868,16 @@ the original `git_tutorial` repository!
 - Since you already gave the address to Git when you cloned the repository, you
   don't have to add it manually as before. Verify this with `git remote -v`.
 
-- Let's say that we now want to set the `multiqc` software to version `1.7`.
-  Open the `environment.yml` file in the second local repo and edit the line with `multiqc` to:
+Let's say that we now want to add back the `environment.yml` file, as well as
+add another piece of software: MultiQC with version `1.7`.
+
+- Start with adding back the previously deleted `environment.yml` file:
+
+```bash
+printf "dependencies:\n  - bowtie2=2.2.4\n" > environment.yml
+```
+
+- Edit the file and add the following to it:
 
 ```{.yaml filename="environment.yml"}
   - multiqc=1.7
@@ -940,18 +930,17 @@ repositories and how to sync them:
 
 Remote branches work much in the same way as local branches, but you have to
 push them separately; you might have noticed that GitHub only listed our
-repository as having one branch (you can see this by going to the _Code_ tab).
-This is because we only pushed our `main` branch to the remote. Let's create
-a new local branch and add some changes that we'll push as a separate branch to
-our remote - you should do this in the original `git_tutorial` repository, so
-make sure you're in that directory.
+repository as having one branch (you can see this by going to the repository's
+main page). This is because we only pushed our `main` branch to the remote.
+Let's create a new local branch and add some changes that we'll push as a
+separate branch to our remote - you should do this in the original
+`git_tutorial` repository, so make sure you're in that directory.
 
 - Create a new branch named `trimming`, switch to it and add the `--trim5 5`
-  flag to the Bowtie2-command part of the `Snakefile`, which should now look
-  like this:
+  flag to the Bowtie2 command in `bowtie.sh`, which should now look like this:
 
 ```bash
-bowtie2 --trim5 5 --very-sensitive-local results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
+bowtie2 -x --trim5 5 input > output
 ```
 
 - Add and commit the change to your local repository.
@@ -964,9 +953,9 @@ git push origin trimming
 ```
 
 - Go the repository at GitHub and see if the new branch has appeared. Just above
-  the file listing click the _Branch_ drop-down and select the new branch to
-  view it. Can you see the difference in the `Snakefile` depending on which
-  branch you choose?
+  the file listing click the _Branch_ button and select the new branch to view
+  it. Can you see the difference in the `bowtie.sh` depending on which branch
+  you choose?
 
 We now have two branches both locally and remotely: `main` and `trimming`. We
 can continue working on our `trimming` branch until we're satisfied (all the
@@ -1045,8 +1034,8 @@ other. This could happen if a collaborator of yours committed a change and
 pushed it to GitHub. Let's create a conflict!
 
 - Move into your other local repository, `git_remote_tutorial`, which doesn't
-  have the new change. Run `git status`. Notice that Git says: "*Your branch is
-  up-to-date with 'origin/main'.*". We know that this is not true, but this
+  have the new change. Run `git status`. Notice that Git says: "_Your branch is
+  up-to-date with 'origin/main'._". We know that this is not true, but this
   local clone is not yet aware of the remote changes.
 
 - Let's change the `environment.yml` file in this local repository as well, but
@@ -1089,8 +1078,8 @@ you prefer.
 
 - Now run `git status`. Unlike before, our local Git clone now is aware of the
   latest changes pushed to the remote. It will tell you something along the
-  lines: "*Your branch and 'origin/main' have diverged, and have 1 and
-  1 different commit each, respectively.*".
+  lines: "_Your branch and 'origin/main' have diverged, and have 1 and
+  1 different commit each, respectively._".
 
 - We can now run the following to see what the difference is between the current
   state of our local clone and the `main` branch on the remote origin:
@@ -1116,21 +1105,13 @@ about this and suggests that we should fix the conflicts and commit that.
   this:
 
 ```{.yaml filename="environment.yml"}
-channels:
-  - conda-forge
-  - bioconda
 dependencies:
-  - python
-  - fastqc
-  - seqtk
-  - snakemake>=8
+  - bowtie2=2.2.4
 <<<<<<< HEAD
   - multiqc=1.6
 =======
   - multiqc=1.8
 >>>>>>> refs/remotes/origin/main
-  - jupyter
-  - bowtie2=2.2.4
 ```
 
 The part between `<<<<<<< HEAD` and `=======` is your local version, and the
@@ -1145,34 +1126,9 @@ version to keep, or to change it to a third alternative.
   should look like this:
 
 ```{.yaml filename="environment.yml"}
-channels:
-  - conda-forge
-  - bioconda
 dependencies:
-  - python
-  - fastqc
-  - seqtk
-  - snakemake>=8
-  - multiqc=1.6
-  - jupyter
   - bowtie2=2.2.4
-  - tbb
-  - samtools
-  - subread>=2
-  - bedtools
-  - r-base
-  - r-ggplot2
-  - r-reshape2
-  - r-stringi
-  - r-pheatmap
-  - r-rmarkdown
-  - r-r.utils
-  - bioconductor-rtracklayer
-  - bioconductor-geoquery
-  - wget
-  - graphviz
-  - xorg-libxrender
-  - xorg-libxpm
+  - multiqc=1.6
 ```
 
 - Run `git status` again. Notice that it says `use "git add <file>..." to mark
