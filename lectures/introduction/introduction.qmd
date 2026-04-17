@@ -23,20 +23,22 @@ format: revealjs
 
 ## The Teachers
 
-::: {layout-nrow=2 .justify-center}
-![John Sundh](images/john-sundh.png)
+::: {layout-nrow=2 .justify-center .nostretch}
+![John Sundh](images/john-sundh.jpg){height=200px}
 
-![Erik Fasterius](images/erik-fasterius.png)
+![Erik Fasterius](images/erik-fasterius.jpg){height=200px}
 
-![Verena Kutschera](images/verena-kutschera.png)
+![Lokeshwaran Manoharan](images/lokeshwaran-manoharan.jpg){height=200px}
 
-![Tomas Larsson](images/tomas-larsson.png)
+![Tomas Larsson](images/tomas-larsson.png){height=200px}
 
-![Estelle Proux-Wera](images/estelle-proux-wera.png)
+![Estelle Proux-Wera](images/estelle-proux-wera.jpg){height=200px}
 
-![Mahesh Binzer-Panchal](images/mahesh-binzer-panchal.png)
+![Aditya Singh](images/aditya-singh.jpg){height=200px}
 
-![Cormac Kinsella](images/cormac-kinsella.jpg)
+![Katja Kozjek](images/katja-kozjek.jpg){height=200px}
+
+![Massimiliano Volpe](images/massimiliano-volpe.jpg){height=200px}
 :::
 
 ## What is NBIS?
