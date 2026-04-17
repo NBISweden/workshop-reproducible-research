@@ -1,1 +1,0 @@
-../../containers/run_qc.sh
