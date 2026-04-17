@@ -40,7 +40,7 @@ Article number: 160018 (2016)_] for both machines and humans:
 
 ## Data sharing
 
-![](https://www.openaccess.nl/sites/www.openaccess.nl/files/documenten/open-access-logo-png-transparent.png){height=250 fig-align=center}
+![](images/open-access-logo.png){height=250 fig-align=center}
 
 **Why Open Access?**
 
