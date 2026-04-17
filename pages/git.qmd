@@ -578,8 +578,8 @@ for other researchers to be able to rerun your published analysis.
 
 - Let's assume that the status of the repository as it is now is ready for
   a submission to a journal. It may for example contain the scripts that were
-  used to generate the manuscript figures. 
-  
+  used to generate the manuscript figures.
+
 ::: {.callout-tip}
 You can use the flag `-a` or `--annotate` to give more detailed information
 about a specific tag, similar to a commit message. This can be quite useful

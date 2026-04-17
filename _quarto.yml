@@ -77,7 +77,6 @@ format:
     slide-level: 2
     slide-number: true
     progress: true
-    date:  last-modified
     date-format: "DD-MMM-YYYY"
     fig-align: left
     chalkboard: true
