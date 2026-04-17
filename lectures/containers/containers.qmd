@@ -104,16 +104,16 @@ Linux 407b0fd13fe5 4.9.60-linuxkit-aufs [...] x86_64 GNU/Linux
 Local `project/` directory:
 ```{.bash code-line-numbers="1|2-11|3"}
 $ ls
-|- doc/
-|- data/
-|- code/
-|- logs/
-|- results/
-|- Snakefile
-|- config.yml
-|- environment.yml
-|- Dockerfile
-|- README.md
+├── doc/
+├── data/
+├── code/
+├── logs/
+├── results/
+├── Snakefile
+├── config.yml
+├── environment.yml
+├── Dockerfile
+└── README.md
 ```
 :::
 :::
@@ -127,14 +127,14 @@ $ docker run \
     ubuntu:16.04 \
     ls
 
-|- bin/
-|- dev/
-|- etc/
-|- home/
-|  |- data/
-|- lib/
-|- sys/
-|- usr/
+├── bin/
+├── dev/
+├── etc/
+├── home/
+│   └── data/
+├── lib/
+├── sys/
+└── usr/
 ```
 :::
 :::
