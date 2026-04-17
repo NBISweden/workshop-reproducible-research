@@ -694,7 +694,7 @@ interactive graphs in Jupyter notebooks. Some other alternatives are:
   your Jupyter notebook. Generates very visually appealing graphs, but from
   a reproducibility perspective it's maybe not a good idea to be so reliant on
   a third party.
-- [Bokeh](https://bokeh.pydata.org/en/latest/docs/user_guide/notebook.html#userguide-notebook)
+- [Bokeh](https://docs.bokeh.org/en/latest/)
   is another popular tool for interactive graphs. Most plotting packages for
   Python are built on top of matplotlib, but Bokeh has its own library. This
   can give a steeper learning curve if you're used to the standard packages.
