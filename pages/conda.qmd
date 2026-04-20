@@ -254,13 +254,17 @@ the `$CONDA_PKGS_DIRS` environment variable. This can be useful especially on
 compute clusters where disk space in your home directory is limited. Compute
 clusters typically have a 'scratch' folder for storing temporary data which has
 a larger quota so setting `$CONDA_PKGS_DIRS` to point to this folder will save
-space in your home directory. For example, on the Dardel compute cluster the
+space in your home directory. 
+
+::: {.callout-note title="Setting CONDA_PKGS_DIRS in PDC/Dardel"}
+For example, on the Dardel compute cluster the
 scratch folder is defined by the environment variable `$PDC_TMP` so for this
 cluster you can add the following line to your `.bashrc` file:
 
 ```bash
 export CONDA_PKGS_DIRS=$PDC_TMP/conda_pkgs
 ```
+:::
 
 From now on, Conda will download and store the package tar-balls in the
 `$PDC_TMP/conda_pkgs` folder.
