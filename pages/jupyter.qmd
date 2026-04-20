@@ -362,7 +362,7 @@ float(100/3)
 
 Next set the precision to 4 decimal points by running a cell with:
 
-```
+```python
 %precision 4
 ```
 
@@ -959,6 +959,21 @@ states'.
 One caveat of `nbval` is that it doesn't work well with cells that generate
 plots. You can tell `nbval` to ignore the output of specific cells by adding
 `# NBVAL_IGNORE_OUTPUT` to the top of a cell.
+:::
+
+::: {.callout-tip title="Marimo - the future of Python notebooks?"}
+
+While Jupyter is a very powerful tool you may have noticed that there things
+that don't play nicely with some core aspects of reproducibility. For example,
+the JSON format used for notebooks is a little heavy for version tracking
+(especially when cell output is included) and potential 'hidden states'
+illustrated above can lead to non-reproducible notebooks.
+[Marimo](https://docs.marimo.io/) is a new tool for Python notebooks that solves
+a lot of these issues by using a pure python format and re-running dependent
+cells when the code is updated. The Marimo project is still relatively new which
+is why we don't currently include it in this course (something we will likely
+change in the future), but feel free to try it out if you like.
+
 :::
 
 ::: {.callout-note title="Quick recap"}
