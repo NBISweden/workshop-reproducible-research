@@ -992,11 +992,7 @@ git push --tags
 
 - Go to the repository overview page on GitHub. You will see that the repository
   now has three tags! If you click on _Tags_ you will be given an overview of
-  the existing tags for your repository - if you click _Releases_ you will see
-  more or less the same information. Confusing? Well, a _tag_ is a Git concept
-  while a _release_ is a GitHub concept that is based on Git tags. Releases add
-  some extra features that can be useful for distributing software and are done
-  manually from the repository's GitHub page.
+  the existing tags for your repository.
 
 - Click on one of the tags. Here users can download a compressed file
   containing the repository at the version specified by the tags.
