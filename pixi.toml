@@ -33,6 +33,7 @@ papermill = "*"
 nbval = "*"
 nbdime = "*"
 altair = "*"
+pip = "*"
 
 [feature.nextflow-env]
 channels = ["conda-forge", "bioconda"]
