@@ -264,10 +264,10 @@ cluster you can add the following line to your `.bashrc` file:
 ```bash
 export CONDA_PKGS_DIRS=$PDC_TMP/conda_pkgs
 ```
-:::
 
 From now on, Conda will download and store the package tar-balls in the
 `$PDC_TMP/conda_pkgs` folder.
+:::
 
 You can also achieve the same effect by setting the `pkgs_dirs` config parameter
 with `conda config` (see [configuration](#configuration) below).
