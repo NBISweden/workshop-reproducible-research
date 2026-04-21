@@ -143,14 +143,14 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - fastqc=0.11
-  - sra-tools=2.8
-  - snakemake=4.3.0
-  - multiqc=1.3
-  - bowtie2=2.3
-  - samtools=1.6
-  - htseq=0.9
-  - graphviz=2.38.0
+  - fastqc=0.12.1
+  - sra-tools=3.4.1
+  - snakemake=9.19.0
+  - multiqc=1.33
+  - bowtie2=2.5.5
+  - samtools=1.23.1
+  - htseq=2.1.2
+  - graphviz=14.1.2
 ```
 
 ## Conda command-line
@@ -159,7 +159,7 @@ dependencies:
 - Create a new environment:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yml -n my-env
 ```
 :::
 
@@ -167,15 +167,7 @@ conda env create -f environment.yml
 - Update an existing environment:
 
 ```bash
-conda env update -f environment.yml
-```
-:::
-
-::: {.fragment}
-- Update an existing environment:
-
-```bash
-conda env update -f environment.yml
+conda env update -f environment.yml -n my-env
 ```
 :::
 
