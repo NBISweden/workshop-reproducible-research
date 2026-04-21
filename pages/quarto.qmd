@@ -74,6 +74,7 @@ new file called _e.g._ `quarto-tutorial.qmd` and copy the following into it:
 title: "Untitled Quarto Document"
 author: "Jane Doe"
 format: html
+enginge: knitr
 ---
 ```
 
