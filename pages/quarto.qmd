@@ -74,7 +74,7 @@ new file called _e.g._ `quarto-tutorial.qmd` and copy the following into it:
 title: "Untitled Quarto Document"
 author: "Jane Doe"
 format: html
-enginge: knitr
+engine: knitr
 ---
 ```
 
@@ -84,7 +84,9 @@ are just what they sound like, while the `format` field specifies what type of
 output you want the final report to be in (alternatives include `pdf`,
 `revealjs` and [many others](https://quarto.org/docs/output-formats/all-formats.html)).
 Here we have specified that we want HTML output, which is perhaps the most
-useful for scientific computing.
+useful for scientific computing. The `engine` specifies which rendering engine
+we want to use, and since we are going to be using R in this example, we specify
+`knitr` here, which is the rendering engine used for R.
 
 - Change the title to `My first Quarto document` and the author to your name.
 
