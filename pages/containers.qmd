@@ -640,11 +640,11 @@ Alternatively, you can use the unique name assigned to the container. You can
 assign this name yourself using the flag `--name <any name you want>`.
 
 If we want to enter a running container, there are two commands we can
-use: `docker attach` and `docker exec`. 
+use: `docker attach` and `docker exec`.
 
 * `docker attach` will attach local standard input, output, and error streams to
 a running container. This can be useful if your terminal closed down for some
-reason or if you started a terminal in detached mode and changed your mind. 
+reason or if you started a terminal in detached mode and changed your mind.
 
 * `docker exec` can be used to execute any command in a running container. It's
 typically used to peek in at what is happening by opening up a new shell.
@@ -665,7 +665,7 @@ docker exec -it my_container /bin/bash
 
 - Use _e.g._ `ls` to see how the script generated files in the `data` and
   `results` directories.
-  
+
 ::: {.callout-tip}
 
 You will be thrown out when the container exits, so you have to be
@@ -964,7 +964,7 @@ have access to some other HPC cluster.
   Container Registry using the following command:
 
 ```bash
-apptainer pull lolcow.sif docker://ghcr.io/apptainer/lolcow.
+apptainer pull lolcow.sif docker://ghcr.io/apptainer/lolcow
 ```
 
 This should result in a SIF file called `lolcow.sif`.
