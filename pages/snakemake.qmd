@@ -1773,7 +1773,7 @@ to be `["results/bowtie2/{genome_id}.1.bt2",
 "results/bowtie2/{genome_id}.2.bt2", ...]`, _i.e._ only expanding the `substr`
 wildcard in the Bowtie2 index. To prevent Snakemake from trying to expand the
 `genome_id` wildcard we have to "mask" it with double curly brackets:
-`{{genome_id}}`.
+`{{{genome_id}}}`.
 
 In addition, we need to replace the hard-coded `results/bowtie2/NCTC8325` in the
 shell directive of the rule with the genome id wildcard. Inside the shell

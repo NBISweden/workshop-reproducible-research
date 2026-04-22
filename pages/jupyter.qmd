@@ -1079,7 +1079,7 @@ interface.
 
 As you can see this notebook contains some brief descriptions in Markdown and
 code to generate a few plots and tables. It uses the output from the MRSA
-case-study Snakemake workflow you worked on in the Snakemake tutorial. This is a
+case-study Snakemake workflow used in the Snakemake tutorial. This is a
 common use-case for Jupyter notebooks; to generate summary statistics and plots
 from the results of a workflow run. (A real-world example could of course
 include a lot more in-depth exploratory analyses).
