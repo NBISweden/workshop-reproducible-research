@@ -1118,12 +1118,12 @@ params {
 
 // [ main.nf ]
 // Channel creation
-ch_genome_ggf3 = channel.fromPath ( params.genome_gff3 )
+ch_genome_gff3 = channel.fromPath ( params.genome_gff3 )
 
 // Workflow definition
 GENERATE_COUNTS_TABLE (
     SORT_BAM.out.bam.collect(),
-    ch_genome_ggf3
+    ch_genome_gff3
 )
 ```
 :::
