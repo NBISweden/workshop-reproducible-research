@@ -8,7 +8,10 @@ project:
     - "!lectures/wrapups/"
 
 website:
-  image: "assets/images/featured.webp"
+  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
+  description: "How to work reproducibly with control and structuring of project code, environment and workflow management"
+  open-graph: true
+  image: "assets/images/seo.webp"
   favicon: "assets/favicon.png"
   navbar:
     logo: "assets/logos/nbis-scilifelab.png"
@@ -34,7 +37,6 @@ website:
     border: false
     left: "{{< meta current_year >}} [NBIS](https://nbis.se) • [CC-BY-4.0 License](https://choosealicense.com/licenses/cc-by-4.0/)"
     right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
-  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
 
 format:
   html:
@@ -120,4 +122,3 @@ filters:
 
 revealjs-plugins:
   - pointer
-
