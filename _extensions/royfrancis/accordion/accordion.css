@@ -1,0 +1,20 @@
+/* accordion css styles */
+
+.quarto-accordion {
+  margin-bottom: 10px;
+}
+
+/* Prevent long words/URLs from breaking layout */
+.quarto-accordion .accordion-body-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.accordion-error {
+  border: 1px solid #721c24;
+  background-color: #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
+}

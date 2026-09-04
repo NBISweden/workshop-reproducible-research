@@ -1,0 +1,32 @@
+---
+title: "FAQs"
+pagetitle: "Frequently Asked Questions"
+description: "Frequently Asked Questions"
+toc: false
+date: ""
+sidebar: false
+number-sections: false
+accordion:
+  - faq:
+    - header: 1. When and where is the next workshop?
+      body: This workshop runs twice a year, once in Spring (March/April) and once in Autumn (September/October/November). The workshop is advertised a few months in advance on NBIS training (https://nbis.se/training) and SciLifeLab training hub (https://training.scilifelab.se/events). Some workshops are online while others are on-site. This is specified when advertised.
+    - header: 2. Am I eligible to apply?
+      body: |
+        This is a national course open to PhD students, postdocs, group leaders, research assistants, core facility staff and other laboratory, medical or veterinary personnel. A background in genetics, cell biology, biomedicine, biochemistry, veterinary, bioinformatics or comparable is desirable. This is not a theory course, we require that you are currently using next generation sequencing or are planning to use next generation sequencing. It is beneficial if you are directly performing analyses or if you have a support role and will be able to participate in a wide range of projects and transfer your knowledge to others. You need to be affiliated to an institution (university, company etc) as we cannot invoice individuals. Applications in connection with Arbetsförmedlingen / Trygghetsstiftelsen needs to be handled on a case-by-case basis. Applicants affiliated to a Swedish institution are prioritized due to our funding. International applicants and master's students are considered only if/when seats are available.
+    - header: 3. How much does the workshop cost?
+      body: Online workshops are free of charge for academic applicants and costs the standard fee for industry applicants. On-site workshops are charged the academic fee for academic applicants and the standard fee for industry applicants. The fee includes lunch, coffee and venue costs. If you confirm your position on the course and then do not participate will incur a no-show fee. This applies to both online and on-site workshops. The exact fee amounts are specified when the workshop is advertised.
+    - header: 4. Will I receive a certificate on completion? How many ECTS points will I earn?
+      body: NBIS training events do not provide any formal university credits. Attendees with full attendance and completion of exercises will be issued a certificate of participation indicating topics covered and duration of the workshop (40 hours). The allocation of ECTS points is determined by your university. If formal credits are crucial, the applicant needs to confer with the home department before registration in order to establish whether this workshop is valid for formal credits or not.
+    - header: 5. I will not be unable to attend a session/lecture. What should I do?
+      body: Send us an email with an explanation. We will discuss if we are able to make an exception. This is handled on a case-by-case basis.
+    - header: 6. What computer do I need for this workshop?
+      body: You are required to bring your own computer. A unix based operating system (Linux / Ubuntu / Apple Mac OS) will be easier but not required. We can also work with Microsoft Windows OS. It is important that you install the softwares listed in the pre-course instructions **BEFORE** the workshop starts. Every course, we have a couple of participants who do not have admin rights to install software and therefore cannot complete some of the exercises.
+    - header: 7. I woke up feeling sick. What should I do?
+      body: Please inform us immediately and for on-site workshops, stay home until you feel better. We prioritize the well-being of all participants and staff. Further details will be handled on a case-by-case basis.
+      id: feelingsick
+    - header: 8. What if I experience discrimination/harassment during the course?
+      body: We follow the NBIS Training Code of Conduct. If you experience or witness harassment, discrimination, or any other inappropriate behaviour, please inform the organizers or any staff member immediately so we can act. The NBIS Training Coordinator is responsible for enforcing the Code of Conduct, and may be contacted by emailing [education@nbis.se](mailto:education@nbis.se). You can review the full policy [here](home_coc.qmd). For an extended description please see the [ELIXIR Code of Conduct](https://elixir-europe.org/events/code-of-conduct).
+format: html
+---
+
+{{< accordion faq >}}
