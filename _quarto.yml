@@ -106,10 +106,8 @@ execute:
 
 filters:
   - assets/custom.lua
-  - reveal-logo
-  - fontawesome
+  - revealjs-header
 
-# For rendering location the info page; options are Stockholm or online.
-# One or more separated by commas or semicolon; online doesn't display any
-# location info.
-location: stockholm;lund
+revealjs-plugins:
+  - pointer
+
