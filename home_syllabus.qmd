@@ -1,7 +1,7 @@
 ---
 title: "Syllabus"
 subtitle: "Syllabus, learning outcomes, entry requirements and code of conduct"
-pagetitle: "Syllabus | Tools for Reproducible Research"
+pagetitle: "Syllabus • Tools for Reproducible Research"
 date: ""
 toc: false
 number-sections: false

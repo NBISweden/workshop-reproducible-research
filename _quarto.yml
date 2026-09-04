@@ -85,17 +85,17 @@ format:
     fig-align: left
     chalkboard: true
     callout-icon: true
-    image: "/assets/images/featured.webp"
-    hero: "/assets/images/slide-hero.webp"
+    image: "assets/images/featured.webp"
+    hero: "assets/images/slide-hero.webp"
     title-slide-attributes:
-      data-background-image: "/assets/images/cover.webp"
+      data-background-image: "assets/images/cover.webp"
       data-background-size: "cover"
       data-background-opacity: "1"
     subtitle: ""
-    header-logo-left: /assets/logos/nbis.png
+    header-logo-left: assets/logos/nbis.png
     header-logo-left-height: 25px
     header-logo-left-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
-    header-logo-right: /assets/logos/scilifelab.png
+    header-logo-right: assets/logos/scilifelab.png
     header-logo-right-height: 25px
     header-logo-right-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
     template-partials:
@@ -122,3 +122,4 @@ filters:
 
 revealjs-plugins:
   - pointer
+
