@@ -1,25 +1,52 @@
--- Import the os and io modules
-os = require('os')
-io = require('io')
-
--- The filter function
 function Meta(meta)
-  -- Execute 'quarto version' command and get the output
-  local quarto_version = io.popen('quarto --version'):read('*all')
-  if quarto_version then
-    -- Add the version to the document metadata
-    meta['quarto_version'] = quarto_version
+  meta['quarto_version'] = tostring(quarto.version)
+  meta['current_year'] = os.date("%Y")
+  meta['current_date'] = os.date("%d-%m-%Y")
+  meta['current_time'] = os.date("%H:%M:%S")
+  meta['output-dir'] = quarto.project.output_directory
+
+  local project_directory = quarto.project.directory or "."
+  local quarto_config = io.open(project_directory .. "/_quarto.yml", "r")
+  local blocks = {project = {}, website = {}, format = {}}
+  local current_block = nil
+  local stack = nil
+
+  if quarto_config then
+    for line in quarto_config:lines() do
+      local block_name = line:match("^([%w%-]+):%s*$")
+
+      if block_name and blocks[block_name] then
+        current_block = block_name
+        stack = {{indent = -1, value = blocks[current_block]}}
+      elseif current_block and line:match("^%S") then
+        current_block = nil
+        stack = nil
+      elseif current_block then
+        local indentation = #(line:match("^(%s*)") or "")
+        local key, value = line:match("^%s*([%w%-]+):%s*(.-)%s*$")
+
+        if key then
+          while stack[#stack].indent >= indentation do
+            table.remove(stack)
+          end
+
+          local parent = stack[#stack].value
+          if value == "" then
+            parent[key] = {}
+            table.insert(stack, {indent = indentation, value = parent[key]})
+          elseif not value:match("^[{|]") then
+            value = value:gsub('^[\"\']', ""):gsub('[\"\']$', "")
+            parent[key] = value
+          end
+        end
+      end
+    end
+    quarto_config:close()
   end
 
-  -- Get the current date and time
-  local current_date = os.date("%d-%m-%Y")
-  local current_year = os.date("%Y")
-  local current_time = os.date("%H:%M:%S")
-
-  -- Add them to the document metadata
-  meta['current_date'] = current_date
-  meta['current_year'] = current_year
-  meta['current_time'] = current_time
+  meta.project = blocks.project
+  meta.website = blocks.website
+  meta.format = blocks.format
 
   return meta
 end
