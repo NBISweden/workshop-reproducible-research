@@ -1,10 +1,10 @@
-/* custom css style */
+/* website css style */
 
 /*-- scss:defaults --*/
 
 /* colours, fonts, size ---------------------------------------------------------------------- */
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Nunito:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Nunito:ital,wght@0,200..700;1,200..700&display=swap');
 
 $primary: #95b540;
 $secondary: #BDD775;
@@ -15,6 +15,8 @@ $code-color: #496985;
 $code-block-bg: WhiteSmoke;
 $font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', 'sans-serif' ;
 $font-family-monospace: 'Fira Mono', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', 'Courier', 'monospace';
+$font-family-headings: $font-family-sans-serif;
+$mermaid-font-family: 'Nunito', 'Source Sans Pro', 'Helvetica', 'sans-serif' ;
 $font-size-root: 18px;
 $code-font-size: 14px;
 /* major second scale */
@@ -25,7 +27,6 @@ $h4-font-size: 1.266rem;
 $h5-font-size: 1.125rem;
 $h6-font-size: 1rem;
 $code-block-border-color: none;
-$code-font-size: 0.90rem;
 $code-bg: $code-block-bg; /* inline code */
 /*$code-color: ; */
 
@@ -35,6 +36,10 @@ $footer-bg: white;
 $footer-fg: DimGray;
 
 /*-- scss:rules --*/
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: $font-family-headings;
+}
 
 /* major third scale */
 .largest { font-size: 1.953em;}
@@ -52,6 +57,8 @@ $footer-fg: DimGray;
   color: $secondary;
 }
 
+/* navbar  and footer */
+
 .navbar-nav {
   font-size: 0.85em;
   letter-spacing: 0.1em;
@@ -61,9 +68,7 @@ $footer-fg: DimGray;
   max-height: 20px;
 }
 
-.contents-table table {
-  line-height: 1;
-}
+/* listing */
 
 .listing-image img {
   height: 40px;
@@ -72,36 +77,152 @@ $footer-fg: DimGray;
   object-fit: cover;
 }
 
-/* buttons and badges */
+/* table */
 
-.badge,
-.badge-primary {
-  background-color: $primary;
+table th,
+table td {
+  vertical-align: middle;
 }
 
-.badge-secondary {
-  background-color: $secondary;
+table, .Reactable {
+  font-size: 0.85em;
 }
 
+.contents-table table {
+  line-height: 1;
+}
+
+/* buttons */
+
+.btn,
 .btn-primary {
-  background-color: $primary;
-  color: whitesmoke;
-}
-
-.btn-primary:hover {
-  background-color: $secondary;
-  color: whitesmoke;
-
+  --bs-btn-color: whitesmoke;
+  --bs-btn-bg: #{$primary};
+  --bs-btn-border-color: #{$primary};
+  --bs-btn-hover-color: whitesmoke;
+  --bs-btn-hover-bg: #{darken($primary, 5%)};
+  --bs-btn-hover-border-color: #{darken($primary, 5%)};
+  --bs-btn-active-color: whitesmoke;
+  --bs-btn-active-bg: #{darken($primary, 10%)};
+  --bs-btn-active-border-color: #{darken($primary, 10%)};
+  --bs-btn-disabled-color: whitesmoke;
+  --bs-btn-disabled-bg: #{$primary};
+  --bs-btn-disabled-border-color: #{$primary};
 }
 
 .btn-secondary {
+  --bs-btn-color: whitesmoke;
+  --bs-btn-bg: #{$secondary};
+  --bs-btn-border-color: #{$secondary};
+  --bs-btn-hover-color: whitesmoke;
+  --bs-btn-hover-bg: #{darken($secondary, 5%)};
+  --bs-btn-hover-border-color: #{darken($secondary, 5%)};
+  --bs-btn-active-color: whitesmoke;
+  --bs-btn-active-bg: #{darken($secondary, 10%)};
+  --bs-btn-active-border-color: #{darken($secondary, 10%)};
+  --bs-btn-disabled-color: whitesmoke;
+  --bs-btn-disabled-bg: #{$secondary};
+  --bs-btn-disabled-border-color: #{$secondary};
+}
+
+.btn-tertiary {
+  --bs-btn-color: #{$body-color};
+  --bs-btn-bg: #{$tertiary};
+  --bs-btn-border-color: #{$tertiary};
+  --bs-btn-hover-color: #{$body-color};
+  --bs-btn-hover-bg: #{darken($tertiary, 5%)};
+  --bs-btn-hover-border-color: #{darken($tertiary, 5%)};
+  --bs-btn-active-color: #{$body-color};
+  --bs-btn-active-bg: #{darken($tertiary, 10%)};
+  --bs-btn-active-border-color: #{darken($tertiary, 10%)};
+  --bs-btn-disabled-color: #{$body-color};
+  --bs-btn-disabled-bg: #{$tertiary};
+  --bs-btn-disabled-border-color: #{$tertiary};
+}
+
+.btn a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.btn-tertiary a, .btn-tertiary a:hover {
+  color: $body-color;
+}
+
+/* badges */
+
+.badge,
+.badge.badge-primary {
+  background-color: $primary;
+  color: whitesmoke;
+}
+
+.badge.badge-secondary {
   background-color: $secondary;
   color: whitesmoke;
 }
 
-.btn-secondary:hover {
+.badge.badge-tertiary {
   background-color: $tertiary;
+  color: $body-color;
+}
+
+.badge a,
+.badge a:hover {
   color: whitesmoke;
+  text-decoration: none;
+}
+
+.badge.badge-tertiary a,
+.badge.badge-tertiary a:hover {
+  color: $body-color;
+}
+
+/* observablehq */
+
+.observablehq .btn {
+  @extend .btn-sm;
+}
+
+.observablehq select {
+  @extend .form-select;
+}
+
+.observablehq input:not([type]),
+.observablehq input[type="text"],
+.observablehq input[type="email"],
+.observablehq input[type="password"],
+.observablehq input[type="search"],
+.observablehq input[type="tel"],
+.observablehq input[type="url"],
+.observablehq input[type="number"],
+.observablehq input[type="file"],
+.observablehq input[type="date"],
+.observablehq input[type="datetime-local"],
+.observablehq input[type="month"],
+.observablehq input[type="time"],
+.observablehq input[type="week"],
+.observablehq textarea {
+  @extend .form-control;
+}
+
+.observablehq input[type="button"],
+.observablehq input[type="submit"],
+.observablehq input[type="reset"] {
+  @extend .btn;
+}
+
+.observablehq input[type="checkbox"],
+.observablehq input[type="radio"] {
+  @extend .form-check-input;
+}
+
+.observablehq input[type="range"] {
+  @extend .form-range;
+}
+
+.observablehq input[type="color"] {
+  @extend .form-control-color;
 }
 
 /* alert */
@@ -115,10 +236,6 @@ $footer-fg: DimGray;
 }
 
 /* code */
-
-pre, code, .sourceCode {
-  font-size: 0.75rem;
-}
 
 pre {
   line-height: 1.4;
@@ -139,6 +256,11 @@ code {
   color: $code-color;
 }
 
+.cell-output-stdout code {
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+}
+      
 /* call-out */
 
 .callout {
@@ -178,44 +300,3 @@ div.callout-important .callout-icon::before {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTYiIHdpZHRoPSIxNiIgZmlsbD0iIzFjMjgzMyIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjwhLS0hRm9udCBBd2Vzb21lIEZyZWUgNi41LjEgYnkgQGZvbnRhd2Vzb21lIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20gTGljZW5zZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tL2xpY2Vuc2UvZnJlZSBDb3B5cmlnaHQgMjAyMyBGb250aWNvbnMsIEluYy4tLT48cGF0aCBkPSJNNDE2IDM5OC45YzU4LjUtNDEuMSA5Ni0xMDQuMSA5Ni0xNzQuOUM1MTIgMTAwLjMgMzk3LjQgMCAyNTYgMFMwIDEwMC4zIDAgMjI0YzAgNzAuNyAzNy41IDEzMy44IDk2IDE3NC45YzAgLjQgMCAuNyAwIDEuMXY2NGMwIDI2LjUgMjEuNSA0OCA0OCA0OGg0OFY0NjRjMC04LjggNy4yLTE2IDE2LTE2czE2IDcuMiAxNiAxNnY0OGg2NFY0NjRjMC04LjggNy4yLTE2IDE2LTE2czE2IDcuMiAxNiAxNnY0OGg0OGMyNi41IDAgNDgtMjEuNSA0OC00OFY0MDBjMC0uNCAwLS43IDAtMS4xek05NiAyNTZhNjQgNjQgMCAxIDEgMTI4IDBBNjQgNjQgMCAxIDEgOTYgMjU2em0yNTYtNjRhNjQgNjQgMCAxIDEgMCAxMjggNjQgNjQgMCAxIDEgMC0xMjh6Ii8+PC9zdmc+') !important;
 }
 
-/* table schedule */
-
-.table-schedule {
-  font-size: 0.85em;
-  line-height: 1.8;
-}
-
-.table-schedule tr:hover {
-  background-color: whitesmoke;
-}
-
-.table-schedule table {
-  margin: 1em auto;
-}
-
-.table-schedule .topic {
-  color: white;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 1px 4px;
-  background: #BDBDBD;
-}
-
-.table-schedule .topic-dinner {
-  color: white;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 1px 4px;
-  background: #95b540;
-}
-
-.table-schedule .marker {
-  color: $primary;
-  margin-left: 2px;
-  margin-right: 3px;
-}
-
-.table-schedule td p {
-  margin-bottom: 0;
-  padding: 5px 0px;
-}
