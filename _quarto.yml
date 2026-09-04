@@ -98,6 +98,11 @@ format:
     header-logo-right-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
     template-partials:
       - "assets/title-slide.html"
+    pointer:
+      color: "#95b540"
+      pointerSize: 12
+      trail: true
+      trailDuration: 250
 
 execute:
   eval: true
