@@ -1,0 +1,90 @@
+# metadata used site-wide
+
+# map markers information
+# markdown is supported in tooltip and popup, use <br> for new lines
+# leaflet map is enabled through quarto extension https://github.com/royfrancis/quarto-leaflet which supports fontawesome icons
+# use fontawesome v6 icons: https://fontawesome.com/v6/search
+leaflet:
+  lund:
+    zoom: 14
+    markers:
+      - tooltip: Venue
+        icon: "fa-solid fa-briefcase"
+        icon-color: "#E74856"
+        lat: 55.71315
+        lon: 13.20193
+        popup: "Room Sven Gardel<br> BMC D1513a<br> Sölvegatan 19<br> 223 62 Lund, Sweden"
+      - tooltip: Lunch
+        icon: "fa-solid fa-utensils"
+        icon-color: "#436978"
+        lat: 55.71508
+        lon: 13.21241
+        popup: "Bryggan Kitchen & Café, IKDC, Formstråket 13, 223 62 Lund"
+      - tooltip: Lund LTH Tram stop
+        icon: "fa-solid fa-bus"
+        icon-color: "#8E8CD8"
+        lat: 55.71249
+        lon: 13.20807
+        popup: "LTH Bus/Tram stop<br> 223 62 Lund<br> Sweden"
+      - tooltip: Centralstation
+        icon: "fa-solid fa-train"
+        icon-color: "#8E8CD8"
+        lat: 55.70669
+        lon: 13.18695
+        popup: "Centralstation<br> Bangatan 1<br> 222 21 Lund<br> Sweden"
+      - tooltip: Dinner
+        icon: "fa-solid fa-martini-glass-empty"
+        icon-color: "#72B026"
+        lat: 55.70306
+        lon: 13.19049
+        popup: "Restaurang Mediterranean, Grönegatan 2B, 222 24 Lund"
+      - tooltip: Hotel Lundia
+        icon: "fa-solid fa-bed"
+        icon-color: "#38AADD"
+        lat: 55.70549
+        lon: 13.18925
+        popup: "Hotel Lundia<br> Bantorget 1<br> 223 50 Lund<br> Sweden"
+      - tooltip: Elite Hotel Ideon
+        icon: "fa-solid fa-bed"
+        icon-color: "#38AADD"
+        lat: 55.71784
+        lon: 13.21398
+        popup: "Elite Hotel Ideon<br> Scheelevägen 27<br> 223 70 Lund<br> Sweden"
+      - tooltip: Grand Hotel Lund
+        icon: "fa-solid fa-bed"
+        icon-color: "#38AADD"
+        lat: 55.70398
+        lon: 13.18895
+        popup: "Grand Hotel Lund<br> Bantorget 1<br> 223 50 Lund<br> Sweden"
+      - tooltip: Motel L
+        icon: "fa-solid fa-bed"
+        icon-color: "#38AADD"
+        lat: 55.71749
+        lon: 13.22943
+        popup: "Motel L<br> Västergatan 2<br> 222 22 Lund<br> Sweden"
+  stockholm:
+    markers:
+      - tooltip: Venue
+        icon: "fa-solid fa-briefcase"
+        icon-color: "#E74856"
+        lat: 59.3504843470136
+        lon: 18.0234314999999
+        popup: "SciLifeLab Stockholm<br> Tomtebodavägen 23A<br> 171 65 Solna<br> Sweden"
+      - tooltip: Centralstation
+        icon: "fa-solid fa-train"
+        icon-color: "#8E8CD8"
+        lat: 59.330231
+        lon: 18.059196
+        popup: "Centralstation<br> Vasagatan 1<br> 111 20 Stockholm<br> Sweden"
+      - tooltip: "Karolinska Institutet Biomedicum Bus stop"
+        icon: "fa-solid fa-bus"
+        icon-color: "#8E8CD8"
+        lat: 59.34998995628685
+        lon: 18.02542771374187
+        popup: "Karolinska Institutet Biomedicum<br> 171 65 Solna<br> Sweden"
+      - tooltip: "Karolinkskavägen Bus stop"
+        icon: "fa-solid fa-bus"
+        icon-color: "#8E8CD8"
+        lat: 59.35098473792899
+        lon: 18.02378243706668
+        popup: "Karolinkskavägen<br> 171 64 Solna<br> Sweden"

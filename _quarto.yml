@@ -24,6 +24,8 @@ website:
         href: "home_syllabus.html"
       - text: "Pre-course"
         href: "home_precourse.html"
+      - text: "FAQs"
+        href: "home_faq.html"
       - text: "Info"
         href: "home_info.html"
       - icon: "github"
@@ -103,6 +105,9 @@ execute:
   warning: false
   message: false
   freeze: auto
+
+metadata-files:
+  - "_metadata.yml"
 
 filters:
   - assets/custom.lua
