@@ -82,9 +82,9 @@ leaflet:
         lat: 59.34998995628685
         lon: 18.02542771374187
         popup: "Karolinska Institutet Biomedicum<br> 171 65 Solna<br> Sweden"
-      - tooltip: "Karolinkskavägen Bus stop"
+      - tooltip: "Karolinskavägen Bus stop"
         icon: "fa-solid fa-bus"
         icon-color: "#8E8CD8"
         lat: 59.35098473792899
         lon: 18.02378243706668
-        popup: "Karolinkskavägen<br> 171 64 Solna<br> Sweden"
+        popup: "Karolinskavägen<br> 171 64 Solna<br> Sweden"

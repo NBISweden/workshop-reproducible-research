@@ -17,7 +17,7 @@ markup language. HTML uses tags, such as:
 ```html
 <h1> Heading </h1>
 <h2> Sub-heading </h2>
-<a href="www.webpage.com"> Link </a>
+<a href="https://example.com"> Link </a>
 <ul>
   <li> List-item1 </li>
   <li> List-item2 </li>
