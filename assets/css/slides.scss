@@ -7,13 +7,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Nunito:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
 
 $primary: #95b540;
-$secondary: #E9F2D1;
+$secondary: #BDD775;
+$tertiary: #E9F2D1;
 $link-color: $primary;
 $body-color: #1c2833;
 $code-color: #3b4819;
 $code-block-bg: WhiteSmoke;
-$font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', 'sans-serif' ;
-$font-family-monospace: 'Fira Mono','Ubuntu Mono', 'Lucida Console', 'Courier', 'monospace';
+$font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', sans-serif;
+$font-family-monospace: 'Fira Mono','Ubuntu Mono', 'Lucida Console', 'Courier', monospace;
 $code-block-border-color: none;
 $code-bg: $code-block-bg; /* inline code */
 
@@ -122,22 +123,39 @@ $presentation-h6-font-size: 1em;
 
 /* vertical alignment */
 
-.reveal .v-center {
+.reveal .slides section:has(.v-top, .v-center, .v-bottom) {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.reveal .slides section:has(.v-top, .v-center, .v-bottom) > .columns {
+  display: flex !important;
+  flex: 1;
+  align-items: stretch;
+}
+
+.reveal .slides section:has(.v-top, .v-center, .v-bottom) > .columns > .column {
+  display: flex;
+  flex-direction: column;
+}
+
+.reveal .v-top,
+.reveal .v-center,
+.reveal .v-bottom {
   display: grid;
-  align-items: center;
-  height: 90%;
+  flex: 1;
+}
+
+.reveal .v-center {
+  align-content: center;
 }
 
 .reveal .v-top {
-  display: grid;
-  align-items: start;
-  height: 90%;
+  align-content: start;
 }
 
 .reveal .v-bottom {
-  display: grid;
-  align-items: end;
-  height: 90%;
+  align-content: end;
 }
 
 /* lists */
@@ -159,23 +177,117 @@ $presentation-h6-font-size: 1em;
 	top: 0 !important;
 }
 
+/* buttons */
+
+.reveal .btn,
+.reveal .btn.btn-primary {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border: 1px solid $primary;
+  border-radius: 4px;
+  color: whitesmoke;
+  background-color: $primary;
+  line-height: 1.2;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+.reveal .btn:hover,
+.reveal .btn.btn-primary:hover {
+  border-color: darken($primary, 5%);
+  color: whitesmoke;
+  background-color: darken($primary, 5%);
+}
+
+.reveal .btn:active,
+.reveal .btn.active,
+.reveal .btn.btn-primary:active,
+.reveal .btn.btn-primary.active {
+  border-color: darken($primary, 10%);
+  color: whitesmoke;
+  background-color: darken($primary, 10%);
+}
+
+.reveal .btn.btn-secondary {
+  border-color: $secondary;
+  color: whitesmoke;
+  background-color: $secondary;
+}
+
+.reveal .btn.btn-secondary:hover {
+  border-color: darken($secondary, 5%);
+  color: whitesmoke;
+  background-color: darken($secondary, 5%);
+}
+
+.reveal .btn.btn-secondary:active,
+.reveal .btn.btn-secondary.active {
+  border-color: darken($secondary, 10%);
+  color: whitesmoke;
+  background-color: darken($secondary, 10%);
+}
+
+.reveal .btn.btn-tertiary {
+  border-color: $tertiary;
+  color: $body-color;
+  background-color: $tertiary;
+}
+
+.reveal .btn.btn-tertiary:hover {
+  border-color: darken($tertiary, 5%);
+  color: $body-color;
+  background-color: darken($tertiary, 5%);
+}
+
+.reveal .btn.btn-tertiary:active,
+.reveal .btn.btn-tertiary.active {
+  border-color: darken($tertiary, 10%);
+  color: $body-color;
+  background-color: darken($tertiary, 10%);
+}
+
+.reveal .btn:disabled,
+.reveal .btn.disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.reveal .btn a,
+.reveal .btn a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* badge */
 
-.badge {
+.reveal .badge,
+.reveal .badge.badge-primary {
   font-size: 0.85em;
   background-color: $primary;
-  color: white;
+  color: whitesmoke;
   padding: 0.05em 0.3em;
   border-radius: 4px;
   vertical-align: baseline;
 }
 
-.badge-primary {
-  background-color: $primary;
+.reveal .badge.badge-secondary {
+  background-color: $secondary;
 }
 
-.badge-secondary {
-  background-color: $secondary;
+.reveal .badge.badge-tertiary {
+  background-color: $tertiary;
+  color: $body-color;
+}
+
+.reveal .badge a,
+.reveal .badge a:hover {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.reveal .badge.badge-tertiary a,
+.reveal .badge.badge-tertiary a:hover {
+  color: $body-color;
 }
 
 /* callout */
@@ -217,7 +329,7 @@ $presentation-h6-font-size: 1em;
 }
 
 .reveal div.callout.callout-note.callout-style-default .callout-title {
-  background-color: $secondary;
+  background-color: $tertiary;
 }
 
 .reveal div.callout-note .callout-icon::before {
@@ -286,9 +398,10 @@ $presentation-h6-font-size: 1em;
 
 .reveal .quarto-accordion {
   $primary-hex: str-slice("#{$primary}", 2);
+  --bs-accordion-btn-color: #{$body-color};
   --bs-accordion-btn-bg: white;
-  --bs-accordion-active-bg: #{$secondary};
-  --bs-accordion-active-color: #{$primary};
+  --bs-accordion-active-bg: #{$tertiary};
+  --bs-accordion-active-color: #{mix(black, $primary, 60%)};
   --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23#{$primary-hex}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   --bs-accordion-border-color: #{rgba($primary, 0.35)};
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem #{rgba($primary, 0.25)};

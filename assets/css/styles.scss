@@ -13,12 +13,12 @@ $link-color: $primary;
 $body-color: #1c2833;
 $code-color: #496985;
 $code-block-bg: WhiteSmoke;
-$font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', 'sans-serif' ;
-$font-family-monospace: 'Fira Mono', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', 'Courier', 'monospace';
+$font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', sans-serif;
+$font-family-monospace: 'Fira Mono', 'Ubuntu Mono', 'Liberation Mono', 'Lucida Console', 'Courier', monospace;
 $font-family-headings: $font-family-sans-serif;
-$mermaid-font-family: 'Nunito', 'Source Sans Pro', 'Helvetica', 'sans-serif' ;
+$mermaid-font-family: 'Nunito', 'Source Sans Pro', 'Helvetica', sans-serif ;
 $font-size-root: 18px;
-$code-font-size: 14px;
+$code-font-size: 15px;
 /* major second scale */
 $h1-font-size: 1.802rem;
 $h2-font-size: 1.602rem;
@@ -55,6 +55,12 @@ h1,h2,h3,h4,h5,h6 {
   font-size: 16rem;
   font-weight: 700;
   color: $secondary;
+}
+
+@media (max-width: 575.98px) {
+  .fourofour {
+    font-size: 8rem;
+  }
 }
 
 /* navbar  and footer */
