@@ -1,9 +1,14 @@
+local function meta_inlines(value)
+  return pandoc.MetaInlines({pandoc.Str(tostring(value))})
+end
+
 function Meta(meta)
-  meta['quarto_version'] = tostring(quarto.version)
-  meta['current_year'] = os.date("%Y")
-  meta['current_date'] = os.date("%d-%m-%Y")
-  meta['current_time'] = os.date("%H:%M:%S")
-  meta['output-dir'] = quarto.project.output_directory
+  meta['quarto_version'] = meta_inlines(quarto.version)
+  meta['current_year'] = meta_inlines(os.date("%Y"))
+  meta['current_date'] = meta_inlines(os.date("%d-%m-%Y"))
+  meta['current_time'] = meta_inlines(os.date("%H:%M:%S"))
+  meta['output-dir-path'] = meta_inlines(quarto.project.output_directory)
+  meta['output-dir'] = meta_inlines(quarto.project.output_directory:match("([^/\\]+)[/\\]*$"))
 
   local project_directory = quarto.project.directory or "."
   local quarto_config = io.open(project_directory .. "/_quarto.yml", "r")
@@ -36,7 +41,7 @@ function Meta(meta)
             table.insert(stack, {indent = indentation, value = parent[key]})
           elseif not value:match("^[{|]") then
             value = value:gsub('^[\"\']', ""):gsub('[\"\']$', "")
-            parent[key] = value
+            parent[key] = meta_inlines(value)
           end
         end
       end
@@ -44,9 +49,7 @@ function Meta(meta)
     quarto_config:close()
   end
 
-  meta.project = blocks.project
-  meta.website = blocks.website
-  meta.format = blocks.format
+  meta.custom = blocks
 
   return meta
 end
