@@ -8,31 +8,39 @@ project:
     - "!lectures/wrapups/"
 
 website:
-  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
-  description: "How to work reproducibly with control and structuring of project code, environment and workflow management"
   open-graph: true
+  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
   image: "assets/images/seo.webp"
+  description: "How to work reproducibly with control and structuring of project code, environment and workflow management"
   favicon: "assets/favicon.png"
   navbar:
     logo: "assets/logos/nbis-scilifelab.png"
-    logo-alt: "logo"
+    logo-alt: "nbis scilifelab logo"
     right:
       - text: "Home"
         href: "index.html"
+        aria-label: "Home"
       - text: "Schedule"
         href: "home_schedule.html"
+        aria-label: "Schedule"
       - text: "Contents"
         href: "home_contents.html"
+        aria-label: "Contents"
+      - text: "Precourse"
+        href: "home_precourse.html"
+        aria-label: "Precourse"
       - text: "Syllabus"
         href: "home_syllabus.html"
-      - text: "Pre-course"
-        href: "home_precourse.html"
+        aria-label: "Syllabus"
       - text: "FAQs"
         href: "home_faq.html"
+        aria-label: "Frequently Asked Questions"
       - text: "Info"
         href: "home_info.html"
+        aria-label: "Info"
       - icon: "github"
         href: "https://github.com/NBISweden/workshop-reproducible-research/"
+        aria-label: "GitHub"
   page-footer:
     border: false
     left: "{{< meta current_year >}} [NBIS](https://nbis.se) • [CC-BY-4.0 License](https://choosealicense.com/licenses/cc-by-4.0/)"
@@ -56,7 +64,6 @@ format:
     code-copy: true
     code-overflow: wrap
     df-print: paged
-    standalone: false
     fig-align: left
     title-block-banner: "assets/images/banner.webp"
     subtitle: ""
@@ -81,6 +88,7 @@ format:
     slide-level: 2
     slide-number: true
     progress: true
+    date: last-modified
     date-format: "DD-MMM-YYYY"
     fig-align: left
     chalkboard: true
