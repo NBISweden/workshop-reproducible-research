@@ -1,0 +1,18 @@
+::: {.callout-note}
+
+## Address
+
+Room Air & Fire  
+Ground floor  
+[Science for Life Laboratory Stockholm](https://www.scilifelab.se/about-us/campus-solna/)  
+Tomtebodavägen 23A  
+17165 Solna  
+Sweden  
+
+:::
+
+This course round is given on-site in Sweden at [SciLifeLab Stockholm](https://www.scilifelab.se/about-us/campus-solna/). Travel directions are as follows:
+
+- Transport yourself to Stockholm (see e.g. [SJ's website](https://www.sj.se/) for train travel within Sweden).
+- Go to SciLifeLab in Solna. The closest bus stop is called Karolinska institutet Biomedicum (search for public transport options here).
+- Enter the SciLifeLab/Karolinska Institutet Science Park building. There are public transport-style access gates to your left, and the glass door to the left immediately after the gates is where you need to go for the rooms Air & Fire, where the course will be held. You will, however, need an access card in order to pass through the gates, which will be handed to you on the morning of the first day (there is also a reception where you can ask for help if you run into any issues).

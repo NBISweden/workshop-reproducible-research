@@ -7,13 +7,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Nunito:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
 
 $primary: #95b540;
-$secondary: #E9F2D1;
-$link-color: #96b43f;
+$secondary: #BDD775;
+$tertiary: #E9F2D1;
+$link-color: $primary;
 $body-color: #1c2833;
 $code-color: #3b4819;
 $code-block-bg: WhiteSmoke;
-$font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', 'sans-serif' ;
-$font-family-monospace: 'Fira Mono','Ubuntu Mono', 'Lucida Console', 'Courier', 'monospace';
+$font-family-sans-serif: 'Nunito', 'Source Sans Pro', 'Helvetica', sans-serif;
+$font-family-monospace: 'Fira Mono','Ubuntu Mono', 'Lucida Console', 'Courier', monospace;
 $code-block-border-color: none;
 $code-bg: $code-block-bg; /* inline code */
 
@@ -31,16 +32,12 @@ $presentation-h6-font-size: 1em;
 
 /* font */
 /* major third scale */
-.largest { font-size: 1.953em;}
-.larger { font-size: 1.563em;}
-.large { font-size: 1.25em;}
-.small { font-size: 0.8em;}
-.smaller { font-size: 0.64em;}
-.smallest { font-size: 0.512em;}
-
-.reveal pre {
-  font-size: 1.75rem !important;
-}
+.largest { font-size: 1.953em; }
+.larger { font-size: 1.563em; }
+.large { font-size: 1.25em; }
+.small { font-size: 0.8em; }
+.smaller { font-size: 0.64em; }
+.smallest { font-size: 0.512em; }
 
 .reveal .largest pre { font-size: 3.41rem !important; }
 .reveal .larger pre { font-size: 2.73rem !important; }
@@ -61,8 +58,14 @@ $presentation-h6-font-size: 1em;
 .reveal .smallest code { font-size: 0.41em !important; }
 
 .reveal pre {
+  font-size: 1.75rem !important;
   line-height: 1.3;
   margin-bottom: 0.5em;
+}
+
+.reveal .code-with-filename-file pre {
+  background-color: transparent;
+  font-size: 80% !important;
 }
 
 .reveal pre,
@@ -88,7 +91,7 @@ $presentation-h6-font-size: 1em;
 }
 
 .reveal .slide-number {
-  font-family: "Source Sans Pro";
+  font-family: $font-family-sans-serif;
 }
 
 .reveal .blockquote {
@@ -118,6 +121,43 @@ $presentation-h6-font-size: 1em;
   text-align: right;
 }
 
+/* vertical alignment */
+
+.reveal .slides section:has(.v-top, .v-center, .v-bottom) {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.reveal .slides section:has(.v-top, .v-center, .v-bottom) > .columns {
+  display: flex !important;
+  flex: 1;
+  align-items: stretch;
+}
+
+.reveal .slides section:has(.v-top, .v-center, .v-bottom) > .columns > .column {
+  display: flex;
+  flex-direction: column;
+}
+
+.reveal .v-top,
+.reveal .v-center,
+.reveal .v-bottom {
+  display: grid;
+  flex: 1;
+}
+
+.reveal .v-center {
+  align-content: center;
+}
+
+.reveal .v-top {
+  align-content: start;
+}
+
+.reveal .v-bottom {
+  align-content: end;
+}
+
 /* lists */
 
 .reveal .slide ul,
@@ -137,23 +177,117 @@ $presentation-h6-font-size: 1em;
 	top: 0 !important;
 }
 
+/* buttons */
+
+.reveal .btn,
+.reveal .btn.btn-primary {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border: 1px solid $primary;
+  border-radius: 4px;
+  color: whitesmoke;
+  background-color: $primary;
+  line-height: 1.2;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+.reveal .btn:hover,
+.reveal .btn.btn-primary:hover {
+  border-color: darken($primary, 5%);
+  color: whitesmoke;
+  background-color: darken($primary, 5%);
+}
+
+.reveal .btn:active,
+.reveal .btn.active,
+.reveal .btn.btn-primary:active,
+.reveal .btn.btn-primary.active {
+  border-color: darken($primary, 10%);
+  color: whitesmoke;
+  background-color: darken($primary, 10%);
+}
+
+.reveal .btn.btn-secondary {
+  border-color: $secondary;
+  color: whitesmoke;
+  background-color: $secondary;
+}
+
+.reveal .btn.btn-secondary:hover {
+  border-color: darken($secondary, 5%);
+  color: whitesmoke;
+  background-color: darken($secondary, 5%);
+}
+
+.reveal .btn.btn-secondary:active,
+.reveal .btn.btn-secondary.active {
+  border-color: darken($secondary, 10%);
+  color: whitesmoke;
+  background-color: darken($secondary, 10%);
+}
+
+.reveal .btn.btn-tertiary {
+  border-color: $tertiary;
+  color: $body-color;
+  background-color: $tertiary;
+}
+
+.reveal .btn.btn-tertiary:hover {
+  border-color: darken($tertiary, 5%);
+  color: $body-color;
+  background-color: darken($tertiary, 5%);
+}
+
+.reveal .btn.btn-tertiary:active,
+.reveal .btn.btn-tertiary.active {
+  border-color: darken($tertiary, 10%);
+  color: $body-color;
+  background-color: darken($tertiary, 10%);
+}
+
+.reveal .btn:disabled,
+.reveal .btn.disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.reveal .btn a,
+.reveal .btn a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* badge */
 
-.badge {
-  background-color: $primary;
-  color: white;
+.reveal .badge,
+.reveal .badge.badge-primary {
   font-size: 0.85em;
+  background-color: $primary;
+  color: whitesmoke;
   padding: 0.05em 0.3em;
   border-radius: 4px;
   vertical-align: baseline;
 }
 
-.badge-primary {
-  background-color: $primary;
+.reveal .badge.badge-secondary {
+  background-color: $secondary;
 }
 
-.badge-secondary {
-  background-color: $secondary;
+.reveal .badge.badge-tertiary {
+  background-color: $tertiary;
+  color: $body-color;
+}
+
+.reveal .badge a,
+.reveal .badge a:hover {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.reveal .badge.badge-tertiary a,
+.reveal .badge.badge-tertiary a:hover {
+  color: $body-color;
 }
 
 /* callout */
@@ -177,28 +311,25 @@ $presentation-h6-font-size: 1em;
   font-size: 1.4rem !important;
 }
 
-.reveal .callout.callout-titled .callout-title p {
-  margin-top: 0.2rem;
-  margin-bottom: 0;
+.reveal div.callout.callout-style-simple div.callout-title p,
+.reveal div.callout.callout-style-default div.callout-title p {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
-.reveal .callout.callout-titled .callout-body>.callout-content>:last-child {
-  margin-bottom: 0.1rem;
-}
-
-.reveal .callout.callout-style-simple .callout-icon::before,
-.reveal .callout.callout-style-default .callout-icon::before {
+.reveal div.callout.callout-style-simple .callout-icon::before, 
+.reveal div.callout.callout-style-default .callout-icon::before {
   height: 1.4rem;
-  width: 1.4rem;
-  background-size: 1.3rem 1.3rem;
+  width: 1.5rem;
+  background-size: 1.4rem 1.4rem;
 }
 
 .reveal .callout.callout-titled .callout-icon::before {
-  margin-top: 0.6rem;
+  margin-top: 0.55rem;
 }
 
-.reveal div.callout-note.callout-style-default .callout-title {
-  background-color: $secondary;
+.reveal div.callout.callout-note.callout-style-default .callout-title {
+  background-color: $tertiary;
 }
 
 .reveal div.callout-note .callout-icon::before {
@@ -232,9 +363,14 @@ $presentation-h6-font-size: 1em;
   margin: 0;
 }
 
+.reveal table th,
+.reveal table td {
+  vertical-align: middle;
+}
+
 /* datatable components */
 
-.reveal .dataTables_wrapper .dataTables_length,
+.reveal .dataTables_wrapper .dataTables_length, 
 .reveal .dataTables_wrapper .dataTables_filter,
 .reveal .dataTables_wrapper .dataTables_info,
 .reveal .dataTables_wrapper .dataTables_processing,
@@ -256,6 +392,24 @@ $presentation-h6-font-size: 1em;
 
 .reveal .panel-tabset .panel-tabset-tabby {
   margin-bottom: 0;
+}
+
+/* accordion */
+
+.reveal .quarto-accordion {
+  $primary-hex: str-slice("#{$primary}", 2);
+  --bs-accordion-btn-color: #{$body-color};
+  --bs-accordion-btn-bg: white;
+  --bs-accordion-active-bg: #{$tertiary};
+  --bs-accordion-active-color: #{mix(black, $primary, 60%)};
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23#{$primary-hex}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-border-color: #{rgba($primary, 0.35)};
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem #{rgba($primary, 0.25)};
+}
+
+.reveal .quarto-accordion .accordion-button,
+.reveal .quarto-accordion .accordion-header-content {
+  font-family: inherit;
 }
 
 /* title slide */
@@ -360,6 +514,12 @@ $presentation-h6-font-size: 1em;
 
 .references {
   font-size: 0.7rem;
+}
+
+/* shinylive */
+
+.reveal .shinylive-wrapper {
+  margin: 0;
 }
 
 .green {

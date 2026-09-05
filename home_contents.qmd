@@ -29,7 +29,7 @@ themselves contain all of the material covered by the workshop.
 | Jupyter                 | [{{< fa file-lines >}}](lectures/jupyter/jupyter.html)                           | [{{< fa file-lines >}}](pages/jupyter.html)        |
 | Snakemake               | [{{< fa file-lines >}}](lectures/snakemake/snakemake.html)                       | [{{< fa file-lines >}}](pages/snakemake.html)      |
 | Nextflow                | [{{< fa file-lines >}}](lectures/nextflow/nextflow.html)                         | [{{< fa file-lines >}}](pages/nextflow.html)       |
-| Documentation           | [{{< fa file-lines >}}](lectures/documentation/documentation.html)               | [{{< fa file-lines >}}](pages/documentation.html)     |
+| Documentation           | [{{< fa file-lines >}}](lectures/documentation/documentation.html)               | [{{< fa file-lines >}}](pages/documentation.html)  |
 | Putting it all together | [{{< fa file-lines >}}](lectures/putting-it-together/putting-it-together.html)   |                                                    |
 | Markdown                |                                                                                  | [{{< fa file-lines >}}](pages/markdown.html)       |
 | Take-down               |                                                                                  | [{{< fa file-lines >}}](pages/take-down.html)      |

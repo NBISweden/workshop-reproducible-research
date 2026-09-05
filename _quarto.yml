@@ -8,31 +8,43 @@ project:
     - "!lectures/wrapups/"
 
 website:
-  image: "assets/images/featured.webp"
+  open-graph: true
+  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
+  image: "assets/images/seo.webp"
+  description: "How to work reproducibly with control and structuring of project code, environment and workflow management"
   favicon: "assets/favicon.png"
   navbar:
     logo: "assets/logos/nbis-scilifelab.png"
-    logo-alt: "logo"
+    logo-alt: "nbis scilifelab logo"
     right:
       - text: "Home"
         href: "index.html"
+        aria-label: "Home"
       - text: "Schedule"
         href: "home_schedule.html"
+        aria-label: "Schedule"
       - text: "Contents"
         href: "home_contents.html"
+        aria-label: "Contents"
+      - text: "Precourse"
+        href: "home_precourse.html"
+        aria-label: "Precourse"
       - text: "Syllabus"
         href: "home_syllabus.html"
-      - text: "Pre-course"
-        href: "home_precourse.html"
+        aria-label: "Syllabus"
+      - text: "FAQs"
+        href: "home_faq.html"
+        aria-label: "Frequently Asked Questions"
       - text: "Info"
         href: "home_info.html"
+        aria-label: "Info"
       - icon: "github"
         href: "https://github.com/NBISweden/workshop-reproducible-research/"
+        aria-label: "GitHub"
   page-footer:
     border: false
-    left: "{{< meta current_year >}} [NBIS](https://nbis.se) | [CC-BY-4.0 License](https://choosealicense.com/licenses/cc-by-4.0/)"
+    left: "{{< meta current_year >}} [NBIS](https://nbis.se) • [CC-BY-4.0 License](https://choosealicense.com/licenses/cc-by-4.0/)"
     right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
-  site-url: "https://nbisweden.github.io/workshop-reproducible-research/"
 
 format:
   html:
@@ -52,7 +64,6 @@ format:
     code-copy: true
     code-overflow: wrap
     df-print: paged
-    standalone: false
     fig-align: left
     title-block-banner: "assets/images/banner.webp"
     subtitle: ""
@@ -77,25 +88,31 @@ format:
     slide-level: 2
     slide-number: true
     progress: true
+    date: last-modified
     date-format: "DD-MMM-YYYY"
     fig-align: left
     chalkboard: true
     callout-icon: true
-    image: "/assets/images/featured.webp"
-    hero: "/assets/images/slide-hero.webp"
+    image: "assets/images/featured.webp"
+    hero: "assets/images/slide-hero.webp"
     title-slide-attributes:
-      data-background-image: "/assets/images/cover.webp"
+      data-background-image: "assets/images/cover.webp"
       data-background-size: "cover"
       data-background-opacity: "1"
     subtitle: ""
-    header-logo-left: /assets/logos/nbis.png
+    header-logo-left: assets/logos/nbis.png
     header-logo-left-height: 25px
     header-logo-left-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
-    header-logo-right: /assets/logos/scilifelab.png
+    header-logo-right: assets/logos/scilifelab.png
     header-logo-right-height: 25px
     header-logo-right-url: https://nbisweden.github.io/workshop-reproducible-research/home_contents.html
     template-partials:
       - "assets/title-slide.html"
+    pointer:
+      color: "#95b540"
+      pointerSize: 12
+      trail: true
+      trailDuration: 250
 
 execute:
   eval: true
@@ -104,12 +121,13 @@ execute:
   message: false
   freeze: auto
 
+metadata-files:
+  - "_metadata.yml"
+
 filters:
   - assets/custom.lua
-  - reveal-logo
-  - fontawesome
+  - revealjs-header
 
-# For rendering location the info page; options are Stockholm or online.
-# One or more separated by commas or semicolon; online doesn't display any
-# location info.
-location: stockholm;lund
+revealjs-plugins:
+  - pointer
+

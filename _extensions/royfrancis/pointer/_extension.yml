@@ -1,0 +1,19 @@
+title: pointer
+author: Roy Francis
+version: 0.1.2
+quarto-required: ">=1.2.198"
+contributes:
+  revealjs-plugins:
+    - name: RevealPointer
+      script: pointer.js
+      stylesheet: pointer.css
+      config:
+        pointer:
+          key: "q"
+          color: "red"
+          pointerSize: 16
+          alwaysVisible: false
+          trail: false
+          trailDuration: 150
+          trailSampling: 2
+          trailMaxPoints: 80

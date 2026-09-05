@@ -1,0 +1,12 @@
+.reveal .quarto-team {
+  width: 100%;
+}
+
+.reveal .quarto-team .team-parent {
+  gap: 0.85rem;
+}
+
+.reveal .quarto-team .team-child img {
+  margin-left: auto;
+  margin-right: auto;
+}
