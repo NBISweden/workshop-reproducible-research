@@ -595,12 +595,12 @@ Because Nextflow keeps track of all the runs, we've now got two sets of files
 in the work directory. One set from the first run, and another from the second
 run. This can take up valuable space, so let's clean that up.
 
-- Use `nextflow clean -n -before <run_name>` to show which work directories will
+- Use `nextflow clean -but <run_name> -n` to show which work directories will
   be cleaned up (use `nextflow log` to find the run name if you don't remember
   it). Then delete those directories by changing `-n` (dry-run) to `-f` (force).
 
 Nextflow's `clean` subcommand can be used to clean up failed tasks and unused
-processes. Here we used the `-before` flag, meaning that any runs before the
+processes. Here we used the `-but` flag, meaning that any runs except the
 specified run are removed; use `nextflow help clean` to see other options for
 cleaning. This is the preferred way to clean up the working directory.
 
@@ -619,7 +619,7 @@ delete the `work` directory, however...
 
 There is no longer any cache for Nextflow to use, so it re-runs from the start!
 This is good to keep in mind: you can always delete the output directories of
-your workflow, but if you mess with `work` you'll lose, well... work!
+your workflow, but if you mess with `work` you'll lose actual work.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learnt:
