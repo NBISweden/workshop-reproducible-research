@@ -1,0 +1,74 @@
+/* quarto team styles */
+
+:root {
+  --team-dim: 180px;
+}
+
+.quarto-team .team-parent {
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, var(--team-dim));
+  align-items: start;
+}
+
+.quarto-team .team-child {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.quarto-team .team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.quarto-team .team-media {
+  line-height: 0;
+}
+
+.quarto-team .team-child img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 0.5em;
+  height: var(--team-dim);
+  width: var(--team-dim);
+  max-width: 100%;
+}
+
+.quarto-team .team-child .name {
+  font-weight: bold;
+}
+
+.quarto-team .team-name-link,
+.quarto-team .team-image-link {
+  display: inline-block;
+}
+
+.quarto-team .team-name > :first-child,
+.quarto-team .team-description > :first-child {
+  margin-top: 0;
+}
+
+.quarto-team .team-name > :last-child,
+.quarto-team .team-description > :last-child {
+  margin-bottom: 0;
+}
+
+.quarto-team .team-description {
+  line-height: 1.2em;
+}
+
+.quarto-team .team-child a:hover {
+  -webkit-filter: brightness(0.85);
+  filter: brightness(0.85);
+}
+
+.quarto-team .team-error {
+  padding: 0.75rem 1rem;
+  border: 1px solid #f1aeb5;
+  border-radius: 0.5rem;
+  color: #842029;
+  background: #f8d7da;
+}

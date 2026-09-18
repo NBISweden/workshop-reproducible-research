@@ -1,0 +1,8 @@
+title: Accordion
+author: Roy Francis
+version: 1.1.1
+quarto-required: ">=1.4.0"
+contributes:
+  shortcodes:
+    - accordion.lua
+

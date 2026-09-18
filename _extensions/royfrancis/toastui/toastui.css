@@ -1,0 +1,84 @@
+/* TOAST UI Calendar - Quarto Extension Styles */
+
+.toastui-calendar-wrapper {
+  margin: 1rem 0;
+}
+
+.toastui-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.toastui-nav-btn {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #333;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.toastui-nav-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+}
+
+.toastui-nav-btn.active {
+  background-color: #4a90d9;
+  color: #fff;
+  border-color: #4a90d9;
+}
+
+.toastui-nav-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  color: #333;
+}
+
+.toastui-nav-right {
+  margin-left: auto;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.toastui-calendar-day-view .toastui-calendar-panel:not(.toastui-calendar-time), 
+.toastui-calendar-week-view .toastui-calendar-panel:not(.toastui-calendar-time) {
+ height: auto;
+ overflow-y: unset;
+}
+
+.toastui-calendar-week-view-day-names {
+  border-bottom: none;
+}
+
+.toastui-calendar-popup-container {
+  font-weight: normal;
+}
+
+/* Disable pointer cursor on events by default */
+.toastui-calendar-event-time,
+.toastui-calendar-weekday-event,
+.toastui-calendar-grid-cell-more-events,
+.toastui-calendar-weekday-exceed-in-week {
+  cursor: default;
+}
+
+/* Re-enable pointer cursor when useDetailPopup is active */
+.toastui-calendar-detail-popup-enabled .toastui-calendar-event-time,
+.toastui-calendar-detail-popup-enabled .toastui-calendar-weekday-event,
+.toastui-calendar-detail-popup-enabled .toastui-calendar-grid-cell-more-events,
+.toastui-calendar-detail-popup-enabled .toastui-calendar-weekday-exceed-in-week {
+  cursor: pointer;
+}
+
+/* hide popup buttons */
+.toastui-calendar-detail-container .toastui-calendar-section-button {
+  display: none;
+}
