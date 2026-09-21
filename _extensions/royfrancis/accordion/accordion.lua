@@ -46,6 +46,9 @@ local function resolve_label(args, kwargs, format)
   local label = utils.get_kwarg(kwargs, "label")
   local has_label = label ~= ""
   local has_args = #args > 0
+  local has_inline = utils.get_kwarg(kwargs, "header") ~= ""
+    or utils.get_kwarg(kwargs, "body") ~= ""
+    or utils.get_kwarg(kwargs, "items") ~= ""
 
   if has_label and has_args then
     return nil, render_mod.error_inline(
@@ -54,14 +57,25 @@ local function resolve_label(args, kwargs, format)
     )
   end
 
-  if not has_label and not has_args then
+  if not has_label and not has_args and not has_inline then
     return nil, render_mod.error_inline(
-      "No arguments provided. Provide contents either as yaml metadata (positional argument) or inline (label kwarg).",
+      "No arguments provided. Provide contents either as yaml metadata (positional argument) or inline (header/body/items kwargs).",
       format
     )
   end
 
-  local accordion_id = has_label and label or pandoc.utils.stringify(args[1])
+  local accordion_id
+  if has_label then
+    accordion_id = label
+  elseif has_args then
+    accordion_id = pandoc.utils.stringify(args[1])
+  else
+    local content = utils.get_kwarg(kwargs, "header")
+      .. utils.get_kwarg(kwargs, "body")
+      .. utils.get_kwarg(kwargs, "items")
+    accordion_id = "acc-" .. utils.hash_string(content)
+  end
+
   if not utils.is_valid_label(accordion_id) then
     return nil, render_mod.error_inline(
       string.format(
@@ -83,10 +97,12 @@ end
 --- @param format string
 --- @return table|nil, pandoc.RawInline|pandoc.Strong|nil
 local function resolve_items(args, kwargs, meta, accordion_id, format)
-  local has_label_kwarg = utils.get_kwarg(kwargs, "label") ~= ""
+  local has_inline_kwargs = utils.get_kwarg(kwargs, "header") ~= ""
+    or utils.get_kwarg(kwargs, "body") ~= ""
+    or utils.get_kwarg(kwargs, "items") ~= ""
 
   local accordion_items, err
-  if has_label_kwarg then
+  if has_inline_kwargs then
     accordion_items, err = items_mod.from_kwargs(kwargs, accordion_id)
   else
     accordion_items, err = items_mod.from_meta(meta, accordion_id)

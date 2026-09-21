@@ -29,7 +29,7 @@ end
 --- @param raw_meta_cfg table
 --- @return nil
 local function hydrate_string_fields(cfg, raw_meta_cfg)
-  local string_keys = { "file", "file-sep", "defaultView", "height", "timegridHeight", "date" }
+  local string_keys = { "file", "file-sep", "defaultView", "height", "timegridHeight", "date", "timeFormat" }
   for _, key in ipairs(string_keys) do
     if raw_meta_cfg[key] ~= nil then
       local s = pandoc.utils.stringify(raw_meta_cfg[key])
@@ -136,6 +136,72 @@ end
 --- @return string|nil
 function M.initial_date(cfg)
   return cfg.date
+end
+
+--- Read and validate a detail-item selection.
+--- @param cfg table
+--- @param key string
+--- @return table|nil,string|nil
+local function detail_items(cfg, key)
+  local value = cfg[key]
+  if value == nil then
+    return {}, nil
+  end
+
+  local items
+  if type(value) == "string" then
+    items = { value }
+  elseif type(value) == "table" then
+    local count = 0
+    for index, _ in pairs(value) do
+      if type(index) ~= "number" or index < 1 or index % 1 ~= 0 then
+        return nil, "toastui: " .. key .. " must be a string or array"
+      end
+      count = count + 1
+    end
+    if count ~= #value then
+      return nil, "toastui: " .. key .. " must be a string or array"
+    end
+    items = value
+  else
+    return nil, "toastui: " .. key .. " must be a string or array"
+  end
+
+  for _, item in ipairs(items) do
+    if type(item) ~= "string" then
+      return nil, "toastui: " .. key .. " must contain only strings"
+    end
+  end
+
+  return items, nil
+end
+
+--- Read optional detail rows shown inside events.
+--- @param cfg table
+--- @return table|nil,string|nil
+function M.event_detail_items(cfg)
+  return detail_items(cfg, "eventDetailItems")
+end
+
+--- Read optional detail rows shown inside detail popups.
+--- @param cfg table
+--- @return table|nil,string|nil
+function M.popup_detail_items(cfg)
+  return detail_items(cfg, "popupDetailItems")
+end
+
+--- Read and validate the calendar time format.
+--- @param cfg table
+--- @return string|nil,string|nil
+function M.time_format(cfg)
+  local value = cfg.timeFormat
+  if value == nil or value == "" then
+    return "24h", nil
+  end
+  if value ~= "12h" and value ~= "24h" then
+    return nil, "toastui: timeFormat must be '12h' or '24h'"
+  end
+  return value, nil
 end
 
 --- Determine whether navigation controls should be shown.
