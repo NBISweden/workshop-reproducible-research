@@ -78,6 +78,18 @@ function M.is_valid_label(label)
   return label:find("^[%w%-_]+$") ~= nil
 end
 
+--- Produce a short deterministic hex string from content for auto-labelling.
+--- Uses djb2 algorithm. Output is always 8 hex characters.
+--- @param s string
+--- @return string
+function M.hash_string(s)
+  local hash = 5381
+  for i = 1, #s do
+    hash = (hash * 33 + string.byte(s, i)) % 0x100000000
+  end
+  return string.format("%08x", hash)
+end
+
 --- Convert a value into Pandoc Blocks.
 --- @param value any
 --- @return pandoc.Blocks

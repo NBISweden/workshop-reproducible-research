@@ -110,7 +110,7 @@ function M.from_kwargs(kwargs, accordion_id)
     return { item }, nil
   end
 
-  return nil, string.format("'%s': 'label' kwarg specified without 'header'/'body' or 'items' kwargs.", accordion_id)
+  return nil, string.format("'%s': 'header', 'body', or 'items' kwarg is required.", accordion_id)
 end
 
 return M

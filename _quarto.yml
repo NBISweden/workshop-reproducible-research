@@ -122,7 +122,7 @@ execute:
   freeze: auto
 
 metadata-files:
-  - "_metadata.yml"
+  - _metadata.yml
 
 filters:
   - assets/custom.lua

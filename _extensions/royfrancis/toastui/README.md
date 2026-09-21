@@ -30,10 +30,10 @@ Other output formats are intentionally ignored.
 | `toastui.lua` | Thin entrypoint. Wires modules and registers shortcode handler. |
 | `_modules/dependencies.lua` | Registers JS/CSS dependencies once per document. |
 | `_modules/utils.lua` | Shared helpers: metadata conversion, JSON serialization, arg parsing, path/format helpers. |
-| `_modules/config.lua` | Builds effective config from YAML metadata + inline shortcode kwargs. |
+| `_modules/config.lua` | Builds effective config from YAML metadata + inline shortcode kwargs and validates extension-owned options. |
 | `_modules/events.lua` | Parses TSV/CSV-like files, normalizes booleans, validates required event fields. |
-| `_modules/render.lua` | Produces widget HTML/JS, navigation toolbar, and calendar initialization code. |
-| `toastui.css` | Toolbar and wrapper styling for generated calendars. |
+| `_modules/render.lua` | Produces widget HTML/JS, navigation toolbar, calendar initialization code, and per-calendar popup exclusion classes. |
+| `toastui.css` | Toolbar, wrapper, and scoped detail-popup row styling for generated calendars. |
 | `assets/toastui-calendar.min.js` | Bundled upstream TOAST UI JavaScript. |
 | `assets/toastui-calendar.min.css` | Bundled upstream TOAST UI stylesheet. |
 
@@ -68,6 +68,8 @@ Events source precedence:
 | String-field hydration from raw metadata | Avoids Pandoc metadata edge cases (notably separator and inline scalar conversion). |
 | File separator escape normalization (`\\t`, `\\n`) | Makes inline shortcode usage predictable and ergonomic. |
 | Required event-field validation (`title`, `start`, `end`) | Catches malformed data early and emits warnings while keeping render resilient. |
+| Generated time templates | Keep executable JavaScript in the renderer while exposing a validated `12h`/`24h` YAML option. |
+| Scoped detail rendering | `config.lua` validates both detail-item options, `render.lua` adds event-template content and instance-specific popup exclusion classes, and `toastui.css` styles both surfaces without changing event data. |
 
 ## Supported TOAST UI Features
 
@@ -78,6 +80,9 @@ Events source precedence:
 | Event data from metadata (`events`) | Supported | Accepts list of event objects. |
 | Event data from text files (`file`, `file-sep`) | Supported | Header-driven parsing to objects. |
 | Custom toolbar (prev/today/next + view buttons) | Supported | Controlled with `navigation`. |
+| Consistent clock format | Supported | Defaults to `24h`; set `timeFormat` to `12h` to override rendered event labels, time-grid labels, the current-time indicator, and detail popups. The separate form-popup picker remains upstream-controlled. |
+| Selectable event details | Supported | `eventDetailItems` accepts any event field. Known TOAST UI fields use native icons; custom fields render as labeled values. |
+| Selectable detail-popup rows | Supported | `popupDetailItems` independently accepts any event field. Known fields keep native popup rows and icons; custom fields are appended as labeled values. |
 
 ## Not Supported / Out of Scope
 
@@ -93,6 +98,7 @@ Events source precedence:
 | Task | Recommendation |
 |---|---|
 | Add a new shortcode option | Implement in `config.lua`, then consume in `render.lua` or `events.lua`. |
+| Change selectable detail items | Keep validation in `config.lua`, generated event content and popup instance classes in `render.lua`, and presentation selectors in `toastui.css`. |
 | Change data parsing behavior | Edit `events.lua` (`parse_events_file` and validation flow). |
 | Adjust UI controls | Update markup and JS handlers in `render.lua`, styles in `toastui.css`. |
 | Debug odd metadata values | Add temporary `quarto.log.warning(...)` in `config.lua` around hydration/merge. |
