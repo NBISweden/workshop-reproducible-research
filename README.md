@@ -24,7 +24,7 @@ before you submit a pull request, which you can do by rendering the project
 (with your changes) locally using the Docker image provided in this repository:
 
 ```bash
-docker run -v $(pwd):/work ghcr.io/nbisweden/workshop-reproducible-research/build-website quarto render
+docker run --rm -v $(pwd):/work ghcr.io/nbisweden/workshop-reproducible-research/build-website quarto render
 ```
 
 The rendered website will then be rendered to the `docs/` directory, and you can
