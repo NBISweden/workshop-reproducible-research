@@ -1749,9 +1749,59 @@ it with.
 
 Each pipeline comes with extensive documentation, test datasets that you can use
 to practice on, can be run on both HPCs like Uppmax, cloud services like AWS or
-locally on your own computer. All pipelines support both Conda and Docker and
+locally on your own computer. All pipelines support both Conda, Docker and
 Apptainer, and you can additionally run specific versions of the pipelines,
 allowing for full reproducibility of your analyses. If you want to check nf-core
 out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
 and see what's available! Who knows, you might even write your own nf-core
 pipeline in the future?
+
+### Running modules from the registry
+
+The nf-core modules are not only useful inside nf-core pipelines: since version
+`26.04`, Nextflow has a built-in _module registry_ from which you can search,
+inspect, install and run modules directly, including all of the nf-core modules.
+This means that you probably don't even need to write your own processes for a
+lot of the software you use, since you can just use the nf-core modules instead.
+You can search the registry for modules related to a particular tool or analysis
+like so:
+
+```bash
+nextflow module search fastqc
+```
+
+This lists all the matching modules, such as `nf-core/fastqc`. To see what a
+module does, which inputs it expects and which outputs it produces, use the
+`view` subcommand:
+
+```bash
+nextflow module view nf-core/fastqc
+```
+
+The most convenient part is that you can run a module directly, without having
+to write a workflow around it. The inputs of the module are given as parameters
+on the command line, so to run FastQC on one of the FASTQ files from the MRSA
+workflow you could do the following:
+
+```bash
+nextflow module run nf-core/fastqc \
+    --meta.id SRR935090 \
+    --reads results/data/SRR935090.fastq.gz \
+    -output-dir fastqc \
+    -with-docker
+```
+
+Nextflow then downloads the module into a `modules/` directory, runs it and
+publishes its outputs into the `fastqc/` output directory. The nf-core modules
+define both the Conda environment and the containers for the software they use,
+so you can use either `-with-conda`, `-with-docker` or `-with-apptainer` to
+supply the software.
+
+You can also add modules from the registry to your own workflows using
+`nextflow module install`, which places them in the `modules/` directory of
+your workflow, from where they can be included like any other process. Keep in
+mind that the nf-core modules expect their inputs in a particular format,
+_e.g._ a _meta map_ with sample information such as `[id: 'SRR935090']`
+instead of a plain sample name, so you might need to adapt your channels to
+use them. Take a look at the [Nextflow documentation](https://www.nextflow.io/docs/latest/index.html)
+for more information about the module registry.
