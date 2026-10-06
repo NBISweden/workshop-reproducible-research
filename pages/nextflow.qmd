@@ -1745,16 +1745,134 @@ run. Since you've already learnt the basics of Nextflow in this course, you
 should now be able to also run the nf-core pipelines! It might be that you have
 a data type that you can analyse using one of the pipelines in nf-core, meaning
 you don't need to do anything other than find out what parameters you should run
-it with.
+it with. Let's go through how to do this using the [nf-core/demo](https://nf-co.re/demo)
+pipeline, a small pipeline that runs FastQC, trims the reads with seqtk and
+summarises everything with MultiQC.
 
-Each pipeline comes with extensive documentation, test datasets that you can use
-to practice on, can be run on both HPCs like Uppmax, cloud services like AWS or
-locally on your own computer. All pipelines support both Conda, Docker and
-Apptainer, and you can additionally run specific versions of the pipelines,
-allowing for full reproducibility of your analyses. If you want to check nf-core
-out, simply head over to their [list of pipelines](https://nf-co.re/pipelines)
-and see what's available! Who knows, you might even write your own nf-core
-pipeline in the future?
+#### Finding a pipeline
+
+All the nf-core pipelines are listed on the [pipelines page](https://nf-co.re/pipelines),
+where you can search for pipelines by name or by keywords such as the type of
+data or analysis. Each pipeline has its own page with documentation, and every
+pipeline's documentation is organised in the same way:
+
+- **Usage**: how to run the pipeline, including the format of its input
+- **Parameters**: all the parameters of the pipeline, with descriptions and
+  default values
+- **Output**: which output files the pipeline produces and where they are put
+
+- Go to the [nf-core/demo](https://nf-co.re/demo) page and take a look at
+  these three sections.
+
+Pipelines are released in numbered versions, which you can find under
+_Releases_ on each pipeline's page. Pipelines that are still under development
+and don't have a release yet are marked as such. Being _under development_ means
+different things for different pipelines: some are quite stable and may be close
+to release, while others are undergoing frequent changes.
+
+#### Running a pipeline with test data
+
+Every nf-core pipeline comes with a `test` profile containing a small test
+dataset, which is perfect for checking that the pipeline works on your system
+before you use it on your own data.
+
+- Run nf-core/demo with its test data:
+
+```bash
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir demo-results
+```
+
+There are several things going on here. First: you don't need to download the
+pipeline yourself, as Nextflow downloads it from GitHub the first time you run
+it. The `-r` (or `-revision`) option specifies which version of the pipeline to
+run; this is very important for reproducibility, as you will otherwise run
+whatever version of the pipeline Nextflow last downloaded. Always specify the
+version you are using!
+
+The `-profile` option loads one or more profiles (separated by commas), which
+are sets of configuration settings that come with the pipeline. Here we use the
+`test` profile for the test data and the `docker` profile to run all software
+inside Docker containers. All nf-core pipelines also have profiles for _e.g._
+`apptainer` and `conda`, so you can use whatever you have available, just like
+we did in the [Using containers in Nextflow](#using-containers-in-nextflow)
+section above.
+
+The last part, `--outdir`, is a pipeline parameter (note the double dash) that
+specifies where the results should be published. Most nf-core pipelines still
+use the `publishDir` directive rather than workflow outputs, so the output
+directory is set with the `--outdir` parameter rather than `-output-dir`;
+migration to workflow outputs is set to happen during 2026, though.
+
+- Once the pipeline is finished, take a look inside the `demo-results/`
+  directory.
+
+You'll find one directory for each of the tools in the pipeline, such as
+`fastqc/` and `multiqc/`, which are described on the _Output_ page of the
+pipeline. There's also a `pipeline_info/` directory containing reports of the
+execution, the parameters used and the versions of all the software in the
+pipeline, which is exactly the kind of information you need to keep for your
+analyses to be reproducible. The pipeline version and software versions are
+also listed at the bottom of the MultiQC report.
+
+- Open the MultiQC report in `demo-results/multiqc/` and find the software
+  versions.
+
+#### Running a pipeline on your own data
+
+Running a pipeline on your own data is done by giving it a samplesheet, which
+works in the same way as the samplesheet of the MRSA workflow. The format of the
+samplesheet is described on the _Usage_ page of each pipeline; for nf-core/demo
+it is a CSV file with the columns `sample`, `fastq_1` and `fastq_2`, where
+`fastq_2` is left empty for single-end data. You can also see all the
+parameters of a pipeline on the command line:
+
+```bash
+nextflow run nf-core/demo -r 1.2.0 --help
+```
+
+Instead of giving all the parameters on the command line it is good practice to
+put them in a _parameter file_, which you can save together with your project
+and use to re-run the analysis with the exact same settings. Parameter files can
+be written in YAML or JSON and are used with the `-params-file` option.
+
+- Create a samplesheet called `demo_samplesheet.csv` for the three FASTQ files
+  of the MRSA workflow.
+
+- Create a parameter file called `params.yaml` that uses your samplesheet and
+  sets the output directory.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```no-highlight
+sample,fastq_1,fastq_2
+SRR935090,results/data/SRR935090.fastq.gz,
+SRR935091,results/data/SRR935091.fastq.gz,
+SRR935092,results/data/SRR935092.fastq.gz,
+```
+
+```yaml
+input: "demo_samplesheet.csv"
+outdir: "demo-mrsa"
+```
+:::
+
+- Run the demo workflow with you parameters:
+
+```bash
+nextflow run nf-core/demo -r 1.2.0 -profile docker -params-file params.yaml
+```
+
+#### Running pipelines on a cluster
+
+Pipelines from nf-core are often run on HPC clusters, where you want each task
+to be submitted as a separate job. Rather than having to configure this
+yourself, you can use an _institutional profile_ from the [nf-core/configs](https://github.com/nf-core/configs)
+repository, which contains ready-made configurations for many clusters. These
+are loaded automatically by all nf-core pipelines, so all you need to do is to
+specify the profile for your cluster, _e.g._ `-profile uppmax` for the UPPMAX
+clusters, `-profile pdc_kth` for Dardel at PDC or `-profile naiss` for other
+NAISS resources. Read the documentation for your cluster's profile in the
+repository, as many of them need additional parameters, such as your compute
+project.
 
 ### Running modules from the registry
 
