@@ -58,18 +58,26 @@ file used in Nextflow, where workflows and their processes are defined.
 ```nextflow
 // Workflow definition
 workflow {
+    main:
     // Define input files
     ch_input = channel.fromPath( "a.txt" )
 
     // Run workflow
     CONVERT_TO_UPPER_CASE( ch_input )
+
+    publish:
+    upper = CONVERT_TO_UPPER_CASE.out
+}
+
+// Output definition
+output {
+    upper {
+        mode "copy"
+    }
 }
 
 // Process definition
 process CONVERT_TO_UPPER_CASE {
-    publishDir "results/",
-        mode: "copy"
-
     input:
     path(file)
 
@@ -83,8 +91,9 @@ process CONVERT_TO_UPPER_CASE {
 }
 ```
 
-Here we have two separate parts. The first is the _workflow definition_, while
-the last is a _process_. Let's go through them both in more detail!
+Here we have three separate parts. The first is the _workflow definition_, the
+second is the _output definition_, while the last is a _process_. Let's go
+through them all in more detail!
 
 ::: {.callout-tip title="Nextflow comments"}
 Double-slashes (`//`) are used for comments in Nextflow.
@@ -102,19 +111,24 @@ idea to forego it entirely, even though you can.
 
 ```nextflow
 workflow {
+    main:
     // Define input files
     ch_input = channel.fromPath( "a.txt" )
 
     // Run workflow
     CONVERT_TO_UPPER_CASE( ch_input )
+
+    publish:
+    upper = CONVERT_TO_UPPER_CASE.out
 }
 ```
 
-The workflow definition here has two parts, each doing an important job for any
-Nextflow workflow. The first part defines a _channel_, which is an asynchronous
-first-in-first-out stream of data that connect a workflow's various inputs and
-outputs. In simpler terms, channels contain the data that you want to process
-with the workflow and can be passed between the various parts of the workflow.
+The workflow definition here has three parts, each doing an important job for
+any Nextflow workflow. The first part defines a _channel_, which is an
+asynchronous first-in-first-out stream of data that connect a workflow's various
+inputs and outputs. In simpler terms, channels contain the data that you want to
+process with the workflow and can be passed between the various parts of the
+workflow.
 
 Channels can be created in various different ways using _channel factories_,
 depending on what type data you want to put into them and where this data is
@@ -135,17 +149,21 @@ describe how we want data to flow. This is exactly what we do in the second
 part: we call our `CONVERT_TO_UPPER_CASE` process with the `ch_input` as input
 argument - this is very similar to functional programming.
 
-This is our entire workflow, for now: the creation of a channel followed by
-using the contents of that channel as input to a single process. Let's look at
-how processes themselves are defined!
+The third part, under the `publish:` label, defines the _workflow outputs_:
+the results of the workflow that we want to keep. Here we assign the output of
+the `CONVERT_TO_UPPER_CASE` process (`CONVERT_TO_UPPER_CASE.out`) to a workflow
+output that we call `upper`. The `main:` label marks where the body of the
+workflow starts, and is needed whenever the workflow has other sections, such
+as `publish:`.
+
+This is our entire workflow, for now: the creation of a channel, using the
+contents of that channel as input to a single process and publishing the output
+of that process. Let's look at how processes themselves are defined!
 
 ### Process definitions
 
 ```nextflow
 process CONVERT_TO_UPPER_CASE {
-    publishDir "results/",
-        mode: "copy"
-
     input:
     path(file)
 
@@ -161,19 +179,13 @@ process CONVERT_TO_UPPER_CASE {
 
 Looking at the process in the code above, we can see several parts. The process
 block starts with its name, in this case `CONVERT_TO_UPPER_CASE`, followed by
-several sections, or _directives_ as Nextflow calls them: `publishDir`, `input`,
-`output` and `script`.
+several sections: `input`, `output` and `script`.
 
 ::: {.callout-tip title="Naming processes"}
 A process can be named using any case, but a commonly used convention is to use
 UPPERCASE letters for processes to visually distinguish them in the workflow.
 You do not have to follow this if you don't want to, but we do so here.
 :::
-
-Let's start with the first directive: `publishDir`. This tells Nextflow where
-the output of the process should be placed when it is finished. Setting `mode`
-to `"copy"` just means that we want to copy the output files to the publishing
-directory, rather than using a symbolic link (which is the default).
 
 The `input` and `output` directives describe the data expected to come through
 this specific process. Each line of `input` describes the data expected for each
@@ -191,6 +203,42 @@ moment. While the name of the input variable here is chosen to be the
 descriptive `file`, we could also have chosen something completely different,
 _e.g._ `banana` (we'd also have to change its reference in the `script`
 directive).
+
+Notice that the process doesn't say anything about where its output should end
+up: the process only produces the output, while the workflow decides what to
+publish. Let's look at how that works.
+
+### Workflow outputs
+
+```nextflow
+output {
+    upper {
+        mode "copy"
+    }
+}
+```
+
+The output definition, or _output block_, describes how each workflow output
+should be published. Each workflow output in the `publish:` section needs a
+block with the same name inside the output block, where we can configure how
+that output is published. Nextflow publishes all workflow outputs to a
+directory called `results/` by default; we'll see how to change this later on.
+Setting `mode` to `"copy"` means that we want to copy the output files to
+`results/`, rather than using a symbolic link to the files inside Nextflow's
+working directory (which is the default).
+
+Only the outputs listed in the `publish:` section are published; the output of
+a process is not kept unless the workflow publishes it. This makes it easy to
+get an overview of all the results of a workflow, as they're all defined in a
+single place.
+
+::: {.callout-note title="The `publishDir` directive"}
+Workflow outputs became a stable part of Nextflow in version `25.10`. Before
+that, processes defined where their outputs should be published themselves
+using the `publishDir` directive, _e.g._ `publishDir "results/", mode: "copy"`.
+You will see `publishDir` in some existing workflows. It still works, but
+workflow outputs are meant to replace it.
+:::
 
 ### Executing workflows
 
@@ -305,9 +353,6 @@ of this new information contained in the `ch_input` channel.
 
 ```nextflow
 process CONVERT_TO_UPPER_CASE {
-    publishDir "results/",
-        mode: "copy"
-
     input:
     tuple val(sample), path(file)
 
@@ -419,9 +464,6 @@ process definition section.
 
 ```nextflow
 process CONCATENATE_FILES {
-    publishDir "results/",
-        mode: "copy"
-
     input:
     path(files)
 
@@ -434,6 +476,32 @@ process CONCATENATE_FILES {
     """
 }
 ```
+
+The new process doesn't publish anything yet, so we need to add its output to
+the workflow outputs as well.
+
+- Add the output of the `CONCATENATE_FILES` process as a new workflow output
+  called `concat`, both in the `publish:` section and the output block; click
+  below if you're having trouble.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```nextflow
+// Publish section of the workflow definition
+publish:
+upper  = CONVERT_TO_UPPER_CASE.out
+concat = CONCATENATE_FILES.out
+
+// Output definition
+output {
+    upper {
+        mode "copy"
+    }
+    concat {
+        mode "copy"
+    }
+}
+```
+:::
 
 - Run your workflow again and check the `results/` directory. At this point you
   should have three files there: `a.upper.txt`, `b.upper.txt` and `concat.txt`.
@@ -450,6 +518,7 @@ to list all the input files.
 In this section we've learnt:
 
 - How to create, execute and extend workflows
+- How to publish workflow outputs
 - How to explore the `work` directory and channel contents
 - How to couple sample names to sample data files
 - How to use samplesheets as input
@@ -468,6 +537,7 @@ workflow {
 
     // Workflow for generating count data for the MRSA case study
 
+    main:
     // Get input files from a samplesheet
     ch_input = channel
         .fromPath ( "samplesheet.csv" )
@@ -499,6 +569,21 @@ workflow {
         SORT_BAM.out.bam.collect(),
         GET_GENOME_GFF3.out.gff
     )
+
+    // Define which outputs to publish
+    publish:
+    fastq          = DOWNLOAD_FASTQ_FILES.out
+    fastqc_html    = RUN_FASTQC.out[0]
+    fastqc_zip     = RUN_FASTQC.out[1]
+    multiqc_html   = RUN_MULTIQC.out.html
+    multiqc_stats  = RUN_MULTIQC.out.general_stats
+    genome_fasta   = GET_GENOME_FASTA.out.fasta
+    genome_index   = INDEX_GENOME.out.index
+    bam            = ALIGN_TO_GENOME.out.bam
+    sorted_bam     = SORT_BAM.out.bam
+    genome_gff3    = GET_GENOME_GFF3.out.gff
+    counts         = GENERATE_COUNTS_TABLE.out.counts
+    counts_summary = GENERATE_COUNTS_TABLE.out.summary
 }
 ```
 
@@ -506,7 +591,10 @@ The workflow has one input channel named `ch_input`, which reads input from the
 `samplesheet.csv` file. We then define the processes to be executed by this
 workflow, nine in total. The first process (`DOWNLOAD_FASTQ_FILES`) takes the
 `ch_input` channel as input, while the rest of the processes takes the output of
-previous processes as input. Before we go into more detail regarding the
+previous processes as input. Lastly, the `publish:` section lists all the
+outputs of the workflow; each of these has a block in the output definition in
+`main_mrsa.nf` (not shown here), which publishes it to a subdirectory of
+`results/`. Before we go into more detail regarding the
 ins-and-outs of this workflow, let's start with some specifics of how workflows
 are executed and what you can get from them.
 
@@ -669,8 +757,6 @@ process DONWLOAD_FASTQ_FILES {
     // Download a single-read FASTQ file from the SciLifeLab Figshare remote
 
     tag "${sra_id}"
-    publishDir "results/data",
-        mode: "copy"
 
     input:
     tuple val(sra_id), val(figshare_link)
@@ -712,8 +798,6 @@ process RUN_FASTQC {
     // Run FastQC on a FASTQ file.
 
     tag "${sample}"
-    publishDir "results/",
-        mode: "copy"
 
     input:
     tuple val(sample), path(fastq)
@@ -762,10 +846,11 @@ us in that we can infer more information about channel contents called `text`
 rather than `[1]`, and it is also allows us to be less error-prone when
 rewriting parts of a workflow.
 
-- Your turn! Add named outputs to the `RUN_FASTQC` process and make
-  `RUN_MULTIQC` use those outputs. You'll have to change both the output section
-  of the `RUN_FASTQC` process, and the workflow definition section for
-  `RUN_MULTIQC`. If you need help, see the hint below.
+- Your turn! Add named outputs to the `RUN_FASTQC` process and make both
+  `RUN_MULTIQC` and the `publish:` section use those outputs. You'll have to
+  change the output section of the `RUN_FASTQC` process, the workflow
+  definition for `RUN_MULTIQC` and the `fastqc_html` and `fastqc_zip` lines in
+  the `publish:` section. If you need help, see the hint below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
@@ -774,7 +859,11 @@ RUN_MULTIQC (
     RUN_FASTQC.out.zip.collect()
 )
 
-// Output section of RUN_FASTC
+// Publish section of the workflow definition
+fastqc_html = RUN_FASTQC.out.html
+fastqc_zip  = RUN_FASTQC.out.zip
+
+// Output section of RUN_FASTQC
 output:
 path("*.html"), emit: html
 path("*.zip"),  emit: zip
@@ -785,80 +874,112 @@ Check if it works by executing the workflow.
 
 ### Advanced publishing
 
-So far we've only used the `publishDir` directive in a very simple way:
-specifying a directory and the `mode` to use when publishing (to copy the files
-rather than symbolically link them). There are more things you can do, however,
-especially for processes with more than one output. For example, we can publish
-outputs in separate directories, like so:
+So far we've only used workflow outputs in a fairly simple way: listing the
+outputs we want to keep in the `publish:` section and specifying a subdirectory
+(with `path`) and the `mode` to use (to copy the files rather than symbolically
+link them) in the output block. Since every workflow output has its own block,
+different outputs can easily be published to different places - even when they
+come from the same process. For example, we could publish outputs like so:
 
 ```nextflow
-publishDir "results/tables",
-    pattern: "*.tsv",
-    mode: "copy"
-publishDir "results/logs",
-    pattern: "*.log",
-    mode: "copy"
+output {
+    tables {
+        path "tables"
+        mode "copy"
+    }
+    logs {
+        path "logs"
+        mode "copy"
+    }
+}
 ```
 
-In this example, `*.tsv` files are copied to the folder `results/tables/`,
-while `*.log` files are copied to the folder `results/logs`. The
-`publishDir` directive can be used multiple times in a single process, allowing
-one to separate output as above, or publish the same output to multiple folders.
+In this example, files from the `tables` output are copied to the folder
+`results/tables/`, while files from the `logs` output are copied to the folder
+`results/logs/`. If several outputs use the same `path`, their files are all
+published to the same folder.
 
-- Edit the `RUN_FASTQC` process to place the HTML and compressed files in
-  separate directories. Remove the `results` directory and re-run the workflow
-  to check that it worked - click below if you're having trouble.
+- Edit the output block to place the HTML and compressed files from the
+  `RUN_FASTQC` process in separate directories. Remove the `results` directory
+  and re-run the workflow to check that it worked - click below if you're having
+  trouble.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
-process RUN_FASTQC {
+output {
 
     (...)
 
-    publishDir "results/fastqc/html",
-        pattern: "*.html",
-        mode: "copy"
-    publishDir "results/fastqc/zip",
-        pattern: "*.zip",
-        mode: "copy"
+    fastqc_html {
+        path "fastqc/html"
+        mode "copy"
+    }
+    fastqc_zip {
+        path "fastqc/zip"
+        mode "copy"
+    }
 
     (...)
 }
-
 ```
 :::
 
-Note that an output and a *published* output are different things: something can
+The `path` doesn't have to be the same for all the files of an output, either.
+Instead of a fixed path we can give a _closure_ (the same type of code block we
+used with the `map{}` operator), which is evaluated for each item in the output
+channel. This is useful for _e.g._ publishing the files of each sample in their
+own directory:
+
+```nextflow
+output {
+    fastq {
+        path { sra_id, _fastq -> "data/${sra_id}" }
+        mode "copy"
+    }
+}
+```
+
+Each item in the `fastq` output is a tuple containing an SRA ID and a FASTQ
+file, which we name `sra_id` and `_fastq` in the closure. Each FASTQ file is
+thus published to its own directory named after its SRA ID, _e.g._
+`results/data/SRR935090/`. Prefixing a name with an underscore (`_fastq`) tells
+Nextflow that we don't use that variable inside the closure.
+
+- Make the `fastq` output publish each sample's FASTQ file into its own
+  directory, re-run the workflow and check the `results/data/` directory.
+
+Note that an output and a _published_ output are different things: something can
 be an output of a process without being published. In fact, the `RUN_FASTQC`
 process is a prime example of this! Think about the compressed output: this
 output is only used by the downstream process `RUN_MULTIQC` and is never meant
 to be viewed by a human or used by a human in some downstream task not part of
 the pipeline itself. We would thus like to keep the compressed files as an
-output, but not publish said output. How do we do this? Just remove the
-corresponding `publishDir` directive!
+output of the process, but not publish them. How do we do this? Just remove the
+corresponding section from the output block!
 
 The MRSA workflow we've made here was refactored directly from its original
 version in the Snakemake tutorial of this course, which means that its output
 structure is not fully taking advantage of some of Nextflow's functionality. The
 compressed output we've already talked about above is one example.
 
-- See if you can find any other processes in the current implementation of the
-  MRSA workflow that you could optimise like this!
+- See if you can find any other outputs in the current implementation of the
+  MRSA workflow that you could stop publishing like this.
 
-Think about whether all processes actually need to have published outputs. Make
-sure you test executing the workflow after you've made any changes; click below
-if you want a hint.
+Think about whether all outputs actually need to be published. Make sure you
+test executing the workflow after you've made any changes; click below if you
+want a hint.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-The `GET_GENOME_FASTA` and `GET_GENOME_GFF3` both download reference files which
-are only needed by the workflow itself and does not need to be published, the
-same goes for the genome index generated by the `INDEX_GENOME` process.
+The `genome_fasta` and `genome_gff3` outputs are reference files downloaded by
+the `GET_GENOME_FASTA` and `GET_GENOME_GFF3` processes, which are only needed by
+the workflow itself and do not need to be published. The same goes for the
+genome index generated by the `INDEX_GENOME` process (`genome_index`).
 
 One could argue that neither of the BAM files generated by the `ALIGN_TO_GENOME`
 and `SORT_BAM` processes are needed by the user if only the final counts table
 is of interest, but BAM files can also be useful for exploring the alignments in
-_e.g._ IGV. Both BAMs are, however, definitely not needed: only the sorted one
-should be published if one is interested in BAM files.
+_e.g._ IGV. Both BAMs are, however, definitely not needed: only the sorted ones
+(`sorted_bam`) should be published if one is interested in BAM files.
 :::
 
 ### Debugging
@@ -934,9 +1055,9 @@ generalisable. Let's go through the MRSA workflow and see what can be improved!
 ### Parameters
 
 One of the things that allow generalisability of Nextflow workflows is
-*parameters*, which hold information and values that can be changed directly on
+_parameters_, which hold information and values that can be changed directly on
 the command-line at the time of execution. One use of parameters in our MRSA
-workflow is to remove the hard-coded `results` output directory, for example.
+workflow is to remove the hard-coded `samplesheet.csv` input, for example.
 Parameters can be written in the following form:
 
 ```nextflow
@@ -954,56 +1075,11 @@ file*. The default name of this file is `nextflow.config` and if such a file is
 present it will be used automatically by Nextflow (to supply a config file with
 another name use `nextflow -c <path-to-config-file> run main_mrsa.nf`)
 
-- Create a configuration file and add a parameter for the `results` output
-  directory.
+- Create a configuration file and add a parameter for the samplesheet input.
 
-- Use your newly created parameter in the `publishDir` directory of a process
-  Run your workflow to see if it worked; click below if you need help.
-
-::: {.callout-tip collapse="true" title="Click to show"}
-```nextflow
-// Configuration file
-params {
-    outdir = "results"
-}
-
-// A publishDir directive in a process
-publishDir "${params.outdir}",
-    mode: "copy"
-```
-:::
-
-### Command line parameters
-
-Workflow parameters can be assigned on the command-line by executing workflows
-like so: `nextflow run main_mrsa.nf --parameter_name 'some_value'`. The workflow
-parameter `parameter_name` is prefixed by a double dash `--` to tell Nextflow
-this is a parameter to the workflow (a single dash is a parameter to Nextflow,
-_e.g._ `-resume`). The value is also quoted (this is important for parameters
-that take file paths as values).
-
-- Run your workflow using the parameter you previously created, but pick
-  something other than the default value!
-
-You should now have a new directory containing all the results! This is highly
-useful if you want to keep track of separate runs of a workflow with different
-software parameters, for example: `nextflow run main.nf --important_param
-'value1' --resultsdir 'results-value1'`, or simply want to keep the results of
-separate versions of the same workflow. You can also change parameters by using
-the `-params-file` option or by using another configuration file (and using
-`-c`), rather than on the command line!
-
-### Configuring inputs
-
-Remember the input for the MRSA workflow, the `ch_input` channel? This input
-(the `samplesheet.csv` file) is hard-coded inside the `main_mrsa.nf` file. This
-could also be made into a parameter!
-
-- Change the definition of the `ch_input` channel to take the value of a new
-  parameter of your choice, defined in the configuration file.
-
-You should now have a more generalised input to your workflow! Try to run it to
-make sure it works - look below if you need some help.
+- Change the definition of the `ch_input` channel to use your newly created
+  parameter. Run your workflow to see if it worked; click below if you need
+  help.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
@@ -1019,11 +1095,61 @@ params {
 ```
 :::
 
-By specifying inputs from sample sheets like this we can change inputs of a
+### Command line parameters
+
+Workflow parameters can be assigned on the command-line by executing workflows
+like so: `nextflow run main_mrsa.nf --parameter_name 'some_value'`. The workflow
+parameter `parameter_name` is prefixed by a double dash `--` to tell Nextflow
+this is a parameter to the workflow (a single dash is a parameter to Nextflow,
+_e.g._ `-resume`). The value is also quoted (this is important for parameters
+that take file paths as values).
+
+- Create a copy of `samplesheet.csv` that only contains the first sample (keep
+  the header) and run your workflow using it as input via the parameter you
+  previously created.
+
+By specifying inputs from samplesheets like this we can change inputs of a
 workflow execution by creating another sample sheet and specifying _e.g._,
 `--input samplesheet-2.csv` on the command line. This is highly useful when you
-want to run a single sample _e.g._, when testing a workflow, or when you want to
-keep track of all the different inputs you've used historically.
+_e.g._ want to run a single sample when testing a workflow, or when you want to
+keep track of all the different inputs you've used historically. You can also
+change parameters by using the `-params-file` option or by using another
+configuration file (and using `-c`), rather than on the command line.
+
+### Configuring outputs
+
+Remember that the workflow outputs are published to the `results/` directory
+by default? This directory is not set by a workflow parameter, but by Nextflow
+itself: you can change it with the `-output-dir` option on the command line
+(note the single dash, as this is an option to Nextflow) or with the
+`outputDir` setting in the configuration file.
+
+- Run your workflow with `-output-dir` and pick something other than
+  `results`.
+
+You should now have a new directory containing all the results! This is highly
+useful if you want to keep track of separate runs of a workflow with different
+software parameters, for example: `nextflow run main.nf --important_param
+'value1' -output-dir 'results-value1'`, or simply want to keep the results of
+separate versions of the same workflow.
+
+We've also had to specify `mode "copy"` for every single output in the output
+block, which is quite repetitive. Settings like this can also be specified for
+all workflow outputs at once in the configuration file, using the
+`workflow.output` scope.
+
+- Add the following lines to your configuration file, remove all the `mode`
+  lines from the output block and re-run your workflow to see that the outputs
+  are still copied to the output directory:
+
+```nextflow
+outputDir            = "results"
+workflow.output.mode = "copy"
+```
+
+Setting `outputDir` in the configuration file like this changes the default
+output directory, which can still be changed with `-output-dir` on the command
+line.
 
 ### Other configuration scopes
 
@@ -1052,6 +1178,7 @@ In this section we learnt:
 
 - How to create parameters in a configuration file
 - How to specify parameters on the command line
+- How to configure the output directory and how outputs are published
 - How to add workflow manifest and other configuration scopes
 :::
 
@@ -1067,8 +1194,8 @@ For example, the `run_fastqc` rule in Snakemake used the `-o` flag to specify
 that the results should be in the current directory, followed by moving the
 output files to their respective output directory. The first part is not needed
 in Nextflow (as everything is run in its own subdirectory), and the second part
-is done by the `publishDir` directive. These are just minor alterations,
-though, but we can do much more if we fully utilise Nextflow's features!
+is done by the workflow outputs. These are just minor alterations, though, but
+we can do much more if we fully utilise Nextflow's features!
 
 ### Remote files
 
@@ -1086,7 +1213,8 @@ all! All we need to do is to change the input to the `INDEX_GENOME` and
 - Make the `INDEX_GENOME` process use that input channel instead of the
   previously used output of the `GET_GENOME_FASTA` process.
 
-- Remove the `GET_GENOME_FASTA` process, as it is not needed anymore.
+- Remove the `GET_GENOME_FASTA` process, as it is not needed anymore. If you
+  still publish its output, remove the `genome_fasta` workflow output as well.
 
 Re-run the workflow to see if it worked. Check the code below for an example if
 you're stuck:
@@ -1146,9 +1274,6 @@ ch_genome_fasta = channel
 // INDEX_GENOME process definition
 process INDEX_GENOME {
 
-    publishDir "results/bowtie2/",
-        mode: "copy"
-
     input:
     tuple val(fasta_name), path(fasta)
 
@@ -1200,7 +1325,9 @@ the equivalent of process `input` for workflows. The `main` part is
 the workflow body, which contains how to run which processes in which order.
 The last part, `emit`, also works the same as for processes, in that we name
 the different outputs of the workflow so that we may use them in other
-workflows or processes. Nextflow will run the unnamed workflow by default,
+workflows or processes. Note that only the unnamed workflow can publish
+outputs (using the `publish:` section), so a subworkflow has to emit anything
+that should be published. Nextflow will run the unnamed workflow by default,
 unless the `-entry` flag is specified, like so:
 
 ```bash
@@ -1224,8 +1351,9 @@ organising them in a manner that is easy to code and maintain. A `process`
 can also be treated in the same manner, and defined separately in another file.
 
 - Now it's your turn! Separate the `RUN_FASTQC` and `RUN_MULTIQC` processes out
-  of the main workflow and into a subworkflow. Check below if you're having
-  trouble.
+  of the main workflow and into a subworkflow. Remember to update the
+  `publish:` section of the main workflow to use the outputs emitted by the
+  subworkflow. Check below if you're having trouble.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
@@ -1237,6 +1365,10 @@ include { QUALITY_CONTROLS } from "./subworkflows/quality_controls.nf"
 QUALITY_CONTROLS (
     DOWNLOAD_FASTQ_FILES.out
 )
+
+// Publish section of the main workflow
+multiqc_html  = QUALITY_CONTROLS.out.html
+multiqc_stats = QUALITY_CONTROLS.out.general_stats
 
 // [ subworkflows/quality_controls.nf ]
 // Quality controls subworkflow
@@ -1278,6 +1410,9 @@ ALIGNMENT (
     ch_genome_fasta,
     DOWNLOAD_FASTQ_FILES.out
 )
+
+// Publish section of the main workflow
+sorted_bam = ALIGNMENT.out.bam
 
 // [ subworkflows/alignment.nf ]
 // Alignment subworkflow

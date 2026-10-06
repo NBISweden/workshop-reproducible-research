@@ -26,10 +26,6 @@ workflow ALIGNMENT {
 process INDEX_GENOME {
 
     // Index a genome using Bowtie 2.
-    //
-    // Publishing is not needed, as output only contain index files used by
-    // other processes and do not need to be inspected by the user.
-
     input:
     path(fasta)
 
@@ -47,10 +43,6 @@ process INDEX_GENOME {
 process ALIGN_TO_GENOME {
 
     // Align a fastq file to a genome index using Bowtie 2.
-    //
-    //  Publishing is not needed, as the subsequent process produces a sorted
-    //  BAM that the user can view if desired.
-
     tag "${sample}"
 
     input:
@@ -71,9 +63,6 @@ process SORT_BAM {
     // Sort a bam file.
 
     tag "${sample}"
-    publishDir "${params.outdir}/bam/",
-        mode: "copy"
-
     input:
     tuple val(sample), path(bam)
 
