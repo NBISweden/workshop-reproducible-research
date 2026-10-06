@@ -24,7 +24,7 @@ arbitrary values, often-times connected in useful and advanced ways.
 
 Nextflow can easily work with dynamic inputs where the exact output is unknown,
 _e.g._ the exact number of files or which samples pass some arbitrary quality
-control threshold. While Nextflow is based on the Groovy language, you don't
+control threshold. While the Nextflow language is based on Groovy, you don't
 need to know how to code Groovy to be able to write good Nextflow workflows.
 Nextflow has a large community centred around it, including the
 [nf-core](https://nf-co.re/) curated collection of high quality pipelines used
@@ -1013,7 +1013,9 @@ ch_input = channel
     .splitCsv ( header: true )
 
 // Configuration file
-input = "samplesheet.csv"
+params {
+    input = "samplesheet.csv"
+}
 ```
 :::
 
@@ -1272,10 +1274,10 @@ this:
 include { ALIGNMENT } from "./subworkflows/alignment.nf"
 
 // Main workflow
-ALIGNMENT {
+ALIGNMENT (
     ch_genome_fasta,
     DOWNLOAD_FASTQ_FILES.out
-}
+)
 
 // [ subworkflows/alignment.nf ]
 // Alignment subworkflow
@@ -1346,11 +1348,11 @@ If you don't want to supply this at every execution, you can also add it
 directly to your configuration file:
 
 ```nextflow
-# Docker configuration
+// Docker configuration
 process.container = 'image-name'
 docker.enabled = true
 
-# Apptainer configuration
+// Apptainer configuration
 process.container = 'path/to/image.sif'
 apptainer.enabled = true
 ```
@@ -1361,13 +1363,13 @@ use the `container` directive in your processes:
 ```nextflow
 process PROCESS_01 {
     (...)
-    container: 'image_01'
+    container 'image_01'
     (...)
 }
 
 process PROCESS_02 {
     (...)
-    container: 'image_02'
+    container 'image_02'
     (...)
 }
 ```
@@ -1388,17 +1390,17 @@ directly in the `conda` directive, like so:
 ```nextflow
 process PROCESS_01 {
     (...)
-    conda: 'mrsa-environment.yml'
+    conda 'mrsa-environment.yml'
     (...)
 }
 process PROCESS_02 {
     (...)
-    conda: 'path/to/mrsa-env'
+    conda 'path/to/mrsa-env'
     (...)
 }
 process PROCESS_03 {
     (...)
-    conda: 'bioconda::bwa=0.7.17 bioconda::samtools=1.13'
+    conda 'bioconda::bwa=0.7.17 bioconda::samtools=1.13'
     (...)
 }
 ```
