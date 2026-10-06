@@ -14,7 +14,7 @@ toastui:
     defaultView: week
     file: "schedule.tsv"
     file-sep: "\t"
-    date: "2026-04-20"
+    date: "2026-10-19"
     useDetailPopup: true
     isReadOnly: true
     height: 980px
