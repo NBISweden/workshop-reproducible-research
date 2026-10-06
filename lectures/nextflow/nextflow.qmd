@@ -12,7 +12,7 @@ format:
 - [Portable]{.green}
 - [Scalable]{.green}
 - [Platform-agnostic]{.green}
-- Based on [Groovy]{.green} and Java
+- Its own language, based on [Groovy]{.green}
 - Large active community in _e.g._ [nf-core]{.green}
 :::
 
@@ -242,7 +242,7 @@ $ nextflow run main.nf -with-apptainer
 ::: {.column width="80%"}
 |                | [Snakemake]{.green}  | [Nextflow]{.green}            |
 | ----           | ------               | ---------                     |
-| **Language**   | Python               | Groovy                        |
+| **Language**   | Python               | Nextflow (Groovy-based)       |
 | **Data**       | Everything is a file | Can use both files and values |
 | **Execution**  | Working directory    | Each job in its own directory |
 | **Philosophy** | "Pull"               | "Push"                        |

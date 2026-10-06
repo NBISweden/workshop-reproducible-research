@@ -28,7 +28,7 @@ https://conda.anaconda.org/conda-forge/osx-arm64/bzip2-1.0.8-hd037594_8.conda#58
 https://conda.anaconda.org/bioconda/osx-arm64/samtools-1.6-hd980e65_13.conda#116bf75a0e3e8765aa06aee78b0c81c6
 https://conda.anaconda.org/conda-forge/osx-arm64/openjdk-23.0.2-hfb9339a_2.conda#6e330bfe359f78e2313eaecf8ca1529c
 https://conda.anaconda.org/conda-forge/osx-arm64/coreutils-9.5-h93a5062_0.conda#75840e25e62a109b1d25043c63a4f36c
-https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda#d5637b16b8df941e9a6cb3109346283d
+https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda#4fea597e1977b0221de342a3bfb2d971
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda#ad659d0a2b3e47e38d829aa8cad2d610
 https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-h892fb3f_3.conda#a73d54a5abba6543cb2f0af1bfbd6851
 https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.3-h46df422_0.conda#f8381319127120ce51e081dce4865cf4

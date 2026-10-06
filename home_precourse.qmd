@@ -439,7 +439,7 @@ to a directory in your `PATH`, _e.g._ `/usr/bin/`.
 
 If you're getting Java-related errors, you can either try to [update your Java
 installation](https://www.nextflow.io/docs/latest/getstarted.html#requirements)
-(Nextflow requires Java 11 or later) or install Nextflow using conda. If you
+(Nextflow requires Java 17 or later) or install Nextflow using conda. If you
 want to use Conda to create the environment:
 
 ```bash
