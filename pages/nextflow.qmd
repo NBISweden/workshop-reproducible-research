@@ -1791,7 +1791,7 @@ path to a FASTA file and the name of that file _without_ the `.fasta`
 extension. We can use Groovy in the `script` directive together with normal
 Bash, mixing and matching as we like. The first line of the `script` directive
 gets the name of the FASTA file without the extension by removing anything
-after the dot, while the second calls the `index` command like normal using
+after the last dot, while the second calls the `index` command like normal using
 bash.
 
 ### The nf-core pipeline collection
