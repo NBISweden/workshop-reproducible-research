@@ -764,19 +764,21 @@ used ones here.
 Let's look at the command line output we got during the workflow's execution,
 which should look something like this:
 
-```bash
-N E X T F L O W  ~  version 22.10.6
-Launching `./main.nf` [friendly_bhaskara] - revision: b4490b9201
+```no-highlight
+ N E X T F L O W   ~  version 26.04.6
+
+Launching `main_mrsa.nf` [maniac_murdock] revision: 1123d976a6
+
 executor >  local (17)
-[c9/e5f818] process > DONWLOAD_FASTQ_FILES (SRR935092) [100%] 3 of 3 ✔
-[d5/b5f24e] process > RUN_FASTQC (SRR935092)           [100%] 3 of 3 ✔
-[91/2cea54] process > RUN_MULTIQC                      [100%] 1 of 1 ✔
-[e0/b4fd37] process > GET_GENOME_FASTA                 [100%] 1 of 1 ✔
-[87/32ce10] process > INDEX_GENOME                     [100%] 1 of 1 ✔
-[56/e9a460] process > ALIGN_TO_GENOME (SRR935092)      [100%] 3 of 3 ✔
-[ed/d8c223] process > SORT_BAM (SRR935092)             [100%] 3 of 3 ✔
-[e7/4a6bda] process > GET_GENOME_GFF3                  [100%] 1 of 1 ✔
-[e9/84f093] process > GENERATE_COUNTS_TABLE            [100%] 1 of 1 ✔
+[06/798118] DOWNLOAD_FASTQ_FILES (SRR935092) [100%] 3 of 3 ✔
+[e8/2fdc8f] RUN_FASTQC (SRR935091)           [100%] 3 of 3 ✔
+[a6/bb9b5f] RUN_MULTIQC                      [100%] 1 of 1 ✔
+[75/1c2e95] GET_GENOME_FASTA                 [100%] 1 of 1 ✔
+[45/2dfbe6] INDEX_GENOME                     [100%] 1 of 1 ✔
+[6a/6b6464] ALIGN_TO_GENOME (SRR935092)      [100%] 3 of 3 ✔
+[de/9ccef5] SORT_BAM (SRR935092)             [100%] 3 of 3 ✔
+[c4/6b6b58] GET_GENOME_GFF3                  [100%] 1 of 1 ✔
+[08/21d733] GENERATE_COUNTS_TABLE            [100%] 1 of 1 ✔
 ```
 
 Have you noticed that there are SRA IDs after some of the processes? Well, if
