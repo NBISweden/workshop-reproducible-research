@@ -1418,15 +1418,16 @@ The last part, `emit`, also works the same as for processes, in that we name
 the different outputs of the workflow so that we may use them in other
 workflows or processes. Note that only the unnamed workflow can publish
 outputs (using the `publish:` section), so a subworkflow has to emit anything
-that should be published. Nextflow will run the unnamed workflow by default,
-unless the `-entry` flag is specified, like so:
+that should be published. Nextflow always starts by running the unnamed
+workflow (which is why it is also called the _entry workflow_), unless the `-entry` flag is specified, like so:
 
 ```bash
 nextflow run main.nf -entry SUBWORKFLOW
 ```
 
-This will run the workflow named `SUBWORKFLOW`, but nothing else. You can also
-store subworkflows in separate files, so that everything doesn't have to be
+This will run the workflow named `SUBWORKFLOW`, but nothing else. 
+
+You can also store subworkflows in separate files, so that everything doesn't have to be
 crammed into a single `main.nf` file. A subworkflow named `SUBWORKFLOW`
 contained in the file `subworkflow.nf` can be loaded into a `main.nf` file like
 so:
