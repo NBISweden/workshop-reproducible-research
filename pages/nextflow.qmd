@@ -103,7 +103,7 @@ Double-slashes (`//`) are used for comments in Nextflow.
 Nextflow is not indentation-sensitive. In fact, Nextflow doesn't care at all
 about whitespace, so go ahead and use it in whatever manner you think is
 easiest to read and work with! Do keep in mind that indentations and other
-types of whitespace _does_ improve readability, so it's generally not a good
+types of whitespace _do_ improve readability, so it's generally not a good
 idea to forego it entirely, even though you can.
 :::
 
@@ -125,13 +125,13 @@ workflow {
 
 The workflow definition here has three parts, each doing an important job for
 any Nextflow workflow. The first part defines a _channel_, which is an
-asynchronous first-in-first-out stream of data that connect a workflow's various
+asynchronous first-in-first-out stream of data that connects a workflow's various
 inputs and outputs. In simpler terms, channels contain the data that you want to
 process with the workflow and can be passed between the various parts of the
 workflow.
 
 Channels can be created in various different ways using _channel factories_,
-depending on what type data you want to put into them and where this data is
+depending on what type of data you want to put into them and where this data is
 stored. In this particular case we define our `ch_input` channel using the
 `.fromPath` channel factory, which takes a file path as input - here we use the
 `a.txt` file. You can thus read `ch_input = channel.fromPath("a.txt")` as
@@ -389,7 +389,7 @@ b,b.txt
 ```
 
 This specifies the samples and their respective files on each row. Using such a
-file is much more portable, scalable and overall easier to use than simple
+file is much more portable, scalable and overall easier to use than simply
 hard-coding things in the workflow definition itself. We might also include an
 arbitrary number of additional metadata columns, useful for downstream
 processing and analyses. Using contents of files as input can be done using the
@@ -606,7 +606,7 @@ visualisation while we're at it!
 - Run the workflow using the following command: `nextflow run main_mrsa.nf
   -with-report report.html -with-timeline timeline.html -with-dag dag.png`.
 
-After successful executing, you will find three more files in your current
+After successful execution, you will find three more files in your current
 directory: `report.html`, `timeline.html` and `dag.png`. The first file contains
 a workflow report, which includes various information regarding execution such
 as runtime, resource usage and details about the different processes. The second
@@ -749,10 +749,10 @@ Have you noticed that there are SRA IDs after some of the processes? Well, if
 you look at which processes show these SRA IDs you might see that it's only
 those processes that are executed three times, _i.e._ once per SRA ID. This
 doesn't happen automatically, however, and comes from something called *tags*.
-Let's look at the `DONWLOAD_FASTQ_FILES` process:
+Let's look at the `DOWNLOAD_FASTQ_FILES` process:
 
 ```nextflow
-process DONWLOAD_FASTQ_FILES {
+process DOWNLOAD_FASTQ_FILES {
 
     // Download a single-read FASTQ file from the SciLifeLab Figshare remote
 
@@ -779,7 +779,7 @@ in case of errors or odd output. There is, naturally, no need to use tags for
 processes which are only run once.
 
 - Comment out (prefix with `//`) the `tag` directive from the
-  `DONWLOAD_FASTQ_FILES` process and run the workflow again. What do you see?
+  `DOWNLOAD_FASTQ_FILES` process and run the workflow again. What do you see?
 
 Without the `tag` directive you should instead see the numbers 1 through 3,
 representing the input files (of which there are three). Nextflow still tells us
@@ -831,7 +831,7 @@ the `RUN_MULTIQC` process is taking the second channel of the output from the
 zero-based (the first channel is indexed by `[0]`).
 
 This comes with some issues, however. What if we accidentally changed the order
-of the outputs in the rule, or added a new one? Using positions like this is
+of the outputs in the process, or added a new one? Using positions like this is
 easy to mess up, but there is a better solution: named outputs! This can be
 achieved by adding the `emit` option for some or all of the outputs, like so:
 
@@ -843,7 +843,7 @@ path("*.txt"), emit: text
 Instead of referring to the output by its position in an array as before we
 refer to the channel with a label we choose (`.out.text`) instead. This benefits
 us in that we can infer more information about channel contents called `text`
-rather than `[1]`, and it is also allows us to be less error-prone when
+rather than `[1]`, and it also allows us to be less error-prone when
 rewriting parts of a workflow.
 
 - Your turn! Add named outputs to the `RUN_FASTQC` process and make both
@@ -1099,7 +1099,7 @@ anywhere you need to in the workflow. Although parameters can be defined in
 `main_mrsa.nf`, it is preferable to define them in a separate *configuration
 file*. The default name of this file is `nextflow.config` and if such a file is
 present it will be used automatically by Nextflow (to supply a config file with
-another name use `nextflow -c <path-to-config-file> run main_mrsa.nf`)
+another name use `nextflow -c <path-to-config-file> run main_mrsa.nf`).
 
 - Create a configuration file and add a parameter for the samplesheet input.
 
@@ -1227,7 +1227,7 @@ we can do much more if we fully utilise Nextflow's features!
 
 One of these features is the ability to automatically download remote files,
 without needing to explicitly do so! The `path` input type can handle either
-file paths (like we've done so far) or a URI-supported protocol (such as
+file paths (like we've done so far) or URIs with a supported protocol (such as
 `http://`, `s3://`, `ftp://`, *etc.*). This would be highly useful for _e.g._
 the `GET_GENOME_FASTA` process - in fact, we don't even need that process at
 all! All we need to do is to change the input to the `INDEX_GENOME` and
@@ -1257,11 +1257,11 @@ INDEX_GENOME (
 ```
 :::
 
-We could also do this using parameters from our configfile, of course!
+We could also do this using parameters from our configuration file, of course!
 
-- Now change the input to the `GENERATE_COUNTS_TABLE` to use the remote GFF3
-  file and remove the `GET_GENOME_GFF3` in the same manner as above, but using a
-  new parameter instead.
+- Now change the input to the `GENERATE_COUNTS_TABLE` process to use the remote
+  GFF3 file and remove the `GET_GENOME_GFF3` process in the same manner as
+  above, but using a new parameter instead.
 
 Re-run the workflow again to make sure it worked; check below if you're stuck.
 
@@ -1855,7 +1855,7 @@ outdir: "demo-mrsa"
 ```
 :::
 
-- Run the demo workflow with you parameters:
+- Run the demo workflow with your parameters:
 
 ```bash
 nextflow run nf-core/demo -r 1.2.0 -profile docker -params-file params.yaml
