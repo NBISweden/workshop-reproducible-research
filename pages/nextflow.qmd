@@ -1843,6 +1843,15 @@ Every nf-core pipeline comes with a `test` profile containing a small test
 dataset, which is perfect for checking that the pipeline works on your system
 before you use it on your own data.
 
+Nextflow reads the `nextflow.config` file in the directory you run it from, so
+the configuration you created for the MRSA workflow would be applied to the
+nf-core pipeline as well. Its `input` parameter would, for example, replace the
+test data of the pipeline with the MRSA samplesheet, which fails the validation
+of the input. We'll thus run the nf-core pipeline in a separate directory.
+
+- Create a new directory called `nf-core-demo` inside the `tutorials/nextflow`
+  directory and move into it.
+
 - Run nf-core/demo with its test data:
 
 ```bash
@@ -1903,7 +1912,9 @@ and use to re-run the analysis with the exact same settings. Parameter files can
 be written in YAML or JSON and are used with the `-params-file` option.
 
 - Create a samplesheet called `demo_samplesheet.csv` for the three FASTQ files
-  of the MRSA workflow.
+  of the MRSA workflow. Paths in the samplesheet are relative to the directory
+  you run the pipeline from, and depend on where you published the FASTQ files
+  earlier in the tutorial.
 
 - Create a parameter file called `params.yaml` that uses your samplesheet and
   sets the output directory.
@@ -1911,9 +1922,9 @@ be written in YAML or JSON and are used with the `-params-file` option.
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```no-highlight
 sample,fastq_1,fastq_2
-SRR935090,results/data/SRR935090.fastq.gz,
-SRR935091,results/data/SRR935091.fastq.gz,
-SRR935092,results/data/SRR935092.fastq.gz,
+SRR935090,../results/data/SRR935090/SRR935090.fastq.gz,
+SRR935091,../results/data/SRR935091/SRR935091.fastq.gz,
+SRR935092,../results/data/SRR935092/SRR935092.fastq.gz,
 ```
 
 ```yaml
@@ -1966,12 +1977,13 @@ nextflow module view nf-core/fastqc
 The most convenient part is that you can run a module directly, without having
 to write a workflow around it. The inputs of the module are given as parameters
 on the command line, so to run FastQC on one of the FASTQ files from the MRSA
-workflow you could do the following:
+workflow you could do the following (from inside the `nf-core-demo`
+directory):
 
 ```bash
 nextflow module run nf-core/fastqc \
     --meta.id SRR935090 \
-    --reads results/data/SRR935090.fastq.gz \
+    --reads ../results/data/SRR935090/SRR935090.fastq.gz \
     -output-dir fastqc \
     -with-docker
 ```
