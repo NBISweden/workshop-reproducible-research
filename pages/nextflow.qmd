@@ -254,10 +254,19 @@ This will make Nextflow run the workflow specified in your `main.nf` file. You
 should see something along these lines:
 
 ```no-highlight
-N E X T F L O W  ~  version 22.10.6
-Launching `./main.nf` [mad_legentil] - revision: 87f0c253ed
+ N E X T F L O W   ~  version 26.04.6
+
+Launching `main.nf` [clever_euclid] revision: c71fa30c22
+
 executor >  local (1)
-[32/9124a1] process > CONVERT_TO_UPPER_CASE (1) [100%] 1 of 1 ✔
+[10/0f6d2d] CONVERT_TO_UPPER_CASE (1) [100%] 1 of 1 ✔
+
+Outputs:
+
+  /path/to/workshop-reproducible-research/tutorials/nextflow/results
+
+  upper:
+    - a.upper.txt
 ```
 
 The first few lines are information about this particular run, including the
@@ -270,18 +279,20 @@ What follows next is a list of all the various processes for this particular
 workflow. The order does not necessarily reflect the order of execution
 (depending on each process’ input and output dependencies), but they are in the
 order they were defined in the workflow file - there's only the one process
-here, of course. The first part (_e.g._ `[32/9124a1]`) is the process ID, which
-is also the first part of the subdirectory in which the process is run (the full
-subdirectory will be something like `32/9124a1dj56n2346236245i2343`, so just a
-longer hash). We then get the process and its name. Lastly, we get how many
-instances of each process are currently running or have finished. Here we only
-have the one process, of course, but this will soon change.
+here, of course. The first part (_e.g._ `[10/0f6d2d]`) is the task ID, which
+is also the first part of the subdirectory in which the task is run (the full
+subdirectory will be something like `10/0f6d2d95a9434d3d1a7d9a61b7931f10`, so
+just a longer hash). We then get the name of the process. Lastly, we get how
+many instances of each process are currently running or have finished. Here we
+only have the one process, of course, but this will soon change. The final
+part, under `Outputs:`, lists the directory the workflow outputs were published
+to along with the files of each workflow output.
 
 - Let's check that everything worked: type `ls results/` and see that it
   contains the output we expected.
 
 - Let's explore the working directory: change into whatever directory is
-  specified by the process ID (your equivalent to `work/32/9124a1[...]`).
+  specified by the task ID (your equivalent to `work/10/0f6d2d[...]`).
 
 What do you see when you list the contents of this directory? You should see a
 symbolic link named `a.txt` pointing to the real location of this file, plus a
