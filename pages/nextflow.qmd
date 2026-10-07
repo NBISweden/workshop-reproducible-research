@@ -1411,8 +1411,8 @@ workflow SUBWORKFLOW {
 ```
 
 Here we have an unnamed, main workflow like before, plus a named subworkflow.
-A workflow can have inputs specified by the `take` directive, which is
-the equivalent of process `input` for workflows. The `main` part is
+A workflow can have inputs specified in the `take` section, which is
+the equivalent of process `input` for workflows. The `main` section is
 the workflow body, which contains how to run which processes in which order.
 The last part, `emit`, also works the same as for processes, in that we name
 the different outputs of the workflow so that we may use them in other
