@@ -1026,8 +1026,8 @@ logs but also with informative error messages. Let's introduce an error and look
 at what we get:
 
 - Change the final `output` line in the `RUN_MULTIQC` process to the following
-  and re-run the workflow: `path("multiqc_general_stats.csv")` - notice the
-  usage of `.csv` rather than `.txt` as before.
+  and re-run the workflow: `path("multiqc_general_stats.csv"), emit:
+  general_stats` - notice the usage of `.csv` rather than `.txt` as before.
 
 We got an error! We get a number of things, actually, including (in order from
 the top) the name of the process that gave the error, the likely cause, the
