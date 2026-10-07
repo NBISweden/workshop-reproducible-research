@@ -1449,7 +1449,7 @@ can also be treated in the same manner, and defined separately in another file.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
-// [ main.nf ]
+// [ main_mrsa.nf ]
 // Include subworkflow
 include { QUALITY_CONTROLS } from "./subworkflows/quality_controls.nf"
 
