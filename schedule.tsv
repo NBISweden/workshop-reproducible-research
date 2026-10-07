@@ -2,7 +2,7 @@ start	end	title	attendees	calendarId
 2026-10-19T09:00:00	2026-10-19T09:15:00	Introduction to Reproducible Research	Erik Fasterius	session
 2026-10-19T09:15:00	2026-10-19T10:00:00	Project organisation showcases	Elin Kronander	session
 2026-10-19T10:00:00	2026-10-19T10:20:00	Break		free
-2026-10-19T10:20:00	2026-10-19T12:00:00	Metadata	Stephan Nylinder	session
+2026-10-19T10:20:00	2026-10-19T12:00:00	Metadata	Elin Kronander, Maria Vrettou	session
 2026-10-19T12:00:00	2026-10-19T13:00:00	Lunch		free
 2026-10-19T13:00:00	2026-10-19T14:40:00	Git: Version tracking and distributing your code	Erik Fasterius	session
 2026-10-19T14:40:00	2026-10-19T15:00:00	Break		free
