@@ -1383,7 +1383,7 @@ process ALIGN_TO_GENOME {
 
 ### Subworkflows
 
-The DSL2 allows highly modular workflow design, where a workflow may contain
+Nextflow allows highly modular workflow design, where a workflow may contain
 multiple *subworkflows*. A subworkflow is just like a normal workflow, but it
 can be called inside other workflows, similar to a process. There is thus no
 special difference between a subworkflow and a workflow; the only difference is
