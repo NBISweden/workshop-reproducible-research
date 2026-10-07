@@ -631,8 +631,14 @@ are executed and what you can get from them.
 Let's start with running the workflow plus getting some reports and
 visualisation while we're at it!
 
-- Run the workflow using the following command: `nextflow run main_mrsa.nf
-  -with-report report.html -with-timeline timeline.html -with-dag dag.png`.
+- Run the workflow using the following command: 
+
+```bash
+nextflow run main_mrsa.nf \
+    -with-report report.html \
+    -with-timeline timeline.html \
+    -with-dag dag.png
+```
 
 After successful execution, you will find three more files in your current
 directory: `report.html`, `timeline.html` and `dag.png`. The first file contains
