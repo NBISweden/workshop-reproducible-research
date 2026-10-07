@@ -413,7 +413,7 @@ ch_input = channel
     .map      { row -> tuple(row[0], file(row[1])) }
 ```
 
-The `.SplitCsv()` operator lets the channel know the input is a CSV file, while
+The `.splitCsv()` operator lets the channel know the input is a CSV file, while
 the `.map{}` operator makes the CSV content into a tuple from the first and
 second elements of each row.
 
