@@ -1317,7 +1317,7 @@ params {
     genome_gff3 = "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz"
 }
 
-// [ main.nf ]
+// [ main_mrsa.nf ]
 // Channel creation
 ch_genome_gff3 = channel.value( file( params.genome_gff3 ) )
 
