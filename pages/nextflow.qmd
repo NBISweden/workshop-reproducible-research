@@ -1769,7 +1769,7 @@ time unless you want to: Nextflow is based on Groovy, which allows you to use
 both Groovy and Bash in the same process. For example, have a look at this:
 
 ```nextflow
-process index_fasta {
+process INDEX_FASTA {
     tag "${fasta_name}"
 
     input:
