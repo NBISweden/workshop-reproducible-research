@@ -1720,7 +1720,7 @@ samples_and_treatments = channel
     .fromPath ( params.metadata )
     .splitCsv ( sep: "\t", header: true )
     .map      { row -> tuple("${row.sample_id}", "${row.treatment}") }
-    .filter   { id, treatment -> treatment != "DMSO" }
+    .filter   { _id, treatment -> treatment != "DMSO" }
     .unique   ( )
 ```
 
@@ -1729,9 +1729,10 @@ want to read some data from a file specified by the `metadata` parameter, and
 the second line actually reads that data using tab as delimiter, including a
 header. The `map` operator takes each entire row and subsets it to only two
 columns: the `sample_id` and `treatment` columns (discarding the other columns).
-This subset is stored as a tuple. The `filter` operator is then used to remove
-any tuples where the second entry (`treatment`) is not equal to the string
-`"DMSO"` (_i.e._ untreated cells, in this example). Finally, we only keep unique
+This subset is stored as a tuple. The `filter` operator is then used to keep
+only the tuples where the second entry (`treatment`) is not equal to the string
+`"DMSO"` (_i.e._ to remove untreated cells, in this example); the sample ID is
+not used in the filter, so we prefix it with an underscore (`_id`). Finally, we only keep unique
 tuple values. Let's say that this is the metadata we're reading:
 
 ```no-highlight
