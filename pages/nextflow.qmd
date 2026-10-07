@@ -1493,7 +1493,7 @@ this:
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
-// [ main.nf ]
+// [ main_mrsa.nf ]
 // Include subworkflow
 include { ALIGNMENT } from "./subworkflows/alignment.nf"
 
