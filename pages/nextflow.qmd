@@ -1266,11 +1266,20 @@ without needing to explicitly do so! The `path` input type can handle either
 file paths (like we've done so far) or URIs with a supported protocol (such as
 `http://`, `s3://`, `ftp://`, *etc.*). This would be highly useful for _e.g._
 the `GET_GENOME_FASTA` process - in fact, we don't even need that process at
-all! All we need to do is to change the input to the `INDEX_GENOME` and
-`ALIGN_TO_GENOME` processes.
+all! All we need to do is to change the input to the `INDEX_GENOME` process.
 
-- Create a new input channel using the `fromPath()` channel factory and the
-  absolute path (the FTP address) to the genome FASTA.
+There is one thing we need to be careful about, though. The channels we've
+created so far using _e.g._ `fromPath()` are _queue channels_, where each item
+is consumed once by a process. If we put the genome FASTA in a queue channel,
+the output of `INDEX_GENOME` will also be a queue channel containing a single
+index. `ALIGN_TO_GENOME` would then consume that index for the first sample,
+and run only once instead of once per sample! What we want is a _value
+channel_, which holds a single value that can be read any number of times. We
+can create one using the `channel.value()` factory together with the `file()`
+function, which turns a path or a URI into a file.
+
+- Create a new input channel using the `channel.value()` channel factory and
+  the absolute path (the FTP address) to the genome FASTA.
 
 - Make the `INDEX_GENOME` process use that input channel instead of the
   previously used output of the `GET_GENOME_FASTA` process.
@@ -1278,13 +1287,13 @@ all! All we need to do is to change the input to the `INDEX_GENOME` and
 - Remove the `GET_GENOME_FASTA` process, as it is not needed anymore. If you
   still publish its output, remove the `genome_fasta` workflow output as well.
 
-Re-run the workflow to see if it worked. Check the code below for an example if
-you're stuck:
+Re-run the workflow to see if it worked, and check that all three samples are
+aligned. Check the code below for an example if you're stuck:
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel creation
-ch_genome_fasta = channel.fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
+ch_genome_fasta = channel.value( file( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" ) )
 
 // Workflow definition
 INDEX_GENOME (
@@ -1310,7 +1319,7 @@ params {
 
 // [ main.nf ]
 // Channel creation
-ch_genome_gff3 = channel.fromPath ( params.genome_gff3 )
+ch_genome_gff3 = channel.value( file( params.genome_gff3 ) )
 
 // Workflow definition
 GENERATE_COUNTS_TABLE (
@@ -1320,18 +1329,20 @@ GENERATE_COUNTS_TABLE (
 ```
 :::
 
-If we want to get detailed we can also change the hard-coded "NCT8325" naming in
-_e.g._ the `INDEX_GENOME` process and put that in another parameter, or grab the
-`baseName()` from the channel and make a `[prefix, file]` tuple using the
-`map{}` operator like we did previously; check below if you're curious of how
-this could be done.
+If we want to get detailed we can also change the hard-coded "NCTC8325" naming
+in the `INDEX_GENOME` and `ALIGN_TO_GENOME` processes and put that in another
+parameter, or grab the name of the file using `getSimpleName()` (which removes
+all file extensions) and make a `[prefix, file]` tuple using the `map{}`
+operator like we did previously. The index prefix then has to be passed on to
+`ALIGN_TO_GENOME` together with the index files; check below if you're curious
+of how this could be done.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel definition
 ch_genome_fasta = channel
-    .fromPath( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" )
-    .map     { file -> tuple(file.getBaseName(), file) }
+    .value ( file( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" ) )
+    .map   { file -> tuple(file.getSimpleName(), file) }
 
 // INDEX_GENOME process definition
 process INDEX_GENOME {
@@ -1340,13 +1351,31 @@ process INDEX_GENOME {
     tuple val(fasta_name), path(fasta)
 
     output:
-    path("*.bt2"), emit: index
+    tuple val(fasta_name), path("*.bt2"), emit: index
 
     script:
     """
     # Bowtie2 cannot use .gz, so unzip to a temporary file first
     gunzip -c ${fasta} > tempfile
     bowtie2-build tempfile ${fasta_name}
+    """
+}
+
+// ALIGN_TO_GENOME process definition
+process ALIGN_TO_GENOME {
+
+    tag "${sample}"
+
+    input:
+    tuple val(sample), path(fastq)
+    tuple val(index_name), path(idx)
+
+    output:
+    tuple val(sample), path("*.bam"), emit: bam
+
+    script:
+    """
+    bowtie2 -x ${index_name} -U ${fastq} > ${sample}.bam
     """
 }
 ```
