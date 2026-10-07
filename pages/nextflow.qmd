@@ -557,7 +557,7 @@ In this section we've learnt:
 
 It's time to start working with a more realistic workflow using the MRSA case
 study of this course! We've created a bare-bones version of this pipeline for
-you, but we'll work our way through it as we go along and learn more about
+you (see `main_mrsa.nf`), but we'll work our way through it as we go along and learn more about
 Nextflow's features and functionality. The MRSA workflow looks like this:
 
 ```nextflow
