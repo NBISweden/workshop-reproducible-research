@@ -314,7 +314,17 @@ so to speak.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
+// Channel definition in the workflow
 ch_input = channel.fromPath( "b.txt" )
+
+// Output and script sections of the process
+output:
+path("b.upper.txt")
+
+script:
+"""
+tr [a-z] [A-Z] < ${file} > b.upper.txt
+"""
 ```
 :::
 
