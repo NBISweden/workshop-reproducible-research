@@ -77,7 +77,7 @@ process DOWNLOAD_FASTQ_FILES {
 
     script:
     """
-    curl -L -A "Mozilla/5.0" ${figshare_link} -o ${sra_id}.fastq.gz
+    curl -L ${figshare_link} -o ${sra_id}.fastq.gz
     """
 }
 
