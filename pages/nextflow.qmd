@@ -437,7 +437,24 @@ true)`. This will allow us to reference the columns using their names instead of
 their index, _e.g._ `row.col1` instead of `row[0]`.
 
 - Add an appropriate header to your samplesheet, make sure your workflow can
-  read it and execute. Use `.view()` to see what's going on, if needed.
+  read it and execute. Remember to also change the `.map{}` operator to use the
+  column names. Use `.view()` to see what's going on, if needed; click below if
+  you're having trouble.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```no-highlight
+sample,file
+a,a.txt
+b,b.txt
+```
+
+```nextflow
+ch_input = channel
+    .fromPath ( "first_samplesheet.csv" )
+    .splitCsv ( header: true )
+    .map      { row -> tuple(row.sample, file(row.file)) }
+```
+:::
 
 ### Adding more processes
 
