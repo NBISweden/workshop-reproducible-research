@@ -1105,7 +1105,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/natsort-8.4.0-pyh29332c3_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/networkx-3.6.1-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/nspr-4.38-h29cc59b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/nss-3.118-h445c969_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/numpy-2.4.1-py314h2b28147_0.conda
@@ -1286,7 +1286,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/natsort-8.4.0-pyh29332c3_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/ncurses-6.5-h0622a9a_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/networkx-3.6.1-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/numpy-2.4.1-py314hfc4c462_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/openjdk-23.0.2-h18c9476_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/openjpeg-2.5.4-h87e8dc5_0.conda
@@ -1445,7 +1445,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/natsort-8.4.0-pyh29332c3_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h5e97a16_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/networkx-3.6.1-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/numpy-2.4.1-py314hae46ccb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openjdk-23.0.2-hfb9339a_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openjpeg-2.5.4-hbfb3c88_0.conda
@@ -10306,16 +10306,16 @@ packages:
   license_family: BSD
   size: 1587439
   timestamp: 1765215107045
-- conda: https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda
-  sha256: 31164f531b9ec17cdc766458dbff18bea9409bf65a7dce08cde369d390dc7df3
-  md5: d5637b16b8df941e9a6cb3109346283d
+- conda: https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda
+  sha256: 452805a6a3cc3f4e28417d855c7c03001dce1b2557a7e8ae46971d3a8778f9af
+  md5: 4fea597e1977b0221de342a3bfb2d971
   depends:
   - coreutils
   - curl
-  - openjdk >=17,<=24
+  - openjdk >=17,<26
   license: Apache-2.0
-  size: 34828352
-  timestamp: 1764361506696
+  size: 37863659
+  timestamp: 1784828644646
 - conda: https://conda.anaconda.org/conda-forge/linux-64/nodejs-22.21.1-h4a9c4b4_0.conda
   sha256: 7808695078b286548a56a0833bbe65f0d2a547bc134bc8a12d106b384d048e17
   md5: 3fe7cdb8ea3181917e358f31a9a0b514

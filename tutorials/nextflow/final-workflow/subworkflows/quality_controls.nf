@@ -22,9 +22,6 @@ workflow QUALITY_CONTROLS {
 process RUN_FASTQC {
 
     // Run FastQC on a FASTQ file.
-    //
-    // No output publishing required as all results are aggregated by MultiQC
-
     tag "${sample}"
 
     input:
@@ -43,9 +40,6 @@ process RUN_FASTQC {
 process RUN_MULTIQC {
 
     // Aggregate all FastQC reports into a MultiQC report.
-
-    publishDir "${params.outdir}/qc",
-        mode: "copy"
 
     input:
     path(zips)

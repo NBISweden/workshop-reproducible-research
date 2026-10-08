@@ -30,7 +30,7 @@ https://conda.anaconda.org/bioconda/osx-64/samtools-1.22.1-ha21ef43_0.tar.bz2#f0
 https://conda.anaconda.org/conda-forge/osx-64/openjdk-23.0.2-h18c9476_2.conda#e8b746e8947c0dab5aeb7a26b8bce2ad
 https://conda.anaconda.org/conda-forge/osx-64/curl-8.18.0-h9348e2b_0.conda#d4e526c62dedf231b5b9c7200bcf1ce6
 https://conda.anaconda.org/conda-forge/osx-64/coreutils-9.5-h10d778d_0.conda#8332c7ae324c9fc4b22cc3d84a0582e8
-https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda#d5637b16b8df941e9a6cb3109346283d
+https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda#4fea597e1977b0221de342a3bfb2d971
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda#ad659d0a2b3e47e38d829aa8cad2d610
 https://conda.anaconda.org/conda-forge/osx-64/tk-8.6.13-hf689a15_3.conda#bd9f1de651dbd80b51281c694827f78f
 https://conda.anaconda.org/conda-forge/osx-64/readline-8.3-h68b038d_0.conda#eefd65452dfe7cce476a519bece46704

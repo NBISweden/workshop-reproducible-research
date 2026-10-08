@@ -79,7 +79,7 @@ https://conda.anaconda.org/conda-forge/linux-64/alsa-lib-1.2.15.2-hb03c661_0.con
 https://conda.anaconda.org/conda-forge/linux-64/openjdk-23.0.2-h53dfc1b_2.conda#47eea31e0c3f960459237823e5e21a32
 https://conda.anaconda.org/conda-forge/linux-64/curl-8.18.0-h4e3cde8_0.conda#261410cab40c7142adce3a09e24cae41
 https://conda.anaconda.org/conda-forge/linux-64/coreutils-9.5-hd590300_0.conda#126d457e0e7a535278e808a7d8960015
-https://conda.anaconda.org/bioconda/noarch/nextflow-25.10.2-h2a3209d_0.conda#d5637b16b8df941e9a6cb3109346283d
+https://conda.anaconda.org/bioconda/noarch/nextflow-26.04.6-h2a3209d_1.conda#4fea597e1977b0221de342a3bfb2d971
 https://conda.anaconda.org/conda-forge/noarch/tzdata-2025c-hc9c84f9_1.conda#ad659d0a2b3e47e38d829aa8cad2d610
 https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_ha0e22de_103.conda#86bc20552bf46075e3d92b67f089172d
 https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda#d7d95fc8287ea7bf33e0e7116d2b95ec
