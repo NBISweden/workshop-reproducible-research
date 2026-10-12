@@ -72,7 +72,7 @@ channels = ["conda-forge", "bioconda"]
 python = "*"
 fastqc = "*"
 seqtk = "*"
-snakemake = ">=8"
+snakemake = ">=9.17"
 multiqc = "*"
 bowtie2 = "*"
 tbb = "*"
