@@ -1,6 +1,6 @@
 from snakemake.utils import min_version
 
-min_version("8.0.0")
+min_version("9.0.0")
 
 
 # Collect the main outputs of the workflow.
@@ -27,7 +27,7 @@ rule get_SRA_by_accession:
         url=get_sample_url,
     shell:
         """
-        curl -L {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        curl -L {params.url} | seqtk sample - 25000 | gzip -c >{output[0]}
         """
 
 
@@ -104,7 +104,7 @@ rule index_genome:
     shell:
         """
         # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
+        gunzip -c {input} >tempfile
         bowtie2-build tempfile results/bowtie2/NCTC8325
 
         # Remove the temporary file
@@ -126,7 +126,7 @@ rule align_to_genome:
         "results/bam/{sample_id,\\w+}.bam",
     shell:
         """
-        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} >{output}
         """
 
 
@@ -138,7 +138,7 @@ rule sort_bam:
         "results/bam/{sample_id}.sorted.bam",
     shell:
         """
-        samtools sort {input} > {output}
+        samtools sort {input} >{output}
         """
 
 
