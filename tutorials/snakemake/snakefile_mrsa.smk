@@ -38,14 +38,11 @@ rule fastqc:
     output:
         "results/fastqc/{sample_id}_fastqc.html",
         "results/fastqc/{sample_id}_fastqc.zip",
+    params:
+        output_dir=subpath(output[0], parent=True),
     shell:
         """
-        # Run fastQC and save the output to the current directory
-        fastqc {input} -q -o .
-
-        # Move the files which are used in the workflow
-        mv {wildcards.sample_id}_fastqc.html {output[0]}
-        mv {wildcards.sample_id}_fastqc.zip {output[1]}
+        fastqc {input} -q -o {params.output_dir}
         """
 
 
