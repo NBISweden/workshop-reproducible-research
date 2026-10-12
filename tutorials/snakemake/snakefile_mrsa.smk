@@ -100,12 +100,7 @@ rule index_genome:
         "results/bowtie2/NCTC8325.rev.2.bt2",
     shell:
         """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} >tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325
-
-        # Remove the temporary file
-        rm tempfile
+        bowtie2-build {input} results/bowtie2/NCTC8325
         """
 
 
