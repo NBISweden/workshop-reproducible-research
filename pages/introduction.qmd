@@ -79,7 +79,7 @@ The input files are:
 The workflow itself will perform the following tasks:
 
 - Downloading and indexing of the reference genome using _Bowtie2_
-- Downloading the raw FASTQ data from the _Sequence Read Archive_ (SRA)
+- Downloading the raw FASTQ data.
 - Run some quality controls on the data using _FastQC_ and _MultiQC_
 - Align the raw data to the genome and calculate the gene expression using
   _featureCounts_
