@@ -128,7 +128,9 @@ The command thus becomes:
 snakemake -s Snakefile -c 1 -n -p a.upper.txt
 ```
 
-You should see something like this:
+Snakemake first prints a header with information about the run (Snakemake
+version, which Snakefile is used, the working directory and so on). After
+that you should see something like this:
 
 ```no-highlight
 Building DAG of jobs...
@@ -146,10 +148,9 @@ rule convert_to_upper_case:
     jobid: 0
     reason: Missing output files: a.upper.txt
     resources: tmpdir=<TBD>
+Shell command:
+        tr a-z A-Z <a.txt >a.upper.txt
 
-
-        tr a-z A-Z < a.txt > a.upper.txt
-        
 Job stats:
 job                      count
 ---------------------  -------
@@ -160,7 +161,6 @@ Reasons:
     (check individual jobs above for details)
     output files have to be generated:
         convert_to_upper_case
-
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
@@ -736,9 +736,9 @@ The content of `summary.tsv` is shown in the table below:
 
 | output_file | date                  | rule                    | log-file(s) | input-file(s)          | shellcmd                                  | status                     | plan            |
 |-------------|-----------------------|-------------------------|-------------|------------------------|-------------------------------------------|----------------------------|-----------------|
-| a_b.txt     | Fri Nov 15 10:32:04 2024 | concatenate_files       |             | a.upper.txt,b.upper.txt | cat a.upper.txt b.upper.txt > a_b.txt     | rule implementation changed | update pending  |
-| a.upper.txt | Fri Nov 15 10:32:04 2024 | convert_to_upper_case   |             | a.txt                  | tr a-z A-Z < a.txt > a.upper.txt      | ok                         | no update       |
-| b.upper.txt | Thu Nov 14 00:04:06 2024 | convert_to_upper_case   |             | b.txt                  | tr a-z A-Z < b.txt > b.upper.txt      | ok                         | no update       |
+| a_b.txt     | Fri Nov 15 10:32:04 2024 | concatenate_files       |             | a.upper.txt,b.upper.txt | cat a.upper.txt b.upper.txt >a_b.txt      | rule implementation changed | update pending  |
+| a.upper.txt | Fri Nov 15 10:32:04 2024 | convert_to_upper_case   |             | a.txt                  | tr a-z A-Z <a.txt >a.upper.txt        | ok                         | no update       |
+| b.upper.txt | Thu Nov 14 00:04:06 2024 | convert_to_upper_case   |             | b.txt                  | tr a-z A-Z <b.txt >b.upper.txt        | ok                         | no update       |
 
 : summary.tsv {.responsive .sm}
 
