@@ -544,7 +544,7 @@ digraph snakemake_dag {
 The main difference here is that now each node is a job instead of a rule. You
 can see that the wildcards used in each job are also displayed. Another
 difference is the dashed lines around the nodes. A dashed line is Snakemake's
-way of indicating that this rule doesn't need to be rerun in order to generate
+way of indicating that this job doesn't need to be rerun in order to generate
 `a_b.txt`. Validate this by running `snakemake -c 1 -n a_b.txt` and it should say
 that there is nothing to be done.
 
@@ -1624,8 +1624,9 @@ rule some_rule:
         """
 ```
 1. `some_input.txt` gets symlinked into a shadow directory under `.snakemake/shadow/`.
-2. the shell commands generate the file `some_other_junk_file` in this shadow directory, 
-3. the output file is generated at `results/some_output.txt` 
+2. The shell commands generate the file `some_other_junk_file` in the shadow directory.
+3. The output file is created in the shadow directory and moved to
+   `results/some_output.txt` when the job has finished.
 
 When the rule finishes, the shadow directory is removed which means we wouldn't
 have to think about manually removing `some_other_junk_file`.
@@ -1999,13 +2000,13 @@ excellent features:
 - A general RNA-seq pipeline which can easily be reused between projects,
   thanks to clear separation between code and settings.
 - Great traceability due to logs and summary tables.
-- Clearly defined the environment for the workflow using Conda.
+- A clearly defined software environment for the workflow using Conda.
 - The workflow is neat and free from temporary files due to using `temp()` and
   `shadow`.
 - A logical directory structure which makes it easy to separate data and
   results of different software packages.
-- A project set up in a way that makes it very easy to distribute and
-  reproduce either via Git, Snakemake's `--archive` option or a Docker image.
+- A project set up in a way that makes it easy to distribute and reproduce,
+  _e.g._ via Git.
 :::
 
 ## Extra material
@@ -2102,8 +2103,9 @@ and just update the path to their own `sample_sheet` using the config file.
 ### Integrated Package Management
 
 Snakemake supports using isolated software environments for each rule. These can
-be Conda environments or Docker containers which will be created/spawned by
-Snakemake and used to execute jobs in the workflow.
+be Conda environments or containers (_e.g._ Docker images run with Apptainer)
+which will be created/spawned by Snakemake and used to execute jobs in the
+workflow.
 
 To use a conda environment for a rule you add the `conda:` directive and point
 to a conda environment file:
@@ -2247,12 +2249,12 @@ If you choose this option, you don't need to install anything from the plugin
 catalogue. However, your workflow may not run as efficiently as it could if you
 were to add SLURM support in Snakemake.
 
-#### Option 2 (recommended): Use built-in SLURM support
+#### Option 2 (recommended): Use the SLURM executor plugin
 
 For workflows with long run times and/or where each rule requires different
-compute resources, Snakemake comes with built in functionality for interacting
-with the SLURM workload manager and send each rule as a job to the SLURM queue
-and to track the status of each job.
+compute resources, you can let Snakemake interact with the SLURM workload
+manager via the SLURM executor plugin. Snakemake then submits each job to the
+SLURM queue and tracks the status of each job.
 
 In this case, you can start the workflow on the login node and let it run there
 until all jobs have finished. Given that workflows often consist of many rules,
