@@ -61,7 +61,7 @@ echo "This is b.txt" > b.txt
 ```
 
 Then open `Snakefile` in your favourite text editor. A Snakemake workflow is based on
-rules which take some file(s) as input, performs some type of operation on
+rules which take some file(s) as input, perform some type of operation on
 them, and generate some file(s) as outputs. Here is a very simple rule that
 produces `a.upper.txt` as an output, using `a.txt` as input. Copy this rule to
 your `Snakefile` and save it.
@@ -167,7 +167,7 @@ This was a dry-run (flag -n). The order of jobs does not reflect the order of ex
 You can see that Snakemake plans to run one job: the rule
 `convert_to_upper_case` with `a.txt` as input and `a.upper.txt` as output. The
 reason for doing this is that it's missing the file `a.upper.txt`. Now run the
-command without the `-n` flag and check that the contents of `a.upper.txt` is as
+command without the `-n` flag and check that the contents of `a.upper.txt` are as
 expected.
 
 We used the `-s` flag to point to the file containing the rules. In fact,
@@ -220,7 +220,7 @@ available (actually only one in this case) and tries to assign values to all
 wildcards so that the targeted files can be generated. In this case you can see
 that it says `wildcards: some_name=b`, which means that the `some_name` wildcard
 was assigned the value `b`. This was quite simple but for large workflows and
-multiple wildcards it can get much more complex. Named wildcards is what enables
+multiple wildcards it can get much more complex. Named wildcards are what enable
 a workflow (or single rules) to be efficiently generalized and reused between
 projects or shared between people.
 
@@ -229,7 +229,7 @@ uppercase and concatenate them. It seems we have the first part of our workflow
 working, now it's time to make the second rule for concatenating the outputs
 from `convert_to_upper_case`. 
 
-The syntax for concatenating two files in Bash is :
+The syntax for concatenating two files in Bash is:
 
 ```bash
 cat first_file.txt second_file.txt > output_file.txt
@@ -362,15 +362,15 @@ path through the workflow, _e.g._ `sample_a.trimmed.deduplicated.sorted.bam`.
 
 ### Input functions
 
-The input to Snakemake rules have to be strings or lists of strings, however you
+The input to Snakemake rules has to be strings or lists of strings, however you
 don't have to specify these strings directly in the `input:` section of rules.
 Instead, you can define Python functions that return strings or lists of strings
 and use these to pass input to Snakemake rules. This allows you to supply input
 to rules that can vary depending on the wildcards being used. We'll get to why
-that's useful in a sec, but first let's put it to use for the `conatenate_files`
+that's useful in a sec, but first let's put it to use for the `concatenate_files`
 rule. Because Snakemake is based on Python we can mix rule definitions with
-standard python code in the same file. Add a function just above the
-`concatenate_files` that looks like this:
+standard Python code in the same file. Add a function just above the
+`concatenate_files` rule that looks like this:
 
 ```{.python filename="Snakefile"}
 def concat_input(wildcards):
@@ -420,10 +420,10 @@ that you have an experiment where you've sequenced three samples: `sample1`,
 `sample2` and `sample3` with the corresponding FASTQ files under `data/` and you
 want to write a rule that outputs the statistics of all sequences within each
 sample. However, samples `sample1` and `sample2` have been sequenced with
-single-end technology while `sample3` have paired-end reads. The single-end
+single-end technology while `sample3` has paired-end reads. The single-end
 samples will have only one FASTQ file whereas the paired-end sample will have
 two (one for each sequenced end). Thus, depending on the name of the sample the
-input to the function will either be one file or two. With input functions we
+input to the rule will either be one file or two. With input functions we
 can write a generalized rule that can handle both types:
 
 ```python
@@ -480,7 +480,7 @@ that shows rules with their respective input/output files.
 
 First we look at the rule graph. The following command will generate a rule
 graph in the dot language and pipe it to the program `dot`, which in turn will
-save a visualization of the graph as a PNG file (if you're having troubles
+save a visualization of the graph as a PNG file (if you're having trouble
 displaying PNG files you could use SVG or JPG instead).
 
 ```bash
@@ -912,7 +912,7 @@ with. Let's run the workflow with one core:
 snakemake -s snakefile_mrsa.smk -c 1 -p
 ```
 
-After everything is done, the workflow will have generated fastq files for each
+After everything is done, the workflow will have generated FASTQ files for each
 sample under `data/` and reference genome files under `data/ref`. The `results/`
 directory will contain the output from the different steps in the workflow,
 divided into subdirectories. Take some time to look through the structure.
@@ -955,7 +955,7 @@ In the MRSA workflow most of the programs are run with default settings and
 don't use the `params:` directive. However, the `get_SRA_by_accession` rule is
 an exception. In this rule the `url` parameter is set using a function, which is
 similar to what you did in the [Input functions](#input-functions) section.
-Using a function to return values based wildcards also works for `params:`. 
+Using a function to return values based on wildcards also works for `params:`. 
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 def get_sample_url(wildcards): # <1>
@@ -992,7 +992,8 @@ Let's add another parameter to the `get_SRA_by_accession` rule. As you can see
 in the shell command the FASTQ file downloaded by `curl` gets piped directly to
 the `seqtk sample` command which reads from STDIN and outputs 25000 randomly
 sampled reads (out of the 100,000 contained in the example FASTQ file). Change
-in the rule to use the parameter `max_reads` instead and set the value to 20000.
+the rule to use a parameter `max_reads` instead of the hard-coded value and set
+it to 20000.
 If you need help, click to show the solution below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
@@ -1017,7 +1018,7 @@ Now run the workflow again with:
 snakemake -s snakefile_mrsa.smk -p -c 1
 ```
 
-Because there's been changes to the `get_SRA_by_accession` rule this will
+Because there have been changes to the `get_SRA_by_accession` rule this will
 trigger a re-run of the rule for all three accessions. In addition all
 downstream rules that depend on output from `get_SRA_by_accession` are re-run.
 
@@ -1048,7 +1049,7 @@ use the `snakemake --config KEY=VALUE` syntax directly from the command line
 (_e.g._ `snakemake --config max_reads=20000 -s snakefile_mrsa.smk`).
 However, from a reproducibility perspective, it's not optimal to set parameters
 from the command line, since it's difficult to keep track of which parameter
-values that were used.
+values were used.
 
 A much better alternative is to use the `--configfile FILE` option to supply a
 configuration file to Snakemake. In this file we can collect all the
@@ -1423,7 +1424,7 @@ rule align_to_genome:
         """
 ```
 
-Here we have seven inputs; the FASTQ file with the reads and six files with
+Here we have seven inputs: the FASTQ file with the reads and six files with
 similar file names from the Bowtie2 genome indexing. Instead of writing all
 the filenames we can tidy this up by using the `expand()` helper function.
 
@@ -1481,7 +1482,9 @@ rule align_to_genome:
 
 Great! Let's put the `expand` function to more use!
 
-The `multiqc` and `generate_count_table` rules take as input the fastqc zip files, and the sorted bam files for all three samples, respectively. See the excerpt below:
+The `multiqc` and `generate_count_table` rules take as input the FastQC zip
+files and the sorted BAM files for all three samples, respectively. See the
+excerpt below:
 
 ```{.python filename="snakefile_mrsa.smk"}
 rule multiqc:
@@ -1508,7 +1511,7 @@ Having the files for each sample written explicitly in these rules is how
 Snakemake knows to run the workflow for all three samples. However, this is also
 a potential source of errors since it's easy to change in one place and forget
 to change in the other. Because we can use Python code "everywhere" let's
-instead define a list of sample ids and put at the top of the Snakefile, just
+instead define a list of sample ids and put it at the top of the Snakefile, just
 before the rule `all`:
 
 ```{.python filename="snakefile_mrsa.smk"}
@@ -1583,7 +1586,7 @@ rule multiqc:
         """
 ```
 
-The way MultiQC is run here a data directory `multiqc_data` is generated in
+The way MultiQC is run here, a data directory `multiqc_data` is generated in
 addition to the final `multiqc.html` report and the `multiqc_general_stats.txt`
 file. Only the latter two are kept and the `multiqc_data` directory is removed
 as part of the shell command run by the rule.
@@ -1605,7 +1608,7 @@ causes each execution of the rule to run in an isolated temporary directory
 `shadow` (for the full list of these options see the [Snakemake
 docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
 
-The most simple is `shadow: "minimal"`, which means that the rule is executed in
+The simplest is `shadow: "minimal"`, which means that the rule is executed in
 an empty shadow directory that the input files to the rule have been symlinked
 into. Take the example below:
 
@@ -1631,7 +1634,7 @@ rule some_rule:
 When the rule finishes, the shadow directory is removed which means we wouldn't
 have to think about manually removing `some_other_junk_file`.
 
-Try implementing the `shadow` directory for the `multiqc` rule so we don't have
+Try implementing the `shadow` directive for the `multiqc` rule so we don't have
 to "manually" delete files that aren't tracked by Snakemake. Add `shadow:
 "minimal"` and also delete the shell commands that remove the `multiqc_data`
 directory. Check the solution below if you need help.
@@ -1711,7 +1714,7 @@ samples:
   SRR935092: "https://ndownloader.figshare.com/files/39539773"
 ```
 
-Now when passing `--configfile config.yml`on the command line
+Now when passing `--configfile config.yml` on the command line
 `config["samples"]` will be a dictionary where the keys are the sample ids and
 the values are the URLs to the FASTQ files.
 
@@ -2016,7 +2019,7 @@ resources here:
 
 - The Snakemake documentation is available on [ReadTheDocs](https://snakemake.readthedocs.io/en/stable/#).
 - Here is another (quite in-depth) [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
-- If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
+- If you have questions, check out [Stack Overflow](https://stackoverflow.com/questions/tagged/snakemake).
 
 ### Reading samples from a file instead of hard-coding them
 
@@ -2033,8 +2036,8 @@ SRR935091,https://ndownloader.figshare.com/files/39539770
 SRR935092,https://ndownloader.figshare.com/files/39539773
 ```
 
-The first column has the sample id and the second column has the url to the
-fastq file. Next we'll add a config parameter `sample_sheet` to the
+The first column has the sample id and the second column has the URL to the
+FASTQ file. Next we'll add a config parameter `sample_sheet` to the
 configuration file:
 
 ```{.yaml filename="config.yml"}
@@ -2100,7 +2103,7 @@ You can now remove the `samples:` section from `config.yml`, since the samples
 are read from the sample sheet instead. This way, anyone can take our Snakefile
 and just update the path to their own `sample_sheet` using the config file.
 
-### Integrated Package Management
+### Integrated package management
 
 Snakemake supports using isolated software environments for each rule. These can
 be Conda environments or containers (_e.g._ Docker images run with Apptainer)
@@ -2125,7 +2128,7 @@ rule some_rule:
 ```
 
 Let's apply this to the `index_genome` and `align_to_genome` rules. First create
-a file `bowtie2.yml` under a `envs/` subdirectory:
+a file `bowtie2.yml` under an `envs/` subdirectory:
 
 ```bash
 mkdir envs/
@@ -2458,7 +2461,7 @@ snakefmt snakefile_mrsa.smk
 
 ::: {.callout-tip title="VSCode plugin"}
 
-There's a VSCode plugin for Snakefmt which you can use to automatically rewrite
-your Snakefiles on save. Search for "Snakefmt" in the plugin catalog.
+There's a VS Code extension for Snakefmt which you can use to automatically
+rewrite your Snakefiles on save. Search for "Snakefmt" in the Extensions view.
 
 :::
