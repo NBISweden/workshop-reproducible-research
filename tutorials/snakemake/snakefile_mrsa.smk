@@ -20,7 +20,7 @@ def get_sample_url(wildcards):
 
 
 # Retrieve a single-read FASTQ file
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
         "data/{sample_id}.fastq.gz",
     params:
