@@ -811,7 +811,7 @@ digraph MRSA_rulegraph {
         1[label = "generate_count_table", color = "0.20 0.6 0.85", style="rounded"];
         2[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         3[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        4[label = "get_SRA_by_accession", color = "0.27 0.6 0.85", style="rounded"];
+        4[label = "download_fastq_files", color = "0.27 0.6 0.85", style="rounded"];
         5[label = "index_genome", color = "0.47 0.6 0.85", style="rounded"];
         6[label = "get_genome_fasta", color = "0.33 0.6 0.85", style="rounded"];
         7[label = "get_genome_gff3", color = "0.40 0.6 0.85", style="rounded"];
@@ -865,15 +865,15 @@ digraph MRSA_jobgraph {
         1[label = "generate_count_table", color = "0.20 0.6 0.85", style="rounded"];
         2[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         3[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.27 0.6 0.85", style="rounded"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", color = "0.27 0.6 0.85", style="rounded"];
         5[label = "index_genome", color = "0.47 0.6 0.85", style="rounded"];
         6[label = "get_genome_fasta", color = "0.33 0.6 0.85", style="rounded"];
         7[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         8[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        9[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.27 0.6 0.85", style="rounded"];
+        9[label = "download_fastq_files\nsample_id: SRR935091", color = "0.27 0.6 0.85", style="rounded"];
         10[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         11[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        12[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.27 0.6 0.85", style="rounded"];
+        12[label = "download_fastq_files\nsample_id: SRR935092", color = "0.27 0.6 0.85", style="rounded"];
         13[label = "get_genome_gff3", color = "0.40 0.6 0.85", style="rounded"];
         14[label = "multiqc", color = "0.53 0.6 0.85", style="rounded"];
         15[label = "fastqc", color = "0.13 0.6 0.85", style="rounded"];
@@ -952,7 +952,7 @@ which is set to `2.5` and this value can be accessed in the shell command with
 `{params.cutoff}`. 
 
 In the MRSA workflow most of the programs are run with default settings and
-don't use the `params:` directive. However, the `get_SRA_by_accession` rule is
+don't use the `params:` directive. However, the `download_fastq_files` rule is
 an exception. In this rule the `url` parameter is set using a function, which is
 similar to what you did in the [Input functions](#input-functions) section.
 Using a function to return values based on wildcards also works for `params:`. 
@@ -967,7 +967,7 @@ def get_sample_url(wildcards): # <1>
     return samples[wildcards.sample_id] # <3>
 
 # Retrieve a single-read FASTQ file
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
         "data/{sample_id}.fastq.gz",
     params:
@@ -988,7 +988,7 @@ convert the value of the `sample_id` wildcard to a URL.
 5. Finally, in the `shell:` directive we access the `url` parameter with
 `{params.url}`.
 
-Let's add another parameter to the `get_SRA_by_accession` rule. As you can see
+Let's add another parameter to the `download_fastq_files` rule. As you can see
 in the shell command the FASTQ file downloaded by `curl` gets piped directly to
 the `seqtk sample` command which reads from STDIN and outputs 25000 randomly
 sampled reads (out of the 100,000 contained in the example FASTQ file). Change
@@ -999,7 +999,7 @@ If you need help, click to show the solution below.
 ::: {.callout-tip collapse="true" title="Click to show"}
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
         "data/{sample_id}.fastq.gz",
     params:
@@ -1018,17 +1018,17 @@ Now run the workflow again with:
 snakemake -s snakefile_mrsa.smk -p -c 1
 ```
 
-Because there have been changes to the `get_SRA_by_accession` rule this will
+Because there have been changes to the `download_fastq_files` rule this will
 trigger a re-run of the rule for all three accessions. In addition all
-downstream rules that depend on output from `get_SRA_by_accession` are re-run.
+downstream rules that depend on output from `download_fastq_files` are re-run.
 
 As you can see the parameter values we set in the `params` section don't have to
 be static, they can be any Python expression. In particular, Snakemake provides
 a global dictionary of configuration parameters called `config`. Let's modify
-`get_SRA_by_accession` in order to make use of this dictionary:
+`download_fastq_files` in order to make use of this dictionary:
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
         "data/{sample_id}.fastq.gz",
     params:
@@ -1761,7 +1761,7 @@ rule generate_count_table:
 To see that your new implementation works you can do a forced rerun of the modified rules:
 
 ```bash
-snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun generate_count_table multiqc get_SRA_by_accession
+snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun generate_count_table multiqc download_fastq_files
 ```
 
 ::: {.callout-tip}
@@ -1819,7 +1819,7 @@ Replace the hard-coded `NCTC8325` with a wildcard `{genome_id}` in both the
 `output` and `log` directives. We now need to supply the remote paths to the
 FASTA file for a given genome id. Because we've added this information to the
 config file we just need to pass it to the rule in some way, and just like in
-the `get_SRA_by_accession` rule we'll use a function to do the job:
+the `download_fastq_files` rule we'll use a function to do the job:
 
 
 ```{.python filename="snakefile_mrsa.smk"}
