@@ -1926,15 +1926,18 @@ Now we can resolve the `genome_id` wildcard from the config. For
 ```
 
 Here the `substr` wildcard gets expanded from a list while `genome_id` gets
-expanded from the config dictionary. Also change the hard-coded `NCTC8325` in
-the `shell:` directive of `align_to_genome` so that the genome_id is inserted
-directly from the config, like this:
+expanded from the config dictionary. We'll also replace the hard-coded
+`NCTC8325` in the `shell:` directive of `align_to_genome`. Pass the genome id
+to the shell command via `params:`, so that Snakemake tracks it as a parameter
+(see the `params` rerun-trigger):
 
 ```{.python .code-overflow-scroll}
-shell:
-    """
-    bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} >{output} 2>{log}
-    """
+    params:
+        genome_id=config["genome_id"],
+    shell:
+        """
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input[0]} >{output} 2>{log}
+        """
 ```
 
 The final rule should look like this:
@@ -1952,9 +1955,11 @@ rule align_to_genome:
         temp("results/bam/{sample_id,\\w+}.bam"),
     log:
         "results/logs/align_to_genome/{sample_id}.log",
+    params:
+        genome_id=config["genome_id"],
     shell:
         """
-        bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} >{output} 2>{log}
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input[0]} >{output} 2>{log}
         """
 ```
 
@@ -2202,9 +2207,11 @@ rule align_to_genome:
         "envs/bowtie2.yml"
     container:
         "docker://quay.io/biocontainers/bowtie2:2.5.4--he96a11b_6"
+    params:
+        genome_id=config["genome_id"],
     shell:
         """
-        bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} >{output} 2>{log}
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input[0]} >{output} 2>{log}
         """
 ```
 
