@@ -935,12 +935,12 @@ keyword.
 
 ```python
 rule some_rule:
-    output:
-        "results/some_output.txt"
     input:
-        "some_input.txt"
+        "some_input.txt",
+    output:
+        "results/some_output.txt",
     params:
-        cutoff=2.5
+        cutoff=2.5,
     shell:
         """
         some_program --cutoff {params.cutoff} {input} {output}
@@ -1496,10 +1496,10 @@ rule multiqc:
 rule generate_count_table:
     ...
     input:
-        bams = [
+        bams=[
             "results/bam/SRR935090.sorted.bam",
             "results/bam/SRR935091.sorted.bam",
-            "results/bam/SRR935092.sorted.bam"
+            "results/bam/SRR935092.sorted.bam",
         ],
 ...
 ```
@@ -1742,11 +1742,11 @@ rule generate_count_table:
         bams=expand(
             "results/bam/{sample_id}.sorted.bam", sample_id=config["samples"].keys()
         ),
-        annotation = "data/ref/NCTC8325.gff3.gz"
+        annotation="data/ref/NCTC8325.gff3.gz",
     output:
-        "results/tables/counts.tsv"
+        "results/tables/counts.tsv",
     log:
-        "results/logs/generate_count_table.log"
+        "results/logs/generate_count_table.log",
     shell:
         """
         featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
@@ -1929,7 +1929,7 @@ directly from the config, like this:
 ```{.python .code-overflow-scroll}
 shell:
     """
-    bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
+    bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} >{output} 2>{log}
     """
 ```
 
@@ -1970,7 +1970,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
+        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
         """
 ```
 
@@ -2111,9 +2111,9 @@ to a conda environment file:
 ```{.python}
 rule some_rule:
     input:
-        "some_input.txt"
+        "some_input.txt",
     output:
-        "some_output.txt"
+        "some_output.txt",
     conda:
         "envs/some_program.yml"
     shell:
@@ -2303,9 +2303,9 @@ to SLURM by the SLURM plugin to set the number of CPUs required by the job:
 rule testrule:
     input:
         "data/some_fastq_file.fastq",
-        "data/some_genome_file.fasta"
+        "data/some_genome_file.fasta",
     output:
-        "results/output.txt"
+        "results/output.txt",
     resources:
         runtime=60,
         mem_mb=16000,
