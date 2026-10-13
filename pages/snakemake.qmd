@@ -1173,8 +1173,11 @@ all the rules, only the ones with interesting output:
 - `align_to_genome` outputs important statistics about the alignments. This is
   probably the most important log to save.
 
-Now add a log file to the rules `multiqc`, `get_genome_fasta`, `get_genome_gff3`, `index_genome`, `align_to_genome` and `generate_count_table`. A good place to save them
-to would be `results/logs/<rule_name>/`.
+Now add a log file to the rules `multiqc`, `get_genome_fasta`,
+`get_genome_gff3`, `index_genome`, `align_to_genome` and `generate_count_table`.
+A good place to save them is under `results/logs/`, _e.g._
+`results/logs/<rule_name>.log`, or `results/logs/<rule_name>/{sample_id}.log`
+for rules that run once per sample.
 
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
@@ -1273,12 +1276,7 @@ rule index_genome:
         "results/logs/index_genome.log",
     shell:
         """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} >tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325 >{log}
-
-        # Remove the temporary file
-        rm tempfile
+        bowtie2-build {input} results/bowtie2/NCTC8325 >{log}
         """
 
 rule generate_count_table:
@@ -1814,13 +1812,13 @@ rule get_genome_fasta:
 ```
 
 Replace the hard-coded `NCTC8325` with a wildcard `{genome_id}` in both the
-`input` and `log` directives. We now need to supply the remote paths to the
+`output` and `log` directives. We now need to supply the remote paths to the
 FASTA file for a given genome id. Because we've added this information to the
 config file we just need to pass it to the rule in some way, and just like in
 the `get_SRA_by_accession` rule we'll use a function to do the job:
 
 
-```{.python filename="snakemfile_mrsa.smk"}
+```{.python filename="snakefile_mrsa.smk"}
 def get_fasta_path(wildcards):
     return config["genomes"][wildcards.genome_id]["fasta"]
 
@@ -1891,8 +1889,6 @@ rule index_genome:
         ),
     log:
         "results/logs/index_genome/{genome_id}.log",
-    shadow:
-        "minimal"
     shell:
         """
         bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log}
@@ -2089,9 +2085,7 @@ dictionary in the `expand` function:
 ```{.python filename="snakefile_mrsa.smk"}
 rule multiqc:
     input:
-        expand(
-            "results/fastqc/{sample_id}_fastqc.zip", sample_id=config["samples"].keys()
-        ),
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=samples.keys()),
 ...
 rule generate_count_table:
     input:
@@ -2101,8 +2095,9 @@ rule generate_count_table:
         annotation=expand("data/ref/{genome_id}.gff3.gz", genome_id=config["genome_id"]),
 ```
 
-This way, anyone can take our Snakefile and just update the path to their own
-`sample_list` using the config file.
+You can now remove the `samples:` section from `config.yml`, since the samples
+are read from the sample sheet instead. This way, anyone can take our Snakefile
+and just update the path to their own `sample_sheet` using the config file.
 
 ### Integrated Package Management
 
@@ -2177,8 +2172,6 @@ rule index_genome:
         ),
     log:
         "results/logs/index_genome/{genome_id}.log",
-    shadow:
-        "minimal"
     conda:
         "envs/bowtie2.yml"
     container:
@@ -2374,7 +2367,7 @@ To set rule-specific resources in the configuration profile, you can add a
 executor: "slurm"
 jobs: 100
 default-resources:
-  slurm_account: "naiss-2023-01-001"
+  slurm_account: "naiss2026-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
   runtime: 60
@@ -2391,7 +2384,7 @@ set-resources:
 In this example, the `index_genome` rule will have a runtime of 240 minutes and
 will require 32G of RAM, while the `align_to_genome` rule will have a
 runtime of 120 minutes and will require 24G of RAM. Both rules will use
-the `slurm_account` and `slurm_partition` settings from the `default_resources`
+the `slurm_account` and `slurm_partition` settings from the `default-resources`
 section, unless overridden in the rule-specific settings.
 
 You can still define resources in the rule definition, but the values in the
