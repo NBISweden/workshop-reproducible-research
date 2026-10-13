@@ -700,9 +700,9 @@ If you now run:
 snakemake -c 1 -n a_b.txt
 ```
 
- you should see:
+you should see:
 
-```bash
+```no-highlight
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
     output: a_b.txt
@@ -2288,7 +2288,7 @@ runtime and account id. This can be done:
 2. in the rule definition of your workflow using the `resources:` directive.
 
 You can also use a combination of these methods. For example, the SLURM account
-id (_e.g. `naiss2026-01-001`), which will most likely be the same for all
+id (_e.g._ `naiss2026-01-001`), which will most likely be the same for all
 rules, can be set with `--default-resources`:
 
 ```bash
@@ -2297,7 +2297,7 @@ snakemake --executor slurm -j 100 --default-resources slurm_account=naiss2026-01
 
 Rule-specific resources such as runtime and memory can be set in the rule
 definition with the `resources:` directive. The `threads:` directive is passed
-to SLURM by the slurm plugin to set the number of cpus required by the job.:
+to SLURM by the SLURM plugin to set the number of CPUs required by the job:
 
 ```python
 rule testrule:
@@ -2400,7 +2400,7 @@ Snakemake will submit each job to the SLURM queue and inform you about both
 the local jobid and the SLURM jobid by writing something similar to this to
 your terminal:
 
-```
+```no-highlight
 Job 0 has been submitted with SLURM jobid 37099380 (log: .snakemake/slurm_logs/rule_name/37099380.log).
 ```
 
