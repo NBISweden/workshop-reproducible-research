@@ -484,8 +484,16 @@ save a visualization of the graph as a PNG file (if you're having troubles
 displaying PNG files you could use SVG or JPG instead).
 
 ```bash
-snakemake --rulegraph -c 1 a_b.txt | dot -Tpng > rulegraph.png
+snakemake --rulegraph dot a_b.txt | dot -Tpng > rulegraph.png
 ```
+
+::: {.callout-note}
+The `--rulegraph` and `--dag` flags take an optional argument for the output
+format (`dot` or `mermaid-js`). If you put a target file directly after the
+flag, _e.g._ `snakemake --rulegraph a_b.txt`, Snakemake interprets `a_b.txt`
+as the format and exits with an error. Either specify the format explicitly,
+as above, or put the target before the flag.
+:::
 
 ```{dot}
 //| echo: false
@@ -515,7 +523,7 @@ The second type of graph is based on the jobs, and looks like this for our
 little workflow (use `--dag` instead of `--rulegraph`).
 
 ```bash
-snakemake --dag -c 1 a_b.txt | dot -Tpng > jobgraph.png
+snakemake --dag dot a_b.txt | dot -Tpng > jobgraph.png
 ```
 
 ```{dot}
@@ -2263,7 +2271,7 @@ plugin](https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/sl
 from the plugin catalogue. This can be done with conda:
 
 ```bash
-conda install -c conda-forge snakemake-executor-plugin-slurm
+conda install -c conda-forge -c bioconda snakemake-executor-plugin-slurm
 ```
 
 Once installed, adding the `--executor slurm` flag to your Snakemake command
@@ -2434,7 +2442,7 @@ practices defined by the Snakemake developers.
 You can install `snakefmt` with conda:
 
 ```bash
-conda install -c bioconda snakefmt
+conda install -c conda-forge -c bioconda snakefmt
 ```
 
 Now try it out on the `snakefile_mrsa.smk` file. Instead of changing the file
