@@ -1162,17 +1162,19 @@ To avoid having multiple jobs write to the same files Snakemake requires that
 all output and log files contain the same wildcards.
 :::
 
-We probably don't need to save logs for
-all the rules, only the ones with interesting output:
+It is recommended to use a log file for all rules in a workflow. However, the
+most important rules to save logs for in this workflow are:
 
-- `multiqc` aggregates quality control data for all the samples into one html
+- `multiqc` which aggregates quality control data for all the samples into one html
   report, and the log contains information about which samples were aggregated.
 - `get_genome_fasta` and `get_genome_gff3` would be good to log since they are
   dependent on downloading files from an external server.
-- `index_genome` outputs some statistics about the genome indexing.
-- `generate_count_table` outputs information about input files, settings and a summary of results.
-- `align_to_genome` outputs important statistics about the alignments. This is
-  probably the most important log to save.
+- `index_genome` which outputs some statistics about the genome indexing.
+- `align_to_genome` which outputs important statistics about the alignments.
+  This is probably the most important log to save.
+- `generate_count_table` which outputs information about input files, settings
+  and a summary of results.
+
 
 Now add a log file to the rules `multiqc`, `get_genome_fasta`,
 `get_genome_gff3`, `index_genome`, `align_to_genome` and `generate_count_table`.
@@ -1208,14 +1210,17 @@ rule align_to_genome:
 
 For programs used in the rules `multiqc`, `get_genome_fasta`, `get_genome_gff3`,
 `index_genome` and `generate_count_table` you can use the table below if you
-need help with how to redirect output to the log file.
+need help with how to redirect output to the log file. Note that for some
+programs the redirect is `>{log} 2>&1`. This means that we send standard
+output to the logfile and standard error to wherever stdout goes. It's
+simply a way to send both streams to the same file.
 
 | Rule      | Program        | Redirect flag  |
 |-----------|----------------|----------------|
-| `multiqc` | `multiqc` | `2>{log}` |
+| `multiqc` | `multiqc` | `>{log} 2>&1` |
 | `get_genome_fasta`/`get_genome_gff3` | `wget` | `-o {log}` |
-| `index_genome` | `bowtie2-build` | `>{log}` |
-| `generate_count_table` | `featureCounts` | `2>{log}` |
+| `index_genome` | `bowtie2-build` | `>{log} 2>&1` |
+| `generate_count_table` | `featureCounts` | `>{log} 2>&1` |
 
 
 If you need help, click to show the solution below for the rules.
@@ -1235,7 +1240,7 @@ rule multiqc:
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2>{log}
+        multiqc -n multiqc.html {input} >{log} 2>&1
         mv multiqc.html {output.html}
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
 
@@ -1277,7 +1282,7 @@ rule index_genome:
         "results/logs/index_genome.log",
     shell:
         """
-        bowtie2-build {input} results/bowtie2/NCTC8325 >{log}
+        bowtie2-build {input} results/bowtie2/NCTC8325 >{log} 2>&1
         """
 
 rule generate_count_table:
@@ -1294,7 +1299,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 :::
@@ -1458,7 +1463,7 @@ rule index_genome:
         "results/logs/index_genome.log",
     shell:
         """
-        bowtie2-build {input} results/bowtie2/NCTC8325 >{log}
+        bowtie2-build {input} results/bowtie2/NCTC8325 >{log} 2>&1
         """
 
 rule align_to_genome:
@@ -1540,7 +1545,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 :::
@@ -1576,7 +1581,7 @@ rule multiqc:
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2>{log}
+        multiqc -n multiqc.html {input} >{log} 2>&1
         mv multiqc.html {output.html}
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
 
@@ -1653,7 +1658,7 @@ rule multiqc:
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2>{log}
+        multiqc -n multiqc.html {input} >{log} 2>&1
         mv multiqc.html {output.html}
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
         """
@@ -1752,7 +1757,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 :::
@@ -1878,7 +1883,7 @@ directive the wildcard object is accessed with this syntax:
 `{wildcards.genome_id}`, so the Bowtie2-build command should be:
 
 ```bash
-bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log}
+bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
 ```
 
 The final rule should look like this:
@@ -1896,7 +1901,7 @@ rule index_genome:
         "results/logs/index_genome/{genome_id}.log",
     shell:
         """
-        bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log}
+        bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
         """
 ```
 
@@ -1980,7 +1985,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 
@@ -2189,7 +2194,7 @@ rule index_genome:
         "docker://quay.io/biocontainers/bowtie2:2.5.4--he96a11b_6"
     shell:
         """
-        bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log}
+        bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
         """
 
 rule align_to_genome:
