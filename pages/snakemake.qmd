@@ -1373,8 +1373,8 @@ Take a look at the output printed to your terminal. After the rule `sort_bam` yo
 Removing temporary output results/sam/SRR935092.sam.
 ```
 
-If you list the contents of `results/` you should see that it now only
-contains the sorted BAM files in the `bam/` subdirectory.
+If you list the contents of `results/` you should see that the `sam/`
+subdirectory is gone and that only the sorted BAM files in `bam/` remain.
 
 ::: {.callout-tip}
 If you want to prevent Snakemake from deleting files marked as temporary you can
