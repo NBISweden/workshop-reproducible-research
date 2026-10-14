@@ -1445,27 +1445,11 @@ insert each of the values in the `substr` list: `["1", "2", "3", "4", "rev.1",
 as input to the rule. This is a very powerful feature that can save you a lot of
 typing and make your code more readable.
 
-Now modify the rules `index_genome` and `align_to_genome` to use the `expand()`
-function in the output and input, respectively. Click the solution below if
-you need help.
+Update the `align_to_genome` rule to use the `expand()` function in the input.
+Click the solution below if you need help.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```{.python filename="snakefile_mrsa.smk"}
-rule index_genome:
-    input:
-        "data/ref/NCTC8325.fa.gz",
-    output:
-        expand(
-            "results/bowtie2/NCTC8325.{substr}.bt2",
-            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
-        ),
-    log:
-        "results/logs/index_genome.log",
-    shell:
-        """
-        bowtie2-build {input} results/bowtie2/NCTC8325 >{log} 2>&1
-        """
-
 rule align_to_genome:
     input:
         "data/{sample_id}.fastq.gz",
@@ -1550,6 +1534,35 @@ rule generate_count_table:
 ```
 :::
 
+Another convenient helper function is `multiext()` which is a simplified variant
+of `expand()`. We can use it when input or output files differ by just their
+extension. The general syntax is `multiext("some_file", ".ext1", ".ext2")` which
+translates to `some_file.ext1, some_file.ext2`. Try to implement this for the `index_genome` rule. Click the solution below if you need help.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```{.python filename="snakefile_mrsa.smk"}
+rule index_genome:
+    input:
+        "data/ref/NCTC8325.fa.gz",
+    output:
+        multiext(
+            "results/bowtie2/NCTC8325",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+    log:
+        "results/logs/index_genome.log",
+    shell:
+        """
+        bowtie2-build {input} results/bowtie2/NCTC8325 >{log} 2>&1
+        """
+```
+:::
+
 Now run the workflow again with:
 
 ```bash
@@ -1562,7 +1575,8 @@ works as expected.
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- How to use the `expand()` function to make the code more readable.
+- How to use the `expand()` and `multiext()` helper functions to make the code
+  more readable.
 :::
 
 ## Shadow rules
@@ -1867,19 +1881,13 @@ rule get_genome_gff3:
 ```
 :::
 
-Add `{genome_id}` to the log directive of the `index_genome` rule and also
-replace `NCTC8325` with `{genome_id}` in the `input` and `output` directives.
-Here you will run into a complication if you have followed the previous
-instructions and use the `expand()` expression. We want the list of output files
-to be `["results/bowtie2/{genome_id}.1.bt2",
-"results/bowtie2/{genome_id}.2.bt2", ...]`, _i.e._ only expanding the `substr`
-wildcard in the Bowtie2 index. To prevent Snakemake from trying to expand the
-`genome_id` wildcard we have to "mask" it with double curly brackets:
-`{{{genome_id}}}`.
+Now let's turn to the `index_genome` rule, which currently only works for the `NCTC8325` genome. 
 
-In addition, we need to replace the hard-coded `results/bowtie2/NCTC8325` in the
+First replace `NCTC8325` with `{genome_id}` in the `input` and `output` directives of the rule. Remember that any wildcard must be present in the logfile as well so make sure to update the log directive of the rule as well. Because we're adding a `genome_id` wildcard a good logfile path is `"results/logs/index_genome/{genome_id}.log"`.
+
+Next, we need to replace the hard-coded `results/bowtie2/NCTC8325` in the
 shell directive of the rule with the genome id wildcard. Inside the shell
-directive the wildcard object is accessed with this syntax:
+directive we can access the wildcard object with this syntax:
 `{wildcards.genome_id}`, so the Bowtie2-build command should be:
 
 ```bash
@@ -1893,9 +1901,14 @@ rule index_genome:
     input:
         "data/ref/{genome_id}.fa.gz",
     output:
-        expand(
-            "results/bowtie2/{{genome_id}}.{substr}.bt2",
-            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+        multiext(
+            "results/bowtie2/{genome_id}",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
         ),
     log:
         "results/logs/index_genome/{genome_id}.log",
