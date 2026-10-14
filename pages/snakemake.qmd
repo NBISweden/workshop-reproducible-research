@@ -1197,7 +1197,7 @@ rule align_to_genome:
         "results/bowtie2/NCTC8325.rev.1.bt2",
         "results/bowtie2/NCTC8325.rev.2.bt2",
     output:
-        "results/bam/{sample_id,\\w+}.bam",
+        "results/sam/{sample_id}.sam",
     log:
         "results/logs/align_to_genome/{sample_id}.log",
     shell:
@@ -1332,12 +1332,11 @@ some time and then deleted once they are no longer needed. A typical case could
 be that some operation generates a file, which is then compressed to save space
 or indexed to make searching faster. There is then no need to save the original
 output file. Take a look at the job graph for our workflow again. The output
-from `align_to_genome` is a BAM file, which contains information about all the
+from `align_to_genome` is a SAM file, which contains information about all the
 reads for a sample and where they map in the genome. For downstream processing
 we need this file to be sorted by genome coordinates. This is what the rule
-`sort_bam` is for. We therefore end up with both `results/bam/{sample_id}.bam`
-and `results/bam/{sample_id}.sorted.bam` as you can see if you list the contents
-of `results/bam`.
+`sort_bam` is for. We therefore end up with both `results/sam/{sample_id}.sam`
+and `results/bam/{sample_id}.sorted.bam`.
 
 In Snakemake we can mark an output file as temporary like this:
 
@@ -1353,7 +1352,7 @@ Modify the rule so that the `output:` directive looks like this:
 
 ```{.python filename="snakefile_mrsa.smk"}
     output:
-        temp("results/bam/{sample_id,\\w+}.bam"),
+        temp("results/sam/{sample_id}.sam"),
 ```
 
 We have to force a rerun of the rule for it to trigger, so we use `--forcerun align_to_genome` to do this. Run the workflow with:
@@ -1365,11 +1364,11 @@ snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun align
 Take a look at the output printed to your terminal. After the rule `sort_bam` you should see something like this:
 
 ```no-highlight
-Removing temporary output results/bam/SRR935092.bam.
+Removing temporary output results/sam/SRR935092.sam.
 ```
 
-If you list the contents of `results/bam` you should see that it now only
-contains the sorted BAM files.
+If you list the contents of `results/` you should see that it now only
+contains the sorted BAM files in the `bam/` subdirectory.
 
 ::: {.callout-tip}
 If you want to prevent Snakemake from deleting files marked as temporary you can
@@ -1415,7 +1414,7 @@ rule align_to_genome:
         "results/bowtie2/NCTC8325.rev.1.bt2",
         "results/bowtie2/NCTC8325.rev.2.bt2",
     output:
-        temp("results/bam/{sample_id,\\w+}.bam"),
+        temp("results/sam/{sample_id}.sam"),
     log:
         "results/logs/align_to_genome/{sample_id}.log",
     shell:
@@ -1470,7 +1469,7 @@ rule align_to_genome:
             substr=["1", "2", "3", "4", "rev.1", "rev.2"],
         ),
     output:
-        temp("results/bam/{sample_id,\\w+}.bam"),
+        temp("results/sam/{sample_id}.sam"),
     log:
         "results/logs/align_to_genome/{sample_id}.log",
     shell:
@@ -1954,7 +1953,7 @@ rule align_to_genome:
             substr=["1", "2", "3", "4", "rev.1", "rev.2"],
         ),
     output:
-        temp("results/bam/{sample_id,\\w+}.bam"),
+        temp("results/sam/{sample_id}.sam"),
     log:
         "results/logs/align_to_genome/{sample_id}.log",
     params:
@@ -2202,7 +2201,7 @@ rule align_to_genome:
             substr=["1", "2", "3", "4", "rev.1", "rev.2"],
         ),
     output:
-        temp("results/bam/{sample_id,\\w+}.bam"),
+        temp("results/sam/{sample_id}.sam"),
     log:
         "results/logs/align_to_genome/{sample_id}.log",
     conda:
