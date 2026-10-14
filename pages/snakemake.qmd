@@ -2221,9 +2221,14 @@ rule index_genome:
     input:
         "data/ref/{genome_id}.fa.gz",
     output:
-        expand(
-            "results/bowtie2/{{genome_id}}.{substr}.bt2",
-            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+        multiext(
+            "results/bowtie2/{genome_id}",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
         ),
     log:
         "results/logs/index_genome/{genome_id}.log",
