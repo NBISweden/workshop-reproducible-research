@@ -42,7 +42,7 @@ rule fastqc:
         output_dir=subpath(output[0], parent=True),
     shell:
         """
-        fastqc {input} -q -o {params.output_dir}
+        fastqc {input} -q --outdir {params.output_dir}
         """
 
 

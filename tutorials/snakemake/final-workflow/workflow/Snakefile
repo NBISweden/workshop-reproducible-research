@@ -83,7 +83,7 @@ rule fastqc:
         "Running fastqc on {wildcards.sample_id}"
     shell:
         """
-        fastqc {input.fastq} -q -o {params.output_dir} >{log} 2>&1
+        fastqc {input.fastq} -q --outdir {params.output_dir} >{log} 2>&1
         """
 
 
