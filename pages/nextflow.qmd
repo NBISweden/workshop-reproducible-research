@@ -1001,7 +1001,10 @@ output is only used by the downstream process `RUN_MULTIQC` and is never meant
 to be viewed by a human or used by a human in some downstream task not part of
 the pipeline itself. We would thus like to keep the compressed files as an
 output of the process, but not publish them. How do we do this? Just remove the
-corresponding section from the output block!
+corresponding line from the `publish:` section, as well as its block in the
+output block! Both need to be removed, as Nextflow will give an error if an
+output is listed in the `publish:` section without having a block in the output
+block.
 
 The MRSA workflow we've made here was refactored directly from its original
 version in the Snakemake tutorial of this course, which means that its output
@@ -1026,6 +1029,9 @@ and `SORT_BAM` processes are needed by the user if only the final counts table
 is of interest, but BAM files can also be useful for exploring the alignments in
 _e.g._ IGV. Both BAMs are, however, definitely not needed: only the sorted ones
 (`sorted_bam`) should be published if one is interested in BAM files.
+
+Remember to remove each of these outputs from both the `publish:` section and
+the output block.
 :::
 
 ### Debugging
@@ -1469,6 +1475,7 @@ QUALITY_CONTROLS (
 )
 
 // Publish section of the main workflow
+fastqc_html   = QUALITY_CONTROLS.out.fastqc_html
 multiqc_html  = QUALITY_CONTROLS.out.html
 multiqc_stats = QUALITY_CONTROLS.out.general_stats
 
@@ -1488,6 +1495,7 @@ workflow QUALITY_CONTROLS {
     )
 
     emit:
+    fastqc_html   = RUN_FASTQC.out.html
     html          = RUN_MULTIQC.out.html
     general_stats = RUN_MULTIQC.out.general_stats
 }
