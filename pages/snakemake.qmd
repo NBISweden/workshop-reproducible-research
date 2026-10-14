@@ -198,7 +198,7 @@ cumbersome. Here is where named wildcards come in; one of the most powerful
 features of Snakemake. Simply change the input and output directives from 
 
 ```{.python filename="Snakefile"}
-    input: 
+    input:
         "a.txt",
     output:
         "a.upper.txt",
@@ -207,7 +207,7 @@ features of Snakemake. Simply change the input and output directives from
 to 
 
 ```{.python filename="Snakefile"}
-    input: 
+    input:
         "{some_name}.txt",
     output:
         "{some_name}.upper.txt",
@@ -325,7 +325,7 @@ rule concatenate_files:
         "{first}.upper.txt", # <1>
         "{second}.upper.txt", # <1>
     output:
-        "{first}_{second}.txt", # <2> 
+        "{first}_{second}.txt", # <2>
     shell:
         """
         cat {input[0]} {input[1]} >{output}
@@ -1637,7 +1637,7 @@ rule some_rule:
         "some_input.txt", # <1>
     output:
         "results/some_output.txt",
-    shadow: 
+    shadow:
         "minimal"
     shell:
         """
