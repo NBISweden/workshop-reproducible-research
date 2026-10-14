@@ -2031,7 +2031,6 @@ excellent features:
 - A general RNA-seq pipeline which can easily be reused between projects,
   thanks to clear separation between code and settings.
 - Great traceability due to logs and summary tables.
-- A clearly defined software environment for the workflow using Conda.
 - The workflow is neat and free from temporary files due to using `temp()` and
   `shadow`.
 - A logical directory structure which makes it easy to separate data and
