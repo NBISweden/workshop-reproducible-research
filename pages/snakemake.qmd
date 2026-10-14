@@ -994,6 +994,7 @@ the `seqtk sample` command which reads from STDIN and outputs 25000 randomly
 sampled reads (out of the 100,000 contained in the example FASTQ file). Change
 the rule to use a parameter `max_reads` instead of the hard-coded value and set
 it to 20000.
+
 If you need help, click to show the solution below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
@@ -1748,7 +1749,7 @@ Now change the `multiqc` and `generate_count_table` rules that use the `expand`
 function in the input directive to use `config["samples"].keys()` to expand the
 `sample_id` wildcard. This is how it should look for the `multiqc` rule:
 
-```python
+```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
     input:
         expand(
             "results/fastqc/{sample_id}_fastqc.zip", sample_id=config["samples"].keys()
@@ -1820,8 +1821,7 @@ that we have one more nested level. Now to access the URL to the FASTA file for
 genome id `NCTC8325` we can use `config["genomes"]["NCTC8325"]["fasta"]`.
 
 Let's now look at how to do the mapping from genome id to FASTA path in the
-rule `get_genome_fasta`. This is how the rule currently looks (if you have
-added the log section as previously described).
+rule `get_genome_fasta`. This is how the rule currently looks:
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 rule get_genome_fasta:
@@ -2110,22 +2110,27 @@ def get_sample_url(wildcards):
 Also update the `multiqc` and `generate_count_table` rules to use the `samples`
 dictionary in the `expand` function:
 
-```{.python filename="snakefile_mrsa.smk"}
+```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 rule multiqc:
     input:
         expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=samples.keys()),
 ...
 rule generate_count_table:
     input:
-        bams=expand(
-            "results/bam/{sample_id}.sorted.bam", sample_id=samples.keys()
-        ),
+        bams=expand("results/bam/{sample_id}.sorted.bam", sample_id=samples.keys()),
         annotation=expand("data/ref/{genome_id}.gff3.gz", genome_id=config["genome_id"]),
 ```
 
 You can now remove the `samples:` section from `config.yml`, since the samples
 are read from the sample sheet instead. This way, anyone can take our Snakefile
 and just update the path to their own `sample_sheet` using the config file.
+
+Force a re-run of the modified rules to make sure everything works after this
+update:
+
+```bash
+snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun generate_count_table multiqc download_fastq_files
+```
 
 ### Integrated package management
 
