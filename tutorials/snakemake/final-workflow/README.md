@@ -45,8 +45,9 @@ tracked by git:
 - `data/`: subsampled FASTQ files.
 - `results/`: all outputs, including Bowtie2 indexes, BAM files, FastQC and
   MultiQC reports, the count table and log files under `results/logs/`.
-- `.snakemake/`: Snakemake's metadata, the Conda environments and the files
-  downloaded from remote storage (`.snakemake/storage/`).
+- `.snakemake/`: Snakemake's metadata and the Conda environments. Files
+  downloaded from remote storage are kept under `.snakemake/storage/` only
+  while the jobs that use them run, and are then removed.
 
 ### Configuration
 
