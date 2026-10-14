@@ -1250,7 +1250,7 @@ rule get_genome_fasta:
         "results/logs/get_genome_fasta.log",
     shell:
         """
-        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
+        wget -o {log} https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O {output}
         """
 
 rule get_genome_gff3:
@@ -1260,7 +1260,7 @@ rule get_genome_gff3:
         "results/logs/get_genome_gff3.log",
     shell:
         """
-        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O {output}
+        wget -o {log} https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz -O {output}
         """
 
 rule index_genome:
@@ -1294,7 +1294,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
         """
 ```
 :::
@@ -1541,7 +1541,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
         """
 ```
 :::
@@ -1753,7 +1753,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
         """
 ```
 :::
@@ -1782,22 +1782,24 @@ of how to do this.
 Now we'll take a look at how to generalize the genome reference used in the
 workflow. 
 
-In the `get_genome_fasta` and `get_genome_gff3` rules we have hard-coded FTP
-paths to the FASTA and GFF annotation file for the genome `NCTC8325`. Let's move this information to the configuration file, and also add information for another genome, `ST398`. Add the following to `config.yml`:
+In the `get_genome_fasta` and `get_genome_gff3` rules we have hard-coded URLs to
+the FASTA and GFF annotation file for the genome `NCTC8325`. Let's move this
+information to the configuration file, and also add information for another
+genome, `ST398`. Add the following to `config.yml`:
 
 ```{.yaml filename="config.yml" .code-overflow-scroll}
 genomes:
   NCTC8325:
-    fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
-    gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz
+    fasta: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz
+    gff3: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz
   ST398:
-    fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection//staphylococcus_aureus_subsp_aureus_st398/dna/Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.dna.toplevel.fa.gz
-    gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_st398//Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.37.gff3.gz
+    fasta: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/009/585/GCF_000009585.1_ASM958v1/GCF_000009585.1_ASM958v1_genomic.fna.gz
+    gff3: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/009/585/GCF_000009585.1_ASM958v1/GCF_000009585.1_ASM958v1_genomic.gff.gz
 ```
 
 As you can see this is very similar to what we did with `samples`, it's just
-that we have one more nested level. Now to access the FTP path to the FASTA file
-for genome id `NCTC8325` we can use `config["genomes"]["NCTC8325"]["fasta"]`.
+that we have one more nested level. Now to access the URL to the FASTA file for
+genome id `NCTC8325` we can use `config["genomes"]["NCTC8325"]["fasta"]`.
 
 Let's now look at how to do the mapping from genome id to FASTA path in the
 rule `get_genome_fasta`. This is how the rule currently looks (if you have
@@ -1811,7 +1813,7 @@ rule get_genome_fasta:
         "results/logs/get_genome_fasta.log",
     shell:
         """
-        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
+        wget -o {log} https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O {output}
         """
 ```
 
@@ -1979,7 +1981,7 @@ rule generate_count_table:
         "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} 2>{log}
         """
 ```
 
