@@ -126,6 +126,9 @@ covered in the tutorial:
 - **The `multiext()` helper function** to define files that share a common
   prefix but have different extensions, here the Bowtie2 index files.
 - **The `threads:` directive** to run Bowtie2 indexing with several threads.
+  Snakemake never uses more threads than the available cores, so with the
+  default profile (one core) indexing runs on one thread. Use _e.g._
+  `snakemake -c 4` to make use of all four threads.
 - **The `message:` directive** to print a short description when a job
   starts.
 - **`min_version()`** to require a minimum version of Snakemake.
