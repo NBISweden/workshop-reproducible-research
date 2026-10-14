@@ -1,0 +1,8 @@
+name: mrsa-workflow
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - snakemake>=9.27
+  - snakemake-storage-plugin-http
+  - pandas

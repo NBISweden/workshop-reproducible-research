@@ -1,0 +1,233 @@
+from snakemake.utils import min_version
+
+min_version("9.0.0")
+
+import pandas as pd
+
+
+# register a HTTP storage provider
+storage:
+    provider="http",
+    supports_head=False,
+
+
+def read_sample_sheet(f):
+    """
+    Read a comma-separated sample sheet and return a dictionary.
+    """
+    df = pd.read_csv(f, header=0, index_col=0, sep=",")
+    return df.to_dict(orient="index")
+
+
+samples = read_sample_sheet(config["sample_sheet"])
+
+
+# Collect the main outputs of the workflow.
+rule all:
+    input:
+        "results/tables/counts.tsv",
+        "results/multiqc/multiqc.html",
+
+
+def get_sample_input(wildcards):
+    """
+    Return the remote FASTQ for a sample as an HTTP storage object.
+
+    Looks up the URL in the samples dictionary using the sample_id wildcard
+    and wraps it with storage.http(), so Snakemake downloads the file before
+    the job runs and {input} resolves to the local copy.
+    """
+    return storage.http(samples[wildcards.sample_id]["url"])
+
+
+# Retrieve a single-read FASTQ file from remote storage and subsample it with
+# seqtk
+rule download_fastq_files:
+    input:
+        fastq=get_sample_input,
+    output:
+        fastq="data/{sample_id}.fastq.gz",
+    log:
+        "results/logs/download_{sample_id}.log",
+    conda:
+        "envs/seqtk.yml"
+    container:
+        "docker://quay.io/biocontainers/seqtk:1.5--h577a1d6_1"
+    params:
+        max_reads=config["max_reads"],
+    message:
+        "Subsampling {params.max_reads} reads from {wildcards.sample_id}"
+    shell:
+        """
+        exec &>{log}
+        seqtk sample {input.fastq} {params.max_reads} | gzip -c >{output.fastq}
+        """
+
+
+# Run FastQC on a FASTQ file.
+rule fastqc:
+    input:
+        fastq="data/{sample_id}.fastq.gz",
+    output:
+        html="results/fastqc/{sample_id}_fastqc.html",
+        zipped="results/fastqc/{sample_id}_fastqc.zip",
+    log:
+        "results/logs/fastq_{sample_id}.log",
+    conda:
+        "envs/fastqc.yml"
+    container:
+        "docker://quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0"
+    params:
+        output_dir=subpath(output[0], parent=True),
+    message:
+        "Running fastqc on {wildcards.sample_id}"
+    shell:
+        """
+        fastqc {input.fastq} -q -o {params.output_dir} >{log} 2>&1
+        """
+
+
+# Aggregate all FastQC reports into a MultiQC report.
+rule multiqc:
+    input:
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=samples.keys()),
+    output:
+        html="results/multiqc/multiqc.html",
+        stats="results/multiqc/multiqc_general_stats.txt",
+    log:
+        "results/logs/multiqc.log",
+    shadow:
+        "minimal"
+    conda:
+        "envs/multiqc.yml"
+    container:
+        "docker://ghcr.io/multiqc/multiqc:v1.33"
+    message:
+        "Generating MultiQC report"
+    shell:
+        """
+        # Run multiQC and keep the html report
+        multiqc -n multiqc.html {input} 2>{log}
+        mv multiqc.html {output.html}
+        mv multiqc_data/multiqc_general_stats.txt {output.stats}
+        """
+
+
+def get_genome_fasta(wildcards):
+    """
+    Return the remote genome FASTA for a genome as an HTTP storage object.
+
+    Looks up the FASTA URL in config["genomes"] using the genome_id wildcard
+    and wraps it with storage.http(), so Snakemake downloads the file before
+    the job runs and {input.fasta} resolves to the local copy.
+    """
+    return storage.http(config["genomes"][wildcards.genome_id]["fasta"])
+
+
+# Index a genome using Bowtie 2.
+rule index_genome:
+    input:
+        fasta=get_genome_fasta,
+    output:
+        multiext(
+            "results/bowtie2/{genome_id}",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+    log:
+        "results/logs/index_genome/{genome_id}.log",
+    conda:
+        "envs/bowtie2.yml"
+    container:
+        "docker://quay.io/biocontainers/bowtie2:2.5.4--he96a11b_6"
+    threads: 4
+    message:
+        "Creating bowtie2 index for {wildcards.genome_id}"
+    shell:
+        """
+        bowtie2-build --threads {threads} {input.fasta} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
+        """
+
+
+# Align a fastq file to a genome index using Bowtie 2.
+rule align_to_genome:
+    input:
+        expand(
+            "results/bowtie2/{genome_id}.{substr}.bt2",
+            genome_id=config["genome_id"],
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+        ),
+        fastq="data/{sample_id}.fastq.gz",
+    output:
+        sam=temp("results/sam/{sample_id}.sam"),
+    log:
+        "results/logs/align_to_genome/{sample_id}.log",
+    conda:
+        "envs/bowtie2.yml"
+    container:
+        "docker://quay.io/biocontainers/bowtie2:2.5.4--he96a11b_6"
+    params:
+        genome_id=config["genome_id"],
+    message:
+        "Aligning sample {wildcards.sample_id} to genome {params.genome_id}"
+    shell:
+        """
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input.fastq} >{output.sam} 2>{log}
+        """
+
+
+# Sort bowtie2 alignments.
+rule sort_bam:
+    input:
+        bam="results/sam/{sample_id}.sam",
+    output:
+        bam="results/bam/{sample_id}.sorted.bam",
+    log:
+        "results/logs/sort_bam/{sample_id}.log",
+    conda:
+        "envs/samtools.yml"
+    container:
+        "docker://quay.io/biocontainers/samtools:1.22.1--h96c455f_0"
+    message:
+        "Sorting {wildcards.sample_id} bam file"
+    shell:
+        """
+        samtools sort {input.bam} >{output.bam} 2>{log}
+        """
+
+
+def get_genome_gff(wildcards):
+    """
+    Return the remote genome GFF for a genome as an HTTP storage object.
+
+    Looks up the GFF URL in config["genomes"] using the genome_id set in the
+    configuration file and wraps it with storage.http(), so Snakemake downloads
+    the file before the job runs and {input.annotation} resolves to the local
+    copy.
+    """
+    return storage.http(config["genomes"][config["genome_id"]]["gff3"])
+
+
+# Generate a count table using featureCounts.
+rule generate_count_table:
+    input:
+        bams=expand("results/bam/{sample_id}.sorted.bam", sample_id=samples.keys()),
+        annotation=get_genome_gff,
+    output:
+        counts="results/tables/counts.tsv",
+    log:
+        "results/logs/generate_count_table.log",
+    conda:
+        "envs/subread.yml"
+    container:
+        "docker://quay.io/biocontainers/subread:2.1.1--h577a1d6_0"
+    message:
+        "Generating final count table"
+    shell:
+        """
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output.counts} {input.bams} 2>{log}
+        """

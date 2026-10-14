@@ -1,0 +1,5 @@
+cores: 1
+software-deployment-method: conda
+keep-going: True
+quiet: [host,reason]
+configfile: config/config.yml
