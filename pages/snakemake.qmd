@@ -974,7 +974,7 @@ rule download_fastq_files:
         url=get_sample_url, # <4>
     shell:
         """
-        curl -L {params.url} | seqtk sample - 25000 | gzip -c >{output[0]} # <5>
+        curl -fsSL {params.url} | seqtk sample - 25000 | gzip -c >{output[0]} # <5>
         """
 ```
 
@@ -1007,7 +1007,7 @@ rule download_fastq_files:
         max_reads=20000,
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c >{output[0]}
+        curl -fsSL {params.url} | seqtk sample - {params.max_reads} | gzip -c >{output[0]}
         """
 ```
 :::
@@ -1036,7 +1036,7 @@ rule download_fastq_files:
         max_reads=config["max_reads"],
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c >{output[0]}
+        curl -fsSL {params.url} | seqtk sample - {params.max_reads} | gzip -c >{output[0]}
         """
 ```
 
