@@ -2039,6 +2039,24 @@ excellent features:
   _e.g._ via Git.
 :::
 
+## Snakemake best-practices
+
+The workflow you have built is fully functional, but it is not organised the
+way a Snakemake workflow typically would be for long-term use. The Snakemake
+documentation describes a set of [best
+practices](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html)
+covering, for example, folder structure, configuration and software
+environments.
+
+To show what this can look like for the MRSA workflow, we have included a more
+advanced version of it in the `final-workflow/` subdirectory. It is meant as a
+reference rather than as the solution to this tutorial. It uses some of the
+features covered in the [Extra material](#extra-material) below, such as a
+sample sheet, a Conda environment for each rule and a configuration profile,
+as well as several features not covered in this tutorial. The `README.md` file
+in that directory explains how to run the workflow, which features it uses and
+how it differs from the workflow you have created.
+
 ## Extra material
 
 If you want to read more about Snakemake in general you can find several
@@ -2499,14 +2517,3 @@ There's a VS Code extension for Snakefmt which you can use to automatically
 rewrite your Snakefiles on save. Search for "Snakefmt" in the Extensions view.
 
 :::
-
-### Snakemake best-practices
-
-While you now have a fully functional and generalized workflow the Snakemake
-linter still gave several suggestions for improvements. There are several
-features, and recommended ways to structure Snakemake workflows, that we have
-not covered here. If you want to see a more advanced version of the MRSA
-workflow that follows Snakemake best-practices you can take a look at the
-contents of the `final-workflow/` subdirectory. The README.md file contains
-instructions on how to run the workflow and briefly explains how it differs from
-the workflow you have now created.
