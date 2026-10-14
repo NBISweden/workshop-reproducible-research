@@ -73,7 +73,7 @@ rule get_genome_fasta:
         "data/ref/NCTC8325.fa.gz",
     shell:
         """
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
+        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O {output}
         """
 
 
@@ -83,7 +83,7 @@ rule get_genome_gff3:
         "data/ref/NCTC8325.gff3.gz",
     shell:
         """
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O {output}
+        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz -O {output}
         """
 
 
@@ -147,5 +147,5 @@ rule generate_count_table:
         "results/tables/counts.tsv",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams}
         """
