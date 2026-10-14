@@ -48,7 +48,7 @@ rule download_fastq_files:
     output:
         fastq="data/{sample_id}.fastq.gz",
     log:
-        "results/logs/download_{sample_id}.log",
+        "results/logs/download_fastq_files/{sample_id}.log",
     conda:
         "envs/seqtk.yml"
     container:
@@ -72,7 +72,7 @@ rule fastqc:
         html="results/fastqc/{sample_id}_fastqc.html",
         zipped="results/fastqc/{sample_id}_fastqc.zip",
     log:
-        "results/logs/fastqc_{sample_id}.log",
+        "results/logs/fastqc/{sample_id}.log",
     conda:
         "envs/fastqc.yml"
     container:
@@ -107,7 +107,7 @@ rule multiqc:
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2>{log}
+        multiqc -n multiqc.html {input} >{log} 2>&1
         mv multiqc.html {output.html}
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
         """
@@ -229,5 +229,5 @@ rule generate_count_table:
         "Generating final count table"
     shell:
         """
-        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output.counts} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output.counts} {input.bams} >{log} 2>&1
         """
