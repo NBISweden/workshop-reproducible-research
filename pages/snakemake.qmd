@@ -2496,3 +2496,14 @@ There's a VS Code extension for Snakefmt which you can use to automatically
 rewrite your Snakefiles on save. Search for "Snakefmt" in the Extensions view.
 
 :::
+
+### Snakemake best-practices
+
+While you now have a fully functional and generalized workflow the Snakemake
+linter still gave several suggestions for improvements. There are several
+features, and recommended ways to structure Snakemake workflows, that we have
+not covered here. If you want to see a more advanced version of the MRSA
+workflow that follows Snakemake best-practices you can take a look at the
+contents of the `final-workflow/` subdirectory. The README.md file contains
+instructions on how to run the workflow and briefly explains how it differs from
+the workflow you have now created.
