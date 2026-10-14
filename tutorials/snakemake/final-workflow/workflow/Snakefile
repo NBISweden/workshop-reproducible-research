@@ -72,7 +72,7 @@ rule fastqc:
         html="results/fastqc/{sample_id}_fastqc.html",
         zipped="results/fastqc/{sample_id}_fastqc.zip",
     log:
-        "results/logs/fastq_{sample_id}.log",
+        "results/logs/fastqc_{sample_id}.log",
     conda:
         "envs/fastqc.yml"
     container:
