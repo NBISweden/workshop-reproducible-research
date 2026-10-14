@@ -177,15 +177,14 @@ though.
 - Run the following to download and prepare the input for Bowtie2:
 
 ```bash
-curl -o NCTC8325.fa.gz ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
-gunzip -c NCTC8325.fa.gz > NCTC8325.fa
+curl -o NCTC8325.fa.gz https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz
 ```
 
 - Now try running the following command:
 
 ```bash
 docker run quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 \
-    bowtie2-build NCTC8325.fa NCTC8325
+    bowtie2-build NCTC8325.fa.gz NCTC8325
 ```
 
 Docker will automatically download the container image for Bowtie2 version 2.5.1
@@ -234,7 +233,7 @@ to be available (the general form of this syntax is `-v <LOCAL>:<MOUNT>`).
 
 ```bash
 docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d_0 \
-    bowtie2-build /analysis/NCTC8325.fa /analysis/NCTC8325
+    bowtie2-build /analysis/NCTC8325.fa.gz /analysis/NCTC8325
 ```
 
 ::: {.callout-note}
