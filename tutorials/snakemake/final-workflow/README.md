@@ -142,6 +142,6 @@ tutorial in a few ways:
   are downloaded through the storage plugin.
 - Command line options, including which config file to use, are set in the
   profile instead of on the command line.
-- Because each rule now has its dedicated conda environment file the main
+- Because each rule now has its own Conda environment file, the main
   `environment.yml` file is slimmed down to just the packages required to run
-  Snakemake. Any extra software requirements are handled by Snakemake.
+  Snakemake. Snakemake installs the software for each rule itself.
