@@ -115,7 +115,7 @@ rule align_to_genome:
         "results/bowtie2/NCTC8325.rev.1.bt2",
         "results/bowtie2/NCTC8325.rev.2.bt2",
     output:
-        "results/bam/{sample_id,\\w+}.bam",
+        "results/sam/{sample_id}.sam",
     shell:
         """
         bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} >{output}
@@ -125,7 +125,7 @@ rule align_to_genome:
 # Sort a bam file.
 rule sort_bam:
     input:
-        "results/bam/{sample_id}.bam",
+        "results/sam/{sample_id}.sam",
     output:
         "results/bam/{sample_id}.sorted.bam",
     shell:
