@@ -27,7 +27,7 @@ rule download_fastq_files:
         url=get_sample_url,
     shell:
         """
-        curl -L {params.url} | seqtk sample - 25000 | gzip -c >{output[0]}
+        curl -fsSL {params.url} | seqtk sample - 25000 | gzip -c >{output[0]}
         """
 
 
