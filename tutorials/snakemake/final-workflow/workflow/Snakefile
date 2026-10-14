@@ -183,7 +183,7 @@ rule align_to_genome:
 # Sort bowtie2 alignments.
 rule sort_bam:
     input:
-        bam="results/sam/{sample_id}.sam",
+        sam="results/sam/{sample_id}.sam",
     output:
         bam="results/bam/{sample_id}.sorted.bam",
     log:
@@ -196,7 +196,7 @@ rule sort_bam:
         "Sorting {wildcards.sample_id} bam file"
     shell:
         """
-        samtools sort {input.bam} >{output.bam} 2>{log}
+        samtools sort {input.sam} >{output.bam} 2>{log}
         """
 
 
