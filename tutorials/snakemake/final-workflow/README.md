@@ -7,10 +7,9 @@ It is meant as a **reference** that showcases how a Snakemake workflow can be
 organised and written following the [Snakemake best
 practices](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html).
 It is _not_ the solution to the tutorial: the workflow you end up with after
-going through the tutorial in `pages/snakemake.qmd` is simpler. To keep the
-scope of the tutorial manageable, many of the features used here are not
-covered there (see [Features not covered in the
-tutorial](#features-not-covered-in-the-tutorial) below).
+going through the tutorial is simpler. To keep the scope of the tutorial
+manageable, many of the features used here are not covered there (see [Features
+not covered in the tutorial](#features-not-covered-in-the-tutorial) below).
 
 ### Folder structure
 
