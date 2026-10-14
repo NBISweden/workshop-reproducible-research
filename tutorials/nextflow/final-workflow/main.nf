@@ -95,7 +95,7 @@ process GENERATE_COUNTS_TABLE {
 
     script:
     """
-    # The transcript name is annotated as "Name" in the GFF
-    featureCounts -t exon -g Name -a ${annotation} -o counts.tsv ${bam}
+    # Genes are identified by "locus_tag" in the NCBI GFF
+    featureCounts -t gene -g locus_tag -a ${annotation} -o counts.tsv ${bam}
     """
 }

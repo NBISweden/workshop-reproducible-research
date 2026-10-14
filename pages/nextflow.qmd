@@ -1289,7 +1289,7 @@ can create one using the `channel.value()` factory together with the `file()`
 function, which turns a path or a URI into a file.
 
 - Create a new input channel using the `channel.value()` channel factory and
-  the absolute path (the FTP address) to the genome FASTA.
+  the absolute path (the URL) to the genome FASTA.
 
 - Make the `INDEX_GENOME` process use that input channel instead of the
   previously used output of the `GET_GENOME_FASTA` process.
@@ -1303,7 +1303,7 @@ aligned. Check the code below for an example if you're stuck:
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel creation
-ch_genome_fasta = channel.value( file( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" ) )
+ch_genome_fasta = channel.value( file( "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz" ) )
 
 // Workflow definition
 INDEX_GENOME (
@@ -1324,7 +1324,7 @@ Re-run the workflow again to make sure it worked; check below if you're stuck.
 ```nextflow
 // [ nextflow.config ]
 params {
-    genome_gff3 = "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz"
+    genome_gff3 = "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz"
 }
 
 // [ main_mrsa.nf ]
@@ -1351,7 +1351,7 @@ of how this could be done.
 ```nextflow
 // Channel definition
 ch_genome_fasta = channel
-    .value ( file( "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz" ) )
+    .value ( file( "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz" ) )
     .map   { file -> tuple(file.getSimpleName(), file) }
 
 // INDEX_GENOME process definition
