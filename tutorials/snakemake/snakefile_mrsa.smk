@@ -1,6 +1,6 @@
 from snakemake.utils import min_version
 
-min_version("8.0.0")
+min_version("9.0.0")
 
 
 # Collect the main outputs of the workflow.
@@ -20,14 +20,14 @@ def get_sample_url(wildcards):
 
 
 # Retrieve a single-read FASTQ file
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
         "data/{sample_id}.fastq.gz",
     params:
         url=get_sample_url,
     shell:
         """
-        curl -L {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        curl -fsSL {params.url} | seqtk sample - 25000 | gzip -c >{output[0]}
         """
 
 
@@ -38,14 +38,11 @@ rule fastqc:
     output:
         "results/fastqc/{sample_id}_fastqc.html",
         "results/fastqc/{sample_id}_fastqc.zip",
+    params:
+        output_dir=subpath(output[0], parent=True),
     shell:
         """
-        # Run fastQC and save the output to the current directory
-        fastqc {input} -q -o .
-
-        # Move the files which are used in the workflow
-        mv {wildcards.sample_id}_fastqc.html {output[0]}
-        mv {wildcards.sample_id}_fastqc.zip {output[1]}
+        fastqc {input} -q --outdir {params.output_dir}
         """
 
 
@@ -76,7 +73,7 @@ rule get_genome_fasta:
         "data/ref/NCTC8325.fa.gz",
     shell:
         """
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
+        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O {output}
         """
 
 
@@ -86,7 +83,7 @@ rule get_genome_gff3:
         "data/ref/NCTC8325.gff3.gz",
     shell:
         """
-        wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O {output}
+        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz -O {output}
         """
 
 
@@ -103,12 +100,7 @@ rule index_genome:
         "results/bowtie2/NCTC8325.rev.2.bt2",
     shell:
         """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325
-
-        # Remove the temporary file
-        rm tempfile
+        bowtie2-build {input} results/bowtie2/NCTC8325
         """
 
 
@@ -123,22 +115,22 @@ rule align_to_genome:
         "results/bowtie2/NCTC8325.rev.1.bt2",
         "results/bowtie2/NCTC8325.rev.2.bt2",
     output:
-        "results/bam/{sample_id,\\w+}.bam",
+        "results/sam/{sample_id}.sam",
     shell:
         """
-        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} >{output}
         """
 
 
 # Sort a bam file.
 rule sort_bam:
     input:
-        "results/bam/{sample_id}.bam",
+        "results/sam/{sample_id}.sam",
     output:
         "results/bam/{sample_id}.sorted.bam",
     shell:
         """
-        samtools sort {input} > {output}
+        samtools sort {input} >{output}
         """
 
 
@@ -155,5 +147,5 @@ rule generate_count_table:
         "results/tables/counts.tsv",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams}
         """

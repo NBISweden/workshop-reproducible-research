@@ -171,7 +171,7 @@ process GET_GENOME_FASTA {
 
     script:
     """
-    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O NCTC8325.fa.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O NCTC8325.fa.gz
     """
 }
 
@@ -184,7 +184,7 @@ process GET_GENOME_GFF3 {
 
     script:
     """
-    wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O NCTC8325.gff3.gz
+    wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz -O NCTC8325.gff3.gz
     """
 }
 
@@ -255,7 +255,7 @@ process GENERATE_COUNTS_TABLE {
 
     script:
     """
-    # The transcript name is annotated as "Name" in the GFF
-    featureCounts -t exon -g Name -a ${annotation} -o counts.tsv ${bam}
+    # Genes are identified by "locus_tag" in the NCBI GFF
+    featureCounts -t gene -g locus_tag -a ${annotation} -o counts.tsv ${bam}
     """
 }

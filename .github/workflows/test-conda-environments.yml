@@ -43,11 +43,6 @@ jobs:
             cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: quarto
             cmd: export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
-        exclude:
-          - os: macos-latest
-            env: snakemake
-          - os: macos-latest
-            env: nextflow
     steps:
       - name: Checkout
         uses: actions/checkout@v4

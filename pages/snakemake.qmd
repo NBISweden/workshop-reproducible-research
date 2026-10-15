@@ -61,20 +61,20 @@ echo "This is b.txt" > b.txt
 ```
 
 Then open `Snakefile` in your favourite text editor. A Snakemake workflow is based on
-rules which take some file(s) as input, performs some type of operation on
+rules which take some file(s) as input, perform some type of operation on
 them, and generate some file(s) as outputs. Here is a very simple rule that
 produces `a.upper.txt` as an output, using `a.txt` as input. Copy this rule to
 your `Snakefile` and save it.
 
-```python
+```{.python filename="Snakefile"}
 rule convert_to_upper_case:
-    output:
-        "a.upper.txt"
     input:
-        "a.txt"
+        "a.txt",
+    output:
+        "a.upper.txt",
     shell:
         """
-        tr [a-z] [A-Z] < {input} > {output}
+        tr a-z A-Z <{input} >{output}
         """
 ```
 
@@ -97,8 +97,8 @@ command string, we can refer to elements of the rule via curly brackets. Here, w
 refer to the output file by specifying `{output}` and to the input file by
 specifying `{input}`. If you're not very familiar with Bash, this particular
 command can be read like "send the contents of `a.txt` to the program `tr`, which
-will convert all characters in the set `[a-z]` to the corresponding character in
-the set `[A-Z]`, and then send the output to `a.upper.txt`".
+will convert all characters in the set `a-z` to the corresponding character in
+the set `A-Z`, and then send the output to `a.upper.txt`".
 
 Now let's run our first Snakemake workflow. When a workflow is executed
 Snakemake tries to generate a set of **target files**. Target files can be
@@ -128,7 +128,9 @@ The command thus becomes:
 snakemake -s Snakefile -c 1 -n -p a.upper.txt
 ```
 
-You should see something like this:
+Snakemake first prints a header with information about the run (Snakemake
+version, which Snakefile is used, the working directory and so on). After
+that you should see something like this:
 
 ```no-highlight
 Building DAG of jobs...
@@ -146,10 +148,9 @@ rule convert_to_upper_case:
     jobid: 0
     reason: Missing output files: a.upper.txt
     resources: tmpdir=<TBD>
+Shell command:
+        tr a-z A-Z <a.txt >a.upper.txt
 
-
-        tr [a-z] [A-Z] < a.txt > a.upper.txt
-        
 Job stats:
 job                      count
 ---------------------  -------
@@ -160,14 +161,13 @@ Reasons:
     (check individual jobs above for details)
     output files have to be generated:
         convert_to_upper_case
-
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 
 You can see that Snakemake plans to run one job: the rule
 `convert_to_upper_case` with `a.txt` as input and `a.upper.txt` as output. The
 reason for doing this is that it's missing the file `a.upper.txt`. Now run the
-command without the `-n` flag and check that the contents of `a.upper.txt` is as
+command without the `-n` flag and check that the contents of `a.upper.txt` are as
 expected.
 
 We used the `-s` flag to point to the file containing the rules. In fact,
@@ -197,20 +197,20 @@ could copy the rule to make a similar one for `b.txt`, but that would be a bit
 cumbersome. Here is where named wildcards come in; one of the most powerful
 features of Snakemake. Simply change the input and output directives from 
 
-```python
+```{.python filename="Snakefile"}
+    input:
+        "a.txt",
     output:
-        "a.upper.txt"
-    input: 
-        "a.txt"
+        "a.upper.txt",
 ```
 
 to 
 
-```python
+```{.python filename="Snakefile"}
+    input:
+        "{some_name}.txt",
     output:
-        "{some_name}.upper.txt"
-    input: 
-        "{some_name}.txt"
+        "{some_name}.upper.txt",
 ```
 
 Now try asking for `b.upper.txt` again.
@@ -220,7 +220,7 @@ available (actually only one in this case) and tries to assign values to all
 wildcards so that the targeted files can be generated. In this case you can see
 that it says `wildcards: some_name=b`, which means that the `some_name` wildcard
 was assigned the value `b`. This was quite simple but for large workflows and
-multiple wildcards it can get much more complex. Named wildcards is what enables
+multiple wildcards it can get much more complex. Named wildcards are what enable
 a workflow (or single rules) to be efficiently generalized and reused between
 projects or shared between people.
 
@@ -229,10 +229,10 @@ uppercase and concatenate them. It seems we have the first part of our workflow
 working, now it's time to make the second rule for concatenating the outputs
 from `convert_to_upper_case`. 
 
-The syntax for concatenating two files in Bash is :
+The syntax for concatenating two files in Bash is:
 
 ```bash
-cat first_file.txt second_file.txt > output_file.txt`
+cat first_file.txt second_file.txt > output_file.txt
 ```
 
 The structure of this second rule will be similar to the first but here we have
@@ -242,24 +242,28 @@ inputs like this:
 ```python
 input:
     firstFile="...",
-    secondFile="..."
+    secondFile="...",
 shell:
     """
-    some_function {input.firstFile} {input.secondFile}
+    some_function {input.firstFile} {input.secondFile} # <1>
     """
 ```
+
+1. Here we reference the named input
 
 Or with indexes like this:
 
 ```python
 input:
     "...",
-    "..."
+    "...",
 shell:
     """
-    some_function {input[0]} {input[1]}
+    some_function {input[0]} {input[1]} # <1>
     """
 ```
+
+1. Here we reference the input files with indexes
 
 ::: {.callout-caution}
 If you have multiple inputs or outputs they need to be delimited with
@@ -274,16 +278,16 @@ input and call the output `c.txt`. Check the solution below if you get stuck.
 
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-```python
+```{.python filename="Snakefile"}
 rule concatenate_a_and_b:
-    output:
-        "c.txt"
     input:
         "a.upper.txt",
-        "b.upper.txt"
+        "b.upper.txt",
+    output:
+        "c.txt",
     shell:
         """
-        cat {input[0]} {input[1]} > {output}
+        cat {input[0]} {input[1]} >{output}
         """
 ```
 :::
@@ -299,6 +303,8 @@ Validate that the output looks as expected.
 Good job! You've now created a simple Snakemake workflow that converts two files
 to uppercase and concatenates them.
 
+### Wildcards
+
 Wouldn't it be nice if our workflow could be used for _any_ files, not just
 `a.txt` and `b.txt`? We can achieve this by generalizing the
 `concatenate_a_and_b` rule using named wildcards. 
@@ -313,18 +319,24 @@ the `concatenate_a_and_b` rule to `concatenate_files` to reflect its new more
 general use.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
-```python
+```{.python filename="Snakefile"}
 rule concatenate_files:
-    output:
-        "{first}_{second}.txt"
     input:
-        "{first}.upper.txt",
-        "{second}.upper.txt"
+        "{first}.upper.txt", # <1>
+        "{second}.upper.txt", # <1>
+    output:
+        "{first}_{second}.txt", # <2>
     shell:
         """
-        cat {input[0]} {input[1]} > {output}
+        cat {input[0]} {input[1]} >{output}
         """
 ```
+
+1. The two input file names are generalized to contain the `{first}` and
+   `{second}` wildcards.
+2. By adding these two wildcards to the output file, Snakemake can figure out
+   what input files are needed.
+
 :::
 
 We can now control which input files to use by the name of the file we ask
@@ -343,106 +355,107 @@ what happens.
 
 
 ::: {.callout-tip}
-You can name a file whatever you want in a Snakemake workflow, but you will
-find that everything falls into place much nicer if the filename reflects
-the file's path through the workflow, _e.g._ `sample_a.trimmed.deduplicated.sorted.bam`.
+You can name a file whatever you want in a Snakemake workflow, but you will find
+that everything falls into place much nicer if the filename reflects the file's
+path through the workflow, _e.g._ `sample_a.trimmed.deduplicated.sorted.bam`. 
 :::
 
-The input to Snakemake rules have to be strings or lists of strings, however
-you don't have to specify these strings directly in the `input:` section of
-rules. Instead, you can specify Python functions that return strings or
-lists of strings. This allows you to supply input to rules that can vary
-depending on the wildcards being used. We'll get to why that's useful in a
-sec, but first let's put it to use for the `conatenate_files` rule.
-Because Snakemake is based on Python we can mix rule definitions with
-standard python code in the same file. Add a function just above the
-`concatenate_files` that looks like this:
+### Input functions
 
-```python
+The input to Snakemake rules has to be strings or lists of strings, however you
+don't have to specify these strings directly in the `input:` section of rules.
+Instead, you can define Python functions that return strings or lists of strings
+and use these to pass input to Snakemake rules. This allows you to supply input
+to rules that can vary depending on the wildcards being used. We'll get to why
+that's useful in a sec, but first let's put it to use for the `concatenate_files`
+rule. Because Snakemake is based on Python we can mix rule definitions with
+standard Python code in the same file. Add a function just above the
+`concatenate_files` rule that looks like this:
+
+```{.python filename="Snakefile"}
 def concat_input(wildcards):
     files = [wildcards.first + ".upper.txt", wildcards.second + ".upper.txt"]
     return files
 ```
 
-This is the syntax to define a function in Python. The
-`def concat_input(wildcards):` line shows the name of the function
-(`concat_input`) and the variable passed to the function
-(the `wildcards` object). In the second line we add two items to a list
-that we call `files` and add the '.upper.txt' suffix to each item. Finally,
-the function returns the list.
-Because the `concatenate_files` rule has two wildcards `{first}` and `{second}`
-we can access the actual strings in the `wildcards` object using
-`wildcards.first` and `wildcards.second`. When we ask for the file `a_b.txt`
-then `wildcards.first == 'a'` and `wildcards.second == 'b'`. This means that
-the `files` list returned by the function will be
-`['a.upper.txt', 'b.upper.txt']`.
+This is the syntax to define a function in Python. The `def
+concat_input(wildcards):` line shows the name of the function (`concat_input`)
+and the variable passed to the function (the `wildcards` object). In the second
+line we add two items to a list that we call `files` and add the '.upper.txt'
+suffix to each item. Finally, the function returns the list. Because the
+`concatenate_files` rule has two wildcards `{first}` and `{second}` we can
+access the actual strings in the `wildcards` object using `wildcards.first` and
+`wildcards.second`. When we ask for the file `a_b.txt` then `wildcards.first ==
+'a'` and `wildcards.second == 'b'`. This means that the `files` list returned by
+the function will be `['a.upper.txt', 'b.upper.txt']`.
 
 Now that we've defined the function to use as input, we can use it in the
 `concatenate_files` rule. Update the rule so that it looks like this:
 
-```python
+```{.python filename="Snakefile"}
 rule concatenate_files:
-    output:
-        "{first}_{second}.txt"
     input:
-        concat_input
+        concat_input,
+    output:
+        "{first}_{second}.txt",
     shell:
         """
-        cat {input[0]} {input[1]} > {output}
+        cat {input[0]} {input[1]} >{output}
         """
 ```
 
-You see that the name of the function `concat_input` is added in place of
-the input strings. When using the `wildcards` object in input functions like
-this we have to call the function without any arguments (simply
-`concat_input`) and the function has to be defined to accept a single argument
-(here `def concat_input(wildcards):`).
-Let's run the workflow with the updated rule. Remove the file `a_b.txt` or add
-`-f` to the Snakemake command to force a re-run:
+You see that the name of the function `concat_input` is added in place of the
+input strings. When using the `wildcards` object in input functions like this we
+have to call the function without any arguments (simply `concat_input`) and the
+function has to be defined to accept a single argument (here `def
+concat_input(wildcards):`). Let's run the workflow with the updated rule. Remove
+the file `a_b.txt` or add `-f` to the Snakemake command to force a re-run:
 
 ```bash
 snakemake -c 1 -f a_b.txt
 ```
 
-There are a number of possible use-cases for input functions. For example,
-say that you have an experiment where you've sequenced three samples:
-`sample1`, `sample2` and `sample3` with the corresponding FASTQ files under
-`data/` and you want to write a rule that outputs the statistics of all
-sequences within each sample.
-However, samples `sample1` and `sample2` have been sequenced with single-end
-technology while `sample3` have paired-end reads. The single-end samples will
-have only one FASTQ file whereas the paired-end sample will have two (one
-for each sequenced end). Thus, depending on the name of the sample the
-input to the function will either be one file or two. With input functions
-we can write a generalized rule that can handle both types:
+There are a number of possible use-cases for input functions. For example, say
+that you have an experiment where you've sequenced three samples: `sample1`,
+`sample2` and `sample3` with the corresponding FASTQ files under `data/` and you
+want to write a rule that outputs the statistics of all sequences within each
+sample. However, samples `sample1` and `sample2` have been sequenced with
+single-end technology while `sample3` has paired-end reads. The single-end
+samples will have only one FASTQ file whereas the paired-end sample will have
+two (one for each sequenced end). Thus, depending on the name of the sample the
+input to the rule will either be one file or two. With input functions we
+can write a generalized rule that can handle both types:
 
 ```python
 def fastq_input(wildcards):
     if wildcards.sample_id in ["sample1", "sample2"]:
         return "data/" + wildcards.sample_id + ".fastq.gz"
     else:
-        return ["data/" + wildcards.sample_id + ".R1.fastq.gz",
-                "data/" + wildcards.sample_id + ".R2.fastq.gz"]
+        return [
+            "data/" + wildcards.sample_id + ".R1.fastq.gz",
+            "data/" + wildcards.sample_id + ".R2.fastq.gz",
+        ]
+
 
 rule fastq_stats:
-    output:
-        "{sample_id}.stats.txt"
     input:
-        fastq_input
+        fastq_input,
+    output:
+        "{sample_id}.stats.txt",
     shell:
         """
-        seqtk comp {input} > {output}
+        seqtk comp {input} >{output}
         """
 ```
 
-As you can see, the `fastq_stats` rule outputs one file `{sample_id}.stats.txt`
-and takes as input the value returned from the `fastq_input` function. In
-this function the sample id is evaluated and if it is either `sample1` or
-`sample2` (our single-end samples) then the function returns a single string
-which is the path to the FASTQ file for that sample. Otherwise, the function
-returns a list containing both the `R1` and `R2` files for the sample. In the
-`shell:` directive of the rule the `seqtk comp` command is run on the input
-and the output is sent to the output file.
+As you can see, the `fastq_stats` rule takes as input the value returned from
+the `fastq_input` function and outputs one file `{sample_id}.stats.txt`. In this
+function the sample id is evaluated and if it is either `sample1` or `sample2`
+(our single-end samples) then the function returns a single string which is the
+path to the FASTQ file for that sample. Otherwise, the function returns a list
+containing both the `R1` and `R2` files for the sample. In the `shell:`
+directive of the rule the `seqtk comp` command is run on the input and the
+output is sent to the output file.
 
 
 ::: {.callout-note title="Quick recap"}
@@ -465,16 +478,35 @@ rules are connected, one that shows how the jobs (_i.e._ an execution of
 a rule with some given inputs/outputs/settings) are connected, and finally one
 that shows rules with their respective input/output files.
 
-First we look at the rule graph. The following command will generate a rule graph
-in the dot language and pipe it to the program `dot`, which in turn will save
-a visualization of the graph as a PNG file (if you're having troubles displaying
-PNG files you could use SVG or JPG instead).
+First we look at the rule graph. The following command will generate a rule
+graph in the dot language and pipe it to the program `dot`, which in turn will
+save a visualization of the graph as a PNG file (if you're having trouble
+displaying PNG files you could use SVG or JPG instead).
 
 ```bash
-snakemake --rulegraph -c 1 a_b.txt | dot -Tpng > rulegraph.png
+snakemake --rulegraph dot a_b.txt | dot -Tpng > rulegraph.png
 ```
 
-![](images/rulegraph.svg)
+::: {.callout-note}
+The `--rulegraph` and `--dag` flags take an optional argument for the output
+format (`dot` or `mermaid-js`). If you put a target file directly after the
+flag, _e.g._ `snakemake --rulegraph a_b.txt`, Snakemake interprets `a_b.txt`
+as the format and exits with an error. Either specify the format explicitly,
+as above, or put the target before the flag.
+:::
+
+```{dot}
+//| echo: false
+//| label: "rulegraph.png"
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=1];
+    edge[penwidth=1, color=grey];
+        0[label = "concatenate_files", color = "0.00 0.6 0.85", style="rounded"];
+        1[label = "convert_to_upper_case", color = "0.22 0.6 0.85", style="rounded"];
+        1 -> 0
+}
+```
 
 This looks simple enough, the output from the rule `convert_to_upper_case` will
 be used as input to the rule `concatenate_files`.
@@ -491,17 +523,85 @@ The second type of graph is based on the jobs, and looks like this for our
 little workflow (use `--dag` instead of `--rulegraph`).
 
 ```bash
-snakemake --dag -c 1 a_b.txt | dot -Tpng > jobgraph.png
+snakemake --dag dot a_b.txt | dot -Tpng > jobgraph.png
 ```
 
-![](images/jobgraph.svg)
+```{dot}
+//| echo: false
+//| label: "jobgraph.png"
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=1];
+    edge[penwidth=1, color=grey];
+        0[label = "concatenate_files\nfirst: a\nsecond: b", color = "0.00 0.6 0.85", style="rounded,dashed"];
+        1[label = "convert_to_upper_case\nsome_name: a", color = "0.22 0.6 0.85", style="rounded,dashed"];
+        2[label = "convert_to_upper_case\nsome_name: b", color = "0.22 0.6 0.85", style="rounded,dashed"];
+        1 -> 0
+        2 -> 0
+}
+```
 
 The main difference here is that now each node is a job instead of a rule. You
 can see that the wildcards used in each job are also displayed. Another
-difference is the dotted lines around the nodes. A dotted line is Snakemake's
-way of indicating that this rule doesn't need to be rerun in order to generate
+difference is the dashed lines around the nodes. A dashed line is Snakemake's
+way of indicating that this job doesn't need to be rerun in order to generate
 `a_b.txt`. Validate this by running `snakemake -c 1 -n a_b.txt` and it should say
 that there is nothing to be done.
+
+Let's take a look at the final type of graph that Snakemake can generate, this
+is done with the `--filegraph` flag and will show the rules and their input and
+output files.
+
+```bash
+snakemake --filegraph a_b.txt | dot -Tpng > filegraph.png
+```
+
+```{dot}
+//| label: filegraph.png
+//| echo: false
+
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=1];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=1];
+    edge[penwidth=1, color=grey];
+0 [ shape=none, margin=0, label=<<table border="2" color="#D95757" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">concatenate_files</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">&lt;input function&gt;</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{first}_{second}.txt</font></td></tr>
+</table>>]
+1 [ shape=none, margin=0, label=<<table border="2" color="#57D957" cellspacing="3" cellborder="0">
+<tr><td>
+<b><font point-size="18">convert_to_upper_case</font></b>
+</td></tr>
+<hr/>
+<tr><td align="left"> <b><font point-size="14">&#8618; input</font></b> </td></tr>
+<tr>
+<td align="left"><font face="monospace">{some_name}.txt</font></td>
+</tr>
+<hr/>
+<tr><td align="right"> <b><font point-size="14">output &rarr;</font></b> </td> </tr>
+<tr>
+<td align="left"><font face="monospace">{some_name}.upper.txt</font></td></tr>
+</table>>]
+        1 -> 0
+}
+```
+
+In terms of details/complexity the filegraph is an intermediate between the
+rulegraph (`--rulegraph`) and the jobgraph (`--dag`). It shows the rules to run
+with their respective input and output files (shown with wildcards), but doesn't
+show the jobs that will be executed.
+
+## Rerun-triggers
 
 We've discussed before that one of the main purposes of using a WfMS is that it
 automatically makes sure that everything is up to date. This is done by
@@ -520,7 +620,6 @@ concatenate_files            1
 convert_to_upper_case        1
 total                        2
 
-
 [Fri Nov 15 10:27:22 2024]
 rule convert_to_upper_case:
     input: a.txt
@@ -529,8 +628,6 @@ rule convert_to_upper_case:
     reason: Updated input files: a.txt
     wildcards: some_name=a
     resources: tmpdir=<TBD>
-
-
 [Fri Nov 15 10:27:22 2024]
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
@@ -539,7 +636,6 @@ rule concatenate_files:
     reason: Input files updated by another job: a.upper.txt
     wildcards: first=a, second=b
     resources: tmpdir=<TBD>
-
 Job stats:
 job                      count
 ---------------------  -------
@@ -553,34 +649,39 @@ Reasons:
         concatenate_files
     updated input files:
         convert_to_upper_case
-
 This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
 ```
 :::
 
 Were you correct? Also generate the job graph and compare to the one generated
-above. What's the difference? Now rerun without `-n` and validate that `a_b.txt`
-contains the new text. Note that Snakemake doesn't look at the contents of files
-when trying to determine what has changed, only at the timestamp for when they
-were last modified.
+above. What's the difference? 
 
-We've seen that Snakemake keeps track of if files in the workflow have changed,
-and automatically makes sure that any results depending on such files are
-regenerated. What about if the rules themselves are changed? Since version 7.8.0
-Snakemake keeps track of this automatically.
+Now rerun without `-n` and validate that `a_b.txt` contains the new text. Note
+that Snakemake doesn't look at the contents of files when trying to determine
+what has changed, only at the timestamp for when they were last modified.
+Modification time (`mtime`) is one of the **rerun-triggers** used by Snakemake. The other triggers are:
 
-Modify the rule `concatenate_files` to also include which files were
-concatenated.
+* `code`: changes to the code used to execute commands (`shell:`, `run:` or `script:` directives).
+* `input`: changes to the set of input files.
+* `params`: changes to the `params:` section.
+* `software-env`: changes to the software environment used for rules (`conda:`,
+  `container:` or `env-modules:` directives).
 
-```python
+Which rerun-trigger(s) to use is handled via the `--rerun-triggers` command line
+flag. By default, all of them are on.
+
+To see this in practice, modify the `shell:` directive of the rule
+`concatenate_files` to also include which files were concatenated.
+
+```{.python filename="Snakefile"}
 rule concatenate_files:
-    output:
-        "{first}_{second}.txt"
     input:
-        concat_input
+        concat_input,
+    output:
+        "{first}_{second}.txt",
     shell:
         """
-        echo 'Concatenating {input}' | cat - {input[0]} {input[1]} > {output}
+        echo 'Concatenating {input}' | cat - {input[0]} {input[1]} >{output}
         """
 ```
 
@@ -599,9 +700,9 @@ If you now run:
 snakemake -c 1 -n a_b.txt
 ```
 
- you should see:
+you should see:
 
-```bash
+```no-highlight
 rule concatenate_files:
     input: a.upper.txt, b.upper.txt
     output: a_b.txt
@@ -614,25 +715,14 @@ Although no files involved in the workflow have been changed, Snakemake
 recognizes that the workflow code itself has been modified and this triggers a
 re-run.
 
-Snakemake is aware of changes to five categories of such "rerun-triggers":
+Now instead run with:
 
-- "input" (changes to rule input files), 
-- "params" (changes to the rule `params` section)
-- "software-env" (changes to Conda environment files specified by the `conda:` directive)
-- "code" (changes to code in the `shell:`, `run:`, `script:` and `notebook:` directives)
-- "mtime" (changes to the modification time of input files)
+```bash
+snakemake -c 1 --rerun-triggers mtime -n a_b.txt
+```
 
-Using the flag `--rerun-triggers` you can specify which of these categories
-should trigger a re-run. For example, `--rerun-triggers input` will only
-re-run the workflow if the specified input files have changed and `--rerun-triggers
-input params` will re-run if either the input files or the `params` section of
-the rule has changed.
-
-Prior to version 7.8.0, only changes to the modification time of input files would
-trigger automatic re-runs. To run Snakemake with this previous behaviour you
-can use the setting `--rerun-triggers mtime` at the command line.
-Try running: `snakemake --rerun-triggers mtime -n a_b.txt` and
-you should again see `Nothing to be done (all requested files are present and up to date).`
+With `mtime` (modification time) as the only rerun-trigger Snakemake decides
+that all files are up to date.
 
 You can also export information on how all files were generated (when, by which
 rule, which version of the rule, and by which commands) to a tab-delimited file
@@ -646,36 +736,23 @@ The content of `summary.tsv` is shown in the table below:
 
 | output_file | date                  | rule                    | log-file(s) | input-file(s)          | shellcmd                                  | status                     | plan            |
 |-------------|-----------------------|-------------------------|-------------|------------------------|-------------------------------------------|----------------------------|-----------------|
-| a_b.txt     | Fri Nov 15 10:32:04 2024 | concatenate_files       |             | a.upper.txt,b.upper.txt | cat a.upper.txt b.upper.txt > a_b.txt     | rule implementation changed | update pending  |
-| a.upper.txt | Fri Nov 15 10:32:04 2024 | convert_to_upper_case   |             | a.txt                  | tr [a-z] [A-Z] < a.txt > a.upper.txt      | ok                         | no update       |
-| b.upper.txt | Thu Nov 14 00:04:06 2024 | convert_to_upper_case   |             | b.txt                  | tr [a-z] [A-Z] < b.txt > b.upper.txt      | ok                         | no update       |
+| a_b.txt     | Fri Nov 15 10:32:04 2024 | concatenate_files       |             | a.upper.txt,b.upper.txt | cat a.upper.txt b.upper.txt >a_b.txt      | rule implementation changed | update pending  |
+| a.upper.txt | Fri Nov 15 10:32:04 2024 | convert_to_upper_case   |             | a.txt                  | tr a-z A-Z <a.txt >a.upper.txt        | ok                         | no update       |
+| b.upper.txt | Thu Nov 14 00:04:06 2024 | convert_to_upper_case   |             | b.txt                  | tr a-z A-Z <b.txt >b.upper.txt        | ok                         | no update       |
 
 : summary.tsv {.responsive .sm}
 
 You can see in the second last column that the rule implementation for `a_b.txt`
 has changed. The last column shows if Snakemake plans to regenerate the files
-when it's next executed. You can see that for the `concatenate_files` the plan
-is `update pending` because we generated the summary with the default behaviour
-of using all rerun-triggers.
+when it's next executed. You can see that for the `concatenate_files` rule the
+plan is `update pending` because we generated the summary with the default
+behaviour of using all rerun-triggers.
 
 You might wonder where Snakemake keeps track of all these things? It stores all
 information in a hidden subdirectory called `.snakemake`. This is convenient
 since it's easy to delete if you don't need it anymore and everything is
 contained in the project directory. Just be sure to add it to `.gitignore` so
 that you don't end up tracking it with git.
-
-Let's take a look at the final type of graph that Snakemake can generate, this
-is done with the `--filegraph` flag and will show the rules and their input and
-output files.
-
-```bash
-snakemake --filegraph a_b.txt | dot -Tpng > filegraph.png
-```
-
-In terms of details/complexity the filegraph is an intermediate between the
-rulegraph (`--rulegraph`) and the jobgraph (`--dag`). It shows the rules to run
-with their respective input and output files (shown with wildcards), but doesn't
-show the jobs that will be executed.
 
 By now you should be familiar with the basic functionality of Snakemake, and
 you can build advanced workflows with only the features we have discussed here.
@@ -698,11 +775,11 @@ In this section we've learned:
 
 As you might remember from the [intro](introduction.html), we are attempting to
 understand how lytic bacteriophages can be used as a future therapy for the
-multi-resistant bacteria MRSA (methicillin-resistant _Staphylococcus aureus_).
+multi-resistant bacterium MRSA (methicillin-resistant _Staphylococcus aureus_).
 In order to do this we have performed RNA-seq of three strains, one test and two
 controls. We have already set up a draft Snakemake workflow for the RNA-seq
 analysis and it seems to be running nicely. The rest of the Snakemake tutorial
-will be spent improving and making this workflow more flexible!
+will be spent improving and making this workflow more flexible.
 
 You are probably already in your `snakemake-env` environment, otherwise
 activate it (use `conda info --envs` if you are unsure).
@@ -734,7 +811,7 @@ digraph MRSA_rulegraph {
         1[label = "generate_count_table", color = "0.20 0.6 0.85", style="rounded"];
         2[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         3[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        4[label = "get_SRA_by_accession", color = "0.27 0.6 0.85", style="rounded"];
+        4[label = "download_fastq_files", color = "0.27 0.6 0.85", style="rounded"];
         5[label = "index_genome", color = "0.47 0.6 0.85", style="rounded"];
         6[label = "get_genome_fasta", color = "0.33 0.6 0.85", style="rounded"];
         7[label = "get_genome_gff3", color = "0.40 0.6 0.85", style="rounded"];
@@ -788,15 +865,15 @@ digraph MRSA_jobgraph {
         1[label = "generate_count_table", color = "0.20 0.6 0.85", style="rounded"];
         2[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         3[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.27 0.6 0.85", style="rounded"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", color = "0.27 0.6 0.85", style="rounded"];
         5[label = "index_genome", color = "0.47 0.6 0.85", style="rounded"];
         6[label = "get_genome_fasta", color = "0.33 0.6 0.85", style="rounded"];
         7[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         8[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        9[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.27 0.6 0.85", style="rounded"];
+        9[label = "download_fastq_files\nsample_id: SRR935091", color = "0.27 0.6 0.85", style="rounded"];
         10[label = "sort_bam", color = "0.60 0.6 0.85", style="rounded"];
         11[label = "align_to_genome", color = "0.00 0.6 0.85", style="rounded"];
-        12[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.27 0.6 0.85", style="rounded"];
+        12[label = "download_fastq_files\nsample_id: SRR935092", color = "0.27 0.6 0.85", style="rounded"];
         13[label = "get_genome_gff3", color = "0.40 0.6 0.85", style="rounded"];
         14[label = "multiqc", color = "0.53 0.6 0.85", style="rounded"];
         15[label = "fastqc", color = "0.13 0.6 0.85", style="rounded"];
@@ -829,14 +906,13 @@ digraph MRSA_jobgraph {
 
 Now let's run the whole workflow. As before, specify `-p` to have Snakemake
 print the shell commands for rules and use `-c` to control how many cores to run
-with. If you don't specify number of cores Snakemake will use all available
-cores on your machine. Let's run the workflow with one core:
+with. Let's run the workflow with one core:
 
 ```bash
 snakemake -s snakefile_mrsa.smk -c 1 -p
 ```
 
-After everything is done, the workflow will have generated fastq files for each
+After everything is done, the workflow will have generated FASTQ files for each
 sample under `data/` and reference genome files under `data/ref`. The `results/`
 directory will contain the output from the different steps in the workflow,
 divided into subdirectories. Take some time to look through the structure.
@@ -859,12 +935,12 @@ keyword.
 
 ```python
 rule some_rule:
-    output:
-        "results/some_output.txt"
     input:
-        "some_input.txt"
+        "some_input.txt",
+    output:
+        "results/some_output.txt",
     params:
-        cutoff=2.5
+        cutoff=2.5,
     shell:
         """
         some_program --cutoff {params.cutoff} {input} {output}
@@ -876,70 +952,63 @@ which is set to `2.5` and this value can be accessed in the shell command with
 `{params.cutoff}`. 
 
 In the MRSA workflow most of the programs are run with default settings and
-don't use the `params:` directive. However, the `get_SRA_by_accession` rule
-is an exception. Let's take a look at this part of the workflow:
+don't use the `params:` directive. However, the `download_fastq_files` rule is
+an exception. In this rule the `url` parameter is set using a function, which is
+similar to what you did in the [Input functions](#input-functions) section.
+Using a function to return values based on wildcards also works for `params:`. 
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
-def get_sample_url(wildcards):
-    samples = {
-        "SRR935090": "https://ndownloader.figshare.com/files/39539767",
-        "SRR935091": "https://ndownloader.figshare.com/files/39539770",
-        "SRR935092": "https://ndownloader.figshare.com/files/39539773",
-    }
-    return samples[wildcards.sample_id]
-
+def get_sample_url(wildcards): # <1>
+    samples = { # <2>
+        "SRR935090": "https://ndownloader.figshare.com/files/39539767", # <2>
+        "SRR935091": "https://ndownloader.figshare.com/files/39539770", # <2>
+        "SRR935092": "https://ndownloader.figshare.com/files/39539773", # <2>
+    } # <2>
+    return samples[wildcards.sample_id] # <3>
 
 # Retrieve a single-read FASTQ file
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
         "data/{sample_id}.fastq.gz",
     params:
-        url=get_sample_url,
+        url=get_sample_url, # <4>
     shell:
         """
-        curl -L {params.url} | seqtk sample - 25000 | gzip -c > {output[0]}
+        curl -fsSL {params.url} | seqtk sample - 25000 | gzip -c >{output[0]} # <5>
         """
 ```
 
-Here `params` has a keyword called `url` which is set to a function called
-`get_sample_url` defined just above the rule. The function returns a URL for the
-sample that the rule is supposed to download and this URL is then accessed in
-the `shell:` directive with `{params.url}`.
-
-You may recognize this from [The basics](#the-basics) of this tutorial where we
-used input functions to generate strings and lists of strings for the `input:`
-section of a rule. Using a function to return values based on the wildcards also
-works for `params:`. Here `sample_id` is a wildcard which in this specific
-workflow can be either `SRR935090`, `SRR935091`, or `SRR935092`. The wildcards
-object is passed to the function `get_sample_url` and depending on what output
-the rule is supposed to generate, `wildcards.sample_id` will take the value of
-either of the three sample ids. The `samples` variable defined in the function
-is a Python [dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+1. The `get_sample_url` function takes the `wildcards` object as its single argument.
+2. The `samples` variable defined in the function is a Python
+[dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
 that has the URLs for each sample_id hard-coded. This dictionary is used to
-convert the value of the `sample_id` wildcard to a URL, which is returned by the
-function. Finally, in the `shell:` directive we access the `url` parameter with
-`{params.url}`. (We could have written three separate rules to download the
-samples, but it's easy to see how that can become impractical.)
+convert the value of the `sample_id` wildcard to a URL.
+3. The URL is returned by the function.
+4. The `url` parameter in the rule calls the `get_sample_url` which returns a URL depending on the value of the `sample_id` wildcard.
+5. Finally, in the `shell:` directive we access the `url` parameter with
+`{params.url}`.
 
-Let's add another parameter to the `get_SRA_by_accession` rule. As you can see
+Let's add another parameter to the `download_fastq_files` rule. As you can see
 in the shell command the FASTQ file downloaded by `curl` gets piped directly to
 the `seqtk sample` command which reads from STDIN and outputs 25000 randomly
 sampled reads (out of the 100,000 contained in the example FASTQ file). Change
-in the rule to use the parameter `max_reads` instead and set the value to 20000.
+the rule to use a parameter `max_reads` instead of the hard-coded value and set
+it to 20000.
+
 If you need help, click to show the solution below.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
-        "data/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz",
     params:
-        url = get_sample_url,
-        max_reads = 20000
+        url=get_sample_url,
+        max_reads=20000,
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        curl -fsSL {params.url} | seqtk sample - {params.max_reads} | gzip -c >{output[0]}
         """
 ```
 :::
@@ -950,25 +1019,25 @@ Now run the workflow again with:
 snakemake -s snakefile_mrsa.smk -p -c 1
 ```
 
-Because there's been changes to the `get_SRA_by_accession` rule this will
+Because there have been changes to the `download_fastq_files` rule this will
 trigger a re-run of the rule for all three accessions. In addition all
-downstream rules that depend on output from `get_SRA_by_accession` are re-run.
+downstream rules that depend on output from `download_fastq_files` are re-run.
 
 As you can see the parameter values we set in the `params` section don't have to
 be static, they can be any Python expression. In particular, Snakemake provides
 a global dictionary of configuration parameters called `config`. Let's modify
-`get_SRA_by_accession` in order to make use of this dictionary:
+`download_fastq_files` in order to make use of this dictionary:
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
-rule get_SRA_by_accession:
+rule download_fastq_files:
     output:
-        "data/{sample_id}.fastq.gz"
+        "data/{sample_id}.fastq.gz",
     params:
-        url = get_sample_url,
-        max_reads = config["max_reads"]
+        url=get_sample_url,
+        max_reads=config["max_reads"],
     shell:
         """
-        curl -L {params.url} | seqtk sample - {params.max_reads} | gzip -c > {output[0]}
+        curl -fsSL {params.url} | seqtk sample - {params.max_reads} | gzip -c >{output[0]}
         """
 ```
 
@@ -981,7 +1050,7 @@ use the `snakemake --config KEY=VALUE` syntax directly from the command line
 (_e.g._ `snakemake --config max_reads=20000 -s snakefile_mrsa.smk`).
 However, from a reproducibility perspective, it's not optimal to set parameters
 from the command line, since it's difficult to keep track of which parameter
-values that were used.
+values were used.
 
 A much better alternative is to use the `--configfile FILE` option to supply a
 configuration file to Snakemake. In this file we can collect all the
@@ -1022,6 +1091,34 @@ mind that with such a setup Snakemake will complain if the file `config.yml`
 is not present.
 :::
 
+There's one more rule in `snakefile_mrsa.smk` that uses `params:`, namely the
+`fastqc` rule:
+
+```{.python filename="snakefile_mrsa.smk"}
+rule fastqc:
+    input:
+        "data/{sample_id}.fastq.gz",
+    output:
+        "results/fastqc/{sample_id}_fastqc.html",
+        "results/fastqc/{sample_id}_fastqc.zip",
+    params:
+        output_dir=subpath(output[0], parent=True), # <1>
+    shell:
+        """
+        fastqc {input} -q --outdir {params.output_dir} # <2>
+        """
+```
+
+1. Here, the `output_dir` parameter is set using the `subpath` Snakemake helper
+   function. The function takes one of the output files and returns the parent
+   directory of the file (`parent=True`).
+2. The `output_dir` parameter is then used in the shell directive to specify the
+   output directory for `fastqc`.
+
+Snakemake comes with several so called [Semantic
+helper](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#helpers-for-defining-rules)
+functions like this which can simplify your workflow code.
+
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
@@ -1043,47 +1140,54 @@ this. Just as we define `input` and `output` in a rule we can also define
 
 ```python
 rule some_rule:
-    output:
-        "results/some_output.txt"
     input:
-        "some_input.txt"
+        "some_input.txt",
+    output:
+        "results/some_output.txt",
     log:
-        "logs/some_log.txt"
+        "logs/some_log.txt",
     shell:
         """
-        some_program {input} {output} > {log}
+        some_program {input} {output} >{log}
         """
 ```
 
-A log file is not different from any other output file, but it's dealt with
-a little differently by Snakemake. For example, it's shown in the file summary
-when using `-D` and unlike other output files it's not deleted if jobs fail
+A log file is not different from any other output file, but it's dealt with a
+little differently by Snakemake. For example, it's shown in the file summary
+when using `-D` and unlike other output files it's not deleted if jobs fail,
 which of course is necessary for debugging purposes. It's also a good way to
-clarify the purpose of the file. We probably don't need to save logs for
-all the rules, only the ones with interesting output:
+clarify the purpose of the file. 
 
-- `multiqc` aggregates quality control data for all the samples into one html
+::: {.callout-important}
+To avoid having multiple jobs write to the same files Snakemake requires that
+all output and log files contain the same wildcards.
+:::
+
+It is recommended to use a log file for all rules in a workflow. However, the
+most important rules to save logs for in this workflow are:
+
+- `multiqc` which aggregates quality control data for all the samples into one html
   report, and the log contains information about which samples were aggregated.
 - `get_genome_fasta` and `get_genome_gff3` would be good to log since they are
   dependent on downloading files from an external server.
-- `index_genome` outputs some statistics about the genome indexing.
-- `generate_count_table` outputs information about input files, settings and a summary of results.
-- `align_to_genome` outputs important statistics about the alignments. This is
-  probably the most important log to save.
+- `index_genome` which outputs some statistics about the genome indexing.
+- `align_to_genome` which outputs important statistics about the alignments.
+  This is probably the most important log to save.
+- `generate_count_table` which outputs information about input files, settings
+  and a summary of results.
 
-Now add a log file to some or all of the rules above. A good place to save them
-to would be `results/logs/<rule_name>/`. To avoid having multiple jobs write to
-the same files Snakemake requires that all output and log files contain the same
-wildcards, so be sure to include any wildcards used in the rule in the log name
-as well, _e.g._ `{some_wildcard}.log`.
+
+Now add a log file to the rules `multiqc`, `get_genome_fasta`,
+`get_genome_gff3`, `index_genome`, `align_to_genome` and `generate_count_table`.
+A good place to save them is under `results/logs/`, _e.g._
+`results/logs/<rule_name>.log`, or `results/logs/<rule_name>/{sample_id}.log`
+for rules that run once per sample.
 
 You also have to specify in the `shell` section of each rule what you want the
 log to contain. Some of the programs we use send their log information to
-standard out, some to standard error and some let us specify a log file via
-a flag.
-
-For example, `bowtie2` used in the `align_to_genome` rule writes log info to
-standard error so we use `2>{log}` to redirect this to the log file:
+standard out, some to standard error and some let us specify a log file via a
+flag. For example, `bowtie2` used in the `align_to_genome` rule writes log info
+to standard error so we use `2>{log}` to redirect this to the log file:
 
 ```{.python filename="snakefile_mrsa.smk"}
 rule align_to_genome:
@@ -1094,27 +1198,30 @@ rule align_to_genome:
         "results/bowtie2/NCTC8325.3.bt2",
         "results/bowtie2/NCTC8325.4.bt2",
         "results/bowtie2/NCTC8325.rev.1.bt2",
-        "results/bowtie2/NCTC8325.rev.2.bt2"
+        "results/bowtie2/NCTC8325.rev.2.bt2",
     output:
-        "results/bam/{sample_id,\\w+}.bam"
+        "results/sam/{sample_id}.sam",
     log:
-        "results/logs/align_to_genome/{sample_id}.log"
+        "results/logs/align_to_genome/{sample_id}.log",
     shell:
         """
-        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} >{output} 2>{log}
         """
 ```
 
 For programs used in the rules `multiqc`, `get_genome_fasta`, `get_genome_gff3`,
 `index_genome` and `generate_count_table` you can use the table below if you
-need help with how to redirect output to the log file.
+need help with how to redirect output to the log file. Note that for some
+programs the redirect is `>{log} 2>&1`. This means that we send standard
+output to the log file and standard error to wherever stdout goes. It's
+simply a way to send both streams to the same file.
 
 | Rule      | Program        | Redirect flag  |
 |-----------|----------------|----------------|
-| `multiqc` | `multiqc` | `2>{log}` |
+| `multiqc` | `multiqc` | `>{log} 2>&1` |
 | `get_genome_fasta`/`get_genome_gff3` | `wget` | `-o {log}` |
-| `index_genome` | `bowtie2-build` | `>{log}` |
-| `generate_count_table` | `featureCounts` | `2>{log}` |
+| `index_genome` | `bowtie2-build` | `>{log} 2>&1` |
+| `generate_count_table` | `featureCounts` | `>{log} 2>&1` |
 
 
 If you need help, click to show the solution below for the rules.
@@ -1125,16 +1232,16 @@ rule multiqc:
     input:
         "results/fastqc/SRR935090_fastqc.zip",
         "results/fastqc/SRR935091_fastqc.zip",
-        "results/fastqc/SRR935092_fastqc.zip"
+        "results/fastqc/SRR935092_fastqc.zip",
     output:
-        html = "results/multiqc/multiqc.html",
-        stats = "results/multiqc/multiqc_general_stats.txt"
+        html="results/multiqc/multiqc.html",
+        stats="results/multiqc/multiqc_general_stats.txt",
     log:
-        "results/logs/multiqc.log"
+        "results/logs/multiqc.log",
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2>{log}
+        multiqc -n multiqc.html {input} >{log} 2>&1
         mv multiqc.html {output.html}
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
 
@@ -1144,64 +1251,61 @@ rule multiqc:
 
 rule get_genome_fasta:
     output:
-        "data/ref/NCTC8325.fa.gz"
+        "data/ref/NCTC8325.fa.gz",
     log:
-        "results/logs/get_genome_fasta.log"
+        "results/logs/get_genome_fasta.log",
     shell:
         """
-        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
+        wget -o {log} https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O {output}
         """
 
 rule get_genome_gff3:
     output:
-        "data/ref/NCTC8325.gff3.gz"
+        "data/ref/NCTC8325.gff3.gz",
     log:
-        "results/logs/get_genome_gff3.log"
+        "results/logs/get_genome_gff3.log",
     shell:
         """
-        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz -O {output}
+        wget -o {log} https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz -O {output}
         """
 
 rule index_genome:
     input:
-        "data/ref/NCTC8325.fa.gz"
+        "data/ref/NCTC8325.fa.gz",
     output:
         "results/bowtie2/NCTC8325.1.bt2",
         "results/bowtie2/NCTC8325.2.bt2",
         "results/bowtie2/NCTC8325.3.bt2",
         "results/bowtie2/NCTC8325.4.bt2",
         "results/bowtie2/NCTC8325.rev.1.bt2",
-        "results/bowtie2/NCTC8325.rev.2.bt2"
+        "results/bowtie2/NCTC8325.rev.2.bt2",
     log:
-        "results/logs/index_genome.log"
+        "results/logs/index_genome.log",
     shell:
         """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325 >{log}
-
-        # Remove the temporary file
-        rm tempfile
+        bowtie2-build {input} results/bowtie2/NCTC8325 >{log} 2>&1
         """
 
 rule generate_count_table:
     input:
-        bams = ["results/bam/SRR935090.sorted.bam",
-                "results/bam/SRR935091.sorted.bam",
-                "results/bam/SRR935092.sorted.bam"],
-        annotation = "data/ref/NCTC8325.gff3.gz"
+        bams=[
+            "results/bam/SRR935090.sorted.bam",
+            "results/bam/SRR935091.sorted.bam",
+            "results/bam/SRR935092.sorted.bam",
+        ],
+        annotation="data/ref/NCTC8325.gff3.gz",
     output:
-        "results/tables/counts.tsv"
+        "results/tables/counts.tsv",
     log:
-        "results/logs/generate_count_table.log"
+        "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 :::
 
-After adding logfiles to the rules, rerun the whole workflow with:
+After adding log files to the rules, rerun the whole workflow with:
 
 ```bash
 snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1
@@ -1218,8 +1322,8 @@ you can add `exec &>{log}` as the first line of the shell directive.
 :::
 
 If you run with `-D` (or `-S` for a simpler version) you will see that the
-summary table now also contains the log file for each of the files in the
-workflow.
+summary table now also contains the log file for each output file generated by
+a rule with a `log` directive.
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -1234,27 +1338,27 @@ some time and then deleted once they are no longer needed. A typical case could
 be that some operation generates a file, which is then compressed to save space
 or indexed to make searching faster. There is then no need to save the original
 output file. Take a look at the job graph for our workflow again. The output
-from `align_to_genome` is a BAM file, which contains information about all the
+from `align_to_genome` is a SAM file, which contains information about all the
 reads for a sample and where they map in the genome. For downstream processing
 we need this file to be sorted by genome coordinates. This is what the rule
-`sort_bam` is for. We therefore end up with both `results/bam/{sample_id}.bam`
-and `results/bam/{sample_id}.sorted.bam` as you can see if you list the contents of `results/bam`.
+`sort_bam` is for. We therefore end up with both `results/sam/{sample_id}.sam`
+and `results/bam/{sample_id}.sorted.bam`.
 
 In Snakemake we can mark an output file as temporary like this:
 
 ```python
 rule some_rule:
     output:
-        temp("results/some_output.txt")
+        temp("results/some_output.txt"),
 ```
 
 The file will then be deleted as soon as all jobs where it's an input have
-finished. Let's use the `temp` notation for for the output of `align_to_genome`,
-modify the rule so that the `output:` directive looks like this:
+finished. Let's use the `temp` notation for the output of `align_to_genome`.
+Modify the rule so that the `output:` directive looks like this:
 
 ```{.python filename="snakefile_mrsa.smk"}
     output:
-        temp("results/bam/{sample_id,\\w+}.bam")
+        temp("results/sam/{sample_id}.sam"),
 ```
 
 We have to force a rerun of the rule for it to trigger, so we use `--forcerun align_to_genome` to do this. Run the workflow with:
@@ -1266,11 +1370,11 @@ snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun align
 Take a look at the output printed to your terminal. After the rule `sort_bam` you should see something like this:
 
 ```no-highlight
-Removing temporary output results/bam/SRR935092.bam.
+Removing temporary output results/sam/SRR935092.sam.
 ```
 
-If you list the contents of `results/bam` you should see that it now only
-contains the sorted BAM files.
+If you list the contents of `results/` you should see that the `sam/`
+subdirectory is gone and that only the sorted BAM files in `bam/` remain.
 
 ::: {.callout-tip}
 If you want to prevent Snakemake from deleting files marked as temporary you can
@@ -1314,24 +1418,26 @@ rule align_to_genome:
         "results/bowtie2/NCTC8325.3.bt2",
         "results/bowtie2/NCTC8325.4.bt2",
         "results/bowtie2/NCTC8325.rev.1.bt2",
-        "results/bowtie2/NCTC8325.rev.2.bt2"
+        "results/bowtie2/NCTC8325.rev.2.bt2",
     output:
-        temp("results/bam/{sample_id,\\w+}.bam")
+        temp("results/sam/{sample_id}.sam"),
     log:
-        "results/logs/align_to_genome/{sample_id}.log"
+        "results/logs/align_to_genome/{sample_id}.log",
     shell:
         """
-        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} >{output} 2>{log}
         """
 ```
 
-Here we have seven inputs; the FASTQ file with the reads and six files with
+Here we have seven inputs: the FASTQ file with the reads and six files with
 similar file names from the Bowtie2 genome indexing. Instead of writing all
-the filenames we can tidy this up by using the built-in function `expand()`.
+the filenames we can tidy this up by using the `expand()` helper function.
 
 ```{.python}
-expand("results/bowtie2/NCTC8325.{substr}.bt2", 
-    substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+expand(
+    "results/bowtie2/NCTC8325.{substr}.bt2",
+    substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+),
 ```
 
 Here `expand` will take the string `"results/bowtie2/NCTC8325.{substr}.bt2"` and
@@ -1340,49 +1446,34 @@ insert each of the values in the `substr` list: `["1", "2", "3", "4", "rev.1",
 as input to the rule. This is a very powerful feature that can save you a lot of
 typing and make your code more readable.
 
-Now modify the rules `index_genome` and `align_to_genome` to use the `expand()`
-expression in the output and input, respectively. Click the solution below if
-you need help.
+Update the `align_to_genome` rule to use the `expand()` function in the input.
+Click the solution below if you need help.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```{.python filename="snakefile_mrsa.smk"}
-rule index_genome:
-    input:
-        "data/ref/NCTC8325.fa.gz"
-    output:
-        expand("results/bowtie2/NCTC8325.{substr}.bt2",
-            substr=["1", "2", "3", "4","rev.1", "rev.2"])
-    log:
-        "results/logs/index_genome.log",
-    shell:
-        """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325 >{log}
-
-        # Remove the temporary file
-        rm tempfile
-        """
-
 rule align_to_genome:
     input:
         "data/{sample_id}.fastq.gz",
-        expand("results/bowtie2/NCTC8325.{substr}.bt2", 
-                substr=["1", "2", "3", "4", "rev.1", "rev.2"])
+        expand(
+            "results/bowtie2/NCTC8325.{substr}.bt2",
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+        ),
     output:
-        temp("results/bam/{sample_id,\\w+}.bam")
+        temp("results/sam/{sample_id}.sam"),
     log:
-        "results/logs/align_to_genome/{sample_id}.log"
+        "results/logs/align_to_genome/{sample_id}.log",
     shell:
         """
-        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/NCTC8325 -U {input[0]} >{output} 2>{log}
         """
 ```
 :::
 
 Great! Let's put the `expand` function to more use!
 
-The `multiqc` and `generate_count_table` rules take as input the fastqc zip files, and the sorted bam files for all three samples, respectively. See the excerpt below:
+The `multiqc` and `generate_count_table` rules take as input the FastQC zip
+files and the sorted BAM files for all three samples, respectively. See the
+excerpt below:
 
 ```{.python filename="snakefile_mrsa.smk"}
 rule multiqc:
@@ -1390,16 +1481,18 @@ rule multiqc:
     input:
         "results/fastqc/SRR935090_fastqc.zip",
         "results/fastqc/SRR935091_fastqc.zip",
-        "results/fastqc/SRR935092_fastqc.zip"
+        "results/fastqc/SRR935092_fastqc.zip",
 
 ...
 
 rule generate_count_table:
     ...
     input:
-        bams = ["results/bam/SRR935090.sorted.bam",
-                "results/bam/SRR935091.sorted.bam",
-                "results/bam/SRR935092.sorted.bam"],
+        bams=[
+            "results/bam/SRR935090.sorted.bam",
+            "results/bam/SRR935091.sorted.bam",
+            "results/bam/SRR935092.sorted.bam",
+        ],
 ...
 ```
 
@@ -1407,7 +1500,7 @@ Having the files for each sample written explicitly in these rules is how
 Snakemake knows to run the workflow for all three samples. However, this is also
 a potential source of errors since it's easy to change in one place and forget
 to change in the other. Because we can use Python code "everywhere" let's
-instead define a list of sample ids and put at the top of the Snakefile, just
+instead define a list of sample ids and put it at the top of the Snakefile, just
 before the rule `all`:
 
 ```{.python filename="snakefile_mrsa.smk"}
@@ -1417,10 +1510,9 @@ sample_ids = ["SRR935090", "SRR935091", "SRR935092"]
 Now use `expand()` in `multiqc` and `generate_count_table` to use `sample_ids` for
 the sample ids. For the `multiqc` rule it could look like this:
 
-```{.python}
+```{.python filename="snakefile_mrsa.smk"}
     input:
-        expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = sample_ids)
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=sample_ids),
 ```
 
 See if you can update the `generate_count_table` rule in the same manner. If you
@@ -1430,15 +1522,44 @@ need help, click the solution below.
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 rule generate_count_table:
     input:
-        bams = expand("results/bam/{sample_id}.sorted.bam", sample_id = sample_ids),
-        annotation = "data/ref/NCTC8325.gff3.gz"
+        bams=expand("results/bam/{sample_id}.sorted.bam", sample_id=sample_ids),
+        annotation="data/ref/NCTC8325.gff3.gz",
     output:
-        "results/tables/counts.tsv"
+        "results/tables/counts.tsv",
     log:
-        "results/logs/generate_count_table.log"
+        "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
+        """
+```
+:::
+
+Another convenient helper function is `multiext()` which is a simplified variant
+of `expand()`. We can use it when input or output files differ by just their
+extension. The general syntax is `multiext("some_file", ".ext1", ".ext2")` which
+translates to `some_file.ext1, some_file.ext2`. Try to implement this for the `index_genome` rule. Click the solution below if you need help.
+
+::: {.callout-tip collapse="true" title="Click to show"}
+```{.python filename="snakefile_mrsa.smk"}
+rule index_genome:
+    input:
+        "data/ref/NCTC8325.fa.gz",
+    output:
+        multiext(
+            "results/bowtie2/NCTC8325",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+    log:
+        "results/logs/index_genome.log",
+    shell:
+        """
+        bowtie2-build {input} results/bowtie2/NCTC8325 >{log} 2>&1
         """
 ```
 :::
@@ -1455,115 +1576,106 @@ works as expected.
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- How to use the `expand()` expression to make the code more readable.
+- How to use the `expand()` and `multiext()` helper functions to make the code
+  more readable.
 :::
 
 ## Shadow rules
 
-Take a look at the `index_genome` rule below:
+Take a look at the `multiqc` rule below:
 
 ```{.python filename="snakefile_mrsa.smk"}
-rule index_genome:
+rule multiqc:
     input:
-        "data/NCTC8325.fa.gz"
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=sample_ids),
     output:
-        expand("results/bowtie2/NCTC8325.{substr}.bt2",
-           substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+        html="results/multiqc/multiqc.html",
+        stats="results/multiqc/multiqc_general_stats.txt",
     log:
-        "results/logs/index_genome.log",
+        "results/logs/multiqc.log",
     shell:
         """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325 >{log}
+        # Run multiQC and keep the html report
+        multiqc -n multiqc.html {input} >{log} 2>&1
+        mv multiqc.html {output.html}
+        mv multiqc_data/multiqc_general_stats.txt {output.stats}
 
-        # Remove the temporary file
-        rm tempfile
+        # Remove the other directory that multiQC creates
+        rm -rf multiqc_data
         """
 ```
 
-There is a temporary file here called `tempfile` which is the uncompressed
-version of the input fasta file. This file is created when the rule starts but
-is not needed upon completion. There are a number of drawbacks with having files
-that aren't explicitly part of the workflow as input/output files to rules:
+The way MultiQC is run here, a data directory `multiqc_data` is generated in
+addition to the final `multiqc.html` report and the `multiqc_general_stats.txt`
+file. Only the latter two are kept and the `multiqc_data` directory is removed
+as part of the shell command run by the rule.
 
-- Snakemake cannot clean up these files if the job fails, as it would do for
-  normal output files.
-- If several jobs are run in parallel there is a risk that they write to
-  `tempfile` at the same time. This can lead to very scary results.
-- Sometimes we don't know the names of all the files that a program can
-  generate and we may only be interested in a few of them.
+While it works for this specific workflow, having files and folders that aren't
+explicitly tracked by Snakemake as input/output files has some
+drawbacks:
 
-All of these issues can be dealt with by using the `shadow` directive for a
-rule. This causes each execution of the rule to run in an isolated temporary
-directory (located in `.snakemake/shadow/` by default). There are a few options
-for `shadow` (for the full list of these options see the [Snakemake
+- Snakemake cannot clean up these files if the job fails.
+- Jobs running in parallel risk writing to the same untracked files at the same
+  time.
+
+At the same time, we may not always know the names of all the files that a program
+generates and we may only be interested in a few of them.
+
+These issues can be dealt with by using the `shadow` directive for a rule. This
+causes each execution of the rule to run in an isolated temporary directory
+(located in `.snakemake/shadow/` by default). There are a few options for
+`shadow` (for the full list of these options see the [Snakemake
 docs](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules)).
 
-The most simple is `shadow: "minimal"`, which means that the rule is executed in
+The simplest is `shadow: "minimal"`, which means that the rule is executed in
 an empty shadow directory that the input files to the rule have been symlinked
-into. For the rule below, that means that `some_input.txt` would be symlinked
-into a shadow directory under `.snakemake/shadow/`. The shell commands would
-generate the file `some_other_junk_file` in this shadow directory, as well as
-the output file `results/some_output.txt`. When the rule finishes, the shadow
-directory is removed which means we wouldn't have to think about manually
-removing `some_other_junk_file`.
+into. Take the example below:
 
 ```python
 rule some_rule:
-    output:
-        "results/some_output.txt"
     input:
-        "some_input.txt"
-    shadow: "minimal"
+        "some_input.txt", # <1>
+    output:
+        "results/some_output.txt",
+    shadow:
+        "minimal"
     shell:
         """
-        touch some_other_junk_file
-        some_program {input} {output}
+        touch some_other_junk_file # <2>
+        some_program {input} {output} # <3>
         """
 ```
+1. `some_input.txt` gets symlinked into a shadow directory under `.snakemake/shadow/`.
+2. The shell commands generate the file `some_other_junk_file` in the shadow directory.
+3. The output file is created in the shadow directory and moved to
+   `results/some_output.txt` when the job has finished.
 
-Try this out for the rules `multiqc` and `index_genome` where we have to
-"manually" deal with files that aren't tracked by Snakemake. Add `shadow:
-"minimal"` to these rules and also delete the shell commands that remove
-temporary files from those rules (the last lines in the shell directives that
-begin with `rm`), as they are no longer needed. Check the solution below if you
-need help.
+When the rule finishes, the shadow directory is removed which means we wouldn't
+have to think about manually removing `some_other_junk_file`.
+
+Try implementing the `shadow` directive for the `multiqc` rule so we don't have
+to "manually" delete files that aren't tracked by Snakemake. Add `shadow:
+"minimal"` and also delete the shell commands that remove the `multiqc_data`
+directory. Check the solution below if you need help.
 
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```{.python filename="snakefile_mrsa.smk"}
 rule multiqc:
     input:
-        expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = sample_ids)
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=sample_ids),
     output:
-        html = "results/multiqc/multiqc.html",
-        stats = "results/multiqc/multiqc_general_stats.txt"
+        html="results/multiqc/multiqc.html",
+        stats="results/multiqc/multiqc_general_stats.txt",
     log:
-        "results/logs/multiqc.log"
-    shadow: "minimal"
+        "results/logs/multiqc.log",
+    shadow:
+        "minimal"
     shell:
         """
         # Run multiQC and keep the html report
-        multiqc -n multiqc.html {input} 2>{log}
+        multiqc -n multiqc.html {input} >{log} 2>&1
         mv multiqc.html {output.html}
         mv multiqc_data/multiqc_general_stats.txt {output.stats}
-        """
-
-rule index_genome:
-    input:
-        "data/ref/NCTC8325.fa.gz"
-    output:
-        expand("results/bowtie2/NCTC8325.{substr}.bt2",
-            substr=["1", "2", "3", "4","rev.1", "rev.2"])
-    log:
-        "results/logs/index_genome.log"
-    shadow: "minimal"
-    shell:
-        """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
-        bowtie2-build tempfile results/bowtie2/NCTC8325 >{log}
         """
 ```
 :::
@@ -1574,8 +1686,8 @@ Now run the workflow again with:
 snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1
 ```
 
-and make sure that you see neither `tempfile`, nor the `multiqc_data` directory
-in your current working directory after the workflow has finished.
+and make sure that you don't see the `multiqc_data` directory in your current
+working directory after the workflow has finished.
 
 ::: {.callout-tip}
 Some people use the shadow option for almost every rule and some never
@@ -1596,7 +1708,7 @@ In this section we've learned:
 ## Generalizing the MRSA workflow
 
 You've now improved the MRSA workflow by making it more readable, adding
-logfiles, a config file etc. However, the workflow is not very general since
+log files, a config file etc. However, the workflow is not very general since
 it's hard-coded to work with the three samples `SRR935090`, `SRR935091` and
 `SRR935092` and the genome `NCTC8325`. If someone would want to use the workflow
 with other samples or genomes they would have to change the code in the
@@ -1606,7 +1718,8 @@ allows anyone using the workflow to modify its behaviour without changing the
 underlying code, making the workflow more general.
 
 In this section we will go through how to make the workflow more general and
-flexible by moving the sample ids and URLs to a configuration file and turning the reference genome into a wildcard.
+flexible by moving the sample ids and URLs to a configuration file and turning
+the reference genome into a wildcard.
 
 ### Specifying samples in a configuration file
 
@@ -1620,7 +1733,7 @@ samples:
   SRR935092: "https://ndownloader.figshare.com/files/39539773"
 ```
 
-Now when passing `--configfile config.yml`on the command line
+Now when passing `--configfile config.yml` on the command line
 `config["samples"]` will be a dictionary where the keys are the sample ids and
 the values are the URLs to the FASTQ files.
 
@@ -1636,10 +1749,11 @@ Now change the `multiqc` and `generate_count_table` rules that use the `expand`
 function in the input directive to use `config["samples"].keys()` to expand the
 `sample_id` wildcard. This is how it should look for the `multiqc` rule:
 
-```python
+```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
     input:
-        expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = config["samples"].keys())
+        expand(
+            "results/fastqc/{sample_id}_fastqc.zip", sample_id=config["samples"].keys()
+        ),
 ```
 
 Try to change the `generate_count_table` rule in the same way. Check the solution below if you need help.
@@ -1648,16 +1762,17 @@ Try to change the `generate_count_table` rule in the same way. Check the solutio
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 rule generate_count_table:
     input:
-        bams = expand("results/bam/{sample_id}.sorted.bam", 
-            sample_id = config["samples"].keys()),
-        annotation = "data/ref/NCTC8325.gff3.gz"
+        bams=expand(
+            "results/bam/{sample_id}.sorted.bam", sample_id=config["samples"].keys()
+        ),
+        annotation="data/ref/NCTC8325.gff3.gz",
     output:
-        "results/tables/counts.tsv"
+        "results/tables/counts.tsv",
     log:
-        "results/logs/generate_count_table.log"
+        "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 :::
@@ -1665,7 +1780,7 @@ rule generate_count_table:
 To see that your new implementation works you can do a forced rerun of the modified rules:
 
 ```bash
-snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun generate_count_table multiqc get_SRA_by_accession
+snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun generate_count_table multiqc download_fastq_files
 ```
 
 ::: {.callout-tip}
@@ -1674,7 +1789,7 @@ If you were to scale up this workflow with more samples it could become
 impractical to have to define the sample ids and URLs by hand in the config
 file. A tip then is to have a separate file where samples are listed in one
 column and the URLs (or file paths) in another column. With a few lines of
-python code you could then read that list at the start of the workflow and add
+Python code you could then read that list at the start of the workflow and add
 each sample to the config dictionary. See
 [below](#reading-samples-from-a-file-instead-of-hard-coding-them) for an example
 of how to do this.
@@ -1686,57 +1801,58 @@ of how to do this.
 Now we'll take a look at how to generalize the genome reference used in the
 workflow. 
 
-In the `get_genome_fasta` and `get_genome_gff3` rules we have hard-coded FTP
-paths to the FASTA and GFF annotation file for the genome `NCTC8325`. Let's move this information to the configuration file, and also add information for another genome, `ST398`. Add the following to `config.yml`:
+In the `get_genome_fasta` and `get_genome_gff3` rules we have hard-coded URLs to
+the FASTA and GFF annotation file for the genome `NCTC8325`. Let's move this
+information to the configuration file, and also add information for another
+genome, `ST398`. Add the following to `config.yml`:
 
 ```{.yaml filename="config.yml" .code-overflow-scroll}
 genomes:
   NCTC8325:
-    fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz
-    gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.37.gff3.gz
+    fasta: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz
+    gff3: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.gff.gz
   ST398:
-    fasta: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection//staphylococcus_aureus_subsp_aureus_st398/dna/Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.dna.toplevel.fa.gz
-    gff3: ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/gff3/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_st398//Staphylococcus_aureus_subsp_aureus_st398.ASM958v1.37.gff3.gz
+    fasta: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/009/585/GCF_000009585.1_ASM958v1/GCF_000009585.1_ASM958v1_genomic.fna.gz
+    gff3: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/009/585/GCF_000009585.1_ASM958v1/GCF_000009585.1_ASM958v1_genomic.gff.gz
 ```
 
 As you can see this is very similar to what we did with `samples`, it's just
-that we have one more nested level. Now to access the FTP path to the FASTA file
-for genome id `NCTC8325` we can use `config["genomes"]["NCTC8325"]["fasta"]`.
+that we have one more nested level. Now to access the URL to the FASTA file for
+genome id `NCTC8325` we can use `config["genomes"]["NCTC8325"]["fasta"]`.
 
 Let's now look at how to do the mapping from genome id to FASTA path in the
-rule `get_genome_fasta`. This is how the rule currently looks (if you have
-added the log section as previously described).
+rule `get_genome_fasta`. This is how the rule currently looks:
 
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 rule get_genome_fasta:
     output:
-        "data/ref/NCTC8325.fa.gz"
+        "data/ref/NCTC8325.fa.gz",
     log:
-        "results/logs/get_genome_fasta.log"
+        "results/logs/get_genome_fasta.log",
     shell:
         """
-        wget -o {log} ftp://ftp.ensemblgenomes.org/pub/bacteria/release-37/fasta/bacteria_18_collection/staphylococcus_aureus_subsp_aureus_nctc_8325/dna//Staphylococcus_aureus_subsp_aureus_nctc_8325.ASM1342v1.dna_rm.toplevel.fa.gz -O {output}
+        wget -o {log} https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz -O {output}
         """
 ```
 
 Replace the hard-coded `NCTC8325` with a wildcard `{genome_id}` in both the
-`input` and `log` directives. We now need to supply the remote paths to the
+`output` and `log` directives. We now need to supply the remote paths to the
 FASTA file for a given genome id. Because we've added this information to the
 config file we just need to pass it to the rule in some way, and just like in
-the `get_SRA_by_accession` rule we'll use a function to do the job:
+the `download_fastq_files` rule we'll use a function to do the job:
 
 
-```{.python filename="snakemfile_mrsa.smk"}
+```{.python filename="snakefile_mrsa.smk"}
 def get_fasta_path(wildcards):
     return config["genomes"][wildcards.genome_id]["fasta"]
 
 rule get_genome_fasta:
     output:
-        "data/ref/{genome_id}.fa.gz"
+        "data/ref/{genome_id}.fa.gz",
     log:
-        "results/logs/get_genome_fasta/{genome_id}.log"
+        "results/logs/get_genome_fasta/{genome_id}.log",
     params:
-        fasta_path = get_fasta_path
+        fasta_path=get_fasta_path,
     shell:
         """
         wget -o {log} {params.fasta_path} -O {output}
@@ -1753,11 +1869,11 @@ def get_gff_path(wildcards):
 
 rule get_genome_gff3:
     output:
-        "data/ref/{genome_id}.gff3.gz"
+        "data/ref/{genome_id}.gff3.gz",
     log:
-        "results/logs/get_genome_gff3/{genome_id}.log"
+        "results/logs/get_genome_gff3/{genome_id}.log",
     params:
-        gff3_path = get_gff_path
+        gff3_path=get_gff_path,
     shell:
         """
         wget -o {log} {params.gff3_path} -O {output}
@@ -1765,23 +1881,21 @@ rule get_genome_gff3:
 ```
 :::
 
-Add `{genome_id}` to the log directive of the `index_genome` rule and also
-replace `NCTC8325` with `{genome_id}` in the `input` and `output` directives.
-Here you will run into a complication if you have followed the previous
-instructions and use the `expand()` expression. We want the list of output files
-to be `["results/bowtie2/{genome_id}.1.bt2",
-"results/bowtie2/{genome_id}.2.bt2", ...]`, _i.e._ only expanding the `substr`
-wildcard in the Bowtie2 index. To prevent Snakemake from trying to expand the
-`genome_id` wildcard we have to "mask" it with double curly brackets:
-`{{{genome_id}}}`.
+Now let's turn to the `index_genome` rule, which currently only works for the `NCTC8325` genome. 
 
-In addition, we need to replace the hard-coded `results/bowtie2/NCTC8325` in the
+First replace `NCTC8325` with `{genome_id}` in the `input` and `output`
+directives of the rule. Remember that the log file must contain the same
+wildcards as the output files, so make sure to update the `log` directive of
+the rule too. Because we're adding a `genome_id` wildcard, a good log file
+path is `"results/logs/index_genome/{genome_id}.log"`.
+
+Next, we need to replace the hard-coded `results/bowtie2/NCTC8325` in the
 shell directive of the rule with the genome id wildcard. Inside the shell
-directive the wildcard object is accessed with this syntax:
-`{wildcards.genome_id}`, so the Bowtie2-build command should be:
+directive we can access the wildcard object with this syntax:
+`{wildcards.genome_id}`, so the `bowtie2-build` command should be:
 
 ```bash
-bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} > {log}
+bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
 ```
 
 The final rule should look like this:
@@ -1789,18 +1903,22 @@ The final rule should look like this:
 ```{.python filename="snakefile_mrsa.smk"}
 rule index_genome:
     input:
-        "data/ref/{genome_id}.fa.gz"
+        "data/ref/{genome_id}.fa.gz",
     output:
-        expand("results/bowtie2/{{genome_id}}.{substr}.bt2",
-            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+        multiext(
+            "results/bowtie2/{genome_id}",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
     log:
-        "results/logs/index_genome/{genome_id}.log"
-    shadow: "minimal"
+        "results/logs/index_genome/{genome_id}.log",
     shell:
         """
-        # Bowtie2 cannot use .gz, so unzip to a temporary file first
-        gunzip -c {input} > tempfile
-        bowtie2-build tempfile results/bowtie2/{wildcards.genome_id} >{log}
+        bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
         """
 ```
 
@@ -1823,21 +1941,26 @@ Now we can resolve the `genome_id` wildcard from the config. For
 ```python
     input:
         "data/{sample_id}.fastq.gz",
-        expand("results/bowtie2/{genome_id}.{substr}.bt2",
-            genome_id = config["genome_id"],
-            substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+        expand(
+            "results/bowtie2/{genome_id}.{substr}.bt2",
+            genome_id=config["genome_id"],
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+        ),
 ```
 
 Here the `substr` wildcard gets expanded from a list while `genome_id` gets
-expanded from the config dictionary. Also change the hard-coded `NCTC8325` in
-the `shell:` directive of `align_to_genome` so that the genome_id is inserted
-directly from the config, like this:
+expanded from the config dictionary. We'll also replace the hard-coded
+`NCTC8325` in the `shell:` directive of `align_to_genome`. Pass the genome id
+to the shell command via `params:`, so that Snakemake tracks it as a parameter
+(see the `params` rerun-trigger):
 
 ```{.python .code-overflow-scroll}
-shell:
-    """
-    bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
-    """
+    params:
+        genome_id=config["genome_id"],
+    shell:
+        """
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input[0]} >{output} 2>{log}
+        """
 ```
 
 The final rule should look like this:
@@ -1846,16 +1969,20 @@ The final rule should look like this:
 rule align_to_genome:
     input:
         "data/{sample_id}.fastq.gz",
-        expand("results/bowtie2/{genome_id}.{substr}.bt2",
-           genome_id = config["genome_id"],
-           substr = ["1", "2", "3", "4", "rev.1", "rev.2"])
+        expand(
+            "results/bowtie2/{genome_id}.{substr}.bt2",
+            genome_id=config["genome_id"],
+            substr=["1", "2", "3", "4", "rev.1", "rev.2"],
+        ),
     output:
-        temp("results/bam/{sample_id,\\w+}.bam")
+        temp("results/sam/{sample_id}.sam"),
     log:
-        "results/logs/align_to_genome/{sample_id}.log"
+        "results/logs/align_to_genome/{sample_id}.log",
+    params:
+        genome_id=config["genome_id"],
     shell:
         """
-        bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input[0]} >{output} 2>{log}
         """
 ```
 
@@ -1865,17 +1992,17 @@ a similar manner. The final rule should look like this:
 ```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
 rule generate_count_table:
     input:
-        bams=expand("results/bam/{sample_id}.sorted.bam",
-            sample_id = config["samples"].keys()),
-        annotation=expand("data/ref/{genome_id}.gff3.gz",
-            genome_id = config["genome_id"])
+        bams=expand(
+            "results/bam/{sample_id}.sorted.bam", sample_id=config["samples"].keys()
+        ),
+        annotation=expand("data/ref/{genome_id}.gff3.gz", genome_id=config["genome_id"]),
     output:
         "results/tables/counts.tsv",
     log:
-        "results/logs/generate_count_table.log"
+        "results/logs/generate_count_table.log",
     shell:
         """
-        featureCounts -t gene -g gene_id -a {input.annotation} -o {output[0]} {input.bams} 2>{log}
+        featureCounts -t gene -g locus_tag -a {input.annotation} -o {output} {input.bams} >{log} 2>&1
         """
 ```
 
@@ -1904,14 +2031,31 @@ excellent features:
 - A general RNA-seq pipeline which can easily be reused between projects,
   thanks to clear separation between code and settings.
 - Great traceability due to logs and summary tables.
-- Clearly defined the environment for the workflow using Conda.
 - The workflow is neat and free from temporary files due to using `temp()` and
   `shadow`.
 - A logical directory structure which makes it easy to separate data and
   results of different software packages.
-- A project set up in a way that makes it very easy to distribute and
-  reproduce either via Git, Snakemake's `--archive` option or a Docker image.
+- A project set up in a way that makes it easy to distribute and reproduce,
+  _e.g._ via Git.
 :::
+
+## Snakemake best-practices
+
+The workflow you have built is fully functional, but it is not organised the
+way a Snakemake workflow typically would be for long-term use. The Snakemake
+documentation describes a set of [best
+practices](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html)
+covering, for example, folder structure, configuration and software
+environments.
+
+To show what this can look like for the MRSA workflow, we have included a more
+advanced version of it in the `final-workflow/` subdirectory. It is meant as a
+reference rather than as the solution to this tutorial. It uses some of the
+features covered in the [Extra material](#extra-material) below, such as a
+sample sheet, a Conda environment for each rule and a configuration profile,
+as well as several features not covered in this tutorial. The `README.md` file
+in that directory explains how to run the workflow, which features it uses and
+how it differs from the workflow you have created.
 
 ## Extra material
 
@@ -1920,102 +2064,183 @@ resources here:
 
 - The Snakemake documentation is available on [ReadTheDocs](https://snakemake.readthedocs.io/en/stable/#).
 - Here is another (quite in-depth) [tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html#tutorial).
-- If you have questions, check out [stack overflow](https://stackoverflow.com/questions/tagged/snakemake).
+- If you have questions, check out [Stack Overflow](https://stackoverflow.com/questions/tagged/snakemake).
 
 ### Reading samples from a file instead of hard-coding them
 
 So far we've specified the samples to use in the workflow either as a hard-coded
 list in the Snakefile, or as a list in the configuration file. This is of course
 impractical for large real-world examples. Here we'll just quickly show how you
-could supply the samples to the MRSA workflow via a tab-separated file. For
+could supply the samples to the MRSA workflow via a sample sheet. For
 example you could create a file called `samples.csv` with the following content:
 
 ```{.txt filename="samples.csv"}
+sample_id,url
 SRR935090,https://ndownloader.figshare.com/files/39539767
 SRR935091,https://ndownloader.figshare.com/files/39539770
 SRR935092,https://ndownloader.figshare.com/files/39539773
 ```
 
-The first column has the sample id and the second column has the url to the
-fastq file. Now in order to read this into the workflow we need to use a few
-lines of python code. Since you can mix python code with rule definitions in
-Snakemake we'll just add the following lines to the top of the Snakefile:
+The first column has the sample id and the second column has the URL to the
+FASTQ file. Next we'll add a config parameter `sample_sheet` to the
+configuration file:
 
-```{.python filename="snakefile_mrsa.smk"}
-# define an empty 'samples' dictionary
-samples = {}
-# read the sample list file and populate the dictionary
-with open("samples.csv", "r") as fhin:
-    for line in fhin:
-        # strip the newline character from the end of the line
-        # then split by tab character to get the sample id and url
-        sample_id, url = line.strip().split(",")
-        # store the url in the dictionary with the sample id as key
-        samples[sample_id] = url
+```{.yaml filename="config.yml"}
+sample_sheet: samples.csv
 ```
 
-Now we can use the `samples` dictionary in the workflow. For example, to get the
-url for `SRR935090` we can use `samples["SRR935090"]`.
+Now we'll add some code to `snakefile_mrsa.smk` to read the sample sheet using
+the [Pandas](https://pandas.pydata.org/) package. Add the following just above
+the `all` rule:
 
-For example, the `get_sample_url` function can now be written as:
+```{.python filename="snakefile_mrsa.smk"}
+import pandas as pd # <1>
+
+def read_sample_sheet(f): # <2>
+    df = pd.read_csv(f, header=0, index_col=0, sep=",") # <3>
+    return df.to_dict(orient="index") # <4>
+
+samples = read_sample_sheet(config["sample_sheet"]) # <5>
+```
+
+1. The `pandas` package is imported as an object named `pd`.
+2. A function called `read_sample_sheet` is defined which takes one argument `f`, the file to read from.
+3. The file is read using the `pd.read_csv` function, the first line is parsed as the header (`header=0`), the first column is set as the index (`index_col=0`) and we specify that the file is comma-separated (`sep=","`).
+4. The dataframe is converted to a dictionary and returned.
+5. The sample sheet is passed from the config to the `read_sample_sheet` function.
+
+Now the `samples` dictionary will have the structure:
+
+```{.python}
+{
+    "SRR935090": {"url": "https://ndownloader.figshare.com/files/39539767"},
+    "SRR935091": {"url": "https://ndownloader.figshare.com/files/39539770"},
+    "SRR935092": {"url": "https://ndownloader.figshare.com/files/39539773"},
+}
+```
+
+Accessing the URL for one sample thus becomes `samples[wildcards.sample_id]["url"]`.
+
+Update the `get_sample_url` function to make use of the new `samples` dictionary:
 
 ```{.python filename="snakefile_mrsa.smk"}
 def get_sample_url(wildcards):
-    return samples[wildcards.sample_id]
+    return samples[wildcards.sample_id]["url"]
 ```
 
-We can also use the `samples` dictionary in `expand()`, for example in the `multiqc` rule:
+Also update the `multiqc` and `generate_count_table` rules to use the `samples`
+dictionary in the `expand` function:
 
-```python
+```{.python filename="snakefile_mrsa.smk" .code-overflow-scroll}
+rule multiqc:
     input:
-        expand("results/fastqc/{sample_id}_fastqc.zip", 
-            sample_id = samples.keys())
+        expand("results/fastqc/{sample_id}_fastqc.zip", sample_id=samples.keys()),
+...
+rule generate_count_table:
+    input:
+        bams=expand("results/bam/{sample_id}.sorted.bam", sample_id=samples.keys()),
+        annotation=expand("data/ref/{genome_id}.gff3.gz", genome_id=config["genome_id"]),
 ```
 
-Now this depends on there being a `samples.csv` file in the working directory.
-To make this a configurable parameter we can add it to the config file:
+You can now remove the `samples:` section from `config.yml`, since the samples
+are read from the sample sheet instead. This way, anyone can take our Snakefile
+and just update the path to their own `sample_sheet` using the config file.
 
-```yaml
-sample_list: "samples.csv"
+Force a re-run of the modified rules to make sure everything works after this
+update:
+
+```bash
+snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --forcerun generate_count_table multiqc download_fastq_files
 ```
 
-and update the code for populating the `samples` dictionary:
+### Integrated package management
 
-```python
-# define an empty 'samples' dictionary
-samples = {}
-# read the sample list file and populate the dictionary
-with open(config["sample_list"], "r") as fhin:
-    for line in fhin:
-        # strip the newline character from the end of the line
-        # then split by tab character to get the sample id and url
-        sample_id, url = line.strip().split(",")
-        # store the url in the dictionary with the sample id as key
-        samples[sample_id] = url
+Snakemake supports using isolated software environments for each rule. These can
+be Conda environments or containers (_e.g._ Docker images run with Apptainer)
+which will be created/spawned by Snakemake and used to execute jobs in the
+workflow.
+
+To use a conda environment for a rule you add the `conda:` directive and point
+to a conda environment file:
+
+```{.python}
+rule some_rule:
+    input:
+        "some_input.txt",
+    output:
+        "some_output.txt",
+    conda:
+        "envs/some_program.yml"
+    shell:
+        """
+        some_program {input} > {output}
+        """
 ```
 
-This way, anyone can take our Snakefile and just update the path to their own
-`sample_list` using the config file.
+Let's apply this to the `index_genome` and `align_to_genome` rules. First create
+a file `bowtie2.yml` under an `envs/` subdirectory:
 
-### Using containers in Snakemake
+```bash
+mkdir envs/
+touch envs/bowtie2.yml
+```
 
-Snakemake also supports defining an Apptainer or Docker container for each rule.
-Analogous to using a rule-specific Conda environment, specify `container:
-"docker://some-account/rule-specific-image"` in the rule definition. Instead of
-a link to a container image, it is also possible to provide the path to an image
-file somwhere on your filesystem. When executing Snakemake, add the
-`--software-deployment-method apptainer` (or the shorthand `--sdm apptainer`)
-flag to the command line. For the given rule, an Apptainer container will then
-be created from the image or file that is provided in the rule definition on the
-fly by Snakemake and the rule will be run in this container.
+Open `envs/bowtie2.yml` and add:
 
-You can find pre-made Apptainer or Docker images for many tools on
-[https://biocontainers.pro/](https://biocontainers.pro/) (bioinformatics-specific)
-or on [https://hub.docker.com/](https://hub.docker.com/).
+```{.yaml filename="envs/bowtie2.yml"}
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bowtie2=2.5.4
+```
 
-Here is an example for a rule and its execution:
+Save the file and then modify the `index_genome` and `align_to_genome` rules
+with the `conda:` directive, like so:
 
-```python
+```{.python filename="snakefile_mrsa.smk"}
+    conda:
+        "envs/bowtie2.yml"
+```
+
+Now run the workflow with the command line flag `--sdm conda` (or `--software-deployment-method conda`):
+
+```bash
+snakemake -s snakefile_mrsa.smk --configfile config.yml -p -c 1 --sdm conda
+```
+
+Snakemake now creates a conda environment using the `envs/bowtie2.yml` file and
+runs the `index_genome` and `align_to_genome` jobs with that environment. These
+environments are stored in `.snakemake/conda` by default, but this location can
+be modified with the flag `--conda-prefix`.
+
+Docker containers can be utilized in a similar manner by using the `container:` directive. For example, updating the previous two rules to:
+
+```{.python filename="snakefile_mrsa.smk"}
+rule index_genome:
+    input:
+        "data/ref/{genome_id}.fa.gz",
+    output:
+        multiext(
+            "results/bowtie2/{genome_id}",
+            ".1.bt2",
+            ".2.bt2",
+            ".3.bt2",
+            ".4.bt2",
+            ".rev.1.bt2",
+            ".rev.2.bt2",
+        ),
+    log:
+        "results/logs/index_genome/{genome_id}.log",
+    conda:
+        "envs/bowtie2.yml"
+    container:
+        "docker://quay.io/biocontainers/bowtie2:2.5.4--he96a11b_6"
+    shell:
+        """
+        bowtie2-build {input} results/bowtie2/{wildcards.genome_id} >{log} 2>&1
+        """
+
 rule align_to_genome:
     input:
         "data/{sample_id}.fastq.gz",
@@ -2025,28 +2250,30 @@ rule align_to_genome:
             substr=["1", "2", "3", "4", "rev.1", "rev.2"],
         ),
     output:
-        temp("results/bam/{sample_id,\\w+}.bam"),
+        temp("results/sam/{sample_id}.sam"),
     log:
         "results/logs/align_to_genome/{sample_id}.log",
+    conda:
+        "envs/bowtie2.yml"
     container:
-        "docker://quay.io/biocontainers/bowtie2:2.5.0--py310h8d7afc0_0"
+        "docker://quay.io/biocontainers/bowtie2:2.5.4--he96a11b_6"
+    params:
+        genome_id=config["genome_id"],
     shell:
         """
-        bowtie2 -x results/bowtie2/{config[genome_id]} -U {input[0]} > {output} 2>{log}
+        bowtie2 -x results/bowtie2/{params.genome_id} -U {input[0]} >{output} 2>{log}
         """
 ```
 
-Start your Snakemake workflow with the following command:
-
-```bash
-snakemake --configfile config.yml  -s snakefile_mrsa.smk -c 1 --software-deployment-method apptainer
-```
+and running with `--sdm apptainer` will cause Snakemake to pull the
+`bowtie2:2.5.4--he96a11b_6` image, spawn a container using `apptainer` and run
+the jobs in that container.
 
 Feel free to modify the MRSA workflow according to this example. As Apptainer is
 a container software that was developed for HPC clusters with only limited
 support on *e.g.* Macs, it might not work to run your updated Snakemake workflow
 with Apptainer locally on your computer. In the next section we explain how you
-can run Snakemake workflows on UPPMAX where Apptainer is pre-installed.
+can run Snakemake workflows on HPC systems where Apptainer is often pre-installed.
 
 ### Running Snakemake workflows on HPC clusters
 
@@ -2057,12 +2284,12 @@ plugins that will add support for various HPC schedulers to Snakemake.
 
 Here we will focus on how to run Snakemake workflows on clusters with SLURM, a
 workload manager commonly used on HPC clusters in Sweden such as
-[Rackham](https://www.uu.se/centrum/uppmax/resurser/kluster/rackham),
+[Dardel](https://www.pdc.kth.se/hpc-services/computing-systems/dardel-hpc-system),
 [Tetralith](https://www.nsc.liu.se/systems/tetralith/) and
-[Dardel](https://www.pdc.kth.se/hpc-services/computing-systems).
+[Arrhenius](https://www.naiss.se/resource/arrhenius/).
 
 ::: {.callout-tip}
-When running on remote clusters we highly recommend to use a session manager like
+When running on remote clusters we highly recommend using a session manager like
 [tmux](https://github.com/tmux/tmux/wiki) or
 [screen](https://www.gnu.org/software/screen/manual/screen.html#Overview) so
 that you can run your workflow in a session in the background while doing other
@@ -2082,12 +2309,12 @@ If you choose this option, you don't need to install anything from the plugin
 catalogue. However, your workflow may not run as efficiently as it could if you
 were to add SLURM support in Snakemake.
 
-#### Option 2: Use built-in SLURM support
+#### Option 2 (recommended): Use the SLURM executor plugin
 
 For workflows with long run times and/or where each rule requires different
-compute resources, Snakemake comes with built in functionality for interacting
-with the SLURM workload manager and send each rule as a job to the SLURM queue
-and to track the status of each job.
+compute resources, you can let Snakemake interact with the SLURM workload
+manager via the SLURM executor plugin. Snakemake then submits each job to the
+SLURM queue and tracks the status of each job.
 
 In this case, you can start the workflow on the login node and let it run there
 until all jobs have finished. Given that workflows often consist of many rules,
@@ -2099,7 +2326,7 @@ plugin](https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/sl
 from the plugin catalogue. This can be done with conda:
 
 ```bash
-conda install -c conda-forge snakemake-executor-plugin-slurm
+conda install -c conda-forge -c bioconda snakemake-executor-plugin-slurm
 ```
 
 Once installed, adding the `--executor slurm` flag to your Snakemake command
@@ -2116,36 +2343,34 @@ snakemake --executor slurm -j 100 <other flags>
 
 Depending on the cluster you are using, you will need to specify some resource
 requirements for the rules in your workflow, such as the number of CPUs, memory,
-runtime and account id. This can be done either:
+runtime and account id. This can be done:
 
 1. directly on the command line with the `--default-resources` flag which sets
-   default resource settings for all rules
-2. in the rule definition of your workflow using the `resources:` directive, or
-3. in a [configuration profile](https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles),
-   a folder with a `config.yaml` file that contains the resource settings.
+   default resource settings for all rules, or
+2. in the rule definition of your workflow using the `resources:` directive.
 
 You can also use a combination of these methods. For example, the SLURM account
-id (_e.g. `naiss-2023-01-001`), which will most likely be the same for all
+id (_e.g._ `naiss2026-01-001`), which will most likely be the same for all
 rules, can be set with `--default-resources`:
 
 ```bash
-snakemake --executor slurm -j 100 --default-resources slurm_account=naiss-2023-01-001
+snakemake --executor slurm -j 100 --default-resources slurm_account=naiss2026-01-001
 ```
 
 Rule-specific resources such as runtime and memory can be set in the rule
 definition with the `resources:` directive. The `threads:` directive is passed
-to SLURM by the slurm plugin to set the number of cpus required by the job.:
+to SLURM by the SLURM plugin to set the number of CPUs required by the job:
 
 ```python
 rule testrule:
     input:
         "data/some_fastq_file.fastq",
-        "data/some_genome_file.fasta"
+        "data/some_genome_file.fasta",
     output:
-        "results/output.txt"
+        "results/output.txt",
     resources:
-        runtime = 60,
-        mem_mb = 16000,
+        runtime=60,
+        mem_mb=16000,
     threads: 4
     shell:
         """
@@ -2156,55 +2381,37 @@ rule testrule:
 This rule uses the standard resource `runtime` to set the maximum allowed time
 (in minutes) for the rule, sets the memory requirement with `mem_mb` and the
 number of requested CPUs with `threads:`. In this example the rule will have a
-time limit of 60 minutes, will require 16G of RAM and 4 CPUs.
+time limit of 60 minutes, will require 16 GB of RAM and 4 CPUs.
 
 Some clusters also require you to specify the **partition** you want to run your
-job on. The partition name will differ between clusters, for example the Rackham
-cluster uses `core` and `node` partitions, while Dardel uses _e.g._ `shared` and
-`main`. See the documentation for the cluster you are using for more
-information.
-
-The partition can be set with the `slurm_partition` resource, for example like so:
-
-```python
-rule testrule:
-    input:
-        "data/some_fastq_file.fastq",
-        "data/some_genome_file.fasta"
-    output:
-        "results/output.txt"
-    resources:
-        runtime = 60,
-        mem_mb = 16000,
-        slurm_partition = "shared"
-    threads: 4
-    shell:
-        """
-        somecommand --threads {threads} {input[0]} {input[1]} > {output}
-        """
-```
+job on. The partition name will differ between clusters, for example the
+Arrhenius cluster uses `cpu`, `fat` and `gpu` partitions, while Dardel uses
+_e.g._ `shared` and `main`. See the documentation for the cluster you are using
+for more information. The partition is specified using the `slurm_partition`
+resource. To make your workflow portable, the SLURM partition should not be
+added to the rule definition. Instead you can use a configuration profile.
 
 ### Using configuration profiles
 
 To make it easy to adapt your workflow to different compute clusters it is
 recommended to define resource settings in a **configuration profile**. A
-configuration profile is a folder with a `config.yaml` file that contains values
-for Snakemake command line arguments, allowing you to modify the behavior of
-Snakemake without changing the workflow code. For example, you could create a
-`dardel` folder (_e.g._ in the root of your workflow) with a `config.yaml` file
-that contains the following:
+configuration profile is a folder with a `config.yaml` or `profile.yaml` file
+that contains values for Snakemake command line arguments, allowing you to
+modify the behavior of Snakemake without changing the workflow code. For
+example, you could create a `dardel` folder (_e.g._ in the root of your
+workflow) with a `config.yaml` file that contains the following:
 
 ```{.yaml filename="dardel/config.yaml"}
 executor: "slurm"
 jobs: 100
 default-resources:
-  slurm_account: "naiss-2023-01-001"
+  slurm_account: "naiss2026-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
   runtime: 60
 ```
 
-This yaml-formatted file contains Snakemake command line arguments that will be used
+This YAML-formatted file contains Snakemake command line arguments that will be used
 when running the workflow. You can then run Snakemake with the `--profile` flag pointing
 to the folder containing the `config.yaml` file:
 
@@ -2222,7 +2429,7 @@ To set rule-specific resources in the configuration profile, you can add a
 executor: "slurm"
 jobs: 100
 default-resources:
-  slurm_account: "naiss-2023-01-001"
+  slurm_account: "naiss2026-01-001"
   slurm_partition: "shared"
   mem_mb: 16000
   runtime: 60
@@ -2237,9 +2444,9 @@ set-resources:
 ```
 
 In this example, the `index_genome` rule will have a runtime of 240 minutes and
-will require 32G of RAM, while the `align_to_genome` rule will have a
-runtime of 120 minutes and will require 24G of RAM. Both rules will use
-the `slurm_account` and `slurm_partition` settings from the `default_resources`
+will require 32 GB of RAM, while the `align_to_genome` rule will have a
+runtime of 120 minutes and will require 24 GB of RAM. Both rules will use
+the `slurm_account` and `slurm_partition` settings from the `default-resources`
 section, unless overridden in the rule-specific settings.
 
 You can still define resources in the rule definition, but the values in the
@@ -2255,16 +2462,12 @@ Snakemake will submit each job to the SLURM queue and inform you about both
 the local jobid and the SLURM jobid by writing something similar to this to
 your terminal:
 
-```
+```no-highlight
 Job 0 has been submitted with SLURM jobid 37099380 (log: .snakemake/slurm_logs/rule_name/37099380.log).
 ```
 
-In this example the log output from the job will be in
-`.snakemake/slurm_logs/rule_name/37099380.log`.
-
 You can read more details about running Snakemake on compute clusters in the
 [SLURM plugin documentation](https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html).
-
 
 ### Linting and automatic formatting
 
@@ -2285,15 +2488,16 @@ improve the workflow code.
 
 A more intrusive way of conforming to the Snakemake best-practices is to use the
 [Snakefmt](https://github.com/snakemake/snakefmt) tool. If you've used
-[Black](https://black.readthedocs.io/en/stable/) for formatting python code this
+[Black](https://black.readthedocs.io/en/stable/) for formatting Python code, this
 will look familiar.
 
-Snakefmt rewrites the code of your workflow so that it's in line with the best practices defined by the Snakemake developers.
+Snakefmt rewrites the code of your workflow so that it's in line with the best
+practices defined by the Snakemake developers.
 
 You can install `snakefmt` with conda:
 
 ```bash
-conda install -c bioconda snakefmt
+conda install -c conda-forge -c bioconda snakefmt
 ```
 
 Now try it out on the `snakefile_mrsa.smk` file. Instead of changing the file
@@ -2314,7 +2518,7 @@ snakefmt snakefile_mrsa.smk
 
 ::: {.callout-tip title="VSCode plugin"}
 
-There's a VSCode plugin for Snakefmt which you can use to automatically rewrite
-your Snakefiles on save. Search for "Snakefmt" in the plugin catalog.
+There's a VS Code extension for Snakefmt which you can use to automatically
+rewrite your Snakefiles on save. Search for "Snakefmt" in the Extensions view.
 
 :::
