@@ -826,7 +826,7 @@ do with GitHub.
 > ![](images/github_bowtie_sh_history.png){ width=600px }
 
 - Click on the `Add --very-sensitive-local Bowtie flag` commit. You will see the changes
-  made to `config.yml` file compared to the previous commit.
+  made to the `bowtie.sh` file compared to the previous commit.
 
 > ![](images/github_bowtie_sh_diff.png){ width=600px }
 
