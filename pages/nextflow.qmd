@@ -641,7 +641,7 @@ are executed and what you can get from them.
 Let's start with running the workflow plus getting some reports and
 visualisation while we're at it!
 
-- Run the workflow using the following command: 
+- Run the workflow using the following command:
 
 ```bash
 nextflow run main_mrsa.nf \
@@ -1425,7 +1425,7 @@ workflow SUBWORKFLOW {
 ```
 
 Here we have an unnamed, main workflow like before, plus a named subworkflow.
-A workflow can have inputs specified in the `take` section, which is
+A subworkflow can have inputs specified in the `take` section, which is
 the equivalent of process `input` for workflows. The `main` section is
 the workflow body, which contains how to run which processes in which order.
 The last part, `emit`, also works the same as for processes, in that we name
@@ -1439,7 +1439,7 @@ workflow (which is why it is also called the _entry workflow_), unless the `-ent
 nextflow run main.nf -entry SUBWORKFLOW
 ```
 
-This will run the workflow named `SUBWORKFLOW`, but nothing else. 
+This will run the workflow named `SUBWORKFLOW`, but nothing else.
 
 You can also store subworkflows in separate files, so that everything doesn't have to be
 crammed into a single `main.nf` file. A subworkflow named `SUBWORKFLOW`
