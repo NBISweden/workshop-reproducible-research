@@ -200,9 +200,7 @@ process INDEX_GENOME {
 
     script:
     """
-    # Bowtie2 cannot use .gz, so unzip to a temporary file first
-    gunzip -c ${fasta} > tempfile
-    bowtie2-build tempfile NCTC8325
+    bowtie2-build ${fasta} NCTC8325
     """
 }
 

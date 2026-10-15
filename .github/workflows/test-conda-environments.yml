@@ -2,21 +2,20 @@ name: Test Conda environments
 
 on:
   workflow_dispatch:
-    branches:
-      - main
   pull_request:
     branches:
       - main
     paths:
+      - '.github/workflows/test-conda-environments.yml'
+      - 'env/conda-specfiles/snakemake-env_*'
+      - 'env/conda-specfiles/nextflow-env_*'
+      - 'env/conda-specfiles/jupyter-env_*'
+      - 'env/conda-specfiles/quarto-env_*'
       - 'tutorials/snakemake/snakefile_mrsa.smk'
-      - 'tutorials/snakemake/environment.yml'
-      - 'tutorials/nextflow/environment.yml'
-      - 'tutorials/nextflow/main_mrsa.yml'
+      - 'tutorials/nextflow/main_mrsa.nf'
       - 'tutorials/nextflow/samplesheet.csv'
-      - 'tutorials/jupyter/environment.yml'
       - 'tutorials/jupyter/references.bib'
       - 'tutorials/jupyter/supplementary_material.ipynb'
-      - 'tutorials/quarto/environment.yml'
       - 'tutorials/quarto/quarto-tutorial-example.qmd'
 
 concurrency:
@@ -32,6 +31,10 @@ jobs:
         os: [macos-latest, ubuntu-latest]
         env: [snakemake, nextflow, jupyter, quarto]
         include:
+          - os: ubuntu-latest
+            platform: linux-64
+          - os: macos-latest
+            platform: osx-arm64
           - env: snakemake
             cmd: snakemake -c 1 -d tutorials/snakemake/ -s tutorials/snakemake/snakefile_mrsa.smk
           - env: nextflow
@@ -39,7 +42,7 @@ jobs:
           - env: jupyter
             cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
           - env: quarto
-            cmd: conda install -c conda-forge quarto && conda install -c conda-forge deno && export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
+            cmd: export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
         exclude:
           - os: macos-latest
             env: snakemake
@@ -53,12 +56,17 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
-          activate-environment: ${{ matrix.env }}-env
-          environment-file: tutorials/${{ matrix.env }}/environment.yml
           channel-priority: strict
+
+      - name: Create ${{ matrix.env }} environment
+        shell: bash -l {0}
+        run: |
+          conda create --yes --name ${{ matrix.env }}-env \
+            --file env/conda-specfiles/${{ matrix.env }}-env_${{ matrix.platform }}_conda_spec.txt
 
       - name: Test ${{ matrix.env }} environment
         shell: bash -l {0}
         run: |
+          conda activate ${{ matrix.env }}-env
           conda list
           ${{ matrix.cmd }}
