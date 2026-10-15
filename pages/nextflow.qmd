@@ -1309,7 +1309,7 @@ aligned. Check the code below for an example if you're stuck:
 ::: {.callout-tip collapse="true" title="Click to show"}
 ```nextflow
 // Channel creation
-ch_genome_fasta = channel.value( file( "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz" ) )
+ch_genome_fasta = channel.value( file("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz") )
 
 // Workflow definition
 INDEX_GENOME (
@@ -1357,7 +1357,7 @@ of how this could be done.
 ```nextflow
 // Channel definition
 ch_genome_fasta = channel
-    .value ( file( "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz" ) )
+    .value ( file("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/013/425/GCF_000013425.1_ASM1342v1/GCF_000013425.1_ASM1342v1_genomic.fna.gz") )
     .map   { file -> tuple(file.getSimpleName(), file) }
 
 // INDEX_GENOME process definition
