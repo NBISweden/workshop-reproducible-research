@@ -111,8 +111,8 @@ is the **File Browser**, which shows the files in your directory. The next icon
 is **Running Terminals and Kernels**, which shows you the running kernels. The
 third icon is the **Table of Contents**, which shows the outline of your active
 notebook (if you have one open). This table will be populated with headers from
-your Markdown cells. The fourth icon is the **Extension Manager**, where you can
-install and manage extensions.
+your Markdown cells. The fourth icon is the **Extension Manager**, which shows
+the installed extensions.
 
 The main part of the interface is occupied by the **main work area**. This is
 where you open and work on notebooks, text files, terminals and so on. These
@@ -701,7 +701,7 @@ as its first argument, followed by keyword arguments for each of the arguments
 of that function. We store the returned widget in a variable called
 `interactive_scatterplot`. Add the following to a cell and run it:
 
-```python
+```{.python .code-overflow-scroll}
 interactive_scatterplot = interactive(
     scatterplot,
     x=["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"],
@@ -731,7 +731,7 @@ Let's add a slider to control the size of the points. In Seaborn's
 passed on to Matplotlib). Modify the cell with your `scatterplot` function so it
 looks like this, and run it to update the function definition:
 
-```python
+```{.python .code-overflow-scroll}
 def scatterplot(x, y, hue, palette, size=50):
     sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette, s=size)
 ```
@@ -740,7 +740,7 @@ Setting `size=50` in the function definition means that the default size of the
 points is 50. Now update the cell where we call the `interactive` function so
 that it looks like this, then run it:
 
-```python
+```{.python .code-overflow-scroll}
 interactive_scatterplot = interactive(
     scatterplot,
     x=["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"],
@@ -778,7 +778,7 @@ To see this in practice, we'll make the scatterplot function display a title and
 add a color picker widget to set the color of the title text. First, update the
 scatterplot function so that it looks like this, and run the cell:
 
-```python
+```{.python .code-overflow-scroll}
 def scatterplot(x, y, hue, palette, size=50, color="blue"):
     ax = sns.scatterplot(data=penguins, x=x, y=y, hue=hue, palette=palette, s=size)
     ax.set_title("Penguin scatterplot", color=color)
@@ -788,7 +788,7 @@ Next, we'll define the color picker widget. Add the definition to the cell
 where you defined `interactive_scatterplot` and give the widget to the
 `interactive` call. The cell should look like this:
 
-```python
+```{.python .code-overflow-scroll}
 colorpicker = widgets.ColorPicker(description="Title color", value="blue")
 interactive_scatterplot = interactive(
     scatterplot,
@@ -839,26 +839,49 @@ In this section we've learned:
 ## Extensions
 
 JupyterLab extensions are add-ons that increase the functionality of JupyterLab.
-Extensions include themes, editors, Git support, renderers and much more. The
-most user-friendly way of managing extensions is via the Extension Manager,
-which you open by clicking the puzzle piece icon in the left sidebar. You can
-search for available extensions in the search field, then click "Install" to
-install an extension.
+Extensions include themes, editors, Git support, renderers and much more. Most
+extensions are distributed as Python packages, which means that you can install
+them with Conda (or `pip`) just like any other package.
 
-::: {.callout-caution}
-The Extension Manager contains a disclaimer warning you that third-party
-extensions are not reviewed for vulnerabilities, so be careful about which
-extensions you install. Also note that the Extension Manager installs extensions
-with `pip` into your active Conda environment. For a reproducible setup, it's
-better to add the extensions you need to your Conda environment file.
+Let's install the [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git)
+extension, which lets you work with Git from within JupyterLab. Stop JupyterLab
+by pressing `ctrl-c` twice in the terminal where you started it. Then, with the
+`jupyter-env` environment still activated, run:
+
+```bash
+conda install -c conda-forge jupyterlab-git
+```
+
+Start JupyterLab again with `jupyter lab`. You should now see a new Git icon in
+the left sidebar. Since `tutorials/jupyter` is inside the course repository,
+the Git panel shows the current branch and any changed files, and lets you
+stage, commit and view diffs without leaving JupyterLab.
+
+To see which extensions are installed, click the puzzle piece icon in the left
+sidebar to open the **Extension Manager**, or run the following in a terminal:
+
+```bash
+jupyter labextension list
+```
+
+You can also turn individual extensions off and on again with
+`jupyter labextension disable <name>` and `jupyter labextension enable <name>`.
+
+::: {.callout-caution title="Installing extensions"}
+The Extension Manager also has a search field for finding and installing
+extensions from PyPI. This search is currently broken, since PyPI no longer
+supports the method JupyterLab uses to list extensions, so install extensions
+with Conda (or `pip`) instead. This is also better for reproducibility: add the
+extensions you use to your Conda environment file, so that others get the same
+setup. Finally, keep in mind that third-party extensions are not reviewed for
+vulnerabilities, so be careful about which extensions you install.
 :::
 
-Some extensions that are of particular relevance to this course:
+Some other extensions that are of particular relevance to this course:
 
 - [jupyterlab-quarto](https://github.com/quarto-dev/jupyterlab-quarto) - render
-  Quarto-specific Markdown (such as callouts) in notebooks
-- [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git) - version
-  control with Git from within JupyterLab
+  Quarto-specific Markdown (such as callouts) in notebooks. Not available from
+  Conda, install it with `pip install jupyterlab-quarto`.
 - [nbdime](https://nbdime.readthedocs.io/en/latest/) - view differences between
   versions of a notebook (already installed in `jupyter-env`, more on this
   below)
@@ -866,7 +889,7 @@ Some extensions that are of particular relevance to this course:
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- What JupyterLab extensions are and how to manage them.
+- What JupyterLab extensions are and how to install and manage them.
 :::
 
 ## Reproducibility
@@ -999,9 +1022,9 @@ changes made both to code and to outputs such as tables and plots.
 
 ::: {.callout-tip title="Other tools for version control of notebooks"}
 - nbdime also comes with a JupyterLab extension, which is already installed in
-  `jupyter-env`. Look for the diff buttons in the notebook toolbar. If you also
-  install the [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git)
-  extension you can both view diffs and commit changes directly from
+  `jupyter-env`. Look for the diff buttons (`git` and clock symbol) in the
+  notebook toolbar. Together with the jupyterlab-git extension you installed
+  earlier, you can both view notebook diffs and commit changes directly from
   JupyterLab.
 - [VS Code](https://code.visualstudio.com/) has built-in Git support, and with
   the [Jupyter
