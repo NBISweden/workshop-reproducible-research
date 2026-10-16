@@ -13,12 +13,13 @@ format: revealjs
 
 - How to use the package and environment manager [Conda]{.green}
 
+- How to use [Docker]{.green} and [Apptainer]{.green} to distribute
+  containerised computational environments
+
 - How to use the workflow managers [Snakemake]{.green} and [Nextflow]{.green}
 
 - How to generate automated reports using [Quarto]{.green} and [Jupyter]{.green}
 
-- How to use [Docker]{.green} and [Apptainer]{.green} to distribute
-  containerised computational environments
 :::
 
 ## The Teachers
