@@ -15,6 +15,7 @@ on:
       - 'tutorials/nextflow/main_mrsa.nf'
       - 'tutorials/nextflow/samplesheet.csv'
       - 'tutorials/jupyter/references.bib'
+      - 'tutorials/jupyter/results/**'
       - 'tutorials/jupyter/supplementary_material.ipynb'
       - 'tutorials/quarto/quarto-tutorial-example.qmd'
 
@@ -40,7 +41,11 @@ jobs:
           - env: nextflow
             cmd: cd tutorials/nextflow && nextflow run main_mrsa.nf
           - env: jupyter
-            cmd: jupyter nbconvert --to HTML tutorials/jupyter/supplementary_material.ipynb
+            cmd: >-
+              python -m ipykernel install --user --name jupyter-env &&
+              jupyter nbconvert --execute --to html
+              --ExecutePreprocessor.kernel_name=jupyter-env
+              tutorials/jupyter/supplementary_material.ipynb
           - env: quarto
             cmd: export QUARTO_DENO=$(which deno) && quarto render tutorials/quarto/quarto-tutorial-example.qmd --to html
     steps:
