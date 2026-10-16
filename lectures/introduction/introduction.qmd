@@ -36,7 +36,7 @@ format: revealjs
 ![Aditya Singh](images/aditya-singh.jpg){height=200px}
 :::
 
-## What is NBIS?
+## What is NBIS? {visibility="hidden"}
 
 ::: {.smaller}
 [National Bioinformatics Infrastructure Sweden]{.green}
