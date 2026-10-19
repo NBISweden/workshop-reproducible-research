@@ -64,19 +64,19 @@ benchmarking studies:
 Check OS on local machine
 ```{.bash code-line-numbers="|1|2"}
 $ uname -a
-Darwin johnsmbp.local 19.6.0 Darwin Kernel Version 19.6.0: [...] x86_64
+Darwin johnsmbp.local 27.0.0 Darwin Kernel Version 27.0.0: [...] arm64
 ```
 :::
 
 ::: {.fragment}
 Pull Ubuntu (Linux) image
 ```{.bash code-line-numbers="|1|2-6"}
-$ docker pull ubuntu:16.04
-16.04: Pulling from library/ubuntu
-22dc81ace0ea: Pull complete
+$ docker pull ubuntu:24.04
+24.04: Pulling from library/ubuntu
+00dbf11534ae: Pull complete
 ...
-Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
-Status: Downloaded image for ubuntu:16.04
+Digest: sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
+Status: Downloaded newer image for ubuntu:24.04
 ```
 :::
 
@@ -85,14 +85,14 @@ Status: Downloaded image for ubuntu:16.04
 Check OS on local machine
 ```{.bash}
 $ uname -a
-Darwin johnsmbp.local 19.6.0 Darwin Kernel Version 19.6.0: [...] x86_64
+Darwin johnsmbp.local 27.0.0 Darwin Kernel Version 27.0.0: [...] arm64
 ```
 
 Run the container interactively and check OS version
 ```{.bash code-line-numbers="|1|2|3"}
-$ docker run -it ubuntu:16.04
-root@407b0fd13fe5:/## uname -a
-Linux 407b0fd13fe5 4.9.60-linuxkit-aufs [...] x86_64 GNU/Linux
+$ docker run -it ubuntu:24.04
+root@26aba7b7753c:/# uname -a
+Linux 26aba7b7753c 7.0.14-linuxkit [...] aarch64 GNU/Linux
 ```
 
 ## Mounting volumes
@@ -124,7 +124,7 @@ Docker container file system:
 ```{.bash code-line-numbers="1-4|6-13|9-10"}
 $ docker run \
     -v $PWD/data:/home/data \
-    ubuntu:16.04 \
+    ubuntu:24.04 \
     ls
 
 ├── bin/
