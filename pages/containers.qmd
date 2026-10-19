@@ -641,11 +641,11 @@ assign this name yourself using the flag `--name <any name you want>`.
 If we want to enter a running container, there are two commands we can
 use: `docker attach` and `docker exec`.
 
-* `docker attach` will attach local standard input, output, and error streams to
+- `docker attach` will attach local standard input, output, and error streams to
 a running container. This can be useful if your terminal closed down for some
 reason or if you started a terminal in detached mode and changed your mind.
 
-* `docker exec` can be used to execute any command in a running container. It's
+- `docker exec` can be used to execute any command in a running container. It's
 typically used to peek in at what is happening by opening up a new shell.
 
 Let's try out the `docker exec` command.
