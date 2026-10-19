@@ -246,9 +246,9 @@ that's where the files will be mounted inside the container.
 ::: {.callout-caution title="Linux machines"}
 It is important to note that if you are running the above command on a Linux
 machine like `Ubuntu`, the output files will have `root` ownership which is not
-ideal. This is because `Docker daemon` always runs as a root user or the user
-that the image has. To avoid this, you can add the following option to the above
-command.
+ideal. This is because processes inside the container run as `root` by default
+(or as the user set in the image). To avoid this, you can add the following
+option to the above command.
 
 ```bash
 -u $(id -u ${USER}):$(id -g ${USER})
