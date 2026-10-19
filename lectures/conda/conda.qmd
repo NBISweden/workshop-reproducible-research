@@ -188,16 +188,21 @@ conda env export --from-history > environment.yml
 ```
 :::
 
+::: {.fragment}
+- Newer Conda versions also accept `conda create -f environment.yml` (≥ 26.3, March 2026)
+and `conda export` (≥ 24.3, March 2024).
+:::
+
 ## Conda, Anaconda, Miniconda, Miniforge...
 
 ::: {.incremental}
 - [Conda]{.green}: The package manager itself, written in python
 - [Anaconda]{.green}:
   - The company behind Conda itself
-  - An installer for Conda containing over 7,500 open-source packages
-  - A cloud service where conda packages are hosted ([anaconda.com](https://anaconda.com))
+  - An installer for Conda bundled with hundreds of popular data science packages
+  - A cloud service where conda packages are hosted ([anaconda.org](https://anaconda.org))
 - [Miniconda]{.green}: A minimal installer for Conda, pre-configured to use the
-  `default` channel
+  `defaults` channel
 - [Miniforge]{.green}: A minimal installer for Conda, pre-configured to use the
   `conda-forge` channel (use this!)
 :::
