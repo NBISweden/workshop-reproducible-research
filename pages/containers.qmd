@@ -853,13 +853,14 @@ Format_ (SIF). A SIF file is self-contained and can be moved around and shared
 like any other file, which also makes it easy to work with on an HPC cluster.
 
 ::: {.callout-note title="Apptainer and Singularity"}
-The open source Singularity project was renamed to _Apptainer_ in 2021. The
-company _Sylabs_ still keeps their commercial branch of the project under the
-Singularity name, and offer a free 'Community Edition' version. The name change
-was done in order to clarify the distinction between the open source project and
-the various commercial versions. At the moment there is little difference to you
-as a user whether you use Singularity or Apptainer, but eventually it's very
-likely that the two will diverge.
+The open source Singularity project joined the Linux Foundation and was renamed
+to _Apptainer_ in 2021. The company _Sylabs_ forked the project and continued
+developing it under the Singularity name, both as a free 'Community Edition'
+(SingularityCE) and as a commercial version. In October 2026, however, Sylabs
+discontinued all of its Singularity products, with SingularityCE 4.6 being the
+final release. Apptainer is thus the actively maintained version, and it still
+provides the `singularity` command and runs the same SIF images, so existing
+Singularity commands and images will keep working.
 :::
 
 While it is possible to define and build Apptainer images from scratch, in a

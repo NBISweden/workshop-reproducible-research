@@ -179,15 +179,15 @@ environment specification as well as instructions on how to get the raw data.
 ![](https://apptainer.org/apptainer.svg){fig-align=center width=80%}
 
 ::: {.incremental}
-- Apptainer used to be 'Singularity'.
-- In 2021 Singularity joined the Linux Foundation and became
-  [Apptainer]{.green}.
-- The company [Sylabs]{.green} still maintains Singularity as a commercial
-piece of software.
-- [SingularityCE]{.green} is an Open Source project supported by Sylabs.
-- The three versions are similar today, but will diverge with time.
-- [Apptainer]{.green} is the most commonly adopted version of the scientific
-  community.
+- Apptainer used to be called 'Singularity'.
+- In 2021 the open-source Singularity project joined the Linux Foundation and
+  became [Apptainer]{.green}.
+- The company [Sylabs]{.green} forked it as [SingularityCE]{.green} (open
+  source) and SingularityPRO (commercial).
+- In October 2026 Sylabs discontinued all its Singularity products;
+  SingularityCE 4.6 is the final release.
+- [Apptainer]{.green} is the actively maintained version, and still provides
+  the `singularity` command and runs the same SIF images.
 :::
 
 ## Docker vs. Apptainer
