@@ -197,7 +197,7 @@ directly, which will cause Docker to download it on the fly.
 
 The `bowtie2-build` part is the COMMAND followed by the ARG (the input FASTA
 file and the output index). You'll find, however, that the command failed with
-an error message including `Error: could not open NCTC8325.fa`. Why is that?
+an error message including `Error: could not open NCTC8325.fa.gz`. Why is that?
 Well, it's something to do with a thing called _bind mounts_.
 
 ### Bind mounts
@@ -238,9 +238,9 @@ docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d
 
 ::: {.callout-note}
 Note that we not only added the `-v` flag, but also changed the locations of the
-input and output files: `NCTC8325.fa` and `NCTC8325` from the previous command
-become `/analysis/NCTC8325.fa` and `/analysis/NCTC8325`, since that's where the
-files will be mounted inside the container.
+input and output files: `NCTC8325.fa.gz` and `NCTC8325` from the previous
+command become `/analysis/NCTC8325.fa.gz` and `/analysis/NCTC8325`, since
+that's where the files will be mounted inside the container.
 :::
 
 ::: {.callout-caution title="Linux machines"}
