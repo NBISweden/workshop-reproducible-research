@@ -38,7 +38,7 @@ benchmarking studies:
 
 <br>
 
-[2nd CAMI Challenge](https://www.microbiome-cosi.org/cami/cami/cami2)
+[2nd CAMI Challenge](https://cami-challenge.org/)
 
 > For reproducibility, participants could submit a Docker container containing
 > the complete workflow, a Bioconda script or a software repository with
