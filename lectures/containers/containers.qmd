@@ -164,9 +164,9 @@ The best overall solution is a Git repository storing documentation, code,
 environment specification as well as instructions on how to get the raw data.
 :::
 
-## What is Apptainer?
+## What is Apptainer? {.nostretch}
 
-![](http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png){fig-align=center}
+![](https://apptainer.org/apptainer.svg){fig-align=center width=80%}
 
 ::: {.incremental}
 - Another software for working with containers, similar to Docker
@@ -174,9 +174,9 @@ environment specification as well as instructions on how to get the raw data.
 - Does not require `root` access, making it suitable for work at HPCs
 :::
 
-## What is Apptainer?
+## What is Apptainer? {.nostretch}
 
-![](http://apptainer.org/static/hero-img-e614806cf573fd0cbbe09a25d9e69637.png){fig-align=center}
+![](https://apptainer.org/apptainer.svg){fig-align=center width=80%}
 
 ::: {.incremental}
 - Apptainer used to be 'Singularity'.
