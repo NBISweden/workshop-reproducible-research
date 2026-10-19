@@ -740,15 +740,15 @@ introduced in [the basics](#the-basics) and used when [building
 images](#building-images).
 
 ::: {.callout-tip}
-On Docker Hub it is also possible to link to your GitHub / BitBucket account and
-select repositories from which you want to automatically build and distribute
-Docker images. The Docker Hub servers will then build an image from the
-Dockerfile in your Git repository and make it available for download using
-`docker pull`. That way, you don't have to bother manually building and pushing
-using `docker push`. The GitHub repository for this course is linked to Docker
-Hub and the Docker images are built automatically from `Dockerfile` and
-`Dockerfile`, triggered by changes made to the GitHub repository. You can take a
-look at the course on [Docker Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
+Instead of building and pushing images manually you can automate it, so that a
+new image is built from the Dockerfile in your Git repository whenever it
+changes. A common way to do this is with [GitHub
+Actions](https://docs.github.com/en/actions), which can build an image and push
+it to _e.g._ the GitHub Container Registry or Docker Hub. (Docker Hub also has
+its own automated builds, but they require a paid subscription.) The GitHub
+repository for this course uses this approach; you can look at the
+[workflow](https://github.com/NBISweden/workshop-reproducible-research/blob/main/.github/workflows/build-and-publish-images.yml)
+that builds and publishes its images.
 :::
 
 ::: {.callout-note title="Quick recap"}
