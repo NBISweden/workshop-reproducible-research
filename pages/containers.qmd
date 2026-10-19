@@ -614,8 +614,8 @@ This should show information about the container that we just ran, something
 similar to the following:
 
 ```
-CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS          PORTS      NAMES
-b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds              sad_maxwell
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS                     PORTS     NAMES
+161cc7e0e8e8   my_docker_conda   "tini -- /analysis/r…"   3 minutes ago   Exited (0) 2 minutes ago             youthful_euler
 ```
 
 This shows useful information such as the unique container id, the name of the
