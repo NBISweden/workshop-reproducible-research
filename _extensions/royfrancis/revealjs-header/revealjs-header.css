@@ -9,10 +9,7 @@
 }
 
 .reveal .reveal-header p {
-  color: var(--header-font-color);
   text-align: center;
-  margin: var(--header-margin);
-  font-size: var(--header-font-size);
 }
 
 div.reveal-header {
@@ -20,25 +17,39 @@ div.reveal-header {
   grid-template-columns: 1fr 1fr;
 }
 
+.reveal .header-logo-left,
+.reveal .header-logo-right {
+  /* Neutralizes the inherited .reveal font-size/line-height so the logo
+     img (an inline replaced element) doesn't pick up baseline-driven
+     "phantom" space above it — otherwise this grows as the image shrinks
+     relative to that line-height at narrow viewports. */
+  line-height: 0;
+}
+
+.reveal .header-logo-right {
+  justify-self: end;
+}
+
+.reveal .header-logo-left img,
+.reveal .header-logo-right img {
+  /* Base size is in reveal.js canvas units; multiplying by --qrh-scale
+     (reveal's live Reveal.getScale() factor, published in revealjs-header.js)
+     keeps the logo in visual lockstep with the transform-scaled slide
+     content instead of pinning it to a constant real-world size. */
+  width: auto;
+  height: calc(var(--qrh-logo-height, 2.2rem) * var(--qrh-scale, 1));
+  padding-top: 5px;
+  margin: 0;
+}
+
 .reveal .header-logo-left img {
-  margin: var(--header-margin);
   padding-left: 1vw;
   padding-top: 5px;
-  height: auto;
-  width: auto;
-  max-width: max(60px, 10vw);
-  max-height: max(60px, 10vh);
 }
 
 .reveal .header-logo-right img {
-  margin: var(--header-margin);
   padding-right: 1vw;
   padding-top: 5px;
-  height: auto;
-  width: auto;
-  max-width: max(60px, 10vw);
-  max-height: max(60px, 10vh);
-  float: right;
 }
 
 div.slides section:not(.title-slide):not(#title-slide):not(.stack) {

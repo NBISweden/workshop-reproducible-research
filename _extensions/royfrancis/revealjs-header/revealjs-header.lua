@@ -41,7 +41,7 @@ local function make_image(path, height)
 
   if height ~= nil then
     image_attr = pandoc.Attr("", {}, {
-      { "style", "height:" .. height .. ";max-width:none;" }
+      { "style", "--qrh-logo-height:" .. height .. ";" }
     })
   end
 

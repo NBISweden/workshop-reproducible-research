@@ -99,7 +99,8 @@ end
 --- @param doc_dir string|nil
 --- @return string
 function M.resolve_input_relative_path(filepath, doc_dir)
-  if doc_dir and not filepath:match("^/") then
+  local is_absolute = filepath:match("^/") or filepath:match("^%a:[\\/]")
+  if doc_dir and not is_absolute then
     return doc_dir .. "/" .. filepath
   end
   return filepath

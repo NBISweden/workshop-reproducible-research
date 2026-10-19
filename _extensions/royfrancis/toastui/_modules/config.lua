@@ -210,7 +210,19 @@ end
 function M.show_nav(cfg)
   local show_nav = cfg.navigation
   if show_nav == nil then return true end
-  if show_nav == "false" or show_nav == false then
+  if show_nav == false or (type(show_nav) == "string" and show_nav:lower() == "false") then
+    return false
+  end
+  return true
+end
+
+--- Determine whether automatic hour-range fitting is enabled.
+--- @param cfg table
+--- @return boolean
+function M.auto_hour_range_enabled(cfg)
+  local value = cfg.autoHourRange
+  if value == nil then return false end
+  if value == false or (type(value) == "string" and value:lower() == "false") then
     return false
   end
   return true

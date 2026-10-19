@@ -45,7 +45,7 @@ Other output formats are intentionally ignored.
 | 2 | `dependencies.lua` | Adds TOAST UI JS/CSS and extension CSS via Quarto HTML dependency API. |
 | 3 | `config.lua` | Reads metadata by key (`toastui.<label>`), merges inline kwargs, normalizes string fields. |
 | 4 | `events.lua` | Loads events from metadata or file (`file` wins), applies separator normalization, validates core fields. |
-| 5 | `render.lua` | Generates container, optional nav, JS init (`new tui.Calendar(...)`), and optional `createEvents(...)`. |
+| 5 | `render.lua` | Generates container, optional nav, JS init (`new tui.Calendar(...)`), optional `createEvents(...)`, and optional client-side `week.hourStart`/`hourEnd` auto-fit (`autoHourRange`). |
 
 ## Configuration Semantics
 
@@ -83,6 +83,9 @@ Events source precedence:
 | Consistent clock format | Supported | Defaults to `24h`; set `timeFormat` to `12h` to override rendered event labels, time-grid labels, the current-time indicator, and detail popups. The separate form-popup picker remains upstream-controlled. |
 | Selectable event details | Supported | `eventDetailItems` accepts any event field. Known TOAST UI fields use native icons; custom fields render as labeled values. |
 | Selectable detail-popup rows | Supported | `popupDetailItems` independently accepts any event field. Known fields keep native popup rows and icons; custom fields are appended as labeled values. |
+| Naive event timestamps resolved against `timezone.zones` | Supported | When `timezone.zones` is set, naive `start`/`end` values (no UTC offset) are resolved against `zones[0]`'s IANA zone client-side, via `Intl`, before `createEvents()` — DST-aware, so every viewer sees the same venue-local wall-clock time. Values that already carry an offset/`Z` are left as-is. See `README.md`'s "Time Zones" section. |
+| Automatic time-grid fitting | Supported | `autoHourRange` fills in whichever of `week.hourStart`/`week.hourEnd` isn't explicitly set, from the exact min/max timed extent of events — no padding. Computed client-side (`render.lua`, before `new tui.Calendar(...)`), after event timestamps are resolved against `timezone.zones` (above) — not in Lua at Quarto render time — so the measured range matches how events actually render for each viewer; see `config.auto_hour_range_enabled`. |
+| Live runtime API access (`cal` instance global handle) | Supported | Each widget's `cal` instance is exposed at `window.__quartoToastuiCalendars[containerId]`, and the most recently initialized widget's id at `window.__quartoToastuiLastCalendarId`, for use by custom post-init JS. |
 
 ## Not Supported / Out of Scope
 
@@ -91,7 +94,7 @@ Events source precedence:
 | Non-HTML outputs (PDF/Docx/EPUB) | Not supported | Shortcode returns `pandoc.Null()`. |
 | Advanced function callbacks in options (for example `eventFilter` function in YAML) | Limited | YAML cannot safely express arbitrary JS functions; use post-init custom JS if needed. |
 | Built-in popup CSS dependencies (`tui-date-picker`, `tui-time-picker`) | Not bundled | If `useFormPopup` is enabled, upstream recommends adding picker styles yourself. |
-| Live runtime API exposure (`cal` instance global access) | Not provided | Each widget is initialized in an IIFE without global handles. |
+| `autoHourRange` with multi-zone `timezone.zones` + interactive primary-zone switching | Limited | `week.hourStart`/`hourEnd` is a single fixed window in TOAST UI; it's computed once at calendar init and does not refit if a viewer switches the primary zone afterward. This matches manually-set `hourStart`/`hourEnd` behavior today. |
 
 ## Developer Tips
 
