@@ -585,8 +585,8 @@ yourself, and has become widely used in the bioinformatics community.
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`,
-  `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
+- How the keywords `FROM`, `LABEL`, `RUN`, `SHELL`, `WORKDIR`, and `CMD` can
+  be used when writing a Dockerfile.
 - How to use `docker build` to construct and tag an image from a Dockerfile.
 - How to create your own Dockerfile.
 - How to use `-w` to set the working directory at runtime.
