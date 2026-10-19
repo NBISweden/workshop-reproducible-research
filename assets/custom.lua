@@ -9,8 +9,15 @@ function Meta(meta)
   meta['current_year'] = meta_inlines(os.date("%Y"))
   meta['current_date'] = meta_inlines(os.date("%d-%m-%Y"))
   meta['current_time'] = meta_inlines(os.date("%H:%M:%S"))
-  meta['output-dir-path'] = meta_inlines(quarto.project.output_directory)
-  meta['output-dir'] = meta_inlines(quarto.project.output_directory:match("([^/\\]+)[/\\]*$"))
+
+  local output_directory = quarto.project.output_directory
+  if not output_directory and quarto.doc.output_file then
+    output_directory = pandoc.path.directory(quarto.doc.output_file)
+  end
+  if output_directory then
+    meta['output-dir-path'] = meta_inlines(output_directory)
+    meta['output-dir'] = meta_inlines(output_directory:match("([^/\\]+)[/\\]*$"))
+  end
 
   local project_directory = quarto.project.directory or "."
   local quarto_config = io.open(project_directory .. "/_quarto.yml", "r")
