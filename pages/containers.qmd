@@ -987,13 +987,15 @@ appropriate for their computer. Here's how to do it:
 
 - Start by checking the available builders using `docker buildx ls`.
 
-You should only see the default builder, which does not have access to
-multi-platform builds. Let's create a new builder that *does* have access to it:
+You should see one or more builders using the `docker` driver (_e.g._
+`default`), which does not support multi-platform builds (unless you have turned
+on the containerd image store in Docker Desktop). Let's create a new builder
+that *does* support it:
 
 - Run the following command:
 
 ```bash
-docker buildx create --name mybuilder --driver docker-container --bootstrap.
+docker buildx create --name mybuilder --driver docker-container --bootstrap
 ```
 
 - Switch to using the new builder with `docker buildx use mybuilder` and check
@@ -1012,10 +1014,10 @@ docker buildx build --platform linux/amd64,linux/arm64 -t <username>/<image>:lat
 That's it! Now anybody who does _e.g._ `docker pull <username>/<image>` will get
 an image appropriate for their architecture whether they are on AMD64 or ARM64!
 
-::: {.callout-note title="An alias to `buildx`"}
-You can type `docker buildx install` to make the `docker build` into an alias
-for `docker buildx`, allowing you to run multi-platform builds using `docker
-build`. Use `docker buildx uninstall` to remove this alias.
+::: {.callout-note title="`docker build` and `docker buildx build`"}
+In recent versions of Docker (23.0 and later), `docker build` already uses
+Buildx under the hood, so you can also run multi-platform builds with `docker
+build --platform ...` once you've selected a builder that supports them.
 :::
 
 ### Multi-stage builds
