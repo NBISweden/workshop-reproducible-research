@@ -28,7 +28,7 @@ several tools in the field of metagenomics.
 
 > [...] We defined standards for submitting the software itself, along with
 > parameter settings and required databases and implemented them in Docker
-> container templates ... ^[_Sczyrba et al Nature Methods (2017) 14:1063–1071,
+> container templates ... ^[_Sczyrba et al. Nature Methods (2017) 14:1063–1071,
 > [doi.org/10.1038/nmeth.4458](https://doi.org/10.1038/nmeth.4458)_]
 
 ## Docker in life science
@@ -42,7 +42,7 @@ benchmarking studies:
 
 > For reproducibility, participants could submit a Docker container containing
 > the complete workflow, a Bioconda script or a software repository with
-> detailed installation instructions [...] ^[_Meyer et al Nature Methods (2022)
+> detailed installation instructions [...] ^[_Meyer et al. Nature Methods (2022)
 > 19:429-440, [https://doi.org/10.1038/s41592-022-01431-4](https://doi.org/10.1038/s41592-022-01431-4)_]
 
 ## Docker nomenclature
@@ -195,7 +195,7 @@ piece of software.
 | ![](images/docker-logo.webp){height=150 fig-align=center} | ![](https://apptainer.org/docs/user/main/_static/logo.png){height=150 fig-align=center} |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | Runs as a daemon process with superuser privileges        | Runs as a regular user                                                                  |
-| Images stored centrally                                   | Image files that you can move around.                                                   |
+| Images stored centrally                                   | Image files that you can move around                                                    |
 | Isolates the host and container file system by default    | Containers have access to host file system                                              |
 | Well-supported on Mac, Linux and Windows                  | Limited support on Mac and Windows                                                      |
 
