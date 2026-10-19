@@ -420,8 +420,8 @@ reproducibility perspective.
 Next up is:
 
 ```Dockerfile
-# Start Bash shell by default
-CMD /bin/bash
+# Start Bash by default
+CMD ["/bin/bash"]
 ```
 
 `CMD` is an interesting instruction: it sets what a container should run when
@@ -1043,7 +1043,7 @@ before:
 ```Dockerfile
 FROM condaforge/miniforge3:24.7.1-0
 RUN conda install -y -n base python=3.10
-CMD /bin/bash
+CMD ["/bin/bash"]
 ```
 
 Here we install Python in the Conda base environment, similar to how we have
@@ -1083,7 +1083,7 @@ COPY --from=build /env /env
 
 # Activate the environment when running the container
 RUN echo "source /env/bin/activate" >> ~/.bashrc
-CMD /bin/bash
+CMD ["/bin/bash"]
 ```
 
 The first thing to notice here is the first `FROM` statement, which also
