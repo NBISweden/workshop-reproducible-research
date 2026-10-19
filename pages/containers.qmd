@@ -1,6 +1,6 @@
 ---
 title: Controlling your environment with Containers
-subtitle: How to keep keep track of both your environment and operating system
+subtitle: How to keep track of both your environment and operating system
 format: html
 ---
 
@@ -9,7 +9,7 @@ format: html
 Container-based technologies are designed to make it easier to create, deploy,
 and run applications by isolating them in self-contained software units (hence
 their name). The idea is to package software and/or code together with
-everything it needs (other packages it depends, various environment settings,
+everything it needs (other packages it depends on, various environment settings,
 _etc._) into one unit, _i.e._ a container. This way we can ensure that the
 software or code functions in exactly the same way regardless of where it's
 executed. Containers are in many ways similar to virtual machines but more
@@ -37,7 +37,7 @@ _Docker_. Just as with Git, Docker was designed for software development but is
 rapidly becoming widely used in scientific research. Another container-based
 technology is _Apptainer_ (and the related _Singularity_), which was developed
 to work well in computer cluster environments such as Uppmax. We will cover both
-Docker and Apptainer in this course, but the focus will be be on the former
+Docker and Apptainer in this course, but the focus will be on the former
 (since that is the most widely used and runs on all three operating systems).
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
@@ -45,7 +45,7 @@ This tutorial depends on files from the course GitHub repo. Take a look at the
 haven't done so already, then open up a terminal and go to
 `workshop-reproducible-research/tutorials/containers`.
 
-::: {.callout-warning title="Dockage and storage"}
+::: {.callout-warning title="Docker and storage"}
 Docker images tend to take up quite a lot of space. In order to do all
 the exercises in this tutorial you need to have ~10 GB available.
 :::
@@ -54,7 +54,7 @@ the exercises in this tutorial you need to have ~10 GB available.
 
 We're almost ready to start, just one last note on nomenclature. You might have
 noticed that we sometimes refer to "Docker images" and sometimes to "Docker
-containers". We use images to start containers, so containers are simply an
+containers". We use images to start containers, so containers are simply
 instances of an image. You can have an image containing, say, a certain
 Linux distribution, and then start multiple containers running that
 same OS.
@@ -239,7 +239,7 @@ docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d
 ::: {.callout-note}
 Note that we not only added the `-v` flag, but also changed the locations of the
 input and output files: `NCTC8325.fa` and `NCTC8325` from the previous command
-becomes `/analysis/NCTC8325.fa` and `/analysis/NCTC8325`, since that's where the
+become `/analysis/NCTC8325.fa` and `/analysis/NCTC8325`, since that's where the
 files will be mounted inside the container.
 :::
 
@@ -517,7 +517,7 @@ environment file _e.g._ `environment.yml` from the Conda tutorial and use `conda
 env update --name base` to update the base environment from that file (the rule
 to keep the base Conda environment free of other packages does not apply to when
 you're building it inside a Docker image). Or we could install the package
-directly with `conda install --name base`. We'll try this later option here, so
+directly with `conda install --name base`. We'll try the latter option here, so
 add a line that will install the `fastqc` package, and also clean up packages
 and cache after installation. Use the `-y` flag to `conda install` to avoid the
 prompt that expects an interaction from the user.
@@ -552,7 +552,7 @@ docker build -t my_docker_conda -f conda.Dockerfile .
 docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
 ```
 
-You should now see the script to completion, but you won't find the output files
+You should now see the script run to completion, but you won't find the output files
 in your working directory. The script creates the `data` and `results`
 directories and puts its files there, but since we're running from within the
 container in the root (`/`) directory, the directories created become `/data`
@@ -762,7 +762,7 @@ In this section we've learned:
 
 There are lots of different things you can do with images and containers in
 general, especially when it comes to optimising build time or final image size.
-Here is some tips and tricks that you can be inspired from!
+Here are some tips and tricks that you can be inspired by!
 
 If you want to read more about containers in general you can check out these
 resources:
@@ -775,7 +775,7 @@ resources:
 
 While building from your own Dockerfile gives you full control over exactly how
 you build your image, there is also another alternative for building images:
-[Seqera Containers](https://seqera.io/containers/). This a free service provided
+[Seqera Containers](https://seqera.io/containers/). This is a free service provided
 by Seqera, the company behind Nextflow (among other things), and it allows you
 to easily build images from any package available in PyPI, Bioconda or any Conda
 channel. This means that most (but not all) bioinformatic software packages can
@@ -865,7 +865,7 @@ likely that the two will diverge.
 While it is possible to define and build Apptainer images from scratch, in a
 manner similar to what you've already learned for Docker, this is not something
 we will cover here (but feel free to read more about this in _e.g._ the
-[Apptainer docs](https://apptainer.org/docs/user/main/index.html).
+[Apptainer docs](https://apptainer.org/docs/user/main/index.html)).
 
 The reasons for not covering Apptainer more in-depth are varied, but it
 basically boils down to it being more or less Linux-only, unless you use Virtual
@@ -876,9 +876,9 @@ Apptainer images regardless of platform, meaning that you can't build them on
 _e.g._ Uppmax, even though Apptainer is already installed there. You can,
 however, use the `--remote` flag, which runs the build on Apptainer's own
 servers. This doesn't work in practice a lot of the time, though, since most
-scientist will work in private Git repositories so that their research and code
+scientists will work in private Git repositories so that their research and code
 is not available to anybody, and the `--remote` flag requires that any files
-required for the build (_e.g._ the `environment.yml` file) is publicly
+required for the build (_e.g._ the `environment.yml` file) are publicly
 available.
 
 There are very good reasons to use Apptainer, however, the major one being that
@@ -976,7 +976,7 @@ You should now see a small ASCII art of a cow and today's date.
 
 With the newer ARM64 architectures introduced by Apple one often runs into the
 problem of not having an architecture-native image to run with. This is
-sometimes okay since the [Rosetta2](https://support.apple.com/en-us/HT211861)
+sometimes okay since the [Rosetta 2](https://support.apple.com/en-us/HT211861)
 software can emulate the old AMD64 architecture on newer ARM64 computers, but
 results in a performance hit. One could just build for ARM64 using
 `--platform=linux/arm64` instead, but then somebody who _doesn't_ have the new
@@ -1024,15 +1024,15 @@ Some build processes can be quite complicated, requiring a more diverse set of
 software packages in order to successfully build a Docker image. Not all of
 these packages are always required for _running_ the final image, however, which
 results in a somewhat bloated image with a larger size footprint than what is
-strictly required. This is where _multi-stage_ builds come in, which allows for
+strictly required. This is where _multi-stage_ builds come in, which allow for
 optimisation where only the files and packages actually required for execution
-is included in the final image.
+are included in the final image.
 
 While this is mostly interesting for software developers and people working with
 binaries and other non-scripted code, it can be of interest in the context of
 bioinformatics when it comes to optimising _e.g._ Conda environments. Conda
 actually comes in two parts: the Conda installation itself (along with all the
-files requires to build Conda environments) and the Conda environments that
+files required to build Conda environments) and the Conda environments that
 we've built. The former is actually not needed to be able to use the latter, but
 the technical details behind this are non-trivial and out of the scope of this
 course. Regardless, there's a package that can help us with this: `conda-pack`.
@@ -1091,11 +1091,11 @@ includes `AS build`, which is specific to multi-stage builds. What we are doing
 is giving the stage a name, `build` in this case, so that we may refer back to
 it later.
 
-The first `RUN` command install `conda-pack` in the _base_ environment, _not_
+The first `RUN` command installs `conda-pack` in the _base_ environment, _not_
 the environment with Python that we're actually interested in. The reason for
 this is that we only need `conda-pack` for making the Python environment
 independent of the Conda installation, but we won't need it to actually activate
-the environment once this is done. The second and third `RUN` commands installs
+the environment once this is done. The second and third `RUN` commands install
 the new environment (named `env` here) and packages that environment into a
 separate directory, respectively.
 
@@ -1111,12 +1111,12 @@ environment itself, not the base environment nor the Conda installation.
 - List your docker images with `docker image ls` and compare the newly created
   `my_docker_multi` with `my_docker_base`.
 
-Hopefully you should see that the size of the final image are different: the
-`multi` image should be about 500 MB smaller than the `multi` image. This tells
+Hopefully you should see that the sizes of the final images are different: the
+`multi` image should be about 500 MB smaller than the `base` image. This tells
 you something about how large the Conda installation is all by itself.
 
 ::: {.callout-note title="A smaller base image"}
-We're still using Ubuntu as the base image for the  final stage of our image,
+We're still using Ubuntu as the base image for the final stage of our image,
 but we _could_ go even further in our attempt to minimise the image size by
 using an even smaller base image, such as `alpine`. Doing this means that you
 lose out on a lot of basic Unix utilities, though, such as Bash.
@@ -1124,7 +1124,7 @@ lose out on a lot of basic Unix utilities, though, such as Bash.
 
 There are more complex environment specifications than this, though, especially
 those using multiple R and/or Python packages. The Conda environments for those
-type of environments are _much_ more complicated than the previous example,
+types of environments are _much_ more complicated than the previous example,
 which means that the optimisation is proportionally smaller. Going from ~850 to
 ~250 MB is quite a big optimisation, while going from _e.g._ 2 or 3 GB to 1.5 or
 2.5 GB is not quite as big. Regardless, that (albeit smaller) difference can add
