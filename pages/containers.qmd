@@ -552,14 +552,14 @@ docker build -t my_docker_conda -f conda.Dockerfile .
 docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
 ```
 
-You should now see the script run to completion, but you won't find the output files
-in your working directory. The script creates the `data` and `results`
-directories and puts its files there, but since we're running from within the
-container in the root (`/`) directory, the directories created become `/data`
-and `/results`, which are _not_ mounted (since they're not inside the
-`/analysis` directory). What we can do is to add the `-w` (`--workdir`) flag,
+You should now see the script run to completion, but you won't find the output
+files in your working directory. The script creates the `data` and `results`
+directories and puts its files there, but since the container starts in the
+`/course` directory (set by `WORKDIR` in `Dockerfile`), the directories created
+become `/course/data` and `/course/results`, which are _not_ mounted (since
+they're not inside the `/analysis` directory). What we can do is to add the `-w` (`--workdir`) flag,
 which tells Docker where execution should happen, _i.e._ what should be the
-working directory (you could instead add `WORKDIR /analysis` to the Dockerfile
+working directory (you could instead set `WORKDIR /analysis` in the Dockerfile
 for the same effect).
 
 - Run the same command again, but add `-w /analysis` to the command.
