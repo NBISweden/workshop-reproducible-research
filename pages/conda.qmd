@@ -43,8 +43,8 @@ Packages are symlinked between environments to avoid unnecessary duplication.
 
 ::: {.callout-note title="Different Conda flavours"}
 You may come across several flavours of Conda. There's _Miniconda_, which is
-the installer for Conda. The second is _Anaconda_, which is a distribution of
-not only Conda, but also over 150 scientific Python packages curated by the
+a minimal installer for Conda. The second is _Anaconda_, which is a distribution of
+not only Conda, but also over 300 scientific Python packages curated by the
 company by the same name (Anaconda). It's generally better to stick with the
 Miniconda installation rather than installing 3 GB worth of packages you may
 not even use. Then, lastly, there's the _Miniforge_ flavour that we're using
@@ -52,12 +52,12 @@ here, which is a community-driven version of Conda that's highly popular
 within the scientific community.
 
 The difference between Miniconda and Miniforge is that the former points to the
-`default` channel by default (which requires an Anaconda license for commercial
+`defaults` channel by default (which requires an Anaconda license for commercial
 purposes), while the latter points to the community-maintained `conda-forge`
 channel by default. While Conda is created and owned by Anaconda the company,
-Conda itself is open source - it's the `default` channel that is proprietary.
+Conda itself is open source - it's the `defaults` channel that is proprietary.
 The `conda-forge` and `bioconda` channels (two of the largest channels outside
-of `default`) are community-driven. Confusing? Yes. If you want this information
+of `defaults`) are community-driven. Confusing? Yes. If you want this information
 more in-depth you can read this [blog post by
 Anaconda](https://www.anaconda.com/blog/is-conda-free).
 :::
@@ -65,7 +65,7 @@ Anaconda](https://www.anaconda.com/blog/is-conda-free).
 ## The basics
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
-[setup](../home_precourse.html) for instructions on how to set it up if, you
+[setup](../home_precourse.html) for instructions on how to set it up, if you
 haven't done so already. Then open up a terminal and go to
 `workshop-reproducible-research/tutorials/conda`. Instructions below assume that
 you are standing in `workshop-reproducible-research/tutorials/conda/` unless
@@ -107,13 +107,13 @@ Further down you will see something like this:
 ```
 The following NEW packages will be INSTALLED:
 
-  fastqc             bioconda/noarch::fastqc-0.12.1-hdfd78af_0
+  fastqc             bioconda/noarch::fastqc-0.13.0-hdfd78af_0
   <more packages>
 ```
 
 This shows that the `fastqc` package will be installed from the `bioconda`
 channel (the `noarch` part shows that the package is not specific to any
-computer architecture). In the example above we see that version `0.12.1` will
+computer architecture). In the example above we see that version `0.13.0` will
 be installed. The `hdfd78af_0` part is a unique build string that is used to
 differentiate between different builds of the same package version.
 
@@ -124,7 +124,7 @@ conda activate project_a
 ```
 
 By default, Conda will add information to your prompt telling you which
-environment that is active.
+environment is active.
 
 - To see all your environments you can run:
 
@@ -150,6 +150,12 @@ conda env export --from-history > environment.yml
 Where `--from-history` only reports the packages requested to be installed
 and not additional dependencies. A caveat is that if no version was
 originally specified, then it is not included in the export file either.
+
+::: {.callout-tip}
+Since Conda version 24.3, `conda env export` is an alias of the shorter
+`conda export` command, so `conda export --from-history > environment.yml`
+does the same thing.
+:::
 
 - Now, deactivate the environment by running `conda deactivate`.
 - List all environments again. Which environment is now marked as active?
@@ -230,7 +236,10 @@ Now let's try to remove an installed package from the active environment:
 conda remove multiqc
 ```
 
-- Run `conda deactivate` to exit your active environment.
+- Run `conda deactivate` to exit your active environment. Because Conda
+  environments are nested when you activate one from inside another, you may
+  need to run it several times. Check `conda info --envs` and make sure that
+  `project_old` is not marked as active.
 - Now, let's remove an environment:
 
 ```bash
@@ -245,16 +254,16 @@ command:
 conda clean -a
 ```
 
-This will remove package tar-balls that are left from package installations,
+This will remove package tarballs that are left from package installations,
 unused packages (_i.e._ those not present in any environments), and cached
 data.
 
-You can also specify the path to which the tar-balls are downloaded by setting
+You can also specify the path to which the tarballs are downloaded by setting
 the `$CONDA_PKGS_DIRS` environment variable. This can be useful especially on
 compute clusters where disk space in your home directory is limited. Compute
 clusters typically have a 'scratch' folder for storing temporary data which has
 a larger quota so setting `$CONDA_PKGS_DIRS` to point to this folder will save
-space in your home directory. 
+space in your home directory.
 
 ::: {.callout-note title="Setting CONDA_PKGS_DIRS in PDC/Dardel"}
 For example, on the Dardel compute cluster the
@@ -265,11 +274,11 @@ cluster you can add the following line to your `.bashrc` file:
 export CONDA_PKGS_DIRS=$PDC_TMP/conda_pkgs
 ```
 
-From now on, Conda will download and store the package tar-balls in the
+From now on, Conda will download and store the package tarballs in the
 `$PDC_TMP/conda_pkgs` folder.
 :::
 
-You can also achieve the same effect by setting the `pkgs_dirs` config parameter
+You can also achieve the same effect by adding to the `pkgs_dirs` config parameter
 with `conda config` (see [configuration](#configuration) below).
 
 ::: {.callout-note title="Quick recap"}
@@ -299,7 +308,7 @@ In this Conda tutorial, all code for the analysis is available in the script
 `run_qc.sh`. This code will download the raw FASTQ-files and subsequently
 run quality control on these using the FastQC software.
 
-### Working with environments
+### Creating an environment from a file
 
 We will start by making a Conda YAML-file that contains the required packages to
 perform these two steps. Later in the course, you will update the Conda
@@ -324,6 +333,11 @@ dependencies:
 ```bash
 conda env create -n project_mrsa -f environment.yml
 ```
+
+::: {.callout-tip}
+From Conda version 26.3 you can also use `conda create` with an environment
+file, _e.g._ `conda create -n project_mrsa -f environment.yml`.
+:::
 
 ::: {.callout-tip}
 You can also specify exactly which channel a package should come from
@@ -393,10 +407,16 @@ you to export a list of the packages you've already installed, including their
 specific versions, meaning you can easily add them after the fact to your
 environment file. If you use the `--no-builds` flag, you'll get a list of the
 packages minus their OS-specific build specifications, which is more useful for
-making the environment portable across systems. This way, you can start with an
+making the environment portable across systems:
+
+```bash
+conda env export --no-builds
+```
+
+This way, you can start with an
 environment file with just the packages you need (without version), which will
 install the most up-to-date version possible, and then add the resulting
-version back in to the environment file using the `export` command!
+version back into the environment file using the `export` command!
 
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
@@ -411,7 +431,7 @@ In this section we've learned:
 
 The following extra material contains some more advanced things you can do with
 Conda and the command line in general, which is not part of the main
-course materials. All the essential skills of are covered by the previous
+course materials. All the essential skills are covered by the previous
 section: the material here should be considered tips and tricks from people who
 use Conda as part of their daily work. You thus don't need to use these
 things unless you want to, and you can even skip this part of the lesson if
@@ -451,11 +471,11 @@ conda config --set always_yes True
 
 Above we mentioned that you can set the `$CONDA_PKGS_DIRS` environment variable
 to specify where Conda should store downloaded packages. This can also be done
-using the `conda config` command. Taking the example from above for the Dardel compute cluster, you can set
-the `pkgs_dirs` parameter with:
+using the `conda config` command. Taking the example from above for the Dardel compute cluster, you can add
+to the `pkgs_dirs` parameter with:
 
 ```bash
-conda config --set pkgs_dirs $PDC_TMP/conda_pkgs
+conda config --add pkgs_dirs $PDC_TMP/conda_pkgs
 ```
 
 To see details about a config parameter you can run `conda config --describe
@@ -465,7 +485,7 @@ parameter`. Try running it on the `channels` parameter:
 conda config --describe channels
 ```
 
-In the beginning of this tutorial we added Conda channels to the `.condarc`
+In the pre-course setup we added Conda channels to the `.condarc`
 file using `conda config --add channels`. To remove one of the channels from
 the configuration file you can run:
 
@@ -474,7 +494,7 @@ conda config --remove channels conda-forge
 ```
 
 Check your `.condarc` file to see the change. To add the _conda-forge_ channel
-back to the top of the `channels` simply run:
+back to the top of the `channels` list, simply run:
 
 ```bash
 conda config --add channels conda-forge
@@ -495,10 +515,10 @@ You can have multiple `.condarc` in different locations, and when using the
 Miniforge installer (like in the pre-course setup) you automatically get an
 additional one inside your Miniforge installation directory; you can use `conda
 config --show-sources` to see exactly where it is. While the commands we ran
-only changes the one in your home directory, Conda will still pick up the
+only change the one in your home directory, Conda will still pick up the
 configuration coming from the Miniforge installation as well (as well as any
 other config files you may have), resulting in a union of your multiple configs.
-You can remove the one added by Miniforge by default it you like.
+You can remove the one added by Miniforge by default if you like.
 :::
 
 ### Managing Python versions
@@ -540,12 +560,13 @@ environment containing Python version `3.5`:
 
 ::: {.callout-note}
 
-Python versions older than `v3.8.5` are not available for Macs with the M-series
+Python versions older than `3.8` are not available for Macs with the M-series
 chips, so if you are using one of those you will need to add `--subdir osx-64`
-to the command, _e.g._:
+to the commands in this section, _e.g._:
 
 ```bash
 conda create --subdir osx-64 -n py35 python=3.5
+conda create --subdir osx-64 -n py27 python=2.7
 ```
 :::
 
@@ -593,7 +614,7 @@ By default, the name of the currently activated environment is added to your
 command line prompt. This is a good thing, as it makes it easier to keep
 track of what environment and packages you have access to. The way this is
 done in the default implementation becomes an issue when using absolute paths
-for environments (specifying `conda env create -p path/to/environment`,
+for environments (specifying `conda env create -p path/to/environment`),
 though, as the entire path will be added to the prompt. This can take up a lot
 of unnecessary space on your screen, but can be solved in a number of ways.
 
@@ -628,12 +649,13 @@ cause your prompt to be modified with _project_a_environment_.
 
 Some programmers like to have aliases (_i.e._ shortcuts) for common commands.
 Two aliases that might be useful for you are `alias coac='conda activate'` and
-`alias code='conda deactivate'`. Don't forget to add them to your
-`~/.bash_profile` if you want to use them!
+`alias coda='conda deactivate'`. Don't forget to add them to your
+`~/.bashrc` (or `~/.zshrc` if you use zsh, the default shell on macOS) if you
+want to use them!
 
 ### Rolling back to an earlier version of the environment
 
-The history of the changes to an environment are automatically tracked. You can
+The history of the changes to an environment is automatically tracked. You can
 see revisions to an environment by using:
 
 ```bash
@@ -642,7 +664,7 @@ conda list --revisions
 
 Which shows each revision (numbered) and what's installed.
 
-You can revert back to particular revision using:
+You can revert to a particular revision using:
 
 ```bash
 conda install --revision 5
@@ -653,9 +675,9 @@ conda install --revision 5
 There is another piece of software that is built on top of Conda as a drop-in
 replacement for it: _Mamba_. The reason for Mamba's existence is that it used to
 have a better solver algorithm for the dependency tree than Conda did. These
-days, however, this algorithm is included in Conda as the default. There is
-still some minor reasons you might want to use Mamba, however, the first of
-which being that Mamba re-implements Conda in C++, which runs slightly faster
+days, however, this algorithm is included in Conda as the default. There are
+still some minor reasons you might want to use Mamba, however, the first
+being that Mamba re-implements Conda in C++, which runs slightly faster
 than the Python-based Conda. This only yields a minor speed increase compared to
 the dependency-tree algorithm, though, so don't expect major differences in
 execution time between Conda and Mamba. Another reason is that Mamba colours its
@@ -668,7 +690,7 @@ installed Mamba as well!
 Pixi is another package management tool that builds on the Conda ecosystem but
 which has a more organised, project-centric approach. Pixi does not have a
 `base` environment either, which is a very nice feature, as you can completely
-focus on the environments that your projects needs. The project-centric
+focus on the environments that your project needs. The project-centric
 approach also makes it easy to have multiple environments together. Importantly,
 Pixi is also significantly faster than both Conda and Mamba. Indeed, several of
 the teachers here at the course have moved away from using Conda/Mamba and now
@@ -678,7 +700,7 @@ almost exclusively use Pixi instead.
 If Pixi is so good, why is it in the "extra materials" section rather than as a
 replacement for Conda? Firstly, Conda is still widely adopted throughout the field,
 not only as a stand-alone tool, but it's also widely integrated into _other_
-tools such as IDEs, workflow managers, _etc._. Secondly, Pixi still uses the
+tools such as IDEs, workflow managers, _etc._ Secondly, Pixi still uses the
 Conda ecosystem with channels, packages, _etc._, so learning Conda is still time
 well spent, as a lot of it transfers directly to Pixi.
 :::
@@ -698,11 +720,11 @@ format we've already used in Conda, but with some structural differences. An
 example of a minimal `pixi.toml` file could look like this:
 
 ```{.toml filename="pixi.toml"}
-[project]
+[workspace]
 name = "project_mrsa"
 channels = ["conda-forge", "bioconda"]
 platforms = ["linux-64", "osx-64"]
-````
+```
 
 ::: {.callout-tip}
 If you are using VSCode you can install an extension to get syntax highlighting
@@ -710,7 +732,7 @@ for TOML files. Search for "TOML Support" in the extensions marketplace.
 :::
 
 The `pixi.toml` file is built up of several 'tables' which are collections of
-key/value pairs. In the example above we have the `[project]` table which
+key/value pairs. In the example above we have the `[workspace]` table which
 defines general information about the project, for example the project name, the
 Conda channels to use and which platforms the project should be compatible with.
 These are the minimum requirements for a `pixi.toml` file.
@@ -733,7 +755,7 @@ This will create a `pixi.toml` file in the folder. Open it up and take a look.
 
 You should see something similar to the example above, but likely Pixi also
 added the `authors` key (where the value is the name and email address taken
-from your global git configuration), a `description` and a `version`. You can
+from your global git configuration) and a `version`. You can
 edit these values as you see fit.
 
 Let's add the `bioconda` channel to the `channels` list. Edit the `channels`
@@ -782,7 +804,7 @@ pixi install
 Pixi will download and install the packages specified under the `[dependencies]`
 table (for now just `fastqc`) and then report:
 
-```bash
+```
 ✔ The default environment has been installed.
 ```
 
@@ -791,11 +813,11 @@ was generated by Pixi during the `install` step and contains information about
 the environment that was created and the packages it contains. Importantly, the
 lock file should be treated as read-only, **never edit this file by hand**.
 
-If you list hidden files and folder inside the directory (`ls -l`) you will also
+If you list hidden files and folders inside the directory (`ls -la`) you will also
 see a `.pixi/` folder. This, or more specifically the `.pixi/envs/default/`
 folder, is where the environment is stored by default. You can define several
 [environments](https://pixi.sh/latest/reference/pixi_manifest/#the-feature-and-environments-tables)
-in the `pixi.toml` file and each environment will get a sub folder in
+in the `pixi.toml` file and each environment will get a subfolder in
 `.pixi/envs/`. Here we only have one environment, the `default` environment.
 
 So how do you activate the environment? You can do this by running:
