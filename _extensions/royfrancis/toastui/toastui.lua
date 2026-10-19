@@ -45,6 +45,7 @@ local function render_shortcode(args, kwargs, meta, raw_args, context)
     end
 
     local show_nav = config.show_nav(cfg)
+    local auto_hour_range = config.auto_hour_range_enabled(cfg)
     local height = utils.normalize_height(cfg.height)
     local timegrid_height = cfg.timegridHeight or "200%"
 
@@ -59,6 +60,7 @@ local function render_shortcode(args, kwargs, meta, raw_args, context)
       show_nav = show_nav,
       height = height,
       timegrid_height = timegrid_height,
+      auto_hour_range = auto_hour_range,
       errors = event_errors or {},
     }
   end)
@@ -82,7 +84,8 @@ local function render_shortcode(args, kwargs, meta, raw_args, context)
       result.timegrid_height,
       result.time_format,
       result.event_detail_items,
-      result.popup_detail_items
+      result.popup_detail_items,
+      result.auto_hour_range
     )
   end)
 

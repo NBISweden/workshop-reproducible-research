@@ -28,9 +28,8 @@ toastui:
       workweek: true
       taskView: false
       eventView: ['time']
-      hourStart: 9
-      hourEnd: 21
       showNowIndicator: true
+    autoHourRange: true
     timezone:
       zones:
         - timezoneName: Europe/Stockholm
@@ -55,5 +54,5 @@ toastui:
         borderColor: "#BB8FCE"
 ---
 
-<!-- Remember to set first schedule date in the YAML above -->
+<!-- Remember to set first day of schedule and file path in the YAML above -->
 {{< toastui schedule >}}

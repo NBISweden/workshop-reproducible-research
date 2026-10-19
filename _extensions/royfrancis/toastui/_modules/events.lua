@@ -38,6 +38,19 @@ local function validate_event_list(events, source)
     return errors
   end
 
+  local count = 0
+  for index, _ in pairs(events) do
+    if type(index) ~= "number" or index < 1 or index % 1 ~= 0 then
+      table.insert(errors, "toastui: events from " .. source .. " must be a list, not a mapping")
+      return errors
+    end
+    count = count + 1
+  end
+  if count ~= #events then
+    table.insert(errors, "toastui: events from " .. source .. " must be a list, not a mapping")
+    return errors
+  end
+
   for idx, ev in ipairs(events) do
     if type(ev) ~= "table" then
       table.insert(errors, "toastui: event #" .. idx .. " from " .. source .. " is not an object")
@@ -181,7 +194,10 @@ function M.build_events(cfg, doc_dir)
   local events = nil
   local errors = {}
 
-  if cfg.events then
+  local filepath = cfg.file
+  local using_file = filepath and filepath ~= ""
+
+  if cfg.events and not using_file then
     events = cfg.events
     for _, ev in ipairs(events) do
       if type(ev) == "table" and ev.attendees ~= nil and type(ev.attendees) ~= "table" then
@@ -194,8 +210,7 @@ function M.build_events(cfg, doc_dir)
     end
   end
 
-  local filepath = cfg.file
-  if filepath and filepath ~= "" then
+  if using_file then
     local sep = utils.normalize_separator(cfg["file-sep"])
     local full_path = utils.resolve_input_relative_path(filepath, doc_dir)
     local file_events, file_errors = parse_events_file(full_path, sep)

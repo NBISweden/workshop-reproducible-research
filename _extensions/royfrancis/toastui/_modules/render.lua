@@ -5,6 +5,37 @@ local utils = require('./utils')
 
 local M = {}
 local calendar_counter = 0
+
+--- TOAST UI Calendar's own pristine default for `theme.common.backgroundColor`
+--- (confirmed by inspecting a freshly-constructed instance with no custom
+--- theme). Used as the fallback below so every calendar gets an explicit,
+--- CSS-enforced value instead of silently reading whatever a *different*
+--- calendar last wrote to it (see the comment on `theme_override_css`).
+local DEFAULT_COMMON_BACKGROUND_COLOR = "white"
+
+--- Scoped CSS reinforcement for `theme.common.backgroundColor`. TOAST UI
+--- Calendar keeps this in state shared across every calendar instance on
+--- the page: setting a custom background on one instance eventually
+--- overwrites the inline style of every other instance too (including ones
+--- built earlier), with whichever instance last touched the shared state
+--- "winning" for the whole page. Emitting this rule — with the instance's
+--- own requested color, or TOAST UI's own default when it didn't request
+--- one — for *every* calendar, scoped by container id with `!important`,
+--- beats that plain (non-`!important`) inline style regardless of what
+--- other calendars on the page do or don't customize. Other theme fields
+--- remain plain pass-through and stay subject to that upstream limitation
+--- (see README's Limitations section).
+--- @param container_id string
+--- @param theme table|nil
+--- @return string
+local function theme_override_css(container_id, theme)
+  local id = utils.escape_html_attr(container_id)
+  local background_color = DEFAULT_COMMON_BACKGROUND_COLOR
+  if type(theme) == "table" and type(theme.common) == "table" and theme.common.backgroundColor ~= nil then
+    background_color = theme.common.backgroundColor
+  end
+  return '#' .. id .. ' .toastui-calendar-layout { background-color: ' .. utils.escape_html_attr(background_color) .. ' !important; }'
+end
 local ERROR_BOX_STYLE = "padding: 0.75rem 1rem; border: 1px solid #f5c6cb; border-radius: 6px; color: #721c24; background: #f8d7da;"
 local NATIVE_DETAIL_ITEMS = {
   location = true,
@@ -115,7 +146,7 @@ function M.render_error_block(errors)
   end
 
   local function format_msg(raw)
-    local escaped = utils.escape_html_attr(raw):gsub("&#10;", "<br>")
+    local escaped = utils.escape_html_attr(raw):gsub("\n", "<br>")
     return escaped:gsub("^toastui:", "<strong>toastui</strong>:")
   end
 
@@ -149,14 +180,17 @@ end
 --- @param time_format string|nil
 --- @param event_detail_items table|nil
 --- @param popup_detail_items table|nil
+--- @param auto_hour_range boolean
 --- @return PandocRawBlock
-function M.render_calendar_block(opts, calendars, events, initial_date, show_nav, height, timegrid_height, time_format, event_detail_items, popup_detail_items)
+function M.render_calendar_block(opts, calendars, events, initial_date, show_nav, height, timegrid_height, time_format, event_detail_items, popup_detail_items, auto_hour_range)
   local container_id = next_calendar_id()
   local html_parts = {}
   local has_custom_popup_details = false
 
   local tg = timegrid_height or "200%"
   table.insert(html_parts, '<style>#' .. utils.escape_html_attr(container_id) .. ' .toastui-calendar-timegrid { height: ' .. utils.escape_html_attr(tg) .. '; min-height: unset; }</style>')
+
+  table.insert(html_parts, '<style>' .. theme_override_css(container_id, opts.theme) .. '</style>')
 
   if show_nav then
     local nav = nav_html(container_id)
@@ -325,7 +359,114 @@ function M.render_calendar_block(opts, calendars, events, initial_date, show_nav
 
     var end = (sameDate ? '' : formatDate(event.end) + ' ') + formatTime(event.end);
     return formatDate(event.start) + ' ' + formatTime(event.start) + ' - ' + end;
-  };]])
+  };
+  Object.keys(opts.template).forEach(function(key) {
+    if (typeof opts.template[key] !== 'string') return;
+    var source = opts.template[key];
+    opts.template[key] = function(model) {
+      return source.replace(/\$\{\s*([\w.]+)\s*\}/g, function(_, path) {
+        var value = path.split('.').reduce(function(acc, part) {
+          return acc == null ? acc : acc[part];
+        }, model);
+        return value == null ? '' : escapeHtml(value);
+      });
+    };
+  });]])
+  end
+
+  if events then
+    -- Patch events so that detail-popup sections only appear for
+    -- user-provided properties.  The library internally defaults
+    -- state → "Busy" and attendees → [], both truthy, causing those
+    -- sections to always render.  Setting explicit falsy values
+    -- before createEvents() prevents those defaults from kicking in.
+    --
+    -- Built and normalized here, before the calendar is constructed,
+    -- so autoHourRange (below) can measure already timezone-resolved
+    -- event times and fold week.hourStart/hourEnd into opts before
+    -- new tui.Calendar(opts) runs.
+    table.insert(html_parts, '  var __ev = ' .. utils.to_json(events) .. ';')
+    table.insert(html_parts, [[  var __sourceTz = (opts.timezone && opts.timezone.zones && opts.timezone.zones[0] && opts.timezone.zones[0].timezoneName) || null;
+  var __naiveDateTime = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/;
+  function __tzOffsetMinutes(date, timeZone) {
+    var parts = {};
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: timeZone, hourCycle: 'h23',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    }).formatToParts(date).forEach(function(p) { parts[p.type] = p.value; });
+    var asUTC = Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second);
+    return (asUTC - date.getTime()) / 60000;
+  }
+  function __wallTimeToUtcIso(value, timeZone) {
+    var match = __naiveDateTime.exec(value);
+    if (!match) return null;
+    var guess = Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]), Number(match[4]), Number(match[5]), match[6] ? Number(match[6]) : 0);
+    var offset = __tzOffsetMinutes(new Date(guess), timeZone);
+    var utcMs = guess - offset * 60000;
+    var refined = __tzOffsetMinutes(new Date(utcMs), timeZone);
+    if (refined !== offset) utcMs = guess - refined * 60000;
+    return new Date(utcMs).toISOString();
+  }
+  function __resolveEventTime(value) {
+    if (__sourceTz && typeof value === 'string') {
+      var converted = __wallTimeToUtcIso(value, __sourceTz);
+      if (converted) return converted;
+    }
+    return value;
+  }
+  __ev.forEach(function(e, index) {
+    if (e.id == null || e.id === '') e.id = ']] .. container_id .. [[-event-' + index;
+    var source = Object.assign({}, e, e.raw && typeof e.raw === 'object' ? e.raw : {});
+    e.raw = source;
+    if (!e.state) e.state = '';
+    if (!e.attendees || (Array.isArray(e.attendees) && e.attendees.length === 0)) e.attendees = null;
+    if (!e.isAllday && e.category !== 'allday') {
+      if (e.start != null) e.start = __resolveEventTime(e.start);
+      if (e.end != null) e.end = __resolveEventTime(e.end);
+    }
+  });]])
+    if auto_hour_range then
+      table.insert(html_parts, [[  (function() {
+    var weekOpts = opts.week || (opts.week = {});
+    var hasHourStart = weekOpts.hourStart != null;
+    var hasHourEnd = weekOpts.hourEnd != null;
+    if (hasHourStart && hasHourEnd) return;
+    var minHour = null, maxHour = null;
+    // Shifts an instant by the delta between __sourceTz's offset and this
+    // browser's own offset, so the native getters below read __sourceTz's
+    // wall-clock digits (matching how TOAST UI actually draws the event)
+    // instead of the viewer's local digits.
+    function __zonedForDigits(d) {
+      if (!__sourceTz) return d;
+      return new Date(d.getTime() + (__tzOffsetMinutes(d, __sourceTz) + d.getTimezoneOffset()) * 60000);
+    }
+    __ev.forEach(function(e) {
+      if (e.isAllday || e.category === 'allday') return;
+      if (e.start == null || e.end == null) return;
+      var start = new Date(e.start);
+      var end = new Date(e.end);
+      if (isNaN(start.getTime()) || isNaN(end.getTime())) return;
+      start = __zonedForDigits(start);
+      end = __zonedForDigits(end);
+      var sameDay = start.getFullYear() === end.getFullYear() &&
+        start.getMonth() === end.getMonth() &&
+        start.getDate() === end.getDate();
+      if (!sameDay) {
+        minHour = 0;
+        maxHour = 24;
+        return;
+      }
+      var startHour = start.getHours() + start.getMinutes() / 60 + start.getSeconds() / 3600;
+      var endHour = end.getHours() + end.getMinutes() / 60 + end.getSeconds() / 3600;
+      if (minHour == null || startHour < minHour) minHour = startHour;
+      if (maxHour == null || endHour > maxHour) maxHour = endHour;
+    });
+    if (minHour == null || maxHour == null) return;
+    if (!hasHourStart) weekOpts.hourStart = minHour;
+    if (!hasHourEnd) weekOpts.hourEnd = maxHour;
+  })();]])
+    end
   end
 
   table.insert(html_parts, '  var container = document.getElementById(' .. utils.to_json(container_id) .. ');')
@@ -373,19 +514,6 @@ function M.render_calendar_block(opts, calendars, events, initial_date, show_nav
   cal.on('afterRenderEvent', fitShortTimedEvent);]])
 
   if events then
-    -- Patch events so that detail-popup sections only appear for
-    -- user-provided properties.  The library internally defaults
-    -- state → "Busy" and attendees → [], both truthy, causing those
-    -- sections to always render.  Setting explicit falsy values
-    -- before createEvents() prevents those defaults from kicking in.
-    table.insert(html_parts, '  var __ev = ' .. utils.to_json(events) .. ';')
-    table.insert(html_parts, [[  __ev.forEach(function(e, index) {
-    if (e.id == null || e.id === '') e.id = ']] .. container_id .. [[-event-' + index;
-    var source = Object.assign({}, e, e.raw && typeof e.raw === 'object' ? e.raw : {});
-    e.raw = source;
-    if (!e.state) e.state = '';
-    if (!e.attendees || (Array.isArray(e.attendees) && e.attendees.length === 0)) e.attendees = null;
-  });]])
     table.insert(html_parts, '  cal.createEvents(__ev);')
   end
 
