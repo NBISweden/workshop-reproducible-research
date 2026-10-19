@@ -808,22 +808,15 @@ Once the build is ready you'll instead see "Container is ready". The image can
 now be used in the same way as for any other image.
 
 Since we previously ran the `run_qc.sh` script with our image, let's do the same
-here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
-`/tmp/run_qc.sh` will be available in the container, as well as the `-w /tmp` to
-set the workdir:
+here. Just as before, you'll need to supply `-v $(pwd):/analysis` so that
+`/analysis/run_qc.sh` will be available in the container, as well as
+`-w /analysis` to set the working directory:
 
-- Execute `docker run -v $(pwd):/tmp -w /tmp <CONTAINER_LINK> /tmp/run_qc.sh`
-  from the command line.
+- Execute `docker run -v $(pwd):/analysis -w /analysis <CONTAINER_LINK>
+  /analysis/run_qc.sh` from the command line.
 
 This will automatically download the Seqera image and start the script as soon
 as it's ready.
-
-::: {.callout-note}
-The reason we used `-v $(pwd):/tmp` rather than `-v $(pwd):/analysis` as before
-is that Seqera containers default to the `/tmp` directory as their point of
-entry when running them. There is nothing special about this name, it's just the
-default location.
-:::
 
 While this particular image was relatively simple, it's quite common to create
 more complicated R and Python environments, which require many more packages and
