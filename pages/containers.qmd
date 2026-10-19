@@ -1,6 +1,6 @@
 ---
 title: Controlling your environment with Containers
-subtitle: How to keep keep track of both your environment and operating system
+subtitle: How to keep track of both your environment and operating system
 format: html
 ---
 
@@ -9,7 +9,7 @@ format: html
 Container-based technologies are designed to make it easier to create, deploy,
 and run applications by isolating them in self-contained software units (hence
 their name). The idea is to package software and/or code together with
-everything it needs (other packages it depends, various environment settings,
+everything it needs (other packages it depends on, various environment settings,
 _etc._) into one unit, _i.e._ a container. This way we can ensure that the
 software or code functions in exactly the same way regardless of where it's
 executed. Containers are in many ways similar to virtual machines but more
@@ -37,7 +37,7 @@ _Docker_. Just as with Git, Docker was designed for software development but is
 rapidly becoming widely used in scientific research. Another container-based
 technology is _Apptainer_ (and the related _Singularity_), which was developed
 to work well in computer cluster environments such as Uppmax. We will cover both
-Docker and Apptainer in this course, but the focus will be be on the former
+Docker and Apptainer in this course, but the focus will be on the former
 (since that is the most widely used and runs on all three operating systems).
 
 This tutorial depends on files from the course GitHub repo. Take a look at the
@@ -45,7 +45,7 @@ This tutorial depends on files from the course GitHub repo. Take a look at the
 haven't done so already, then open up a terminal and go to
 `workshop-reproducible-research/tutorials/containers`.
 
-::: {.callout-warning title="Dockage and storage"}
+::: {.callout-warning title="Docker and storage"}
 Docker images tend to take up quite a lot of space. In order to do all
 the exercises in this tutorial you need to have ~10 GB available.
 :::
@@ -54,7 +54,7 @@ the exercises in this tutorial you need to have ~10 GB available.
 
 We're almost ready to start, just one last note on nomenclature. You might have
 noticed that we sometimes refer to "Docker images" and sometimes to "Docker
-containers". We use images to start containers, so containers are simply an
+containers". We use images to start containers, so containers are simply
 instances of an image. You can have an image containing, say, a certain
 Linux distribution, and then start multiple containers running that
 same OS.
@@ -197,7 +197,7 @@ directly, which will cause Docker to download it on the fly.
 
 The `bowtie2-build` part is the COMMAND followed by the ARG (the input FASTA
 file and the output index). You'll find, however, that the command failed with
-an error message including `Error: could not open NCTC8325.fa`. Why is that?
+an error message including `Error: could not open NCTC8325.fa.gz`. Why is that?
 Well, it's something to do with a thing called _bind mounts_.
 
 ### Bind mounts
@@ -238,17 +238,17 @@ docker run -v $(pwd):/analysis quay.io/biocontainers/bowtie2:2.5.1--py39h3321a2d
 
 ::: {.callout-note}
 Note that we not only added the `-v` flag, but also changed the locations of the
-input and output files: `NCTC8325.fa` and `NCTC8325` from the previous command
-becomes `/analysis/NCTC8325.fa` and `/analysis/NCTC8325`, since that's where the
-files will be mounted inside the container.
+input and output files: `NCTC8325.fa.gz` and `NCTC8325` from the previous
+command become `/analysis/NCTC8325.fa.gz` and `/analysis/NCTC8325`, since
+that's where the files will be mounted inside the container.
 :::
 
 ::: {.callout-caution title="Linux machines"}
 It is important to note that if you are running the above command on a Linux
 machine like `Ubuntu`, the output files will have `root` ownership which is not
-ideal. This is because `Docker daemon` always runs as a root user or the user
-that the image has. To avoid this, you can add the following option to the above
-command.
+ideal. This is because processes inside the container run as `root` by default
+(or as the user set in the image). To avoid this, you can add the following
+option to the above command.
 
 ```bash
 -u $(id -u ${USER}):$(id -g ${USER})
@@ -420,8 +420,8 @@ reproducibility perspective.
 Next up is:
 
 ```Dockerfile
-# Start Bash shell by default
-CMD /bin/bash
+# Start Bash by default
+CMD ["/bin/bash"]
 ```
 
 `CMD` is an interesting instruction: it sets what a container should run when
@@ -517,7 +517,7 @@ environment file _e.g._ `environment.yml` from the Conda tutorial and use `conda
 env update --name base` to update the base environment from that file (the rule
 to keep the base Conda environment free of other packages does not apply to when
 you're building it inside a Docker image). Or we could install the package
-directly with `conda install --name base`. We'll try this later option here, so
+directly with `conda install --name base`. We'll try the latter option here, so
 add a line that will install the `fastqc` package, and also clean up packages
 and cache after installation. Use the `-y` flag to `conda install` to avoid the
 prompt that expects an interaction from the user.
@@ -552,14 +552,14 @@ docker build -t my_docker_conda -f conda.Dockerfile .
 docker run -v $(pwd):/analysis my_docker_conda /analysis/run_qc.sh
 ```
 
-You should now see the script to completion, but you won't find the output files
-in your working directory. The script creates the `data` and `results`
-directories and puts its files there, but since we're running from within the
-container in the root (`/`) directory, the directories created become `/data`
-and `/results`, which are _not_ mounted (since they're not inside the
-`/analysis` directory). What we can do is to add the `-w` (`--workdir`) flag,
+You should now see the script run to completion, but you won't find the output
+files in your working directory. The script creates the `data` and `results`
+directories and puts its files there, but since the container starts in the
+`/course` directory (set by `WORKDIR` in `Dockerfile`), the directories created
+become `/course/data` and `/course/results`, which are _not_ mounted (since
+they're not inside the `/analysis` directory). What we can do is to add the `-w` (`--workdir`) flag,
 which tells Docker where execution should happen, _i.e._ what should be the
-working directory (you could instead add `WORKDIR /analysis` to the Dockerfile
+working directory (you could instead set `WORKDIR /analysis` in the Dockerfile
 for the same effect).
 
 - Run the same command again, but add `-w /analysis` to the command.
@@ -585,8 +585,8 @@ yourself, and has become widely used in the bioinformatics community.
 ::: {.callout-note title="Quick recap"}
 In this section we've learned:
 
-- How the keywords `FROM`, `LABEL`, `MAINTAINER`, `RUN`, `ENV`, `SHELL`,
-  `WORKDIR`, and `CMD` can be used when writing a Dockerfile.
+- How the keywords `FROM`, `LABEL`, `RUN`, `SHELL`, `WORKDIR`, and `CMD` can
+  be used when writing a Dockerfile.
 - How to use `docker build` to construct and tag an image from a Dockerfile.
 - How to create your own Dockerfile.
 - How to use `-w` to set the working directory at runtime.
@@ -614,8 +614,8 @@ This should show information about the container that we just ran, something
 similar to the following:
 
 ```
-CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS          PORTS      NAMES
-b6f7790462c4   my_docker_conda   "tini -- /bin/bash -…"  3 minutes ago   Up 24 seconds              sad_maxwell
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS                     PORTS     NAMES
+161cc7e0e8e8   my_docker_conda   "tini -- /analysis/r…"   3 minutes ago   Exited (0) 2 minutes ago             youthful_euler
 ```
 
 This shows useful information such as the unique container id, the name of the
@@ -641,11 +641,11 @@ assign this name yourself using the flag `--name <any name you want>`.
 If we want to enter a running container, there are two commands we can
 use: `docker attach` and `docker exec`.
 
-* `docker attach` will attach local standard input, output, and error streams to
+- `docker attach` will attach local standard input, output, and error streams to
 a running container. This can be useful if your terminal closed down for some
 reason or if you started a terminal in detached mode and changed your mind.
 
-* `docker exec` can be used to execute any command in a running container. It's
+- `docker exec` can be used to execute any command in a running container. It's
 typically used to peek in at what is happening by opening up a new shell.
 
 Let's try out the `docker exec` command.
@@ -740,15 +740,15 @@ introduced in [the basics](#the-basics) and used when [building
 images](#building-images).
 
 ::: {.callout-tip}
-On Docker Hub it is also possible to link to your GitHub / BitBucket account and
-select repositories from which you want to automatically build and distribute
-Docker images. The Docker Hub servers will then build an image from the
-Dockerfile in your Git repository and make it available for download using
-`docker pull`. That way, you don't have to bother manually building and pushing
-using `docker push`. The GitHub repository for this course is linked to Docker
-Hub and the Docker images are built automatically from `Dockerfile` and
-`Dockerfile`, triggered by changes made to the GitHub repository. You can take a
-look at the course on [Docker Hub](https://hub.docker.com/r/nbisweden/workshop-reproducible-research).
+Instead of building and pushing images manually you can automate it, so that a
+new image is built from the Dockerfile in your Git repository whenever it
+changes. A common way to do this is with [GitHub
+Actions](https://docs.github.com/en/actions), which can build an image and push
+it to _e.g._ the GitHub Container Registry or Docker Hub. (Docker Hub also has
+its own automated builds, but they require a paid subscription.) The GitHub
+repository for this course uses this approach; you can look at the
+[workflow](https://github.com/NBISweden/workshop-reproducible-research/blob/main/.github/workflows/build-and-publish-images.yml)
+that builds and publishes its images.
 :::
 
 ::: {.callout-note title="Quick recap"}
@@ -762,7 +762,7 @@ In this section we've learned:
 
 There are lots of different things you can do with images and containers in
 general, especially when it comes to optimising build time or final image size.
-Here is some tips and tricks that you can be inspired from!
+Here are some tips and tricks that you can be inspired by!
 
 If you want to read more about containers in general you can check out these
 resources:
@@ -775,7 +775,7 @@ resources:
 
 While building from your own Dockerfile gives you full control over exactly how
 you build your image, there is also another alternative for building images:
-[Seqera Containers](https://seqera.io/containers/). This a free service provided
+[Seqera Containers](https://seqera.io/containers/). This is a free service provided
 by Seqera, the company behind Nextflow (among other things), and it allows you
 to easily build images from any package available in PyPI, Bioconda or any Conda
 channel. This means that most (but not all) bioinformatic software packages can
@@ -798,32 +798,25 @@ search bar. We'll also need `curl`, since that's used by the `run_qc.sh` script.
 
 - Add `curl` to the image in the same way.
 
-Once you've added `curl` you can press the blue "Get Container" button, and the
-image will start building; you can also change from Docker to Apptainer image,
-or the platform (AMD64 or ARM64), but going with the default of AMD64 Docker is
-usually useful. When you pressed the button you should have gotten a quick
-response of "Fetching container" and a link to the image itself; you can also
-press "View build details" if you want to explore the details about the build
-and image. Once the build is ready you'll instead see "Container is ready". The
-image can now be used in the same way as for any other image.
+Once you've added `curl` you can press the "Get Container" button, and the image
+will start building; you can also change from Docker to Apptainer image, or the
+platform (AMD64 or ARM64), but going with the default of AMD64 Docker is usually
+useful. When you pressed the button you should have gotten a quick response of
+"Fetching container" and a link to the image itself; you can also press "View
+build details" if you want to explore the details about the build and image.
+Once the build is ready you'll instead see "Container is ready". The image can
+now be used in the same way as for any other image.
 
 Since we previously ran the `run_qc.sh` script with our image, let's do the same
-here. Remember that you'll need to supply `-v $(pwd):/tmp` so that the
-`/tmp/run_qc.sh` will be available in the container, as well as the `-w /tmp` to
-set the workdir:
+here. Just as before, you'll need to supply `-v $(pwd):/analysis` so that
+`/analysis/run_qc.sh` will be available in the container, as well as
+`-w /analysis` to set the working directory:
 
-- Execute `docker run -v $(pwd):/tmp -w /tmp <CONTAINER_LINK> /tmp/run_qc.sh`
-  from the command line.
+- Execute `docker run -v $(pwd):/analysis -w /analysis <CONTAINER_LINK>
+  /analysis/run_qc.sh` from the command line.
 
 This will automatically download the Seqera image and start the script as soon
 as it's ready.
-
-::: {.callout-note}
-The reason we used `-v $(pwd):/tmp` rather than `-v $(pwd):/analysis` as before
-is that Seqera containers default to the `/tmp` directory as their point of
-entry when running them. There is nothing special about this name, it's just the
-default location.
-:::
 
 While this particular image was relatively simple, it's quite common to create
 more complicated R and Python environments, which require many more packages and
@@ -853,19 +846,20 @@ Format_ (SIF). A SIF file is self-contained and can be moved around and shared
 like any other file, which also makes it easy to work with on an HPC cluster.
 
 ::: {.callout-note title="Apptainer and Singularity"}
-The open source Singularity project was renamed to _Apptainer_ in 2021. The
-company _Sylabs_ still keeps their commercial branch of the project under the
-Singularity name, and offer a free 'Community Edition' version. The name change
-was done in order to clarify the distinction between the open source project and
-the various commercial versions. At the moment there is little difference to you
-as a user whether you use Singularity or Apptainer, but eventually it's very
-likely that the two will diverge.
+The open source Singularity project joined the Linux Foundation and was renamed
+to _Apptainer_ in 2021. The company _Sylabs_ forked the project and continued
+developing it under the Singularity name, both as a free 'Community Edition'
+(SingularityCE) and as a commercial version. In October 2026, however, Sylabs
+discontinued all of its Singularity products, with SingularityCE 4.6 being the
+final release. Apptainer is thus the actively maintained version, and it still
+provides the `singularity` command and runs the same SIF images, so existing
+Singularity commands and images will keep working.
 :::
 
 While it is possible to define and build Apptainer images from scratch, in a
 manner similar to what you've already learned for Docker, this is not something
 we will cover here (but feel free to read more about this in _e.g._ the
-[Apptainer docs](https://apptainer.org/docs/user/main/index.html).
+[Apptainer docs](https://apptainer.org/docs/user/main/index.html)).
 
 The reasons for not covering Apptainer more in-depth are varied, but it
 basically boils down to it being more or less Linux-only, unless you use Virtual
@@ -876,9 +870,9 @@ Apptainer images regardless of platform, meaning that you can't build them on
 _e.g._ Uppmax, even though Apptainer is already installed there. You can,
 however, use the `--remote` flag, which runs the build on Apptainer's own
 servers. This doesn't work in practice a lot of the time, though, since most
-scientist will work in private Git repositories so that their research and code
+scientists will work in private Git repositories so that their research and code
 is not available to anybody, and the `--remote` flag requires that any files
-required for the build (_e.g._ the `environment.yml` file) is publicly
+required for the build (_e.g._ the `environment.yml` file) are publicly
 available.
 
 There are very good reasons to use Apptainer, however, the major one being that
@@ -976,7 +970,7 @@ You should now see a small ASCII art of a cow and today's date.
 
 With the newer ARM64 architectures introduced by Apple one often runs into the
 problem of not having an architecture-native image to run with. This is
-sometimes okay since the [Rosetta2](https://support.apple.com/en-us/HT211861)
+sometimes okay since the [Rosetta 2](https://support.apple.com/en-us/HT211861)
 software can emulate the old AMD64 architecture on newer ARM64 computers, but
 results in a performance hit. One could just build for ARM64 using
 `--platform=linux/arm64` instead, but then somebody who _doesn't_ have the new
@@ -987,13 +981,15 @@ appropriate for their computer. Here's how to do it:
 
 - Start by checking the available builders using `docker buildx ls`.
 
-You should only see the default builder, which does not have access to
-multi-platform builds. Let's create a new builder that *does* have access to it:
+You should see one or more builders using the `docker` driver (_e.g._
+`default`), which does not support multi-platform builds (unless you have turned
+on the containerd image store in Docker Desktop). Let's create a new builder
+that *does* support it:
 
 - Run the following command:
 
 ```bash
-docker buildx create --name mybuilder --driver docker-container --bootstrap.
+docker buildx create --name mybuilder --driver docker-container --bootstrap
 ```
 
 - Switch to using the new builder with `docker buildx use mybuilder` and check
@@ -1012,10 +1008,10 @@ docker buildx build --platform linux/amd64,linux/arm64 -t <username>/<image>:lat
 That's it! Now anybody who does _e.g._ `docker pull <username>/<image>` will get
 an image appropriate for their architecture whether they are on AMD64 or ARM64!
 
-::: {.callout-note title="An alias to `buildx`"}
-You can type `docker buildx install` to make the `docker build` into an alias
-for `docker buildx`, allowing you to run multi-platform builds using `docker
-build`. Use `docker buildx uninstall` to remove this alias.
+::: {.callout-note title="`docker build` and `docker buildx build`"}
+In recent versions of Docker (23.0 and later), `docker build` already uses
+Buildx under the hood, so you can also run multi-platform builds with `docker
+build --platform ...` once you've selected a builder that supports them.
 :::
 
 ### Multi-stage builds
@@ -1024,15 +1020,15 @@ Some build processes can be quite complicated, requiring a more diverse set of
 software packages in order to successfully build a Docker image. Not all of
 these packages are always required for _running_ the final image, however, which
 results in a somewhat bloated image with a larger size footprint than what is
-strictly required. This is where _multi-stage_ builds come in, which allows for
+strictly required. This is where _multi-stage_ builds come in, which allow for
 optimisation where only the files and packages actually required for execution
-is included in the final image.
+are included in the final image.
 
 While this is mostly interesting for software developers and people working with
 binaries and other non-scripted code, it can be of interest in the context of
 bioinformatics when it comes to optimising _e.g._ Conda environments. Conda
 actually comes in two parts: the Conda installation itself (along with all the
-files requires to build Conda environments) and the Conda environments that
+files required to build Conda environments) and the Conda environments that
 we've built. The former is actually not needed to be able to use the latter, but
 the technical details behind this are non-trivial and out of the scope of this
 course. Regardless, there's a package that can help us with this: `conda-pack`.
@@ -1043,7 +1039,7 @@ before:
 ```Dockerfile
 FROM condaforge/miniforge3:24.7.1-0
 RUN conda install -y -n base python=3.10
-CMD /bin/bash
+CMD ["/bin/bash"]
 ```
 
 Here we install Python in the Conda base environment, similar to how we have
@@ -1076,14 +1072,14 @@ RUN conda-pack -n env -o /tmp/env.tar && \
 #
 # Second stage: final image
 #
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 # Copy Conda environment from previous stage
 COPY --from=build /env /env
 
 # Activate the environment when running the container
 RUN echo "source /env/bin/activate" >> ~/.bashrc
-CMD /bin/bash
+CMD ["/bin/bash"]
 ```
 
 The first thing to notice here is the first `FROM` statement, which also
@@ -1091,11 +1087,11 @@ includes `AS build`, which is specific to multi-stage builds. What we are doing
 is giving the stage a name, `build` in this case, so that we may refer back to
 it later.
 
-The first `RUN` command install `conda-pack` in the _base_ environment, _not_
+The first `RUN` command installs `conda-pack` in the _base_ environment, _not_
 the environment with Python that we're actually interested in. The reason for
 this is that we only need `conda-pack` for making the Python environment
 independent of the Conda installation, but we won't need it to actually activate
-the environment once this is done. The second and third `RUN` commands installs
+the environment once this is done. The second and third `RUN` commands create
 the new environment (named `env` here) and packages that environment into a
 separate directory, respectively.
 
@@ -1111,12 +1107,12 @@ environment itself, not the base environment nor the Conda installation.
 - List your docker images with `docker image ls` and compare the newly created
   `my_docker_multi` with `my_docker_base`.
 
-Hopefully you should see that the size of the final image are different: the
-`multi` image should be about 500 MB smaller than the `multi` image. This tells
+Hopefully you should see that the sizes of the final images are different: the
+`multi` image should be about 1 GB smaller than the `base` image. This tells
 you something about how large the Conda installation is all by itself.
 
 ::: {.callout-note title="A smaller base image"}
-We're still using Ubuntu as the base image for the  final stage of our image,
+We're still using Ubuntu as the base image for the final stage of our image,
 but we _could_ go even further in our attempt to minimise the image size by
 using an even smaller base image, such as `alpine`. Doing this means that you
 lose out on a lot of basic Unix utilities, though, such as Bash.
@@ -1124,9 +1120,9 @@ lose out on a lot of basic Unix utilities, though, such as Bash.
 
 There are more complex environment specifications than this, though, especially
 those using multiple R and/or Python packages. The Conda environments for those
-type of environments are _much_ more complicated than the previous example,
-which means that the optimisation is proportionally smaller. Going from ~850 to
-~250 MB is quite a big optimisation, while going from _e.g._ 2 or 3 GB to 1.5 or
+types of environments are _much_ more complicated than the previous example,
+which means that the optimisation is proportionally smaller. Going from ~1.3 GB to
+~200 MB is quite a big optimisation, while going from _e.g._ 2 or 3 GB to 1.5 or
 2.5 GB is not quite as big. Regardless, that (albeit smaller) difference can add
 up over time when it comes to downloading the image, especially if it's an image
 used by many people in a project, or if you're actually paying for hosting of

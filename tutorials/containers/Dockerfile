@@ -17,4 +17,4 @@ RUN conda config --set channel_priority strict && \
     conda config --append channels bioconda
 
 # Start Bash by default
-CMD /bin/bash
+CMD ["/bin/bash"]

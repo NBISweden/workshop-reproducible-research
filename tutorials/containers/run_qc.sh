@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Make needed directories
 mkdir -p data
 mkdir -p results/fastqc
