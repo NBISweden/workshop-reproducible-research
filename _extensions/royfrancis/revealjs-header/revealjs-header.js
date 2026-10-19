@@ -45,6 +45,20 @@
   }
 
   /**
+   * Publish reveal's current zoom factor as a CSS custom property so the
+   * logo CSS can size itself in lockstep with the (transform-scaled)
+   * slide content instead of staying pinned to a constant real-world size.
+   * @param {Reveal} reveal
+   */
+  function publishScale(reveal) {
+    const scale = typeof reveal.getScale === "function" ? reveal.getScale() : 1;
+    document.documentElement.style.setProperty(
+      "--qrh-scale",
+      String(scale || 1)
+    );
+  }
+
+  /**
    * Initialize extension behavior after reveal and DOM are ready.
    */
   function initialize() {
@@ -54,13 +68,22 @@
       return;
     }
 
-    if (reveal.isReady()) {
+    const onReady = () => {
       mountHeader();
+      publishScale(reveal);
+
+      if (typeof reveal.on === "function") {
+        reveal.on("resize", () => publishScale(reveal));
+      }
+    };
+
+    if (reveal.isReady()) {
+      onReady();
       return;
     }
 
     if (typeof reveal.on === "function") {
-      reveal.on("ready", mountHeader);
+      reveal.on("ready", onReady);
     }
   }
 

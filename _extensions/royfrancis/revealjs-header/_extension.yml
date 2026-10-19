@@ -1,6 +1,6 @@
 title: revealjs-header
 author: Roy Francis
-version: 1.0.1
+version: 1.0.2
 description: Add configurable left and right logos to revealjs slide headers.
 quarto-required: ">=1.2.0"
 contributes:
