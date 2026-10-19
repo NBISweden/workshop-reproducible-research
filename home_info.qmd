@@ -12,14 +12,14 @@ team:
     - name: Erik Fasterius
       image: lectures/introduction/images/erik-fasterius.jpg
       description: |
-        Bioinformatician,  
-        NBIS,  
+        Bioinformatician,
+        NBIS,
         Stockholm University
     - name: John Sundh
       image: lectures/introduction/images/john-sundh.jpg
       description: |
-        Bioinformatician,  
-        NBIS,  
+        Bioinformatician,
+        NBIS,
         Stockholm University
 filters:
   - leaflet
@@ -29,14 +29,6 @@ filters:
 
 ::: {.panel-tabset}
 
-## Lund
-
-<!-- update map markers in _metadata.yml -->
-{{< leaflet lund >}}
-
-<!-- additional practical information -->
-{{< include assets/locations/_lund.qmd >}}
-
 ## Stockholm
 
 <!-- update map markers in _metadata.yml -->
@@ -44,6 +36,14 @@ filters:
 
 <!-- additional practical information -->
 {{< include assets/locations/_stockholm.qmd >}}
+
+## Lund
+
+<!-- update map markers in _metadata.yml -->
+{{< leaflet lund >}}
+
+<!-- additional practical information -->
+{{< include assets/locations/_lund.qmd >}}
 
 :::
 
