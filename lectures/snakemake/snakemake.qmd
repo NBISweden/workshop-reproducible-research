@@ -16,7 +16,7 @@ digraph snakemake_dag {
     node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
         0[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
-        1[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.11 0.6 0.85", style="rounded"];
+        1[label = "download_fastq_files\nsample_id: SRR935090", color = "0.11 0.6 0.85", style="rounded"];
         1 -> 0
 }
 ```
@@ -32,11 +32,11 @@ digraph snakemake_dag {
     node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
         0[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
-        1[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.61 0.6 0.85", style="rounded"];
+        1[label = "download_fastq_files\nsample_id: SRR935090", color = "0.61 0.6 0.85", style="rounded"];
         2[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
-        3[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.61 0.6 0.85", style="rounded"];
+        3[label = "download_fastq_files\nsample_id: SRR935091", color = "0.61 0.6 0.85", style="rounded"];
         4[label = "fastqc", color = "0.39 0.6 0.85", style="rounded"];
-        5[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.61 0.6 0.85", style="rounded"];
+        5[label = "download_fastq_files\nsample_id: SRR935092", color = "0.61 0.6 0.85", style="rounded"];
         1 -> 0
         3 -> 2
         5 -> 4
@@ -54,13 +54,13 @@ digraph snakemake_dag {
     node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
         0[label = "align_to_genome", color = "0.06 0.6 0.85", style="rounded"];
-        1[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.00 0.6 0.85", style="rounded"];
+        1[label = "download_fastq_files\nsample_id: SRR935091", color = "0.00 0.6 0.85", style="rounded"];
         2[label = "index_genome", color = "0.61 0.6 0.85", style="rounded"];
         3[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "0.33 0.6 0.85", style="rounded"];
         4[label = "align_to_genome", color = "0.06 0.6 0.85", style="rounded"];
-        5[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.00 0.6 0.85", style="rounded"];
+        5[label = "download_fastq_files\nsample_id: SRR935092", color = "0.00 0.6 0.85", style="rounded"];
         6[label = "align_to_genome", color = "0.06 0.6 0.85", style="rounded"];
-        7[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.00 0.6 0.85", style="rounded"];
+        7[label = "download_fastq_files\nsample_id: SRR935090", color = "0.00 0.6 0.85", style="rounded"];
         1 -> 0
         2 -> 0
         3 -> 2
@@ -84,15 +84,15 @@ digraph snakemake_dag {
         1[label = "generate_count_table", color = "0.50 0.6 0.85", style="rounded"];
         2[label = "sort_bam\nprefix: results/bam/SRR935090", color = "0.17 0.6 0.85", style="rounded"];
         3[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "0.22 0.6 0.85", style="rounded"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", color = "0.22 0.6 0.85", style="rounded"];
         5[label = "index_genome", color = "0.56 0.6 0.85", style="rounded"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "0.28 0.6 0.85", style="rounded"];
         7[label = "sort_bam\nprefix: results/bam/SRR935091", color = "0.17 0.6 0.85", style="rounded"];
         8[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
-        9[label = "get_SRA_by_accession\nsample_id: SRR935091", color = "0.22 0.6 0.85", style="rounded"];
+        9[label = "download_fastq_files\nsample_id: SRR935091", color = "0.22 0.6 0.85", style="rounded"];
         10[label = "sort_bam\nprefix: results/bam/SRR935092", color = "0.17 0.6 0.85", style="rounded"];
         11[label = "align_to_genome", color = "0.61 0.6 0.85", style="rounded"];
-        12[label = "get_SRA_by_accession\nsample_id: SRR935092", color = "0.22 0.6 0.85", style="rounded"];
+        12[label = "download_fastq_files\nsample_id: SRR935092", color = "0.22 0.6 0.85", style="rounded"];
         13[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "0.44 0.6 0.85", style="rounded"];
         14[label = "multiqc", color = "0.11 0.6 0.85", style="rounded"];
         15[label = "fastqc", color = "0.00 0.6 0.85", style="rounded"];
@@ -198,15 +198,21 @@ $ bash trimfastq.sh
 ## Example: sequence trimming {auto-animate=true}
 
 Using Snakemake rules:
-```{.python filename="Snakefile" code-line-numbers="|1,6|3|2,8|4,5,9,10|7"}
+```{.python filename="Snakefile"}
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
     shell:
         "seqtk trimfq -b 5 -e 10 {input} > {output}"
+
+
 rule gzip:
-    output: "{sample}.trimmed.fastq.gz"
-    input: "{sample}.trimmed.fastq"
+    input:
+        "{sample}.trimmed.fastq",
+    output:
+        "{sample}.trimmed.fastq.gz",
     shell:
         "gzip -c {input} > {output}"
 ```
@@ -518,29 +524,12 @@ digraph snakemake_dag {
 - By themselves, rules only define what files [can]{.green} be generated
 - The actual rules to run are determined automatically from the files you
   [want]{.green}, so called [targets]{.green}
-- It can therefore be helpful to think of Snakemake workflows in a bottom-up
-  manner, [starting with the output]{.green}
-
-```{.python code-line-numbers="2,7"}
-rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
-    shell:
-        "seqtk trimfq -b 5 -e 10 {input} > {output}"
-rule gzip:
-    output: "{sample}.trimmed.fastq.gz"
-    input: "{sample}.trimmed.fastq"
-    shell:
-        "gzip -c {input} > {output}"
-```
 
 ## {auto-animate=true transition="none"}
 
 - By themselves, rules only define what files [can]{.green} be generated
 - The actual rules to run are determined automatically from the files you
   [want]{.green}, so called [targets]{.green}
-- It can therefore be helpful to think of Snakemake workflows in a bottom-up
-  manner, [starting with the output]{.green}
 - If no target is passed at the command line, Snakemake will use the first
   defined rule in the Snakefile as a target
 
@@ -548,10 +537,13 @@ rule gzip:
 rule all:
     input:
         "a.trimmed.fastq.gz",
-        "b.trimmed.fastq.gz"
+        "b.trimmed.fastq.gz",
+
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
     shell:
         "seqtk trimfq -b 5 -e 10 {input} > {output}"
 [...]
@@ -575,7 +567,7 @@ digraph snakemake_dag {
         1[label = "generate_count_table", color = "black", style="rounded"];
         2[label = "sort_bam\nsample_id: SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", color = "black", style="rounded"];
         5[label = "index_genome", color = "black", style="rounded"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "black", style="rounded"];
         7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "black", style="rounded"];
@@ -617,7 +609,7 @@ digraph snakemake_dag {
         1[label = "generate_count_table", color = "black", style="rounded"];
         2[label = "sort_bam\nsample_id: SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", color = "black", style="rounded"];
         5[label = "index_genome", color = "black", style="rounded"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "black", style="rounded"];
         7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "black", style="rounded"];
@@ -657,7 +649,7 @@ digraph snakemake_dag {
         1[label = "generate_count_table", color = "black", style="rounded"];
         2[label = "sort_bam\nsample_id: SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", color = "black", style="rounded"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", color = "black", style="rounded"];
         5[label = "index_genome*", color = "cyan", style="rounded"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "black", style="rounded"];
         7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "black", style="rounded"];
@@ -697,7 +689,7 @@ digraph snakemake_dag {
         1[label = "generate_count_table", color = "black", style="rounded"];
         2[label = "sort_bam\nsample_id: SRR935090", color = "black", style="rounded"];
         3[label = "align_to_genome", color = "black", style="rounded"];
-        4[label = "get_SRA_by_accession\nsample_id: SRR935090", fontcolor="grey", fillcolor="lightgrey", color = "grey", style="rounded,dashed,filled"];
+        4[label = "download_fastq_files\nsample_id: SRR935090", fontcolor="grey", fillcolor="lightgrey", color = "grey", style="rounded,dashed,filled"];
         5[label = "index_genome", color = "grey", fillcolor="lightgrey", fontcolor="grey", style="rounded,dashed,filled"];
         6[label = "get_genome_fasta\ngenome_id: NCTC8325", color = "grey", fontcolor="grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
         7[label = "get_genome_gff3\ngenome_id: NCTC8325", color = "grey", fontcolor="grey", fillcolor="lightgrey", style="rounded,dashed,filled"];
@@ -725,11 +717,13 @@ digraph snakemake_dag {
 
 ```{.python}
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
     shell:
         """
-        seqtk trimfq -b 5 -e 10 {input} > {output}
+        seqtk trimfq -b 5 -e 10 {input} >{output}
         """
 ```
 
@@ -737,14 +731,17 @@ rule trim_fastq:
 
 - Logfiles help with debugging and leave a "paper trail"
 
-```{.python code-line-numbers="4,7"}
+```{.python code-line-numbers="6,7,10"}
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
-    log: "logs/{sample}.trim_fastq.log"
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
+    log:
+        "logs/{sample}.trim_fastq.log",
     shell:
         """
-        seqtk trimfq -b 5 -e 10 {input} > {output} 2> {log}
+        seqtk trimfq -b 5 -e 10 {input} >{output} 2>{log}
         """
 ```
 
@@ -752,18 +749,21 @@ rule trim_fastq:
 
 - Params can be used to pass on settings
 
-```{.python code-line-numbers="5-7,10"}
+```{.python code-line-numbers="8-10,13"}
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
-    log: "logs/{sample}.trim_fastq.log"
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
+    log:
+        "logs/{sample}.trim_fastq.log",
     params:
         leftTrim=5,
-        rightTrim=10
+        rightTrim=10,
     shell:
-      """
-      seqtk trimfq -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
-      """
+        """
+        seqtk trimfq -b {params.leftTrim} -e {params.rightTrim} {input} >{output} 2>{log}
+        """
 ```
 
 ## {auto-animate=true}
@@ -771,22 +771,25 @@ rule trim_fastq:
 - The `threads` directive specify maximum number of threads for a rule
 - You can also define `resources` such as disk/memory requirements and runtime
 
-```{.python code-line-numbers="8-11,14"}
+```{.python code-line-numbers="8-11,17"}
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
-    log: "logs/{sample}.trim_fastq.log"
-    params:
-        leftTrim=5,
-        rightTrim=10
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
+    log:
+        "logs/{sample}.trim_fastq.log",
     threads: 8
     resources:
         mem_mb=64,
-        runtime=120
+        runtime=120,
+    params:
+        leftTrim=5,
+        rightTrim=10,
     shell:
-      """
-      seqtk trimfq -t {threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
-      """
+        """
+        seqtk trimfq -t {threads} -b {params.leftTrim} -e {params.rightTrim} {input} >{output} 2>{log}
+        """
 ```
 
 ## {auto-animate=true}
@@ -794,24 +797,29 @@ rule trim_fastq:
 - Rules can be executed in separate software environments using either the
   `conda` or `container` directive
 
-```{.python code-line-numbers="12-13"}
+```{.python code-line-numbers="8-11"}
 rule trim_fastq:
-    output: temp("{sample}.trimmed.fastq")
-    input: "{sample}.fastq"
-    log: "logs/{sample}.trim_fastq.log"
-    params:
-        leftTrim=5,
-        rightTrim=10
+    input:
+        "{sample}.fastq",
+    output:
+        temp("{sample}.trimmed.fastq"),
+    log:
+        "logs/{sample}.trim_fastq.log",
+    conda:
+        "envs/seqtk.yaml"
+    container:
+        "docker://quay.io/biocontainers/seqtk"
     threads: 8
     resources:
         mem_mb=64,
-        runtime=120
-    conda: "envs/seqtk.yaml"
-    container: "docker://quay.io/biocontainers/seqtk"
+        runtime=120,
+    params:
+        leftTrim=5,
+        rightTrim=10,
     shell:
-      """
-      seqtk trimfq -t {threads} -b {params.leftTrim} -e {params.rightTrim} {input} > {output} 2> {log}
-      """
+        """
+        seqtk trimfq -t {threads} -b {params.leftTrim} -e {params.rightTrim} {input} >{output} 2>{log}
+        """
 ```
 
 ## {auto-animate=true}
@@ -869,12 +877,12 @@ $ snakemake --configfile config.yaml -s Snakefile -c 8 -p
 
 ```{.bash code-line-numbers=false}
 $ snakemake --configfile config.yaml -s Snakefile -c 8 -p \
-  --software-deployment-method conda
+  --sdm conda
 ```
 
 ```{.bash code-line-numbers=false}
 $ snakemake --configfile config.yaml -s Snakefile -c 8 -p \
-  --software-deployment-method apptainer
+  --sdm apptainer
 ```
 
 # Questions?
