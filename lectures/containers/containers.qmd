@@ -4,7 +4,13 @@ subtitle: '
         <img src="images/docker-logo.webp" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
         <img src="https://apptainer.org/docs/user/main/_static/logo.png" height="130px" style="float:center; padding: 15px 15px 15px 15px;"/>
         '
-format: revealjs
+format:
+  revealjs:
+    mermaid-format: svg
+    mermaid:
+      theme: neutral
+execute:
+  echo: false
 ---
 
 ## What is [Docker]{.green}?
@@ -48,7 +54,18 @@ benchmarking studies:
 ## Docker nomenclature
 
 ::: {.fragment}
-![](images/images_and_containers.png){height=350 fig-align="center"}
+```{mermaid}
+flowchart LR
+    hub@{ shape: cloud, label: "Docker Hub<br><code>ubuntu:24.04</code>" }
+    subgraph local [Local machine]
+        img["Local image<br><code>ubuntu:24.04</code>"]
+    end
+    c1[Container]
+    c2[Container]
+    c3[Container]
+    hub -. "docker pull" .-> img
+    img -. "docker run" .-> c1 & c2 & c3
+```
 :::
 
 ::: {.incremental}
